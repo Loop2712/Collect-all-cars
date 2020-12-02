@@ -26,3 +26,5 @@ Auth::routes();
 Route::get('/home', 'pageController@index')->name('home');
 Route::resource('car', 'carController');
 Route::resource('car', 'carController');
+Route::resource('generat', 'generatController');
+Route::resource('brand', 'brandController');
