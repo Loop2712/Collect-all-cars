@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "generat_id",
+            "type": "integer"
+        },
+        {
+            "name": "generat_name",
+            "type": "text"
+        }
+    ]
+ }

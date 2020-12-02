@@ -8,32 +8,44 @@
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>First Slide</h3>
-            <p>This is a description for the first slide.</p>
-          </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>Second Slide</h3>
-            <p>This is a description for the second slide.</p>
-          </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>Third Slide</h3>
-            <p>This is a description for the third slide.</p>
-          </div>
         </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+    </div>
+
+    <div class="container">
+
+    <div class="card">
+      <div class="card">
+        <div class="card-body">
+        <div class="row">
+        <input class="form-control" type="text" placeholder="Default input">
+        <button class="btn btn-secondary" type="button">ค้นหา</button>
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault04">generation</label>
+              <select class="custom-select" id="validationDefault04" required>
+                <option option selected disabled value="">Choose...</option>
+                <option>...</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="formGroupExampleInput">Price</label>
+            <input type="text" class="form-control" placeholder="max">
+          </div>
+          <div class="col-md-3 mb-3">
+          <label for="formGroupExampleInput">Price</label>
+           <input type="text" class="form-control" placeholder="min">
+          </div>
+          
+          
+        </div>
+
+              <button class="btn btn-secondary" type="button">ค้นหา</button>
+        </div>
+      </div>
     </div>

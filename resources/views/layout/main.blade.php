@@ -17,6 +17,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid"> 
+            @include('layout.header')
 
             @yield('content')
 

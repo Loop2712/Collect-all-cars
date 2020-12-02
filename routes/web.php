@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/table', function () {
-    return view('table');
-});
 
 Auth::routes();
 
@@ -27,3 +24,5 @@ Auth::routes();
 
 
 Route::get('/home', 'pageController@index')->name('home');
+Route::resource('car', 'carController');
+Route::resource('car', 'carController');

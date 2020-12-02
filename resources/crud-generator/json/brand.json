@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "brand_id",
+            "type": "integer"
+        },
+        {
+            "name": "brand_name",
+            "type": "text"
+        }
+    ]
+ }
