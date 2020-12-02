@@ -1,0 +1,65 @@
+{
+    "fields": [
+        {
+            "name": "price",
+            "type": "integer"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "brand",
+            "type": "string"
+        },       
+        {
+            "name": "model",
+            "type": "string"
+        },       
+        {
+            "name": "submodel",
+            "type": "string"
+        },       
+        {
+            "name": "year",
+            "type": "integer"
+        },       
+        {
+            "name": "motor",
+            "type": "string"
+        }, 
+        {
+            "name": "gear",
+            "type": "string"
+        },            
+        {
+            "name": "seats",
+            "type": "integer"
+        },
+        {
+            "name": "distance",
+            "type": "integer"
+        }, 
+        {
+            "name": "color",
+            "type": "string"
+        }, 
+        {
+            "name": "image",
+            "type": "string"
+        }, 
+        {
+            "name": "location",
+            "type": "string"
+        }, 
+        {
+            "name": "link",
+            "type": "string"
+        }, 
+        {
+            "name": "car_id_detail",
+            "type": "integer"
+        }
+    ]
+ }
+ 

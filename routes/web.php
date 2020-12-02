@@ -28,3 +28,4 @@ Route::resource('car', 'carController');
 Route::resource('car', 'carController');
 Route::resource('generat', 'generatController');
 Route::resource('brand', 'brandController');
+Route::resource('data_car', 'Data_carController');
