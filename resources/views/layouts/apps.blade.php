@@ -74,15 +74,10 @@
         </nav>
 
         <main class="py-5">
-            <div class="container">
-                <div class="row">
-                    @include('admin.sidebar')
 
-                    <div class="col-md-9">
+
                         @yield('content')
-                    </div>
-                </div>
-            </div>
+
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

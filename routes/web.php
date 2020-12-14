@@ -13,19 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'pageController@index')->name('home');
-Route::get('/home', 'pageController@index')->name('home');
-Route::resource('car', 'carController');
-Route::resource('car', 'carController');
-Route::resource('generat', 'generatController');
-Route::resource('brand', 'brandController');
-Route::resource('data_car', 'Data_carController');
+Route::get('/car', 'CarController@index');
+Route::get('/car/create', 'CarController@create');
+//Route::resource('car','CarController');

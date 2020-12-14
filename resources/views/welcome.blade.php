@@ -6,6 +6,7 @@
 
         <title>Laravel</title>
 
+        
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -71,16 +72,16 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
+                <i class="fa fa-copy"></i>
+                <i class="fa fa-save"></i>
+                <i class="fa fa-trash"></i>
+                <i class="fa fa-home"></i>
                     Laravel
                 </div>
 
