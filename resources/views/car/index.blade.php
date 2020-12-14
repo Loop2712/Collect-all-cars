@@ -30,7 +30,7 @@
                                 {{ $data->links() }}
                             </div>
 
-  </div>
+                        
 
                         </div>
                         </div>
