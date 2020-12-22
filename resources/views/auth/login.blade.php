@@ -5,16 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('ลงชื่อเข้าใช้') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อผู้ใช้') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
 
                                 @error('username')
@@ -26,9 +26,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('รหัสผ่าน') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
@@ -45,7 +45,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('จดจำฉัน') }}
                                     </label>
                                 </div>
                             </div>
@@ -53,15 +53,33 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button style="padding-left: 106px;padding-right: 106px;" type="submit" class="btn btn-primary">
+                                            {{ __('เข้าสู่ระบบ') }}
+                                        </button>
+                                        @if (Route::has('password.request'))
+                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                {{ __('ลืมรหัสผ่าน ?') }}
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                                <br>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                                <div class="row">
+                                    <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div>
+                                    <span style="margin-top: -10px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-md-2">
+                                        หรือ
+                                    </span>
+                                    <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div>
+                                    <br>
+                                    <div class="col-md-12">
+                                        <img width="140" height="50" src="{{ asset('/img/icon/fb.png') }}">
+                                        <img width="140" height="50" src="{{ asset('/img/icon/gg.png') }}">
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </form>
