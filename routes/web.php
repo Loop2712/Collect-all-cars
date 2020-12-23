@@ -29,5 +29,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/car', 'CarController@index');
-Route::get('/car/create', 'CarController@create');
+Route::get('/image/{$id}','CarController@image');
 //Route::resource('car','CarController');
