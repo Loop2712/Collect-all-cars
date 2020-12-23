@@ -75,7 +75,7 @@
                                     <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div>
                                     <br>
                                     <div class="col-md-12">
-                                        <img width="140" height="50" src="{{ asset('/img/icon/fb.png') }}">
+                                        <a href="{{ url('/login/facebook') }}"><img width="140" height="50" src="{{ asset('/img/icon/fb.png') }}"></a>
                                         <img width="140" height="50" src="{{ asset('/img/icon/gg.png') }}">
                                     </div>
                                 </div>
