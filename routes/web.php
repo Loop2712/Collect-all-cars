@@ -21,7 +21,7 @@ Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook')->name('l
 Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
 
 Route::get('/', function () {
-    return view('/home');
+    return view('welcome');
 });
 
 Auth::routes();
