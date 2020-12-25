@@ -85,7 +85,7 @@ class LoginController extends Controller
         if (!$user) {
             //CREATE NEW USER
             $user = new User();
-            $user->user = $data->name;
+            $user->name = $data->name;
             $user->username = $data->email;
             $user->email = $data->email;
             $user->provider_id = $data->id;
