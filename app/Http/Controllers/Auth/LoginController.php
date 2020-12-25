@@ -78,8 +78,11 @@ class LoginController extends Controller
 
     protected function _registerOrLoginUser($data)
     {
+        //GET USER 
         $user = User::where('email', '=', $data->email)->first();
+
         if (!$user) {
+            //CREATE NEW USER
             $user = new User();
             $user->name = $data->name;
             $user->email = $data->email;
@@ -87,7 +90,7 @@ class LoginController extends Controller
             $user->avatar = $data->avatar;
             $user->save();
         }
-
+        //LOGIN
         Auth::login($user);
     }
 }
