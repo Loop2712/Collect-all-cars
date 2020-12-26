@@ -32,3 +32,5 @@ Route::get('/car', 'CarController@index');
 Route::get('/', 'CarController@index');
 Route::get('/image/{$id}','CarController@image');
 //Route::resource('car','CarController');
+
+Route::resource('detail', 'DetailController');
