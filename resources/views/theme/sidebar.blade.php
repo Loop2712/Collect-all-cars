@@ -98,8 +98,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label>เลขไมค์</label>
-                                            <input class="form-control" type="text" placeholder="น้อยสุด">
-                                            <input class="form-control" type="text" placeholder="มากสุด">
+                                            <input class="form-control" type="text" name="min_price"  id="price" placeholder="น้อยสุด">
+                                            <input class="form-control" type="text" name="max_price" id="price" placeholder="มากสุด">
                                             <button type="submit" class="btn ">  ค้นหา </button>
                                     </div>
                                     <div class="col-md-12">

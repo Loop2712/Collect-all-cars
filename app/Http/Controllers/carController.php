@@ -23,8 +23,8 @@ class CarController extends Controller
         $color  = $request->get('color');
     //    $petrol = $request->get('petrol');  น้ำมัน
         $location=$request->get('location');
-        // $milemax   = $request->get('milemax');
-        // $milemin   = $request->get('milemin');
+        $min_price   = $request->get('min_price');
+        $max_price   = $request->get('max_price');
         // $pricemax  = $request->get('pricemax');
         // $pricemin  = $request->get('pricemin');
         $gear   = $request->get('gear');
@@ -33,15 +33,7 @@ class CarController extends Controller
 
 
         $search = $request->get('search');
-        if (!empty($search)) {
-                        $data =DB::table('data_cars')->where('brand', 'LIKE', "%$search%")
-                            ->orWhere('model', 'LIKE', "%$search%")
-                            ->orWhere('submodel', 'LIKE', "%$search%")
-                            ->paginate(10);
-                    } else {
-
-                        $data =DB::table('data_cars')->paginate(10);
-                    }
+       
         
 
 
@@ -66,16 +58,19 @@ class CarController extends Controller
                 // ->where('price',    '<',        $pricemax )
                 // ->where('distance', '>',        $milemin )
                 // ->where('distance', '<',        $milemax )
-                
-
-           
+                ->whereBetween('price', [$min_price, $max_price])
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate(10);
+        } else  if (!empty($search)) {
+            $data =DB::table('data_cars')->where('brand', 'LIKE', "%$search%")
+                ->orWhere('model', 'LIKE', "%$search%")
+                ->orWhere('submodel', 'LIKE', "%$search%")
+                ->paginate(10);
         } else {
-            $data=DB::table('data_cars')->paginate(10);
-        }
 
-
+            $data =DB::table('data_cars')->paginate(10);
+        } 
+        
         $brand_array = DB::table('data_cars')->selectRaw('brand,count(brand) as count')
             ->groupBy('brand')
             ->get();
@@ -106,12 +101,17 @@ class CarController extends Controller
     public function image($id)
     {
          $data = DB::table('data_cars')->select('image')
-         ->where('id',$id)->get();
+         ->where('id',$id)->first();
         // $data = data_cars::findOrFail($id);
         //$data = "$id";
-        $imginfo = getimagesize($data);
+        // echo $data->image;
+        // exit();
+
+        $imginfo = getimagesize($data->image);
         header("Content-type: {$imginfo['mime']}");
-        readfile($data);
+        readfile($data->image);
+
+
 
     }
     /**
