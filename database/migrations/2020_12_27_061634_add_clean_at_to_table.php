@@ -14,7 +14,7 @@ class AddCleanAtToTable extends Migration
     public function up()
     {
         Schema::table('data_cars', function (Blueprint $table) {
-            $table->timestamp('clean_at')->nullable();
+            $table->date('clean_at')->nullable();
         });
     }
 
