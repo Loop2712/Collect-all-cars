@@ -5,7 +5,7 @@
 
                             <!-- .........  LOGO  ......... -->
                             
-                            <a href="{{URL::to('/car')}}">
+                            <a href="{{URL::to('/')}}">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Free_logo.svg/1200px-Free_logo.svg.png" alt="Logo">
 
                             </a>
