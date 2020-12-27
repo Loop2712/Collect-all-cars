@@ -20,6 +20,10 @@ Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback')
 Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook')->name('login.facebook');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
 
+// Line login
+Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.line');
+Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
