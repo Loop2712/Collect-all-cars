@@ -31,6 +31,7 @@ class CreateDetailsTable extends Migration
             $table->integer('car_id')->nullable();
             $table->string('location')->nullable();
             $table->string('link')->nullable();
+            $table->timestamp('clean_at')->nullable();
             });
     }
 
