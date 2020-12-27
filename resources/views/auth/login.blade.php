@@ -77,7 +77,7 @@
                                     <div class="col-md-12">
                                         <a href="{{ route('login.facebook') }}"><img width="140" height="50" src="{{ asset('/img/icon/fb.png') }}"></a>
                                         <a href="{{ route('login.google') }}"><img width="140" height="50" src="{{ asset('/img/icon/gg.png') }}"></a>
-                                        <a href="{{ route('login.line') }}"><img width="140" height="50" src="{{ asset('/img/icon/gg.png') }}"></a>
+                                        <a href="{{ route('login.line') }}">LINE</a>
                                     </div>
                                 </div>
                                 
