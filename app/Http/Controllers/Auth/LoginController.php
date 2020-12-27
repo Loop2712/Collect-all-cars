@@ -89,7 +89,9 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('line')->user();
 
-        $this->_registerOrLoginUser($user);
+        $lineid = $user->getId();
+        return view('qr')->with('id',$lineid);
+        // $user->token;
 
         // Return home after login
         return redirect()->route('home');
