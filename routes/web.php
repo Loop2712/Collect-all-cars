@@ -24,6 +24,7 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.line');
 Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
