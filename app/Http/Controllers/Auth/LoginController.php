@@ -78,42 +78,6 @@ class LoginController extends Controller
         return redirect()->route('home');
     }
 
-    // Line login
-    public function redirectToLine()
-    {
-        return Socialite::driver('line')->redirect();
-    }
-
-    // Line callback
-    public function handleLineCallback()
-    {
-        $userline = Socialite::driver('line')->user();
-
-        $this->_registerOrLoginUserline($userline);
-
-        // Return home after login
-        return redirect()->route('home');
-    }
-
-    protected function _registerOrLoginUserline($data)
-    {
-        //GET USER 
-        $userline = User::where('email', '=', $data->email)->first();
-
-        if (!$userline) {
-            //CREATE NEW USER
-            $userline = new User();
-            $userline->name = $data->name;
-            $userline->username = $data->email;
-            $userline->email = $data->email;
-            $userline->id = $data->id;
-            $userline->avatar = $data->avatar;
-            $userline->save();
-        }
-        //LOGIN
-        Auth::login($userline);
-    }
-
     protected function _registerOrLoginUser($data)
     {
         //GET USER 
