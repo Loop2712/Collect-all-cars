@@ -29,19 +29,13 @@
                 <input class="form-control" name="year" type="text" id="year" value="{{ isset($register_car->year) ? $register_car->year : ''}}" placeholder="ปี่ที่ผลิตรถยนต์ของคุณ">
                 {!! $errors->first('year', '<p class="help-block">:message</p>') !!}
             </div>
-            <div class="row">
-                <div class="col-6">
-                     <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
-                        <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="ทะเบียนรถของคุณ" required>
-                        {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
-                        <input class="form-control" name="province" type="text" id="province" value="{{ isset($register_car->province) ? $register_car->province : ''}}" required placeholder="จังหวัดทะเบียนรถของคุณ">
-                        {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
+            <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
+                <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="ทะเบียนรถของคุณ" required>
+                {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
+            </div>
+            <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
+                <input class="form-control" name="province" type="text" id="province" value="{{ isset($register_car->province) ? $register_car->province : ''}}" required placeholder="จังหวัดทะเบียนรถของคุณ">
+                {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
     </div>
