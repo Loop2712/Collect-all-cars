@@ -7,9 +7,8 @@
                 <div class="card">
                     <div class="card-header">ลงเทะเบียนใหม่</div>
                     <div class="card-body">
-                        <a href="{{ url('/register_car') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+                        <a href="{{ url('/register_car') }}" title="Back"><button class="d-none btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
