@@ -60,7 +60,7 @@ class Register_carController extends Controller
         
         Register_car::create($requestData);
 
-        return redirect('register_car')->with('flash_message', 'Register_car added!');
+        return view('register_car.select_get')->with('flash_message', 'Register_car added!');
     }
 
     /**
