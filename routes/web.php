@@ -40,3 +40,4 @@ Route::get('/image/{id}','CarController@image');
 //Route::resource('car','CarController');
 
 Route::resource('detail', 'DetailController');
+Route::resource('register_car', 'Register_carController');

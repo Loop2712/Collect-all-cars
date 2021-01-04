@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "brand",
+            "type": "string"
+        },
+        {
+            "name": "generation",
+            "type": "string"
+        },
+        {
+            "name": "year",
+            "type": "string"
+        },
+        {
+            "name": "registration_number",
+            "type": "string"
+        },
+        {
+            "name": "province",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        }
+    ]
+}
