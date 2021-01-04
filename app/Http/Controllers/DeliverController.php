@@ -59,7 +59,7 @@ class DeliverController extends Controller
         
         Deliver::create($requestData);
 
-        return redirect('deliver')->with('flash_message', 'Deliver added!');
+        return view('deliver.thx_deliver')->with('flash_message', 'Deliver added!');
     }
 
     /**
