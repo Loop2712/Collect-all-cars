@@ -36,10 +36,6 @@
             </div>
         </main>
 
-
-        <footer>
-            <p class="copyright">Company Name © 2018</p>
-        </footer>
     </div>
 
     </div>
