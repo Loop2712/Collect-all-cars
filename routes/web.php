@@ -25,9 +25,9 @@ Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.lin
 Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
 
-Route::get('/welcome', function ()->name('welcome') {
-    return view('welcome');
-});
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -41,4 +41,5 @@ Route::get('/image/{id}','CarController@image');
 
 Route::resource('detail', 'DetailController');
 Route::resource('register_car', 'Register_carController');
+Route::get('/welcome', 'Register_carController@welcome_line');
 Route::resource('deliver', 'DeliverController');

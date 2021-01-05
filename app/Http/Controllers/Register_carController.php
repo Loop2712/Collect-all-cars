@@ -123,4 +123,9 @@ class Register_carController extends Controller
 
         return redirect('register_car')->with('flash_message', 'Register_car deleted!');
     }
+
+    public function welcome_line()
+    {
+        return view('register_car.welcome_line');
+    }
 }
