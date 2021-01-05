@@ -25,7 +25,7 @@ class CreateDataCarsTable extends Migration
             $table->string('motor')->nullable();
             $table->string('gear')->nullable();
             $table->integer('seats')->nullable();
-            $table->integer('distance')->nullable();
+            $table->string('distance')->nullable();
             $table->string('color')->nullable();
             $table->string('image')->nullable();
             $table->string('location')->nullable();
