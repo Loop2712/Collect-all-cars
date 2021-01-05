@@ -93,7 +93,7 @@ class LoginController extends Controller
         $this->_registerOrLoginUser($user);
 
         // Return home after login
-        return redirect()->route('/welcome');
+        return redirect()->route('welcome');
     }
 
     protected function _registerOrLoginUser($data)

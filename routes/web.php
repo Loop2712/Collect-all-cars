@@ -41,5 +41,5 @@ Route::get('/image/{id}','CarController@image');
 
 Route::resource('detail', 'DetailController');
 Route::resource('register_car', 'Register_carController');
-Route::get('/welcome', 'Register_carController@welcome_line');
+Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
 Route::resource('deliver', 'DeliverController');
