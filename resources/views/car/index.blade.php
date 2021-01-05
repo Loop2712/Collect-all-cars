@@ -7,7 +7,13 @@
                 <div class="col-md-6 mb-4 ">
                     <div class="col aos-init aos-animate" data-aos="fade-up"> 
                         <a href="{{ $item->link }}" >
-                            <div class="icon"> <img src="{{ url('/image/'.$item->id ) }}" alt="" class="img-fluid card-img-top"> </div>
+                            <div class="icon"> 
+                                @if($item->image == "" )
+                                    <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="img-fluid card-img-top">
+                                @else
+                                    <img src="{{ url('/image/'.$item->id ) }}" alt="" class="img-fluid card-img-top"> 
+                                @endif
+                            </div>
                         </a>
                         <a href="{{ $item->link }}" class="icon-box text-center" data-bg-color="#fff" style="background-color: rgb(255, 255, 255);" data-abc="true">
                         <div class="content ">
