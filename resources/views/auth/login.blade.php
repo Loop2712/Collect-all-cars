@@ -74,10 +74,12 @@
                                     </span>
                                     <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div>
                                     <br>
-                                    <div class="col-md-12">
-                                        <a href="{{ route('login.facebook') }}"><img width="140" height="50" src="{{ asset('/img/icon/fb.png') }}"></a>
-                                        <a href="{{ route('login.google') }}"><img width="140" height="50" src="{{ asset('/img/icon/gg.png') }}"></a>
-                                        <a href="{{ route('login.line') }}"><img width="140" height="50" src="{{ asset('/img/icon/line.png') }}"></a></a>
+                                    <div class="col-md-10">
+                                        <center>
+                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
+                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a><br>
+                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
+                                        </center>
                                     </div>
                                 </div>
                                 
