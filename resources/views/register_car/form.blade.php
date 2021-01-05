@@ -5,7 +5,7 @@
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลเจ้าของรถ' }}</span><span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล)</span>
             <br><br>
             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                <input class="form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : ''}}" required placeholder="ชื่อ">
+                <input class="form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required placeholder="ชื่อ">
                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
