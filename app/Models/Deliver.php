@@ -25,7 +25,7 @@ class Deliver extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone', 'province', 'district', 'postal_code', 'detail'];
+    protected $fillable = ['name', 'phone', 'province', 'district', 'postal_code', 'detail', 'user_id', 'provider_id', 'register_car_id'];
 
     
 }

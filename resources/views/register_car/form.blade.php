@@ -12,6 +12,14 @@
                 <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone : ''}}" required placeholder="เบอร์โทร">
                 {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+                <input class="form-control" name="user_id" type="text" id="user_id" value="{{ isset($register_car->user_id) ? $register_car->user_id : Auth::user()->id}}" required readonly>
+                {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+            </div>
+            <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
+                <input class="form-control" name="provider_id" type="text" id="provider_id" value="{{ isset($register_car->provider_id) ? $register_car->provider_id : Auth::user()->provider_id}}" required readonly>
+                {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
+            </div>
         </div>
         <!-- ข้อมูลรถ -->
         <div class="col-12">

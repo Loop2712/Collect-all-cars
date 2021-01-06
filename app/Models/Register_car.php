@@ -25,7 +25,7 @@ class Register_car extends Model
      *
      * @var array
      */
-    protected $fillable = ['brand', 'generation', 'year', 'registration_number', 'province', 'name', 'phone'];
+    protected $fillable = ['brand', 'generation', 'year', 'registration_number', 'province', 'name', 'phone', 'user_id', 'provider_id'];
 
     
 }

@@ -31,6 +31,12 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
 Auth::routes();
 
+Route::middleware(['auth'])->group(function () {
+	Route::resource('register_car', 'Register_carController');
+	Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
+	Route::resource('deliver', 'DeliverController');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'CarController@index');
@@ -41,6 +47,3 @@ Route::get('/car/{id}','CarController@show');
 //Route::resource('car','CarController');
 
 Route::resource('detail', 'DetailController');
-Route::resource('register_car', 'Register_carController');
-Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
-Route::resource('deliver', 'DeliverController');
