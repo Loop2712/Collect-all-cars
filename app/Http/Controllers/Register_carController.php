@@ -128,4 +128,5 @@ class Register_carController extends Controller
     {
         return view('register_car.welcome_line');
     }
+
 }

@@ -32,9 +32,9 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-	Route::resource('register_car', 'Register_carController');
+	Route::resource('register_car', 'Register_carController')->except(['index']);
 	Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
-	Route::resource('deliver', 'DeliverController');
+	Route::resource('deliver', 'DeliverController')->except(['index']);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
