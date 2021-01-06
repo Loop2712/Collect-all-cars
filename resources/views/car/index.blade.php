@@ -118,27 +118,6 @@
             </form>
         </div>
 
-
-<<<<<<< Updated upstream
-@section('content')         
-    <div class="card-body">
-        <div class="row" >
-            @foreach($data as $item)
-                <div class="col-md-6 mb-4 ">
-                    <div class="col aos-init aos-animate" data-aos="fade-up"> 
-                        <a href="{{ $item->link }}" >
-                            <div class="icon"> 
-                                @if($item->image == "" )
-                                    <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="img-fluid card-img-top">
-                                @else
-                                    <img src="{{ url('/image/'.$item->id ) }}" alt="" class="img-fluid card-img-top"> 
-                                @endif
-                            </div>
-                        </a>
-                        <a href="{{ $item->link }}" class="icon-box text-center" data-bg-color="#fff" style="background-color: rgb(255, 255, 255);" data-abc="true">
-                        <div class="content ">
-=======
-
                     <!-- ///////      เนื้อหา       ///// -->
 
         <div class="col-3-of-4">
@@ -146,9 +125,13 @@
                 @foreach($data as $item)
                 <div class="product">
                     <div class="img-container">
->>>>>>> Stashed changes
+
                         
-                            <img src="{{ url('/image/'.$item->id ) }}" alt="" />
+                                @if($item->image == "" )
+                                    <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="img-fluid card-img-top">
+                                @else
+                                    <img src="{{ url('/image/'.$item->id ) }}" alt="" class="img-fluid card-img-top"> 
+                                @endif
                             <div class="addCart">
                                 <i class="far fa-heart"></i>
                             </div>
