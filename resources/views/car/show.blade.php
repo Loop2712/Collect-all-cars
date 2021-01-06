@@ -64,6 +64,9 @@
                             </table>
                         </ul>
                     </div>
+                    <div class="col">
+                    <button type="button" class="btn btn-danger btn-lg"><a href="{{ $data->link  }}">ดูข้อมูลเพิ่มเติม</a></button>
+                    </div>
                 </div>
                 </div>
                         

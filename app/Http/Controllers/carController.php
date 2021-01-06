@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CarModel;
+use App\county;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -14,28 +15,28 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $brand  = $request->get('brand');
-        $typecar= $request->get('typecar');
-        $year   = $request->get('year');
-        $color  = $request->get('color');
-        $fuel = $request->get('fuel');  
-        $location=$request->get('location');
-        $min_price   = $request->get('min_price');
-        $max_price   = $request->get('max_price');
-        // $pricemax  = $request->get('pricemax');
-        // $pricemin  = $request->get('pricemin');
-        $gear   = $request->get('gear');
-        $sort = $request->get('sort','asc');
-        $datas = $request->get('datas');
-        $search = $request->get('search');
-        $perPage = 18; 
+        $brand     = $request->get('brand');
+        $typecar   = $request->get('typecar');
+        $year      = $request->get('year');
+        $color     = $request->get('color');
+        $fuel      = $request->get('fuel');  
+        $location  = $request->get('location');
+        $milemin   = $request->get('distance');
+        $milemax   = $request->get('distance');
+        $pricemax  = $request->get('price');
+        $pricemin  = $request->get('price');
+        $gear      = $request->get('gear');
+        $sort      = $request->get('sort','asc');
+        $datas     = $request->get('datas');
+        $search    = $request->get('search');
+        $perPage   = 18; 
         
 
 
 
 
         $needFilter =  !empty($brand)      || !empty($typecar)  || !empty($year)    || !empty($color)   
-                    // || !empty($pricemax) || !empty($pricemin)   || !empty($milemax) || !empty($milemin)
+                     || !empty($pricemax) || !empty($pricemin)   || !empty($milemax) || !empty($milemin)
                     || !empty($fuel)     || !empty($location)  || !empty($gear) ;     
                       
         if ($needFilter) {
@@ -46,11 +47,9 @@ class CarController extends Controller
                 ->where('location', 'like', '%' .$location. '%')
                 ->where('gear',     'like', '%' .$gear.  '%')
                 ->where('fuel',  'lIKE', '%' .$fuel. '%')
-                // ->where('price',    '>',        $pricemin)
-                // ->where('price',    '<',        $pricemax )
-                // ->where('distance', '>',        $milemin )
-                // ->where('distance', '<',        $milemax )
-                // ->whereBetween('price', [$min_price, $max_price])
+                ->whereBetween('price', [$pricemin, $pricemax])
+                ->whereBetween('distance', [$milemin, $milemax])
+                // ->whereBetween('price', [30, 100])
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
         } else  if (!empty($search)) {
@@ -82,13 +81,17 @@ class CarController extends Controller
         $gear_array = CarModel::selectRaw('gear,count(gear) as count')
             ->groupBy('gear')
             ->get();
+            
+        $location_array = county::selectRaw('province')
+            ->groupBy('province')
+            ->get();
         
         $fuel_array = CarModel::selectRaw('fuel,count(fuel) as count')
             ->groupBy('fuel')
             ->get();
 
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('car.index',compact('data','search', 'brand_array', 'type_array', 'year_array', 'fuel_array', 'color_array','gear_array'));
+        return view('car.index',compact('data','search', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
 
     }
 
@@ -106,8 +109,6 @@ class CarController extends Controller
         $imginfo = getimagesize($data->image);
         header("Content-type: {$imginfo['mime']}");
         readfile($data->image);
-
-
 
     }
     /**

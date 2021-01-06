@@ -8,8 +8,7 @@
                 <div class="block-title">
                     <div class="form-inline waves-light" > 
                         <div class="md-form mt-0">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
-                        </div>
+                            <input class="form-control" type="text" placeholder="Search" name="search" > 
                     </div>
                 </div>
                 <div class="col">
@@ -93,30 +92,31 @@
                 <div class="col">
                     <label>สถานที่</label>
                     <select name="location" id="location" class="form-control" onchange="this.form.submit()">
-                        <option value="" selected>ทุกสถานที่</option> 
-                        <!-- @foreach($year_array as $ye)
+                        <option value="" selected >ทุกสถานที่</option> 
+                        <!-- @foreach($location_array as $lo)
                         <option 
-                        value="{{ $ye->year }}" 
-                        {{ request('year') == $ye->year ? 'selected' : ''   }} >
-                        {{ $ye->year }} 
+                        value="{{ $lo->province }}" 
+                        {{ request('province') == $ye->province ? 'selected' : ''   }} >
+                        {{ $lo->province }} 
                         </option>
                         @endforeach                                      -->
                     </select>
                 </div>
                 <div class="col">
                     <label>เลขไมค์</label>
-                    <input class="form-control" type="text" name="  "  id="price" placeholder="น้อยสุด">
-                    <input class="form-control" type="text" name=" " id="price" placeholder="มากสุด">
-                    <button type="submit" class="btn btn-danger ">  ค้นหา </button>
+                    <input class="form-control" type="text" name=" milemin "  id="distance" placeholder="น้อยสุด (km.)">
+                    <input class="form-control" type="text" name=" milemax " id="distance" placeholder="มากสุด (km.)">
+                    <button type="submit" class="btn btn-danger btn-lg ">  ค้นหา </button>
                 </div>
                 <div class="col">
                     <label>ราคา</label>
-                    <input class="form-control" type="text" placeholder="น้อยสุด">
-                    <input class="form-control" type="text" placeholder="มากสุด">
-                    <button type="submit" class="btn btn-danger ">  ค้นหา </button>
+                    <input class="form-control" type="text" name=" pricemin "  id="price" placeholder="น้อยสุด">
+                    <input class="form-control" type="text" name="pricemax " id="price" placeholder="มากสุด">
+                    <button type="submit" class="btn btn-danger btn-lg ">  ค้นหา </button>
                 </div>
             </form>
         </div>
+    </div>
 
                     <!-- ///////      เนื้อหา       ///// -->
 
@@ -125,12 +125,10 @@
                 @foreach($data as $item)
                 <div class="product">
                     <div class="img-container">
-
-                        
                                 @if($item->image == "" )
-                                    <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="img-fluid card-img-top">
+                                    <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
                                 @else
-                                    <img src="{{ url('/image/'.$item->id ) }}" alt="" class="img-fluid card-img-top"> 
+                                    <img src="{{ url('/image/'.$item->id ) }}" alt="" > 
                                 @endif
                             <div class="addCart">
                                 <i class="far fa-heart"></i>
