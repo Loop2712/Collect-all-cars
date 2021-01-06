@@ -47,3 +47,5 @@ Route::get('/car/{id}','CarController@show');
 //Route::resource('car','CarController');
 
 Route::resource('detail', 'DetailController');
+
+Route::resource('guest', 'GuestController');

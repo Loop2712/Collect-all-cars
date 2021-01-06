@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "masseng",
+            "type": "string"
+        },
+        {
+            "name": "massengbox",
+            "type": "select",
+            "options": {
+                "1": "ขยับรถด้วยจ้า",
+                "2": "อิอิ"
+            }
+        },       
+        {
+            "name": "photo",
+            "type": "file"
+        },
+        {
+            "name": "provider_id",
+            "type": "integer"
+        }
+    ]
+}
