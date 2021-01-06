@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\CarModel;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-
 class CarController extends Controller
 {
     /**
@@ -21,7 +18,7 @@ class CarController extends Controller
         $typecar= $request->get('typecar');
         $year   = $request->get('year');
         $color  = $request->get('color');
-    //    $petrol = $request->get('petrol');  น้ำมัน
+        $fuel = $request->get('fuel');  
         $location=$request->get('location');
         $min_price   = $request->get('min_price');
         $max_price   = $request->get('max_price');
@@ -30,10 +27,8 @@ class CarController extends Controller
         $gear   = $request->get('gear');
         $sort = $request->get('sort','asc');
         $datas = $request->get('datas');
-
-
         $search = $request->get('search');
-       
+        $perPage = 18; 
         
 
 
@@ -41,58 +36,59 @@ class CarController extends Controller
 
         $needFilter =  !empty($brand)      || !empty($typecar)  || !empty($year)    || !empty($color)   
                     // || !empty($pricemax) || !empty($pricemin)   || !empty($milemax) || !empty($milemin)
-                    || !empty($petrol)     || !empty($location)  || !empty($gear) ;     
+                    || !empty($fuel)     || !empty($location)  || !empty($gear) ;     
                       
         if ($needFilter) {
-            $data = DB::table('data_cars') 
-                
-
-                ->where('brand', 'like', '%' .$brand.  '%')
+            $data = CarModel::where('brand', 'like', '%' .$brand.  '%')
                 ->where('type',  'lIKE', '%' .$typecar.'%')
                 ->where('year',  'like', '%' .$year. '%')
                 ->where('color', 'like', '%' .$color. '%')
-                //     ->where('petrol',  'lIKE', '%' .$petrol. '%')   เชื้อเพลิง
                 ->where('location', 'like', '%' .$location. '%')
                 ->where('gear',     'like', '%' .$gear.  '%')
+                ->where('fuel',  'lIKE', '%' .$fuel. '%')
                 // ->where('price',    '>',        $pricemin)
                 // ->where('price',    '<',        $pricemax )
                 // ->where('distance', '>',        $milemin )
                 // ->where('distance', '<',        $milemax )
-                ->whereBetween('price', [$min_price, $max_price])
+                // ->whereBetween('price', [$min_price, $max_price])
                 ->orderBy('created_at', 'asc')
-                ->latest()->paginate(10);
+                ->latest()->paginate($perPage);
         } else  if (!empty($search)) {
-            $data =DB::table('data_cars')->where('brand', 'LIKE', "%$search%")
+            $data =CarModel::where('brand', 'LIKE', "%$search%")
                 ->orWhere('model', 'LIKE', "%$search%")
                 ->orWhere('submodel', 'LIKE', "%$search%")
-                ->paginate(10);
+                ->paginate($perPage);
         } else {
 
-            $data =DB::table('data_cars')->paginate(10);
+            $data =CarModel::orderBy('created_at', 'asc')->paginate($perPage);
         } 
         
-        $brand_array = DB::table('data_cars')->selectRaw('brand,count(brand) as count')
+        $brand_array = CarModel::selectRaw('brand,count(brand) as count')
             ->groupBy('brand')
             ->get();
             
-        $type_array = DB::table('data_cars')->selectRaw('type,count(type) as count')
+        $type_array = CarModel::selectRaw('type,count(type) as count')
             ->groupBy('type')
             ->get();
 
-        $year_array = DB::table('data_cars')->selectRaw('year,count(year) as count')
+        $year_array = CarModel::selectRaw('year,count(year) as count')
             ->groupBy('year')
             ->get();
 
-        $color_array = DB::table('data_cars')->selectRaw('color,count(color) as count')
+        $color_array = CarModel::selectRaw('color,count(color) as count')
             ->groupBy('color')
             ->get();
    
-        $gear_array = DB::table('data_cars')->selectRaw('gear,count(gear) as count')
+        $gear_array = CarModel::selectRaw('gear,count(gear) as count')
             ->groupBy('gear')
+            ->get();
+        
+        $fuel_array = CarModel::selectRaw('fuel,count(fuel) as count')
+            ->groupBy('fuel')
             ->get();
 
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('car.index',compact('data','search', 'brand_array', 'type_array', 'year_array', 'color_array','gear_array'));
+        return view('car.index',compact('data','search', 'brand_array', 'type_array', 'year_array', 'fuel_array', 'color_array','gear_array'));
 
     }
 
@@ -100,7 +96,7 @@ class CarController extends Controller
     
     public function image($id)
     {
-         $data = DB::table('data_cars')->select('image')
+         $data = CarModel::select('image')
          ->where('id',$id)->first();
         // $data = data_cars::findOrFail($id);
         //$data = "$id";
@@ -141,9 +137,10 @@ class CarController extends Controller
      * @param  \App\CarModel  $carModel
      * @return \Illuminate\Http\Response
      */
-    public function show(CarModel $carModel)
+    public function show($id)
     {
-        //
+        $data = CarModel::findOrFail($id);
+        return view('car.show', compact('data'));
     }
 
     /**

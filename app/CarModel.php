@@ -11,20 +11,19 @@ class CarModel extends Model
      *
      * @var string
      */
-    protected $table = 'data_cars';
+    protected $table = "data_cars";
 
     /**
     * The database primary key value.
     *
     * @var string
     */
-    protected $primaryKey = 'id';
+    protected $primaryKey = "id";
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['price', 'type', 'brand', 'model', 'submodel', 'year', 'motor', 'gear', 'seats', 'distance', 'color', 'image', 'location', 'link', 'car_id_detail'];
-
+    protected $fillable = ["price", "type", "brand", "model", "submodel", "year", "motor", "gear", "seats", "distance", "color","image", "location", "link", "car_id_detail","clean_at","fuel"];
 }
