@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container d-block d-md-none">
     <div class="row">
         <div class="col-12">
             <center>
