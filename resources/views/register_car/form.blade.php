@@ -9,7 +9,7 @@
                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone : ''}}" required placeholder="เบอร์โทร">
+                <input class="form-control" name="phone" type="tel" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone : ''}}" required placeholder="เบอร์โทร" pattern="[0-9]{10}">
                 {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">

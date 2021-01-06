@@ -19,6 +19,11 @@
     {!! $errors->first('postal_code', '<p class="help-block">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+    <input class="form-control" name="user_id" type="text" id="user_id" value="{{ isset($deliver->user_id) ? $deliver->user_id : Auth::user()->id}}" required readonly>
+    {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+</div>
+
 
 
 <div class="form-group">
