@@ -9,12 +9,13 @@
                     <div class="form-inline waves-light" > 
                         <div class="md-form mt-0">
                             <input class="form-control" type="text" placeholder="Search" name="search" > 
+                            
                     </div>
                 </div>
                 <div class="col">
                 <label>ยี่ห้อรถ</label>
                     <select name="brand" id="brand" class="form-control" onchange="this.form.submit()">
-                        <option value="" selected>ทุกยี่ห้อ</option> 
+                        <option value="" selected>ยี่ห้อทั้งหมด</option> 
                             @foreach($brand_array as $br)
                                 <option 
                                     value="{{ $br->brand }}" 
@@ -104,14 +105,14 @@
                 </div>
                 <div class="col">
                     <label>เลขไมค์</label>
-                    <input class="form-control" type="text" name=" milemin "  id="distance" placeholder="น้อยสุด (km.)">
-                    <input class="form-control" type="text" name=" milemax " id="distance" placeholder="มากสุด (km.)">
+                    <!-- <input class="form-control" type="text" name=" milemin "  id="distance" placeholder="น้อยสุด (km.)">
+                    <input class="form-control" type="text" name=" milemax " id="distance" placeholder="มากสุด (km.)"> -->
                     <button type="submit" class="btn btn-danger btn-lg ">  ค้นหา </button>
                 </div>
                 <div class="col">
                     <label>ราคา</label>
-                    <input class="form-control" type="text" name=" pricemin "  id="price" placeholder="น้อยสุด">
-                    <input class="form-control" type="text" name="pricemax " id="price" placeholder="มากสุด">
+                    <!-- <input class="form-control" type="text" name=" pricemin "  id="price" placeholder="น้อยสุด">
+                    <input class="form-control" type="text" name="pricemax " id="price" placeholder="มากสุด"> -->
                     <button type="submit" class="btn btn-danger btn-lg ">  ค้นหา </button>
                 </div>
             </form>

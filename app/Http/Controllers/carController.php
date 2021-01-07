@@ -35,20 +35,20 @@ class CarController extends Controller
 
 
 
-        $needFilter =  !empty($brand)      || !empty($typecar)  || !empty($year)    || !empty($color)   
-                     || !empty($pricemax) || !empty($pricemin)   || !empty($milemax) || !empty($milemin)
-                    || !empty($fuel)     || !empty($location)  || !empty($gear) ;     
+        $needFilter =  !empty($brand)       || !empty($typecar)   || !empty($year)    || !empty($color)    
+                    || !empty($fuel)        || !empty($location)  || !empty($gear)
+                    || !empty($pricemax)    || !empty($pricemin)  || !empty($milemax) || !empty($milemin) ;     
                       
         if ($needFilter) {
             $data = CarModel::where('brand', 'like', '%' .$brand.  '%')
                 ->where('type',  'lIKE', '%' .$typecar.'%')
+                ->where('gear',     'like', '%' .$gear.  '%')
                 ->where('year',  'like', '%' .$year. '%')
                 ->where('color', 'like', '%' .$color. '%')
                 ->where('location', 'like', '%' .$location. '%')
-                ->where('gear',     'like', '%' .$gear.  '%')
                 ->where('fuel',  'lIKE', '%' .$fuel. '%')
-                ->whereBetween('price', [$pricemin, $pricemax])
-                ->whereBetween('distance', [$milemin, $milemax])
+                // ->whereBetween('price', ['%' .$pricemin. '%', '%' .$pricemax. '%'])
+                // ->whereBetween('distance', ['%' .$milemin. '%', '%' .$milemax. '%'])
                 // ->whereBetween('price', [30, 100])
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
