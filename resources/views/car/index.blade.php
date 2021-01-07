@@ -32,7 +32,7 @@
                             @foreach($type_array as $ty)
                             <option 
                                     value="{{ $ty->type }}" 
-                                    {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
+                                    {{ request('type') == $ty->type ? 'selected' : ''   }} >
                             {{ $ty->type }} 
                             </option>
                             @endforeach                                     
@@ -71,7 +71,7 @@
                         @foreach($color_array  as $co)
                         <option 
                                 value="{{ $co->color  }}" 
-                                {{ request('color') == $co->color  ? 'selected' : ''   }} >
+                                {{ request('color ') == $co->color  ? 'selected' : ''   }} >
                         {{ $co->color  }} 
                         </option>
                         @endforeach                                     
@@ -84,7 +84,7 @@
                         @foreach($fuel_array as $pe)
                         <option 
                                 value="{{ $pe->fuel  }}" 
-                                {{ request('fuel') == $pe->fuel  ? 'selected' : ''   }} >
+                                {{ request('fuel ') == $pe->fuel  ? 'selected' : ''   }} >
                         {{ $pe->fuel  }} 
                         </option>
                         @endforeach                                  
@@ -94,19 +94,19 @@
                     <label>สถานที่</label>
                     <select name="location" id="location" class="form-control" onchange="this.form.submit()">
                         <option value="" selected >ทุกสถานที่</option> 
-                        @foreach($location_array as $lo)
+                        <!-- @foreach($location_array as $lo)
                         <option 
                         value="{{ $lo->province }}" 
-                        {{ request('location') == $lo->province ? 'selected' : ''   }} >
+                        {{ request('province') == $ye->province ? 'selected' : ''   }} >
                         {{ $lo->province }} 
                         </option>
-                        @endforeach                                     
+                        @endforeach                                      -->
                     </select>
                 </div>
                 <div class="col">
                     <label>เลขไมค์</label>
-                    <input class="form-control" type="text" name="distancemin"  id="milemin" value="" placeholder="น้อยสุด (km.)">
-                    <input class="form-control" type="text" name="distancemax" id="milemax" value="" placeholder="มากสุด (km.)">
+                    <!-- <input class="form-control" type="text" name=" milemin "  id="distance" placeholder="น้อยสุด (km.)">
+                    <input class="form-control" type="text" name=" milemax " id="distance" placeholder="มากสุด (km.)"> -->
                     <button type="submit" class="btn btn-danger btn-lg ">  ค้นหา </button>
                 </div>
                 <div class="col">
