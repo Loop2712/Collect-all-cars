@@ -105,10 +105,16 @@ class LoginController extends Controller
             //CREATE NEW USER
             $user = new User();
             $user->name = $data->name;
-            $user->username = $data->email;
-            $user->email = $data->email;
             $user->provider_id = $data->id;
-            $user->avatar = $data->avatar;
+
+            if (!empty($data->email)) {
+                $user->username = $data->email;
+                $user->email = $data->email;
+            }
+            if (!empty($data->avatar)) {
+                $user->avatar = $data->avatar;
+            }
+
             $user->save();
         }
         //LOGIN
