@@ -36,6 +36,10 @@
                                         <th> Masseng </th>
                                         <td> {{ $guest->masseng }} </td>
                                     </tr>
+                                    <tr>
+                                        <th> Masseng </th>
+                                        <td> {{ $guest->massengbox }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
