@@ -25,20 +25,28 @@
                                         <th>ID</th><td>{{ $guest->id }}</td>
                                     </tr>
                                     <tr>
-                                        <th> Name </th>
+                                        <th> ชื่อ </th>
                                         <td> {{ $guest->name }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Phone </th>
+                                        <th> เบอร์โทร </th>
                                         <td> {{ $guest->phone }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Masseng </th>
+                                        <th> ข้อความ </th>
                                         <td> {{ $guest->masseng }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Masseng </th>
-                                        <td> {{ $guest->massengbox }} </td>
+                                        <th> ยี่ห้อรถ </th>
+                                        <td> {{ $guest->brand }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> ทะเบียนรถ </th>
+                                        <td> {{ $guest->registration }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> จังหวัด </th>
+                                        <td> {{ $guest->county }} </td>
                                     </tr>
                                 </tbody>
                             </table>

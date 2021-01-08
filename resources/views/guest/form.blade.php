@@ -17,7 +17,7 @@
     <label for="massengbox" class="control-label">{{ 'Massengbox' }}</label>
     <select name="massengbox" class="form-control" id="massengbox" >
         <option value="" selected >  </option> 
-    @foreach (json_decode('{"1":"\u0e02\u0e22\u0e31\u0e1a\u0e23\u0e16\u0e14\u0e49\u0e27\u0e22\u0e08\u0e49\u0e32","2":"\u0e2d\u0e34\u0e2d\u0e34"}', true) as $optionKey => $optionValue)
+    @foreach (json_decode('{"1":"สวัสดี","2":"555"}', true) as $optionKey => $optionValue)
         <option value="{{ $optionKey }}" {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
     @endforeach
 </select>
@@ -33,6 +33,21 @@
     <input class="form-control" name="provider_id" type="number" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : ''}}" >
     {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
 </div> -->
+<div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+    <label for="brand" class="control-label">{{ 'brand' }}</label>
+    <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($guest->brand) ? $guest->brand : ''}}" >
+    {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
+    <label for="registration" class="control-label">{{ 'registration' }}</label>
+    <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" >
+    {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+    <label for="county" class="control-label">{{ 'county' }}</label>
+    <input class="form-control" name="county" type="text" id="county" value="{{ isset($guest->county) ? $guest->county : ''}}" >
+    {!! $errors->first('county', '<p class="help-block">:message</p>') !!}
+</div>
 
 
 <div class="form-group">

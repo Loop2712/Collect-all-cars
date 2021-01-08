@@ -31,6 +31,9 @@
                                         <th>Name</th>
                                         <th>Phone</th>
                                         <th>Masseng</th>
+                                        <th>Brand</th>
+                                        <th>registration</th>
+                                        <th>county</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -38,7 +41,13 @@
                                 @foreach($guest as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->phone }}</td><td>{{ $item->masseng }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->phone }}</td>
+                                        <td>{{ $item->masseng }}</td>
+                                        <td>{{ $item->brand }}</td>
+                                        <td>{{ $item->registration }}</td>
+                                        <td>{{ $item->county }}</td>
+                                        
                                         <td>
                                             <a href="{{ url('/guest/' . $item->id) }}" title="View Guest"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/guest/' . $item->id . '/edit') }}" title="Edit Guest"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

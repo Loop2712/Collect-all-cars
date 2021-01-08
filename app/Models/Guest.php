@@ -25,7 +25,7 @@ class Guest extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone', 'masseng', 'massengbox', 'photo', 'provider_id'];
+    protected $fillable = ['name', 'phone', 'masseng', 'massengbox', 'photo', 'provider_id','brand' ,'registration' , 'county'];
 
     
 }
