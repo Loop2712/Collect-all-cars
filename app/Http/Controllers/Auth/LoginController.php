@@ -59,7 +59,7 @@ class LoginController extends Controller
         $this->_registerOrLoginUser($user);
 
         // Return home after login
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 
     // Facebook login
@@ -76,7 +76,7 @@ class LoginController extends Controller
         $this->_registerOrLoginUser($user);
 
         // Return home after login
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 
     // Line login
@@ -113,6 +113,14 @@ class LoginController extends Controller
             }
             if (!empty($data->avatar)) {
                 $user->avatar = $data->avatar;
+            }
+
+            if (empty($data->email)) {
+                $user->username = $data->name;
+                $user->email = "";
+            }
+            if (empty($data->avatar)) {
+                $user->avatar = "";
             }
 
             $user->save();
