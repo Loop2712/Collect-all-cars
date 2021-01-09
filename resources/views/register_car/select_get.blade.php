@@ -3,11 +3,10 @@
         <div class="col-12">
         	<center>
                 <div><br><br>
-                    {!! QrCode::size(300)->generate('https://car.viicheck.com/guest/create'); !!}
+                    <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://car.viicheck.com/guest/create/&choe=UTF-8"  /> -->
+                    <img src="{{ asset('/img/more/qr-code.png') }}"/>
                 </div>
-	        	<a href="{{ url('/deliver/create') }}"><img width="80%" src="{{ asset('/img/icon/จัดส่ง.png') }}"></a>
-	        	<br>
-	        	<a href="{{ url('/') }}"><img width="80%" src="{{ asset('/img/icon/ไม่จัดส่ง.png') }}"></a>
+                <a href="{{ asset('/img/more/qr-code.png') }}" download ><img width="80%" src="{{ asset('/img/icon/ไม่จัดส่ง.png') }}"></a>
         	</center>
         </div>
     </div>
