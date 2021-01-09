@@ -44,18 +44,22 @@
             </div>
             <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
                 <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
-                <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="ไม่ต้องใส่จังหวัด" required>
+                <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999" required>
                 {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
                 <label for="province" class="control-label">{{ 'จังหวัดของทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
-                <input class="form-control" name="province" type="text" id="province" value="{{ isset($register_car->province) ? $register_car->province : ''}}" required placeholder="จังหวัดทะเบียนรถของคุณ">
+                <select name="province" id="province" class="form-control">
+                        <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                        @foreach($location_array as $lo)
+                        <option 
+                        value="{{ $lo->province }}" 
+                        {{ request('location') == $lo->province ? 'selected' : ''   }} >
+                        {{ $lo->province }} 
+                        </option>
+                        @endforeach                                     
+                    </select>
                 {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
-            </div>
-            <div>
-                <select id="input_province" onchange="showAmphoes()">
-                    <option value="">กรุณาเลือกจังหวัด</option>
-                </select>
             </div>
         </div>
     </div>
@@ -63,3 +67,4 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
 </div>
+
