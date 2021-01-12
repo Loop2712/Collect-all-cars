@@ -34,6 +34,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 	Route::resource('register_car', 'Register_carController')->except(['index']);
 	Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
+	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::resource('deliver', 'DeliverController')->except(['index']);
 });
 
