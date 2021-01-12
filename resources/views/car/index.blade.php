@@ -116,6 +116,13 @@
                     <button type="submit" class="btn btn-danger btn-lg ">  ค้นหา </button>
                 </div>
             </form>
+            <br><br>
+            <!-- QR-CODE LINE OA -->
+            <div class="row">
+                <div class="col-12">
+                    <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
+                </div>
+            </div>
         </div>
     </div>
 
