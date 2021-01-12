@@ -59,7 +59,8 @@ class LoginController extends Controller
         $this->_registerOrLoginUser($user);
 
         // Return home after login
-        return redirect()->route('home');
+        // return redirect()->route('home');
+        protected $redirectTo = RouteServiceProvider::HOME;
     }
 
     // Facebook login
@@ -93,8 +94,7 @@ class LoginController extends Controller
         $this->_registerOrLoginUser($user);
 
         // Return home after login
-        // return redirect()->route('home');
-        return $request->user();
+        return redirect()->route('home');
     }
 
     protected function _registerOrLoginUser($data)
