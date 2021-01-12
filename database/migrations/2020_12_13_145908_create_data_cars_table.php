@@ -16,7 +16,7 @@ class CreateDataCarsTable extends Migration
         Schema::create('data_cars', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('price')->nullable();
+            $table->string('price')->nullable();
             $table->string('type')->nullable();
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
