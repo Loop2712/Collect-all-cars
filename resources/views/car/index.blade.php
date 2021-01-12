@@ -151,9 +151,9 @@
                                 </h5>
                             </a>
                             <div class="bottom">
-                        <!-- <div class="price">
-                            <span>{{ number_format($item->price)}}   บาท </span>
-                        </div> -->
+                        <div class="price">
+                            <span>{{ $item->price}}   บาท </span>
+                        </div>
                         
                     </div>
                 
