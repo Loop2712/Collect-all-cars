@@ -53,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-12">
                                         <button style="padding-left: 106px;padding-right: 106px;" type="submit" class="btn btn-primary">
                                             {{ __('เข้าสู่ระบบ') }}
@@ -64,7 +64,7 @@
                                             </a>
                                         @endif
                                     </div>
-                                </div>
+                                </div> -->
                                 <br>
 
                                 <div class="row">
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="col-md-6">
-        <div class="card">
+        <!-- <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -170,7 +170,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
