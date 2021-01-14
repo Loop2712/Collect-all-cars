@@ -22,7 +22,7 @@
       <div class="right">
           <div class="container">
         <h1>{{ $data->brand  }}  {{ $data->model  }} {{ $data->submodel  }}</h1>
-        <div class="price">{{ number_format($data->price)  }} บาท</div>
+        <div class="price">{{ ($data->price)  }} บาท</div>
         <h5></h5>
                 <div class="row">
                     <div class="col">

@@ -29,7 +29,7 @@ class CarController extends Controller
         $sort      = $request->get('sort','asc');
         $datas     = $request->get('datas');
         $search    = $request->get('search');
-        $perPage   = 18; 
+        $perPage   = 45; 
         
         $milemin = empty($milemin) ? 0 :$milemin;
         $milemax = empty($milemax) ? 99000000 :$milemax;
@@ -113,6 +113,7 @@ class CarController extends Controller
         readfile($data->image);
 
     }
+    
     /**
      * Show the form for creating a new resource.
      *
