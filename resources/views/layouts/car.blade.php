@@ -22,7 +22,7 @@
   
     <nav class="nav">
     <div class="wrapper container">
-      <div ><a href="{{URL::to('/car')}}">LOGO</a></div>
+      <div ><a href="{{URL::to('/car')}}"><img width="50px" src="{{ asset('/img/logo/VII-check-LOGO-D3-V1.jpg') }}"></a></div>
       <ul class="nav-list">
         <div class="top">
           <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>

@@ -111,8 +111,8 @@
                 </div>
                 <div class="col">
                     <label>ราคา</label>
-                    <!-- <input class="form-control" type="text" name=" pricemin "  id="price" placeholder="น้อยสุด">
-                    <input class="form-control" type="text" name="pricemax " id="price" placeholder="มากสุด"> -->
+                    <input class="form-control" type="text" name=" pricemin "  id="price" placeholder="น้อยสุด">
+                    <input class="form-control" type="text" name="pricemax " id="price" placeholder="มากสุด">
                     <button type="submit" class="btn btn-danger btn-lg ">  ค้นหา </button>
                 </div>
             </form>
