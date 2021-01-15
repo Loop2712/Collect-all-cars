@@ -9,6 +9,8 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
