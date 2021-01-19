@@ -12,7 +12,16 @@ class LineApiController extends Controller
 {
     public function store(Request $request)
 	{
-		http_response_code(200);
-		file_put_contents('log.txt', file_get_contents('php://input') . PHP_EOL, FILE_APPEND);
+		$access_token = 'VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=';
+		// Get POST body content
+		// $content = file_get_contents('php://input');
+
+		$content = $request->all();
+        $data = [
+            "title" => "Line",
+            "content" => json_encode($content, JSON_UNESCAPED_UNICODE),
+        ];
+        Mylog::create($data);
+
 	}
 }
