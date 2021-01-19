@@ -50,3 +50,4 @@ Route::get('/car/{id}','CarController@show');
 Route::resource('detail', 'DetailController');
 
 Route::resource('guest', 'GuestController');
+Route::resource('mylog', 'MylogController');
