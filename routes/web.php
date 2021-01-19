@@ -25,9 +25,9 @@ Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.lin
 Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
 
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// });
+Route::get('/cars', function () {
+    return view('car/car-details');
+});
 
 Auth::routes();
 
