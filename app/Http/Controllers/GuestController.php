@@ -63,6 +63,8 @@ class GuestController extends Controller
 
         Guest::create($requestData);
 
+        $this->_pushLine($requestData);
+
         return redirect('guest')->with('flash_message', 'Guest added!');
     }
 
@@ -129,5 +131,34 @@ class GuestController extends Controller
         Guest::destroy($id);
 
         return redirect('guest')->with('flash_message', 'Guest deleted!');
+    }
+
+    protected function _pushLine($data)
+    {
+        $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+ 
+        $strUrl = "https://api.line.me/v2/bot/message/push";
+         
+        $arrHeader = array();
+        $arrHeader[] = "Content-Type: application/json";
+        $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+         
+        $arrPostData = array();
+        $arrPostData['to'] = "U912994894c449f2237f73f18b5703e89";
+        $arrPostData['messages'][0]['type'] = "text";
+        $arrPostData['messages'][0]['text'] = "รุ่นรถ". $data->registration_number;
+         
+         
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$strUrl);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $result = curl_exec($ch);
+        curl_close ($ch);
+
     }
 }
