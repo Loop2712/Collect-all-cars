@@ -72,8 +72,22 @@
                             </li>
                             
                         @else
-                            <li >
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li>
+                                <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                {{ Auth::user()->name }}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}</a></li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </ul>
+                                </li>
+                            
+
+                                <!-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span><i class="fas fa-chevron-down"></i></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -84,10 +98,10 @@
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>
-                            </li>
+                                    </form> -->
+                            
                         @endguest
-                            <a href="#" class="primary-btn">Login</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -108,21 +122,6 @@
 
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
         <div class="container">
-            <div class="footer__contact">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="footer__contact__title">
-                            <h2>Contact Us Now!</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="footer__contact__option">
-                            <div class="option__item"><i class="fa fa-phone"></i> (+12) 345 678 910</div>
-                            <div class="option__item email"><i class="fa fa-envelope-o"></i> Colorlib@gmail.com</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="footer__about">
