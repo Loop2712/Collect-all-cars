@@ -62,9 +62,31 @@
                         </nav> -->
                         <div class="header__nav__widget">
                             <div class="header__nav__widget__btn">
-                                <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                <!-- <a href="#"><i class="fa fa-cart-plus"></i></a> -->
                                 <!-- <a href="#" class="search-switch"><i class="fa fa-search"></i></a> -->
                             </div>
+                            @guest
+                            <li >
+
+                                <a  href="{{ route('login') }}" class="primary-btn"><i class="fas fa-user"></i>   {{ __('Login') }}</a>
+                            </li>
+                            
+                        @else
+                            <li >
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span><i class="fas fa-chevron-down"></i></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                            </li>
+                        @endguest
                             <a href="#" class="primary-btn">Login</a>
                         </div>
                     </div>

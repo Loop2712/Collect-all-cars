@@ -28,7 +28,7 @@
           <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
         </div>
         
-        @guest
+                          @guest
                             <li >
 
                                 <a class="desktop-item" href="{{ route('login') }}"><i class="fas fa-user"></i>   {{ __('Login') }}</a>
