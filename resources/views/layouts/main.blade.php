@@ -44,31 +44,13 @@
                 </div>
                 <div class="col-lg-10">
                     <div class="header__nav">
-                        <!-- <nav class="header__menu">
-                            <ul>
-                                <li><a href="./index.html">Home</a></li>
-                                <li class="active"><a href="./car.html">Cars</a></li>
-                                <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./about.html">About Us</a></li>
-                                        <li><a href="./car-details.html">Car Details</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./about.html">About</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
-                            </ul>
-                        </nav> -->
-                        <div class="header__nav__widget">
-                            <div class="header__nav__widget__btn">
+                        <nav class="header__menu">
                                 <!-- <a href="#"><i class="fa fa-cart-plus"></i></a> -->
                                 <!-- <a href="#" class="search-switch"><i class="fa fa-search"></i></a> -->
-                            </div>
+                                <ul>
                             @guest
                             <li >
-
-                                <a  href="{{ route('login') }}" class="primary-btn"><i class="fas fa-user"></i>   {{ __('Login') }}</a>
+                                <a  href="{{ route('login') }}" ><i class="fas fa-user"></i>   {{ __('Login') }}</a>
                             </li>
                             
                         @else
@@ -76,33 +58,19 @@
                                 <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
                                 {{ Auth::user()->name }}</a>
                                     <ul class="dropdown">
-                                        <li><a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}</a></li>
+                                        <li>
+                                            <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}</a>
+                                        </li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>
+                                        </form>
                                     </ul>
                                 </li>
                             
-
-                                <!-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span><i class="fas fa-chevron-down"></i></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
-                            
                         @endguest
-                            
-                        </div>
+                        </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -122,7 +90,7 @@
 
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
         <div class="container">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="footer__about">
                         <div class="footer__logo">
@@ -177,7 +145,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <div class="footer__copyright__text">
                 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
