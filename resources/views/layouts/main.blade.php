@@ -32,6 +32,13 @@
     <!-- <div id="preloder">
         <div class="loader"></div>
     </div> -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__logo">
+            <a href="{{URL::to('/')}}"><img width="50px" src="{{ asset('/img/logo/VII-check-LOGO-D3-V1.jpg') }}"></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
 
     <!-- Header Section Begin -->
     <header class="header">
