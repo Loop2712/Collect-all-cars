@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Laravel\Socialite\Facades\Socialite;
 
 use App\county;
 use App\Models\Register_car;
@@ -49,8 +48,6 @@ class Register_carController extends Controller
         $location_array = county::selectRaw('province')
             ->groupBy('province')
             ->get();
-
-        $this->redirectToLine();
 
         return view('register_car.create', compact('location_array'));
     }
@@ -136,12 +133,6 @@ class Register_carController extends Controller
     public function welcome_line()
     {
         return view('register_car.welcome_line');
-    }
-
-    // Line login
-    public function redirectToLine()
-    {
-        return Socialite::driver('line')->redirect();
     }
 
 }
