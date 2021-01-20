@@ -155,8 +155,7 @@ class GuestController extends Controller
         $arrPostData = array();
         $arrPostData['to'] = $register_car->provider_id;
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".);
-        $arrPostData['to'] = $register_car->registration_number." ".$register_car->province." ".$masseng;
+        $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$register_car->registration_number." ".$register_car->province." ".$massengg;
          
          
         $ch = curl_init();
