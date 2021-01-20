@@ -33,17 +33,17 @@ class LineApiController extends Controller
 
 			foreach ($events['events'] as $event) {
 				// หาข้อความที่ของเจ้าของรถส่งมา
-				if ($event['events'][0]['message']['text'] == "รับทราบ") {
-						$text = $event['events'][0]['message']['text'];
+				if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+						$text = $event['message']['text'];
 				
 					// หา UserId ของเจ้าของรถ
-					if ($event['type'] == 'source' && $event['source']['type'] == 'user') {
+					if ($event['type'] == 'message' && $event['source']['type'] == 'user') {
 						$userId = $event['source']['userId'];
 
 						// UserId คนเรียก
 						$reply_provider_id = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
 
-						$arrPostData['to'] = $item->reply_provider_id;
+						$arrPostData['to'] = $reply_provider_id;
 		                $arrPostData['messages'][0]['type'] = "text";
 		                $arrPostData['messages'][0]['text'] = $text;
 
