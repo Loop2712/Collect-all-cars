@@ -146,7 +146,7 @@ class GuestController extends Controller
         
         foreach($register_car as $item){
 
-            // if(!empty($item->provider_id)){
+            if(!empty($item->provider_id)){
                 $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
                 $strUrl = "https://api.line.me/v2/bot/message/push";
@@ -159,6 +159,10 @@ class GuestController extends Controller
                 $arrPostData['to'] = $item->provider_id;
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$item->registration_number." ".$item->province." ".$masseng;
+                if(!empty($phone)){
+                    $arrPostData['messages'][0]['type'] = "text";
+                    $arrPostData['messages'][0]['text'] = "เบอร์โทรศัพท์ติดต่อกลับ"." ".$phone;
+                }
                  
                  
                 $ch = curl_init();
@@ -171,7 +175,7 @@ class GuestController extends Controller
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
                 $result = curl_exec($ch);
                 curl_close ($ch);
-            // }
+            }
             
         }
         
