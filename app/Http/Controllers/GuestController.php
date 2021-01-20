@@ -143,33 +143,35 @@ class GuestController extends Controller
         $masseng = $data['masseng'];
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county'");
-        $message = "Hellom, AmplySoft";
-
-            $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+        echo "<pre>";
+        print_r($register_car);
+        echo "</pre>";
+        // if (!is_null($register_car->provider_id)) {
+        //     $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
-            $strUrl = "https://api.line.me/v2/bot/message/push";
+        //     $strUrl = "https://api.line.me/v2/bot/message/push";
              
-            $arrHeader = array();
-            $arrHeader[] = "Content-Type: application/json";
-            $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+        //     $arrHeader = array();
+        //     $arrHeader[] = "Content-Type: application/json";
+        //     $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
              
-            $arrPostData = array();
-            $arrPostData['to'] = $register_car->provider_id;
-            $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$register_car->registration_number." ".$register_car->province." ".$massengg;
+        //     $arrPostData = array();
+        //     $arrPostData['to'] = $register_car->provider_id;
+        //     $arrPostData['messages'][0]['type'] = "text";
+        //     $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$register_car->registration_number." ".$register_car->province." ".$massengg;
              
              
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,$strUrl);
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $result = curl_exec($ch);
-            curl_close ($ch);
-        
+        //     $ch = curl_init();
+        //     curl_setopt($ch, CURLOPT_URL,$strUrl);
+        //     curl_setopt($ch, CURLOPT_HEADER, false);
+        //     curl_setopt($ch, CURLOPT_POST, true);
+        //     curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+        //     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+        //     curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        //     $result = curl_exec($ch);
+        //     curl_close ($ch);
+        // }
 
     }
 }
