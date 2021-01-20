@@ -137,6 +137,7 @@ class GuestController extends Controller
 
     protected function _pushLine($data)
     {
+        $provider_id = $data['provider_id'];
         $registration = $data['registration'];
         $county = $data['county'];
         $phone = $data['phone'];

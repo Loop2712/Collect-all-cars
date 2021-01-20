@@ -49,6 +49,8 @@ class Register_carController extends Controller
             ->groupBy('province')
             ->get();
 
+        $this->redirectToLine();
+
         return view('register_car.create', compact('location_array'));
     }
 
@@ -133,6 +135,12 @@ class Register_carController extends Controller
     public function welcome_line()
     {
         return view('register_car.welcome_line');
+    }
+
+    // Line login
+    public function redirectToLine()
+    {
+        return Socialite::driver('line')->redirect();
     }
 
 }
