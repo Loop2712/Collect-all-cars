@@ -143,9 +143,7 @@ class GuestController extends Controller
         $masseng = $data['masseng'];
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county'");
-        echo "<pre>";
-        print_r($register_car);
-        echo "</pre>";
+        
         return response()->json($register_car);
         echo $register_car;
 
@@ -158,9 +156,9 @@ class GuestController extends Controller
         $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
          
         $arrPostData = array();
-        $arrPostData['to'] = $register_car['provider_id'];
+        $arrPostData['to'] = $register_car->provider_id;
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$register_car['registration_number']." ".$register_car['province']." ".$massengg;
+        $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$register_car->registration_number." ".$register_car->province." ".$massengg;
          
          
         $ch = curl_init();
