@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::resource('deliver', 'DeliverController')->except(['index']);
+	Route::resource('guest', 'GuestController')->except(['index']);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -49,5 +50,4 @@ Route::get('/car/{id}','CarController@show');
 
 Route::resource('detail', 'DetailController');
 
-Route::resource('guest', 'GuestController');
 Route::resource('mylog', 'MylogController');
