@@ -42,7 +42,8 @@ class LineApiController extends Controller
 
 						// UserId คนเรียก
 						$reply_provider_id = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
-
+						
+						$arrPostData = array();
 						$arrPostData['to'] = $reply_provider_id;
 		                $arrPostData['messages'][0]['type'] = "text";
 		                $arrPostData['messages'][0]['text'] = $text;
