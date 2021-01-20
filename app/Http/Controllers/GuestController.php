@@ -69,6 +69,10 @@ class GuestController extends Controller
 
         Guest::create($requestData);
 
+        DB::table('register_cars')
+              ->where('registration_number', $requestData['registration'])
+              ->update(['reply_provider_id' => $requestData['provider_id']]);
+
         $this->_pushLine($requestData);
 
         return view('guest.thx_guest')->with('flash_message', 'Guest added!');

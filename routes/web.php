@@ -50,3 +50,5 @@ Route::get('/car/{id}','CarController@show');
 Route::resource('detail', 'DetailController');
 Route::resource('guest', 'GuestController')->except(['index']);
 Route::resource('mylog', 'MylogController');
+
+Route::get('/lineapi', 'API\LineApiController@store');
