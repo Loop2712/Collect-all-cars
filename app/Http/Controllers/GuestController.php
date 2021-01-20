@@ -143,11 +143,8 @@ class GuestController extends Controller
         $masseng = $data['masseng'];
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county'");
-        echo "<pre>";
-        print_r($register_car);
-        echo "</pre>";
+        $message = "Hellom, AmplySoft";
 
-        if (!is_null($register_car->provider_id)) {
             $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
             $strUrl = "https://api.line.me/v2/bot/message/push";
@@ -172,7 +169,7 @@ class GuestController extends Controller
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result = curl_exec($ch);
             curl_close ($ch);
-        }
+        
 
     }
 }
