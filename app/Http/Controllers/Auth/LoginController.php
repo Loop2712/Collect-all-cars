@@ -71,7 +71,7 @@ class LoginController extends Controller
     }
 
     // Facebook callback
-    public function handleFacebookCallback()
+    public function handleFacebookCallback(Request $request)
     {
         $user = Socialite::driver('facebook')->user();
         // print_r($user);
@@ -79,6 +79,7 @@ class LoginController extends Controller
 
         // Return home after login
         // return redirect()->route('home');
+        return $request->user();
     }
 
     // Line login
@@ -98,7 +99,7 @@ class LoginController extends Controller
         return redirect()->route('register_car_create');
     }
 
-    protected function _registerOrLoginUser(Request $request,$data )
+    protected function _registerOrLoginUser($data )
     {
         //GET USER 
         $user = User::where('email', '=', $data->email)->first();
@@ -129,6 +130,6 @@ class LoginController extends Controller
         }
         //LOGIN
         Auth::login($user);
-        return $request->user();
+
     }
 }
