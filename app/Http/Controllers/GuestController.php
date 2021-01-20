@@ -65,7 +65,7 @@ class GuestController extends Controller
 
         $this->_pushLine($requestData);
 
-        return redirect('guest')->with('flash_message', 'Guest added!');
+        // return redirect('guest')->with('flash_message', 'Guest added!');
     }
 
     /**
@@ -135,6 +135,11 @@ class GuestController extends Controller
 
     protected function _pushLine($data)
     {
+        $registration = $data['registration'];
+        $county = $data['county'];
+        $phone = $data['phone'];
+        $masseng = $data['masseng'];
+
         $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
  
         $strUrl = "https://api.line.me/v2/bot/message/push";
@@ -146,7 +151,7 @@ class GuestController extends Controller
         $arrPostData = array();
         $arrPostData['to'] = "U912994894c449f2237f73f18b5703e89";
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = "ข้อความ ทดสอบ";
+        $arrPostData['messages'][0]['text'] = $masseng;
          
          
         $ch = curl_init();
