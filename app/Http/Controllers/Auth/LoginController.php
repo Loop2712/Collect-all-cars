@@ -98,7 +98,7 @@ class LoginController extends Controller
         return redirect()->route('register_car_create');
     }
 
-    protected function _registerOrLoginUser($data Request $request)
+    protected function _registerOrLoginUser(Request $request,$data )
     {
         //GET USER 
         $user = User::where('email', '=', $data->email)->first();
