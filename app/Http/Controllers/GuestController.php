@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use App\Models\Register_car;
 
 use App\Models\Guest;
 use Illuminate\Http\Request;
@@ -140,6 +142,8 @@ class GuestController extends Controller
         $phone = $data['phone'];
         $masseng = $data['masseng'];
 
+        $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = $registration AND province = $county ");
+
         $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
  
         $strUrl = "https://api.line.me/v2/bot/message/push";
@@ -149,9 +153,10 @@ class GuestController extends Controller
         $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
          
         $arrPostData = array();
-        $arrPostData['to'] = "U912994894c449f2237f73f18b5703e89";
+        $arrPostData['to'] = $register_car->provider_id;
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = $masseng;
+        $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".);
+        $arrPostData['to'] = $register_car->registration_number." ".$register_car->province." ".$masseng;
          
          
         $ch = curl_init();
