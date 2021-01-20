@@ -147,7 +147,7 @@ class GuestController extends Controller
         print_r($register_car);
         echo "</pre>";
 
-        if (!is_null($register_car['provider_id'])) {
+        if (!is_null($register_car->provider_id)) {
             $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
             $strUrl = "https://api.line.me/v2/bot/message/push";
