@@ -146,7 +146,7 @@ class GuestController extends Controller
         $arrPostData = array();
         $arrPostData['to'] = "U912994894c449f2237f73f18b5703e89";
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = "ข้อความ =". $data->masseng;
+        $arrPostData['messages'][0]['text'] = "ข้อความ ทดสอบ";
          
          
         $ch = curl_init();
