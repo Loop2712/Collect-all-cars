@@ -49,12 +49,12 @@ class LineApiController extends Controller
 						}
 						 // ตอบกลับ
 						$arrPostData = array();
-						$arrPostData['to'] = "U912994894c449f2237f73f18b5703e89";
+						$arrPostData['to'] = $reply_provider_id;
 		                $arrPostData['messages'][0]['type'] = "text";
-		                $arrPostData['messages'][0]['text'] = "ทดสอบ";
+		                $arrPostData['messages'][0]['text'] = $text;
 
 						// Make a POST Request to Messaging API to reply to sender
-				        $url = 'https://api.line.me/v2/bot/message/reply';
+				        $url = 'https://api.line.me/v2/bot/message/push';
 				        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 				        $ch = curl_init($url);
 				        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
