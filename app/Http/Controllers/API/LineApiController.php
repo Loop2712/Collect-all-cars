@@ -34,33 +34,32 @@ class LineApiController extends Controller
 			foreach ($events['events'] as $event) {
 				// หาข้อความที่ของเจ้าของรถส่งมา
 				if ($event['events'][0]['message']['text'] == "รับทราบ") {
-						$text = $event['message']['text'];
+						$text = $event['events'][0]['message']['text'];
 				
 					// หา UserId ของเจ้าของรถ
 					if ($event['type'] == 'source' && $event['source']['type'] == 'user') {
 						$userId = $event['source']['userId'];
 
+						// UserId คนเรียก
 						$reply_provider_id = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
 
-						foreach($register_car as $item){
+						$arrPostData['to'] = $item->reply_provider_id;
+		                $arrPostData['messages'][0]['type'] = "text";
+		                $arrPostData['messages'][0]['text'] = $text;
 
-							$arrPostData['to'] = $item->reply_provider_id;
-			                $arrPostData['messages'][0]['type'] = "text";
-			                $arrPostData['messages'][0]['text'] = $text;
-
-							// Make a POST Request to Messaging API to reply to sender
-					        $url = 'https://api.line.me/v2/bot/message/reply';
-					        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-					        $ch = curl_init($url);
-					        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-					        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-					        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-					        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-					        $result = curl_exec($ch);
-					        curl_close($ch);
-					        echo $result . "";
-					    }
+						// Make a POST Request to Messaging API to reply to sender
+				        $url = 'https://api.line.me/v2/bot/message/reply';
+				        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+				        $ch = curl_init($url);
+				        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+				        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+				        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				        $result = curl_exec($ch);
+				        curl_close($ch);
+				        echo $result . "";
+					    
 				    }
 				}
 			}

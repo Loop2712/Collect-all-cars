@@ -51,4 +51,4 @@ Route::resource('detail', 'DetailController');
 Route::resource('guest', 'GuestController')->except(['index']);
 Route::resource('mylog', 'MylogController');
 
-Route::post('/lineapi', 'API\LineApiController@store');
+Route::get('/lineapi', 'API\LineApiController@store');
