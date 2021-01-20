@@ -160,8 +160,8 @@ class GuestController extends Controller
                 $arrPostData['messages'][0]['type'] = "text";
                 $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$item->registration_number." ".$item->province." ".$masseng;
                 if(!empty($phone)){
-                    $arrPostData['messages'][0]['type'] = "text";
-                    $arrPostData['messages'][0]['text'] = "เบอร์โทรศัพท์ติดต่อกลับ"." ".$phone;
+                    $arrPostData['messages'][1]['type'] = "text";
+                    $arrPostData['messages'][1]['text'] = "เบอร์โทรศัพท์ติดต่อกลับ"." ".$phone;
                 }
                  
                  
