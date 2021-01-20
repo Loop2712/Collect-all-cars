@@ -9,8 +9,6 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
@@ -71,15 +69,14 @@ class LoginController extends Controller
     }
 
     // Facebook callback
-    public function handleFacebookCallback(Request $request)
+    public function handleFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user);
 
         // Return home after login
-        // return redirect()->route('home');
-        return $request->user();
+        return redirect()->route('home');
     }
 
     // Line login
@@ -99,7 +96,7 @@ class LoginController extends Controller
         return redirect()->route('register_car_create');
     }
 
-    protected function _registerOrLoginUser($data )
+    protected function _registerOrLoginUser($data)
     {
         //GET USER 
         $user = User::where('email', '=', $data->email)->first();
@@ -130,6 +127,5 @@ class LoginController extends Controller
         }
         //LOGIN
         Auth::login($user);
-
     }
 }
