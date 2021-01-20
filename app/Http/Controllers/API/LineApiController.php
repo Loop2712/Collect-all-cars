@@ -12,8 +12,6 @@ class LineApiController extends Controller
 {
     public function store(Request $request)
 	{
-		echo "Hello";
-
 		$access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
  
 		// $content = file_get_contents('php://input');
@@ -32,36 +30,40 @@ class LineApiController extends Controller
 		if (!is_null($events['events'])) {
 
 			foreach ($events['events'] as $event) {
-				// หาข้อความที่ของเจ้าของรถส่งมา
-				if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-						$text = $event['message']['text'];
 				
-					// หา UserId ของเจ้าของรถ
-					if ($event['type'] == 'message' && $event['source']['type'] == 'user') {
-						$userId = $event['source']['userId'];
+				// หา UserId ของเจ้าของรถ
+				if ($event['type'] == 'message' && $event['source']['type'] == 'user') {
+					$userId = $event['source']['userId'];
 
-						// UserId คนเรียก
-						$reply_provider_id = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
-						
-						$arrPostData = array();
-						$arrPostData['to'] = $reply_provider_id;
-		                $arrPostData['messages'][0]['type'] = "text";
-		                $arrPostData['messages'][0]['text'] = $text;
+					// UserId คนเรียก
+					$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
 
-						// Make a POST Request to Messaging API to reply to sender
-				        $url = 'https://api.line.me/v2/bot/message/reply';
-				        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-				        $ch = curl_init($url);
-				        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-				        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-				        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-				        $result = curl_exec($ch);
-				        curl_close($ch);
-				        echo $result . "";
+					$reply_provider_id = array();
+					foreach($reply as $item){
+						$reply_p = $item->reply_provider_id;
+
+						$reply_provider_id[] = $reply_p
+					}
+
+					$arrPostData = array();
+					$arrPostData['to'] = $reply_provider_id;
+	                $arrPostData['messages'][0]['type'] = "text";
+	                $arrPostData['messages'][0]['text'] = "ทดสอบ";
+
+					// Make a POST Request to Messaging API to reply to sender
+			        $url = 'https://api.line.me/v2/bot/message/reply';
+			        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			        $ch = curl_init($url);
+			        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+			        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			        $result = curl_exec($ch);
+			        curl_close($ch);
+			        echo $result . "";
 					    
-				    }
+				    
 				}
 			}
 
