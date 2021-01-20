@@ -16,8 +16,18 @@ class LineApiController extends Controller
 
 		$strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
  
-		$content = file_get_contents('php://input');
-		$arrJson = json_decode($content, true);
+		// $content = file_get_contents('php://input');
+		// $arrJson = json_decode($content, true);
+
+		$content = $request->all();
+        $data = [
+            "title" => "Line",
+            "content" => json_encode($content, JSON_UNESCAPED_UNICODE),
+        ];
+        Mylog::create($data);
+
+		// Parse JSON
+		$events = $content;
 		 
 		$strUrl = "https://api.line.me/v2/bot/message/reply";
 		 
