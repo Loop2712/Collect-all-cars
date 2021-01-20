@@ -142,7 +142,7 @@ class GuestController extends Controller
         $phone = $data['phone'];
         $masseng = $data['masseng'];
 
-        $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = "$registration);
+        $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = $registration AND province = $county");
 
         $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
  
@@ -155,7 +155,7 @@ class GuestController extends Controller
         $arrPostData = array();
         $arrPostData['to'] = $register_car->provider_id;
         $arrPostData['messages'][0]['type'] = "text";
-        $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$register_car->registration_number." ".$massengg;
+        $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$register_car->registration_number." ".$register_car->province." ".$massengg;
          
          
         $ch = curl_init();
