@@ -71,7 +71,7 @@ class GuestController extends Controller
 
         $this->_pushLine($requestData);
 
-        return redirect('guest.thx_guest')->with('flash_message', 'Guest added!');
+        return view('guest.thx_guest')->with('flash_message', 'Guest added!');
     }
 
     /**
