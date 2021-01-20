@@ -32,34 +32,35 @@ class LineApiController extends Controller
 		if (!is_null($events['events'])) {
 
 			foreach ($events['events'] as $event) {
-				// หา UserId ของเจ้าของรถ
-				if ($event['type'] == 'source' && $event['source']['type'] == 'user') {
-					$userId = $event['source']['userId'];
-
-					$reply_provider_id = DB::select("SELECT reply_provider_id FROM register_cars WHERE provider_id = '$userId' ");
-				
-					// หาข้อความที่ของเจ้าของรถส่งมา
-					if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+				// หาข้อความที่ของเจ้าของรถส่งมา
+				if ($event['events'][0]['message']['text'] == "รับทราบ") {
 						$text = $event['message']['text'];
+				
+					// หา UserId ของเจ้าของรถ
+					if ($event['type'] == 'source' && $event['source']['type'] == 'user') {
+						$userId = $event['source']['userId'];
 
+						$reply_provider_id = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
 
-						// Make a POST Request to Messaging API to reply to sender
-				        $url = 'https://api.line.me/v2/bot/message/reply';
-				        $data = [
-				            'replyToken' => $reply_provider_id,
-				            'messages' => $text
-				        ];
-				        $post = json_encode($data);
-				        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-				        $ch = curl_init($url);
-				        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-				        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-				        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-				        $result = curl_exec($ch);
-				        curl_close($ch);
-				        echo $result . "";
+						foreach($register_car as $item){
+
+							$arrPostData['to'] = $item->reply_provider_id;
+			                $arrPostData['messages'][0]['type'] = "text";
+			                $arrPostData['messages'][0]['text'] = $text;
+
+							// Make a POST Request to Messaging API to reply to sender
+					        $url = 'https://api.line.me/v2/bot/message/reply';
+					        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+					        $ch = curl_init($url);
+					        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+					        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+					        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+					        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+					        $result = curl_exec($ch);
+					        curl_close($ch);
+					        echo $result . "";
+					    }
 				    }
 				}
 			}
