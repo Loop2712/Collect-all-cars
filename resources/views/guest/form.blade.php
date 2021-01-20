@@ -29,8 +29,8 @@
                 {!! $errors->first('masseng', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
-                <label for="massengbox" class="control-label">{{ 'ข้อความ / Message' }}</label>
-                <select name="massengbox" class="form-control" id="massengbox" >
+                <label for="massengbox" class="control-label">{{ 'ข้อความ / Message' }}</label></label><span style="color: #FF0033;"> *</span>
+                <select name="massengbox" class="form-control" id="massengbox" required>
                     <option value="" selected > - เลือกข้อความ / Select text - </option> 
                 @foreach (json_decode('{"1":"กรุณามาเลื่อนรถด้วย ครับ/ค่ะ","2":"รบกวนมาเลื่อนรถด้วย!!"}', true) as $optionKey => $optionValue)
                     <option value="{{ $optionKey }}" {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
@@ -49,13 +49,13 @@
                 {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
-                <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car registration' }}</label>
+                <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car registration' }}</label></label><span style="color: #FF0033;"> *</span>
                 <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required>
                 {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
-                <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}</label>
-                <select name="county" id="county" class="form-control">
+                <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}</label></label><span style="color: #FF0033;"> *</span>
+                <select name="county" id="county" class="form-control" required>
                         <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
                         @foreach($location_array as $lo)
                         <option 
