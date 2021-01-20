@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Models\Register_car;
-
+use App\county;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 
@@ -44,7 +44,11 @@ class GuestController extends Controller
      */
     public function create()
     {
-        return view('guest.create');
+        $location_array = county::selectRaw('province')
+            ->groupBy('province')
+            ->get();
+
+        return view('guest.create', compact('location_array'));
     }
 
     /**
@@ -141,7 +145,12 @@ class GuestController extends Controller
         $registration = $data['registration'];
         $county = $data['county'];
         $phone = $data['phone'];
-        $masseng = $data['masseng'];
+        if($data['massengbox'] == "1"){
+            $masseng = "กรุณามาเลื่อนรถด้วย ครับ/ค่ะ";
+        }
+        if($data['massengbox'] == "2"){
+            $masseng = "รบกวนมาเลื่อนรถด้วย!!";
+        }
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county'");
         

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">ลงเทะเบียนใหม่</div>
+                    <div class="card-header">ลงเทะเบียนใหม่ / Register</div>
                     <div class="card-body">
                         <a href="{{ url('/register_car') }}" title="Back"><button class="d-none btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         

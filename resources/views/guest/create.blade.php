@@ -3,12 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Create New Guest</div>
+                    <div class="card-header">ใส่ข้อมูลรถที่ต้องการติดต่อ</div>
                     <div class="card-body">
-                        <a href="{{ url('/guest') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+                        <a href="{{ url('/guest') }}" title="Back"><button class="d-none btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
