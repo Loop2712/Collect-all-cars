@@ -143,6 +143,7 @@ class GuestController extends Controller
         $masseng = $data['masseng'];
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county'");
+        echo $register_car['provider_id'];
         echo "<pre>";
         print_r($register_car);
         echo "</pre>";
