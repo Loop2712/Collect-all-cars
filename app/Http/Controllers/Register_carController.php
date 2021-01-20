@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Laravel\Socialite\Facades\Socialite;
 
 use App\county;
 use App\Models\Register_car;
