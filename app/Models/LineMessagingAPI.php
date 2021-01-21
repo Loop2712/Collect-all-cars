@@ -32,7 +32,7 @@ class LineMessagingAPI extends Model
 
         $body = [
             "replyToken" => $event["replyToken"],
-            "messages" => "ทดสอบ",
+            "messages" => $event["replyToken"],
         ];
 
         $opts = [
