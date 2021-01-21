@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
+use App\Models\LineMessagingAPI;
 
 class LineApiController extends Controller
 {
@@ -46,7 +47,7 @@ class LineApiController extends Controller
         
         $line = new LineMessagingAPI();
 
-        switch($event["message"]["text"])
+        switch( strtolower($event["message"]["text"]) )
         {     
             case "ติดต่อ" :            
                 $line->replyToUser(null, $event, "contact");
