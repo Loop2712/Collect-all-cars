@@ -2,7 +2,7 @@
     <div class="row">
         <!-- ข้อมูลเจ้าของรถ -->
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your information'}}</span><span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}</span>
             <br><br>
             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                 <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label><span style="color: #FF0033;"> *</span>
@@ -25,15 +25,15 @@
         </div>
         <!-- ข้อมูลรถ -->
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle information' }}</span><span style="color: #FF0033;"> *</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
             <br><br>
             <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
-                <label for="brand" class="control-label">{{ 'ยี่ห้อรถยนต์ / Car brand' }}</label><span style="color: #FF0033;"> *</span>
+                <label for="brand" class="control-label">{{ 'ยี่ห้อรถยนต์ / Car Brand' }}</label><span style="color: #FF0033;"> *</span>
                 <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" required placeholder="ยี่ห้อรถยนต์ของคุณ / Your car brand">
                 {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
-                <label for="generation" class="control-label">{{ 'รุ่นรถยนต์ / Car model' }}</label><span style="color: #FF0033;"> *</span>
+                <label for="generation" class="control-label">{{ 'รุ่นรถยนต์ / Car Model' }}</label><span style="color: #FF0033;"> *</span>
                 <input class="form-control" name="generation" type="text" id="generation" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถยนต์ของคุณ / Your car model" required>
                 {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
             </div>
@@ -43,7 +43,7 @@
                 {!! $errors->first('year', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
-                <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration' }}</label><span style="color: #FF0033;"> *</span>
+                <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration number' }}</label><span style="color: #FF0033;"> *</span>
                 <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required>
                 {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
             </div>
