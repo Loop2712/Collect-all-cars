@@ -12,10 +12,10 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อผู้ใช้') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+                            <!-- <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อผู้ใช้') }}</label> -->
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="ชื่อผู้ใช้" required autocomplete="username">
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -23,13 +23,14 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-2"></div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('รหัสผ่าน') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <!-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('รหัสผ่าน') }}</label> -->
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="รหัสผ่าน" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -37,10 +38,11 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-2"></div>
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-8 offset-md-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -52,39 +54,56 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-8 offset-md-2">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <button style="padding-left: 106px;padding-right: 106px;" type="submit" class="btn btn-primary">
-                                            {{ __('เข้าสู่ระบบ') }}
-                                        </button>
-                                        @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('ลืมรหัสผ่าน ?') }}
-                                            </a>
-                                        @endif
-                                    </div>
+                                    <center>
+                                        <div class="col-md-11">
+                                            <button style="padding-left: 106px;padding-right: 106px;" type="submit" class="btn btn-primary">
+                                                {{ __('เข้าสู่ระบบ') }}
+                                            </button>
+                                            @if (Route::has('password.request'))
+                                                <a class="btn btn-link text-muted float-left" href="{{ route('password.request') }}">
+                                                    {{ __('ลืมรหัสผ่าน ?') }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-12">
+                                            <a style="padding-right: 30px;" class="btn btn-link text-muted float-right" href="{{ route('register') }}">สมัครสมาชิก</a>
+                                        </div>
+                                    </center>
                                 </div>
                                 <br>
-
                                 <div class="row">
-                                    <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div>
-                                    <span style="margin-top: -10px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-md-2">
+                                    <!-- <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div> -->
+                                    <span style="margin-top: -10px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-md-12">
                                         หรือ
                                     </span>
-                                    <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div>
                                     <br>
-                                     สมัครสมาชิก
-                                    <br>
-                                    <div class="col-md-10">
+                                    <!-- <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div> -->
+                                    <div class="row">
+                                        <!-- ซ้าย -->
+                                        <div class="col-md-6">
+                                            <div class="col-md-6">
+                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
+                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
+                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
+                                        </div>
+                                        </div>
+                                        <!-- ขวา -->
+                                        <div class="col-md-6">
+                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
+                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
+                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
                                         <center>
-                                            <!-- <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
-                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a><br> -->
-                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
+                                            <P><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <b>ข้อกำหนดในการให้บริการ</b></a>
+                                            <br><br><br>
+                                            <img width="100%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
                                         </center>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </form>

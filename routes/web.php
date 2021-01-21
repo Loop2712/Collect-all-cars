@@ -29,6 +29,11 @@ Route::get('/cars', function () {
     return view('car/create');
 });
 
+Route::get('/terms_of_service', function () {
+    
+    return view('terms_of_service');
+});
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
