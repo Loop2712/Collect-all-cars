@@ -1,4 +1,4 @@
-@extends('layouts.car')
+@extends('layouts.main')
 
 @section('content')
 <div class="container">
@@ -74,6 +74,8 @@
                                     </span>
                                     <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div>
                                     <br>
+                                     สมัครสมาชิก
+                                    <br>
                                     <div class="col-md-10">
                                         <center>
                                             <!-- <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
@@ -89,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
         <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
@@ -171,7 +173,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 @endsection

@@ -51,16 +51,20 @@ class CarController extends Controller
                 // ->whereBetween('price', [$pricemin,$pricemax])
                 ->whereBetween('distance', [$milemin, $milemax])
                 // ->whereBetween('price', [30, 100])
+                ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
         } else  if (!empty($search)) {
             $data =CarModel::where('brand', 'LIKE', "%$search%")
                 ->orWhere('model', 'LIKE', "%$search%")
                 ->orWhere('submodel', 'LIKE', "%$search%")
+                ->where('active' ,'=', 'yes')
                 ->paginate($perPage);
         } else {
 
-            $data =CarModel::orderBy('created_at', 'asc')->paginate($perPage);
+            $data =CarModel::orderBy('created_at', 'asc')
+                    ->where('active' ,'=', 'yes')
+                    ->paginate($perPage);
         } 
         
         $brand_array = CarModel::selectRaw('brand,count(brand) as count')
