@@ -66,7 +66,7 @@ class GuestController extends Controller
             $requestData['photo'] = $request->file('photo')
                 ->store('uploads', 'public');
         }
-
+        $requestData['registration'] = str_replace(" ", "", $requestData['registration']);
         Guest::create($requestData);
 
         DB::table('register_cars')
