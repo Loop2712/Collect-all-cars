@@ -19,25 +19,43 @@ class LineMessagingAPI //extends Model
                 break;
         }
 
-        $body = [
-            "replyToken" => $event["replyToken"],
-            "messages" => $messages,
+        // Make a POST Request to Messaging API to reply to sender
+        $url = 'https://api.line.me/v2/bot/message/reply';
+        $data = [
+            'replyToken' => $event["replyToken"],
+            'messages' => $messages
         ];
+        $post = json_encode($data);
+        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $channel_access_token);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        echo $result . "";
 
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.$this->channel_access_token,
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
+        // $body = [
+        //     "replyToken" => $event["replyToken"],
+        //     "messages" => $messages,
+        // ];
+
+        // $opts = [
+        //     'http' =>[
+        //         'method'  => 'POST',
+        //         'header'  => "Content-Type: application/json \r\n".
+        //                     'Authorization: Bearer '.$this->channel_access_token,
+        //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+        //         //'timeout' => 60
+        //     ]
+        // ];
                             
-        $context  = stream_context_create($opts);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url = "https://api.line.me/v2/bot/message/reply";
-        $result = file_get_contents($url, false, $context);
+        // $context  = stream_context_create($opts);
+        // //https://api-data.line.me/v2/bot/message/11914912908139/content
+        // $url = "https://api.line.me/v2/bot/message/reply";
+        // $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
