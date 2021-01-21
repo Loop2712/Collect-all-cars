@@ -9,7 +9,7 @@
           "contents": [
             {
               "type": "text",
-              "text": "เรียนคุณ ",
+              "text": "เรียนคุณ /  Dear",
               "weight": "bold",
               "size": "xl"
             },
@@ -26,23 +26,15 @@
               "contents": [
                 {
                   "type": "box",
-                  "layout": "baseline",
-                  "spacing": "sm",
+                  "layout": "vertical",
                   "contents": [
                     {
                       "type": "text",
-                      "text": "เลขทะเบียน",
+                      "text": "เลขทะเบียน / Car ID",
                       "color": "#aaaaaa",
                       "size": "md",
-                      "flex": 5
-                    },
-                    {
-                      "type": "text",
-                      "wrap": true,
-                      "color": "#000000",
-                      "size": "sm",
-                      "flex": 5,
-                      "text": "ยษก294"
+                      "flex": 7,
+                      "margin": "none"
                     }
                   ]
                 },
@@ -53,18 +45,19 @@
                   "contents": [
                     {
                       "type": "text",
-                      "text": "จังหวัด",
-                      "color": "#aaaaaa",
-                      "size": "sm",
-                      "flex": 3
+                      "wrap": true,
+                      "color": "#000000",
+                      "size": "xxl",
+                      "flex": 8,
+                      "text": "7ยษ2944"
                     },
                     {
                       "type": "text",
-                      "text": "กรุงเทพมหานคร",
+                      "text": "กรุงเทพ",
                       "wrap": true,
                       "color": "#000000",
-                      "size": "sm",
-                      "flex": 7
+                      "size": "md",
+                      "flex": 8
                     }
                   ]
                 }
@@ -77,12 +70,21 @@
                 {
                   "type": "text",
                   "text": "กรุณามาเลื่อนรถด้วยค่ะ",
-                  "margin": "xxl",
-                  "size": "xl"
+                  "margin": "xl",
+                  "size": "xl",
+                  "decoration": "underline",
+                  "align": "center"
                 }
               ]
             }
-          ]
+          ],
+          "background": {
+            "type": "linearGradient",
+            "angle": "0deg",
+            "endColor": "#E0FFFF",
+            "startColor": "#E0FFFF",
+            "centerColor": "#ffffff"
+          }
         },
         "footer": {
           "type": "box",
@@ -90,45 +92,64 @@
           "spacing": "sm",
           "contents": [
             {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "borderColor": "#FF0000",
+              "background": {
+                "type": "linearGradient",
+                "startColor": "#00FA9A",
+                "endColor": "#ffffff",
+                "angle": "0deg",
+                "centerColor": "#00FA9A"
+              },
+              "margin": "none"
+            },
+            {
               "type": "button",
-              "style": "link",
+              "style": "primary",
               "height": "sm",
               "action": {
                 "type": "postback",
-                "label": "จะไปเดี๋ยวนี้",
-                "data": "จะไปเดี๋ยวนี้",
-                "displayText": "จะไปเดี๋ยวนี้"
+                "label": "รอสักครู่ / Wait a moment",
+                "data": "wait",
+                "displayText": "รอสักครู่ / Wait a moment"
               },
               "color": "#006400"
             },
             {
-              "type": "button",
-              "style": "link",
-              "height": "sm",
-              "action": {
-                "type": "postback",
-                "label": "อีก 5-10 นาที",
-                "data": "อีก 5-10 นาที",
-                "displayText": "อีก 5-10 นาที"
-              },
-              "color": "#FFD700"
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "postback",
-                "label": "ไม่ ไม่ว่าง!",
-                "data": "ไม่ ไม่ว่าง!",
-                "displayText": "ไม่ ไม่ว่าง!"
-              },
-              "color": "#FF0000"
-            },
-            {
-              "type": "spacer",
-              "size": "sm"
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "button",
+                  "style": "primary",
+                  "height": "sm",
+                  "action": {
+                    "type": "postback",
+                    "label": "ฉันไม่สะดวก / I'm not comfortable",
+                    "data": "comfortable",
+                    "displayText": "ฉันไม่สะดวก / I'm not comfortable"
+                  },
+                  "color": "#FF0000"
+                }
+              ]
             }
           ],
-          "flex": 0
+          "flex": 0,
+          "borderColor": "#000000",
+          "background": {
+            "type": "linearGradient",
+            "angle": "0deg",
+            "startColor": "#B0E0E6",
+            "endColor": "#B0E0E6",
+            "centerColor": "#F5F5F5"
+          }
+        },
+        "styles": {
+          "footer": {
+            "separator": true
+          }
         }
       }
 }
