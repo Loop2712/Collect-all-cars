@@ -45,8 +45,8 @@ class LineApiController extends Controller
     {
         
         $line = new LineMessagingAPI();
-        
-        switch( strtolower($event["message"]["text"]) )
+
+        switch($event["message"]["text"])
         {     
             case "ติดต่อ" :            
                 $line->replyToUser(null, $event, "contact");
