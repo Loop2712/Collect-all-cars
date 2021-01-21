@@ -39,7 +39,7 @@ class LineApiController extends Controller
                 $this->textHandler($event);
 
                 $data = [
-		            "title" => "Line",
+		            "title" => "messageHandler",
 		            "content" => "messageHandler",
 		        ];
 		        MyLog::create($data);
@@ -58,7 +58,7 @@ class LineApiController extends Controller
             case "ติดต่อ" :            
                 $line->replyToUser(null, $event, "contact");
                 $data = [
-		            "title" => "Line",
+		            "title" => "textHandler",
 		            "content" => "textHandler",
 		        ];
 		        MyLog::create($data);

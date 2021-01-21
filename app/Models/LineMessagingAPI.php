@@ -23,32 +23,32 @@ class LineMessagingAPI extends Model
                 $messages = [ json_decode($string_json, true) ]; 
 
                 $data = [
-		            "title" => "Line",
-		            "content" => $event["replyToken"],
+		            "title" => "replyToUser",
+		            "content" => "replyToUser",
 		        ];
 		        MyLog::create($data);
                 break;
         }
 
-        $body = [
-            "replyToken" => $event["replyToken"],
-            "messages" => $messages,
-        ];
+        // $body = [
+        //     "replyToken" => $event["replyToken"],
+        //     "messages" => $messages,
+        // ];
 
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.$this->channel_access_token,
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
+        // $opts = [
+        //     'http' =>[
+        //         'method'  => 'POST',
+        //         'header'  => "Content-Type: application/json \r\n".
+        //                     'Authorization: Bearer '.$this->channel_access_token,
+        //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+        //         //'timeout' => 60
+        //     ]
+        // ];
                             
-        $context  = stream_context_create($opts);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url = "https://api.line.me/v2/bot/message/reply";
-        $result = file_get_contents($url, false, $context);
+        // $context  = stream_context_create($opts);
+        // //https://api-data.line.me/v2/bot/message/11914912908139/content
+        // $url = "https://api.line.me/v2/bot/message/reply";
+        // $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
