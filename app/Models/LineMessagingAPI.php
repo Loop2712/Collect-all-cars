@@ -24,7 +24,7 @@ class LineMessagingAPI extends Model
 
                 $data = [
 		            "title" => "Line",
-		            "content" => "replyToUser",
+		            "content" => $event["replyToken"],
 		        ];
 		        MyLog::create($data);
                 break;
@@ -56,6 +56,7 @@ class LineMessagingAPI extends Model
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
+        return $result;
 
     }
 
