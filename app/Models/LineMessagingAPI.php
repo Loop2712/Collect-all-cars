@@ -24,7 +24,7 @@ class LineMessagingAPI extends Model
 
                 $data = [
 		            "title" => "Line",
-		            "content" => $event["message"]['text'],
+		            "content" => $messages,
 		        ];
 		        MyLog::create($data);
                 break;
