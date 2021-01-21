@@ -63,7 +63,8 @@ class Register_carController extends Controller
     {
         
         $requestData = $request->all();
-        
+        // update registration_number
+        $requestData['registration_number'] = str_replace(" ", "", $requestData['registration_number']);
         Register_car::create($requestData);
 
         return view('register_car.select_get')->with('flash_message', 'Register_car added!');
