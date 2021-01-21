@@ -1,0 +1,134 @@
+{
+    "type": "flex",
+    "altText": "Flex Message",
+    "contents": {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "เรียนคุณ ",
+              "weight": "bold",
+              "size": "xl"
+            },
+            {
+              "type": "text",
+              "text": "ชื่อ",
+              "margin": "md"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "spacing": "sm",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "เลขทะเบียน",
+                      "color": "#aaaaaa",
+                      "size": "md",
+                      "flex": 5
+                    },
+                    {
+                      "type": "text",
+                      "wrap": true,
+                      "color": "#000000",
+                      "size": "sm",
+                      "flex": 5,
+                      "text": "ยษก294"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "spacing": "sm",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "จังหวัด",
+                      "color": "#aaaaaa",
+                      "size": "sm",
+                      "flex": 3
+                    },
+                    {
+                      "type": "text",
+                      "text": "กรุงเทพมหานคร",
+                      "wrap": true,
+                      "color": "#000000",
+                      "size": "sm",
+                      "flex": 7
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "กรุณามาเลื่อนรถด้วยค่ะ",
+                  "margin": "xxl",
+                  "size": "xl"
+                }
+              ]
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "postback",
+                "label": "จะไปเดี๋ยวนี้",
+                "data": "จะไปเดี๋ยวนี้",
+                "displayText": "จะไปเดี๋ยวนี้"
+              },
+              "color": "#006400"
+            },
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "postback",
+                "label": "อีก 5-10 นาที",
+                "data": "อีก 5-10 นาที",
+                "displayText": "อีก 5-10 นาที"
+              },
+              "color": "#FFD700"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "ไม่ ไม่ว่าง!",
+                "data": "ไม่ ไม่ว่าง!",
+                "displayText": "ไม่ ไม่ว่าง!"
+              },
+              "color": "#FF0000"
+            },
+            {
+              "type": "spacer",
+              "size": "sm"
+            }
+          ],
+          "flex": 0
+        }
+      }
+}
