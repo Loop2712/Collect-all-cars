@@ -35,28 +35,25 @@ class LineMessagingAPI extends Model
             "messages" => $messages,
         ];
 
-        $strUrl = "https://api.line.me/v2/bot/message/reply";
- 
-		$arrHeader = array();
-		$arrHeader[] = "Content-Type: application/json";
-		$arrHeader[] = "Authorization: Bearer {$channel_access_token}";
-
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL,$strUrl);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		$result = curl_exec($ch);
-		curl_close ($ch);
-
+        // $opts = [
+        //     'http' =>[
+        //         'method'  => 'POST',
+        //         'header'  => "Content-Type: application/json \r\n".
+        //                     'Authorization: Bearer '.$this->channel_access_token,
+        //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+        //         //'timeout' => 60
+        //     ]
+        // ];
+                            
+        // $context  = stream_context_create($opts);
+        // //https://api-data.line.me/v2/bot/message/11914912908139/content
+        // $url = "https://api.line.me/v2/bot/message/reply";
+        // $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
             "title" => "reply Success",
-            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+            "content" => "ถึงนี้",
         ];
         MyLog::create($data);
         return $result;
