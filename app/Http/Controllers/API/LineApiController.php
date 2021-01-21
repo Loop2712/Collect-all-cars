@@ -12,7 +12,7 @@ class LineApiController extends Controller
 {
     public function store(Request $request)
 	{
-		$access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+		$strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
  
 		// $content = file_get_contents('php://input');
 		// $arrJson = json_decode($content, true);
@@ -53,18 +53,35 @@ class LineApiController extends Controller
 		                $arrPostData['messages'][0]['type'] = "text";
 		                $arrPostData['messages'][0]['text'] = $text;
 
-						// Make a POST Request to Messaging API to reply to sender
-				        $url = 'https://api.line.me/v2/bot/message/push';
-				        $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-				        $ch = curl_init($url);
-				        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-				        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-				        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-				        $result = curl_exec($ch);
-				        curl_close($ch);
-				        echo $result . "";
+		                $strUrl = "https://api.line.me/v2/bot/message/push";
+                 
+		                $arrHeader = array();
+		                $arrHeader[] = "Content-Type: application/json";
+		                $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+
+						// // Make a POST Request to Messaging API to reply to sender
+				        // $url = 'https://api.line.me/v2/bot/message/push';
+				        // $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+				        // $ch = curl_init($url);
+				        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+				        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				        // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+				        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				        // $result = curl_exec($ch);
+				        // curl_close($ch);
+				        // echo $result . "";
+
+				        $ch = curl_init();
+			            curl_setopt($ch, CURLOPT_URL,$strUrl);
+			            curl_setopt($ch, CURLOPT_HEADER, false);
+			            curl_setopt($ch, CURLOPT_POST, true);
+			            curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+			            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+			            curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+			            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			            $result = curl_exec($ch);
+			            curl_close ($ch);
 					    
 				    }
 				}
