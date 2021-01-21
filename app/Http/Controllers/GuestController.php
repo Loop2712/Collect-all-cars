@@ -10,8 +10,6 @@ use App\county;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 
-use App\Models\Mylog;
-
 class GuestController extends Controller
 {
     /**
@@ -181,6 +179,8 @@ class GuestController extends Controller
                 $string_json = str_replace("<กรุงเทพ>",$item->province,$string_json);
                 $string_json = str_replace("<กรุณามาเลื่อนรถด้วยค่ะ>",$masseng,$string_json);
 
+
+                $arrPostData = $string_json; 
 
                 // $arrPostData['messages'][0]['type'] = "text";
                 // $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$item->registration_number." ".$item->province." ".$masseng;
