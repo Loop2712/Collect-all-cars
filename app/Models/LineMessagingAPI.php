@@ -52,11 +52,10 @@ class LineMessagingAPI extends Model
 
         //SAVE LOG
         $data = [
-            "title" => "https://api.line.me/v2/bot/message/reply",
+            "title" => "reply Success",
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
-        return $result;
 
     }
 
