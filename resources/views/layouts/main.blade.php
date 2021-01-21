@@ -35,7 +35,7 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__logo">
-            <a href="{{URL::to('/')}}"><img width="50px" src="{{ asset('/img/logo/VII-check-LOGO-D3-V1.jpg') }}"></a>
+            <a href="{{URL::to('/')}}"><img width="100px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
         <div id="mobile-menu-wrap"></div>
     </div>
@@ -46,20 +46,18 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="{{URL::to('/')}}"><img width="50px" src="{{ asset('/img/logo/VII-check-LOGO-D3-V1.jpg') }}"></a>
+                        <a href="{{URL::to('/')}}"><img width="100px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
                     </div>
                 </div>
                 <div class="col-lg-10">
                     <div class="header__nav">
                         <nav class="header__menu">
-                                <!-- <a href="#"><i class="fa fa-cart-plus"></i></a> -->
-                                <!-- <a href="#" class="search-switch"><i class="fa fa-search"></i></a> -->
+                                <!-- <a href="#"><i class="fas fa-shopping-basket"></i></a> -->
                                 <ul>
-                            @guest
+                        @guest
                             <li >
                                 <a  href="{{ route('login') }}" ><i class="fas fa-user"></i>   {{ __('Login') }}</a>
-                            </li>
-                            
+                            </li>  
                         @else
                             <li>
                                 <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
@@ -73,8 +71,7 @@
                                         @csrf
                                         </form>
                                     </ul>
-                                </li>
-                            
+                            </li>
                         @endguest
                         </ul>
                         </nav>
@@ -88,7 +85,7 @@
     </header>
 
      <!-- <div class="breadcrumb-option set-bg" data-setbg="https://images.pexels.com/photos/3422964/pexels-photo-3422964.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"></div>  -->
- 
+     <!-- <img src="https://www.w3schools.com/w3css/img_snow_wide.jpg" alt="Snow" style="width:100%;   padding-right: 8%;  padding-left: 8%;"> -->
 
 
     @yield('content')

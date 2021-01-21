@@ -100,9 +100,49 @@ class CarController extends Controller
 
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
         return view('car.car',compact('data','search', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
-
     }
 
+    public function main(Request $request)
+    {
+        
+        $brand_array = CarModel::selectRaw('brand,count(brand) as count')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->get();
+            
+        $type_array = CarModel::selectRaw('type,count(type) as count')
+            ->where('type', '!=',"" )
+            ->groupBy('type')
+            ->get();
+
+        $year_array = CarModel::selectRaw('year,count(year) as count')
+            ->where('year', '!=',"" )
+            ->groupBy('year')
+            ->get();
+
+        $color_array = CarModel::selectRaw('color,count(color) as count')
+            ->where('color', '!=',"" )
+            ->groupBy('color')
+            ->get();
+   
+        $gear_array = CarModel::selectRaw('gear,count(gear) as count')
+            ->where('gear', '!=',"" )
+            ->groupBy('gear')
+            ->get();
+            
+        $location_array = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+        
+        $fuel_array = CarModel::selectRaw('fuel,count(fuel) as count')
+            ->where('fuel', '!=',"" )
+            ->groupBy('fuel')
+            ->get();
+
+        //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
+        return view('car.index',compact('brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
+    }
 
     
     public function image($id)
@@ -138,7 +178,11 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestData = $request->all();
+        
+        CarModel::create($requestData);
+
+        return redirect('car')->with('flash_message', 'car added!');
     }
 
     /**
@@ -159,9 +203,11 @@ class CarController extends Controller
      * @param  \App\CarModel  $carModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(CarModel $carModel)
+    public function edit($id)
     {
-        //
+        $data = CarModel::findOrFail($id);
+
+        return view('car.edit', compact('data'));
     }
 
     /**
@@ -173,7 +219,12 @@ class CarController extends Controller
      */
     public function update(Request $request, CarModel $carModel)
     {
-        //
+        $requestData = $request->all();
+        
+        $data = CarModel::findOrFail($id);
+        $data->update($requestData);
+
+        return redirect('car')->with('flash_message', 'car updated!');
     }
 
     /**

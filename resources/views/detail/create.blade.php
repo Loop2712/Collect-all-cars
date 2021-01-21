@@ -27,6 +27,9 @@
                             @include ('detail.form', ['formMode' => 'create'])
 
                         </form>
+                        <div class="form-group">
+                            <input class="btn btn-primary" type="submit" value="Create">
+                        </div>
 
                     </div>
                 </div>

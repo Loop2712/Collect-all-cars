@@ -99,7 +99,7 @@
                                     <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
                                 </div>
                                 <div class="car__filter__btn">
-                                    <button type="submit" class="site-btn">Reset FIlter</button>
+                                    <button  class="site-btn"><a href="{{URL::to('/car')}}" ></a>reset</button>
                                 </div>
                             </form>
                         </div>
@@ -111,8 +111,16 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
                 <div class="col-lg-9">
-                    <div class="car__filter__option">
+                    <!-- <div class="car__filter__option">
                         <div class="row">
                             <div class="col">
                                 <div class="car__filter__option__item car__filter__option__item--right">
@@ -124,7 +132,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
 
                     <div class="row">
                     @foreach($data as $item)
@@ -154,7 +163,7 @@
                                         </ul>
                                     </div>
                                     <div class="car__item__price">
-                                        <span class="car-option">view</span>
+                                        <span class="car-option"><a href="{{ url('/car/'.$item->id ) }}"></a>view</span>
                                         <h6>{{ $item->price}}<span>บาท</span></h6>
                                     </div>
                                 </div>

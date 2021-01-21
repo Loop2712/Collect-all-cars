@@ -1,31 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
+<section class="car spad">
+        <div class="container">
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Create New generat</div>
-                    <div class="card-body">
-                        <a href="{{ url('/car') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+<form method="POST" action="{{ url('/car') }}">
+    {{ method_field('POST') }}
+    {{ csrf_field() }}
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                        <form method="POST" action="{{ url('/car') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-
-                            @include ('car.form', ['car' => 'create'])
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
+    @include ('car.form')
+</div>
+</section>
+    
 @endsection
+
+

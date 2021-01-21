@@ -25,9 +25,9 @@ Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.lin
 Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
 
-// Route::get('/cars', function () {
-//     return view('car/car-details');
-// });
+Route::get('/cars', function () {
+    return view('car/create');
+});
 
 Auth::routes();
 
@@ -40,10 +40,14 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'CarController@index');
+Route::get('/', 'CarController@main');
 Route::get('/car', 'CarController@index');
 Route::get('/image/{id}','CarController@image');
 Route::get('/car/{id}','CarController@show');
+Route::get('/car/create', 'CarController@create');
+Route::post('/car', 'CarController@store');
+Route::get('/car/{id}/edit', 'CarController@edit');
+Route::put('/car/{id}', 'CarController@update');
 
 //Route::resource('car','CarController');
 
