@@ -35,14 +35,15 @@ class LineApiController extends Controller
 	public function messageHandler($event)
     {
         switch($event["message"]["type"]){
-            case "text" :                 
-                $this->textHandler($event);
-
-                $data = [
+            case "text" :  
+                 $data = [
 		            "title" => "messageHandler",
 		            "content" => "messageHandler",
 		        ];
-		        MyLog::create($data);
+		        MyLog::create($data);  
+
+                $this->textHandler($event);
+                
                 break;
         }   
 
@@ -55,13 +56,15 @@ class LineApiController extends Controller
 
         switch( strtolower($event["message"]["text"]) )
         {     
-            case "ติดต่อ" :            
+            case "ติดต่อ" :  
+	            $data = [
+			            "title" => "textHandler",
+			            "content" => "textHandler",
+			        ];
+		        MyLog::create($data);  
+		                
                 $line->replyToUser(null, $event, "contact");
-                $data = [
-		            "title" => "textHandler",
-		            "content" => "textHandler",
-		        ];
-		        MyLog::create($data);
+                
                 break;
             
             
