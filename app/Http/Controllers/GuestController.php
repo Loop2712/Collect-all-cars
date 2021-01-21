@@ -178,9 +178,7 @@ class GuestController extends Controller
                 $string_json = str_replace("<7ยษ2944>",$item->registration_number,$string_json);
                 $string_json = str_replace("<กรุงเทพ>",$item->province,$string_json);
                 $string_json = str_replace("<กรุณามาเลื่อนรถด้วยค่ะ>",$masseng,$string_json);
-                
 
-                $arrPostData = [ json_decode($string_json, true) ]; 
 
                 // $arrPostData['messages'][0]['type'] = "text";
                 // $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$item->registration_number." ".$item->province." ".$masseng;
