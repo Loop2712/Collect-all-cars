@@ -36,7 +36,7 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__logo">
-            <a href="{{URL::to('/')}}"><img width="100px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
+            <a href="{{URL::to('/')}}"><img width="150px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
         <div id="mobile-menu-wrap"></div>
     </div>
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="{{URL::to('/')}}"><img width="100px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
+                        <a href="{{URL::to('/')}}"><img width="200px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
                     </div>
                 </div>
                 <div class="col-lg-10">

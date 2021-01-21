@@ -84,7 +84,7 @@ p {
 }
 
 img {
-	max-width: 100%;
+	/* max-width: 100%; */
 }
 
 input:focus,
@@ -390,7 +390,8 @@ ol {
 }
 
 .header__logo {
-	padding: 35px 0;
+	padding-top: 15px;
+	padding-bottom: 0;
 }
 
 .header__logo a {
