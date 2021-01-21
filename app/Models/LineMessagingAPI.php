@@ -21,6 +21,12 @@ class LineMessagingAPI extends Model
                 $template_path = storage_path('../public/json/flex-contact.json');   
                 $string_json = file_get_contents($template_path);
                 $messages = [ json_decode($string_json, true) ]; 
+
+                $data = [
+		            "title" => "Line",
+		            "content" => "replyToUser",
+		        ];
+		        MyLog::create($data);
                 break;
         }
 
