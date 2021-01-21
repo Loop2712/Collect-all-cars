@@ -21,5 +21,17 @@ class LineApiController extends Controller
         ];
         MyLog::create($data);  
 
+        //GET ONLY FIRST EVENT
+        $event = $requestData["events"][0];
+
+        switch($event["type"]){
+            case "message" : 
+                $this->messageHandler($event);
+                break;
+            case "postback" : 
+                $this->postbackHandler($event);
+                break;
+        }
+
 	}
 }
