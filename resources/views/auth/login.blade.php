@@ -84,16 +84,16 @@
                                         <!-- ซ้าย -->
                                         <div class="col-md-6">
                                             <div class="col-md-6">
-                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
-                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
-                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
+                                            <a href=""><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
+                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
+                                            <a href=""><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
                                         </div>
                                         </div>
                                         <!-- ขวา -->
                                         <div class="col-md-6">
-                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
-                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
-                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
+                                            <a href=""><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
+                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
+                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
