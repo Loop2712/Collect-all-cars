@@ -44,43 +44,45 @@ class LineApiController extends Controller
 						$reply_provider_id = array();
 						foreach($reply as $item){
 							$reply_p = $item->reply_provider_id;
-						
-							 // ตอบกลับ
-							$arrPostData = array();
-							$arrPostData['to'] = $reply_p;
-			                $arrPostData['messages'][0]['type'] = "text";
-			                $arrPostData['messages'][0]['text'] = $text;
 
-			                $strUrl = "https://api.line.me/v2/bot/message/push";
-	                 
-			                $arrHeader = array();
-			                $arrHeader[] = "Content-Type: application/json";
-			                $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+							$reply_provider_id[] = $reply_p
+						}
+						 // ตอบกลับ
+						$arrPostData = array();
+						$arrPostData['to'] = $reply_provider_id;
+		                $arrPostData['messages'][0]['type'] = "text";
+		                $arrPostData['messages'][0]['text'] = $text;
 
-							// // Make a POST Request to Messaging API to reply to sender
-					        // $url = 'https://api.line.me/v2/bot/message/push';
-					        // $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-					        // $ch = curl_init($url);
-					        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-					        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					        // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-					        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-					        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-					        // $result = curl_exec($ch);
-					        // curl_close($ch);
-					        // echo $result . "";
+		                $strUrl = "https://api.line.me/v2/bot/message/push";
+                 
+		                $arrHeader = array();
+		                $arrHeader[] = "Content-Type: application/json";
+		                $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
-					        $ch = curl_init();
-				            curl_setopt($ch, CURLOPT_URL,$strUrl);
-				            curl_setopt($ch, CURLOPT_HEADER, false);
-				            curl_setopt($ch, CURLOPT_POST, true);
-				            curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
-				            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-				            curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-				            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-				            $result = curl_exec($ch);
-				            curl_close ($ch);
-					    }
+						// // Make a POST Request to Messaging API to reply to sender
+				        // $url = 'https://api.line.me/v2/bot/message/push';
+				        // $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+				        // $ch = curl_init($url);
+				        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+				        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				        // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+				        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				        // $result = curl_exec($ch);
+				        // curl_close($ch);
+				        // echo $result . "";
+
+				        $ch = curl_init();
+			            curl_setopt($ch, CURLOPT_URL,$strUrl);
+			            curl_setopt($ch, CURLOPT_HEADER, false);
+			            curl_setopt($ch, CURLOPT_POST, true);
+			            curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+			            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+			            curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+			            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			            $result = curl_exec($ch);
+			            curl_close ($ch);
+					    
 				    }
 				}
 			}
