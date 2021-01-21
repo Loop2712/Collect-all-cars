@@ -21,8 +21,5 @@ class LineApiController extends Controller
         ];
         MyLog::create($data);  
 
-        //GET ONLY FIRST EVENT
-        $event = $requestData["events"][0];  
-
 	}
 }
