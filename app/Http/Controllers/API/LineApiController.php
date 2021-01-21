@@ -28,10 +28,34 @@ class LineApiController extends Controller
             case "message" : 
                 $this->messageHandler($event);
                 break;
-            case "postback" : 
-                $this->postbackHandler($event);
-                break;
         }
-
 	}
+
+	public function messageHandler($event)
+    {
+        switch($event["message"]["type"]){
+            case "text" :                 
+                $this->textHandler($event);
+                break;
+        }   
+
+    }
+
+    public function textHandler($event)
+    {
+        
+        $line = new LineMessagingAPI();
+        
+        switch( strtolower($event["message"]["text"]) )
+        {     
+            case "ติดต่อ" :            
+                $line->replyToUser(null, $event, "contact");
+                break;
+            
+            
+        }   
+    }
+
+
+
 }
