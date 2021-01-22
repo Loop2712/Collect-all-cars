@@ -54,7 +54,7 @@ class LineMessagingAPI extends Model
 
     }
 
-    protected function _pushguestLine($data, $event, $postback_data)
+    public function _pushguestLine($data, $event, $postback_data)
     {
 
     	switch($postback_data)
