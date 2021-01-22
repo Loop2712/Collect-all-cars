@@ -51,7 +51,7 @@ class Register_carController extends Controller
             ->get();
 
         $car_brand = CarModel::selectRaw('brand,count(brand) as count')
-            ->orderByRaw('count')
+            ->orderByRaw('count DESC')
             ->where('brand', '!=',"" )
             ->groupBy('brand')
             ->get(10);
