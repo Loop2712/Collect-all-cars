@@ -66,7 +66,8 @@ class LineMessagingAPI extends Model
 		    	
 		    	// UserId คนเรียก
 		    	$reply = DB::table('users')
-			            ->select('name', 'email as user_email')
+			            ->select('reply_provider_id')
+			            ->where('provider_id', $provider_id)
 			            ->get();
 
 				// $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
@@ -93,7 +94,7 @@ class LineMessagingAPI extends Model
 	                $arrPostData['to'] = $to_user;
                 
 	                $arrPostData['messages'][0]['type'] = "text";
-	        		$arrPostData['messages'][0]['text'] = "$messages";
+	        		$arrPostData['messages'][0]['text'] = $messages;
 
 	        		$ch = curl_init();
 	                curl_setopt($ch, CURLOPT_URL,$strUrl);
