@@ -74,11 +74,11 @@ class LineMessagingAPI extends Model
 				
 
 				foreach($reply as $item){
-					$to_user = $reply;
+					$to_user = $reply->reply_provider_id;
                 	$messages = "รอสักครู่ / Wait a moment"; 
                 	$data = [
 			            "title" => "_pushguestLine",
-			            "content" => $reply,
+			            "content" => $to_user,
 			        ];
 			        MyLog::create($data);
 
