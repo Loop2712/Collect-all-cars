@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/lineapi', 'API\LineApiController@store');
+
+Route::get('/car_brand','API\CarbrandController@car_brand');
+Route::get('/car_brand/{car_brand}/car_model','API\CarbrandController@car_model');
