@@ -43,19 +43,17 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
-                        <select name="massengbox" class="form-control"  id="massengbox" required onchange="if(this.value=='7'){ 
+                        <select name="massengbox" class="form-control"  id="massengbox" required onchange="if(this.value=='5'){ 
                                 document.querySelector('#masseng_label').classList.remove('d-none'),
-                                document.querySelector('#masseng_input').classList.remove('d-none'),
-                                document.querySelector('#masseng').classList.remove('d-none')
+                                document.querySelector('#masseng_input').classList.remove('d-none')
                             }else{ 
                                 document.querySelector('#masseng_label').classList.add('d-none'),
-                                document.querySelector('#masseng_input').classList.add('d-none'),
-                                document.querySelector('#masseng').classList.add('d-none')
+                                document.querySelector('#masseng_input').classList.add('d-none')
                             }">
                              <option value="" selected >
                                  - เลือกข้อความ / Select text - 
                              </option>  
-                        @foreach (json_decode('{"1":"กรุณามาเลื่อนรถด้วยค่ะ","2":"ไฟหน้ารถคุณเปิดอยู่ค่ะ","3":"ไฟในรถคุณเปิดอยู่ค่ะ","4":"มีเด็กอยู่ในรถค่ะ","5":"รถคุณเกิดอุบัติเหตุค่ะ","6":"รถคุณถูกโจรกรรมค่ะ","7":"อื่นๆ"}', true) as $optionKey => $optionValue)
+                        @foreach (json_decode('{"1":"กรุณามาเลื่อนรถด้วยค่ะ","2":"ไฟรถคุณเปิดอยู่ค่ะ","3":"มีเด็กอยู่ในรถค่ะ","4":"รถคุณเกิดอุบัติเหตุค่ะ","5":"อื่นๆ"}', true) as $optionKey => $optionValue)
                             <option value="{{ $optionKey }}"  {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
                     </select>
@@ -69,7 +67,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div id="masseng_input" class="d-none form-group {{ $errors->has('masseng') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}" required>
+                        <input class="form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}">
                         {!! $errors->first('masseng', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>

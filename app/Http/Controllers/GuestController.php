@@ -168,21 +168,15 @@ class GuestController extends Controller
                 $masseng = "กรุณามาเลื่อนรถด้วยค่ะ";
                 break;
             case "2":  
-                $masseng = "ไฟหน้ารถคุณเปิดอยู่ค่ะ";
+                $masseng = "ไฟรถคุณเปิดอยู่ค่ะ";
                 break;
             case "3":  
-                $masseng = "ไฟในรถคุณเปิดอยู่ค่ะ";
-                break;
-            case "4":  
                 $masseng = "มีเด็กอยู่ในรถค่ะ";
                 break;
-            case "5":  
+            case "4":  
                 $masseng = "รถคุณเกิดอุบัติเหตุค่ะ";
                 break;
-            case "6": 
-                $masseng = "รถคุณถูกโจรกรรมค่ะ";
-                break;
-            case "7": 
+            case "5": 
                 $masseng = $masseng_old;
                 break;
         }
