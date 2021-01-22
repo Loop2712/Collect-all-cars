@@ -75,7 +75,7 @@ class LineMessagingAPI extends Model
 
 				foreach($reply as $item){
 					$to_user = $item->reply_provider_id;
-                	$messages = "รอสักครู่ / Wait a moment"; 
+                	$messages = "เจ้าของรถ : รอสักครู่ / Wait a moment"; 
                 	$data = [
 			            "title" => "_pushguestLine",
 			            "content" => $to_user,
