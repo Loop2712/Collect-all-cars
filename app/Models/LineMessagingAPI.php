@@ -20,7 +20,7 @@ class LineMessagingAPI extends Model
         	case "contact": 
                 $template_path = storage_path('../public/json/flex-contact.json');   
                 $string_json = file_get_contents($template_path);
-                // $messages = [ json_decode($string_json, true) ]; 
+                $messages = [ json_decode($string_json, true) ]; 
 
                 $data = [
 		            "title" => "replyToUser",
@@ -32,7 +32,7 @@ class LineMessagingAPI extends Model
 
         $body = [
             "replyToken" => $event["replyToken"],
-            "messages" => $string_json,
+            "messages" => $messages,
         ];
 
         $opts = [
