@@ -95,7 +95,6 @@ class LineMessagingAPI extends Model
 	                curl_close ($ch);
 
 	        	}
-
                 break;
 
         }
