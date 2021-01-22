@@ -3,7 +3,7 @@
     "altText": "เรียนคุณ / Dear",
     "contents": {
           "type": "bubble",
-          "size": "kilo",
+          "size": "mega",
           "body": {
             "type": "box",
             "layout": "vertical",
