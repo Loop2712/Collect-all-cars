@@ -80,22 +80,23 @@
                                     </span>
                                     <br>
                                     <!-- <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div> -->
-                                    <div class="row">
+                                    <center>
+                                        <div class="row">
                                         <!-- ซ้าย -->
-                                        <div class="col-md-6">
-                                            <div class="col-md-6">
-                                            <a href=""><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
-                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
-                                            <a href=""><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
+                                            <div class="col-12 col-md-6">
+                                                <a href=""><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
+                                                <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
+                                                <a href=""><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
+                                            </div>
+                                            <!-- ขวา -->
+                                            <div class="col-12 col-md-6">
+                                                <a href=""><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
+                                                <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
+                                                <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
+                                            </div>
                                         </div>
-                                        </div>
-                                        <!-- ขวา -->
-                                        <div class="col-md-6">
-                                            <a href=""><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
-                                            <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
-                                            <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
-                                        </div>
-                                    </div>
+                                    </center>
+                                    
                                     <div class="col-md-12">
                                         <center>
                                             <P><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <b>ข้อกำหนดในการให้บริการ</b></a>
