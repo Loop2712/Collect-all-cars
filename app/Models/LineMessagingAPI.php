@@ -62,6 +62,12 @@ class LineMessagingAPI extends Model
 		$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
 
 		foreach($reply as $item){
+			//SAVE LOG
+	        $data = [
+	            "title" => "reply",
+	            "content" => $item->reply_provider_id,
+	        ];
+	        MyLog::create($data);
 
 	    	switch($postback_data)
 	        {
