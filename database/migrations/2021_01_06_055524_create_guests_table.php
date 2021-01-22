@@ -18,7 +18,7 @@ class CreateGuestsTable extends Migration
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('masseng')->nullable();
-            $table->string('massengbox');
+            $table->string('massengbox')->nullable();
             $table->string('photo')->nullable();
             $table->integer('provider_id')->nullable();
             });
