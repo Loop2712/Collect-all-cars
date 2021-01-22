@@ -29,12 +29,7 @@ class LineApiController extends Controller
             case "message" : 
                 $this->messageHandler($event);
                 break;
-            case "postback" : 
-            	$data = [
-		            "title" => "$event["type"]",
-		            "content" => $event["type"],
-		        ];
-		        MyLog::create($data); 
+            case "postback" :
                 $this->postbackHandler($event);
                 break;
         }
