@@ -47,8 +47,6 @@ class LineApiController extends Controller
 
     public function postbackHandler($event)
     {
-    	$line = new LineMessagingAPI();
-
         switch($event["postback"]["data"]){
             case "wait" : 
             	$data = [
@@ -56,6 +54,7 @@ class LineApiController extends Controller
 		            "content" => $event["postback"]["data"],
 		        ];
 		        MyLog::create($data);  
+		        $line = new LineMessagingAPI();
                 $line->_pushguestLine(null, $event, "wait");
                 break;
             // case "comfortable" : 
