@@ -70,6 +70,7 @@
                 "contents": [
                   {
                     "type": "text",
+                    "color": "#000000",
                     "text": "กรุณามาเลื่อนรถด้วยค่ะ",
                     "margin": "xl",
                     "size": "xl",
