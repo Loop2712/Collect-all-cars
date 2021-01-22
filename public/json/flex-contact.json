@@ -48,9 +48,9 @@
                 "style": "link",
                 "height": "sm",
                 "action": {
-                  "type": "uri",
-                  "label": "E-Mail",
-                  "uri": "https://market.viicheck.com/"
+                  "type": "message",
+                  "label": "E-mail",
+                  "text": "info.viicheck@gmail.com"
                 }
               },
               {
