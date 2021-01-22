@@ -12,7 +12,7 @@
 <script>
   $(document).ready(function(){
     console.log("HELLO");
-    showProvinces();
+    showBrand();
   });
 </script>
 
