@@ -143,6 +143,8 @@ class GuestController extends Controller
         return redirect('guest')->with('flash_message', 'Guest deleted!');
     }
 
+    public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+
     protected function _pushLine($data)
     {
         $provider_id = $data['provider_id'];
@@ -161,7 +163,8 @@ class GuestController extends Controller
         foreach($register_car as $item){
 
             if(!empty($item->provider_id)){
-                $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+                
+                // $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
                 // $strUrl = "https://api.line.me/v2/bot/message/push";
                  
@@ -197,13 +200,12 @@ class GuestController extends Controller
                 ];
                                     
                 $context  = stream_context_create($opts);
-                //https://api-data.line.me/v2/bot/message/11914912908139/content
-                $url = "https://api.line.me/v2/bot/message/push";
+                $url = "https://api.line.me/v2/bot/message/multicast";
                 $result = file_get_contents($url, false, $context);
 
                 //SAVE LOG
                 $data = [
-                    "title" => "reply Success",
+                    "title" => "https://api.line.me/v2/bot/message/multicast",
                     "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
                 ];
                 MyLog::create($data);
