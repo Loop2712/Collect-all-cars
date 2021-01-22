@@ -66,16 +66,16 @@ class LineMessagingAPI extends Model
 		    	
 		    	// UserId คนเรียก
 				$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
+				$data = [
+			            "title" => "_pushguestLine",
+			            "content" => $reply,
+			        ];
+			        MyLog::create($data);
 
 				foreach($reply as $item){
 					$to_user = $item->reply_provider_id;
                 	$messages = "รอสักครู่ / Wait a moment"; 
                 	
-                	$data = [
-			            "title" => "_pushguestLine",
-			            "content" => $to_user,
-			        ];
-			        MyLog::create($data);
 
                 	$strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
