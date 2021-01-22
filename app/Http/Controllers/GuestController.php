@@ -200,12 +200,12 @@ class GuestController extends Controller
                 ];
                                     
                 $context  = stream_context_create($opts);
-                $url = "https://api.line.me/v2/bot/message/multicast";
+                $url = "https://api.line.me/v2/bot/message/push";
                 $result = file_get_contents($url, false, $context);
 
                 //SAVE LOG
                 $data = [
-                    "title" => "https://api.line.me/v2/bot/message/multicast",
+                    "title" => "https://api.line.me/v2/bot/message/push",
                     "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
                 ];
                 MyLog::create($data);
