@@ -54,21 +54,21 @@
                     <input name="one_day_trip" id="one_day_trip" type="checkbox" onchange="if(this.checked){ document.querySelector('#masseng_label').classList.remove('d-none'),document.querySelector('#masseng_input').classList.remove('d-none')}else{ document.querySelector('#masseng_label').classList.add('d-none'),document.querySelector('#masseng_input').classList.add('d-none')}">&nbsp;&nbsp;&nbsp;อื่นๆ<br><br>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car registration' }}</label></label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
-                        <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required>
-                        {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="col-12 col-md-2">
                     <label id="masseng_label" for="masseng" class="d-none control-label">{{ 'ข้อความอื่นๆ / Other messages' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div id="masseng_input" class="d-none form-group {{ $errors->has('masseng') ? 'has-error' : ''}}">
                         <input class="form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}" >
                         {!! $errors->first('masseng', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car registration' }}</label></label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
+                        <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required>
+                        {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
