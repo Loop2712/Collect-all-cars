@@ -29,6 +29,9 @@ class LineApiController extends Controller
             case "message" : 
                 $this->messageHandler($event);
                 break;
+            case "postback" : 
+                $this->postbackHandler($event);
+                break;
         }
 	}
 
@@ -42,6 +45,21 @@ class LineApiController extends Controller
 
     }
 
+    public function postbackHandler($event)
+    {
+    	$line = new LineMessagingAPI();
+
+        switch($event["postback"]["data"]){
+            case "wait" : 
+                $line->_pushguestLine(null, $event, "wait");
+                break;
+            // case "comfortable" : 
+            //     $line->_pushguestLine(null, $event, "comfortable");
+            //     break;
+        }   
+
+    }
+
     public function textHandler($event)
     {
         
@@ -51,7 +69,6 @@ class LineApiController extends Controller
         {     
             case "ติดต่อ" :  
                 $line->replyToUser(null, $event, "contact");
-                
                 break;
             
             

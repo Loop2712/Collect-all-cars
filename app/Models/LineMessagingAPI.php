@@ -54,6 +54,54 @@ class LineMessagingAPI extends Model
 
     }
 
+    protected function _pushguestLine($data, $event, $postback_data)
+    {
+    	//เจ้าของรถ
+    	$provider_id = $event["source"]['userId'];
+    	// UserId คนเรียก
+		$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
+
+		foreach($reply as $item){
+
+	    	switch($postback_data)
+	        {
+	        	case "wait": 
+	                $messages = "รอสักครู่ / Wait a moment"; 
+	                break;
+
+	        }
+
+	        $body = [
+                    "to" => $item->reply_provider_id,
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.$this->channel_access_token,
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                //SAVE LOG
+                $data = [
+                    "title" => "https://api.line.me/v2/bot/message/push",
+                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+                ];
+                MyLog::create($data);
+                return $result;
+
+	    }
+
+    }
+
 
 
 }
