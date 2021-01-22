@@ -42,7 +42,7 @@
                                 @foreach($car_brand as $item)
                                 <option 
                                 value="{{ $item->brand }}" 
-                                {{ request('location') == $item->brand ? 'selected' : ''   }} >
+                                {{ request('brand') == $item->brand ? 'selected' : ''   }} >
                                 {{ $item->brand }} 
                                 </option>
                                 @endforeach                                     
