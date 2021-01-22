@@ -14,10 +14,10 @@
                         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-2">
                     <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                         <input class="form-control" name="phone" type="tel" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone : ''}}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
