@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\CarModel;
 use App\county;
 use App\Models\Register_car;
 use Illuminate\Http\Request;
@@ -49,7 +50,16 @@ class Register_carController extends Controller
             ->groupBy('province')
             ->get();
 
-        return view('register_car.create', compact('location_array'));
+        $car_brand = CarModel::selectRaw('brand')
+            ->groupBy('brand')
+            ->get();
+
+        // $car_model = CarModel::selectRaw('brand')
+        //     ->where('brand', $car_brand)
+        //     ->groupBy('brand')
+        //     ->get();
+
+        return view('register_car.create', compact('location_array', 'car_brand'));
     }
 
     /**
