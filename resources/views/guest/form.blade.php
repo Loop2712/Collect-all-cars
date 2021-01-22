@@ -45,7 +45,8 @@
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
                         <select name="massengbox" class="form-control"  id="massengbox" required onchange="if(this.value=='5'){ 
                                 document.querySelector('#masseng_label').classList.remove('d-none'),
-                                document.querySelector('#masseng_input').classList.remove('d-none')
+                                document.querySelector('#masseng_input').classList.remove('d-none'),
+                                document.querySelector('#masseng').focus();
                             }else{ 
                                 document.querySelector('#masseng_label').classList.add('d-none'),
                                 document.querySelector('#masseng_input').classList.add('d-none')
