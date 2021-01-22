@@ -165,10 +165,10 @@ class GuestController extends Controller
         switch($massengbox)
         {
             case "1":  
-                $masseng = "กรุณามาเลื่อนรถด้วยค่ะ";
+                $masseng = "กรุณาเลื่อนรถด้วยค่ะ";
                 break;
             case "2":  
-                $masseng = "ไฟรถคุณเปิดอยู่ค่ะ";
+                $masseng = "รถคุณเปิดไฟค้างไว้ค่ะ";
                 break;
             case "3":  
                 $masseng = "มีเด็กอยู่ในรถค่ะ";
