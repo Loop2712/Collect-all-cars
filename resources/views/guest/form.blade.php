@@ -43,22 +43,31 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
-                        <select name="massengbox" class="form-control" id="massengbox">
-                            <option value="" selected> - เลือกข้อความ / Select text - </option> 
-                        @foreach (json_decode('{"1":"กรุณามาเลื่อนรถด้วยค่ะ","2":"ไฟหน้ารถคุณเปิดอยู่ค่ะ","3":"ไฟในรถคุณเปิดอยู่ค่ะ","4":"มีเด็กอยู่ในรถค่ะ","5":"รถคุณเกิดอุบัติเหตุค่ะ","6":"รถคุณถูกโจรกรรมค่ะ"}', true) as $optionKey => $optionValue)
-                            <option value="{{ $optionKey }}" {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }} </option>
+                        <select name="massengbox" class="form-control"  id="massengbox" required onchange="if(this.value=='7'){ 
+                                document.querySelector('#masseng_label').classList.remove('d-none'),
+                                document.querySelector('#masseng_input').classList.remove('d-none')
+                            }else{ 
+                                document.querySelector('#masseng_label').classList.add('d-none'),
+                                document.querySelector('#masseng_input').classList.add('d-none')
+                            }">
+                             <option value="" selected >
+                                 - เลือกข้อความ / Select text - 
+                             </option>  
+                        @foreach (json_decode('{"1":"กรุณามาเลื่อนรถด้วยค่ะ","2":"ไฟหน้ารถคุณเปิดอยู่ค่ะ","3":"ไฟในรถคุณเปิดอยู่ค่ะ","4":"มีเด็กอยู่ในรถค่ะ","5":"รถคุณเกิดอุบัติเหตุค่ะ","6":"รถคุณถูกโจรกรรมค่ะ","7":"อื่นๆ"}', true) as $optionKey => $optionValue)
+                            <option value="{{ $optionKey }}"  {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
                     </select>
                         {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
                     </div>
-                    <input name="one_day_trip" id="one_day_trip" type="checkbox" onchange="if(this.checked){ document.querySelector('#masseng_label').classList.remove('d-none'),document.querySelector('#masseng_input').classList.remove('d-none')}else{ document.querySelector('#masseng_label').classList.add('d-none'),document.querySelector('#masseng_input').classList.add('d-none')}">&nbsp;&nbsp;&nbsp;อื่นๆ<br><br>
+                    <br>
                 </div>
+
                 <div class="col-12 col-md-2">
                     <label id="masseng_label" for="masseng" class="d-none control-label">{{ 'ข้อความอื่นๆ / Other messages' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div id="masseng_input" class="d-none form-group {{ $errors->has('masseng') ? 'has-error' : ''}}">
-                        <input class="form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}" >
+                        <input class="form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}" required>
                         {!! $errors->first('masseng', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -112,3 +121,15 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
 </div>
+<!-- 
+<script>
+function myFunction(val) {
+    if(val =='7'){ 
+        document.querySelector('#masseng_label').classList.remove('d-none'),
+        document.querySelector('#masseng_input').classList.remove('d-none')
+    }else{ 
+        document.querySelector('#masseng_label').classList.add('d-none'),
+        document.querySelector('#masseng_input').classList.add('d-none')
+    }
+}
+</script> -->

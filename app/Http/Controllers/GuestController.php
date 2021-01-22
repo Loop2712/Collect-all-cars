@@ -161,35 +161,32 @@ class GuestController extends Controller
         // if($data['massengbox'] == "2"){
         //     $masseng = "รบกวนมาเลื่อนรถด้วย!!";
         // }
-        if (!empty($massengbox)) {
 
-            switch($massengbox)
-            {
-                case "1":  
-                    $masseng = "กรุณามาเลื่อนรถด้วยค่ะ";
-                    break;
-                case "2":  
-                    $masseng = "ไฟหน้ารถคุณเปิดอยู่ค่ะ";
-                    break;
-                case "3":  
-                    $masseng = "ไฟในรถคุณเปิดอยู่ค่ะ";
-                    break;
-                case "4":  
-                    $masseng = "มีเด็กอยู่ในรถค่ะ";
-                    break;
-                case "5":  
-                    $masseng = "รถคุณเกิดอุบัติเหตุค่ะ";
-                    break;
-                case "6": 
-                    $masseng = "รถคุณถูกโจรกรรมค่ะ";
-                    break;
-            }
+        switch($massengbox)
+        {
+            case "1":  
+                $masseng = "กรุณามาเลื่อนรถด้วยค่ะ";
+                break;
+            case "2":  
+                $masseng = "ไฟหน้ารถคุณเปิดอยู่ค่ะ";
+                break;
+            case "3":  
+                $masseng = "ไฟในรถคุณเปิดอยู่ค่ะ";
+                break;
+            case "4":  
+                $masseng = "มีเด็กอยู่ในรถค่ะ";
+                break;
+            case "5":  
+                $masseng = "รถคุณเกิดอุบัติเหตุค่ะ";
+                break;
+            case "6": 
+                $masseng = "รถคุณถูกโจรกรรมค่ะ";
+                break;
+            case "7": 
+                $masseng = $masseng_old;
+                break;
         }
-
-        if (!empty($masseng_old)) {
-
-            $masseng = $masseng_old;
-        }
+        
         
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county'");
