@@ -47,7 +47,7 @@ class LineMessagingAPI extends Model
         //SAVE LOG
         $data = [
             "title" => "reply Success",
-            "content" => file_get_contents($url, false, $context),
+            "content" => "reply Success",
         ];
         MyLog::create($data);
         return $result;
