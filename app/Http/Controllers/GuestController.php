@@ -161,46 +161,72 @@ class GuestController extends Controller
         foreach($register_car as $item){
 
             if(!empty($item->provider_id)){
-                $strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+                $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
-                $strUrl = "https://api.line.me/v2/bot/message/push";
+                // $strUrl = "https://api.line.me/v2/bot/message/push";
                  
-                $arrHeader = array();
-                $arrHeader[] = "Content-Type: application/json";
-                $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+                // $arrHeader = array();
+                // $arrHeader[] = "Content-Type: application/json";
+                // $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
                  
-                $arrPostData = array();
-                $arrPostData['to'] = $item->provider_id;
+                // $arrPostData = array();
+                // $arrPostData['to'] = $item->provider_id;
 
-                // $template_path = storage_path('../public/json/flex-move.json');   
-                // $string_json = file_get_contents($template_path);
-                // $string_json = str_replace("<ชื่อ>",$item->name,$string_json);
-                // $string_json = str_replace("<7ยษ2944>",$item->registration_number,$string_json);
-                // $string_json = str_replace("<กรุงเทพ>",$item->province,$string_json);
-                // $string_json = str_replace("<กรุณามาเลื่อนรถด้วยค่ะ>",$masseng,$string_json);
+                $template_path = storage_path('../public/json/flex-move.json');   
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("<ชื่อ>",$item->name,$string_json);
+                $string_json = str_replace("<7ยษ2944>",$item->registration_number,$string_json);
+                $string_json = str_replace("<กรุงเทพ>",$item->province,$string_json);
+                $string_json = str_replace("<กรุณามาเลื่อนรถด้วยค่ะ>",$masseng,$string_json);
 
+                $messages = [ json_decode($string_json, true) ]; 
 
-                // $arrPostData[] = $string_json; 
-                
+                $body = [
+                    "to" => $item->provider_id,
+                    "messages" => $messages,
+                ];
 
-                $arrPostData['messages'][0]['type'] = "text";
-                $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$item->registration_number." ".$item->province." ".$masseng;
-                if(!empty($phone)){
-                    $arrPostData['messages'][1]['type'] = "text";
-                    $arrPostData['messages'][1]['text'] = "เบอร์โทรศัพท์ติดต่อกลับ"." ".$phone;
-                }
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.$this->channel_access_token,
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                //https://api-data.line.me/v2/bot/message/11914912908139/content
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                //SAVE LOG
+                $data = [
+                    "title" => "reply Success",
+                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+                ];
+                MyLog::create($data);
+                return $result;
+
+                // $arrPostData['messages'][0]['type'] = "text";
+                // $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$item->registration_number." ".$item->province." ".$masseng;
+                // if(!empty($phone)){
+                //     $arrPostData['messages'][1]['type'] = "text";
+                //     $arrPostData['messages'][1]['text'] = "เบอร์โทรศัพท์ติดต่อกลับ"." ".$phone;
+                // }
                  
                  
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL,$strUrl);
-                curl_setopt($ch, CURLOPT_HEADER, false);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                $result = curl_exec($ch);
-                curl_close ($ch);
+                // $ch = curl_init();
+                // curl_setopt($ch, CURLOPT_URL,$strUrl);
+                // curl_setopt($ch, CURLOPT_HEADER, false);
+                // curl_setopt($ch, CURLOPT_POST, true);
+                // curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+                // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+                // curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+                // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                // $result = curl_exec($ch);
+                // curl_close ($ch);
             }
             
         }
