@@ -65,7 +65,7 @@ class LineMessagingAPI extends Model
 		    	$provider_id = $event["source"]['userId'];
 		    	
 		    	// UserId คนเรียก
-				$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
+				$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
 				$data = [
 			            "title" => "_pushguestLine",
 			            "content" => $reply,
