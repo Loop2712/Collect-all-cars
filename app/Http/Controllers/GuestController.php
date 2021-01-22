@@ -10,6 +10,8 @@ use App\county;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 
+use App\Models\Mylog;
+
 class GuestController extends Controller
 {
     /**
