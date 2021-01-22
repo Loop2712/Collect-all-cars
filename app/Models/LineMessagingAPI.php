@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
 
