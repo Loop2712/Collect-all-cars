@@ -60,13 +60,13 @@ class LineMessagingAPI extends Model
     	switch($postback_data)
         {
         	case "wait": 
-	        	$data = [
-		            "title" => "_pushguestLine",
-		            "content" => "wait",
-		        ];
-		        MyLog::create($data);
         		// UserId เจ้าของรถ
 		    	$provider_id = $event["source"]['userId'];
+		    	$data = [
+		            "title" => "_pushguestLine",
+		            "content" => $provider_id,
+		        ];
+		        MyLog::create($data);
 		    	// UserId คนเรียก
 				$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$userId' ");
 
