@@ -154,7 +154,12 @@ class GuestController extends Controller
         $county = $data['county'];
         $phone = $data['phone'];
         $massengbox = $data['massengbox'];
-        $masseng_old = $data['masseng'];
+        if (!empty($data['masseng'])) {
+            $masseng_old = $data['masseng'];
+        }else if (empty($data['masseng'])) {
+            $masseng_old = "รบกวนมาที่รถด้วยค่ะ";
+        }
+        
         // if($data['massengbox'] == "1"){
         //     $masseng = "กรุณามาเลื่อนรถด้วย ครับ/ค่ะ";
         // }
