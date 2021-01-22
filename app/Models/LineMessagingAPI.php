@@ -24,7 +24,7 @@ class LineMessagingAPI extends Model
 
                 $data = [
 		            "title" => "replyToUser",
-		            "content" => $message_type,
+		            "content" => $template_path,
 		        ];
 		        MyLog::create($data);
                 break;
