@@ -145,7 +145,7 @@
                     "action": {
                       "type": "uri",
                       "label": "📞 โทรออก",
-                      "uri": "https://line.me/call/66/0000000000"
+                      "uri": "https://line.me/R/call/66/0000000000"
                     },
                     "offsetTop": "none",
                     "style": "primary"
