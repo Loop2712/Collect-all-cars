@@ -51,6 +51,7 @@ class Register_carController extends Controller
             ->get();
 
         $car_brand = CarModel::selectRaw('brand')
+            ->where('brand', '!=',"" )
             ->groupBy('brand')
             ->get();
 
