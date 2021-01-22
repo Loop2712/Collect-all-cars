@@ -65,7 +65,12 @@ class LineMessagingAPI extends Model
 		    	$provider_id = $event["source"]['userId'];
 		    	
 		    	// UserId คนเรียก
-				$reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
+		    	$reply = DB::table('register_cars')
+		    			->select('reply_provider_id')
+		                ->where('provider_id', $provider_id)
+		                ->first();
+
+				// $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
 				$data = [
 			            "title" => "_pushguestLine",
 			            "content" => $reply,
@@ -73,7 +78,7 @@ class LineMessagingAPI extends Model
 			        MyLog::create($data);
 
 				foreach($reply as $item){
-					$to_user = $item->reply_provider_id;
+					$to_user = $reply;
                 	$messages = "รอสักครู่ / Wait a moment"; 
                 	
 
