@@ -1,12 +1,13 @@
-<select name="brand" id="input_brand" class="form-control" onchange="showModel()">
-        <option value="" selected > - เลือกยี่ห้อรถยนต์ / Select Car Brand - </option> 
-</select>
-{!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
 
-<select name="generation" id="input_generation" class="form-control">
-        <option value="" selected > - เลือกรุ่นรถยนต์ / Select Car Model - </option> 
+
+
+<select id="input_brand" class="form-control" onchange="showModel()">
+        <option value="" > - เลือกยี่ห้อรถยนต์ - </option> 
 </select>
-{!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
+
+<select id="input_generation" class="form-control">
+        <option value="" > - เลือกรุ่นรถยนต์ - </option> 
+</select>
 
 <script>
   $(document).ready(function(){
@@ -35,7 +36,7 @@
         for(var i=0; i<result.length; i++){
           $("#input_brand").append(
             $('<option></option>')
-              .attr("value", "Toyota"+result[i].brand)
+              .attr("value", " "+result[i].brand)
               .html(""+result[i].brand)
           );
         }
