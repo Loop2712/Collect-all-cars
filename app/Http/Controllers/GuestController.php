@@ -163,7 +163,7 @@ class GuestController extends Controller
         foreach($register_car as $item){
 
             if(!empty($item->provider_id)){
-                
+
                 // $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
                 // $strUrl = "https://api.line.me/v2/bot/message/push";
@@ -177,10 +177,10 @@ class GuestController extends Controller
 
                 $template_path = storage_path('../public/json/flex-move.json');   
                 $string_json = file_get_contents($template_path);
-                $string_json = str_replace("<ชื่อ>",$item->name,$string_json);
-                $string_json = str_replace("<7ยษ2944>",$item->registration_number,$string_json);
-                $string_json = str_replace("<กรุงเทพ>",$item->province,$string_json);
-                $string_json = str_replace("<กรุณามาเลื่อนรถด้วยค่ะ>",$masseng,$string_json);
+                $string_json = str_replace("ชื่อ",$item->name,$string_json);
+                $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
 
