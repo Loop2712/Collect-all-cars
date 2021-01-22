@@ -3,6 +3,7 @@
     "altText": "ViiCHECK ยินดีให้บริการค่ะ",
     "contents": {
           "type": "bubble",
+          "size": "kilo",
           "hero": {
             "type": "image",
             "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
