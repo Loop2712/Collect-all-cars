@@ -154,7 +154,7 @@ class GuestController extends Controller
         $county = $data['county'];
         $phone = $data['phone'];
         $massengbox = $data['massengbox'];
-        
+
         if (!empty($data['masseng'])) {
             $masseng_old = $data['masseng'];
         }else if (empty($data['masseng'])) {
@@ -205,15 +205,29 @@ class GuestController extends Controller
                  
                 // $arrPostData = array();
                 // $arrPostData['to'] = $item->provider_id;
+                if (empty($phone)) {
+                    $template_path = storage_path('../public/json/flex-move.json');   
+                    $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("ชื่อ",$item->name,$string_json);
+                    $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                    $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                    $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
 
-                $template_path = storage_path('../public/json/flex-move.json');   
-                $string_json = file_get_contents($template_path);
-                $string_json = str_replace("ชื่อ",$item->name,$string_json);
-                $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                    $messages = [ json_decode($string_json, true) ];
+                }
 
-                $messages = [ json_decode($string_json, true) ]; 
+                if (!empty($phone)) {
+                    $template_path = storage_path('../public/json/flex-move-call.json');   
+                    $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("ชื่อ",$item->name,$string_json);
+                    $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                    $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                    $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                    $string_json = str_replace("0000000000",$phone,$string_json);
+
+                    $messages = [ json_decode($string_json, true) ];
+                }
+                 
 
                 $body = [
                     "to" => $item->provider_id,
