@@ -21,12 +21,6 @@ class LineMessagingAPI extends Model
                 $template_path = storage_path('../public/json/flex-contact.json');   
                 $string_json = file_get_contents($template_path);
                 $messages = [ json_decode($string_json, true) ]; 
-
-                $data = [
-		            "title" => "replyToUser",
-		            "content" => $string_json,
-		        ];
-		        MyLog::create($data);
                 break;
         }
 
@@ -53,7 +47,7 @@ class LineMessagingAPI extends Model
         //SAVE LOG
         $data = [
             "title" => "reply Success",
-            "content" => "ถึงนี้",
+            "content" => file_get_contents($url, false, $context),
         ];
         MyLog::create($data);
         return $result;
