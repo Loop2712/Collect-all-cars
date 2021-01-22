@@ -65,7 +65,7 @@ class LineMessagingAPI extends Model
 		    	$provider_id = $event["source"]['userId'];
 		    	
 		    	// UserId คนเรียก
-		    	$reply = DB::table('users')
+		    	$reply = DB::table('register_cars')
 			            ->select('reply_provider_id')
 			            ->where('provider_id', $provider_id)
 			            ->get();
