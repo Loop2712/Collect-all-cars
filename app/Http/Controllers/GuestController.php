@@ -153,15 +153,17 @@ class GuestController extends Controller
         $registration = $data['registration'];
         $county = $data['county'];
         $phone = $data['phone'];
+        $massengbox = $data['massengbox'];
+        $masseng_old = $data['masseng'];
         // if($data['massengbox'] == "1"){
         //     $masseng = "กรุณามาเลื่อนรถด้วย ครับ/ค่ะ";
         // }
         // if($data['massengbox'] == "2"){
         //     $masseng = "รบกวนมาเลื่อนรถด้วย!!";
         // }
-        if (!empty($data['massengbox'])) {
+        if (!empty($massengbox)) {
 
-            switch($data['massengbox'])
+            switch($massengbox)
             {
                 case "1":  
                     $masseng = "กรุณามาเลื่อนรถด้วยค่ะ";
@@ -184,9 +186,9 @@ class GuestController extends Controller
             }
         }
 
-        if (!empty($data['masseng'])) {
+        if (!empty($masseng_old)) {
 
-            $masseng = $data['message'];
+            $masseng = $masseng_old;
         }
         
 
