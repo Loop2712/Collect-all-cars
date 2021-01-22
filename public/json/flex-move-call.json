@@ -143,9 +143,9 @@
                   {
                     "type": "button",
                     "action": {
-                      "type": "uri",
-                      "label": "📞 โทรออก",
-                      "uri": "https://line.me/R/call/66/0000000000"
+                      "type": "message",
+                      "label": "📞 เบอร์",
+                      "text": "เบอร์"
                     },
                     "offsetTop": "none",
                     "style": "primary"
