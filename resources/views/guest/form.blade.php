@@ -45,10 +45,12 @@
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
                         <select name="massengbox" class="form-control"  id="massengbox" required onchange="if(this.value=='7'){ 
                                 document.querySelector('#masseng_label').classList.remove('d-none'),
-                                document.querySelector('#masseng_input').classList.remove('d-none')
+                                document.querySelector('#masseng_input').classList.remove('d-none'),
+                                document.querySelector('#masseng').classList.remove('d-none')
                             }else{ 
                                 document.querySelector('#masseng_label').classList.add('d-none'),
-                                document.querySelector('#masseng_input').classList.add('d-none')
+                                document.querySelector('#masseng_input').classList.add('d-none'),
+                                document.querySelector('#masseng').classList.add('d-none')
                             }">
                              <option value="" selected >
                                  - เลือกข้อความ / Select text - 
@@ -67,7 +69,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div id="masseng_input" class="d-none form-group {{ $errors->has('masseng') ? 'has-error' : ''}}">
-                        <input class="form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}" required>
+                        <input class="d-none form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}" required>
                         {!! $errors->first('masseng', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
