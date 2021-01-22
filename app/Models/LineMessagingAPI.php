@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
-use DB;
 
 class LineMessagingAPI extends Model
 {
@@ -66,22 +65,21 @@ class LineMessagingAPI extends Model
 		    	$provider_id = $event["source"]['userId'];
 		    	
 		    	// UserId คนเรียก
-		    	$reply = DB::table('register_cars')
-		    			->select('reply_provider_id')
-		                ->where('provider_id', $provider_id)
-		                ->first();
+		    	$reply = DB::table('users')
+			            ->select('name', 'email as user_email')
+			            ->get();
 
 				// $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
-				$data = [
-			            "title" => "_pushguestLine",
-			            "content" => $reply,
-			        ];
-			        MyLog::create($data);
+				
 
 				foreach($reply as $item){
 					$to_user = $reply;
                 	$messages = "รอสักครู่ / Wait a moment"; 
-                	
+                	$data = [
+			            "title" => "_pushguestLine",
+			            "content" => $reply,
+			        ];
+			        MyLog::create($data);
 
                 	$strAccessToken = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
      
