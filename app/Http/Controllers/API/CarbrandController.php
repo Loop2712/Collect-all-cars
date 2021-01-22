@@ -10,8 +10,11 @@ class CarbrandController extends Controller
 {
     public function car_brand()
 	  {
-	    $car_brand = CarModel::groupBy('brand')
-	      ->get();
+	   $car_brand = CarModel::selectRaw('brand,count(brand) as count')
+            ->orderByRaw('count DESC')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->get();
 	    return response()->json($car_brand);
 	  }
 

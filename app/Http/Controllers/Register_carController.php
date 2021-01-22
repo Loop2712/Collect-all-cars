@@ -54,7 +54,7 @@ class Register_carController extends Controller
             ->orderByRaw('count DESC')
             ->where('brand', '!=',"" )
             ->groupBy('brand')
-            ->get(10);
+            ->get();
 
         // $car_model = CarModel::selectRaw('brand')
         //     ->where('brand', $car_brand)
