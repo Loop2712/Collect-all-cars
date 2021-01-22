@@ -95,6 +95,24 @@
               {
                 "type": "box",
                 "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "primary",
+                    "height": "sm",
+                    "action": {
+                      "type": "postback",
+                      "label": "ขอบคุณ / Thank you",
+                      "data": "thx",
+                      "displayText": "ขอบคุณ / Thank you"
+                    },
+                    "color": "#6495ED"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
                 "contents": [],
                 "borderColor": "#FF0000",
                 "background": {
