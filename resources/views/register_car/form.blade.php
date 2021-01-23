@@ -98,6 +98,11 @@
                 <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($register_car->provider_id) ? $register_car->provider_id : Auth::user()->provider_id}}" required readonly>
                 {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
+                <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($register_car->active) ? $register_car->active : 'Yes'}}" required readonly>
+                {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
+            </div>
+
             <div class="d-none form-group {{ $errors->has('year') ? 'has-error' : ''}}">
                 <label for="year" class="control-label">{{ 'ปี่ที่ผลิตรถยนต์' }}</label>
                 <input class="form-control" name="year" type="text" id="year" value="{{ isset($register_car->year) ? $register_car->year : ''}}" placeholder="ปี่ที่ผลิตรถยนต์ของคุณ">
