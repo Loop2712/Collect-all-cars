@@ -22,7 +22,7 @@
 <div class="form-group {{ $errors->has('want_phone') ? 'has-error' : ''}}">
     <label for="want_phone" class="control-label">{{ 'คุณต้องการที่จะแสดงเบอร์ของคุณหรือไม่ / Would you like to show your number?' }}</label><span style="color: #FF0033;"> *</span>
     <br>
-    <input name="want_phone" type="radio" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'Yes'}}" > &nbsp;&nbsp;&nbsp;แสดง / Show 
+    <input name="want_phone" type="radio" id="want_phone" checked value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'Yes'}}" > &nbsp;&nbsp;&nbsp;แสดง / Show 
     <br>
     <input name="want_phone" type="radio" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'No'}}" > &nbsp;&nbsp;&nbsp;ไม่แสดง / Not showing
     {!! $errors->first('want_phone', '<p class="help-block">:message</p>') !!}
