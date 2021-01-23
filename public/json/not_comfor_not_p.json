@@ -68,7 +68,7 @@
 		              {
 		                "type": "text",
 		                "text": "ขอบคุณ",
-		                "size": "xl",
+		                "size": "lg",
 		                "align": "center",
 		                "decoration": "underline"
 		              }
