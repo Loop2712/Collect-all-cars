@@ -36,7 +36,7 @@
         for(var i=0; i<result.length; i++){
           $("#input_brand").append(
             $('<option></option>')
-              .attr("value", " "+result[i].brand)
+              .attr("value", ""+result[i].brand)
               .html(""+result[i].brand)
           );
         }
