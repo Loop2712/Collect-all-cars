@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
-                <input class="form-control" name="provider_id" type="text" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
+                <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
                 {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
             </div>
 
