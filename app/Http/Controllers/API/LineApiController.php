@@ -67,8 +67,11 @@ class LineApiController extends Controller
 
         switch( strtolower($event["message"]["text"]) )
         {     
-            case "ติดต่อ" :  
-                $line->replyToUser(null, $event, "contact");
+            case "อื่นๆ" :  
+                $line->replyToUser(null, $event, "other");
+                break;
+            case "Vmarket" :  
+                $line->replyToUser(null, $event, "Vmarket");
                 break;
             
             

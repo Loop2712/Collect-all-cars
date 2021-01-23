@@ -18,9 +18,16 @@ class LineMessagingAPI extends Model
     {
     	switch($message_type)
         {
-        	case "contact": 
-                $template_path = storage_path('../public/json/flex-contact.json');   
+        	case "other": 
+                $template_path = storage_path('../public/json/flex-other.json');   
                 $string_json = file_get_contents($template_path);
+
+                $messages = [ json_decode($string_json, true) ]; 
+                break;
+            case "Vmarket": 
+                $template_path = storage_path('../public/json/flex-vmarket.json');   
+                $string_json = file_get_contents($template_path);
+
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
         }
