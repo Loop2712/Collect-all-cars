@@ -189,7 +189,7 @@ class GuestController extends Controller
         
         
 
-        $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county'");
+        $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county' AND active = 'Yes'");
         
         foreach($register_car as $item){
 
