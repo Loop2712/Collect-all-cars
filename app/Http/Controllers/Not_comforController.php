@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Models\Not_comfor;
 use Illuminate\Http\Request;
+use App\Models\Mylog;
 
 class Not_comforController extends Controller
 {
@@ -139,7 +140,7 @@ class Not_comforController extends Controller
 
     public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
 
-    protected function _push_Not_comforLine($data)
+    public function _push_Not_comforLine($data)
     {
         $provider_id = $data['provider_id'];
         
@@ -182,15 +183,15 @@ class Not_comforController extends Controller
                     "messages" => $messages,
                 ];
 
-                $opts = [
-                    'http' =>[
-                        'method'  => 'POST',
-                        'header'  => "Content-Type: application/json \r\n".
-                                    'Authorization: Bearer '.$this->channel_access_token,
-                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                        //'timeout' => 60
-                    ]
-                ];
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.$this->channel_access_token,
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
                                     
                 $context  = stream_context_create($opts);
                 $url = "https://api.line.me/v2/bot/message/push";
