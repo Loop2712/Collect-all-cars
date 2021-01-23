@@ -56,9 +56,6 @@ class LineApiController extends Controller
              case "thx" : 
                 $line->_pushguestLine(null, $event, "thx");
                 break;
-            case "comfortable" : 
-                $line->replyToUser(null, $event, "comfortable");
-                break;
         }   
 
     }
