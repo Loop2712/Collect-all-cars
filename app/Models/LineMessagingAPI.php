@@ -75,6 +75,7 @@ class LineMessagingAPI extends Model
 					$to_user = $item->reply_provider_id;
                 	$template_path = storage_path('../public/json/callback_guest.json');   
                     $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                     $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
                     $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
                     $string_json = str_replace("ขอบคุณ","รอสักครู่ / Wait a moment",$string_json);
@@ -87,6 +88,7 @@ class LineMessagingAPI extends Model
 					$to_user = $item->reply_provider_id;
                     $template_path = storage_path('../public/json/callback_guest.json');   
                     $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                     $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
                     $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
                     $string_json = str_replace("ขอบคุณ","ขอบคุณ / Thank you",$string_json);
