@@ -70,8 +70,8 @@ class LineApiController extends Controller
             case "อื่นๆ" :  
                 $line->replyToUser(null, $event, "other");
                 break;
-            case "Vmarket" :  
-                $line->replyToUser(null, $event, "Vmarket");
+            case "vmarket" :  
+                $line->replyToUser(null, $event, "vmarket");
                 break;
             
             
