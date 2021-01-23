@@ -99,7 +99,7 @@
                 {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
-                <input class="form-control" name="active" type="hidden" id="active" value="Yes" required readonly>
+                <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($register_car->active) ? $register_car->active : 'Yes'}}" required readonly>
                 {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
             </div>
 
