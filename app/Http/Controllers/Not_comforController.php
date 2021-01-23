@@ -143,7 +143,7 @@ class Not_comforController extends Controller
     public function _push_Not_comforLine($data)
     {
         $provider_id = $data['provider_id'];
-        
+
         $reply_provider_id = $data['reply_provider_id'];
         $content = $data['content'];
         $phone = $data['phone'];
@@ -161,7 +161,7 @@ class Not_comforController extends Controller
                 $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                 $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
                 $string_json = str_replace("ประชุม",$content,$string_json);
-                $string_json = str_replace("000",$phone,$string_json);
+                $string_json = str_replace("เบอร์",$phone,$string_json);
 
                 $messages = [ json_decode($string_json, true) ];
                 break;
