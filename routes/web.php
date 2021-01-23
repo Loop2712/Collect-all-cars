@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::resource('deliver', 'DeliverController')->except(['index']);
+	Route::resource('guest', 'GuestController')->except(['index']);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -57,7 +58,7 @@ Route::put('/car/{id}', 'CarController@update');
 //Route::resource('car','CarController');
 
 Route::resource('detail', 'DetailController');
-Route::resource('guest', 'GuestController')->except(['index']);
+// Route::resource('guest', 'GuestController')->except(['index']);
 Route::resource('mylog', 'MylogController');
 
 // Route::post('/lineapi', 'API\LineApiController@store');
