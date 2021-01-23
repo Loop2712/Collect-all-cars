@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "provider_id",
+            "type": "string"
+        },
+        {
+            "name": "reply_provider_id",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "want_phone",
+            "type": "string"
+        }
+    ]
+}

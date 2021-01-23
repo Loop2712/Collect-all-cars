@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::resource('deliver', 'DeliverController')->except(['index']);
 	Route::resource('guest', 'GuestController')->except(['index']);
+	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
