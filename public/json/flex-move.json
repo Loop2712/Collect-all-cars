@@ -2,174 +2,173 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-          "type": "bubble",
-          "size": "mega",
-          "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "เรียนคุณ / Dear",
-                "weight": "bold",
-                "size": "xl"
-              },
-              {
-                "type": "text",
-                "text": "ชื่อ",
-                "margin": "md"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "margin": "lg",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "เลขทะเบียน / Car ID",
-                        "color": "#aaaaaa",
-                        "size": "md",
-                        "flex": 7,
-                        "margin": "none"
-                      }
-                    ]
+        "type": "bubble",
+        "size": "mega",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "เรียนคุณ / Dear",
+              "weight": "bold",
+              "size": "xl"
+            },
+            {
+              "type": "text",
+              "text": "ชื่อ",
+              "margin": "md"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "เลขทะเบียน / Car ID",
+                      "color": "#aaaaaa",
+                      "size": "md",
+                      "flex": 7,
+                      "margin": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "spacing": "sm",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "wrap": true,
+                      "color": "#000000",
+                      "size": "xxl",
+                      "flex": 8,
+                      "text": "7ยษ2944"
+                    },
+                    {
+                      "type": "text",
+                      "text": "กรุงเทพ",
+                      "wrap": true,
+                      "color": "#000000",
+                      "size": "md",
+                      "flex": 8
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "color": "#000000",
+                  "text": "กรุณามาเลื่อนรถด้วยค่ะ",
+                  "margin": "xl",
+                  "size": "xl",
+                  "decoration": "underline",
+                  "align": "center"
+                }
+              ]
+            }
+          ],
+          "background": {
+            "type": "linearGradient",
+            "angle": "0deg",
+            "endColor": "#E0FFFF",
+            "startColor": "#E0FFFF",
+            "centerColor": "#ffffff"
+          }
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "button",
+                  "style": "primary",
+                  "height": "sm",
+                  "action": {
+                    "type": "postback",
+                    "label": "ขอบคุณ / Thank you",
+                    "data": "thx",
+                    "displayText": "ขอบคุณ / Thank you"
                   },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "spacing": "sm",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "wrap": true,
-                        "color": "#000000",
-                        "size": "xxl",
-                        "flex": 8,
-                        "text": "7ยษ2944"
-                      },
-                      {
-                        "type": "text",
-                        "text": "กรุงเทพ",
-                        "wrap": true,
-                        "color": "#000000",
-                        "size": "md",
-                        "flex": 8
-                      }
-                    ]
-                  }
-                ]
+                  "color": "#6495ED"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "borderColor": "#FF0000",
+              "background": {
+                "type": "linearGradient",
+                "startColor": "#00FA9A",
+                "endColor": "#ffffff",
+                "angle": "0deg",
+                "centerColor": "#00FA9A"
               },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "color": "#000000",
-                    "text": "กรุณามาเลื่อนรถด้วยค่ะ",
-                    "margin": "xl",
-                    "size": "xl",
-                    "decoration": "underline",
-                    "align": "center"
-                  }
-                ]
-              }
-            ],
-            "background": {
-              "type": "linearGradient",
-              "angle": "0deg",
-              "endColor": "#E0FFFF",
-              "startColor": "#E0FFFF",
-              "centerColor": "#ffffff"
+              "margin": "none"
+            },
+            {
+              "type": "button",
+              "style": "primary",
+              "height": "sm",
+              "action": {
+                "type": "postback",
+                "label": "รอสักครู่ / Wait a moment",
+                "data": "wait",
+                "displayText": "รอสักครู่ / Wait a moment"
+              },
+              "color": "#006400"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "button",
+                  "style": "primary",
+                  "height": "sm",
+                  "action": {
+                    "type": "uri",
+                    "label": "ฉันไม่สะดวก / I'm not comfortable",
+                    "uri": "https://market.viicheck.com/not_comfor/create"
+                  },
+                  "color": "#FF0000"
+                }
+              ]
             }
-          },
+          ],
+          "flex": 0,
+          "borderColor": "#000000",
+          "background": {
+            "type": "linearGradient",
+            "angle": "0deg",
+            "startColor": "#B0E0E6",
+            "endColor": "#B0E0E6",
+            "centerColor": "#F5F5F5"
+          }
+        },
+        "styles": {
           "footer": {
-            "type": "box",
-            "layout": "vertical",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "button",
-                    "style": "primary",
-                    "height": "sm",
-                    "action": {
-                      "type": "postback",
-                      "label": "ขอบคุณ / Thank you",
-                      "data": "thx",
-                      "displayText": "ขอบคุณ / Thank you"
-                    },
-                    "color": "#6495ED"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [],
-                "borderColor": "#FF0000",
-                "background": {
-                  "type": "linearGradient",
-                  "startColor": "#00FA9A",
-                  "endColor": "#ffffff",
-                  "angle": "0deg",
-                  "centerColor": "#00FA9A"
-                },
-                "margin": "none"
-              },
-              {
-                "type": "button",
-                "style": "primary",
-                "height": "sm",
-                "action": {
-                  "type": "postback",
-                  "label": "รอสักครู่ / Wait a moment",
-                  "data": "wait",
-                  "displayText": "รอสักครู่ / Wait a moment"
-                },
-                "color": "#006400"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "button",
-                    "style": "primary",
-                    "height": "sm",
-                    "action": {
-                      "type": "postback",
-                      "label": "ฉันไม่สะดวก / I'm not comfortable",
-                      "data": "comfortable",
-                      "displayText": "ฉันไม่สะดวก / I'm not comfortable"
-                    },
-                    "color": "#FF0000"
-                  }
-                ]
-              }
-            ],
-            "flex": 0,
-            "borderColor": "#000000",
-            "background": {
-              "type": "linearGradient",
-              "angle": "0deg",
-              "startColor": "#B0E0E6",
-              "endColor": "#B0E0E6",
-              "centerColor": "#F5F5F5"
-            }
-          },
-          "styles": {
-            "footer": {
-              "separator": true
-            }
+            "separator": true
           }
         }
+      }
 }
