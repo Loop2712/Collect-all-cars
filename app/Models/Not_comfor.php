@@ -25,7 +25,7 @@ class Not_comfor extends Model
      *
      * @var array
      */
-    protected $fillable = ['provider_id', 'reply_provider_id', 'content', 'phone', 'want_phone'];
+    protected $fillable = ['provider_id', 'reply_provider_id', 'content', 'phone', 'want_phone' , 'province' , 'registration_number'];
 
     
 }

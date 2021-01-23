@@ -58,16 +58,20 @@ class Not_comforController extends Controller
         $requestData = $request->all();
 
         $register_cars = DB::table('register_cars')
-                    ->select('reply_provider_id', 'phone')
+                    ->select('reply_provider_id', 'phone' , 'registration_number' , 'province')
                     ->where('provider_id', $requestData['provider_id'])
                     ->get();
 
         foreach($register_cars as $item){
             $requestData['reply_provider_id'] = $item->reply_provider_id ; 
             $requestData['phone'] = $item->phone ;
+            $requestData['registration_number'] = $item->registration_number ;
+            $requestData['province'] = $item->province ;
         }
         
         Not_comfor::create($requestData);
+
+        $this->_push_Not_comforLine($requestData);
 
         return view('not_comfor.thx')->with('flash_message', 'Not_comfor added!');
     }
@@ -132,4 +136,75 @@ class Not_comforController extends Controller
 
         return redirect('not_comfor')->with('flash_message', 'Not_comfor deleted!');
     }
+
+    public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+
+    protected function _push_Not_comforLine($data)
+    {
+        $provider_id = $data['provider_id'];
+        
+        $reply_provider_id = $data['reply_provider_id'];
+        $content = $data['content'];
+        $phone = $data['phone'];
+        $want_phone = $data['want_phone'];
+        $registration_number = $data['registration_number'];
+        $province = $data['province'];
+
+        switch($want_phone)
+        {
+            case "Yes":  
+                $template_path = storage_path('../public/json/not_comfor_p.json');   
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
+                $string_json = str_replace("9กก9999",$registration_number,$string_json);
+                $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
+                $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
+                $string_json = str_replace("ประชุม",$content,$string_json);
+                $string_json = str_replace("000",$phone,$string_json);
+
+                $messages = [ json_decode($string_json, true) ];
+                break;
+            case "No":  
+                $template_path = storage_path('../public/json/not_comfor_not_p.json');   
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
+                $string_json = str_replace("9กก9999",$registration_number,$string_json);
+                $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
+                $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
+                $string_json = str_replace("ประชุม",$content,$string_json);
+
+                $messages = [ json_decode($string_json, true) ];
+                break;
+        }
+
+        $body = [
+                    "to" => $reply_provider_id,
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.$this->channel_access_token,
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                //SAVE LOG
+                $data = [
+                    "title" => "https://api.line.me/v2/bot/message/push",
+                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+                ];
+                MyLog::create($data);
+                return $result;
+
+    }
+
+
 }
