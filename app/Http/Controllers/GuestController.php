@@ -208,11 +208,11 @@ class GuestController extends Controller
                 if (empty($phone)) {
                     $template_path = storage_path('../public/json/flex-move.json');   
                     $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("ตัวอย่าง",$item->masseng,$string_json);
                     $string_json = str_replace("ชื่อ",$item->name,$string_json);
                     $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                    $string_json = str_replace("altText",$masseng,$string_json);
 
                     $messages = [ json_decode($string_json, true) ];
                 }
@@ -220,11 +220,11 @@ class GuestController extends Controller
                 if (!empty($phone)) {
                     $template_path = storage_path('../public/json/flex-move-call.json');   
                     $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("ตัวอย่าง",$item->masseng,$string_json);
                     $string_json = str_replace("ชื่อ",$item->name,$string_json);
                     $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                    $string_json = str_replace("altText",$masseng,$string_json);
                     $string_json = str_replace("เบอร์",$phone,$string_json);
 
                     $messages = [ json_decode($string_json, true) ];
