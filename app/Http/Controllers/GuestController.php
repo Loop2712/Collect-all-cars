@@ -225,8 +225,8 @@ class GuestController extends Controller
                                     ->select('content')
                                     ->get();
 
-                    foreach($profanitie as $item){
-                        $string_json = str_replace($item->content,"",$string_json);
+                    foreach($profanitie as $a){
+                        $string_json = str_replace($a->content,"",$string_json);
                         
                     }
 
