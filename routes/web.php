@@ -70,3 +70,4 @@ Route::get('/testcar', function () {
     
     return view('testcar');
 });
+Route::resource('profanity', 'ProfanityController');
