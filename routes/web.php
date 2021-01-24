@@ -64,6 +64,8 @@ Route::resource('mylog', 'MylogController');
 
 // Route::post('/lineapi', 'API\LineApiController@store');
 
+Route::get('/modal', 'GuestController@modal');
+
 Route::get('/testcar', function () {
     
     return view('testcar');

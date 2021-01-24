@@ -284,4 +284,9 @@ class GuestController extends Controller
         }
         
     }
+
+    public function modal()
+    {
+        return view('guest.modal');
+    }
 }
