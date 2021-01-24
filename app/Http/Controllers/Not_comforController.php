@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Not_comfor;
 use Illuminate\Http\Request;
 use App\Models\Mylog;
+use App\Models\Profanity;
 
 class Not_comforController extends Controller
 {
@@ -163,6 +164,16 @@ class Not_comforController extends Controller
                 $string_json = str_replace("ประชุม",$content,$string_json);
                 $string_json = str_replace("เบอร์",$phone,$string_json);
 
+                // แบนคำหยาบ
+                    $profanitie = DB::table('profanities')
+                                    ->select('content')
+                                    ->get();
+
+                    foreach($profanitie as $p){
+                        $string_json = str_replace($p->content,"",$string_json);
+                        
+                    }
+
                 $messages = [ json_decode($string_json, true) ];
                 break;
             case "No":  
@@ -173,6 +184,16 @@ class Not_comforController extends Controller
                 $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                 $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
                 $string_json = str_replace("ประชุม",$content,$string_json);
+
+                // แบนคำหยาบ
+                    $profanitie = DB::table('profanities')
+                                    ->select('content')
+                                    ->get();
+
+                    foreach($profanitie as $p){
+                        $string_json = str_replace($p->content,"",$string_json);
+                        
+                    }
 
                 $messages = [ json_decode($string_json, true) ];
                 break;
