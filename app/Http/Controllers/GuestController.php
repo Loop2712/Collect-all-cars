@@ -9,6 +9,7 @@ use App\Models\Register_car;
 use App\county;
 use App\Models\Guest;
 use Illuminate\Http\Request;
+use App\Models\Profanity;
 
 use App\Models\Mylog;
 
@@ -157,6 +158,19 @@ class GuestController extends Controller
 
         if (!empty($data['masseng'])) {
             $masseng_old = $data['masseng'];
+
+            // แบนคำหยาบ
+            $profanitie = DB::table('profanities')
+                            ->select('content')
+                            ->orWhere('content', 'LIKE', "%$masseng_old%")
+                            ->get();
+
+            foreach($profanitie as $item){
+                $string = str_replace($item->content,"",$string_json);
+                $masseng_old = $string
+            }
+
+
         }else if (empty($data['masseng'])) {
             $masseng_old = "รบกวนมาที่รถด้วยค่ะ";
         }
