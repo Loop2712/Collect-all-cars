@@ -165,7 +165,7 @@ class GuestController extends Controller
                             ->get();
 
             foreach($profanitie as $item){
-                $string = str_replace($item->content,"",$string_json);
+                $string = str_replace($item->content,"",$string);
                 $masseng_old = $string;
             }
 
