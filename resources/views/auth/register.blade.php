@@ -98,7 +98,7 @@
                         <div class="col-md-12">
                             <br><br>
                             <center>
-                                <img width="80%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+                                <img width="60%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
                             </center>
                         </div>
                     </form>

@@ -8,7 +8,37 @@
                 <div class="card-header">{{ __('ลงชื่อเข้าใช้') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 offset-md-2">
+                        <center>
+                            <div class="row">
+                            <!-- ซ้าย -->
+                                <div class="col-12 col-md-6">
+                                    <a href=""><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
+                                    <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
+                                    <a href=""><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
+                                </div>
+                                <!-- ขวา -->
+                                <div class="col-12 col-md-6">
+                                    <a href=""><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
+                                    <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
+                                    <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
+                                </div>
+
+                                <div class="col-12 col-md-12">
+                                    <br>
+                                    <a class="btn btn-link text-muted" onclick="document.querySelector('#from_login').classList.remove('d-none')">เข้าสู่ระบบด้วยชื่อผู้ใช้</a>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <br>
+                                    <a class="btn btn-link text-muted" href="{{ route('register') }}">สมัครสมาชิก</a>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <br>
+                    <form class="d-none" method="POST" id="from_login" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -67,47 +97,43 @@
                                                 </a>
                                             @endif
                                         </div>
-                                        <div class="col-md-12">
-                                            <a style="padding-right: 30px;" class="btn btn-link text-muted float-right" href="{{ route('register') }}">สมัครสมาชิก</a>
-                                        </div>
                                     </center>
                                 </div>
                                 <br>
-                                <div class="row">
+                                <!-- <div class="row"> -->
                                     <!-- <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div> -->
-                                    <span style="margin-top: -10px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-md-12">
+                                    <!-- <span style="margin-top: -10px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-md-12">
                                         หรือ
-                                    </span>
-                                    <br>
+                                    </span> -->
+                                    
                                     <!-- <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div> -->
-                                    <center>
+                                    <!-- <center>
                                         <div class="row">
-                                        <!-- ซ้าย -->
+                                        
                                             <div class="col-12 col-md-6">
                                                 <a href=""><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
                                                 <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
                                                 <a href=""><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
                                             </div>
-                                            <!-- ขวา -->
+                                            
                                             <div class="col-12 col-md-6">
                                                 <a href=""><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
                                                 <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
                                                 <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
                                             </div>
                                         </div>
-                                    </center>
-                                    
-                                    <div class="col-md-12">
-                                        <center>
-                                            <P><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <b>ข้อกำหนดในการให้บริการ</b></a>
-                                            <br><br><br>
-                                            <img width="100%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
-                                        </center>
-                                    </div>
-                                </div>
+                                    </center> -->
+                                <!-- </div> -->
                             </div>
                         </div>
                     </form>
+                    <div class="col-md-12">
+                        <center>
+                            <P><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <b>ข้อกำหนดในการให้บริการ</b></a>
+                            <br><br><br>
+                            <img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
