@@ -182,7 +182,10 @@ class GuestController extends Controller
             case "4":  
                 $masseng = "รถคุณเกิดอุบัติเหตุค่ะ";
                 break;
-            case "5": 
+            case "5":  
+                $masseng = "แจ้งปัญหาการขับขี่";
+                break;
+            case "6": 
                 $masseng = $masseng_old;
                 break;
         }
