@@ -70,6 +70,16 @@ class GuestController extends Controller
                 ->store('uploads', 'public');
         }
         $requestData['registration'] = str_replace(" ", "", $requestData['registration']);
+        // แบนคำหยาบ
+        $profanitie = DB::table('profanities')
+                        ->select('content')
+                        ->get();
+
+        foreach($profanitie as $p){
+            $requestData['registration'] = str_replace($p->content, "", $requestData['registration']);
+            
+        }
+
         Guest::create($requestData);
 
         DB::table('register_cars')
