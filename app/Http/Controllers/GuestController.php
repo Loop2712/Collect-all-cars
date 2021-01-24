@@ -162,7 +162,6 @@ class GuestController extends Controller
             // แบนคำหยาบ
             $profanitie = DB::table('profanities')
                             ->select('content')
-                            ->orWhere('content', 'LIKE', "%$masseng_old%")
                             ->get();
 
             foreach($profanitie as $item){
