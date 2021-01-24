@@ -230,16 +230,6 @@ class GuestController extends Controller
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
 
-                    // แบนคำหยาบ
-                    $profanitie = DB::table('profanities')
-                                    ->select('content')
-                                    ->get();
-
-                    foreach($profanitie as $p){
-                        $string_json = str_replace($p->content,"",$string_json);
-                        
-                    }
-
                     $messages = [ json_decode($string_json, true) ];
                 }
 
@@ -252,16 +242,6 @@ class GuestController extends Controller
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
                     $string_json = str_replace("เบอร์",$phone,$string_json);
-
-                    // แบนคำหยาบ
-                    $profanitie = DB::table('profanities')
-                                    ->select('content')
-                                    ->get();
-
-                    foreach($profanitie as $p){
-                        $string_json = str_replace($p->content,"",$string_json);
-                        
-                    }
 
                     $messages = [ json_decode($string_json, true) ];
                 }

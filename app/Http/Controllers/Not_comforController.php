@@ -58,6 +58,15 @@ class Not_comforController extends Controller
     {
         
         $requestData = $request->all();
+        // แบนคำหยาบ
+        $profanitie = DB::table('profanities')
+                        ->select('content')
+                        ->get();
+
+        foreach($profanitie as $p){
+            $requestData['content'] = str_replace($p->content, "", $requestData['content']);
+            
+        }
 
         $register_cars = DB::table('register_cars')
                     ->select('reply_provider_id', 'phone' , 'registration_number' , 'province')
@@ -164,16 +173,6 @@ class Not_comforController extends Controller
                 $string_json = str_replace("ประชุม",$content,$string_json);
                 $string_json = str_replace("เบอร์",$phone,$string_json);
 
-                // แบนคำหยาบ
-                    $profanitie = DB::table('profanities')
-                                    ->select('content')
-                                    ->get();
-
-                    foreach($profanitie as $p){
-                        $string_json = str_replace($p->content,"",$string_json);
-                        
-                    }
-
                 $messages = [ json_decode($string_json, true) ];
                 break;
             case "No":  
@@ -184,16 +183,6 @@ class Not_comforController extends Controller
                 $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                 $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
                 $string_json = str_replace("ประชุม",$content,$string_json);
-
-                // แบนคำหยาบ
-                    $profanitie = DB::table('profanities')
-                                    ->select('content')
-                                    ->get();
-
-                    foreach($profanitie as $p){
-                        $string_json = str_replace($p->content,"",$string_json);
-                        
-                    }
 
                 $messages = [ json_decode($string_json, true) ];
                 break;
