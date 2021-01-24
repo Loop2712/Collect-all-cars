@@ -54,37 +54,37 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/map.html">
+              <a class="nav-link" href="#">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">รายงาน</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/profile.html">
+              <a class="nav-link" href="#">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">รายงาน</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/tables.html">
+              <a class="nav-link" href="#">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text">รายงาน</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/login.html">
+              <a class="nav-link" href="#">
                 <i class="ni ni-key-25 text-info"></i>
                 <span class="nav-link-text">รายงาน</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/register.html">
+              <a class="nav-link" href="#">
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text">รายงาน</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/upgrade.html">
+              <a class="nav-link" href="#">
                 <i class="ni ni-send text-dark"></i>
                 <span class="nav-link-text">รายงาน</span>
               </a>
