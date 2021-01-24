@@ -76,7 +76,7 @@ class GuestController extends Controller
                         ->get();
 
         foreach($profanitie as $p){
-            $requestData['registration'] = str_replace($p->content, "", $requestData['registration']);
+            $requestData['masseng'] = str_replace($p->content, "", $requestData['masseng']);
             
         }
 
