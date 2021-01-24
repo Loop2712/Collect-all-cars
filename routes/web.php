@@ -70,4 +70,13 @@ Route::get('/testcar', function () {
     
     return view('testcar');
 });
-Route::resource('profanity', 'ProfanityController');
+
+// ADMIN VIICHECK
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+	Route::get('/dashboard', function () {
+	    return view('admin_viicheck/dashboard');
+	});
+	Route::resource('profanity', 'ProfanityController');
+});
+// END ADMIN VIICHECK

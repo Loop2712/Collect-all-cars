@@ -17,7 +17,7 @@ class CheckRole
     {
         $allowed_list = array_slice(func_get_args(), 2);  
         if (Auth::check()) {
-            $status = Auth::user()->profile->role;
+            $status = Auth::user()->role;
             //IF $status OF USER IS IN ALLOWED LIST
             if (in_array($status, $allowed_list,True)){
                 return  $next($request);
