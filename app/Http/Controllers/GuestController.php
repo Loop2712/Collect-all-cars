@@ -159,16 +159,6 @@ class GuestController extends Controller
         if (!empty($data['masseng'])) {
             $masseng_old = $data['masseng'];
 
-            // แบนคำหยาบ
-            $profanitie = DB::table('profanities')
-                            ->select('content')
-                            ->get();
-
-            foreach($profanitie as $item){
-                $string = str_replace($item->content,"",$string);
-                $masseng_old = $string;
-            }
-
 
         }else if (empty($data['masseng'])) {
             $masseng_old = "รบกวนมาที่รถด้วยค่ะ";
@@ -229,6 +219,16 @@ class GuestController extends Controller
                     $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+
+                    // แบนคำหยาบ
+                    $profanitie = DB::table('profanities')
+                                    ->select('content')
+                                    ->get();
+
+                    foreach($profanitie as $item){
+                        $string_json = str_replace($item->content,"",$string_json);
+                        
+                    }
 
                     $messages = [ json_decode($string_json, true) ];
                 }
