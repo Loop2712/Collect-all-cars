@@ -4,7 +4,7 @@
         	<center>
                 <div><br><br>
                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                    <img width="350" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                    <img width="450" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
                 </div>
         	</center>
         </div>
