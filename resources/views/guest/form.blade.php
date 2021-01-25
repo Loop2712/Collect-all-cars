@@ -30,6 +30,10 @@
                 <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
                 {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+                <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ isset($register_car->user_id) ? $register_car->user_id : Auth::user()->id}}" required readonly>
+                {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+            </div>
 
         </div>
         <!-- ข้อมูลรถที่ต้องการติดต่อ -->
