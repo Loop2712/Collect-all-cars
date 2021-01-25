@@ -56,7 +56,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
 
-        $this->_registerOrLoginUser($user);
+        $this->_registerOrLoginUser($user, "google");
 
         // Return home after login
         return redirect()->intended();
@@ -90,7 +90,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('line')->user();
         // print_r($user);
-        $this->_registerOrLoginUser($user);
+        $this->_registerOrLoginUser($user, "line");
 
         // Return home after login
         return redirect()->intended();
