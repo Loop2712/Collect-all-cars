@@ -4,9 +4,13 @@
 			<center>
 				<br>
 				<h2>ระบบได้ทำการแจ้งเตือนไปยังเจ้าของรถเรียบร้อยแล้ว กรุณารอเจ้าของรถสักครู่</h2>
-				<span class="tetx-red">(รอลงความเห็นการออกแบบครับ อาจจะเป็นรูปภาพก็ได้ครับ)</span>
+				<span style="color: red;">กรุณาเพิ่ม&nbsp;&nbsp;<a href="https://lin.ee/xnFKMfc"><img width="70" src="{{ asset('/img/more/logo_.png') }}"></a>&nbsp;&nbsp;เป็นเพื่อนเพื่อรับข้อความตอบกลับจากเจ้าของรถ</span>
 				<br><br>
-				<img width="70%" src="https://learning4live.com/wp-content/uploads/2018/07/Thank-you-800x432.jpg">
+				<a href="https://lin.ee/xnFKMfc">
+					<img width="50%" src="https://www.ineedtoknow.org/wp-content/uploads/2016/02/backupLine2.jpg">
+				</a>
+				<br><br>
+				<a href="https://lin.ee/xnFKMfc"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน" height="36" border="0"></a>
 			</center>
 		</div>
 	</div>
