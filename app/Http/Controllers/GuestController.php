@@ -252,7 +252,7 @@ class GuestController extends Controller
                  
 
                 $body = [
-                    "to" => $item->reply_provider_id,
+                    "to" => $item->provider_id,
                     "messages" => $messages,
                 ];
 
