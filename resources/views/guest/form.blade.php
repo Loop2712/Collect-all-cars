@@ -1,41 +1,5 @@
 <div class="container">
     <div class="row">
-        <!-- ข้อมูลผู้ติดต่อ -->
-        <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your information'}}</span>
-            <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
-            <br><br>
-            <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                        <input class="form-control" name="name" type="text" id="name" value="{{ isset($guest->name) ? $guest->name : ''}}" >
-                        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="col-12 col-md-2">
-                    <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone" type="tel" id="phone" value="{{ isset($guest->phone) ? $guest->phone : ''}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
-                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
-                <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
-                {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
-            </div>
-            <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-                <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ isset($register_car->user_id) ? $register_car->user_id : Auth::user()->id}}" required readonly>
-                {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
-            </div>
-
-        </div>
         <!-- ข้อมูลรถที่ต้องการติดต่อ -->
         <div class="col-12">
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถที่ต้องการติดต่อ / Vehicle information to contact'}}</span>
@@ -117,8 +81,42 @@
                 <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($guest->brand) ? $guest->brand : ''}}" >
                 {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
             </div>
+        </div>
+        <!-- ข้อมูลผู้ติดต่อ -->
+        <div class="col-12">
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your information'}}</span>
+            <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
+            <br><br>
+            <div class="row">
+                <div class="col-12 col-md-2">
+                    <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+                        <input class="form-control" name="name" type="text" id="name" value="{{ isset($guest->name) ? $guest->name : ''}}" >
+                        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+                        <input class="form-control" name="phone" type="tel" id="phone" value="{{ isset($guest->phone) ? $guest->phone : ''}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+            </div>
 
-            
+            <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
+                <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
+                {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
+            </div>
+            <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+                <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ isset($register_car->user_id) ? $register_car->user_id : Auth::user()->id}}" required readonly>
+                {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+            </div>
+
         </div>
     </div>
 </div>

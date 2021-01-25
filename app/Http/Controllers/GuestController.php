@@ -80,11 +80,15 @@ class GuestController extends Controller
             
         }
 
-        Guest::create($requestData);
 
         DB::table('register_cars')
               ->where('registration_number', $requestData['registration'])
+              ->where('province', $requestData['county'])
               ->update(['reply_provider_id' => $requestData['provider_id']]);
+
+        Guest::create($requestData);
+
+        // ตรงนี้ต้องหา type ของ user ที่ register เข้ามาเพื่อทำการตอบกลับ
 
         $this->_pushLine($requestData);
 

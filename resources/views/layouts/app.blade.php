@@ -25,7 +25,12 @@
 </head>
 <body>
     <div id="app">
-
+        <div class="header__logo">
+            <br>
+            <center>
+                <img width="200px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+            </center>        
+        </div>
         <main class="py-5">
             <div class="container">
                 <div class="row">
