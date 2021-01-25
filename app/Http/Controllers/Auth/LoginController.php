@@ -100,8 +100,8 @@ class LoginController extends Controller
     {
         //GET USER 
         $user = User::where('name', '=', $data->name)->first();
-        print_r($data) ;
-        exit();
+        // print_r($data) ;
+        // exit();
 
         if (!$user) {
             //CREATE NEW USER
