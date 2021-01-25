@@ -79,14 +79,14 @@ class GuestController extends Controller
             $requestData['masseng'] = str_replace($p->content, "", $requestData['masseng']);
             
         }
-
+        
+        Guest::create($requestData);
 
         DB::table('register_cars')
               ->where('registration_number', $requestData['registration'])
               ->where('province', $requestData['county'])
               ->update(['reply_provider_id' => $requestData['provider_id']]);
 
-        Guest::create($requestData);
 
         // ตรงนี้ต้องหา type ของ user ที่ register เข้ามาเพื่อทำการตอบกลับ
 
@@ -252,7 +252,7 @@ class GuestController extends Controller
                  
 
                 $body = [
-                    "to" => $item->provider_id,
+                    "to" => $item->reply_provider_id,
                     "messages" => $messages,
                 ];
 
