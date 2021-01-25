@@ -100,7 +100,7 @@ class LoginController extends Controller
     {
         //GET USER 
         $user = User::where('name', '=', $data->name)->first();
-        echo $data;
+        print_r($data) ;
         exit();
 
         if (!$user) {
