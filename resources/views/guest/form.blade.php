@@ -84,7 +84,8 @@
         </div>
         <!-- ข้อมูลผู้ติดต่อ -->
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your information'}}</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your information'}}</span><br>
+            <span style="color: red;font-size: 13px;">เพื่อให้เจ้าของรถโทรกลับหาคุณได้ ใส่หรือไม่ก็ได้</span>
             <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
             <br><br>
             <div class="row">
