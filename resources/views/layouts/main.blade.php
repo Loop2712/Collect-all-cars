@@ -72,7 +72,7 @@
                                         @if(Auth::check())
                                             @if(Auth::user()->role == "admin" )
                                                 <li>
-                                                    <a href="{{ url('/dashboard') }}"> Admin</a>
+                                                    <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
                                                 </li>
                                             @endif
                                         @endif
