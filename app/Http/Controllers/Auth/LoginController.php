@@ -73,7 +73,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
         // print_r($user);
-        $this->_registerOrLoginUser($user);
+        $this->_registerOrLoginUser($user,"facebook");
 
         // Return home after login
         return redirect()->intended();
@@ -96,7 +96,7 @@ class LoginController extends Controller
         return redirect()->intended();
     }
 
-    protected function _registerOrLoginUser($data)
+    protected function _registerOrLoginUser($data, $type)
     {
         //GET USER 
         $user = User::where('name', '=', $data->name)->first();
@@ -108,6 +108,7 @@ class LoginController extends Controller
             $user = new User();
             $user->name = $data->name;
             $user->provider_id = $data->id;
+            $user->type = $type;
 
             if (!empty($data->email)) {
                 $user->username = $data->email;
