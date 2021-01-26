@@ -63,7 +63,7 @@ class Register_carController extends Controller
         //     ->where('province', "" )
         //     ->get();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'register_car'));
+        return view('register_car.create', compact('location_array', 'car_brand'));
     }
 
     /**
