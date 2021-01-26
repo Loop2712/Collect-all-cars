@@ -16,15 +16,7 @@
                         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                <!-- <div class="col-12 col-md-2">
-                    <label class="control-label">{{ 'รถที่คุณลงทะเบียน' }}</label>
-                </div>
-                <div class="col-12 col-md-4">
-                    @foreach($register_car as $item)
-                        <p class="text-dark">{{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
-                    @endforeach
-                </div> -->
-                
+
                 <!-- <div class="col-12 col-md-2">
                     <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
