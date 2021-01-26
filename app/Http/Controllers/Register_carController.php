@@ -58,8 +58,10 @@ class Register_carController extends Controller
             ->groupBy('brand')
             ->get();
 
-        $register_car = Register_car::select('brand', 'generation', 'registration_number', 'province', 'phone')
-            ->get();
+        // $register_car = Register_car::select('brand', 'generation', 'registration_number', 'province', 'phone')
+        //     ->where('registration_number', "" )
+        //     ->where('province', "" )
+        //     ->get();
 
         return view('register_car.create', compact('location_array', 'car_brand', 'register_car'));
     }
