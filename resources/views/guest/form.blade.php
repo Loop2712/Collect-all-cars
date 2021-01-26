@@ -7,7 +7,7 @@
             <br><br>
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label">{{ 'ข้อความ / Message' }}</label>
+                    <label for="massengbox" class="control-label">{{ 'ข้อความ / Message' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
@@ -84,26 +84,35 @@
         </div>
         <!-- ข้อมูลผู้ติดต่อ -->
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your information'}}</span><br>
-            <span style="color: red;font-size: 13px;">เพื่อให้เจ้าของรถโทรกลับหาคุณได้ ใส่หรือไม่ก็ได้</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ท่านต้องการที่จะแสดงเบอร์ของท่านหรือไม่'}}</span>
             <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
+            <br><br>
+            <input type="radio" name="show_phone" onclick="document.querySelector('#name').classList.remove('d-none'),
+            document.querySelector('#name_input').classList.remove('d-none'),
+            document.querySelector('#phone').classList.remove('d-none'),
+            document.querySelector('#phone_input').classList.remove('d-none')">
+            &nbsp;&nbsp;&nbsp;แสดง / Show&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="show_phone" onclick="document.querySelector('#name').classList.add('d-none'),
+            document.querySelector('#name_input').classList.add('d-none'),
+            document.querySelector('#phone').classList.add('d-none'),
+            document.querySelector('#phone_input').classList.add('d-none')">&nbsp;&nbsp;&nbsp;ไม่แสดง / Not showing
             <br><br>
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label>
+                    <label for="name" id="name" class="d-none control-label">{{ 'ชื่อ / Name' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                        <input class="form-control" name="name" type="text" id="name" value="{{ isset($guest->name) ? $guest->name : ''}}" >
+                        <input class="d-none form-control" name="name" type="text" id="name_input" value="{{ isset($guest->name) ? $guest->name : ''}}" >
                         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label>
+                    <label for="phone" id="phone" class="d-none control-label">{{ 'เบอร์โทร / Phone number' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone" type="tel" id="phone" value="{{ isset($guest->phone) ? $guest->phone : ''}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                        <input class="d-none form-control" name="phone" type="tel" id="phone_input" value="{{ isset($guest->phone) ? $guest->phone : ''}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
