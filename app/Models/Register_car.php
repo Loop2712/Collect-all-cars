@@ -27,5 +27,8 @@ class Register_car extends Model
      */
     protected $fillable = ['brand', 'generation', 'year', 'registration_number', 'province', 'name', 'phone', 'user_id', 'provider_id', 'active'];
 
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id'); 
+    }
     
 }

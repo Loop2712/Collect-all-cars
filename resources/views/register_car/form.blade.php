@@ -10,19 +10,29 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                        <input class="form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required >
+                        <p>คุณ : {{ Auth::user()->name }}</p>
+                        <p>เบอร์โทรศัพท์ : 0999999999</p>
+                        <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
                         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
+                    <label class="control-label">{{ 'รถที่คุณลงทะเบียน' }}</label>
+                </div>
+                <div class="col-12 col-md-4">
+                    @foreach($register_car as $item)
+                        <p class="text-dark">{{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                    @endforeach
+                </div>
+                <!-- <div class="col-12 col-md-2">
                     <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone" type="tel" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone : ''}}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                        <input class="form-control" name="phone" type="tel" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone : ''}}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}" readonly>
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
-                </div>
+                </div> -->
             </div>
             <br>
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
@@ -37,15 +47,15 @@
                         <!-- <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" required placeholder="ยี่ห้อรถยนต์ของคุณ / Your car brand">
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!} -->
 
-                        <select name="brand" id="brand" class="form-control">
-                                <option value="" selected > - เลือกยี่ห้อรถยนต์ / Select Car Brand - </option> 
-                                @foreach($car_brand as $item)
-                                <option 
-                                value="{{ $item->brand }}" 
-                                {{ request('brand') == $item->brand ? 'selected' : ''   }} >
-                                {{ $item->brand }} 
-                                </option>
-                                @endforeach                                     
+                        <select name="brand" id="brand" class="form-control" required>
+                            <option value="" selected > - เลือกยี่ห้อรถยนต์ / Select Car Brand - </option> 
+                            @foreach($car_brand as $item)
+                            <option 
+                            value="{{ $item->brand }}" 
+                            {{ request('brand') == $item->brand ? 'selected' : ''   }} >
+                            {{ $item->brand }} 
+                            </option>
+                            @endforeach                                     
                         </select>
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
@@ -74,7 +84,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
-                        <select name="province" id="province" class="form-control">
+                        <select name="province" id="province" class="form-control" required>
                                 <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
                                 @foreach($location_array as $lo)
                                 <option 

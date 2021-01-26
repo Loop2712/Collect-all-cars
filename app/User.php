@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function register_car(){
+        return $this->hasMany('App\Models\Register_car', 'user_id');
+    }
 }

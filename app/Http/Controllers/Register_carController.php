@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use Illuminate\Support\Facades\DB;
 use App\CarModel;
 use App\county;
+use App\User;
 use App\Models\Register_car;
 use Illuminate\Http\Request;
 
@@ -56,12 +58,10 @@ class Register_carController extends Controller
             ->groupBy('brand')
             ->get();
 
-        // $car_model = CarModel::selectRaw('brand')
-        //     ->where('brand', $car_brand)
-        //     ->groupBy('brand')
-        //     ->get();
+        $register_car = Register_car::select('brand', 'generation', 'registration_number', 'province', 'phone')
+            ->get();
 
-        return view('register_car.create', compact('location_array', 'car_brand'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'register_car'));
     }
 
     /**
