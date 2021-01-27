@@ -26,4 +26,9 @@ class CarModel extends Model
      * @var array
      */
     protected $fillable = ["price", "type", "brand", "model", "submodel", "year", "motor", "gear", "seats", "distance", "color","image", "location", "link", "car_id_detail","clean_at","fuel"];
+
+    public function order_products(){
+        return $this->hasMany('App\Wishlist', 'product_id'); 
+    } 
+
 }

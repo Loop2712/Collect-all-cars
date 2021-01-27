@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','username',
+        'name', 'email', 'password','username','phone','brith','sex','photo',
     ];
 
     /**
@@ -40,4 +40,9 @@ class User extends Authenticatable
     public function register_car(){
         return $this->hasMany('App\Models\Register_car', 'user_id');
     }
+
+    public function order_products(){
+        return $this->hasMany('App\Wishlist', 'user_id'); 
+    }  
+
 }

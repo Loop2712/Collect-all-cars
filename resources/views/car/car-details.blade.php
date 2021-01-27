@@ -21,6 +21,8 @@
                 <div class="col-lg-3">
                     <div class="car__details__sidebar">
                         <div class="car__details__sidebar__model">
+                        <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <ul>
                                 <li>Brand <span>{{ $data->brand  }}</span></li>
                                 <li>Model <span>{{ $data->model  }}  {{ $data->submodel  }}</span></li>
@@ -35,7 +37,10 @@
                                 <li>น้ำมัน <span>{{ $data->fuel  }}</span></li>
                                 <li>สถานที่ <span>{{ $data->location  }}</span></li>
                             </ul>
-                        
+                           
+                            <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $data->id}}" >
+                            <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                            <input class="d-none" name="price" type="number" id="price" value="{{$data->price}}" >
                         </div>
                         <div class="car__details__sidebar__payment">
                             <ul>
@@ -43,6 +48,10 @@
                             </ul>
                             <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i> Buy at ...</a>
                         </div>
+                            <button type="submit" class="btn btn-sm btn-warning" >
+                                <i class="fa fa-shopping-cart"></i> เพิ่มเป็นรายการโปรด
+                            </button> 
+                        </form>
                     </div>
                 </div>
             </div>

@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('deliver', 'DeliverController')->except(['index']);
 	Route::resource('guest', 'GuestController')->except(['index']);
 	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
+	Route::resource('wishlist', 'WishlistController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -81,3 +82,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('profanity', 'ProfanityController');
 });
 // END ADMIN VIICHECK
+
+
