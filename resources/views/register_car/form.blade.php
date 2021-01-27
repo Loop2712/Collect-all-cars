@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
+            <a class="btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
             <br><br>
             <!-- ข้อมูลเจ้าของรถ -->
             <div class="row">
@@ -76,7 +77,7 @@
                             <option>อื่นๆ</option>                                   
                         </select>
 
-                        <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}"  placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" required  placeholder="ยี่ห้อรถของคุณ / Your brand">
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -87,7 +88,7 @@
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                         <input class="form-control" name="generation" type="text" id="generation" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถยนต์ของคุณ / Your car model" required>
 
-                        <input class="form-control" name="generation" type="text" id="generation" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" required>
+                        <input class="form-control" name="generation" type="text" id="generation_input" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" required>
                         {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>

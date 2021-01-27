@@ -70,7 +70,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'register_car'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'register_car', 'user'));
     }
 
     /**
