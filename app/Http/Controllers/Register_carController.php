@@ -56,6 +56,7 @@ class Register_carController extends Controller
             ->orderByRaw('count DESC')
             ->where('brand', '!=',"" )
             ->groupBy('brand')
+            ->limit(10)
             ->get();
 
         $user = Auth::user();
