@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('guest', 'GuestController')->except(['index']);
 	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
 	Route::resource('wishlist', 'WishlistController');
+
+	Route::resource('profile', 'ProfileController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

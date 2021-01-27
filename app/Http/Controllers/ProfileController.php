@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -14,9 +15,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $data = User::get();
+        $id = Auth::id();
+        $data = User::findOrFail($id);
 
         return view('ProfileUser/Profile' , compact('data') );
+
     }
 
     /**
@@ -48,7 +51,9 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = User::findOrFail($id);
+
+        return view('ProfileUser/Profile' , compact('data') );
     }
 
     /**
@@ -59,7 +64,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = User::findOrFail($id);
+
+        return view('ProfileUser/edit', compact('data'));
     }
 
     /**
@@ -71,7 +78,12 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $requestData = $request->all();
+        
+        $data = User::findOrFail($id);
+        $data->update($requestData);
+
+        return redirect('profile')->with('flash_message', 'profile updated!');
     }
 
     /**
