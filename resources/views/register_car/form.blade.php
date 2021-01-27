@@ -11,7 +11,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                         <p>คุณ : {{ Auth::user()->name }}</p>
-                        <p>เบอร์โทรศัพท์ : </p>
+                        <p>เบอร์โทรศัพท์ : {{ Auth::user()->phone }}</p>
                         <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
                         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                     </div>
@@ -38,17 +38,33 @@
             <br>
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
             <br><br>
+            <input type="radio" name="car_type" required onclick="
+                document.querySelector('#div_data').classList.remove('d-none'),
+                document.querySelector('#brand_input').classList.add('d-none'),
+                document.querySelector('#brand').classList.remove('d-none');">
+            &nbsp;&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
+
+            <input type="radio" name="car_type" onclick="
+                document.querySelector('#div_data').classList.remove('d-none'),
+                document.querySelector('#brand_input').classList.remove('d-none'),
+                document.querySelector('#brand').classList.add('d-none');">
+            &nbsp;&nbsp; มอเตอร์ไซต์ / Motorcycle
+            <br><br>
             <!-- ข้อมูลรถ -->
-            <div class="row">
+            <div class="d-none row" id="div_data">
                 <div class="col-12 col-md-2">
-                    <label for="brand" class="control-label">{{ 'ยี่ห้อรถยนต์ / Car Brand' }}</label><span style="color: #FF0033;"> *</span>
+                    <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถยนต์ / Car Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" required placeholder="ยี่ห้อรถยนต์ของคุณ / Your car brand">
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!} -->
 
-                        <select name="brand" id="brand" class="form-control" required>
+                        <select name="brand" id="brand" class="form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#brand_input').classList.remove('d-none'),
+                                document.querySelector('#brand').classList.add('d-none'),
+                                document.querySelector('#brand_input').focus();
+                            }">
                             <option value="" selected > - เลือกยี่ห้อรถยนต์ / Select Car Brand - </option> 
                             @foreach($car_brand as $item)
                             <option 
@@ -56,8 +72,11 @@
                             {{ request('brand') == $item->brand ? 'selected' : ''   }} >
                             {{ $item->brand }} 
                             </option>
-                            @endforeach                                     
+                            @endforeach  
+                            <option>อื่นๆ</option>                                   
                         </select>
+
+                        <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}"  placeholder="ยี่ห้อรถของคุณ / Your brand">
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -67,10 +86,13 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                         <input class="form-control" name="generation" type="text" id="generation" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถยนต์ของคุณ / Your car model" required>
+
+                        <input class="form-control" name="generation" type="text" id="generation" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" required>
                         {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <br><br><br>
+                
                 <div class="col-12 col-md-2">
                     <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration number' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
