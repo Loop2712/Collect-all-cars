@@ -25,7 +25,7 @@ class Register_car extends Model
      *
      * @var array
      */
-    protected $fillable = ['brand', 'generation', 'year', 'registration_number', 'province', 'name', 'phone', 'user_id', 'provider_id', 'active'];
+    protected $fillable = ['brand', 'generation', 'year', 'registration_number', 'province', 'name', 'phone', 'user_id', 'provider_id', 'active', 'car_type'];
 
     public function user(){
         return $this->belongsTo('App\User', 'user_id' , 'id'); 

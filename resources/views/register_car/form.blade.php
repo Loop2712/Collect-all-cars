@@ -39,13 +39,13 @@
             <br>
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
             <br><br>
-            <input type="radio" name="car_type" required onclick="
+            <input type="radio" name="car_type" required value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
                 document.querySelector('#brand_input').classList.add('d-none'),
                 document.querySelector('#brand').classList.remove('d-none');">
             &nbsp;&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
 
-            <input type="radio" name="car_type" onclick="
+            <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
                 document.querySelector('#brand_input').classList.remove('d-none'),
                 document.querySelector('#brand').classList.add('d-none');">
@@ -77,7 +77,7 @@
                             <option>อื่นๆ</option>                                   
                         </select>
 
-                        <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" required  placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                         <input class="form-control" name="generation" type="text" id="generation" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถยนต์ของคุณ / Your car model" required>
 
-                        <input class="form-control" name="generation" type="text" id="generation_input" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" required>
+                        <!-- <input class="form-control" name="generation" type="text" id="generation_input" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" > -->
                         {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
