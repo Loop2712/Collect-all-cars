@@ -1,10 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <div class="container">
+    <br><br>
         <div class="row">
+        @include('layouts.sidebar')
+            <div class="col-lg-9 col-md-9">
                 <div class="card">
-                    <div class="card-header">Edit Guest #{{ $data->id }}</div>
+                    <div class="card-header">แก้ไขข้อมูลส่วนตัว</div>
                     <div class="card-body">
                         <a href="{{ url('/profile') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
@@ -29,6 +32,7 @@
 
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>

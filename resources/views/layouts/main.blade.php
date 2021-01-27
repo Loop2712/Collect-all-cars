@@ -58,13 +58,23 @@
                                 <ul>
                         @guest
                             <li >
-                                <a  href="{{ route('login') }}" ><i class="fas fa-user"></i>   {{ __('Login') }}</a>
-                            </li>  
+                                <a  href="{{ route('login') }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                            </li> 
+                            <li >
+                                <a  href="{{ route('login') }}" >ขายรถ</a>
+                            </li> 
+                             
                         @else
+                            <li >
+                                <a  href="{{ url('/profile') }}" >ขายรถ</a>
+                            </li> 
                             <li>
                                 <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
                                 {{ Auth::user()->name }}</a>
                                     <ul class="dropdown">
+                                        <li>
+                                            <a href="{{ url('/profile') }}" > Profile</a>
+                                        </li>
                                         <li>
                                             <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}</a>
@@ -76,6 +86,7 @@
                                                 </li>
                                             @endif
                                         @endif
+                                        
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

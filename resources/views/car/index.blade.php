@@ -2,6 +2,7 @@
 
 @section('content')
 
+<section>
 <section class="hero spad set-bg" data-setbg="https://images.pexels.com/photos/57409/ford-mustang-stallion-red-57409.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
         <div class="container">
             <div class="row">
@@ -160,7 +161,26 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+            
+            </div>
         </div>
+        </section>
+        <section>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-6"></div>
+
+            <div class="col-6"></div>
+        </div>
+    
+    
+    
+    </div>
+   
     </section>
+    </section>
+    
 
 @endsection

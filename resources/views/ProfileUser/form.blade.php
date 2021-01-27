@@ -7,12 +7,12 @@
           <br><br>
           <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label">{{ 'รูปภาพ  / Photo ' }}</label></label>
+                    <label  class="control-label">{{ 'รูปภาพ  / Photo ' }}</label></label>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('photo ') ? 'has-error' : ''}}">
-                    <input class="form-control" name="photo " type="file" id="photo " value="{{ isset($data->photo ) ? $data->photo  : ''}}" >
-                        {!! $errors->first('photo ', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('avatar ') ? 'has-error' : ''}}">
+                    <input class="form-control" name="avatar " type="file" id="avatar " value="{{ isset($data->avatar ) ? $data->avatar  : ''}}" >
+                        {!! $errors->first('avatar ', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
             </div>
