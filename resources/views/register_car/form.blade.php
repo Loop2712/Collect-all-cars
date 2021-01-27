@@ -52,6 +52,61 @@
             &nbsp;&nbsp; มอเตอร์ไซต์ / Motorcycle
             <br><br>
             <!-- ข้อมูลรถ -->
+            <div>
+                <select id="input_car_brand" onchange="showCar_brand()">
+                    <option selected value="">กรุณาเลือกยี่ห้อ</option>
+                </select>
+            </div>
+            <div>
+                <select id="input_car_model" onchange="showCar_model()">
+                    <option selected value="">กรุณาเลือกรุ่น</option>
+                </select>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    console.log("START");
+                    showCar_brand();    
+                });
+                function showCar_brand(){
+                    //PARAMETERS
+                    fetch("{{ url('/') }}/api/car_brand")
+                        .then(response => response.json())
+                        .then(result => {
+                            console.log(result);
+                            //UPDATE SELECT OPTION
+                            let input_car_brand = document.querySelector("#input_car_brand");
+                            input_car_brand.innerHTML = "";
+                            for(let item of result){
+                                let option = document.createElement("option");
+                                option.text = item.brand;
+                                option.value = item.brand;
+                                input_car_brand.add(option);                
+                            }
+                            //QUERY model
+                            showCar_model();
+                        });
+                }
+                function showCar_model(){
+                    let input_car_brand = document.querySelector("#input_car_brand");
+                    fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
+                        .then(response => response.json())
+                        .then(result => {
+                            console.log(result);
+                            //UPDATE SELECT OPTION
+                            let input_car_model = document.querySelector("#input_car_model");
+                            input_car_model.innerHTML = "";
+                            for(let item of result){
+                                let option = document.createElement("option");
+                                option.text = item.model;
+                                option.value = item.model;
+                                input_car_model.add(option);                
+                            } 
+                        });
+                }
+                
+            </script>
+            
+            <br><br><br><br><br>
             <div class="d-none row" id="div_data">
                 <div class="col-12 col-md-2">
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>

@@ -8,21 +8,24 @@ use App\CarModel;
 
 class CarbrandController extends Controller
 {
-    public function car_brand()
-	  {
-	   $car_brand = CarModel::selectRaw('brand,count(brand) as count')
+	public function getBrand()
+    {
+        $car_brand = CarModel::selectRaw('brand,count(brand) as count')
             ->orderByRaw('count DESC')
             ->where('brand', '!=',"" )
             ->groupBy('brand')
             ->get();
-	    return response()->json($car_brand);
-	  }
+        return $car_brand;
+    }
+    public function getModel($car_brand)
+    {
+        $car_model = CarModel::selectRaw('model,count(model) as count')
+        	->orderByRaw('count DESC')
+            ->where('model', '!=',"" )
+            ->where('brand', $car_brand )
+            ->groupBy('model')
+            ->get();
+        return $car_model;
+    }
 
-	public function car_model($car_brand)
-	  {
-	    $car_model = CarModel::where('brand',$car_brand_code)
-	      ->groupBy('model')
-	      ->get();
-	    return response()->json($car_model);
-	  }
 }
