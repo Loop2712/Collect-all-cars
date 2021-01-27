@@ -54,7 +54,7 @@
             <!-- ข้อมูลรถ -->
             <div class="d-none row" id="div_data">
                 <div class="col-12 col-md-2">
-                    <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถยนต์ / Car Brand' }}</label><span style="color: #FF0033;"> *</span>
+                    <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="generation" class="control-label">{{ 'รุ่นรถยนต์ / Car Model' }}</label><span style="color: #FF0033;"> *</span>
+                    <label for="generation" class="control-label">{{ 'รุ่นรถ / Model' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
