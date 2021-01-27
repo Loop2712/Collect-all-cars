@@ -59,7 +59,7 @@ class WishlistController extends Controller
         
         Wishlist::create($requestData);
 
-        return redirect('wishlist')->with('flash_message', 'Wishlist added!');
+        return redirect('car')->with('flash_message', 'car added!');
     }
 
     /**
@@ -85,9 +85,7 @@ class WishlistController extends Controller
      */
     public function edit($id)
     {
-        $wishlist = Wishlist::findOrFail($id);
 
-        return view('wishlist.edit', compact('wishlist'));
     }
 
     /**
@@ -106,7 +104,7 @@ class WishlistController extends Controller
         $wishlist = Wishlist::findOrFail($id);
         $wishlist->update($requestData);
 
-        return redirect('wishlist')->with('flash_message', 'Wishlist updated!');
+        return redirect('wishlist')->with('flash_message', 'wishlist updated!');
     }
 
     /**
