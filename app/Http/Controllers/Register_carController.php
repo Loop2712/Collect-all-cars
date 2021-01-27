@@ -11,6 +11,7 @@ use App\county;
 use App\User;
 use App\Models\Register_car;
 use Illuminate\Http\Request;
+use Auth;
 
 class Register_carController extends Controller
 {
@@ -47,7 +48,6 @@ class Register_carController extends Controller
      */
     public function create()
     {
-
         $location_array = county::selectRaw('province')
             ->groupBy('province')
             ->get();
@@ -58,12 +58,18 @@ class Register_carController extends Controller
             ->groupBy('brand')
             ->get();
 
-        // $register_car = Register_car::select('brand', 'generation', 'registration_number', 'province', 'phone')
-        //     ->where('registration_number', "" )
-        //     ->where('province', "" )
-        //     ->get();
+        $user = Auth::user();
 
-        return view('register_car.create', compact('location_array', 'car_brand'));
+        $register_car = Register_car::select('brand', 'generation', 'registration_number', 'province')
+            ->where('user_id', $user->id)
+            ->get();
+
+        // echo "<pre>";
+        // print_r($register_car);
+        // echo "</pre>";
+        // exit();
+
+        return view('register_car.create', compact('location_array', 'car_brand', 'register_car'));
     }
 
     /**

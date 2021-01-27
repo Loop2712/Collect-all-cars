@@ -37,7 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function register_car(){
+    public function register_cars(){
         return $this->hasMany('App\Models\Register_car', 'user_id');
     }
 

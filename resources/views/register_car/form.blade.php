@@ -11,10 +11,18 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                         <p>คุณ : {{ Auth::user()->name }}</p>
-                        <p>เบอร์โทรศัพท์ : 0999999999</p>
+                        <p>เบอร์โทรศัพท์ : </p>
                         <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
                         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                     </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label class="control-label">{{ 'รถที่คุณลงทะเบียน' }}</label>
+                </div>
+                <div class="col-12 col-md-4">
+                    @foreach($register_car as $item)
+                        <p class="text-dark">{{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                    @endforeach
                 </div>
 
                 <!-- <div class="col-12 col-md-2">
