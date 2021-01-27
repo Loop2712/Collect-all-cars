@@ -1,15 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <div class="container">
+    <br><br>
         <div class="row">
-            @include('admin.sidebar')
+        @include('layouts.sidebar')
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Edit Post #{{ $post->id }}</div>
+                    <div class="card-header">Edit Sell #{{ $sell->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/posts') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/sell') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,11 +22,11 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/posts/' . $post->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/sell/' . $sell->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('admin.posts.form', ['formMode' => 'edit'])
+                            @include ('sell.form', ['formMode' => 'edit'])
 
                         </form>
 

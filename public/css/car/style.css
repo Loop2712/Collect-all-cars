@@ -405,7 +405,7 @@ ol {
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
-	margin-right: 60px;
+	margin-left: 60px;
 	position: relative;
 }
 

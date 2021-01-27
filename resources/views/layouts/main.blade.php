@@ -65,9 +65,7 @@
                             </li> 
                              
                         @else
-                            <li >
-                                <a  href="{{ url('/profile') }}" >ขายรถ</a>
-                            </li> 
+                            
                             <li>
                                 <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
                                 {{ Auth::user()->name }}</a>
@@ -93,6 +91,9 @@
                                         </form>
                                     </ul>
                             </li>
+                            <li >
+                                <a  href="{{ url('/sell') }}" >ขายรถ</a>
+                            </li> 
                         @endguest
                         </ul>
                         </nav>

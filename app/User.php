@@ -41,8 +41,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Register_car', 'user_id');
     }
 
-    public function order_products(){
+    public function products(){
         return $this->hasMany('App\Wishlist', 'user_id'); 
     }  
+
+    public function sell(){
+        return $this->hasMany('App\Sell', 'user_id'); 
+    }   
 
 }

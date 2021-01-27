@@ -27,7 +27,7 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
 
 Route::get('/cars', function () {
-    return view('car/create');
+    return view('sell/index');
 });
 
 Route::get('/terms_of_service', function () {
@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('guest', 'GuestController')->except(['index']);
 	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
 	Route::resource('wishlist', 'WishlistController');
+	Route::resource('sell', 'SellController');
 	Route::resource('profile', 'ProfileController');
 });
 
@@ -83,3 +84,4 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('profanity', 'ProfanityController');
 });
 // END ADMIN VIICHECK
+

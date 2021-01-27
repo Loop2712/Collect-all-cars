@@ -7,10 +7,10 @@
         </div>
         <div class="row">
         <a href="{{ url('/wishlist' ) }}">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> รายการโปรด </a><br><br>
+        <i class="fa fa-heart" aria-hidden="true"></i> รายการโปรด </a><br><br>
         </div>
         <div class="row">
-        <a href="{{ url('/profile' ) }}">
+        <a href="{{ url('/sell' ) }}">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> ขายรถ </a><br><br>
         </div>
         

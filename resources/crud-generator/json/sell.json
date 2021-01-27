@@ -1,0 +1,64 @@
+{
+    "fields": [
+        {
+            "name": "price",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "brand",
+            "type": "string"
+        },
+        {
+            "name": "model",
+            "type": "string"
+        },
+        {
+            "name": "submodel",
+            "type": "string"
+        },
+        {
+            "name": "year",
+            "type": "string"
+        },
+        {
+            "name": "motor",
+            "type": "string"
+        },
+        {
+            "name": "gear",
+            "type": "string"
+        },
+        {
+            "name": "seats",
+            "type": "string"
+        },
+        {
+            "name": "distance",
+            "type": "string"
+        },
+        {
+            "name": "color",
+            "type": "string"
+        },
+        {
+            "name": "image",
+            "type": "string"
+        },
+        {
+            "name": "location",
+            "type": "string"
+        },
+        {
+            "name": "fuel",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        }
+    ]
+}
