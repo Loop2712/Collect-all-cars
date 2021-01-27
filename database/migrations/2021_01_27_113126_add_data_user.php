@@ -14,7 +14,6 @@ class AddDataUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('phone')->nullable();
             $table->date('brith')->nullable();
             $table->integer('sex')->nullable();
             $table->string('photo')->nullable();
