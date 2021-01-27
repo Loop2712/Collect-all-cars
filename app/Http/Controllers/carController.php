@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CarModel;
 use App\county;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -171,7 +172,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('car.create');
+        return view('sell_car.create');
     }
 
     /**
@@ -182,11 +183,13 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+                
         $requestData = $request->all();
+        $requestData['user_id'] = Auth::id();
         
-        CarModel::create($requestData);
+        Wishlist::create($requestData);
 
-        return redirect('car')->with('flash_message', 'car added!');
+        return redirect('sel_car')->with('flash_message', 'car added!');
     }
 
     /**

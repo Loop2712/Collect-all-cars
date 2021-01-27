@@ -9,8 +9,9 @@
             <div class="col-lg-9 col-md-9">
                 <div class="card">
                     <div class="card-header"> <h3>ข้อมูลส่วนบุคคล / Personal information </h3> </div>
-                    <div>
+                    
                          <br/><br/>
+                         <section class="car-body">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
@@ -81,10 +82,11 @@
                                 <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="Edit Wishlist"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                 <br/><br/>
                         </div>
+                        </section>
                         
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    
 @endsection
