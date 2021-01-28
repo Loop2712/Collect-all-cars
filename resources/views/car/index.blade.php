@@ -166,19 +166,64 @@
             </div>
         </div>
         </section>
-        <section>
-    <br><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-6"></div>
-
-            <div class="col-6"></div>
+        <section class="car spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span></span>
+                        <h2>รถใหม่ วันนี้</h2>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                    @foreach($data as $item)
+                        <div class="col-lg-4 col-md-4">
+                        
+                            <div class="car__item">
+                                <div class="car__item__pic__slider owl-carousel">
+                                    @if($item->image == "" )
+                                        <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
+                                    @else
+                                        <img src="{{ url('/image/'.$item->id ) }}" alt="" > 
+                                    @endif
+                                </div>
+                                <div class="car__item__text">
+                                    <div class="car__item__text__inner">
+                                        <div class="label-date">{{ $item->year  }}</div>
+                                        <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
+                                        <ul>
+                                            <li><span><i class="fas fa-road"></i>     {{ $item->distance  }}   km</span></li>
+                                            <li><span><i class="fas fa-palette"></i>  {{ $item->color  }}</span></li>
+                                        </ul>
+                                        <ul>
+                                            <li><span> <i class="fas fa-cogs"></i>   {{ $item->gear  }}</span></li>
+                                        </ul>
+                                        <ul>
+                                            <li><span><i class="fas fa-gas-pump"></i> {{ $item->fuel  }}</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="car__item__price">
+                                        <span class="car-option"><a href="{{ url('/car/'.$item->id ) }}"></a>view</span>
+                                        <h6>{{ $item->price}}<span>บาท</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        @endforeach 
+                    </div>
+                    <ul class="pagination">
+                    <span>
+                    {{ $data->links() }}
+                    </span> 
+                    </ul>
+                </div>
+                
+                
+            
         </div>
-    
-    
-    
-    </div>
-   
     </section>
     </section>
     

@@ -54,9 +54,13 @@
                 <div class="col-lg-10">
                     <div class="header__nav">
                         <nav class="header__menu">
-                                <!-- <a href="#"><i class="fas fa-shopping-basket"></i></a> -->
+                                
                                 <ul>
+                                
                         @guest
+                            <li>
+                                <a href="{{ route('login') }}"><i class="fas fa-heart"></i></a>
+                            </li>
                             <li >
                                 <a  href="{{ route('login') }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
                             </li> 
@@ -65,7 +69,9 @@
                             </li> 
                              
                         @else
-                            
+                            <li>
+                                <a href="{{ url('/sell') }}"><i class="fas fa-heart"></i></a>
+                            </li>
                             <li>
                                 <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
                                 {{ Auth::user()->name }}</a>

@@ -109,6 +109,11 @@ class CarController extends Controller
 
     public function main(Request $request)
     {
+        $perPage=20;
+
+        $date = date("Y-m-d");
+        $data =CarModel::whereDate('created_at', $date)
+                    ->paginate($perPage);
         
         $brand_array = CarModel::selectRaw('brand,count(brand) as count')
             ->where('brand', '!=',"" )
@@ -146,7 +151,7 @@ class CarController extends Controller
             ->get();
 
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('car.index',compact('brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
+        return view('car.index',compact('data','brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
     }
 
     
