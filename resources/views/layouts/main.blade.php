@@ -13,11 +13,12 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <!-- Css Styles -->
     <!-- <link rel="stylesheet" href="{{ asset('css/car/bootstrap.min.css')}}" type="text/css"> -->
-    <link rel="stylesheet" href="{{ asset('css/car/font-awesome.min.css')}}" type="text/css">
+    <!-- <link rel="stylesheet" href="{{ asset('css/car/font-awesome.min.css')}}" type="text/css"> -->
     <link rel="stylesheet" href="{{ asset('css/car/elegant-icons.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/nice-select.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/magnific-popup.css')}}" type="text/css">
