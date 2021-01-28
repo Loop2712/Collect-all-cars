@@ -1,45 +1,47 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <!-- <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
             <a class="btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
-            <br><br> -->
-            <!-- ข้อมูลเจ้าของรถ -->
+            <br><br>
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
-                    <a class="btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
-                    <br><br>
-                </div>
-                <div class="col-12 col-md-6">
-                    <span style="font-size: 22px;" class="control-label">{{ 'รถที่คุณลงทะเบียน'}}&nbsp;&nbsp;&nbsp;</span>
-                    <br><br>
-                </div>
-                <div class="col-12 col-md-2">
-                    <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                        <p>คุณ : {{ Auth::user()->name }}</p>
-                        <p>เบอร์โทรศัพท์ : {{ Auth::user()->phone }}</p>
-                        <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
-                        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+                <!-- ซ้าย -->
+                <div class="col-12 col-md-5">
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label><span style="color: #FF0033;"> *</span>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+                                <p>คุณ : {{ Auth::user()->name }}</p>
+                                <p>เบอร์โทรศัพท์ : {{ Auth::user()->phone }}</p>
+                                <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
+                                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
-                    <h1><i class="fas fa-car text-danger"></i></h1>
-                    @foreach($car as $item)
-                        <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
-                    @endforeach
+                <!-- ขวา -->
+                <div class="col-12 col-md-7">
+                    <p>รถที่คุณลงทะเบียนแล้ว</p>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h1><i class="fas fa-car text-danger"></i></h1>
+                            @foreach($car as $item)
+                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                            @endforeach
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h1><i class="fas fa-motorcycle text-success"></i></h1>
+                            @foreach($motorcycle as $item)
+                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-md-3">
-                    <h1><i class="fas fa-motorcycle text-success"></i></h1>
-                    @foreach($motorcycle as $item)
-                        <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
-                    @endforeach
-                </div>
-                
-
+            </div>
+            <!-- ข้อมูลเจ้าของรถ -->
+            <div class="row">
                 <!-- <div class="col-12 col-md-2">
                     <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
