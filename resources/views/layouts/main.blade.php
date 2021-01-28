@@ -70,7 +70,7 @@
                              
                         @else
                             <li>
-                                <a href="{{ url('/sell') }}"><i class="fas fa-heart"></i></a>
+                                <a href="{{ url('/wishlist') }}"><i class="fas fa-heart"></i></a>
                             </li>
                             <li>
                                 <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
