@@ -29,13 +29,13 @@
                 <div class="col-12 col-md-3">
                     <h1><i class="fas fa-car text-danger"></i></h1>
                     @foreach($car as $item)
-                        <p class="text-dark">{{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                        <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
                     @endforeach
                 </div>
                 <div class="col-12 col-md-3">
                     <h1><i class="fas fa-motorcycle text-success"></i></h1>
                     @foreach($motorcycle as $item)
-                        <p class="text-dark">{{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                        <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
                     @endforeach
                 </div>
                 
