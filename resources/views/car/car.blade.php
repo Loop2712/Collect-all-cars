@@ -8,7 +8,7 @@
                     <div class="car__sidebar">
                         <div class="car__search">
                             <h5>Car Search</h5>
-                            <form action="{{URL::to('/car')}}" method="get">
+                            <form action="{{URL::to('/car')}}" method="get" class="form-inline my-2 my-lg-0 float-right">
                                 <input type="text" placeholder="Search..." name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>

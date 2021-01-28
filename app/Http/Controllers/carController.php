@@ -111,9 +111,12 @@ class CarController extends Controller
     {
         $perPage=20;
 
-        $date = date("Y-m-d");
-        $data =CarModel::whereDate('created_at', $date)
-                    ->paginate($perPage);
+        $d1=strtotime("-1 Day");
+        $d2=date("Y-m-d ");
+        $d3 = date("Y-m-d ", $d1);
+        $data =CarModel::whereDate('created_at', $d2)
+            ->whereDate('created_at', $d3)
+            ->paginate($perPage);
         
         $brand_array = CarModel::selectRaw('brand,count(brand) as count')
             ->where('brand', '!=',"" )
@@ -157,7 +160,9 @@ class CarController extends Controller
     
     public function image($id)
     {
-         $data = CarModel::select('image')
+        
+        
+        $data = CarModel::select('image')
          ->where('id',$id)->first();
         // $data = data_cars::findOrFail($id);
         //$data = "$id";
