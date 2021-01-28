@@ -115,7 +115,7 @@ class CarController extends Controller
         $d2=date("Y-m-d ");
         $d3 = date("Y-m-d ", $d1);
         $data =CarModel::whereDate('created_at', $d2)
-            ->whereDate('created_at', $d3)
+            ->orwhereDate('created_at', $d3)
             ->paginate($perPage);
         
         $brand_array = CarModel::selectRaw('brand,count(brand) as count')
