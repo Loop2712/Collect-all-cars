@@ -61,8 +61,14 @@ class Register_carController extends Controller
 
         $user = Auth::user();
 
-        $register_car = Register_car::select('brand', 'generation', 'registration_number', 'province')
+        $car = Register_car::select('brand', 'generation', 'registration_number', 'province')
             ->where('user_id', $user->id)
+            ->where('car_type', 'car')
+            ->get();
+
+        $motorcycle = Register_car::select('brand', 'generation', 'registration_number', 'province')
+            ->where('user_id', $user->id)
+            ->where('car_type', 'motorcycle')
             ->get();
 
         // echo "<pre>";
@@ -70,7 +76,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'register_car', 'user', 'car_brand'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle'));
     }
 
     /**

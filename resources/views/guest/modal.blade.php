@@ -13,7 +13,7 @@
 	    		<br><br>
 	    		<p style="color: #000;font-size: 16px;"><b>กรุณาเลือก Social ในการรับข้อความตอบกลับ</b></p>
 	    		<p style="color: red;">แนะนำ Line</p>
-	    		<a href="{{ url('/guest/create') }}" title="Back"><button class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>&nbsp;&nbsp; ตกลง</button></a>
+	    		<a href="{{ url('/guest/create') }}"><button class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>&nbsp;&nbsp; ตกลง</button></a>
 	    	</div>
     	</center>
     </div>
