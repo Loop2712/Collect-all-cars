@@ -13,6 +13,7 @@ class CarbrandController extends Controller
         $car_brand = CarModel::selectRaw('brand,count(brand) as count')
             ->orderByRaw('count DESC')
             ->where('brand', '!=',"" )
+            ->limit(10)
             ->groupBy('brand')
             ->get();
         return $car_brand;
@@ -23,6 +24,7 @@ class CarbrandController extends Controller
         	->orderByRaw('count DESC')
             ->where('model', '!=',"" )
             ->where('brand', $car_brand )
+            ->limit(10)
             ->groupBy('model')
             ->get();
         return $car_model;

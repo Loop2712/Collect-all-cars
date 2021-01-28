@@ -42,97 +42,38 @@
             <input type="radio" name="car_type" required value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
                 document.querySelector('#brand_input').classList.add('d-none'),
-                document.querySelector('#brand').classList.remove('d-none');">
+                document.querySelector('#generation_input').classList.add('d-none'),
+                document.querySelector('#input_car_model').classList.remove('d-none'),
+                document.querySelector('#input_car_brand').classList.remove('d-none');">
             &nbsp;&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
 
             <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
                 document.querySelector('#brand_input').classList.remove('d-none'),
-                document.querySelector('#brand').classList.add('d-none');">
+                document.querySelector('#generation_input').classList.remove('d-none'),
+                document.querySelector('#input_car_model').classList.add('d-none'),
+                document.querySelector('#input_car_brand').classList.add('d-none');">
             &nbsp;&nbsp; มอเตอร์ไซต์ / Motorcycle
             <br><br>
             <!-- ข้อมูลรถ -->
-            <div>
-                <select id="input_car_brand" onchange="showCar_brand()">
-                    <option selected value="">กรุณาเลือกยี่ห้อ</option>
-                </select>
-            </div>
-            <div>
-                <select id="input_car_model" onchange="showCar_model()">
-                    <option selected value="">กรุณาเลือกรุ่น</option>
-                </select>
-            </div>
-            <script>
-                document.addEventListener('DOMContentLoaded', (event) => {
-                    console.log("START");
-                    showCar_brand();    
-                });
-                function showCar_brand(){
-                    //PARAMETERS
-                    fetch("{{ url('/') }}/api/car_brand")
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log(result);
-                            //UPDATE SELECT OPTION
-                            let input_car_brand = document.querySelector("#input_car_brand");
-                            input_car_brand.innerHTML = "";
-                            for(let item of result){
-                                let option = document.createElement("option");
-                                option.text = item.brand;
-                                option.value = item.brand;
-                                input_car_brand.add(option);                
-                            }
-                            //QUERY model
-                            showCar_model();
-                        });
-                }
-                function showCar_model(){
-                    let input_car_brand = document.querySelector("#input_car_brand");
-                    fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log(result);
-                            //UPDATE SELECT OPTION
-                            let input_car_model = document.querySelector("#input_car_model");
-                            input_car_model.innerHTML = "";
-                            for(let item of result){
-                                let option = document.createElement("option");
-                                option.text = item.model;
-                                option.value = item.model;
-                                input_car_model.add(option);                
-                            } 
-                        });
-                }
-                
-            </script>
-            
-            <br><br><br><br><br>
             <div class="d-none row" id="div_data">
                 <div class="col-12 col-md-2">
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
-                        <!-- <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" required placeholder="ยี่ห้อรถยนต์ของคุณ / Your car brand">
-                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!} -->
-
-                        <select name="brand" id="brand" class="form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                        <select class="d-none form-control" id="input_car_brand" required  onchange="showCar_model();
+                                if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
-                                document.querySelector('#brand').classList.add('d-none'),
+                                document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#brand_input').focus();
-                            }">
-                            <option value="" selected > - เลือกยี่ห้อรถยนต์ / Select Car Brand - </option> 
-                            @foreach($car_brand as $item)
-                            <option 
-                            value="{{ $item->brand }}" 
-                            {{ request('brand') == $item->brand ? 'selected' : ''   }} >
-                            {{ $item->brand }} 
-                            </option>
-                            @endforeach  
-                            <option>อื่นๆ</option>                                   
+                            }else{ 
+                                document.querySelector('#brand_input').classList.add('d-none'),
+                                document.querySelector('#generation_input').classList.add('d-none');}">
+                            <option> - เลือกยี่ห้อ / Select Brand - </option>
                         </select>
-
-                        <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        <br>
+                    <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -141,9 +82,11 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
-                        <input class="form-control" name="generation" type="text" id="generation" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถยนต์ของคุณ / Your car model" required>
-
-                        <!-- <input class="form-control" name="generation" type="text" id="generation_input" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" > -->
+                        <select name="generation" id="input_car_model" class="d-none form-control" required >
+                                <option  value=""> - เลือกรุ่น / Select Model - </option>                   
+                        </select>
+                        <br>
+                        <input class="d-none form-control" name="generation" type="text" id="generation_input" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
                         {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -176,6 +119,7 @@
                         {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
+
             </div>
             
             
@@ -205,3 +149,55 @@
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        showCar_brand();    
+    });
+    function showCar_brand(){
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/car_brand")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                let input_car_brand = document.querySelector("#input_car_brand");
+                    input_car_brand.innerHTML = "";
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.brand;
+                    option.value = item.brand;
+                    input_car_brand.add(option);
+                }
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_car_brand.add(option); 
+
+                //QUERY model
+                showCar_model();
+            });
+    }
+    function showCar_model(){
+        let input_car_brand = document.querySelector("#input_car_brand");
+        fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                // //UPDATE SELECT OPTION
+                let input_car_model = document.querySelector("#input_car_model");
+                    input_car_model.innerHTML = "";
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.model;
+                    option.value = item.model;
+                    input_car_model.add(option);                
+                } 
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_car_model.add(option);  
+            });
+    }
+    
+</script>
