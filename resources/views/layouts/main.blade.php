@@ -69,6 +69,9 @@
                                     
                                      
                                 @else
+                                    <li >
+                                        <a  href="{{ url('/sell') }}" >ขายรถ</a>
+                                    </li> 
                                     <li>
                                         <a href="{{ url('/wishlist') }}"><i class="fas fa-heart"></i></a>
                                     </li>
@@ -97,9 +100,6 @@
                                                 </form>
                                             </ul>
                                     </li>
-                                    <li >
-                                        <a  href="{{ url('/sell') }}" >ขายรถ</a>
-                                    </li> 
                                 @endguest
                             </ul>
                         </nav>
