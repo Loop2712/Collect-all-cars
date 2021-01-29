@@ -74,9 +74,10 @@ class LoginController extends Controller
         $user = Socialite::driver('facebook')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"facebook");
-
+        
+        echo intended();
         // Return home after login
-        return redirect()->intended();
+        // return redirect()->intended();
     }
 
     // Line login
