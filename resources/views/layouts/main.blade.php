@@ -54,54 +54,54 @@
                 <div class="col-lg-10">
                     <div class="header__nav">
                         <nav class="header__menu">
-                                
-                                <ul>
-                                
-                        @guest
-                            <li>
-                                <a href="{{ route('login') }}"><i class="fas fa-heart"></i></a>
-                            </li>
-                            <li >
-                                <a  href="{{ route('login') }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
-                            </li> 
-                            <li >
-                                <a  href="{{ route('login') }}" >ขายรถ</a>
-                            </li> 
-                             
-                        @else
-                            <li>
-                                <a href="{{ url('/wishlist') }}"><i class="fas fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                {{ Auth::user()->name }}</a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <a href="{{ url('/profile') }}" > Profile</a>
-                                        </li>
-                                        @if(Auth::check())
-                                            @if(Auth::user()->role == "admin" )
+                            <ul>
+                                <li><a href="{{ url('/car') }}" >ซื้อรถมือสอง</a></li>
+                                @guest
+                                    <li >
+                                        <a  href="{{ route('login') }}" >ขายรถ</a>
+                                    </li> 
+                                    <li>
+                                        <a href="{{ route('login') }}"><i class="fas fa-heart"></i></a>
+                                    </li>
+                                    <li >
+                                        <a  href="{{ route('login') }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                                    </li> 
+                                    
+                                     
+                                @else
+                                    <li>
+                                        <a href="{{ url('/wishlist') }}"><i class="fas fa-heart"></i></a>
+                                    </li>
+                                    <li>
+                                        <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                        {{ Auth::user()->name }}</a>
+                                            <ul class="dropdown">
                                                 <li>
-                                                    <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
+                                                    <a href="{{ url('/profile') }}" > Profile</a>
                                                 </li>
-                                            @endif
-                                        @endif
-                                        <li>
-                                            <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}</a>
-                                        </li>
-                                        
+                                                @if(Auth::check())
+                                                    @if(Auth::user()->role == "admin" )
+                                                        <li>
+                                                            <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
+                                                        </li>
+                                                    @endif
+                                                @endif
+                                                <li>
+                                                    <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}</a>
+                                                </li>
+                                                
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                        </form>
-                                    </ul>
-                            </li>
-                            <li >
-                                <a  href="{{ url('/sell') }}" >ขายรถ</a>
-                            </li> 
-                        @endguest
-                        </ul>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                                </form>
+                                            </ul>
+                                    </li>
+                                    <li >
+                                        <a  href="{{ url('/sell') }}" >ขายรถ</a>
+                                    </li> 
+                                @endguest
+                            </ul>
                         </nav>
                     </div>
                 </div>
