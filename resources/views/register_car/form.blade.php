@@ -3,6 +3,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12 col-md-4">
+                    <!-- เบอร์โทร เอาไว้สำหรับแสดงข้อมูลต่อผู้เรียกรถ-->
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                         <input class="form-control" name="phone" type="hidden" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}" readonly>
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
