@@ -15,7 +15,7 @@
             <br>
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
             <br><br>
-            <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
+            <input type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
 
                 document.querySelector('#div_motor_brand').classList.add('d-none'),
@@ -44,14 +44,14 @@
             &nbsp;&nbsp; มอเตอร์ไซต์ / Motorcycle
             <br><br>
             <!-- ข้อมูลรถ -->
-            <div class="d-none row" id="div_data">
+            <div class=" row" id="div_data">
                 <div class="col-12 col-md-2">
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div id="div_car_brand" class="d-none form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select name="brand" class="d-none form-control" id="input_car_brand" required onclick="showCar_model();" onchange="
+                        <select name="brand" class=" form-control" id="input_car_brand" required onclick="showCar_model();" onchange="
                                 if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -90,7 +90,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select name="generation" id="input_car_model" class="d-none form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                        <select name="generation" id="input_car_model" class=" form-control" required onchange="if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').focus();
                             }else{ 
@@ -221,6 +221,7 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
 </div>
+<img src="https://www.refinn.com/assets/images/images205/icons/home-page/section-dealbox/dealbox-car/logo-toyota.png">
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
