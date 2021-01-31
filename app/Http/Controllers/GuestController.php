@@ -218,7 +218,7 @@ class GuestController extends Controller
             $sex = DB::table('users')
                     ->select('sex')
                     ->where('id', $user_id )
-                    ->get();
+                    ->first();
             echo json_encode($sex);
             exit();
 
