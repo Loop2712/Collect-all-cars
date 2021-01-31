@@ -186,7 +186,7 @@
                             @foreach($car as $item)
                             <div class="row">
                                 <div class="col-12 col-md-2">
-                                    <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ $item->brand }}.png">
+                                    <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <span><b>{{ $item->generation }}</b></span>
@@ -202,7 +202,7 @@
                             @foreach($motorcycle as $item)
                             <div class="row">
                                 <div class="col-12 col-md-2">
-                                    <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ $item->brand }}.png">
+                                    <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <span><b>{{ $item->generation }}</b></span>
