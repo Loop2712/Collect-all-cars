@@ -226,10 +226,13 @@ class GuestController extends Controller
 
             if (!empty($item->user_id)) {
 
-                $sex = DB::table('users')
+                $gender = DB::table('users')
                     ->select('sex')
                     ->where('id', $item->user_id )
                     ->first();
+
+                foreach($gender as $item){
+                    $sex = $item->sex;
             }
 
             if(!empty($item->provider_id)){
