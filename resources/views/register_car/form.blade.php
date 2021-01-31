@@ -1,46 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
-            <a class="btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
-            <br><br>
-            <div class="row">
-                <!-- ซ้าย -->
-                <div class="col-12 col-md-5">
-                    <div class="row">
-                        <div class="col-12 col-md-3">
-                            <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label><span style="color: #FF0033;"> *</span>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                                <p>คุณ : {{ Auth::user()->name }}</p>
-                                <p>เบอร์โทรศัพท์ : {{ Auth::user()->phone }}</p>
-                                <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
-                                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ขวา -->
-                <div class="col-12 col-md-7">
-                    <p>รถที่คุณลงทะเบียนแล้ว</p>
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <h1><i class="fas fa-car text-danger"></i></h1>
-                            @foreach($car as $item)
-                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
-                            @endforeach
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <h1><i class="fas fa-motorcycle text-success"></i></h1>
-                            @foreach($motorcycle as $item)
-                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ข้อมูลเจ้าของรถ -->
             <div class="row">
                 <!-- <div class="col-12 col-md-2">
                     <label for="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label><span style="color: #FF0033;"> *</span>
@@ -55,14 +15,16 @@
             <br>
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
             <br><br>
-            <input type="radio" name="car_type" required value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
+            <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
 
+                document.querySelector('#div_motor_brand').classList.add('d-none'),
                 document.querySelector('#brand_input').classList.add('d-none'),
                 document.querySelector('#generation_input').classList.add('d-none'),
                 document.querySelector('#input_motor_brand').classList.add('d-none'),
                 document.querySelector('#input_motor_model').classList.add('d-none'),
 
+                document.querySelector('#div_car_brand').classList.remove('d-none'),
                 document.querySelector('#input_car_model').classList.remove('d-none'),
                 document.querySelector('#input_car_brand').classList.remove('d-none');">
             &nbsp;&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
@@ -74,7 +36,9 @@
                 document.querySelector('#generation_input').classList.add('d-none'),
                 document.querySelector('#input_car_model').classList.add('d-none'),
                 document.querySelector('#input_car_brand').classList.add('d-none'),
+                document.querySelector('#div_car_brand').classList.add('d-none'),
 
+                document.querySelector('#div_motor_brand').classList.remove('d-none'),
                 document.querySelector('#input_motor_brand').classList.remove('d-none'),
                 document.querySelector('#input_motor_model').classList.remove('d-none');">
             &nbsp;&nbsp; มอเตอร์ไซต์ / Motorcycle
@@ -85,9 +49,9 @@
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                    <div id="div_car_brand" class="d-none form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select class="d-none form-control" name="brand" id="input_car_brand" required  onchange="showCar_model();
+                        <select name="brand" class="d-none form-control" id="input_car_brand" required onclick="showCar_model();" onchange="
                                 if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -97,24 +61,27 @@
                                 document.querySelector('#generation_input').classList.add('d-none');}">
                             <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
                             <br>
+                            {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
-                        <!-- motorcycles -->
-                        <select class="d-none form-control" name="brand" id="input_motor_brand" required  onchange="showMotor_model();
-                                if(this.value=='อื่นๆ'){ 
-                                document.querySelector('#brand_input').classList.remove('d-none'),
-                                document.querySelector('#generation_input').classList.remove('d-none'),
-                                document.querySelector('#brand_input').focus();
-                            }else{ 
-                                document.querySelector('#brand_input').classList.add('d-none'),
-                                document.querySelector('#generation_input').classList.add('d-none');}">
-                            <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
-                            <br>
-                        </select>
-                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
-                    <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
-                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
+                    <div id="div_motor_brand" class="d-none form-group {{ $errors->has('motor_brand') ? 'has-error' : ''}}">
+                        <!-- motorcycles -->
+                        <select name="motor_brand" class="d-none form-control" id="input_motor_brand" required onclick="showMotor_model();" onchange="
+                                if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#brand_input').classList.remove('d-none'),
+                                document.querySelector('#generation_input').classList.remove('d-none'),
+                                document.querySelector('#brand_input').focus();
+                            }else{ 
+                                document.querySelector('#brand_input').classList.add('d-none'),
+                                document.querySelector('#generation_input').classList.add('d-none');}">
+                            <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
+                            <br>
+                            {!! $errors->first('motor_brand', '<p class="help-block">:message</p>') !!}
+                        </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('brand_other') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="brand_other" type="text" id="brand_input" value="{{ isset($register_car->brand_other) ? $register_car->brand_other : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        {!! $errors->first('brand_other', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
@@ -129,22 +96,23 @@
                             }else{ 
                                 document.querySelector('#generation_input').classList.add('d-none');}">
                                 <option value="" selected> - เลือกรุ่น / Select Model - </option>     
-                                <br>              
+                                <br> 
+                                {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                         </select>
                         <!-- motorcycles -->
-                        <select name="generation" id="input_motor_model" class="d-none form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                        <select name="motor_generation" id="input_motor_model" class="d-none form-control" required onchange="if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').focus();
                             }else{ 
                                 document.querySelector('#generation_input').classList.add('d-none');}">
                                 <option value="" selected> - เลือกรุ่น / Select Model - </option>     
-                                <br>              
+                                <br>  
+                                {!! $errors->first('motor_generation', '<p class="help-block">:message</p>') !!}            
                         </select>
-                        {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
                     </div>
-                    <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="generation" type="text" id="generation_input" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
-                        {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('generation_other') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="generation_other" type="text" id="generation_input" value="{{ isset($register_car->generation_other) ? $register_car->generation_other : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
+                        {!! $errors->first('generation_other', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <br><br><br>
@@ -177,6 +145,46 @@
                     </div>
                 </div>
 
+            </div>
+
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
+            <a class="btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
+            <br><br>
+            <div class="row">
+                <!-- ซ้าย -->
+                <div class="col-12 col-md-5">
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+                                <p>คุณ : {{ Auth::user()->name }}</p>
+                                <p>เบอร์โทรศัพท์ : {{ Auth::user()->phone }}</p>
+                                <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
+                                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ขวา -->
+                <div class="col-12 col-md-7">
+                    <p>รถที่คุณลงทะเบียนแล้ว</p>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h1><i class="fas fa-car text-danger"></i></h1>
+                            @foreach($car as $item)
+                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                            @endforeach
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h1><i class="fas fa-motorcycle text-success"></i></h1>
+                            @foreach($motorcycle as $item)
+                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
             
             

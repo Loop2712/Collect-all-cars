@@ -92,6 +92,56 @@ class Register_carController extends Controller
         $requestData = $request->all();
         // update registration_number
         $requestData['registration_number'] = str_replace(" ", "", $requestData['registration_number']);
+
+        // rebrand
+        $motor_brand = $requestData['motor_brand'];
+        $motor_generation = $requestData['motor_generation'];
+
+        $brand_other = $requestData['brand_other'];
+        $generation_other = $requestData['generation_other'];
+        $generation = $requestData['generation'];
+        $brand = $requestData['brand'];
+        $car_type = $requestData['car_type'];
+
+        switch ($car_type) {
+
+            case 'car':
+                if ($brand != 'อื่นๆ') {
+                    $requestData['motor_brand'] = null;
+                    $requestData['motor_generation'] = null;
+                }
+                if ($brand != 'อื่นๆ' && $generation == 'อื่นๆ') {
+                    $requestData['motor_brand'] = null;
+                    $requestData['motor_generation'] = null;
+                    $requestData['generation'] = str_replace("อื่นๆ", $generation_other, $requestData['generation']);
+                }
+                if ($brand == 'อื่นๆ') {
+                    $requestData['motor_brand'] = null;
+                    $requestData['motor_generation'] = null;
+                    $requestData['generation'] = str_replace("อื่นๆ", $generation_other, $requestData['generation']);
+                    $requestData['brand'] = str_replace("อื่นๆ", $brand_other, $requestData['brand']);
+                }
+
+                break;
+
+            case 'motorcycle':
+                if ($motor_brand != 'อื่นๆ') {
+                    $requestData['brand'] = $motor_brand;
+                    $requestData['generation'] = $motor_generation;
+                }
+                if ($motor_brand != 'อื่นๆ' && $motor_generation == 'อื่นๆ') {
+                    $requestData['brand'] = $motor_brand;
+                    $requestData['generation'] = str_replace("อื่นๆ", $generation_other, $requestData['generation']);
+                }
+                if ($motor_brand == 'อื่นๆ') {
+                    $requestData['brand'] = $brand_other;
+                    $requestData['generation'] = $generation_other;
+                }
+
+                break;
+
+        }
+
         Register_car::create($requestData);
 
         return view('register_car.select_get')->with('flash_message', 'Register_car added!');
