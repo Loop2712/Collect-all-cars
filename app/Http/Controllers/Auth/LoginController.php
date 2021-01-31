@@ -84,14 +84,12 @@ class LoginController extends Controller
     {
         return Socialite::driver('line')->redirect();
     }
-
     // Line callback
     public function handleLineCallback()
     {
         $user = Socialite::driver('line')->user();
         // print_r($user);
-        $this->_registerOrLoginUser($user, "line");
-
+        $this->_registerOrLoginUser($user,"line");
         // Return home after login
         return redirect()->intended();
     }
@@ -120,10 +118,10 @@ class LoginController extends Controller
 
             if (empty($data->email)) {
                 $user->username = $data->name;
-                $user->email = "";
+                $user->email = " ";
             }
             if (empty($data->avatar)) {
-                $user->avatar = "";
+                $user->avatar = " ";
             }
 
             $user->save();
