@@ -219,7 +219,7 @@ class GuestController extends Controller
                     ->select('sex')
                     ->where('id', $user_id )
                     ->get();
-            echo $sex;
+            echo json_encode($sex);
             exit();
 
             if(!empty($item->provider_id)){
