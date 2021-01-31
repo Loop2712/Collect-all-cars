@@ -219,8 +219,10 @@ class GuestController extends Controller
                     ->select('sex')
                     ->where('id', $user_id )
                     ->first();
-            echo json_encode($sex);
-            exit();
+                    if ($sex == "ผู้ชาย") {
+                        echo "YESSSSSSSSSSSSS";
+                    }
+                    exit();
 
             if(!empty($item->provider_id)){
 
