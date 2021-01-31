@@ -15,10 +15,6 @@
             "type": "box",
             "layout": "vertical",
             "spacing": "md",
-            "action": {
-              "type": "uri",
-              "uri": "https://linecorp.com"
-            },
             "contents": [
               {
                 "type": "text",
