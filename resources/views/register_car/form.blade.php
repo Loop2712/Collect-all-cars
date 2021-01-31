@@ -87,7 +87,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select class="d-none form-control" id="input_car_brand" required  onchange="showCar_model();
+                        <select class="d-none form-control" name="brand" id="input_car_brand" required  onchange="showCar_model();
                                 if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -95,11 +95,11 @@
                             }else{ 
                                 document.querySelector('#brand_input').classList.add('d-none'),
                                 document.querySelector('#generation_input').classList.add('d-none');}">
-                            <option> - เลือกยี่ห้อ / Select Brand - </option>
+                            <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
                             <br>
                         </select>
                         <!-- motorcycles -->
-                        <select class="d-none form-control" id="input_motor_brand" required  onchange="showMotor_model();
+                        <select class="d-none form-control" name="brand" id="input_motor_brand" required  onchange="showMotor_model();
                                 if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -107,10 +107,12 @@
                             }else{ 
                                 document.querySelector('#brand_input').classList.add('d-none'),
                                 document.querySelector('#generation_input').classList.add('d-none');}">
-                            <option> - เลือกยี่ห้อ / Select Brand - </option>
+                            <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
                             <br>
                         </select>
-
+                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
+                    </div>
+                    <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <input class="d-none form-control" name="brand" type="text" id="brand_input" value="{{ isset($register_car->brand) ? $register_car->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
@@ -126,7 +128,7 @@
                                 document.querySelector('#generation_input').focus();
                             }else{ 
                                 document.querySelector('#generation_input').classList.add('d-none');}">
-                                <option> - เลือกรุ่น / Select Model - </option>     
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option>     
                                 <br>              
                         </select>
                         <!-- motorcycles -->
@@ -135,10 +137,12 @@
                                 document.querySelector('#generation_input').focus();
                             }else{ 
                                 document.querySelector('#generation_input').classList.add('d-none');}">
-                                <option> - เลือกรุ่น / Select Model - </option>     
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option>     
                                 <br>              
                         </select>
-
+                        {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
+                    </div>
+                    <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                         <input class="d-none form-control" name="generation" type="text" id="generation_input" value="{{ isset($register_car->generation) ? $register_car->generation : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
                         {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}
                     </div>
