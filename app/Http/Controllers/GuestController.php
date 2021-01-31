@@ -87,10 +87,20 @@ class GuestController extends Controller
               ->where('province', $requestData['county'])
               ->update(['reply_provider_id' => $requestData['provider_id']]);
 
+        $user_id = DB::table('register_cars')
+                ->select('user_id')
+                ->where('registration_number', $requestData['registration'] )
+                ->where('province', $requestData['county'] )
+                ->first();
+
+        $sex = DB::table('users')
+                ->select('sex')
+                ->where('id', $user_id )
+                ->get();
 
         // ตรงนี้ต้องหา type ของ user ที่ register เข้ามาเพื่อทำการตอบกลับ
 
-        $this->_pushLine($requestData);
+        $this->_pushLine($requestData, $sex);
 
         return view('guest.thx_guest')->with('flash_message', 'Guest added!');
     }
@@ -162,7 +172,7 @@ class GuestController extends Controller
 
     public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
 
-    protected function _pushLine($data)
+    protected function _pushLine($data, $sex)
     {
         $provider_id = $data['provider_id'];
         $registration = $data['registration'];
@@ -178,6 +188,8 @@ class GuestController extends Controller
             $masseng_old = "รบกวนมาที่รถด้วยค่ะ";
         }
         
+        echo $sex;
+        exit();
         // if($data['massengbox'] == "1"){
         //     $masseng = "กรุณามาเลื่อนรถด้วย ครับ/ค่ะ";
         // }
@@ -212,17 +224,6 @@ class GuestController extends Controller
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county' AND active = 'Yes'");
         
         foreach($register_car as $item){
-
-            $user_id =  $item->user_id;
-
-            $sex = DB::table('users')
-                    ->select('sex')
-                    ->where('id', $user_id )
-                    ->first();
-                    if ($sex == "ผู้ชาย") {
-                        echo "YESSSSSSSSSSSSS";
-                    }
-                    exit();
 
             if(!empty($item->provider_id)){
 
