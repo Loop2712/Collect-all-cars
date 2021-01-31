@@ -224,7 +224,6 @@ class GuestController extends Controller
         
         foreach($register_car as $item){
 
-            
 
             if(!empty($item->provider_id)){
 
