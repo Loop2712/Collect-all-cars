@@ -178,18 +178,16 @@ class GuestController extends Controller
             $masseng_old = "รบกวนมาที่รถด้วยค่ะ";
         }
 
-        $user_id = DB::table('register_cars')
-                ->select('user_id')
-                ->where('registration_number', $registration )
-                ->where('province', $county )
-                ->first();
+        // $user_id = DB::table('register_cars')
+        //         ->select('user_id')
+        //         ->where('registration_number', $registration )
+        //         ->where('province', $county )
+        //         ->first();
 
-        $sex = DB::table('users')
-                ->select('sex')
-                ->where('id', $user_id )
-                ->first();
-        echo $sex;
-        exit();
+        // $sex = DB::table('users')
+        //         ->select('sex')
+        //         ->where('id', $user_id )
+        //         ->first();
 
         // if($data['massengbox'] == "1"){
         //     $masseng = "กรุณามาเลื่อนรถด้วย ครับ/ค่ะ";
@@ -225,6 +223,14 @@ class GuestController extends Controller
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county' AND active = 'Yes'");
         
         foreach($register_car as $item){
+
+            if (!empty($item->user_id)) {
+
+                $sex = DB::table('users')
+                    ->select('sex')
+                    ->where('id', $item->user_id )
+                    ->first();
+            }
 
             if(!empty($item->provider_id)){
 
