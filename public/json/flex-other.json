@@ -9,10 +9,6 @@
             "size": "4xl",
             "aspectRatio": "20:13",
             "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "uri": "https://linecorp.com"
-            },
             "margin": "none"
           },
           "body": {
