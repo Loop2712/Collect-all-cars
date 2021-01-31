@@ -1,234 +1,212 @@
 {
     "type": "flex",
-    "altText": "ตัวอย่าง",
+    "altText": "ข้อมูลของคุณ",
     "contents": {
-            "type": "bubble",
-            "size": "kilo",
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "box",
-                  "layout": "horizontal",
-                  "contents": [
-                    {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [
-                        {
-                          "type": "image",
-                          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
-                          "aspectMode": "cover",
-                          "size": "full"
-                        }
-                      ],
-                      "cornerRadius": "100px",
-                      "width": "72px",
-                      "height": "72px"
-                    },
-                    {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [
-                        {
-                          "type": "text",
-                          "contents": [
-                            {
-                              "type": "span",
-                              "text": "ข้อมูลของคุณ",
-                              "weight": "bold",
-                              "color": "#FA8072",
-                              "size": "md"
-                            }
-                          ],
-                          "size": "sm",
-                          "wrap": true
-                        },
-                        {
-                          "type": "box",
-                          "layout": "baseline",
-                          "contents": [
-                            {
-                              "type": "text",
-                              "text": "E Benze",
-                              "size": "xl",
-                              "color": "#bcbcbc",
-                              "margin": "none"
-                            }
-                          ],
-                          "spacing": "lg",
-                          "margin": "xl"
-                        }
-                      ]
-                    }
-                  ],
-                  "spacing": "xl",
-                  "paddingAll": "20px"
-                },
-                {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "separator",
-                      "margin": "xs"
-                    },
-                    {
-                      "type": "box",
-                      "layout": "baseline",
-                      "contents": [
-                        {
-                          "type": "icon",
-                          "url": "https://market.viicheck.com/img/icon/mail.png",
-                          "margin": "xl",
-                          "size": "xxl",
-                          "offsetTop": "lg"
-                        },
-                        {
-                          "type": "text",
-                          "text": "benze2gmail.com",
-                          "offsetTop": "sm",
-                          "margin": "xxl"
-                        },
-                        {
-                          "type": "spacer",
-                          "size": "xl"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "box",
-                      "layout": "baseline",
-                      "contents": [
-                        {
-                          "type": "icon",
-                          "url": "https://market.viicheck.com/img/icon/phone.png",
-                          "margin": "xl",
-                          "size": "xxl",
-                          "offsetTop": "lg"
-                        },
-                        {
-                          "type": "text",
-                          "text": "0999999999",
-                          "offsetTop": "sm",
-                          "margin": "xxl"
-                        },
-                        {
-                          "type": "spacer",
-                          "size": "xl"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "box",
-                      "layout": "baseline",
-                      "contents": [
-                        {
-                          "type": "icon",
-                          "url": "https://market.viicheck.com/img/icon/birthday.png",
-                          "margin": "xl",
-                          "size": "xxl",
-                          "offsetTop": "lg"
-                        },
-                        {
-                          "type": "text",
-                          "text": "31/08/1998",
-                          "offsetTop": "sm",
-                          "margin": "xxl"
-                        },
-                        {
-                          "type": "spacer",
-                          "size": "xl"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "box",
-                      "layout": "baseline",
-                      "contents": [
-                        {
-                          "type": "icon",
-                          "url": "https://market.viicheck.com/img/icon/sex.png",
-                          "margin": "xl",
-                          "size": "xxl",
-                          "offsetTop": "lg"
-                        },
-                        {
-                          "type": "text",
-                          "text": "ชาย",
-                          "offsetTop": "sm",
-                          "margin": "xxl"
-                        },
-                        {
-                          "type": "spacer",
-                          "size": "xl"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "separator",
-                      "margin": "xxl"
-                    }
-                  ]
-                },
-                {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "box",
-                      "layout": "baseline",
-                      "contents": [
-                        {
-                          "type": "text",
-                          "text": "สถานนะ พรบ.",
-                          "margin": "xxl",
-                          "size": "sm",
-                          "weight": "regular",
-                          "offsetTop": "sm",
-                          "offsetStart": "lg"
-                        },
-                        {
-                          "type": "filler"
-                        },
-                        {
-                          "type": "icon",
-                          "url": "https://market.viicheck.com/img/icon/tick.png",
-                          "margin": "sm",
-                          "size": "xxl",
-                          "offsetTop": "lg",
-                          "offsetEnd": "xxl"
-                        },
-                        {
-                          "type": "spacer"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "separator",
-                      "margin": "xxl"
-                    },
-                    {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "uri",
-                            "label": "แก้ไขวันหมดอายุ พรบ.",
-                            "uri": "https://market.viicheck.com/"
-                          },
-                          "flex": 5,
-                          "style": "secondary"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "paddingAll": "0px"
-            }
+          "type": "bubble",
+          "size": "mega",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
+                        "aspectMode": "cover",
+                        "size": "full"
+                      }
+                    ],
+                    "cornerRadius": "100px",
+                    "width": "72px",
+                    "height": "72px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "contents": [
+                          {
+                            "type": "span",
+                            "text": "ข้อมูลของคุณ",
+                            "weight": "bold",
+                            "color": "#FA8072",
+                            "size": "md"
+                          }
+                        ],
+                        "size": "sm",
+                        "wrap": true
+                      },
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "E Benze",
+                            "size": "xl",
+                            "color": "#bcbcbc",
+                            "margin": "none"
+                          }
+                        ],
+                        "spacing": "lg",
+                        "margin": "xl"
+                      }
+                    ]
+                  }
+                ],
+                "spacing": "xl",
+                "paddingAll": "20px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "separator",
+                    "margin": "xs"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "icon",
+                        "url": "https://market.viicheck.com/img/icon/mail.png",
+                        "margin": "xl",
+                        "size": "xxl",
+                        "offsetTop": "lg"
+                      },
+                      {
+                        "type": "text",
+                        "text": "benze@gmail.com",
+                        "offsetTop": "sm",
+                        "margin": "xxl"
+                      }
+                    ],
+                    "paddingTop": "lg",
+                    "paddingBottom": "lg"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "icon",
+                        "url": "https://market.viicheck.com/img/icon/phone.png",
+                        "margin": "xl",
+                        "size": "xxl",
+                        "offsetTop": "lg"
+                      },
+                      {
+                        "type": "text",
+                        "text": "0999999999",
+                        "offsetTop": "sm",
+                        "margin": "xxl"
+                      }
+                    ],
+                    "paddingTop": "lg",
+                    "paddingBottom": "lg"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "icon",
+                        "url": "https://market.viicheck.com/img/icon/birthday.png",
+                        "margin": "xl",
+                        "size": "xxl",
+                        "offsetTop": "lg"
+                      },
+                      {
+                        "type": "text",
+                        "text": "31/08/1998",
+                        "offsetTop": "sm",
+                        "margin": "xxl"
+                      }
+                    ],
+                    "paddingTop": "lg",
+                    "paddingBottom": "lg"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "icon",
+                        "url": "https://market.viicheck.com/img/icon/sex.png",
+                        "margin": "xl",
+                        "size": "xxl",
+                        "offsetTop": "lg"
+                      },
+                      {
+                        "type": "text",
+                        "text": "ชาย",
+                        "offsetTop": "sm",
+                        "margin": "xxl"
+                      }
+                    ],
+                    "paddingTop": "lg",
+                    "paddingBottom": "lg"
+                  },
+                  {
+                    "type": "separator",
+                    "margin": "xxl"
+                  }
+                ],
+                "paddingAll": "md"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "สถานนะ พรบ.",
+                        "margin": "xxl",
+                        "size": "md",
+                        "weight": "regular",
+                        "offsetTop": "sm",
+                        "offsetStart": "lg"
+                      },
+                      {
+                        "type": "filler"
+                      },
+                      {
+                        "type": "icon",
+                        "url": "https://market.viicheck.com/img/icon/tick.png",
+                        "margin": "sm",
+                        "size": "xxl",
+                        "offsetTop": "lg",
+                        "offsetEnd": "xxl"
+                      },
+                      {
+                        "type": "spacer"
+                      }
+                    ],
+                    "paddingBottom": "lg"
+                  },
+                  {
+                    "type": "separator",
+                    "margin": "xxl"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "0px"
           }
+        }
 }
