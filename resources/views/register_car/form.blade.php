@@ -221,7 +221,6 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
 </div>
-<img src="https://www.refinn.com/assets/images/images205/icons/home-page/section-dealbox/dealbox-car/logo-toyota.png">
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
