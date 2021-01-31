@@ -179,16 +179,37 @@
                 <div class="col-12 col-md-7">
                     <div class="row">
                         <h5 style="padding-top: 7px;" class="text-info">รถที่คุณลงทะเบียนแล้ว</h5>
+                        <br><br>
                         <div class="col-12 col-md-6">
-                            <h1><i class="fas fa-car text-danger"></i></h1>
+                            <h1><i class="fas fa-car-side text-danger"></i></h1>
+                            <hr>
                             @foreach($car as $item)
-                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                            <div class="row">
+                                <div class="col-12 col-md-2">
+                                    <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ $item->brand }}.png">
+                                </div>
+                                <div class="col-12 col-md-8">
+                                    <span><b>{{ $item->generation }}</b></span>
+                                    <br>
+                                    <span class="text-secondary">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-motorcycle text-success"></i></h1>
+                            <hr>
                             @foreach($motorcycle as $item)
-                                <p class="text-dark">• {{ $item->brand }}  {{ $item->generation }} <span class="text-info">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                            <div class="row">
+                                <div class="col-12 col-md-2">
+                                    <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ $item->brand }}.png">
+                                </div>
+                                <div class="col-12 col-md-8">
+                                    <span><b>{{ $item->generation }}</b></span>
+                                    <br>
+                                    <span class="text-secondary">{{ $item->registration_number }} {{ $item->province }}</span></p>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
