@@ -75,14 +75,8 @@ class LoginController extends Controller
         // print_r($user);
         $this->_registerOrLoginUser($user,"facebook");
 
-        if (empty(intended())) {
-            echo "empty";
-        }else {
-
-            echo "not empty";
-        }
         // Return home after login
-        // return redirect()->intended();
+        return redirect()->intended();
     }
 
     // Line login

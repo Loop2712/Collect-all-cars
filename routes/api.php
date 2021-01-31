@@ -22,3 +22,6 @@ Route::post('/lineapi', 'API\LineApiController@store');
 
 Route::get('/car_brand','API\CarbrandController@getBrand');
 Route::get('/car_brand/{car_brand}/car_model','API\CarbrandController@getModel');
+
+Route::get('/motor_brand','API\CarbrandController@getMotorBrand');
+Route::get('/motor_brand/{motor_brand}/motor_model','API\CarbrandController@getMotorModel');

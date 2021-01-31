@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CarModel;
+use DB;
 
 class CarbrandController extends Controller
 {
@@ -42,5 +43,32 @@ class CarbrandController extends Controller
             ->get();
         return $car_model;
     }
+
+    // motorcycles
+
+    public function getMotorBrand()
+    {
+        $motor_brand = DB::table('motorcycles_datas')
+            ->select('brand')
+            ->orderBy('brand')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->get();
+
+        return $motor_brand;
+    }
+    public function getMotorModel($motor_brand)
+    {
+        $motor_model = DB::table('motorcycles_datas')
+            ->select('model')
+            ->orderBy('model')
+            ->where('model', '!=',"" )
+            ->where('brand', $motor_brand )
+            ->groupBy('model')
+            ->get();
+
+        return $motor_model;
+    }
+
 
 }
