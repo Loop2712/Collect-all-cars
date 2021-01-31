@@ -118,10 +118,10 @@ class LoginController extends Controller
 
             if (empty($data->email)) {
                 $user->username = $data->name;
-                $user->email = "";
+                $user->email = null;
             }
             if (empty($data->avatar)) {
-                $user->avatar = "";
+                $user->avatar = null;
             }
 
             $user->save();
