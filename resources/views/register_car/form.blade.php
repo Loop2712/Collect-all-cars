@@ -155,12 +155,20 @@
                 <div class="col-12 col-md-5">
                     <div class="row">
                         <div class="col-12 col-md-3">
-                            <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label>
+                            <center>
+                                <!-- <label for="name" class="control-label">{{ 'ชื่อ / Name' }}</label> -->
+                                <img width="80%" src="{{ Auth::user()->avatar }}" class="rounded-circle">
+                                <br><br>
+                            </center>
                         </div>
                         <div class="col-12 col-md-9">
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                                <p>คุณ : {{ Auth::user()->name }}</p>
-                                <p>เบอร์โทรศัพท์ : {{ Auth::user()->phone }}</p>
+                                <h3 class="text-info"><b>{{ Auth::user()->name }}</b></h3><p></p>
+                                <h5><i class="fas fa-mail-bulk" style="color: #B22222"></i></i>&nbsp; {{ Auth::user()->email }}</h5>
+                                <p></p>
+                                <h5><i class="fas fa-phone text-success"></i>&nbsp; {{ Auth::user()->phone }}</h5>
+                                <p></p>
+                                <h5><i class="fas fa-venus-mars" style="color: #6600FF"></i></i>&nbsp; {{ Auth::user()->sex }}</h5>
                                 <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                             </div>
@@ -169,8 +177,8 @@
                 </div>
                 <!-- ขวา -->
                 <div class="col-12 col-md-7">
-                    <p>รถที่คุณลงทะเบียนแล้ว</p>
                     <div class="row">
+                        <h5 style="padding-top: 7px;" class="text-info">รถที่คุณลงทะเบียนแล้ว</h5>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-car text-danger"></i></h1>
                             @foreach($car as $item)
