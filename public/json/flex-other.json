@@ -52,7 +52,7 @@
                     "contents": [
                       {
                         "type": "icon",
-                        "url": "https://www.flaticon.com/svg/vstatic/svg/2922/2922510.svg?token=exp=1612128501~hmac=41f43fea890d01c25a3e60e4b6156991",
+                        "url": "https://market.viicheck.com/img/icon/user.png",
                         "size": "3xl",
                         "margin": "none",
                         "offsetTop": "md"
@@ -88,7 +88,7 @@
                     "contents": [
                       {
                         "type": "icon",
-                        "url": "https://www.flaticon.com/svg/vstatic/svg/4150/4150920.svg?token=exp=1612129018~hmac=d7f0c07e1171c6341d5abfb482bb5f90",
+                        "url": "https://market.viicheck.com/img/icon/faq.png",
                         "size": "3xl",
                         "margin": "none",
                         "offsetTop": "md"
@@ -124,7 +124,7 @@
                     "contents": [
                       {
                         "type": "icon",
-                        "url": "https://www.flaticon.com/svg/vstatic/svg/4136/4136683.svg?token=exp=1612129181~hmac=a7cfc8eeb6452741c47c4a8a390732b8",
+                        "url": "https://market.viicheck.com/img/icon/contact.png",
                         "size": "3xl",
                         "margin": "none",
                         "offsetTop": "md"
