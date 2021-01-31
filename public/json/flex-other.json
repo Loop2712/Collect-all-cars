@@ -3,62 +3,167 @@
     "altText": "ViiCHECK ยินดีให้บริการค่ะ",
     "contents": {
           "type": "bubble",
-          "size": "kilo",
           "hero": {
             "type": "image",
             "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-            "size": "full",
+            "size": "4xl",
             "aspectRatio": "20:13",
             "aspectMode": "fit",
             "action": {
               "type": "uri",
-              "uri": "http://linecorp.com/"
+              "uri": "https://linecorp.com"
             },
             "margin": "none"
           },
           "body": {
             "type": "box",
             "layout": "vertical",
+            "spacing": "md",
+            "action": {
+              "type": "uri",
+              "uri": "https://linecorp.com"
+            },
             "contents": [
               {
                 "type": "text",
                 "text": "ViiCHECK ยินดีให้บริการค่ะ",
+                "size": "lg",
                 "weight": "bold",
-                "size": "lg"
-              }
-            ]
-          },
-          "footer": {
-            "type": "box",
-            "layout": "vertical",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "style": "link",
-                "height": "sm",
-                "action": {
-                  "type": "message",
-                  "label": "FAQ",
-                  "text": "FAQ"
-                }
+                "margin": "none"
               },
               {
-                "type": "button",
-                "style": "link",
-                "height": "sm",
-                "action": {
-                  "type": "message",
-                  "label": "E-mail",
-                  "text": "info.viicheck@gmail.com"
-                }
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "separator",
+                    "margin": "xl"
+                  }
+                ]
               },
               {
-                "type": "spacer",
-                "size": "sm"
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "icon",
+                        "url": "https://www.flaticon.com/svg/vstatic/svg/2922/2922510.svg?token=exp=1612128501~hmac=41f43fea890d01c25a3e60e4b6156991",
+                        "size": "3xl",
+                        "margin": "none",
+                        "offsetTop": "md"
+                      },
+                      {
+                        "type": "text",
+                        "text": "ข้อมูลของคุณ",
+                        "weight": "bold",
+                        "margin": "xl",
+                        "action": {
+                          "type": "message",
+                          "label": "ข้อมูลของคุณ",
+                          "text": "ข้อมูลของคุณ"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "text": ">>>",
+                        "size": "sm",
+                        "align": "end",
+                        "color": "#aaaaaa"
+                      }
+                    ],
+                    "height": "50px"
+                  },
+                  {
+                    "type": "separator",
+                    "margin": "xl"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "icon",
+                        "url": "https://www.flaticon.com/svg/vstatic/svg/4150/4150920.svg?token=exp=1612129018~hmac=d7f0c07e1171c6341d5abfb482bb5f90",
+                        "size": "3xl",
+                        "margin": "none",
+                        "offsetTop": "md"
+                      },
+                      {
+                        "type": "text",
+                        "text": "FAQ",
+                        "margin": "xl",
+                        "action": {
+                          "type": "message",
+                          "label": "FAQ",
+                          "text": "FAQ"
+                        },
+                        "weight": "bold"
+                      },
+                      {
+                        "type": "text",
+                        "text": ">>>",
+                        "size": "sm",
+                        "align": "end",
+                        "color": "#aaaaaa"
+                      }
+                    ],
+                    "height": "50px"
+                  },
+                  {
+                    "type": "separator",
+                    "margin": "xl"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "icon",
+                        "url": "https://www.flaticon.com/svg/vstatic/svg/4136/4136683.svg?token=exp=1612129181~hmac=a7cfc8eeb6452741c47c4a8a390732b8",
+                        "size": "3xl",
+                        "margin": "none",
+                        "offsetTop": "md"
+                      },
+                      {
+                        "type": "text",
+                        "text": "ติดต่อ",
+                        "weight": "bold",
+                        "margin": "xl",
+                        "action": {
+                          "type": "message",
+                          "label": "ติดต่อ",
+                          "text": "ติดต่อ"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "text": ">>>",
+                        "size": "sm",
+                        "align": "end",
+                        "color": "#aaaaaa"
+                      }
+                    ],
+                    "height": "50px"
+                  },
+                  {
+                    "type": "separator",
+                    "margin": "xl"
+                  }
+                ]
               }
             ],
-            "flex": 0
+            "background": {
+              "type": "linearGradient",
+              "angle": "0deg",
+              "startColor": "#F0FFFF",
+              "endColor": "#F0FFFF",
+              "centerColor": "#ffffff"
+            }
           }
         }
 }
