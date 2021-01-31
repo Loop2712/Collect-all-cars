@@ -182,7 +182,7 @@
                         <br><br>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-car-side text-danger"></i></h1>
-                            <hr>
+                            <br>
                             @foreach($car as $item)
                             <div class="row">
                                 <div class="col-12 col-md-2">
@@ -198,7 +198,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-motorcycle text-success"></i></h1>
-                            <hr>
+                            <br>
                             @foreach($motorcycle as $item)
                             <div class="row">
                                 <div class="col-12 col-md-2">
