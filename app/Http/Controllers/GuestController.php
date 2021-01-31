@@ -89,7 +89,7 @@ class GuestController extends Controller
 
         // ตรงนี้ต้องหา type ของ user ที่ register เข้ามาเพื่อทำการตอบกลับ
 
-        $this->_pushLine($requestData, $sex);
+        $this->_pushLine($requestData);
 
         return view('guest.thx_guest')->with('flash_message', 'Guest added!');
     }
@@ -161,7 +161,7 @@ class GuestController extends Controller
 
     public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
 
-    protected function _pushLine($data, $sex)
+    protected function _pushLine($data)
     {   
 
         $provider_id = $data['provider_id'];
