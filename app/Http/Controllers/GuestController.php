@@ -224,15 +224,6 @@ class GuestController extends Controller
         
         foreach($register_car as $item){
 
-            if (!empty($item->user_id)) {
-
-                $gender = DB::table('users')
-                    ->select('sex')
-                    ->where('id', $item->user_id )
-                    ->first();
-
-                foreach($gender as $item){
-                    $sex = $item->sex;
             }
 
             if(!empty($item->provider_id)){
@@ -254,7 +245,25 @@ class GuestController extends Controller
                     $string_json = str_replace("ชื่อ",$item->name,$string_json);
                     $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                    $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$sex,$string_json);
+                    $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+
+                    if (!empty($item->sex)) {
+
+                        switch ($item->sex) {
+
+                            case 'ผู้หญิง':
+                                $string_json = str_replace("#E0FFFF","#FF99CC",$string_json);
+                                $string_json = str_replace("#F0FFFF","#FF99CC",$string_json);
+                                break;
+
+                            case 'ไม่ต้องการตอบ':
+                                $string_json = str_replace("#E0FFFF","#CCFF99",$string_json);
+                                $string_json = str_replace("#F0FFFF","#FF66FF",$string_json);
+                                $string_json = str_replace("#FFFAFA","#66FFFF",$string_json);
+                                break;
+                            
+                        }
+                    }
 
                     $messages = [ json_decode($string_json, true) ];
                 }
@@ -268,6 +277,24 @@ class GuestController extends Controller
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
                     $string_json = str_replace("เบอร์",$phone,$string_json);
+
+                    if (!empty($item->sex)) {
+                        
+                        switch ($item->sex) {
+
+                            case 'ผู้หญิง':
+                                $string_json = str_replace("#E0FFFF","#FF99CC",$string_json);
+                                $string_json = str_replace("#F0FFFF","#FF99CC",$string_json);
+                                break;
+
+                            case 'ไม่ต้องการตอบ':
+                                $string_json = str_replace("#E0FFFF","#CCFF99",$string_json);
+                                $string_json = str_replace("#F0FFFF","#FF66FF",$string_json);
+                                $string_json = str_replace("#FFFAFA","#66FFFF",$string_json);
+                                break;
+                            
+                        }
+                    }
 
                     $messages = [ json_decode($string_json, true) ];
                 }

@@ -83,9 +83,9 @@
           "background": {
             "type": "linearGradient",
             "angle": "0deg",
-            "endColor": "#E0FFFF",
+            "endColor": "#F0FFFF",
             "startColor": "#E0FFFF",
-            "centerColor": "#ffffff"
+            "centerColor": "#FFFAFA"
           }
         },
         "footer": {

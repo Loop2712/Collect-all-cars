@@ -8,6 +8,10 @@
                         <input class="form-control" name="phone" type="hidden" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}" readonly>
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
+                    <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
+                        <input class="form-control" name="sex" type="hidden" id="sex" value="{{ isset($register_car->sex) ? $register_car->sex :  Auth::user()->sex }}" required readonly>
+                        {!! $errors->first('sex', '<p class="help-block">:message</p>') !!}
+                    </div>
                 </div>
             </div>
             <br>
