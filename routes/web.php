@@ -26,9 +26,9 @@ Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.lin
 Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
 
-Route::get('/cars', function () {
-    return view('sell/index');
-});
+// Route::get('/cars', function () {
+//     return view('3menu');
+// });
 
 Route::get('/terms_of_service', function () {
     
@@ -85,3 +85,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 // END ADMIN VIICHECK
 
+Route::get('/menu', function () {
+    return view('3menu');
+});

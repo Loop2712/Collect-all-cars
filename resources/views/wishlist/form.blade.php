@@ -3,4 +3,4 @@
 
     <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($wishlist->user_id) ? $wishlist->user_id : ''}}" >
 
-    <input class="form-control" name="price" type="number" id="price" value="{{ isset($wishlist->price) ? $wishlist->price : ''}}" >
+    <input class="form-control" name="price" type="text" id="price" value="{{ isset($wishlist->price) ? $wishlist->price : ''}}" >

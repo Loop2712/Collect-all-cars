@@ -28,7 +28,7 @@
 
                             <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($wishlist->user_id) ? $wishlist->user_id : ''}}" >
 
-                            <input class="form-control" name="price" type="number" id="price" value="{{ isset($wishlist->price) ? $wishlist->price : ''}}" >
+                            <input class="form-control" name="price" type="text" id="price" value="{{ isset($wishlist->price) ? $wishlist->price : ''}}" >
 
                             <button type="submit" class="btn btn-sm btn-warning" >
                                 <i class="fa fa-shopping-cart"></i> เพิ่มสินค้าลงตะกร้า
