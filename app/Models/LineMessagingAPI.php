@@ -31,10 +31,27 @@ class LineMessagingAPI extends Model
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
             case "profile": 
-                $template_path = storage_path('../public/json/flex-profile.json');   
-                $string_json = file_get_contents($template_path);
 
-                $messages = [ json_decode($string_json, true) ]; 
+                $provider_id = $event["source"]['userId'];
+
+                $user = DB::select("SELECT * FROM users WHERE provider_id = '$provider_id'");
+
+                foreach($user as $item){
+
+                    $template_path = storage_path('../public/json/flex-profile.json');   
+                    $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("E Benze",$item->name,$string_json);
+                    $string_json = str_replace("benze@gmail.com",$item->email,$string_json);
+                    $string_json = str_replace("0999999999",$item->phone,$string_json);
+                    $string_json = str_replace("31/08/1998",$item->brith,$string_json);
+                    $string_json = str_replace("ชาย",$item->sex,$string_json);
+
+                    // if พรบ
+
+                    $messages = [ json_decode($string_json, true) ]; 
+
+                }
+
                 break;
         }
 
