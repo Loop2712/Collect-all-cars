@@ -40,6 +40,7 @@ class LineMessagingAPI extends Model
 
                     $template_path = storage_path('../public/json/flex-profile.json');   
                     $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$item->avatar,$string_json);
                     $string_json = str_replace("E Benze",$item->name,$string_json);
                     $string_json = str_replace("benze@gmail.com",$item->email,$string_json);
                     $string_json = str_replace("0999999999",$item->phone,$string_json);
