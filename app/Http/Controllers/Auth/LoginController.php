@@ -95,7 +95,7 @@ class LoginController extends Controller
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
         // Return home after login
-        return $_SERVER['REQUEST_URI'];
+        return redirect()->$_SERVER['REQUEST_URI'];
     }
 
     protected function _registerOrLoginUser($data, $type)
