@@ -35,7 +35,7 @@ class LoginController extends Controller
     {
         // echo $_SERVER['REQUEST_URI'];
         // echo $_SERVER['PHP_SELF'];
-        return '/home';
+        return $_SERVER['REQUEST_URI'];
     }
 
     /**

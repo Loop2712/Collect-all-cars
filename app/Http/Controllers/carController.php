@@ -213,7 +213,8 @@ class CarController extends Controller
     {
         $data = CarModel::findOrFail($id);
         echo $_SERVER['REQUEST_URI'];
-        // echo $_SERVER['PHP_SELF'];
+        echo "<br>";
+        echo $_SERVER['PHP_SELF'];
         return view('car.car-details', compact('data'));
     }
 
