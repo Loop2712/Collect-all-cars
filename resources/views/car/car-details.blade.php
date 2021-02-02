@@ -206,7 +206,6 @@
                                     </div>
                                     <br>
                                     <div><a href="{{ url('/guest/create') }}">เรียกมาเลื่อนรถ</a></div>
-                                    <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
                     </div>
                 </div>
             </div>
