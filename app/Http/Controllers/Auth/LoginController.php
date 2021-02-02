@@ -128,6 +128,5 @@ class LoginController extends Controller
         }
         //LOGIN
         Auth::login($user);
-        return redirect()->intended();
     }
 }
