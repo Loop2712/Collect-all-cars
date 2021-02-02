@@ -97,7 +97,7 @@ class LoginController extends Controller
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
         // Return home after login
-        // return redirect()->intended();
+        return redirect()->intended();
     }
 
     protected function _registerOrLoginUser($data, $type)
@@ -134,6 +134,5 @@ class LoginController extends Controller
         }
         //LOGIN
         Auth::login($user);
-        $this->redirectTo();
     }
 }
