@@ -52,7 +52,6 @@
                                 <i class="fa fa-shopping-cart"></i> เพิ่มเป็นรายการโปรด
                             </button> 
                         </form>
-                        <li>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                       Launch demo modal
@@ -205,7 +204,6 @@
                                         </div>
                                       </div>
                                     </div>
-                                </li>
                     </div>
                 </div>
             </div>
