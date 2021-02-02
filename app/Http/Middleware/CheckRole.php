@@ -23,7 +23,7 @@ class CheckRole
                 return  $next($request);
             }
         } 
-        return redirect()->intended();
+        return redirect('/home');
 
     }
 }
