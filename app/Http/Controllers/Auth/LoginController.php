@@ -134,5 +134,6 @@ class LoginController extends Controller
         }
         //LOGIN
         Auth::login($user);
+        $this->redirectTo();
     }
 }
