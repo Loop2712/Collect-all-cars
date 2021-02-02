@@ -33,9 +33,12 @@ class LoginController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
     protected function redirectTo()
     {
-        // echo $_SERVER['REQUEST_URI'];
-        // echo $_SERVER['PHP_SELF'];
-        return $_SERVER['REQUEST_URI'];
+        $siteUrl =  $_SERVER['REQUEST_URI'];
+        echo "<br>";
+        echo $_SERVER['PHP_SELF'];
+        echo "<br>";
+        echo urlencode($siteUrl);
+        return urlencode($siteUrl);
     }
 
     /**
@@ -97,8 +100,7 @@ class LoginController extends Controller
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
         // Return home after login
-        // return redirect()->intended();
-        return $_SERVER['REQUEST_URI'];
+        return redirect();
     }
 
     protected function _registerOrLoginUser($data, $type)

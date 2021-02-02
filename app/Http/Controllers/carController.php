@@ -212,9 +212,11 @@ class CarController extends Controller
     public function show($id)
     {
         $data = CarModel::findOrFail($id);
-        echo $_SERVER['REQUEST_URI'];
+        $siteUrl =  $_SERVER['REQUEST_URI'];
         echo "<br>";
         echo $_SERVER['PHP_SELF'];
+        echo "<br>";
+        echo urlencode($siteUrl);
         return view('car.car-details', compact('data'));
     }
 
