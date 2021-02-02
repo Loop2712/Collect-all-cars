@@ -204,6 +204,8 @@
                                         </div>
                                       </div>
                                     </div>
+                                    <br>
+                                    <div><a href="{{ url('/guest/create') }}">เรียกมาเลื่อนรถ</a></div>
                     </div>
                 </div>
             </div>
