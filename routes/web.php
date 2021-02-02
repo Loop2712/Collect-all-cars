@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::resource('deliver', 'DeliverController')->except(['index']);
-	// guests
+	Route::resource('guest', 'GuestController')->except(['index']);
 	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
 	Route::resource('wishlist', 'WishlistController');
 	Route::resource('sell', 'SellController');
@@ -84,4 +84,3 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get('/menu', function () {
     return view('3menu');
 });
-Route::resource('guest', 'GuestController')->except(['index']);
