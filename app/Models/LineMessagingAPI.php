@@ -52,7 +52,7 @@ class LineMessagingAPI extends Model
 
                     $date_now = date("Y-m-d "); // เวลาปัจจุบัน
 
-                    $dtae_act = $data->act; // วันหมดอายุ พรบ
+                    $dtae_act = $item->act; // วันหมดอายุ พรบ
 
                     $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  // ตัวแปรสำหรับเช็คการแจ้งเตือน
 
