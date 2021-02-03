@@ -46,7 +46,7 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("0999999999",$item->phone,$string_json);
                     $string_json = str_replace("31/08/1998",$item->brith,$string_json);
                     $string_json = str_replace("ชาย",$item->sex,$string_json);
-                    $string_json = str_replace("https://market.viicheck.com/editprofile","https://market.viicheck.com/profile/{{ $item->id }}/edit",$string_json);
+                    $string_json = str_replace("<xxxxx>",$item->id,$string_json);
 
                     // if พรบ
 
