@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Register_car;
 
 class ProfileController extends Controller
 {
@@ -82,6 +83,10 @@ class ProfileController extends Controller
         
         $data = User::findOrFail($id);
         $data->update($requestData);
+
+        DB::table('register_cars')
+              ->where('user_id', $requestData['id'])
+              ->update(['sex' => $requestData['sex']]);
 
         return redirect('profile')->with('flash_message', 'profile updated!');
     }
