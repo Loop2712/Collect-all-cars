@@ -34,14 +34,14 @@ class MotercyclesController extends Controller
                 ->orWhere('img', 'LIKE', "%$keyword%")
                 ->orWhere('location', 'LIKE', "%$keyword%")
                 ->orWhere('link', 'LIKE', "%$keyword%")
-                ->orWhere('active', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
+                ->where('active' ,'=', 'yes')
+                ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
         } else {
             $motercycles = Motercycle::latest()->paginate($perPage);
         }
 
-        return view('motercycles.index', compact('motercycles'));
+        return view('motercycles.car', compact('motercycles'));
     }
 
     /**
