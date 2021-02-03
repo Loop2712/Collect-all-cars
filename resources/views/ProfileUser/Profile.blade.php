@@ -19,7 +19,7 @@
                                         <br><br>
                                     <div class="row">
                                         <div class="col-12">
-                                                <img src="{{ url('storage/'.$data->avatar)}}" width="100" /> 
+                                                <img src="{{$data->avatar}}" width="100" /> 
                                         </div>
                                         <br/><br/>
                                     </div>

@@ -16,7 +16,7 @@
                         <div class="car__filter">
                             <h5>Car Filter</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
-                                <select  name="brand" id="brand"  onchange="this.form.submit()">
+                                <select class="form-select" size="3" name="brand" id="brand"  onchange="this.form.submit()">
                                     <option value="" data-display="Brand">Select Brand</option>
                                     @foreach($brand_array as $br)
                                         <option 
@@ -167,7 +167,7 @@
                                         @if ( $item->price == 'ติดต่อผู้ขาย')
                                         <h6>{{ $item->price}}<span></span></h6>
                                         @else
-                                            <h6>{{ number_format(intval($item->price))}} บาท<span></span></h6>
+                                            <h6 style="font-size:20px">{{ number_format(intval($item->price))}} บาท<span></span></h6>
                                         
                                         @endif
                                     </div>
