@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
 use Illuminate\Http\Request;
+use Session;
 
 
 class LoginController extends Controller
