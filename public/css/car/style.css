@@ -1077,7 +1077,7 @@ ol {
 }
 
 .car__item__text__inner {
-	padding: 20px 0 14px 20px;
+	padding: 20px 0 14px 10px;
 }
 
 .car__item__text__inner .label-date {
@@ -1096,14 +1096,14 @@ ol {
 }
 
 .car__item__text__inner h5 a {
-	color: #353535;
-	font-weight: 700;
+	color: #2b2a2a;
+	font-weight: 1000;
 }
 
 .car__item__text__inner ul li {
 	list-style: none;
 	font-size: 15px;
-	color: #8d8d8d;
+	color: #a0a0a0;
 	font-weight: 700;
 	position: relative;
 	display: inline-block;
@@ -1121,7 +1121,7 @@ ol {
 }
 
 .car__item__text__inner ul li span {
-	color: #323232;
+	color: #6b6b6b;
 }
 
 .car__item__text__inner ul li:last-child {
