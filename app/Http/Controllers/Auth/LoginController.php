@@ -86,18 +86,16 @@ class LoginController extends Controller
     // Line login
     public function redirectToLine()
     {
-        $this->handleLineCallback($_SERVER['REQUEST_URI']);
-        
         return Socialite::driver('line')->redirect();
     }
     // Line callback
-    public function handleLineCallback($data)
+    public function handleLineCallback()
     {
         $user = Socialite::driver('line')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
         // Return home after login
-        return redirect($data);
+        return redirect()->intended();
     }
 
     protected function _registerOrLoginUser($data, $type)
