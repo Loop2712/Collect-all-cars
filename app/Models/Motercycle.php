@@ -25,7 +25,7 @@ class Motercycle extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'type', 'brand', 'model', 'submodel', 'year', 'gear', 'color', 'motor', 'price', 'img', 'location', 'link', 'active', 'user_id'];
+    protected $fillable = ['type', 'brand', 'model', 'submodel', 'year', 'gear', 'color', 'motor', 'price', 'img', 'location', 'link', 'active', 'user_id'];
 
     
 }

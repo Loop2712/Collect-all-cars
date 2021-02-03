@@ -17,7 +17,7 @@
                             <h5>Car Filter</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
                                 <select name="brand" id="brand"  onchange="this.form.submit()">
-                                    <option value="" data-display="Brand">Select Brand</option>
+                                    <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
                                     @foreach($brand_array as $br)
                                         <option 
                                             value="{{ $br->brand }}" 
@@ -27,7 +27,7 @@
                                     @endforeach 
                                 </select>
                                 <select name="typecar" id="typecar"  onchange="this.form.submit()">
-                                    <option value="" data-display="Type">Select Type</option>
+                                    <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
                                     @foreach($type_array as $ty)
                                         <option 
                                                 value="{{ $ty->type }}" 
@@ -37,7 +37,7 @@
                                     @endforeach
                                 </select>
                                 <select name="gear" id="gear" onchange="this.form.submit()" >
-                                    <option value="" data-display="Gear">Select Gear</option>
+                                    <option value="" data-display="ระบบเกียร์">ระบบเกียร์ทั้งหมด</option>
                                     @foreach($gear_array as $ge)
                                         <option 
                                                 value="{{ $ge->gear }}" 
@@ -46,18 +46,9 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="year" id="year" onchange="this.form.submit()" >
-                                    <option value="" data-display="Year">Select Year</option>
-                                    @foreach($year_array as $ye)
-                                        <option 
-                                                value="{{ $ye->year }}" 
-                                                {{ request('year') == $ye->year ? 'selected' : ''   }} >
-                                        {{ $ye->year }} 
-                                        </option>
-                                    @endforeach 
-                                </select>
+                                
                                 <select name="color" id="color" onchange="this.form.submit()" >
-                                    <option value="" data-display="Color">Select Color</option>
+                                    <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
                                     @foreach($color_array  as $co)
                                         <option 
                                                 value="{{ $co->color  }}" 
@@ -66,18 +57,8 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="fuel" id="fuel" onchange="this.form.submit()" >
-                                    <option value="" data-display="Fuel">Select Fuel</option>
-                                    @foreach($fuel_array as $pe)
-                                        <option 
-                                                value="{{$pe->fuel}}" 
-                                                {{ request('fuel') == $pe->fuel  ? 'selected' : ''   }} >
-                                            {{ $pe->fuel  }} 
-                                        </option>
-                                    @endforeach 
-                                </select>
                                 <select name="location" id="location" onchange="this.form.submit()" >
-                                    <option value="" data-display="Location">Select Location</option>
+                                    <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
                                     @foreach($location_array as $lo)
                                         <option 
                                             value="{{ $lo->province }}" 
@@ -87,21 +68,56 @@
                                     @endforeach 
                                 </select>
                                 <div class="filter-price">
-                                    <p>Price:</p>
-                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="Min">
-                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="Max">
+                                    <p>ราคา:</p>
+                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด">
+                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด">
                                     <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
                                 </div>
+
+                                <!-- ซ่อน  กดเปิด  -->
+                                <div id="spoiler" style="display:none"> 
+
+                                <select name="year" id="year" onchange="this.form.submit()" >
+                                    <option value="" data-display="ปี">ปีทั้งหมด</option>
+                                    @foreach($year_array as $ye)
+                                        <option 
+                                                value="{{ $ye->year }}" 
+                                                {{ request('year') == $ye->year ? 'selected' : ''   }} >
+                                        {{ $ye->year }} 
+                                        </option>
+                                    @endforeach 
+                                </select>
+                                <select name="fuel" id="fuel" onchange="this.form.submit()" >
+                                    <option value="" data-display="เชื้อเพลิง">เชื้อเพลิงทั้งหมด</option>
+                                    @foreach($fuel_array as $pe)
+                                        <option 
+                                                value="{{$pe->fuel}}" 
+                                                {{ request('fuel') == $pe->fuel  ? 'selected' : ''   }} >
+                                            {{ $pe->fuel  }} 
+                                        </option>
+                                    @endforeach 
+                                </select>
+
+
+                                
+                                
                                 <div class="filter-price">
-                                    <p>Distance:</p>
-                                    <input class="form-control" type="text" name=" distancemin"  id="milemin" placeholder="Min (km.)">
-                                    <input class="form-control" type="text" name=" distancemax" id="milemax" placeholder="Max (km.)">
+                                    <p>ระยะทาง:</p>
+                                    <input class="form-control" type="text" name=" distancemin"  id="milemin" placeholder="ระยะทางต่ำสุด (km.)">
+                                    <input class="form-control" type="text" name=" distancemax" id="milemax" placeholder="ระยะทางสูงสุด (km.)">
                                     <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
                                 </div>
-                                <div class="car__filter__btn">
-                                    <button  class="site-btn"><a href="{{URL::to('/car')}}" ></a>reset</button>
-                                </div>
+                                </div> 
+                            <button title="Click to show/hide content" type="button"  class="btn btn-sm "
+                            onclick="if(document.getElementById('spoiler') .style.display=='none') 
+                            {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler')
+                             .style.display='none'}">การค้นหาขั้นสูง</button>
+                                
                             </form>
+                            <br>
+                            <div class="car__filter__btn">
+                                    <a class="btn btn-danger" href="{{URL::to('/car')}}" >reset</a>
+                                </div>
                         </div>
                         <br>
                         <div class="row">
@@ -120,7 +136,7 @@
 
 
                 <div class="col-lg-9">
-                    <!-- <div class="car__filter__option">
+                    <div class="car__filter__option">
                         <div class="row">
                             <div class="col">
                                 <div class="car__filter__option__item car__filter__option__item--right">
@@ -132,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
 
                     <div class="row">

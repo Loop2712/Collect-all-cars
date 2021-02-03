@@ -106,7 +106,7 @@ class CarController extends Controller
             ->get();
 
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('car.car',compact('data','search', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
+        return view('car.car',compact('data', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
     }
 
     public function main(Request $request)

@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Motercycle;
+use App\county;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class MotercyclesController extends Controller
+class MotercleyviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,81 +19,103 @@ class MotercyclesController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
+        $brand     = $request->get('brand');
+        $type      = $request->get('type');
+        $year      = $request->get('year');
+        $gear      = $request->get('gear');
+        $color     = $request->get('color');
+        $motor     = $request->get('motor');  
+        $location  = $request->get('location');
+        $pricemax  = $request->get('pricemax');
+        $pricemin  = $request->get('pricemin');
+        $sort      = $request->get('sort','asc');
+        $datas     = $request->get('datas');
+        $keyword   = $request->get('search');
+        $perPage   = 45;
 
-        if (!empty($keyword)) {
-            $motercycles = Motercycle::where('motorcycles_id', 'LIKE', "%$keyword%")
-                ->orWhere('type', 'LIKE', "%$keyword%")
-                ->orWhere('brand', 'LIKE', "%$keyword%")
-                ->orWhere('model', 'LIKE', "%$keyword%")
-                ->orWhere('submodel', 'LIKE', "%$keyword%")
-                ->orWhere('year', 'LIKE', "%$keyword%")
-                ->orWhere('gear', 'LIKE', "%$keyword%")
-                ->orWhere('color', 'LIKE', "%$keyword%")
-                ->orWhere('motor', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
-                ->orWhere('img', 'LIKE', "%$keyword%")
+        $pricemin = empty($pricemin) ? 0 :$pricemin;
+        $pricemax = empty($pricemax) ? 99000000 :$pricemax;
+
+        $needFilter =  !empty($brand)       || !empty($type)        || !empty($year)    || !empty($color)    
+                    || !empty($motor)       || !empty($location)    || !empty($gear)
+                    || !empty($pricemax)    || !empty($pricemin)  ; 
+
+        if($needFilter){
+            $data = Motercycle::Where('brand', 'LIKE', "%$brand%")
+                ->Where('type', 'LIKE', "%$type%")
+                ->Where('year', 'LIKE', "%$year%")
+                ->Where('gear', 'LIKE', "%$gear%")
+                ->Where('color', 'LIKE', "%$color%")
+                ->Where('motor', 'LIKE', "%$motor%")
                 ->orWhere('location', 'LIKE', "%$keyword%")
-                ->orWhere('link', 'LIKE', "%$keyword%")
+                ->whereBetween('price', [$pricemin,$pricemax])
                 ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
+        }else    if (!empty($keyword)) {
+            $data = Motercycle::Where('brand', 'LIKE', "%$keyword%")
+                ->orWhere('model', 'LIKE', "%$keyword%")
+                ->orWhere('submodel', 'LIKE', "%$search%")
+                ->where('active' ,'=', 'yes')
+                ->latest()->paginate($perPage);
         } else {
-            $motercycles = Motercycle::latest()->paginate($perPage);
+            $data = Motercycle::orderBy('created_at', 'asc')
+                ->where('active' ,'=', 'yes')
+                ->paginate($perPage);
         }
 
-        return view('motercycles.car', compact('motercycles'));
+        $motorbrand = Motercycle::selectRaw('brand,count(brand) as count')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->get();
+
+        $motorcolor = Motercycle::selectRaw('color,count(color) as count')
+            ->where('color', '!=',"" )
+            ->groupBy('color')
+            ->get();
+
+        $motorgear = Motercycle::selectRaw('gear,count(gear) as count')
+            ->where('gear', '!=',"" )
+            ->groupBy('gear')
+            ->get();
+
+        $motorlocation = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+
+        return view('motercycle.car', compact('data','motorbrand', 'motorcolor', 'motorgear', 'motorlocation'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
+    public function main(Request $request)
     {
-        return view('motercycles.create');
-    }
+        $perPage=20;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
+        $d1=strtotime("-1 Day");
+        $d2=date("Y-m-d ");
+        $d3 = date("Y-m-d ", $d1);
+        $motor =CarModel::whereDate('created_at', $d2)
+            ->orwhereDate('created_at', $d3)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
         
-        $requestData = $request->all();
-        
-        Motercycle::create($requestData);
+        $motorbrand = Motercycle::selectRaw('brand,count(brand) as count')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->get();
 
-        return redirect('motercycles')->with('flash_message', 'Motercycle added!');
+        $motorcolor = Motercycle::selectRaw('color,count(color) as count')
+            ->where('color', '!=',"" )
+            ->groupBy('color')
+            ->get();
+
+        $motorgear = Motercycle::selectRaw('gear,count(gear) as count')
+            ->where('gear', '!=',"" )
+            ->groupBy('gear')
+            ->get();
+
+        //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
+        return view('main.index',compact('motor','motorbrand', 'motorcolor', 'motorgear'));
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $motercycle = Motercycle::findOrFail($id);
-
-        return view('motercycles.show', compact('motercycle'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-
 
 }
