@@ -9,7 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
-use Illuminate\Session\Middleware\AuthenticateSession
+use Illuminate\Session\Middleware\AuthenticateSession;
 
 class LoginController extends Controller
 {
