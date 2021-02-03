@@ -34,6 +34,8 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
+        echo $_SERVER['HTTP_REFERER'];
+        exit();
         return $_SERVER['HTTP_REFERER'];
     }
 
