@@ -87,16 +87,23 @@ class LoginController extends Controller
     // Line login
     public function redirectToLine()
     {
+        if(!isset($_SESSION["backurl"]) )
+        $_SESSION["backurl"] =$_SERVER['HTTP_REFERER'] ;
+        $backurl = $_SESSION["backurl"];
+
+        $this->handleLineCallback($backurl);
+
         return Socialite::driver('line')->redirect();
+
     }
     // Line callback
-    public function handleLineCallback()
+    public function handleLineCallback($backurl)
     {
         $user = Socialite::driver('line')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
         // Return home after login
-        return redirect($_SERVER['HTTP_REFERER']);
+        return redirect($backurl);
     }
 
     protected function _registerOrLoginUser($data, $type)
