@@ -195,7 +195,7 @@
                 "type": "text",
                 "text": "สถานนะ พรบ.",
                 "margin": "xxl",
-                "size": "lg",
+                "size": "md",
                 "weight": "regular",
                 "offsetTop": "sm",
                 "offsetStart": "lg"
@@ -239,6 +239,11 @@
       }
     ],
     "paddingAll": "0px"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": []
   }
 }
 }
