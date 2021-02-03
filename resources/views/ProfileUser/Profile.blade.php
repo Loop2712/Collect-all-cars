@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-md-2">
-                                            <label class="control-label">{{ 'ชื่อผู้ใช้  / Username' }}</label></label>
+                                            <label class="control-label"><b>{{ 'ชื่อผู้ใช้  / Username' }}</b></label></label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             {{ $data->username }}<br/><br/>
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-md-2">
-                                            <label  class="control-label">{{ 'ชื่อ / Name' }}</label></label>
+                                            <label  class="control-label"><b>{{ 'ชื่อ / Name' }}</b></label></label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             {{ $data->name }}<br/><br/>
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-md-2">
-                                            <label  class="control-label">{{ 'วันเกิด / Birthday ' }}</label></label>
+                                            <label  class="control-label"><b>{{ 'วันเกิด / Birthday ' }}</b></label></label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             {{ $data->brith }}<br/><br/>     
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-md-2">
-                                            <label for="massengbox" class="control-label">{{ 'เพศ / Sex ' }}</label></label>
+                                            <label for="massengbox" class="control-label"><b>{{ 'เพศ / Sex ' }}</b></label></label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             {{ $data->sex }}<br/><br/> 
@@ -62,7 +62,7 @@
                                     <br><br>
                                 <div class="row">
                                     <div class="col-12 col-md-2">
-                                        <label for="massengbox" class="control-label">{{ 'อีเมล  / E-mail' }}</label></label>
+                                        <label for="massengbox" class="control-label"><b>{{ 'อีเมล  / E-mail' }}</b></label></label>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         {{ $data->email }}<br/><br/> 
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-2">
-                                        <label for="massengbox" class="control-label">{{ 'โทรศัพท์ / Phone ' }}</label></label>
+                                        <label for="massengbox" class="control-label"><b>{{ 'โทรศัพท์ / Phone ' }}</b></label></label>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         {{ $data->phone }}<br/><br/> 
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-2">
-                                        <label for="massengbox" class="control-label">{{ 'วันหมดอายุ พรบ  / Expiration date act' }}</label></label>
+                                        <label for="massengbox" class="control-label"><b>{{ 'วันหมดอายุ พรบ  / Expiration date act' }}</b></label></label>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         {{ $data->act }}<br/><br/> 

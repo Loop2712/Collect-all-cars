@@ -22,11 +22,11 @@ class WishlistController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        $wishlist = Wishlist::leftJoin('data_cars', 'wishlist.product_id', '=', 'data_cars.id')
-            ->where('user_id', Auth::id() )
-            ->get()
-            ->paginate($perPage);
-        // $wishlist = Wishlist::where('user_id', Auth::id() )->latest()->paginate($perPage);
+        // $wishlist = Wishlist::leftJoin('data_cars', 'wishlist.product_id', '=', 'data_cars.id')
+        //     ->where('user_id', Auth::id() )
+        //     ->get()
+        //     ->paginate($perPage);
+         $wishlist = Wishlist::where('user_id', Auth::id() )->latest()->paginate($perPage);
         
 
         return view('wishlist.index', compact('wishlist'));
