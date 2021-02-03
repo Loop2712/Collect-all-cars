@@ -153,26 +153,49 @@
                                         <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
                                         <ul>
                                             <li><span>{{ $item->distance  }} </span>km</li>
+                                            
                                             @switch($item->gear)
                                                 @case("เกียร์ธรรมดา")
-                                                    <li> Manual </li>
+                                                    <li>Manual </li>
                                                     @break
 
                                                 @case("เกียร์อัตโนมัติ")
-                                                    <li> Auto </li>
+                                                    <li>Auto </li>
                                                     @break
 
                                                 @default
                                                     <li> - </li>
                                             @endswitch
-                                        </ul>
-                                        <ul>
                                             
-                                        </ul>
-                                        <ul>
-                                            <li><span></i> {{ $item->fuel  }}</span></li>
+                                            
+                                            @switch($item->fuel)
+                                                @case("Diesel")
+                                                    <li><span>ดีเซล</span></li>
+                                                    @break
+                                                @case("Petrol - Unleaded (ULP)")
+                                                    <li><span>เบนซิน</span></li>
+                                                    @break
+                                                @case("Petrol - Leaded")
+                                                    <li><span>เบนซิน</span></li>
+                                                    @break
+                                                @case("Electric")
+                                                    <li><span>ไฟฟ้า</span></li>
+                                                    @break
+                                                @case("Hybrid")
+                                                    <li><span>ไฮบริด</span></li>
+                                                    @break
+                                                @case("Natural Gas Vehicle")
+                                                    <li><span>NGV</span></li>
+                                                    @break
+                                                @case("pito")
+                                                    <li><span>เบนซิน</span></li>
+                                                    @break
+                                                @default
+                                                    <li><span> - </span></li>
+                                            @endswitch
                                         </ul>
                                     </div>
+
                                     <div class="car__item__price">
                                         <span class="car-option"><a href="{{ url('/car/'.$item->id ) }}"></a>view</span>
                                         @if ( $item->price == 'ติดต่อผู้ขาย')
