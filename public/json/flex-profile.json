@@ -198,7 +198,16 @@
                 "size": "md",
                 "weight": "regular",
                 "offsetTop": "sm",
-                "offsetStart": "lg"
+                "offsetStart": "lg",
+                "flex": 3
+              },
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/tick.png",
+                "margin": "sm",
+                "size": "xxl",
+                "offsetTop": "lg",
+                "offsetStart": "xxl"
               },
               {
                 "type": "text",
@@ -207,23 +216,14 @@
                 "style": "italic",
                 "color": "#FF3300",
                 "decoration": "underline",
-                "align": "end",
                 "action": {
                   "type": "uri",
                   "label": "แก้ไขพรบ",
                   "uri": "https://market.viicheck.com/พรบ"
-                }
-              },
-              {
-                "type": "filler"
-              },
-              {
-                "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/tick.png",
-                "margin": "sm",
-                "size": "xxl",
-                "offsetTop": "lg",
-                "offsetEnd": "xxl"
+                },
+                "align": "end",
+                "offsetEnd": "lg",
+                "offsetTop": "lg"
               },
               {
                 "type": "spacer"
