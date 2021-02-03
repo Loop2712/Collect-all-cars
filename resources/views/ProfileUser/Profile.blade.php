@@ -19,7 +19,7 @@
                                         <br><br>
                                     <div class="row">
                                         <div class="col-12">
-                                                <img src="{{$data->avatar}}" width="400" /> <br/><br/><br/><br/>
+                                                <img src="{{$data->avatar}}" width="200" /> <br/><br/><br/><br/>
                                         </div>
                                         <br/><br/>
                                     </div>
