@@ -207,23 +207,7 @@
                 "margin": "sm",
                 "size": "xxl",
                 "offsetTop": "lg",
-                "offsetStart": "xxl"
-              },
-              {
-                "type": "text",
-                "text": "แก้ไข",
-                "size": "xxs",
-                "style": "italic",
-                "color": "#FF3300",
-                "decoration": "underline",
-                "action": {
-                  "type": "uri",
-                  "label": "แก้ไขพรบ",
-                  "uri": "https://market.viicheck.com/พรบ"
-                },
-                "align": "end",
-                "offsetEnd": "lg",
-                "offsetTop": "lg"
+                "offsetEnd": "xxl"
               },
               {
                 "type": "spacer"
