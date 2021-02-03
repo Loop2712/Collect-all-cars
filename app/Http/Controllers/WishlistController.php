@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\CarModel;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,15 +22,12 @@ class WishlistController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-
-        if (!empty($keyword)) {
-            $wishlist = Wishlist::where('product_id', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $wishlist = Wishlist::where('user_id', Auth::id() )->latest()->paginate($perPage);
-        }
+        $wishlist = Wishlist::leftJoin('data_cars', 'wishlist.product_id', '=', 'data_cars.id')
+            ->where('user_id', Auth::id() )
+            ->get()
+            ->paginate($perPage);
+        // $wishlist = Wishlist::where('user_id', Auth::id() )->latest()->paginate($perPage);
+        
 
         return view('wishlist.index', compact('wishlist'));
     }

@@ -16,7 +16,7 @@
                         <div class="car__filter">
                             <h5>Car Filter</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
-                                <select  name="brand" id="brand"  onchange="this.form.submit()">
+                                <select name="brand" id="brand"  onchange="this.form.submit()">
                                     <option value="" data-display="Brand">Select Brand</option>
                                     @foreach($brand_array as $br)
                                         <option 

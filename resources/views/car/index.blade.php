@@ -12,20 +12,20 @@
                     <div class="hero__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Car</a>
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">รถยนต์</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Motorcycle</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">รถจักรยานยนต์</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="hero__tab__form">
-                                    <h2>Find Your Dream Car</h2>
+                                    <h3>ค้นหารถยนต์ในฝัน</h3><br>
                                     <form action="{{URL::to('/car')}}" method="get">
                                         <div class="select-list">
                                             <div class="select-list-item">
-                                                <p>Select Brand</p>
+                                                <p><b>รุ่นรถ / Brand</b></p>
                                                 <select name="brand" id="brand" >
                                                     <option value="" data-display="Brand">Select Brand</option>
                                                     @foreach($brand_array as $br)
@@ -38,7 +38,7 @@
                                                 </select>
                                             </div>
                                             <div class="select-list-item">
-                                                <p>Select year</p>
+                                                <p><b>ปี / year</b></p>
                                                 <select name="year" id="year"  >
                                                     <option value="" data-display="Year">Select Year</option>
                                                     @foreach($year_array as $ye)
@@ -51,7 +51,7 @@
                                                 </select>
                                             </div>
                                             <div class="select-list-item">
-                                                <p>Select Color</p>
+                                                <p><b>สีรถ / Color</b></p>
                                                 <select name="color" id="color"  >
                                                     <option value="" data-display="Color">Select Color</option>
                                                     @foreach($color_array  as $co)
@@ -64,7 +64,7 @@
                                                 </select>
                                             </div>
                                             <div class="select-list-item">
-                                                <p>Select Type</p>
+                                                <p><b>ประเภทรถ / Type</b></p>
                                                 <select name="typecar" id="typecar"  >
                                                     <option value="" data-display="Type">Select Type</option>
                                                     @foreach($type_array as $ty)
@@ -89,7 +89,7 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        <button type="submit" class="site-btn">Search</button>
+                                        <button type="submit" class="site-btn">ค้นหา</button>
                                     </form>
                                 </div>
                             </div>

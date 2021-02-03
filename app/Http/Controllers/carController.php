@@ -177,86 +177,12 @@ class CarController extends Controller
         readfile($data->image);
 
     }
-    
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('sell_car.create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-                
-        $requestData = $request->all();
-        $requestData['user_id'] = Auth::id();
-        
-        Wishlist::create($requestData);
-
-        return redirect('sel_car')->with('flash_message', 'car added!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CarModel  $carModel
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $data = CarModel::findOrFail($id);
         
         return view('car.car-details', compact('data'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CarModel  $carModel
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data = CarModel::findOrFail($id);
-
-        return view('car.edit', compact('data'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CarModel  $carModel
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CarModel $carModel)
-    {
-        $requestData = $request->all();
-        
-        $data = CarModel::findOrFail($id);
-        $data->update($requestData);
-
-        return redirect('car')->with('flash_message', 'car updated!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CarModel  $carModel
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CarModel $carModel)
-    {
-        //
     }
 
 }

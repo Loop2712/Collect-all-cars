@@ -52,22 +52,17 @@
                                     @endif
                                 
                             </ul>
-                            <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i> Buy at ...</a>
+                            <button type="submit" class="btn btn-info" ><i class="fa fa-shopping-cart"></i> เพิ่มเป็นรายการโปรด</button> 
+                            <br><br>
 
-                            
-                                <a class="submit" href="#">Submit</a>
-                            
-                            <button type="submit" class="primary-btn" >
-                                <i class="fa fa-shopping-cart"></i> เพิ่มเป็นรายการโปรด
-                            </button> 
+                            <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i>สนใจติดต่อ</a>
+
+                            <br>
 
                             <!-- Button trigger modal -->
                             <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                       Launch demo modal
                             </a>
-
-
-
 
                         </div>
                         

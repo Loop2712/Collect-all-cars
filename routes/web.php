@@ -60,6 +60,8 @@ Route::post('/car', 'CarController@store');
 Route::get('/car/{id}/edit', 'CarController@edit');
 Route::put('/car/{id}', 'CarController@update');
 
+Route::resource('motercycles', 'MotercyclesController');
+
 //Route::resource('car','CarController');
 
 Route::resource('detail', 'DetailController');

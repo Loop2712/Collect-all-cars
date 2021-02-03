@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="header__nav">
-                        <div class="header__menu" style="text-align:left">
+                        <div class="header__menu" style="text-align:left;margin-left: 20px;">
                             <ul>
                                 <li>
                                 <a href="{{ url('/car') }}" >รถยนต์มือสอง</a>
@@ -80,7 +80,7 @@
                                         <a  href="{{ route('login') }}" >ขายรถ</a>
                                     </li> 
                                     <li>
-                                        <a href="{{ route('login') }}"><i class="fas fa-heart"></i></a>
+                                        <a href="{{ route('login') }}">รายการโปรด</a>
                                     </li>
                                     <li >
                                         <a  href="{{ route('login') }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
@@ -89,10 +89,18 @@
                                      
                                 @else
                                     <li >
-                                        <a  href="{{ url('/sell') }}" >ขายรถ</a>
+                                        <a  href="{{ url('/sell') }}" >ขาย</a>
+                                        <ul class="dropdown">
+                                                <li>
+                                                    <a href="{{ url('/sell') }}" >รถยนต์</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ url('/motercycles') }}" >รถมอเตอร์ไซต์</a>
+                                                </li>
+                                        </ul>
                                     </li> 
                                     <li>
-                                        <a href="{{ url('/wishlist') }}"><i class="fas fa-heart"></i></a>
+                                        <a href="{{ url('/wishlist') }}">รายการโปรด</a>
                                     </li>
                                     <li>
                                         <a aria-haspopup="true" aria-expanded="false" v-pre href="#">

@@ -402,13 +402,13 @@ ol {
 }
 
 .header__menu {
-	display: inline-block;
+	/* display: inline-block; */
 }
 
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
-	margin-left: 60px;
+	margin-left: 40px;
 	position: relative;
 }
 

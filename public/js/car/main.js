@@ -175,6 +175,20 @@
         Select
     ----------------------------*/
     $("select").niceSelect();
+    // $("select").focus(function() {
+    //     console.log("begin");
+    //     var $select = $(this);
+    //     var $option1 = $select.find("option[value=42]");
+    //     var $option2 = $select.find("option[value=43]");
+    //     /*
+    //     var optionTop = .offset().top;
+    //     var selectTop = $s.offset().top;
+    //     $s.scrollTop($s.scrollTop() + (optionTop - selectTop));
+    //     */
+    //     $option2.attr("selected", true);
+    //     $option1.attr("selected", false);
+    //     console.log("end");
+    // });
 
     /*------------------
 		Magnific
