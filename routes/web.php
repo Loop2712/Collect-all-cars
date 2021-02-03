@@ -86,3 +86,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get('/menu', function () {
     return view('3menu');
 });
+
+Route::get('/before', function () {
+    return view('before_register_car');
+});
