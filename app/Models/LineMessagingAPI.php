@@ -56,9 +56,10 @@ class LineMessagingAPI extends Model
 
                     $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  // ตัวแปรสำหรับเช็คการแจ้งเตือน
 
-                    if ($alert <= 30) {
+                    if ($alert <= 30 && $alert >= 1) {
                         $string_json = str_replace("tick","warning",$string_json);
-                    }else if ($alert <= 0){
+                    }
+                    if ($alert <= 0){
                         $string_json = str_replace("tick","wrong",$string_json);
                     }
 
