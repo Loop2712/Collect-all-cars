@@ -94,7 +94,8 @@
                                     </li>
                                     <li>
                                         <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                        {{ Auth::user()->name }}</a>
+                                        <img src="{{$data->avatar}}"style=" width: 50px;height: 50px;border-radius: 50%;" alt="">    {{ Auth::user()->name }}
+                                        </a>
                                             <ul class="dropdown">
                                                 <li>
                                                     <a href="{{ url('/profile') }}" > Profile</a>
