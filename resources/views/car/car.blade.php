@@ -152,14 +152,26 @@
                                         <div class="label-date">{{ $item->year  }}</div>
                                         <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
                                         <ul>
-                                            <li><span><i class="fas fa-road"></i>     {{ $item->distance  }}   km</span></li>
-                                            <li><span><i class="fas fa-palette"></i>  {{ $item->color  }}</span></li>
+                                            <li><span>{{ $item->distance  }} </span>km</li>
+                                            @switch($item->gear)
+                                                @case(เกียร์ธรรมดา)
+                                                    <li> `E-mail` input is empty!</li>
+                                                    @break
+
+                                                @case(2)
+                                                    <li>`Password` input is empty!</li>
+                                                    @break
+
+                                                @default
+                                                    <li>Something went wrong, please try again</li>
+                                            @endswitch
+                                            <li>{{ $item->gear  }}</li>
                                         </ul>
                                         <ul>
-                                            <li><span> <i class="fas fa-cogs"></i>   {{ $item->gear  }}</span></li>
+                                            
                                         </ul>
                                         <ul>
-                                            <li><span><i class="fas fa-gas-pump"></i> {{ $item->fuel  }}</span></li>
+                                            <li><span></i> {{ $item->fuel  }}</span></li>
                                         </ul>
                                     </div>
                                     <div class="car__item__price">

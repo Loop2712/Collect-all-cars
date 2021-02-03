@@ -34,7 +34,8 @@
 html,
 body {
 	height: 100%;
-	font-family: 'Krub', sans-serif;
+	/* font-family: 'Krub', sans-serif; */
+	font-family: 'K2D', sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -47,7 +48,8 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
-	font-family: 'Krub', sans-serif;
+	/* font-family: 'Krub', sans-serif; */
+	font-family: 'K2D', sans-serif;
 }
 
 h1 {
@@ -76,7 +78,8 @@ h6 {
 
 p {
 	font-size: 15px;
-	font-family: 'Krub', sans-serif;
+	/* font-family: 'Krub', sans-serif; */
+	font-family: 'K2D', sans-serif;
 	color: #727171;
 	font-weight: 400;
 	line-height: 25px;
@@ -1577,7 +1580,8 @@ ol {
 	right: -15px;
 	top: 0;
 	content: "";
-	font-family: 'Krub', sans-serif;
+	/* font-family: 'Krub', sans-serif; */
+	font-family: 'K2D', sans-serif;
 }
 
 .breadcrumb__links a i {

@@ -76,6 +76,14 @@
                                         {{ $data->phone }}<br/><br/> 
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-2">
+                                        <label for="massengbox" class="control-label">{{ 'วันหมดอายุ พรบ  / Expiration date act' }}</label></label>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        {{ $data->act }}<br/><br/> 
+                                    </div>
+                                </div>
                             
                                 </div>
                             </div>
