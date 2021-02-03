@@ -86,7 +86,7 @@ class ProfileController extends Controller
         $data->update($requestData);
 
         DB::table('register_cars')
-              ->where('user_id', $requestData['id'])
+              ->where('user_id', $id)
               ->update(['sex' => $requestData['sex']]);
 
         return redirect('profile')->with('flash_message', 'profile updated!');
