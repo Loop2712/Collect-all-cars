@@ -31,7 +31,7 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-
+    
     protected function redirectTo()
     {
         return $_SERVER['HTTP_REFERER'];
@@ -87,23 +87,16 @@ class LoginController extends Controller
     // Line login
     public function redirectToLine()
     {
-        if(!isset($_SESSION["backurl"]) )
-        $_SESSION["backurl"] =$_SERVER['HTTP_REFERER'] ;
-        $backurl = $_SESSION["backurl"];
-
-        $this->handleLineCallback($backurl);
-
         return Socialite::driver('line')->redirect();
-
     }
     // Line callback
-    public function handleLineCallback($backurl)
+    public function handleLineCallback()
     {
         $user = Socialite::driver('line')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
         // Return home after login
-        return redirect($backurl);
+        return $_SERVER['HTTP_REFERER'];
     }
 
     protected function _registerOrLoginUser($data, $type)
