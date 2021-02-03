@@ -31,7 +31,7 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-    
+
     protected function redirectTo()
     {
         return $_SERVER['HTTP_REFERER'];
@@ -87,7 +87,7 @@ class LoginController extends Controller
     // Line login
     public function redirectToLine()
     {
-        return Socialite::driver('line')->redirect();
+        return Socialite::driver('line')->redirect($_SERVER['HTTP_REFERER']);
     }
     // Line callback
     public function handleLineCallback()
@@ -96,7 +96,7 @@ class LoginController extends Controller
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
         // Return home after login
-        return $_SERVER['HTTP_REFERER'];
+        return redirect();
     }
 
     protected function _registerOrLoginUser($data, $type)
