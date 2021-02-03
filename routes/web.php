@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
 	Route::resource('wishlist', 'WishlistController');
 	Route::resource('sell', 'SellController');
-	Route::resource('motorcyclesell', 'MotorcyclesellController');
+	Route::resource('motercycles', 'MotorcyclesellController');
 	Route::resource('profile', 'ProfileController');
 });
 

@@ -68,7 +68,7 @@ class motorcyclesellController extends Controller
         
         Motercycle::create($requestData);
 
-        return redirect('motercyclesell')->with('flash_message', 'motorcyclesell added!');
+        return redirect('motercyclesell')->with('flash_message', 'motercycles added!');
     }
 
     /**
@@ -115,7 +115,7 @@ class motorcyclesellController extends Controller
         $motercycle = Motercycle::findOrFail($id);
         $motercycle->update($requestData);
 
-        return redirect('motercyclesell')->with('flash_message', 'motorcyclesell updated!');
+        return redirect('motercyclesell')->with('flash_message', 'motercycles updated!');
     }
 
     /**
@@ -129,6 +129,6 @@ class motorcyclesellController extends Controller
     {
         Motercycle::destroy($id);
 
-        return redirect('motercyclesell')->with('flash_message', 'motorcyclesell deleted!');
+        return redirect('motercyclesell')->with('flash_message', 'motercycles deleted!');
     }
 }
