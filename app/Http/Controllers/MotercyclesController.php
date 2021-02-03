@@ -41,7 +41,7 @@ class MotercyclesController extends Controller
             $motercycles = Motercycle::latest()->paginate($perPage);
         }
 
-        return view('motercycles.index', compact('motercycles'));
+        return view('motercyclesell.index', compact('motercycles'));
     }
 
     /**
@@ -51,7 +51,7 @@ class MotercyclesController extends Controller
      */
     public function create()
     {
-        return view('motercycles.create');
+        return view('motercyclesell.create');
     }
 
     /**
@@ -68,7 +68,7 @@ class MotercyclesController extends Controller
         
         Motercycle::create($requestData);
 
-        return redirect('motercycles')->with('flash_message', 'Motercycle added!');
+        return redirect('motercyclesell')->with('flash_message', 'Motercycle added!');
     }
 
     /**
@@ -82,7 +82,7 @@ class MotercyclesController extends Controller
     {
         $motercycle = Motercycle::findOrFail($id);
 
-        return view('motercycles.show', compact('motercycle'));
+        return view('motercyclesell.show', compact('motercycle'));
     }
 
     /**
@@ -96,7 +96,7 @@ class MotercyclesController extends Controller
     {
         $motercycle = Motercycle::findOrFail($id);
 
-        return view('motercycles.edit', compact('motercycle'));
+        return view('motercyclesell.edit', compact('motercycle'));
     }
 
     /**
@@ -115,7 +115,7 @@ class MotercyclesController extends Controller
         $motercycle = Motercycle::findOrFail($id);
         $motercycle->update($requestData);
 
-        return redirect('motercycles')->with('flash_message', 'Motercycle updated!');
+        return redirect('motercyclesell')->with('flash_message', 'Motercycle updated!');
     }
 
     /**
@@ -129,6 +129,6 @@ class MotercyclesController extends Controller
     {
         Motercycle::destroy($id);
 
-        return redirect('motercycles')->with('flash_message', 'Motercycle deleted!');
+        return redirect('motercyclesell')->with('flash_message', 'Motercycle deleted!');
     }
 }

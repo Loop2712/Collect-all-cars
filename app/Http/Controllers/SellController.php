@@ -43,7 +43,7 @@ class SellController extends Controller
             $sell = Sell::where('user_id', Auth::id() )->latest()->paginate($perPage);
         }
 
-        return view('sell.index', compact('sell'));
+        return view('carsell.index', compact('sell'));
     }
 
     /**
@@ -53,7 +53,7 @@ class SellController extends Controller
      */
     public function create()
     {
-        return view('sell.create');
+        return view('carsell.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class SellController extends Controller
 
         Sell::create($requestData);
 
-        return redirect('sell')->with('flash_message', 'Sell added!');
+        return redirect('carsell')->with('flash_message', 'Sell added!');
     }
 
     /**
@@ -85,7 +85,7 @@ class SellController extends Controller
     {
         $sell = Sell::findOrFail($id);
 
-        return view('sell.show', compact('sell'));
+        return view('carsell.show', compact('sell'));
     }
 
     /**
@@ -99,7 +99,7 @@ class SellController extends Controller
     {
         $sell = Sell::findOrFail($id);
 
-        return view('sell.edit', compact('sell'));
+        return view('carsell.edit', compact('sell'));
     }
 
     /**
@@ -118,7 +118,7 @@ class SellController extends Controller
         $sell = Sell::findOrFail($id);
         $sell->update($requestData);
 
-        return redirect('sell')->with('flash_message', 'Sell updated!');
+        return redirect('carsell')->with('flash_message', 'Sell updated!');
     }
 
     /**
@@ -132,6 +132,6 @@ class SellController extends Controller
     {
         Sell::destroy($id);
 
-        return redirect('sell')->with('flash_message', 'Sell deleted!');
+        return redirect('carsell')->with('flash_message', 'Sell deleted!');
     }
 }

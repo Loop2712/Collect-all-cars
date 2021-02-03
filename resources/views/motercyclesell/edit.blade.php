@@ -26,7 +26,7 @@
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('motercycles.form', ['formMode' => 'edit'])
+                            @include ('motercyclesell.form', ['formMode' => 'edit'])
 
                         </form>
 
