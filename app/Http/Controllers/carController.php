@@ -214,7 +214,7 @@ class CarController extends Controller
     public function show($id)
     {
         $data = CarModel::findOrFail($id);
-
+        
         return view('car.car-details', compact('data'));
     }
 

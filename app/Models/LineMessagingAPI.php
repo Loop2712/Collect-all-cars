@@ -50,6 +50,19 @@ class LineMessagingAPI extends Model
 
                     // if พรบ
 
+                    $date_now = date("Y-m-d "); // เวลาปัจจุบัน
+
+                    $dtae_act = $data->act; // วันหมดอายุ พรบ
+
+                    $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  // ตัวแปรสำหรับเช็คการแจ้งเตือน
+
+                    if ($alert <= 30) {
+                        $string_json = str_replace("tick","warning",$string_json);
+                    }else if ($alert <= 0){
+                        $string_json = str_replace("tick","wrong",$string_json);
+                    }
+
+                    // ข้อความสุดท้ายที่จะส่ง
                     $messages = [ json_decode($string_json, true) ]; 
 
                 }
