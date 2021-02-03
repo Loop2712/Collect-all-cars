@@ -34,6 +34,8 @@ class CarController extends Controller
         
         $milemin = empty($milemin) ? 0 :$milemin;
         $milemax = empty($milemax) ? 99000000 :$milemax;
+        $pricemin = empty($pricemin) ? 0 :$pricemin;
+        $pricemax = empty($pricemax) ? 99000000 :$pricemax;
 
 
 
@@ -49,7 +51,7 @@ class CarController extends Controller
                 ->where('color',   'like', '%' .$color. '%')
                 ->where('location','like', '%' .$location. '%')
                 ->where('fuel',    'lIKE', '%' .$fuel. '%')
-                // ->whereBetween('price', [$pricemin,$pricemax])
+                ->whereBetween('price', [$pricemin,$pricemax])
                 ->whereBetween('distance', [$milemin, $milemax])
                 // ->whereBetween('price', [30, 100])
                 ->where('active' ,'=', 'yes')

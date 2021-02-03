@@ -51,12 +51,26 @@
                         <a href="{{URL::to('/')}}"><img width="200px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
                     </div>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-5">
+                    <div class="header__nav">
+                        <div class="header__menu" style="text-align:left">
+                            <ul>
+                                <li>
+                                <a href="{{ url('/car') }}" >รถยนต์มือสอง</a>
+                                </li>
+                                <li>
+                                <a href="{{ url('/car') }}" >รถมอเตอร์ไซต์มือสอง</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
                     <div class="header__nav">
                         <nav class="header__menu">
                             <ul>
                                 
-                                <li><a href="{{ url('/car') }}" >ซื้อรถมือสอง</a></li>
+                                
                                 @guest
                                     <li >
                                         <a  href="{{ route('login') }}" >ขายรถ</a>

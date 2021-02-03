@@ -8,15 +8,15 @@
                     <div class="car__sidebar">
                         <div class="car__search">
                             <h5>Car Search</h5>
-                            <form action="{{URL::to('/car')}}" method="get" class="form-inline my-2 my-lg-0 float-right">
-                                <input type="text" placeholder="Search..." name="search">
+                            <form action="{{URL::to('/car')}}" method="get">
+                                <input type="text" placeholder="Search..." name="search" id="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                         <div class="car__filter">
                             <h5>Car Filter</h5>
-                            <form action="{{URL::to('/car')}}" method="get">
-                                <select name="brand" id="brand" onchange="this.form.submit()">
+                            <form  action="{{URL::to('/car')}}" method="get">
+                                <select  name="brand" id="brand"  onchange="this.form.submit()">
                                     <option value="" data-display="Brand">Select Brand</option>
                                     @foreach($brand_array as $br)
                                         <option 

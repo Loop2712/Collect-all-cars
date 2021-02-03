@@ -21,7 +21,7 @@
                 <div class="col-lg-3">
                     <div class="car__details__sidebar">
                         <div class="car__details__sidebar__model">
-                        <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
                             {{ csrf_field() }}
                             <ul>
                                 <li>Brand <span>{{ $data->brand  }}</span></li>
@@ -44,18 +44,36 @@
                         </div>
                         <div class="car__details__sidebar__payment">
                             <ul>
-                                <li>Price <span>{{ number_format(intval($item->price))}} บาท</span> </li>
+                            @if ( $data->price == 'ติดต่อผู้ขาย')
+                                    <li>Price <span>{{ $data->price}}</span> </li>
+                                    @else
+                                    <li>Price <span>{{ number_format(intval($data->price))}} บาท</span> </li>
+                                        
+                                    @endif
+                                
                             </ul>
                             <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i> Buy at ...</a>
-                        </div>
-                            <button type="submit" class="btn btn-sm btn-warning" >
+
+                            
+                                <a class="submit" href="#">Submit</a>
+                            
+                            <button type="submit" class="primary-btn" >
                                 <i class="fa fa-shopping-cart"></i> เพิ่มเป็นรายการโปรด
                             </button> 
-                        </form>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+                            <!-- Button trigger modal -->
+                            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                       Launch demo modal
-                                    </button>
+                            </a>
+
+
+
+
+                        </div>
+                        
+                            
+                        </form>
+                                    
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -213,5 +231,6 @@
         </div>
     </section>
     <!-- Car Details Section End -->
+
 
     @endsection
