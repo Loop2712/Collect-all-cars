@@ -94,7 +94,8 @@
                                     </li>
                                     <li>
                                         <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                        <img src="{{$data->avatar}}"style=" width: 30px;height: 30px;border-radius: 50%;" alt="">    {{ Auth::user()->name }}
+                                        <!-- <img src="{{$data->avatar}}"style=" width: 30px;height: 30px;border-radius: 50%;" alt=""> -->
+                                            {{ Auth::user()->name }}
                                         </a>
                                             <ul class="dropdown">
                                                 <li>
