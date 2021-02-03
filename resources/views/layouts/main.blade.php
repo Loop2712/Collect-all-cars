@@ -95,7 +95,7 @@
                                                     <a href="{{ url('/sell') }}" >รถยนต์</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ url('/motercycles') }}" >รถมอเตอร์ไซต์</a>
+                                                    <a href="{{ url('/motercyclesell') }}" >รถมอเตอร์ไซต์</a>
                                                 </li>
                                         </ul>
                                     </li> 
