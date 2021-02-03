@@ -68,8 +68,10 @@ class LoginController extends Controller
     }
 
     // Facebook login
-    public function redirectToFacebook()
-    {
+    public function redirectToFacebook(Request $request)
+    {   
+        Session::put('redirect', $request->input('redirectTo'));
+
         return Socialite::driver('facebook')->redirect();
     }
 
@@ -81,7 +83,9 @@ class LoginController extends Controller
         $this->_registerOrLoginUser($user,"facebook");
 
         // Return home after login
-        return redirect()->intended();
+        // return redirect()->intended();
+        return redirect(Session::get('redirect'));
+        Session::forget('redirect');
     }
 
     // Line login
