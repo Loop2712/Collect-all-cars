@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Register_car;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
