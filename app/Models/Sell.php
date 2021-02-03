@@ -25,7 +25,7 @@ class Sell extends Model
      *
      * @var array
      */
-    protected $fillable = ["price", "type", "brand", "model", "submodel", "year", "motor", "gear", "seats", "distance", "color","image", "location", "link", "car_id_detail","clean_at","fuel"];
+    protected $fillable = ["price", "type", "brand", "model", "submodel", "year", "motor", "gear", "seats", "distance", "color","image", "location", "link", "car_id_detail","clean_at","fuel","user_id"];
 
     public function user(){
         return $this->belongsTo('App\User', 'user_id'); 

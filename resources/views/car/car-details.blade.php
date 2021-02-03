@@ -44,7 +44,7 @@
                         </div>
                         <div class="car__details__sidebar__payment">
                             <ul>
-                                <li>Price <span>{{ $data->price}} บาท</span> </li>
+                                <li>Price <span>{{ number_format(intval($item->price))}} บาท</span> </li>
                             </ul>
                             <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i> Buy at ...</a>
                         </div>

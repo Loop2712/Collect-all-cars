@@ -36,7 +36,6 @@ class SellController extends Controller
                 ->orWhere('image', 'LIKE', "%$keyword%")
                 ->orWhere('location', 'LIKE', "%$keyword%")
                 ->orWhere('fuel', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
                 ->where('user_id', Auth::id() )
                 ->latest()->paginate($perPage);
         } else {
@@ -68,9 +67,8 @@ class SellController extends Controller
     {
         
         $requestData = $request->all();
-
         $requestData['user_id'] = Auth::id();
-        
+
         Sell::create($requestData);
 
         return redirect('sell')->with('flash_message', 'Sell added!');

@@ -68,10 +68,10 @@
     <input class="form-control" name="fuel" type="text" id="fuel" value="{{ isset($sell->fuel) ? $sell->fuel : ''}}" >
     {!! $errors->first('fuel', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+<!-- <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
     <input class="form-control" name="user_id" type="number" id="user_id" value="{{Auth::user()->id}}" >
-</div>
+</div> -->
 
 
 <div class="form-group">

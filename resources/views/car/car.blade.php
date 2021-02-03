@@ -164,7 +164,12 @@
                                     </div>
                                     <div class="car__item__price">
                                         <span class="car-option"><a href="{{ url('/car/'.$item->id ) }}"></a>view</span>
-                                        <h6>{{ $item->price}}<span>บาท</span></h6>
+                                        @if ( $item->price == 'ติดต่อผู้ขาย')
+                                        <h6>{{ $item->price}}<span></span></h6>
+                                        @else
+                                            <h6>{{ number_format(intval($item->price))}} บาท<span></span></h6>
+                                        
+                                        @endif
                                     </div>
                                 </div>
                             </div>
