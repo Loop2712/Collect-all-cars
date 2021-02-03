@@ -9,9 +9,6 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
-use Illuminate\Http\Request;
-use Session;
-
 
 class LoginController extends Controller
 {
@@ -71,10 +68,8 @@ class LoginController extends Controller
     }
 
     // Facebook login
-    public function redirectToFacebook(Request $request)
+    public function redirectToFacebook()
     {   
-        Session::put('redirect', $request->input('redirectTo'));
-
         return Socialite::driver('facebook')->redirect();
     }
 
@@ -86,9 +81,7 @@ class LoginController extends Controller
         $this->_registerOrLoginUser($user,"facebook");
 
         // Return home after login
-        // return redirect()->intended();
-        return redirect(Session::get('redirect'));
-        Session::forget('redirect');
+        return redirect()->intended();
     }
 
     // Line login
