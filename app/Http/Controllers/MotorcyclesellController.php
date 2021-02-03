@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Models\Motercycle;
 use Illuminate\Http\Request;
 
-class MotercyclesController extends Controller
+class motorcyclesellController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -68,7 +68,7 @@ class MotercyclesController extends Controller
         
         Motercycle::create($requestData);
 
-        return redirect('motercyclesell')->with('flash_message', 'Motercycle added!');
+        return redirect('motercyclesell')->with('flash_message', 'motorcyclesell added!');
     }
 
     /**
@@ -115,7 +115,7 @@ class MotercyclesController extends Controller
         $motercycle = Motercycle::findOrFail($id);
         $motercycle->update($requestData);
 
-        return redirect('motercyclesell')->with('flash_message', 'Motercycle updated!');
+        return redirect('motercyclesell')->with('flash_message', 'motorcyclesell updated!');
     }
 
     /**
@@ -129,6 +129,6 @@ class MotercyclesController extends Controller
     {
         Motercycle::destroy($id);
 
-        return redirect('motercyclesell')->with('flash_message', 'Motercycle deleted!');
+        return redirect('motercyclesell')->with('flash_message', 'motorcyclesell deleted!');
     }
 }
