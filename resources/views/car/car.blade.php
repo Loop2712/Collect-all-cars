@@ -197,7 +197,7 @@
                                     </div>
 
                                     <div class="car__item__price">
-                                        <span class="car-option"><a href="{{ url('/car/'.$item->id ) }}"></a>view</span>
+                                        <span class="car-option sale"><a href="{{ url('/car/'.$item->id ) }}"></a>ราคา</span>
                                         @if ( $item->price == 'ติดต่อผู้ขาย')
                                         <h6>{{ $item->price}}<span></span></h6>
                                         @else
