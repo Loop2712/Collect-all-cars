@@ -154,18 +154,17 @@
                                         <ul>
                                             <li><span>{{ $item->distance  }} </span>km</li>
                                             @switch($item->gear)
-                                                @case(เกียร์ธรรมดา)
-                                                    <li> `E-mail` input is empty!</li>
+                                                @case("เกียร์ธรรมดา")
+                                                    <li> Manual </li>
                                                     @break
 
-                                                @case(2)
-                                                    <li>`Password` input is empty!</li>
+                                                @case("เกียร์อัตโนมัติ")
+                                                    <li> Auto </li>
                                                     @break
 
                                                 @default
-                                                    <li>Something went wrong, please try again</li>
+                                                    <li> - </li>
                                             @endswitch
-                                            <li>{{ $item->gear  }}</li>
                                         </ul>
                                         <ul>
                                             
