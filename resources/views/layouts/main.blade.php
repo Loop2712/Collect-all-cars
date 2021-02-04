@@ -83,7 +83,7 @@
                                         <a href="{{ route('login') }}">รายการโปรด</a>
                                     </li>
                                     <li >
-                                        <a  href="{{ route('login') }}?redirectTo={{ url()->current() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                                        <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
                                     </li> 
                                      
                                 @else
