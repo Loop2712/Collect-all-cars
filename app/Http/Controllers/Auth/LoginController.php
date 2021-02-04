@@ -99,6 +99,7 @@ class LoginController extends Controller
     // Line callback
     public function handleLineCallback(Request $request)
     {
+        
         $user = Socialite::driver('line')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
@@ -109,7 +110,8 @@ class LoginController extends Controller
         $request->session()->forget('redirectTo');
         // echo $value;
         // exit();
-        return redirect($value);
+        //return redirect($value); 
+        return redirect()->intended($value);
 
     }
 
