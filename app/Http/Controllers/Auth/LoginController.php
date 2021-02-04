@@ -51,7 +51,7 @@ class LoginController extends Controller
             }else{
                 return $backurl;
             }
-        
+        session_destroy();
     }
 
     // protected function redirectTo()
