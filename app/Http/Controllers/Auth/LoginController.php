@@ -89,6 +89,8 @@ class LoginController extends Controller
     // Line login
     public function redirectToLine()
     {
+        echo $_SERVER['HTTP_REFERER'];
+        exit();
         return Socialite::driver('line')->redirect();
     }
     // Line callback
