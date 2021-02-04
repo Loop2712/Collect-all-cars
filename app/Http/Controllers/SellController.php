@@ -71,7 +71,7 @@ class SellController extends Controller
 
         Sell::create($requestData);
 
-        return redirect('carsell')->with('flash_message', 'Sell added!');
+        return redirect('sell')->with('flash_message', 'Sell added!');
     }
 
     /**
@@ -118,7 +118,7 @@ class SellController extends Controller
         $sell = Sell::findOrFail($id);
         $sell->update($requestData);
 
-        return redirect('carsell')->with('flash_message', 'Sell updated!');
+        return redirect('sell')->with('flash_message', 'Sell updated!');
     }
 
     /**
@@ -132,6 +132,6 @@ class SellController extends Controller
     {
         Sell::destroy($id);
 
-        return redirect('carsell')->with('flash_message', 'Sell deleted!');
+        return redirect('sell')->with('flash_message', 'Sell deleted!');
     }
 }
