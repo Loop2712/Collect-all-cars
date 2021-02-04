@@ -96,52 +96,61 @@
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="hero__tab__form">
                                     <h2>Buy Your Dream Motorcycle</h2>
-                                    <form>
+                                    <form action="{{URL::to('/motercycle')}}" method="get">
                                         <div class="select-list">
-                                            <div class="select-list-item">
-                                                <p>Select Year</p>
-                                                <select>
-                                                    <option data-display=" ">Select Year</option>
-                                                    <option value="">2020</option>
-                                                    <option value="">2019</option>
-                                                    <option value="">2018</option>
-                                                    <option value="">2017</option>
-                                                    <option value="">2016</option>
-                                                    <option value="">2015</option>
+                                        <div class="select-list-item">
+                                                <p><b>รุ่นรถ / Brand</b></p>
+                                                <select name="brand" id="brand" >
+                                                    <option value="" data-display="Brand">Select Brand</option>
+                                                    @foreach($motorbrand as $brand)
+                                                        <option 
+                                                            value="{{ $brand->brand }}" 
+                                                            {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
+                                                            {{ $brand->brand }} 
+                                                        </option>
+                                                    @endforeach 
+                                                </select>
+                                            </div>
+                                        <div class="select-list-item">
+                                                <p><b>ระบบเกียร์ / Gear</b></p>
+                                                <select name="gear" id="gear" onchange="this.form.submit()" >
+                                                    <option value="" data-display="Gear">Select Gear</option>
+                                                    @foreach($motorgear as $ge)
+                                                        <option 
+                                                                value="{{ $ge->gear }}" 
+                                                                {{ request('gear') == $ge->gear ? 'selected' : ''   }} >
+                                                        {{ $ge->gear }} 
+                                                        </option>
+                                                    @endforeach 
                                                 </select>
                                             </div>
                                             <div class="select-list-item">
-                                                <p>Select Brand</p>
-                                                <select>
-                                                    <option data-display=" ">Select Brand</option>
-                                                    <option value="">Acura</option>
-                                                    <option value="">Audi</option>
-                                                    <option value="">Bentley</option>
-                                                    <<option value="">BMW</option>
-                                                    <option value="">Bugatti</option>
+                                                <p><b>สีรถ / Color</b></p>
+                                                <select name="color" id="color"  >
+                                                    <option value="" data-display="Color">Select Color</option>
+                                                    @foreach($motorcolor  as $co)
+                                                        <option 
+                                                                value="{{ $co->color  }}" 
+                                                                {{ request('color') == $co->color  ? 'selected' : ''   }} >
+                                                            {{ $co->color  }} 
+                                                        </option>
+                                                    @endforeach 
                                                 </select>
                                             </div>
                                             <div class="select-list-item">
-                                                <p>Select Model</p>
-                                                <select>
-                                                    <option data-display=" ">Select Model</option>
-                                                    <option value="">Q3</option>
-                                                    <option value="">A4 </option>
-                                                    <option value="">AVENTADOR</option>
-                                                </select>
+                                                <!-- <p><b>ประเภทรถ / Type</b></p>
+                                                <select name="typecar" id="typecar"  >
+                                                    <option value="" data-display="Type">Select Type</option>
+                                                    @foreach($type_array as $ty)
+                                                        <option 
+                                                                value="{{ $ty->type }}" 
+                                                                {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
+                                                        {{ $ty->type }} 
+                                                        </option>
+                                                    @endforeach
+                                                </select> -->
                                             </div>
-                                            <div class="select-list-item">
-                                                <p>Select Mileage</p>
-                                                <select>
-                                                    <option data-display=" ">Select Mileage</option>
-                                                    <option value="">27</option>
-                                                    <option value="">25</option>
-                                                    <option value="">15</option>
-                                                    <option value="">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="car-price">
+                                        <!-- <div class="car-price">
                                             <p>Price Range:</p>
                                             <div class="price-range-wrap">
                                                 <div class="price-range"></div>
@@ -151,7 +160,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <button type="submit" class="site-btn">Searching</button>
                                     </form>
                                 </div>

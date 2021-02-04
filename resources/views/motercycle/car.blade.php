@@ -46,6 +46,16 @@
                                         </option>
                                     @endforeach 
                                 </select>
+                                <select name="motor" id="motor" onchange="this.form.submit()" >
+                                    <option value="" data-display="Color">Select motor</option>
+                                    @foreach($motor  as $mo)
+                                        <option 
+                                                value="{{ $mo->motor  }}" 
+                                                {{ request('motor') == $mo->motor  ? 'selected' : ''   }} >
+                                            {{ $mo->motor  }} 
+                                        </option>
+                                    @endforeach 
+                                </select>
                                 <select name="location" id="location" onchange="this.form.submit()" >
                                     <option value="" data-display="Location">Select Location</option>
                                     @foreach($motorlocation as $lo)
@@ -111,60 +121,48 @@
                         <div class="col-lg-4 col-md-4">
                         
                             <div class="car__item">
-                                <!-- <div class="car__item__pic__slider owl-carousel">
-                                    @if($item->image == "" )
+                                <div class="car__item__pic__slider owl-carousel">
+                                    @if($item->img == "" )
                                         <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
                                     @else
-                                        <img src="{{ url('/image/'.$item->id ) }}" alt="" > 
+                                        <img src="{{ $item->img }}" alt="" > 
                                     @endif
-                                </div> -->
+                                </div>
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
                                         <div class="label-date">{{ $item->year  }}</div>
                                         <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
-                                        <!-- <ul>
-                                            <li><span>{{ $item->distance  }} </span>km</li>
+                                        <ul>
+                                            <li><span>{{ $item->motor  }} </span></li>
                                             
                                             @switch($item->gear)
-                                                @case("เกียร์ธรรมดา")
-                                                    <li>Manual </li>
+                                                @case("ธรรมดา/manual")
+                                                    <li>manual </li>
                                                     @break
 
-                                                @case("เกียร์อัตโนมัติ")
+                                                @case("ออโต้/Automatic")
                                                     <li>Auto </li>
+                                                    @break
+
+                                                @case("ไม่ระบุเกียร์")
+                                                    <li> - </li>
                                                     @break
 
                                                 @default
                                                     <li> - </li>
                                             @endswitch
                                             
-                                            
-                                            @switch($item->fuel)
-                                                @case("Diesel")
-                                                    <li><span>ดีเซล</span></li>
-                                                    @break
-                                                @case("Petrol - Unleaded (ULP)")
-                                                    <li><span>เบนซิน</span></li>
-                                                    @break
-                                                @case("Petrol - Leaded")
-                                                    <li><span>เบนซิน</span></li>
-                                                    @break
-                                                @case("Electric")
-                                                    <li><span>ไฟฟ้า</span></li>
-                                                    @break
-                                                @case("Hybrid")
-                                                    <li><span>ไฮบริด</span></li>
-                                                    @break
-                                                @case("Natural Gas Vehicle")
-                                                    <li><span>NGV</span></li>
-                                                    @break
-                                                @case("pito")
-                                                    <li><span>เบนซิน</span></li>
-                                                    @break
+                                            @switch($item->color)
+                                                @case("ทุกสี")
+                                                    <li> - </li>
+                                                @break
                                                 @default
-                                                    <li><span> - </span></li>
+                                                <li><span>{{ $item->color  }} </span></li>
                                             @endswitch
-                                        </ul> -->
+                                            
+                                            
+                                            
+                                        </ul>
                                     </div>
 
                                     <div class="car__item__price">

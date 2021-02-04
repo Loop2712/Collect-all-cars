@@ -136,7 +136,7 @@
 
 
                 <div class="col-lg-9">
-                    <div class="car__filter__option">
+                    <!-- <div class="car__filter__option">
                         <div class="row">
                             <div class="col">
                                 <div class="car__filter__option__item car__filter__option__item--right">
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="row">

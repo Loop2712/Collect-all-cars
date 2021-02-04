@@ -69,6 +69,11 @@ class MotercleyviewController extends Controller
             ->groupBy('brand')
             ->get();
 
+        $motor = Motercycle::selectRaw('motor,count(motor) as count')
+            ->where('motor', '!=',"" )
+            ->groupBy('motor')
+            ->get();
+
         $motorcolor = Motercycle::selectRaw('color,count(color) as count')
             ->where('color', '!=',"" )
             ->groupBy('color')
@@ -84,38 +89,54 @@ class MotercleyviewController extends Controller
             ->groupBy('province')
             ->get();
 
-        return view('motercycle.car', compact('data','motorbrand', 'motorcolor', 'motorgear', 'motorlocation'));
+        return view('motercycle.car', compact('data','motor','motorbrand', 'motorcolor', 'motorgear', 'motorlocation'));
     }
 
-    public function main(Request $request)
-    {
-        $perPage=20;
+    // public function main(Request $request)
+    // {
+    //     $perPage=45;
 
-        $d1=strtotime("-1 Day");
-        $d2=date("Y-m-d ");
-        $d3 = date("Y-m-d ", $d1);
-        $motor =CarModel::whereDate('created_at', $d2)
-            ->orwhereDate('created_at', $d3)
-            ->orderBy('created_at', 'desc')
-            ->paginate($perPage);
+    //     $d1=strtotime("-1 Day");
+    //     $d2=date("Y-m-d ");
+    //     $d3 = date("Y-m-d ", $d1);
+    //     $motor =Motercycle::whereDate('created_at', $d2)
+    //         ->orwhereDate('created_at', $d3)
+    //         ->orderBy('created_at', 'desc')
+    //         ->paginate($perPage);
         
-        $motorbrand = Motercycle::selectRaw('brand,count(brand) as count')
-            ->where('brand', '!=',"" )
-            ->groupBy('brand')
-            ->get();
+    //     $motorbrand = Motercycle::selectRaw('brand,count(brand) as count')
+    //         ->where('brand', '!=',"" )
+    //         ->groupBy('brand')
+    //         ->get();
 
-        $motorcolor = Motercycle::selectRaw('color,count(color) as count')
-            ->where('color', '!=',"" )
-            ->groupBy('color')
-            ->get();
+    //     $motorcolor = Motercycle::selectRaw('color,count(color) as count')
+    //         ->where('color', '!=',"" )
+    //         ->groupBy('color')
+    //         ->get();
 
-        $motorgear = Motercycle::selectRaw('gear,count(gear) as count')
-            ->where('gear', '!=',"" )
-            ->groupBy('gear')
-            ->get();
+    //     $motorgear = Motercycle::selectRaw('gear,count(gear) as count')
+    //         ->where('gear', '!=',"" )
+    //         ->groupBy('gear')
+    //         ->get();
 
-        //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('main.index',compact('motor','motorbrand', 'motorcolor', 'motorgear'));
+    //     //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
+    //     return view('main.index',compact('motor','motorbrand', 'motorcolor', 'motorgear'));
+    // }
+    public function image($id)
+    {
+        
+        
+        $data = Motercycle::select('img')
+         ->where('id',$id)->first();
+        // $data = data_cars::findOrFail($id);
+        //$data = "$id";
+        echo $data->img;
+        exit();
+
+        // $imginfo = getimagesize($data->img);
+        // header("Content-type: {$imginfo['mime']}");
+        // readfile($data->img);
+
     }
 
 }
