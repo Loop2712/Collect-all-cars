@@ -87,6 +87,9 @@
                                                 </li>
                                         </ul>
                                     </li> 
+                                    <li>
+                                        <a href="{{ url('/wishlist') }}">รายการโปรด</a>
+                                    </li>
                                     <li >
                                         <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
                                     </li> 

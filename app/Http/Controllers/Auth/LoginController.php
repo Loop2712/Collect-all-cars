@@ -37,8 +37,10 @@ class LoginController extends Controller
     {
         if(!isset($_SESSION["backurl"]) )
             $_SESSION["backurl"] = $_SERVER['HTTP_REFERER'] ;
-            if ($_SESSION["backurl"] == 'http://localhost/Collect-all-cars/public/login') {
-                return redirect()->intended($_SERVER['HTTP_REFERER']);
+            if ($_SESSION["backurl"] == 'http://marget.viicheck.com/login') {
+                // echo $_SESSION["backurl"];
+                // exit();
+                return redirect()->intended();
             }else{
                 $backurl_split = explode('redirectTo=', $_SERVER['HTTP_REFERER'], 2);
                 $backurl = $backurl_split[1];
