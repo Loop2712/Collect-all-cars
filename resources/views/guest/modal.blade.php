@@ -7,14 +7,18 @@
     	<center>
 	    	<div class="col-8">
 	    		<br><br>
-	    		<img width="80%" src="{{ asset('/img/more/select.png') }}">
+	    		<img width="80%" src="{{ asset('/img/more/select.jpg') }}">
 	    	</div>
 	    	<div class="col-12">
 	    		<br><br>
-	    		<p style="color: #000;font-size: 16px;"><b>กรุณาเลือก Social ในการรับข้อความตอบกลับ</b></p>
-	    		<p style="color: red;">แนะนำ Line</p>
-	    		<a href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
-	    		<a href="{{ url('/guest/create') }}"><button class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>&nbsp;&nbsp; ตกลง</button></a>
+	    		<div class="col-6">
+	    			<a href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
+	    		</div>
+	    		<div class="col-6">
+	    			<a href="{{ route('login.facebook') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}">
+	    		</div>
+
+	    		<!-- <a href="{{ url('/guest/create') }}"><button class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>&nbsp;&nbsp; ตกลง</button></a> -->
 	    	</div>
     	</center>
     </div>
