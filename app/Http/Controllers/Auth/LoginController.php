@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
 use Illuminate\Http\Request;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -37,17 +38,27 @@ class LoginController extends Controller
     {
         if(!isset($_SESSION["backurl"]) )
             $_SESSION["backurl"] = $_SERVER['HTTP_REFERER'] ;
-            if ($_SESSION["backurl"] == 'http://marget.viicheck.com/login') {
-                // echo $_SESSION["backurl"];
-                // exit();
-                return redirect()->intended();
+            $backurl = $_SESSION["backurl"];
+            // echo "backurl >> ". parse_url($backurl, PHP_URL_QUERY);
+            // exit();
+
+            $redirectTo = parse_url($backurl, PHP_URL_QUERY);
+
+            if (!empty($redirectTo)) {
+                $backurl_split = explode('redirectTo=', $redirectTo, 2);
+                $back = $backurl_split[1];
+                return $back;
             }else{
-                $backurl_split = explode('redirectTo=', $_SERVER['HTTP_REFERER'], 2);
-                $backurl = $backurl_split[1];
                 return $backurl;
             }
-            
+        
     }
+
+    // protected function redirectTo()
+    // {
+    //     return $_SERVER['HTTP_REFERER'];
+    // }
+
 
     /**
      * Create a new controller instance.
