@@ -92,7 +92,7 @@ class LoginController extends Controller
     {
         // echo $_SERVER['HTTP_REFERER'];
         // exit();
-        $request->session()->put('redirectTo', $_SERVER['HTTP_REFERER']);
+        $request->session()->put('redirectTo', $request->get('redirectTo'));
 
         return Socialite::driver('line')->redirect();
     }
