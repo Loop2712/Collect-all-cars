@@ -33,11 +33,11 @@ class LoginController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
-    protected function redirectTo(Request $request)
+    protected function redirectTo()
     {
         // echo $_SERVER['HTTP_REFERER'];
         // exit();
-        return $request->get('redirectTo');
+        return $_SERVER['HTTP_REFERER'];
     }
 
     /**
@@ -107,8 +107,8 @@ class LoginController extends Controller
         // Return home after login
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
-        echo $value;
-        exit();
+        // echo $value;
+        // exit();
         return redirect($value);
 
     }
