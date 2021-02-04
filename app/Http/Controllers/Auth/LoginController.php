@@ -34,8 +34,8 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        echo $_SERVER['HTTP_REFERER'];
-        exit();
+        // echo $_SERVER['HTTP_REFERER'];
+        // exit();
         return $_SERVER['HTTP_REFERER'];
     }
 
@@ -97,8 +97,8 @@ class LoginController extends Controller
         $user = Socialite::driver('line')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
-        echo $_SERVER['HTTP_REFERER'];
-        exit();
+        // echo $_SERVER['HTTP_REFERER'];
+        // exit();
         // Return home after login
         return redirect()->intended();
     }
