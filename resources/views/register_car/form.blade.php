@@ -53,7 +53,7 @@
                 <div class="col-12 col-md-4">
                     <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select name="brand" class=" form-control" id="input_car_brand" required onclick="showCar_model();" onchange="
+                        <select name="brand" class=" form-control" id="input_car_brand" required onchange="showCar_model();
                                 if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -68,7 +68,7 @@
                     </div>
                     <div id="div_motor_brand" class="d-none form-group {{ $errors->has('motor_brand') ? 'has-error' : ''}}">
                         <!-- motorcycles -->
-                        <select name="motor_brand" class="d-none form-control" id="input_motor_brand" required onclick="showMotor_model();" onchange="
+                        <select name="motor_brand" class="d-none form-control" id="input_motor_brand" required onchange="showMotor_model();
                                 if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
