@@ -13,6 +13,7 @@
 	    		<br><br>
 	    		<p style="color: #000;font-size: 16px;"><b>กรุณาเลือก Social ในการรับข้อความตอบกลับ</b></p>
 	    		<p style="color: red;">แนะนำ Line</p>
+	    		<a href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
 	    		<a href="{{ url('/guest/create') }}"><button class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>&nbsp;&nbsp; ตกลง</button></a>
 	    	</div>
     	</center>
