@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Motercycle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class motorcyclesellController extends Controller
 {
@@ -35,10 +36,13 @@ class motorcyclesellController extends Controller
                 ->orWhere('location', 'LIKE', "%$keyword%")
                 ->orWhere('link', 'LIKE', "%$keyword%")
                 ->where('active' ,'=', 'yes')
+                ->where('user_id', Auth::id() )
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
         } else {
-            $motercycles = Motercycle::latest()->paginate($perPage);
+            $motercycles = Motercycle::where('user_id', Auth::id() )
+                ->where('active' ,'=', 'yes')
+                ->paginate($perPage);
         }
 
         return view('motercyclesell.index', compact('motercycles'));
