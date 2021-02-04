@@ -107,6 +107,8 @@ class LoginController extends Controller
         // Return home after login
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
+        echo $value;
+        exit();
         return redirect($value);
 
     }
