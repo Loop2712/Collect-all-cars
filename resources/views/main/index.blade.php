@@ -163,7 +163,7 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        <button type="submit" class="site-btn">Searching</button>
+                                        <button type="submit" class="site-btn">ค้นหา</button>
                                     </form>
                                 </div>
                             </div>

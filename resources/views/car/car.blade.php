@@ -7,14 +7,14 @@
                 <div class="col-lg-3">
                     <div class="car__sidebar">
                         <div class="car__search">
-                            <h5>Car Search</h5>
+                            <h5>ค้นหา</h5>
                             <form action="{{URL::to('/car')}}" method="get">
                                 <input type="text" placeholder="Search..." name="search" id="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                         <div class="car__filter">
-                            <h5>Car Filter</h5>
+                            <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
                                 <select name="brand" id="brand"  onchange="this.form.submit()">
                                     <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
