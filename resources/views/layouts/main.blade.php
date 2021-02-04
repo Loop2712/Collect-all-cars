@@ -77,11 +77,16 @@
                                 
                                 @guest
                                     <li >
-                                        <a  href="{{ route('login') }}" >ขายรถ</a>
+                                        <a  href="{{ url('/sell') }}" >ขาย</a>
+                                        <ul class="dropdown">
+                                                <li>
+                                                    <a href="{{ url('/sell') }}" >รถยนต์</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ url('/motercycles') }}" >รถมอเตอร์ไซต์</a>
+                                                </li>
+                                        </ul>
                                     </li> 
-                                    <li>
-                                        <a href="{{ route('login') }}">รายการโปรด</a>
-                                    </li>
                                     <li >
                                         <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
                                     </li> 
