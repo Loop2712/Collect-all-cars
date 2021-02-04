@@ -35,7 +35,11 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        return $_SERVER['HTTP_REFERER'];
+        if(!isset($_SESSION["backurl"]) )
+            $_SESSION["backurl"] = $_SERVER['HTTP_REFERER'] ;
+            $backurl_split = explode('redirectTo=', $_SERVER['HTTP_REFERER'], 2);
+            $backurl = $backurl_split[1];
+        return $backurl;
     }
 
     /**

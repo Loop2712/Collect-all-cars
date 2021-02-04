@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-2"></div>
                     <br>
-                    <form class="d-none" method="POST" id="from_login" action="{{ route('login') }}?redirectTo={{ request('redirectTo') }}">
+                    <form class="d-none" method="POST" id="from_login" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
