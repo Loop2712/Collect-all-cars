@@ -1678,9 +1678,9 @@ ol {
 }
 
 .call__text a {
-	font-size: 15px;
-	color: #ffffff;
-	font-weight: 700;
+	/* font-size: 15px; */
+	color: #000000;
+	/* font-weight: 700; */
 	text-transform: uppercase;
 	padding: 6px 0;
 	position: relative;
@@ -1692,7 +1692,7 @@ ol {
 	bottom: 0;
 	height: 2px;
 	width: 100%;
-	background: #db2d2e;
+	/* background: #db2d2e; */
 	content: "";
 }
 
