@@ -9,6 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -87,14 +88,16 @@ class LoginController extends Controller
     }
 
     // Line login
-    public function redirectToLine()
+    public function redirectToLine(Request $request)
     {
-        echo $_SERVER['HTTP_REFERER'];
-        exit();
+        // echo $_SERVER['HTTP_REFERER'];
+        // exit();
+        $request->session()->put('redirectTo', $_SERVER['HTTP_REFERER']);
+
         return Socialite::driver('line')->redirect();
     }
     // Line callback
-    public function handleLineCallback()
+    public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->user();
         // print_r($user);
@@ -102,7 +105,10 @@ class LoginController extends Controller
         // echo $_SERVER['HTTP_REFERER'];
         // exit();
         // Return home after login
-        return redirect()->intended();
+        $value = $request->session()->get('redirectTo');
+        $request->session()->forget('redirectTo');
+        return redirect($value);
+
     }
 
     protected function _registerOrLoginUser($data, $type)
