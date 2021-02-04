@@ -35,8 +35,6 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        // echo $_SERVER['HTTP_REFERER'];
-        // exit();
         return $_SERVER['HTTP_REFERER'];
     }
 
@@ -99,7 +97,7 @@ class LoginController extends Controller
     // Line callback
     public function handleLineCallback(Request $request)
     {
-        
+
         $user = Socialite::driver('line')->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"line");
