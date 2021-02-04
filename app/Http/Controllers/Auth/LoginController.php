@@ -37,7 +37,7 @@ class LoginController extends Controller
     {
         // echo $_SERVER['HTTP_REFERER'];
         // exit();
-        return $_SERVER['HTTP_REFERER'];
+        return $request->get('redirectTo');
     }
 
     /**
