@@ -28,13 +28,12 @@
                                 <li>Model <span>{{ $data->model  }}  {{ $data->submodel  }}</span></li>
                             </ul>
                             <ul>
-                                <li>จำนวนที่นั่ง <span>{{ $data->seats  }}</span></li>
                                 <li>ระบบเกียร์ <span>{{ $data->gear  }}</span></li>
-                                <li>ระยะทาง <span>{{ $data->distance  }} km</span></li>
                                 <li>สี <span>{{ $data->color  }}</span></li>
+                                <li>เครื่องยนต์ <span>{{ $data->motor  }}</span></li>
+                                
                             </ul>
                             <ul>
-                                <li>น้ำมัน <span>{{ $data->fuel  }}</span></li>
                                 <li>สถานที่ <span>{{ $data->location  }}</span></li>
                             </ul>
                            

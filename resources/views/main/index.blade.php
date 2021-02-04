@@ -21,7 +21,8 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="hero__tab__form">
-                                    <h3>ค้นหารถยนต์ในฝัน</h3><br>
+                                    <h3><b>ค้นหารถยนต์ในฝันของคุณ</b></h3>
+                                    <h6 style="margin: 0px;">Find Your Dream Car</h6><br>
                                     <form action="{{URL::to('/car')}}" method="get">
                                         <div class="select-list">
                                             <div class="select-list-item">
@@ -95,7 +96,8 @@
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="hero__tab__form">
-                                    <h2>Buy Your Dream Motorcycle</h2>
+                                    <h4><b>ค้นหารถจักรยานยนต์ในฝันของคุณ</b></h4>
+                                    <h6 style="margin: 0px;">Find Your Dream Motorcycle</h6><br>
                                     <form action="{{URL::to('/motercycle')}}" method="get">
                                         <div class="select-list">
                                         <div class="select-list-item">
