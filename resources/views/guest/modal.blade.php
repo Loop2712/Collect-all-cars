@@ -7,16 +7,21 @@
 	<hr>
 	<div class="col-12">
 		<div class="row">
-    		<div class="col-6">
-    			@if(Auth::check())
-    				<a href="{{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
-    			@else
-    				<a href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
-    			@endif
-    		</div>
-    		<div class="col-6">
-    			<a href="{{ route('login.facebook') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}">
-    		</div>
+			@if(Auth::check())
+	    		<div class="col-6">
+					<a href="{{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
+				</div>
+				<div class="col-6">
+	    			<a href="{{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}">
+	    		</div>
+	    		@else
+	    		<div class="col-6">
+					<a href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
+				</div>
+				<div class="col-6">
+	    			<a href="{{ route('login.facebook') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}">
+	    		</div>
+    		@endif
 		</div>
 
 		<!-- <a href="{{ url('/guest/create') }}"><button class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>&nbsp;&nbsp; ตกลง</button></a> -->

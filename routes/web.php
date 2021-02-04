@@ -71,7 +71,6 @@ Route::resource('mylog', 'MylogController');
 
 Route::get('/modal', 'GuestController@modal');
 
-
 // ADMIN VIICHECK
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -88,4 +87,8 @@ Route::get('/menu', function () {
 
 Route::get('/before', function () {
     return view('before_register_car');
+});
+
+Route::get('/thx_guest', function () {
+    return view('guest/thx_guest');
 });
