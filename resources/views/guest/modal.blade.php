@@ -8,11 +8,11 @@
 	<div class="col-12">
 		<div class="row">
     		<div class="col-6">
-    			@guest
+    			@if(Auth::check())
     				<a href="{{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
     			@else
     				<a href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
-    			@endguest
+    			@endif
     		</div>
     		<div class="col-6">
     			<a href="{{ route('login.facebook') }}?redirectTo={{ url('/guest/create') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}">
