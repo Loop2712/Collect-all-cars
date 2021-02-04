@@ -210,7 +210,11 @@ class Register_carController extends Controller
 
     public function welcome_line()
     {
-        return view('register_car.welcome_line');
+        if(Auth::check()){
+            return redirect('register_car/create');
+        }else{
+            return redirect('/login/line?redirectTo=register_car/create');
+        }
     }
 
 }

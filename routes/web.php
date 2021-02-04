@@ -25,6 +25,8 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.line');
 Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
+Route::get('/welcome_line', 'Register_carController@welcome_line');
+
 
 // Route::get('/cars', function () {
 //     return view('3menu');
@@ -39,7 +41,6 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 	Route::resource('register_car', 'Register_carController')->except(['index']);
-	Route::get('/welcome', 'Register_carController@welcome_line')->name('welcome');
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::resource('deliver', 'DeliverController')->except(['index']);
 	Route::resource('guest', 'GuestController')->except(['index']);
