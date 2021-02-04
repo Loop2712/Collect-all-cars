@@ -122,21 +122,27 @@ class MotercleyviewController extends Controller
     //     //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
     //     return view('main.index',compact('motor','motorbrand', 'motorcolor', 'motorgear'));
     // }
-    public function image($id)
+    // public function image($id)
+    // {
+        
+        
+    //     $data = Motercycle::select('img')
+    //      ->where('id',$id)->first();
+    //     // $data = data_cars::findOrFail($id);
+    //     //$data = "$id";
+    //     echo $data->img;
+    //     exit();
+
+    //     // $imginfo = getimagesize($data->img);
+    //     // header("Content-type: {$imginfo['mime']}");
+    //     // readfile($data->img);
+
+    // }
+    public function show($id)
     {
+        $data = Motercycle::findOrFail($id);
         
-        
-        $data = Motercycle::select('img')
-         ->where('id',$id)->first();
-        // $data = data_cars::findOrFail($id);
-        //$data = "$id";
-        echo $data->img;
-        exit();
-
-        // $imginfo = getimagesize($data->img);
-        // header("Content-type: {$imginfo['mime']}");
-        // readfile($data->img);
-
+        return view('motercycle.car-details', compact('data'));
     }
 
 }

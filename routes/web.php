@@ -59,7 +59,6 @@ Route::get('/car/{id}','CarController@show');
 
 Route::get('/motercycle', 'MotercleyviewController@index');
 Route::get('/motercycle/{id}', 'MotercleyviewController@show');
-Route::get('/img/{id}','MotercleyviewController@image');
 
 
 //Route::resource('car','CarController');

@@ -25,7 +25,7 @@
                         <form method="POST" action="{{ url('/sell') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('sell.form', ['formMode' => 'create'])
+                            @include ('carsell.form', ['formMode' => 'create'])
 
                         </form>
 

@@ -9,10 +9,10 @@
                 <div class="col-lg-9">
                     <div class="car__details__pic">
                         <div class="car__details__pic__large">
-                                @if($data->image == "" )
+                                @if($data->img == "" )
                                         <img class="car-big-img" src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
                                     @else
-                                        <img class="car-big-img" src="{{ url('/image/'.$data->id ) }}" alt="" > 
+                                        <img src="{{ $data->img }}" alt="" > 
                                     @endif
                         </div>
                     </div>
