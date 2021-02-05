@@ -95,27 +95,24 @@ class LineMessagingAPI extends Model
                 switch(count($car_row))
                 {
                     case "1": 
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
+                        $template_path = storage_path('../public/json/flex-mycar-1.json');   
                         $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//01","",$string_json);
 
                         break;
 
                     case "2": 
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
+                        $template_path = storage_path('../public/json/flex-mycar-2.json');   
                         $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//02","",$string_json);
 
                         break;
 
                     case "3": 
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
+                        $template_path = storage_path('../public/json/flex-mycar-3.json');   
                         $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//03","",$string_json);
 
                         break;
                 }
-
+                // ข้อความสุดท้ายที่จะส่ง
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
         }

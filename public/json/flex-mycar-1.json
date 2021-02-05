@@ -1,0 +1,176 @@
+ {
+     "type": "flex",
+     "altText": "รถของคุณ",
+     "contents": {
+   "type": "bubble",
+   "size": "mega",
+   "hero": {
+     "type": "box",
+     "layout": "vertical",
+     "contents": [
+       {
+         "type": "box",
+         "layout": "horizontal",
+         "contents": [
+           {
+             "type": "text",
+             "text": "รถของฉัน",
+             "margin": "xxl",
+             "size": "xl",
+             "flex": 2,
+             "style": "normal",
+             "weight": "bold",
+             "color": "#1bcad0"
+           },
+           {
+             "type": "separator"
+           },
+           {
+             "type": "text",
+             "text": "พรบ",
+             "margin": "none",
+             "offsetStart": "xxl",
+             "offsetTop": "sm",
+             "color": "#e5a578"
+           },
+           {
+             "type": "separator"
+           },
+           {
+             "type": "text",
+             "text": "ประกัน",
+             "margin": "none",
+             "offsetStart": "lg",
+             "offsetTop": "sm",
+             "color": "#e5a578"
+           }
+         ],
+         "margin": "lg",
+         "offsetTop": "md"
+       },
+       {
+         "type": "separator",
+         "margin": "xxl"
+       }
+    ]
+   },
+   "body": {
+     "type": "box",
+     "layout": "vertical",
+     "contents": [
+       {
+         "type": "box",
+         "layout": "vertical",
+         "contents": [
+           {
+             "type": "box",
+             "layout": "horizontal",
+             "contents": [
+               {
+                 "type": "box",
+                 "layout": "baseline",
+                 "contents": [
+                   {
+                     "type": "icon",
+                     "url": "https://market.viicheck.com/img/logo_brand/logo-แบนด์1.png",
+                    "margin": "md",
+                     "size": "xxl"
+                   }
+                 ],
+                 "offsetTop": "lg"
+               },
+               {
+                 "type": "text",
+                 "text": "ป้ายทะเบียน1",
+                 "size": "md",
+                 "weight": "regular",
+                 "offsetTop": "xxl",
+                 "flex": 3
+               },
+               {
+                 "type": "box",
+                 "layout": "baseline",
+                 "contents": [
+                   {
+                     "type": "icon",
+                     "url": "https://market.viicheck.com/img/icon/พรบ1.png",
+                     "size": "xl",
+                     "margin": "md",
+                     "offsetEnd": "sm"
+                   }
+                 ],
+                 "offsetTop": "xl",
+                 "offsetEnd": "xxl"
+               },
+              {
+                 "type": "box",
+                 "layout": "baseline",
+                 "contents": [
+                   {
+                     "type": "icon",
+                    "url": "https://market.viicheck.com/img/icon/ประกัน1.png",
+                    "margin": "md",
+                    "size": "xl",
+                    "offsetEnd": "md"
+                  }
+                 ],
+                 "offsetTop": "xl"
+               }
+             ],
+             "paddingBottom": "lg"
+           },
+          {
+             "type": "separator",
+             "margin": "lg"
+           }
+         ]
+       }
+     ],
+     "paddingAll": "0px"
+   },
+   "footer": {
+     "type": "box",
+     "layout": "horizontal",
+     "contents": [
+       {
+         "type": "box",
+         "layout": "vertical",
+         "contents": [
+           {
+             "type": "image",
+             "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+             "size": "sm",
+             "align": "center",
+             "aspectMode": "fit",
+             "action": {
+               "type": "uri",
+               "label": "viicheck",
+               "uri": "https://market.viicheck.com/"
+             }
+           }
+         ],
+         "offsetBottom": "xxl"
+       },
+       {
+         "type": "box",
+         "layout": "vertical",
+         "contents": [
+           {
+             "type": "button",
+             "action": {
+               "type": "uri",
+               "label": "ดูรถทั้งหมด",
+               "uri": "https://market.viicheck.com/register_car"
+             },
+             "style": "primary",
+             "height": "sm",
+             "gravity": "top"
+           }
+         ]
+       }
+     ],
+     "height": "70px",
+     "offsetTop": "sm"
+   }
+ }
+ }
