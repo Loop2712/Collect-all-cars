@@ -99,7 +99,6 @@ class LineMessagingAPI extends Model
                         $string_json = file_get_contents($template_path);
                         $string_json = str_replace("//01","",$string_json);
 
-                        $messages = [ json_decode($string_json, true) ]; 
                         break;
 
                     case "2": 
@@ -107,7 +106,6 @@ class LineMessagingAPI extends Model
                         $string_json = file_get_contents($template_path);
                         $string_json = str_replace("//02","",$string_json);
 
-                        $messages = [ json_decode($string_json, true) ]; 
                         break;
 
                     case "3": 
@@ -115,10 +113,10 @@ class LineMessagingAPI extends Model
                         $string_json = file_get_contents($template_path);
                         $string_json = str_replace("//03","",$string_json);
 
-                        $messages = [ json_decode($string_json, true) ]; 
                         break;
                 }
 
+                $messages = [ json_decode($string_json, true) ]; 
                 break;
         }
 
