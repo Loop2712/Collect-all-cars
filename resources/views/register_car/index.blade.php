@@ -60,9 +60,9 @@
                                         @endif
 
                                         @if(!empty($item->insurance))
-                                            <td>{{ $item->insurance }}</td>
+                                            <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}</a></b></td>
                                         @else
-                                            <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit') }}"><i class="fas fa-edit"></i></a></td>
+                                            <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-edit"></i></a></td>
                                         @endif
 
                                         <td>
