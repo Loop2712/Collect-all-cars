@@ -90,7 +90,7 @@ class LineMessagingAPI extends Model
 
                 $provider_id = $event["source"]['userId'];
 
-                $car_row = DB::select("SELECT COUNT(id) FROM register_cars WHERE provider_id = '$provider_id'");
+                $car_row = DB::select("SELECT COUNT(*) FROM register_cars WHERE provider_id = '$provider_id'");
 
                 switch(count($car_row))
                 {
