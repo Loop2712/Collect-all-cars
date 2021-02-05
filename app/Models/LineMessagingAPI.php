@@ -102,7 +102,7 @@ class LineMessagingAPI extends Model
 
                         break;
 
-                    case "2": 
+                    case "[{"count":2}]": 
                         $template_path = storage_path('../public/json/flex-mycar-2.json');   
                         $string_json = file_get_contents($template_path);
 
