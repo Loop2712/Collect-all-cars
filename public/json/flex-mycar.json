@@ -92,7 +92,8 @@
                     "type": "icon",
                     "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
                     "size": "xl",
-                    "margin": "md"
+                    "margin": "md",
+                    "offsetEnd": "sm"
                   }
                 ],
                 "offsetTop": "xl",
@@ -106,7 +107,8 @@
                     "type": "icon",
                     "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
                     "margin": "md",
-                    "size": "xl"
+                    "size": "xl",
+                    "offsetEnd": "md"
                   }
                 ],
                 "offsetTop": "xl"
