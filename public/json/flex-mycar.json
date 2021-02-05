@@ -1,0 +1,132 @@
+{
+    "type": "flex",
+    "altText": "ข้อมูลของคุณ",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "hero": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "รถของฉัน",
+            "margin": "xxl",
+            "size": "md",
+            "flex": 2
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "พรบ",
+            "margin": "none",
+            "offsetStart": "xxl"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "ประกัน",
+            "margin": "none",
+            "offsetStart": "lg"
+          }
+        ],
+        "margin": "lg"
+      },
+      {
+        "type": "separator",
+        "margin": "md"
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://market.viicheck.com/img/logo_brand/logo-honda.png",
+                    "margin": "md",
+                    "size": "xxl"
+                  }
+                ],
+                "offsetTop": "lg"
+              },
+              {
+                "type": "text",
+                "text": "ป้ายทะเบียน",
+                "size": "md",
+                "weight": "regular",
+                "offsetTop": "xxl",
+                "flex": 3,
+                "action": {
+                  "type": "message",
+                  "label": "รถของฉัน",
+                  "text": "รถของฉัน"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "xl",
+                    "margin": "md"
+                  }
+                ],
+                "offsetTop": "xl",
+                "offsetEnd": "xxl"
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "margin": "md",
+                    "size": "xl"
+                  }
+                ],
+                "offsetTop": "xl"
+              }
+            ],
+            "paddingBottom": "lg"
+          },
+          {
+            "type": "separator",
+            "margin": "md"
+          }
+        ]
+      }
+    ],
+    "paddingAll": "0px"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": []
+  }
+}
+}

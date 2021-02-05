@@ -76,6 +76,9 @@ class LineApiController extends Controller
             case "ข้อมูลของคุณ" :  
                 $line->replyToUser(null, $event, "profile");
                 break;
+            case "รถของฉัน" : 
+                $line->replyToUser(null, $event, "mycar");
+                break;
             
             
         }   
