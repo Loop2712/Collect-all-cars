@@ -158,9 +158,7 @@ class LineMessagingAPI extends Model
                     case "2": 
                         $template_path = storage_path('../public/json/flex-mycar-2.json');   
                         $string_json = file_get_contents($template_path);
-
-                        //คันที่1
-
+                        // คันที่1
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
                         // พรบ
@@ -193,8 +191,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("ประกัน1","tick",$string_json);
                         }
 
-                        // คันที่ 2
-
+                        // คันที่2
                         $string_json = str_replace("แบนด์2", strtolower($brand[1]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         // พรบ
