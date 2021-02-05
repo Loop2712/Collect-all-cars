@@ -117,14 +117,6 @@ class LineMessagingAPI extends Model
 
                         $messages = [ json_decode($string_json, true) ]; 
                         break;
-
-                    default :
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//04","",$string_json);
-
-                        $messages = [ json_decode($string_json, true) ];
-                        break;
                 }
 
                 break;
