@@ -111,13 +111,26 @@ class LineMessagingAPI extends Model
                             $date_now = date("Y-m-d "); 
                             // วันหมดอายุ พรบ
                             $dtae_act = $item->act; 
+                            // วันหมดอายุ ประกัน
+                            $dtae_insurance = $item->insurance; 
                             // ตัวแปรสำหรับเช็คการแจ้งเตือน
-                            $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+                            $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
-                            if ($alert <= 30 && $alert >= 1) {
+                            if ($act <= 30 && $act >= 1) {
                                 $string_json = str_replace("พรบ1","warning",$string_json);
                             }
-                            if ($alert <= 0){
+                            if ($act <= 0){
+                                $string_json = str_replace("พรบ1","wrong",$string_json);
+                            }else{
+                                $string_json = str_replace("พรบ1","tick",$string_json);
+                            }
+
+                            $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+
+                            if ($insurance <= 30 && $insurance >= 1) {
+                                $string_json = str_replace("พรบ1","warning",$string_json);
+                            }
+                            if ($insurance <= 0){
                                 $string_json = str_replace("พรบ1","wrong",$string_json);
                             }else{
                                 $string_json = str_replace("พรบ1","tick",$string_json);
