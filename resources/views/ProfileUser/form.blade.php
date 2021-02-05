@@ -108,17 +108,7 @@
                     </div>
                 </div>
         </div>
-        <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'วันหมดอายุ พรบ  / Expiration date act ' }}</b></label></label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('act') ? 'has-error' : ''}}">
-                    <input class="form-control" name="act" type="date" id="act" value="{{ isset($data->act) ? $data->act : ''}}" >
-                        {!! $errors->first('act', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-        </div>
+
     </div>
     </div>
 </div>
