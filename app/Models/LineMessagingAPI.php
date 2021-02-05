@@ -59,7 +59,7 @@ class LineMessagingAPI extends Model
                     if (!empty($item->sex)) {
                         $string_json = str_replace("ชาย",$item->sex,$string_json);
                     }else{
-                        $string_json = str_replace("31/08/1998","กรุณาระบุเพศ",$string_json);
+                        $string_json = str_replace("ชาย","กรุณาระบุเพศ",$string_json);
                     }
                     
                     $string_json = str_replace("<xxxxx>",$item->id,$string_json);
