@@ -43,18 +43,35 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$item->avatar,$string_json);
                     $string_json = str_replace("E Benze",$item->name,$string_json);
                     $string_json = str_replace("benze@gmail.com",$item->email,$string_json);
-                    $string_json = str_replace("0999999999",$item->phone,$string_json);
-                    $string_json = str_replace("31/08/1998",$item->brith,$string_json);
-                    $string_json = str_replace("ชาย",$item->sex,$string_json);
+                    // เบอร์โทร
+                    if (!empty($item->phone)) {
+                        $string_json = str_replace("0999999999",$item->phone,$string_json);
+                    }else{
+                        $string_json = str_replace("0999999999","กรุณาเพิ่มเบอร์โทรศัพท์",$string_json);
+                    }
+                    // วันเกิด
+                    if (!empty($item->brith)) {
+                        $string_json = str_replace("31/08/1998",$item->brith,$string_json);
+                    }else{
+                        $string_json = str_replace("31/08/1998","กรุณาเพิ่มวันเกิด",$string_json);
+                    }
+                    // เพศ
+                    if (!empty($item->sex)) {
+                        $string_json = str_replace("ชาย",$item->sex,$string_json);
+                    }else{
+                        $string_json = str_replace("31/08/1998","กรุณาระบุเพศ",$string_json);
+                    }
+                    
                     $string_json = str_replace("<xxxxx>",$item->id,$string_json);
 
-                    // if พรบ
+                    // พรบ
 
-                    $date_now = date("Y-m-d "); // เวลาปัจจุบัน
-
-                    $dtae_act = $item->act; // วันหมดอายุ พรบ
-
-                    $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  // ตัวแปรสำหรับเช็คการแจ้งเตือน
+                    // เวลาปัจจุบัน
+                    $date_now = date("Y-m-d "); 
+                    // วันหมดอายุ พรบ
+                    $dtae_act = $item->act; 
+                    // ตัวแปรสำหรับเช็คการแจ้งเตือน
+                    $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                     if ($alert <= 30 && $alert >= 1) {
                         $string_json = str_replace("tick","warning",$string_json);
