@@ -20,38 +20,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $randomUser = DB::table('register_cars')
-                    ->inRandomOrder()
-                    ->limit(3)
-                    ->get();
-        echo "<pre>";
-        print_r($randomUser);
-        echo "<pre>";
-        for ($i=0; $i < count($randomUser);) { 
-            foreach($randomUser as $item ){
-                $id[$i] = $item->id;
-                $brand[$i] = $item->brand;
-                $registration_number[$i] = $item->registration_number;
-                $act[$i] = $item->act;
-                $insurance[$i] = $item->insurance;
-                $i++;
-                echo $item->id."/";
-            }
-            
-        }
-        echo "<br>";
-        print_r($id);
-        echo "0 >> ".$id[0];echo "<br>";
-        echo "1 >> ".$id[1];echo "<br>";
-        echo "2 >> ".$id[2];echo "<br>";
-
-        echo "0 >> ".$brand[0];echo "<br>";
-        echo "1 >> ".$brand[1];echo "<br>";
-        echo "2 >> ".$brand[2];echo "<br>";
-        $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = 'U912994894c449f2237f73f18b5703e89' AND active = 'Yes' ");
-        echo "car_row >> ". count($car_row);
-        exit();
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
