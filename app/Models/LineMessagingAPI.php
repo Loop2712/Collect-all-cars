@@ -193,14 +193,12 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("แบนด์2", strtolower($brand[1]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         // พรบ
-                        // เวลาปัจจุบัน
-                        $date_now2 = date("Y-m-d "); 
                         // วันหมดอายุ พรบ
                         $dtae_act2 = $act[1]; 
                         // วันหมดอายุ ประกัน
                         $dtae_insurance2 = $insurance[1]; 
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน
-                        $act2 = (strtotime($dtae_act2) - strtotime($date_now2))/  ( 60 * 60 * 24 );  
+                        $act2 = (strtotime($dtae_act2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                         if ($act2 <= 30 && $act2 >= 1) {
                             $string_json = str_replace("พรบ2","warning",$string_json);
@@ -211,7 +209,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("พรบ2","tick",$string_json);
                         }
 
-                        $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now2))/  ( 60 * 60 * 24 );  
+                        $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                         if ($insurance2 <= 30 && $insurance2 >= 1) {
                             $string_json = str_replace("ประกัน2","warning",$string_json);
