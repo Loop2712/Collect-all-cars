@@ -62,7 +62,7 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("ชาย","กรุณาระบุเพศ",$string_json);
                     }
                     
-                    $string_json = str_replace("<xxxxx>",$item->id,$string_json);
+                    $string_json = str_replace("xxxxx",$item->id,$string_json);
 
                     // // พรบ
 
