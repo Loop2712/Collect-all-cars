@@ -194,29 +194,29 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         // พรบ
                         // เวลาปัจจุบัน
-                        $date_now = date("Y-m-d "); 
+                        $date_now2 = date("Y-m-d "); 
                         // วันหมดอายุ พรบ
-                        $dtae_act = $act[1]; 
+                        $dtae_act2 = $act2[1]; 
                         // วันหมดอายุ ประกัน
-                        $dtae_insurance = $insurance[1]; 
+                        $dtae_insurance2 = $insurance2[1]; 
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน
-                        $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+                        $act2 = (strtotime($dtae_act2) - strtotime($date_now2))/  ( 60 * 60 * 24 );  
 
-                        if ($act <= 30 && $act >= 1) {
+                        if ($act2 <= 30 && $act2 >= 1) {
                             $string_json = str_replace("พรบ2","warning",$string_json);
                         }
-                        if ($act <= 0){
+                        if ($act2 <= 0){
                             $string_json = str_replace("พรบ2","wrong",$string_json);
                         }else{
                             $string_json = str_replace("พรบ2","tick",$string_json);
                         }
 
-                        $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+                        $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now2))/  ( 60 * 60 * 24 );  
 
-                        if ($insurance <= 30 && $insurance >= 1) {
+                        if ($insurance2 <= 30 && $insurance2 >= 1) {
                             $string_json = str_replace("ประกัน2","warning",$string_json);
                         }
-                        if ($insurance <= 0){
+                        if ($insurance2 <= 0){
                             $string_json = str_replace("ประกัน2","wrong",$string_json);
                         }else{
                             $string_json = str_replace("ประกัน2","tick",$string_json);

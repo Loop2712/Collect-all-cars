@@ -48,6 +48,8 @@ class CarController extends Controller
         echo "0 >> ".$brand[0];echo "<br>";
         echo "1 >> ".$brand[1];echo "<br>";
         echo "2 >> ".$brand[2];echo "<br>";
+        $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = 'U912994894c449f2237f73f18b5703e89' AND active = 'Yes' ");
+        echo "car_row >> ". count($car_row);
         exit();
 
         $brand     = $request->get('brand');
