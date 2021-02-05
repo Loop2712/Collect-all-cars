@@ -159,10 +159,10 @@ class LoginController extends Controller
 
             if (empty($data->email)) {
                 $user->username = $data->name;
-                $user->email = "เพิ่มอีเมล";
+                $user->email = "กรุณาเพิ่มอีเมล";
             }
             if (empty($data->avatar)) {
-                $user->avatar = "เพิ่มรูปโปรไฟล์";
+                $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
             }
 
             $user->save();
