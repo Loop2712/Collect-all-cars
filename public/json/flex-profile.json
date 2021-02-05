@@ -222,7 +222,8 @@
                   "type": "message",
                   "label": "รถของฉัน",
                   "text": "รถของฉัน"
-                }
+                },
+                "offsetStart": "xxl"
               },
               {
                 "type": "spacer"
