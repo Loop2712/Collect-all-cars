@@ -299,23 +299,23 @@
         ],
         "offsetBottom": "xxl"
       },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "uri",
-              "label": "ดูรถทั้งหมด",
-              "uri": "https://market.viicheck.com/register_car"
-            },
-            "style": "primary",
-            "height": "sm",
-            "gravity": "top"
-          }
-        ]
-      }
+      // {
+      //   "type": "box",
+      //   "layout": "vertical",
+      //   "contents": [
+      //     {
+      //       "type": "button",
+      //       "action": {
+      //         "type": "uri",
+      //         "label": "ดูรถทั้งหมด",
+      //         "uri": "https://market.viicheck.com/register_car"
+      //       },
+      //       "style": "primary",
+      //       "height": "sm",
+      //       "gravity": "top"
+      //     }
+      //   ]
+      // }
     ],
     "height": "70px",
     "offsetTop": "sm"
