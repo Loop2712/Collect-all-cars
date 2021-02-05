@@ -213,6 +213,11 @@ class Register_carController extends Controller
 
         return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle'));
     }
+    public function edit_act($id)
+    {
+        $register_car = Register_car::findOrFail($id);
+        return view('register_car.edit_act', compact('register_car'));
+    }
 
     /**
      * Update the specified resource in storage.

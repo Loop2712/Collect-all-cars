@@ -54,30 +54,10 @@
                                         <td>{{ $item->generation }}</td>
 
                                         @if(!empty($item->act))
-                                            <td>{{ $item->act }}</td>
+                                            <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}</a></b></td>
                                         @else
-                                            <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit') }}" data-toggle="modal" data-target="#Modal_act"><i class="fas fa-edit"></i></a></td>
+                                            <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-edit"></i></a></td>
                                         @endif
-
-                                        <!-- Modal act -->
-                                        <div class="modal fade" id="Modal_act" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-xl" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <div>
-                                                            <div class="form-group {{ $errors->has('act') ? 'has-error' : ''}}">
-                                                                <input class="form-control" name="act" type="date" id="act" value="{{ isset($register_car->act) ? $register_car->act : '' }}"  >
-                                                                {!! $errors->first('act', '<p class="help-block">:message</p>') !!}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         @if(!empty($item->insurance))
                                             <td>{{ $item->insurance }}</td>
@@ -86,7 +66,6 @@
                                         @endif
 
                                         <td>
-                                            
                                             <a class="btn btn-success btn-sm" href="#"><i class="fas fa-hand-holding-usd"></i> Sell</a>
                                         </td>
                                     </tr>
