@@ -25,17 +25,33 @@ class Register_carController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        $user = Auth::user();
+        // echo ($user->id);
+        // exit();
         if (!empty($keyword)) {
-            $register_car = Register_car::where('brand', 'LIKE', "%$keyword%")
-                ->orWhere('generation', 'LIKE', "%$keyword%")
-                ->orWhere('year', 'LIKE', "%$keyword%")
-                ->orWhere('registration_number', 'LIKE', "%$keyword%")
-                ->orWhere('province', 'LIKE', "%$keyword%")
-                ->orWhere('name', 'LIKE', "%$keyword%")
-                ->orWhere('phone', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+            $register_car = DB::table('register_cars')
+                        ->orWhere('brand', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+
+                        ->orWhere('generation', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+
+                        ->orWhere('registration_number', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+
+                        ->orWhere('province', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+
+                        ->get();
         } else {
-            $register_car = Register_car::latest()->paginate($perPage);
+            $register_car = DB::table('register_cars')
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+                        ->get();
         }
 
         return view('register_car.index', compact('register_car'));
@@ -172,7 +188,30 @@ class Register_carController extends Controller
     {
         $register_car = Register_car::findOrFail($id);
 
-        return view('register_car.edit', compact('register_car'));
+        $location_array = county::selectRaw('province')
+            ->groupBy('province')
+            ->get();
+
+        $car_brand = CarModel::selectRaw('brand,count(brand) as count')
+            ->orderByRaw('count DESC')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->limit(10)
+            ->get();
+
+        $user = Auth::user();
+
+        $car = Register_car::select('brand', 'generation', 'registration_number', 'province')
+            ->where('user_id', $user->id)
+            ->where('car_type', 'car')
+            ->get();
+
+        $motorcycle = Register_car::select('brand', 'generation', 'registration_number', 'province')
+            ->where('user_id', $user->id)
+            ->where('car_type', 'motorcycle')
+            ->get();
+
+        return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle'));
     }
 
     /**

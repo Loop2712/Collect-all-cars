@@ -6,7 +6,7 @@
             <i class="fas fa-user-edit"></i> &nbsp;&nbsp;ข้อมูลส่วนบุคคล </a>
         </div><br>
         <div class="call__text">
-            <a href="{{ url('/motercycles' ) }}">
+            <a href="{{ url('/register_car' ) }}">
             <i class="fas fa-motorcycle"></i>&nbsp;&nbsp;รถของฉัน </a>
         </div><br>
         <div class="call__text">

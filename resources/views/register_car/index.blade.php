@@ -1,14 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <div class="container">
+    <br><br>
         <div class="row">
-            <div class="col-md-12">
+        @include('layouts.sidebar')
+
+            <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Register_car</div>
+                    <div class="card-header">รถของฉัน</div>
                     <div class="card-body">
-                        <a href="{{ url('/register_car/create') }}" class="btn btn-success btn-sm" title="Add New Register_car">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        <a href="{{ url('/register_car/create') }}" class="btn btn-info btn-sm" title="Add New Register_car">
+                            <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
                         </a>
 
                         <form method="GET" action="{{ url('/register_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -28,31 +31,69 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Brand</th><th>Generation</th><th>Year</th><th>Actions</th>
+                                        <th>No.</th>
+                                        <th>Car Type</th>
+                                        <th>Brand</th>
+                                        <th>Model</th>
+                                        <th>act</th>
+                                        <th>insurance</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($register_car as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->brand }}</td><td>{{ $item->generation }}</td><td>{{ $item->year }}</td>
-                                        <td>
-                                            <a href="{{ url('/register_car/' . $item->id) }}" title="View Register_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/register_car/' . $item->id . '/edit') }}" title="Edit Register_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        @if($item->car_type == "car")
+                                            <td><h4><i class="fas fa-car-side text-danger"></i></h4></td>
+                                        @elseif($item->car_type == "motorcycle")
+                                            <td><h4><i class="fas fa-motorcycle text-success"></i></h4></td>
+                                        @endif
+                                        <td><img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png"></td>
 
-                                            <form method="POST" action="{{ url('/register_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Register_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
+                                        <td>{{ $item->generation }}</td>
+
+                                        @if(!empty($item->act))
+                                            <td>{{ $item->act }}</td>
+                                        @else
+                                            <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit') }}" data-toggle="modal" data-target="#Modal_act"><i class="fas fa-edit"></i></a></td>
+                                        @endif
+
+                                        <!-- Modal act -->
+                                        <div class="modal fade" id="Modal_act" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <div>
+                                                            <div class="form-group {{ $errors->has('act') ? 'has-error' : ''}}">
+                                                                <input class="form-control" name="act" type="date" id="act" value="{{ isset($register_car->act) ? $register_car->act : '' }}"  >
+                                                                {!! $errors->first('act', '<p class="help-block">:message</p>') !!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @if(!empty($item->insurance))
+                                            <td>{{ $item->insurance }}</td>
+                                        @else
+                                            <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit') }}"><i class="fas fa-edit"></i></a></td>
+                                        @endif
+
+                                        <td>
+                                            
+                                            <a class="btn btn-success btn-sm" href="#"><i class="fas fa-hand-holding-usd"></i> Sell</a>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $register_car->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
-
                     </div>
                 </div>
             </div>
