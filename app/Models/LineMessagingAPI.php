@@ -92,39 +92,41 @@ class LineMessagingAPI extends Model
 
                 $car_row = DB::select("SELECT COUNT(*) FROM register_cars WHERE provider_id = '$provider_id'");
 
-                switch($car_row)
-                {
-                    case "1": 
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//01","",$string_json);
+                foreach($car_row as $item){
+                    switch($item->COUNT(*))
+                    {
+                        case "1": 
+                            $template_path = storage_path('../public/json/flex-mycar.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("//01","",$string_json);
 
-                        $messages = [ json_decode($string_json, true) ]; 
-                        break;
+                            $messages = [ json_decode($string_json, true) ]; 
+                            break;
 
-                    case "2": 
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//02","",$string_json);
+                        case "2": 
+                            $template_path = storage_path('../public/json/flex-mycar.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("//02","",$string_json);
 
-                        $messages = [ json_decode($string_json, true) ]; 
-                        break;
+                            $messages = [ json_decode($string_json, true) ]; 
+                            break;
 
-                    case "3": 
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//03","",$string_json);
+                        case "3": 
+                            $template_path = storage_path('../public/json/flex-mycar.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("//03","",$string_json);
 
-                        $messages = [ json_decode($string_json, true) ]; 
-                        break;
+                            $messages = [ json_decode($string_json, true) ]; 
+                            break;
 
-                    default :
-                        $template_path = storage_path('../public/json/flex-mycar.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("//04","",$string_json);
+                        default :
+                            $template_path = storage_path('../public/json/flex-mycar.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("//04","",$string_json);
 
-                        $messages = [ json_decode($string_json, true) ];
-                        break;
+                            $messages = [ json_decode($string_json, true) ];
+                            break;
+                    }
                 }
 
                 break;
