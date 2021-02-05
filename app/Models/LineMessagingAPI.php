@@ -90,13 +90,42 @@ class LineMessagingAPI extends Model
 
                 $provider_id = $event["source"]['userId'];
 
-                $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id'");
+                $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' ");
+                $car_1 = DB::table('register_cars')
+                        ->where('provider_id' , $provider_id)
+                        ->where('active' , "Yes")
+                        ->where('id' , "1")
+                        ->get();
                 
                 switch(count($car_row))
                 {
                     case "1": 
                         $template_path = storage_path('../public/json/flex-mycar-1.json');   
                         $string_json = file_get_contents($template_path);
+
+                        foreach($car_1 as $item){
+                            $string_json = str_replace("แบนด์1", strtolower($item->brand),$string_json);
+                            $string_json = str_replace("ป้ายทะเบียน1",$item->registration_number,$string_json);
+                            // พรบ
+                            // เวลาปัจจุบัน
+                            $date_now = date("Y-m-d "); 
+                            // วันหมดอายุ พรบ
+                            $dtae_act = $item->act; 
+                            // ตัวแปรสำหรับเช็คการแจ้งเตือน
+                            $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+
+                            if ($alert <= 30 && $alert >= 1) {
+                                $string_json = str_replace("พรบ1","warning",$string_json);
+                            }
+                            if ($alert <= 0){
+                                $string_json = str_replace("พรบ1","wrong",$string_json);
+                            }else{
+                                $string_json = str_replace("พรบ1","tick",$string_json);
+                            }
+
+                            $string_json = str_replace("ดูรถทั้งหมด","แก้ไขข้อมูล",$string_json);
+                        }
+
 
                         break;
 
