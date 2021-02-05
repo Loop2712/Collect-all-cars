@@ -64,21 +64,21 @@ class LineMessagingAPI extends Model
                     
                     $string_json = str_replace("<xxxxx>",$item->id,$string_json);
 
-                    // พรบ
+                    // // พรบ
 
-                    // เวลาปัจจุบัน
-                    $date_now = date("Y-m-d "); 
-                    // วันหมดอายุ พรบ
-                    $dtae_act = $item->act; 
-                    // ตัวแปรสำหรับเช็คการแจ้งเตือน
-                    $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+                    // // เวลาปัจจุบัน
+                    // $date_now = date("Y-m-d "); 
+                    // // วันหมดอายุ พรบ
+                    // $dtae_act = $item->act; 
+                    // // ตัวแปรสำหรับเช็คการแจ้งเตือน
+                    // $alert = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
-                    if ($alert <= 30 && $alert >= 1) {
-                        $string_json = str_replace("tick","warning",$string_json);
-                    }
-                    if ($alert <= 0){
-                        $string_json = str_replace("tick","wrong",$string_json);
-                    }
+                    // if ($alert <= 30 && $alert >= 1) {
+                    //     $string_json = str_replace("tick","warning",$string_json);
+                    // }
+                    // if ($alert <= 0){
+                    //     $string_json = str_replace("tick","wrong",$string_json);
+                    // }
 
                     // ข้อความสุดท้ายที่จะส่ง
                     $messages = [ json_decode($string_json, true) ]; 
