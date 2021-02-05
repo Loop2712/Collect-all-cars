@@ -149,7 +149,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("ประกัน1","tick",$string_json);
                         }
 
-                        $string_json = str_replace("ดูรถทั้งหมด","แก้ไขข้อมูล",$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด","แก้ไข / ดูทั้งหมด",$string_json);
 
                         break;
 
@@ -194,12 +194,56 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         
 
-                        $string_json = str_replace("ดูรถทั้งหมด","แก้ไขข้อมูล",$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด","แก้ไข / ดูทั้งหมด",$string_json);
 
                         break;
 
                     case "3": 
+                        $template_path = storage_path('../public/json/flex-mycar-3.json');   
+                        $string_json = file_get_contents($template_path);
+                        // คันที่1
+                        $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
+                        $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
+                        // พรบ
+                        // เวลาปัจจุบัน
+                        $date_now = date("Y-m-d "); 
+                        // วันหมดอายุ พรบ
+                        $dtae_act = $act[0]; 
+                        // วันหมดอายุ ประกัน
+                        $dtae_insurance = $insurance[0]; 
+                        // ตัวแปรสำหรับเช็คการแจ้งเตือน
+                        $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($act <= 30 && $act >= 1) {
+                            $string_json = str_replace("พรบ1","warning",$string_json);
+                        }
+                        if ($act <= 0){
+                            $string_json = str_replace("พรบ1","wrong",$string_json);
+                        }else{
+                            $string_json = str_replace("พรบ1","tick",$string_json);
+                        }
+
+                        $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+
+                        if ($insurance <= 30 && $insurance >= 1) {
+                            $string_json = str_replace("ประกัน1","warning",$string_json);
+                        }
+                        if ($insurance <= 0){
+                            $string_json = str_replace("ประกัน1","wrong",$string_json);
+                        }else{
+                            $string_json = str_replace("ประกัน1","tick",$string_json);
+                        }
+
+                        // คันที่2
+                        $string_json = str_replace("แบนด์2", strtolower($brand[1]),$string_json);
+                        $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
+
+                        // คันที่3
+                        $string_json = str_replace("แบนด์3", strtolower($brand[2]),$string_json);
+                        $string_json = str_replace("ป้ายทะเบียน3",$registration_number[2],$string_json);
+                        
+
+                        $string_json = str_replace("ดูรถทั้งหมด","แก้ไข / ดูทั้งหมด",$string_json);
                         break;
 
                 }
