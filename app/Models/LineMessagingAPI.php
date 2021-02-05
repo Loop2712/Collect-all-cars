@@ -128,12 +128,12 @@ class LineMessagingAPI extends Model
                             $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                             if ($insurance <= 30 && $insurance >= 1) {
-                                $string_json = str_replace("พรบ1","warning",$string_json);
+                                $string_json = str_replace("ประกัน1","warning",$string_json);
                             }
                             if ($insurance <= 0){
-                                $string_json = str_replace("พรบ1","wrong",$string_json);
+                                $string_json = str_replace("ประกัน1","wrong",$string_json);
                             }else{
-                                $string_json = str_replace("พรบ1","tick",$string_json);
+                                $string_json = str_replace("ประกัน1","tick",$string_json);
                             }
 
                             $string_json = str_replace("ดูรถทั้งหมด","แก้ไขข้อมูล",$string_json);
