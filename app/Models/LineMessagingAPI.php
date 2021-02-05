@@ -90,9 +90,11 @@ class LineMessagingAPI extends Model
 
                 $provider_id = $event["source"]['userId'];
 
-                $car_row = DB::select("SELECT COUNT(*) FROM register_cars WHERE provider_id = '$provider_id'");
-
-                switch(count($car_row))
+                // $car_row = DB::select("SELECT COUNT(*) FROM register_cars WHERE provider_id = '$provider_id'");
+                $car_row = Register_car::selectRaw('count(id) as count')
+                            ->where('provider_id', $provider_id )
+                            ->get();
+                switch($car_row)
                 {
                     case "1": 
                         $template_path = storage_path('../public/json/flex-mycar-1.json');   
