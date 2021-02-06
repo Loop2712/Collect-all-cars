@@ -177,6 +177,7 @@
                 alert("รถหมายเลขทะเบียนนี้ยังไม่มีในระบบ");
                 let registration_reset = document.querySelector("#registration");
                     registration_reset.value = "";
+                document.querySelector('#registration').focus();
             }else{ 
                 console.log("Yess");
                 document.querySelector('#submit_form').classList.remove('d-none');
