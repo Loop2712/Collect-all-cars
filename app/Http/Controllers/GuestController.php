@@ -191,7 +191,6 @@ class GuestController extends Controller
         $county = $data['county'];
         $phone = $data['phone'];
         $massengbox = $data['massengbox'];
-        $photo = $data['photo'];
 
         if (!empty($data['photo'])) {
             $photo = $data['photo'];
