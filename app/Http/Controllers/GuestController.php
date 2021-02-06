@@ -10,6 +10,7 @@ use App\county;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 use App\Models\Profanity;
+use Intervention\Image\ImageManagerStatic as Image;
 
 use App\Models\Mylog;
 
@@ -78,6 +79,27 @@ class GuestController extends Controller
         foreach($profanitie as $p){
             $requestData['masseng'] = str_replace($p->content, "", $requestData['masseng']);
             
+        }
+
+        $validatedData = $request->validate([
+            'photo' => 'image'
+        ]);
+
+        if ($request->hasFile('photo')) {
+            //SAVE FILE
+            $requestData['photo'] = $request->file('photo')->store('uploads/', 'public');
+
+            //RESIZE 50% FILE IF IMAGE LARGER THAN 1 MB
+            $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
+            $size = $image->filesize();  
+
+            while($size > 512000 ){
+                $image->resize(
+                    intval($image->width()/2) , 
+                    intval($image->height()/2)
+                )->save(); 
+            }             
+
         }
         
         Guest::create($requestData);
@@ -178,24 +200,6 @@ class GuestController extends Controller
             $masseng_old = "รบกวนมาที่รถด้วยค่ะ";
         }
 
-        // $user_id = DB::table('register_cars')
-        //         ->select('user_id')
-        //         ->where('registration_number', $registration )
-        //         ->where('province', $county )
-        //         ->first();
-
-        // $sex = DB::table('users')
-        //         ->select('sex')
-        //         ->where('id', $user_id )
-        //         ->first();
-
-        // if($data['massengbox'] == "1"){
-        //     $masseng = "กรุณามาเลื่อนรถด้วย ครับ/ค่ะ";
-        // }
-        // if($data['massengbox'] == "2"){
-        //     $masseng = "รบกวนมาเลื่อนรถด้วย!!";
-        // }
-
         switch($massengbox)
         {
             case "1":  
@@ -217,8 +221,6 @@ class GuestController extends Controller
                 $masseng = $masseng_old;
                 break;
         }
-        
-        
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county' AND active = 'Yes'");
         
@@ -227,16 +229,6 @@ class GuestController extends Controller
 
             if(!empty($item->provider_id)){
 
-                // $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
-     
-                // $strUrl = "https://api.line.me/v2/bot/message/push";
-                 
-                // $arrHeader = array();
-                // $arrHeader[] = "Content-Type: application/json";
-                // $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
-                 
-                // $arrPostData = array();
-                // $arrPostData['to'] = $item->provider_id;
                 if (empty($phone)) {
                     $template_path = storage_path('../public/json/flex-move.json');   
                     $string_json = file_get_contents($template_path);
@@ -326,24 +318,6 @@ class GuestController extends Controller
                 MyLog::create($data);
                 return $result;
 
-                // $arrPostData['messages'][0]['type'] = "text";
-                // $arrPostData['messages'][0]['text'] = "รถหมายเลขทะเบียน"." ".$item->registration_number." ".$item->province." ".$masseng;
-                // if(!empty($phone)){
-                //     $arrPostData['messages'][1]['type'] = "text";
-                //     $arrPostData['messages'][1]['text'] = "เบอร์โทรศัพท์ติดต่อกลับ"." ".$phone;
-                // }
-                 
-                 
-                // $ch = curl_init();
-                // curl_setopt($ch, CURLOPT_URL,$strUrl);
-                // curl_setopt($ch, CURLOPT_HEADER, false);
-                // curl_setopt($ch, CURLOPT_POST, true);
-                // curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
-                // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
-                // curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-                // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                // $result = curl_exec($ch);
-                // curl_close ($ch);
             }
             
         }
