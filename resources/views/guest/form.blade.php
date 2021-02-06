@@ -88,13 +88,6 @@
                 </div>
             </div>
 
-            
-            <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                <label for="photo" class="control-label">{{ 'Photo' }}</label>
-                <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($guest->photo) ? $guest->photo : ''}}" >
-                {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
-            </div>
-
             <div class="d-none form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                 <label for="brand" class="control-label">{{ 'brand' }}</label>
                 <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($guest->brand) ? $guest->brand : ''}}" >
