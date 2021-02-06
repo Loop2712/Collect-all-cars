@@ -85,6 +85,7 @@ class CarbrandController extends Controller
         $province = DB::table('register_cars')
             ->select('province')
             ->where('registration_number', $registration )
+            ->groupBy('province')
             ->get();
 
         return $province;
