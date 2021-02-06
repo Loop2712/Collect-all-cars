@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
-                        <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required>
+                        <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -75,13 +75,13 @@
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
                         <select name="county" id="county" class="form-control" required>
                                 <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
-                                @foreach($location_array as $lo)
+                                <!-- @foreach($location_array as $lo)
                                 <option 
                                 value="{{ $lo->province }}" 
                                 {{ request('location') == $lo->province ? 'selected' : ''   }} >
                                 {{ $lo->province }} 
                                 </option>
-                                @endforeach                                     
+                                @endforeach    -->                                  
                         </select>
                         {!! $errors->first('county', '<p class="help-block">:message</p>') !!}
                     </div>
@@ -151,17 +151,60 @@
 </div>
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
+    <input class="d-none btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
 </div>
-<!-- 
+
 <script>
-function myFunction(val) {
-    if(val =='7'){ 
-        document.querySelector('#masseng_label').classList.remove('d-none'),
-        document.querySelector('#masseng_input').classList.remove('d-none')
-    }else{ 
-        document.querySelector('#masseng_label').classList.add('d-none'),
-        document.querySelector('#masseng_input').classList.add('d-none')
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START"); 
+    });
+    function check_registration(){
+        let registration = document.querySelector("#registration");
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/check_registration/"+registration.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+            for(let item of result){
+                var registration_car = item.registration_number;
+                console.log(registration_car);
+            }
+
+            if (registration_car == null ) {
+                console.log("null");
+                document.querySelector('#submit_form').classList.add('d-none');
+                alert("รถหมายเลขทะเบียนนี้ยังไม่มีในระบบ");
+                let registration_reset = document.querySelector("#registration");
+                    registration_reset.value = "";
+            }else{ 
+                console.log("Yess");
+                document.querySelector('#submit_form').classList.remove('d-none');
+                document.querySelector('#county').focus();
+            }
+
+                check_province();
+            });
+            return registration.value;
     }
-}
-</script> -->
+
+    function check_province(){
+        let registration = document.querySelector("#registration");
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/check_registration/"+registration.value+"/province")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                let county = document.querySelector("#county");
+                    county.innerHTML = "";
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.province;
+                    option.value = item.province;
+                    county.add(option);                
+                }
+
+            });
+    }
+</script>

@@ -70,5 +70,25 @@ class CarbrandController extends Controller
         return $motor_model;
     }
 
+    public function check_registration($registration)
+    {
+        $registration = DB::table('register_cars')
+            ->select('registration_number')
+            ->where('registration_number', $registration )
+            ->get();
+
+        return $registration;
+    }
+
+    public function check_province($registration)
+    {
+        $province = DB::table('register_cars')
+            ->select('province')
+            ->where('registration_number', $registration )
+            ->get();
+
+        return $province;
+    }
+
 
 }
