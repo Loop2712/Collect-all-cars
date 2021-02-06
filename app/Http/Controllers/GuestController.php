@@ -10,7 +10,7 @@ use App\county;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 use App\Models\Profanity;
-use Intervention\Image\ImageManagerStatic as Image;
+// use Intervention\Image\ImageManagerStatic as Image;
 
 use App\Models\Mylog;
 
@@ -81,26 +81,26 @@ class GuestController extends Controller
             
         }
 
-        $validatedData = $request->validate([
-            'photo' => 'image'
-        ]);
+        // $validatedData = $request->validate([
+        //     'photo' => 'image'
+        // ]);
 
-        if ($request->hasFile('photo')) {
-            //SAVE FILE
-            $requestData['photo'] = $request->file('photo')->store('uploads/', 'public');
+        // if ($request->hasFile('photo')) {
+        //     //SAVE FILE
+        //     $requestData['photo'] = $request->file('photo')->store('uploads/', 'public');
 
-            //RESIZE 50% FILE IF IMAGE LARGER THAN 1 MB
-            $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
-            $size = $image->filesize();  
+        //     //RESIZE 50% FILE IF IMAGE LARGER THAN 1 MB
+        //     $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
+        //     $size = $image->filesize();  
 
-            while($size > 512000 ){
-                $image->resize(
-                    intval($image->width()/2) , 
-                    intval($image->height()/2)
-                )->save(); 
-            }             
+        //     while($size > 512000 ){
+        //         $image->resize(
+        //             intval($image->width()/2) , 
+        //             intval($image->height()/2)
+        //         )->save(); 
+        //     }             
 
-        }
+        // }
         
         Guest::create($requestData);
 
