@@ -53,7 +53,7 @@
                     </div>
                     <!-- รูปภาพ -->
                     <div id="photo_input" class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                        <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($guest->photo) ? $guest->photo : ''}}">
+                        <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($guest->photo) ? $guest->photo : ''}}" accept="image/*;capture=camera">
                         {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
