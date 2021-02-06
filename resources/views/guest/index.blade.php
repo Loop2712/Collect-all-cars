@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::check())
+    @if(Auth::user()->role == "admin" )
     <div class="container">
         <div class="row">
                 <div class="card">
@@ -72,4 +74,6 @@
             </div>
         </div>
     </div>
+    @endif
+@endif
 @endsection

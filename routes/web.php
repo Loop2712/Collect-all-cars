@@ -39,6 +39,16 @@ Route::get('/terms_of_service', function () {
 
 Auth::routes();
 
+// ADMIN VIICHECK
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+	Route::get('/dashboard', function () {
+	    return view('admin_viicheck/dashboard');
+	});
+	Route::resource('profanity', 'ProfanityController');
+});
+// END ADMIN VIICHECK
+
 Route::middleware(['auth'])->group(function () {
 	Route::resource('register_car', 'Register_carController');
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
@@ -72,16 +82,6 @@ Route::resource('mylog', 'MylogController');
 // Route::post('/lineapi', 'API\LineApiController@store');
 
 Route::get('/modal', 'GuestController@modal');
-
-// ADMIN VIICHECK
-Route::middleware(['auth', 'role:admin'])->group(function () {
-
-	Route::get('/dashboard', function () {
-	    return view('admin_viicheck/dashboard');
-	});
-	Route::resource('profanity', 'ProfanityController');
-});
-// END ADMIN VIICHECK
 
 Route::get('/menu', function () {
     return view('3menu');

@@ -113,7 +113,7 @@ class GuestController extends Controller
 
         $this->_pushLine($requestData);
 
-        return view('guest.thx_guest')->with('flash_message', 'Guest added!');
+        return view('guest/thx_guest')->with('flash_message', 'Guest added!');
     }
 
     /**
@@ -328,4 +328,5 @@ class GuestController extends Controller
     {
         return view('guest.modal');
     }
+
 }
