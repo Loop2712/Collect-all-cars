@@ -34,6 +34,7 @@
                                         <th>Brand</th>
                                         <th>registration</th>
                                         <th>county</th>
+                                        <th>Photo</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -47,6 +48,7 @@
                                         <td>{{ $item->brand }}</td>
                                         <td>{{ $item->registration }}</td>
                                         <td>{{ $item->county }}</td>
+                                        <td><img src="{{ url('storage')}}/{{ $item->photo }}"></td>
                                         
                                         <td>
                                             <a href="{{ url('/guest/' . $item->id) }}" title="View Guest"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

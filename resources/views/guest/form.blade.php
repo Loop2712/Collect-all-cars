@@ -18,6 +18,14 @@
                             }else{ 
                                 document.querySelector('#masseng_label').classList.add('d-none'),
                                 document.querySelector('#masseng_input').classList.add('d-none')
+                            }
+                            if (this.value=='4') {
+                                document.querySelector('#photo_label').classList.remove('d-none'),
+                                document.querySelector('#photo_input').classList.remove('d-none'),
+                                document.querySelector('#photo').focus();
+                            }else{ 
+                                document.querySelector('#photo_label').classList.add('d-none'),
+                                document.querySelector('#photo_input').classList.add('d-none')
                             }">
                              <option value="" selected >
                                  - เลือกข้อความ / Select text - 
@@ -30,16 +38,27 @@
                     </div>
                     <br>
                 </div>
-
+                
                 <div class="col-12 col-md-2">
+                    <!-- ข้อความอื่นๆ -->
                     <label id="masseng_label" for="masseng" class="d-none control-label">{{ 'ข้อความอื่นๆ / Other messages' }}</label>
+                    <!-- รูปภาพ -->
+                    <label id="photo_label" for="photo" class="d-none control-label">{{ 'รูปภาพ / Photo' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
+                    <!-- ข้อความอื่นๆ -->
                     <div id="masseng_input" class="d-none form-group {{ $errors->has('masseng') ? 'has-error' : ''}}">
                         <input class="form-control" name="masseng" type="text" id="masseng" value="{{ isset($guest->masseng) ? $guest->masseng : ''}}">
                         {!! $errors->first('masseng', '<p class="help-block">:message</p>') !!}
                     </div>
+                    <!-- รูปภาพ -->
+                    <div id="photo_input" class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                        <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($guest->photo) ? $guest->photo : ''}}">
+                        {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+                    </div>
                 </div>
+
+
                 <div class="col-12 col-md-2">
                     <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car registration' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
