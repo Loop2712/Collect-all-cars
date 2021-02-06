@@ -227,7 +227,7 @@ class LineMessagingAPI extends Model
 
                         break;
 
-                    case "3": 
+                    default: 
                         $template_path = storage_path('../public/json/flex-mycar-3.json');   
                         $string_json = file_get_contents($template_path);
                         // คันที่1
