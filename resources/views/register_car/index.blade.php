@@ -52,18 +52,33 @@
                                         <td><img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png"></td>
 
                                         <td>{{ $item->generation }}</td>
-
+                                        <!-- act -->
                                         @if(!empty($item->act))
-                                            <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}</a></b></td>
+                                            @if((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
+                                                <td><b><a class=" text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}</a></b></td>
+                                            @elseif((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
+                                                <td><b><a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}</a></b></td>
+                                            @else
+                                                <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}</a></b></td>
+                                            @endif
                                         @else
                                             <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-edit"></i></a></td>
                                         @endif
+                                        <!-- end act -->
 
+                                        <!-- insurance -->
                                         @if(!empty($item->insurance))
-                                            <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}</a></b></td>
+                                            @if((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
+                                                <td><b><a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}</a></b></td>
+                                            @elseif((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
+                                                <td><b><a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}</a></b></td>
+                                            @else
+                                                <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}</a></b></td>
+                                            @endif
                                         @else
                                             <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-edit"></i></a></td>
                                         @endif
+                                        <!-- end insurance -->
 
                                         <td>
                                             <a class="btn btn-success btn-sm" href="#"><i class="fas fa-hand-holding-usd"></i> Sell</a>

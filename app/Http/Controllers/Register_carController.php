@@ -54,7 +54,10 @@ class Register_carController extends Controller
                         ->get();
         }
 
-        return view('register_car.index', compact('register_car'));
+        // เวลาปัจจุบัน
+        $date_now = date("Y-m-d "); 
+
+        return view('register_car.index', compact('register_car' , 'date_now'));
     }
 
     /**
