@@ -193,10 +193,14 @@ class GuestController extends Controller
         $massengbox = $data['massengbox'];
         $photo = $data['photo'];
 
+        if (!empty($data['photo'])) {
+            $photo = $data['photo'];
+        }else if (empty($data['photo'])) {
+            $photo = null;
+        }
+
         if (!empty($data['masseng'])) {
             $masseng_old = $data['masseng'];
-
-
         }else if (empty($data['masseng'])) {
             $masseng_old = "รบกวนมาที่รถด้วยค่ะ";
         }
