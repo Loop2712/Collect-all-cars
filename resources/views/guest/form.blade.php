@@ -111,21 +111,21 @@
             <br><br>
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="name" id="name" class="d-none control-label">{{ 'ชื่อ / Name' }}</label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="name" type="text" id="name_input" value="{{ isset($guest->name) ? $guest->name : ''}}" >
-                        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="col-12 col-md-2">
                     <label for="phone" id="phone" class="d-none control-label">{{ 'เบอร์โทร / Phone number' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                         <input class="d-none form-control" name="phone" type="tel" id="phone_input" value="{{ isset($guest->phone) ? $guest->phone : ''}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="d-none col-12 col-md-2">
+                    <label for="name" id="name" class="d-none control-label">{{ 'ชื่อ / Name' }}</label>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="name" type="hidden" id="name_input" value="{{ isset($guest->name) ? $guest->name : Auth::user()->name}}" >
+                        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
             </div>

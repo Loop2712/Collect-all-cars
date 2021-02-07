@@ -26,16 +26,28 @@ class GuestController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        // if (!empty($keyword)) {
+        //     $guest = Guest::where('name', 'LIKE', "%$keyword%")
+        //         ->orWhere('phone', 'LIKE', "%$keyword%")
+        //         ->orWhere('masseng', 'LIKE', "%$keyword%")
+        //         ->orWhere('massengbox', 'LIKE', "%$keyword%")
+        //         ->orWhere('photo', 'LIKE', "%$keyword%")
+        //         ->orWhere('provider_id', 'LIKE', "%$keyword%")
+        //         ->latest()->paginate($perPage);
+        // } else {
+        //     $guest = Guest::latest()->paginate($perPage);
+        // }
+
         if (!empty($keyword)) {
-            $guest = Guest::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('phone', 'LIKE', "%$keyword%")
-                ->orWhere('masseng', 'LIKE', "%$keyword%")
-                ->orWhere('massengbox', 'LIKE', "%$keyword%")
-                ->orWhere('photo', 'LIKE', "%$keyword%")
-                ->orWhere('provider_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+            $guest = Guest::selectRaw('count(user_id) as count , name')
+                            ->orderByRaw('count DESC')
+                            ->groupBy('name')
+                            ->get();
         } else {
-            $guest = Guest::latest()->paginate($perPage);
+            $guest = Guest::selectRaw('count(user_id) as count , name')
+                            ->orderByRaw('count DESC')
+                            ->groupBy('name')
+                            ->get();
         }
 
         return view('guest.index', compact('guest'));
@@ -359,6 +371,14 @@ class GuestController extends Controller
     public function modal()
     {
         return view('guest.modal');
+    }
+
+    public function index_detail()
+    {
+        $guest = DB::table('guests')
+                        ->where('name', request('name'))
+                        ->get();
+        return view('guest.index_detail', compact('guest'));
     }
 
 }

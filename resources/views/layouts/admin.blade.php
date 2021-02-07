@@ -1,4 +1,5 @@
-
+@if(Auth::check())
+    @if(Auth::user()->role == "admin" )
 <!DOCTYPE html>
 <html>
 
@@ -26,9 +27,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="background-color: #F0FFFF">
   <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <nav style="margin-top: -10px;" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
@@ -48,9 +49,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">รายงาน</span>
+              <a class="nav-link" href="{{ url('/guest') }}">
+                <i class="fas fa-car-crash text-danger"></i>
+                <span class="nav-link-text">Owner alert report</span>
               </a>
             </li>
             <li class="nav-item">
@@ -211,3 +212,5 @@
 </body>
 
 </html>
+  @endif
+@endif

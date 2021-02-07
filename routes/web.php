@@ -45,6 +45,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/dashboard', function () {
 	    return view('admin_viicheck/dashboard');
 	});
+	Route::get('/guest', function () {
+	    return view('guest');
+	});
+	Route::get('/index_detail', 'GuestController@index_detail');
 	Route::resource('profanity', 'ProfanityController');
 });
 // END ADMIN VIICHECK

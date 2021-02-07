@@ -23,7 +23,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body style="background-color: #F2C7CD">
+<body style="background-image: url('{{ asset('/img/hero-bg.jpg') }}');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;">
     <div id="app">
         <div class="header__logo">
             <br>

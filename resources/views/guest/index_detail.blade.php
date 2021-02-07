@@ -10,14 +10,28 @@
                         <!-- <a href="{{ url('/guest/create') }}" class="btn btn-success btn-sm" title="Add New Guest">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a> -->
+
+                        <form method="GET" action="{{ url('/guest') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                <span class="input-group-append">
+                                    <button class="btn btn-secondary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+
+                        <br/>
+                        <br/>
                         <div class="container">
+                            <hr>
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="row alert alert-secondary">
+                                    <div class="row">
                                         <div class="col-1"></div>
-                                        <div class="col-5"><b>Name</b></div>
+                                        <div class="col-7"><b>เลขทะเบียน</b></div>
                                         <div class="col-2"><b>All reports</b></div>
-                                        <div class="col-2"><b>Ranking</b></div>
                                         <div class="col-2"></div>
                                     </div>
                                     <hr>
@@ -26,27 +40,14 @@
                                         <div class="col-1">
                                             &nbsp;&nbsp;&nbsp;{{ $loop->iteration }}
                                         </div>
-                                        <div class="col-5">
-                                            <h5 class="text-success"><b>{{ $item->name }}</b></h5>
+                                        <div class="col-7">
+                                            {{ $item->name }}
                                         </div>
                                         <div class="col-2">
-                                            <b>{{ $item->count }}</b>
+                                            {{ $item->registration }}
                                         </div>
                                         <div class="col-2">
-                                            @switch($item->name)
-                                                @case('Thanakorn Tungkasopa')
-                                                    <a class="btn btn-sm btn-light " href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
-                                                @break
-                                                @case('bb')
-                                                    <a class="btn btn-sm btn-light " href=""><i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
-                                                @break
-                                                @case('tt')
-                                                    <a class="btn btn-sm btn-light " href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
-                                                @break
-                                            @endswitch
-                                        </div>
-                                        <div class="col-2">
-                                            <a class="btn btn-sm btn-outline-info" href="{{ url('/index_detail/') }}?name={{ $item->name }}"><i class="fas fa-eye"></i> ดูข้อมูล</a>
+                                            <a class="btn btn-sm btn-outline-info " href="">--</a>
                                         </div>
                                     </div>
                                     <hr>
