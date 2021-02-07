@@ -27,5 +27,8 @@ class Guest extends Model
      */
     protected $fillable = ['name', 'phone', 'masseng', 'massengbox', 'photo', 'provider_id','brand' ,'registration' , 'county', 'reply_provider_id' , 'user_id', 'type'];
 
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id', 'id'); 
+    }
     
 }

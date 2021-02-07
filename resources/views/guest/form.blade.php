@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
-                        <select name="county" id="county" class="form-control" required>
+                        <select name="county" id="county" class="form-control" >
                                 <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
                                 <!-- @foreach($location_array as $lo)
                                 <option 
@@ -144,10 +144,10 @@
 </div>
 
 <div class="form-group">
-    <input class="d-none btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
+    <input class=" btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
 </div>
 
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         console.log("START"); 
     });
@@ -201,4 +201,4 @@
 
             });
     }
-</script>
+</script> -->

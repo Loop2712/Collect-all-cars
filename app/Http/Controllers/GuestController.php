@@ -24,31 +24,17 @@ class GuestController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 20;
 
-        // if (!empty($keyword)) {
-        //     $guest = Guest::where('name', 'LIKE', "%$keyword%")
-        //         ->orWhere('phone', 'LIKE', "%$keyword%")
-        //         ->orWhere('masseng', 'LIKE', "%$keyword%")
-        //         ->orWhere('massengbox', 'LIKE', "%$keyword%")
-        //         ->orWhere('photo', 'LIKE', "%$keyword%")
-        //         ->orWhere('provider_id', 'LIKE', "%$keyword%")
-        //         ->latest()->paginate($perPage);
-        // } else {
-        //     $guest = Guest::latest()->paginate($perPage);
-        // }
+        // $guest = Guest::latest()->paginate($perPage);
+        
+        $guest = Guest::selectRaw('count(user_id) as count , name')
+                        ->orderByRaw('count DESC')
+                        ->groupBy('name')
+                        ->latest()->paginate($perPage);
 
-        if (!empty($keyword)) {
-            $guest = Guest::selectRaw('count(user_id) as count , name')
-                            ->orderByRaw('count DESC')
-                            ->groupBy('name')
-                            ->get();
-        } else {
-            $guest = Guest::selectRaw('count(user_id) as count , name')
-                            ->orderByRaw('count DESC')
-                            ->groupBy('name')
-                            ->get();
-        }
+        // $guest = Guest::select('id','name','user_id')
+        //                 ->latest()->paginate($perPage);
 
         return view('guest.index', compact('guest'));
     }
@@ -375,10 +361,35 @@ class GuestController extends Controller
 
     public function index_detail()
     {
-        $guest = DB::table('guests')
+        // ดูคันที่ซ้ำกันมากที่สุด
+        $guest_corny = DB::table('guests')
+                        ->groupBy('registration')
+                        ->groupBy('county')
+                        ->selectRaw('count(registration) as count')
+                        ->orderByRaw('count DESC')
+                        ->where('name', request('name'))
+                        ->limit(1)
+                        ->get();
+
+        // วันที่ล่าสุด
+        $guest_date = DB::table('guests')
+                        ->orderByRaw('created_at DESC ')
                         ->where('name', request('name'))
                         ->get();
-        return view('guest.index_detail', compact('guest'));
+
+        $all = Guest::selectRaw('count(id) as count')
+                        ->get();
+
+        $users = DB::table('users')
+                        ->where('name', request('name'))
+                        ->get();
+
+
+        foreach($users as $item){
+            $ranking = $item->ranking;
+        }
+
+        return view('guest.index_detail', compact('guest_corny','users','ranking', 'guest_date' , 'all') );
     }
 
 }
