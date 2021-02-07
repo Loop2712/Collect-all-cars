@@ -365,7 +365,7 @@ class GuestController extends Controller
         $guest_corny = DB::table('guests')
                         ->groupBy('registration')
                         ->groupBy('county')
-                        ->selectRaw('count(registration) as count')
+                        ->selectRaw('registration , county ,count(registration) as count')
                         ->orderByRaw('count DESC')
                         ->where('name', request('name'))
                         ->limit(1)
@@ -378,6 +378,7 @@ class GuestController extends Controller
                         ->get();
 
         $all = Guest::selectRaw('count(id) as count')
+                        ->where('name', request('name'))
                         ->get();
 
         $users = DB::table('users')
@@ -390,6 +391,33 @@ class GuestController extends Controller
         }
 
         return view('guest.index_detail', compact('guest_corny','users','ranking', 'guest_date' , 'all') );
+    }
+
+    public function change_ToSenior()
+    {
+        DB::table('users')
+              ->where('name', request('name'))
+              ->update(['ranking' => 'Senior']);
+
+        return redirect('/index_detail?name='.request('name'));
+    }
+
+    public function change_ToCommon()
+    {
+        DB::table('users')
+              ->where('name', request('name'))
+              ->update(['ranking' => 'Common']);
+
+        return redirect('/index_detail?name='.request('name'));
+    }
+
+    public function change_ToNormal()
+    {
+        DB::table('users')
+              ->where('name', request('name'))
+              ->update(['ranking' => 'Normal']);
+
+        return redirect('/index_detail?name='.request('name'));
     }
 
 }

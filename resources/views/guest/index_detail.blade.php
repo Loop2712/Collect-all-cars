@@ -77,30 +77,60 @@
                                     <a class="btn btn-light " onclick="document.querySelector('#div_user').classList.remove('d-none')"><i class="fas fa-street-view text-success"></i> ข้อมูลผู้ใช้</a>
                                 </div>
                                 <div class="col-2"> </div>
-                                <div class="col-1"></div>
                                 <div class="col-3">
                                     @foreach($guest_corny as $item)
-                                    <a class="btn btn-light " onclick="document.querySelector('#div_user').classList.remove('d-none')"><i class="fas fa-check-circle text-primary"></i> ซ้ำคันเดิมมากสุด {{ $item->count }} รอบ</a>
+                                    <a class="btn btn-light" title="{{ $item->registration }}&nbsp;&nbsp;{{ $item->county }}" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-clone text-danger"></i> ซ้ำคันเดิมมากสุด {{ $item->count }} รอบ</a>
                                     @endforeach
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h4 class="modal-title text-info" id="exampleModalLongTitle">หมายเลขทะเบียน</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            {{ $item->registration }}&nbsp;&nbsp;{{ $item->county }}
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col-2">
                                     @foreach($all as $item)
-                                    <a class="btn btn-light " onclick="document.querySelector('#div_user').classList.remove('d-none')"><i class="fas fa-check-circle text-primary"></i> ทั้งหมด {{ $item->count }} คัน</a>
+                                    <a class="btn btn-light"><i class="fas fa-check-circle text-primary"></i> ทั้งหมด {{ $item->count }} คัน</a>
                                     @endforeach
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     &nbsp;&nbsp;&nbsp;
                                     @switch($ranking)
                                         @case('Senior')
-                                            <a class="btn btn-light " href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
+                                            <a class="btn btn-light" href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
                                         @break
                                         @case('Common')
-                                            <a class="btn btn-light " href=""><i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
+                                            <a class="btn btn-light" href=""><i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
                                         @break
                                         @case('Normal')
-                                            <a class="btn btn-light " href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
+                                            <a class="btn btn-light" href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
                                         @break
                                     @endswitch
+                                    <!-- Example single danger button -->
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-sync"></i>
+                                      </button>
+                                      <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ url('/change_ToSenior') }}?name={{ request('name') }}"><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
+                                        <a class="dropdown-item" href="{{ url('/change_ToCommon') }}?name={{ request('name') }}">&nbsp;<i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
+                                        <a class="dropdown-item" href="{{ url('/change_ToNormal') }}?name={{ request('name') }}">&nbsp;<i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
                             <hr>
@@ -129,24 +159,46 @@
                                         <div class="col-3">
                                             @switch($item->massengbox)
                                                 @case ('1')
-                                                    <p>กรุณาเลื่อนรถด้วยค่ะ</p>
+                                                    <span>กรุณาเลื่อนรถด้วยค่ะ</span>
                                                     @break
                                                 @case ('2')  
-                                                    <p>รถคุณเปิดไฟค้างไว้ค่ะ</p>
+                                                    <span>รถคุณเปิดไฟค้างไว้ค่ะ</span>
                                                     @break
                                                 @case ('3')
-                                                    <p>มีเด็กอยู่ในรถค่ะ</p>
+                                                    <span>มีเด็กอยู่ในรถค่ะ</span>
                                                     @break
                                                 @case ('4') 
-                                                    <span>รถคุณเกิดอุบัติเหตุค่ะ</span>&nbsp;&nbsp;<a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">ดูรปภาพ</a>
+                                                    <span>รถคุณเกิดอุบัติเหตุค่ะ</span>&nbsp;&nbsp;<a href="" data-toggle="modal" data-target="#exampleModalCenter2">ดูรปภาพ</a>
                                                     @break
                                                 @case ('5')  
-                                                    <p>แจ้งปัญหาการขับขี่</p>
+                                                    <span>แจ้งปัญหาการขับขี่</span>
                                                     @break
                                                 @case ('6') 
                                                     {{ $item->masseng }}
                                                     @break
                                             @endswitch
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h4 class="modal-title text-info" id="exampleModalLongTitle">รูปภาพอุบัติเหตุ</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <center>
+                                                        <img width="450" src="{{ url('storage')}}/{{ $item->photo }}">
+                                                    </center>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>

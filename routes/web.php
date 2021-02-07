@@ -49,6 +49,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	    return view('guest');
 	});
 	Route::get('/index_detail', 'GuestController@index_detail');
+	Route::get('/change_ToSenior', 'GuestController@change_ToSenior');
+	Route::get('/change_ToCommon', 'GuestController@change_ToCommon');
+	Route::get('/change_ToNormal', 'GuestController@change_ToNormal');
+	
 	Route::resource('profanity', 'ProfanityController');
 });
 // END ADMIN VIICHECK
