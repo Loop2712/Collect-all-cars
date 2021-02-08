@@ -84,6 +84,10 @@ class GuestController extends Controller
 
             //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
+            //watermark
+            $watermark = Image::make(public_path('watermark.png'));
+            $image->insert($watermark , 'bottom-right', 20, 20)->save();
+
             $size = $image->filesize();  
 
             if($size > 512000 ){
@@ -91,9 +95,11 @@ class GuestController extends Controller
                     intval($image->width()/2) , 
                     intval($image->height()/2)
                 )->save(); 
-            }           
+            }
 
         }
+
+
 
         $requestData['registration'] = str_replace(" ", "", $requestData['registration']);
         // แบนคำหยาบ
