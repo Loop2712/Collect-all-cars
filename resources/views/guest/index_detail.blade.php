@@ -176,7 +176,7 @@
                                         <div class="col-1"></div>
                                         <div class="col-3"><b>วันที่แจ้ง</b></div>
                                         <div class="col-4"><b>ทะเบียนรถ</b></div>
-                                        <div class="col-3"><b>ข้อความที่แจ้ง</b></div>
+                                        <div class="col-4"><b>ข้อความที่แจ้ง</b></div>
                                     </div>
                                     <hr>
                                     @foreach($guest_date as $item)
@@ -190,7 +190,7 @@
                                         <div class="col-4">
                                             {{ $item->registration }}&nbsp;&nbsp;{{ $item->county }}
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             @switch($item->massengbox)
                                                 @case ('1')
                                                     <span>กรุณาเลื่อนรถด้วยค่ะ</span>
@@ -202,7 +202,8 @@
                                                     <span>มีเด็กอยู่ในรถค่ะ</span>
                                                     @break
                                                 @case ('4') 
-                                                    <span>รถคุณเกิดอุบัติเหตุค่ะ</span>&nbsp;&nbsp;<a href="" data-toggle="modal" data-target="#exampleModalCenter2">ดูรปภาพ</a>
+                                                    <span>รถคุณเกิดอุบัติเหตุค่ะ</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a target="bank" href="{{ url('storage')}}/{{ $item->photo }}"><img class="rounded-circle" width="120" src="{{ url('storage')}}/{{ $item->photo }}"></a>
                                                     @break
                                                 @case ('5')  
                                                     <span>แจ้งปัญหาการขับขี่</span>
@@ -211,28 +212,6 @@
                                                     {{ $item->masseng }}
                                                     @break
                                             @endswitch
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                  <div class="modal-header">
-                                                    <h4 class="modal-title text-info" id="exampleModalLongTitle">รูปภาพอุบัติเหตุ</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                      <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                  </div>
-                                                  <div class="modal-body">
-                                                    <center>
-                                                        <img width="450" src="{{ url('storage')}}/{{ $item->photo }}">
-                                                    </center>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <hr>
