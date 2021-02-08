@@ -74,25 +74,59 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-2">
-                                    <a class="btn btn-light " onclick="document.querySelector('#div_user').classList.remove('d-none')"><i class="fas fa-street-view text-success"></i> ข้อมูลผู้ใช้</a>
+                                    <a class="btn btn-light" onclick="document.querySelector('#div_user').classList.remove('d-none')"><i class="fas fa-street-view text-success"></i> ข้อมูลผู้ใช้</a>
                                 </div>
-                                <div class="col-2"> </div>
-                                <div class="col-3">
+                                <div class="col-1"></div>
+                                <div class="col-4">
                                     @foreach($guest_corny as $item)
-                                    <a class="btn btn-light" title="{{ $item->registration }}&nbsp;&nbsp;{{ $item->county }}" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-clone text-danger"></i> ซ้ำคันเดิมมากสุด {{ $item->count }} รอบ</a>
+                                    <a style="float: right;" class="btn btn-light" title="{{ $item->registration }}&nbsp;&nbsp;{{ $item->county }}" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-clone text-danger"></i> ซ้ำคันเดิมมากสุด {{ $item->count }} รอบ  &nbsp;&nbsp;<i class="far fa-eye"></i></a>
                                     @endforeach
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h4 class="modal-title text-info" id="exampleModalLongTitle">หมายเลขทะเบียน</h4>
+                                            <h4 class=" text-info" id="exampleModalLongTitle">หมายเลขทะเบียนที่ซ้ำกัน</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                            {{ $item->registration }}&nbsp;&nbsp;{{ $item->county }}
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <b>หมายเลข</b>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <b>จังหวัด</b>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <b>ซ้ำกัน</b>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                         @foreach($corny as $item)
+                                                            @if($item->count > 1)
+                                                            <div class="col-4">
+                                                                {{ $item->registration }}
+                                                            </div>
+                                                            <div class="col-6">
+                                                                {{ $item->county }}
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <center>
+                                                                    <b class="text-danger">{{ $item->count }}</b>
+                                                                </center>
+                                                            </div>
+                                                            @endif
+                                                            <hr>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            <!-- {{ $item->registration }}&nbsp;&nbsp;{{ $item->county }} -->
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -104,7 +138,7 @@
                                 </div>
                                 <div class="col-2">
                                     @foreach($all as $item)
-                                    <a class="btn btn-light"><i class="fas fa-check-circle text-primary"></i> ทั้งหมด {{ $item->count }} คัน</a>
+                                    <a style="float: right;" class="btn btn-light"><i class="fas fa-check-circle text-primary"></i> ทั้งหมด {{ $item->count }} คัน</a>
                                     @endforeach
                                 </div>
                                 <div class="col-3">

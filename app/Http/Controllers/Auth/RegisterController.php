@@ -65,11 +65,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // $provider_id = uniqid('Viicheck-', true);
         return User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'provider_id' => uniqid('Viicheck-', true),
         ]);
     }
 }

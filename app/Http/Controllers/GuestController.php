@@ -28,13 +28,23 @@ class GuestController extends Controller
 
         // $guest = Guest::latest()->paginate($perPage);
         
-        $guest = Guest::selectRaw('count(user_id) as count , name')
-                        ->orderByRaw('count DESC')
-                        ->groupBy('name')
-                        ->latest()->paginate($perPage);
-
-        // $guest = Guest::select('id','name','user_id')
+        // $guest = Guest::selectRaw('count(user_id) as count , name')
+        //                 ->orderByRaw('count DESC')
+        //                 ->groupBy('name')
         //                 ->latest()->paginate($perPage);
+
+        $guest = DB::table('guests')
+                    ->groupBy('provider_id')
+                    ->groupBy('user_id')
+                    ->groupBy('name')
+                    ->selectRaw('count(provider_id) as count , name , user_id')
+                    ->orderByRaw('count DESC')
+                    ->latest()->paginate($perPage);
+        
+        // echo "<pre>";
+        // print_r($guest);
+        // echo "<pre>";
+        // exit();
 
         return view('guest.index', compact('guest'));
     }
@@ -370,6 +380,14 @@ class GuestController extends Controller
                         ->where('name', request('name'))
                         ->limit(1)
                         ->get();
+        // ดูคันที่ซ้ำกัน         
+        $corny = DB::table('guests')
+                        ->groupBy('registration')
+                        ->groupBy('county')
+                        ->selectRaw('registration , county ,count(registration) as count')
+                        ->orderByRaw('count DESC')
+                        ->where('name', request('name'))
+                        ->get();
 
         // วันที่ล่าสุด
         $guest_date = DB::table('guests')
@@ -377,10 +395,12 @@ class GuestController extends Controller
                         ->where('name', request('name'))
                         ->get();
 
+        // ทั้งหมด
         $all = Guest::selectRaw('count(id) as count')
                         ->where('name', request('name'))
                         ->get();
 
+        // ข้อมูลผู้ใช้
         $users = DB::table('users')
                         ->where('name', request('name'))
                         ->get();
@@ -390,7 +410,7 @@ class GuestController extends Controller
             $ranking = $item->ranking;
         }
 
-        return view('guest.index_detail', compact('guest_corny','users','ranking', 'guest_date' , 'all') );
+        return view('guest.index_detail', compact('guest_corny','users','ranking', 'guest_date' , 'all' , 'corny') );
     }
 
     public function change_ToSenior()
