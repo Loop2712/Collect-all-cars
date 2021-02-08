@@ -54,7 +54,7 @@
                     <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
                         <select name="brand" class=" form-control" id="input_car_brand" required onchange="showCar_model();
-                                if(this.value=='อื่นๆ'){ 
+                            if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#brand_input').focus();

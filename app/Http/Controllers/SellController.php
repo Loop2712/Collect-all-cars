@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\CarModel;
+use App\county;
 use App\Models\Sell;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +24,7 @@ class SellController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $sell = Sell::where('price', 'LIKE', "%$keyword%")
+            $sell = CarModel::where('price', 'LIKE', "%$keyword%")
                 ->orWhere('type', 'LIKE', "%$keyword%")
                 ->orWhere('brand', 'LIKE', "%$keyword%")
                 ->orWhere('model', 'LIKE', "%$keyword%")
@@ -40,10 +42,51 @@ class SellController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             // 
-            $sell = Sell::where('user_id', Auth::id() )->latest()->paginate($perPage);
+            $sell = CarModel::where('user_id', Auth::id() )->latest()->paginate($perPage);
         }
 
         return view('carsell.index', compact('sell'));
+    }
+    public function select()
+    {
+
+        $brand_array = CarModel::selectRaw('brand,count(brand) as count')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->get();
+            
+        $type_array = CarModel::selectRaw('type,count(type) as count')
+            ->where('type', '!=',"" )
+            ->groupBy('type')
+            ->get();
+
+        $year_array = Sell::selectRaw('year,count(year) as count')
+            ->where('year', '!=',"" )
+            ->groupBy('year')
+            ->get();
+
+        $color_array = Sell::selectRaw('color,count(color) as count')
+            ->where('color', '!=',"" )
+            ->groupBy('color')
+            ->get();
+   
+        $gear_array = Sell::selectRaw('gear,count(gear) as count')
+            ->where('gear', '!=',"" )
+            ->groupBy('gear')
+            ->get();
+            
+        $location_array = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+        
+        $fuel_array = Sell::selectRaw('fuel,count(fuel) as count')
+            ->where('fuel', '!=',"" )
+            ->groupBy('fuel')
+            ->get();
+
+       
+        // return view('carsell.form',compact('brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
     }
 
     /**
@@ -53,7 +96,21 @@ class SellController extends Controller
      */
     public function create()
     {
-        return view('carsell.create');
+        // $car_brand = CarModel::selectRaw('brand,count(brand) as count')
+        //     ->orderByRaw('count DESC')
+        //     ->where('brand', '!=',"" )
+        //     ->groupBy('brand')
+        //     ->limit(10)
+        //     ->get();
+
+        $location_array = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+
+            $user = Auth::user();
+
+        return view('carsell.create',compact('location_array'));
     }
 
     /**

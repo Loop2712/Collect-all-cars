@@ -12,6 +12,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Krub:wght@200&display=swap" rel="stylesheet"> -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -44,6 +45,54 @@
             <a href="{{URL::to('/')}}"><img width="150px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
         <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__widget">
+        <ul>
+                            @guest
+                            <li>
+                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                            </li>
+                            <li>
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                            </li>
+
+                                @else
+                                <li>
+                                    <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                                </li>
+                                <li>
+                                    <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                        
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <a href="{{ url('/profile') }}" > Profile</a>
+                                            </li>
+                                            @if(Auth::check())
+                                                @if(Auth::user()->role == "admin" )
+                                                    <li>
+                                                        <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
+                                                    </li>
+                                                @endif
+                                            @endif
+                                            <li>
+                                                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                            </form>
+                                        </ul>
+                                </li>
+                                
+                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                                
+                                @endguest
+                            </ul>
+        </div>
     </div>
 
     <!-- Header Section Begin -->
@@ -55,21 +104,134 @@
                         <a href="{{URL::to('/')}}"><img width="200px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <!-- <div class="col-lg-10">
+                    
                     <div class="header__nav">
-                        <div class="header__menu" style="text-align:left;margin-left: 20px;">
+                        <div class="header__menu">
+                            <ul>  
+                                <li>
+                                    <a href="{{ url('/car') }}" ><h5><b>รถยนต์</b></h5></a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานต์ยนต์</b></h5></a>
+                                </li>            
+                            </ul>
+                        </div>
+                        <div class="header__nav__widget">
+                            <div class="header__nav__widget__btn">
+                            
+                            @guest
+                            
+                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                            
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                           
+                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                            
+
+                                @else
+                                
+                                    <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                                
+                                
+                                    <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                        
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <a href="{{ url('/profile') }}" > Profile</a>
+                                            </li>
+                                            @if(Auth::check())
+                                                @if(Auth::user()->role == "admin" )
+                                                    <li>
+                                                        <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
+                                                    </li>
+                                                @endif
+                                            @endif
+                                            <li>
+                                                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                            </form>
+                                        </ul>
+                                @endguest
+                        
+                            </div>
+                            <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                        </div>
+                    </div>
+                </div> -->
+
+
+                <div class="col-lg-10">
+                    <div class="header__nav">
+                        <nav class="header__menu" style="text-align:left;margin-left: 20px;">
                             <ul>
                                 <li>
-                                <a href="{{ url('/car') }}" >รถยนต์มือสอง</a>
+                                <a href="{{ url('/car') }}" ><h5><b>รถยนต์</b></h5></a>
                                 </li>
                                 <li>
-                                <a href="{{ url('/motercycle') }}" >รถจักรยานต์ยนต์มือสอง</a>
+                                <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานต์ยนต์</b></h5></a>
                                 </li>
                             </ul>
+                        </nav>
+                        <div class="header__nav__widget">
+                        
+                            <ul>
+                            @guest
+                            <li>
+                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                            </li>
+                            <li>
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                            </li>
+
+                                @else
+                                <li>
+                                    <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                                </li>
+                                <li>
+                                    <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                        
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <a href="{{ url('/profile') }}" > Profile</a>
+                                            </li>
+                                            @if(Auth::check())
+                                                @if(Auth::user()->role == "admin" )
+                                                    <li>
+                                                        <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
+                                                    </li>
+                                                @endif
+                                            @endif
+                                            <li>
+                                                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                            </form>
+                                        </ul>
+                                </li>
+                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                                @endguest
+                            </ul>
+                            
+                                
+                        
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <!-- //////////////////////////////////////////////////////// -->
+                <!-- <div class="col-lg-5">
                     <div class="header__nav">
                         <nav class="header__menu">
                             <ul>
@@ -77,7 +239,7 @@
                                 
                                 @guest
                                     <li >
-                                        <a  href="{{ url('/sell') }}" >ขาย</a>
+                                        <a  href="{{ url('/sell') }}" ><h6>ขาย</h6> </a>
                                         <ul class="dropdown">
                                                 <li>
                                                     <a href="{{ url('/sell') }}" >รถยนต์</a>
@@ -111,7 +273,7 @@
                                     </li>
                                     <li>
                                         <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                        <!-- <img src=""style=" width: 30px;height: 30px;border-radius: 50%;" alt=""> -->
+                                    
                                             {{ Auth::user()->name }}
                                         </a>
                                             <ul class="dropdown">
@@ -140,7 +302,7 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="canvas__open">
                 <span class="fa fa-bars"></span>
@@ -238,6 +400,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
     <script src="{{ asset('js/car/jquery.nice-select.min.js')}}"></script>
     <script src="{{ asset('js/car/jquery-ui.min.js')}}"></script>

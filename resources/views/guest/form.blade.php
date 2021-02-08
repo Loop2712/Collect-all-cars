@@ -9,7 +9,7 @@
                 <div class="col-12 col-md-2">
                     <label for="massengbox" class="control-label">{{ 'ข้อความ / Message' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
-                <div class="col-12 col-md-4">
+                <!-- <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
                         <select name="massengbox" class="form-control"  id="massengbox" required onchange="if(this.value=='6'){ 
                                 document.querySelector('#masseng_label').classList.remove('d-none'),
@@ -37,7 +37,7 @@
                         {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
                     </div>
                     <br>
-                </div>
+                </div> -->
                 
                 <div class="col-12 col-md-2">
                     <!-- ข้อความอื่นๆ -->
