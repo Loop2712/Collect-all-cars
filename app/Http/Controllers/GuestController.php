@@ -10,6 +10,7 @@ use App\county;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 use App\Models\Profanity;
+use Auth;
 // use Intervention\Image\ImageManagerStatic as Image;
 
 use App\Models\Mylog;
