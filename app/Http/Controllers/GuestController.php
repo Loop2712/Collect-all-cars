@@ -83,7 +83,7 @@ class GuestController extends Controller
             $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
 
             //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
-            $image = Image::make(storage_path("app/public/uploads")."/".$requestData['photo']);
+            $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
             $size = $image->filesize();  
 
             if($size > 512000 ){
