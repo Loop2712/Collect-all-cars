@@ -126,7 +126,6 @@
                                                         @endforeach
                                                     </div>
                                                 </div>
-                                            <!-- {{ $item->registration }}&nbsp;&nbsp;{{ $item->county }} -->
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
