@@ -454,4 +454,13 @@ class GuestController extends Controller
         return redirect('/index_detail?name='.request('name'));
     }
 
+    public function welcome_line_guest()
+    {
+        if(Auth::check()){
+            return redirect('guest/create');
+        }else{
+            return redirect('/login/line?redirectTo=guest/create');
+        }
+    }
+
 }
