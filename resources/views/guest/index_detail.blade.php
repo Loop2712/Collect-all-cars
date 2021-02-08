@@ -203,7 +203,7 @@
                                                     @break
                                                 @case ('4') 
                                                     <span>รถคุณเกิดอุบัติเหตุค่ะ</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a target="bank" href="{{ url('storage')}}/{{ $item->photo }}"><img class="rounded-circle" width="120" src="{{ url('storage')}}/{{ $item->photo }}"></a>
+                                                    <a target="bank" href="{{ url('storage')}}/{{ $item->photo }}"><img class="rounded-circle" width="120" height="80" src="{{ url('storage')}}/{{ $item->photo }}"></a>
                                                     @break
                                                 @case ('5')  
                                                     <span>แจ้งปัญหาการขับขี่</span>
