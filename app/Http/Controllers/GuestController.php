@@ -33,8 +33,7 @@ class GuestController extends Controller
         //                 ->groupBy('name')
         //                 ->latest()->paginate($perPage);
 
-        $guest = DB::table('guests')
-                    ->groupBy('provider_id')
+        $guest = Guest::groupBy('provider_id')
                     ->groupBy('user_id')
                     ->groupBy('name')
                     ->selectRaw('count(provider_id) as count , name , user_id')
@@ -415,27 +414,42 @@ class GuestController extends Controller
 
     public function change_ToSenior()
     {
+        $date_now = date("Y-m-d"); 
         DB::table('users')
-              ->where('name', request('name'))
-              ->update(['ranking' => 'Senior']);
+                ->where('name', request('name'))
+                ->update(['ranking' => 'Senior']);
+
+        DB::table('users')
+                ->where('name', request('name'))
+                ->update(['last_edit' => $date_now]);
 
         return redirect('/index_detail?name='.request('name'));
     }
 
     public function change_ToCommon()
     {
+        $date_now = date("Y-m-d"); 
         DB::table('users')
               ->where('name', request('name'))
               ->update(['ranking' => 'Common']);
+
+        DB::table('users')
+                ->where('name', request('name'))
+                ->update(['last_edit' => $date_now]);
 
         return redirect('/index_detail?name='.request('name'));
     }
 
     public function change_ToNormal()
     {
+        $date_now = date("Y-m-d"); 
         DB::table('users')
               ->where('name', request('name'))
               ->update(['ranking' => 'Normal']);
+
+        DB::table('users')
+                ->where('name', request('name'))
+                ->update(['last_edit' => $date_now]);
 
         return redirect('/index_detail?name='.request('name'));
     }
