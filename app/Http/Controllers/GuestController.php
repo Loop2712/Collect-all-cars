@@ -11,7 +11,7 @@ use App\Models\Guest;
 use Illuminate\Http\Request;
 use App\Models\Profanity;
 use Auth;
-// use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic as Image;
 
 use App\Models\Mylog;
 
@@ -74,10 +74,27 @@ class GuestController extends Controller
     {
         
         $requestData = $request->all();
-                if ($request->hasFile('photo')) {
-            $requestData['photo'] = $request->file('photo')
-                ->store('uploads', 'public');
+
+        $validatedData = $request->validate([
+            'photo' => 'image'
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
+
+            //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
+            $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
+            $size = $image->filesize();  
+
+            if($size > 512000 ){
+                $image->resize(
+                    intval($image->width()/2) , 
+                    intval($image->height()/2)
+                )->save(); 
+            }           
+
         }
+
         $requestData['registration'] = str_replace(" ", "", $requestData['registration']);
         // แบนคำหยาบ
         $profanitie = DB::table('profanities')
@@ -88,27 +105,6 @@ class GuestController extends Controller
             $requestData['masseng'] = str_replace($p->content, "", $requestData['masseng']);
             
         }
-
-        // $validatedData = $request->validate([
-        //     'photo' => 'image'
-        // ]);
-
-        // if ($request->hasFile('photo')) {
-        //     //SAVE FILE
-        //     $requestData['photo'] = $request->file('photo')->store('uploads/', 'public');
-
-        //     //RESIZE 50% FILE IF IMAGE LARGER THAN 1 MB
-        //     $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
-        //     $size = $image->filesize();  
-
-        //     while($size > 512000 ){
-        //         $image->resize(
-        //             intval($image->width()/2) , 
-        //             intval($image->height()/2)
-        //         )->save(); 
-        //     }             
-
-        // }
         
         Guest::create($requestData);
 
