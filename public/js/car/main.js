@@ -175,11 +175,17 @@
         Select
     ----------------------------*/
     $("select").niceSelect();
+
+    // In your Javascript (external .js resource or <script> tag)
+    $(".js-example-basic-multiple-limit").select2({
+        maximumSelectionLength: 2
+      });
+
     // $("select").focus(function() {
     //     console.log("begin");
     //     var $select = $(this);
-    //     var $option1 = $select.find("option[value=42]");
-    //     var $option2 = $select.find("option[value=43]");
+    //     var $option1 = $select.find("option[value=10]");
+    //     var $option2 = $select.find("option[value=11]");
     //     /*
     //     var optionTop = .offset().top;
     //     var selectTop = $s.offset().top;

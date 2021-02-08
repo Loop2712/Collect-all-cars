@@ -16,7 +16,7 @@
                         <div class="car__filter">
                             <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/motercycle')}}" method="get">
-                                <select name="brand" id="brand"  onchange="this.form.submit()">
+                                <select class="js-example-basic-single" name="brand" id="brand"  onchange="this.form.submit()">
                                     <option value="" data-display="Brand">Select Brand</option>
                                     @foreach($motorbrand as $br)
                                         <option 

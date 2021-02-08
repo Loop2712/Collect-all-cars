@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\CarModel;
 use App\county;
 use App\Models\Sell;
 use Illuminate\Http\Request;
@@ -24,7 +23,7 @@ class SellController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $sell = CarModel::where('price', 'LIKE', "%$keyword%")
+            $sell = Sell::where('price', 'LIKE', "%$keyword%")
                 ->orWhere('type', 'LIKE', "%$keyword%")
                 ->orWhere('brand', 'LIKE', "%$keyword%")
                 ->orWhere('model', 'LIKE', "%$keyword%")
@@ -42,7 +41,7 @@ class SellController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             // 
-            $sell = CarModel::where('user_id', Auth::id() )->latest()->paginate($perPage);
+            $sell = Sell::where('user_id', Auth::id() )->latest()->paginate($perPage);
         }
 
         return view('carsell.index', compact('sell'));
@@ -50,12 +49,12 @@ class SellController extends Controller
     public function select()
     {
 
-        $brand_array = CarModel::selectRaw('brand,count(brand) as count')
+        $brand_array = Sell::selectRaw('brand,count(brand) as count')
             ->where('brand', '!=',"" )
             ->groupBy('brand')
             ->get();
             
-        $type_array = CarModel::selectRaw('type,count(type) as count')
+        $type_array = Sell::selectRaw('type,count(type) as count')
             ->where('type', '!=',"" )
             ->groupBy('type')
             ->get();

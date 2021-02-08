@@ -28,3 +28,6 @@ Route::get('/motor_brand/{motor_brand}/motor_model','API\CarbrandController@getM
 
 Route::get('/check_registration/{registration}','API\CarbrandController@check_registration');
 Route::get('/check_registration/{registration}/province','API\CarbrandController@check_province');
+
+Route::get('/carbrand','API\SellcarController@CarBrand');
+Route::get('/carbrand/{carbrand}/carmodel','API\SellcarController@CarModel');
