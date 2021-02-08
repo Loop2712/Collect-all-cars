@@ -86,7 +86,7 @@ class GuestController extends Controller
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
             //watermark
             $watermark = Image::make(public_path('watermark.png'));
-            $image->insert($watermark , 'bottom-right', 20, 20)->save();
+            $image->insert($watermark , 'bottom-right', 25, 25)->save();
 
             $size = $image->filesize();  
 
