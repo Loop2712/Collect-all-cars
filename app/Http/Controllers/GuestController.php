@@ -256,14 +256,23 @@ class GuestController extends Controller
                         switch ($item->sex) {
 
                             case 'ผู้หญิง':
-                                $string_json = str_replace("#E0FFFF","#FF99CC",$string_json);
-                                $string_json = str_replace("#F0FFFF","#FF99CC",$string_json);
+                                $string_json = str_replace("#E0FFF0","#f6c5f0",$string_json);
+                                $string_json = str_replace("#E0FFFF","#f6c5f0",$string_json);
+                                $string_json = str_replace("#FFFAFA","#fefbfe",$string_json);
+
+                                $string_json = str_replace("#B0E0E5","#ee90e2",$string_json);
+                                $string_json = str_replace("#B0E0E6","#ee90e2",$string_json);
+                                $string_json = str_replace("#F5F5F5","#f6c5f0",$string_json);
                                 break;
 
                             case 'ไม่ต้องการตอบ':
-                                $string_json = str_replace("#E0FFFF","#CCFF99",$string_json);
-                                $string_json = str_replace("#F0FFFF","#FF66FF",$string_json);
-                                $string_json = str_replace("#FFFAFA","#66FFFF",$string_json);
+                                $string_json = str_replace("#E0FFF0","#d174ec",$string_json);
+                                $string_json = str_replace("#E0FFFF","#d174ec",$string_json);
+                                $string_json = str_replace("#FFFAFA","#efcef8",$string_json);
+
+                                $string_json = str_replace("#B0E0E5","#c13ee5",$string_json);
+                                $string_json = str_replace("#B0E0E6","#c13ee5",$string_json);
+                                $string_json = str_replace("#F5F5F5","#d174ec",$string_json);
                                 break;
                             
                         }
@@ -287,15 +296,24 @@ class GuestController extends Controller
                             switch ($item->sex) {
 
                                 case 'ผู้หญิง':
-                                    $string_json = str_replace("#E0FFFF","#FF99CC",$string_json);
-                                    $string_json = str_replace("#F0FFFF","#FF99CC",$string_json);
-                                    break;
+                                $string_json = str_replace("#E0FFF0","#f6c5f0",$string_json);
+                                $string_json = str_replace("#E0FFFF","#f6c5f0",$string_json);
+                                $string_json = str_replace("#FFFAFA","#fefbfe",$string_json);
 
-                                case 'ไม่ต้องการตอบ':
-                                    $string_json = str_replace("#E0FFFF","#CCFF99",$string_json);
-                                    $string_json = str_replace("#F0FFFF","#FF66FF",$string_json);
-                                    $string_json = str_replace("#FFFAFA","#66FFFF",$string_json);
-                                    break;
+                                $string_json = str_replace("#B0E0E5","#ee90e2",$string_json);
+                                $string_json = str_replace("#B0E0E6","#ee90e2",$string_json);
+                                $string_json = str_replace("#F5F5F5","#f6c5f0",$string_json);
+                                break;
+
+                            case 'ไม่ต้องการตอบ':
+                                $string_json = str_replace("#E0FFF0","#d174ec",$string_json);
+                                $string_json = str_replace("#E0FFFF","#d174ec",$string_json);
+                                $string_json = str_replace("#FFFAFA","#efcef8",$string_json);
+
+                                $string_json = str_replace("#B0E0E5","#c13ee5",$string_json);
+                                $string_json = str_replace("#B0E0E6","#c13ee5",$string_json);
+                                $string_json = str_replace("#F5F5F5","#d174ec",$string_json);
+                                break;
                                 
                             }
                         }
@@ -317,15 +335,24 @@ class GuestController extends Controller
                             switch ($item->sex) {
 
                                 case 'ผู้หญิง':
-                                    $string_json = str_replace("#E0FFFF","#FF99CC",$string_json);
-                                    $string_json = str_replace("#F0FFFF","#FF99CC",$string_json);
-                                    break;
+                                $string_json = str_replace("#E0FFF0","#f6c5f0",$string_json);
+                                $string_json = str_replace("#E0FFFF","#f6c5f0",$string_json);
+                                $string_json = str_replace("#FFFAFA","#fefbfe",$string_json);
 
-                                case 'ไม่ต้องการตอบ':
-                                    $string_json = str_replace("#E0FFFF","#CCFF99",$string_json);
-                                    $string_json = str_replace("#F0FFFF","#FF66FF",$string_json);
-                                    $string_json = str_replace("#FFFAFA","#66FFFF",$string_json);
-                                    break;
+                                $string_json = str_replace("#B0E0E5","#ee90e2",$string_json);
+                                $string_json = str_replace("#B0E0E6","#ee90e2",$string_json);
+                                $string_json = str_replace("#F5F5F5","#f6c5f0",$string_json);
+                                break;
+
+                            case 'ไม่ต้องการตอบ':
+                                $string_json = str_replace("#E0FFF0","#d174ec",$string_json);
+                                $string_json = str_replace("#E0FFFF","#d174ec",$string_json);
+                                $string_json = str_replace("#FFFAFA","#efcef8",$string_json);
+
+                                $string_json = str_replace("#B0E0E5","#c13ee5",$string_json);
+                                $string_json = str_replace("#B0E0E6","#c13ee5",$string_json);
+                                $string_json = str_replace("#F5F5F5","#d174ec",$string_json);
+                                break;
                                 
                             }
                         }
