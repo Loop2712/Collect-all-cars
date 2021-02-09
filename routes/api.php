@@ -30,4 +30,4 @@ Route::get('/check_registration/{registration}','API\CarbrandController@check_re
 Route::get('/check_registration/{registration}/province','API\CarbrandController@check_province');
 
 Route::get('/carbrand','API\SellcarController@CarBrand');
-Route::get('/carbrand/{carbrand}/carmodel','API\SellcarController@CarModel');
+Route::get('/carbrand/{brand}/carmodel','API\SellcarController@CarModel');

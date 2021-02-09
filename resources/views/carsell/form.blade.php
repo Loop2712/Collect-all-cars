@@ -2,14 +2,15 @@
     <div class="row">
         <div class="col-12">
         <div>
-    <select id="input_carbrand" onchange="showcar_brand()">
+    <select class="form-control" id="input_carbrand" onchange="showcar_model()">
         <option value="">เลือกยี่ห้อ</option>
     </select>
 </div>
 <div>
-    <select id="input_carmodel" class=" form-control" onchange="showcar_model()">
+    <select id="input_carmodel" class="form-control" >
         <option value="">เลือกรุ่น</option>
     </select>
+</div>
 </div>
 
 
@@ -38,19 +39,19 @@ function showcar_brand(){
         });
 }
 function showcar_model(){
-    let input_province = document.querySelector("#input_carmodel");
+    let input_carbrand = document.querySelector("#input_carbrand");
     fetch("{{ url('/') }}/api/carbrand/"+input_carbrand.value+"/carmodel"")
         .then(response => response.json())
         .then(result => {
             console.log(result);
             //UPDATE SELECT OPTION
-            let input_carbrand = document.querySelector("#input_carbrand");
-            input_carbrand.innerHTML = "";
+            let input_carmodel = document.querySelector("#input_carmodel");
+            input_carmodel.innerHTML = "";
             for(let item of result){
                 let option = document.createElement("option");
                 option.text = item.model;
                 option.value = item.model;
-                input_carbrand.add(option);                
+                input_carmodel.add(option);                
             }
             //QUERY AMPHOES
            

@@ -8,15 +8,15 @@
                     <div class="car__sidebar">
                         <div class="car__search">
                             <h5>ค้นหา</h5>
-                            <form action="{{URL::to('/car')}}" method="get">
-                                <input type="text" placeholder="Search..." name="search" id="search">
+                            <form method="GET" action="{{URL::to('/car')}}"" accept-charset="UTF-8" role="search">
+                                <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}" >
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                         <div class="car__filter">
                             <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
-                                <select class="js-example-basic-multiple"  name="brand" id="brand"  onchange="this.form.submit()" style=" max-height:200px; background:red; overflow-y:auto">
+                                <select  name="brand" id="brand"  onchange="this.form.submit()" >
                                     <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
                                     @foreach($brand_array as $br)
                                         <option 
@@ -69,8 +69,8 @@
                                 </select>
                                 <div class="filter-price">
                                     <p>ราคา:</p>
-                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด">
-                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด">
+                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}">
+                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}">
                                     <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
                                 </div>
 
@@ -103,8 +103,8 @@
                                 
                                 <div class="filter-price">
                                     <p>ระยะทาง:</p>
-                                    <input class="form-control" type="text" name=" distancemin"  id="milemin" placeholder="ระยะทางต่ำสุด (km.)">
-                                    <input class="form-control" type="text" name=" distancemax" id="milemax" placeholder="ระยะทางสูงสุด (km.)">
+                                    <input class="form-control" type="text" name=" distancemin"  id="milemin" placeholder="ระยะทางต่ำสุด (km.)" value="{{ request('distancemin') }} ">
+                                    <input class="form-control" type="text" name=" distancemax" id="milemax" placeholder="ระยะทางสูงสุด (km.)" value="{{ request('distancemax') }} ">
                                     <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
                                 </div>
                                 </div> 

@@ -33,7 +33,7 @@ class CarController extends Controller
         $gear      = $request->get('gear');
         $sort      = $request->get('sort','asc');
         $datas     = $request->get('datas');
-        $search    = $request->get('search');
+        $keyword   = $request->get('search');
         $perPage   = 45; 
         
         $milemin = empty($milemin) ? 0 :$milemin;
@@ -61,10 +61,10 @@ class CarController extends Controller
                 ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
-        } else  if (!empty($search)) {
-            $data =CarModel::where('brand', 'LIKE', "%$search%")
-                ->orWhere('model', 'LIKE', "%$search%")
-                ->orWhere('submodel', 'LIKE', "%$search%")
+        } else  if (!empty($keyword)) {
+            $data =CarModel::where('brand', 'LIKE', "%' .$keyword.'%")
+                ->orWhere('model', 'LIKE', "%' .$keyword.'%")
+                ->orWhere('submodel', 'LIKE', "%' .$keyword.'%")
                 ->where('active' ,'=', 'yes')
                 ->paginate($perPage);
         } else {
