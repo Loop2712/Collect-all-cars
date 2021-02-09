@@ -22,7 +22,12 @@
                     <h5 class="text-grey mt-1 mr-1 ml-1">{{ $item->location }}</h5>
                 </div>
                 <div>
-                    <h5 class="text-grey">{{ $item->price }} บาท</h5>
+                    @if ( $item->price == 'ติดต่อผู้ขาย')
+                                <h5 class="text-grey">{{ $item->price }}</h5>
+                        @else
+                                <h5 class="text-grey">{{ number_format(intval($item->price))}} บาท</h5>                 
+                    @endif
+                    
                 </div>
                 <div class="d-flex align-items-center">
                     <a href="{{ url('/car/' . $item->product_id) }}" title="View Wishlist"><button class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button>&nbsp;</a>
