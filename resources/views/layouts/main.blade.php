@@ -41,58 +41,46 @@
     
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__widget">
+        
+                            @guest
+                            
+                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" ><i class="fas fa-sign-in-alt"></i></a>
+                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                            @else
+                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                                <a aria-haspopup="true" aria-expanded="false" v-pre href="#"> 
+                                    {{ Auth::user()->name }}
+                                </a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="{{ url('/profile') }}" > Profile</a>
+                                        </li>
+                                    @if(Auth::check())
+                                        @if(Auth::user()->role == "admin" )
+                                            <li>
+                                                <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
+                                            </li>
+                                        @endif
+                                    @endif
+                                        <li>
+                                            <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}</a>
+                                        </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                        </form>
+                                    </ul>
+                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                                @endguest
+                            
+        </div>
         <div class="offcanvas__logo">
             <a href="{{URL::to('/')}}"><img width="150px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__widget">
-        <ul>
-                            @guest
-                            <li>
-                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                            </li>
-
-                                @else
-                                <li>
-                                    <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                                </li>
-                                <li>
-                                    <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                        
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                        <ul class="dropdown">
-                                            <li>
-                                                <a href="{{ url('/profile') }}" > Profile</a>
-                                            </li>
-                                            @if(Auth::check())
-                                                @if(Auth::user()->role == "admin" )
-                                                    <li>
-                                                        <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
-                                                    </li>
-                                                @endif
-                                            @endif
-                                            <li>
-                                                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}</a>
-                                            </li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                            </form>
-                                        </ul>
-                                </li>
-                                
-                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                                
-                                @endguest
-                            </ul>
-        </div>
+        
     </div>
 
     <!-- Header Section Begin -->
@@ -104,68 +92,6 @@
                         <a href="{{URL::to('/')}}"><img width="200px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
                     </div>
                 </div>
-                <!-- <div class="col-lg-10">
-                    
-                    <div class="header__nav">
-                        <div class="header__menu">
-                            <ul>  
-                                <li>
-                                    <a href="{{ url('/car') }}" ><h5><b>รถยนต์</b></h5></a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานต์ยนต์</b></h5></a>
-                                </li>            
-                            </ul>
-                        </div>
-                        <div class="header__nav__widget">
-                            <div class="header__nav__widget__btn">
-                            
-                            @guest
-                            
-                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                            
-                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
-                           
-                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                            
-
-                                @else
-                                
-                                    <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                                
-                                
-                                    <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                        
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                        <ul class="dropdown">
-                                            <li>
-                                                <a href="{{ url('/profile') }}" > Profile</a>
-                                            </li>
-                                            @if(Auth::check())
-                                                @if(Auth::user()->role == "admin" )
-                                                    <li>
-                                                        <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
-                                                    </li>
-                                                @endif
-                                            @endif
-                                            <li>
-                                                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}</a>
-                                            </li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                            </form>
-                                        </ul>
-                                @endguest
-                        
-                            </div>
-                            <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                        </div>
-                    </div>
-                </div> -->
-
-
                 <div class="col-lg-10">
                     <div class="header__nav">
                         <nav class="header__menu" style="text-align:left;margin-left: 20px;">
@@ -188,9 +114,9 @@
                             <li>
                                 <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
                             </li>
-                            <li>
+                            
                                 <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                            </li>
+                            
 
                                 @else
                                 <li>
