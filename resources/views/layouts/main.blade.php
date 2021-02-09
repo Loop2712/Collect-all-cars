@@ -83,16 +83,93 @@
         
     </div>
 
+
+
+
+
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="{{URL::to('/')}}"><img width="200px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="header__logo">
+                                <a href="{{URL::to('/')}}"><img width="200px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="header__nav">
+                                <nav class="header__menu" style="text-align:left;margin-left: 20px;">
+                                    <ul>
+                                        <li>
+                                        <a href="{{ url('/car') }}" ><h5><b>รถยนต์</b></h5></a>
+                                        </li>
+                                        <li>
+                                        <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานต์ยนต์</b></h5></a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-5">
+                        <div class="header__nav" style="padding: 30px;">
+                                <nav class="header__menu" style="text-align:left;margin-left: 20px;">
+                            
+                            <ul>
+                            @guest
+                            <li>
+                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                            </li>
+                            <li>
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                            </li>
+                            
+                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                            
+
+                                @else
+                                <li>
+                                    <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
+                                </li>
+                                <li>
+                                    <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                        
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <a href="{{ url('/profile') }}" > Profile</a>
+                                            </li>
+                                            @if(Auth::check())
+                                                @if(Auth::user()->role == "admin" )
+                                                    <li>
+                                                        <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
+                                                    </li>
+                                                @endif
+                                            @endif
+                                            <li>
+                                                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                            </form>
+                                        </ul>
+                                </li>
+                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                                @endguest
+                            </ul>
+                            
+                                
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="col-lg-10">
                     <div class="header__nav">
                         <nav class="header__menu" style="text-align:left;margin-left: 20px;">
                             <ul>
@@ -155,7 +232,7 @@
                         
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- //////////////////////////////////////////////////////// -->
                 <!-- <div class="col-lg-5">
                     <div class="header__nav">
