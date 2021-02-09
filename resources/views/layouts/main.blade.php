@@ -123,8 +123,8 @@
                             <li>
                                 <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
                             </li>
-                            <li>
-                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                            <li tyle="padding-right: 20px;">
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}"  >เข้าสู่ระบบ / สมัครสมาชิก</a>
                             </li>
                             
                                 <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
@@ -134,7 +134,7 @@
                                 <li>
                                     <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
                                 </li>
-                                <li>
+                                <li tyle="padding-right: 20px;">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
                                         
                                         {{ Auth::user()->name }}
