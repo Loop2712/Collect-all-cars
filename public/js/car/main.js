@@ -174,27 +174,15 @@
     /*--------------------------
         Select
     ----------------------------*/
-    $("select").niceSelect();
+    // $("select").niceSelect({});
 
     // In your Javascript (external .js resource or <script> tag)
-    $(".js-example-basic-multiple-limit").select2({
-        maximumSelectionLength: 2
-      });
+    // $(".js-example-basic-hide-search").select2({
+    //     minimumResultsForSearch: Infinity
+    //   });
 
-    // $("select").focus(function() {
-    //     console.log("begin");
-    //     var $select = $(this);
-    //     var $option1 = $select.find("option[value=10]");
-    //     var $option2 = $select.find("option[value=11]");
-    //     /*
-    //     var optionTop = .offset().top;
-    //     var selectTop = $s.offset().top;
-    //     $s.scrollTop($s.scrollTop() + (optionTop - selectTop));
-    //     */
-    //     $option2.attr("selected", true);
-    //     $option1.attr("selected", false);
-    //     console.log("end");
-    // });
+    $('select').niceSelect();
+    // $('.js-example-basic-multiple').select2();
 
     /*------------------
 		Magnific

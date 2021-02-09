@@ -16,7 +16,7 @@
                         <div class="car__filter">
                             <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
-                                <select class="js-example-disabled-results" name="brand" id="brand"  onchange="this.form.submit()">
+                                <select class="js-example-basic-multiple"  name="brand" id="brand"  onchange="this.form.submit()" style=" max-height:200px; background:red; overflow-y:auto">
                                     <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
                                     @foreach($brand_array as $br)
                                         <option 
@@ -26,7 +26,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select class="js-example-basic-multiple-limit" name="typecar" id="typecar"  onchange="this.form.submit()">
+                                <select  name="typecar" id="typecar"  onchange="this.form.submit()">
                                     <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
                                     @foreach($type_array as $ty)
                                         <option 

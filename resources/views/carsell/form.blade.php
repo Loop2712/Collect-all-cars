@@ -2,12 +2,12 @@
     <div class="row">
         <div class="col-12">
         <div>
-    <select id="input_car_brand" onchange="showcar_brand()">
+    <select id="input_carbrand" onchange="showcar_brand()">
         <option value="">เลือกยี่ห้อ</option>
     </select>
 </div>
 <div>
-    <select id="input_car_model" onchange="showcar_model()">
+    <select id="input_carmodel" class=" form-control" onchange="showcar_model()">
         <option value="">เลือกรุ่น</option>
     </select>
 </div>

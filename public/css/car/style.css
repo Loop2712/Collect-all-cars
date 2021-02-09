@@ -1374,6 +1374,8 @@ ol {
 	width: 100%;
 	margin-top: 0;
 	border-radius: 0;
+	height: 200px;
+	overflow-y: auto;
 }
 
 .car__filter form .nice-select:after {
@@ -3781,4 +3783,19 @@ ol {
 		font-size: 24px;
 		width: 100%;
 	}
+
+	
+.nice-select {
+    border-radius: 0px;
+}
+
+.nice-select .list {
+    border-radius: 0px;
+    height: 200px;
+    overflow-y: auto;
+}
+.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+  color:red;
+  background: none;
+}
 }
