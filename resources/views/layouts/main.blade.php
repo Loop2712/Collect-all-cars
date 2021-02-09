@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('css/car/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/car/wishlist.css')}}" type="text/css">
 </head>
 
 <body>
