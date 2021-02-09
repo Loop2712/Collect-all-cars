@@ -18,17 +18,43 @@
                         </form>
                         <br/>
                         <br/> -->
-
+                        @if($register_car->car_type == "car")
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $register_car->id }}</td>
+                                        <th>ID</th><td><img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($register_car->brand) }}.png"></td>
                                     </tr>
-                                    <tr><th> Brand </th><td> {{ $register_car->brand }} </td></tr><tr><th> Generation </th><td> {{ $register_car->generation }} </td></tr><tr><th> Year </th><td> {{ $register_car->year }} </td></tr>
+                                    <tr><th> ยี่ห้อรถ / Brand  </th><td> {{ $register_car->brand }} </td></tr>
+                                    <tr><th> รุ่นรถ / Model  </th><td> {{ $register_car->generation }} </td></tr>
+                                    <tr><th> ระบบเกียร์ </th><td>  </td></tr>
+                                    <tr><th> น้ำมันที่ใช้ </th><td>  </td></tr>
+                                    <tr><th> สี </th><td>  </td></tr>
+                                    <tr><th> สถานที่ </th><td>  </td></tr>
+                                    <tr><th> จำนวนที่นั่ง </th><td>  </td></tr>
+                                    <tr><th> ระยะทาง </th><td>  </td></tr>
                                 </tbody>
                             </table>
                         </div>
+                        @elseif($register_car->car_type == "motorcycle")
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>ID</th><td><img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($register_car->brand) }}.png"></td>
+                                    </tr>
+                                    <tr><th> ยี่ห้อรถ / Brand  </th><td> {{ $register_car->brand }} </td></tr>
+                                    <tr><th> รุ่นรถ / Model  </th><td> {{ $register_car->generation }} </td></tr>
+                                    <tr><th> ระบบเกียร์ </th><td> {{ $register_car->year }} </td></tr>
+                                    <tr><th> สี </th><td>  </td></tr>
+                                    <tr><th> เครื่องยนต์ (cc) </th><td>  </td></tr>
+                                    <tr><th> สถานที่ </th><td>  </td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+
+                        
 
                     </div>
                 </div>
