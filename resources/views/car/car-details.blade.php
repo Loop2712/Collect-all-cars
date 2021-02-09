@@ -21,7 +21,7 @@
                 <div class="col-lg-3">
                     <div class="car__details__sidebar">
                         <div class="car__details__sidebar__model">
-                        <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                        <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
                             {{ csrf_field() }}
                             <ul>
                                 <li>Brand <span>{{ $data->brand  }}</span></li>
@@ -52,9 +52,8 @@
                                     @endif
                                 
                             </ul>
-                            <button type="submit" class="btn btn-info" ><i class="fa fa-shopping-cart"></i> เพิ่มเป็นรายการโปรด</button> 
-                            <br><br>
 
+                            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="primary-btn sidebar-btn"><i class="fa fa-sliders"></i> <i class="fa fa-shopping-cart"></i> เพิ่มเป็นรายการโปรด</a>
                             <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i>สนใจติดต่อ</a>
 
                         </div>
