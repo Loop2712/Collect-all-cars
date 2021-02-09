@@ -127,7 +127,7 @@
                                 <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}"  >เข้าสู่ระบบ / สมัครสมาชิก</a>
                             </li>
                             
-                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;">ลงขาย</a>
                             
 
                                 @else
@@ -159,7 +159,7 @@
                                             </form>
                                         </ul>
                                 </li>
-                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
+                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;">ลงขาย</a>
                                 @endguest
                             </ul>
                             
