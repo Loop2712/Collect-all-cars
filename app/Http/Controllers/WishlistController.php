@@ -9,6 +9,7 @@ use App\CarModel;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WishlistController extends Controller
 {
@@ -26,7 +27,15 @@ class WishlistController extends Controller
         //     ->where('user_id', Auth::id() )
         //     ->get()
         //     ->paginate($perPage);
-         $wishlist = Wishlist::where('user_id', Auth::id() )->latest()->paginate($perPage);
+        //  $wishlist = Wishlist::where('user_id', Auth::id() )->latest()->paginate($perPage);
+        $wishlist = DB::table('wishlists')
+            ->join('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
+            // ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->select('data_cars.*')
+            ->where('wishlists.user_id', Auth::id() )
+            ->latest()
+            ->paginate($perPage);
+            
         
 
         return view('wishlist.index', compact('wishlist'));
