@@ -36,22 +36,24 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        if(!isset($_SESSION["backurl"]) )
-            $_SESSION["backurl"] = $_SERVER['HTTP_REFERER'] ;
-            $backurl = $_SESSION["backurl"];
-            // echo "backurl >> ". parse_url($backurl, PHP_URL_QUERY);
-            // exit();
+        // if(!isset($_SESSION["backurl"]) )
+        //     $_SESSION["backurl"] = $_SERVER['HTTP_REFERER'] ;
+        //     $backurl = $_SESSION["backurl"];
+        //     // echo "backurl >> ". parse_url($backurl, PHP_URL_QUERY);
+        //     // exit();
 
-            $redirectTo = parse_url($backurl, PHP_URL_QUERY);
+        $backurl = $_SERVER['HTTP_REFERER'] ;
 
-            if (!empty($redirectTo)) {
-                $backurl_split = explode('redirectTo=', $redirectTo, 2);
-                $back = $backurl_split[1];
-                return $back;
-            }else{
-                return $backurl;
-            }
-        session_destroy();
+        $redirectTo = parse_url($backurl, PHP_URL_QUERY);
+
+        if (!empty($redirectTo)) {
+            $backurl_split = explode('redirectTo=', $redirectTo, 2);
+            $back = $backurl_split[1];
+            return $back;
+        }else{
+            return $backurl;
+        }
+
     }
 
     // protected function redirectTo()
