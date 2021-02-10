@@ -14,8 +14,8 @@ class AddAlertActToRegisterCarTable extends Migration
     public function up()
     {
         Schema::table('register_cars', function (Blueprint $table) {
-            $table->string('alert_act')->nullable();
-            $table->string('alert_insurance')->nullable();
+            $table->date('alert_act')->nullable();
+            $table->date('alert_insurance')->nullable();
         });
     }
 
