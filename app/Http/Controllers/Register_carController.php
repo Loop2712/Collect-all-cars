@@ -22,6 +22,25 @@ class Register_carController extends Controller
      */
     public function index(Request $request)
     {
+        $date_now = date("Y-m-d ");
+
+        $car_all = Register_car::get();
+        foreach ($car_all as $item) {
+            $day_act = (strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 );
+            if ($day_act == 30 ) {
+                echo $item->registration_number . " >> " . $item->id ;
+                echo "warning <br>";
+            }
+            if ($day_act == 15 ){
+                echo $item->registration_number . " >> ".  $item->id;
+                echo "No <br>";
+            }
+        }
+
+        // echo "<pre>";
+        // print_r($car_all);
+        // echo "<pre>";
+
         $keyword = $request->get('search');
         $perPage = 25;
 

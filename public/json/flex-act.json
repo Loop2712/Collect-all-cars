@@ -1,0 +1,110 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "action": {
+      "type": "uri",
+      "uri": "https://linecorp.com"
+    },
+    "contents": [
+      {
+        "type": "text",
+        "text": "ผู้ใช้รถทะเบียน",
+        "size": "xl",
+        "weight": "bold"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "9กก9999 ",
+                "margin": "none",
+                "size": "lg",
+                "align": "center",
+                "weight": "bold",
+                "gravity": "center",
+                "flex": 5,
+                "color": "#000000"
+              },
+              {
+                "type": "text",
+                "text": "กรุงเทพมหานคร",
+                "flex": 6
+              }
+            ],
+            "margin": "lg"
+          },
+          {
+            "type": "separator",
+            "margin": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "พรบ ของคุณเหลือ",
+                "size": "md",
+                "align": "center",
+                "margin": "md",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "พรบ",
+                    "decoration": "underline",
+                    "size": "lg",
+                    "color": "#FF0000"
+                  },
+                  {
+                    "type": "span",
+                    "text": "  ของคุณเหลือ"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "30",
+                "size": "3xl",
+                "align": "center",
+                "decoration": "underline",
+                "margin": "lg",
+                "color": "#FF0000"
+              },
+              {
+                "type": "text",
+                "text": "วันจะหมดอายุ",
+                "size": "md",
+                "align": "center",
+                "margin": "lg"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "borderWidth": "normal",
+    "background": {
+      "type": "linearGradient",
+      "angle": "0deg",
+      "startColor": "#E0FFFF",
+      "endColor": "#E0FFFF",
+      "centerColor": "#ffffff"
+    }
+  }
+}
+
+}
