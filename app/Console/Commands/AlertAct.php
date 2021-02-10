@@ -19,8 +19,7 @@ class AlertAct extends Command
      *
      * @var string
      */
-    // protected $description = 'Command description';
-    protected $description = 'Check Alert ACT And Insurance dailyAt(09:00)';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
