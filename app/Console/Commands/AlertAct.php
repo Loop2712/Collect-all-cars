@@ -103,9 +103,10 @@ class AlertAct extends Command
         foreach ($insurance as $item) {
             $template_path = storage_path('../public/json/flex-act.json');   
             $string_json = file_get_contents($template_path);
-            $string_json = str_replace("ตัวอย่าง","ประกัน. ของคุณใกล้หมดอายุ",$string_json);
+            $string_json = str_replace("ตัวอย่าง","ประกัน ของคุณใกล้หมดอายุ",$string_json);
             $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
+            $string_json = str_replace("พรบ","ประกัน",$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
