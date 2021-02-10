@@ -90,6 +90,34 @@
                 "size": "md",
                 "align": "center",
                 "margin": "lg"
+              },
+              {
+                "type": "separator",
+                "margin": "lg"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ขออภัยหากท่านต่ออายุแล้ว",
+                    "align": "start",
+                    "gravity": "center",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "uri",
+                      "label": "แก้ไขวันที่",
+                      "uri": "https://market.viicheck.com/register_car"
+                    },
+                    "style": "primary",
+                    "height": "sm"
+                  }
+                ],
+                "margin": "lg"
               }
             ]
           }
