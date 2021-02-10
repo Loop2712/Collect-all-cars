@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\alert_act::class,
+        Commands\AlertAct::class,
     ];
 
     /**
