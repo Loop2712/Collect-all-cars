@@ -25,7 +25,7 @@
                                             {{ $br->brand }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <select class="form-control" name="gear" id="gear" onchange="this.form.submit()" >
                                     <option value="" data-display="Gear">Select Gear</option>
                                     @foreach($motorgear as $ge)
@@ -35,7 +35,7 @@
                                         {{ $ge->gear }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <select class="form-control" name="color" id="color" onchange="this.form.submit()" >
                                     <option value="" data-display="Color">Select Color</option>
                                     @foreach($motorcolor  as $co)
@@ -45,7 +45,7 @@
                                             {{ $co->color  }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <select class="form-control" name="motor" id="motor" onchange="this.form.submit()" >
                                     <option value="" data-display="Color">Select motor</option>
                                     @foreach($motor  as $mo)
@@ -55,7 +55,7 @@
                                             {{ $mo->motor  }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <select class="form-control" name="location" id="location" onchange="this.form.submit()" >
                                     <option value="" data-display="Location">Select Location</option>
                                     @foreach($motorlocation as $lo)
@@ -65,7 +65,7 @@
                                             {{ $lo->province }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <div class="filter-price">
                                     <p>Price:</p>
                                     <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="Min">

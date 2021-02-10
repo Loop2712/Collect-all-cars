@@ -25,7 +25,7 @@
                                             {{ $br->brand }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <select  class="form-control"  name="typecar" id="typecar"  onchange="this.form.submit()">
                                     <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
                                     @foreach($type_array as $ty)
@@ -35,7 +35,7 @@
                                         {{ $ty->type }} 
                                         </option>
                                     @endforeach
-                                </select>
+                                </select><br>
                                 <select class="form-control"  name="gear" id="gear" onchange="this.form.submit()" >
                                     <option value="" data-display="ระบบเกียร์">ระบบเกียร์ทั้งหมด</option>
                                     @foreach($gear_array as $ge)
@@ -45,7 +45,7 @@
                                         {{ $ge->gear }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 
                                 <select class="form-control"  name="color" id="color" onchange="this.form.submit()" >
                                     <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
@@ -56,7 +56,7 @@
                                             {{ $co->color  }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <select class="form-control"  name="location" id="location" onchange="this.form.submit()" >
                                     <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
                                     @foreach($location_array as $lo)
@@ -66,7 +66,7 @@
                                             {{ $lo->province }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <div class="filter-price">
                                     <p>ราคา:</p>
                                     <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}">
@@ -86,7 +86,7 @@
                                         {{ $ye->year }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
                                 <select class="form-control" name="fuel" id="fuel" onchange="this.form.submit()" >
                                     <option value="" data-display="เชื้อเพลิง">เชื้อเพลิงทั้งหมด</option>
                                     @foreach($fuel_array as $pe)
@@ -96,7 +96,7 @@
                                             {{ $pe->fuel  }} 
                                         </option>
                                     @endforeach 
-                                </select>
+                                </select><br>
 
 
                                 
