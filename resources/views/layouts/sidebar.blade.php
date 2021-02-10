@@ -1,4 +1,4 @@
-<div class="col col-md-3">
+<div class="col col-md-3 order-2 order-lg-1" >
     <div class="card">
         <div class="card-body" style="padding: 2rem;">
         <div class="call__text">
