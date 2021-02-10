@@ -36,25 +36,15 @@
     <link rel="stylesheet" href="{{ asset('css/car/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/style.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/wishlist.css')}}" type="text/css">
+
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    
 </head>
 
 <body>
+        
+   
 
-<script src="{{ asset('js/app.js') }}" defer></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
-    <script src="{{ asset('js/car/jquery.nice-select.min.js')}}"></script>
-    <script src="{{ asset('js/car/jquery-ui.min.js')}}"></script>
-    <script src="{{ asset('js/car/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{ asset('js/car/mixitup.min.js')}}"></script>
-    <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
-    <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('js/car/main.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Page Preloder -->
     <!-- <div id="preloder">
         <div class="loader"></div>
@@ -62,7 +52,7 @@
     
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
-    <div class="offcanvas__widget">
+    <!-- <div class="offcanvas__widget">
         
                             @guest
                             
@@ -96,7 +86,7 @@
                                     <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
                                 @endguest
                             
-        </div>
+        </div> -->
         <div class="offcanvas__logo">
             <a href="{{URL::to('/')}}"><img width="150px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
@@ -182,151 +172,11 @@
                                 </li>
                                     <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;">ลงขาย</a>
                                 @endguest
-                            </ul>
-                            
-                                
+                            </ul> 
                         
                         </div>
                     </div>
                 </div>
-                
-                <!-- <div class="col-lg-10">
-                    <div class="header__nav">
-                        <nav class="header__menu" style="text-align:left;margin-left: 20px;">
-                            <ul>
-                                <li>
-                                <a href="{{ url('/car') }}" ><h5><b>รถยนต์</b></h5></a>
-                                </li>
-                                <li>
-                                <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานต์ยนต์</b></h5></a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="header__nav__widget">
-                        
-                            <ul>
-                            @guest
-                            <li>
-                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
-                            </li>
-                            
-                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                            
-
-                                @else
-                                <li>
-                                    <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                                </li>
-                                <li>
-                                    <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                        
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                        <ul class="dropdown">
-                                            <li>
-                                                <a href="{{ url('/profile') }}" > Profile</a>
-                                            </li>
-                                            @if(Auth::check())
-                                                @if(Auth::user()->role == "admin" )
-                                                    <li>
-                                                        <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
-                                                    </li>
-                                                @endif
-                                            @endif
-                                            <li>
-                                                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}</a>
-                                            </li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                            </form>
-                                        </ul>
-                                </li>
-                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                                @endguest
-                            </ul>
-                            
-                                
-                        
-                        </div>
-                    </div>
-                </div> -->
-                <!-- //////////////////////////////////////////////////////// -->
-                <!-- <div class="col-lg-5">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                
-                                
-                                @guest
-                                    <li >
-                                        <a  href="{{ url('/sell') }}" ><h6>ขาย</h6> </a>
-                                        <ul class="dropdown">
-                                                <li>
-                                                    <a href="{{ url('/sell') }}" >รถยนต์</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ url('/motercycles') }}" >รถมอเตอร์ไซต์</a>
-                                                </li>
-                                        </ul>
-                                    </li> 
-                                    <li>
-                                        <a href="{{ url('/wishlist') }}">รายการโปรด</a>
-                                    </li>
-                                    <li >
-                                        <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" >เข้าสู่ระบบ / สมัครสมาชิก</a>
-                                    </li> 
-                                     
-                                @else
-                                    <li >
-                                        <a  href="{{ url('/sell') }}" >ขาย</a>
-                                        <ul class="dropdown">
-                                                <li>
-                                                    <a href="{{ url('/sell') }}" >รถยนต์</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ url('/motercycles') }}" >รถมอเตอร์ไซต์</a>
-                                                </li>
-                                        </ul>
-                                    </li> 
-                                    <li>
-                                        <a href="{{ url('/wishlist') }}">รายการโปรด</a>
-                                    </li>
-                                    <li>
-                                        <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                    
-                                            {{ Auth::user()->name }}
-                                        </a>
-                                            <ul class="dropdown">
-                                                <li>
-                                                    <a href="{{ url('/profile') }}" > Profile</a>
-                                                </li>
-                                                @if(Auth::check())
-                                                    @if(Auth::user()->role == "admin" )
-                                                        <li>
-                                                            <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
-                                                        </li>
-                                                    @endif
-                                                @endif
-                                                <li>
-                                                    <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}</a>
-                                                </li>
-                                                
-
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                                </form>
-                                            </ul>
-                                    </li>
-                                @endguest
-                            </ul>
-                        </nav>
-                    </div>
-                </div> -->
             </div>
             <div class="canvas__open">
                 <span class="fa fa-bars"></span>
@@ -421,9 +271,20 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-
-   
-   
+    
+    <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="{{ asset('js/car/jquery.nice-select.min.js')}}"></script> -->
+    <script src="{{ asset('js/car/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('js/car/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('js/car/mixitup.min.js')}}"></script>
+    <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('js/car/main.js')}}"></script>
 </body>
 
 </html>

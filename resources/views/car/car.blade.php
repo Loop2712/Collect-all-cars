@@ -16,7 +16,7 @@
                         <div class="car__filter">
                             <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
-                                <select  name="brand" id="brand"  onchange="this.form.submit()" >
+                                <select class="form-control"  name="brand" id="brand"  onchange="this.form.submit()" >
                                     <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
                                     @foreach($brand_array as $br)
                                         <option 
@@ -26,7 +26,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select  name="typecar" id="typecar"  onchange="this.form.submit()">
+                                <select  class="form-control"  name="typecar" id="typecar"  onchange="this.form.submit()">
                                     <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
                                     @foreach($type_array as $ty)
                                         <option 
@@ -36,7 +36,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <select name="gear" id="gear" onchange="this.form.submit()" >
+                                <select class="form-control"  name="gear" id="gear" onchange="this.form.submit()" >
                                     <option value="" data-display="ระบบเกียร์">ระบบเกียร์ทั้งหมด</option>
                                     @foreach($gear_array as $ge)
                                         <option 
@@ -47,7 +47,7 @@
                                     @endforeach 
                                 </select>
                                 
-                                <select name="color" id="color" onchange="this.form.submit()" >
+                                <select class="form-control"  name="color" id="color" onchange="this.form.submit()" >
                                     <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
                                     @foreach($color_array  as $co)
                                         <option 
@@ -57,7 +57,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="location" id="location" onchange="this.form.submit()" >
+                                <select class="form-control"  name="location" id="location" onchange="this.form.submit()" >
                                     <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
                                     @foreach($location_array as $lo)
                                         <option 
@@ -77,7 +77,7 @@
                                 <!-- ซ่อน  กดเปิด  -->
                                 <div id="spoiler" style="display:none"> 
 
-                                <select name="year" id="year" onchange="this.form.submit()" >
+                                <select class="form-control" name="year" id="year" onchange="this.form.submit()" >
                                     <option value="" data-display="ปี">ปีทั้งหมด</option>
                                     @foreach($year_array as $ye)
                                         <option 
@@ -87,7 +87,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="fuel" id="fuel" onchange="this.form.submit()" >
+                                <select class="form-control" name="fuel" id="fuel" onchange="this.form.submit()" >
                                     <option value="" data-display="เชื้อเพลิง">เชื้อเพลิงทั้งหมด</option>
                                     @foreach($fuel_array as $pe)
                                         <option 

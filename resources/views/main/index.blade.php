@@ -27,7 +27,7 @@
                                         <div class="select-list">
                                             <div class="select-list-item">
                                                 <p><b>รุ่นรถ / Brand</b></p>
-                                                <select name="brand" id="brand" >
+                                                <select name="brand" id="brand" class="form-control"  >
                                                     <option value="" data-display="Brand">Select Brand</option>
                                                     @foreach($brand_array as $br)
                                                         <option 
@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="select-list-item">
                                                 <p><b>ปี / year</b></p>
-                                                <select name="year" id="year"  >
+                                                <select name="year" id="year" class="form-control"  >
                                                     <option value="" data-display="Year">Select Year</option>
                                                     @foreach($year_array as $ye)
                                                         <option 
@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="select-list-item">
                                                 <p><b>สีรถ / Color</b></p>
-                                                <select name="color" id="color"  >
+                                                <select name="color" id="color" class="form-control"  >
                                                     <option value="" data-display="Color">Select Color</option>
                                                     @foreach($color_array  as $co)
                                                         <option 
@@ -66,7 +66,7 @@
                                             </div>
                                             <div class="select-list-item">
                                                 <p><b>ประเภทรถ / Type</b></p>
-                                                <select name="typecar" id="typecar"  >
+                                                <select name="typecar" id="typecar" class="form-control"  >
                                                     <option value="" data-display="Type">Select Type</option>
                                                     @foreach($type_array as $ty)
                                                         <option 
@@ -102,7 +102,7 @@
                                         <div class="select-list">
                                         <div class="select-list-item">
                                                 <p><b>รุ่นรถ / Brand</b></p>
-                                                <select name="brand" id="brand" >
+                                                <select name="brand" id="brand" class="form-control" >
                                                     <option value="" data-display="Brand">Select Brand</option>
                                                     @foreach($motorbrand as $brand)
                                                         <option 
@@ -115,7 +115,7 @@
                                             </div>
                                         <div class="select-list-item">
                                                 <p><b>ระบบเกียร์ / Gear</b></p>
-                                                <select name="gear" id="gear" onchange="this.form.submit()" >
+                                                <select name="gear" id="gear" class="form-control"  >
                                                     <option value="" data-display="Gear">Select Gear</option>
                                                     @foreach($motorgear as $ge)
                                                         <option 
@@ -128,7 +128,7 @@
                                             </div>
                                             <div class="select-list-item">
                                                 <p><b>สีรถ / Color</b></p>
-                                                <select name="color" id="color"  >
+                                                <select name="color" id="color" class="form-control"  >
                                                     <option value="" data-display="Color">Select Color</option>
                                                     @foreach($motorcolor  as $co)
                                                         <option 

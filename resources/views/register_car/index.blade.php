@@ -81,7 +81,7 @@
                                         <!-- end insurance -->
 
                                         <td>
-                                            <a class="btn btn-success btn-sm" href="#"><i class="fas fa-hand-holding-usd"></i> Sell</a>
+                                            <a class="btn btn-success btn-sm" href="{{ url('/register_car/' . $item->id ) }}"><i class="fas fa-hand-holding-usd"></i> Sell</a>
                                             <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-donate"></i> Promise</a>
                                         </td>
                                     </tr>

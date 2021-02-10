@@ -16,7 +16,7 @@
                         <div class="car__filter">
                             <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/motercycle')}}" method="get">
-                                <select class="js-example-basic-single" name="brand" id="brand"  onchange="this.form.submit()">
+                                <select class="form-control"  class="js-example-basic-single" name="brand" id="brand"  onchange="this.form.submit()">
                                     <option value="" data-display="Brand">Select Brand</option>
                                     @foreach($motorbrand as $br)
                                         <option 
@@ -26,7 +26,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="gear" id="gear" onchange="this.form.submit()" >
+                                <select class="form-control" name="gear" id="gear" onchange="this.form.submit()" >
                                     <option value="" data-display="Gear">Select Gear</option>
                                     @foreach($motorgear as $ge)
                                         <option 
@@ -36,7 +36,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="color" id="color" onchange="this.form.submit()" >
+                                <select class="form-control" name="color" id="color" onchange="this.form.submit()" >
                                     <option value="" data-display="Color">Select Color</option>
                                     @foreach($motorcolor  as $co)
                                         <option 
@@ -46,7 +46,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="motor" id="motor" onchange="this.form.submit()" >
+                                <select class="form-control" name="motor" id="motor" onchange="this.form.submit()" >
                                     <option value="" data-display="Color">Select motor</option>
                                     @foreach($motor  as $mo)
                                         <option 
@@ -56,7 +56,7 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                                <select name="location" id="location" onchange="this.form.submit()" >
+                                <select class="form-control" name="location" id="location" onchange="this.form.submit()" >
                                     <option value="" data-display="Location">Select Location</option>
                                     @foreach($motorlocation as $lo)
                                         <option 
