@@ -38,6 +38,7 @@ class SellController extends Controller
                 ->orWhere('location', 'LIKE', "%$keyword%")
                 ->orWhere('fuel', 'LIKE', "%$keyword%")
                 ->where('user_id', Auth::id() )
+                ->where('user_id','!=','')
                 ->latest()->paginate($perPage);
         } else {
             // 

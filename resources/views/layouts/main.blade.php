@@ -39,6 +39,22 @@
 </head>
 
 <body>
+
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
+    <script src="{{ asset('js/car/jquery.nice-select.min.js')}}"></script>
+    <script src="{{ asset('js/car/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('js/car/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('js/car/mixitup.min.js')}}"></script>
+    <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('js/car/main.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Page Preloder -->
     <!-- <div id="preloder">
         <div class="loader"></div>
@@ -405,23 +421,9 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
-    <script src="{{ asset('js/car/jquery.nice-select.min.js')}}"></script>
-    <script src="{{ asset('js/car/jquery-ui.min.js')}}"></script>
-    <script src="{{ asset('js/car/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{ asset('js/car/mixitup.min.js')}}"></script>
-    <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
-    <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('js/car/main.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+   
+   
 </body>
 
 </html>

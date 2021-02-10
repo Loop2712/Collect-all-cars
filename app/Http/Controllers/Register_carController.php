@@ -177,7 +177,12 @@ class Register_carController extends Controller
     {
         $register_car = Register_car::findOrFail($id);
 
-        return view('register_car.show', compact('register_car'));
+        $location_array = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+
+        return view('register_car.show', compact('register_car','location_array'));
     }
 
     /**

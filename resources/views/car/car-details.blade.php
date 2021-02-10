@@ -40,7 +40,7 @@
                            
                             <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $data->id}}" >
                             <input class="d-none" name="user_id" type="number" id="user_id" value="" >
-                            <input class="d-none" name="price" type="number" id="price" value="{{$data->price}}" >
+                            <input class="d-none" name="car_type" type="text" id="car_type" value="{{ isset($wishlist->car_type) ? $wishlist->car_type : 'car'}}" >
                         </div>
                         <div class="car__details__sidebar__payment">
                             <ul>
@@ -54,7 +54,7 @@
                             </ul>
 
                             <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="primary-btn sidebar-btn"><i class="fa fa-heart"></i> เพิ่มเป็นรายการโปรด</a>
-                            <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i>สนใจติดต่อ</a>
+                            <a href="{{ $data->link}}" class="primary-btn"><i class="fa fa-credit-card"></i> สนใจติดต่อ</a>
 
                         </div>
                             

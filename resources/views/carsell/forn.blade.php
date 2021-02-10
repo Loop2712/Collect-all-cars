@@ -131,21 +131,7 @@
                 <div class="col-12 col-md-2">
                     <label for="province" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
-                        <select name="province" id="province" class="form-control" required>
-                                <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
-                                @foreach($location_array as $lo)
-                                <option 
-                                value="{{ $lo->province }}" 
-                                {{ request('province') == $lo->province ? 'selected' : ''   }} >
-                                {{ $lo->province }} 
-                                </option>
-                                @endforeach                                     
-                        </select>
-                        {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
+
 
             </div>
 

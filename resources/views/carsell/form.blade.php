@@ -12,6 +12,9 @@
     </select>
 </div>
 </div>
+<div class="form-group">
+    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
+</div>
 
 
 <script>
@@ -21,7 +24,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 function showcar_brand(){
     //PARAMETERS
-    fetch("{{ url('/') }}/api/carbrand")
+    fetch("{{ url('/') }}/api/car_brand")
         .then(response => response.json())
         .then(result => {
             console.log(result);
@@ -40,7 +43,7 @@ function showcar_brand(){
 }
 function showcar_model(){
     let input_carbrand = document.querySelector("#input_carbrand");
-    fetch("{{ url('/') }}/api/carbrand/"+input_carbrand.value+"/carmodel"")
+    fetch("{{ url('/') }}/api/car_brand/"+input_carbrand.value+"/car_model")
         .then(response => response.json())
         .then(result => {
             console.log(result);

@@ -30,7 +30,20 @@
                                     <tr><th> ระบบเกียร์ </th><td>  </td></tr>
                                     <tr><th> น้ำมันที่ใช้ </th><td>  </td></tr>
                                     <tr><th> สี </th><td>  </td></tr>
-                                    <tr><th> สถานที่ </th><td>  </td></tr>
+                                    <tr><th> สถานที่ </th><td> 
+                                    <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
+                        <select name="province" id="province" class="form-control" required>
+                                <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                                @foreach($location_array as $lo)
+                                <option 
+                                value="{{ $lo->province }}" 
+                                {{ request('province') == $lo->province ? 'selected' : ''   }} >
+                                {{ $lo->province }} 
+                                </option>
+                                @endforeach                                     
+                        </select>
+                        {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
+                    </div> </td></tr>
                                     <tr><th> จำนวนที่นั่ง </th><td>  </td></tr>
                                     <tr><th> ระยะทาง </th><td>  </td></tr>
                                 </tbody>
