@@ -22,29 +22,6 @@ class Register_carController extends Controller
      */
     public function index(Request $request)
     {
-        $date_add = strtotime("+15 Day");
-        $date_15 = date("Y-m-d" , $date_add);
-
-        $car_all = Register_car::whereDate('alert_act' , "<=" , $date_add)
-                                ->get();
-
-        foreach ($car_all as $item) {
-            $item->alert_act
-            // $day_act = (strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 );
-            // if ($day_act <= $date_15 ) {
-            //     echo $item->registration_number . " >> " . $item->id ;
-            //     echo "warning <br>";
-            // }
-            // if ($day_act <= $date_15 ){
-            //     echo $item->registration_number . " >> ".  $item->id;
-            //     echo "No <br>";
-            // }
-        }
-
-        // echo "<pre>";
-        // print_r($car_all);
-        // echo "<pre>";
-
         $keyword = $request->get('search');
         $perPage = 25;
 
