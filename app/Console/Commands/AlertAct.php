@@ -138,7 +138,7 @@ class AlertAct extends Command
             DB::table('register_cars')
                 ->where('registration_number', $item->registration_number)
                 ->where('province', $item->province)
-                ->update(['insurance_act' => $date_now]);
+                ->update(['alert_insurance' => $date_now]);
 
             MyLog::create($data);
             return $result;
