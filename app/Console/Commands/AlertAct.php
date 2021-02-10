@@ -97,7 +97,7 @@ class AlertAct extends Command
 
         // ประกัน
         $insurance = Register_car::where('insurance' , "<=" , $date_30)
-                                ->where('insurance_act' , "=" , null)
+                                ->where('alert_insurance' , "=" , null)
                                 ->get();
 
         foreach ($insurance as $item) {
