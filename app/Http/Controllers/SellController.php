@@ -102,14 +102,14 @@ class SellController extends Controller
         //     ->limit(10)
         //     ->get();
 
-        $location_array = county::selectRaw('province')
-            ->where('province', '!=',"" )
-            ->groupBy('province')
-            ->get();
+        // $location_array = county::selectRaw('province')
+        //     ->where('province', '!=',"" )
+        //     ->groupBy('province')
+        //     ->get();
 
             $user = Auth::user();
 
-        return view('carsell.create',compact('location_array'));
+        return view('carsell.create');
     }
 
     /**

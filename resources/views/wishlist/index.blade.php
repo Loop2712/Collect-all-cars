@@ -3,7 +3,7 @@
 @section('content')
 
         <div class="container mt-2 mb-2">
-    <div class="d-flex justify-content-center row">
+    <div class="d-flex justify-content-center row" style="padding-bottom: 30px;">
         <div class="col-md-10">
             <div class="p-2">
                 <h4><b>รายการโปรด</b></h4>
