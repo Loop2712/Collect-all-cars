@@ -14,7 +14,7 @@ class AlertAct extends Command
      * @var string
      */
     // protected $signature = 'command:name'; ($signature ชื่อสำหรับเรียกใช้ command)
-    protected $signature = 'cron:alert_act';
+    protected $signature = 'alert_act';
 
     /**
      * The console command description.

@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('cron:alert_act')->everyMinute(); //dailyAt('09:00')
+        $schedule->command('alert_act')->dailyAt('09:00'); //
     }
 
     /**
