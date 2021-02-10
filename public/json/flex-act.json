@@ -30,7 +30,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "9กก9999 ",
+                "text": "9กก9999",
                 "margin": "none",
                 "size": "lg",
                 "align": "center",
@@ -71,7 +71,7 @@
                   },
                   {
                     "type": "span",
-                    "text": "  ของคุณเหลือ"
+                    "text": "  ของคุณเหลือน้อยกว่า"
                   }
                 ]
               },
