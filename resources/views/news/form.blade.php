@@ -32,13 +32,14 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
     getLocation();
+    alert("กรุณาเปิดตำแหน่งที่ตั้งของท่าน");
 });
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
-    alert("กรุณาเปิดตำแหน่งที่ตั้งของท่าน");
+    x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
