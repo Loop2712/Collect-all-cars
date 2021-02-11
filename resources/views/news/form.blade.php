@@ -5,7 +5,7 @@
 </div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     <label for="content" class="control-label">{{ 'Content' }}</label>
-    <input class="form-control" name="content" type="text" id="content" value="{{ isset($news->content) ? $news->content : ''}}" onchange="getLocation()" >
+    <input class="form-control" name="content" type="text" id="content" value="{{ isset($news->content) ? $news->content : ''}}" >
     {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
