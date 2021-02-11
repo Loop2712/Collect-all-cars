@@ -45,23 +45,24 @@ function getLocation() {
 function showPosition(position) {
     let lat = document.querySelector("#lat");
     let long = document.querySelector("#long");
-    let location = document.querySelector("#location");
+    var location = document.querySelector("#location");
 
         lat.value = position.coords.latitude ;
         long.value = position.coords.longitude ;
-        location.value = position.coords.longitude ;
 
         console.log(position.coords.latitude);
         console.log(position.coords.longitude);
 
-        fetch("{{ url('/') }}/api/car_brand")
+        fetch("{{ url('/') }}/api/location/" + lat.value +"/"+long.value+"/province")
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                
+
+                for(let item of result){
+                    location.value = item.province_name ;        
+                }
                 
             });
-            return input_car_brand.value;
 }
 
 </script>
