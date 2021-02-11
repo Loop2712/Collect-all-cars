@@ -5,7 +5,7 @@
 </div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     <label for="content" class="control-label">{{ 'Content' }}</label>
-    <input class="form-control" name="content" type="text" id="content" value="{{ isset($news->content) ? $news->content : ''}}" >
+    <input class="form-control" name="content" type="text" id="content" value="{{ isset($news->content) ? $news->content : ''}}" onchange="getLocation()" >
     {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
@@ -31,6 +31,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
+    getLocation();
 });
 
 function getLocation() {
