@@ -1,29 +1,39 @@
-<div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-    <label for="title" class="control-label">{{ 'Title' }}</label>
-    <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" onchange="getLocation()">
-    {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
+                <label for="title" class="control-label">{{ 'หัวข้อข่าว / Title' }}</label>
+                <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" onchange="getLocation()">
+                {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
+            </div>
+            <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
+                <label for="content" class="control-label">{{ 'เนื้อหา / Content' }}</label>
+                <input class="form-control" name="content" type="text" id="content" value="{{ isset($news->content) ? $news->content : ''}}" >
+                {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
+                <label for="location" class="control-label">{{ 'สถานที่ / Location' }}</label>
+                <!-- <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}"  placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required> -->
+                <select name="location" id="location" class="form-control" required>
+                        <option value="" selected > - กรุณาเลือกตำแหน่งที่ตั้ง - </option>
+                </select>
+                {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
+            </div>
+            <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                <label for="photo" class="control-label">{{ 'รูปภาพ / Photo' }}</label>
+                <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($news->photo) ? $news->photo : ''}}" >
+                {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <input type="hidden" name="lat" id="lat" readonly>
+            <input type="hidden" name="lat" id="long" readonly>
+        </div>
+    </div>
 </div>
-<div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
-    <label for="content" class="control-label">{{ 'Content' }}</label>
-    <input class="form-control" name="content" type="text" id="content" value="{{ isset($news->content) ? $news->content : ''}}" >
-    {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
-    <label for="location" class="control-label">{{ 'Location' }}</label>
-    <!-- <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}"  placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required> -->
-    <select name="location" id="location" class="form-control" required>
-            <option value="" selected > - กรุณาเลือกตำแหน่งที่ตั้ง - </option>
-    </select>
-    {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-    <label for="photo" class="control-label">{{ 'Photo' }}</label>
-    <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($news->photo) ? $news->photo : ''}}" >
-    {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
-</div>
-<input type="text" name="lat" id="lat" readonly>
-<input type="text" name="lat" id="long" readonly>
-<br><br>
+<br>
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">

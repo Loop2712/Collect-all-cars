@@ -3,14 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Create New News</div>
+                    <h3 class="card-header">เหยี่ยวข่าว ViiCHECK</h3>
                     <div class="card-body">
-                        <a href="{{ url('/news') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
+                        <a href="{{ url('/news') }}" title="Back"><button class="d-none btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
 
                         @if ($errors->any())

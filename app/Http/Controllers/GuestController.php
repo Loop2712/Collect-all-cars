@@ -90,12 +90,14 @@ class GuestController extends Controller
 
             $size = $image->filesize();  
 
-            if($size > 512000 ){
+            if($size > 112000 ){
                 $image->resize(
-                    intval($image->width()/2) , 
-                    intval($image->height()/2)
+                    intval($image->width()/6) , 
+                    intval($image->height()/6)
                 )->save(); 
             }
+            echo $size;
+                exit();
 
         }
 

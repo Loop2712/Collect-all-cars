@@ -3,9 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">News {{ $news->id }}</div>
                     <div class="card-body">
@@ -25,9 +23,21 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $news->id }}</td>
+                                        <th>ID</th>
+                                        <td>{{ $news->id }}</td>
                                     </tr>
-                                    <tr><th> Title </th><td> {{ $news->title }} </td></tr><tr><th> Content </th><td> {{ $news->content }} </td></tr><tr><th> Location </th><td> {{ $news->location }} </td></tr>
+                                    <tr>
+                                        <th> Title </th>
+                                        <td> {{ $news->title }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Content </th>
+                                        <td> {{ $news->content }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Location </th>
+                                        <td> {{ $news->location }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
