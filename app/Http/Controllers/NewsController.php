@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\News;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -54,9 +55,31 @@ class NewsController extends Controller
     {
         
         $requestData = $request->all();
-                if ($request->hasFile('photo')) {
-            $requestData['photo'] = $request->file('photo')
-                ->store('uploads', 'public');
+
+        $validatedData = $request->validate([
+            'photo' => 'image'
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
+
+            //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
+            $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
+            
+            $image->fit(940, 788);
+            //watermark
+            $watermark = Image::make(public_path('watermark.png'));
+            $image->insert($watermark , 'bottom-right', 15, 15)->save();
+
+            $size = $image->filesize();  
+
+            if($size > 112000 ){
+                $image->resize(
+                    intval($image->width()/2) , 
+                    intval($image->height()/2)
+                )->save(); 
+            }
+
         }
 
         News::create($requestData);

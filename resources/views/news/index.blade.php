@@ -32,6 +32,7 @@
                                         <th>Title</th>
                                         <th>Content</th>
                                         <th>Location</th>
+                                        <th>Photo</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -42,6 +43,7 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->content }}</td>
                                         <td>{{ $item->location }}</td>
+                                        <td><img width="150" src="{{ url('storage')}}/{{ $item->photo }}" class="rounded-circle"></td>
                                         <td>
                                             <a href="{{ url('/news/' . $item->id) }}" title="View News"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/news/' . $item->id . '/edit') }}" title="Edit News"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

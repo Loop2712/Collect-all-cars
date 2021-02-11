@@ -79,5 +79,4 @@ function showPosition(position) {
                 
             });
 }
-
 </script>

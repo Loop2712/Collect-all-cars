@@ -84,7 +84,7 @@ class GuestController extends Controller
 
             //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
-            // crop the best fitting 5:3 (600x360) ratio and resize to 600x360 pixel
+            
             $image->fit(940, 788);
             //watermark
             $watermark = Image::make(public_path('watermark.png'));
