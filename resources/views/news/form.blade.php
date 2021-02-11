@@ -10,7 +10,10 @@
 </div>
 <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
     <label for="location" class="control-label">{{ 'Location' }}</label>
-    <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}" readonly placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required>
+    <!-- <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}"  placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required> -->
+    <select name="location" id="location" class="form-control" required>
+            <option value="" selected > - กรุณาเลือกตำแหน่งที่ตั้ง - </option>
+    </select>
     {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
@@ -59,7 +62,10 @@ function showPosition(position) {
                 console.log(result);
 
                 for(let item of result){
-                    location.value = item.province_name ;        
+                    let option = document.createElement("option");
+                    option.text = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
+                    option.value = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
+                    location.add(option);                
                 }
                 
             });

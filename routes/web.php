@@ -105,7 +105,3 @@ Route::get('/thx_guest', function () {
 });
 
 Route::resource('news', 'NewsController');
-
-Route::get('/xx', function () {
-    return view('news/xx');
-});
