@@ -9,10 +9,8 @@
     {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
-    <a class="btn btn-sm btn-primary" onclick="getLocation()">Location</a>
     <label for="location" class="control-label">{{ 'Location' }}</label>
-    <p id="location"></p>
-    <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}" >
+    <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}" readonly>
     {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
@@ -20,48 +18,49 @@
     <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($news->photo) ? $news->photo : ''}}" >
     {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
 </div>
-
+<input type="text" name="lat" id="lat" readonly>
+<input type="text" name="lat" id="long" readonly>
+<br><br>
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
 
-<p>Click the button to get your coordinates.</p>
-
-<a href="" class="btn btn-primary" onclick="getLocation()">Try It</a>
-
 <p id="demo"></p>
 
 <script>
-var x = document.getElementById("demo");
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("START");
+    getLocation();  
+});
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
 function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
+    let lat = document.querySelector("#lat");
+    let long = document.querySelector("#long");
+    let location = document.querySelector("#location");
+
+        lat.value = position.coords.latitude ;
+        long.value = position.coords.longitude ;
+        
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+
+        fetch("{{ url('/') }}/api/car_brand")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                
+                
+            });
+            return input_car_brand.value;
 }
 
-function showError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      x.innerHTML = "User denied the request for Geolocation."
-      break;
-    case error.POSITION_UNAVAILABLE:
-      x.innerHTML = "Location information is unavailable."
-      break;
-    case error.TIMEOUT:
-      x.innerHTML = "The request to get user location timed out."
-      break;
-    case error.UNKNOWN_ERROR:
-      x.innerHTML = "An unknown error occurred."
-      break;
-  }
-}
 </script>
