@@ -10,7 +10,7 @@
 </div>
 <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
     <label for="location" class="control-label">{{ 'Location' }}</label>
-    <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}" readonly>
+    <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}" readonly placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required>
     {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
@@ -31,14 +31,14 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
-    getLocation();  
+    getLocation();
 });
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    alert("กรุณาเปิดตำแหน่งที่ตั้งของท่าน");
   }
 }
 
@@ -49,7 +49,8 @@ function showPosition(position) {
 
         lat.value = position.coords.latitude ;
         long.value = position.coords.longitude ;
-        
+        location.value = position.coords.longitude ;
+
         console.log(position.coords.latitude);
         console.log(position.coords.longitude);
 
