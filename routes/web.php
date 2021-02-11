@@ -103,3 +103,5 @@ Route::get('/before', function () {
 Route::get('/thx_guest', function () {
     return view('guest/thx_guest');
 });
+
+Route::resource('news', 'NewsController');
