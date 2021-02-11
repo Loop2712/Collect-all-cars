@@ -96,8 +96,6 @@ class GuestController extends Controller
                     intval($image->height()/6)
                 )->save(); 
             }
-            echo $size;
-                exit();
 
         }
 
