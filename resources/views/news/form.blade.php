@@ -44,14 +44,24 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
-    getLocation();
+    checklat_lng();
 });
+
+function checklat_lng() {
+    let lat = document.querySelector("#lat");
+    let long = document.querySelector("#long");
+    if (lat.value) {
+        //
+    } else{
+        getLocation()
+    }
+}
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
-    alert("กรุณาเปิดตำแหน่งที่ตั้ง");
+    x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
