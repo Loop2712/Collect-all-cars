@@ -16,7 +16,7 @@
             <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
                 <label for="location" class="control-label">{{ 'สถานที่ / Location' }}</label>
                 <!-- <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}"  placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required> -->
-                <select name="location" id="location" class="form-control" required>
+                <select name="location" id="location" class="form-control" onclick="getLocation()" required>
                         <option value="" selected > - กรุณาเลือกตำแหน่งที่ตั้ง - </option>
                 </select>
                 {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
