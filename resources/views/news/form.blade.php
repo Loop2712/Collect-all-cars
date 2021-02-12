@@ -51,9 +51,9 @@ function checklat_lng() {
     let lat = document.querySelector("#lat");
     let long = document.querySelector("#long");
     if (lat.value) {
-        //
+        // getLocation();
     } else{
-        getLocation()
+        getLocation();
     }
 }
 
