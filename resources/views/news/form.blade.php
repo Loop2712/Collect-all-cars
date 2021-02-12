@@ -57,7 +57,6 @@ function getLocation() {
 function showPosition(position) {
     let lat = document.querySelector("#lat");
     let long = document.querySelector("#long");
-    var location = document.querySelector("#location");
 
         lat.value = position.coords.latitude ;
         long.value = position.coords.longitude ;
@@ -69,7 +68,8 @@ function showPosition(position) {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-
+                let location = document.querySelector("#location");
+                location.innerHTML = "";
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
