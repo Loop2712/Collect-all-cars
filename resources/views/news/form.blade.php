@@ -44,18 +44,9 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
-    checklat_lng();
+    getLocation();
+    showPosition();
 });
-
-function checklat_lng() {
-    let lat = document.querySelector("#lat");
-    let long = document.querySelector("#long");
-    if (lat.value) {
-        showPosition();
-    } else{
-        showPosition();
-    }
-}
 
 function getLocation() {
   if (navigator.geolocation) {
