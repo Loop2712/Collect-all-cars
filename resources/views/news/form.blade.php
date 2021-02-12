@@ -28,8 +28,8 @@
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <input type="hidden" name="lat" id="lat" readonly>
-            <input type="hidden" name="lat" id="long" readonly>
+            <input type="text" name="lat" id="lat" readonly>
+            <input type="text" name="lat" id="long" readonly>
         </div>
     </div>
 </div>
