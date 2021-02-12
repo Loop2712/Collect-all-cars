@@ -28,8 +28,16 @@
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <input type="text" name="lat" id="lat" readonly>
-            <input type="text" name="lat" id="long" readonly>
+            <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
+                <input class="form-control" name="lat" type="hidden" id="lat" value="{{ isset($news->lat) ? $news->lat : ''}}" readonly>
+                {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
+                <input class="form-control" name="lng" type="hidden" id="lng" value="{{ isset($news->lng) ? $news->lng : ''}}" readonly>
+                {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
+            </div>
         </div>
     </div>
 </div>
@@ -38,8 +46,6 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
-
-<p id="demo"></p>
 
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -57,15 +63,15 @@ function getLocation() {
 
 function showPosition(position) {
     let lat = document.querySelector("#lat");
-    let long = document.querySelector("#long");
+    let lng = document.querySelector("#lng");
 
         lat.value = position.coords.latitude ;
-        long.value = position.coords.longitude ;
+        lng.value = position.coords.longitude ;
 
         console.log(position.coords.latitude);
         console.log(position.coords.longitude);
 
-        fetch("{{ url('/') }}/api/location/" + lat.value +"/"+long.value+"/province")
+        fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
             .then(response => response.json())
             .then(result => {
                 console.log(result);
