@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\News;
 use Intervention\Image\ImageManagerStatic as Image;
+use Auth;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
