@@ -93,30 +93,30 @@ class NewsController extends Controller
             $image_facebook->insert($bg_facebook)->save('img/facebook/'.$news_facebook.'.png');
 
             // หัวข้อข่าว
-            $image_facebook->text($requestData['title'], 30, 565, function($font) {
+            $image_facebook->text($requestData['title'], 30, 460, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                 $font->size(50);
                 $font->color('#FFFFFF');
             });
 
             // สถานที่
-            $image_facebook->text($requestData['location'], 30, 610, function($font) {
+            $image_facebook->text($requestData['location'], 30, 555, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-                $font->size(20);
+                $font->size(35);
                 $font->color('#FFFFFF');
             });
 
             $date_now = date("d-m-Y");
 
             // วันที่เพิ่มข่าว
-            $image_facebook->text($date_now, 1025, 480, function($font) {
+            $image_facebook->text($date_now, 1025, 500, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
                 $font->size(26);
                 $font->color('#FFFFFF');
             });
 
             // reporter
-            $image_facebook->text('REPORTER : '.$requestData['name'], 850, 525, function($font) {
+            $image_facebook->text('REPORTER : '.$requestData['name'], 30, 610, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
                 $font->size(22);
                 $font->color('#FFFFFF');
