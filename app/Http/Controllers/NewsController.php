@@ -202,9 +202,9 @@ class NewsController extends Controller
     public function reporter()
     {
         if(Auth::check()){
-            return redirect('news/create');
+            return redirect('news/create?openExternalBrowser=1');
         }else{
-            return redirect('/login/line?redirectTo=news/create');
+            return redirect('/login/line?redirectTo=news/create?openExternalBrowser=1');
         }
     }
 }
