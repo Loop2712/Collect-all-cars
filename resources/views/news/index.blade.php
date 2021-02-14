@@ -10,9 +10,9 @@
                     <div class="col-md-6"></div>
                     <div class="col-12 col-md-6">
                         <div class="btn-group float-right " role="group" aria-label="Basic example">
-                            <button style="background-color: #e26a6c;color: #fff" type="button" class="btn" onclick="near_news();"><i class="fas fa-map-pin"></i> &nbsp;ใกล้ฉัน</button>
-                            <button style="background-color: #db474a;color: #fff;" type="button" class="btn" onclick="bangkok_news();"><i class="fas fa-city"></i> &nbsp;กรุงเทพฯ ปริมณฑล</button>
-                            <button style="background-color: #d62e31;color: #fff" type="button" class="btn" onclick="all_news();"><i class="far fa-newspaper"></i> &nbsp;ทั้งหมด</button>
+                            <button style="background-color: #e26a6c;color: #fff" type="button" class="btn btn-sm" onclick="near_news();"><i class="fas fa-map-pin"></i> &nbsp;ใกล้ฉัน</button>
+                            <button style="background-color: #db474a;color: #fff;" type="button" class="btn btn-sm" onclick="bangkok_news();"><i class="fas fa-city"></i> &nbsp;กรุงเทพฯ ปริมณฑล</button>
+                            <button style="background-color: #d62e31;color: #fff" type="button" class="btn btn-sm" onclick="all_news();"><i class="far fa-newspaper"></i> &nbsp;ทั้งหมด</button>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@ function showPosition(position) {
                 let near_name = document.querySelector("#near_name");
                 let near_content = document.querySelector("#near_content");
                 let near_id = document.querySelector("#near_id");
-                
+
                 for(let item of result){
                     near_name.innerHTML = item.name
                     near_img.src = item.cover_photo
