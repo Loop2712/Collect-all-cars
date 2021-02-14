@@ -63,13 +63,57 @@ class NewsController extends Controller
         if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
 
-            //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
+            // เรียกรูปภาพใส่ $image
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
-            
+
+            //  เช็คเนื้อหาที่รุนแรง
+            if ($requestData['severe'] == 'Yes') {
+                $image = Image::make(storage_path("app/public")."/".$requestData['photo'])->greyscale();
+            }
+
+            // ปรับขนาดภาพ
             $image->fit(940, 788);
-            //watermark
+
+            //ลายน้ำ
             $watermark = Image::make(public_path('img/bg car/watermark-logo.png'));
             $image->insert($watermark , 'top-right', 15, 15)->save();
+
+            // สร้างชื่อไฟล์
+            $news = uniqid('Cover-photo-', true);
+
+            // ใส่ template
+            $bg = Image::make(public_path('img/bg car/news-01.png'));
+            $image->insert($bg)->save('img/news/'.$news.'.png');
+
+            // หัวข้อข่าว
+            $image->text($requestData['title'], 30, 595, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(60);
+                $font->color('#FFFFFF');
+            });
+
+            // สถานที่
+            $image->text($requestData['location'], 30, 660, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(30);
+                $font->color('#FFFFFF');
+            });
+
+            $date_now = date("d-m-Y");
+
+            // วันที่เพิ่มข่าว
+            $image->text($date_now, 780, 675, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
+                $font->size(26);
+                $font->color('#FFFFFF');
+            });
+
+            // reporter
+            $image->text('REPORTER : '.$requestData['name'], 15, 770, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
+                $font->size(22);
+                $font->color('#FFFFFF');
+            });
 
             $size = $image->filesize();  
 
@@ -80,9 +124,7 @@ class NewsController extends Controller
                 )->save(); 
             }
 
-            $news_template = Image::make(public_path('img/bg car/news-01.png'));
-            $news_template->text('The quick brown fox jumps over the lazy dog.', 120, 100);
-            $image->insert($news_template , 'top-right', 15, 15)->save();
+            $requestData['cover_photo'] = 'img/news/'.$news.'.png';
 
         }
 
