@@ -10,9 +10,9 @@
                     <div class="col-md-6"></div>
                     <div class="col-12 col-md-6">
                         <div class="btn-group float-right " role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-light"><i class="fas fa-map-pin text-danger"></i> ใกล้ฉัน</button>
-                            <button type="button" class="btn btn-light"><i class="fas fa-city text-primary"></i> กรุงเทพฯ</button>
-                            <button type="button" class="btn btn-light"><i class="far fa-newspaper text-success"></i> ทั้งหมด</button>
+                            <button style="background-color: #e26a6c;color: #fff" type="button" class="btn"><i class="fas fa-map-pin"></i> &nbsp;ใกล้ฉัน</button>
+                            <button style="background-color: #db474a;color: #fff" type="button" class="btn"><i class="fas fa-city"></i> &nbsp;กรุงเทพฯ</button>
+                            <button style="background-color: #d62e31;color: #fff" type="button" class="btn"><i class="far fa-newspaper"></i> &nbsp;ทั้งหมด</button>
                         </div>
                     </div>
                 </div>
