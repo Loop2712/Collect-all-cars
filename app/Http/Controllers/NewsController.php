@@ -79,7 +79,7 @@ class NewsController extends Controller
             $image->insert($watermark , 'top-right', 15, 15)->save();
 
             // สร้างชื่อไฟล์
-            $news = uniqid('Cover-photo-', true);
+            $news = uniqid('Cover-photo-');
 
             // ใส่ template
             $bg = Image::make(public_path('img/bg car/news-01.png'));
