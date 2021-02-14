@@ -95,9 +95,9 @@
                 "text": "เหยี่ยวข่าว / Reporter",
                 "margin": "xl",
                 "action": {
-                  "type": "message",
-                  "label": "เหยี่ยวข่าว / Reporter",
-                  "text": "เหยี่ยวข่าว / Reporter"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://market.viicheck.com/reporter"
                 },
                 "weight": "bold"
               },
@@ -108,9 +108,9 @@
                 "align": "end",
                 "color": "#aaaaaa",
                 "action": {
-                  "type": "message",
-                  "label": "เหยี่ยวข่าว / Reporter",
-                  "text": "เหยี่ยวข่าว / Reporter"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://market.viicheck.com/reporter"
                 }
               }
             ],

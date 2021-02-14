@@ -197,4 +197,13 @@ class NewsController extends Controller
 
         return redirect('news')->with('flash_message', 'News deleted!');
     }
+
+    public function reporter()
+    {
+        if(Auth::check()){
+            return redirect('news/create');
+        }else{
+            return redirect('/login/line?redirectTo=news/create');
+        }
+    }
 }
