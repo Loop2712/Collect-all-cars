@@ -1,7 +1,74 @@
-@extends('layouts.app')
+@extends('layouts.news')
+
+@section('meta')
+<meta charset="UTF-8">
+<meta name="description" content="HVAC Template">
+<meta name="keywords" content="HVAC, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<title>viicheck News</title>
+
+<meta property="og:url"           content="{{ url()->full() }}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{ $news->title }}" />
+<meta property="og:description"   content="{{ $news->content }}" />
+<meta property="og:image"         content="{{ url( $news->cover_photo) }}" />
+@endsection
 
 @section('content')
-    <div class="container">
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="border: none;" class="card">
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <img width="100%" src="{{ url('storage')}}/{{ $news->photo }}">
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <br>
+                        <div class="row">
+                            <div class=" col-12 col-md-12"><h3><b>{{ $news->title }}</b></h3><br></div>
+                            <div class=" col-12 col-md-11"><p>{{ $news->content }}</p></div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class=" col-12 col-md-12"><span><b>สถานที่ : </b>{{ $news->location }}</span></div>
+                            <div class=" col-12 col-md-11"><span><b>Reporter : </b>{{ $news->name }}</span></div>
+                            <br><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-9"></div>
+                            <div class="col-12 col-md-3">
+                                <div id="fb-root"></div>
+                                <script>(function(d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (d.getElementById(id)) return;
+                                    js = d.createElement(s); js.id = id;
+                                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+
+                                <div class="fb-share-button" data-href="{{ url()->full() }}" data-layout="button_count">
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -46,5 +113,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection

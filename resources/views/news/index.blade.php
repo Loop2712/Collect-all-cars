@@ -1,4 +1,17 @@
-@extends('layouts.main')
+@extends('layouts.news')
+
+@section('meta')
+<meta charset="UTF-8">
+<meta name="description" content="HVAC Template">
+<meta name="keywords" content="HVAC, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<title>viicheck News</title>
+@endsection
 
 @section('content')
 <br>
