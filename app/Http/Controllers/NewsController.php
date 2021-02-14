@@ -90,7 +90,7 @@ class NewsController extends Controller
 
             // ใส่ template
             $bg_facebook = Image::make(public_path('img/bg car/news-02.png'));
-            $image_facebook->insert($bg_facebook)->save('img/news/facebook/'.$news_facebook.'.png');
+            $image_facebook->insert($bg_facebook)->save('img/facebook/'.$news_facebook.'.png');
 
             // หัวข้อข่าว
             $image_facebook->text($requestData['title'], 30, 565, function($font) {
@@ -131,7 +131,7 @@ class NewsController extends Controller
                 )->save(); 
             }
 
-            $requestData['cover_photo_facebook'] = 'img/news/facebook/'.$news_facebook.'.png';
+            $requestData['cover_photo_facebook'] = 'img/facebook/'.$news_facebook.'.png';
             // endfacebook
 
             // web
