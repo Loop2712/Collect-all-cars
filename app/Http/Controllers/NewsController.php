@@ -69,12 +69,72 @@ class NewsController extends Controller
 
             // เรียกรูปภาพใส่ $image
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
+            $image_facebook = Image::make(storage_path("app/public")."/".$requestData['photo']);
 
             //  เช็คเนื้อหาที่รุนแรง
             if ($requestData['severe'] == 'Yes') {
                 $image = Image::make(storage_path("app/public")."/".$requestData['photo'])->greyscale();
+                $image_facebook = Image::make(storage_path("app/public")."/".$requestData['photo'])->greyscale();
             }
 
+            // facebook
+            // ปรับขนาดภาพ
+            $image_facebook->fit(1200, 628);
+
+            //ลายน้ำ
+            $watermark_facebook = Image::make(public_path('img/bg car/watermark-logo.png'));
+            $image_facebook->insert($watermark_facebook , 'top-right', 15, 15)->save();
+
+            // สร้างชื่อไฟล์
+            $news_facebook = uniqid('Cover-photo-', true);
+
+            // ใส่ template
+            $bg_facebook = Image::make(public_path('img/bg car/news-02.png'));
+            $image_facebook->insert($bg_facebook)->save('img/news/facebook/'.$news_facebook.'.png');
+
+            // หัวข้อข่าว
+            $image_facebook->text($requestData['title'], 30, 565, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(50);
+                $font->color('#FFFFFF');
+            });
+
+            // สถานที่
+            $image_facebook->text($requestData['location'], 30, 610, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(20);
+                $font->color('#FFFFFF');
+            });
+
+            $date_now = date("d-m-Y");
+
+            // วันที่เพิ่มข่าว
+            $image_facebook->text($date_now, 1025, 480, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
+                $font->size(26);
+                $font->color('#FFFFFF');
+            });
+
+            // reporter
+            $image_facebook->text('REPORTER : '.$requestData['name'], 850, 525, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
+                $font->size(22);
+                $font->color('#FFFFFF');
+            });
+
+            $size_facebook = $image_facebook->filesize();  
+
+            if($size_facebook > 112000 ){
+                $image_facebook->resize(
+                    intval($image_facebook->width()/2) , 
+                    intval($image_facebook->height()/2)
+                )->save(); 
+            }
+
+            $requestData['cover_photo_facebook'] = 'img/news/facebook/'.$news_facebook.'.png';
+            // endfacebook
+
+            // web
             // ปรับขนาดภาพ
             $image->fit(940, 788);
 
@@ -102,8 +162,6 @@ class NewsController extends Controller
                 $font->size(30);
                 $font->color('#FFFFFF');
             });
-
-            $date_now = date("d-m-Y");
 
             // วันที่เพิ่มข่าว
             $image->text($date_now, 780, 675, function($font) {

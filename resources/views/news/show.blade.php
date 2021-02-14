@@ -16,7 +16,7 @@
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="{{ $news->title }}" />
 <meta property="og:description"   content="{{ $news->content }}" />
-<meta property="og:image"         content="{{ url( $news->cover_photo) }}" />
+<meta property="og:image"         content="{{ url( $news->cover_photo_facebook) }}" />
 @endsection
 
 @section('content')
