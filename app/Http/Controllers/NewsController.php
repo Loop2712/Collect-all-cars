@@ -9,6 +9,7 @@ use App\Models\News;
 use Intervention\Image\ImageManagerStatic as Image;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -32,7 +33,9 @@ class NewsController extends Controller
             $news = News::latest()->paginate($perPage);
         }
 
-        return view('news.index', compact('news'));
+        $bangkok = DB::select("SELECT *,( 3959 * acos( cos( radians(13.7649136) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(100.5360959) ) + sin( radians(13.7649136) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 30 ORDER BY distance LIMIT 0 ,5000", []);
+
+        return view('news.index', compact('news', 'bangkok'));
     }
 
     /**

@@ -33,3 +33,4 @@ Route::get('/carbrand','API\SellcarController@CarBrand');
 Route::get('/carbrand/{brand}/carmodel','API\SellcarController@CarModel');
 
 Route::get('/location/{lat}/{lng}/province','API\LocationController@search_location');
+Route::get('/near_news/{lat}/{lng}/news','API\LocationController@near_news');
