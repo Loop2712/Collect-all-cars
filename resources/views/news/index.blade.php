@@ -1,6 +1,30 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
+<br>
+<div class="container">
+    <div class="row">
+        @foreach($news as $item)
+        <div class="col-12 col-md-4">
+            <div class="card" style="width: 22rem;">
+                <img src="{{ $item->cover_photo }}" class="card-img-top" >
+                <div class="card-body">
+                    <!-- <h5 class="card-title">Card title</h5> -->
+                    <p style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;" class="card-text">{{ $item->content }}</p>
+                    <hr>
+                    <p><b>REPORTER :</b> {{ $item->name }}</p>
+                    <a href="#" class="btn btn-primary float-right">อ่านเพิ่มเติม..</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        @endforeach
+    </div>
+    <hr>
+</div>
+
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
