@@ -69,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('sell', 'SellController');
 	Route::resource('motercycles', 'MotorcyclesellController');
 	Route::resource('profile', 'ProfileController');
+	Route::get('/news/create', 'NewsController@create');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -104,4 +105,4 @@ Route::get('/thx_guest', function () {
     return view('guest/thx_guest');
 });
 
-Route::resource('news', 'NewsController');
+Route::resource('news', 'NewsController')->except(['create']);

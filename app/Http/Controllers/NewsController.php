@@ -68,8 +68,8 @@ class NewsController extends Controller
             
             $image->fit(940, 788);
             //watermark
-            $watermark = Image::make(public_path('watermark.png'));
-            $image->insert($watermark , 'bottom-right', 15, 15)->save();
+            $watermark = Image::make(public_path('img/bg car/watermark-logo.png'));
+            $image->insert($watermark , 'top-right', 15, 15)->save();
 
             $size = $image->filesize();  
 
@@ -79,6 +79,10 @@ class NewsController extends Controller
                     intval($image->height()/2)
                 )->save(); 
             }
+
+            $news_template = Image::make(public_path('img/bg car/news-01.png'));
+            $news_template->text('The quick brown fox jumps over the lazy dog.', 120, 100);
+            $image->insert($news_template , 'top-right', 15, 15)->save();
 
         }
 
