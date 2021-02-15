@@ -7,9 +7,9 @@
 		<div>
 			<img style="margin-top: -40px;" width="100%" src="{{ asset('/img/more/select.jpg') }}">
 			@if(Auth::check())
-				<a style="position: absolute;left: 8%;top: 37%;" href="{{ url('/guest/create') }}"><img width="60%" src="{{ asset('/img/icon/empty.png') }}"></a>
+				<a style="position: absolute;right: 35%;top: 37%;" href="{{ url('/guest/create') }}"><img width="40%" src="{{ asset('/img/icon/empty.png') }}"></a>
 			@else
-				<a style="position: absolute;left: 8%;top: 37%;" href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="60%" src="{{ asset('/img/icon/empty.png') }}"></a>
+				<a style="position: absolute;right: 35%;top: 37%;" href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="40%" src="{{ asset('/img/icon/empty.png') }}"></a>
 			@endif
 		</div>
 		<div class="row">
