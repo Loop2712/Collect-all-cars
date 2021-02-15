@@ -67,7 +67,7 @@
                                  - โปรดเลือก / Please select - 
                              </option>  
                         @foreach (json_decode('{"ผู้ชาย":"ผู้ชาย","ผู้หญิง":"ผู้หญิง","ไม่ต้องการตอบ":"ไม่ต้องการตอบ"}', true) as $optionKey => $optionValue)
-                            <option value="{{ $optionKey }}"  {{ (isset($data->sex) && $data->sex == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                            <option  ption value="{{ $optionKey }}"  {{ (isset($data->sex) && $data->sex == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
                     </select>
                         {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
@@ -91,9 +91,9 @@
                     <label for="massengbox" class="control-label"><b>{{ 'อีเมล  / E-mail' }}</b></label></label>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('email ') ? 'has-error' : ''}}">
-                    <input class="form-control" name="email " type="text" id="email " value="{{ isset($data->email ) ? $data->email  : ''}}" >
-                        {!! $errors->first('email ', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+                    <input class="form-control" name="email" type="text" id="email" value="{{ isset($data->email ) ? $data->email  : ''}}" >
+                        {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
         </div>
