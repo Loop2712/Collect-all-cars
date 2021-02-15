@@ -117,7 +117,7 @@
                                         <a href="{{ url('/car') }}" ><h5><b>รถยนต์</b></h5></a>
                                         </li>
                                         <li>
-                                        <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานต์ยนต์</b></h5></a>
+                                        <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานยนต์</b></h5></a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -147,12 +147,20 @@
                                 </li>
                                 <li tyle="padding-right: 20px;">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
+                                    {{ Auth::user()->name }}
                                         
-                                        {{ Auth::user()->name }}
                                     </a>
                                         <ul class="dropdown">
                                             <li>
-                                                <a href="{{ url('/profile') }}" > Profile</a>
+                                                <a href="{{ url('/profile') }}">
+                                                รายการโปรด</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('/profile') }}">
+                                                รถของฉัน</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('/profile') }}" > โปรไฟล์ </a>
                                             </li>
                                             @if(Auth::check())
                                                 @if(Auth::user()->role == "admin" )

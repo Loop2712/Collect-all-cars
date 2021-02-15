@@ -5,7 +5,7 @@
     <br><br>
         <div class="row">
         @include('layouts.sidebar')
-            <div class="col-lg-9 col-md-9">
+            <div class="col-lg-9 col-md-9 order-lg-2 order-1">
                 <div class="card">
                     <div class="card-header">แก้ไขข้อมูลส่วนตัว</div>
                     <div class="card-body">

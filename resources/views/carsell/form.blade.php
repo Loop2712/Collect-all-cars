@@ -1,50 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <!-- เบอร์โทร เอาไว้สำหรับแสดงข้อมูลต่อผู้เรียกรถ-->
-                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone" type="hidden" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}" readonly>
-                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-                    </div>
-                    <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
-                        <input class="form-control" name="sex" type="hidden" id="sex" value="{{ isset($register_car->sex) ? $register_car->sex :  Auth::user()->sex }}" required readonly>
-                        {!! $errors->first('sex', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-            </div>
-            <br>
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
-            <br><br>
-            <input type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
-                document.querySelector('#div_data').classList.remove('d-none'),
-
-                document.querySelector('#div_motor_brand').classList.add('d-none'),
-                document.querySelector('#brand_input').classList.add('d-none'),
-                document.querySelector('#generation_input').classList.add('d-none'),
-                document.querySelector('#input_motor_brand').classList.add('d-none'),
-                document.querySelector('#input_motor_model').classList.add('d-none'),
-
-                document.querySelector('#div_car_brand').classList.remove('d-none'),
-                document.querySelector('#input_car_model').classList.remove('d-none'),
-                document.querySelector('#input_car_brand').classList.remove('d-none');">
-            &nbsp;&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
-
-            <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
-                document.querySelector('#div_data').classList.remove('d-none'),
-
-                document.querySelector('#brand_input').classList.add('d-none'),
-                document.querySelector('#generation_input').classList.add('d-none'),
-                document.querySelector('#input_car_model').classList.add('d-none'),
-                document.querySelector('#input_car_brand').classList.add('d-none'),
-                document.querySelector('#div_car_brand').classList.add('d-none'),
-
-                document.querySelector('#div_motor_brand').classList.remove('d-none'),
-                document.querySelector('#input_motor_brand').classList.remove('d-none'),
-                document.querySelector('#input_motor_model').classList.remove('d-none');">
-            &nbsp;&nbsp; มอเตอร์ไซต์ / Motorcycle
-            <br><br>
             <!-- ข้อมูลรถ -->
             <div class=" row" id="div_data">
                 <div class="col-12 col-md-2">
@@ -53,8 +9,16 @@
                 <div class="col-12 col-md-4">
                     <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
+                        <select name="brand" class="form-control"  id="input_car_brand" required onchange="showCar_model();">
+                             <option value="" selected >
+                                 - โปรดเลือก / Please select - 
+                             </option>  
+                        @foreach (json_decode('{"ผู้ชาย":"ผู้ชาย","ผู้หญิง":"ผู้หญิง","ไม่ต้องการตอบ":"ไม่ต้องการตอบ"}', true) as $optionKey => $optionValue)
+                            <option value="{{ $optionKey }}"  {{ (isset($data->brand) && $data->brand == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                        @endforeach
+                    </select>
                         <select name="brand" class=" form-control" id="input_car_brand" required onchange="showCar_model();
-                            if(this.value=='อื่นๆ'){ 
+                            if(this.value==''){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#brand_input').focus();
@@ -117,26 +81,7 @@
                         {!! $errors->first('generation_other', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                <br><br><br>
                 
-                <div class="col-12 col-md-2">
-                    <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration number' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
-                        <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required>
-                        {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="col-12 col-md-2">
-                    <label for="province" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-
-
-            </div>
-
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
-            <br><br>
 
         </div> 
     </div>

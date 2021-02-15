@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-row align-items-center qty">
-                    <h8 class="text-grey ">{{ $item->location }}</h8>
+                    <h8 class="text-grey" style="font-size: 12px;">{{ $item->location }}</h8>
                 </div>
                 <div>
                     @if ( $item->price == 'ติดต่อผู้ขาย')
