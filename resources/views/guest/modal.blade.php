@@ -9,7 +9,7 @@
 			@if(Auth::check())
 				<a style="position: absolute;left: 8%;top: 35%;" href="{{ url('/guest/create') }}"><img width="300" height="400" src="{{ asset('/img/icon/line.png') }}"></a>
 			@else
-				<a style="position: absolute;left: 18%;top: 35%;" href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="300" height="400" src="{{ asset('/img/icon/line.png') }}"></a>
+				<a style="position: absolute;left: 18%;top: 35%;" href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="50%" height="200%" src="{{ asset('/img/icon/line.png') }}"></a>
 			@endif
 		</div>
 		<div class="row">
