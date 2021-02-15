@@ -10,7 +10,7 @@
                     <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
                    
-                        <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($data->brand) ? $data->brand : ''}}"  required onchange="showCar_model();
+                        <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($data_cars->brand) ? $data_cars->brand : ''}}"  required onchange="showCar_model();
                             if(this.value==''){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -23,10 +23,7 @@
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
                     </div>
-                    <div class="form-group {{ $errors->has('brand_other') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="brand_other" type="text" id="brand_input" value="{{ isset($register_car->brand_other) ? $register_car->brand_other : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
-                        {!! $errors->first('brand_other', '<p class="help-block">:message</p>') !!}
-                    </div>
+
                 </div>
                 <div class="col-12 col-md-2">
                     <label for="generation" class="control-label">{{ 'รุ่นรถ / Model' }}</label><span style="color: #FF0033;"> *</span>
@@ -34,35 +31,82 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select name="generation" id="input_car_model" class=" form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                        <select name="model" id="input_car_model" class=" form-control" value="{{ isset($sell->model) ? $sell->model : ''}}" required onchange="if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').focus();
                             }else{ 
                                 document.querySelector('#generation_input').classList.add('d-none');}">
                                 <option value="" selected> - เลือกรุ่น / Select Model - </option>     
                                 <br> 
-                                {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
+                                {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
                         </select>
                     </div>
-                    <div class="form-group {{ $errors->has('generation_other') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="generation_other" type="text" id="generation_input" value="{{ isset($register_car->generation_other) ? $register_car->generation_other : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
-                        {!! $errors->first('generation_other', '<p class="help-block">:message</p>') !!}
-                    </div>
+
                 </div>
                 <div class="col-12 col-md-2">ระบบเกียร์</div>
-                <div class="col-12 col-md-4">t</div>
+                <div class="col-12 col-md-4">
+                    <select name="gear" id="gear" class="form-control" value="{{ isset($sell->gear) ? $sell->gear : ''}}" >
+                            <option value="" data-display="Gear">เกียร์ทั้งหมด</option>
+                        @foreach($gear_array as $ge)
+                            <option 
+                                value="{{ $ge->gear }}" 
+                                    {{ request('gear') == $ge->gear ? 'selected' : ''   }} >
+                                {{ $ge->gear }} 
+                            </option>
+                                @endforeach 
+                    </select>
+                </div><br><br><br>
                 <div class="col-12 col-md-2">น้ำมันที่ใช้</div>
-                <div class="col-12 col-md-4">t</div>
+                <div class="col-12 col-md-4">
+                    <select class="form-control" name="fuel" id="fuel" value="{{ isset($sell->fuel) ? $sell->fuel : ''}}" >
+                            <option value="" data-display="เชื้อเพลิง">เชื้อเพลิงทั้งหมด</option>
+                        @foreach (json_decode('{"ดีเซล":"ดีเซล","เบนซิน":"เบนซิน","ไฟฟ้า":"ไฟฟ้า","ไฮบริด":"ไฮบริด","NGV":"NGV"}', true) as $optionKey => $optionValue)
+                            <option  ption value="{{ $optionKey }}"  {{ (isset($sell->fuel) && $sell->fuel == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                        @endforeach
+                    </select>
+                </div><br><br>
 
                 <div class="col-12 col-md-2">สี</div>
-                <div class="col-12 col-md-4">t</div>
+                <div class="col-12 col-md-4">
+                <select class="form-control"  name="color" id="color" value="{{ isset($sell->color) ? $sell->color : ''}}" >
+                                    <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
+                                    @foreach($color_array  as $co)
+                                        <option 
+                                                value="{{ $co->color  }}" 
+                                                {{ request('color') == $co->color  ? 'selected' : ''   }} >
+                                            {{ $co->color  }} 
+                                        </option>
+                                    @endforeach 
+                                </select>
+                </div><br><br><br>
                 <div class="col-12 col-md-2">สถานที่</div>
-                <div class="col-12 col-md-4">t</div>
+                <div class="col-12 col-md-4">
+                <select class="form-control"  name="location" id="location" value="{{ isset($sell->province) ? $sell->province : ''}}" >
+                                    <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
+                                    @foreach($location_array as $lo)
+                                        <option 
+                                            value="{{ $lo->province }}" 
+                                            {{ request('location') == $lo->province ? 'selected' : ''   }} >
+                                            {{ $lo->province }} 
+                                        </option>
+                                    @endforeach 
+                                </select>
+                </div>
 
                 <div class="col-12 col-md-2">จำนวนที่นั่ง</div>
-                <div class="col-12 col-md-4">t</div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('seats') ? 'has-error' : ''}}">
+                        <input class="form-control" name="seats" type="number" id="seats" value="{{ isset($sell->seats) ? $sell->seats : ''}}" >
+                        {!! $errors->first('seats', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
                 <div class="col-12 col-md-2">ระยะทาง</div>
-                <div class="col-12 col-md-4">t</div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('distance') ? 'has-error' : ''}}">
+                        <input class="form-control" name="distance" type="number" id="distance" value="{{ isset($sell->distance) ? $sell->distance : ''}} " >
+                        {!! $errors->first('distance', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
                 <br>
 
         </div> 

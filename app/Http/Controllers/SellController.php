@@ -103,6 +103,30 @@ class SellController extends Controller
         //     ->limit(10)
         //     ->get();
 
+        $year_array = Sell::selectRaw('year,count(year) as count')
+            ->where('year', '!=',"" )
+            ->groupBy('year')
+            ->get();
+
+        $color_array = Sell::selectRaw('color,count(color) as count')
+            ->where('color', '!=',"" )
+            ->groupBy('color')
+            ->get();
+   
+        $gear_array = Sell::selectRaw('gear,count(gear) as count')
+            ->where('gear', '!=',"" )
+            ->groupBy('gear')
+            ->get();
+            
+        $location_array = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+        
+        $fuel_array = Sell::selectRaw('fuel,count(fuel) as count')
+            ->where('fuel', '!=',"" )
+            ->groupBy('fuel')
+            ->get();
         // $location_array = county::selectRaw('province')
         //     ->where('province', '!=',"" )
         //     ->groupBy('province')
@@ -110,7 +134,7 @@ class SellController extends Controller
 
             $user = Auth::user();
 
-        return view('carsell.create');
+        return view('carsell.create', compact('gear_array','year_array','color_array','location_array','fuel_array'));
     }
 
     /**
@@ -141,6 +165,7 @@ class SellController extends Controller
     public function show($id)
     {
         $sell = Sell::findOrFail($id);
+        
 
         return view('carsell.show', compact('sell'));
     }
@@ -154,9 +179,36 @@ class SellController extends Controller
      */
     public function edit($id)
     {
+
+        
+        $year_array = Sell::selectRaw('year,count(year) as count')
+            ->where('year', '!=',"" )
+            ->groupBy('year')
+            ->get();
+
+        $color_array = Sell::selectRaw('color,count(color) as count')
+            ->where('color', '!=',"" )
+            ->groupBy('color')
+            ->get();
+   
+        $gear_array = Sell::selectRaw('gear,count(gear) as count')
+            ->where('gear', '!=',"" )
+            ->groupBy('gear')
+            ->get();
+            
+        $location_array = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+        
+        $fuel_array = Sell::selectRaw('fuel,count(fuel) as count')
+            ->where('fuel', '!=',"" )
+            ->groupBy('fuel')
+            ->get();
+
         $sell = Sell::findOrFail($id);
 
-        return view('carsell.edit', compact('sell'));
+        return view('carsell.edit', compact('sell','gear_array','year_array','color_array','location_array','fuel_array'));
     }
 
     /**
