@@ -33,7 +33,7 @@ class NewsController extends Controller
             $news = News::latest()->paginate($perPage);
         }
 
-        $bangkok = DB::select("SELECT *,( 3959 * acos( cos( radians(13.7649136) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(100.5360959) ) + sin( radians(13.7649136) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 30 ORDER BY distance LIMIT 0 ,5000", []);
+        $bangkok = DB::select("SELECT *,( 3959 * acos( cos( radians(13.7649136) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(100.5360959) ) + sin( radians(13.7649136) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 30 ORDER BY id DESC LIMIT 0 ,5000", []);
 
         return view('news.index', compact('news', 'bangkok'));
     }
