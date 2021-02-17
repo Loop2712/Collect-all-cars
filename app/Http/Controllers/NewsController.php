@@ -286,7 +286,7 @@ class NewsController extends Controller
         // echo "<pre>";
         // exit();
 
-        return view('news.near_news', compact('near_news'));
+        return view('news.index', compact('near_news'));
     }
 
     public function share($user_id)
