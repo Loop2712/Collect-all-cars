@@ -194,7 +194,7 @@ class NewsController extends Controller
 
         $this->share($requestData['user_id']);
 
-        return view('news.share', compact('news'));
+        return view('news.index', compact('news'));
         // return redirect('news')->with('flash_message', 'News added!');
     }
 
@@ -286,7 +286,7 @@ class NewsController extends Controller
         // echo "<pre>";
         // exit();
 
-        return view('news.index', compact('near_news'));
+        return view('news.near_news', compact('near_news'));
     }
 
     public function share($user_id)
