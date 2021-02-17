@@ -28,36 +28,75 @@ class Register_carController extends Controller
         $user = Auth::user();
         // echo ($user->id);
         // exit();
+
+        // CAR
         if (!empty($keyword)) {
             $register_car = DB::table('register_cars')
                         ->orWhere('brand', 'LIKE', "%$keyword%")
                         ->where('user_id', $user->id)
                         ->where('active', "Yes")
+                        ->where('car_type', "car")
 
                         ->orWhere('generation', 'LIKE', "%$keyword%")
                         ->where('user_id', $user->id)
                         ->where('active', "Yes")
+                        ->where('car_type', "car")
 
                         ->orWhere('registration_number', 'LIKE', "%$keyword%")
                         ->where('user_id', $user->id)
                         ->where('active', "Yes")
+                        ->where('car_type', "car")
 
                         ->orWhere('province', 'LIKE', "%$keyword%")
                         ->where('user_id', $user->id)
                         ->where('active', "Yes")
+                        ->where('car_type', "car")
 
                         ->get();
         } else {
             $register_car = DB::table('register_cars')
                         ->where('user_id', $user->id)
                         ->where('active', "Yes")
+                        ->where('car_type', "car")
+                        ->get();
+        }
+
+        // MOTORCYCLES
+        if (!empty($keyword)) {
+            $register_motorcycles = DB::table('register_cars')
+                        ->orWhere('brand', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+                        ->where('car_type', "motorcycle")
+
+                        ->orWhere('generation', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+                        ->where('car_type', "motorcycle")
+
+                        ->orWhere('registration_number', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+                        ->where('car_type', "motorcycle")
+
+                        ->orWhere('province', 'LIKE', "%$keyword%")
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+                        ->where('car_type', "motorcycle")
+
+                        ->get();
+        } else {
+            $register_motorcycles = DB::table('register_cars')
+                        ->where('user_id', $user->id)
+                        ->where('active', "Yes")
+                        ->where('car_type', "motorcycle")
                         ->get();
         }
 
         // เวลาปัจจุบัน
         $date_now = date("Y-m-d "); 
 
-        return view('register_car.index', compact('register_car' , 'date_now'));
+        return view('register_car.index', compact('register_car' , 'register_motorcycles' , 'date_now'));
     }
 
     /**
