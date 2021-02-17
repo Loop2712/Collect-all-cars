@@ -268,13 +268,13 @@ class GuestController extends Controller
                                 break;
 
                             case 'ไม่ต้องการตอบ':
-                                $string_json = str_replace("#E0FFF0","#d174ec",$string_json);
-                                $string_json = str_replace("#E0FFFF","#d174ec",$string_json);
-                                $string_json = str_replace("#FFFAFA","#efcef8",$string_json);
+                                $string_json = str_replace("#E0FFF0","#d5bcfb",$string_json);
+                                $string_json = str_replace("#E0FFFF","#d5bcfb",$string_json);
+                                $string_json = str_replace("#FFFAFA","#f9f5fe",$string_json);
 
-                                $string_json = str_replace("#B0E0E5","#c13ee5",$string_json);
-                                $string_json = str_replace("#B0E0E6","#c13ee5",$string_json);
-                                $string_json = str_replace("#F5F5F5","#d174ec",$string_json);
+                                $string_json = str_replace("#B0E0E5","#c39ff9",$string_json);
+                                $string_json = str_replace("#B0E0E6","#c39ff9",$string_json);
+                                $string_json = str_replace("#F5F5F5","#e7d8fd",$string_json);
                                 break;
                             
                         }
@@ -308,13 +308,13 @@ class GuestController extends Controller
                                 break;
 
                             case 'ไม่ต้องการตอบ':
-                                $string_json = str_replace("#E0FFF0","#d174ec",$string_json);
-                                $string_json = str_replace("#E0FFFF","#d174ec",$string_json);
-                                $string_json = str_replace("#FFFAFA","#efcef8",$string_json);
+                                $string_json = str_replace("#E0FFF0","#d5bcfb",$string_json);
+                                $string_json = str_replace("#E0FFFF","#d5bcfb",$string_json);
+                                $string_json = str_replace("#FFFAFA","#f9f5fe",$string_json);
 
-                                $string_json = str_replace("#B0E0E5","#c13ee5",$string_json);
-                                $string_json = str_replace("#B0E0E6","#c13ee5",$string_json);
-                                $string_json = str_replace("#F5F5F5","#d174ec",$string_json);
+                                $string_json = str_replace("#B0E0E5","#c39ff9",$string_json);
+                                $string_json = str_replace("#B0E0E6","#c39ff9",$string_json);
+                                $string_json = str_replace("#F5F5F5","#e7d8fd",$string_json);
                                 break;
                                 
                             }

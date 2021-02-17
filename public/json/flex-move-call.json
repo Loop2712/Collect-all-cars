@@ -107,7 +107,7 @@
               "data": "thx",
               "displayText": "ขอบคุณ / Thank you"
             },
-            "color": "#6495ED"
+            "color": "#88ced8"
           }
         ]
       },
@@ -135,7 +135,7 @@
           "data": "wait",
           "displayText": "รอสักครู่ / Wait a moment"
         },
-        "color": "#006400"
+        "color": "#76d128"
       },
       {
         "type": "box",
@@ -150,7 +150,7 @@
               "label": "ฉันไม่สะดวก / I'm not comfortable",
               "uri": "https://market.viicheck.com/not_comfor/create"
             },
-            "color": "#FF0000"
+            "color": "#e63519"
           }
         ]
       },
