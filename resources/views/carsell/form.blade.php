@@ -11,24 +11,28 @@
                    
                    
                          <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($data_cars->brand) ? $data_cars->brand : ''}}"  required onchange="showCar_model();
-                            if(this.value==''){ 
-                                document.querySelector('#brand_input').classList.remove('d-none'),
-                                document.querySelector('#generation_input').classList.remove('d-none'),
-                                document.querySelector('#brand_input').focus();
+                            if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#brand_other').classList.remove('d-none'),
+                                document.querySelector('#model_other').classList.remove('d-none'),
+                                document.querySelector('#brand_other').focus();
                             }else{ 
-                                document.querySelector('#brand_input').classList.add('d-none'),
-                                document.querySelector('#generation_input').classList.add('d-none');}">
-                              @if(!empty($xx))
+                                document.querySelector('#brand_other').classList.add('d-none'),
+                                document.querySelector('#model_other').classList.add('d-none');}">
+                            @if(!empty($xx))
                                 @foreach($xx as $item)
                                     <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                 @endforeach
                             @else
-                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
+                                <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option> 
                             @endif
                             <br>
                       
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="brand" type="text" id="brand_other" value="{{ isset($data_cars->brand) ? $data_cars->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
 
                 </div>
@@ -39,14 +43,25 @@
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                        
                         <select name="model" id="input_car_model" class=" form-control" value="{{ isset($sell->model) ? $sell->model : ''}}" required onchange="if(this.value=='อื่นๆ'){ 
-                                document.querySelector('#generation_input').classList.remove('d-none'),
-                                document.querySelector('#generation_input').focus();
+                                document.querySelector('#model_other').classList.remove('d-none'),
+                                document.querySelector('#model_other').focus();
                             }else{ 
-                                document.querySelector('#generation_input').classList.add('d-none');}">
-                                <option value="" selected> - เลือกรุ่น / Select Model - </option>     
+                                document.querySelector('#model_other').classList.add('d-none');}">
+                            @if(!empty($xx))
+                            @foreach($xx as $item)
+                                    <option value="{{ $item->model }}" selected>{{ $item->brand }}</option>
+                                @endforeach
+                            @else
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
+                            @endif
+                               
                                 <br> 
                                 {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
                         </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('model') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="model" type="text" id="model_other" value="{{ isset($sell->model) ? $sell->model : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
+                        {!! $errors->first('model', '<p class="help-block">:message</p>') !!}
                     </div>
 
                 </div>
