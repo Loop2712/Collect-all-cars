@@ -38,6 +38,11 @@ Route::get('/terms_of_service', function () {
     return view('terms_of_service');
 });
 
+Route::get('/xxxx', function () {
+    
+    return view('xxxx');
+});
+
 Auth::routes();
 
 // ADMIN VIICHECK

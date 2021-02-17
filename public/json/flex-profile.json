@@ -235,15 +235,18 @@
             "type": "separator",
             "margin": "xxl"
           }
-        ]
+        ],
+        "action": {
+          "type": "message",
+          "label": "รถของฉัน",
+          "text": "รถของฉัน"
+        }
       }
     ],
-    "paddingAll": "0px"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": []
+    "paddingAll": "0px",
+    "borderColor": "#000000",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   }
 }
 }
