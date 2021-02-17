@@ -134,7 +134,7 @@ class NewsController extends Controller
             $requestData['cover_photo_facebook'] = 'img/facebook/'.$news_facebook.'.png';
             // endfacebook
 
-            // web
+            // WEB
             // ปรับขนาดภาพ
             $image->fit(940, 788);
 
@@ -150,30 +150,30 @@ class NewsController extends Controller
             $image->insert($bg)->save('img/news/'.$news.'.png');
 
             // หัวข้อข่าว
-            $image->text($requestData['title'], 30, 595, function($font) {
+            $image->text($requestData['title'], 30, 515, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-                $font->size(60);
+                $font->size(80);
                 $font->color('#FFFFFF');
             });
 
             // สถานที่
-            $image->text($requestData['location'], 30, 660, function($font) {
+            $image->text($requestData['location'], 30, 588, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-                $font->size(30);
+                $font->size(43);
                 $font->color('#FFFFFF');
             });
 
             // วันที่เพิ่มข่าว
-            $image->text($date_now, 780, 675, function($font) {
-                $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
-                $font->size(26);
+            $image->text("วันที่ : ".$date_now, 620, 670, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(36);
                 $font->color('#FFFFFF');
             });
 
             // reporter
-            $image->text('REPORTER : '.$requestData['name'], 15, 770, function($font) {
+            $image->text('REPORTER : '.$requestData['name'], 15, 670, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
-                $font->size(22);
+                $font->size(34);
                 $font->color('#FFFFFF');
             });
 
