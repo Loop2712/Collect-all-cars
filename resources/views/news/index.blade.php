@@ -23,8 +23,12 @@
                     <div class="col-md-6"></div>
                     <div class="col-12 col-md-6">
                         <div class="btn-group float-right " role="group" aria-label="Basic example">
-                            <button style="background-color: #e26a6c;color: #fff" type="button" class="btn btn-sm" onclick="near_news();"><i class="fas fa-map-pin"></i> &nbsp;ใกล้ฉัน</button>
+                            <button style="background-color: #e26a6c;color: #fff" type="button" class="btn btn-sm" onclick="getLocation();">
+                                <a class="btn-sm btn text-light"><i class="fas fa-map-pin"></i> ใกล้ฉัน</a>
+                            </button>
+
                             <button style="background-color: #db474a;color: #fff;" type="button" class="btn btn-sm" onclick="bangkok_news();"><i class="fas fa-city"></i> &nbsp;กรุงเทพฯ ปริมณฑล</button>
+
                             <button style="background-color: #d62e31;color: #fff" type="button" class="btn btn-sm" onclick="all_news();"><i class="far fa-newspaper"></i> &nbsp;ทั้งหมด</button>
                         </div>
                     </div>
@@ -85,23 +89,22 @@
     <hr>
 </div>
 
+<input type="hidden" id="lat" name="lat" readonly>
+<input type="hidden" id="lng" name="lng" readonly> 
+
 
 <!-- ใกล้ฉัน -->
-<div id="near_news" class="container d-none">
+<!-- <div id="near_news" class="container">
     <h4 style="padding-top: 7px;" class="text-info">ใกล้ฉัน</h4>
-    <input type="hidden" id="lat" name="lat" readonly>
-     <input type="hidden" id="lng" name="lng" readonly> 
     <br>
     <div class="row">
         <div class="col-12 col-md-4">
             <div class="card" style="width: 22rem;">
                 <img id="near_img" src="" class="card-img-top" >
                 <div class="card-body">
-                    <!-- <h5 class="card-title">Card title</h5> -->
                     <p style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;" class="card-text"><span id="near_content"></span></p>
                     <hr>
                     <p><b>REPORTER :</b> <span id="near_name"></span></p>
-                    <!-- <a href="#" class="btn btn-primary float-right">อ่านเพิ่มเติม..</a> -->
                     <a id="near_id" href="" title="อ่านเพิ่มเติม.."><button class="float-right btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> อ่านเพิ่มเติม..</button></a>
                 </div>
             </div>
@@ -109,12 +112,11 @@
         </div>
     </div>
     <hr>
-</div>
+</div> -->
 
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
-    getLocation();
 });
 
 function getLocation() {
@@ -134,26 +136,28 @@ function showPosition(position) {
 
         console.log(position.coords.latitude);
         console.log(position.coords.longitude);
+        window.location.href = "{{ url('/near_news/')}}?lat="+ lat.value +"&lng="+ lng.value ;
 
-        fetch("{{ url('/') }}/api/near_news/" + lat.value +"/"+lng.value+"/news")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
+        // fetch("{{ url('/') }}/api/near_news/" + lat.value +"/"+lng.value+"/news")
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         console.log(result);
 
-                let near_img = document.querySelector("#near_img");
-                let near_name = document.querySelector("#near_name");
-                let near_content = document.querySelector("#near_content");
-                let near_id = document.querySelector("#near_id");
+        //         let near_img = document.querySelector("#near_img");
+        //         let near_name = document.querySelector("#near_name");
+        //         let near_content = document.querySelector("#near_content");
+        //         let near_id = document.querySelector("#near_id");
 
-                for(let item of result){
-                    near_name.innerHTML = item.name
-                    near_img.src = item.cover_photo
-                    near_content.innerHTML = item.content
-                    near_id.href = "{{ url('/') }}/news/"+item.id
-                }
+        //         for(let item of result){
+        //             near_name.innerHTML = item.name
+        //             near_img.src = item.cover_photo
+        //             near_content.innerHTML = item.content
+        //             near_id.href = "{{ url('/') }}/news/"+item.id
+        //         }
                 
-            });
+        //     });
 }
+
 function all_news() {
     document.querySelector('#all_news').classList.remove('d-none');
     document.querySelector('#bangkok_news').classList.add('d-none');
@@ -164,12 +168,6 @@ function bangkok_news() {
     document.querySelector('#all_news').classList.add('d-none');
     document.querySelector('#bangkok_news').classList.remove('d-none');
     document.querySelector('#near_news').classList.add('d-none');
-}
-
-function near_news() {
-    document.querySelector('#all_news').classList.add('d-none');
-    document.querySelector('#bangkok_news').classList.add('d-none');
-    document.querySelector('#near_news').classList.remove('d-none');
 }
 </script>
 

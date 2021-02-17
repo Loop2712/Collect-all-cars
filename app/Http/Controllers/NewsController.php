@@ -189,10 +189,13 @@ class NewsController extends Controller
             $requestData['cover_photo'] = 'img/news/'.$news.'.png';
 
         }
-
+       
         News::create($requestData);
 
-        return redirect('news')->with('flash_message', 'News added!');
+        $this->share($requestData['user_id']);
+
+        return view('news.share', compact('news'));
+        // return redirect('news')->with('flash_message', 'News added!');
     }
 
     /**
@@ -268,4 +271,35 @@ class NewsController extends Controller
             return redirect('/login/line?redirectTo=news/create?openExternalBrowser=1');
         }
     }
+
+    public function near_news(Request $request)
+    {
+        $requestData = $request->all();
+
+        $lat = $requestData['lat'];
+        $lng = $requestData['lng'];
+
+        $near_news = DB::select("SELECT *,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 30 ORDER BY distance LIMIT 0 ,5000", []);
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
+
+        return view('news.near_news', compact('near_news'));
+    }
+
+    public function share($user_id)
+    {
+        // $news = News::where('user_id', $user_id)
+        //             ->groupBy('created_at', "<=", date("Y-m-d "))
+        //             ->first();
+        // echo "<pre>";
+        // print_r($news);
+        // echo "<pre>";
+        // exit();
+
+        // return view('news.share', compact('news'));
+    }
+
 }
