@@ -1,11 +1,20 @@
-<div class="form-group {{ $errors->has('motorcycles_id') ? 'has-error' : ''}}">
-    <label for="motorcycles_id" class="control-label">{{ 'Motorcycles Id' }}</label>
-    <input class="form-control" name="motorcycles_id" type="number" id="motorcycles_id" value="{{ isset($motercycle->motorcycles_id) ? $motercycle->motorcycles_id : ''}}" >
-    {!! $errors->first('motorcycles_id', '<p class="help-block">:message</p>') !!}
-</div>
 <div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
     <label for="type" class="control-label">{{ 'Type' }}</label>
-    <input class="form-control" name="type" type="text" id="type" value="{{ isset($motercycle->type) ? $motercycle->type : ''}}" >
+    <select class="form-control" name="type" id="type">
+    <!-- @foreach ($num_type as $key => $value)
+    <option value="$key"{{ (isset($key->type)&& $key->type== $Key)  ? 'selected' : ''}}> 
+        {{ $value }} 
+    </option>
+  @endforeach  -->
+  @foreach($num_type as $ty)
+                                        <option 
+                                                value="{{ $ty->type }}" 
+                                                {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
+                                        {{ $ty->type }} 
+                                        </option>
+                                    @endforeach
+    </select>
+    <!-- <input class="form-control" name="type" type="text" id="type" value="{{ isset($motercycle->type) ? $motercycle->type : ''}}" > -->
     {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
@@ -50,7 +59,7 @@
 </div>
 <div class="form-group {{ $errors->has('img') ? 'has-error' : ''}}">
     <label for="img" class="control-label">{{ 'Img' }}</label>
-    <input class="form-control" name="img" type="text" id="img" value="{{ isset($motercycle->img) ? $motercycle->img : ''}}" >
+    <input class="form-control" name="img" type="file" id="img" value="{{ isset($motercycle->img) ? $motercycle->img : ''}}" >
     {!! $errors->first('img', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
@@ -58,19 +67,12 @@
     <input class="form-control" name="location" type="text" id="location" value="{{ isset($motercycle->location) ? $motercycle->location : ''}}" >
     {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('link') ? 'has-error' : ''}}">
-    <label for="link" class="control-label">{{ 'Link' }}</label>
-    <input class="form-control" name="link" type="text" id="link" value="{{ isset($motercycle->link) ? $motercycle->link : ''}}" >
-    {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
-</div>
 <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
-    <label for="active" class="control-label">{{ 'Active' }}</label>
-    <input class="form-control" name="active" type="text" id="active" value="{{ isset($motercycle->active) ? $motercycle->active : ''}}" >
+    <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($motercycle->active) ? $motercycle->active : 'Yes'}}" >
     {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-    <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($motercycle->user_id) ? $motercycle->user_id : ''}}" >
+    <input class="d-none form-control" name="user_id" type="number" id="user_id" value="{{Auth::id()}}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 

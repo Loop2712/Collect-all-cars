@@ -55,7 +55,14 @@ class motorcyclesellController extends Controller
      */
     public function create()
     {
-        return view('motercyclesell.create');
+
+        $num_type = Motercycle::selectRaw('type')
+            ->where('type', '!=',"" )
+            ->groupBy('type')
+            ->get();
+
+        $user = Auth::user();
+        return view('motercyclesell.create', compact('num_type'));
     }
 
     /**

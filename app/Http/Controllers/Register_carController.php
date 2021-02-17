@@ -233,6 +233,7 @@ class Register_carController extends Controller
      */
     public function edit($id)
     {
+
         $register_car = Register_car::findOrFail($id);
 
         $location_array = county::selectRaw('province')

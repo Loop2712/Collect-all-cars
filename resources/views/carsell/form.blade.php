@@ -7,10 +7,10 @@
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
-                        <!-- car -->
+                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}"> 
                    
-                        <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($data_cars->brand) ? $data_cars->brand : ''}}"  required onchange="showCar_model();
+                   
+                         <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($data_cars->brand) ? $data_cars->brand : ''}}"  required onchange="showCar_model();
                             if(this.value==''){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -18,8 +18,15 @@
                             }else{ 
                                 document.querySelector('#brand_input').classList.add('d-none'),
                                 document.querySelector('#generation_input').classList.add('d-none');}">
-                            <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
+                              @if(!empty($xx))
+                                @foreach($xx as $item)
+                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
+                                @endforeach
+                            @else
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
+                            @endif
                             <br>
+                      
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
                     </div>
@@ -30,7 +37,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
-                        <!-- car -->
+                       
                         <select name="model" id="input_car_model" class=" form-control" value="{{ isset($sell->model) ? $sell->model : ''}}" required onchange="if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').focus();
@@ -43,20 +50,70 @@
                     </div>
 
                 </div>
-                <div class="col-12 col-md-2">ระบบเกียร์</div>
+                <!-- <div class="col-12 col-md-2">
+                    <label  class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                        <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($data_cars->brand) ? $data_cars->brand : ''}}" required onchange="showCar_model();
+                            if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#brand').classList.remove('d-none'),
+                                document.querySelector('#model').classList.remove('d-none'),
+                                document.querySelector('#brand').focus();
+                            }else{ 
+                                document.querySelector('#brand').classList.add('d-none'),
+                                document.querySelector('#model').classList.add('d-none');}">
+                             @if(!empty($xx))
+                                @foreach($xx as $item)
+                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
+                                @endforeach
+                            @else
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
+                            @endif
+                            <br>
+                            {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
+                        </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="brand" type="text" id="brand" value="{{ isset($data_cars->brand) ? $data_cars->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label for="model" class="control-label">{{ 'รุ่นรถ / Model' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
+                        <select name="generation" id="input_car_model" class=" form-control" value="{{ isset($sell->model) ? $sell->model : ''}}" required onchange="
+                        if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#model').classList.remove('d-none'),
+                                document.querySelector('#model').focus();
+                            }else{ 
+                                document.querySelector('#model').classList.add('d-none');}">
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option>     
+                                <br> 
+                                {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
+                        </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('model') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="model" type="text" id="model" value="{{ isset($sell->model) ? $sell->model : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
+                        {!! $errors->first('model', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div> -->
+                <div class="col-12 col-md-2">
+                <label  class="control-label">{{ 'ระบบเกียร์ / Gear ' }}<br><br></label>
+                </div>
                 <div class="col-12 col-md-4">
                     <select name="gear" id="gear" class="form-control" value="{{ isset($sell->gear) ? $sell->gear : ''}}" >
-                            <option value="" data-display="Gear">เกียร์ทั้งหมด</option>
-                        @foreach($gear_array as $ge)
-                            <option 
-                                value="{{ $ge->gear }}" 
-                                    {{ request('gear') == $ge->gear ? 'selected' : ''   }} >
-                                {{ $ge->gear }} 
-                            </option>
-                                @endforeach 
+                            <option value="" data-display="">เกียร์ทั้งหมด</option>
+                        @foreach ($gear_array as $optionKey)
+                            <option ption value="{{ $optionKey->gear }}"  {{ (isset($sell->gear) && $sell->gear == $optionKey) ? 'selected' : ''}}>{{ $optionKey->gear}}</option>
+                        @endforeach
+                        {!! $errors->first('gear', '<p class="help-block">:message</p>') !!} 
                     </select>
-                </div><br><br><br>
-                <div class="col-12 col-md-2">น้ำมันที่ใช้</div>
+                </div>
+                <div class="col-12 col-md-2">
+                <label  class="control-label">{{ 'น้ำมันที่ใช้ / Fuel Type ' }}<br><br></label></div>
                 <div class="col-12 col-md-4">
                     <select class="form-control" name="fuel" id="fuel" value="{{ isset($sell->fuel) ? $sell->fuel : ''}}" >
                             <option value="" data-display="เชื้อเพลิง">เชื้อเพลิงทั้งหมด</option>
@@ -64,9 +121,11 @@
                             <option  ption value="{{ $optionKey }}"  {{ (isset($sell->fuel) && $sell->fuel == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
                     </select>
-                </div><br><br>
+                </div>
 
-                <div class="col-12 col-md-2">สี</div>
+                <div class="col-12 col-md-2">
+                <label  class="control-label">{{ 'สี / Colour ' }}<br><br></label>
+                </div>
                 <div class="col-12 col-md-4">
                 <select class="form-control"  name="color" id="color" value="{{ isset($sell->color) ? $sell->color : ''}}" >
                                     <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
@@ -78,8 +137,9 @@
                                         </option>
                                     @endforeach 
                                 </select>
-                </div><br><br><br>
-                <div class="col-12 col-md-2">สถานที่</div>
+                </div>
+                <div class="col-12 col-md-2">
+                <label  class="control-label">{{ 'สถานที่ / Location ' }}<br><br></label></div>
                 <div class="col-12 col-md-4">
                 <select class="form-control"  name="location" id="location" value="{{ isset($sell->province) ? $sell->province : ''}}" >
                                     <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
@@ -93,21 +153,26 @@
                                 </select>
                 </div>
 
-                <div class="col-12 col-md-2">จำนวนที่นั่ง</div>
+                <div class="col-12 col-md-2">
+                <label  class="control-label">{{ 'จำนวนที่นั่ง / Seat Capacity ' }}<br><br></label></div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('seats') ? 'has-error' : ''}}">
                         <input class="form-control" name="seats" type="number" id="seats" value="{{ isset($sell->seats) ? $sell->seats : ''}}" >
                         {!! $errors->first('seats', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                <div class="col-12 col-md-2">ระยะทาง</div>
+                <div class="col-12 col-md-2">
+                <label  class="control-label">{{ 'เลขไมล์(กม.) / Mileage ' }}<br><br></label></div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('distance') ? 'has-error' : ''}}">
                         <input class="form-control" name="distance" type="number" id="distance" value="{{ isset($sell->distance) ? $sell->distance : ''}} " >
                         {!! $errors->first('distance', '<p class="help-block">:message</p>') !!}
                     </div>
+                </div>    
+                <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
+                    <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($data_cars->active) ? $data_cars->active : 'Yes'}}" >
+                    {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
                 </div>
-                <br>
 
         </div> 
     </div>
@@ -120,8 +185,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         console.log("START");
-        showCar_brand();
-        showMotor_brand();   
+        showCar_brand(); 
+        
     });
     function showCar_brand(){
         //PARAMETERS
@@ -130,8 +195,8 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                let input_car_brand = document.querySelector("#input_car_brand");
-                    input_car_brand.innerHTML = "";
+                // let input_car_brand = document.querySelector("#input_car_brand");
+                    // input_car_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -147,7 +212,7 @@
                 //QUERY model
                 showCar_model();
             });
-            return input_car_brand.value;
+            // return input_car_brand.value;
     }
     function showCar_model(){
         let input_car_brand = document.querySelector("#input_car_brand");
@@ -168,54 +233,6 @@
                     option.text = "อื่นๆ";
                     option.value = "อื่นๆ";
                     input_car_model.add(option);  
-            });
-    }
-
-    // motorcycle
-    function showMotor_brand(){
-        //PARAMETERS
-        fetch("{{ url('/') }}/api/motor_brand")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                //UPDATE SELECT OPTION
-                let input_motor_brand = document.querySelector("#input_motor_brand");
-                    input_motor_brand.innerHTML = "";
-
-                for(let item of result){
-                    let option = document.createElement("option");
-                    option.text = item.brand;
-                    input_motor_brand.add(option);
-                }
-                let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
-                    input_motor_brand.add(option); 
-
-                //QUERY model
-                showMotor_model();
-            });
-            return input_motor_brand.value;
-    }
-    function showMotor_model(){
-        let input_motor_brand = document.querySelector("#input_motor_brand");
-        fetch("{{ url('/') }}/api/motor_brand/"+input_motor_brand.value+"/motor_model")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                // //UPDATE SELECT OPTION
-                let input_motor_model = document.querySelector("#input_motor_model");
-                    input_motor_model.innerHTML = "";
-                for(let item of result){
-                    let option = document.createElement("option");
-                    option.text = item.model;
-                    option.value = item.model;
-                    input_motor_model.add(option);                
-                } 
-                let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
-                    input_motor_model.add(option);  
             });
     }
 </script>
