@@ -239,6 +239,12 @@ class Register_carController extends Controller
             ->groupBy('province')
             ->get();
 
+        $xx = Register_car::where('id',$id )->get();
+        // echo "<pre>";
+        // print_r($xx);
+        // echo "<pre>";
+        // exit();
+
         $car_brand = CarModel::selectRaw('brand,count(brand) as count')
             ->orderByRaw('count DESC')
             ->where('brand', '!=',"" )
@@ -258,7 +264,7 @@ class Register_carController extends Controller
             ->where('car_type', 'motorcycle')
             ->get();
 
-        return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle'));
+        return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx'));
     }
     public function edit_act($id)
     {

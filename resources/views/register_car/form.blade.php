@@ -61,7 +61,13 @@
                             }else{ 
                                 document.querySelector('#brand_input').classList.add('d-none'),
                                 document.querySelector('#generation_input').classList.add('d-none');}">
-                            <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
+                            @if(!empty($xx))
+                                @foreach($xx as $item)
+                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
+                                @endforeach
+                            @else
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
+                            @endif
                             <br>
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
@@ -258,8 +264,8 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                let input_car_brand = document.querySelector("#input_car_brand");
-                    input_car_brand.innerHTML = "";
+                // let input_car_brand = document.querySelector("#input_car_brand");
+                    // input_car_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
