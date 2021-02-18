@@ -149,19 +149,48 @@ class NewsController extends Controller
             $bg = Image::make(public_path('img/bg car/news-01.png'));
             $image->insert($bg)->save('img/news/'.$news.'.png');
 
+            // นับตัวอักษร
+            function utf8_strlen($s) {
+                $c = strlen($s); $l = 0;
+                    for ($i = 0; $i < $c; ++$i)
+                        if ((ord($s[$i]) & 0xC0) != 0x80) ++$l;
+                    return $l;
+                }
+
+            $cuont_str =  utf8_strlen($requestData['title']);
+            // echo $cuont_str;
+            // exit(); 
+
             // หัวข้อข่าว
-            $image->text($requestData['title'], 30, 515, function($font) {
-                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-                $font->size(80);
-                $font->color('#FFFFFF');
-            });
+            if ($cuont_str >= 23 && $cuont_str <= 30) {
+                $image->text($requestData['title'], 30, 515, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                    $font->size(60);
+                    $font->color('#FFFFFF');
+                });
+            }elseif($cuont_str < 23 ){
+                $image->text($requestData['title'], 30, 515, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                    $font->size(80);
+                    $font->color('#FFFFFF');
+                });
+            }
 
             // สถานที่
-            $image->text($requestData['location'], 30, 588, function($font) {
-                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-                $font->size(43);
-                $font->color('#FFFFFF');
-            });
+            $cuont_lo =  utf8_strlen($requestData['location']);
+            if ($cuont_lo >= 35 ) {
+                $image->text($requestData['location'], 30, 588, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Regular.ttf'));
+                    $font->size(37);
+                    $font->color('#FFFFFF');
+                });
+            }elseif($cuont_str < 34 ){
+                $image->text($requestData['location'], 30, 588, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Regular.ttf'));
+                    $font->size(43);
+                    $font->color('#FFFFFF');
+                });
+            }
 
             // วันที่เพิ่มข่าว
             $image->text("วันที่ : ".$date_now, 620, 670, function($font) {

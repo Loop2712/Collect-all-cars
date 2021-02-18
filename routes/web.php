@@ -38,11 +38,6 @@ Route::get('/terms_of_service', function () {
     return view('terms_of_service');
 });
 
-Route::get('/xxxx', function () {
-    
-    return view('xxxx');
-});
-
 Auth::routes();
 
 // ADMIN VIICHECK
@@ -110,7 +105,16 @@ Route::get('/thx_guest', function () {
     return view('guest/thx_guest');
 });
 
+Route::get('/thx', function () {
+    return view('not_comfor/thx');
+});
+
 Route::resource('news', 'NewsController')->except(['create']);
 Route::get('/reporter', 'NewsController@reporter');
 Route::get('/near_news', 'NewsController@near_news');
 // Route::get('share', 'NewsController@share');
+
+Route::get('/xxxx', function () {
+    
+    return view('xxxx');
+});

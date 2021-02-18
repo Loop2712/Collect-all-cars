@@ -3,7 +3,7 @@
         <div class="col-12 col-md-6">
             <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
                 <label for="title" class="control-label">{{ 'หัวข้อข่าว / Title' }}</label><span style="color: #FF0033;"> *</span>
-                <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" required>
+                <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" required onchange="str_title();">
                 {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
@@ -100,4 +100,19 @@ function showPosition(position) {
                 
             });
 }
+
+function str_title() {
+    var title = document.querySelector("#title");
+        console.log(title.value);
+
+    let str = title.value
+        console.log(str.length);
+        if (str.length > 30 ) {
+            alert("ขออภัย คุณใช้ตัวอักษรเกินกำหนด");
+            title.value = "";
+            document.querySelector('#title').focus();
+        }
+
+}
+
 </script>
