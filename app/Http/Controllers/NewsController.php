@@ -156,21 +156,21 @@ class NewsController extends Controller
                         if ((ord($s[$i]) & 0xC0) != 0x80) ++$l;
                     return $l;
                 }
-
-            $cuont_str =  utf8_strlen($requestData['title']);
+            
             // echo $cuont_str;
             // exit(); 
 
             // หัวข้อข่าว
+            $cuont_str =  utf8_strlen($requestData['title']);
             if ($cuont_str >= 23 && $cuont_str <= 30) {
                 $image->text($requestData['title'], 30, 515, function($font) {
-                    $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                    $font->file(public_path('fonts/Prompt/Prompt-SemiBoldItalic.ttf'));
                     $font->size(60);
                     $font->color('#FFFFFF');
                 });
             }elseif($cuont_str < 23 ){
                 $image->text($requestData['title'], 30, 515, function($font) {
-                    $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                    $font->file(public_path('fonts/Prompt/Prompt-SemiBoldItalic.ttf'));
                     $font->size(80);
                     $font->color('#FFFFFF');
                 });
@@ -200,7 +200,7 @@ class NewsController extends Controller
             });
 
             // reporter
-            $image->text('REPORTER : '.$requestData['name'], 15, 670, function($font) {
+            $image->text('REPORTER : '.$requestData['name'], 30, 670, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
                 $font->size(34);
                 $font->color('#FFFFFF');
