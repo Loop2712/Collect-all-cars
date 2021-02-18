@@ -132,8 +132,12 @@ class LoginController extends Controller
         $request->session()->forget('redirectTo');
         // echo $value;
         // exit();
-        //return redirect($value); 
-        return redirect()->intended($value);
+        //return redirect($value);
+        if (!$value) {
+            return redirect()->intended();
+        }else{
+            return redirect()->intended($value);
+        }
 
     }
 
