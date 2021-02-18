@@ -60,7 +60,7 @@
                 "action": {
                   "type": "uri",
                   "label": "แก้ไขโปรไฟล์",
-                  "uri": "https://market.viicheck.com/profile/xxxxx/edit"
+                  "uri": "https://market.viicheck.com/profile/xxxxx/edit?openExternalBrowser=1"
                 }
               },
               {
