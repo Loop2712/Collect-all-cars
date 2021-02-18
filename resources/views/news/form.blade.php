@@ -23,7 +23,7 @@
             </div>
             <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                 <label for="photo" class="control-label">{{ 'รูปภาพ / Photo' }}</label><span style="color: #FF0033;"> *</span>
-                <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($news->photo) ? $news->photo : ''}}" required>
+                <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($news->photo) ? $news->photo : ''}}" required accept="image/*" multiple="multiple">
                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -52,6 +52,58 @@
             <input type="radio" name="severe" value="{{ isset($news->severe) ? $news->severe : 'Yes'}}" required>&nbsp;&nbsp; ใช่ &nbsp;&nbsp;&nbsp;
 
             <input type="radio" name="severe" value="{{ isset($news->severe) ? $news->severe : 'No'}}" required>&nbsp;&nbsp; ไม่ใช่
+        </div>
+        <div class="col-12 col-md-6">
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $("#photo").change(function () {
+                        var dvPreview = $("#dvPreview");
+                        dvPreview.html("");
+                        $($(this)[0].files).each(function () {
+                            var file = $(this);
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var divImagePreview = $("<div/>");
+                                divImagePreview.attr("style", "display: flex; align-items: center;");
+
+                                var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
+                                divImagePreview.append(hiddenRotation);
+
+                                var btnLeft = $("<button class='left'>Left</button>");
+                                divImagePreview.append(btnLeft);
+
+                                var img = $("<img />");
+                                img.attr("style", "height: 100px; width: 100px;");
+                                img.attr("class", "preview");
+                                img.attr("src", e.target.result);
+                                divImagePreview.append(img);
+
+                                var btnRight = $("<button class='right'>Right</button>");
+                                divImagePreview.append(btnRight);
+
+                                dvPreview.append(divImagePreview);
+                                dvPreview.append("<br/>");
+                            }
+                            reader.readAsDataURL(file[0]);
+                        });
+                    });
+                    $('body').on('click', '.left,.right', function () {
+                        var hfRotation = $(this).closest('div').find('[id*=hfRotation]');
+                        var img = $(this).closest('div').find('.preview');
+                        var rotation = parseInt($(hfRotation).val());
+                        if ($(this).attr('class') == "left") {
+                            rotation = (rotation + 90) % 360;
+                        } else if ($(this).attr('class') == "right") {
+                            rotation = (rotation - 90) % 360;
+                        }
+                        $(img).css({ 'transform': 'rotate(' + rotation + 'deg)' });
+                        $(hfRotation).val(rotation);
+                    });
+                });
+            </script>
+            <!-- <input type="file" name="file" id="fuUpload" accept="image/*" multiple="multiple" /><hr /> -->
+            <div id="dvPreview"></div>
         </div>
     </div>
 </div>

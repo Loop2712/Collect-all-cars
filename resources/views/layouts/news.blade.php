@@ -61,7 +61,7 @@
             <span class="fa fa-bars"></span>
         </div>
     </header>
-
+    
 
     @yield('content')
 
