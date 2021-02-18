@@ -133,11 +133,7 @@ class LoginController extends Controller
         // echo $value;
         // exit();
         //return redirect($value);
-        if (!$value) {
-            return redirect()->intended();
-        }else{
-            return redirect()->intended($value);
-        }
+        return redirect()->intended($value);
 
     }
 
@@ -169,7 +165,6 @@ class LoginController extends Controller
             if (empty($data->avatar)) {
                 $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
             }
-
             $user->save();
         }
         //LOGIN
