@@ -140,7 +140,7 @@ class LoginController extends Controller
     protected function _registerOrLoginUser($data, $type)
     {
         //GET USER 
-        $user = User::where('name', '=', $data->name)->first();
+        $user = User::where('username', '=', $data->name)->first();
         // print_r($data) ;
         // exit();
 
@@ -150,9 +150,9 @@ class LoginController extends Controller
             $user->name = $data->name;
             $user->provider_id = $data->id;
             $user->type = $type;
+            $user->username = $data->name;
 
             if (!empty($data->email)) {
-                $user->username = $data->email;
                 $user->email = $data->email;
             }
             if (!empty($data->avatar)) {
@@ -160,7 +160,6 @@ class LoginController extends Controller
             }
 
             if (empty($data->email)) {
-                $user->username = $data->name;
                 $user->email = "กรุณาเพิ่มอีเมล";
             }
             if (empty($data->avatar)) {
