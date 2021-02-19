@@ -92,9 +92,9 @@
                         var hfRotation = $(this).closest('div').find('[id*=hfRotation]');
                         var img = $(this).closest('div').find('.preview');
                         var rotation = parseInt($(hfRotation).val());
-                        if ($(this).attr('class') == "left") {
+                        if ($(this).attr('class') == "right") {
                             rotation = (rotation + 90) % 360;
-                        } else if ($(this).attr('class') == "right") {
+                        } else if ($(this).attr('class') == "left") {
                             rotation = (rotation - 90) % 360;
                         }
                         $(img).css({ 'transform': 'rotate(' + rotation + 'deg)' });
