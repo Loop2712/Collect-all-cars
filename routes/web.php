@@ -112,5 +112,5 @@ Route::get('/thx', function () {
 Route::resource('news', 'NewsController')->except(['create']);
 Route::get('/reporter', 'NewsController@reporter');
 Route::get('/near_news', 'NewsController@near_news');
-// Route::get('share', 'NewsController@share');
+Route::get('/my_news/{user_id}', 'NewsController@my_news');
 

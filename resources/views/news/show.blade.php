@@ -42,8 +42,7 @@
                             <br><br>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-9"></div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-3 col-md-3">
                                 <div id="fb-root"></div>
                                 <script>(function(d, s, id) {
                                     var js, fjs = d.getElementsByTagName(s)[0];
@@ -53,9 +52,34 @@
                                     fjs.parentNode.insertBefore(js, fjs);
                                 }(document, 'script', 'facebook-jssdk'));</script>
 
-                                <div class="fb-share-button" data-href="{{ url()->full() }}" data-layout="button_count">
-                                </div>
-                                <br><br>
+                                <div class="fb-share-button" data-href="{{ url()->full() }}" data-layout="button_count"></div>
+                            </div>
+                            <div class="col-9 col-md-9">
+                                @if(Auth::check())
+                                    <div style="float: right;" class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="{{ url('/news') }}">
+                                            <button style="background-color: #e35459" type="button" class="btn btn-sm text-light">ข่าวทั้งหมด</button>
+                                        </a>
+                                        <a href="{{ url('/') }}/my_news/{{Auth::user()->id}}">
+                                            <button style="background-color: #d72329" type="button" class="btn btn-sm text-light">ข่าวของฉัน</button>
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                            <br><br>
+                            <div class="col-10 "></div>
+                            <div class="col-2 ">
+                                @if(Auth::check())
+                                    @if(Auth::user()->id == $news->user_id )
+                                        <div style="float: right;">
+                                            <form  method="POST" action="{{ url('/news' . '/' . $news->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button  type="submit" class="btn btn-outline-secondary btn-sm" title="Delete News" onclick="return confirm(&quot; คุณต้องการที่จะลบใช่หรือไม่ ?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> ลบ</button>
+                                            </form>
+                                        </div>
+                                    @endif 
+                                @endif
                             </div>
                         </div>
                     </div>

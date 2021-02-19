@@ -57,7 +57,8 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $date_now = date("d-m-Y");
+
         $requestData = $request->all();
         // $requestData['rotation'] = str_replace("-", "+", $requestData['rotation']);
         // $requestData['rotation'] = str_replace("*", "-", $requestData['rotation']);
@@ -110,8 +111,6 @@ class NewsController extends Controller
                 $font->size(35);
                 $font->color('#FFFFFF');
             });
-
-            $date_now = date("d-m-Y");
 
             // วันที่เพิ่มข่าว
             $image_facebook->text($date_now, 1025, 500, function($font) {
@@ -245,12 +244,19 @@ class NewsController extends Controller
        
         News::create($requestData);
 
-        $this->share($requestData['user_id']);
+        // $this->share($requestData['user_id']);
+        $user_id = $requestData['user_id'];
+        $date = date("Y-m-d");
 
-        // return view('news.share', compact('news'));
-        return redirect('news')->with('flash_message', 'Detail added!');
+        $news_share = News::where('user_id', $user_id)
+                    ->whereDate('created_at', $date)
+                    ->orderBy('created_at', 'desc')
+                    ->first();
+
+        return view('news.share', compact('news_share'));
 
         // return redirect('news')->with('flash_message', 'News added!');
+
     }
 
     /**
@@ -344,17 +350,16 @@ class NewsController extends Controller
         return view('news.near_news', compact('near_news'));
     }
 
-    public function share($user_id)
+    public function my_news($user_id)
     {
-        // $news = News::where('user_id', $user_id)
-        //             ->groupBy('created_at', "<=", date("Y-m-d "))
-        //             ->first();
-        // echo "<pre>";
-        // print_r($news);
-        // echo "<pre>";
-        // exit();
+        $my_news = News::where('user_id', $user_id)->get();
 
-        // return view('news.share', compact('news'));
+        // echo "<pre>";
+        // print_r($my_news);
+        // echo "<pre>";
+
+        return view('news.my_news', compact('my_news'));
+
     }
 
 }
