@@ -70,16 +70,16 @@
                                 var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
                                 divImagePreview.append(hiddenRotation);
 
-                                var btnLeft = $("<p class='left'><i class='fas fa-undo'></i></p>");
+                                var btnLeft = $("<p style='z-index: 2' class='left'><i class='btn btn-danger btn-sm fas fa-undo'></i></p><span>&nbsp;&nbsp;</span>");
                                 divImagePreview.append(btnLeft);
 
                                 var img = $("<img />");
-                                img.attr("style", "height: 70%; width: 70%;");
+                                img.attr("style", "height: 65%; width: 65%; z-index: 0;");
                                 img.attr("class", "preview");
                                 img.attr("src", e.target.result);
                                 divImagePreview.append(img);
 
-                                var btnRight = $("<p class='right'><i class=' fas fa-redo'></i></p>");
+                                var btnRight = $("<span>&nbsp;&nbsp;</span><p style='z-index: 2' class='right'><i class='btn btn-danger btn-sm fas fa-redo'></i></p>");
                                 divImagePreview.append(btnRight);
 
                                 dvPreview.append(divImagePreview);
@@ -99,6 +99,7 @@
                         }
                         $(img).css({ 'transform': 'rotate(' + rotation + 'deg)' });
                         $(hfRotation).val(rotation);
+
                         let rotation2 = document.querySelector("#rotation");
                         rotation2.value = rotation ;
                     });
