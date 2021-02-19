@@ -182,14 +182,22 @@ class NewsController extends Controller
 
             // สถานที่
             $cuont_lo =  utf8_strlen($requestData['location']);
-            if ($cuont_lo >= 35 ) {
+            if ($cuont_lo >= 35 && $cuont_lo < 44) {
                 $image->text($requestData['location'], 30, 588, function($font) {
                     $font->file(public_path('fonts/Prompt/Prompt-Regular.ttf'));
                     $font->size(37);
                     $font->color('#FFFFFF');
                 });
-            }elseif($cuont_str < 34 ){
+            }elseif($cuont_lo < 34 ){
                 $image->text($requestData['location'], 30, 588, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Regular.ttf'));
+                    $font->size(43);
+                    $font->color('#FFFFFF');
+                });
+            }elseif($cuont_lo >= 45  ){
+                $location = $requestData['location'];
+                $split_location = explode(" ", $location);
+                $image->text($split_location[1]." ".$split_location[2], 30, 588, function($font) {
                     $font->file(public_path('fonts/Prompt/Prompt-Regular.ttf'));
                     $font->size(43);
                     $font->color('#FFFFFF');
@@ -204,11 +212,22 @@ class NewsController extends Controller
             });
 
             // reporter
-            $image->text('REPORTER : '.$requestData['name'], 30, 670, function($font) {
-                $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
-                $font->size(34);
-                $font->color('#FFFFFF');
-            });
+            $cuont_reporter =  utf8_strlen($requestData['name']);
+            $name = $requestData['name'];
+            if ($cuont_reporter >= 16 ) {
+                $split = explode(" ", $name);
+                $image->text('REPORTER : '.$split[0], 30, 670, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
+                    $font->size(34);
+                    $font->color('#FFFFFF');
+                });
+            }elseif($cuont_reporter < 15 ){
+                $image->text('REPORTER : '.$name, 30, 670, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Italic.ttf'));
+                    $font->size(34);
+                    $font->color('#FFFFFF');
+                });
+            }
 
             $size = $image->filesize();  
 
