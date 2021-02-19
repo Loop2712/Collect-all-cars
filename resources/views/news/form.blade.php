@@ -14,9 +14,9 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
-                <label for="location" class="control-label">{{ 'สถานที่ / Location' }}</label><span style="color: #FF0033;"> *</span>&nbsp;&nbsp;&nbsp;<!-- <span class="btn btn-outline-danger btn-sm" onclick="getLocation();"><i class="fas fa-map-marker-alt"></i> ตำแหน่งของฉัน</span> -->
+                <label for="location" class="control-label">{{ 'สถานที่ / Location' }}</label><span style="color: #FF0033;"> *</span>&nbsp;&nbsp;&nbsp;<span class="btn btn-outline-danger btn-sm" onclick="getLocation();"><i class="fas fa-map-marker-alt"></i> ตำแหน่งของฉัน</span>
                 <!-- <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}"  placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required> -->
-                <select name="location" id="location" class="form-control" required onclick="getLocation();">
+                <select name="location" id="location" class="form-control" required>
                         <option value="" selected > - กรุณาเลือกตำแหน่งที่ตั้ง - </option>
                 </select>
                 {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
@@ -54,7 +54,7 @@
             <input type="radio" name="severe" value="{{ isset($news->severe) ? $news->severe : 'No'}}" required>&nbsp;&nbsp; ไม่ใช่
         </div>
         <div class="col-12 col-md-6">
-            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(function () {
                     $("#photo").change(function () {
@@ -104,7 +104,7 @@
                         rotation2.value = rotation ;
                     });
                 });
-            </script>
+            </script> -->
             <input class="form-control" name="rotation" type="hidden" id="rotation" value="{{ isset($news->rotation) ? $news->rotation : Auth::user()->id}}" readonly>
                 {!! $errors->first('rotation', '<p class="help-block">:message</p>') !!}
             <br><br>
