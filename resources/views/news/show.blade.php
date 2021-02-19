@@ -58,17 +58,22 @@
                                 @if(Auth::check())
                                     <div style="float: right;" class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ url('/news') }}">
-                                            <button style="background-color: #e35459" type="button" class="btn btn-sm text-light">ข่าวทั้งหมด</button>
+                                            <button style="background-color: #e35459" type="button" class="btn btn-sm text-light"><i class="far fa-newspaper"></i> ข่าวทั้งหมด</button>
                                         </a>
                                         <a href="{{ url('/') }}/my_news/{{Auth::user()->id}}">
-                                            <button style="background-color: #d72329" type="button" class="btn btn-sm text-light">ข่าวของฉัน</button>
+                                            <button style="background-color: #d72329" type="button" class="btn btn-sm text-light"><i class="fas fa-user-tie"></i> ข่าวของฉัน</button>
                                         </a>
                                     </div>
                                 @endif
                             </div>
                             <br><br>
-                            <div class="col-10 "></div>
-                            <div class="col-2 ">
+                            <div class="col-8 "></div>
+                            <div class="col-4 ">
+                                <a style="float: right;" href="#" class="btn btn-sm btn-warning text-light"><i class="fas fa-ban"></i> Report</a>
+                            </div>
+                            <br><br>
+                            <div class="col-9 "></div>
+                            <div class="col-3 ">
                                 @if(Auth::check())
                                     @if(Auth::user()->id == $news->user_id )
                                         <div style="float: right;">

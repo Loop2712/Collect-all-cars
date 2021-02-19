@@ -58,10 +58,10 @@
                                 @if(Auth::check())
                                     <div style="float: right;" class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ url('/news') }}">
-                                            <button style="background-color: #e35459" type="button" class="btn btn-sm text-light">ข่าวทั้งหมด</button>
+                                            <button style="background-color: #e35459" type="button" class="btn btn-sm text-light"><i class="far fa-newspaper"></i> ข่าวทั้งหมด</button>
                                         </a>
                                         <a href="{{ url('/') }}/my_news/{{Auth::user()->id}}">
-                                            <button style="background-color: #d72329" type="button" class="btn btn-sm text-light">ข่าวของฉัน</button>
+                                            <button style="background-color: #d72329" type="button" class="btn btn-sm text-light"><i class="fas fa-user-tie"></i> ข่าวของฉัน</button>
                                         </a>
                                     </div>
                                 @endif
