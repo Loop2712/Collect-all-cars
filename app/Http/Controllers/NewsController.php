@@ -59,8 +59,8 @@ class NewsController extends Controller
     {
         
         $requestData = $request->all();
-        $requestData['rotation'] = str_replace("-", "+", $requestData['rotation']);
-        $requestData['rotation'] = str_replace("*", "-", $requestData['rotation']);
+        // $requestData['rotation'] = str_replace("-", "+", $requestData['rotation']);
+        // $requestData['rotation'] = str_replace("*", "-", $requestData['rotation']);
 
         $validatedData = $request->validate([
             'photo' => 'image'
@@ -72,8 +72,9 @@ class NewsController extends Controller
             // เรียกรูปภาพใส่ $image
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
             $image_facebook = Image::make(storage_path("app/public")."/".$requestData['photo']);
-            $image->rotate($requestData['rotation']);
-            $image_facebook->rotate($requestData['rotation']);
+            
+            // $image->rotate($requestData['rotation']);
+            // $image_facebook->rotate($requestData['rotation']);
 
             //  เช็คเนื้อหาที่รุนแรง
             if ($requestData['severe'] == 'Yes') {

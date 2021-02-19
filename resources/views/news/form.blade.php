@@ -53,7 +53,7 @@
 
             <input type="radio" name="severe" value="{{ isset($news->severe) ? $news->severe : 'No'}}" required>&nbsp;&nbsp; ไม่ใช่
         </div>
-        <div class="col-12 col-md-6">
+        <!-- <div class="col-12 col-md-6">
             <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(function () {
@@ -113,9 +113,8 @@
             <input class="form-control" name="rotation" type="hidden" id="rotation" value="{{ isset($news->rotation) ? $news->rotation : Auth::user()->id}}" readonly>
                 {!! $errors->first('rotation', '<p class="help-block">:message</p>') !!}
             <br><br>
-            <!-- <input type="file" name="file" id="fuUpload" accept="image/*" multiple="multiple" /><hr /> -->
             <div id="dvPreview"></div>
-        </div>
+        </div> -->
     </div>
 </div>
 <br>
