@@ -70,7 +70,7 @@
                                 var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
                                 divImagePreview.append(hiddenRotation);
 
-                                var btnLeft = $("<p style='z-index: 2' class='right'><i class='btn btn-danger btn-sm fas fa-undo'></i></p><span>&nbsp;&nbsp;</span>");
+                                var btnLeft = $("<p style='z-index: 2' class='left'><i class='btn btn-danger btn-sm fas fa-undo'></i></p><span>&nbsp;&nbsp;</span>");
                                 divImagePreview.append(btnLeft);
 
                                 var img = $("<img />");
@@ -79,7 +79,7 @@
                                 img.attr("src", e.target.result);
                                 divImagePreview.append(img);
 
-                                var btnRight = $("<span>&nbsp;&nbsp;</span><p style='z-index: 2' class='left'><i class='btn btn-danger btn-sm fas fa-redo'></i></p>");
+                                var btnRight = $("<span>&nbsp;&nbsp;</span><p style='z-index: 2' class='right'><i class='btn btn-danger btn-sm fas fa-redo'></i></p>");
                                 divImagePreview.append(btnRight);
 
                                 dvPreview.append(divImagePreview);
@@ -92,20 +92,25 @@
                         var hfRotation = $(this).closest('div').find('[id*=hfRotation]');
                         var img = $(this).closest('div').find('.preview');
                         var rotation = parseInt($(hfRotation).val());
-                        if ($(this).attr('class') == "right") {
-                            rotation = (rotation + 90) % 360;
-                        } else if ($(this).attr('class') == "left") {
+
+                        if ($(this).attr('class') == "left") {
                             rotation = (rotation - 90) % 360;
+                            let rotation2 = document.querySelector("#rotation");
+                            rotation2.value = rotation ;
+                        } else if ($(this).attr('class') == "right") {
+                            rotation = (rotation + 90) % 360;
+                            let rotation2 = document.querySelector("#rotation");
+                            rotation2.value = '*'+rotation ;
                         }
                         $(img).css({ 'transform': 'rotate(' + rotation + 'deg)' });
                         $(hfRotation).val(rotation);
 
-                        let rotation2 = document.querySelector("#rotation");
-                        rotation2.value = rotation ;
+                        // let rotation2 = document.querySelector("#rotation");
+                        // rotation2.value = rotation ;
                     });
                 });
             </script>
-            <input class="form-control" name="rotation" type="hidden" id="rotation" value="{{ isset($news->rotation) ? $news->rotation : Auth::user()->id}}" readonly>
+            <input class="form-control" name="rotation" type="text" id="rotation" value="{{ isset($news->rotation) ? $news->rotation : Auth::user()->id}}" readonly>
                 {!! $errors->first('rotation', '<p class="help-block">:message</p>') !!}
             <br><br>
             <!-- <input type="file" name="file" id="fuUpload" accept="image/*" multiple="multiple" /><hr /> -->
