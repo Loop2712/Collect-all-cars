@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
-                <label for="location" class="control-label">{{ 'สถานที่ / Location' }}</label><span style="color: #FF0033;"> *</span>&nbsp;&nbsp;&nbsp;<span class="btn btn-outline-danger btn-sm" onclick="getLocation();"><i class="fas fa-map-marker-alt"></i> ตำแหน่งของฉัน</span>
+                <label for="location" class="control-label">{{ 'สถานที่ / Location' }}</label><span style="color: #FF0033;"> *</span>&nbsp;&nbsp;&nbsp;<p class="btn btn-outline-danger btn-sm" onclick="getLocation();"><i class="fas fa-map-marker-alt"></i> ตำแหน่งของฉัน</p>
                 <!-- <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}"  placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required> -->
                 <select name="location" id="location" class="form-control" required>
                         <option value="" selected > - กรุณาเลือกตำแหน่งที่ตั้ง - </option>
