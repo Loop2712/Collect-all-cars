@@ -45,43 +45,69 @@
             <li class="nav-item">
               <a class="nav-link active" href="{{ url('/dashboard') }}">
                 <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">Dashboard</span>
+                <span class="nav-link-text"><b>ภาพรวมของระบบ</b></span>
+              </a>
+            </li>
+            <li class="nav-item" id="Vmarket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              <a class="nav-link" href="#">
+                <i class="ni ni-cart text-warning"></i>
+                <span class="nav-link-text">V Market</span><span>&nbsp;&nbsp;<i class="fas fa-angle-down"></i></span>
+              </a>
+            </li>
+                <div class="dropdown-menu" aria-labelledby="Vmarket">
+                    <li class="nav-item dropdown-item">
+                    <a class="nav-link" href="#">
+                      <i class="fas fa-car"></i>
+                      <span class="nav-link-text">Buy Car</span>
+                    </a>
+                    </li>
+                    <li class="nav-item dropdown-item">
+                    <a class="nav-link" href="#">
+                      <i class="fas fa-hand-holding-usd"></i>
+                      <span class="nav-link-text">Sell Car</span>
+                    </a>
+                    </li>
+                    <li class="nav-item dropdown-item">
+                    <a class="nav-link" href="#">
+                      <i class="fas fa-motorcycle"></i>
+                      <span class="nav-link-text">Buy Motorcycle</span>
+                    </a>
+                    </li>
+                    <li class="nav-item dropdown-item">
+                    <a class="nav-link" href="#">
+                      <i class="fas fa-coins"></i>
+                      <span class="nav-link-text">Sell Motorcycle</span>
+                    </a>
+                    </li>
+                </div>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-car text-success"></i>
+                <span class="nav-link-text">รถลงทะเบียน V Move</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/guest') }}">
                 <i class="fas fa-car-crash text-danger"></i>
-                <span class="nav-link-text">Owner alert report</span>
+                <span class="nav-link-text">V Move Report</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="ni ni-single-02 text-yellow"></i>
-                <span class="nav-link-text">รายงาน</span>
+                <i class="far fa-newspaper" style="color: #5F9EA0"></i>
+                <span class="nav-link-text">V News (Reporter)</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="ni ni-bullet-list-67 text-default"></i>
-                <span class="nav-link-text">รายงาน</span>
+                <i class="fas fa-video-slash" style="color: #FA8072"></i>
+                <span class="nav-link-text">V News Report</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="ni ni-key-25 text-info"></i>
-                <span class="nav-link-text">รายงาน</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="ni ni-circle-08 text-pink"></i>
-                <span class="nav-link-text">รายงาน</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">รายงาน</span>
+                <i class="ni ni-single-02 text-info"></i>
+                <span class="nav-link-text">จัดการสิทธิ์ผู้ใช้</span>
               </a>
             </li>
             <li class="nav-item">
@@ -177,8 +203,6 @@
         </div>
       </div>
     </nav>
-    
-    <br><br>
     
     @yield('content')
     
