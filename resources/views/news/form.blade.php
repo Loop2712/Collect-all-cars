@@ -70,7 +70,7 @@
                                 var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
                                 divImagePreview.append(hiddenRotation);
 
-                                var btnLeft = $("<p class='left'><i class='btn btn-sm fas fa-undo'></i></p>");
+                                var btnLeft = $("<p class='left'><i class='fas fa-undo'></i></p>");
                                 divImagePreview.append(btnLeft);
 
                                 var img = $("<img />");
@@ -79,7 +79,7 @@
                                 img.attr("src", e.target.result);
                                 divImagePreview.append(img);
 
-                                var btnRight = $("<p class='right'><i class='btn btn-sm fas fa-redo'></i></p>");
+                                var btnRight = $("<p class='right'><i class=' fas fa-redo'></i></p>");
                                 divImagePreview.append(btnRight);
 
                                 dvPreview.append(divImagePreview);
