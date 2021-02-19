@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-                <label for="title" class="control-label">{{ 'หัวข้อข่าว / Title' }}</label><span style="color: #FF0033;"> *</span>
-                <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" required onchange="str_title();">
+                <label for="title" class="control-label">{{ 'หัวข้อข่าว / Title' }}</label><span style="color: #FF0033;"> *</span> <span class="text-secondary"> (<span class="text-secondary" id="str_title">0</span>/30)</span> 
+                <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" required  onkeydown="str_title();">
                 {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
@@ -70,16 +70,16 @@
                                 var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
                                 divImagePreview.append(hiddenRotation);
 
-                                var btnLeft = $("<button class='left'>Left</button>");
+                                var btnLeft = $("<p class='left'><i class='btn btn-sm fas fa-undo'></i></p>");
                                 divImagePreview.append(btnLeft);
 
                                 var img = $("<img />");
-                                img.attr("style", "height: 100px; width: 100px;");
+                                img.attr("style", "height: 80%; width: 80%;");
                                 img.attr("class", "preview");
                                 img.attr("src", e.target.result);
                                 divImagePreview.append(img);
 
-                                var btnRight = $("<button class='right'>Right</button>");
+                                var btnRight = $("<p class='right'><i class='btn btn-sm fas fa-redo'></i></p>");
                                 divImagePreview.append(btnRight);
 
                                 dvPreview.append(divImagePreview);
@@ -99,9 +99,14 @@
                         }
                         $(img).css({ 'transform': 'rotate(' + rotation + 'deg)' });
                         $(hfRotation).val(rotation);
+                        let rotation2 = document.querySelector("#rotation");
+                        rotation2.value = rotation ;
                     });
                 });
             </script>
+            <input class="form-control" name="rotation" type="hidden" id="rotation" value="{{ isset($news->rotation) ? $news->rotation : Auth::user()->id}}" readonly>
+                {!! $errors->first('rotation', '<p class="help-block">:message</p>') !!}
+            <br><br>
             <!-- <input type="file" name="file" id="fuUpload" accept="image/*" multiple="multiple" /><hr /> -->
             <div id="dvPreview"></div>
         </div>
@@ -110,7 +115,7 @@
 <br>
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
+    <input id="submit" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
 </div>
 
 <script>
@@ -155,14 +160,24 @@ function showPosition(position) {
 
 function str_title() {
     var title = document.querySelector("#title");
+    var str_title = document.querySelector("#str_title");
         console.log(title.value);
 
     let str = title.value
         console.log(str.length);
-        if (str.length > 30 ) {
-            alert("ขออภัย คุณใช้ตัวอักษรเกินกำหนด");
-            title.value = "";
+
+        str_title.innerHTML = (str.length + 1) ;
+
+        if (str.length >= 30 ) {
+            // alert("ขออภัย คุณใช้ตัวอักษรเกินกำหนด");
+            document.querySelector('#str_title').classList.remove('text-secondary');
+            document.querySelector('#str_title').classList.add('text-danger');
+            document.querySelector('#submit').classList.add('d-none');
             document.querySelector('#title').focus();
+        }else{
+            document.querySelector('#str_title').classList.add('text-secondary');
+            document.querySelector('#str_title').classList.remove('text-danger');
+            document.querySelector('#submit').classList.remove('d-none');
         }
 
 }
