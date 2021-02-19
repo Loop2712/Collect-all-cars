@@ -57,9 +57,6 @@
                 </div>
             </div>
         </div>
-        <div class="canvas__open">
-            <span class="fa fa-bars"></span>
-        </div>
     </header>
     
 
