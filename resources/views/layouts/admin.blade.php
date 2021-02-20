@@ -17,6 +17,7 @@
   <!-- Icons -->
   <link rel="stylesheet" href="{{ asset('admin/vendor/nucleo/css/nucleo.css')}}" type="text/css">
   <link rel="stylesheet" href="{{ asset('admin/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admin/icofont/icofont.min.css')}}">
 
   <link rel="stylesheet" href="{{ asset('css/car/font-awesome.min.css')}}" type="text/css">
   <!-- Page plugins -->
