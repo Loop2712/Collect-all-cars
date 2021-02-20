@@ -310,7 +310,7 @@
                         <span class="mr-2">{{ number_format(($count_facebook/$all_user)*100,1) }} %</span>
                         <div>
                           <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format(($count_facebook/$all_user)*100,1) }}%;"></div>
+                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format(($count_facebook/$all_user)*100,1) }}%;"></div>
                           </div>
                         </div>
                       </div>
@@ -328,7 +328,7 @@
                         <span class="mr-2">{{ number_format(($count_google/$all_user)*100,1) }} %</span>
                         <div>
                           <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format(($count_google/$all_user)*100,1) }}%;"></div>
+                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format(($count_google/$all_user)*100,1) }}%;"></div>
                           </div>
                         </div>
                       </div>
@@ -346,7 +346,7 @@
                         <span class="mr-2">{{ number_format(($count_web/$all_user)*100,1) }} %</span>
                         <div>
                           <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format(($count_web/$all_user)*100,1) }}%;"></div>
+                            <div class="progress-bar bg-gradient-dark" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format(($count_web/$all_user)*100,1) }}%;"></div>
                           </div>
                         </div>
                       </div>
