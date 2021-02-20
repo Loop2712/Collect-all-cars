@@ -4,7 +4,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-uppercase text-muted mb-0">ลงขาย 28 วันที่ผ่านมา</h5>
+          <p class="card-title text-uppercase text-muted mb-0">ลงขาย 28 วันที่ผ่านมา</p>
           <span class="h2 font-weight-bold mb-0">{{ number_format($new_car) }}</span>
           <span>คัน</span>
         </div>
@@ -17,7 +17,7 @@
       <p class="mt-3 mb-0 text-sm">
         <span class="text-nowrap mr-1">คิดเป็น</span>
         <span class="text-success mr-2"><b> {{ number_format(($new_car/$count_car)*100,1) }} %</b></span>
-        <span class="text-nowrap">จากรถทั้งหมด <b class="text-danger">{{ number_format($count_car) }}</b> คัน</span>
+        <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_car) }}</b> คัน</span>
       </p>
     </div>
   </div>
@@ -77,7 +77,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-muted mb-0">V News 28 วันที่ผ่านมา</h5>
+          <p class="card-title text-muted mb-0">V News 28 วันที่ผ่านมา</p>
           <span class="h2 font-weight-bold mb-0">{{ number_format($new_vnews) }}</span>
         <span>ข่าว</span>
         </div>
