@@ -12,11 +12,11 @@
 
 <title>viicheck News</title>
 
-<meta property="og:url"           content="{{ url()->full() }}" />
+<meta property="og:url"           content="{{ url('/news') .'/'. $news_share->id }}" />
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="{{ $news_share->title }}" />
 <meta property="og:description"   content="{{ $news_share->content }}" />
-<meta property="og:image"         content="{{ url('storage')}}/{{ $news_share->cover_photo_facebook }}" />
+<meta property="og:image"         content="{{ url('/') .'/'. $news_share->cover_photo_facebook }}" />
 @endsection
 
 @section('content')
