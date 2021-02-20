@@ -85,7 +85,11 @@
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <input type="checkbox" name="terms_of" id="terms_of" required="">
-                                <span>&nbsp;&nbsp;ฉันยอมรับ<a class="btn btn-link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดในการให้บริการ</b></a></span>
+                                <span>&nbsp;&nbsp;ฉันยอมรับ<br>
+                                    <a class="btn btn-link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
+                                    <br>
+                                    <a class="btn btn-link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</b></a>
+                                </span>
                             </div>
                         </div>
                         <br>

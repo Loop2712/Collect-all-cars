@@ -135,7 +135,8 @@
                     </form>
                     <div class="col-md-12">
                         <center>
-                            <P><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <b>ข้อกำหนดในการให้บริการ</b></a>
+                            <P><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/privacy_policy') }}"> <b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
+                            <P><a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <b>ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</b></a>
                             <br><br><br>
                             <img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
                         </center>

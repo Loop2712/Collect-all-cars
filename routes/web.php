@@ -38,6 +38,11 @@ Route::get('/terms_of_service', function () {
     return view('terms_of_service');
 });
 
+Route::get('/privacy_policy', function () {
+    
+    return view('privacy_policy');
+});
+
 Auth::routes();
 
 // ADMIN VIICHECK
@@ -97,10 +102,6 @@ Route::get('/modal', 'GuestController@modal');
 
 Route::get('/menu', function () {
     return view('3menu');
-});
-
-Route::get('/before', function () {
-    return view('before_register_car');
 });
 
 Route::get('/thx_guest', function () {
