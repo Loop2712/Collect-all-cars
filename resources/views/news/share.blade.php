@@ -29,6 +29,7 @@
                     <div class="col-12 col-md-7">
                         <img width="100%" src="{{ url('storage')}}/{{ $news_share->photo }}">
                         <div class="col-12 col-md-12">
+                            <br>
                             <div id="fb-root"></div>
                             <script>(function(d, s, id) {
                                 var js, fjs = d.getElementsByTagName(s)[0];
@@ -39,6 +40,7 @@
                             }(document, 'script', 'facebook-jssdk'));</script>
 
                             <div class="fb-share-button" data-href="{{ url('/news') .'/'. $news_share->id }}" data-layout="button_count"></div>
+                            <hr>
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
