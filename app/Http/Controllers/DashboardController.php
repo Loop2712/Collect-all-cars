@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\CarModel;
 use App\Models\Register_car;
+use App\Models\Guest;
+use App\Models\News;
 
 class DashboardController extends Controller
 {
@@ -75,7 +77,33 @@ class DashboardController extends Controller
 				        	$count_vmove = $key->count;
 				        } 
 
+        // Vmove Report 28 วันที่ผ่านมา
+        $vmove_report28 =Guest::whereDate('created_at',">=" , $day28)
+	            ->selectRaw('count(id) as count')
+	            ->get();
+	            foreach ($vmove_report28 as $key ) {
+				        	$new_vmove_report = $key->count;
+				        } 
+	    $all_vmove_report =Guest::selectRaw('count(id) as count')
+                    	->get();
+	            foreach ($all_vmove_report as $key ) {
+				        	$count_vmove_report = $key->count;
+				        } 
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove'));
+         // V News 28 วันที่ผ่านมา
+        $vnews28 =News::whereDate('created_at',">=" , $day28)
+	            ->selectRaw('count(id) as count')
+	            ->get();
+	            foreach ($vnews28 as $key ) {
+				        	$new_vnews = $key->count;
+				        } 
+	    $all_vnews =News::selectRaw('count(id) as count')
+                    	->get();
+	            foreach ($all_vnews as $key ) {
+				        	$count_vnews = $key->count;
+				        } 
+
+
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews'));
     }
 }

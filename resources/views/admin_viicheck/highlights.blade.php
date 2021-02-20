@@ -4,8 +4,9 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-uppercase text-muted mb-0">รถลงขาย 28 วันที่ผ่านมา</h5>
+          <h5 class="card-title text-uppercase text-muted mb-0">ลงขาย 28 วันที่ผ่านมา</h5>
           <span class="h2 font-weight-bold mb-0">{{ number_format($new_car) }}</span>
+          <span>คัน</span>
         </div>
         <div class="col-auto">
           <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -27,8 +28,9 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <p class="card-title text-muted mb-0">ลงทะเบียน Vmove 28 วันที่ผ่านมา</p>
+          <p class="card-title text-muted mb-0">ลงทะเบียน V Move 28 วันที่ผ่านมา</p>
           <span class="h2 font-weight-bold mb-0">{{ number_format($new_vmove) }}</span>
+          <span>คัน</span>
         </div>
         <div class="col-auto">
           <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -50,18 +52,21 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-          <span class="h2 font-weight-bold mb-0">924</span>
+          <p class="card-title text-muted mb-0">V Move Report 28 วันที่ผ่านมา</p>
+          <span class="h2 font-weight-bold mb-0">{{ number_format($new_vmove_report) }}</span>
+        <span>ครั้ง</span>
         </div>
         <div class="col-auto">
           <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-            <i class="ni ni-money-coins"></i>
+            <i class="fas fa-car-crash"></i>
           </div>
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
-        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-        <span class="text-nowrap">Since last month</span>
+        <span class="text-nowrap mr-1">คิดเป็น</span>
+        <span class="text-success mr-2"><b> {{ number_format(($new_vmove_report/$count_vmove_report)*100,1) }} %</b></span>
+        <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_vmove_report) }}</b> ครั้ง</span>
+
       </p>
     </div>
   </div>
@@ -72,18 +77,20 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-          <span class="h2 font-weight-bold mb-0">49,65%</span>
+          <h5 class="card-title text-muted mb-0">V News 28 วันที่ผ่านมา</h5>
+          <span class="h2 font-weight-bold mb-0">{{ number_format($new_vnews) }}</span>
+        <span>ข่าว</span>
         </div>
         <div class="col-auto">
           <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-            <i class="ni ni-chart-bar-32"></i>
+            <i class="icofont-newspaper"></i>
           </div>
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
-        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-        <span class="text-nowrap">Since last month</span>
+        <span class="text-nowrap mr-1">คิดเป็น</span>
+        <span class="text-success mr-2"><b> {{ number_format(($new_vnews/$count_vnews)*100,1) }} %</b></span>
+        <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_vnews) }}</b> ข่าว</span>
       </p>
     </div>
   </div>
