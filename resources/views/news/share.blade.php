@@ -30,6 +30,11 @@
                         <img width="100%" src="{{ url('storage')}}/{{ $news_share->photo }}">
                     </div>
                     <div class="col-12 col-md-5">
+                            <div class=" col-12 col-md-11"><p>{{ url('/news') .'/'. $news_share->id }}</p></div>
+                            <div class=" col-12 col-md-11"><p>{{ $news_share->title }}</p></div>
+                            <div class=" col-12 col-md-11"><p>{{ $news_share->content }}</p></div>
+                            <div class=" col-12 col-md-11"><p>{{ url('/') .'/'. $news_share->cover_photo_facebook }}</p></div>
+                        
                         <br>
                         <div class="row">
                             <div class=" col-12 col-md-12"><h3><b>{{ $news_share->title }}</b></h3><br></div>
