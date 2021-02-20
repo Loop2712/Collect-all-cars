@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\CarModel;
+use App\Models\Register_car;
 
 class DashboardController extends Controller
 {
@@ -61,6 +62,20 @@ class DashboardController extends Controller
 				        	$count_car = $key->count;
 				        } 
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car'));
+        // ลงทะเบียน Vmove 28 วันที่ผ่านมา
+        $vmove28 =Register_car::whereDate('created_at',">=" , $day28)
+	            ->selectRaw('count(id) as count')
+	            ->get();
+	            foreach ($vmove28 as $key ) {
+				        	$new_vmove = $key->count;
+				        } 
+	    $all_vmove =Register_car::selectRaw('count(id) as count')
+                    	->get();
+	            foreach ($all_vmove as $key ) {
+				        	$count_vmove = $key->count;
+				        } 
+
+
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove'));
     }
 }
