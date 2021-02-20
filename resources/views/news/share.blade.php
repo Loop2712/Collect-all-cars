@@ -57,7 +57,7 @@
                                     fjs.parentNode.insertBefore(js, fjs);
                                 }(document, 'script', 'facebook-jssdk'));</script>
 
-                                <div class="fb-share-button" data-href="{{ url()->full() }}" data-layout="button_count"></div>
+                                <div class="fb-share-button" data-href="{{ url('/news') .'/'. $news_share->id }}" data-layout="button_count"></div>
                             </div>
                             <div class="col-9 col-md-9">
                                 @if(Auth::check())
