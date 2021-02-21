@@ -242,7 +242,8 @@ class NewsController extends Controller
             $requestData['cover_photo'] = 'img/news/'.$news.'.png';
 
         }
-       
+        echo $_SERVER["HTTP_USER_AGENT"];
+        exit();
         News::create($requestData);
 
         // $this->share($requestData['user_id']);
