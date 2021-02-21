@@ -48,8 +48,7 @@
                                         <div class="col-2">
                                             <b>{{ $item->count }}</b>
                                         </div>
-                                        <div class="col-2"> <!-- user->ranking -->
-                                            <!-- {{ $item->user->ranking }} -->
+                                        <div class="col-2">
                                             @switch($item->user->ranking)
                                                 @case('Senior')
                                                     <a class="btn btn-sm btn-light " href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
