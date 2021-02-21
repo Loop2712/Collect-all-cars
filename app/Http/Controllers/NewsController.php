@@ -85,7 +85,7 @@ class NewsController extends Controller
 
             // facebook
             // ปรับขนาดภาพ
-            $image_facebook->fit(1200, 628);
+            // $image_facebook->fit(1200, 628);
 
             //ลายน้ำ
             $watermark_facebook = Image::make(public_path('img/bg car/watermark-logo.png'));
@@ -140,7 +140,7 @@ class NewsController extends Controller
 
             // WEB
             // ปรับขนาดภาพ
-            $image->fit(940);
+            // $image->fit(940);
 
             //ลายน้ำ
             $watermark = Image::make(public_path('img/bg car/watermark-logo.png'));
