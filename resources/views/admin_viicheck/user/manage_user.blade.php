@@ -120,6 +120,7 @@
                                     </div>
                                     <br>
                                 @endforeach
+                                <div class="pagination-wrapper"> {!! $all_user->appends(['search' => Request::get('search')])->render() !!} </div>
                             </div>
                         </div>
                     </div>
