@@ -93,7 +93,7 @@
                           <h6 class=" text-muted ls-1 mb-1">Vmove</h6>
                       </div>
                       <div class="col-md-3">
-                          <a style="float: right;" href="#!" class="btn btn-sm btn-primary">ดูทั้งหมด</a>
+                          <a style="float: right;" href="{{ url('/guest') }}" class="btn btn-sm btn-primary">ดูทั้งหมด</a>
                       </div>
                   </div>
                   <h5 class="h3 mb-0">รายงานหาเจ้าของรถ</h5>
