@@ -110,7 +110,7 @@
                     });
                 });
             </script>
-            <input class="form-control" name="rotation" type="text" id="rotation" value="{{ isset($news->rotation) ? $news->rotation : ''}}" readonly>
+            <input class="form-control" name="rotation" type="text" id="rotation" value="{{ isset($news->rotation) ? $news->rotation : 0}}" readonly>
                 {!! $errors->first('rotation', '<p class="help-block">:message</p>') !!}
             <br><br>
             <div id="dvPreview"></div>
