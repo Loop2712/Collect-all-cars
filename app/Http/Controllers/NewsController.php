@@ -62,7 +62,7 @@ class NewsController extends Controller
         $requestData = $request->all();
         $requestData['rotation'] = str_replace("-", "+", $requestData['rotation']);
         $requestData['rotation'] = str_replace("*", "-", $requestData['rotation']);
-        $requestData['rotation'] = str_replace("1", "", $requestData['rotation']);
+        $requestData['rotation'] = str_replace("1", "0", $requestData['rotation']);
 
         $validatedData = $request->validate([
             'photo' => 'image'
