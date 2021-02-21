@@ -31,6 +31,15 @@ class Manage_userController extends Controller
         return view('admin_viicheck.user.manage_user', compact('all_user'));
     }
 
+    public function change_ToGuest()
+    {
+        DB::table('users')
+                ->where('id', request('id'))
+                ->update(['role' => '']);
+
+        return redirect('/manage_user');
+    }
+
     public function change_ToAdmin()
     {
         DB::table('users')
@@ -39,4 +48,5 @@ class Manage_userController extends Controller
 
         return redirect('/manage_user');
     }
+
 }
