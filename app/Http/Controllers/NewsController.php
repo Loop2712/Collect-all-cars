@@ -60,8 +60,8 @@ class NewsController extends Controller
         $date_now = date("d-m-Y");
 
         $requestData = $request->all();
-        // $requestData['rotation'] = str_replace("-", "+", $requestData['rotation']);
-        // $requestData['rotation'] = str_replace("*", "-", $requestData['rotation']);
+        $requestData['rotation'] = str_replace("-", "+", $requestData['rotation']);
+        $requestData['rotation'] = str_replace("*", "-", $requestData['rotation']);
 
         $validatedData = $request->validate([
             'photo' => 'image'
