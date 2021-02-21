@@ -104,24 +104,22 @@ class DashboardController extends Controller
 				        	$count_vnews = $key->count;
 				        }
 
-		// รถที่ลงประกาศขาย จัดอันดับตามจังหวัด 6 อันดับ
+		// รถที่ลงประกาศขาย จัดอันดับตามจังหวัด 5 อันดับ
 		$vmarket_desc =CarModel::groupBy('location')
 			->selectRaw('count(location) as count,location')
             ->orderBy('count', 'desc')
-            ->limit(6)
+            ->limit(5)
             ->get();
         $vmarket_desc_location[0] = "";
         $vmarket_desc_location[1] = "";
         $vmarket_desc_location[2] = "";
         $vmarket_desc_location[3] = "";
         $vmarket_desc_location[4] = "";
-        $vmarket_desc_location[5] = "";
         $vmarket_desc_count[0] = "";
         $vmarket_desc_count[1] = "";
         $vmarket_desc_count[2] = "";
         $vmarket_desc_count[3] = "";
         $vmarket_desc_count[4] = "";
-        $vmarket_desc_count[5] = "";
 
         for ($i=0; $i < count($vmarket_desc);) { 
             foreach($vmarket_desc as $item ){

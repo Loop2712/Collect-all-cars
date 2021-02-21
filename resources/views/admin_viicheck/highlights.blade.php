@@ -4,8 +4,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <p class="card-title text-uppercase text-muted mb-0">ลงขาย 28 วันที่ผ่านมา</p>
-          <span class="h2 font-weight-bold mb-0">{{ number_format($new_car) }}</span>
+          <p class="card-title text-muted mb-0">VMarket Sell</p>
+          <span class="h4 font-weight-bold mb-0">{{ number_format($new_car) }}</span>
           <span>คัน</span>
         </div>
         <div class="col-auto">
@@ -28,8 +28,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <p class="card-title text-muted mb-0">ลงทะเบียน V Move 28 วันที่ผ่านมา</p>
-          <span class="h2 font-weight-bold mb-0">{{ number_format($new_vmove) }}</span>
+          <p class="card-title text-muted mb-0">VMove Register</p>
+          <span class="h4 font-weight-bold mb-0">{{ number_format($new_vmove) }}</span>
           <span>คัน</span>
         </div>
         <div class="col-auto">
@@ -52,8 +52,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <p class="card-title text-muted mb-0">V Move Report 28 วันที่ผ่านมา</p>
-          <span class="h2 font-weight-bold mb-0">{{ number_format($new_vmove_report) }}</span>
+          <p class="card-title text-muted mb-0">VMove Report</p>
+          <span class="h4 font-weight-bold mb-0">{{ number_format($new_vmove_report) }}</span>
         <span>ครั้ง</span>
         </div>
         <div class="col-auto">
@@ -77,8 +77,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <p class="card-title text-muted mb-0">V News 28 วันที่ผ่านมา</p>
-          <span class="h2 font-weight-bold mb-0">{{ number_format($new_vnews) }}</span>
+          <p class="card-title text-muted mb-0">VNews Reporter</p>
+          <span class="h4 font-weight-bold mb-0">{{ number_format($new_vnews) }}</span>
         <span>ข่าว</span>
         </div>
         <div class="col-auto">
