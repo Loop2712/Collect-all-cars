@@ -74,8 +74,8 @@ class NewsController extends Controller
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
             $image_facebook = Image::make(storage_path("app/public")."/".$requestData['photo']);
 
-            // $image->rotate($requestData['rotation']);
-            // $image_facebook->rotate($requestData['rotation']);
+            $image->rotate($requestData['rotation']);
+            $image_facebook->rotate($requestData['rotation']);
 
             //  เช็คเนื้อหาที่รุนแรง
             if ($requestData['severe'] == 'Yes') {
