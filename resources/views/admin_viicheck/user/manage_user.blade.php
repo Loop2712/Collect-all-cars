@@ -36,11 +36,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row alert alert-secondary">
-                                    <div class="col-1">
+                                    <!-- <div class="col-1">
                                         <center><b>Id</b></center>
-                                    </div>
+                                    </div> -->
                                     <div class="col-4">
                                         <center><b>ชื่อ</b></center>
+                                    </div>
+                                    <div class="col-1">
+                                        <center><b>ประเภท</b></center>
                                     </div>
                                     <div class="col-2">
                                         <center><b>การจัดอันดับ</b></center>
@@ -57,15 +60,32 @@
                                 </div>
                                 @foreach($all_user as $item)
                                     <div class="row">
-                                        <div class="col-1">
+                                        <!-- <div class="col-1">
                                             <center><b>{{ $item->id }}</b></center>
-                                        </div>
+                                        </div> -->
                                         <div class="col-4">
-                                            <h4 class="text-success">{{ $item->name }}</h4>
+                                            <h4 class="text-success">&nbsp;&nbsp;{{ $item->name }}&nbsp;
+                                            <span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span></h4>
+                                        </div>
+                                        <div class="col-1">
+                                            @switch($item->type)
+                                                @case('line')
+                                                    <a class="btn btn-sm btn-light"><i class="fab fa-line text-success"></i></a>
+                                                @break
+                                                @case('facebook')
+                                                    <a class="btn btn-sm btn-light"><i class="fab fa-facebook-square text-primary"></i></a>
+                                                @break
+                                                @case('google')
+                                                    <a class="btn btn-sm btn-light"><i class="fab fa-google text-danger"></i></a>
+                                                @break
+                                                @case(null)
+                                                    <a class="btn btn-sm btn-light"><i class="fas fa-globe" style="color: #5F9EA0"></i></a>
+                                                @break
+                                            @endswitch
                                         </div>
                                         <div class="col-2">
                                             <center>
-                                                @switch($item->ranking)
+                                            @switch($item->ranking)
                                                 @case('Senior')
                                                     <a class="btn btn-sm btn-light " href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
                                                 @break
