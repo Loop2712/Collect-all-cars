@@ -36,6 +36,10 @@
                 <input class="form-control" name="lng" type="hidden" id="lng" value="{{ isset($news->lng) ? $news->lng : ''}}" readonly>
                 {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
+                <input class="form-control" name="province" type="text" id="province" value="{{ isset($news->province) ? $news->province : ''}}" readonly>
+                {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
+            </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
@@ -152,8 +156,11 @@ function showPosition(position) {
             .then(result => {
                 console.log(result);
                 let location = document.querySelector("#location");
-                location.innerHTML = "";
+                    location.innerHTML = "";
                 for(let item of result){
+                    let province = document.querySelector("#province");
+                    province.value = item.changwat_th
+                    
                     let option = document.createElement("option");
                     option.text = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
                     option.value = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th

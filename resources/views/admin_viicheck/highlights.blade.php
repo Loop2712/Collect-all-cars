@@ -15,7 +15,6 @@
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
-        <span class="text-nowrap mr-1">คิดเป็น</span>
         <span class="text-success mr-2"><b> {{ number_format(($new_car/$count_car)*100,1) }} %</b></span>
         <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_car) }}</b> คัน</span>
       </p>
@@ -39,9 +38,8 @@
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
-        <span class="text-nowrap mr-1">คิดเป็น</span>
         <span class="text-success mr-2"><b> {{ number_format(($new_vmove/$count_vmove)*100,1) }} %</b></span>
-        <span class="text-nowrap">จากรถทั้งหมด <b class="text-danger">{{ number_format($count_vmove) }}</b> คัน</span>
+        <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_vmove) }}</b> คัน</span>
       </p>
     </div>
   </div>
@@ -63,7 +61,6 @@
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
-        <span class="text-nowrap mr-1">คิดเป็น</span>
         <span class="text-success mr-2"><b> {{ number_format(($new_vmove_report/$count_vmove_report)*100,1) }} %</b></span>
         <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_vmove_report) }}</b> ครั้ง</span>
 
@@ -88,7 +85,6 @@
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
-        <span class="text-nowrap mr-1">คิดเป็น</span>
         <span class="text-success mr-2"><b> {{ number_format(($new_vnews/$count_vnews)*100,1) }} %</b></span>
         <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_vnews) }}</b> ข่าว</span>
       </p>
