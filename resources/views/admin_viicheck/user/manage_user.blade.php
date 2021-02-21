@@ -68,6 +68,7 @@
                                             <span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span></h4>
                                         </div>
                                         <div class="col-1">
+                                            <center>
                                             @switch($item->type)
                                                 @case('line')
                                                     <a class="btn btn-sm btn-light"><i class="fab fa-line text-success"></i></a>
@@ -82,6 +83,7 @@
                                                     <a class="btn btn-sm btn-light"><i class="fas fa-globe" style="color: #5F9EA0"></i></a>
                                                 @break
                                             @endswitch
+                                            </center>
                                         </div>
                                         <div class="col-2">
                                             <center>
