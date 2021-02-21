@@ -353,7 +353,7 @@ class NewsController extends Controller
 
     public function my_news($user_id)
     {
-        $my_news = News::where('user_id', $user_id)->get();
+        $my_news = News::where('user_id', $user_id)->orderBy('created_at', 'ASC')->get();
 
         // echo "<pre>";
         // print_r($my_news);
