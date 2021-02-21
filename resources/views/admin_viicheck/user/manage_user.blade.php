@@ -64,8 +64,8 @@
                                             <center><b>{{ $item->id }}</b></center>
                                         </div> -->
                                         <div class="col-4">
-                                            <h5 class="text-success">&nbsp;&nbsp;{{ $item->name }}&nbsp;
-                                            <span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span></h5>
+                                            <h5 class="text-success"><span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;{{ $item->name }}
+                                            </h5>
                                         </div>
                                         <div class="col-1">
                                             <center>
