@@ -4,10 +4,10 @@ var ctx = document.getElementById('vmarketChart').getContext('2d');
 var vmarketChart = new Chart(ctx, {
     type: 'horizontalBar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['<?php echo $vmarket_desc_location[0] ?>', '<?php echo $vmarket_desc_location[1] ?>', '<?php echo $vmarket_desc_location[2] ?>', '<?php echo $vmarket_desc_location[3] ?>', '<?php echo $vmarket_desc_location[4] ?>', '<?php echo $vmarket_desc_location[5] ?>'],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '# จำนวนทั้งหมด',
+            data: [<?php echo $vmarket_desc_count[0] ?>, <?php echo $vmarket_desc_count[1] ?>, <?php echo $vmarket_desc_count[2] ?>, <?php echo $vmarket_desc_count[3] ?>, <?php echo $vmarket_desc_count[4] ?>, <?php echo $vmarket_desc_count[5] ?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -26,7 +26,7 @@ var vmarketChart = new Chart(ctx, {
             ],
             borderWidth: 1
         }]
-    },
+    }, 
     options: {
         scales: {
             yAxes: [{

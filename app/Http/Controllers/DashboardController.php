@@ -8,6 +8,7 @@ use App\CarModel;
 use App\Models\Register_car;
 use App\Models\Guest;
 use App\Models\News;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -101,9 +102,27 @@ class DashboardController extends Controller
                     	->get();
 	            foreach ($all_vnews as $key ) {
 				        	$count_vnews = $key->count;
-				        } 
+				        }
+
+		// รถที่ลงประกาศขาย จัดอันดับตามจังหวัด 6 อันดับ
+		$vmarket_desc =CarModel::groupBy('location')
+			->selectRaw('count(location) as count,location')
+            ->orderBy('count', 'desc')
+            ->limit(6)
+            ->get();
+
+        for ($i=0; $i < count($vmarket_desc);) { 
+            foreach($vmarket_desc as $item ){
+                $vmarket_desc_location[$i] = $item->location;
+                $vmarket_desc_count[$i] = $item->count;
+
+                $i++;
+            }
+        }
+
+        
 
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews'));
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count'));
     }
 }

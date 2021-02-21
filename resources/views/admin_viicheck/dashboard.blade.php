@@ -21,9 +21,9 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class=" text-muted ls-1 mb-1">VMarket</h6>
-                  <h5 class="h3 mb-0">รถที่ลงประกาศขาย</h5>
+                  <h5 class="h3 mb-0">รถที่ลงประกาศขาย VMarket</h5>
                   <hr>
-                  <span>จัดอันดับตามจังหวัด 6 อันดับ</span>
+                  <span>จัดอันดับตามสถานที่ 6 อันดับ</span>
                 </div>
               </div>
             </div>
