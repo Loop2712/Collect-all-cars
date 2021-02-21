@@ -82,13 +82,16 @@ class NewsController extends Controller
             $image_facebook = Image::make(storage_path("app/public")."/".$requestData['photo']);
 
             // หมุนภาพ
-            if ($os == "iPhone") {
-                $image->rotate(-90);
-                $image_facebook->rotate(-90);
-            }else{
-                $image->rotate($requestData['rotation']);
-                $image_facebook->rotate($requestData['rotation']);
-            }
+            // if ($os == "iPhone") {
+            //     $image->rotate(-90);
+            //     $image_facebook->rotate(-90);
+            // }else{
+            //     $image->rotate($requestData['rotation']);
+            //     $image_facebook->rotate($requestData['rotation']);
+            // }
+            
+            $image->orientate();
+
             $image->rotate($requestData['rotation']);
             $image_facebook->rotate($requestData['rotation']);
 
