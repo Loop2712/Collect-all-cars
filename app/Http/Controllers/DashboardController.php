@@ -110,6 +110,18 @@ class DashboardController extends Controller
             ->orderBy('count', 'desc')
             ->limit(6)
             ->get();
+        $vmarket_desc_location[0] = "";
+        $vmarket_desc_location[1] = "";
+        $vmarket_desc_location[2] = "";
+        $vmarket_desc_location[3] = "";
+        $vmarket_desc_location[4] = "";
+        $vmarket_desc_location[5] = "";
+        $vmarket_desc_count[0] = "";
+        $vmarket_desc_count[1] = "";
+        $vmarket_desc_count[2] = "";
+        $vmarket_desc_count[3] = "";
+        $vmarket_desc_count[4] = "";
+        $vmarket_desc_count[5] = "";
 
         for ($i=0; $i < count($vmarket_desc);) { 
             foreach($vmarket_desc as $item ){
@@ -120,9 +132,33 @@ class DashboardController extends Controller
             }
         }
 
-        
+        // รถลงทะเบียน VMove จัดอันดับตามจังหวัด 5 อันดับ
+        $vmove_desc =Register_car::groupBy('province')
+			->selectRaw('count(province) as count,province')
+            ->orderBy('count', 'desc')
+            ->limit(5)
+            ->get();
+        $vmove_desc_province[0] = "";
+        $vmove_desc_province[1] = "";
+        $vmove_desc_province[2] = "";
+        $vmove_desc_province[3] = "";
+        $vmove_desc_province[4] = "";
+        $vmove_desc_count[0] = "";
+        $vmove_desc_count[1] = "";
+        $vmove_desc_count[2] = "";
+        $vmove_desc_count[3] = "";
+        $vmove_desc_count[4] = "";
+
+        for ($i=0; $i < count($vmove_desc);) { 
+            foreach($vmove_desc as $item ){
+                $vmove_desc_province[$i] = $item->province;
+                $vmove_desc_count[$i] = $item->count;
+
+                $i++;
+            }
+        }
 
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count'));
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count'));
     }
 }

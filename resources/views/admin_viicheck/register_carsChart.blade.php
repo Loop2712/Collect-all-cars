@@ -4,10 +4,10 @@ var ctx = document.getElementById('register_carsChart').getContext('2d');
 var register_carsChart = new Chart(ctx, {
     type: 'polarArea',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+        labels: ['<?php echo $vmove_desc_province[0] ?>', '<?php echo $vmove_desc_province[1] ?>', '<?php echo $vmove_desc_province[2] ?>', '<?php echo $vmove_desc_province[3] ?>', '<?php echo $vmove_desc_province[4] ?>'],
         datasets: [{
             label: '# of Votes',
-            data: [20, 52, 70, 90, 55],
+            data: [<?php echo $vmove_desc_count[0] ?>, <?php echo $vmove_desc_count[1] ?>, <?php echo $vmove_desc_count[2] ?>, <?php echo $vmove_desc_count[3] ?>, <?php echo $vmove_desc_count[4] ?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
