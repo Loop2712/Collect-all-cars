@@ -156,7 +156,41 @@ class DashboardController extends Controller
             }
         }
 
+        // VNews ลงประกาศข่าว
+        $vnews_desc =News::groupBy('province')
+            ->selectRaw('count(province) as count,province')
+            ->orderBy('count', 'desc')
+            ->limit(5)
+            ->get();
+        $vnews_desc_province[0] = "";
+        $vnews_desc_province[1] = "";
+        $vnews_desc_province[2] = "";
+        $vnews_desc_province[3] = "";
+        $vnews_desc_province[4] = "";
+        $vnews_desc_count[0] = "";
+        $vnews_desc_count[1] = "";
+        $vnews_desc_count[2] = "";
+        $vnews_desc_count[3] = "";
+        $vnews_desc_count[4] = "";
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count'));
+        for ($i=0; $i < count($vnews_desc);) { 
+            foreach($vnews_desc as $item ){
+                $vnews_desc_province[$i] = $item->province;
+                $vnews_desc_count[$i] = $item->count;
+
+                $i++;
+            }
+        }
+
+        // GUEST
+        $guest = Guest::groupBy('provider_id')
+                    ->groupBy('user_id')
+                    ->groupBy('name')
+                    ->selectRaw('count(provider_id) as count , name , user_id')
+                    ->orderByRaw('count DESC')
+                    ->latest()->paginate(3);
+
+
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest'));
     }
 }

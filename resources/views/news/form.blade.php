@@ -37,7 +37,7 @@
                 {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
-                <input class="form-control" name="province" type="text" id="province" value="{{ isset($news->province) ? $news->province : ''}}" readonly>
+                <input class="form-control" name="province" type="hidden" id="province" value="{{ isset($news->province) ? $news->province : ''}}" readonly>
                 {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
