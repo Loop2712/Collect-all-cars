@@ -62,7 +62,7 @@ class NewsController extends Controller
         $split_1 = explode("(", $_SERVER["HTTP_USER_AGENT"]);
         $split_2 = explode(";", $split_1[1]);
         $os = $split_2[0];
-        $os;
+        echo $os;
 
         $date_now = date("d-m-Y");
 
