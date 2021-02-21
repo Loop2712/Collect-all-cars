@@ -90,6 +90,7 @@ class NewsController extends Controller
             // }
             
             $image->orientate();
+            $image_facebook->orientate();
 
             $image->rotate($requestData['rotation']);
             $image_facebook->rotate($requestData['rotation']);
