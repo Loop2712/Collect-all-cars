@@ -53,7 +53,7 @@
 
             <input type="radio" name="severe" value="{{ isset($news->severe) ? $news->severe : 'No'}}" required>&nbsp;&nbsp; ไม่ใช่
         </div>
-        <!-- <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6">
             <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(function () {
@@ -114,7 +114,7 @@
                 {!! $errors->first('rotation', '<p class="help-block">:message</p>') !!}
             <br><br>
             <div id="dvPreview"></div>
-        </div> -->
+        </div>
     </div>
 </div>
 <br>
