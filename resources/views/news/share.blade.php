@@ -27,7 +27,7 @@
             <div style="border: none;" class="card">
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        <img width="100%" src="{{ url('storage')}}/{{ $news_share->photo }}">
+                        <img width="100%" src="{{ url('storage')}}/{{ $news_share->cover_photo }}">
                         <div class="col-12 col-md-12">
                             <br>
                             <div id="fb-root"></div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-12 col-md-5">
                         <br>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class=" col-12 col-md-12"><h3><b>{{ $news_share->title }}</b></h3><br></div>
                             <div class=" col-12 col-md-11"><p>{{ $news_share->content }}</p></div>
                         </div>
@@ -54,7 +54,7 @@
                             <div class=" col-12 col-md-12"><span><b>สถานที่ : </b>{{ $news_share->location }}</span></div>
                             <div class=" col-12 col-md-11"><span><b>Reporter : </b>{{ $news_share->name }}</span></div>
                             <br><br>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-3 col-md-3">
                             </div>
