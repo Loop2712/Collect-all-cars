@@ -48,10 +48,9 @@ Auth::routes();
 // ADMIN VIICHECK
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
-	// Route::get('/dashboard', function () {
-	//     return view('admin_viicheck/dashboard');
-	// });
 	Route::get('/dashboard', 'DashboardController@dashboard');
+	Route::get('/manage_user', 'Manage_userController@manage_user');
+	Route::get('/manage_user/change_ToAdmin', 'Manage_userController@change_ToAdmin');
 
 	Route::get('/guest', function () {
 	    return view('guest');

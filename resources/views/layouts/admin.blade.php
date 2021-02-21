@@ -109,9 +109,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="ni ni-single-02 text-info"></i>
-                <span class="nav-link-text">จัดการสิทธิ์ผู้ใช้</span>
+              <a class="nav-link" href="{{ url('/manage_user') }}">
+                <i class="fas fa-user-cog text-info"></i>
+                <span class="nav-link-text">จัดการผู้ใช้</span>
               </a>
             </li>
             <li class="nav-item">
