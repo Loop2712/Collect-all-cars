@@ -57,6 +57,13 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        // หาประเภทมือถือผู้ใช้
+        $_SERVER["HTTP_USER_AGENT"];
+        $split_1 = explode("(", $_SERVER["HTTP_USER_AGENT"]);
+        $split_2 = explode(";", $split_1[1]);
+        $os = $split_2[0];
+        $os;
+
         $date_now = date("d-m-Y");
 
         $requestData = $request->all();
@@ -75,8 +82,14 @@ class NewsController extends Controller
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
             $image_facebook = Image::make(storage_path("app/public")."/".$requestData['photo']);
 
-            $image->rotate($requestData['rotation']);
-            $image_facebook->rotate($requestData['rotation']);
+            // หมุนภาพ
+            if ($os = "iPhone") {
+                $image->rotate(-90);
+                $image_facebook->rotate(-90);
+            }else{
+                $image->rotate($requestData['rotation']);
+                $image_facebook->rotate($requestData['rotation']);
+            }
 
             //  เช็คเนื้อหาที่รุนแรง
             if ($requestData['severe'] == 'Yes') {
@@ -242,8 +255,7 @@ class NewsController extends Controller
             $requestData['cover_photo'] = 'img/news/'.$news.'.png';
 
         }
-        echo $_SERVER["HTTP_USER_AGENT"];
-        exit();
+        
         News::create($requestData);
 
         // $this->share($requestData['user_id']);
