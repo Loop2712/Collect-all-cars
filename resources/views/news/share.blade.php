@@ -27,7 +27,7 @@
             <div style="border: none;" class="card">
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        <img width="100%" src="{{ url('storage')}}/{{ $news_share->cover_photo }}">
+                        <img width="100%" src="{{ url('/')}}/{{ $news_share->cover_photo }}">
                         <div class="col-12 col-md-12">
                             <br>
                             <div id="fb-root"></div>
