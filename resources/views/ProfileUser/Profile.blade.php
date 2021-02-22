@@ -82,8 +82,8 @@
                                         <label for="massengbox" class="control-label"><b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b></label></label>
                                     </div>
                                     <div class="col-12 col-md-4">
-                                        {{ $data->driver_license }}
-                                        <!-- <img src="{{ url('storage')}}/{{ $data->driver_license }}" width="100" /><br/><br/>  -->
+                                        <!-- {{ $data->driver_license }} -->
+                                        <img src="{{ url('storage')}}/{{ $data->driver_license }}" width="100" /><br/><br/> 
                                     </div>
                                 </div>
                             
