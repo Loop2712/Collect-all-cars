@@ -14,8 +14,8 @@
 
 <meta property="og:url"           content="{{ url('/news') .'/'. $news_share->id }}" />
 <meta property="og:type"          content="website" />
-<meta property="og:title"         content="{{ $news_share->title . ' '. '#Vnews' . $news_share->province }}" />
-<meta property="og:description"   content="{{ $news_share->content }}" />
+<meta property="og:title"         content="{{ $news_share->title }}" />
+<meta property="og:description"   content="#Vnews{{ $news_share->province }}" />
 <meta property="og:image"         content="{{ url('/') .'/'. $news_share->cover_photo_facebook }}" />
 @endsection
 
