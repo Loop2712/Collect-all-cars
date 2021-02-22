@@ -27,7 +27,7 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class=" text-muted ls-1 mb-1">VMarket</h6>
-                  <h5 class="h3 mb-0">รถที่ลงประกาศขาย VMarket</h5>
+                  <h5 class="h3 mb-0">รถที่ลงประกาศขาย VMarket (Car)</h5>
                   <hr>
                   <span>จัดอันดับตามสถานที่ 5 อันดับ</span>
                 </div>
@@ -38,6 +38,27 @@
               <div class="chart">
                 <!-- Chart wrapper -->
                 @include('admin_viicheck/vmarketChart')
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class=" text-muted ls-1 mb-1">VMarket</h6>
+                  <h5 class="h3 mb-0">รถที่ลงประกาศขาย VMarket (Motorcycle)</h5>
+                  <hr>
+                  <span>จัดอันดับตามสถานที่ 5 อันดับ</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Chart -->
+              <div class="chart">
+                <!-- Chart wrapper -->
+                @include('admin_viicheck/vmarket_motorcycleChart')
               </div>
             </div>
           </div>
@@ -67,27 +88,6 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class=" text-muted ls-1 mb-1">VNews</h6>
-                  <h5 class="h3 mb-0">VNews ลงประกาศข่าว</h5>
-                  <hr>
-                  <span>จัดอันดับตามสถานที่ 5 อันดับ</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <!-- Chart wrapper -->
-                @include('admin_viicheck/vnewsChart')
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
                   <div class="row">
                       <div class="col-md-9">
                           <h6 class=" text-muted ls-1 mb-1">Vmove</h6>
@@ -100,6 +100,27 @@
                   <hr>
                   @include('admin_viicheck/guest')
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class=" text-muted ls-1 mb-1">VNews</h6>
+                  <h5 class="h3 mb-0">VNews ลงประกาศข่าว</h5>
+                  <hr>
+                  <span>จัดอันดับตามสถานที่ 5 อันดับ</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Chart -->
+              <div class="chart">
+                <!-- Chart wrapper -->
+                @include('admin_viicheck/vnewsChart')
               </div>
             </div>
           </div>

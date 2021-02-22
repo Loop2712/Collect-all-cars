@@ -8,6 +8,7 @@ use App\CarModel;
 use App\Models\Register_car;
 use App\Models\Guest;
 use App\Models\News;
+use App\Models\Motercycle;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -104,7 +105,7 @@ class DashboardController extends Controller
 				        	$count_vnews = $key->count;
 				        }
 
-		// รถที่ลงประกาศขาย จัดอันดับตามจังหวัด 5 อันดับ
+		// รถที่ลงประกาศขาย จัดอันดับตามจังหวัด 5 อันดับ (Car)
 		$vmarket_desc =CarModel::groupBy('location')
 			->selectRaw('count(location) as count,location')
             ->orderBy('count', 'desc')
@@ -125,6 +126,32 @@ class DashboardController extends Controller
             foreach($vmarket_desc as $item ){
                 $vmarket_desc_location[$i] = $item->location;
                 $vmarket_desc_count[$i] = $item->count;
+
+                $i++;
+            }
+        }
+
+        // รถที่ลงประกาศขาย จัดอันดับตามจังหวัด 5 อันดับ (Motorcycle)
+        $vmotercycle_desc =Motercycle::groupBy('location')
+            ->selectRaw('count(location) as count,location')
+            ->orderBy('count', 'desc')
+            ->limit(5)
+            ->get();
+        $vmotercycle_desc_location[0] = "";
+        $vmotercycle_desc_location[1] = "";
+        $vmotercycle_desc_location[2] = "";
+        $vmotercycle_desc_location[3] = "";
+        $vmotercycle_desc_location[4] = "";
+        $vmarket_desc_count[0] = "";
+        $vmotercycle_desc_count[1] = "";
+        $vmotercycle_desc_count[2] = "";
+        $vmotercycle_desc_count[3] = "";
+        $vmotercycle_desc_count[4] = "";
+
+        for ($i=0; $i < count($vmotercycle_desc);) { 
+            foreach($vmotercycle_desc as $item ){
+                $vmotercycle_desc_location[$i] = $item->location;
+                $vmotercycle_desc_count[$i] = $item->count;
 
                 $i++;
             }
@@ -182,15 +209,15 @@ class DashboardController extends Controller
             }
         }
 
-        // GUEST
+        // GUEST รายงานหาเจ้าของรถ
         $guest = Guest::groupBy('provider_id')
                     ->groupBy('user_id')
                     ->groupBy('name')
                     ->selectRaw('count(provider_id) as count , name , user_id')
                     ->orderByRaw('count DESC')
-                    ->latest()->paginate(3);
+                    ->latest()->paginate(5);
 
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest'));
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest' , 'vmotercycle_desc_location' , 'vmotercycle_desc_count'));
     }
 }

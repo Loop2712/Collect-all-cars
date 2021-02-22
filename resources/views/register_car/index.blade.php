@@ -38,7 +38,7 @@
                                                     <th>Car Type</th>
                                                     <th>Brand</th>
                                                     <th>Model</th>
-                                                    <th>act</th>
+                                                    <th>Vehicle Act</th>
                                                     <th>insurance</th>
                                                     <th></th>
                                                 </tr>
@@ -106,7 +106,7 @@
                                                     <th>Car Type</th>
                                                     <th>Brand</th>
                                                     <th>Model</th>
-                                                    <th>act</th>
+                                                    <th>Vehicle Act</th>
                                                     <th>insurance</th>
                                                     <th></th>
                                                 </tr>
