@@ -373,11 +373,27 @@ class NewsController extends Controller
     {
         $my_news = News::where('user_id', $user_id)->orderBy('created_at', 'DESC')->get();
 
-        // echo "<pre>";
-        // print_r($my_news);
-        // echo "<pre>";
-
         return view('news.my_news', compact('my_news'));
+
+    }
+
+    public function report($id)
+    {
+        $report_news = News::where('id', $id)->get();
+
+        foreach ($report_news as $item) {
+            if ($item->report < 5) {
+                $count_report = $item->report + 1 ;
+                DB::table('news')->where('id', $id)->update(['report' => $count_report]);
+            }
+            if($item->report >= 5) {
+                $count_report = $item->report + 1 ;
+                DB::table('news')->where('id', $id)->update(['report' => $count_report]);
+                DB::table('news')->where('id', $id)->update(['active' => 'No']);
+            }
+        }
+
+        return redirect($_SERVER['HTTP_REFERER']);
 
     }
 

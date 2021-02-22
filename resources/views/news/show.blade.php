@@ -69,7 +69,7 @@
                             <br><br>
                             <div class="col-8 "></div>
                             <div class="col-4 ">
-                                <a style="float: right;" href="#" class="btn btn-sm btn-warning text-light"><i class="fas fa-ban"></i> Report</a>
+                                <a style="float: right;" href="{{ url('/') }}/report/{{$news->id}}" class="btn btn-sm btn-warning text-light" onclick="return confirm(&quot; คุณยืนยันที่จะรายงานความไม่เหมาะสมของข่าวนี้หรือไม่ ?&quot;)"><i class="fas fa-ban"></i> Report</a>
                             </div>
                             <br><br>
                             <div class="col-9 "></div>

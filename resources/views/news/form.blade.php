@@ -54,6 +54,10 @@
                 <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($news->active) ? $news->active : 'Yes'}}" required readonly>
                 {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('report') ? 'has-error' : ''}}">
+                <input class="form-control" name="report" type="hidden" id="report" value="{{ isset($news->report) ? $news->report : 0}}" required readonly>
+                {!! $errors->first('report', '<p class="help-block">:message</p>') !!}
+            </div>
         </div>
         <div class="col-12 col-md-6">
             <label class="control-label">{{ 'เนื้อหาที่มีความรุนแรง' }}</label><span style="color: #FF0033;"> *</span><br>
