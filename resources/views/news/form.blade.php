@@ -50,6 +50,10 @@
                 <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ isset($news->user_id) ? $news->user_id : Auth::user()->id}}" required readonly>
                 {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
+                <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($news->active) ? $news->active : 'Yes'}}" required readonly>
+                {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
+            </div>
         </div>
         <div class="col-12 col-md-6">
             <label class="control-label">{{ 'เนื้อหาที่มีความรุนแรง' }}</label><span style="color: #FF0033;"> *</span><br>

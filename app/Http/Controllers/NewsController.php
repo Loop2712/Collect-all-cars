@@ -24,16 +24,17 @@ class NewsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $news = News::where('title', 'LIKE', "%$keyword%")
+            $news = News::where('active', "Yes")
+                ->where('title', 'LIKE', "%$keyword%")
                 ->orWhere('content', 'LIKE', "%$keyword%")
                 ->orWhere('location', 'LIKE', "%$keyword%")
                 ->orWhere('photo', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $news = News::latest()->paginate($perPage);
+            $news = News::where('active', "Yes")->latest()->paginate($perPage);
         }
 
-        $bangkok = DB::select("SELECT *,( 3959 * acos( cos( radians(13.7649136) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(100.5360959) ) + sin( radians(13.7649136) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 30 ORDER BY id DESC LIMIT 0 ,5000", []);
+        $bangkok = DB::select("SELECT *,( 3959 * acos( cos( radians(13.7649136) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(100.5360959) ) + sin( radians(13.7649136) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE active = 'Yes'  HAVING distance < 30 ORDER BY id DESC LIMIT 0 ,5000", []);
 
         return view('news.index', compact('news', 'bangkok'));
     }
@@ -58,10 +59,10 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         // หาประเภทมือถือผู้ใช้
-        $_SERVER["HTTP_USER_AGENT"];
-        $split_1 = explode("(", $_SERVER["HTTP_USER_AGENT"]);
-        $split_2 = explode(";", $split_1[1]);
-        $os = $split_2[0];
+        // $_SERVER["HTTP_USER_AGENT"];
+        // $split_1 = explode("(", $_SERVER["HTTP_USER_AGENT"]);
+        // $split_2 = explode(";", $split_1[1]);
+        // $os = $split_2[0];
 
         $date_now = date("d-m-Y");
 
@@ -358,7 +359,7 @@ class NewsController extends Controller
         $lat = $requestData['lat'];
         $lng = $requestData['lng'];
 
-        $near_news = DB::select("SELECT *,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 30 ORDER BY distance LIMIT 0 ,5000", []);
+        $near_news = DB::select("SELECT *,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE active = 'Yes' HAVING distance < 30 ORDER BY distance LIMIT 0 ,5000", []);
 
         // echo "<pre>";
         // print_r($requestData);

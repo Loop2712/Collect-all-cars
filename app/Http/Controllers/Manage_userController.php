@@ -37,7 +37,7 @@ class Manage_userController extends Controller
                 ->where('id', request('id'))
                 ->update(['role' => '']);
 
-        return redirect('/manage_user');
+        return redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function change_ToAdmin()
@@ -46,7 +46,7 @@ class Manage_userController extends Controller
                 ->where('id', request('id'))
                 ->update(['role' => 'admin']);
 
-        return redirect('/manage_user');
+        return redirect($_SERVER['HTTP_REFERER']);
     }
 
 }
