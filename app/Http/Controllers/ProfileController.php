@@ -81,9 +81,27 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $requestData = $request->all();
+
+        if ($request->hasFile('driver_license')) {
+            $requestData['driver_license'] = $request->file('driver_license')->store('uploads', 'public');
+
+            //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
+            $image = Image::make(storage_path("app/public")."/".$requestData['driver_license']);
+
+            $size = $image->filesize();  
+
+            if($size > 112000 ){
+                $image->resize(
+                    intval($image->width()/2) , 
+                    intval($image->height()/2)
+                )->save(); 
+            }
+
+        }
         
         $data = User::findOrFail($id);
         $data->update($requestData);
+
         // echo "<pre>";
         // print_r($requestData);
         // echo "<pre>";
