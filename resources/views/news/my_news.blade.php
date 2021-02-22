@@ -42,6 +42,7 @@
                     <p style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;" class="card-text">{{ $item->content }}</p>
                     <hr>
                     <p><b>REPORTER :</b> {{ $item->name }}</p>
+                    <a class="text-danger">Report : {{ $item->report }}</a>
                     <!-- <a href="#" class="btn btn-primary float-right">อ่านเพิ่มเติม..</a> -->
                     <a href="{{ url('/news/' . $item->id) }}" title="อ่านเพิ่มเติม.."><button class="float-right btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> อ่านเพิ่มเติม..</button></a>
                 </div>
