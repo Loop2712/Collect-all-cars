@@ -60,7 +60,7 @@
 
 
                 <div class="col-12 col-md-2">
-                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car registration' }}</label></label><span style="color: #FF0033;"> *</span>
+                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car number' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
@@ -74,7 +74,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
                         <select name="county" id="county" class="form-control" required>
-                                <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                                <option value="" selected > - กรุณาเลือกจังหวัด / Select province - </option> 
                                 <!-- @foreach($location_array as $lo)
                                 <option 
                                 value="{{ $lo->province }}" 
