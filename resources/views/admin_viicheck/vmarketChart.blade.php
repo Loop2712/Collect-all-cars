@@ -7,7 +7,7 @@ var vmarketChart = new Chart(ctx, {
     data: {
         labels: ['<?php echo $vmarket_desc_location[0] ?>', '<?php echo $vmarket_desc_location[1] ?>', '<?php echo $vmarket_desc_location[2] ?>', '<?php echo $vmarket_desc_location[3] ?>', '<?php echo $vmarket_desc_location[4] ?>'],
         datasets: [{
-            label: '# ทั้งหมด',
+            label: '',
             data: [<?php echo $vmarket_desc_count[0] ?>, <?php echo $vmarket_desc_count[1] ?>, <?php echo $vmarket_desc_count[2] ?>, <?php echo $vmarket_desc_count[3] ?>, <?php echo $vmarket_desc_count[4] ?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
