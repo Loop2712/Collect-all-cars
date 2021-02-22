@@ -1,11 +1,7 @@
 <div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
     <label for="type" class="control-label">{{ 'Type' }}</label>
     <select class="form-control" name="type" id="type">
-    <!-- @foreach ($num_type as $key => $value)
-    <option value="$key"{{ (isset($key->type)&& $key->type== $Key)  ? 'selected' : ''}}> 
-        {{ $value }} 
-    </option>
-  @endforeach  -->
+    
   @foreach($num_type as $ty)
                                         <option 
                                                 value="{{ $ty->type }}" 

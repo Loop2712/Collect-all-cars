@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\CarModel;
+use App\Models\Motercycle;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,22 +22,34 @@ class WishlistController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
 
-        // $wishlist = Wishlist::leftJoin('data_cars', 'wishlist.product_id', '=', 'data_cars.id')
-        //     ->where('user_id', Auth::id() )
-        //     ->get()
-        //     ->paginate($perPage);
-        //  $wishlist = Wishlist::where('user_id', Auth::id() )->latest()->paginate($perPage);
+        $perPage = 25;
+        // $wishlist = Wishlist::latest()->get();
+
+        // $cars = DB::table('wishlists')
+        //     ->join('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
+        //     ->select('wishlists.*', 'data_cars.id','data_cars.brand','data_cars.model','data_cars.submodel','data_cars.year','data_cars.price','data_cars.location')
+        //     ->latest()
+        //     ->get();
+
+        // $motorcycles = DB::table('wishlists')
+        //     ->join('motorcycles_datas', 'wishlists.producmoter_id', '=', 'motorcycles_datas.id')
+        //     ->select('wishlists.*','motorcycles_datas.id','motorcycles_datas.brand','motorcycles_datas.model','motorcycles_datas.submodel','motorcycles_datas.price','motorcycles_datas.location')
+        //     ->where('wishlists.user_id', Auth::id() )
+        //     ->latest()
+        //     ->get();
         $wishlist = DB::table('wishlists')
-            ->join('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
-            // ->join('orders', 'users.id', '=', 'orders.user_id')
-            ->select('data_cars.*')
-            ->where('wishlists.user_id', Auth::id() )
-            ->latest()
-            ->paginate($perPage);
-            
-        
+        ->join('data_cars', function($join)
+        {
+            $join->on('wishlists.product_id', '=', 'data_cars.id')
+                 ->where('wishlists.car_type', '=', 'car');
+        })
+        ->join('motorcycles_datas', function($join)
+        {
+            $join->on('wishlists.producmoter_id', '=', 'motorcycles_datas.id')
+                 ->where('wishlists.car_type', '=', 'motorcycle');
+        })
+        ->get();
 
         return view('wishlist.index', compact('wishlist'));
     }

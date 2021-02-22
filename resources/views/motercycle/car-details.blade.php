@@ -37,9 +37,9 @@
                                 <li>สถานที่ <span>{{ $data->location  }}</span></li>
                             </ul>
                            
-                            <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $data->id}}" >
+                            <input class="d-none" name="producmoter_id" type="number" id="producmoter_id" value="{{ $data->id}}" >
                             <input class="d-none" name="user_id" type="number" id="user_id" value="" >
-                            <input class="d-none" name="price" type="number" id="price" value="{{$data->price}}" >
+                            <input class="d-none" name="car_type" type="text" id="car_type" value="motorcycle" >
                         </div>
                         <div class="car__details__sidebar__payment">
                             <ul>

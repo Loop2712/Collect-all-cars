@@ -1,46 +1,15 @@
-<style>body {
-    background: #eee
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <title>Title of the document</title>
+</head>
 
-.ratings i {
-    font-size: 16px;
-    color: red
-}
-
-.strike-text {
-    color: red;
-    text-decoration: line-through
-}
-
-.product-image {
-    width: 100%
-}
-
-.dot {
-    height: 7px;
-    width: 7px;
-    margin-left: 6px;
-    margin-right: 6px;
-    margin-top: 3px;
-    background-color: blue;
-    border-radius: 50%;
-    display: inline-block
-}
-
-.spec-1 {
-    color: #938787;
-    font-size: 15px
-}
-
-h5 {
-    font-weight: 400
-}
-
-.para {
-    font-size: 16px
-}</style>
 <body>
-    
+
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
@@ -123,4 +92,6 @@ h5 {
         </div>
     </div>
 </div>
+
 </body>
+</html>

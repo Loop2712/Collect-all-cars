@@ -18,13 +18,13 @@
                             }else{ 
                                 document.querySelector('#brand_other').classList.add('d-none'),
                                 document.querySelector('#model_other').classList.add('d-none');}">
-                            @if(!empty($xx))
+                            <!-- @if(!empty($xx))
                                 @foreach($xx as $item)
                                     <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                 @endforeach
                             @else
                                 <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option> 
-                            @endif
+                            @endif -->
                             <br>
                       
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}

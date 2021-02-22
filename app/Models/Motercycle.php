@@ -27,5 +27,8 @@ class Motercycle extends Model
      */
     protected $fillable = ['type', 'brand', 'model', 'submodel', 'year', 'gear', 'color', 'motor', 'price', 'img', 'location', 'link', 'active', 'user_id'];
 
-    
+    public function productsM(){
+        return $this->hasMany('App\Wishlist', 'producmoter_id'); 
+    } 
+
 }
