@@ -84,6 +84,10 @@ class ProfileController extends Controller
         
         $data = User::findOrFail($id);
         $data->update($requestData);
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
 
         DB::table('register_cars')
               ->where('user_id', $id)
