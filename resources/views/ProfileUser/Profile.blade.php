@@ -79,16 +79,26 @@
                                 <hr>
                                 @if(Auth::check())
                                     @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
-                                    <div class="row">
-                                        <div class="col-12 col-md-2">
-                                            <label for="massengbox" class="control-label">
-                                                <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>
-                                                <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>
-                                            </label>
-                                        </div>
-                                        <div class="col-12 col-md-4">
-                                            <!-- {{ $data->driver_license }} -->
-                                            <img src="{{ url('storage')}}/{{ $data->driver_license }}" width="100" /><br/><br/> 
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="massengbox" class="control-label">
+                                                    <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>
+                                                    <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>
+                                                </label>
+                                            </div><br><br>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถยนต์</label>
+                                                </div>
+                                                <div class="col-12 col-md-6">รถจักรยานยนต์</div>
+                                                <div class="col-12 col-md-6">
+                                                    <img src="{{ url('storage')}}/{{ $data->driver_license }}" width="170" /><br/><br/> 
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" width="170" /><br/><br/> 
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     @endif 

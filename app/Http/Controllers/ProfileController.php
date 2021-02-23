@@ -88,13 +88,30 @@ class ProfileController extends Controller
 
             //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
             $image = Image::make(storage_path("app/public")."/".$requestData['driver_license']);
-
+            $image->orientate();
             $size = $image->filesize();  
 
             if($size > 112000 ){
                 $image->resize(
                     intval($image->width()/2) , 
                     intval($image->height()/2)
+                )->save(); 
+            }
+
+        }
+
+        if ($request->hasFile('driver_license2')) {
+            $requestData['driver_license2'] = $request->file('driver_license2')->store('uploads', 'public');
+
+            //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
+            $image2 = Image::make(storage_path("app/public")."/".$requestData['driver_license2']);
+            $image2->orientate();
+            $size = $image2->filesize();  
+
+            if($size > 112000 ){
+                $image2->resize(
+                    intval($image2->width()/2) , 
+                    intval($image2->height()/2)
                 )->save(); 
             }
 
