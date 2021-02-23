@@ -112,7 +112,7 @@
         <div class="row">
             <div class="col-12 col-md-2">
                 <label for="massengbox" class="control-label">
-                    <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>
+                    <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b><br>
                     <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>
                 </label>
             </div>
