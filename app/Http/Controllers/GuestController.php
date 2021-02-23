@@ -119,8 +119,10 @@ class GuestController extends Controller
         DB::table('register_cars')
               ->where('registration_number', $requestData['registration'])
               ->where('province', $requestData['county'])
-              ->update(['reply_provider_id' => $requestData['provider_id']])
-              ->update(['now' => "Yes"]);
+              ->update([
+                'reply_provider_id' => $requestData['provider_id'],
+                'now' => "Yes",
+          ]);
 
         // ตรงนี้ต้องหา type ของ user ที่ register เข้ามาเพื่อทำการตอบกลับ
 
@@ -450,11 +452,10 @@ class GuestController extends Controller
         $date_now = date("Y-m-d"); 
         DB::table('users')
                 ->where('name', request('name'))
-                ->update(['ranking' => 'Senior']);
-
-        DB::table('users')
-                ->where('name', request('name'))
-                ->update(['last_edit' => $date_now]);
+                ->update([
+                    'ranking' => 'Senior',
+                    'last_edit' => $date_now,
+                ]);
 
         return redirect('/index_detail?name='.request('name'));
     }
@@ -464,11 +465,10 @@ class GuestController extends Controller
         $date_now = date("Y-m-d"); 
         DB::table('users')
               ->where('name', request('name'))
-              ->update(['ranking' => 'Common']);
-
-        DB::table('users')
-                ->where('name', request('name'))
-                ->update(['last_edit' => $date_now]);
+              ->update([
+                'ranking' => 'Common',
+                'last_edit' => $date_now,
+          ]);
 
         return redirect('/index_detail?name='.request('name'));
     }
@@ -478,11 +478,10 @@ class GuestController extends Controller
         $date_now = date("Y-m-d"); 
         DB::table('users')
               ->where('name', request('name'))
-              ->update(['ranking' => 'Normal']);
-
-        DB::table('users')
-                ->where('name', request('name'))
-                ->update(['last_edit' => $date_now]);
+              ->update([
+                'ranking' => 'Normal',
+                'last_edit' => $date_now,
+            ]);
 
         return redirect('/index_detail?name='.request('name'));
     }

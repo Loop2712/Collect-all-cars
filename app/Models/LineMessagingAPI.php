@@ -437,6 +437,19 @@ class LineMessagingAPI extends Model
             "title" => "https://api.line.me/v2/bot/message/push",
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
+        $reply = DB::table('register_cars')
+                ->select('reply_provider_id','registration_number','province')
+                ->where('provider_id', $provider_id)
+                ->where('now', "Yes")
+                ->get();
+
+        DB::table('register_cars')
+                ->where('provider_id', $provider_id)
+                ->where('now', "Yes")
+                ->update([,
+                'now' => null,
+          ]);
+
         MyLog::create($data);
         return $result;
 
