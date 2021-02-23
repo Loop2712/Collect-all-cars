@@ -214,6 +214,11 @@ class Not_comforController extends Controller
                     "title" => "https://api.line.me/v2/bot/message/push",
                     "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
                 ];
+
+                DB::table('register_cars')
+                    ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                    ->update(['now' => null]);
+                
                 MyLog::create($data);
                 return $result;
 
