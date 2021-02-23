@@ -376,7 +376,8 @@ class LineMessagingAPI extends Model
     	// UserId คนเรียก
     	$reply = DB::table('register_cars')
 	            ->select('reply_provider_id','registration_number','province')
-	            ->where('provider_id', $provider_id)
+                ->where('provider_id', $provider_id)
+	            ->where('now', "Yes")
 	            ->get();
 
 		// $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
