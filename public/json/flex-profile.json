@@ -234,6 +234,65 @@
           {
             "type": "separator",
             "margin": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://market.viicheck.com/img/icon/driver-license.png",
+                    "margin": "md",
+                    "size": "xxl",
+                    "offsetTop": "xl",
+                    "offsetStart": "xxl"
+                  },
+                  {
+                    "type": "text",
+                    "text": "ใบอนุญาตขับรถ",
+                    "margin": "xxl",
+                    "size": "md",
+                    "weight": "regular",
+                    "offsetTop": "md",
+                    "offsetStart": "xxl",
+                    "flex": 3,
+                    "action": {
+                      "type": "message",
+                      "label": "ใบอนุญาตขับรถ",
+                      "text": "ใบอนุญาตขับรถ"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": ">>>",
+                    "offsetTop": "md",
+                    "action": {
+                      "type": "message",
+                      "label": "ใบอนุญาตขับรถ",
+                      "text": "ใบอนุญาตขับรถ"
+                    },
+                    "offsetStart": "xxl"
+                  },
+                  {
+                    "type": "spacer"
+                  }
+                ],
+                "paddingBottom": "lg"
+              },
+              {
+                "type": "separator",
+                "margin": "xxl"
+              }
+            ],
+            "action": {
+              "type": "message",
+              "label": "ใบอนุญาตขับรถ",
+              "text": "ใบอนุญาตขับรถ"
+            }
           }
         ],
         "action": {
