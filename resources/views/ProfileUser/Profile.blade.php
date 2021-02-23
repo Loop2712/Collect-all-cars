@@ -90,12 +90,12 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6">
                                                     <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถยนต์</label>
-                                                </div>
-                                                <div class="col-12 col-md-6">รถจักรยานยนต์</div>
-                                                <div class="col-12 col-md-6">
+                                                    <br>
                                                     <img src="{{ url('storage')}}/{{ $data->driver_license }}" width="170" /><br/><br/> 
                                                 </div>
                                                 <div class="col-12 col-md-6">
+                                                    <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถจักรยานยนต์</label>
+                                                    <br>
                                                     <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" width="170" /><br/><br/> 
                                                 </div>
                                             </div>
