@@ -54,7 +54,7 @@
                   {
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/icon/motorcycle.png",
-                    "size": "xl",
+                    "size": "xxl",
                     "margin": "md",
                     "offsetTop": "sm"
                   },
@@ -80,5 +80,5 @@
     ]
   }
 }
-    
+
 }
