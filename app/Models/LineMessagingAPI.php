@@ -376,8 +376,10 @@ class LineMessagingAPI extends Model
     	// UserId คนเรียก
     	$reply = DB::table('register_cars')
 	            ->select('reply_provider_id','registration_number','province')
-                ->where('provider_id', $provider_id)
-	            ->where('now', "Yes")
+                ->where([
+                        ['provider_id', $provider_id],
+                        ['now', "Yes"],
+                    ])
 	            ->get();
 
 		// $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
@@ -439,11 +441,8 @@ class LineMessagingAPI extends Model
         ];
 
         DB::table('register_cars')
-                ->where('provider_id', $provider_id)
-                ->where('now', "Yes")
-                ->update([,
-                'now' => null,
-          ]);
+                ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                ->update(['now' => null]);
 
         MyLog::create($data);
         return $result;
