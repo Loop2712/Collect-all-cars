@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileController extends Controller
 {
@@ -98,14 +99,16 @@ class ProfileController extends Controller
             }
 
         }
-        
-        $data = User::findOrFail($id);
-        $data->update($requestData);
 
         // echo "<pre>";
         // print_r($requestData);
         // echo "<pre>";
         // exit();
+
+        $data = User::findOrFail($id);
+        $data->update($requestData);
+
+        
 
         DB::table('register_cars')
               ->where('user_id', $id)

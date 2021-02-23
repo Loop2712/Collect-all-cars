@@ -111,12 +111,15 @@
         <hr>
         <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b></label></label>
+                    <label for="massengbox" class="control-label">
+                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>
+                        <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>
+                    </label>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('driver_license ') ? 'has-error' : ''}}">
-                    <input class="form-control" name="driver_license " type="file" id="driver_license " value="{{ isset($data->driver_license ) ? $data->driver_license  : ''}}" accept="image/*" multiple="multiple">
-                        {!! $errors->first('driver_license ', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
+                    <input class="form-control" name="driver_license" type="file" id="driver_license" value="{{ isset($data->driver_license) ? $data->driver_license : ''}}" >
+                        {!! $errors->first('driver_license', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
         </div>
