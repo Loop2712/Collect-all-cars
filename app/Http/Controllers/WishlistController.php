@@ -38,18 +38,35 @@ class WishlistController extends Controller
         //     ->where('wishlists.user_id', Auth::id() )
         //     ->latest()
         //     ->get();
+
+
+
+        // $wishlist = DB::table('wishlists')
+        // ->join('data_cars', function($join)
+        // {
+        //     $join->on('wishlists.product_id', '=', 'data_cars.id')
+        //          ->where('wishlists.car_type', '=', 'car');
+        // })
+        // ->join('motorcycles_datas', function($join)
+        // {
+        //     $join->on('wishlists.producmoter_id', '=', 'motorcycles_datas.id')
+        //          ->where('wishlists.car_type', '=', 'motorcycle');
+        // })
+        // ->get();
+
+
+        // $wishlist = DB::table('wishlists')
+        //     ->join('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
+        //     ->join('motorcycles_datas', 'wishlists.producmoter_id', '=', 'motorcycles_datas.id')
+        //     ->select('wishlists.*', 'data_cars.id as carid','data_cars.brand as carbrand','data_cars.model as carmodel','data_cars.submodel as carsubmodel','data_cars.price as carprice','data_cars.location as caelo')
+        //     ->latest()
+        //     ->get();
+
         $wishlist = DB::table('wishlists')
-        ->join('data_cars', function($join)
-        {
-            $join->on('wishlists.product_id', '=', 'data_cars.id')
-                 ->where('wishlists.car_type', '=', 'car');
-        })
-        ->join('motorcycles_datas', function($join)
-        {
-            $join->on('wishlists.producmoter_id', '=', 'motorcycles_datas.id')
-                 ->where('wishlists.car_type', '=', 'motorcycle');
-        })
-        ->get();
+            ->leftJoin('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
+            ->leftJoin('motorcycles_datas', 'wishlists.producmoter_id', '=', 'motorcycles_datas.id')
+            // ->select('wishlists.*','data_cars.*','motorcycles_datas.*')
+            ->get();
 
         return view('wishlist.index', compact('wishlist'));
     }
