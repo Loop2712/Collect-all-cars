@@ -13,6 +13,52 @@
     <!-- <input class="form-control" name="type" type="text" id="type" value="{{ isset($motercycle->type) ? $motercycle->type : ''}}" > -->
     {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
 </div>
+<div class="col-12 col-md-4">
+                    
+                    <div id="div_motor_brand" class="d-none form-group {{ $errors->has('motor_brand') ? 'has-error' : ''}}">
+                        <!-- motorcycles -->
+                        <select name="brand" class="d-none form-control" id="input_motor_brand" required onchange="showMotor_model();
+                                if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#brand_input').classList.remove('d-none'),
+                                document.querySelector('#generation_input').classList.remove('d-none'),
+                                document.querySelector('#brand_input').focus();
+                            }else{ 
+                                document.querySelector('#brand_input').classList.add('d-none'),
+                                document.querySelector('#generation_input').classList.add('d-none');}">
+                            <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
+                            <br>
+                            {!! $errors->first('motor_brand', '<p class="help-block">:message</p>') !!}
+                        </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('brand_other') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="brand_other" type="text" id="brand_input" value="{{ isset($register_car->brand_other) ? $register_car->brand_other : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        {!! $errors->first('brand_other', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label for="generation" class="control-label">{{ 'รุ่นรถ / Model' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('model') ? 'has-error' : ''}}">
+
+                        <!-- motorcycles -->
+                        <select name="motor_generation" id="input_motor_model" class="d-none form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#generation_input').classList.remove('d-none'),
+                                document.querySelector('#generation_input').focus();
+                            }else{ 
+                                document.querySelector('#generation_input').classList.add('d-none');}">
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option>     
+                                <br>  
+                                {!! $errors->first('motor_generation', '<p class="help-block">:message</p>') !!}            
+                        </select>
+                    </div>
+                    <div class="form-group {{ $errors->has('generation_other') ? 'has-error' : ''}}">
+                        <input class="d-none form-control" name="generation_other" type="text" id="generation_input" value="{{ isset($register_car->generation_other) ? $register_car->generation_other : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
+                        {!! $errors->first('generation_other', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <br><br><br>
+                
 <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
     <label for="brand" class="control-label">{{ 'Brand' }}</label>
     <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($motercycle->brand) ? $motercycle->brand : ''}}" >
@@ -76,3 +122,59 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        showCar_brand(); 
+        
+    });
+    function showCar_brand(){
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/motor_brand")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                // let input_car_brand = document.querySelector("#input_car_brand");
+                    // input_car_brand.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.brand;
+                    option.value = item.brand;
+                    input_motor_brand.add(option);
+                }
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_motor_brand.add(option); 
+
+                //QUERY model
+                showMotor_model();
+            });
+            // return input_car_brand.value;
+    }
+    function showMotor_model(){
+        let input_car_brand = document.querySelector("#input_motor_brand");
+        fetch("{{ url('/') }}/api/motor_brand/"+input_motor_brand.value+"/motor_brand")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                // //UPDATE SELECT OPTION
+                let input_motor_brand = document.querySelector("#input_car_model");
+                    input_motor_brand.innerHTML = "";
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.model;
+                    option.value = item.model;
+                    input_motor_brand.add(option);                
+                } 
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_motor_brand.add(option);  
+            });
+    }
+</script>

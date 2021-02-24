@@ -62,16 +62,18 @@ class CarController extends Controller
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
         } else  if (!empty($keyword)) {
-            $data =CarModel::where('brand', 'LIKE', "%' .$keyword.'%")
-                ->orWhere('model', 'LIKE', "%' .$keyword.'%")
-                ->orWhere('submodel', 'LIKE', "%' .$keyword.'%")
+            $data =CarModel::where('brand', 'like', '%' .$keyword.'%')
+                ->orWhere('model', 'like', '%' .$keyword.'%')
+                ->orWhere('submodel', 'like', '%' .$keyword.'%')
                 ->where('active' ,'=', 'yes')
-                ->paginate($perPage);
+                ->orderBy('created_at', 'asc')
+                ->latest()->paginate($perPage);
         } else {
 
             $data =CarModel::orderBy('created_at', 'asc')
-                    ->where('active' ,'=', 'yes')
-                    ->paginate($perPage);
+                ->where('active' ,'=', 'yes')
+                ->orderBy('created_at', 'asc')
+                ->latest()->paginate($perPage);
         } 
         
         $brand_array = CarModel::selectRaw('brand,count(brand) as count')

@@ -8,8 +8,8 @@
                     <div class="car__sidebar">
                         <div class="car__search">
                             <h5>ค้นหา</h5>
-                            <form method="GET" action="{{URL::to('/car')}}"" accept-charset="UTF-8" role="search">
-                                <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}" >
+                            <form  action="{{URL::to('/car')}}" method="get">
+                                <input type="text" name="search" id="search" placeholder="Search..." value="{{ request('search') }}" />
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -47,16 +47,7 @@
                                     @endforeach 
                                 </select><br>
                                 
-                                <select class="form-control"  name="color" id="color" onchange="this.form.submit()" >
-                                    <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
-                                    @foreach($color_array  as $co)
-                                        <option 
-                                                value="{{ $co->color  }}" 
-                                                {{ request('color') == $co->color  ? 'selected' : ''   }} >
-                                            {{ $co->color  }} 
-                                        </option>
-                                    @endforeach 
-                                </select><br>
+                                
                                 <select class="form-control"  name="location" id="location" onchange="this.form.submit()" >
                                     <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
                                     @foreach($location_array as $lo)
@@ -84,6 +75,16 @@
                                                 value="{{ $ye->year }}" 
                                                 {{ request('year') == $ye->year ? 'selected' : ''   }} >
                                         {{ $ye->year }} 
+                                        </option>
+                                    @endforeach 
+                                </select><br>
+                                <select class="form-control"  name="color" id="color" onchange="this.form.submit()" >
+                                    <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
+                                    @foreach($color_array  as $co)
+                                        <option 
+                                                value="{{ $co->color  }}" 
+                                                {{ request('color') == $co->color  ? 'selected' : ''   }} >
+                                            {{ $co->color  }} 
                                         </option>
                                     @endforeach 
                                 </select><br>
@@ -168,49 +169,6 @@
                                     <div class="car__item__text__inner">
                                         <div class="label-date">{{ $item->year  }}</div>
                                         <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
-                                        <ul>
-                                            <li><span>{{ $item->distance  }} </span>km</li>
-                                            
-                                            @switch($item->gear)
-                                                @case("เกียร์ธรรมดา")
-                                                    <li>Manual </li>
-                                                    @break
-
-                                                @case("เกียร์อัตโนมัติ")
-                                                    <li>Auto </li>
-                                                    @break
-
-                                                @default
-                                                    <li> - </li>
-                                            @endswitch
-                                            
-                                            
-                                            @switch($item->fuel)
-                                                @case("Diesel")
-                                                    <li><span>ดีเซล</span></li>
-                                                    @break
-                                                @case("Petrol - Unleaded (ULP)")
-                                                    <li><span>เบนซิน</span></li>
-                                                    @break
-                                                @case("Petrol - Leaded")
-                                                    <li><span>เบนซิน</span></li>
-                                                    @break
-                                                @case("Electric")
-                                                    <li><span>ไฟฟ้า</span></li>
-                                                    @break
-                                                @case("Hybrid")
-                                                    <li><span>ไฮบริด</span></li>
-                                                    @break
-                                                @case("Natural Gas Vehicle")
-                                                    <li><span>NGV</span></li>
-                                                    @break
-                                                @case("pito")
-                                                    <li><span>เบนซิน</span></li>
-                                                    @break
-                                                @default
-                                                    <li><span> - </span></li>
-                                            @endswitch
-                                        </ul>
                                     </div>
 
                                     <div class="car__item__price">

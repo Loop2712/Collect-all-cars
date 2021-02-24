@@ -57,7 +57,7 @@ class MotercleyviewController extends Controller
                 ->orWhere('model', 'LIKE', "%$keyword%")
                 ->orWhere('submodel', 'LIKE', "%$search%")
                 ->where('active' ,'=', 'yes')
-                ->latest()->paginate($perPage);
+                ->paginate($perPage);
         } else {
             $data = Motercycle::orderBy('created_at', 'asc')
                 ->where('active' ,'=', 'yes')

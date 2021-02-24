@@ -8,8 +8,8 @@
                     <div class="car__sidebar">
                         <div class="car__search">
                             <h5>ค้นหา</h5>
-                            <form action="{{URL::to('/motercycle')}}" method="get">
-                                <input type="text" placeholder="Search..." name="search" id="search">
+                            <form method="GET" action="{{URL::to('/motercycle')}}" accept-charset="UTF-8" role="search">
+                                <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
