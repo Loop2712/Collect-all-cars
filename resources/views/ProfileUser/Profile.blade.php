@@ -23,11 +23,13 @@
                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $data->username }}</h4>
                     <div class="text-muted"><small>เป็นสมาชิกมา  วันแล้ว</small></div>
                     <div class="mt-2">
-                      <button class="btn btn-primary" type="button">
-                        <!-- <i class="fa fa-fw fa-camera"></i> -->
+                        
+
+                      <!-- <button class="btn btn-primary" type="button">
+                        <i class="fa fa-fw fa-camera"></i> 
                         <span><input class="form-control" name="avatar " type="file" id="avatar " value="{{ isset($data->avatar ) ? $data->avatar  : ''}}" accept="image/*" multiple="multiple">
                         {!! $errors->first('avatar ', '<p class="help-block">:message</p>') !!} </span>
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                   <!-- <div class="text-center text-sm-right">
@@ -81,7 +83,7 @@
                             <div class="form-group">
                               <h4>{{ 'อีเมล  / E-mail' }}</h4>
                               <!-- <input class="form-control" type="text" placeholder="user@example.com"> -->
-                              <h5>{{ $data->email }}</h5> 
+                              <h5><br>{{ $data->email }}</h5> 
                             </div>
                           </div>
                         </div>
@@ -90,21 +92,40 @@
                             <div class="form-group">
                               <h4>{{ 'โทรศัพท์ / Phone ' }}</h4>
                               <!-- <input class="form-control" type="text" placeholder="user@example.com"> -->
-                              <h5>{{ $data->phone }}</h5> 
+                              <h5><br>{{ $data->phone }}</h5> 
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col mb-3">
-                            <div class="form-group">
-                              <label>About</label>
-                              <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                            </div>
-                          </div>
-                        </div>
+                        
+                        @if(Auth::check())
+                                    @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="massengbox" class="control-label">
+                                                    <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b><br>
+                                                    <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>
+                                                </label>
+                                            </div><br><br>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถยนต์</label>
+                                                    <br>
+                                                    <img src="{{ url('storage')}}/{{ $data->driver_license }}" width="170" /><br/><br/> 
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถจักรยานยนต์</label>
+                                                    <br>
+                                                    <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" width="170" /><br/><br/> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif 
+                                @endif
                       </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-12 col-sm-6 mb-3">
                         <div class="mb-2"><b>Change Password</b></div>
                         <div class="row">
@@ -153,10 +174,11 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                       <div class="col d-flex justify-content-end">
-                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                        <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
+                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="Edit Wishlist"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                       </div>
                     </div>
                   </form>
