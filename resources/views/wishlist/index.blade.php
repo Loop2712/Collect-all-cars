@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-lg-7 col-sm-12">
                     <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
-                        <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="{{ url('/car/'.$item->products->id ) }}" class="text-theme-color">
+                        <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="{{ url('/car/'.$item->products->id ) }}" class="text-theme-color" style="color: black;">
                         {{ $item->products->brand }} {{ $item->products->model }} {{ $item->products->submodel }}
                         </a></h5>
                         <h5> 
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-lg-7 col-sm-12">
                     <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
-                        <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="{{ url('/motercycle/'.$item->productM->id ) }}" class="text-theme-color">
+                        <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="{{ url('/motercycle/'.$item->productM->id ) }}" class="text-theme-color" style="color: black;">
                         {{ $item->productM->brand }} {{ $item->productM->model }} {{ $item->productM->submodel }}
                         </a></h5>
                         <h5> 
