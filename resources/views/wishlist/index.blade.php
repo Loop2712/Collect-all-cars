@@ -11,22 +11,13 @@
             </div>
             
             @foreach($wishlist as $item)
-           @switch($item->car_type)
-                @case("car")
-                    <span> {{ $item->brand }} </span><br>
-                    @break
-
-                @case("motorcycle")
-                    <span>{{ $item->brand }} </span><br>
-                    @break
-
-                @default
-                    <span>Something went wrong, please try again</span>
-            @endswitch
-            
+            @if($item->car_type == 'car')
+                <span> {{ $item->products->brand }} </span><br>
+            @else
+                    <span> {{ $item->productM->brand }} </span><br>
+            @endif
             @endforeach
             
-                       
             
             <!-- <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><input type="text" class="form-control border-0 gift-card" placeholder="discount code/gift card"><button class="btn btn-outline-warning btn-sm ml-2" type="button">Apply</button></div> -->
             <!-- <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button">Proceed to Pay</button></div> -->

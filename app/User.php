@@ -46,11 +46,11 @@ class User extends Authenticatable
     }
 
     public function products(){
-        return $this->hasMany('App\Wishlist', 'user_id'); 
+        return $this->hasMany('App\Models\Wishlist', 'user_id','id'); 
     }  
 
-    public function sell(){
-        return $this->hasMany('App\Sell', 'user_id'); 
-    }   
+    // public function sell(){
+    //     return $this->hasMany('App\Sell', 'user_id'); 
+    // }   
 
 }

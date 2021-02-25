@@ -24,7 +24,8 @@ class WishlistController extends Controller
         $keyword = $request->get('search');
 
         $perPage = 25;
-        // $wishlist = Wishlist::latest()->get();
+        $wishlist = Wishlist::where('user_id', Auth::id() )
+            ->latest()->get();
 
         // $cars = DB::table('wishlists')
         //     ->join('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
@@ -62,13 +63,13 @@ class WishlistController extends Controller
         //     ->latest()
         //     ->get();
 
-        $wishlist = DB::table('wishlists')
-            ->leftJoin('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
-            ->leftJoin('motorcycles_datas', 'wishlists.producmoter_id', '=', 'motorcycles_datas.id')
-            // ->select('wishlists.*','data_cars.*','motorcycles_datas.*')
-            ->get();
+        // $wishlist = DB::table('wishlists')
+        //     ->leftJoin('data_cars', 'wishlists.product_id', '=', 'data_cars.id')
+        //     ->leftJoin('motorcycles_datas', 'wishlists.producmoter_id', '=', 'motorcycles_datas.id')
+        //     // ->select('wishlists.*','data_cars.*','motorcycles_datas.*')
+        //     ->get();
 
-        return view('wishlist.index', compact('wishlist'));
+        return view('wishlist.index',compact('wishlist'));
     }
 
     /**

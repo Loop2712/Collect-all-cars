@@ -28,15 +28,15 @@ class Wishlist extends Model
     protected $fillable = ['product_id', 'user_id', 'price','producmoter_id','car_type'];
 
     public function user(){
-        return $this->belongsTo('App\User', 'user_id'); 
+        return $this->belongsTo('App\User', 'user_id' , 'id'); 
     }
 
-    public function product(){
-        return $this->belongsTo('App\CarModel', 'product_id'); 
+    public function products(){
+        return $this->belongsTo('App\CarModel', 'product_id','id'); 
     }
 
     public function productM(){
-        return $this->belongsTo('App\Motercycle', 'producmoter_id'); 
+        return $this->belongsTo('App\Models\Motercycle', 'producmoter_id','id'); 
     }
 
 }

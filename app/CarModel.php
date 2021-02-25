@@ -28,10 +28,10 @@ class CarModel extends Model
     protected $fillable = ["price", "type", "brand", "model", "submodel", "year", "motor", "gear", "seats", "distance", "color","image", "location", "link", "car_id_detail","clean_at","fuel"];
 
     public function products(){
-        return $this->hasMany('App\Wishlist', 'product_id'); 
+        return $this->hasMany('App\Models\Wishlist', 'product_id','id'); 
     } 
-    public function sell(){
-        return $this->hasMany('App\Sell', 'id'); 
-    } 
+    // public function sell(){
+    //     return $this->hasMany('App\Sell', 'id'); 
+    // } 
 
 }
