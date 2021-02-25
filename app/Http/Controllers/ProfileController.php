@@ -21,7 +21,24 @@ class ProfileController extends Controller
         $id = Auth::id();
         $data = User::findOrFail($id);
 
+    //     $date = User::select('created_at')
+    //     ->where('id', Auth::id());
+    //     $birthday = $date;      //รูปแบบการเก็บค่าข้อมูลวันเกิด
+    //     $today = date("Y-m-d");   //จุดต้องเปลี่ยน
+            
+    
+    //     list($byear, $bmonth, $bday)= explode("-",$birthday);       //จุดต้องเปลี่ยน
+    //     list($tyear, $tmonth, $tday)= explode("-",$today);                //จุดต้องเปลี่ยน
+            
+    //     $mbirthday = mktime(0, 0, 0, $bmonth, $bday, $byear); 
+    //     $mnow = mktime(0, 0, 0, $tmonth, $tday, $tyear );
+    //     $mage = ($mnow - $mbirthday);
+    // $u_y=date("Y", $mage)-1970;
+    // $u_m=date("m",$mage)-1;
+    // $u_d=date("d",$mage)-1;
+
         return view('ProfileUser/Profile' , compact('data') );
+        // 'u_y','u_m','u_d'
 
     }
 

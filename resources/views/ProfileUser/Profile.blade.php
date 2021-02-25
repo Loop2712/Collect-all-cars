@@ -21,7 +21,7 @@
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $data->username }}</h4>
-                    <div class="text-muted"><small>เป็นสมาชิกมา  วันแล้ว</small></div>
+                    <div class="text-muted"><small>เป็นสมาชิกมา   ปี  เดือน   วันแล้ว</small></div>
                     <div class="mt-2">
                         
 
@@ -178,7 +178,7 @@
                     <div class="row">
                       <div class="col d-flex justify-content-end">
                         <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
-                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="Edit Wishlist"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="Edit Wishlist"><button class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Changes</button></a>
                       </div>
                     </div>
                   </form>
