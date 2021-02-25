@@ -13,6 +13,7 @@
 
     <title>viicheck</title>
 
+    @yield('add')
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -36,6 +37,7 @@
     <link rel="stylesheet" href="{{ asset('css/car/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/style.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/car/wishlist.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/profile.css')}}" type="text/css">
 
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     
@@ -51,46 +53,51 @@
     </div> -->
     
     <div class="offcanvas-menu-overlay"></div>
+    
     <div class="offcanvas-menu-wrapper">
-    <!-- <div class="offcanvas__widget">
-        
-                            @guest
-                            
-                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" ><i class="fas fa-sign-in-alt"></i></a>
-                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                            @else
-                                <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
-                                <a aria-haspopup="true" aria-expanded="false" v-pre href="#"> 
-                                    {{ Auth::user()->name }}
-                                </a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <a href="{{ url('/profile') }}" > Profile</a>
-                                        </li>
-                                    @if(Auth::check())
-                                        @if(Auth::user()->role == "admin" )
-                                            <li>
-                                                <a href="{{ url('/dashboard') }}" target="blank"> Admin</a>
-                                            </li>
-                                        @endif
-                                    @endif
-                                        <li>
-                                            <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}</a>
-                                        </li>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                        </form>
-                                    </ul>
-                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;">ลงขาย</a>
-                                @endguest
-                            
-        </div> -->
         <div class="offcanvas__logo">
             <a href="{{URL::to('/')}}"><img width="150px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
-        <div id="mobile-menu-wrap"></div>
+    <div class="row bootstrap snippets bootdeys">
+
+        <div class="col-md-3">
+            <div class="panel text-center">
+                
+                        <!-- <button class="btn btn-primary"> -->
+                        @guest
+                        <div class="pad-all">
+                            <div class="pad-btm">
+                        <button class="btn btn-primary">
+                            <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" style=" color: white;"  >เข้าสู่ระบบ </a>
+                        </button>
+                        <!-- <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" style=" color: #4169E1;"  >เข้าสู่ระบบ &emsp;&emsp;</a> -->
+                        @else
+                        <div class="panel-body">
+                            <img alt="Avatar" class="img-md img-circle img-border mar-btm" src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                            <h4 class="mar-no"><br>ชื่อ</h4>
+                            <p>วันเดือนปีที่ใช้</p>
+                        </div>
+                        <div class="pad-all">
+                            <div class="pad-btm">
+                        <a href="{{ url('/sell') }} " style=" color: #4169E1;" >แก้ไขโปรไฟล์ &emsp;&emsp;</a>   
+                        <!-- </button> -->
+                        <!-- <button class="btn btn-success"> -->
+                            <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                {{ __('ออกจากระบบ') }}</a>
+                                            <!-- </button> -->
+                        @endguest
+                    </div>
+                    <ul class="nav-news-feed">
+                        <li><i class="fa fa-car"></i><div><a href="{{ url('/car') }}">รถยนต์</a></div></li>
+                        <li><i class="fa fa-bicycle"></i><div><a href="{{ url('/motercycle') }}">รถจักรยานยนต์</a></div></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>    
+    </div>
+        
+        <!-- <div id="mobile-menu-wrap"></div> -->
         
     </div>
 

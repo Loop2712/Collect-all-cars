@@ -3,9 +3,11 @@
 @section('content')
 <div class="container">
 <div class="row flex-lg-nowrap">
+@include('layouts.sidebar')
 
-  <div class="col">
+  <div class="col order-lg-2 order-1">
     <div class="row">
+
       <div class="col mb-3">
         <div class="card">
           <div class="card-body">
