@@ -122,10 +122,10 @@
                         
                             <div class="car__item">
                                 <div class="car__item__pic__slider owl-carousel">
-                                    @if($item->img == "" )
+                                    @if($item->Img == "" )
                                         <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
                                     @else
-                                        <img src="{{ $item->img }}" alt="" > 
+                                        <img src="{{ $item->Img }}" alt="" > 
                                     @endif
                                 </div>
                                 <div class="car__item__text">
