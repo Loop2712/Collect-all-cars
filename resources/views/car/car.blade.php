@@ -156,7 +156,7 @@
                     @foreach($data as $item)
                         <div class="col-lg-4 col-md-4">
                         
-                            <div class="car__item">
+                            <div class="car__item" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                 <div class="car__item__pic__slider owl-carousel">
                                     @if($item->image == "" )
                                         <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
