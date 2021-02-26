@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
-                                        <div class="label-date">{{ $item->year  }}</div>
+                                        <div class="label-date"><h6>{{ $item->year  }}</h6></div>
                                         <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
                                     </div>
 
