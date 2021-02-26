@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="car__sidebar">
+                    <div class="car__sidebar" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                         <div class="car__search">
                             <h5>ค้นหา</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
@@ -156,7 +156,7 @@
                     @foreach($data as $item)
                         <div class="col-lg-4 col-md-4">
                         
-                            <div class="car__item" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                            <div class="car__item" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                                 <div class="car__item__pic__slider owl-carousel">
                                     @if($item->image == "" )
                                         <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
