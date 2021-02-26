@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="car__sidebar">
+                    <div class="car__sidebar" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                         <div class="car__search">
                             <h5>ค้นหา</h5>
                             <form method="GET" action="{{URL::to('/motercycle')}}" accept-charset="UTF-8" role="search">
@@ -120,7 +120,7 @@
                     @foreach($data as $item)
                         <div class="col-lg-4 col-md-4">
                         
-                            <div class="car__item">
+                            <div class="car__item" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                                 <div class="car__item__pic__slider owl-carousel">
                                     @if($item->img == "" )
                                         <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
@@ -132,37 +132,6 @@
                                     <div class="car__item__text__inner">
                                         <div class="label-date">{{ $item->year  }}</div>
                                         <h5><a href="{{ url('/motercycle/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
-                                        <ul>
-                                            <li><span>{{ $item->motor  }} </span></li>
-                                            
-                                            @switch($item->gear)
-                                                @case("ธรรมดา/manual")
-                                                    <li>manual </li>
-                                                    @break
-
-                                                @case("ออโต้/Automatic")
-                                                    <li>Auto </li>
-                                                    @break
-
-                                                @case("ไม่ระบุเกียร์")
-                                                    <li> - </li>
-                                                    @break
-
-                                                @default
-                                                    <li> - </li>
-                                            @endswitch
-                                            
-                                            @switch($item->color)
-                                                @case("ทุกสี")
-                                                    <li> - </li>
-                                                @break
-                                                @default
-                                                <li><span>{{ $item->color  }} </span></li>
-                                            @endswitch
-                                            
-                                            
-                                            
-                                        </ul>
                                     </div>
 
                                     <div class="car__item__price">
