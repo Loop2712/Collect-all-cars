@@ -30,7 +30,7 @@ Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
 
 
 Route::get('/cars', function () {
-    return view('ProfileUser/profileuser');
+    return view('test');
 });
 
 Route::get('/terms_of_service', function () {
