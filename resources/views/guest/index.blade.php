@@ -61,12 +61,13 @@
                                                     <a class="btn btn-sm btn-light " href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
                                                 @break
                                             @endswitch
-
+                                            @endif
                                         </div>
                                         <div class="col-2">
+                                            @if(!empty($item->user->last_edit))
                                             <b>{{ $item->user->last_edit }}</b>
+                                            @endif
                                         </div>
-                                        @endif
                                         <div class="col-2">
                                             <a class="btn btn-sm btn-outline-info" href="{{ url('/index_detail/') }}?name={{ $item->name }}"><i class="fas fa-eye"></i> ดูข้อมูล</a>
                                         </div>
