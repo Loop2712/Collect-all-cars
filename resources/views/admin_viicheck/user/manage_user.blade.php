@@ -6,7 +6,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">จัดการผู้ใช้</h3>
+                    <h3 class="card-header">จัดการผู้ใช้ 
+                        <a href="{{ url('/view_new_user') }}" class="btn btn-outline-primary float-right">
+                            <i class="fas fa-user-plus"></i> สร้างบัญชีผู้ใช้
+                        </a>
+                    </h3>
                     <div class="card-body">
                         <a href="{{ url('/manage_user') }}?search=admin" class="btn btn-outline-danger ">
                             <img width="30" src="https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png"> Admin

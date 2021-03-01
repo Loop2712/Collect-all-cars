@@ -50,6 +50,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 	Route::get('/dashboard', 'DashboardController@dashboard');
 	Route::get('/manage_user', 'Manage_userController@manage_user');
+	Route::get('/view_new_user', 'Manage_userController@view_new_user');
+	Route::get('/create_user', 'Manage_userController@create_user');
 	Route::get('/manage_user/change_ToAdmin', 'Manage_userController@change_ToAdmin');
 	Route::get('/manage_user/change_ToGuest', 'Manage_userController@change_ToGuest');
 

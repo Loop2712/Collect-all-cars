@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class Manage_userController extends Controller
 {
@@ -47,6 +48,41 @@ class Manage_userController extends Controller
                 ->update(['role' => 'admin']);
 
         return redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function view_new_user()
+    {
+        return view('admin_viicheck.user.new_user');
+    }
+
+    public function create_user(Request $request)
+    {
+        $partners = $request->get('partners');
+
+        $name = uniqid($partners.'-');
+        $username = $name ;
+        $email = "กรุณาเพิ่มอีเมล" ;
+        $password = uniqid();
+        $provider_id = uniqid($partners.'-', true);
+
+        // echo "name >> ".$name."<br>";
+        // echo "username >> ".$username."<br>";
+        // echo "email >> ".$email."<br>";
+        // echo "password >> ".$password."<br>";
+        // echo "provider_id >> ".$provider_id."<br>";
+        // exit();
+
+        $user = new User();
+        $user->name = $name;
+        $user->username = $name;
+        $user->provider_id = $provider_id;
+        $user->password = Hash::make($password);
+        $user->email = $email;
+
+
+        $user->save();
+
+        return view('admin_viicheck.user.create_user', compact('partners' , 'username' , 'password'));
     }
 
 }

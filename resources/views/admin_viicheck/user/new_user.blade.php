@@ -1,0 +1,32 @@
+@extends('layouts.admin')
+
+@section('content')
+<br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h3 class="card-header">สร้างบัญชีผู้ใช้</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-body">
+                                <p>กรุณาเลือกพาทเนอร์</p>
+
+                                    <a href="{{ url('/create_user') }}?partners=JS100" class="btn btn-outline-success " onclick="return confirm(&quot; คุณต้องการที่จะสร้างบัญชีผู้ใช้ จส 100 ใช่หรือไม่ ?&quot;)">
+                                        <img width="22" src="https://m.thaiware.com/upload_misc/software/2017_07/thumbnails/13243_170703102646Yi.jpg"> JS100
+                                    </a>
+
+                                    <a href="{{ url('/create_user') }}?partners=Viicheck" class="btn btn-outline-danger " onclick="return confirm(&quot; คุณต้องการที่จะสร้างบัญชีผู้ใช้ Viicheck ใช่หรือไม่ ?&quot;)">
+                                        <img width="30" src="https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png"> Viicheck
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
