@@ -158,8 +158,8 @@ class DashboardController extends Controller
         }
 
         // รถลงทะเบียน VMove จัดอันดับตามจังหวัด 5 อันดับ
-        $vmove_desc =Register_car::groupBy('province')
-			->selectRaw('count(province) as count,province')
+        $vmove_desc =Register_car::groupBy('location')
+			->selectRaw('count(location) as count,location')
             ->orderBy('count', 'desc')
             ->limit(5)
             ->get();
@@ -176,7 +176,7 @@ class DashboardController extends Controller
 
         for ($i=0; $i < count($vmove_desc);) { 
             foreach($vmove_desc as $item ){
-                $vmove_desc_province[$i] = $item->province;
+                $vmove_desc_province[$i] = $item->location;
                 $vmove_desc_count[$i] = $item->count;
 
                 $i++;
