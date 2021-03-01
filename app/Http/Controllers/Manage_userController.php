@@ -49,6 +49,14 @@ class Manage_userController extends Controller
 
         return redirect($_SERVER['HTTP_REFERER']);
     }
+    public function change_ToJS100()
+    {
+        DB::table('users')
+                ->where('id', request('id'))
+                ->update(['role' => 'js100']);
+
+        return redirect($_SERVER['HTTP_REFERER']);
+    }
 
     public function view_new_user()
     {
@@ -78,6 +86,7 @@ class Manage_userController extends Controller
         $user->provider_id = $provider_id;
         $user->password = Hash::make($password);
         $user->email = $email;
+        $user->role = $partners;
 
 
         $user->save();

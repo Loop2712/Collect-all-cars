@@ -54,6 +54,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/create_user', 'Manage_userController@create_user');
 	Route::get('/manage_user/change_ToAdmin', 'Manage_userController@change_ToAdmin');
 	Route::get('/manage_user/change_ToGuest', 'Manage_userController@change_ToGuest');
+	Route::get('/manage_user/change_ToJS100', 'Manage_userController@change_ToJS100');
 
 	Route::get('/guest', function () {
 	    return view('guest');
