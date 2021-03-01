@@ -19,6 +19,7 @@
                 <b>{{ $item->count }}</b>
             </div>
             <div class="col-3">
+                @if(!empty($item->user->ranking))
                 @switch($item->user->ranking)
                     @case('Senior')
                         <a class="btn btn-sm btn-light " href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
@@ -30,6 +31,7 @@
                         <a class="btn btn-sm btn-light " href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
                     @break
                 @endswitch
+                @endif
             </div>
         </div>
         <hr>
