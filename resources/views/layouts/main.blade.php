@@ -41,6 +41,7 @@
 
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     
+    
 </head>
 
 <body>
@@ -154,7 +155,8 @@
                                 </li>
                                 <li tyle="padding-right: 20px;">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                    {{ Auth::user()->name }}
+                                       <span style="text-decoration: none;display: block;overflow: hidden;white-space: nowrap;width: 20px;">{{ Auth::user()->name }}</span>
+                                     
                                         
                                     </a>
                                         <ul class="dropdown">
@@ -163,7 +165,7 @@
                                                 รายการโปรด</a>
                                             </li>
                                             <li>
-                                                <a href="{{ url('/profile') }}">
+                                                <a href="{{ url('/register_car') }}">
                                                 รถของฉัน</a>
                                             </li>
                                             <li>
