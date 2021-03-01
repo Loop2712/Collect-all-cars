@@ -30,7 +30,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-12 col-md-3">
-                                            <button class="btn btn-sm btn-outline-secondary" onclick="CopyToClipboard('userpass')">คัดลอก</button>
+                                            <button class="btn btn-sm btn-outline-secondary" onclick="CopyToClipboard('userpass')"><i class="fas fa-copy"></i> copy</button>
                                         </div>
                                     </div>
                                 </div>

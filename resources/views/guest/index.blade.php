@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">Owner alert report</h3>
+                    <h3 class="card-header">การแจ้งเตือนหาเจ้าของรถ / <span style="font-size: 18px;">Owner alert report</span> </h3>
                     <!-- <div class="card-body">
                         <div>
                             <form method="GET" action="{{ url('/guest') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -30,10 +30,22 @@
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
                                         <div class="col-1"></div>
-                                        <div class="col-3"><b>Name</b></div>
-                                        <div class="col-2"><b>All reports</b></div>
-                                        <div class="col-2"><b>Ranking</b></div>
-                                        <div class="col-2"><b>Last edit ranking</b></div>
+                                        <div class="col-3">
+                                            <b>ชื่อ</b><br>
+                                            Name
+                                        </div>
+                                        <div class="col-2">
+                                            <b>รายงานทั้งหมด</b><br>
+                                            All reports
+                                        </div>
+                                        <div class="col-2">
+                                            <b>การจัดอันดับ</b><br>
+                                            Ranking
+                                        </div>
+                                        <div class="col-2">
+                                            <b>แก้ไขอันดับล่าสุด</b><br>
+                                            Last edit ranking
+                                        </div>
                                         <div class="col-2"></div>
                                     </div>
                                     <hr>

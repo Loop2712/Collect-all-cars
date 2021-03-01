@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">จัดการผู้ใช้ 
+                    <h3 class="card-header">จัดการผู้ใช้ / <span style="font-size: 18px;"> Manage users </span>
                         <a href="{{ url('/view_new_user') }}" class="btn btn-outline-primary float-right">
                             <i class="fas fa-user-plus"></i> สร้างบัญชีผู้ใช้
                         </a>
@@ -44,22 +44,40 @@
                                         <center><b>Id</b></center>
                                     </div> -->
                                     <div class="col-4">
-                                        <center><b>ชื่อ</b></center>
+                                        <center>
+                                            <b>ชื่อ</b><br>
+                                            Name
+                                        </center>
                                     </div>
                                     <div class="col-1">
-                                        <center><b>ประเภท</b></center>
+                                        <center>
+                                            <b>ประเภท</b><br>
+                                            Type
+                                        </center>
                                     </div>
                                     <div class="col-2">
-                                        <center><b>การจัดอันดับ</b></center>
+                                        <center>
+                                            <b>การจัดอันดับ</b><br>
+                                            Ranking
+                                        </center>
                                     </div>
                                     <div class="col-2">
-                                        <center><b>เบอร์</b></center>
+                                        <center>
+                                            <b>เบอร์</b><br>
+                                            Phone number
+                                        </center>
                                     </div>
                                     <div class="col-1">
-                                        <center><b>สถานะ</b></center>
+                                        <center>
+                                            <b>สถานะ</b><br>
+                                            Role
+                                        </center>
                                     </div>
                                     <div class="col-2">
-                                        <center><b>เปลี่ยนสถานะ</b></center>
+                                        <center>
+                                            <b>เปลี่ยนสถานะ</b><br>
+                                            Change role
+                                        </center>
                                     </div>
                                 </div>
                                 @foreach($all_user as $item)

@@ -27,9 +27,9 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class=" text-muted ls-1 mb-1">VMarket</h6>
-                  <h5 class="h3 mb-0">รถที่ลงประกาศขาย VMarket (Car)</h5>
+                  <h5 class="h3 mb-0">รถลงประกาศขาย / Cars for sale (Car)</h5>
                   <hr>
-                  <span>จัดอันดับตามสถานที่ 5 อันดับ</span>
+                  <span>จัดอันดับตามสถานที่ 5 อันดับ / Ranked by the top 5 places</span>
                 </div>
               </div>
             </div>
@@ -48,9 +48,9 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class=" text-muted ls-1 mb-1">VMarket</h6>
-                  <h5 class="h3 mb-0">รถที่ลงประกาศขาย VMarket (Motorcycle)</h5>
+                  <h5 class="h3 mb-0">รถลงประกาศขาย / Cars for sale (Motorcycle)</h5>
                   <hr>
-                  <span>จัดอันดับตามสถานที่ 5 อันดับ</span>
+                  <span>จัดอันดับตามสถานที่ 5 อันดับ / Ranked by the top 5 places</span>
                 </div>
               </div>
             </div>
@@ -69,9 +69,9 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class=" text-muted ls-1 mb-1">VMove</h6>
-                  <h5 class="h3 mb-0">รถลงทะเบียน VMove</h5>
+                  <h5 class="h3 mb-0">รถลงทะเบียน / Car registration</h5>
                   <hr>
-                  <span>จัดอันดับตามจังหวัด 5 อันดับ</span>
+                  <span>จัดอันดับตามจังหวัด 5 อันดับ / Ranked by the top 5 places</span>
                 </div>
               </div>
             </div>
@@ -93,10 +93,10 @@
                           <h6 class=" text-muted ls-1 mb-1">Vmove</h6>
                       </div>
                       <div class="col-md-3">
-                          <a style="float: right;" href="{{ url('/guest') }}" class="btn btn-sm btn-primary">ดูทั้งหมด</a>
+                          <a style="float: right;" href="{{ url('/guest') }}" class="btn btn-sm btn-primary">ดูทั้งหมด / See more</a>
                       </div>
                   </div>
-                  <h5 class="h3 mb-0">รายงานหาเจ้าของรถ</h5>
+                  <h5 class="h3 mb-0">รายงานหาเจ้าของรถ / Vmove report</h5>
                   <hr>
                   @include('admin_viicheck/guest')
                 </div>
@@ -110,9 +110,9 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class=" text-muted ls-1 mb-1">VNews</h6>
-                  <h5 class="h3 mb-0">VNews ลงประกาศข่าว</h5>
+                  <h5 class="h3 mb-0">ลงประกาศข่าว / Post news</h5>
                   <hr>
-                  <span>จัดอันดับตามสถานที่ 5 อันดับ</span>
+                  <span>จัดอันดับตามสถานที่ 5 อันดับ / Ranked by the top 5 places</span>
                 </div>
               </div>
             </div>

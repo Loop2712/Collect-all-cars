@@ -147,6 +147,12 @@
                 <span class="nav-link-text">V Market</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://market.viicheck.com/news" target="_blank">
+                <i style="color: #94adf7  " class="far fa-newspaper"></i>
+                <span class="nav-link-text">V News</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>

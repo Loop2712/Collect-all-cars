@@ -2,9 +2,18 @@
     <div class="col-12">
         <div class="row alert alert-secondary">
             <div class="col-1"></div>
-            <div class="col-5"><b>Name</b></div>
-            <div class="col-3"><b>All reports</b></div>
-            <div class="col-3"><b>Ranking</b></div>
+            <div class="col-5">
+                <b>ชื่อ</b><br>
+                Name
+            </div>
+            <div class="col-3">
+                <b>รายงานทั้งหมด</b><br>
+                All reports
+            </div>
+            <div class="col-3">
+                <b>การจัดอันดับ</b><br>
+                Ranking
+            </div>
         </div>
         <hr>
         @foreach($guest as $item)
