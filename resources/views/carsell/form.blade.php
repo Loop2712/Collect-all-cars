@@ -7,10 +7,8 @@
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}"> 
-                   
-                   
-                         <select name="brand" class="form-control" id="input_car_brand" value="{{ isset($Sell->brand) ? $Sell->brand : ''}}"  required onchange="showCar_model();
+                    <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">  
+                         <select name="brand"  class="form-control" id="input_car_brand" value="{{ isset($Sell->brand) ? $Sell->brand : ''}}"  required onchange="showCar_model();
                             if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand').classList.remove('d-none'),
                                 document.querySelector('#model').classList.remove('d-none'),
@@ -18,13 +16,8 @@
                             }else{ 
                                 document.querySelector('#brand').classList.add('d-none'),
                                 document.querySelector('#model').classList.add('d-none');}">
-                            @if(!empty($xx))
-                                @foreach($xx as $item)
-                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
-                                @endforeach
-                            @else
                                 <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option> 
-                            @endif
+                         
                             <br>
                       
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
@@ -139,7 +132,15 @@
                         <input class="form-control" name="distance" type="number" id="distance" value="{{ isset($sell->distance) ? $sell->distance : ''}} " >
                         {!! $errors->first('distance', '<p class="help-block">:message</p>') !!}
                     </div>
-                </div>    
+                </div> 
+                <div class="col-12 col-md-2">
+                <label  class="control-label">{{ ' ราคา / Price ' }}<br><br></label></div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
+                        <input class="form-control" name="price" type="number" id="price" value="{{ isset($sell->price) ? $sell->price : ''}} " >
+                        {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>   
                 <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
                     <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($sell->active) ? $data_cars->active : 'Yes'}}" >
                     {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
