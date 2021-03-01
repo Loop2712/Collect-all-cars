@@ -179,7 +179,7 @@ class SellController extends Controller
      */
     public function edit($id)
     {
-        $xx = Sell::where('id',$id )->get();
+     
 
         
         $year_array = Sell::selectRaw('year,count(year) as count')
@@ -209,7 +209,7 @@ class SellController extends Controller
 
         $sell = Sell::findOrFail($id);
 
-        return view('carsell.edit', compact('xx','sell','gear_array','year_array','color_array','location_array','fuel_array'));
+        return view('carsell.edit', compact('sell','gear_array','year_array','color_array','location_array','fuel_array'));
     }
 
     /**

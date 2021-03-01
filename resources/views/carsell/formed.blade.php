@@ -2,67 +2,26 @@
     <div class="row">
         <div class="col-12">
             <!-- ข้อมูลรถ -->
-            <div class=" row" id="div_data">
+            <div class=" row">
                 <div class="col-12 col-md-2">
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
-                <div class="col-12 col-md-4">
-                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}"> 
-                   
-                   
-                         <select name="brand" class="form-control" id="input_car_brand" value="{{ isset($Sell->brand) ? $Sell->brand : ''}}"  required onchange="showCar_model();
-                            if(this.value=='อื่นๆ'){ 
-                                document.querySelector('#brand').classList.remove('d-none'),
-                                document.querySelector('#model').classList.remove('d-none'),
-                                document.querySelector('#brand').focus();
-                            }else{ 
-                                document.querySelector('#brand').classList.add('d-none'),
-                                document.querySelector('#model').classList.add('d-none');}">
-                            @if(!empty($xx))
-                                @foreach($xx as $item)
-                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
-                                @endforeach
-                            @else
-                                <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option> 
-                            @endif
-                            <br>
-                      
-                            {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
-                        </select>
-                    </div>
+                <div class="col-12 col-md-4"> 
                     <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="brand" type="text" id="brand" value="{{ isset($Sell->brand) ? $Sell->brand : ''}}" placeholder="ยี่ห้อรถของคุณ / Your brand">
+                        <input class="form-control" name="brand" type="text" id="brand" value="{{ isset($Sell->brand) ? $Sell->brand : ''}}"  readonly/>
                         {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                     </div>
-
                 </div>
+
+                
                 <div class="col-12 col-md-2">
                     <label for="generation" class="control-label">{{ 'รุ่นรถ / Model' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('model') ? 'has-error' : ''}}">
-                       
-                        <select name="model" id="input_car_model" class=" form-control" value="{{ isset($sell->model) ? $sell->model : ''}}" required onchange="if(this.value=='อื่นๆ'){ 
-                                document.querySelector('#model').classList.remove('d-none'),
-                                document.querySelector('#model').focus();
-                            }else{ 
-                                document.querySelector('#model').classList.add('d-none');}">
-                            @if(!empty($xx))
-                            @foreach($xx as $item)
-                                    <option value="{{ $item->model }}" selected>{{ $item->brand }}</option>
-                                @endforeach
-                            @else
-                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
-                            @endif
-                               
-                                <br> 
-                                {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
-                        </select>
-                    </div>
-                    <div class="form-group {{ $errors->has('model') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="model" type="text" id="model" value="{{ isset($sell->model) ? $sell->model : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
+                        <input class="form-control" name="model" type="text" id="model" value="{{ isset($Sell->model) ? $Sell->model : ''}}"  readonly/>
                         {!! $errors->first('model', '<p class="help-block">:message</p>') !!}
-                    </div>
+                    </div> 
 
                 </div>
                 <div class="col-12 col-md-2">
@@ -81,13 +40,8 @@
                 <label  class="control-label">{{ 'น้ำมันที่ใช้ / Fuel Type ' }}<br><br></label></div>
                 <div class="col-12 col-md-4">
                     <select class="form-control" name="fuel" id="fuel" value="{{ isset($sell->fuel) ? $sell->fuel : ''}}" >
-                        @if(!empty($xx))
-                            @foreach($xx as $item)
-                                    <option value="{{ $item->fuel }}" selected>{{ $item->fuel }}</option>
-                            @endforeach
-                        @else
                                 <option value="" selected> เชื้อเพลิงทั้งหมด </option> 
-                        @endif
+                      
                         @foreach (json_decode('{"ดีเซล":"ดีเซล","เบนซิน":"เบนซิน","ไฟฟ้า":"ไฟฟ้า","ไฮบริด":"ไฮบริด","NGV":"NGV"}', true) as $optionKey => $optionValue)
                             <option  ption value="{{ $optionKey }}"  {{ (isset($sell->fuel) && $sell->fuel == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
@@ -141,7 +95,7 @@
                     </div>
                 </div>    
                 <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
-                    <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($sell->active) ? $data_cars->active : 'Yes'}}" >
+                    <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($sell->active) ? $sell->active : 'Yes'}}" >
                     {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
                 </div>
 
@@ -152,58 +106,3 @@
     <br>
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START");
-        showCar_brand(); 
-        
-    });
-    function showCar_brand(){
-        //PARAMETERS
-        fetch("{{ url('/') }}/api/car_brand")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                //UPDATE SELECT OPTION
-                // let input_car_brand = document.querySelector("#input_car_brand");
-                    // input_car_brand.innerHTML = "";
-
-                for(let item of result){
-                    let option = document.createElement("option");
-                    option.text = item.brand;
-                    option.value = item.brand;
-                    input_car_brand.add(option);
-                }
-                let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
-                    input_car_brand.add(option); 
-
-                //QUERY model
-                showCar_model();
-            });
-            // return input_car_brand.value;
-    }
-    function showCar_model(){
-        let input_car_brand = document.querySelector("#input_car_brand");
-        fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                // //UPDATE SELECT OPTION
-                let input_car_model = document.querySelector("#input_car_model");
-                    input_car_model.innerHTML = "";
-                for(let item of result){
-                    let option = document.createElement("option");
-                    option.text = item.model;
-                    option.value = item.model;
-                    input_car_model.add(option);                
-                } 
-                let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
-                    input_car_model.add(option);  
-            });
-    }
-</script>

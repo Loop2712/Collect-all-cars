@@ -144,12 +144,24 @@
             
             </div>
         </div>
-        <div class="row">
-                      <div class="col d-flex justify-content-end">
+            <div class="row">
+                    <div class="col d-flex justify-content-end">
                         <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
-                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="แก้ไขโปรไฟล์"><button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไขโปรไฟล์</button></a>
-                      </div>
-                    </div> 
+                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="แก้ไขโปรไฟล์">
+                        <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>แก้ไขโปรไฟล์</h6> </button></a>
+                    <!-- </div>
+                    <div class="col d-flex justify-content-end"> -->
+                    <form method="POST" action="{{ url('/profile') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                        <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
+                        <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($profile->active) ? $profile->active : 'No'}}" >
+                        <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>ลบโปรไฟล์</h6> </button></a>
+                        </form>
+                    </div>
+            </div> 
+            
+                    
+            
     </div>
 </div>
 </div>  
