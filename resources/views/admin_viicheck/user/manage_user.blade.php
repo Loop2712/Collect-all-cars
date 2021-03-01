@@ -12,7 +12,7 @@
                             <img width="30" src="https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png"> Admin
                         </a>
                         <a href="{{ url('/manage_user') }}?search=JS100" class="btn btn-outline-success ">
-                            <img width="22" src="https://lh3.googleusercontent.com/proxy/5qHARNc2MRWZ27WlrQN1fYk2_IuHsX0BDV0JXzoXupg9j9lBJGoNyKIzdySeL5LWrpAIT1lox-ul2fq72LriHIh-jm3MpUrBDxl_6WdNEd_nF9o2wb7KZg"> JS100
+                            <img width="22" src="https://m.thaiware.com/upload_misc/software/2017_07/thumbnails/13243_170703102646Yi.jpg"> JS100
                         </a>
                         <a href="{{ url('/manage_user') }}?search=2BGreen" class="btn btn-outline-success ">
                             <img width="22" src="https://www.viicheck.com/images/GreenLogo.png"> 2BGreen
