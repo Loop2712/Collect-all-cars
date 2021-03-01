@@ -140,7 +140,7 @@ class LoginController extends Controller
     protected function _registerOrLoginUser($data, $type)
     {
         //GET USER 
-        $user = User::where('provider_id', '=', $data->provider_id)->first();
+        $user = User::where('provider_id', '=', $data->id)->first();
         // print_r($data) ;
         // exit();
 
