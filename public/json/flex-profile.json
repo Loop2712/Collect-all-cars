@@ -32,47 +32,65 @@
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "ข้อมูลของคุณ",
-                    "weight": "bold",
-                    "color": "#0066FF",
-                    "size": "lg"
-                  },
-                  {
-                    "type": "span",
-                    "text": "     "
-                  },
-                  {
-                    "type": "span",
-                    "text": "แก้ไข",
-                    "size": "xxs",
-                    "weight": "regular",
-                    "style": "italic",
-                    "decoration": "underline",
-                    "color": "#FF3300"
-                  }
-                ],
-                "size": "sm",
-                "wrap": true,
-                "action": {
-                  "type": "uri",
-                  "label": "แก้ไขโปรไฟล์",
-                  "uri": "https://market.viicheck.com/profile/xxxxx/edit?openExternalBrowser=1"
-                }
-              },
-              {
                 "type": "box",
                 "layout": "baseline",
                 "contents": [
                   {
                     "type": "text",
-                    "text": "E Benze",
-                    "size": "xl",
-                    "color": "#bcbcbc",
-                    "margin": "none"
+                    "contents": [
+                      {
+                        "type": "span",
+                        "text": "ข้อมูลของคุณ",
+                        "weight": "bold",
+                        "color": "#0066FF",
+                        "size": "lg"
+                      }
+                    ],
+                    "size": "sm",
+                    "wrap": true,
+                    "action": {
+                      "type": "uri",
+                      "label": "แก้ไขโปรไฟล์",
+                      "uri": "https://market.viicheck.com/profile/xxxxx/edit?openExternalBrowser=1"
+                    }
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://market.viicheck.com/img/ranking/1212312121.png",
+                    "margin": "md",
+                    "size": "3xl",
+                    "offsetTop": "sm"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "hello, world",
+                    "contents": [
+                      {
+                        "type": "span",
+                        "text": "E Benze",
+                        "color": "#bcbcbc",
+                        "size": "xl"
+                      },
+                      {
+                        "type": "span",
+                        "text": " "
+                      },
+                      {
+                        "type": "span",
+                        "text": "แก้ไข",
+                        "size": "xxs",
+                        "weight": "regular",
+                        "style": "italic",
+                        "decoration": "underline",
+                        "color": "#FF3300"
+                      }
+                    ]
                   }
                 ],
                 "spacing": "lg",
