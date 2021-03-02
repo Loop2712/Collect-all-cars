@@ -9,15 +9,53 @@
     "layout": "vertical",
     "contents": [
       {
-        "type": "text",
-        "text": "เรียนคุณ / Dear",
-        "weight": "bold",
-        "size": "xl"
+        "type": "image",
+        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "full",
+        "aspectRatio": "16:9",
+        "aspectMode": "fit"
       },
       {
         "type": "text",
-        "text": "ชื่อ",
-        "margin": "md"
+        "color": "#FFFFFF",
+        "text": "กรุณามาเลื่อนรถด้วยค่ะ",
+        "margin": "xxl",
+        "size": "xxl",
+        "align": "center",
+        "weight": "bold",
+        "gravity": "bottom",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เวลาที่ถูกแจ้ง",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เลขทะเบียน / Car ID",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
       },
       {
         "type": "box",
@@ -27,37 +65,23 @@
         "contents": [
           {
             "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "เลขทะเบียน / Car ID",
-                "color": "#aaaaaa",
-                "size": "md",
-                "flex": 7,
-                "margin": "none"
-              }
-            ]
-          },
-          {
-            "type": "box",
             "layout": "baseline",
             "spacing": "sm",
             "contents": [
               {
                 "type": "text",
                 "wrap": true,
-                "color": "#000000",
-                "size": "xxl",
-                "flex": 8,
+                "color": "#FFFFFF",
+                "size": "xl",
+                "flex": 6,
                 "text": "7ยษ2944"
               },
               {
                 "type": "text",
                 "text": "กรุงเทพ",
                 "wrap": true,
-                "color": "#000000",
-                "size": "md",
+                "color": "#FFFFFF",
+                "size": "sm",
                 "flex": 8
               }
             ]
@@ -65,71 +89,34 @@
         ]
       },
       {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "color": "#000000",
-            "text": "กรุณามาเลื่อนรถด้วยค่ะ",
-            "margin": "xl",
-            "size": "xl",
-            "decoration": "underline",
-            "align": "center"
-          }
-        ]
-      },
-      {
-        "type": "image",
-        "url": "https://market.viicheck.com/storage/uploads",
-        "size": "full"
+        "type": "separator",
+        "margin": "lg",
+        "color": "#07375D"
       }
     ],
-    "background": {
-      "type": "linearGradient",
-      "angle": "0deg",
-      "endColor": "#E0FFFF",
-      "startColor": "#E0FFF0",
-      "centerColor": "#FFFAFA"
-    }
+    "backgroundColor": "#07375D"
   },
   "footer": {
     "type": "box",
     "layout": "vertical",
-    "spacing": "sm",
     "contents": [
       {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "button",
-            "style": "primary",
-            "height": "sm",
-            "action": {
-              "type": "postback",
-              "label": "ขอบคุณ / Thank you",
-              "data": "thx",
-              "displayText": "ขอบคุณ / Thank you"
-            },
-            "color": "#6495ED"
-          }
-        ]
+        "type": "image",
+        "url": "https://market.viicheck.com/storage/uploads",
+        "size": "full",
+        "aspectRatio": "16:9",
+        "offsetBottom": "xxl",
+        "animated": true,
+        "gravity": "center",
+        "align": "center",
+        "aspectMode": "fit"
       }
     ],
-    "flex": 0,
-    "borderColor": "#000000",
-    "background": {
-      "type": "linearGradient",
-      "angle": "0deg",
-      "startColor": "#B0E0E5",
-      "endColor": "#B0E0E6",
-      "centerColor": "#F5F5F5"
-    }
+    "backgroundColor": "#07375D"
   },
   "styles": {
     "footer": {
-      "separator": true
+      "separator": false
     }
   }
 }
