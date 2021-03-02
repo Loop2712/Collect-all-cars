@@ -20,12 +20,14 @@
                 "type": "image",
                 "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
                 "aspectMode": "cover",
-                "size": "full"
+                "size": "full",
+                "aspectRatio": "1:1"
               }
             ],
             "cornerRadius": "100px",
             "width": "72px",
-            "height": "72px"
+            "height": "72px",
+            "offsetTop": "xxl"
           },
           {
             "type": "box",
@@ -62,7 +64,7 @@
                     "text": " Ranking",
                     "size": "xxs",
                     "margin": "xxl",
-                    "offsetEnd": "xs",
+                    "offsetEnd": "sm",
                     "wrap": true,
                     "align": "end"
                   }
@@ -128,7 +130,12 @@
                         "decoration": "underline",
                         "color": "#FF3300"
                       }
-                    ]
+                    ],
+                    "action": {
+                      "type": "uri",
+                      "label": "แก้ไขโปรไฟล์",
+                      "uri": "https://market.viicheck.com/profile/xxxxx/edit?openExternalBrowser=1"
+                    }
                   }
                 ],
                 "spacing": "lg",
@@ -285,7 +292,12 @@
                 "type": "spacer"
               }
             ],
-            "paddingBottom": "lg"
+            "paddingBottom": "lg",
+            "action": {
+              "type": "message",
+              "label": "รถของฉัน",
+              "text": "รถของฉัน"
+            }
           },
           {
             "type": "separator",
@@ -337,7 +349,11 @@
                     "type": "spacer"
                   }
                 ],
-                "paddingBottom": "lg"
+                "paddingBottom": "md"
+              },
+              {
+                "type": "separator",
+                "margin": "xxl"
               },
               {
                 "type": "separator",
@@ -349,13 +365,11 @@
               "label": "ใบอนุญาตขับรถ",
               "text": "ใบอนุญาตขับรถ"
             }
+          },
+          {
+            "type": "separator"
           }
-        ],
-        "action": {
-          "type": "message",
-          "label": "รถของฉัน",
-          "text": "รถของฉัน"
-        }
+        ]
       }
     ],
     "paddingAll": "0px",
