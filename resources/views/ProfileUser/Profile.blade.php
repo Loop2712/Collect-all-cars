@@ -15,6 +15,20 @@
 <div class="panel-body inf-content">
     <div class="row">
         <div class="col-md-4"><br><br>
+            @if(!empty($data->ranking))
+            @switch($data->ranking)
+                @case('Gold')
+                    <p class="btn btn-sm btn-light " href=""><img width="30" src="{{ url('/img/ranking/gold.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Gold</b></p>
+                @break
+                @case('Silver')
+                    <p class="btn btn-sm btn-light " href=""><img width="30" src="{{ url('/img/ranking/silver.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Silver</b></p>
+                @break
+                @case('Bronze')
+                    <p class="btn btn-sm btn-light " href=""><img width="30" src="{{ url('/img/ranking/bronze.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Bronze</b></p>
+                @break
+            @endswitch
+            @endif
+
             <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="{{$data->avatar}}" data-original-title="Usuario"> 
             <ul title="Ratings" class="list-inline ratings text-center">
                 <li><span class="glyphicon glyphicon-star">{{ $data->name }}      </span></li>
