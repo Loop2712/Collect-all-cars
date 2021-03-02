@@ -22,7 +22,7 @@ class LineMessagingAPI extends Model
                 // UserId เจ้าของรถ
                 $provider_id = $event["source"]['userId'];
                 $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
-                foreach($user as $item){
+                foreach($reply as $item){
                     $template_path = storage_path('../public/json/flex-reply-option.json');   
                     $string_json = file_get_contents($template_path);
                     if (!empty($item->sex)) {
