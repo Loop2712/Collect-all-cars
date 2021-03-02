@@ -490,7 +490,7 @@ class GuestController extends Controller
     public function welcome_line_guest()
     {
         if(Auth::check()){
-            return redirect('guest/create');//?openExternalBrowser=1
+            return redirect('guest/create?openExternalBrowser=1');
         }else{
             return redirect('/login/line?redirectTo=guest/create');//?openExternalBrowser=1
         }
