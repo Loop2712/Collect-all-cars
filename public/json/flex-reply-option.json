@@ -35,7 +35,8 @@
             "action": {
               "type": "postback",
               "label": "ขอบคุณ / Thank you",
-              "data": "thx"
+              "data": "thx",
+              "displayText": "ขอบคุณ / Thank you"
             },
             "style": "secondary",
             "height": "sm",
@@ -60,7 +61,8 @@
             "action": {
               "type": "postback",
               "label": "รอสักครู่ / Wait a moment",
-              "data": "wait"
+              "data": "wait",
+              "displayText": "รอสักครู่ / Wait a moment"
             },
             "style": "secondary",
             "height": "sm",
