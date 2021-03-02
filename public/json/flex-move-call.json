@@ -9,15 +9,45 @@
     "layout": "vertical",
     "contents": [
       {
-        "type": "text",
-        "text": "เรียนคุณ / Dear",
-        "weight": "bold",
-        "size": "xl"
+        "type": "image",
+        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "full",
+        "aspectRatio": "16:9",
+        "aspectMode": "fit"
       },
       {
         "type": "text",
-        "text": "ชื่อ",
-        "margin": "md"
+        "color": "#FFFFFF",
+        "text": "กรุณามาเลื่อนรถด้วยค่ะ",
+        "margin": "xxl",
+        "size": "xxl",
+        "align": "center",
+        "weight": "bold",
+        "gravity": "bottom",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "เวลาที่ถูกแจ้ง",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "เลขทะเบียน / Car ID",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
       },
       {
         "type": "box",
@@ -27,28 +57,14 @@
         "contents": [
           {
             "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "เลขทะเบียน / Car ID",
-                "color": "#aaaaaa",
-                "size": "md",
-                "flex": 7,
-                "margin": "none"
-              }
-            ]
-          },
-          {
-            "type": "box",
             "layout": "baseline",
             "spacing": "sm",
             "contents": [
               {
                 "type": "text",
                 "wrap": true,
-                "color": "#000000",
-                "size": "xxl",
+                "color": "#FFFFFF",
+                "size": "xl",
                 "flex": 8,
                 "text": "7ยษ2944"
               },
@@ -56,37 +72,16 @@
                 "type": "text",
                 "text": "กรุงเทพ",
                 "wrap": true,
-                "color": "#000000",
-                "size": "md",
+                "color": "#FFFFFF",
+                "size": "sm",
                 "flex": 8
               }
             ]
           }
         ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "color": "#000000",
-            "text": "กรุณามาเลื่อนรถด้วยค่ะ",
-            "margin": "xl",
-            "size": "xl",
-            "decoration": "underline",
-            "align": "center"
-          }
-        ]
       }
     ],
-    "background": {
-      "type": "linearGradient",
-      "angle": "0deg",
-      "endColor": "#E0FFFF",
-      "startColor": "#E0FFF0",
-      "centerColor": "#FFFAFA"
-    }
+    "backgroundColor": "#07375D"
   },
   "footer": {
     "type": "box",
@@ -99,22 +94,40 @@
         "contents": [
           {
             "type": "button",
-            "style": "primary",
             "height": "sm",
             "action": {
               "type": "postback",
-              "label": "ขอบคุณ / Thank you",
-              "data": "thx",
-              "displayText": "ขอบคุณ / Thank you"
+              "label": "ส่งข้อความตอบกลับ",
+              "data": "reply",
+              "displayText": "ส่งข้อความตอบกลับ"
             },
-            "color": "#88ced8"
+            "color": "#3AC0CE",
+            "style": "primary"
           }
-        ]
+        ],
+        "cornerRadius": "lg"
+      },
+      {
+        "type": "separator",
+        "color": "#07375D",
+        "margin": "md"
       },
       {
         "type": "box",
         "layout": "vertical",
-        "contents": [],
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "height": "sm",
+            "action": {
+              "type": "message",
+              "label": "โทร 0999999999",
+              "text": "0999999999"
+            },
+            "color": "#76d128"
+          }
+        ],
         "borderColor": "#FF0000",
         "background": {
           "type": "linearGradient",
@@ -123,68 +136,13 @@
           "angle": "0deg",
           "centerColor": "#00FA9A"
         },
-        "margin": "none"
-      },
-      {
-        "type": "button",
-        "style": "primary",
-        "height": "sm",
-        "action": {
-          "type": "postback",
-          "label": "รอสักครู่ / Wait a moment",
-          "data": "wait",
-          "displayText": "รอสักครู่ / Wait a moment"
-        },
-        "color": "#76d128"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "button",
-            "style": "primary",
-            "height": "sm",
-            "action": {
-              "type": "uri",
-              "label": "ฉันไม่สะดวก / I'm not comfortable",
-              "uri": "https://market.viicheck.com/not_comfor/create"
-            },
-            "color": "#e63519"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "message",
-              "label": "📞 เบอร์",
-              "text": "เบอร์"
-            },
-            "offsetTop": "none",
-            "style": "primary"
-          }
-        ]
+        "margin": "none",
+        "cornerRadius": "lg"
       }
     ],
     "flex": 0,
     "borderColor": "#000000",
-    "background": {
-      "type": "linearGradient",
-      "angle": "0deg",
-      "startColor": "#B0E0E5",
-      "endColor": "#B0E0E6",
-      "centerColor": "#F5F5F5"
-    }
-  },
-  "styles": {
-    "footer": {
-      "separator": true
-    }
+    "backgroundColor": "#07375D"
   }
 }
 }

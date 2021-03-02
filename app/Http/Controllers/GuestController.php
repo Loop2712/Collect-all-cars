@@ -206,6 +206,8 @@ class GuestController extends Controller
         $county = $data['county'];
         $phone = $data['phone'];
         $massengbox = $data['massengbox'];
+        $d=mktime(11, 14, 54, 8, 12, 2014);
+        $datetime =  date("Y-m-d h:i:sa", $d);
 
         if (!empty($data['photo'])) {
             $photo = $data['photo'];
@@ -329,7 +331,7 @@ class GuestController extends Controller
                         $template_path = storage_path('../public/json/flex-move-call.json');   
                         $string_json = file_get_contents($template_path);
                         $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                        $string_json = str_replace("ชื่อ",$item->name,$string_json);
+                        $string_json = str_replace("datetime",$datetime,$string_json);
                         $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                         $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                         $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
