@@ -133,9 +133,9 @@
             "style": "primary",
             "height": "sm",
             "action": {
-              "type": "message",
+              "type": "uri",
               "label": "โทร 0999999999",
-              "text": "0999999999"
+              "uri": "tel:+660999999999"
             },
             "color": "#76d128"
           }
