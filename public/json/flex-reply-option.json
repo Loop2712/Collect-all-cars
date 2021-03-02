@@ -1,0 +1,109 @@
+{
+    "type": "flex",
+    "altText": "เลือกการตอบกลับ",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "full",
+        "aspectRatio": "16:9",
+        "aspectMode": "fit"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      }
+    ],
+    "backgroundColor": "#07375D"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "ขอบคุณ / Thank you",
+              "data": "thx"
+            },
+            "style": "secondary",
+            "height": "sm",
+            "color": "#FFFFFF"
+          }
+        ],
+        "borderColor": "#0B9CFF",
+        "borderWidth": "semi-bold",
+        "cornerRadius": "lg"
+      },
+      {
+        "type": "separator",
+        "margin": "sm",
+        "color": "#07375D"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "รอสักครู่ / Wait a moment",
+              "data": "wait"
+            },
+            "style": "secondary",
+            "height": "sm",
+            "color": "#FFFFFF"
+          }
+        ],
+        "borderColor": "#0B9CFF",
+        "borderWidth": "semi-bold",
+        "cornerRadius": "lg"
+      },
+      {
+        "type": "separator",
+        "margin": "sm",
+        "color": "#07375D"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ฉันไม่สะดวก / I'm not comfortable",
+              "uri": "https://market.viicheck.com/not_comfor/create"
+            },
+            "style": "secondary",
+            "height": "sm",
+            "color": "#FFFFFF"
+          }
+        ],
+        "borderColor": "#0B9CFF",
+        "borderWidth": "semi-bold",
+        "cornerRadius": "lg"
+      }
+    ],
+    "backgroundColor": "#07375D"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}
+
+}
