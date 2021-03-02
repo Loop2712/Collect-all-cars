@@ -36,6 +36,43 @@
                 "layout": "baseline",
                 "contents": [
                   {
+                    "type": "filler"
+                  },
+                  {
+                    "type": "text",
+                    "contents": [
+                      {
+                        "type": "span",
+                        "text": " ",
+                        "weight": "regular",
+                        "color": "#0066FF",
+                        "size": "xxs"
+                      }
+                    ],
+                    "size": "sm",
+                    "wrap": true,
+                    "action": {
+                      "type": "uri",
+                      "label": "แก้ไขโปรไฟล์",
+                      "uri": "https://market.viicheck.com/profile/xxxxx/edit?openExternalBrowser=1"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "text": " Ranking",
+                    "size": "xxs",
+                    "margin": "xxl",
+                    "offsetEnd": "xs",
+                    "wrap": true,
+                    "align": "end"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
                     "type": "text",
                     "contents": [
                       {
@@ -56,10 +93,11 @@
                   },
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/ranking/1212312121.png",
+                    "url": "https://market.viicheck.com/img/ranking/gold.png",
                     "margin": "md",
                     "size": "3xl",
-                    "offsetTop": "sm"
+                    "offsetTop": "sm",
+                    "offsetEnd": "sm"
                   }
                 ]
               },
