@@ -206,7 +206,7 @@ class GuestController extends Controller
         $county = $data['county'];
         $phone = $data['phone'];
         $massengbox = $data['massengbox'];
-        $datetime =  date("Y-m-d h:i:sa");
+        $datetime =  date("d-m-Y  h:i:sa");
 
         if (!empty($data['photo'])) {
             $photo = $data['photo'];
