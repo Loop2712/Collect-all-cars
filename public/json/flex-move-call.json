@@ -27,6 +27,10 @@
         "wrap": true
       },
       {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
         "type": "text",
         "text": "เวลาที่ถูกแจ้ง",
         "weight": "bold",
@@ -40,6 +44,10 @@
         "size": "lg",
         "margin": "xxl",
         "color": "#FFFFFF"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
       },
       {
         "type": "text",
@@ -65,7 +73,7 @@
                 "wrap": true,
                 "color": "#FFFFFF",
                 "size": "xl",
-                "flex": 8,
+                "flex": 6,
                 "text": "7ยษ2944"
               },
               {
@@ -79,6 +87,11 @@
             ]
           }
         ]
+      },
+      {
+        "type": "separator",
+        "margin": "lg",
+        "color": "#07375D"
       }
     ],
     "backgroundColor": "#07375D"
@@ -143,6 +156,11 @@
     "flex": 0,
     "borderColor": "#000000",
     "backgroundColor": "#07375D"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
   }
 }
 }

@@ -206,8 +206,7 @@ class GuestController extends Controller
         $county = $data['county'];
         $phone = $data['phone'];
         $massengbox = $data['massengbox'];
-        $d=mktime(11, 14, 54, 8, 12, 2014);
-        $datetime =  date("Y-m-d h:i:sa", $d);
+        $datetime =  date("Y-m-d h:i:sa");
 
         if (!empty($data['photo'])) {
             $photo = $data['photo'];
@@ -335,7 +334,7 @@ class GuestController extends Controller
                         $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                         $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                         $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                        $string_json = str_replace("เบอร์",$phone,$string_json);
+                        $string_json = str_replace("0999999999",$phone,$string_json);
 
                         if (!empty($item->sex)) {
                             
