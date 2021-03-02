@@ -417,39 +417,39 @@ class GuestController extends Controller
         return view('guest.index_detail', compact('guest_corny','users','ranking', 'guest_date' , 'all' , 'corny') );
     }
 
-    public function change_ToSenior()
+    public function change_ToGold()
     {
         $date_now = date("Y-m-d"); 
         DB::table('users')
                 ->where('name', request('name'))
                 ->update([
-                    'ranking' => 'Senior',
+                    'ranking' => 'Gold',
                     'last_edit' => $date_now,
                 ]);
 
         return redirect('/index_detail?name='.request('name'));
     }
 
-    public function change_ToCommon()
+    public function change_ToSilver()
     {
         $date_now = date("Y-m-d"); 
         DB::table('users')
               ->where('name', request('name'))
               ->update([
-                'ranking' => 'Common',
+                'ranking' => 'Silver',
                 'last_edit' => $date_now,
           ]);
 
         return redirect('/index_detail?name='.request('name'));
     }
 
-    public function change_ToNormal()
+    public function change_ToBronze()
     {
         $date_now = date("Y-m-d"); 
         DB::table('users')
               ->where('name', request('name'))
               ->update([
-                'ranking' => 'Normal',
+                'ranking' => 'Bronze',
                 'last_edit' => $date_now,
             ]);
 

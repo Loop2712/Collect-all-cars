@@ -63,14 +63,14 @@
                                         <div class="col-2">
                                             @if(!empty($item->user->ranking))
                                             @switch($item->user->ranking)
-                                                @case('Senior')
-                                                    <a class="btn btn-sm btn-light " href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
+                                                @case('Gold')
+                                                    <p class="btn btn-sm btn-light " href=""><img width="20" src="{{ url('/img/ranking/gold.png') }}"> Gold</p>
                                                 @break
-                                                @case('Common')
-                                                    <a class="btn btn-sm btn-light " href=""><i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
+                                                @case('Silver')
+                                                    <p class="btn btn-sm btn-light " href=""><img width="20" src="{{ url('/img/ranking/silver.png') }}"> Silver</p>
                                                 @break
-                                                @case('Normal')
-                                                    <a class="btn btn-sm btn-light " href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
+                                                @case('Bronze')
+                                                    <p class="btn btn-sm btn-light " href=""><img width="20" src="{{ url('/img/ranking/bronze.png') }}"> Bronze</p>
                                                 @break
                                             @endswitch
                                             @endif

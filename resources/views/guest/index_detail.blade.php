@@ -28,14 +28,14 @@
                                 <div class="col-3">
                                     @if(!empty($item->ranking))
                                     @switch($item->ranking)
-                                        @case('Senior')
-                                            <a class="btn btn-light " href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
+                                        @case('Gold')
+                                            <p class="btn btn-sm btn-light " href=""><img width="20" src="{{ url('/img/ranking/gold.png') }}"> Gold</p>
                                         @break
-                                        @case('Common')
-                                            <a class="btn btn-light " href=""><i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
+                                        @case('Silver')
+                                            <p class="btn btn-sm btn-light " href=""><img width="20" src="{{ url('/img/ranking/silver.png') }}"> Silver</p>
                                         @break
-                                        @case('Normal')
-                                            <a class="btn btn-light " href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
+                                        @case('Bronze')
+                                            <p class="btn btn-sm btn-light " href=""><img width="20" src="{{ url('/img/ranking/bronze.png') }}"> Bronze</p>
                                         @break
                                     @endswitch
                                     @endif
@@ -146,14 +146,14 @@
                                 <div class="col-3">
                                     &nbsp;&nbsp;&nbsp;
                                     @switch($ranking)
-                                        @case('Senior')
-                                            <a class="btn btn-light" href=""><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
+                                        @case('Gold')
+                                            <a class="btn btn-sm btn-light " href=""><img width="28" src="{{ url('/img/ranking/gold.png') }}"> Gold</a>
                                         @break
-                                        @case('Common')
-                                            <a class="btn btn-light" href=""><i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
+                                        @case('Silver')
+                                            <a class="btn btn-sm btn-light " href=""><img width="28" src="{{ url('/img/ranking/silver.png') }}"> Silver</a>
                                         @break
-                                        @case('Normal')
-                                            <a class="btn btn-light" href=""><i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
+                                        @case('Bronze')
+                                            <a class="btn btn-sm btn-light " href=""><img width="28" src="{{ url('/img/ranking/bronze.png') }}"> Bronze</a>
                                         @break
                                     @endswitch
                                     <!-- Example single danger button -->
@@ -162,9 +162,9 @@
                                         <i class="fas fa-sync"></i>
                                       </button>
                                       <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('/change_ToSenior') }}?name={{ request('name') }}"><i class="fas fa-crown" style="color: #B8860B"></i> Senior</a>
-                                        <a class="dropdown-item" href="{{ url('/change_ToCommon') }}?name={{ request('name') }}">&nbsp;<i class="fas fa-award" style="color: #87CEEB"></i> Common</a>
-                                        <a class="dropdown-item" href="{{ url('/change_ToNormal') }}?name={{ request('name') }}">&nbsp;<i class="fas fa-shield-alt" style="color: #3CB371"></i> Normal</a>
+                                        <a class="dropdown-item" href="{{ url('/change_ToGold') }}?name={{ request('name') }}"><img width="22" src="{{ url('/img/ranking/gold.png') }}"> &nbsp;&nbsp;Gold</a>
+                                        <a class="dropdown-item" href="{{ url('/change_ToSilver') }}?name={{ request('name') }}"><img width="22" src="{{ url('/img/ranking/silver.png') }}"> &nbsp;&nbsp;Silver</a>
+                                        <a class="dropdown-item" href="{{ url('/change_ToBronze') }}?name={{ request('name') }}"><img width="22" src="{{ url('/img/ranking/bronze.png') }}"> &nbsp;&nbsp;Bronze</a>
                                       </div>
                                     </div>
                                 </div>
