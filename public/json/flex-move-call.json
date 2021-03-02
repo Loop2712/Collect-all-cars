@@ -109,10 +109,9 @@
             "type": "button",
             "height": "sm",
             "action": {
-              "type": "postback",
+              "type": "message",
               "label": "ส่งข้อความตอบกลับ",
-              "data": "reply",
-              "displayText": "ส่งข้อความตอบกลับ"
+              "text": "ส่งข้อความตอบกลับ"
             },
             "color": "#3AC0CE",
             "style": "primary"

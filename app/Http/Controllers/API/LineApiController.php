@@ -56,9 +56,6 @@ class LineApiController extends Controller
              case "thx" : 
                 $line->_pushguestLine(null, $event, "thx");
                 break;
-            case "reply" : 
-                $line->replyToUser(null, $event, "reply");
-                break;
         }   
 
     }
@@ -82,8 +79,11 @@ class LineApiController extends Controller
             case "รถของฉัน" : 
                 $line->replyToUser(null, $event, "mycar");
                 break;
-             case "ใบอนุญาตขับรถ" : 
+            case "ใบอนุญาตขับรถ" : 
                 $line->replyToUser(null, $event, "driver_license");
+                break;
+            case "ส่งข้อความตอบกลับ" : 
+                $line->replyToUser(null, $event, "reply");
                 break;
             
             
