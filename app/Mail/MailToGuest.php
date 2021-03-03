@@ -31,5 +31,6 @@ class MailToGuest extends Mailable
     {
         $messaging = $this->messaging;
         return $this->subject('This is my Test Mail Subject')
-        ->view('mail.testmail', compact('messaging') );
+        ->view('mail.testmail');
+    }
 }
