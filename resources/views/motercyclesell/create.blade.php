@@ -1,11 +1,9 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
     <br><br>
         <div class="row">
-        @include('layouts.sidebar')
-
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">Create New Motercycle</div>

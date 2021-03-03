@@ -143,7 +143,7 @@
                 <div class="card">
                     <div class="card-header">Sell</div>
                     <div class="card-body">
-                        <a href="{{ url('/sell/create') }}" class="btn btn-success btn-sm" title="Add New Sell">
+                        <a href="{{ url('/motercycles/create') }}" class="btn btn-success btn-sm" title="Add New Sell">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 

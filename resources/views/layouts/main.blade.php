@@ -211,23 +211,24 @@
 
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
         <div class="container">
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="footer__about">
                         <div class="footer__logo">
                             <a href="#"><img src="img/footer-logo.png" alt=""></a>
                         </div>
-                        <p>Any questions? Let us know in store at 625 Gloria Union, California, United Stated or call us
-                            on (+1) 96 123 8888</p>
+                        <!-- <p>Any questions? Let us know in store at 625 Gloria Union, California, United Stated or call us
+                            on (+1) 96 123 8888</p> -->
                         <div class="footer__social">
-                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="google"><i class="fa fa-google"></i></a>
-                            <a href="#" class="skype"><i class="fa fa-skype"></i></a>
+                            <a href="https://www.facebook.com/ViiCheck-100959585396310" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="google"><i class="fab fa-youtube"></i></a>
+                        
                         </div>
+                        
                     </div>
                 </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3">
+
+                <!-- <div class="col-lg-2 offset-lg-1 col-md-3">
                     <div class="footer__widget">
                         <h5>Infomation</h5>
                         <ul>
@@ -265,8 +266,8 @@
                             <li><a href="#"><i class="fa fa-angle-right"></i> Honda</a></li>
                         </ul>
                     </div>
-                </div>
-            </div> -->
+                </div> -->
+            </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <div class="footer__copyright__text">
                 <p>
@@ -274,6 +275,7 @@
                     WWW.ViiCHECK.COM <i class="fa fa-heart" aria-hidden="true"></i> 
                     <a class="btn btn-link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
                     <a class="btn btn-link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
+                    <h7>รูปภาพรถที่ใช้ในเว็บไซต์ อ้างอิงจาก www.one2car.com</h7>
                 </p>
             </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
