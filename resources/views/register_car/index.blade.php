@@ -51,26 +51,14 @@
                 <div class="card">
                     <div class="card-header">รถของฉัน</div>
                     <div class="card-body">
-                        <a href="{{ url('/register_car/create') }}" class="btn btn-info btn-sm" title="Add New Register_car">
-                            <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
-                        </a>
-
-                        <form method="GET" action="{{ url('/register_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                <span class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-
-                        <br/>
-                        <br/>
-                        <h4>รถยนต์</h4>
-                        <br/>
-                        <br/>
+                        <div class="row">
+                            <div class="col-9"><h4>รถยนต์</h4></div><br><br>
+                            <div class="col-3">
+                                <a href="{{ url('/register_car/create') }}" class="btn btn-info btn-sm" title="Add New Register_car">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
+                                </a>
+                            </div><br><br><br>
+                        </div>
                         <div class="row">
                         @foreach($register_car as $item)
                             <div class="col-lg-6 col-md-4 ">
