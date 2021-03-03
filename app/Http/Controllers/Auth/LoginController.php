@@ -76,7 +76,7 @@ class LoginController extends Controller
     }
 
     // Google login
-    public function redirectToGoogle()
+    public function redirectToGoogle(Request $request)
     {
         $request->session()->put('redirectTo', $request->get('redirectTo'));
 
