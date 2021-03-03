@@ -10,8 +10,6 @@ use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
 
-use App\Mail\MailToGuest;
-
 class LineMessagingAPI extends Model
 {
     public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
@@ -441,7 +439,7 @@ class LineMessagingAPI extends Model
         foreach($reply as $item){
             
             $type_login = DB::table('users')
-                        ->select('type','email')
+                        ->select('type')
                         ->where('provider_id', $item->reply_provider_id)
                         ->get();
         }
@@ -517,8 +515,7 @@ class LineMessagingAPI extends Model
                     switch($postback_data)
                     {
                         case "wait":
-                            $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest());
+                            //
                             break;
                         case "thx":
                             //
