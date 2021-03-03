@@ -18,7 +18,11 @@
 			<a style="position: absolute;right: 39%;top: 46%;" href="#" onclick="not_ready();"><img width="70" src="{{ asset('/img/icon/empty.png') }}"></a>
 
 			<!-- GOOGLE -->
-			<a style="position: absolute;right: 13%;top: 46%;" href="#" onclick="not_ready();"><img width="70" src="{{ asset('/img/icon/empty.png') }}"></a>
+			@if(Auth::check())
+				<a style="position: absolute;right: 13%;top: 46%;" href="{{ url('/guest/create') }}" ><img width="70" src="{{ asset('/img/icon/empty.png') }}"></a>
+			@else
+				<a style="position: absolute;right: 13%;top: 46%;" href="{{ route('login.google') }}?redirectTo={{ url('/guest/create') }}" ><img width="70" src="{{ asset('/img/icon/empty.png') }}"></a>
+			@endif
 		</div>
 		<div class="row">
 			<!-- @if(Auth::check())
