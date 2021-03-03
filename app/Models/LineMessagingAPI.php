@@ -518,11 +518,11 @@ class LineMessagingAPI extends Model
                     {
                         case "wait":
                             $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest($item->name , $reply , $postback_data));
+                            Mail::to($email)->send(new MailToGuest($item->name));
                             break;
                         case "thx":
                             $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest($item->name , $reply , $postback_data));
+                            Mail::to($email)->send(new MailToGuest($item->name ));
                             break;
 
                     }
