@@ -166,10 +166,10 @@
                                 @foreach($sell as $item)
                                     <div class="col-lg-4  mb-30">
                                         <div class="product-card mx-auto mb-3">
-                                            <a class="product-thumb" href="#">
-                                            <img src="{{ url('storage/'.$item->photo )}}" alt="Product Thumbnail"></a>
+                                            <a class="product-thumb" href="{{ url('/car/'.$item->id ) }}">
+                                            <img src="{{ url('storage/'.$item->image )}}" alt="Product"></a>
                                             <div class="product-card-body"><a class="product-meta" href="#"> {{ $item->id }}</a>
-                                                <h5 class="product-title"><a href="#">{{ $item->brand }} {{ $item->model }} </a></h5><span class="product-price">
+                                                <h5 class="product-title"><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand }} {{ $item->model }} </a></h5><span class="product-price">
                                                 
                                                 <a href="{{ url('/car/' . $item->id) }}" title="View Sell"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                                 <a href="{{ url('/sell/' . $item->id . '/edit') }}" title="Edit Sell"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

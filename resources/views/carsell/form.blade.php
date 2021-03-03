@@ -141,6 +141,15 @@
                         {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>   
+                <div class="col-12 col-md-2">
+                <label for="image" class="control-label">{{ 'รูปภาพ / Photo' }}</label><span style="color: #FF0033;"> *</span></div>
+                <div class="col-12 col-md-4">
+                <div class="form-group {{ $errors->has('image') ? 'has-error' : ''}}">
+                        <input class="form-control" name="image" type="file" id="image" value="{{ isset($sell->image) ? $sell->image : ''}}" required accept="image/*" multiple="multiple">
+                        {!! $errors->first('image', '<p class="help-block">:message</p>') !!}
+                 </div>
+                </div>
+                
                 <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
                     <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($sell->active) ? $data_cars->active : 'Yes'}}" >
                     {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
