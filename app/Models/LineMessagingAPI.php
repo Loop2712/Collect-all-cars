@@ -442,7 +442,7 @@ class LineMessagingAPI extends Model
         foreach($reply as $item){
             
             $type_login = DB::table('users')
-                        ->select('type' , 'email')
+                        ->select('type' , 'email' , 'name')
                         ->where('provider_id', $item->reply_provider_id)
                         ->get();
         }
@@ -450,8 +450,7 @@ class LineMessagingAPI extends Model
         foreach($type_login as $item){
             switch ($item->type) {
                 case 'line':
-                    switch($postback_data)
-                    {
+                    switch($postback_data){
                         case "wait": 
                             foreach($reply as $item){
                                 $to_user = $item->reply_provider_id;
@@ -519,11 +518,11 @@ class LineMessagingAPI extends Model
                     {
                         case "wait":
                             $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest($event));
+                            Mail::to($email)->send(new MailToGuest($item->name , $reply , $postback_data));
                             break;
                         case "thx":
                             $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest($event));
+                            Mail::to($email)->send(new MailToGuest($item->name , $reply , $postback_data));
                             break;
 
                     }

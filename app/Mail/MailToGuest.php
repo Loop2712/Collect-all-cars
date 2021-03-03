@@ -17,9 +17,11 @@ class MailToGuest extends Mailable
      *
      * @return void
      */
-    public function __construct($event)
+    public function __construct($name , $reply , $postback_data)
     {
-        $this->event =$event;
+        $this->name =$name;
+        $this->reply =$reply;
+        $this->postback_data =$postback_data;
     }
 
     /**
@@ -29,8 +31,11 @@ class MailToGuest extends Mailable
      */
     public function build()
     {
-        $event = $this->event;
+        $name = $this->name;
+        $reply = $this->reply;
+        $postback_data = $this->postback_data;
+
         return $this->subject('This is my Test Mail Subject')
-        ->view('mail.testmail', compact('event') );
+        ->view('mail.testmail', compact('name' ,'reply' , 'postback_data') );
     }
 }
