@@ -78,6 +78,8 @@ class LoginController extends Controller
     // Google login
     public function redirectToGoogle()
     {
+        $request->session()->put('redirectTo', $request->get('redirectTo'));
+
         return Socialite::driver('google')->redirect();
     }
 
@@ -88,8 +90,11 @@ class LoginController extends Controller
 
         $this->_registerOrLoginUser($user, "google");
 
+        $value = $request->session()->get('redirectTo');
+        $request->session()->forget('redirectTo');
+
         // Return home after login
-        return redirect()->intended();
+        return redirect()->intended($value);
     }
 
     // Facebook login
