@@ -3,17 +3,16 @@
 
 <h5>
 	ผู้ใช้รถหมายเลขทะเบียน
-	<b style="color: #FF0000">{{ $data["registration_number"] }} {{ $data["province"] }}</b><br>
-	ที่ท่านได้ติดต่อสักครู่นี้
+	<span style="color: #FF0000">{{ $data["registration_number"] }} {{ $data["province"] }}</span><br>
+	ที่ท่านได้ติดต่อเมื่อสักครู่นี้
 </h5>
-
-<h4>แจ้งว่า</h4><br>
+<h4>แจ้งว่า</h4>
 <h3>
 	@if($data["postback_data"] == "wait")
-	<b>รอสักครู่ / Wait a moment</b>
+		กรุณารอสักครู่ / Wait a moment
 	@endif
 
 	@if($data["postback_data"] == "thx")
-	<b>ขอบคุณ / Thank you</b>
+		ขอบคุณ / Thank you
 	@endif
 </h3>
