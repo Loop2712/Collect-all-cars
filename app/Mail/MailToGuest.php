@@ -17,10 +17,10 @@ class MailToGuest extends Mailable
      *
      * @return void
      */
-    // public function __construct(LineMessagingAPI $event)
-    // {
-    //     $this->event =$event;
-    // }
+    public function __construct($event)
+    {
+        $this->event =$event;
+    }
 
     /**
      * Build the message.
@@ -29,8 +29,8 @@ class MailToGuest extends Mailable
      */
     public function build()
     {
-        // $event = $this->event;
+        $event = $this->event;
         return $this->subject('This is my Test Mail Subject')
-        ->view('mail.testmail');
+        ->view('mail.testmail', compact('event') );
     }
 }

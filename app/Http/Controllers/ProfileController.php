@@ -26,7 +26,7 @@ class ProfileController extends Controller
 
         $event = 'HELLO';
         $email = 'thanakorn.tnk12@gmail.com';
-        Mail::to($email)->send(new MailToGuest($data));
+        Mail::to($email)->send(new MailToGuest($event));
 
     //     $date = User::select('created_at')
     //     ->where('id', Auth::id());
