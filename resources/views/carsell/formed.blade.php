@@ -47,26 +47,10 @@
                         @endforeach
                     </select>
                 </div>
-
-                <div class="col-12 col-md-2">
-                <label  class="control-label">{{ 'สี / Colour ' }}<br><br></label>
-                </div>
-                <div class="col-12 col-md-4">
-                <select class="form-control"  name="color" id="color" value="{{ isset($sell->color) ? $sell->color : ''}}" >
-                                    <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
-                                    @foreach($color_array  as $co)
-                                        <option 
-                                                value="{{ $co->color  }}" 
-                                                {{ request('color') == $co->color  ? 'selected' : ''   }} >
-                                            {{ $co->color  }} 
-                                        </option>
-                                    @endforeach 
-                                </select>
-                </div>
                 <div class="col-12 col-md-2">
                 <label  class="control-label">{{ 'สถานที่ / Location ' }}<br><br></label></div>
                 <div class="col-12 col-md-4">
-                <select class="form-control"  name="location" id="location" value="{{ isset($sell->province) ? $sell->province : ''}}" >
+                <select class="form-control"  name="location" id="location" value="{{ isset($sell->location) ? $sell->location : ''}}" >
                                     <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
                                     @foreach($location_array as $lo)
                                         <option 

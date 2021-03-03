@@ -29,9 +29,9 @@ Route::get('/welcome_line', 'Register_carController@welcome_line');
 Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
 
 
-// Route::get('/cars', function () {
-//     return view('test');
-// });
+Route::get('/cars', function () {
+    return view('test');
+});
 
 Route::get('/terms_of_service', function () {
     

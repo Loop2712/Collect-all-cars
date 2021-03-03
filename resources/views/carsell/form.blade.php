@@ -7,19 +7,24 @@
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">  
-                         <select name="brand"  class="form-control" id="input_car_brand" value="{{ isset($Sell->brand) ? $Sell->brand : ''}}"  required onchange="showCar_model();
+                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                        <!-- car -->
+                        <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($sell->brand) ? $sell->brand : ''}}" required onchange="showCar_model();
                             if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand').classList.remove('d-none'),
                                 document.querySelector('#model').classList.remove('d-none'),
                                 document.querySelector('#brand').focus();
                             }else{ 
                                 document.querySelector('#brand').classList.add('d-none'),
-                                document.querySelector('#model').classList.add('d-none');}">
-                                <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option> 
-                         
+                                document.querySelector('#generation').classList.add('d-none');}">
+                            @if(!empty($xx))
+                                @foreach($xx as $item)
+                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
+                                @endforeach
+                            @else
+                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
+                            @endif
                             <br>
-                      
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
                     </div>
@@ -105,7 +110,7 @@
                 <div class="col-12 col-md-2">
                 <label  class="control-label">{{ 'สถานที่ / Location ' }}<br><br></label></div>
                 <div class="col-12 col-md-4">
-                <select class="form-control"  name="location" id="location" value="{{ isset($sell->province) ? $sell->province : ''}}" >
+                <select class="form-control"  name="location" id="location" value="{{ isset($sell->location) ? $sell->location : ''}}" >
                                     <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
                                     @foreach($location_array as $lo)
                                         <option 

@@ -19,7 +19,16 @@ class ProfileController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $data = User::findOrFail($id);
+        
+        // if ( Auth::check() && Auth::user()->$id() )
+        // {
+        //     return view('404');
+        // }else
+
+
+            $data = User::findOrFail($id);
+            return view('ProfileUser/Profile' , compact('data') );
+        
 
     //     $date = User::select('created_at')
     //     ->where('id', Auth::id());
@@ -37,7 +46,7 @@ class ProfileController extends Controller
     // $u_m=date("m",$mage)-1;
     // $u_d=date("d",$mage)-1;
 
-        return view('ProfileUser/Profile' , compact('data') );
+        
         // 'u_y','u_m','u_d'
 
     }
