@@ -445,6 +445,9 @@ class LineMessagingAPI extends Model
                         ->select('type' , 'email' , 'name')
                         ->where('provider_id', $item->reply_provider_id)
                         ->get();
+                        
+            $google_registration_number = $item->registration_number ;
+            $google_province = $item->province ;
         }
 
         foreach($type_login as $item){
@@ -514,10 +517,6 @@ class LineMessagingAPI extends Model
                     break;
 
                 case 'google':
-                    foreach($reply as $item){
-                        $google_registration_number = $item->registration_number ;
-                        $google_province = $item->province ;
-                    }
 
                     $google_data = [
                         "name" => $item->name,

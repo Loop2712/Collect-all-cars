@@ -30,7 +30,7 @@ class MailToGuest extends Mailable
     public function build()
     {
         $data = $this->data;
-        return $this->subject('This is my Test Mail Subject')
+        return $this->subject('การตอบกลับจากเจ้าของรถที่ท่านติดต่อ')
         ->view('mail.testmail', compact('data') );
     }
 }
