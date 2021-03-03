@@ -9,9 +9,6 @@ use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 
-use Illuminate\Support\Facades\Mail;
-use App\Mail\MailToGuest;
-
 class ProfileController extends Controller
 {
     /**
@@ -23,16 +20,6 @@ class ProfileController extends Controller
     {
         $id = Auth::id();
         $data = User::findOrFail($id);
-
-        $google_data = [
-                        "name" => "Benze",
-                        "registration_number" => "กก9999",
-                        "province" => "กรุงเทพมหานคร",
-                        "postback_data" => "wait",
-                    ];
-        print_r($google_data);
-        $email = 'thanakorn.tnk12@gmail.com';
-        Mail::to($email)->send(new MailToGuest($google_data));
 
     //     $date = User::select('created_at')
     //     ->where('id', Auth::id());
