@@ -10,6 +10,7 @@ use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
 
+use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToGuest;
 
 class LineMessagingAPI extends Model
@@ -517,8 +518,11 @@ class LineMessagingAPI extends Model
                     switch($postback_data)
                     {
                         case "wait":
-                            $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest());
+                            // $email = $item->email;
+                            // Mail::to($email)->send(new MailToGuest());
+                            $messaging = 'Hello';
+                            $email = 'benzethanawat@gmail.com';
+                            Mail::to($email)->send(new MailToGuest($messaging));
                             break;
                         case "thx":
                             //
