@@ -4,7 +4,7 @@
     <div class="container">
     <br><br>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col">
                 <div class="card">
                     <div class="card-header">Create New Motercycle</div>
                     <div class="card-body">

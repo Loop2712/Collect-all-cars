@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+
+use App\county;
 use App\Models\Motercycle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,8 +62,15 @@ class motorcyclesellController extends Controller
             ->groupBy('type')
             ->get();
 
-        $user = Auth::user();
-        return view('motercyclesell.create', compact('num_type'));
+        $location_array = county::selectRaw('province')
+            ->where('province', '!=',"" )
+            ->groupBy('province')
+            ->get();
+        
+
+            $user = Auth::user();
+            
+        return view('motercyclesell.create', compact('num_type','location_array'));
     }
 
     /**
@@ -107,7 +116,12 @@ class motorcyclesellController extends Controller
     {
         $motercycle = Motercycle::findOrFail($id);
 
-        return view('motercyclesell.edit', compact('motercycle'));
+        $location_array = county::selectRaw('province')
+        ->where('province', '!=',"" )
+        ->groupBy('province')
+        ->get();
+
+        return view('motercyclesell.edit', compact('motercycle','location_array'));
     }
 
     /**

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <!-- ข้อมูลรถ -->
+
             <div class=" row" id="div_data">
                 <div class="col-12 col-md-2">
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
