@@ -514,15 +514,27 @@ class LineMessagingAPI extends Model
                     break;
 
                 case 'google':
+                    foreach($reply as $item){
+                        $google_registration_number = $item->registration_number ;
+                        $google_province = $item->province ;
+                    }
+
+                    $google_data = [
+                        "name" => $item->name,
+                        "registration_number" => $google_registration_number,
+                        "province" => $google_province,
+                        "postback_data" => $postback_data,
+                    ];
+
                     switch($postback_data)
                     {
                         case "wait":
                             $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest($item->name));
+                            Mail::to($email)->send(new MailToGuest($google_data));
                             break;
                         case "thx":
                             $email = $item->email;
-                            Mail::to($email)->send(new MailToGuest($item->name ));
+                            Mail::to($email)->send(new MailToGuest($google_data));
                             break;
 
                     }
