@@ -50,12 +50,14 @@
                                     <tr>
                                         <th> <label  class="control-label">{{ 'ระบบเกียร์ / Gear System' }}</label> </th>
                                         <td>
-                                            <select name="gear" id="gear" class="form-control" value="{{ isset($sell->gear) ? $sell->gear : ''}}" >
-                                                <option value="" data-display="">- กรุณาเลือกระบบเกียร์ / Please select Gear -</option>
-                                                @foreach (json_decode('{"เกียร์อัตโนมัติ":"เกียร์อัตโนมัติ","เกียร์ธรรมดา":"เกียร์ธรรมดา"}', true) as $optionKey => $optionValue)
-                                            <option  ption value="{{ $optionKey }}"  {{ (isset($sell->fuel) && $sell->fuel == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
-                                        @endforeach
-                                            </select>
+                                            <div class="form-group">
+                                                <select name="gear" id="gear" class="form-control" value="{{ isset($sell->gear) ? $sell->gear : ''}}" >
+                                                    <option value="" data-display="">- กรุณาเลือกระบบเกียร์ / Please select Gear -</option>
+                                                    @foreach (json_decode('{"เกียร์อัตโนมัติ":"เกียร์อัตโนมัติ","เกียร์ธรรมดา":"เกียร์ธรรมดา"}', true) as $optionKey => $optionValue)
+                                                <option  ption value="{{ $optionKey }}"  {{ (isset($sell->fuel) && $sell->fuel == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                                            @endforeach
+                                                </select>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -146,45 +148,103 @@
                         <!-- </form> -->
                     </form>
                         @elseif($register_car->car_type == "motorcycle")
+                        <form method="POST" action="{{ url('/motercycles') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                    <form method="POST" action="{{ url('/sell') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
+                                    
 
                                     <tr>
-                                    <th> ยี่ห้อรถ / Brand  </th>
-                                    <td> {{ $register_car->brand }} </td>
+                                    <th> <label  class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label>  </th>
+                                        <td>
+                                            <div class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                                                <input class="form-control" name="brand" type="text" id="brand" value="{{ $register_car->brand }} "  readonly/>
+                                                {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                    <th> รุ่นรถ / Model  </th>
-                                    <td> {{ $register_car->generation }} </td>
+                                    <th><label  class="control-label">{{ 'รุ่นรถ / Gear Model' }}</label> </th>
+                                        <td> 
+                                        <div class="form-group {{ $errors->has('model') ? 'has-error' : ''}}">
+                                            <input class="form-control" name="model" type="text" id="model" value="{{ $register_car->generation }} "  readonly/>
+                                            {!! $errors->first('model', '<p class="help-block">:message</p>') !!}
+                                        </div>
+                                        
+                                        </td>
                                     </tr>
                                     <tr>
-                                    <th> ระบบเกียร์ </th>
-                                    <td> {{ $register_car->year }} </td>
+                                    <th> <label  class="control-label">{{ 'ระบบเกียร์ / Gear System' }}</label> </th>
+                                    <td> 
+                                        <div class="form-group">
+                                            <select name="gear" id="gear" class="form-control" value="{{ isset($motercycles->gear) ? $motercycles->gear : ''}}" >
+                                                <option value="" data-display="">- กรุณาเลือกระบบเกียร์ / Please select Gear -</option>
+                                                    @foreach (json_decode('{"เกียร์อัตโนมัติ":"เกียร์อัตโนมัติ","เกียร์ธรรมดา":"เกียร์ธรรมดา"}', true) as $optionKey => $optionValue)
+                                                <option  ption value="{{ $optionKey }}"  {{ (isset($sell->fuel) && $sell->fuel == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                                                    @endforeach
+                                            </select>
+                                        </div> 
+                                    </td>
                                     </tr>
                                     <tr>
-                                    <th> เครื่องยนต์ (cc) </th>
-                                    <td>  </td>
+                                        <th> <label  class="control-label">{{ 'สถานที่ / Location' }}</label>  </th>
+                                        <td> 
+                                            <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
+                                                <select name="location" id="location" class="form-control" required>
+                                                        <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                                                        @foreach($location_array as $lo)
+                                                        <option 
+                                                        value="{{ $lo->province }}" 
+                                                        {{ request('province') == $lo->province ? 'selected' : ''   }} >
+                                                        {{ $lo->province }} 
+                                                        </option>
+                                                        @endforeach                                     
+                                                </select>
+                                                {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
+                                            </div> 
+                                        </td>
                                     </tr>
                                     <tr>
-                                    <th> สถานที่ </th>
-                                    <td>  </td>
-                                    </tr>
-                                    <tr>
-                                    <th> รูปภาพ </th>
-                                    <td>  </td>
+                                    <th> <label  class="control-label">{{ 'เครื่องยนต์ (cc) / Engine Capacity' }}</label>   </th>
+                                    <td>
+                                        <div class="form-group {{ $errors->has('motor') ? 'has-error' : ''}}">
+                                            <input class="form-control" name="motor" type="number" id="motor" value="{{ isset($motercycles->motor) ? $motercycles->motor : ''}}"  >
+                                            {!! $errors->first('motor', '<p class="help-block">:message</p>') !!}
+                                        </div>
+                                    </td>
                                     </tr>
                                    
+                                    <tr>
+                                        <th><label  class="control-label">{{ 'ราคา / Price' }}</label>  <span style="color: #FF0033;"> *</span> </th>
+                                        <td>  
+                                        <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
+                                            <input class="form-control" name="price" type="number" id="price" value="{{ isset($motercycles->price) ? $motercycles->price : ''}}"  >
+                                            {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><label  class="control-label">{{ 'รูปภาพ / Photo' }}</label><span style="color: #FF0033;"> *</span></th>
+                                        <td>
+                                        <div class="form-group {{ $errors->has('img') ? 'has-error' : ''}}">
+                                            <input class="form-control" name="img" type="file" id="img" value="{{ isset($motercycles->img) ? $motercycles->img : ''}}" required accept="image/*" multiple="multiple">
+                                            {!! $errors->first('img', '<p class="help-block">:message</p>') !!}
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
+                                        <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($motercycles->active) ? $motercycles->active : 'Yes'}}" >
+                                        {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
+                                    </div>
                                     
                                 </tbody>
                             </table>
                                 <div class="form-group">
                                     <input class="btn btn-primary" type="submit" value="{{ 'บันทึก' }}">
                                 </div>
-                            </form>
                         </div>
+                        </form>
                         @endif
 
                         

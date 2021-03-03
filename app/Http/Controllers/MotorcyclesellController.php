@@ -41,8 +41,7 @@ class motorcyclesellController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             $motercycles = Motercycle::where('user_id', Auth::id() )
-                ->where('active' ,'=', 'yes')
-                ->paginate($perPage);
+            ->where('active' ,'=', 'yes')->latest()->paginate($perPage);
         }
 
         return view('motercyclesell.index', compact('motercycles'));
@@ -76,6 +75,7 @@ class motorcyclesellController extends Controller
     {
         
         $requestData = $request->all();
+        $requestData['user_id'] = Auth::id();
         
         Motercycle::create($requestData);
 

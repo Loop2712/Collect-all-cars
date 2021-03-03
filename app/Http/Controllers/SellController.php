@@ -42,7 +42,8 @@ class SellController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             // 
-            $sell = Sell::where('user_id', Auth::id() )->latest()->paginate($perPage);
+            $sell = Sell::where('user_id', Auth::id() )
+            ->where('active' ,'=', 'yes')->latest()->paginate($perPage);
         }
 
         return view('carsell.index', compact('sell'));
