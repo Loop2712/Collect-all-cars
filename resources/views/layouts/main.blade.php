@@ -74,8 +74,7 @@
                         <!-- <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" style=" color: #4169E1;"  >เข้าสู่ระบบ &emsp;&emsp;</a> -->
                         @else
                         <div class="panel-body">
-                            <img alt="Avatar" class="img-md img-circle img-border mar-btm" src="https://bootdey.com/img/Content/avatar/avatar4.png">
-                            <h4 class="mar-no"><br>ชื่อ</h4>
+                            <h4 class="mar-no" ><br>{{ Auth::user()->name }}</h4>
                             <p>วันเดือนปีที่ใช้</p>
                         </div>
                         <div class="pad-all">
@@ -155,7 +154,7 @@
                                 </li>
                                 <li tyle="padding-right: 20px;">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                       <span style="text-decoration: none;display: block;overflow: hidden;white-space: nowrap;width: 20px;">{{ Auth::user()->name }}</span>
+                                       <span style="text-decoration: none;display: block;overflow: hidden;white-space: nowrap;width: 20px;text-overflow: ellipsis;">{{ Auth::user()->name }}</span>
                                      
                                         
                                     </a>
