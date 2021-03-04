@@ -537,6 +537,9 @@ class LineMessagingAPI extends Model
                             break;
 
                     }
+                    DB::table('register_cars')
+                            ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                            ->update(['now' => null]);
                     break;
 
                 case 'facebook':
