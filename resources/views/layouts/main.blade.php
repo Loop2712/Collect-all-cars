@@ -96,6 +96,9 @@
                         
                     </ul>
                 </div>
+                <div class="col-12">
+                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
+                            </div>
             </div>
         </div>    
     </div>
