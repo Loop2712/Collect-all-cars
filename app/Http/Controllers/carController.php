@@ -46,7 +46,7 @@ class CarController extends Controller
         $needFilter =  !empty($brand)       || !empty($typecar)   || !empty($year)    || !empty($color)    
                     || !empty($fuel)        || !empty($location)  || !empty($gear)
                     || !empty($pricemax)    || !empty($pricemin)  || !empty($milemax) || !empty($milemin) 
-                    or !empty($q);     
+                    || !empty($q);     
         
         // $q         = !empty($q) ;
                       
@@ -60,7 +60,7 @@ class CarController extends Controller
                 ->where('fuel',    'LIKE', '%' .$fuel. '%')
                 ->whereBetween('price', [$pricemin,$pricemax])
                 ->whereBetween('distance', [$milemin, $milemax])
-                
+
                 ->orwhere('brand',     'LIKE', '%' .$q.  '%')
                 ->orWhere('model',     'LIKE', '%' .$q.  '%')
                 ->orWhere('submodel',  'LIKE', '%' .$q.  '%')
