@@ -7,9 +7,9 @@
                     <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
+                    <div id="div_car_brand" class="form-group {{ $errors->has('brand') ? 'has-error' : ''}}}">
                         <!-- car -->
-                        <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($sell->brand) ? $sell->brand : ''}}" required onchange="showCar_model();
+                        <select name="brand" class=" form-control" id="input_car_brand" value="{{ isset($Sell->brand) ? $Sell->brand : ''}}" required onchange="showCar_model();
                             if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand').classList.remove('d-none'),
                                 document.querySelector('#model').classList.remove('d-none'),
@@ -180,9 +180,9 @@
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                //UPDATE SELECT OPTION
-                // let input_car_brand = document.querySelector("#input_car_brand");
-                    // input_car_brand.innerHTML = "";
+                // UPDATE SELECT OPTION
+                let input_car_brand = document.querySelector("#input_car_brand");
+                    input_car_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");

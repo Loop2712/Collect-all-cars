@@ -81,16 +81,19 @@ class CarController extends Controller
         $brand_array = CarModel::selectRaw('brand,count(brand) as count')
             ->where('brand', '!=',"" )
             ->groupBy('brand')
+            ->orderBy('brand', 'asc')
             ->get();
             
         $type_array = CarModel::selectRaw('type,count(type) as count')
             ->where('type', '!=',"" )
             ->groupBy('type')
+            ->orderBy('type', 'asc')
             ->get();
 
         $year_array = CarModel::selectRaw('year,count(year) as count')
             ->where('year', '!=',"" )
             ->groupBy('year')
+            ->orderBy('year', 'asc')
             ->get();
 
         $color_array = CarModel::selectRaw('color,count(color) as count')
@@ -106,6 +109,7 @@ class CarController extends Controller
         $location_array = county::selectRaw('province')
             ->where('province', '!=',"" )
             ->groupBy('province')
+            ->orderBy('province', 'asc')
             ->get();
         
         $fuel_array = CarModel::selectRaw('fuel,count(fuel) as count')
