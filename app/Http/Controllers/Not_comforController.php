@@ -248,6 +248,10 @@ class Not_comforController extends Controller
 
                         $email = $item->email;
                         Mail::to($email)->send(new MailToGuest_notcomfor($google_data));
+
+                        DB::table('register_cars')
+                            ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                            ->update(['now' => null]);
                     break;
 
                 case 'facebook':
