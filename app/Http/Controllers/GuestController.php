@@ -460,9 +460,10 @@ class GuestController extends Controller
     {
         if(Auth::check()){
             return redirect('guest/create?openExternalBrowser=1');
-        }else{
-            return redirect('/login/line?redirectTo=guest/create?openExternalBrowser=1');
         }
+        // else{
+        //     return redirect('/login/line?redirectTo=guest/create?openExternalBrowser=1');
+        // }
     }
 
 }
