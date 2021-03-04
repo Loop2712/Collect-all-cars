@@ -167,8 +167,16 @@
                                 </div>
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
-                                        <div class="label-date"><h6>{{ $item->year  }}</h6></div>
+                                        <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div>
+                                        <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                                        {{ csrf_field() }}
+                                            <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id}}" >
+                                            <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                            <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
+                                            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"><i class="fas fa-heart" style="float: right;padding-right: 30px;color: red;"></i></a>
+                                        </form><br>
                                         <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
+                                    
                                     </div>
 
                                     <div class="car__item__price">
