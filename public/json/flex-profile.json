@@ -90,7 +90,7 @@
                     "action": {
                       "type": "uri",
                       "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://market.viicheck.com/profile/xxxxx/edit?openExternalBrowser=1"
+                      "uri": "https://market.viicheck.com/profile/xxxxx/edit"
                     }
                   },
                   {
@@ -134,7 +134,7 @@
                     "action": {
                       "type": "uri",
                       "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://market.viicheck.com/profile/xxxxx/edit?openExternalBrowser=1"
+                      "uri": "https://market.viicheck.com/profile/xxxxx/edit"
                     }
                   }
                 ],
