@@ -73,7 +73,10 @@
                         </button>
                         <!-- <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" style=" color: #4169E1;"  >เข้าสู่ระบบ &emsp;&emsp;</a> -->
                         @else
+                        
                         <div class="panel-body">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" style="border-radius: 50%;height: 100px;">
+                        
                             <h4 class="mar-no" ><br>{{ Auth::user()->name }}</h4>
                             <p>วันเดือนปีที่ใช้</p>
                         </div>
