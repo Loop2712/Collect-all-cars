@@ -45,9 +45,10 @@ class CarController extends Controller
 
         $needFilter =  !empty($brand)       || !empty($typecar)   || !empty($year)    || !empty($color)    
                     || !empty($fuel)        || !empty($location)  || !empty($gear)
-                    || !empty($pricemax)    || !empty($pricemin)  || !empty($milemax) || !empty($milemin) ;     
+                    || !empty($pricemax)    || !empty($pricemin)  || !empty($milemax) || !empty($milemin) 
+                    or !empty($q);     
         
-        $q         = !empty($q) ;
+        // $q         = !empty($q) ;
                       
         if ($needFilter) {
             $data = CarModel::where('brand', 'LIKE', '%' .$brand.  '%')
@@ -59,18 +60,24 @@ class CarController extends Controller
                 ->where('fuel',    'LIKE', '%' .$fuel. '%')
                 ->whereBetween('price', [$pricemin,$pricemax])
                 ->whereBetween('distance', [$milemin, $milemax])
+                
+                ->orwhere('brand',     'LIKE', '%' .$q.  '%')
+                ->orWhere('model',     'LIKE', '%' .$q.  '%')
+                ->orWhere('submodel',  'LIKE', '%' .$q.  '%')
                 // ->whereBetween('price', [30, 100])
                 ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
-        } else  if ($q) {
-            $data = CarModel::where('active' , '=',    'yes')
-                ->orwhere('brand',     'LIKE', '%' .$q.  '%')
-                ->orWhere('model',     'LIKE', '%' .$q.  '%')
-                ->orWhere('submodel',  'LIKE', '%' .$q.  '%')
-                ->orderBy('created_at', 'asc')
-                ->latest()->paginate($perPage);
-        } else {
+        } 
+        // else  if ($q) {
+        //     $data = CarModel::where('active' , '=',    'yes')
+        //         ->orwhere('brand',     'LIKE', '%' .$q.  '%')
+        //         ->orWhere('model',     'LIKE', '%' .$q.  '%')
+        //         ->orWhere('submodel',  'LIKE', '%' .$q.  '%')
+        //         ->orderBy('created_at', 'asc')
+        //         ->latest()->paginate($perPage);
+        // } 
+        else {
 
             $data = CarModel::orderBy('created_at', 'asc')
                 ->where('active' ,'=', 'yes')
