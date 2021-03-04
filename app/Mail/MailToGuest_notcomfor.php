@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailToGuest extends Mailable
+class MailToGuest_notcomfor extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class MailToGuest extends Mailable
     {
         $data = $this->data;
         return $this->subject('การตอบกลับจากเจ้าของรถที่ท่านติดต่อ')
-        ->view('mail.MailToGuest', compact('data') );
+        ->view('mail.MailToGuest_notcomfor', compact('data') );
     }
 }

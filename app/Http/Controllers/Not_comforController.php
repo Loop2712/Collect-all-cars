@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use App\Models\Mylog;
 use App\Models\Profanity;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailToGuest_notcomfor;
+
 class Not_comforController extends Controller
 {
     /**
@@ -161,66 +164,97 @@ class Not_comforController extends Controller
         $registration_number = $data['registration_number'];
         $province = $data['province'];
 
-        switch($want_phone)
-        {
-            case "Yes":  
-                $template_path = storage_path('../public/json/not_comfor_p.json');   
-                $string_json = file_get_contents($template_path);
-                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
-                $string_json = str_replace("9กก9999",$registration_number,$string_json);
-                $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
-                $string_json = str_replace("ประชุม",$content,$string_json);
-                if (!empty($phone)) {
-                    $string_json = str_replace("เบอร์",$phone,$string_json);
-                }
+        $type_login = DB::table('users')
+                    ->select('type' , 'email' , 'name')
+                    ->where('provider_id', $reply_provider_id)
+                    ->get();
+                        
+        $google_registration_number = $registration_number ;
+        $google_province = $province ;
+        
+        foreach($type_login as $item){
+            switch ($item->type) {
+                case 'line':
+                    switch($want_phone){
+                        case "Yes":  
+                            $template_path = storage_path('../public/json/not_comfor_p.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
+                            $string_json = str_replace("9กก9999",$registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
+                            $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
+                            $string_json = str_replace("ประชุม",$content,$string_json);
+                            if (!empty($phone)) {
+                                $string_json = str_replace("เบอร์",$phone,$string_json);
+                            }
 
-                $messages = [ json_decode($string_json, true) ];
-                break;
-            case "No":  
-                $template_path = storage_path('../public/json/not_comfor_not_p.json');   
-                $string_json = file_get_contents($template_path);
-                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
-                $string_json = str_replace("9กก9999",$registration_number,$string_json);
-                $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
-                $string_json = str_replace("ประชุม",$content,$string_json);
+                            $messages = [ json_decode($string_json, true) ];
+                            break;
+                        case "No":  
+                            $template_path = storage_path('../public/json/not_comfor_not_p.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
+                            $string_json = str_replace("9กก9999",$registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
+                            $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
+                            $string_json = str_replace("ประชุม",$content,$string_json);
 
-                $messages = [ json_decode($string_json, true) ];
-                break;
+                            $messages = [ json_decode($string_json, true) ];
+                            break;
+                    }
+
+                    $body = [
+                                "to" => $reply_provider_id,
+                                "messages" => $messages,
+                            ];
+
+                    $opts = [
+                        'http' =>[
+                            'method'  => 'POST',
+                            'header'  => "Content-Type: application/json \r\n".
+                                        'Authorization: Bearer '.$this->channel_access_token,
+                            'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                            //'timeout' => 60
+                        ]
+                    ];
+                                                
+                            $context  = stream_context_create($opts);
+                            $url = "https://api.line.me/v2/bot/message/push";
+                            $result = file_get_contents($url, false, $context);
+
+                            //SAVE LOG
+                            $data = [
+                                "title" => "https://api.line.me/v2/bot/message/push",
+                                "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+                            ];
+
+                            DB::table('register_cars')
+                                ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                                ->update(['now' => null]);
+                            
+                            MyLog::create($data);
+                            return $result;
+                    break;
+
+                case 'google':
+                    $google_data = [
+                            "name" => $item->name,
+                            "registration_number" => $google_registration_number,
+                            "province" => $google_province,
+                            "phone" => $phone,
+                            "content" => $content,
+                            "want_phone" => $want_phone,
+                        ];
+
+                        $email = $item->email;
+                        Mail::to($email)->send(new MailToGuest_notcomfor($google_data));
+                    break;
+
+                case 'facebook':
+                    //
+                    break;
+            }
         }
-
-        $body = [
-                    "to" => $reply_provider_id,
-                    "messages" => $messages,
-                ];
-
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.$this->channel_access_token,
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                                    
-                $context  = stream_context_create($opts);
-                $url = "https://api.line.me/v2/bot/message/push";
-                $result = file_get_contents($url, false, $context);
-
-                //SAVE LOG
-                $data = [
-                    "title" => "https://api.line.me/v2/bot/message/push",
-                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
-                ];
-
-                DB::table('register_cars')
-                    ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
-                    ->update(['now' => null]);
-                
-                MyLog::create($data);
-                return $result;
 
     }
 
