@@ -42,21 +42,21 @@ class MotercleyviewController extends Controller
 
         if($needFilter){
             $data = Motercycle::Where('brand', 'LIKE', "%$brand%")
-                ->Where('type', 'LIKE', "%$type%")
-                ->Where('year', 'LIKE', "%$year%")
-                ->Where('gear', 'LIKE', "%$gear%")
-                ->Where('color', 'LIKE', "%$color%")
-                ->Where('motor', 'LIKE', "%$motor%")
-                ->orWhere('location', 'LIKE', "%$keyword%")
+                ->Where('type',     'LIKE', "%$type%")
+                ->Where('year',     'LIKE', "%$year%")
+                ->Where('gear',     'LIKE', "%$gear%")
+                ->Where('color',    'LIKE', "%$color%")
+                ->Where('motor',    'LIKE', "%$motor%")
+                ->Where('location', 'LIKE', "%$keyword%")
                 ->whereBetween('price', [$pricemin,$pricemax])
                 ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
         }else    if (!empty($keyword)) {
-            $data = Motercycle::Where('brand', 'LIKE', "%$keyword%")
+            $data = Motercycle::where('active' ,'=', 'yes')
                 ->orWhere('model', 'LIKE', "%$keyword%")
                 ->orWhere('submodel', 'LIKE', "%$search%")
-                ->where('active' ,'=', 'yes')
+                ->orWhere('brand', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
         } else {
             $data = Motercycle::orderBy('created_at', 'asc')

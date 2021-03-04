@@ -17,7 +17,7 @@
                             <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/motercycle')}}" method="get">
                                 <select class="form-control"  class="js-example-basic-single" name="brand" id="brand"  onchange="this.form.submit()">
-                                    <option value="" data-display="Brand">Select Brand</option>
+                                    <option value="" data-display="Brand">ยี่ห้อทั้งหมด</option>
                                     @foreach($motorbrand as $br)
                                         <option 
                                             value="{{ $br->brand }}" 
@@ -27,7 +27,7 @@
                                     @endforeach 
                                 </select><br>
                                 <select class="form-control" name="gear" id="gear" onchange="this.form.submit()" >
-                                    <option value="" data-display="Gear">Select Gear</option>
+                                    <option value="" data-display="Gear">ระบบเกียร์ทั้งหมด</option>
                                     @foreach($motorgear as $ge)
                                         <option 
                                                 value="{{ $ge->gear }}" 
@@ -36,7 +36,7 @@
                                         </option>
                                     @endforeach 
                                 </select><br>
-                                <select class="form-control" name="color" id="color" onchange="this.form.submit()" >
+                                <!-- <select class="form-control" name="color" id="color" onchange="this.form.submit()" >
                                     <option value="" data-display="Color">Select Color</option>
                                     @foreach($motorcolor  as $co)
                                         <option 
@@ -45,9 +45,9 @@
                                             {{ $co->color  }} 
                                         </option>
                                     @endforeach 
-                                </select><br>
+                                </select><br> -->
                                 <select class="form-control" name="motor" id="motor" onchange="this.form.submit()" >
-                                    <option value="" data-display="Color">Select motor</option>
+                                    <option value="" data-display="Color">เครื่องยนต์(cc.)ทั้งหมด</option>
                                     @foreach($motor  as $mo)
                                         <option 
                                                 value="{{ $mo->motor  }}" 
@@ -57,7 +57,7 @@
                                     @endforeach 
                                 </select><br>
                                 <select class="form-control" name="location" id="location" onchange="this.form.submit()" >
-                                    <option value="" data-display="Location">Select Location</option>
+                                    <option value="" data-display="Location">สถานที่ทั้งหมด</option>
                                     @foreach($motorlocation as $lo)
                                         <option 
                                             value="{{ $lo->province }}" 
@@ -68,8 +68,8 @@
                                 </select><br>
                                 <div class="filter-price">
                                     <p>Price:</p>
-                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="Min">
-                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="Max">
+                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด">
+                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด">
                                     <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
                                 </div>
                                 <!-- <div class="filter-price">

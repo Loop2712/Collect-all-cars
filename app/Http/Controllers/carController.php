@@ -33,7 +33,7 @@ class CarController extends Controller
         $gear      = $request->get('gear');
         $sort      = $request->get('sort','asc');
         $datas     = $request->get('datas');
-        $keyword   = $request->get('search');
+        $q         = $request->get('q');
         $perPage   = 45; 
         
         $milemin = empty($milemin) ? 0 :$milemin;
@@ -46,31 +46,33 @@ class CarController extends Controller
         $needFilter =  !empty($brand)       || !empty($typecar)   || !empty($year)    || !empty($color)    
                     || !empty($fuel)        || !empty($location)  || !empty($gear)
                     || !empty($pricemax)    || !empty($pricemin)  || !empty($milemax) || !empty($milemin) ;     
+        
+        $q         = !empty($q) ;
                       
         if ($needFilter) {
-            $data = CarModel::where('brand', 'like', '%' .$brand.  '%')
-                ->where('type',    'lIKE', '%' .$typecar.'%')
-                ->where('gear',    'like', '%' .$gear.  '%')
-                ->where('year',    'like', '%' .$year. '%')
-                ->where('color',   'like', '%' .$color. '%')
-                ->where('location','like', '%' .$location. '%')
-                ->where('fuel',    'lIKE', '%' .$fuel. '%')
+            $data = CarModel::where('brand', 'LIKE', '%' .$brand.  '%')
+                ->where('type',    'LIKE', '%' .$typecar.'%')
+                ->where('gear',    'LIKE', '%' .$gear.  '%')
+                ->where('year',    'LIKE', '%' .$year. '%')
+                ->where('color',   'LIKE', '%' .$color. '%')
+                ->where('location','LIKE', '%' .$location. '%')
+                ->where('fuel',    'LIKE', '%' .$fuel. '%')
                 ->whereBetween('price', [$pricemin,$pricemax])
                 ->whereBetween('distance', [$milemin, $milemax])
                 // ->whereBetween('price', [30, 100])
                 ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
-        } else  if (!empty($keyword)) {
-            $data =CarModel::where('brand', 'like', '%' .$keyword.'%')
-                ->orWhere('model', 'like', '%' .$keyword.'%')
-                ->orWhere('submodel', 'like', '%' .$keyword.'%')
-                ->where('active' ,'=', 'yes')
+        } else  if ($q) {
+            $data = CarModel::where('active' , '=',    'yes')
+                ->orwhere('brand',     'LIKE', '%' .$q.  '%')
+                ->orWhere('model',     'LIKE', '%' .$q.  '%')
+                ->orWhere('submodel',  'LIKE', '%' .$q.  '%')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
         } else {
 
-            $data =CarModel::orderBy('created_at', 'asc')
+            $data = CarModel::orderBy('created_at', 'asc')
                 ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);

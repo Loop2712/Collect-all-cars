@@ -9,7 +9,7 @@
                         <div class="car__search">
                             <h5>ค้นหา</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
-                                <input type="text" name="search" id="search" placeholder="Search..." value="{{ request('search') }}" />
+                                <input type="text" name="q" id="q" placeholder="Search..." value="{{ request('search') }}"/>
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
