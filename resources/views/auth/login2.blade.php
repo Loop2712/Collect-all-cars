@@ -61,10 +61,10 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="mb-5">
-                                    <h3 class="h4 font-weight-bold text-theme">{{ __('ลงชื่อเข้าใช้') }}</h3>
+                                    <h2 class="h4 font-weight-bold text-theme">{{ __('ลงชื่อเข้าใช้') }}</h2>
                                 </div>
 
-                                <h6 class="h5 mb-0">Welcome back!</h6>
+                                <h1 class="h5 mb-0">Welcome back!</h1>
                                 <p class="text-muted mt-2 mb-5">Enter your email address and password to access admin panel.</p>
 
                                 <form>

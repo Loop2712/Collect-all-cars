@@ -33,11 +33,11 @@
                                     <br>
                                     <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
                                     <br><br>
-                                    <a class="btn btn-link text-muted" onclick="document.querySelector('#from_login').classList.remove('d-none')">เข้าสู่ระบบด้วยชื่อผู้ใช้</a>
+                                    <a class="btn btn-link text-muted" onclick="document.querySelector('#from_login').classList.remove('d-none')"><h3>เข้าสู่ระบบด้วยชื่อผู้ใช้</h3></a>
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <br>
-                                    <a class="btn btn-link text-muted" href="{{ route('register') }}">สมัครสมาชิก</a>
+                                    <a class="btn btn-link text-muted" href="{{ route('register') }}"><h3>สมัครสมาชิก</h3></a>
                                 </div>
                             </div>
                         </center>
@@ -135,8 +135,8 @@
                     </form>
                     <div class="col-md-12">
                         <center>
-                            <P><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/privacy_policy') }}"> <b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
-                            <P><a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <b>ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</b></a>
+                            <h5><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></h5></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/privacy_policy') }}"> <h6 style="color:red"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></h6></a>
+                            <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <h6 style="color:red"><b>ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</b></h6></a>
                             <br><br><br>
                             <img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
                         </center>
