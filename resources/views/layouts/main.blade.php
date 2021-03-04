@@ -274,7 +274,7 @@
             <div class="footer__copyright__text">
                 <p>
                     <!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script>  -->
-                    WWW.ViiCHECK.COM <i class="fa fa-heart" aria-hidden="true"></i> 
+                    WWW.ViiCHECK.COM 
                     <a class="btn btn-link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
                     <a class="btn btn-link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
                     <h7>รูปภาพที่ใช้ในการพัฒนาในเว็บไซต์ อ้างอิงจาก www.one2car.com</h7>
