@@ -85,7 +85,7 @@ class GuestController extends Controller
             //RESIZE 50% FILE IF IMAGE LARGER THAN 0.5 MB
             $image = Image::make(storage_path("app/public")."/".$requestData['photo']);
             $image->orientate();
-            
+
             //watermark
             $watermark = Image::make(public_path('watermark.png'));
             $image->insert($watermark , 'bottom-right', 15, 15)->save();
@@ -463,7 +463,7 @@ class GuestController extends Controller
             return redirect('guest/create');
             // echo Auth::User()->name;
         }else{
-            return redirect('/login/line?redirectTo=guest/create?openExternalBrowser=1');
+            return redirect('/login/line?redirectTo=guest/create');
         }
     }
 
