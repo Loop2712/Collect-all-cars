@@ -76,7 +76,7 @@
                         
                         <div class="panel-body">
                         @if( Auth::user()->avatar == 'null')
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" style="border-radius: 50%;height: 100px;">
+                            <img src="https://www.flaticon.com/svg/vstatic/svg/1077/1077114.svg?token=exp=1614951730~hmac=d767afebfe3a53e8d86895bf639cfe3a" style="border-radius: 50%;height: 100px;">
                         @else
                             <img style="border-radius: 50%;height: 100px;" src="{{Auth::user()->avatar}}" data-original-title="Usuario"> 
                         @endif
@@ -85,7 +85,7 @@
                         </div>
                         <div class="pad-all">
                             <div class="pad-btm">
-                        <a href="{{ url('/sell') }} " style=" color: #4169E1;" >แก้ไขโปรไฟล์ &emsp;&emsp;</a>   
+                        <a href="{{ url('/profile') }} " style=" color: #4169E1;" >แก้ไขโปรไฟล์ &emsp;&emsp;</a>   
                         <!-- </button> -->
                         <!-- <button class="btn btn-success"> -->
                             <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
