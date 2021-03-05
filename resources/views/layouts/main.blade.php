@@ -57,7 +57,7 @@
     
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__logo">
-            <a href="{{URL::to('/')}}"><img width="150px" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
+            <a href="{{URL::to('/')}}"><img width="100%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
     <div class="row bootstrap snippets bootdeys">
 
