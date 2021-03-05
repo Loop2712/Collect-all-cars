@@ -75,8 +75,11 @@
                         @else
                         
                         <div class="panel-body">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" style="border-radius: 50%;height: 100px;">
-                        
+                        @if( Auth::user()->avatar == 'null')
+                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" style="border-radius: 50%;height: 100px;">
+                        @else
+                            <img style="border-radius: 50%;height: 100px;" src="{{Auth::user()->avatar}}" data-original-title="Usuario"> 
+                        @endif
                             <h4 class="mar-no" ><br>{{ Auth::user()->name }}</h4>
                             <p>วันเดือนปีที่ใช้</p>
                         </div>
