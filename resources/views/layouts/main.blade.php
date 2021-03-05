@@ -163,7 +163,7 @@
                                 </li>
                                 <li tyle="padding-right: 20px;">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                       <span style="text-decoration: none;display: block;overflow: hidden;white-space: nowrap;width: 20px;text-overflow: ellipsis;">{{ Auth::user()->name }}</span>
+                                       <span style="text-decoration: none;display: block;overflow: hidden;white-space: nowrap;width: 35px;text-overflow: ellipsis;">{{ Auth::user()->name }}</span>
                                      
                                         
                                     </a>
