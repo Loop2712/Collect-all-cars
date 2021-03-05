@@ -114,17 +114,6 @@
                     </tr>
                     <tr>        
                         <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                created                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            20 jul 20014
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
                           @if(Auth::check())
                                 @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
                             <strong>
