@@ -2,137 +2,122 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-		  "type": "bubble",
-		  "size": "mega",
-		  "body": {
-		    "type": "box",
-		    "layout": "vertical",
-		    "spacing": "md",
-		    "action": {
-		      "type": "uri",
-		      "uri": "https://linecorp.com"
-		    },
-		    "contents": [
-		      {
-		        "type": "text",
-		        "text": "ผู้ใช้รถทะเบียน",
-		        "size": "xl",
-		        "weight": "bold"
-		      },
-		      {
-		        "type": "box",
-		        "layout": "vertical",
-		        "spacing": "sm",
-		        "contents": [
-		          {
-		            "type": "box",
-		            "layout": "baseline",
-		            "contents": [
-		              {
-		                "type": "text",
-		                "text": "9กก9999 ",
-		                "margin": "none",
-		                "size": "lg",
-		                "align": "center",
-		                "weight": "bold",
-		                "gravity": "center",
-		                "flex": 5,
-		                "color": "#000000"
-		              },
-		              {
-		                "type": "text",
-		                "text": "กรุงเทพมหานคร",
-		                "flex": 6
-		              }
-		            ],
-		            "margin": "lg"
-		          },
-		          {
-		            "type": "separator",
-		            "margin": "xl"
-		          },
-		          {
-		            "type": "box",
-		            "layout": "baseline",
-		            "contents": [
-		              {
-		                "type": "text",
-		                "text": "แจ้งว่า"
-		              }
-		            ],
-		            "margin": "xxl"
-		          },
-		          {
-		            "type": "box",
-		            "layout": "vertical",
-		            "contents": [
-		              {
-		                "type": "text",
-		                "text": "ขอบคุณ",
-		                "size": "lg",
-		                "align": "center",
-		                "decoration": "underline"
-		              }
-		            ]
-		          },
-		          {
-		            "type": "box",
-		            "layout": "baseline",
-		            "contents": [
-		              {
-		                "type": "text",
-		                "text": "เนื่องจาก"
-		              }
-		            ],
-		            "margin": "xxl"
-		          },
-		          {
-		            "type": "box",
-		            "layout": "vertical",
-		            "contents": [
-		              {
-		                "type": "text",
-		                "text": "ประชุม",
-		                "size": "xl",
-		                "align": "center",
-		                "decoration": "underline"
-		              }
-		            ]
-		          }
-		        ]
-		      }
-		    ],
-		    "borderWidth": "normal",
-		    "background": {
-		      "type": "linearGradient",
-		      "angle": "0deg",
-		      "startColor": "#E0FFFF",
-		      "endColor": "#E0FFFF",
-		      "centerColor": "#ffffff"
-		    }
-		  },
-		  "footer": {
-		    "type": "box",
-		    "layout": "vertical",
-		    "contents": [
-		      {
-		        "type": "button",
-		        "action": {
-		          "type": "message",
-		          "label": "📞 เบอร์",
-		          "text": "เบอร์"
-		        },
-		        "style": "primary"
-		      }
-		    ],
-		    "background": {
-		      "type": "linearGradient",
-		      "angle": "0deg",
-		      "startColor": "#99FFFF",
-		      "endColor": "#99FFFF",
-		      "centerColor": "#ffffff"
-		    }
-		  }
-		}
-
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "full",
+        "aspectRatio": "16:9",
+        "aspectMode": "fit"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "ผู้ใช้รถเลขทะเบียน",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "wrap": true,
+                "color": "#FFFFFF",
+                "size": "xl",
+                "flex": 6,
+                "text": "9กก9999 "
+              },
+              {
+                "type": "text",
+                "text": "กรุงเทพมหานคร",
+                "wrap": true,
+                "color": "#FFFFFF",
+                "size": "sm",
+                "flex": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "แจ้งว่า",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "ขอบคุณ",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "เนื่องจาก",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "ประชุม",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      }
+    ],
+    "backgroundColor": "#07375D"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "โทร 0999999999",
+          "uri": "tel:0999999999"
+        },
+        "height": "sm",
+        "style": "primary",
+        "color": "#76d128"
+      }
+    ],
+    "backgroundColor": "#07375D"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}
 }

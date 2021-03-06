@@ -263,21 +263,6 @@ class GuestController extends Controller
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
                     $string_json = str_replace("uploads",$photo,$string_json);
 
-                    if (!empty($item->sex)) {
-
-                        switch ($item->sex) {
-
-                            case 'ผู้หญิง':
-                                $string_json = str_replace("#07375D","#FC94AF",$string_json);
-                                break;
-
-                            case 'ไม่ต้องการตอบ':
-                                $string_json = str_replace("#07375D","#B560CD",$string_json);
-                                break;
-                            
-                        }
-                    }
-
                     $messages = [ json_decode($string_json, true) ];
                     break;
                 
@@ -291,21 +276,6 @@ class GuestController extends Controller
                         $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                         $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
 
-                        if (!empty($item->sex)) {
-
-                            switch ($item->sex) {
-
-                                case 'ผู้หญิง':
-                                    $string_json = str_replace("#07375D","#FC94AF",$string_json);
-                                    break;
-
-                                case 'ไม่ต้องการตอบ':
-                                    $string_json = str_replace("#07375D","#B560CD",$string_json);
-                                    break;
-                                
-                            }
-                        }
-
                         $messages = [ json_decode($string_json, true) ];
                     }
                     if (!empty($phone)) {
@@ -317,21 +287,6 @@ class GuestController extends Controller
                         $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                         $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
                         $string_json = str_replace("0999999999",$phone,$string_json);
-
-                        if (!empty($item->sex)) {
-                            
-                            switch ($item->sex) {
-
-                                case 'ผู้หญิง':
-                                    $string_json = str_replace("#07375D","#FC94AF",$string_json);
-                                    break;
-
-                                case 'ไม่ต้องการตอบ':
-                                    $string_json = str_replace("#07375D","#B560CD",$string_json);
-                                    break;
-                                
-                            }
-                        }
 
                         $messages = [ json_decode($string_json, true) ];
                     }

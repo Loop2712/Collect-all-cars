@@ -188,7 +188,7 @@ class Not_comforController extends Controller
                             $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not comfortable",$string_json);
                             $string_json = str_replace("ประชุม",$content,$string_json);
                             if (!empty($phone)) {
-                                $string_json = str_replace("เบอร์",$phone,$string_json);
+                                $string_json = str_replace("0999999999",$phone,$string_json);
                             }
 
                             $messages = [ json_decode($string_json, true) ];

@@ -28,18 +28,6 @@ class LineMessagingAPI extends Model
                 foreach($reply as $item){
                     $template_path = storage_path('../public/json/flex-reply-option.json');   
                     $string_json = file_get_contents($template_path);
-                    if (!empty($item->sex)) {
-                        switch ($item->sex) {
-                            case 'ผู้หญิง':
-                                $string_json = str_replace("#07375D","#FC94AF",$string_json);
-                                $string_json = str_replace("#0B9CFF","#FF004F",$string_json);
-                                break;
-                            case 'ไม่ต้องการตอบ':
-                                $string_json = str_replace("#07375D","#B560CD",$string_json);
-                                $string_json = str_replace("#0B9CFF","#D2A6E2",$string_json);
-                                break;
-                        }
-                    }
                 }
 
                 $messages = [ json_decode($string_json, true) ];
@@ -467,7 +455,7 @@ class LineMessagingAPI extends Model
                                 $messages = [ json_decode($string_json, true) ];
                             }
                             break;
-                        case "thx": 
+                        case "thx":
                             foreach($reply as $item){
                                 $to_user = $item->reply_provider_id;
                                 $template_path = storage_path('../public/json/callback_guest.json');   
