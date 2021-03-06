@@ -74,9 +74,9 @@ class Not_comforController extends Controller
         $register_cars = DB::table('register_cars')
                     ->select('reply_provider_id', 'phone' , 'registration_number' , 'province')
                     ->where([
-                        ['provider_id', $requestData['provider_id'],
-                        ['now', "Yes"],
-                    ])
+                            ['provider_id', $requestData['provider_id']],
+                            ['now', "Yes"],
+                        ])
                     ->get();
 
         foreach($register_cars as $item){
@@ -166,6 +166,14 @@ class Not_comforController extends Controller
         $want_phone = $data['want_phone'];
         $registration_number = $data['registration_number'];
         $province = $data['province'];
+
+        $reply = DB::table('register_cars')
+                ->select('reply_provider_id','registration_number','province')
+                ->where([
+                        ['provider_id', $provider_id],
+                        ['now', "Yes"],
+                    ])
+                ->get();
 
         $type_login = DB::table('users')
                     ->select('type' , 'email' , 'name')
