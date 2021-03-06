@@ -234,12 +234,6 @@ function check_news() {
     let lat = document.querySelector("#lat");
     let lng = document.querySelector("#lng");
 
-        lat.value = position.coords.latitude ;
-        lng.value = position.coords.longitude ;
-
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
-
         fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/check_news")
             .then(response => response.json())
             .then(result => {
