@@ -161,6 +161,41 @@
 
 <a class="btn btn-primary" data-toggle="modal" data-target="#GSCCModal">ยืนยัน</a>
 
+<!-- modal Before news -->
+<!-- Button trigger modal -->
+<button id="btn_Before_Modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Before_Modal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Before_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">โปรดตรวจสอบ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-danger">ระบบตรวจพบเหตุการณ์ที่อยู่ใกล้คุณเมื่อไม่นานมานี้</h5>
+        <p>โปรดตรวจสอบว่าเหตุการณ์ที่คุณกำลังจะเพิ่มใช่เหตุการณ์นี้หรือไม่</p>
+        <br>
+        <div>
+            <p><b id="before_title"></b></p>
+            <center>
+                <img id="before_img" width="200" src="">
+            </center>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button>
+        <button type="button" class="btn btn-primary">ใช่</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
@@ -230,7 +265,6 @@ function str_title() {
 }
 
 function check_news() {
-    alert("HELLO 55555");
     let lat = document.querySelector("#lat");
     let lng = document.querySelector("#lng");
 
@@ -238,8 +272,25 @@ function check_news() {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                
+
+                if (result) {
+
+                    document.getElementById("btn_Before_Modal").click();
+
+                    for(let item of result){
+                        let before_title = document.querySelector("#before_title");
+                            before_title.innerHTML = item.title;
+                        let before_img = document.querySelector("#before_img");
+                            before_img.src =  'storage/' + item.photo;
+                    }
+                }
             });
 }
+
+function set_news() {
+    alert("111111");
+}
+
+
 
 </script>

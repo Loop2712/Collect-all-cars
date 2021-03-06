@@ -23,9 +23,10 @@ class LocationController extends Controller
         // echo $date_30;
         // exit();
 
-        $check_news = DB::select("SELECT title,photo,province,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE created_at > '$date_30' HAVING distance < 0.5 ORDER BY distance LIMIT 0 ,1", []);
-
-        return $check_news;
+        $check_news = DB::select("SELECT title,photo,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE created_at > '$date_30' HAVING distance < 0.5 ORDER BY distance LIMIT 0 ,1", []);
+        if (!empty($check_news)) {
+        	return $check_news;
+        }
     }
     
 }
