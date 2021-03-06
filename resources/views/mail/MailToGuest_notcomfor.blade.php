@@ -12,7 +12,6 @@
 <h3>เหตุผล</h3>
 <h2>{{ $data["content"] }}</h2>
 @if( $data["want_phone"] == "Yes" )
-	@if
 	<h3>โปรดติดต่อ</h3>
 	<h2>{{ $data["phone"] }}</h2>
 @endif
