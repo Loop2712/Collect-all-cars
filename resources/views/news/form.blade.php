@@ -131,9 +131,35 @@
 </div>
 <br>
 
-<div class="form-group">
-    <input id="submit" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
+<div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-danger">กรุณาตรวจสอบอีกครั้ง และยืนยันว่า ข่าวของคุณนั้นไม่มีเนื้อหา ดังต่อไปนี้</h4>
+        <ul>
+            <li>เนื้อหาโป๊เปลือย และกิจกรรมทางเพศ<br>(nudity & sexual activity)</li>
+            <li>เนื้อหาความรุนแรง<br>(content violence)</li>
+            <li>โฆษณาชวนเชื่อของผู้ก่อการร้าย <br>(terrorist propaganda)</li>
+            <li>เนื้อหาที่ใช้วาจาสร้างความเกลียดชัง <br>(hate speech)</li>
+            <li>บัญชีผู้ใช้ปลอม (fake accounts)</li>
+            <li>สแปม (spam)</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">แก้ไข</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        <div class="form-group">
+            <input id="submit" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<a class="btn btn-primary" data-toggle="modal" data-target="#GSCCModal">ยืนยัน</a>
 
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
