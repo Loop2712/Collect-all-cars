@@ -58,6 +58,10 @@
                 <input class="form-control" name="report" type="hidden" id="report" value="{{ isset($news->report) ? $news->report : 0}}" required readonly>
                 {!! $errors->first('report', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('doubly_news') ? 'has-error' : ''}}">
+                <input class="form-control" name="doubly_news" type="hidden" id="doubly_news" value="{{ isset($news->doubly_news) ? $news->doubly_news : 'No'}}" required readonly>
+                {!! $errors->first('doubly_news', '<p class="help-block">:message</p>') !!}
+            </div>
         </div>
         <div class="col-12 col-md-6">
             <label class="control-label">{{ 'เนื้อหาที่มีความรุนแรง' }}</label><span style="color: #FF0033;"> *</span><br>
@@ -173,7 +177,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">โปรดตรวจสอบ</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="close" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -182,15 +186,17 @@
         <p>โปรดตรวจสอบว่าเหตุการณ์ที่คุณกำลังจะเพิ่มใช่เหตุการณ์นี้หรือไม่</p>
         <br>
         <div>
-            <p><b id="before_title"></b></p>
+            <p><b>หัวข้อข่าว : </b><b id="before_title"></b></p>
             <center>
                 <img id="before_img" width="200" src="">
+                <p id="demo"></p>
             </center>
         </div>
+        <p><span class="text-danger">*</span> หากใช่คุณยังสามารถเพิ่มข่าวและแชร์ไปยังหน้า Facebook ของคุณได้</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button>
-        <button type="button" class="btn btn-primary">ใช่</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="doubly_news_no();">ไม่ใช่</button>
+        <button type="button" class="btn btn-primary" onclick="doubly_news_yes();">ใช่</button>
       </div>
     </div>
   </div>
@@ -280,15 +286,28 @@ function check_news() {
                     for(let item of result){
                         let before_title = document.querySelector("#before_title");
                             before_title.innerHTML = item.title;
+
                         let before_img = document.querySelector("#before_img");
                             before_img.src =  'storage/' + item.photo;
+
+                        var x = document.getElementById("before_img").src;
+                        var res = x.replace("news", "");
+                        document.getElementById("before_img").src = res;
+
                     }
                 }
             });
 }
 
-function set_news() {
-    alert("111111");
+function doubly_news_yes() {
+    let doubly_news = document.querySelector("#doubly_news");
+        doubly_news.value = "Yes";
+        document.getElementById("close").click();
+}
+
+function doubly_news_no() {
+    let doubly_news = document.querySelector("#doubly_news");
+        doubly_news.value = "No";
 }
 
 
