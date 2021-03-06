@@ -19,7 +19,7 @@ class LocationController extends Controller
     public function check_news($lat, $lng)
     {
 
-        $check_news = DB::select("SELECT title,photo,province,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 0.5 ORDER BY distance LIMIT 0 ,5", []);
+        $check_news = DB::select("SELECT title,photo,province,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news  HAVING distance < 1 ORDER BY distance LIMIT 0 ,5", []);
 
         return $check_news;
     }
