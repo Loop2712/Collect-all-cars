@@ -73,7 +73,10 @@ class Not_comforController extends Controller
 
         $register_cars = DB::table('register_cars')
                     ->select('reply_provider_id', 'phone' , 'registration_number' , 'province')
-                    ->where('provider_id', $requestData['provider_id'])
+                    ->where([
+                        ['provider_id', $requestData['provider_id'],
+                        ['now', "Yes"],
+                    ])
                     ->get();
 
         foreach($register_cars as $item){
