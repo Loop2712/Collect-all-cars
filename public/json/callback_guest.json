@@ -76,7 +76,8 @@
         "text": "ขอบคุณ",
         "size": "lg",
         "margin": "xxl",
-        "color": "#FFFFFF"
+        "color": "#FFFFFF",
+        "align": "center"
       }
     ],
     "backgroundColor": "#07375D"
