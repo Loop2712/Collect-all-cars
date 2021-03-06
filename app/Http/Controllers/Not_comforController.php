@@ -167,14 +167,6 @@ class Not_comforController extends Controller
         $registration_number = $data['registration_number'];
         $province = $data['province'];
 
-        $reply = DB::table('register_cars')
-                ->select('reply_provider_id','registration_number','province')
-                ->where([
-                        ['provider_id', $provider_id],
-                        ['now', "Yes"],
-                    ])
-                ->get();
-
         $type_login = DB::table('users')
                     ->select('type' , 'email' , 'name')
                     ->where('provider_id', $reply_provider_id)
