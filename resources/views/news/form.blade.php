@@ -16,7 +16,7 @@
             <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
                 <label for="location" class="control-label">{{ 'สถานที่ / Location' }}</label><span style="color: #FF0033;"> *</span>&nbsp;&nbsp;&nbsp;<p class="btn btn-outline-danger btn-sm" onclick="getLocation();"><i class="fas fa-map-marker-alt"></i> ตำแหน่งของฉัน</p>
                 <!-- <input class="form-control" name="location" type="text" id="location" value="{{ isset($news->location) ? $news->location : ''}}"  placeholder="กรุณาเปิดตำแหน่งที่ตั้งของท่าน" required> -->
-                <select name="location" id="location" class="form-control" required>
+                <select name="location" id="location" class="form-control" required onchange="check_news();">
                         <option value="" selected > - กรุณาเลือกตำแหน่งที่ตั้ง - </option>
                 </select>
                 {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
@@ -202,6 +202,7 @@ function showPosition(position) {
                 }
                 
             });
+            check_news();
 }
 
 function str_title() {
@@ -226,6 +227,25 @@ function str_title() {
             document.querySelector('#submit').classList.remove('d-none');
         }
 
+}
+
+function check_news() {
+    alert("HELLO 55555");
+    let lat = document.querySelector("#lat");
+    let lng = document.querySelector("#lng");
+
+        lat.value = position.coords.latitude ;
+        lng.value = position.coords.longitude ;
+
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+
+        fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/check_news")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                
+            });
 }
 
 </script>
