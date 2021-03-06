@@ -9,11 +9,6 @@
     <input class="form-control" name="reply_provider_id" type="hidden" id="reply_provider_id" value="{{ isset($not_comfor->reply_provider_id) ? $not_comfor->reply_provider_id : ''}}" readonly>
     {!! $errors->first('reply_provider_id', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-    <!-- <label for="phone" class="control-label">{{ 'Phone' }}</label> -->
-    <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($not_comfor->phone) ? $not_comfor->phone : Auth::user()->phone }}" readonly>
-    {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-</div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     <label for="content" class="control-label">{{ 'เหตุผล / Because' }}</label><span style="color: #FF0033;"> *</span>
     <input class="form-control" name="content" type="text" id="content" value="{{ isset($not_comfor->content) ? $not_comfor->content : ''}}" required>
@@ -22,10 +17,17 @@
 <div class="form-group {{ $errors->has('want_phone') ? 'has-error' : ''}}">
     <label for="want_phone" class="control-label">{{ 'คุณต้องการที่จะแสดงเบอร์ของคุณหรือไม่ / Would you like to show your number?' }}</label><span style="color: #FF0033;"> *</span>
     <br>
-    <input name="want_phone" type="radio" id="want_phone" checked value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'Yes'}}" > &nbsp;&nbsp;&nbsp;แสดง / Show 
+    <input name="want_phone" type="radio" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'Yes'}}" 
+    onclick="document.querySelector('#phone').classList.remove('d-none');"> 
+        &nbsp;&nbsp;&nbsp;แสดง / Show 
     <br>
-    <input name="want_phone" type="radio" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'No'}}" > &nbsp;&nbsp;&nbsp;ไม่แสดง / Not showing
+    <input name="want_phone" type="radio" id="want_phone" checked value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'No'}}" onclick="document.querySelector('#phone').classList.add('d-none');"> &nbsp;&nbsp;&nbsp;ไม่แสดง / Not showing
     {!! $errors->first('want_phone', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+    <!-- <label for="phone" class="control-label">{{ 'เบอร์ของคุณ / Your phone number' }}</label> -->
+    <input class="form-control d-none" name="phone" type="text" id="phone" value="{{ isset($not_comfor->phone) ? $not_comfor->phone : Auth::user()->phone }}">
+    {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
 </div>
 
 
