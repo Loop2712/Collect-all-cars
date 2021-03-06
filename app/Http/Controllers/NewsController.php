@@ -25,16 +25,17 @@ class NewsController extends Controller
 
         if (!empty($keyword)) {
             $news = News::where('active', "Yes")
+                ->where('doubly_news', "No")
                 ->where('title', 'LIKE', "%$keyword%")
                 ->orWhere('content', 'LIKE', "%$keyword%")
                 ->orWhere('location', 'LIKE', "%$keyword%")
                 ->orWhere('photo', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $news = News::where('active', "Yes")->latest()->paginate($perPage);
+            $news = News::where('active', "Yes")->where('doubly_news', "No")->latest()->paginate($perPage);
         }
 
-        $bangkok = DB::select("SELECT *,( 3959 * acos( cos( radians(13.7649136) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(100.5360959) ) + sin( radians(13.7649136) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE active = 'Yes'  HAVING distance < 30 ORDER BY id DESC LIMIT 0 ,5000", []);
+        $bangkok = DB::select("SELECT *,( 3959 * acos( cos( radians(13.7649136) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(100.5360959) ) + sin( radians(13.7649136) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE active = 'Yes' AND  doubly_news = 'No' HAVING distance < 30 ORDER BY id DESC LIMIT 0 ,5000", []);
 
         return view('news.index', compact('news', 'bangkok'));
     }
@@ -361,7 +362,7 @@ class NewsController extends Controller
         $lat = $requestData['lat'];
         $lng = $requestData['lng'];
 
-        $near_news = DB::select("SELECT *,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE active = 'Yes' HAVING distance < 30 ORDER BY distance LIMIT 0 ,5000", []);
+        $near_news = DB::select("SELECT *,( 3959 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM news WHERE active = 'Yes' AND  doubly_news = 'No' HAVING distance < 30 ORDER BY distance LIMIT 0 ,5000", []);
 
         // echo "<pre>";
         // print_r($requestData);
