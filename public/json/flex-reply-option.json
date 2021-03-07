@@ -86,7 +86,7 @@
             "type": "button",
             "action": {
               "type": "uri",
-              "label": "ฉันไม่สะดวก / I'm not comfortable",
+              "label": "ฉันไม่สะดวก / I'm not available",
               "uri": "https://market.viicheck.com/not_comfor/create"
             },
             "style": "secondary",
@@ -107,5 +107,4 @@
     }
   }
 }
-
 }

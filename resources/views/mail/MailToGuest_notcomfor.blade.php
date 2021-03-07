@@ -8,7 +8,7 @@
 	ที่ท่านได้ติดต่อเมื่อสักครู่นี้
 </h4>
 <h3>แจ้งว่า</h3>
-<h2>ฉันไม่สะดวก / I'm not comfortable</h2>
+<h2>ฉันไม่สะดวก / I'm not available</h2>
 <h3>เหตุผล</h3>
 <h2 style="color: #FF0000">{{ $data["content"] }}</h2>
 @if( $data["want_phone"] == "Yes" )
