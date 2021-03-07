@@ -101,11 +101,6 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             <br><br>
                             <center>
                                 <img width="60%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
