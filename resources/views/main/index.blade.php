@@ -231,11 +231,122 @@
                     </ul>
                 </div>
                 
-                
             
+            @if(Auth::check())
+                <input type="hidden" name="id_user" id="id_user" value="{{ Auth::user()->id }}">
+
+                <!-- Button trigger modal -->
+                <button id="btn_check_user_Modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#check_user_Modal">
+                  Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="check_user_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ยินดีต้อนรับคุณ <span id="name_user" class="text-primary"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p><b>คุณต้องการเปลี่ยนรหัสผ่านหรือไม่</b></p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button>
+                        <button type="button" class="btn btn-primary" onclick="open_put_email();">เปลี่ยนรหัสผ่าน</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- email -->
+                <!-- Button trigger modal -->
+                <button id="btn_email_Modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#email_Modal">
+                  Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="email_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">กรุณากรอกอีเมล</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
+                        <input class="form-control" type="text" name="put_email" id="put_email" value="" placeholder="กรอกอีเมลของคุณ">
+                      </div>
+                      <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button> -->
+                        <button type="button" class="btn btn-primary" onclick="put_email();">ยืนยัน</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                @if (Route::has('password.request'))
+                    <a id="reset" class="text-dark d-none" href="{{ route('password.request') }}">
+                        <b>{{ __('เปลี่ยนรหัสผ่าน') }}</b>
+                    </a>
+                @endif
+            @endif
         </div>
     </section>
     </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("START");
+    check_user();
+});
+
+function check_user() {
+    let id_user = document.querySelector("#id_user");
+    console.log(id_user.value);
+
+        fetch("{{ url('/') }}/api/check_user/" + id_user.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    document.getElementById("btn_check_user_Modal").click();
+
+                    for(let item of result){
+                        let name_user = document.querySelector("#name_user");
+                            name_user.innerHTML = item.name;
+
+                    }
+                }
+                
+                
+            });
+}
+
+function open_put_email() {
+    document.getElementById("btn_email_Modal").click();
+}
+
+function put_email() {
+
+    let put_email = document.querySelector("#put_email");
+    let id_user = document.querySelector("#id_user");
+    console.log(put_email.value);
+    console.log(id_user.value);
+
+        fetch("{{ url('/') }}/api/put_email/" + put_email.value + "/" + id_user.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById("reset").click();
+            });
+}
+
+</script>
     
 
 @endsection
