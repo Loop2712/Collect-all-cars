@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "content",
+            "type": "string"
+        },
+        {
+            "name": "news_id",
+            "type": "integer"
+        }
+    ]
+}

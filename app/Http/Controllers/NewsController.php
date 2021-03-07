@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\News;
+use App\Models\Report_news;
 use Intervention\Image\ImageManagerStatic as Image;
 use Auth;
 use Illuminate\Http\Request;
@@ -380,23 +381,53 @@ class NewsController extends Controller
 
     }
 
-    public function report($id)
+    public function report($id , $content)
     {
         $report_news = News::where('id', $id)->get();
 
         foreach ($report_news as $item) {
-            if ($item->report < 5) {
+            $title_news = $item->title;
+            if ($item->report < 2 ) {
                 $count_report = $item->report + 1 ;
                 DB::table('news')->where('id', $id)->update(['report' => $count_report]);
             }
-            if($item->report >= 5) {
+            if($item->report >= 2) {
                 $count_report = $item->report + 1 ;
                 DB::table('news')->where('id', $id)->update(['report' => $count_report]);
-                DB::table('news')->where('id', $id)->update(['active' => 'No']);
+                DB::table('news')->where('id', $id)->update(['active' => 'Hide']);
+            }
+            if($item->report >= 4) {
+                DB::delete("DELETE FROM news WHERE id = '$id'");
             }
         }
 
-        return redirect($_SERVER['HTTP_REFERER']);
+        switch ($content) {
+            case '1':
+                $requestData['content'] = "เนื้อหาโป๊เปลือย และกิจกรรมทางเพศ (nudity & sexual activity)" ;
+                break;
+            case '2':
+                $requestData['content'] = "เนื้อหาความรุนแรง (content violence)" ;
+                break;
+            case '3':
+                $requestData['content'] = "โฆษณาชวนเชื่อของผู้ก่อการร้าย (terrorist propaganda)" ;
+                break;
+            case '4':
+                $requestData['content'] = "เนื้อหาที่ใช้วาจาสร้างความเกลียดชัง (hate speech)" ;
+                break;
+            case '5':
+                $requestData['content'] = "บัญชีผู้ใช้ปลอม (fake accounts)" ;
+                break;
+            case '6':
+                $requestData['content'] = "สแปม (spam)" ;
+                break;
+        }
+
+        $requestData['news_id'] = $id ;
+        $requestData['title_news'] = $title_news ;
+
+        Report_news::create($requestData);
+
+        // return redirect($_SERVER['HTTP_REFERER']);
 
     }
 

@@ -119,5 +119,7 @@ Route::resource('news', 'NewsController')->except(['create']);
 Route::get('/reporter', 'NewsController@reporter');
 Route::get('/near_news', 'NewsController@near_news');
 Route::get('/my_news/{user_id}', 'NewsController@my_news');
-Route::get('/report/{id}', 'NewsController@report');
+Route::get('/report/{id}/{content}', 'NewsController@report');
 
+
+Route::resource('report_news', 'Report_newsController');

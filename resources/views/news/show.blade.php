@@ -69,7 +69,7 @@
                             <br><br>
                             <div class="col-8 "></div>
                             <div class="col-4 ">
-                                <a style="float: right;" href="{{ url('/') }}/report/{{$news->id}}" class="btn btn-sm btn-warning text-light" onclick="return confirm(&quot; คุณยืนยันที่จะรายงานความไม่เหมาะสมของข่าวนี้หรือไม่ ?&quot;)"><i class="fas fa-ban"></i> Report</a>
+                                <a style="float: right;" class="btn btn-sm btn-warning text-light" onclick="clickReport_content();"><i class="fas fa-ban"></i> Report</a>
                             </div>
                             <br><br>
                             <div class="col-9 "></div>
@@ -94,6 +94,70 @@
     </div>
 </div>
 
+<!-- Button trigger modal -->
+<button id="btn_report_content" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#report_content">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="report_content" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="staticBackdropLabel">เหตุผลการ Report</h5>
+        <button id="Close_report_content" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="radio" name="select_content" id="1" value="1" onclick="document.querySelector('#content').value ='1';"> เนื้อหาโป๊เปลือย และกิจกรรมทางเพศ<br>(nudity & sexual activity)
+        <br><br>
+        <input type="radio" name="select_content" id="2" value="2" onclick="document.querySelector('#content').value ='2';"> เนื้อหาความรุนแรง<br>(content violence)
+        <br><br>
+        <input type="radio" name="select_content" id="3" value="3" onclick="document.querySelector('#content').value ='3';"> โฆษณาชวนเชื่อของผู้ก่อการร้าย <br>(terrorist propaganda)
+        <br><br>
+        <input type="radio" name="select_content" id="4" value="4" onclick="document.querySelector('#content').value ='4';"> เนื้อหาที่ใช้วาจาสร้างความเกลียดชัง <br>(hate speech)
+        <br><br>
+        <input type="radio" name="select_content" id="5" value="5" onclick="document.querySelector('#content').value ='5';"> บัญชีผู้ใช้ปลอม (fake accounts)
+        <br><br>
+        <input type="radio" name="select_content" id="6" value="6" onclick="document.querySelector('#content').value ='6';"> สแปม (spam)
+
+        <input type="hidden" name="news_id" id="news_id" value="{{$news->id}}">
+        <input type="hidden" name="content" id="content" value="">
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-primary" onclick="addCount_report();">Report</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Close -->
+<!-- Button trigger modal -->
+<button id="btn_Close" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#Modal_Close">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_Close" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>ระบบได้รับการรายงานของคุณแล้ว <br>
+        ขอขอบพระคุณอย่างสูง</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -143,4 +207,33 @@
             </div>
         </div>
     </div> -->
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("START");
+});
+
+function clickReport_content() {
+    document.getElementById("btn_report_content").click();
+    
+}
+
+function addCount_report() {
+
+    let news_id = document.querySelector("#news_id");
+    let content = document.querySelector("#content");
+    console.log(news_id.value);
+    console.log(content.value);
+
+    fetch("{{ url('/') }}/report/" + news_id.value + "/" + content.value)
+    Close();
+}
+
+function Close() {
+    document.getElementById("btn_Close").click();
+    document.getElementById("Close_report_content").click();
+
+    
+}
+</script>
 @endsection
