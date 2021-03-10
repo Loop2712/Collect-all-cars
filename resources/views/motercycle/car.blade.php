@@ -70,7 +70,7 @@
                                     <p>Price:</p>
                                     <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด">
                                     <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด">
-                                    <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
+                                    <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>   </button>
                                 </div>
                                 <!-- <div class="filter-price">
                                     <p>Distance:</p>
@@ -80,7 +80,7 @@
                                 </div> -->
                             </form>
                             <div class="car__filter__btn">
-                                <a class="btn btn-danger" href="{{URL::to('/motercycle')}}" > <h6 style="color:#fff"></h6> reset</a>
+                                <a class="btn btn-danger" href="{{URL::to('/motercycle')}}" > <h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6> </a>
                              
                             </div>
                         </div>

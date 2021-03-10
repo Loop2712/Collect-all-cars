@@ -117,7 +117,7 @@
                             </form>
                             <br>
                             <div class="car__filter__btn">
-                                    <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff"></h6> ล้างการค้นหา </a>
+                                    <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
                                 </div>
                         </div>
                         <br>
