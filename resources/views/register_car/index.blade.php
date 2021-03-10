@@ -77,7 +77,7 @@
                                                     <!-- <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                 @endif
                                             @else
-                                                <h6 class="text-right"><span class="f-left">Vehicle Act</span><span><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></span></h6><br>
+                                                <h6 class="text-right"><span class="f-left">Vehicle Act</span><span><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 12px;"></i></a></span></h6><br>
                                                         <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                             @endif
 
@@ -93,7 +93,7 @@
                                                     <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                 @endif
                                             @else
-                                            <h6 class="text-right"><span class="f-left">insurance</span><span><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></span></h6><br>
+                                            <h6 class="text-right"><span class="f-left">insurance</span><span><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 12px;"></i></a></span></h6><br>
                                                 <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                             @endif
                                         <!-- <h6 class="text-right"><span class="f-left">insurance</span><span>2021-02-12</span></h6><br> -->
