@@ -130,18 +130,38 @@
                                 </div>
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
-                                        <div class="label-date">{{ $item->year  }}</div>
-                                        <h5><a href="{{ url('/motercycle/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
+                                        <div >
+                                            <h4 ><a href="{{ url('/motercycle/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h4>
+                                            <p style = "font-size:12px; margin-top: 5px;">{{ $item->location  }}</p>
+                                        </div>
+                                        <div class="col">
+                                            
+                                            @if ( $item->price == 'ติดต่อผู้ขาย')
+                                                <h4 style="color:#db2d2e">{{ $item->price}}<span></span></h4>
+                                            @else
+                                                <h4 style="color:#db2d2e;margin-left:-12px"> <img src="{{ asset('/img/icon/thailand-baht.png') }}" style="width:25px"> {{ number_format(intval($item->price))}}<span></span></h4>
+                                            @endif
+                                        </div>
                                     </div>
 
                                     <div class="car__item__price">
-                                        <span class="car-option sale"><a href="{{ url('/motercycle/'.$item->id ) }}"></a>ราคา</span>
-                                        @if ( $item->price == 'ติดต่อผู้ขาย')
-                                        <h6>{{ $item->price}}<span></span></h6>
-                                        @else
-                                            <h6 style="font-size:20px">{{ number_format(intval($item->price))}} บาท<span></span></h6>
-                                        
-                                        @endif
+                                        <div class="row px-3">
+                                            <div class="detel">
+                                                <p class="mb-0 "> <a href="{{ url('/motercycle/'.$item->id ) }}" style="color:#fff;"> <b>ดูข้อมูลเพิ่มเติม</b>  </a></p>
+                                            </div>
+                                            <div class="whislist">
+                                                <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                                                        {{ csrf_field() }}
+                                                    <input class="d-none" name="producmoter_id" type="number" id="producmoter_id" value="{{ $item->id}}" >
+                                                    <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                                    <input class="d-none" name="car_type" type="text" id="car_type" value="motorcycle" >
+                                                    <p class="mb-0 "> 
+                                                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"><b>&emsp;ถูกใจ</b></a>  
+                                                    </p>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

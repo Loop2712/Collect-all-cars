@@ -3220,11 +3220,9 @@ ol {
     border: 1px solid #db2d2e;
     cursor: pointer
 }
-.whislist p a {
+.whislist  a {
 	color: #fa8080;
 }
-
-
 .whislist:hover {
     color: #fff;
     background-color: #db4040

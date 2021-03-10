@@ -97,7 +97,7 @@ class WishlistController extends Controller
         
         Wishlist::create($requestData);
 
-        return redirect('car')->with('flash_message', 'car added!');
+        return redirect('wishlist')->with('flash_message', 'car added!');
     }
 
     /**
