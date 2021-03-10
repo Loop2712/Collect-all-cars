@@ -1,10 +1,4 @@
-<div class="panel-block columns is-mobile">
-  <div class="column is-6 is-offset-6">
-    
-  </div>
-</div>
 
-<nav>
 @if ($paginator->hasPages()) <!-- กําหนดว่ามีรายการเพียงพอที่จะแบ่งออกเป็นหลายหน้าหรือไม่ -->
   <ul class="pagination flex-wrap d-flex justify-content-center">
     <li class="page-item">
@@ -45,7 +39,7 @@
     </li>
   </ul>
   @endif
-</nav>  
+
   
 
       
