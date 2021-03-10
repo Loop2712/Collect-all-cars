@@ -3197,6 +3197,43 @@ ol {
 	color: #727171;
 }
 
+.detel {
+    background-color: #db2d2e;
+    color: #fff;
+    padding: 6px;
+    width: 48%;
+    margin-right: 2%;
+    border: 2px solid #db2d2e;
+    cursor: pointer
+
+}
+
+.detel:hover {
+    background-color: #db4040
+}
+
+.whislist {
+	color: #db4040;
+    padding: 6px 5px;
+    width: 48%;
+    margin-left: 2%;
+    border: 1px solid #db2d2e;
+    cursor: pointer
+}
+.whislist p a {
+	color: #fa8080;
+}
+
+
+.whislist:hover {
+    color: #fff;
+    background-color: #db4040
+}
+
+
+.sm-font {
+    font-size: 12px
+}
 /*---------------------
   Contact Address
 -----------------------*/

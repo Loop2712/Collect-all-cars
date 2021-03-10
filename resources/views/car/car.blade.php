@@ -62,7 +62,7 @@
                                     <p>ราคา:</p>
                                     <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}">
                                     <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}">
-                                    <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
+                                    <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
                                 </div>
 
                                 <!-- ซ่อน  กดเปิด  -->
@@ -112,12 +112,12 @@
                             <button title="Click to show/hide content" type="button"  class="btn btn-sm "
                             onclick="if(document.getElementById('spoiler') .style.display=='none') 
                             {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler')
-                             .style.display='none'}">การค้นหาขั้นสูง</button>
+                             .style.display='none'}"> <h6 style="color:#7D7D7D">การค้นหาขั้นสูง</h6></button>
                                 
                             </form>
                             <br>
                             <div class="car__filter__btn">
-                                    <a class="btn btn-danger" href="{{URL::to('/car')}}" >reset</a>
+                                    <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff"></h6> ล้างการค้นหา </a>
                                 </div>
                         </div>
                         <br>
@@ -167,29 +167,53 @@
                                 </div>
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
-                                        <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div>
-                                        <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
-                                        {{ csrf_field() }}
-                                            <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id}}" >
-                                            <input class="d-none" name="user_id" type="number" id="user_id" value="" >
-                                            <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
-                                            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"><i class="fas fa-heart" style="float: right;padding-right: 30px;color: red;"></i></a>
-                                        </form><br>
-                                        <h5><a href="{{ url('/car/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h5>
+                                        <!-- <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div><br> -->
+                                        <div >
+                                            <h4 ><a href="{{ url('/car/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h4>
+                                            <p style = "font-size:12px; margin-top: 5px;">{{ $item->location  }}</p>
+                                        </div>
+                                        <div class="col">
+                                            
+                                            @if ( $item->price == 'ติดต่อผู้ขาย')
+                                                <h4 style="color:#db2d2e">{{ $item->price}}<span></span></h4>
+                                            @else
+                                                <h4 style="color:#db2d2e;margin-left:-12px"> <img src="{{ asset('/img/icon/thailand-baht.png') }}" style="width:25px"> {{ number_format(intval($item->price))}}<span></span></h4>
+                                            
+                                            @endif
+
+                                        </div>
+                                        
                                     
+                                        
                                     </div>
 
                                     <div class="car__item__price">
-                                        <span class="car-option sale"><a href="{{ url('/car/'.$item->id ) }}"></a>ราคา</span>
-                                        @if ( $item->price == 'ติดต่อผู้ขาย')
-                                        <h6>{{ $item->price}}<span></span></h6>
-                                        @else
-                                            <h6 style="font-size:20px">{{ number_format(intval($item->price))}} บาท<span></span></h6>
                                         
-                                        @endif
+                                        
+                                        <div class="row px-3">
+                                            <div class="detel">
+                                                <p class="mb-0 "> <a href="{{ url('/car/'.$item->id ) }}" style="color:#fff;"> <b>ดูข้อมูลเพิ่มเติม</b>  </a></p>
+                                            </div>
+                                            <div class="whislist">
+                                                
+                                                    <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                                                {{ csrf_field() }}
+                                                    <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id}}" >
+                                                    <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                                    <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
+                                                    <p class="mb-0 "> 
+                                                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"><b>&emsp;ถูกใจ</b></a>  
+                                                    </p>
+                                                    </form>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
+                                    
                                 </div>
+                                
                             </div>
+                            
                             
                         </div>
                         @endforeach 
