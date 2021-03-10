@@ -155,7 +155,8 @@
                     <div class="row">
                     @foreach($data as $item)
                         <div class="col-lg-4 col-md-4">
-                        
+                            <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                                                        {{ csrf_field() }}
                             <div class="car__item" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                                 <div class="car__item__pic__slider owl-carousel">
                                     @if($item->image == "" )
@@ -195,16 +196,11 @@
                                                 <p class="mb-0 "> <a href="{{ url('/car/'.$item->id ) }}" style="color:#fff;"> <b>ดูข้อมูลเพิ่มเติม</b>  </a></p>
                                             </div>
                                             <div class="whislist">
-                                                <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
-                                                        {{ csrf_field() }}
-                                                        <input class="d-none" name="product_id" type="number" id="product_id" value="{{$item->id}}" >
-                                                        <input class="d-none" name="user_id" type="number" id="user_id" value="" >
-                                                        <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
-                                                   
-                                                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="mb-0 "><b>&emsp;ถูกใจ</b></a>  
-                                                    
-                                                </form>
-                                                
+                                                    <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id}}" >
+                                                    <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                                    <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
+                                                        
+                                                    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="mb-0 "><b>&emsp;ถูกใจ</b></a>    
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +209,7 @@
                                 
                             </div>
                             
-                            
+                            </form>
                         </div>
                         @endforeach 
                     </div>

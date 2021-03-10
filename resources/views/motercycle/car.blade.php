@@ -123,9 +123,9 @@
                             <div class="car__item" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                                 <div class="car__item__pic__slider owl-carousel">
                                     @if($item->img == "" )
-                                        <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
+                                        <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" style ="width: 100%;" >
                                     @else
-                                        <img src="{{ $item->img }}" alt="" > 
+                                        <img src="{{ $item->img }}" alt=""  style ="width: 100%;"> 
                                     @endif
                                 </div>
                                 <div class="car__item__text">
@@ -169,12 +169,13 @@
                         </div>
                         @endforeach 
                     </div>
-                    <ul class="pagination">
-                    <span>
-                    {{ $data->links() }}
-                    </span> 
-                    </ul>
+                    <div class="row">
+                    {{ $data->links('pagination.default',['paginator' => $data,
+           'link_limit' => $data->perPage()]) }}  
+                    </div>
+
                 </div>
+                
             </div>
         </div>
     </section>

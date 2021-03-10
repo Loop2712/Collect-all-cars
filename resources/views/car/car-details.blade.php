@@ -10,9 +10,9 @@
                     <div class="car__details__pic">
                         <div class="car__details__pic__large">
                                 @if($data->image == "" )
-                                        <img class="car-big-img" src="{{ asset('/img/more/img_more.jpg') }}" alt="" >
+                                        <img class="car-big-img" src="{{ asset('/img/more/img_more.jpg') }}" alt="" style ="width: 100%;">
                                     @else
-                                        <img class="car-big-img" src="{{ url('/image/'.$data->id ) }}" alt="" > 
+                                        <img class="car-big-img" src="{{ url('/image/'.$data->id ) }}" alt="" style ="width: 100%;"> 
                                     @endif
                         </div>
                     </div>

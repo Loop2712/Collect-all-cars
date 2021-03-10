@@ -34,7 +34,7 @@ class CarController extends Controller
         $sort      = $request->get('sort','asc');
         $datas     = $request->get('datas');
         $q         = $request->get('q');
-        $perPage   = 30; 
+        $perPage   = 21; 
         
         $milemin = empty($milemin) ? 0 :$milemin;
         $milemax = empty($milemax) ? 99000000 :$milemax;
