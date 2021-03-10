@@ -144,7 +144,7 @@
                     <div class="card-header">Sell</div>
                     <div class="card-body">
                         <a href="{{ url('/motercycles/create') }}" class="btn btn-success btn-sm" title="Add New Sell">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถเลย!
                         </a>
 
                         <!-- ระบบ ค้นหา -->
