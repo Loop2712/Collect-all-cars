@@ -170,8 +170,10 @@
                         @endforeach 
                     </div>
                     <div class="row">
-                    {{ $data->links('pagination.default',['paginator' => $data,
-           'link_limit' => $data->perPage()]) }}  
+                        
+                    
+                        {{ $data->links('pagination.default',['paginator' => $data,'link_limit' => $data->perPage()]) }} 
+                       
                     </div>
 
                 </div>
