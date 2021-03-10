@@ -80,7 +80,7 @@
                                 </div> -->
                             </form>
                             <div class="car__filter__btn">
-                                <a class="btn btn-danger" href="{{URL::to('/motercycle')}}" >reset</a>
+                                <a class="btn btn-danger" href="{{URL::to('/motercycle')}}" > <h6 style="color:#fff"></h6> reset</a>
                              
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
                                         <div >
-                                            <h4 ><a href="{{ url('/motercycle/'.$item->id ) }}">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h4>
+                                            <h4 ><a href="{{ url('/motercycle/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h4>
                                             <p style = "font-size:12px; margin-top: 5px;">{{ $item->location  }}</p>
                                         </div>
                                         <div class="col">
