@@ -213,10 +213,9 @@
                         </div>
                         @endforeach 
                     </div>
-                    <ul class="pagination">
-                    <span>
-                    {{ $data->links() }}
-                    </span> 
+                    <ul class="row">
+
+                    {{ $data->links('pagination.default',['paginator' => $data,'link_limit' => $data->perPage()]) }} 
                     </ul>
                 </div>
             </div>
