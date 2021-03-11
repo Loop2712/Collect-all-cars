@@ -46,11 +46,16 @@
                             @endif
                         </h5>
                        
-                        <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
+                        <!-- <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
                             <li><br><i class="fas fa-user margin-5px-right"></i> ชื่อผู้ขาย : John Sminth</li>
-                        </ul>
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore</p>
-                        <a class="butn small margin-10px-top md-no-margin-top" href="{{ url('/car/'.$item->products->id ) }}">Read More <i class="fas fa-long-arrow-alt-right margin-10px-left"></i></a>
+                        </ul> -->
+                        <p> สถานที่ {{$item->products->location}}</p>
+                        <a class="butn small margin-10px-top md-no-margin-top" href="{{ url('/car/'.$item->products->id ) }}" style="color:#000">ดูข้อมูลเพิ่มเติม<i class="fas fa-long-arrow-alt-right margin-10px-left"></i><br><br> </a>
+                            <form method="POST" action="{{ url('/wishlist' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Sell" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                            </form>
                     </div>
                 </div>
             </div>
@@ -83,11 +88,16 @@
                                         
                             @endif
                         </h5>
-                        <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
+                        <!-- <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
                             <li><br><i class="fas fa-user margin-5px-right"></i> ชื่อผู้ขาย : John Sminth</li>
-                        </ul>
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore</p>
-                        <a class="butn small margin-10px-top md-no-margin-top" href="{{ url('/motercycle/'.$item->productM->id ) }}">Read More <i class="fas fa-long-arrow-alt-right margin-10px-left"></i></a>
+                        </ul> -->
+                        <p>สถานที่ {{$item->productM->location}}</p>
+                        <a class="butn small margin-10px-top md-no-margin-top" href="{{ url('/motercycle/'.$item->productM->id ) }}">ดูข้อมูลเพิ่มเติม <i class="fas fa-long-arrow-alt-right margin-10px-left"></i><br><br></a>
+                            <form method="POST" action="{{ url('/wishlist' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Sell" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                            </form>
                     </div>
                 </div>
             </div>

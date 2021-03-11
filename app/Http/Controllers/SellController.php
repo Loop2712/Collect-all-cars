@@ -48,48 +48,6 @@ class SellController extends Controller
 
         return view('carsell.index', compact('sell'));
     }
-    public function select()
-    {
-
-        $brand_array = Sell::selectRaw('brand,count(brand) as count')
-            ->where('brand', '!=',"" )
-            ->groupBy('brand')
-            ->get();
-            
-        $type_array = Sell::selectRaw('type,count(type) as count')
-            ->where('type', '!=',"" )
-            ->groupBy('type')
-            ->get();
-
-        $year_array = Sell::selectRaw('year,count(year) as count')
-            ->where('year', '!=',"" )
-            ->groupBy('year')
-            ->get();
-
-        $color_array = Sell::selectRaw('color,count(color) as count')
-            ->where('color', '!=',"" )
-            ->groupBy('color')
-            ->get();
-   
-        $gear_array = Sell::selectRaw('gear,count(gear) as count')
-            ->where('gear', '!=',"" )
-            ->groupBy('gear')
-            ->get();
-            
-        $location_array = county::selectRaw('province')
-            ->where('province', '!=',"" )
-            ->groupBy('province')
-            ->get();
-        
-        $fuel_array = Sell::selectRaw('fuel,count(fuel) as count')
-            ->where('fuel', '!=',"" )
-            ->groupBy('fuel')
-            ->get();
-
-       
-        // return view('carsell.form',compact('brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *

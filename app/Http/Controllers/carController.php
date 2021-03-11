@@ -60,10 +60,11 @@ class CarController extends Controller
                 ->where('fuel',    'LIKE', '%' .$fuel. '%')
                 ->whereBetween('price', [$pricemin,$pricemax])
                 ->whereBetween('distance', [$milemin, $milemax])
-
-                ->orwhere('brand',     'LIKE', '%' .$q.  '%')
-                ->orWhere('model',     'LIKE', '%' .$q.  '%')
-                ->orWhere('submodel',  'LIKE', '%' .$q.  '%')
+                // ->where(function($q) {
+                //     $q->where('brand',     'LIKE', '%' .$q.  '%')
+                //     ->orWhere('model',     'LIKE', '%' .$q.  '%')
+                //     ->orWhere('submodel',  'LIKE', '%' .$q.  '%')
+                // })
                 // ->whereBetween('price', [30, 100])
                 ->where('active' ,'=', 'yes')
                 ->orderBy('created_at', 'asc')
