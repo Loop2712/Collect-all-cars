@@ -112,7 +112,7 @@
               },
               {
                 "type": "text",
-                "text": "ซื้อขายรถมือสอง / Vmarket",
+                "text": "ซื้อขายรถมือสอง",
                 "margin": "xl",
                 "action": {
                   "type": "message",
