@@ -130,11 +130,21 @@ class GuestController extends Controller
                 'now' => "Yes",
           ]);
 
-        // ตรงนี้ต้องหา type ของ user ที่ register เข้ามาเพื่อทำการตอบกลับ
-
         $this->_pushLine($requestData);
 
-        return view('guest/thx_guest')->with('flash_message', 'Guest added!');
+        // หา type ของ user ที่ register 
+        $type_user = DB::table('user')
+              ->where('id', $requestData['user_id'])
+              ->get();
+              foreach ($type_user as $key) {
+                
+                  if ($key->type == "line") {
+                      return view('guest/thx_guest')->with('flash_message', 'Guest added!');
+                  }
+                  if ($key->type == "google") {
+                      return view('guest/thx_guest_google')->with('flash_message', 'Guest added!');
+                  }
+              }
     }
 
     /**

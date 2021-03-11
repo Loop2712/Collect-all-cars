@@ -111,6 +111,10 @@ Route::get('/thx_guest', function () {
     return view('guest/thx_guest');
 });
 
+Route::get('/thx_guest_google', function () {
+    return view('guest/thx_guest_google');
+});
+
 Route::get('/thx', function () {
     return view('not_comfor/thx');
 });
