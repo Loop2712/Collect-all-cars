@@ -96,7 +96,10 @@
         "align": "center"
       }
     ],
-    "backgroundColor": "#07375D"
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   },
   "styles": {
     "footer": {

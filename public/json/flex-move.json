@@ -92,37 +92,40 @@
         "type": "separator",
         "margin": "lg",
         "color": "#07375D"
-      }
-    ],
-    "backgroundColor": "#07375D"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "sm",
-    "contents": [
+      },
       {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "button",
-            "height": "sm",
-            "action": {
-              "type": "message",
-              "label": "ส่งข้อความตอบกลับ",
-              "text": "ส่งข้อความตอบกลับ"
-            },
-            "color": "#3AC0CE",
-            "style": "primary"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "height": "sm",
+                "action": {
+                  "type": "message",
+                  "label": "ส่งข้อความตอบกลับ",
+                  "text": "ส่งข้อความตอบกลับ"
+                },
+                "color": "#3AC0CE",
+                "style": "primary"
+              }
+            ],
+            "cornerRadius": "lg"
           }
         ],
-        "cornerRadius": "lg"
+        "flex": 0,
+        "borderColor": "#000000",
+        "backgroundColor": "#07375D"
       }
     ],
-    "flex": 0,
-    "borderColor": "#000000",
-    "backgroundColor": "#07375D"
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   },
   "styles": {
     "footer": {

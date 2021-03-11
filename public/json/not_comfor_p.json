@@ -94,27 +94,35 @@
         "margin": "xxl",
         "color": "#FFFFFF",
         "align": "center"
-      }
-    ],
-    "backgroundColor": "#07375D"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
+      },
       {
-        "type": "button",
-        "action": {
-          "type": "uri",
-          "label": "โทร 0999999999",
-          "uri": "tel:0999999999"
-        },
-        "height": "sm",
-        "style": "primary",
-        "color": "#76d128"
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#07375D"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "โทร 0999999999",
+              "uri": "tel:0999999999"
+            },
+            "height": "sm",
+            "style": "primary",
+            "color": "#76d128"
+          }
+        ],
+        "backgroundColor": "#07375D"
       }
     ],
-    "backgroundColor": "#07375D"
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   },
   "styles": {
     "footer": {

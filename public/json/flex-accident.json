@@ -92,27 +92,29 @@
         "type": "separator",
         "margin": "lg",
         "color": "#07375D"
-      }
-    ],
-    "backgroundColor": "#07375D"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
+      },
       {
-        "type": "image",
-        "url": "https://market.viicheck.com/storage/uploads",
-        "size": "full",
-        "aspectRatio": "16:9",
-        "offsetBottom": "xxl",
-        "animated": true,
-        "gravity": "center",
-        "align": "center",
-        "aspectMode": "fit"
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/storage/uploads",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "animated": true,
+            "gravity": "center",
+            "align": "center",
+            "aspectMode": "fit"
+          }
+        ],
+        "backgroundColor": "#07375D"
       }
     ],
-    "backgroundColor": "#07375D"
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   },
   "styles": {
     "footer": {

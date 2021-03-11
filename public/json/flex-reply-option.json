@@ -16,90 +16,92 @@
         "aspectMode": "fit"
       },
       {
-        "type": "separator",
-        "margin": "lg"
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "ขอบคุณ / Thank you",
+                  "data": "thx",
+                  "displayText": "ขอบคุณ / Thank you"
+                },
+                "style": "secondary",
+                "height": "sm",
+                "color": "#FFFFFF"
+              }
+            ],
+            "borderColor": "#0B9CFF",
+            "borderWidth": "semi-bold",
+            "cornerRadius": "lg",
+            "backgroundColor": "#ffffff"
+          },
+          {
+            "type": "separator",
+            "margin": "sm",
+            "color": "#07375D"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "รอสักครู่ / Wait a moment",
+                  "data": "wait",
+                  "displayText": "รอสักครู่ / Wait a moment"
+                },
+                "style": "secondary",
+                "height": "sm",
+                "color": "#FFFFFF"
+              }
+            ],
+            "borderColor": "#0B9CFF",
+            "borderWidth": "semi-bold",
+            "cornerRadius": "lg",
+            "backgroundColor": "#ffffff"
+          },
+          {
+            "type": "separator",
+            "margin": "sm",
+            "color": "#07375D"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "ฉันไม่สะดวก / I'm not available",
+                  "uri": "https://market.viicheck.com/not_comfor/create"
+                },
+                "style": "secondary",
+                "height": "sm",
+                "color": "#FFFFFF"
+              }
+            ],
+            "borderColor": "#0B9CFF",
+            "borderWidth": "semi-bold",
+            "cornerRadius": "lg",
+            "backgroundColor": "#ffffff"
+          }
+        ],
+        "backgroundColor": "#07375D"
       }
     ],
-    "backgroundColor": "#07375D"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "ขอบคุณ / Thank you",
-              "data": "thx",
-              "displayText": "ขอบคุณ / Thank you"
-            },
-            "style": "secondary",
-            "height": "sm",
-            "color": "#FFFFFF"
-          }
-        ],
-        "borderColor": "#0B9CFF",
-        "borderWidth": "semi-bold",
-        "cornerRadius": "lg"
-      },
-      {
-        "type": "separator",
-        "margin": "sm",
-        "color": "#07375D"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "รอสักครู่ / Wait a moment",
-              "data": "wait",
-              "displayText": "รอสักครู่ / Wait a moment"
-            },
-            "style": "secondary",
-            "height": "sm",
-            "color": "#FFFFFF"
-          }
-        ],
-        "borderColor": "#0B9CFF",
-        "borderWidth": "semi-bold",
-        "cornerRadius": "lg"
-      },
-      {
-        "type": "separator",
-        "margin": "sm",
-        "color": "#07375D"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "uri",
-              "label": "ฉันไม่สะดวก / I'm not available",
-              "uri": "https://market.viicheck.com/not_comfor/create"
-            },
-            "style": "secondary",
-            "height": "sm",
-            "color": "#FFFFFF"
-          }
-        ],
-        "borderColor": "#0B9CFF",
-        "borderWidth": "semi-bold",
-        "cornerRadius": "lg"
-      }
-    ],
-    "backgroundColor": "#07375D"
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   },
   "styles": {
     "footer": {
