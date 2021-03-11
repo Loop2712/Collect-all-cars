@@ -146,12 +146,12 @@
                         <td class="text-primary"> 
                                     <!-- <div class="row"> -->
                                           <div class="col-12 col-md-6">
-                                              <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถยนต์</label>
+                                              <label for="massengbox" class="control-label">&nbsp;รถยนต์</label>
                                               <br>
                                               <img src="{{ url('storage')}}/{{ $data->driver_license }}" style="width:200px" /><br/><br/> 
                                           </div>
                                         <div class="col-12 col-md-6">
-                                              <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถจักรยานยนต์</label>
+                                              <label for="massengbox" class="control-label">&nbsp;รถจักรยานยนต์</label>
                                               <br>
                                               <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" style="width:200px" /><br/><br/> 
                                         </div>
