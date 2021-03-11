@@ -70,7 +70,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ข่าวทั้งหมด",
-                  "uri": "https://market.viicheck.com/news"
+                  "uri": "https://market.viicheck.com/news?externalbrowser=1"
                 }
               },
               {
