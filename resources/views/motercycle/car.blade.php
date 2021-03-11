@@ -142,6 +142,16 @@
                                                 <h4 style="color:#db2d2e;margin-left:-12px"> <img src="{{ asset('/img/icon/thailand-baht.png') }}" style="width:25px"> {{ number_format(intval($item->price))}}<span></span></h4>
                                             @endif
                                         </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p style="color:#000;font-size:12px;"><img src="{{ asset('/img/icon/calendar.png') }}" style="width:13px"> &nbsp;{{ $item->year  }}</p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <p style="color:#000;font-size:12px;"><img src="{{ asset('/img/icon/settings.png') }}" style="width:15px"> &nbsp;{{ $item->gear  }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="car__item__price">

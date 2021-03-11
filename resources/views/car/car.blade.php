@@ -183,9 +183,16 @@
                                             @endif
 
                                         </div>
-                                        
-                                    
-                                        
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <p style="color:#000;font-size:12px;"><img src="{{ asset('/img/icon/calendar.png') }}" style="width:13px"> &nbsp;{{ $item->year  }}</p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <p style="color:#000;font-size:12px;"><img src="{{ asset('/img/icon/settings.png') }}" style="width:15px"> &nbsp;{{ $item->gear  }}</p>
+                                                </div>
+                                            </div>
+                                        </div>   
                                     </div>
 
                                     <div class="car__item__price">
