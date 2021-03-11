@@ -72,7 +72,8 @@
                   "type": "message",
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
-                }
+                },
+                "flex": 4
               },
               {
                 "type": "text",
@@ -120,7 +121,8 @@
                   "text": "vmarket"
                 },
                 "weight": "bold",
-                "wrap": true
+                "wrap": true,
+                "flex": 4
               },
               {
                 "type": "text",
@@ -167,7 +169,8 @@
                   "label": "FAQ / ถามตอบ",
                   "text": "FAQ / ถามตอบ"
                 },
-                "weight": "bold"
+                "weight": "bold",
+                "flex": 4
               },
               {
                 "type": "text",
@@ -214,7 +217,8 @@
                   "type": "message",
                   "label": "ติดต่อ / contact",
                   "text": "ติดต่อ / contact"
-                }
+                },
+                "flex": 4
               },
               {
                 "type": "text",
