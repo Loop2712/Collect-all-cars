@@ -193,7 +193,7 @@
                                         
                                         <div class="row px-3">
                                             <div class="detel">
-                                                <p class="mb-0 "> <a href="{{ url('/car/'.$item->id ) }}" style="color:#fff;"> <b>ดูข้อมูลเพิ่มเติม</b>  </a></p>
+                                                <p class="mb-0 "> <a href="{{ url('/car/'.$item->id ) }}" style="color:#fff;"> <b>&nbsp;ดูข้อมูลเพิ่มเติม</b>  </a></p>
                                             </div>
                                             <div class="whislist">
                                                     <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id}}" >
