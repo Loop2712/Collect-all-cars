@@ -155,7 +155,7 @@
                                     </div>
 
                                     <div class="car__item__price">
-                                        <div class="row px-3">
+                                        <div class="row px-3" style="padding-bottom: 3px;">
                                             <div class="detel">
                                                 <p class="mb-0 "> <a href="{{ url('/motercycle/'.$item->id ) }}" style="color:#fff;"> <b>&nbsp;ดูข้อมูลเพิ่มเติม</b>  </a></p>
                                             </div>
