@@ -1,0 +1,215 @@
+{
+    "type": "flex",
+    "altText": "ติดต่อ / contact",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/"
+            }
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "text": "ViiCHECK ยินดีให้บริการค่ะ",
+        "size": "lg",
+        "weight": "bold",
+        "margin": "xl",
+        "decoration": "underline",
+        "align": "center",
+        "wrap": true
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/gmail.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "อีเมล / E-Mail",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "mailto:contact.viicheck@gmail.com"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "mailto:contact.viicheck@gmail.com"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "mailto:contact.viicheck@gmail.com"
+            }
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/phone.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "โทร / Call",
+                "margin": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "tel:0955565411"
+                },
+                "weight": "bold",
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "tel:0955565411"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "tel:0955565411"
+            },
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/facebook.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "Facebook",
+                "margin": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://m.me/viicheck.viicheck"
+                },
+                "weight": "bold",
+                "wrap": true,
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://m.me/viicheck.viicheck"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://m.me/viicheck.viicheck"
+            },
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "color": "#ff0101",
+            "margin": "lg"
+          }
+        ]
+      }
+    ],
+    "borderWidth": "bold",
+    "cornerRadius": "xl",
+    "borderColor": "#ff0101"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#ff0101"
+    }
+  }
+}
+}
