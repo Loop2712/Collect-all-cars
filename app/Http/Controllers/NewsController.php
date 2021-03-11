@@ -102,8 +102,8 @@ class NewsController extends Controller
 
             //  เช็คเนื้อหาที่รุนแรง
             if ($requestData['severe'] == 'Yes') {
-                $image = Image::make(storage_path("app/public")."/".$requestData['photo'])->greyscale();
-                $image_facebook = Image::make(storage_path("app/public")."/".$requestData['photo'])->greyscale();
+                $image->greyscale();
+                $image_facebook->greyscale();
             }
 
             // facebook
