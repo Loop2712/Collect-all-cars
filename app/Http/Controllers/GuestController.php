@@ -133,11 +133,11 @@ class GuestController extends Controller
         $this->_pushLine($requestData);
 
         // หา type ของ user ที่ register 
-        $type_user = DB::table('user')
-              ->where('id', $requestData['user_id'])
-              ->get();
+        $type_user = DB::table('users')
+                    ->where('id', $requestData['user_id'])
+                    ->get();
               foreach ($type_user as $key) {
-                
+
                   if ($key->type == "line") {
                       return view('guest/thx_guest')->with('flash_message', 'Guest added!');
                   }
