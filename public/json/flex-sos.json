@@ -1,0 +1,300 @@
+{
+    "type": "flex",
+    "altText": "SOS",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "SOS",
+                "margin": "xxl",
+                "size": "xl",
+                "flex": 2,
+                "style": "normal",
+                "weight": "bold",
+                "color": "#ff0101"
+              }
+            ],
+            "margin": "lg",
+            "offsetTop": "md"
+          },
+          {
+            "type": "separator",
+            "margin": "xxl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "เหตุด่วนเหตุร้าย",
+                        "align": "center",
+                        "weight": "bold"
+                      }
+                    ],
+                    "paddingBottom": "md"
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "uri",
+                      "label": "191 ",
+                      "uri": "tel:191"
+                    },
+                    "style": "primary",
+                    "height": "sm",
+                    "gravity": "center",
+                    "color": "#ff0101"
+                  }
+                ],
+                "offsetStart": "sm",
+                "paddingAll": "md"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "ไฟไหม้รถ",
+                        "align": "center",
+                        "weight": "bold"
+                      }
+                    ],
+                    "paddingBottom": "md"
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "uri",
+                      "label": "199",
+                      "uri": "tel:199"
+                    },
+                    "style": "primary",
+                    "height": "sm",
+                    "gravity": "center",
+                    "color": "#ff0101"
+                  }
+                ],
+                "paddingAll": "md"
+              }
+            ],
+            "height": "80px"
+          }
+        ],
+        "borderColor": "#ff0101"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "หน่วยแพทย์กู้ชีวิต",
+                    "align": "center",
+                    "weight": "bold"
+                  }
+                ],
+                "paddingBottom": "md"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "1669",
+                  "uri": "tel:1669"
+                },
+                "style": "primary",
+                "height": "sm",
+                "gravity": "center",
+                "color": "#ff0101"
+              }
+            ],
+            "offsetStart": "sm",
+            "paddingAll": "md"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "จส.100",
+                    "align": "center",
+                    "weight": "bold"
+                  }
+                ],
+                "paddingBottom": "md"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "1808",
+                  "uri": "tel:1808"
+                },
+                "style": "primary",
+                "height": "sm",
+                "gravity": "center",
+                "color": "#ff0101"
+              }
+            ],
+            "paddingAll": "md"
+          }
+        ],
+        "height": "80px",
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "สายด่วนทางหลวง",
+                    "align": "center",
+                    "weight": "bold"
+                  }
+                ],
+                "paddingBottom": "md"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "1193",
+                  "uri": "tel:1193"
+                },
+                "style": "primary",
+                "height": "sm",
+                "gravity": "center",
+                "color": "#ff0101"
+              }
+            ],
+            "offsetStart": "sm",
+            "paddingAll": "md"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ตำรวจท่องเที่ยว",
+                    "align": "center",
+                    "weight": "bold"
+                  }
+                ],
+                "paddingBottom": "md"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "1155",
+                  "uri": "tel:1155"
+                },
+                "style": "primary",
+                "height": "sm",
+                "gravity": "center",
+                "color": "#ff0101"
+              }
+            ],
+            "paddingAll": "md"
+          }
+        ],
+        "height": "80px",
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "offsetStart": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+                "size": "sm",
+                "align": "center",
+                "aspectMode": "fit",
+                "action": {
+                  "type": "uri",
+                  "label": "viicheck",
+                  "uri": "https://market.viicheck.com/"
+                }
+              }
+            ],
+            "offsetBottom": "xxl"
+          }
+        ],
+        "height": "70px",
+        "margin": "xs",
+        "offsetTop": "xxl"
+      }
+    ],
+    "paddingAll": "0px",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  }
+}
+}
