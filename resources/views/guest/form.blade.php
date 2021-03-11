@@ -20,6 +20,7 @@
                                 document.querySelector('#masseng_input').classList.add('d-none')
                             }
                             if (this.value=='4') {
+                                check_Browser();
                                 document.querySelector('#photo_label').classList.remove('d-none'),
                                 document.querySelector('#photo_input').classList.remove('d-none'),
                                 document.querySelector('#photo').focus();
@@ -200,5 +201,15 @@
                 }
 
             });
+    }
+
+    function check_Browser(){
+
+        fetch("{{ url('/guest/check_Browser') }}")
+            // .then(response => response.json())
+            // .then(result => {
+            //     console.log(result);
+
+            // });
     }
 </script>

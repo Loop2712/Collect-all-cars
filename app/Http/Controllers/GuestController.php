@@ -422,4 +422,10 @@ class GuestController extends Controller
         }
     }
 
+    public function check_Browser()
+    {
+        echo $_SERVER['HTTP_USER_AGENT'];
+        exit();
+    }
+
 }
