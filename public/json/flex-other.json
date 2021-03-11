@@ -228,8 +228,8 @@
                 "color": "#ff0101",
                 "action": {
                   "type": "message",
-                  "label": "ติดต่อ",
-                  "text": "ติดต่อ"
+                  "label": "ติดต่อ / contact",
+                  "text": "ติดต่อ / contact"
                 }
               }
             ],

@@ -88,6 +88,9 @@ class LineApiController extends Controller
             case "ส่งข้อความตอบกลับ" : 
                 $line->replyToUser(null, $event, "reply");
                 break;
+            case "ติดต่อ / contact" :  
+                $line->replyToUser(null, $event, "contact");
+                break;
             
             
         }   
