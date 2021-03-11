@@ -105,21 +105,22 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/microphone.png",
+                "url": "https://market.viicheck.com/img/icon/car-key.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
               },
               {
                 "type": "text",
-                "text": "เหยี่ยวข่าว / Reporter",
+                "text": "ซื้อขายรถมือสอง / Vmarket",
                 "margin": "xl",
                 "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://market.viicheck.com/reporter"
+                  "type": "message",
+                  "label": "vmarket",
+                  "text": "vmarket"
                 },
-                "weight": "bold"
+                "weight": "bold",
+                "wrap": true
               },
               {
                 "type": "text",
@@ -128,17 +129,17 @@
                 "align": "end",
                 "color": "#ff0101",
                 "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://market.viicheck.com/reporter"
+                  "type": "message",
+                  "label": "vmarket",
+                  "text": "vmarket"
                 }
               }
             ],
             "height": "50px",
             "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://market.viicheck.com/reporter"
+              "type": "message",
+              "label": "vmarket",
+              "text": "vmarket"
             }
           },
           {
