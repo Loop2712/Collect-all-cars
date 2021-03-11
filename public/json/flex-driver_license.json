@@ -37,7 +37,12 @@
             "size": "full",
             "aspectMode": "fit",
             "aspectRatio": "16:9",
-            "margin": "lg"
+            "margin": "lg",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/storage/ccaarr"
+            }
           }
         ]
       },
@@ -79,7 +84,12 @@
                 "size": "full",
                 "aspectMode": "fit",
                 "aspectRatio": "16:9",
-                "margin": "lg"
+                "margin": "lg",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://market.viicheck.com/storage/mmotorcycle"
+                }
               }
             ]
           }
