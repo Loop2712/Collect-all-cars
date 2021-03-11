@@ -34,81 +34,86 @@
             "type": "separator",
             "margin": "xxl",
             "color": "#ff0101"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "เหตุด่วนเหตุร้าย",
-                        "align": "center",
-                        "weight": "bold"
-                      }
-                    ],
-                    "paddingBottom": "md"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "uri",
-                      "label": "191 ",
-                      "uri": "tel:191"
-                    },
-                    "style": "primary",
-                    "height": "sm",
-                    "gravity": "center",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "sm",
-                "paddingAll": "md"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "ไฟไหม้รถ",
-                        "align": "center",
-                        "weight": "bold"
-                      }
-                    ],
-                    "paddingBottom": "md"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "uri",
-                      "label": "199",
-                      "uri": "tel:199"
-                    },
-                    "style": "primary",
-                    "height": "sm",
-                    "gravity": "center",
-                    "color": "#ff0101"
-                  }
-                ],
-                "paddingAll": "md"
-              }
-            ],
-            "height": "80px"
           }
         ],
         "borderColor": "#ff0101"
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "เหตุด่วนเหตุร้าย",
+                    "align": "center",
+                    "weight": "bold"
+                  }
+                ],
+                "paddingBottom": "md"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "191 ",
+                  "uri": "tel:191"
+                },
+                "style": "primary",
+                "height": "sm",
+                "gravity": "center",
+                "color": "#ff0101"
+              }
+            ],
+            "offsetStart": "sm",
+            "paddingAll": "md"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ไฟไหม้รถ",
+                    "align": "center",
+                    "weight": "bold"
+                  }
+                ],
+                "paddingBottom": "md"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "199",
+                  "uri": "tel:199"
+                },
+                "style": "primary",
+                "height": "sm",
+                "gravity": "center",
+                "color": "#ff0101"
+              }
+            ],
+            "paddingAll": "md"
+          }
+        ],
+        "height": "80px",
+        "margin": "md"
       },
       {
         "type": "box",
