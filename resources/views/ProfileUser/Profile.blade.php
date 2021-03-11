@@ -180,7 +180,8 @@
                             {{ csrf_field() }}
                         <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
                         <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($profile->active) ? $profile->active : 'No'}}" >
-                        <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>ลบโปรไฟล์</h6> </button></a>
+                        <!-- /////   ปุ่มลบโปรไฟล์   //// -->
+                        <!-- <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>ลบโปรไฟล์</h6> </button></a> -->
                         </form>
                     </div>
             </div> 
