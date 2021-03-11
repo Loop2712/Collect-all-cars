@@ -24,10 +24,13 @@
                 "aspectRatio": "1:1"
               }
             ],
-            "cornerRadius": "100px",
+            "cornerRadius": "80px",
             "width": "72px",
             "height": "72px",
-            "offsetTop": "xxl"
+            "offsetTop": "xxl",
+            "borderColor": "#ff0101",
+            "borderWidth": "medium",
+            "backgroundColor": "#ff0101"
           },
           {
             "type": "box",
@@ -81,7 +84,7 @@
                         "type": "span",
                         "text": "ข้อมูลของคุณ",
                         "weight": "bold",
-                        "color": "#0066FF",
+                        "color": "#ff0101",
                         "size": "lg"
                       }
                     ],
@@ -153,7 +156,8 @@
         "contents": [
           {
             "type": "separator",
-            "margin": "xs"
+            "margin": "xs",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -241,7 +245,8 @@
           },
           {
             "type": "separator",
-            "margin": "xxl"
+            "margin": "xxl",
+            "color": "#ff0101"
           }
         ],
         "paddingAll": "md"
@@ -286,7 +291,8 @@
                   "label": "รถของฉัน",
                   "text": "รถของฉัน"
                 },
-                "offsetStart": "xxl"
+                "offsetStart": "xxl",
+                "color": "#ff0101"
               },
               {
                 "type": "spacer"
@@ -301,7 +307,8 @@
           },
           {
             "type": "separator",
-            "margin": "xxl"
+            "margin": "xxl",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -343,17 +350,25 @@
                       "label": "ใบอนุญาตขับรถ",
                       "text": "ใบอนุญาตขับรถ"
                     },
-                    "offsetStart": "xxl"
+                    "offsetStart": "xxl",
+                    "color": "#ff0101"
                   },
                   {
                     "type": "spacer"
                   }
                 ],
-                "paddingBottom": "md"
+                "paddingBottom": "md",
+                "action": {
+                  "type": "message",
+                  "label": "ใบอนุญาตขับรถ",
+                  "text": "ใบอนุญาตขับรถ"
+                },
+                "margin": "sm"
               },
               {
                 "type": "separator",
-                "margin": "xxl"
+                "margin": "xxl",
+                "color": "#ff0101"
               },
               {
                 "type": "separator",
@@ -373,7 +388,7 @@
       }
     ],
     "paddingAll": "0px",
-    "borderColor": "#000000",
+    "borderColor": "#ff0101",
     "borderWidth": "bold",
     "cornerRadius": "xl"
   }

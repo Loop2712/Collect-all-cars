@@ -5,60 +5,62 @@
      "contents": {
   "type": "bubble",
   "size": "mega",
-  "hero": {
+  "body": {
     "type": "box",
     "layout": "vertical",
     "contents": [
       {
         "type": "box",
-        "layout": "horizontal",
+        "layout": "vertical",
         "contents": [
           {
-            "type": "text",
-            "text": "รถของฉัน",
-            "margin": "xxl",
-            "size": "xl",
-            "flex": 2,
-            "style": "normal",
-            "weight": "bold",
-            "color": "#1bcad0"
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "รถของฉัน",
+                "margin": "xxl",
+                "size": "xl",
+                "flex": 2,
+                "style": "normal",
+                "weight": "bold",
+                "color": "#ff0101"
+              },
+              {
+                "type": "separator",
+                "color": "#ff0101"
+              },
+              {
+                "type": "text",
+                "text": "พรบ",
+                "margin": "none",
+                "offsetStart": "xxl",
+                "offsetTop": "sm",
+                "color": "#e5a578"
+              },
+              {
+                "type": "separator",
+                "color": "#ff0101"
+              },
+              {
+                "type": "text",
+                "text": "ประกัน",
+                "margin": "none",
+                "offsetStart": "lg",
+                "offsetTop": "sm",
+                "color": "#e5a578"
+              }
+            ],
+            "margin": "lg",
+            "offsetTop": "md"
           },
           {
-            "type": "separator"
-          },
-          {
-            "type": "text",
-            "text": "พรบ",
-            "margin": "none",
-            "offsetStart": "xxl",
-            "offsetTop": "sm",
-            "color": "#e5a578"
-          },
-          {
-            "type": "separator"
-          },
-          {
-            "type": "text",
-            "text": "ประกัน",
-            "margin": "none",
-            "offsetStart": "lg",
-            "offsetTop": "sm",
-            "color": "#e5a578"
+            "type": "separator",
+            "margin": "xxl"
           }
-        ],
-        "margin": "lg",
-        "offsetTop": "md"
+        ]
       },
-      {
-        "type": "separator",
-        "margin": "xxl"
-      }
-    ]
-  },
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
       {
         "type": "box",
         "layout": "vertical",
@@ -203,53 +205,58 @@
           }
         ],
         "paddingAll": "0px"
-      }
-    ],
-    "paddingAll": "0px"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "horizontal",
-    "contents": [
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "image",
-            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-            "size": "sm",
-            "align": "center",
-            "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "label": "viicheck",
-              "uri": "https://market.viicheck.com/"
-            }
-          }
-        ],
-        "offsetBottom": "xxl"
       },
       {
         "type": "box",
-        "layout": "vertical",
+        "layout": "horizontal",
         "contents": [
           {
-            "type": "button",
-            "action": {
-              "type": "uri",
-              "label": "ดูรถทั้งหมด",
-              "uri": "https://market.viicheck.com/register_car"
-            },
-            "style": "primary",
-            "height": "sm",
-            "gravity": "top"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+                "size": "sm",
+                "align": "center",
+                "aspectMode": "fit",
+                "action": {
+                  "type": "uri",
+                  "label": "viicheck",
+                  "uri": "https://market.viicheck.com/"
+                }
+              }
+            ],
+            "offsetBottom": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "ดูรถทั้งหมด",
+                  "uri": "https://market.viicheck.com/register_car"
+                },
+                "style": "primary",
+                "height": "sm",
+                "gravity": "top",
+                "color": "#ff0101"
+              }
+            ]
           }
-        ]
+        ],
+        "height": "70px",
+        "offsetTop": "sm",
+        "paddingEnd": "xl"
       }
     ],
-    "height": "70px",
-    "offsetTop": "sm"
+    "paddingAll": "0px",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   }
 }
  }

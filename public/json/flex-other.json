@@ -3,25 +3,38 @@
     "altText": "ViiCHECK ยินดีให้บริการค่ะ",
     "contents": {
   "type": "bubble",
-  "hero": {
-    "type": "image",
-    "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-    "size": "4xl",
-    "aspectRatio": "20:13",
-    "aspectMode": "fit",
-    "margin": "none"
-  },
   "body": {
     "type": "box",
     "layout": "vertical",
     "spacing": "md",
     "contents": [
       {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/"
+            }
+          }
+        ]
+      },
+      {
         "type": "text",
         "text": "ViiCHECK ยินดีให้บริการค่ะ",
         "size": "lg",
         "weight": "bold",
-        "margin": "none"
+        "margin": "xl",
+        "decoration": "underline",
+        "align": "center",
+        "wrap": true
       },
       {
         "type": "box",
@@ -29,7 +42,8 @@
         "contents": [
           {
             "type": "separator",
-            "margin": "xl"
+            "margin": "xl",
+            "color": "#ff0101"
           }
         ]
       },
@@ -65,7 +79,7 @@
                 "text": ">>>",
                 "size": "sm",
                 "align": "end",
-                "color": "#aaaaaa",
+                "color": "#ff0101",
                 "action": {
                   "type": "message",
                   "label": "ข้อมูลของคุณ",
@@ -73,11 +87,17 @@
                 }
               }
             ],
-            "height": "50px"
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "ข้อมูลของคุณ",
+              "text": "ข้อมูลของคุณ"
+            }
           },
           {
             "type": "separator",
-            "margin": "xl"
+            "margin": "xl",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -106,7 +126,7 @@
                 "text": ">>>",
                 "size": "sm",
                 "align": "end",
-                "color": "#aaaaaa",
+                "color": "#ff0101",
                 "action": {
                   "type": "uri",
                   "label": "action",
@@ -114,11 +134,17 @@
                 }
               }
             ],
-            "height": "50px"
+            "height": "50px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/reporter"
+            }
           },
           {
             "type": "separator",
-            "margin": "xl"
+            "margin": "xl",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -147,7 +173,7 @@
                 "text": ">>>",
                 "size": "sm",
                 "align": "end",
-                "color": "#aaaaaa",
+                "color": "#ff0101",
                 "action": {
                   "type": "message",
                   "label": "FAQ / ถามตอบ",
@@ -155,11 +181,17 @@
                 }
               }
             ],
-            "height": "50px"
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "FAQ / ถามตอบ",
+              "text": "FAQ / ถามตอบ"
+            }
           },
           {
             "type": "separator",
-            "margin": "xl"
+            "margin": "xl",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -188,7 +220,7 @@
                 "text": ">>>",
                 "size": "sm",
                 "align": "end",
-                "color": "#aaaaaa",
+                "color": "#ff0101",
                 "action": {
                   "type": "message",
                   "label": "ติดต่อ",
@@ -196,20 +228,27 @@
                 }
               }
             ],
-            "height": "50px"
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "ติดต่อ / contact",
+              "text": "ติดต่อ / contact"
+            }
           },
           {
-            "type": "separator"
+            "type": "separator",
+            "color": "#ff0101"
           }
         ]
       }
     ],
-    "background": {
-      "type": "linearGradient",
-      "angle": "0deg",
-      "startColor": "#F0FFFF",
-      "endColor": "#F0FFFF",
-      "centerColor": "#ffffff"
+    "borderWidth": "bold",
+    "cornerRadius": "xl",
+    "borderColor": "#ff0101"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#ff0101"
     }
   }
 }

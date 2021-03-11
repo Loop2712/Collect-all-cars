@@ -49,7 +49,8 @@
           },
           {
             "type": "separator",
-            "margin": "xl"
+            "margin": "xl",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -93,7 +94,8 @@
               },
               {
                 "type": "separator",
-                "margin": "lg"
+                "margin": "lg",
+                "color": "#ff0101"
               },
               {
                 "type": "box",
@@ -119,7 +121,8 @@
                     "size": "sm",
                     "align": "center",
                     "aspectMode": "fit",
-                    "gravity": "bottom"
+                    "gravity": "bottom",
+                    "aspectRatio": "16:9"
                   },
                   {
                     "type": "button",
@@ -131,9 +134,11 @@
                     "style": "primary",
                     "height": "sm",
                     "margin": "xxl",
-                    "gravity": "center"
+                    "gravity": "center",
+                    "color": "#ff0101"
                   }
-                ]
+                ],
+                "margin": "xl"
               },
               {
                 "type": "separator"
@@ -143,14 +148,9 @@
         ]
       }
     ],
-    "borderWidth": "normal",
-    "background": {
-      "type": "linearGradient",
-      "angle": "0deg",
-      "startColor": "#E0FFFF",
-      "endColor": "#E0FFFF",
-      "centerColor": "#ffffff"
-    }
+    "borderWidth": "bold",
+    "borderColor": "#ff0101",
+    "cornerRadius": "xl"
   }
 }
 

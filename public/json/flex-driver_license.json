@@ -35,9 +35,15 @@
             "align": "center",
             "gravity": "center",
             "size": "full",
-            "aspectMode": "fit"
+            "aspectMode": "fit",
+            "aspectRatio": "16:9",
+            "margin": "lg"
           }
         ]
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101"
       },
       {
         "type": "box",
@@ -71,13 +77,19 @@
                 "align": "center",
                 "gravity": "center",
                 "size": "full",
-                "aspectMode": "fit"
+                "aspectMode": "fit",
+                "aspectRatio": "16:9",
+                "margin": "lg"
               }
             ]
           }
-        ]
+        ],
+        "margin": "md"
       }
-    ]
+    ],
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
   }
 }
 
