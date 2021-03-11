@@ -57,20 +57,20 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/car-key.png",
+                "url": "https://market.viicheck.com/img/icon/newspaper.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
               },
               {
                 "type": "text",
-                "text": "ซื้อรถมือสอง",
+                "text": "ข่าวทั้งหมด",
                 "weight": "bold",
                 "margin": "xl",
                 "action": {
                   "type": "uri",
-                  "label": "ซื้อรถมือสอง",
-                  "uri": "https://market.viicheck.com/"
+                  "label": "ข่าวทั้งหมด",
+                  "uri": "https://market.viicheck.com/news"
                 }
               },
               {
@@ -81,16 +81,16 @@
                 "color": "#ff0101",
                 "action": {
                   "type": "uri",
-                  "label": "ซื้อรถมือสอง",
-                  "uri": "https://market.viicheck.com/"
+                  "label": "ข่าวทั้งหมด",
+                  "uri": "https://market.viicheck.com/news"
                 }
               }
             ],
             "height": "50px",
             "action": {
               "type": "uri",
-              "label": "ซื้อรถมือสอง",
-              "uri": "https://market.viicheck.com/"
+              "label": "ข่าวทั้งหมด",
+              "uri": "https://market.viicheck.com/news"
             }
           },
           {
@@ -104,19 +104,19 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/trade.png",
+                "url": "https://market.viicheck.com/img/icon/microphone.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
               },
               {
                 "type": "text",
-                "text": "ขายรถกับเรา",
+                "text": "เพิ่มข่าว",
                 "margin": "xl",
                 "action": {
                   "type": "uri",
-                  "label": "ขายรถกับเรา",
-                  "uri": "https://market.viicheck.com/sell"
+                  "label": "เพิ่มข่าว",
+                  "uri": "https://market.viicheck.com/reporter"
                 },
                 "weight": "bold"
               },
@@ -128,16 +128,16 @@
                 "color": "#ff0101",
                 "action": {
                   "type": "uri",
-                  "label": "ขายรถกับเรา",
-                  "uri": "https://market.viicheck.com/sell"
+                  "label": "เพิ่มข่าว",
+                  "uri": "https://market.viicheck.com/reporter"
                 }
               }
             ],
             "height": "50px",
             "action": {
               "type": "uri",
-              "label": "ขายรถกับเรา",
-              "uri": "https://market.viicheck.com/sell"
+              "label": "เพิ่มข่าว",
+              "uri": "https://market.viicheck.com/reporter"
             }
           },
           {
@@ -153,4 +153,5 @@
     "cornerRadius": "xl"
   }
 }
+
 }
