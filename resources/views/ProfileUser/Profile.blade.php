@@ -112,6 +112,27 @@
                           {{ $data->phone }}  
                         </td>
                     </tr>
+                    @if(is_null($data->driver_license) )
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                {{ 'ใบอนุญาตขับรถ / Driver license ' }} <br>
+                                <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>                                              
+                            </strong>
+                        </td>
+                    </tr>
+                    @elseif($data->driver_license == "" ) 
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                {{ 'ใบอนุญาตขับรถ / Driver license ' }} <br>
+                                <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>                                              
+                            </strong>
+                        </td>
+                    </tr>
+                    @else
                     <tr>        
                         <td>
                           @if(Auth::check())
@@ -123,23 +144,24 @@
                             </strong>
                         </td>
                         <td class="text-primary"> 
-                                    <div class="row">
+                                    <!-- <div class="row"> -->
                                           <div class="col-12 col-md-6">
-                                              <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถยนต์</label>
+                                              <label for="massengbox" class="control-label">&nbsp;รถยนต์</label>
                                               <br>
-                                              <img src="{{ url('storage')}}/{{ $data->driver_license }}" width="170" /><br/><br/> 
+                                              <img src="{{ url('storage')}}/{{ $data->driver_license }}" style="width:200px" /><br/><br/> 
                                           </div>
                                         <div class="col-12 col-md-6">
-                                              <label for="massengbox" class="control-label">&nbsp;&nbsp;&nbsp;รถจักรยานยนต์</label>
+                                              <label for="massengbox" class="control-label">&nbsp;รถจักรยานยนต์</label>
                                               <br>
-                                              <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" width="170" /><br/><br/> 
+                                              <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" style="width:200px" /><br/><br/> 
                                         </div>
-                                    </div>
+                                    <!-- </div> -->
                                     @endif 
                                 @endif
-                      </div>
+                      
                         </td>
                     </tr> 
+                    @endif
                                                       
                 </tbody>
                 
@@ -158,7 +180,8 @@
                             {{ csrf_field() }}
                         <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
                         <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($profile->active) ? $profile->active : 'No'}}" >
-                        <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>ลบโปรไฟล์</h6> </button></a>
+                        <!-- /////   ปุ่มลบโปรไฟล์   //// -->
+                        <!-- <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>ลบโปรไฟล์</h6> </button></a> -->
                         </form>
                     </div>
             </div> 
