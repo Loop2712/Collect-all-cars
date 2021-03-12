@@ -278,8 +278,9 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <label for="put_username" class="control-label">{{ 'ชื่อผู้ใช้' }}</label>
+                        <label for="put_username" class="control-label"><b>{{ 'ชื่อผู้ใช้' }}</b></label>
                         <input class="form-control" type="text" name="put_username" id="put_username" value="{{ Auth::user()->username }}">
+                        <br>
                         <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
                         <input class="form-control" type="text" name="put_email" id="put_email" value="{{ Auth::user()->email }}" placeholder="กรอกอีเมลของคุณ">
                       </div>
