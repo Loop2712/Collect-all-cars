@@ -255,7 +255,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button>
-                        <button type="button" class="btn btn-primary" onclick="open_put_email();">เปลี่ยนรหัสผ่าน</button>
+                        <button type="button" class="btn btn-primary" onclick="open_put_email();">ใช่ ฉันต้องการเปลี่ยน</button>
                       </div>
                     </div>
                   </div>
@@ -279,16 +279,23 @@
                       </div>
                       <div class="modal-body">
                         <label for="put_username" class="control-label"><b>{{ 'ชื่อผู้ใช้' }}</b></label> 
-                        <span id="check" class="d-none text-success"><i class="fas fa-check-circle text-success"></i> ชื่อผู้ใช้นี้ใช้งานได้</span>
-                        <span id="times" class="d-none text-danger"><i class="fas fa-times-circle text-danger"></i> ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว</span>
-                        <input class="form-control" type="text" name="put_username" id="put_username" value="{{ Auth::user()->username }}" onkeydown="check_username();">
-                        <br>
-                        <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
-                        <input class="form-control" type="text" name="put_email" id="put_email" value="{{ Auth::user()->email }}" placeholder="กรอกอีเมลของคุณ">
+                        <span><a id="text_check" href="#" class="text-success" onclick="check_username();">&nbsp;ตรวจสอบ</a></span>
+                        <input class="form-control" type="text" name="put_username" id="put_username" value="{{ Auth::user()->username }}">
+                        <span id="check" class="d-none text-success"><i class="fas fa-check-circle text-success"></i>&nbsp;ชื่อผู้ใช้นี้ใช้งานได้</span>
+                        <span id="times" class="d-none text-danger"><i class="fas fa-times-circle text-danger"></i>&nbsp;ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว</span>
+                        <br><br>
+                        <div id="div_email" class="d-none">
+                            <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
+                            <span><a id="text_check" href="#" class="text-success" onclick="check_email();">&nbsp;ตรวจสอบ</a></span>
+
+                            <input class="form-control" type="text" name="put_email" id="put_email" value="{{ Auth::user()->email }}">
+                            <span id="email_check" class="d-none text-success"><i class="fas fa-check-circle text-success"></i>&nbsp;อีเมลนี้ใช้งานได้</span>
+                            <span id="email_times" class="d-none text-danger"><i class="fas fa-times-circle text-danger"></i>&nbsp;อีเมลนี้ไม่สามารถใช้งานได้</span>
+                        </div>
                       </div>
                       <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button> -->
-                        <button type="button" class="btn btn-primary d-none" onclick="put_email();">ยืนยัน</button>
+                        <button id="btn_ok" type="button" class="btn btn-primary d-none" onclick="put_email();">ยืนยัน</button>
                       </div>
                     </div>
                   </div>
@@ -355,18 +362,45 @@ function put_email() {
 function check_username() {
 
     let put_username = document.querySelector("#put_username");
+    let id_user = document.querySelector("#id_user");
 
-        fetch("{{ url('/') }}/api/check_username/"  + put_username.value )
+        fetch("{{ url('/') }}/api/check_username/"  + put_username.value +"/" + id_user.value )
+            .then(response => response.json())
+            .then(result => {
+                console.log(result.length);
+                
+                if (result.length == 0){
+                    document.querySelector('#check').classList.remove('d-none');
+                    document.querySelector('#times').classList.add('d-none');
+                    document.querySelector('#div_email').classList.remove('d-none');
+                } else{
+                    document.querySelector('#check').classList.add('d-none');
+                    document.querySelector('#times').classList.remove('d-none');
+                    document.querySelector('#div_email').classList.add('d-none');
+                }
+
+            });
+}
+
+function check_email() {
+
+    let put_email = document.querySelector("#put_email");
+
+        fetch("{{ url('/') }}/api/check_email/"  + put_email.value )
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-
-                    document.querySelector('#check').classList.remove('d-none');
-
-                if (result) {
-                    document.querySelector('#times').classList.remove('d-none');
-                    document.querySelector('#check').classList.add('d-none');
+                
+                if (result.length == 0){
+                    document.querySelector('#email_check').classList.remove('d-none');
+                    document.querySelector('#email_times').classList.add('d-none');
+                    document.querySelector('#btn_ok').classList.remove('d-none');
+                } else{
+                    document.querySelector('#email_check').classList.add('d-none');
+                    document.querySelector('#email_times').classList.remove('d-none');
+                    document.querySelector('#btn_ok').classList.add('d-none');
                 }
+
             });
 }
 

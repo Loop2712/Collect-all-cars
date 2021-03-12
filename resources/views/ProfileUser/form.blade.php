@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row d-none">
                 <div class="col-12 col-md-2">
                     <label for="massengbox" class="control-label"><b>{{ 'ชื่อผู้ใช้  / Username' }}</b></label><span style="color: #FF0033;"> *</span>
                 </div>

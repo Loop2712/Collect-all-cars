@@ -28,12 +28,28 @@ class PartnersController extends Controller
         return $id_user;
     }
 
-    public function check_username($username)
+    public function check_username($username , $id_user)
     {
         $username = DB::table('users')
               ->where('username', $username)
+              ->where('id', "!=" , $id_user)
               ->get();
 
-        return $username;
+        if (!empty($username)) {
+            return $username;
+        }
+        
+    }
+
+    public function check_email($email)
+    {
+        $email = DB::table('users')
+              ->where('email', $email)
+              ->get();
+
+        if (!empty($email)) {
+            return $email;
+        }
+        
     }
 }
