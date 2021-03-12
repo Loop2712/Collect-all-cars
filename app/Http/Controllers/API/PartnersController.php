@@ -27,4 +27,13 @@ class PartnersController extends Controller
             ]);
         return $id_user;
     }
+
+    public function check_username($username)
+    {
+        $username = DB::table('users')
+              ->where('username', $username)
+              ->get();
+
+        return $username;
+    }
 }
