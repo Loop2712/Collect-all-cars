@@ -279,8 +279,8 @@
                       </div>
                       <div class="modal-body">
                         <label for="put_username" class="control-label"><b>{{ 'ชื่อผู้ใช้' }}</b></label> 
-                        <span id="check"><i class="fas fa-check-circle text-success d-none"></i>ชื่อผู้ใช้นี้ใช้งานได้</span>
-                        <span id="times"><i class="fas fa-times-circle text-danger d-none"></i>ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว</span>
+                        <span id="check" class="d-none"><i class="fas fa-check-circle text-success"></i>ชื่อผู้ใช้นี้ใช้งานได้</span>
+                        <span id="times" class="d-none"><i class="fas fa-times-circle text-danger"></i>ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว</span>
                         <input class="form-control" type="text" name="put_username" id="put_username" value="{{ Auth::user()->username }}" onkeydown="check_username();">
                         <br>
                         <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
@@ -360,7 +360,7 @@ function check_username() {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                
+
                     document.querySelector('#check').classList.remove('d-none');
 
                 if (result) {
