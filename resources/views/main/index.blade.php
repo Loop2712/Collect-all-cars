@@ -288,7 +288,7 @@
                             <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
                             <span><a id="text_check" href="#" class="text-success" onclick="check_email();">&nbsp;ตรวจสอบ</a></span>
 
-                            <input class="form-control" type="text" name="put_email" id="put_email" value="{{ Auth::user()->email }}">
+                            <input class="form-control" type="email" name="put_email" id="put_email" value="{{ Auth::user()->email }}">
                             <span id="email_check" class="d-none text-success"><i class="fas fa-check-circle text-success"></i>&nbsp;อีเมลนี้ใช้งานได้</span>
                             <span id="email_times" class="d-none text-danger"><i class="fas fa-times-circle text-danger"></i>&nbsp;อีเมลนี้ไม่สามารถใช้งานได้</span>
                         </div>
