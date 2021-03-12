@@ -342,7 +342,7 @@ function put_email() {
     console.log(put_email.value);
     console.log(id_user.value);
 
-        fetch("{{ url('/') }}/api/put_email/" + put_email.value + "/" + id_user.value + "/" + put_username )
+        fetch("{{ url('/') }}/api/put_email/" + put_email.value + "/" + id_user.value + "/" + put_username.value )
             .then(response => response.json())
             .then(result => {
                 console.log(result);
