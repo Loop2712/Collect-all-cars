@@ -17,12 +17,13 @@ class PartnersController extends Controller
         }
     }
 
-    public function put_email($email , $id_user)
+    public function put_email($email , $id_user , $username)
     {
         DB::table('users')
               ->where('id', $id_user)
               ->update([
                 'email' => $email,
+                'username' => $username,
             ]);
         return $id_user;
     }

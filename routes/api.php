@@ -36,4 +36,4 @@ Route::get('/location/{lat}/{lng}/province','API\LocationController@search_locat
 Route::get('/location/{lat}/{lng}/check_news','API\LocationController@check_news');
 
 Route::get('/check_user/{id_user}','API\PartnersController@check_user');
-Route::get('/put_email/{put_email}/{id_user}','API\PartnersController@put_email');
+Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersController@put_email');

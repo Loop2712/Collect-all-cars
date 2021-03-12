@@ -251,7 +251,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <p><b>คุณต้องการเปลี่ยนรหัสผ่านหรือไม่</b></p>
+                        <p><b>คุณต้องการเปลี่ยนชื่อผู้ใช้และรหัสผ่านหรือไม่</b></p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button>
@@ -278,6 +278,8 @@
                         </button>
                       </div>
                       <div class="modal-body">
+                        <label for="put_username" class="control-label">{{ 'ชื่อผู้ใช้' }}</label>
+                        <input class="form-control" type="text" name="put_username" id="put_username" value="Auth::user()->username">
                         <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
                         <input class="form-control" type="text" name="put_email" id="put_email" value="" placeholder="กรอกอีเมลของคุณ">
                       </div>
@@ -334,11 +336,12 @@ function open_put_email() {
 function put_email() {
 
     let put_email = document.querySelector("#put_email");
+    let put_username = document.querySelector("#put_username");
     let id_user = document.querySelector("#id_user");
     console.log(put_email.value);
     console.log(id_user.value);
 
-        fetch("{{ url('/') }}/api/put_email/" + put_email.value + "/" + id_user.value)
+        fetch("{{ url('/') }}/api/put_email/" + put_email.value + "/" + id_user.value + "/" + put_username )
             .then(response => response.json())
             .then(result => {
                 console.log(result);
