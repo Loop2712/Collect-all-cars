@@ -142,7 +142,57 @@
               "type": "message",
               "label": "vmarket",
               "text": "vmarket"
-            }
+            },
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/newspaper.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "ข่าวสารบนท้องถนน",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "ข่าวสาร",
+                  "text": "ข่าวสาร"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "ข่าวสาร",
+                  "text": "ข่าวสาร"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "ข่าวสาร",
+              "text": "ข่าวสาร"
+            },
+            "margin": "md"
           },
           {
             "type": "separator",
@@ -190,7 +240,8 @@
               "type": "message",
               "label": "FAQ / ถามตอบ",
               "text": "FAQ / ถามตอบ"
-            }
+            },
+            "margin": "md"
           },
           {
             "type": "separator",
@@ -238,7 +289,8 @@
               "type": "message",
               "label": "ติดต่อ / contact",
               "text": "ติดต่อ / contact"
-            }
+            },
+            "margin": "md"
           },
           {
             "type": "separator",
