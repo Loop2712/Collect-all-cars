@@ -98,8 +98,9 @@
                                     {{ csrf_field() }}
                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Sell" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                             </form>
+                            
                     </div>
-                </div>
+                </div><br>
             </div>
             </div>
             @endif
