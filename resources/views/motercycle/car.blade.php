@@ -156,6 +156,7 @@
                                             @else
                                                 <h4 style="color:#db2d2e;margin-left:-12px;margin-top: -12px;"> <img src="{{ asset('/img/icon/thailand-baht.png') }}" style="width:25px"> {{ number_format(intval($item->price))}}<span></span></h4>
                                             @endif
+                                            <br>
                                         </div>
                                         <!-- <div class="col">
                                             <div class="row">
