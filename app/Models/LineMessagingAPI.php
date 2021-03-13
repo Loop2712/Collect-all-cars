@@ -41,9 +41,8 @@ class LineMessagingAPI extends Model
             case "sos": 
                 $template_path = storage_path('../public/json/flex-sos.json');   
                 $string_json = file_get_contents($template_path);
-                $string_json = str_replace("tel","<i class='fas fa-phone-square-alt text-success'></i>",$string_json);
 
-                $messages = [ json_decode($string_json, true) ];
+                $messages = [ json_decode($string_json, true) ]; 
                 break;
             case "contact": 
                 $template_path = storage_path('../public/json/flex-contact.json');   
