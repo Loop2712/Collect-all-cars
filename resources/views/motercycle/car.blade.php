@@ -130,8 +130,23 @@
                                 </div>
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
-                                        <div >
-                                            <h4 ><a href="{{ url('/motercycle/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h4>
+                                        <div class="col" >
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <h4 ><a href="{{ url('/motercycle/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h4>
+                                                </div>
+                                                <div class="col-2">
+                                                    <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                                                            {{ csrf_field() }}
+                                                        <input class="d-none" name="producmoter_id" type="number" id="producmoter_id" value="{{ $item->id}}" >
+                                                        <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                                        <input class="d-none" name="car_type" type="text" id="car_type" value="motorcycle" >
+                                                        <p class="mb-0 "> 
+                                                            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"style="color:#000"><i class="far fa-heart"></i></a>  
+                                                        </p>
+                                                    </form>
+                                                </div>
+                                            </div>
                                             <p style = "font-size:12px; margin-top: 5px;">{{ $item->location  }}</p>
                                         </div>
                                         <div class="col">
@@ -142,7 +157,7 @@
                                                 <h4 style="color:#db2d2e;margin-left:-12px;margin-top: -12px;"> <img src="{{ asset('/img/icon/thailand-baht.png') }}" style="width:25px"> {{ number_format(intval($item->price))}}<span></span></h4>
                                             @endif
                                         </div>
-                                        <div class="col">
+                                        <!-- <div class="col">
                                             <div class="row">
                                                 <div class="col-5">
                                                     <p style="color:#000;font-size:12px;margin-top: 10px;"><img src="{{ asset('/img/icon/calendar.png') }}" style="width:13px"> &nbsp;{{ $item->year  }}</p>
@@ -151,10 +166,10 @@
                                                     <p style="color:#000;font-size:12px;margin-top: 10px;"><img src="{{ asset('/img/icon/settings.png') }}" style="width:15px"> &nbsp;{{ $item->gear  }}</p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
 
-                                    <div class="car__item__price">
+                                    <!-- <div class="car__item__price">
                                         <div class="row px-3" style="padding-bottom: 3px;">
                                             <div class="detel">
                                                 <p class="mb-0 "> <a href="{{ url('/motercycle/'.$item->id ) }}" style="color:#fff;"> <b>&nbsp;ดูข้อมูลเพิ่มเติม</b>  </a></p>
@@ -172,7 +187,7 @@
                                                 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             
