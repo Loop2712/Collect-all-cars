@@ -67,7 +67,7 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "191 ",
+                  "label": "tel 191 ",
                   "uri": "tel:191"
                 },
                 "style": "primary",
@@ -100,7 +100,7 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "199",
+                  "label": "tel 199",
                   "uri": "tel:199"
                 },
                 "style": "primary",
@@ -140,7 +140,7 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "1669",
+                  "label": "tel 1669",
                   "uri": "tel:1669"
                 },
                 "style": "primary",
@@ -173,7 +173,7 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "1808",
+                  "label": "tel 1808",
                   "uri": "tel:1808"
                 },
                 "style": "primary",
@@ -213,7 +213,7 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "1193",
+                  "label": "tel 1193",
                   "uri": "tel:1193"
                 },
                 "style": "primary",
@@ -246,7 +246,7 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "1155",
+                  "label": "tel 1155",
                   "uri": "tel:1155"
                 },
                 "style": "primary",
