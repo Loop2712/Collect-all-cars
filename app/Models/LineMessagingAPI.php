@@ -410,9 +410,11 @@ class LineMessagingAPI extends Model
                     foreach($randomPromotion as $item ){
                         $company[$i] = $item->company;
                         $titel[$i] = $item->titel;
-                        $photo[$i] = $item->photo;
                         $time_period[$i] = $item->time_period;
                         $link[$i] = $item->link;
+                        // $photo[$i] = $item->photo;
+
+                        $string_json = str_replace("https://market.viicheck.com/img".$i,$item->link,$string_json);
 
                         $i++;
                     }
