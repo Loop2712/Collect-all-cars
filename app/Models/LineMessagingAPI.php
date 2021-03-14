@@ -428,11 +428,11 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TIME1",$time_period[1],$string_json);
                 $string_json = str_replace("https://market.viicheck.com/link1",$link[1],$string_json);
 
-                $string_json = str_replace("https://market.viicheck.com/img2",$photo[2],$string_json);
-                $string_json = str_replace("NAME2",$company[2],$string_json);
-                $string_json = str_replace("TITLE2",$titel[2],$string_json);
-                $string_json = str_replace("TIME2",$time_period[2],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link2",$link[2],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/img2",$photo[2],$string_json);
+                // $string_json = str_replace("NAME2",$company[2],$string_json);
+                // $string_json = str_replace("TITLE2",$titel[2],$string_json);
+                // $string_json = str_replace("TIME2",$time_period[2],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/link2",$link[2],$string_json);
 
                 // $string_json = str_replace("https://market.viicheck.com/img3",$photo[3],$string_json);
                 // $string_json = str_replace("NAME3",$company[3],$string_json);
