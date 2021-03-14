@@ -428,23 +428,23 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TIME1",$time_period[1],$string_json);
                 $string_json = str_replace("https://market.viicheck.com/link1",$link[1],$string_json);
 
-                // $string_json = str_replace("https://market.viicheck.com/img2",$photo[2],$string_json);
+                $string_json = str_replace("https://market.viicheck.com/img2",$photo[2],$string_json);
                 $string_json = str_replace("NAME2",$company[2],$string_json);
                 $string_json = str_replace("TITLE2",$titel[2],$string_json);
                 $string_json = str_replace("TIME2",$time_period[2],$string_json);
                 $string_json = str_replace("https://market.viicheck.com/link2",$link[2],$string_json);
 
                 // $string_json = str_replace("https://market.viicheck.com/img3",$photo[3],$string_json);
-                $string_json = str_replace("NAME3",$company[3],$string_json);
-                $string_json = str_replace("TITLE3",$titel[3],$string_json);
-                $string_json = str_replace("TIME3",$time_period[3],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link3",$link[3],$string_json);
+                // $string_json = str_replace("NAME3",$company[3],$string_json);
+                // $string_json = str_replace("TITLE3",$titel[3],$string_json);
+                // $string_json = str_replace("TIME3",$time_period[3],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/link3",$link[3],$string_json);
 
                 // $string_json = str_replace("https://market.viicheck.com/img4",$photo[4],$string_json);
-                $string_json = str_replace("NAME4",$company[4],$string_json);
-                $string_json = str_replace("TITLE4",$titel[4],$string_json);
-                $string_json = str_replace("TIME4",$time_period[4],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link4",$link[4],$string_json);
+                // $string_json = str_replace("NAME4",$company[4],$string_json);
+                // $string_json = str_replace("TITLE4",$titel[4],$string_json);
+                // $string_json = str_replace("TIME4",$time_period[4],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/link4",$link[4],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
