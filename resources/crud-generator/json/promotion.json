@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "company",
+            "type": "string"
+        },
+        {
+            "name": "titel",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "string"
+        },
+        {
+            "name": "photo",
+            "type": "file"
+        },
+        {
+            "name": "time_period",
+            "type": "string"
+        }
+    ]
+}

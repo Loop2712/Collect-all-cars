@@ -127,3 +127,4 @@ Route::get('/report/{id}/{content}', 'NewsController@report');
 
 
 Route::resource('report_news', 'Report_newsController');
+Route::resource('promotion', 'PromotionController');
