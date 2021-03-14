@@ -10,8 +10,8 @@
       "hero": {
         "type": "image",
         "size": "full",
-        "aspectRatio": "16:9",
-        "aspectMode": "fit",
+        "aspectRatio": "20:17",
+        "aspectMode": "cover",
         "url": "https://market.viicheck.com/img1",
         "action": {
           "type": "uri",
@@ -79,8 +79,8 @@
       "hero": {
         "type": "image",
         "size": "full",
-        "aspectRatio": "16:9",
-        "aspectMode": "fit",
+        "aspectRatio": "20:17",
+        "aspectMode": "cover",
         "url": "https://market.viicheck.com/img2",
         "action": {
           "type": "uri",
@@ -148,8 +148,8 @@
       "hero": {
         "type": "image",
         "size": "full",
-        "aspectRatio": "16:9",
-        "aspectMode": "fit",
+        "aspectRatio": "20:17",
+        "aspectMode": "cover",
         "url": "https://market.viicheck.com/img3",
         "action": {
           "type": "uri",
