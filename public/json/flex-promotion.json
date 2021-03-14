@@ -21,7 +21,7 @@
                 "size": "full",
                 "aspectRatio": "20:17",
                 "aspectMode": "cover",
-                "url": "img1"
+                "url": "https://market.viicheck.com/img1"
               }
             ],
             "borderWidth": "light",
@@ -101,7 +101,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ดูเพิ่มเติม",
-                  "uri": "link1"
+                  "uri": "https://market.viicheck.com/link1"
                 },
                 "height": "sm",
                 "style": "primary",
