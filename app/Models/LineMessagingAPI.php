@@ -406,26 +406,27 @@ class LineMessagingAPI extends Model
                     ->limit(3)
                     ->get();
 
-                for ($i=0; $i < count($randomPromotion);) { 
-                    foreach($randomPromotion as $item ){
-                        $company[$i] = $item->company;
-                        $titel[$i] = $item->titel;
-                        $photo[$i] = $item->photo;
-                        $time_period[$i] = $item->time_period;
-                        $link[$i] = $item->link;
+                // for ($i=0; $i < count($randomPromotion);) { 
+                //     foreach($randomPromotion as $item ){
+                //         $company[$i] = $item->company;
+                //         $titel[$i] = $item->titel;
+                //         $photo[$i] = $item->photo;
+                //         $time_period[$i] = $item->time_period;
+                //         $link[$i] = $item->link;
 
-                        $i++;
-                    }
-                }
+                //         $i++;
+                //     }
+                // }
 
                 $template_path = storage_path('../public/json/flex-promotion.json');   
                 $string_json = file_get_contents($template_path);
-
-                $string_json = str_replace("https://market.viicheck.com/img1",$photo[0],$string_json);
-                $string_json = str_replace("NAME1",$company[0],$string_json);
-                $string_json = str_replace("TITLE1",$titel[0],$string_json);
-                $string_json = str_replace("TIME1",$time_period[0],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link1",$link[0],$string_json);
+                foreach($randomPromotion as $item ){
+                    $string_json = str_replace("https://market.viicheck.com/img1",$item->photo,$string_json);
+                    $string_json = str_replace("NAME1",$item->company,$string_json);
+                    $string_json = str_replace("TITLE1",$item->titel,$string_json);
+                    $string_json = str_replace("TIME1",$item->time_period,$string_json);
+                    $string_json = str_replace("https://market.viicheck.com/link1",$item->link,$string_json);
+                }
 
                 // $string_json = str_replace("https://market.viicheck.com/img2",$photo[1],$string_json);
                 // $string_json = str_replace("NAME2",$company[1],$string_json);
