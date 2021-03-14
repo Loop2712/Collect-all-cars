@@ -421,23 +421,23 @@ class LineMessagingAPI extends Model
                 $template_path = storage_path('../public/json/flex-promotion.json');   
                 $string_json = file_get_contents($template_path);
 
-                $string_json = str_replace("https://market.viicheck.com/img1",$photo[0],$string_json);
-                $string_json = str_replace("NAME1",$company[0],$string_json);
-                $string_json = str_replace("TITLE1",$titel[0],$string_json);
-                $string_json = str_replace("TIME1",$time_period[0],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link1",$link[0],$string_json);
+                $string_json = str_replace("https://market.viicheck.com/img1","https://www.b-quik.com/image/promotion/qnhyllbmfa.1.jpg",$string_json);
+                $string_json = str_replace("NAME1","B-Quik",$string_json);
+                $string_json = str_replace("TITLE1","ผ่อนทั้งร้าน 0% 10 เดือน",$string_json);
+                $string_json = str_replace("TIME1"," 2021-03-01  - 2021-04-30",$string_json);
+                $string_json = str_replace("https://market.viicheck.com/link1","https://www.b-quik.com/th/promotion/all-you-can-instalment-payment-0-for-10-months",$string_json);
 
-                $string_json = str_replace("https://market.viicheck.com/img2",$photo[1],$string_json);
-                $string_json = str_replace("NAME2",$company[1],$string_json);
-                $string_json = str_replace("TITLE2",$titel[1],$string_json);
-                $string_json = str_replace("TIME2",$time_period[1],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link2",$link[1],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/img2",$photo[1],$string_json);
+                // $string_json = str_replace("NAME2",$company[1],$string_json);
+                // $string_json = str_replace("TITLE2",$titel[1],$string_json);
+                // $string_json = str_replace("TIME2",$time_period[1],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/link2",$link[1],$string_json);
 
-                $string_json = str_replace("https://market.viicheck.com/img3",$photo[2],$string_json);
-                $string_json = str_replace("NAME3",$company[2],$string_json);
-                $string_json = str_replace("TITLE3",$titel[2],$string_json);
-                $string_json = str_replace("TIME3",$time_period[2],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link3",$link[2],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/img3",$photo[2],$string_json);
+                // $string_json = str_replace("NAME3",$company[2],$string_json);
+                // $string_json = str_replace("TITLE3",$titel[2],$string_json);
+                // $string_json = str_replace("TIME3",$time_period[2],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/link3",$link[2],$string_json);
 
                 // $string_json = str_replace("https://market.viicheck.com/img4",$photo[3],$string_json);
                 // $string_json = str_replace("NAME4",$company[3],$string_json);
