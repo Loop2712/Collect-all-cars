@@ -400,7 +400,7 @@ class LineMessagingAPI extends Model
                 break;
 
             case "promotion": 
-            
+
                 $template_path = storage_path('../public/json/flex-promotion.json');   
                 $string_json = file_get_contents($template_path);
 
@@ -415,9 +415,7 @@ class LineMessagingAPI extends Model
                         $titel[$i] = $item->titel;
                         $time_period[$i] = $item->time_period;
                         $link[$i] = $item->link;
-                        // $photo[$i] = $item->photo;
-
-                        $string_json = str_replace("https://market.viicheck.com/img1",$item->photo,$string_json);
+                        $photo[$i] = $item->photo;
 
                         $i++;
                     }
