@@ -53,7 +53,7 @@
                 <div class="col-12 col-md-4">
                     <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select name="brand" class=" form-control" id="input_car_brand" required onchange="showCar_model();
+                        <select name="brand" class=" form-control" id="input_car_brand"  onchange="showCar_model();
                             if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -74,7 +74,7 @@
                     </div>
                     <div id="div_motor_brand" class="d-none form-group {{ $errors->has('motor_brand') ? 'has-error' : ''}}">
                         <!-- motorcycles -->
-                        <select name="motor_brand" class="d-none form-control" id="input_motor_brand" required onchange="showMotor_model();
+                        <select name="motor_brand" class="d-none form-control" id="input_motor_brand"  onchange="showMotor_model();
                                 if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -98,7 +98,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                         <!-- car -->
-                        <select name="generation" id="input_car_model" class=" form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                        <select name="generation" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').focus();
                             }else{ 
@@ -108,7 +108,7 @@
                                 {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                         </select>
                         <!-- motorcycles -->
-                        <select name="motor_generation" id="input_motor_model" class="d-none form-control" required onchange="if(this.value=='อื่นๆ'){ 
+                        <select name="motor_generation" id="input_motor_model" class="d-none form-control"  onchange="if(this.value=='อื่นๆ'){ 
                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                 document.querySelector('#generation_input').focus();
                             }else{ 
@@ -245,15 +245,15 @@
             
             
             <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-                <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ isset($register_car->user_id) ? $register_car->user_id : Auth::user()->id}}" required readonly>
+                <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ isset($register_car->user_id) ? $register_car->user_id : Auth::user()->id}}"  readonly>
                 {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
-                <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($register_car->provider_id) ? $register_car->provider_id : Auth::user()->provider_id}}" required readonly>
+                <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($register_car->provider_id) ? $register_car->provider_id : Auth::user()->provider_id}}"  readonly>
                 {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
-                <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($register_car->active) ? $register_car->active : 'Yes'}}" required readonly>
+                <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($register_car->active) ? $register_car->active : 'Yes'}}"  readonly>
                 {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
             </div>
 
