@@ -12,11 +12,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img1",
-        "action": {
-          "type": "uri",
-          "uri": "https://market.viicheck.com/link1"
-        }
+        "url": "https://market.viicheck.com/img1"
       },
       "body": {
         "type": "box",
@@ -71,6 +67,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://market.viicheck.com/link1"
       }
     },
     {
@@ -81,11 +82,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img2",
-        "action": {
-          "type": "uri",
-          "uri": "https://market.viicheck.com/link2"
-        }
+        "url": "https://market.viicheck.com/img2"
       },
       "body": {
         "type": "box",
@@ -140,6 +137,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://market.viicheck.com/link2"
       }
     },
     {
@@ -150,11 +152,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img3",
-        "action": {
-          "type": "uri",
-          "uri": "https://market.viicheck.com/link3"
-        }
+        "url": "https://market.viicheck.com/img3"
       },
       "body": {
         "type": "box",
@@ -209,6 +207,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://market.viicheck.com/link3"
       }
     },
     {
@@ -219,11 +222,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img4",
-        "action": {
-          "type": "uri",
-          "uri": "https://market.viicheck.com/link4"
-        }
+        "url": "https://market.viicheck.com/img4"
       },
       "body": {
         "type": "box",
@@ -278,6 +277,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://market.viicheck.com/link4"
       }
     }
   ]
