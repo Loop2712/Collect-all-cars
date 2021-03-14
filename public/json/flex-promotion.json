@@ -7,25 +7,34 @@
     {
       "type": "bubble",
       "size": "mega",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img1"
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
           {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "size": "full",
+                "aspectRatio": "20:17",
+                "aspectMode": "cover",
+                "url": "https://market.viicheck.com/img1"
+              }
+            ],
+            "borderWidth": "light",
+            "cornerRadius": "xl"
+          },
+          {
             "type": "text",
             "text": "NAME1",
             "wrap": true,
             "weight": "bold",
             "size": "xl",
-            "color": "#000000"
+            "color": "#000000",
+            "margin": "xxl"
           },
           {
             "type": "box",
@@ -102,31 +111,43 @@
             ],
             "margin": "md"
           }
-        ]
+        ],
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xl"
       }
     },
     {
       "type": "bubble",
       "size": "mega",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img2"
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
           {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "size": "full",
+                "aspectRatio": "20:17",
+                "aspectMode": "cover",
+                "url": "https://market.viicheck.com/img2"
+              }
+            ],
+            "borderWidth": "light",
+            "cornerRadius": "xl"
+          },
+          {
             "type": "text",
             "text": "NAME2",
             "wrap": true,
             "weight": "bold",
             "size": "xl",
-            "color": "#000000"
+            "color": "#000000",
+            "margin": "xxl"
           },
           {
             "type": "box",
@@ -203,31 +224,43 @@
             ],
             "margin": "md"
           }
-        ]
+        ],
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xl"
       }
     },
     {
       "type": "bubble",
       "size": "mega",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img3"
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
           {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "size": "full",
+                "aspectRatio": "20:17",
+                "aspectMode": "cover",
+                "url": "https://market.viicheck.com/img3"
+              }
+            ],
+            "borderWidth": "light",
+            "cornerRadius": "xl"
+          },
+          {
             "type": "text",
             "text": "NAME3",
             "wrap": true,
             "weight": "bold",
             "size": "xl",
-            "color": "#000000"
+            "color": "#000000",
+            "margin": "xxl"
           },
           {
             "type": "box",
@@ -304,31 +337,43 @@
             ],
             "margin": "md"
           }
-        ]
+        ],
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xl"
       }
     },
     {
       "type": "bubble",
       "size": "mega",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img4"
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
           {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "size": "full",
+                "aspectRatio": "20:17",
+                "aspectMode": "cover",
+                "url": "https://market.viicheck.com/img4"
+              }
+            ],
+            "borderWidth": "light",
+            "cornerRadius": "xl"
+          },
+          {
             "type": "text",
             "text": "NAME4",
             "wrap": true,
             "weight": "bold",
             "size": "xl",
-            "color": "#000000"
+            "color": "#000000",
+            "margin": "xxl"
           },
           {
             "type": "box",
@@ -405,7 +450,10 @@
             ],
             "margin": "md"
           }
-        ]
+        ],
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xl"
       }
     }
   ]
