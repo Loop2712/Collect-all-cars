@@ -401,6 +401,9 @@ class LineMessagingAPI extends Model
 
             case "promotion": 
 
+                $template_path = storage_path('../public/json/flex-promotion.json');   
+                $string_json = file_get_contents($template_path);
+
                 $randomPromotion = DB::table('promotions')
                     ->inRandomOrder()
                     ->limit(4)
@@ -417,9 +420,7 @@ class LineMessagingAPI extends Model
                         $i++;
                     }
                 }
-
-                $template_path = storage_path('../public/json/flex-promotion.json');   
-                $string_json = file_get_contents($template_path);
+                
 
                 $string_json = str_replace("https://market.viicheck.com/img1",$photo[1],$string_json);
                 $string_json = str_replace("NAME1",$company[1],$string_json);
