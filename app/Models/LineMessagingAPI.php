@@ -403,7 +403,7 @@ class LineMessagingAPI extends Model
 
                 $randomPromotion = DB::table('promotions')
                     ->inRandomOrder()
-                    ->limit(3)
+                    ->limit(4)
                     ->get();
 
                 for ($i=0; $i < count($randomPromotion);) { 
