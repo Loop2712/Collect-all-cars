@@ -413,6 +413,10 @@ class LineMessagingAPI extends Model
                         $photo[$i] = $item->photo;
                         $time_period[$i] = $item->time_period;
                         $link[$i] = $item->link;
+                        
+                        $imginfo = getimagesize($photo[$i]);
+                        header("Content-type: {$imginfo['mime']}");
+                        readfile($photo[$i]);
 
                         $i++;
                     }
