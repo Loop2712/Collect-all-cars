@@ -421,7 +421,7 @@ class LineMessagingAPI extends Model
                 $template_path = storage_path('../public/json/flex-promotion.json');   
                 $string_json = file_get_contents($template_path);
 
-                // $string_json = str_replace("https://market.viicheck.com/img1",$photo[0],$string_json);
+                $string_json = str_replace("https://market.viicheck.com/img1",$photo[0],$string_json);
                 $string_json = str_replace("NAME1",$company[0],$string_json);
                 $string_json = str_replace("TITLE1",$titel[0],$string_json);
                 $string_json = str_replace("TIME1",$time_period[0],$string_json);
