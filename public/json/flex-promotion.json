@@ -1,7 +1,7 @@
 {
     "type": "flex",
     "altText": "โปรโมชั่น",
-    "contents":{
+    "contents": {
   "type": "carousel",
   "contents": [
     {
@@ -24,7 +24,7 @@
             "text": "NAME1",
             "wrap": true,
             "weight": "bold",
-            "size": "xl",
+            "size": "lg",
             "color": "#000000"
           },
           {
@@ -65,8 +65,7 @@
                 ],
                 "offsetStart": "md"
               }
-            ],
-            "margin": "xl"
+            ]
           }
         ]
       },
@@ -84,10 +83,263 @@
               "label": "ดูเพิ่มเติม",
               "uri": "https://market.viicheck.com/link1"
             },
-            "height": "sm",
-            "style": "link",
-            "color": "#ff0101",
-            "offsetStart": "xxl"
+            "offsetStart": "xxl",
+            "height": "sm"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:17",
+        "aspectMode": "cover",
+        "url": "https://market.viicheck.com/img2"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "NAME2",
+            "wrap": true,
+            "weight": "bold",
+            "size": "lg",
+            "color": "#000000"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "TITLE2",
+                "wrap": true,
+                "size": "md"
+              }
+            ],
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/clock.png",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
+                "wrap": true,
+                "weight": "regular",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "TIME2",
+                    "size": "sm",
+                    "color": "#ff0101"
+                  }
+                ],
+                "offsetStart": "md"
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "filler"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ดูเพิ่มเติม",
+              "uri": "https://market.viicheck.com/link2"
+            },
+            "offsetStart": "xxl",
+            "height": "sm"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:17",
+        "aspectMode": "cover",
+        "url": "https://market.viicheck.com/img3"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "NAME3",
+            "wrap": true,
+            "weight": "bold",
+            "size": "lg",
+            "color": "#000000"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "TITLE3",
+                "wrap": true,
+                "size": "md"
+              }
+            ],
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/clock.png",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
+                "wrap": true,
+                "weight": "regular",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "TIME3",
+                    "size": "sm",
+                    "color": "#ff0101"
+                  }
+                ],
+                "offsetStart": "md"
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "filler"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ดูเพิ่มเติม",
+              "uri": "https://market.viicheck.com/link3"
+            },
+            "offsetStart": "xxl",
+            "height": "sm"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:17",
+        "aspectMode": "cover",
+        "url": "https://market.viicheck.com/img4"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "NAME4",
+            "wrap": true,
+            "weight": "bold",
+            "size": "lg",
+            "color": "#000000"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "TITLE4",
+                "wrap": true,
+                "size": "md"
+              }
+            ],
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/clock.png",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
+                "wrap": true,
+                "weight": "regular",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "TIME4",
+                    "size": "sm",
+                    "color": "#ff0101"
+                  }
+                ],
+                "offsetStart": "md"
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "filler"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ดูเพิ่มเติม",
+              "uri": "https://market.viicheck.com/link4"
+            },
+            "offsetStart": "xxl",
+            "height": "sm"
           }
         ]
       }
