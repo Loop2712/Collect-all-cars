@@ -414,7 +414,7 @@ class LineMessagingAPI extends Model
                         $link[$i] = $item->link;
                         // $photo[$i] = $item->photo;
 
-                        $string_json = str_replace("https://market.viicheck.com/img".$i,$item->link,$string_json);
+                        $string_json = str_replace("https://market.viicheck.com/img$i",$item->link,$string_json);
 
                         $i++;
                     }
