@@ -406,7 +406,7 @@ class LineMessagingAPI extends Model
 
                 $randomPromotion = DB::table('promotions')
                     ->inRandomOrder()
-                    ->limit(3)
+                    ->limit(2)
                     ->get();
 
                 for ($i=1; $i < count($randomPromotion);) { 
@@ -434,11 +434,11 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TIME2",$time_period[2],$string_json);
                 $string_json = str_replace("https://market.viicheck.com/link2",$link[2],$string_json);
 
-                $string_json = str_replace("https://market.viicheck.com/img3",$photo[3],$string_json);
-                $string_json = str_replace("NAME3",$company[3],$string_json);
-                $string_json = str_replace("TITLE3",$titel[3],$string_json);
-                $string_json = str_replace("TIME3",$time_period[3],$string_json);
-                $string_json = str_replace("https://market.viicheck.com/link3",$link[3],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/img3",$photo[3],$string_json);
+                // $string_json = str_replace("NAME3",$company[3],$string_json);
+                // $string_json = str_replace("TITLE3",$titel[3],$string_json);
+                // $string_json = str_replace("TIME3",$time_period[3],$string_json);
+                // $string_json = str_replace("https://market.viicheck.com/link3",$link[3],$string_json);
 
                 // $string_json = str_replace("https://market.viicheck.com/img4",$photo[4],$string_json);
                 // $string_json = str_replace("NAME4",$company[4],$string_json);
