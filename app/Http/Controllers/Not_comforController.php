@@ -86,7 +86,7 @@ class Not_comforController extends Controller
             $requestData['province'] = $item->province ;
         }
         
-        if (!empty($$requestData['phone'])) {
+        if (!empty($requestData['phone'])) {
             DB::table('users')
                 ->where([ ['provider_id', $requestData['provider_id']] ])
                 ->update(['phone' => $requestData['phone']]);
