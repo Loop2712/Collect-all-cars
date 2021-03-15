@@ -85,27 +85,27 @@
                     </li>
                 </div>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{{ url('/report_register_cars') }}">
                 <i class="fas fa-car text-success"></i>
-                <span class="nav-link-text">รถลงทะเบียน V Move</span>
+                <span class="nav-link-text">V Move รถลงทะเบียน </span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/guest') }}">
                 <i class="fas fa-car-crash text-danger"></i>
-                <span class="nav-link-text">V Move Report</span>
+                <span class="nav-link-text">V Move แจ้งเตือนเจ้าของรถ</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="far fa-newspaper" style="color: #5F9EA0"></i>
-                <span class="nav-link-text">V News (Reporter)</span>
+                <span class="nav-link-text">V News เพิ่มข่าว</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/report_news') }}">
                 <i class="fas fa-video-slash" style="color: #FA8072"></i>
-                <span class="nav-link-text">V News Report</span>
+                <span class="nav-link-text">V News รายงานไม่เหมาะสม</span>
               </a>
             </li>
             <li class="nav-item">

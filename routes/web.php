@@ -59,6 +59,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/guest', function () {
 	    return view('guest');
 	});
+	
+	Route::get('/report_register_cars', 'DashboardController@report_register_cars');
+
 	Route::get('/index_detail', 'GuestController@index_detail');
 	Route::get('/change_ToGold', 'GuestController@change_ToGold');
 	Route::get('/change_ToSilver', 'GuestController@change_ToSilver');
