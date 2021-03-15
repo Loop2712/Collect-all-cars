@@ -14,7 +14,7 @@
                                     <div class="row alert alert-secondary">
                                         <div class="col-1">
                                             <b>คันที่</b><br>
-                                            Car number
+                                            number
                                         </div>
                                         <div class="col-2">
                                             <b>ยี่ห้อ</b><br>
