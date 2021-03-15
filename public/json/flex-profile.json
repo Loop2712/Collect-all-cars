@@ -55,12 +55,7 @@
                       }
                     ],
                     "size": "sm",
-                    "wrap": true,
-                    "action": {
-                      "type": "uri",
-                      "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://market.viicheck.com/login/line?redirectTo=profile/xxxxx/edit"
-                    }
+                    "wrap": true
                   },
                   {
                     "type": "text",
@@ -89,12 +84,7 @@
                       }
                     ],
                     "size": "sm",
-                    "wrap": true,
-                    "action": {
-                      "type": "uri",
-                      "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://market.viicheck.com/login/line?redirectTo=profile/xxxxx/edit"
-                    }
+                    "wrap": true
                   },
                   {
                     "type": "icon",
