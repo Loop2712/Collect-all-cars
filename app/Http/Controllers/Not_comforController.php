@@ -61,6 +61,13 @@ class Not_comforController extends Controller
     {
         
         $requestData = $request->all();
+
+        if (!empty($requestData['phone'])) {
+            DB::table('users')
+                ->where([ ['provider_id', $requestData['provider_id']] ])
+                ->update(['phone' => $requestData['phone']]);
+        }
+
         // แบนคำหยาบ
         $profanitie = DB::table('profanities')
                         ->select('content')
@@ -84,12 +91,6 @@ class Not_comforController extends Controller
             $requestData['phone'] = $item->phone ;
             $requestData['registration_number'] = $item->registration_number ;
             $requestData['province'] = $item->province ;
-        }
-        
-        if (!empty($requestData['phone'])) {
-            DB::table('users')
-                ->where([ ['provider_id', $requestData['provider_id']] ])
-                ->update(['phone' => $requestData['phone']]);
         }
 
         Not_comfor::create($requestData);
