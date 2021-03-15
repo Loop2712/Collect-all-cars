@@ -127,7 +127,7 @@
                     "action": {
                       "type": "uri",
                       "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://market.viicheck.com/login/line?redirectTo=profile"
+                      "uri": "https://market.viicheck.com/profile/xxxxx/edit"
                     }
                   }
                 ],
