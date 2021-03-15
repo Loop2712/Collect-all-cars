@@ -65,6 +65,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/change_ToBronze', 'GuestController@change_ToBronze');
 	
 	Route::resource('profanity', 'ProfanityController');
+
+	Route::resource('report_news', 'Report_newsController');
+
 });
 // END ADMIN VIICHECK
 
@@ -126,5 +129,4 @@ Route::get('/my_news/{user_id}', 'NewsController@my_news');
 Route::get('/report/{id}/{content}', 'NewsController@report');
 
 
-Route::resource('report_news', 'Report_newsController');
 Route::resource('promotion', 'PromotionController');

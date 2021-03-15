@@ -68,6 +68,48 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
+                  <h6 class=" text-muted ls-1 mb-1">VNews</h6>
+                  <h5 class="h3 mb-0">ลงประกาศข่าว / Post news</h5>
+                  <hr>
+                  <span>จัดอันดับตามสถานที่ 5 อันดับ / Ranked by the top 5 places</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Chart -->
+              <div class="chart">
+                <!-- Chart wrapper -->
+                @include('admin_viicheck/vnewsChart')
+              </div>
+            </div>
+          </div>
+        </div><div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="row">
+                      <div class="col-md-9">
+                          <h6 class=" text-muted ls-1 mb-1">VNews</h6>
+                      </div>
+                      <div class="col-md-3">
+                          <a style="float: right;" href="{{ url('/report_news') }}" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i> See more</a>
+                      </div>
+                  </div>
+                  <h5 class="h3 mb-0">รายงานความไม่เหมาะสม / Report news</h5>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                @include('admin_viicheck/report_news')
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
                   <h6 class=" text-muted ls-1 mb-1">VMove</h6>
                   <h5 class="h3 mb-0">รถลงทะเบียน / Car registration</h5>
                   <hr>
@@ -93,34 +135,13 @@
                           <h6 class=" text-muted ls-1 mb-1">Vmove</h6>
                       </div>
                       <div class="col-md-3">
-                          <a style="float: right;" href="{{ url('/guest') }}" class="btn btn-sm btn-primary">ดูทั้งหมด / See more</a>
+                          <a style="float: right;" href="{{ url('/guest') }}" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i> See more</a>
                       </div>
                   </div>
                   <h5 class="h3 mb-0">รายงานหาเจ้าของรถ / Vmove report</h5>
                   <hr>
                   @include('admin_viicheck/guest')
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class=" text-muted ls-1 mb-1">VNews</h6>
-                  <h5 class="h3 mb-0">ลงประกาศข่าว / Post news</h5>
-                  <hr>
-                  <span>จัดอันดับตามสถานที่ 5 อันดับ / Ranked by the top 5 places</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <!-- Chart wrapper -->
-                @include('admin_viicheck/vnewsChart')
               </div>
             </div>
           </div>

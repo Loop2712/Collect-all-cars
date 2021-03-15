@@ -8,6 +8,7 @@ use App\CarModel;
 use App\Models\Register_car;
 use App\Models\Guest;
 use App\Models\News;
+use App\Models\Report_news;
 use App\Models\Motercycle;
 use Illuminate\Support\Facades\DB;
 
@@ -209,6 +210,9 @@ class DashboardController extends Controller
             }
         }
 
+        // report news
+        $report_news = Report_news::latest()->paginate(4);
+
         // GUEST รายงานหาเจ้าของรถ
         $guest = Guest::groupBy('provider_id')
                     ->groupBy('user_id')
@@ -218,6 +222,6 @@ class DashboardController extends Controller
                     ->latest()->paginate(5);
 
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest' , 'vmotercycle_desc_location' , 'vmotercycle_desc_count'));
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest' , 'vmotercycle_desc_location' , 'vmotercycle_desc_count' , 'report_news'));
     }
 }

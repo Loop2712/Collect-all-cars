@@ -1,18 +1,15 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="card">
       <div class="card-header border-0">
         <div class="row align-items-center">
           <div class="col">
             <h3 class="mb-0">ประเภทการลงชื่อเข้าใช้งาน / Login type</h3>
           </div>
-          <div class="col text-right">
-      		<p class="btn btn-sm">ทั้งหมด / Total : {{ $all_user }}</p>
-        		<!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
-          </div>
         </div>
       </div>
-      <div class="table-responsive">
+      <div class="row">
+      <div class="table-responsive col-8">
         <!-- Projects table -->
         <table class="table align-items-center table-flush">
           <thead class="thead-light">
@@ -25,7 +22,12 @@
                 <b>จำนวน</b><br>
                 Amount
               </th>
-              <th scope="col"></th>
+              <th scope="col">
+                <div class="col text-right">
+                  <p class="btn btn-sm">ทั้งหมด / Total : {{ $all_user }}</p>
+                    <!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -104,6 +106,11 @@
           </tbody>
         </table>
       </div>
+      <div class="col-4">
+          <br>
+          <img style="padding: 15px;" width="100%" src="https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png">
+      </div>
+    </div>
     </div>
   </div>
 </div>

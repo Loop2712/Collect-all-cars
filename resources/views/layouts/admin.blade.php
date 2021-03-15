@@ -103,7 +103,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{{ url('/report_news') }}">
                 <i class="fas fa-video-slash" style="color: #FA8072"></i>
                 <span class="nav-link-text">V News Report</span>
               </a>
