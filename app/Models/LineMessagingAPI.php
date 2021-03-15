@@ -108,7 +108,14 @@ class LineMessagingAPI extends Model
                         }
                     }
                     
-                    $string_json = str_replace("xxxxx",$item->id,$string_json);
+                    if(Auth::check()){
+                        $string_json = str_replace("xxxxx",$item->id,$string_json);
+                        $string_json = str_replace("login/line?redirectTo=","",$string_json);
+                        // echo Auth::User()->name;
+                    }else{
+                        $string_json = str_replace("xxxxx",$item->id,$string_json);
+                    }
+                    
 
                     // // พรบ
 
