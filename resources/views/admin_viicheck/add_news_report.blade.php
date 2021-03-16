@@ -55,7 +55,7 @@
                                             <p style="color: #FF0000; font-size: 20px;"><b>{{ $item->title }}</b></p>
                                         </div>
                                         <div class="col-2">
-                                            <p style="color: #ff6363; font-size: 20px;"><b>{{ $item->title }}</b></p>
+                                            <p style="color: #ff6363; font-size: 20px;"><b>{{ $item->location }}</b></p>
                                         </div>
                                         <div class="col-2">
                                             <center>
