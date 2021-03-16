@@ -78,7 +78,7 @@
                                     </div>
                                     <hr>
                                     @endforeach
-                                    <div class="pagination-wrapper"> {!! $report_register_cars->appends(['search' => Request::get('search')])->render() !!} </div>
+                                    <div class="pagination-wrapper"> {!! $add_news_report->appends(['search' => Request::get('search')])->render() !!} </div>
                                 </div>
                             </div>
                         </div>
