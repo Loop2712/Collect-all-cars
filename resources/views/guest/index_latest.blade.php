@@ -33,7 +33,10 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
-                                        <div class="col-1"></div>
+                                        <div class="col-1">
+                                            <b>ครั้งที่</b><br>
+                                            Number
+                                        </div>
                                         <div class="col-3">
                                             <b>ชื่อ</b><br>
                                             Name
@@ -59,7 +62,7 @@
                                     @foreach($guest_latest as $item)
                                     <div class="row">
                                         <div class="col-1">
-                                            <center>{{ $loop->iteration }}</center>
+                                            <center>{{ $item->id }}</center>
                                         </div>
                                         <div class="col-3">
                                             <p style="color: #FF0000; font-size: 18px; display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;" class="text-success">
