@@ -79,9 +79,11 @@
                 </div>
                 <div class="col-lg-7 col-sm-12">
                     <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
+                        @if(!empty($item->productM->id))
                         <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="{{ url('/motercycle/'.$item->productM->id ) }}" class="text-theme-color" style="color: black;">
                         {{ $item->productM->brand }} {{ $item->productM->model }} {{ $item->productM->submodel }}
                         </a></h5>
+                        @endif
                         <h5> 
                             @if ( $item->productM->price == 'ติดต่อผู้ขาย')
                                 <h6>{{ $item->productM->price}}<span></span></h6>
