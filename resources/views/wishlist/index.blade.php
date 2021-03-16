@@ -85,12 +85,14 @@
                         </a></h5>
                         @endif
                         <h5> 
+                        @if(!empty($item->productM->price))
                             @if ( $item->productM->price == 'ติดต่อผู้ขาย')
                                 <h6>{{ $item->productM->price}}<span></span></h6>
                             @else
                                 <h6 style="font-size:20px;color: red;">{{ number_format(intval($item->productM->price))}} บาท<span></span></h6>
                                         
                             @endif
+                        @endif
                         </h5>
                         <!-- <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
                             <li><br><i class="fas fa-user margin-5px-right"></i> ชื่อผู้ขาย : John Sminth</li>
