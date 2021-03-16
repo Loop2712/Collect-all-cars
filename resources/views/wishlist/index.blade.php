@@ -100,13 +100,14 @@
                         @if(!empty($item->productM->location))
                             <p style="font-size:12px">สถานที่ {{$item->productM->location}}</p>
                         @endif
+                        @if(!empty($item->productM->id))
                         <a class="butn small margin-10px-top md-no-margin-top" href="{{ url('/motercycle/'.$item->productM->id ) }}" style="color:#000">ดูข้อมูลเพิ่มเติม <i class="fas fa-long-arrow-alt-right margin-10px-left"></i><br><br></a>
+                        @endif
                             <form method="POST" action="{{ url('/wishlist' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Sell" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                             </form>
-                            
                     </div><br><br>
                 </div>
             </div>
