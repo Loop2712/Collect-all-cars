@@ -97,7 +97,9 @@
                         <!-- <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
                             <li><br><i class="fas fa-user margin-5px-right"></i> ชื่อผู้ขาย : John Sminth</li>
                         </ul> -->
-                        <p style="font-size:12px">สถานที่ {{$item->productM->location}}</p>
+                        @if(!empty($item->productM->location))
+                            <p style="font-size:12px">สถานที่ {{$item->productM->location}}</p>
+                        @endif
                         <a class="butn small margin-10px-top md-no-margin-top" href="{{ url('/motercycle/'.$item->productM->id ) }}" style="color:#000">ดูข้อมูลเพิ่มเติม <i class="fas fa-long-arrow-alt-right margin-10px-left"></i><br><br></a>
                             <form method="POST" action="{{ url('/wishlist' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                     {{ method_field('DELETE') }}
