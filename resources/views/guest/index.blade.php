@@ -173,7 +173,9 @@
                                     </div>
                                     <hr>
                                     @endforeach
-                                    <div class="pagination-wrapper"> {!! $guest_latest->appends(['search' => Request::get('search')])->render() !!} </div>
+                                    <div class="pagination-wrapper" onclick="
+                        document.querySelector('#the_most').classList.add('d-none');
+                        document.querySelector('#latest').classList.remove('d-none');"> {!! $guest_latest->appends(['search' => Request::get('search')])->render() !!} </div>
                                 </div>
                             </div>
                         </div>
