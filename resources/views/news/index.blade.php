@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12">
-            <div style="border : none;" class="card">
+            <div style="border : none; background-color: none" class="card">
                 <div class="row">
                     <div class="col-md-6"></div>
                     <div class="col-12 col-md-6">
