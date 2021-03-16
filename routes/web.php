@@ -59,6 +59,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/guest', function () {
 	    return view('guest');
 	});
+	Route::get('/guest_latest', 'DashboardController@guest_latest');
 	
 	Route::get('/report_register_cars', 'DashboardController@report_register_cars');
 	Route::get('/add_news', 'DashboardController@add_news');

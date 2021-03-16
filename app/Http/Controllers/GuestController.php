@@ -46,10 +46,9 @@ class GuestController extends Controller
         // echo "<pre>";
         // exit();
 
-        $guest_latest = Guest::latest()->paginate(30);
-
-        return view('guest.index', compact('guest' , 'guest_latest'));
+        return view('guest.index', compact('guest'));
     }
+
 
     /**
      * Show the form for creating a new resource.

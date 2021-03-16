@@ -224,7 +224,7 @@ class DashboardController extends Controller
 
         return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest' , 'vmotercycle_desc_location' , 'vmotercycle_desc_count' , 'report_news'));
     }
-    
+
     public function report_register_cars()
     {
         $report_register_cars = Register_car::latest()->paginate(25);
@@ -237,6 +237,13 @@ class DashboardController extends Controller
         $add_news_report = news::latest()->paginate(25);
 
         return view('admin_viicheck.add_news_report', compact('add_news_report'));
+    }
+
+    public function guest_latest(Request $request)
+    {
+        $guest_latest = Guest::latest()->paginate(25);
+
+        return view('guest.index_latest', compact('guest_latest'));
     }
 
 }
