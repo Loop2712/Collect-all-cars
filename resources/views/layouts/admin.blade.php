@@ -97,7 +97,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{{ url('/add_news') }}">
                 <i class="far fa-newspaper" style="color: #5F9EA0"></i>
                 <span class="nav-link-text">V News เพิ่มข่าว</span>
               </a>

@@ -61,6 +61,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	});
 	
 	Route::get('/report_register_cars', 'DashboardController@report_register_cars');
+	Route::get('/add_news', 'DashboardController@add_news');
 
 	Route::get('/index_detail', 'GuestController@index_detail');
 	Route::get('/change_ToGold', 'GuestController@change_ToGold');

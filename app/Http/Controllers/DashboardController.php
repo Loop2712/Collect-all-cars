@@ -232,4 +232,11 @@ class DashboardController extends Controller
         return view('admin_viicheck.register_cars', compact('report_register_cars'));
     }
 
+    public function add_news()
+    {
+        $add_news_report = news::latest()->paginate(25);
+
+        return view('admin_viicheck.add_news_report', compact('add_news_report'));
+    }
+
 }
