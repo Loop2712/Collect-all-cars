@@ -61,57 +61,50 @@
             </div>
             </div>
             @else
+            @if(!empty($item->productM->id))
             <div class="container">
             <div class="row align-items-center event-block no-gutters margin-40px-bottom">
                 <div class="col-lg-5 col-sm-12">
                     <div class="position-relative">
-                    @if(!empty($item->productM->img))
-                        @if($item->productM->img == "" )
-                            <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" style="max-width: 100%; height: auto;">
-                                            <!-- <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" > -->
-                        @else
-                            <img src="{{ $item->productM->img }}" alt="" style="max-width: 100%; height: auto;">
-                                            <!-- <img src="{{ $item->productM->img }}" alt="" >  -->
-                        @endif
+                    @if($item->productM->img == "" )
+                        <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" style="max-width: 100%; height: auto;">
+                                        <!-- <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" > -->
+                    @else
+                        <img src="{{ $item->productM->img }}" alt="" style="max-width: 100%; height: auto;">
+                                        <!-- <img src="{{ $item->productM->img }}" alt="" >  -->
                     @endif
                         <!-- <img src="https://via.placeholder.com/450x280/FFB6C1/000000" alt="" style="max-width: 100%; height: auto;"> -->
                     </div>
                 </div>
                 <div class="col-lg-7 col-sm-12">
                     <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
-                        @if(!empty($item->productM->id))
                         <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="{{ url('/motercycle/'.$item->productM->id ) }}" class="text-theme-color" style="color: black;">
                         {{ $item->productM->brand }} {{ $item->productM->model }} {{ $item->productM->submodel }}
                         </a></h5>
-                        @endif
                         <h5> 
-                        @if(!empty($item->productM->price))
                             @if ( $item->productM->price == 'ติดต่อผู้ขาย')
                                 <h6>{{ $item->productM->price}}<span></span></h6>
                             @else
                                 <h6 style="font-size:20px;color: red;">{{ number_format(intval($item->productM->price))}} บาท<span></span></h6>
                                         
                             @endif
-                        @endif
                         </h5>
                         <!-- <ul class="event-time margin-10px-bottom md-margin-5px-bottom">
                             <li><br><i class="fas fa-user margin-5px-right"></i> ชื่อผู้ขาย : John Sminth</li>
                         </ul> -->
-                        @if(!empty($item->productM->location))
-                            <p style="font-size:12px">สถานที่ {{$item->productM->location}}</p>
-                        @endif
-                        @if(!empty($item->productM->id))
+                        <p style="font-size:12px">สถานที่ {{$item->productM->location}}</p>
                         <a class="butn small margin-10px-top md-no-margin-top" href="{{ url('/motercycle/'.$item->productM->id ) }}" style="color:#000">ดูข้อมูลเพิ่มเติม <i class="fas fa-long-arrow-alt-right margin-10px-left"></i><br><br></a>
                             <form method="POST" action="{{ url('/wishlist' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Sell" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                             </form>
-                        @endif
+                            
                     </div><br><br>
                 </div>
             </div>
             </div>
+            @endif
             @endif
             @endforeach
             
