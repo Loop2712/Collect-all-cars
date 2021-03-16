@@ -65,12 +65,14 @@
             <div class="row align-items-center event-block no-gutters margin-40px-bottom">
                 <div class="col-lg-5 col-sm-12">
                     <div class="position-relative">
-                    @if($item->productM->img == "" )
-                        <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" style="max-width: 100%; height: auto;">
-                                        <!-- <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" > -->
-                    @else
-                        <img src="{{ $item->productM->img }}" alt="" style="max-width: 100%; height: auto;">
-                                        <!-- <img src="{{ $item->productM->img }}" alt="" >  -->
+                    @if(!empty($item->productM->img))
+                        @if($item->productM->img == "" )
+                            <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" style="max-width: 100%; height: auto;">
+                                            <!-- <img src="{{ asset('/img/more/img_more.jpg') }}" alt="" > -->
+                        @else
+                            <img src="{{ $item->productM->img }}" alt="" style="max-width: 100%; height: auto;">
+                                            <!-- <img src="{{ $item->productM->img }}" alt="" >  -->
+                        @endif
                     @endif
                         <!-- <img src="https://via.placeholder.com/450x280/FFB6C1/000000" alt="" style="max-width: 100%; height: auto;"> -->
                     </div>
