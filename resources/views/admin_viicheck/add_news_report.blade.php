@@ -6,40 +6,38 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">รถลงทะเบียน Vmove / <span style="font-size: 18px;">Vmove register</span> </h3>
+                    <h3 class="card-header">เพิ่มข่าว Vnews / <span style="font-size: 18px;">Vnews add news</span> </h3>
                         <br>
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
                                         <div class="col-1">
-                                            <b>คันที่</b><br>
+                                            <b>ข่าวที่</b><br>
                                             Number
                                         </div>
-                                        <div class="col-2">
-                                            <b>ยี่ห้อ</b><br>
-                                            Brand
+                                        <div class="col-3">
+                                            <b>หัวข้อข่าว</b><br>
+                                            Title news
                                         </div>
                                         <div class="col-2">
-                                            <b>รุ่น</b><br>
-                                            Model
+                                            <b>ตำแหน่ง</b><br>
+                                            Location
                                         </div>
                                         <div class="col-2">
+                                            <b>วันที่เพิ่มข่าว</b><br>
+                                            Report date
+                                        </div>
+                                        <div class="col-1">
                                             <center>
-                                                <b>หมายเลขทะเบียน</b><br>
-                                                Registration number
-                                            </center>
-                                        </div>
-                                        <div class="col-2">
-                                            <center>
-                                                <b>ประเภท</b><br>
-                                                Car type
+                                                <b>รายงาน</b><br>
+                                                Report
                                             </center>
                                         </div>
                                         <div class="col-3">
                                             <center>
-                                                <b>เจ้าของรถ</b><br>
-                                                Car owner
+                                                <b>ผู้ลงข่าว</b><br>
+                                                Reporter
                                             </center>
                                         </div>
                                     </div>
@@ -51,18 +49,19 @@
                                                 {{ $item->id }}
                                             </center>
                                         </div>
-                                        <div class="col-2">
-                                            <p style="color: #FF0000; font-size: 20px;"><b>{{ $item->title }}</b></p>
+                                        <div class="col-3">
+                                            <p style="color: #FF0000; font-size: 18px;">
+                                                <a target="bank" class="btn btn-sm" href="{{ url('/news') . '/' . $item->id }}"><i class="far fa-eye text-info"></i></a>
+                                                <b>{{ $item->title }}</b>
+                                            </p>
                                         </div>
                                         <div class="col-2">
-                                            <p style="color: #ff6363; font-size: 20px;"><b>{{ $item->location }}</b></p>
+                                            <p style="color: #ff6363; font-size: 18px;"><b>{{ $item->province }}</b></p>
                                         </div>
                                         <div class="col-2">
-                                            <center>
-                                                <span> {{ $item->created_at }}</span><br>
-                                            </center>
+                                            {{ $item->created_at }}
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-1">
                                             <center>
                                                 {{ $item->report }}
                                             </center>
