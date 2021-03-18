@@ -175,7 +175,14 @@ class ProfileController extends Controller
 
     public function explode_name($name_user)
     {
-        $name = explode(" ",$name_user);
+        $count = strlen($name_user);
+        if ($count > 10) {
+            $name = explode(" ",$name_user);
+        }else{
+            $name_add = $name_user." "."str";
+            $name = explode(" ",$name_add);
+        }
+        
         return $name;
     }
 }
