@@ -115,7 +115,7 @@
 
 
     <!-- Header Section Begin -->
-    <header class="header">
+    <header class="header" style="background-color: #FFFFFF; margin-top: -10px;border-bottom: 2px solid red">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">

@@ -4,142 +4,106 @@
 <br><br>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('ลงชื่อเข้าใช้') }}</div>
-
+                <!-- แสดงเฉพาะคอม -->
+                <img class="d-none d-lg-block" style="position: absolute; width: 100%; height: 100%;"  src="{{ asset('/img/more/bg_login.png') }}">
                 <div class="card-body">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8 offset-md-2">
-                        <center>
-                            <div class="row">
-                            <!-- ซ้าย -->
-                                <!-- <div class="col-12 col-md-6">
-                                    <a href=""><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
-                                    <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
-                                    <a href=""><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
-                                </div> -->
-                                <!-- ขวา -->
-                                <!-- <div class="col-12 col-md-6">
-                                    <a href=""><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
-                                    <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
-                                    <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
-                                </div> -->
-
-                                <div class="col-12 col-md-12">
-                                    <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
-                                    <br>
-                                    <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a>
-                                    <br>
-                                    <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-8 offset-md-2">
+                                <center>
+                                    <h5 style="padding : 7px;">ยินดีต้อนรับสู่</h5>
+                                    <img width="40%" src="{{ asset('/img/more/logo_.png') }}">
                                     <br><br>
-                                    <a class="btn btn-link text-muted" onclick="document.querySelector('#from_login').classList.remove('d-none')"><h3>เข้าสู่ระบบด้วยชื่อผู้ใช้</h3></a>
-                                </div>
-                                <div class="col-12 col-md-12">
-                                    <br>
-                                    <a class="btn btn-link text-muted" href="{{ route('register') }}"><h3>สมัครสมาชิก</h3></a>
-                                </div>
-                            </div>
-                        </center>
-                    </div>
-                    <div class="col-md-2"></div>
-                    <br>
-                    <form class="d-none" method="POST" id="from_login" action="{{ route('login') }}">
-                        @csrf
+                                    <form method="POST" id="from_login" action="{{ route('login') }}">
+                                        @csrf
 
-                        <div class="form-group row">
-                            <!-- <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อผู้ใช้') }}</label> -->
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="ชื่อผู้ใช้" required autocomplete="username">
+                                        <div class="form-group row">
+                                            <!-- <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('ชื่อผู้ใช้') }}</label> -->
+                                            <div class="col-md-12">
+                                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="ชื่อผู้ใช้" required autocomplete="username">
 
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-
-                        <div class="form-group row">
-                            <!-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('รหัสผ่าน') }}</label> -->
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="รหัสผ่าน" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-8 offset-md-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('จดจำฉัน') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-2">
-                                <div class="row">
-                                    <center>
-                                        <div class="col-md-11">
-                                            <button style="padding-left: 106px;padding-right: 106px;" type="submit" class="btn btn-primary">
-                                                {{ __('เข้าสู่ระบบ') }}
-                                            </button>
-                                            @if (Route::has('password.request'))
-                                                <a class="btn btn-link text-muted float-left" href="{{ route('password.request') }}">
-                                                    {{ __('ลืมรหัสผ่าน ?') }}
-                                                </a>
-                                            @endif
+                                                @error('username')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </center>
-                                </div>
-                                <br>
-                                <!-- <div class="row"> -->
-                                    <!-- <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div> -->
-                                    <!-- <span style="margin-top: -10px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-md-12">
-                                        หรือ
-                                    </span> -->
-                                    
-                                    <!-- <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-4"></div> -->
-                                    <!-- <center>
-                                        <div class="row">
+
+                                        <div class="form-group row">
+                                            <!-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('รหัสผ่าน') }}</label> -->
+                                            <div class="col-md-12">
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="รหัสผ่าน" required autocomplete="current-password">
+
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
                                         
-                                            <div class="col-12 col-md-6">
-                                                <a href=""><img width="160" height="60" src="{{ asset('/img/icon/wa.png') }}"></a><br>
-                                                <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a><br>
-                                                <a href=""><img width="160" height="60" src="{{ asset('/img/icon/we.png') }}"></a>
-                                            </div>
-                                            
-                                            <div class="col-12 col-md-6">
-                                                <a href=""><img width="160" height="60" src="{{ asset('/img/icon/qq.png') }}"></a><br>
-                                                <a href="{{ route('login.line') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a><br>
-                                                <a href="{{ route('login.google') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <center>
+                                                    <!-- แสดงเฉพาะคอม -->
+                                                    <button style="padding-left: 130px;padding-right: 130px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-none d-lg-block">
+                                                        {{ __('เข้าสู่ระบบ') }}
+                                                    </button>
+
+                                                    <!-- แสดงเฉพาะมือถือ -->
+                                                    <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none">
+                                                        {{ __('เข้าสู่ระบบ') }}
+                                                    </button>
+                                                </center>
+                                                @if (Route::has('password.request'))
+                                                    <a class="btn btn-link text-muted float-left" href="{{ route('password.request') }}">
+                                                        {{ __('ลืมรหัสผ่าน ?') }}
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
-                                    </center> -->
-                                <!-- </div> -->
+
+                                        <div class="form-group row ">
+                                            <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-5 d-none d-lg-block"></div>
+                                            <span style="margin-top: -13px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-md-2"> หรือ </span>
+                                            <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-md-5 d-none d-lg-block"></div>
+                                        </div>
+
+                                        <div class="col-12 col-md-12">
+                                            <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
+                                            <br>
+                                            <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a>
+                                            <br>
+                                            <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}"><img width="160" height="60" src="{{ asset('/img/icon/gg.png') }}"></a>
+                                            <br>
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group row">
+                                            <span style="margin-top: -13px;color: #ccc;text-align: center;" class="col-md-12"> เพิ่งเคยเข้ามาใน ViiCHECK ใช่หรือไม่ 
+                                                <a class="text-danger" href="{{ route('register') }}"><b>สมัครใหม่</b></a> 
+                                            </span>
+                                        </div>
+                                        <hr>
+                                    </form>
+                                </center>
+                            </div>
+                            <div class="col-12 col-md-12 ">
+                                <center>
+                                    <p>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></p> 
+                                    <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/privacy_policy') }}"> 
+                                        <span style="color:red"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></span>
+                                    </a>
+                                    <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> 
+                                        <span style="color:red"><b>ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</b></span>
+                                    </a>
+                                </center>
                             </div>
                         </div>
-                    </form>
-                    <div class="col-md-12">
-                        <center>
-                            <h5><br>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></h5></P> <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/privacy_policy') }}"> <h6 style="color:red"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></h6></a>
-                            <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/terms_of_service') }}"> <h6 style="color:red"><b>ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</b></h6></a>
-                            <br><br><br>
-                            <img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
-                        </center>
                     </div>
                 </div>
             </div>
