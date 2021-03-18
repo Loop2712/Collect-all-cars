@@ -43,12 +43,11 @@
                         </a>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-success" style="border-radius: 10px;font-size: 13px;">
-                        <a class="text-success" href="{{ url('/register_car' ) }}">
-                            <center>
-                                <i class="fas fa-motorcycle"></i>
+                    <div class="col-10 btn btn-outline-danger" style="border-radius: 10px;font-size: 13px;">
+                        <a class="text-danger" href="{{ url('/sell' ) }}">
+                            <center><i class="fas fa-car"></i>
                                 <br>
-                                รถของฉัน
+                                ขายรถยนต์
                             </center>
                         </a>
                     </div>
@@ -56,11 +55,12 @@
             </div>
             <div class="col-6">
                 <div class="row">
-                    <div class="col-10 btn btn-outline-danger" style="border-radius: 10px;font-size: 13px;">
-                        <a class="text-danger" href="{{ url('/sell' ) }}">
-                            <center><i class="fas fa-car"></i>
+                    <div class="col-10 btn btn-outline-success" style="border-radius: 10px;font-size: 13px;">
+                        <a class="text-success" href="{{ url('/register_car' ) }}">
+                            <center>
+                                <i class="fas fa-motorcycle"></i>
                                 <br>
-                                ขายรถยนต์
+                                รถของฉัน
                             </center>
                         </a>
                     </div>
