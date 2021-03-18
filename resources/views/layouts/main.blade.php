@@ -40,11 +40,16 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}" type="text/css">
 
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <style type="text/css">
+        .main-shadow{
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+        }
+    </style>
     
     
 </head>
 
-<body>
+<body class="bg-white">
         
    
 

@@ -3,9 +3,9 @@
 @section('content')
 <br><br>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" >
         <div class="col-md-12">
-            <div class="card">
+            <div class="card main-shadow">
                 <!-- แสดงเฉพาะคอม -->
                 <img class="d-none d-lg-block" style="position: absolute; width: 100%; height: 100%;"  src="{{ asset('/img/more/bg_login.png') }}">
                 <div class="card-body">
@@ -50,12 +50,12 @@
                                             <div class="col-md-12">
                                                 <center>
                                                     <!-- แสดงเฉพาะคอม -->
-                                                    <button style="padding-left: 130px;padding-right: 130px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-none d-lg-block">
+                                                    <button style="padding-left: 130px;padding-right: 130px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-none d-lg-block main-shadow">
                                                         {{ __('เข้าสู่ระบบ') }}
                                                     </button>
 
                                                     <!-- แสดงเฉพาะมือถือ -->
-                                                    <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none">
+                                                    <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none main-shadow">
                                                         {{ __('เข้าสู่ระบบ') }}
                                                     </button>
                                                 </center>

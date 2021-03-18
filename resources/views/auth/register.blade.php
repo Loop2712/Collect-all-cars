@@ -4,10 +4,10 @@
 <br><br>
 
 
-<div class="container">
+<div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card main-shadow">
                 <!-- แสดงเฉพาะคอม -->
                 <img class="d-none d-lg-block" style="position: absolute; width: 100%; height: 100%;"  src="{{ asset('/img/more/bg_register.png') }}">
                 <div class="card-body">
@@ -91,11 +91,11 @@
                                         <div class="form-group row ">
                                             <div class="col-md-12">
                                                 <!-- แสดงเฉพาะคอม -->
-                                                <button type="submit" class="btn btn-primary d-none d-lg-block" style="padding-left: 110px;padding-right: 110px; padding-top: 10px; padding-bottom: 10px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;">
+                                                <button type="submit" class="btn btn-primary d-none d-lg-block main-shadow" style="padding-left: 110px;padding-right: 110px; padding-top: 10px; padding-bottom: 10px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;">
                                                     {{ __('สมัครสมาชิก') }}
                                                 </button>
                                                 <!-- แสดงเฉพาะมือถือ -->
-                                                <button type="submit" class="btn btn-primary d-block d-md-none" style="padding-left: 90px;padding-right: 90px; padding-top: 10px; padding-bottom: 10px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;">
+                                                <button type="submit" class="btn btn-primary d-block d-md-none main-shadow" style="padding-left: 90px;padding-right: 90px; padding-top: 10px; padding-bottom: 10px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;">
                                                     {{ __('สมัครสมาชิก') }}
                                                 </button>
                                             </div>
