@@ -1,4 +1,4 @@
-<div class="col col-md-3 order-2 order-lg-1" >
+<div class="col col-md-3 order-2 order-lg-1 d-none d-lg-block" >
     <div class="card">
         <div class="card-body" style="padding: 2rem;">
         <div class="call__text">
@@ -25,4 +25,58 @@
         
         </div>
     </div>
+</div>
+
+<div class="row d-block d-md-none" style="padding:10px;">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10 btn btn-outline-primary" style="border-radius: 10px;font-size: 13px;">
+                        <a class="text-primary" href="{{ url('/profile' ) }}">
+                            <center>
+                                <i class="fas fa-user-edit"></i>
+                                <br>
+                                ข้อมูลส่วนบุคคล
+                            </center>
+                        </a>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-10 btn btn-outline-success" style="border-radius: 10px;font-size: 13px;">
+                        <a class="text-success" href="{{ url('/register_car' ) }}">
+                            <center>
+                                <i class="fas fa-motorcycle"></i>
+                                <br>
+                                รถของฉัน
+                            </center>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-10 btn btn-outline-danger" style="border-radius: 10px;font-size: 13px;">
+                        <a class="text-danger" href="{{ url('/sell' ) }}">
+                            <center><i class="fas fa-car"></i>
+                                <br>
+                                ขายรถยนต์
+                            </center>
+                        </a>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-10 btn btn-outline-warning" style="border-radius: 10px;font-size: 13px;">
+                        <a class="text-warning" href="{{ url('/motercycles' ) }}">
+                            <center>
+                                <i class="fas fa-motorcycle"></i>
+                                <br>
+                                ขายรถจักรยานยนต์ 
+                            </center>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 </div>

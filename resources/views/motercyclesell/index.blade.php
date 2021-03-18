@@ -135,7 +135,6 @@
 @endsection
 @section('content')
     <div class="container">
-    <br><br>
         <div class="row">
         @include('layouts.sidebar')
 
