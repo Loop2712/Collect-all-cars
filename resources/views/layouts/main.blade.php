@@ -50,7 +50,7 @@
 </head>
 
 <body class="bg-white">
-        
+    <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
    
 
     <!-- Page Preloder -->
@@ -168,15 +168,11 @@
                                 </li>
                                 <li tyle="padding-right: 20px;">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                       <span style="text-decoration: none;display: block;overflow: hidden;white-space: nowrap;width: 45px;text-overflow: ellipsis;">{{ Auth::user()->name }}</span>
+                                       <span id="input_name"></span>
                                      
                                         
                                     </a>
                                         <ul class="dropdown">
-                                            <li>
-                                                <a href="{{ url('/profile') }}">
-                                                รายการโปรด</a>
-                                            </li>
                                             <li>
                                                 <a href="{{ url('/register_car') }}">
                                                 รถของฉัน</a>
@@ -323,5 +319,24 @@
     <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('js/car/main.js')}}"></script>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+
+        var name_user = document.querySelector("#name_user");
+            console.log(name_user.value);
+
+            fetch("{{ url('/') }}/api/explode_name/" + name_user.value)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result[0]);
+                    let input_name = document.querySelector("#input_name");
+                    input_name.innerHTML = result[0];
+                    
+                    
+                });
+    });
+</script>
 
 </html>

@@ -172,4 +172,10 @@ class ProfileController extends Controller
     {
         //
     }
+
+    public function explode_name($name_user)
+    {
+        $name = explode(" ",$name_user);
+        return $name;
+    }
 }
