@@ -50,8 +50,6 @@
 </head>
 
 <body class="bg-white">
-    <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
-   
 
     <!-- Page Preloder -->
     <!-- <div id="preloder">
@@ -167,6 +165,7 @@
                                     <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
                                 </li>
                                 <li tyle="padding-right: 20px;">
+                                    <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
                                        <span id="input_name"></span>
                                      
