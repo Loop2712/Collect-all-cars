@@ -50,12 +50,12 @@
                                             <div class="col-md-12">
                                                 <center>
                                                     <!-- แสดงเฉพาะคอม -->
-                                                    <button style="padding-left: 130px;padding-right: 130px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-none d-lg-block">
+                                                    <button style="padding-left: 130px;padding-right: 130px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-none d-lg-block">
                                                         {{ __('เข้าสู่ระบบ') }}
                                                     </button>
 
                                                     <!-- แสดงเฉพาะมือถือ -->
-                                                    <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none">
+                                                    <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none">
                                                         {{ __('เข้าสู่ระบบ') }}
                                                     </button>
                                                 </center>
