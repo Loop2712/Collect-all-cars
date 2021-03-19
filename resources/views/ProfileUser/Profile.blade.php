@@ -171,9 +171,13 @@
         </div>
             <div class="row">
                     <div class="col d-flex justify-content-end">
+                        @if(Auth::check())
+                            @if(Auth::user()->id == $data->id )
                         <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
                         <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="แก้ไขโปรไฟล์">
                         <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>แก้ไขโปรไฟล์</h6> </button></a>
+                            @endif
+                        @endif
                     <!-- </div>
                     <div class="col d-flex justify-content-end"> -->
                     <form method="POST" action="{{ url('/profile') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
