@@ -133,10 +133,10 @@
                                 <nav class="header__menu" style="text-align:left;margin-left: 20px;">
                                     <ul>
                                         <li>
-                                        <a href="{{ url('/car') }}" ><h5><b>รถยนต์</b></h5></a>
+                                        <a href="{{ url('/car') }}" ><h5><b><i class="fas fa-car"></i> รถยนต์</b></h5></a>
                                         </li>
-                                        <li>
-                                        <a href="{{ url('/motercycle') }}" ><h5><b>รถจักรยานยนต์</b></h5></a>
+                                        <li style="margin-left: 60px;">
+                                        <a href="{{ url('/motercycle') }}" ><h5><b><i class="fas fa-motorcycle"></i> รถจักรยานยนต์</b></h5></a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -157,7 +157,7 @@
                                 <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}"  >เข้าสู่ระบบ / สมัครสมาชิก</a>
                             </li>
                             
-                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;">ลงขาย</a>
+                                <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;border-radius: 10px;">ลงขาย</a>
                             
 
                                 @else
@@ -167,14 +167,16 @@
                                 <li tyle="padding-right: 20px;">
                                     <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
                                     <a aria-haspopup="true" aria-expanded="false" v-pre href="#">
-                                       <span id="input_name"></span>
+                                       <center>
+                                           <span id="input_name"></span>
+                                       </center>
                                      
                                         
                                     </a>
                                         <ul class="dropdown">
                                             <li>
                                                 <a href="{{ url('/register_car') }}">
-                                                รถของฉัน</a>
+                                                 รถของฉัน</a>
                                             </li>
                                             <li>
                                                 <a href="{{ url('/profile') }}" > โปรไฟล์ </a>
@@ -195,7 +197,7 @@
                                             </form>
                                         </ul>
                                 </li>
-                                    <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;">ลงขาย</a>
+                                    <a href="{{ url('/sell') }}" class="primary-btn " style="color: white;margin-left: 35px;border-radius: 10px;">ลงขาย</a>
                                 @endguest
                             </ul> 
                         
