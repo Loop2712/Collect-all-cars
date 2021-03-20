@@ -1,18 +1,82 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-        	<center>
-                <div><br><br>
-                    <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                    <img width="450" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+@extends('layouts.main')
+
+@section('content')
+<!-- แสดงเฉพาะคอม -->
+<div class="container d-none d-lg-block">
+    <center>
+        <div class="row">
+            <div class="col-8 offset-2 main-shadow">
+                <div class="col-8">
+                	<center>
+                        <div><br><br>
+                            <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
+                            <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                        </div>
+                	</center>
                 </div>
-        	</center>
+                <div class="col-12">
+                    <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
+                        <div class="row">
+                            <div class="col-3">
+                                <br><br><br>
+                                    <img  width="110%" src="{{ asset('/img/icon/download_jpg.png') }}">
+                                <br><br><br>
+                            </div>
+                            <div class="col-9">
+                                <br><br><br>
+                                <h3><span class="text-primary">Download</span> and print สติ๊กเกอร์ QR code </h3>
+                                <br>
+                                <h5>ไปแปะไว้หน้ารถได้เลยค่ะ</h5>
+                                <br>
+                                <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
+                                </button>
+                                <br><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="col-8">
-            <center>
-                <br><br><br><br>
-                <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download ><img width="450" src="{{ asset('/img/icon/download_jpg.png') }}"></a>
-            </center> 
-        </div>
-    </div>
+    </center>
 </div>
+
+<!-- แสดงเฉพาะมือถือ -->
+<div class="container d-block d-md-none">
+    <center>
+        <div class="row">
+            <div class="col-12 main-shadow">
+                <div class="col-10">
+                    <center>
+                        <div>
+                            <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
+                            <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                        </div>
+                    </center>
+                </div>
+                <div class="col-12">
+                    <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
+                        <div class="row">
+                            <div class="col-3">
+                                <br>
+                                    <img style="margin-left: -25px;" width="200%" src="{{ asset('/img/icon/download_jpg.png') }}">
+                                <br>
+                            </div>
+                            <div class="col-9">
+                                <br>
+                                <h4><span class="text-primary">Download</span> and print</h4>
+                                <h5 style="line-height: 2;">สติ๊กเกอร์ QR code </h5>
+                                <p>ไปแปะไว้หน้ารถได้เลยค่ะ</p>
+                            </div>
+                            <div class="col-12">
+                                <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
+                                </button>
+                                <br><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </center>
+</div>
+@endsection
