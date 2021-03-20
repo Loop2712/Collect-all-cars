@@ -30,7 +30,14 @@
                              <option value="" selected >
                                  - เลือกข้อความ / Select text - 
                              </option>  
-                        @foreach (json_decode('{"1":"กรุณาเลื่อนรถด้วยค่ะ / Please move the car","2":"รถคุณเปิดไฟค้างไว้ค่ะ","3":"มีเด็กอยู่ในรถค่ะ","4":"รถคุณเกิดอุบัติเหตุค่ะ","5":"แจ้งปัญหาการขับขี่","6":"อื่นๆ"}', true) as $optionKey => $optionValue)
+                        @foreach (json_decode('{
+                        "1":"กรุณาเลื่อนรถด้วยค่ะ / Please move the car",
+                        "2":"รถคุณเปิดไฟค้างไว้ค่ะ / The lights are on",
+                        "3":"มีเด็กอยู่ในรถค่ะ / Children in car",
+                        "4":"รถคุณเกิดอุบัติเหตุค่ะ / Car Accident",
+                        "5":"แจ้งปัญหาการขับขี่ / Driving Problems",
+                        "6":"อื่นๆ / Others"}',
+                         true) as $optionKey => $optionValue)
                             <option value="{{ $optionKey }}"  {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
                     </select>
