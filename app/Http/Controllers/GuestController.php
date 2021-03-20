@@ -241,21 +241,27 @@ class GuestController extends Controller
         {
             case "1":  
                 $masseng = "กรุณาเลื่อนรถด้วยค่ะ";
+                $masseng_en = "Please move the car";
                 break;
             case "2":  
                 $masseng = "รถคุณเปิดไฟค้างไว้ค่ะ";
+                $masseng_en = "The lights are on";
                 break;
             case "3":  
                 $masseng = "มีเด็กอยู่ในรถค่ะ";
+                $masseng_en = "Children in car";
                 break;
             case "4":  
                 $masseng = "รถคุณเกิดอุบัติเหตุค่ะ";
+                $masseng_en = "Car Accident";
                 break;
             case "5":  
                 $masseng = "แจ้งปัญหาการขับขี่";
+                $masseng_en = "Driving Problems";
                 break;
             case "6": 
                 $masseng = $masseng_old;
+                $masseng_en = "Others";
                 break;
         }
 
@@ -272,6 +278,7 @@ class GuestController extends Controller
                     $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                     $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                     $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                    $string_json = str_replace("Please move the car",$masseng_en,$string_json);
                     $string_json = str_replace("uploads",$photo,$string_json);
 
                     $messages = [ json_decode($string_json, true) ];
@@ -296,7 +303,8 @@ class GuestController extends Controller
                         $string_json = str_replace("datetime",$datetime,$string_json);
                         $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                         $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                        $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                        $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);                    
+                        $string_json = str_replace("Please move the car",$masseng_en,$string_json);
                         $string_json = str_replace("0999999999",$phone,$string_json);
 
                         $messages = [ json_decode($string_json, true) ];

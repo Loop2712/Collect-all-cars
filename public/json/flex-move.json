@@ -27,16 +27,28 @@
         "wrap": true
       },
       {
+        "type": "text",
+        "color": "#FFFFFF",
+        "text": "Please move the car",
+        "margin": "xxl",
+        "size": "xl",
+        "align": "center",
+        "weight": "regular",
+        "gravity": "bottom",
+        "wrap": true
+      },
+      {
         "type": "separator",
         "margin": "lg"
       },
       {
         "type": "text",
-        "text": "เวลาที่ถูกแจ้ง",
+        "text": "เวลาที่ถูกแจ้ง / Time",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
-        "color": "#FFFFFF"
+        "color": "#FFFFFF",
+        "wrap": true
       },
       {
         "type": "text",
