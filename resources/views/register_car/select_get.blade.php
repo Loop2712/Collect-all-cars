@@ -41,7 +41,7 @@
 </div>
 
 <!-- แสดงเฉพาะมือถือ -->
-<div class="container d-block d-md-none">
+<div style="margin-left: 2px;" class="container d-block d-md-none">
     <center>
         <div class="row">
             <div class="col-12 main-shadow">
