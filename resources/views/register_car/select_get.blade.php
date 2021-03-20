@@ -11,7 +11,7 @@
         <div class="col-8">
             <center>
                 <br><br><br><br>
-                <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download ><img width="450" src="{{ asset('/img/icon/download_jpg.png') }}"></a>
+                <a href="{{ asset('/img/more/sticker-VII-v1.png?openExternalBrowser=1') }}" download ><img width="450" src="{{ asset('/img/icon/download_jpg.png') }}"></a>
             </center> 
         </div>
     </div>
