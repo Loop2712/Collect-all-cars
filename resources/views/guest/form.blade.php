@@ -167,7 +167,7 @@
             if (registration_car == null ) {
                 console.log("null");
                 document.querySelector('#submit_form').classList.add('d-none');
-                alert("รถหมายเลขทะเบียนนี้ยังไม่มีในระบบ");
+                alert("รถหมายเลขทะเบียนนี้ไม่มีในระบบ");
                 let registration_reset = document.querySelector("#registration");
                     registration_reset.value = "";
                 document.querySelector('#registration').focus();

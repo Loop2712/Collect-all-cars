@@ -72,6 +72,7 @@ class CarbrandController extends Controller
 
     public function check_registration($registration)
     {
+        $registration = str_replace(" ", "", $registration);
         $registration = DB::table('register_cars')
             ->select('registration_number')
             ->where('registration_number', $registration )
