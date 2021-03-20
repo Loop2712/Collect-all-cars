@@ -2,7 +2,7 @@
     <div class="row">
         <!-- ข้อมูลรถที่ต้องการติดต่อ -->
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถที่ต้องการติดต่อ / Vehicle information to contact'}}</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถที่ต้องการติดต่อ / Vehicle information'}}</span>
             <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
             <br><br>
             <div class="row">
@@ -30,7 +30,7 @@
                              <option value="" selected >
                                  - เลือกข้อความ / Select text - 
                              </option>  
-                        @foreach (json_decode('{"1":"กรุณาเลื่อนรถด้วยค่ะ","2":"รถคุณเปิดไฟค้างไว้ค่ะ","3":"มีเด็กอยู่ในรถค่ะ","4":"รถคุณเกิดอุบัติเหตุค่ะ","5":"แจ้งปัญหาการขับขี่","6":"อื่นๆ"}', true) as $optionKey => $optionValue)
+                        @foreach (json_decode('{"1":"กรุณาเลื่อนรถด้วยค่ะ / Please move the car","2":"รถคุณเปิดไฟค้างไว้ค่ะ","3":"มีเด็กอยู่ในรถค่ะ","4":"รถคุณเกิดอุบัติเหตุค่ะ","5":"แจ้งปัญหาการขับขี่","6":"อื่นๆ"}', true) as $optionKey => $optionValue)
                             <option value="{{ $optionKey }}"  {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
                     </select>
@@ -60,7 +60,7 @@
 
 
                 <div class="col-12 col-md-2">
-                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car number' }}</label></label><span style="color: #FF0033;"> *</span>
+                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car Registration number' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}</label></label><span style="color: #FF0033;"> *</span>
+                    <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of Vehicle registration' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
@@ -104,10 +104,11 @@
             document.querySelector('#phone').classList.remove('d-none'),
             document.querySelector('#phone_input').classList.remove('d-none')">
             &nbsp;&nbsp;&nbsp;แสดง / Show&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="show_phone" onclick="document.querySelector('#name').classList.add('d-none'),
+            <br>
+            <input type="radio" name="show_phone" checked onclick="document.querySelector('#name').classList.add('d-none'),
             document.querySelector('#name_input').classList.add('d-none'),
             document.querySelector('#phone').classList.add('d-none'),
-            document.querySelector('#phone_input').classList.add('d-none')">&nbsp;&nbsp;&nbsp;ไม่แสดง / Not showing
+            document.querySelector('#phone_input').classList.add('d-none')">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
             <br><br>
             <div class="row">
                 <div class="col-12 col-md-2">
