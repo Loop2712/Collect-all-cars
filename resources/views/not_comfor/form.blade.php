@@ -23,20 +23,42 @@
         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
     </div>
 
-    <!-- <input name="want_phone" type="radio" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'Yes'}}" 
-    onclick="document.querySelector('#phone').classList.remove('d-none');"> 
+    <!-- <input class="want_phone" name="want_phone" type="radio" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'Yes'}}" > 
         &nbsp;&nbsp;&nbsp;แสดง / Show  -->
-    <input name="want_phone" type="checkbox" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'No'}}" onchange="if(this.checked){
-        document.querySelector('#phone').classList.add('d-none'),
-        document.querySelector('#phone').remove('required');
-    }else{
-        document.querySelector('#phone').classList.remove('d-none'),
-        document.querySelector('#phone').add('required');
-    }"> &nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+    <input  name="want_phone" type="hidden" id="want_phone" value="{{ isset($not_comfor->want_phone) ? $not_comfor->want_phone : 'Yes'}}" >
     {!! $errors->first('want_phone', '<p class="help-block">:message</p>') !!}
+
+    <input type="checkbox" name="checkbox" onchange="if(this.checked){
+        check(); 
+    }else{
+        not_check();
+    }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
 </div>
 
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
 </div>
+
+<script>
+    function check(){
+        var phone = document.querySelector('#phone');
+            phone.classList.add('d-none');
+            phone.removeAttribute("required");
+
+        var want_phone = document.querySelector('#want_phone');
+            want_phone.value = "No";
+
+    }
+
+    function not_check(){
+        var phone = document.querySelector('#phone');
+            phone.classList.remove('d-none');
+
+        var att = document.createAttribute('required'); 
+            phone.setAttributeNode(att);
+
+        var want_phone = document.querySelector('#want_phone');
+            want_phone.value = "Yes";
+    }
+</script>
