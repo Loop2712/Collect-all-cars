@@ -105,6 +105,7 @@ Route::get('/motercycle', 'MotercleyviewController@index');
 Route::get('/motercycle/{id}', 'MotercleyviewController@show');
 
 Route::get('/edit_profile', 'ProfileController@edit_profile');
+Route::get('/edit_profile2', 'ProfileController@edit_profile2');
 
 
 //Route::resource('car','CarController');
