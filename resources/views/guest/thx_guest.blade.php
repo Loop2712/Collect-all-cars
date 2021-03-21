@@ -43,7 +43,7 @@
       </div>
       <div class="modal-body">
         <center>
-            <img width="50%" src="{{ asset('/img/icon/please.png') }}">
+            <img width="50%" src="{{ asset('/img/icon/please.PNG') }}">
             <br><br>
             <h5 class="text-danger">ท่านสนใจดูบริการอื่นๆจาก ViiCHECK หรือไม่</h5>
             <p class="text-danger">Are you interested in seeing other services from ViiCHECK?</p>
