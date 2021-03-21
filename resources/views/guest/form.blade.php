@@ -208,7 +208,6 @@
             <br><br>
             <h5 class="text-danger">ท่านแจ้งเตือนไปยังเจ้าของรถคันนี้แล้ว</h5>
             <p style="line-height: 2;">โปรดรออย่างน้อย 5 นาทีค่ะ</p>
-            <p>{{ $date }}</p>
         </center>
       </div>
       <div class="modal-footer">
