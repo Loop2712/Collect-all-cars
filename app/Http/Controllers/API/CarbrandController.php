@@ -93,5 +93,27 @@ class CarbrandController extends Controller
         return $province;
     }
 
+    public function check_time($registration , $county , $user_id)
+    {
+        $registration = str_replace(" ", "", $registration);
+        $d_5 = strtotime("-5 minute");
+        $date_5 = date("Y-m-d H:i:s", $d_5);
+
+        $report = DB::table('guests')
+            ->where('user_id', $user_id )
+            ->where('registration', $registration )
+            ->where('county', $county )
+            ->whereDate('created_at', ">" , $date_5)
+            ->get();
+
+            if (!empty($report)) {
+                return $report;
+            }else{
+                $report = null ;
+                return $report;
+            }
+    
+    }
+
 
 }

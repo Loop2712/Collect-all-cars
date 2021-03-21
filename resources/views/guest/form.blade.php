@@ -236,7 +236,42 @@
                     option.value = item.province;
                     county.add(option);                
                 }
+                check_time();
+            });
+    }
 
+    function check_time(){
+        console.log("555555555");county
+        let registration = document.querySelector("#registration");
+        let county = document.querySelector("#county");
+        let user_id = document.querySelector("#user_id");
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/check_time/" + registration.value + "/" + county.value + "/" + user_id.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+
+                for(let item of result){
+                var report = item.registration;
+                console.log(report);
+            }
+
+            if (report == null ) {
+                console.log("null");
+                document.querySelector('#submit_form').classList.add('d-none');
+                alert("ซ้ำ");
+                // document.getElementById("btn_not_system").click();
+                let registration_reset = document.querySelector("#registration");
+                    registration_reset.value = "";
+                document.querySelector('#registration').focus();
+            }else{ 
+                console.log("Yess");
+                document.querySelector('#submit_form').classList.remove('d-none');
+                document.querySelector('#county').focus();
+            }
+
+                check_province();
             });
     }
 </script>
