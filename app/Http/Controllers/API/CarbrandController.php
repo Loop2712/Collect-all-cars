@@ -96,6 +96,7 @@ class CarbrandController extends Controller
     public function check_time($registration , $county , $user_id)
     {
         $registration = str_replace(" ", "", $registration);
+        $county = str_replace(" ", "", $county);
 
         $d_5 = strtotime("-5 minute");
         $date_5 = date("Y-m-d H:i:s", $d_5);
