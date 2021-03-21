@@ -33,6 +33,10 @@ Route::get('/cars', function () {
     return view('auth/login2');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::get('/select_get', function () {
     return view('register_car/select_get');
 });
