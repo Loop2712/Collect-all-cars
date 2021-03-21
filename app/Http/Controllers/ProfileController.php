@@ -189,12 +189,12 @@ class ProfileController extends Controller
     public function edit_profile(Request $request)
     {
         $id = Auth::id();
-        
+
         if(Auth::check()){
-            return redirect('profile/$id/edit');
+            return redirect('profile/'.$id.'/edit');
             // echo Auth::User()->name;
         }else{
-            return redirect('login/line?redirectTo=profile/$id/edit');
+            return redirect('login/line?redirectTo=profile/'.$id.'/edit');
         }
     }
 }
