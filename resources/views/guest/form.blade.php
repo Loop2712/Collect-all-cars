@@ -286,6 +286,8 @@
             .then(response => response.json())
             .then(result => {
                 console.log(result.length);
+                console.log(result);
+
                 //UPDATE SELECT OPTION
 
                 if (result.length == 0 ) {
