@@ -31,7 +31,7 @@ class CarController extends Controller
             // ->whereDate('created_at' ,">", $date_5)
             ->get();
             foreach ($report as $key ) {
-                echo $key->created_at;
+                echo $key->created_at."<br>";
             }
         echo $date_5."<br>";
         echo "<pre>";
