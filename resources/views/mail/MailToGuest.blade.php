@@ -1,6 +1,4 @@
-@extends('layouts.main')
 
-@section('content')
 <div class="container" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);border-radius: 10px;">
     <div class="row">
         <div class="col-12" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #07375D;border-width: 5px;">
@@ -37,4 +35,3 @@
         </div>
     </div>
 </div>
-@endsection
