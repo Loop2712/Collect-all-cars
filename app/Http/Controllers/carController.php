@@ -20,9 +20,9 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $d_5 = strtotime("-5 minute");
-        $date_5 = date("Y-m-d H:i:s", $d_5);
-        echo $date_5;
+        $d_10 = strtotime("-10 minute");
+        $date_10 = date("Y-m-d H:i:s", $d_10);
+        echo $date_10;
         exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');

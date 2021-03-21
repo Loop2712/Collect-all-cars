@@ -194,15 +194,15 @@
         fetch("{{ url('/') }}/api/check_registration/"+registration.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 //UPDATE SELECT OPTION
             for(let item of result){
                 var registration_car = item.registration_number;
-                console.log(registration_car);
+                // console.log(registration_car);
             }
 
             if (registration_car == null ) {
-                console.log("null");
+                // console.log("null");
                 document.querySelector('#submit_form').classList.add('d-none');
                 // alert("รถหมายเลขทะเบียนนี้ไม่มีในระบบ");
                 document.getElementById("btn_not_system").click();
@@ -210,7 +210,7 @@
                     registration_reset.value = "";
                 document.querySelector('#registration').focus();
             }else{ 
-                console.log("Yess");
+                // console.log("Yess");
                 document.querySelector('#submit_form').classList.remove('d-none');
                 document.querySelector('#county').focus();
             }
@@ -226,7 +226,7 @@
         fetch("{{ url('/') }}/api/check_registration/"+registration.value+"/province")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 //UPDATE SELECT OPTION
                 let county = document.querySelector("#county");
                     county.innerHTML = "";
@@ -241,37 +241,33 @@
     }
 
     function check_time(){
-        console.log("555555555");county
         let registration = document.querySelector("#registration");
         let county = document.querySelector("#county");
         let user_id = document.querySelector("#user_id");
+        console.log(registration.value);
+        console.log(county.value);
+        console.log(user_id.value);
         //PARAMETERS
         fetch("{{ url('/') }}/api/check_time/" + registration.value + "/" + county.value + "/" + user_id.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                console.log(result.length);
                 //UPDATE SELECT OPTION
 
-                for(let item of result){
-                var report = item.registration;
-                console.log(report);
-            }
+                if (result.length == 0 ) {
+                    // console.log("null");
+                    document.querySelector('#submit_form').classList.remove('d-none');
+                }else{ 
+                    alert("ซ้ำ");
+                    // document.getElementById("btn_not_system").click();
+                    document.querySelector('#submit_form').classList.add('d-none');
+                    let registration_reset = document.querySelector("#registration");
+                        registration_reset.value = "";
+                    let county_reset = document.querySelector("#county");
+                        county_reset.value = "";
+                }
 
-            if (report == null ) {
-                console.log("null");
-                document.querySelector('#submit_form').classList.add('d-none');
-                alert("ซ้ำ");
-                // document.getElementById("btn_not_system").click();
-                let registration_reset = document.querySelector("#registration");
-                    registration_reset.value = "";
-                document.querySelector('#registration').focus();
-            }else{ 
-                console.log("Yess");
-                document.querySelector('#submit_form').classList.remove('d-none');
-                document.querySelector('#county').focus();
-            }
-
-                check_province();
+            
             });
     }
 </script>

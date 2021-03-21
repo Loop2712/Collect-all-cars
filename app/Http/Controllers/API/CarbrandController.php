@@ -96,22 +96,19 @@ class CarbrandController extends Controller
     public function check_time($registration , $county , $user_id)
     {
         $registration = str_replace(" ", "", $registration);
-        $d_5 = strtotime("-5 minute");
-        $date_5 = date("Y-m-d H:i:s", $d_5);
+
+        $d_10 = strtotime("-10 minute");
+        $date_10 = date("Y-m-d H:i:s", $d_10);
 
         $report = DB::table('guests')
             ->where('user_id', $user_id )
             ->where('registration', $registration )
             ->where('county', $county )
-            ->whereDate('created_at', ">" , $date_5)
+            ->whereDate('created_at', ">" , $date_10)
             ->get();
 
-            if (!empty($report)) {
-                return $report;
-            }else{
-                $report = null ;
-                return $report;
-            }
+
+            return $report;
     
     }
 
