@@ -283,7 +283,7 @@
         console.log(user_id.value);
         //PARAMETERS
         fetch("{{ url('/') }}/api/check_time/" + registration.value + "/" + county.value + "/" + user_id.value)
-            .then(response => response())
+            .then(response => response.json())
             .then(result => {
                 console.log(result);
 
