@@ -278,6 +278,9 @@
         let registration = document.querySelector("#registration");
         let county = document.querySelector("#county");
         let user_id = document.querySelector("#user_id");
+        console.log(registration.value);
+        console.log(county.value);
+        console.log(user_id.value);
         //PARAMETERS
         fetch("{{ url('/') }}/api/check_time/" + registration.value + "/" + county.value + "/" + user_id.value)
             .then(response => response.json())
