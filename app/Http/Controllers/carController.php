@@ -47,7 +47,10 @@ class CarController extends Controller
                     ];
                 }
             }
-        echo "time >> ".$time."<br>";
+        echo "<pre>";
+        print_r($data);
+        echo "<pre>";
+        
         echo "date_5 >> ".$date_5."<br>";
         echo "<pre>";
         print_r($report);
