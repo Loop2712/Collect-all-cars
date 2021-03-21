@@ -289,7 +289,7 @@
 
                 if (result == "No" ) {
                     document.querySelector('#submit_form').classList.remove('d-none');
-                }else{ 
+                }else if (result == "Yes" ){ 
                     // alert("ซ้ำ");
                     document.getElementById("btn_repeatedly").click();
                     document.querySelector('#submit_form').classList.add('d-none');
