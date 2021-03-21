@@ -155,6 +155,7 @@
     <input class="d-none btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
 </div>
 
+<!-- ไม่มีในระบบ -->
 <!-- Button trigger modal -->
 <button id="btn_not_system" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#not_system">
   Launch static backdrop modal
@@ -173,7 +174,40 @@
       <div class="modal-body">
         <center>
             <img width="50%" src="{{ asset('/img/icon/cry.png') }}">
-            <h5>รถหมายเลขทะเบียนนี้ไม่มีในระบบ</h5>
+            <br><br>
+            <h5 class="text-danger">รถหมายเลขทะเบียนนี้ไม่มีในระบบค่ะ</h5>
+        </center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ซ้ำ -->
+<!-- Button trigger modal -->
+<button id="btn_repeatedly" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#repeatedly">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="repeatedly" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+            <img width="50%" src="{{ asset('/img/icon/nono.png') }}">
+            <br><br>
+            <h5 class="text-danger">ท่านแจ้งเตือนไปยังเจ้าของรถคันนี้แล้ว</h5>
+            <p style="line-height: 2;">โปรดรออย่างน้อย 5 นาทีค่ะ</p>
         </center>
       </div>
       <div class="modal-footer">
@@ -244,22 +278,19 @@
         let registration = document.querySelector("#registration");
         let county = document.querySelector("#county");
         let user_id = document.querySelector("#user_id");
-        console.log(registration.value);
-        console.log(county.value);
-        console.log(user_id.value);
         //PARAMETERS
         fetch("{{ url('/') }}/api/check_time/" + registration.value + "/" + county.value + "/" + user_id.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result.length);
+                // console.log(result.length);
                 //UPDATE SELECT OPTION
 
                 if (result.length == 0 ) {
                     // console.log("null");
                     document.querySelector('#submit_form').classList.remove('d-none');
                 }else{ 
-                    alert("ซ้ำ");
-                    // document.getElementById("btn_not_system").click();
+                    // alert("ซ้ำ");
+                    document.getElementById("btn_repeatedly").click();
                     document.querySelector('#submit_form').classList.add('d-none');
                     let registration_reset = document.querySelector("#registration");
                         registration_reset.value = "";

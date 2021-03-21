@@ -97,16 +97,15 @@ class CarbrandController extends Controller
     {
         $registration = str_replace(" ", "", $registration);
 
-        $d_10 = strtotime("-10 minute");
-        $date_10 = date("Y-m-d H:i:s", $d_10);
+        $d_5 = strtotime("-5 minute");
+        $date_5 = date("Y-m-d H:i:s", $d_5);
 
         $report = DB::table('guests')
             ->where('user_id', $user_id )
             ->where('registration', $registration )
             ->where('county', $county )
-            ->whereDate('created_at', ">" , $date_10)
+            ->whereTime('created_at', ">" , $date_5)
             ->get();
-
 
             return $report;
     
