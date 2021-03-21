@@ -202,8 +202,8 @@ class Register_carController extends Controller
 
         Register_car::create($requestData);
 
-        // return view('register_car.select_get')->with('flash_message', 'Register_car added!');
-        return redirect('/select_get?openExternalBrowser=1')->with('flash_message', 'Register_car added!');
+        return view('register_car.select_get?openExternalBrowser=1')->with('flash_message', 'Register_car added!');
+        // return redirect('/select_get?openExternalBrowser=1');
     }
 
     /**
