@@ -282,7 +282,7 @@
         fetch("{{ url('/') }}/api/check_time/" + registration.value + "/" + county.value + "/" + user_id.value)
             .then(response => response.json())
             .then(result => {
-                // console.log(result.length);
+                console.log(result.length);
                 //UPDATE SELECT OPTION
 
                 if (result.length == 0 ) {
