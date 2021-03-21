@@ -32,6 +32,7 @@ class CarController extends Controller
                 echo $key->created_at."<br>";
                 if ($key->created_at > $date_5) {
                     $time = "Yes" ;
+                    break ;
                 }else{
                     $time = "No" ;
                 }
