@@ -185,4 +185,18 @@ class ProfileController extends Controller
         
         return $name;
     }
+
+    public function edit_profile(Request $request)
+    {
+        echo "<pre>";
+        print_r($request);
+        echo "<pre>";
+        exit();
+        // if(Auth::check()){
+        //     return redirect('profile/xxxxx/edit');
+        //     // echo Auth::User()->name;
+        // }else{
+        //     return redirect('login/line?redirectTo=profile/xxxxx/edit');
+        // }
+    }
 }

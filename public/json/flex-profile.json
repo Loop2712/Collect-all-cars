@@ -127,8 +127,9 @@
                     "action": {
                       "type": "uri",
                       "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://market.viicheck.com/login/line?redirectTo=profile/xxxxx/edit"
-                    }
+                      "uri": "https://market.viicheck.com/edit_profile"
+                    },
+                    "wrap": true
                   }
                 ],
                 "spacing": "lg",

@@ -104,6 +104,8 @@ Route::get('/car/{id}','CarController@show');
 Route::get('/motercycle', 'MotercleyviewController@index');
 Route::get('/motercycle/{id}', 'MotercleyviewController@show');
 
+Route::get('/edit_profile', 'ProfileController@edit_profile');
+
 
 //Route::resource('car','CarController');
 

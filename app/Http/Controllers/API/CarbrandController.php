@@ -97,7 +97,7 @@ class CarbrandController extends Controller
     {
         $registration = str_replace(" ", "", $registration);
 
-        $d_5 = strtotime("-0 minute");
+        $d_5 = strtotime("-5 minute");
         $date_5 = date("Y-m-d H:i:s", $d_5);
 
         $report = DB::table('guests')
