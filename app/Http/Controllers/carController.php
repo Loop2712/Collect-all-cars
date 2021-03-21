@@ -28,7 +28,7 @@ class CarController extends Controller
             ->where('user_id', "1" )
             ->where('registration', "ยษก294" )
             ->where('county', "กรุงเทพมหานคร" )
-            ->whereTime('created_at', ">" , $date_5)
+            ->whereDate('created_at', ">" , $date_5)
             ->get();
         echo "<pre>";
         print_r($report);
