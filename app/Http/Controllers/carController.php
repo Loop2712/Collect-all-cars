@@ -20,29 +20,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $d_5 = strtotime("-5 minute");
-        $date_5 = date("Y-m-d H:i:s", $d_5);
-
-        $report = DB::table('guests')
-            ->where('user_id', "1" )
-            ->where('registration', "ยษก294" )
-            ->where('county', "กรุงเทพมหานคร" )
-            ->get();
-            foreach ($report as $key ) {
-                echo $key->created_at."<br>";
-                if ($key->created_at > $date_5) {
-                    $time = "Yes" ;
-                    break ;
-                }else{
-                    $time = "No" ;
-                }
-            }
-        echo "time >> ".$time."<br>";
-        echo "date_5 >> ".$date_5."<br>";
-        echo "<pre>";
-        print_r($report);
-        echo "<pre>";
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
