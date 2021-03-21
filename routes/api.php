@@ -43,5 +43,3 @@ Route::get('/check_email/{put_email}','API\PartnersController@check_email');
 
 Route::get('/explode_name/{name_user}', 'ProfileController@explode_name');
 
-Route::get('/select_get','Register_carController@select_get');
-
