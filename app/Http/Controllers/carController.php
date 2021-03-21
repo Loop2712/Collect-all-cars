@@ -22,18 +22,17 @@ class CarController extends Controller
     {
         $d_5 = strtotime("-5 minute");
         $date_5 = date("Y-m-d H:i:s", $d_5);
-        $date = date("Y-m-d");
 
         $report = DB::table('guests')
             ->where('user_id', "1" )
             ->where('registration', "ยษก294" )
             ->where('county', "กรุงเทพมหานคร" )
-            // ->whereDate('created_at' ,">", $date_5)
+            ->whereDate('created_at' , '>' , $date_5)
             ->get();
             foreach ($report as $key ) {
                 echo $key->created_at."<br>";
             }
-        echo $date_5."<br>";
+        echo "date_5".$date_5."<br>";
         echo "<pre>";
         print_r($report);
         echo "<pre>";
