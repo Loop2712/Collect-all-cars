@@ -108,14 +108,24 @@ class CarbrandController extends Controller
             foreach ($report as $key ) {
                 echo $key->created_at."<br>";
                 if ($key->created_at > $date_5) {
-                    $time = "Yes" ;
+                    $data = [
+                        "time" => "Yes",
+                        "user_id" => "1",
+                        "registration" => "registration",
+                        "county" => "county",
+                    ];
                     break ;
                 }else{
-                    $time = "No" ;
+                    $data = [
+                        "time" => "No",
+                        "user_id" => "1",
+                        "registration" => "registration",
+                        "county" => "county",
+                    ];
                 }
             }
 
-            return $time;
+            return $data;
     
     }
 
