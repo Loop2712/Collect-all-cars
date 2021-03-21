@@ -30,6 +30,7 @@ class CarController extends Controller
             ->where('county', "กรุงเทพมหานคร" )
             ->whereDate('created_at' ,">", $date_5)
             ->get();
+        echo $date_5."<br>";
         echo "<pre>";
         print_r($report);
         echo "<pre>";
