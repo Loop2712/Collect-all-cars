@@ -203,7 +203,7 @@ class Register_carController extends Controller
         Register_car::create($requestData);
 
         // return view('register_car.select_get')->with('flash_message', 'Register_car added!');
-        return redirect('/select_get?openExternalBrowser=1');
+        return redirect('/select_get');
     }
 
     /**
@@ -320,6 +320,11 @@ class Register_carController extends Controller
         }else{
             return redirect('/login/line?redirectTo=register_car/create');
         }
+    }
+
+    public function select_get()
+    {
+        return redirect('/select_get?openExternalBrowser=1');
     }
 
 }
