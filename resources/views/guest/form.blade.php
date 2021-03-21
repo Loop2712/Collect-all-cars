@@ -155,6 +155,35 @@
     <input class="d-none btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
 </div>
 
+<!-- Button trigger modal -->
+<button id="btn_not_system" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#not_system">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="not_system" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+            <img width="50%" src="{{ asset('/img/icon/cry.png') }}">
+            <h5>รถหมายเลขทะเบียนนี้ไม่มีในระบบ</h5>
+        </center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         console.log("START"); 
@@ -175,7 +204,8 @@
             if (registration_car == null ) {
                 console.log("null");
                 document.querySelector('#submit_form').classList.add('d-none');
-                alert("รถหมายเลขทะเบียนนี้ไม่มีในระบบ");
+                // alert("รถหมายเลขทะเบียนนี้ไม่มีในระบบ");
+                document.getElementById("btn_not_system").click();
                 let registration_reset = document.querySelector("#registration");
                     registration_reset.value = "";
                 document.querySelector('#registration').focus();
