@@ -21,14 +21,14 @@ class CarController extends Controller
     public function index(Request $request)
     {
         $d_5 = strtotime("-5 minute");
-        $date_5 = date("Y-m-d H:i:s", $d_5);
+        $date_5 = date("Y-m-d ", $d_5);
         $date = date("Y-m-d");
 
         $report = DB::table('guests')
             ->where('user_id', "1" )
             ->where('registration', "ยษก294" )
             ->where('county', "กรุงเทพมหานคร" )
-            ->whereDate('created_at' , $date)
+            ->whereDate('created_at' , $date_5)
             ->get();
         echo "<pre>";
         print_r($report);
