@@ -106,8 +106,8 @@ class CarbrandController extends Controller
             ->where('user_id', $user_id )
             ->where('registration', $registration )
             ->where('county', $county )
-            ->whereDate('created_at', $date)
-            ->whereTime('created_at', ">" , $date_5)
+            // ->whereDate('created_at', $date)
+            // ->whereTime('created_at', ">" , $date_5)
             ->get();
 
             return $report;
