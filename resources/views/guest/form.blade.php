@@ -289,7 +289,7 @@
 
                 //UPDATE SELECT OPTION
 
-                if (result == 0 ) {
+                if (result == "Yes" ) {
                     // console.log("null");
                     document.querySelector('#submit_form').classList.remove('d-none');
                 }else{ 
