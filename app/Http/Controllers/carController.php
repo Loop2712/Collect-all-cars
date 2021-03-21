@@ -32,7 +32,7 @@ class CarController extends Controller
             foreach ($report as $key ) {
                 echo $key->created_at."<br>";
             }
-        echo "date_5".$date_5."<br>";
+        echo "date_5 >> ".$date_5."<br>";
         echo "<pre>";
         print_r($report);
         echo "<pre>";
