@@ -79,4 +79,14 @@
         </div>
     </center>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        select_get();   
+    });
+    function select_get(){
+        fetch("{{ url('/') }}/api/select_get");  
+    }
+</script>
 @endsection
