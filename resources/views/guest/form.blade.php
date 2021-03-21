@@ -283,24 +283,21 @@
         console.log(user_id.value);
         //PARAMETERS
         fetch("{{ url('/') }}/api/check_time/" + registration.value + "/" + county.value + "/" + user_id.value)
-            
+            .then(response => response.text())
             .then(result => {
                 console.log(result);
 
-                //UPDATE SELECT OPTION
-
-                // if (result == "Yes" ) {
-                //     // console.log("null");
-                //     document.querySelector('#submit_form').classList.remove('d-none');
-                // }else{ 
-                //     // alert("ซ้ำ");
-                //     document.getElementById("btn_repeatedly").click();
-                //     document.querySelector('#submit_form').classList.add('d-none');
-                //     let registration_reset = document.querySelector("#registration");
-                //         registration_reset.value = "";
-                //     let county_reset = document.querySelector("#county");
-                //         county_reset.value = "";
-                // }
+                if (result == "No" ) {
+                    document.querySelector('#submit_form').classList.remove('d-none');
+                }else{ 
+                    // alert("ซ้ำ");
+                    document.getElementById("btn_repeatedly").click();
+                    document.querySelector('#submit_form').classList.add('d-none');
+                    let registration_reset = document.querySelector("#registration");
+                        registration_reset.value = "";
+                    let county_reset = document.querySelector("#county");
+                        county_reset.value = "";
+                }
 
             
             });

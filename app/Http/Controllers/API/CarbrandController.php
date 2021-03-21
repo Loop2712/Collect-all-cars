@@ -105,27 +105,16 @@ class CarbrandController extends Controller
             ->where('registration', $registration )
             ->where('county', $county )
             ->get();
-            foreach ($report as $key ) {
-                echo $key->created_at."<br>";
+             foreach ($report as $key ) {
                 if ($key->created_at > $date_5) {
-                    $data = [
-                        "time" => "Yes",
-                        "user_id" => $user_id,
-                        "registration" => $registration,
-                        "county" => $county,
-                    ];
+                    $time = "Yes" ;
                     break ;
                 }else{
-                    $data = [
-                        "time" => "No",
-                        "user_id" => $user_id,
-                        "registration" => $registration,
-                        "county" => $county,
-                    ];
+                    $time = "No" ;
                 }
             }
 
-            return $data;
+            return $time;
     
     }
 

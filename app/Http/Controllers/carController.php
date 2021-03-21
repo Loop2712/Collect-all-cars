@@ -31,26 +31,13 @@ class CarController extends Controller
             foreach ($report as $key ) {
                 echo $key->created_at."<br>";
                 if ($key->created_at > $date_5) {
-                    $data = [
-                        "time" => "Yes",
-                        "user_id" => "1",
-                        "registration" => "registration",
-                        "county" => "county",
-                    ];
+                    $time = "Yes" ;
                     break ;
                 }else{
-                    $data = [
-                        "time" => "No",
-                        "user_id" => "1",
-                        "registration" => "registration",
-                        "county" => "county",
-                    ];
+                    $time = "No" ;
                 }
             }
-        echo "<pre>";
-        print_r($data);
-        echo "<pre>";
-        
+        echo "time >> ".$time."<br>";
         echo "date_5 >> ".$date_5."<br>";
         echo "<pre>";
         print_r($report);
