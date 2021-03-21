@@ -101,26 +101,26 @@ class CarbrandController extends Controller
         $date_5 = date("Y-m-d H:i:s", $d_5);
 
         $report = DB::table('guests')
-            ->where('user_id', "1" )
-            ->where('registration', "ยษก294" )
-            ->where('county', "กรุงเทพมหานคร" )
+            ->where('user_id', $user_id )
+            ->where('registration', $registration )
+            ->where('county', $county )
             ->get();
             foreach ($report as $key ) {
                 echo $key->created_at."<br>";
                 if ($key->created_at > $date_5) {
                     $data = [
                         "time" => "Yes",
-                        "user_id" => "1",
-                        "registration" => "registration",
-                        "county" => "county",
+                        "user_id" => $user_id,
+                        "registration" => $registration,
+                        "county" => $county,
                     ];
                     break ;
                 }else{
                     $data = [
                         "time" => "No",
-                        "user_id" => "1",
-                        "registration" => "registration",
-                        "county" => "county",
+                        "user_id" => $user_id,
+                        "registration" => $registration,
+                        "county" => $county,
                     ];
                 }
             }
