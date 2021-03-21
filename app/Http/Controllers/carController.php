@@ -27,11 +27,16 @@ class CarController extends Controller
             ->where('user_id', "1" )
             ->where('registration', "ยษก294" )
             ->where('county', "กรุงเทพมหานคร" )
-            ->where('created_at' , '>' , $date_5)
             ->get();
             foreach ($report as $key ) {
                 echo $key->created_at."<br>";
+                if ($key->created_at > $date_5) {
+                    $time = "Yes" ;
+                }else{
+                    $time = "No" ;
+                }
             }
+        echo "time >> ".$time."<br>";
         echo "date_5 >> ".$date_5."<br>";
         echo "<pre>";
         print_r($report);
