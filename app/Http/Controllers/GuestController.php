@@ -61,7 +61,9 @@ class GuestController extends Controller
             ->groupBy('province')
             ->get();
 
-        return view('guest.create', compact('location_array'));
+        $date = date("Y-m-d");
+
+        return view('guest.create', compact('location_array' , 'date'));
     }
 
     /**
