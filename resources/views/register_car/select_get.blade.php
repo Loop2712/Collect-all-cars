@@ -78,17 +78,5 @@
             </div>
         </div>
     </center>
-    <a class="d-none" id="btn_open" href="https://market.viicheck.com/select_get?openExternalBrowser=1"><button class="d-none"></button></a>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START");
-        open();  
-    });
-    function open(){
-        document.getElementById("btn_open").click();
-    }
-</script>
-
 @endsection
