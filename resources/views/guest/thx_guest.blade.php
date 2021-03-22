@@ -18,7 +18,9 @@
 				</div>
 				<div class="col-6">
 					<center>
-						<img src="{{ asset('/img/more/completed.png') }}" width="100%" border="0" onclick="document.getElementById('btn_completed').click();">
+            <a href="https://lin.ee/xnFKMfc">
+  						<img src="{{ asset('/img/more/completed.png') }}" width="100%" border="0" >
+            </a>
 					</center>
 				</div>
 			</div>
