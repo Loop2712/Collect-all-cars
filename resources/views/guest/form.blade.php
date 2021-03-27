@@ -106,25 +106,19 @@
             <span style="font-size: 22px;" class="control-label">{{ 'ท่านต้องการที่จะแสดงเบอร์ของท่านหรือไม่'}}</span>
             <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
             <br><br>
-            <input type="radio" name="show_phone" onclick="document.querySelector('#name').classList.remove('d-none'),
+            <!-- <input type="radio" name="show_phone" onclick="document.querySelector('#name').classList.remove('d-none'),
             document.querySelector('#name_input').classList.remove('d-none'),
             document.querySelector('#phone').classList.remove('d-none'),
             document.querySelector('#phone_input').classList.remove('d-none')">
-            &nbsp;&nbsp;&nbsp;แสดง / Show&nbsp;&nbsp;&nbsp;
-            <br>
-            <input type="radio" name="show_phone" checked onclick="document.querySelector('#name').classList.add('d-none'),
-            document.querySelector('#name_input').classList.add('d-none'),
-            document.querySelector('#phone').classList.add('d-none'),
-            document.querySelector('#phone_input').classList.add('d-none'),
-            document.querySelector('#phone_input').value(null)">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
-            <br><br>
+            &nbsp;&nbsp;&nbsp;แสดง / Show&nbsp;&nbsp;&nbsp; -->
+            <!-- <br> -->
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="phone" id="phone" class="d-none control-label">{{ 'เบอร์โทร / Phone number' }}</label>
+                    <label for="phone" id="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                        <input class="d-none form-control" name="phone" type="tel" id="phone_input" value="{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                        <input class="form-control" name="phone" type="tel" id="phone_input" value="{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -138,6 +132,21 @@
                     </div>
                 </div>
             </div>
+
+            <input type="checkbox" name="show_phone" onclick="if(this.checked){
+                document.querySelector('#name').classList.add('d-none'),
+                document.querySelector('#name_input').classList.add('d-none'),
+                document.querySelector('#phone').classList.add('d-none'),
+                document.querySelector('#phone_input').classList.add('d-none'),
+                document.querySelector('#phone_input').value(null);
+            }else{
+                document.querySelector('#name').classList.remove('d-none'),
+                document.querySelector('#name_input').classList.remove('d-none'),
+                document.querySelector('#phone').classList.remove('d-none'),
+                document.querySelector('#phone_input').classList.remove('d-none'),
+                document.querySelector('#phone_input').value('{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}');
+            }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+            <br><br>
 
             <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
                 <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
