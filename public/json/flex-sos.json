@@ -162,7 +162,7 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "จส.100",
+                    "text": "จส.1137",
                     "align": "center",
                     "weight": "bold"
                   }
@@ -173,8 +173,8 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "📞 1808",
-                  "uri": "tel:1808"
+                  "label": "📞 1137",
+                  "uri": "tel:1137"
                 },
                 "style": "primary",
                 "height": "sm",
