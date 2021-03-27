@@ -105,7 +105,7 @@
         <div class="col-12">
             <span style="font-size: 22px;" class="control-label">{{ 'ท่านต้องการที่จะแสดงเบอร์ของท่านหรือไม่'}}</span>
             <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
-            <br><br>
+            <br>
             <!-- <input type="radio" name="show_phone" onclick="document.querySelector('#name').classList.remove('d-none'),
             document.querySelector('#name_input').classList.remove('d-none'),
             document.querySelector('#phone').classList.remove('d-none'),
@@ -146,7 +146,7 @@
                 document.querySelector('#phone_input').classList.remove('d-none'),
                 document.querySelector('#phone_input').value('{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}');
             }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
-            <br><br>
+            <br>
 
             <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
                 <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
