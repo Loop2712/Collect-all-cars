@@ -115,7 +115,8 @@
             <input type="radio" name="show_phone" checked onclick="document.querySelector('#name').classList.add('d-none'),
             document.querySelector('#name_input').classList.add('d-none'),
             document.querySelector('#phone').classList.add('d-none'),
-            document.querySelector('#phone_input').classList.add('d-none')">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+            document.querySelector('#phone_input').classList.add('d-none'),
+            document.querySelector('#phone_input').value(null)">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
             <br><br>
             <div class="row">
                 <div class="col-12 col-md-2">
