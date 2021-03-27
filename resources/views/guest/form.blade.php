@@ -138,7 +138,7 @@
                 document.querySelector('#name_input').classList.add('d-none'),
                 document.querySelector('#phone').classList.add('d-none'),
                 document.querySelector('#phone_input').classList.add('d-none'),
-                document.querySelector('#phone_input').value(null);
+                document.querySelector('#phone_input').value('');
             }else{
                 document.querySelector('#name').classList.remove('d-none'),
                 document.querySelector('#name_input').classList.remove('d-none'),
