@@ -346,7 +346,11 @@ class GuestController extends Controller
 
     public function modal()
     {
-        return view('guest.modal');
+        if(Auth::check()){
+            return redirect('guest/create');
+        }else{
+            return view('guest.modal');
+        }
     }
 
     public function index_detail()
