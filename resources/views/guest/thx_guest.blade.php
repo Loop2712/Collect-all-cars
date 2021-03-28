@@ -11,7 +11,7 @@
 			<div class="row">
 				<div class="col-6">
 					<center>
-						<a id="btn_add_line" href="https://lin.ee/xnFKMfc" onclick="home();">
+						<a id="btn_add_line" href="https://lin.ee/xnFKMfc">
 							<img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน" width="100%" border="0">
 						</a>
 					</center>
@@ -65,9 +65,5 @@
         console.log("START"); 
         document.getElementById("btn_add_line").click();
     });
-    function home(){
-        fetch("{{ url('/home') }}")
-            
-    }
 </script>
 @endsection
