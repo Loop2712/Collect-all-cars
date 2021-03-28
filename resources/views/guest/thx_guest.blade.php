@@ -66,7 +66,7 @@
         document.getElementById("btn_add_line").click();
     });
     function home(){
-        fetch("{{ url('/') }}")
+        fetch("{{ url('/home') }}")
             
     }
 </script>
