@@ -318,4 +318,25 @@
             
             });
     }
+
+    function check_phone(){
+        var phone = document.querySelector('#phone');
+            phone.classList.add('d-none');
+            phone.removeAttribute("required");
+
+        var want_phone = document.querySelector('#want_phone');
+            want_phone.value = "No";
+
+    }
+
+    function not_check_phone(){
+        var phone = document.querySelector('#phone');
+            phone.classList.remove('d-none');
+
+        var att = document.createAttribute('required'); 
+            phone.setAttributeNode(att);
+
+        var want_phone = document.querySelector('#want_phone');
+            want_phone.value = "Yes";
+    }
 </script>
