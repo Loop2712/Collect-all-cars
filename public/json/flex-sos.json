@@ -16,7 +16,7 @@
             "type": "text",
             "text": "SOS",
             "margin": "xxl",
-            "size": "3xl",
+            "size": "4xl",
             "style": "normal",
             "weight": "bold",
             "color": "#ff0101",
