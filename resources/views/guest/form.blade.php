@@ -313,7 +313,7 @@
 
     function show_phone(){
         console.log("show_phone"); 
-        
+
         var name = document.querySelector('#name');
             name.classList.remove('d-none');
 
@@ -344,8 +344,9 @@
             phone.classList.add('d-none');
 
         var phone_input = document.querySelector('#phone_input');
+            phone_input.value = "";
             phone_input.classList.add('d-none');
-            phone_input.value = null;
+            
 
     }
 </script>
