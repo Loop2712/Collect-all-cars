@@ -134,9 +134,9 @@
             </div>
 
             <input type="checkbox" name="show_phone" onchange="if(this.checked){
-                not_show_phone()
+                not_show_phone(); 
             }else{
-                show_phone()
+                show_phone();
             }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
             <br>
 
