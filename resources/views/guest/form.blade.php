@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone" type="tel" id="phone_input" value="{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                        <input class="form-control" name="phone" type="tel" id="phone_input" value="{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}" required>
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -369,6 +369,7 @@
 
         var phone_input = document.querySelector('#phone_input');
             phone_input.removeAttribute('value');
+            phone_input.removeAttribute('required');
             phone_input.classList.add('d-none');
             
 
