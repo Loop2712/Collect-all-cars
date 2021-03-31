@@ -133,9 +133,9 @@
                 </div>
             </div>
 
-            <input type="radio" name="show_phone" id="phonephone" onclick="show_phone();">
+            <input type="radio" name="phonephone"  onclick="show_phone();">
             &nbsp;&nbsp;&nbsp;แสดง / Show
-            <input type="radio" name="not_show_phone" id="phonephone" onclick="not_show_phone();">
+            <input type="radio" name="phonephone"  onclick="not_show_phone();">
             &nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
 
             <br>
