@@ -344,7 +344,7 @@
             phone.classList.add('d-none');
 
         var phone_input = document.querySelector('#phone_input');
-            phone_input.removeAttributeNode('value');
+            phone_input.removeAttribute('value');
             phone_input.classList.add('d-none');
             
 
