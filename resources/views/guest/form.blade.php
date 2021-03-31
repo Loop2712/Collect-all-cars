@@ -312,6 +312,8 @@
     }
 
     function show_phone(){
+        console.log("show_phone"); 
+        
         var name = document.querySelector('#name');
             name.classList.remove('d-none');
 
@@ -330,6 +332,8 @@
     }
 
     function not_show_phone(){
+        console.log("not_show_phone"); 
+
         var name = document.querySelector('#name');
             name.classList.add('d-none');
 
