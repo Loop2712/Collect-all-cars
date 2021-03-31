@@ -133,10 +133,14 @@
                 </div>
             </div>
 
-            <input type="radio" name="phonephone" checked class="" id="show_phone_check" onclick="show_phone();">
-            &nbsp;&nbsp;&nbsp;แสดง / Show
+            <div class="" id="phone_check">
+                <input type="radio" name="phonephone" checked class="" id="show_phone_check" onclick="show_phone();">
+                &nbsp;&nbsp;&nbsp;แสดง / Show
+            </div>
+            <div class="" id="phone_not_check">
             <input type="radio" name="phonephone" class="d-none" id="not_show_phone_check" onclick="not_show_phone();">
-            &nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+                &nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+            </div>
 
             <br>
 
@@ -320,6 +324,12 @@
         var show_phone_check = document.querySelector('#show_phone_check');
             show_phone_check.classList.add('d-none');
 
+        var phone_check = document.querySelector('#phone_check');
+            phone_check.classList.add('d-none');
+
+        var phone_not_check = document.querySelector('#phone_not_check');
+            phone_not_check.classList.remove('d-none');
+
         var name = document.querySelector('#name');
             name.classList.remove('d-none');
 
@@ -345,6 +355,12 @@
 
         var show_phone_check = document.querySelector('#show_phone_check');
             show_phone_check.classList.remove('d-none');
+
+        var phone_check = document.querySelector('#phone_check');
+            phone_check.classList.remove('d-none');
+
+        var phone_not_check = document.querySelector('#phone_not_check');
+            phone_not_check.classList.add('d-none');
 
         var name = document.querySelector('#name');
             name.classList.add('d-none');
