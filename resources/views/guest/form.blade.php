@@ -133,11 +133,11 @@
                 </div>
             </div>
 
-            <input type="checkbox" name="show_phone" onchange="if(this.checked){
-                not_show_phone(); 
-            }else{
-                show_phone();
-            }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+            <input type="radio" name="show_phone" id="phonephone" onclick="show_phone();">
+            &nbsp;&nbsp;&nbsp;แสดง / Show
+            <input type="radio" name="not_show_phone" id="phonephone" onclick="not_show_phone();">
+            &nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+
             <br>
 
             <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
