@@ -11,9 +11,9 @@
       {
         "type": "image",
         "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
-        "size": "full",
+        "size": "xxl",
         "aspectRatio": "16:9",
-        "aspectMode": "fit"
+        "aspectMode": "cover"
       },
       {
         "type": "text",

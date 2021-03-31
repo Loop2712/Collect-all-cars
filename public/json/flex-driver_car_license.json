@@ -1,0 +1,108 @@
+{
+    "type": "flex",
+    "altText": "ข้อมูลของคุณ",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/car.png",
+                "size": "xl",
+                "margin": "md",
+                "offsetTop": "sm"
+              },
+              {
+                "type": "text",
+                "text": "รถยนต์",
+                "margin": "lg"
+              }
+            ]
+          },
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/storage/ccaarr",
+            "align": "center",
+            "gravity": "center",
+            "size": "full",
+            "aspectMode": "fit",
+            "aspectRatio": "16:9",
+            "margin": "lg",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/storage/ccaarr"
+            }
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "xl"
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://market.viicheck.com/img/icon/motorcycle.png",
+                    "size": "xxl",
+                    "margin": "md",
+                    "offsetTop": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "รถจักรยานยนต์",
+                    "margin": "lg"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "เพิ่มใบอนุญาตขับรถ",
+              "uri": "https://market.viicheck.com/edit_profile"
+            },
+            "style": "primary",
+            "margin": "lg",
+            "height": "sm",
+            "color": "#ff0101",
+            "gravity": "center"
+          }
+        ],
+        "margin": "md"
+      }
+    ],
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  }
+}
+
+}
