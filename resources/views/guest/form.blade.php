@@ -133,9 +133,9 @@
                 </div>
             </div>
 
-            <input type="radio" name="phonephone"  onclick="show_phone();">
+            <input type="radio" name="phonephone" checked class="form-control" id="show_phone_check" onclick="show_phone();">
             &nbsp;&nbsp;&nbsp;แสดง / Show
-            <input type="radio" name="phonephone"  onclick="not_show_phone();">
+            <input type="radio" name="phonephone" class="d-none form-control" id="not_show_phone_check" onclick="not_show_phone();">
             &nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
 
             <br>
@@ -314,6 +314,12 @@
     function show_phone(){
         console.log("show_phone"); 
 
+        var not_show_phone_check = document.querySelector('#not_show_phone_check');
+            not_show_phone_check.classList.remove('d-none');
+
+        var show_phone_check = document.querySelector('#show_phone_check');
+            show_phone_check.classList.add('d-none');
+
         var name = document.querySelector('#name');
             name.classList.remove('d-none');
 
@@ -333,6 +339,12 @@
 
     function not_show_phone(){
         console.log("not_show_phone"); 
+
+        var not_show_phone_check = document.querySelector('#not_show_phone_check');
+            not_show_phone_check.classList.add('d-none');
+
+        var show_phone_check = document.querySelector('#show_phone_check');
+            show_phone_check.classList.remove('d-none');
 
         var name = document.querySelector('#name');
             name.classList.add('d-none');
