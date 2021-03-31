@@ -408,6 +408,7 @@ class LineMessagingAPI extends Model
                     }
                     if ( empty($item->driver_license) && empty($item->driver_license2) ) {
                         $template_path = storage_path('../public/json/flex-driver_not_license.json');
+                        $string_json = file_get_contents($template_path);
                     }
                 }
 
