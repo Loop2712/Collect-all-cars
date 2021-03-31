@@ -482,6 +482,9 @@ class LineMessagingAPI extends Model
 
     public function _pushguestLine($data, $event, $postback_data)
     {
+        // เวลาปัจจุบัน
+        $date_now = date("Y-m-d "); 
+
     	// UserId เจ้าของรถ
     	$provider_id = $event["source"]['userId'];
     	
@@ -518,7 +521,8 @@ class LineMessagingAPI extends Model
                                 $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                                 $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
                                 $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
-                                $string_json = str_replace("ขอบคุณ","รอสักครู่ / Wait a moment",$string_json);
+                                $string_json = str_replace("ขอบคุณ","รอสักครู่ / Please wait a moment",$string_json);
+                                $string_json = str_replace("datetime",$date_now,$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                             }
@@ -532,6 +536,7 @@ class LineMessagingAPI extends Model
                                 $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
                                 $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
                                 $string_json = str_replace("ขอบคุณ","ขอบคุณค่ะ / Thank you",$string_json);
+                                $string_json = str_replace("datetime",$date_now,$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                             }
@@ -579,6 +584,7 @@ class LineMessagingAPI extends Model
                         "registration_number" => $google_registration_number,
                         "province" => $google_province,
                         "postback_data" => $postback_data,
+                        "datetime" => $date_now,
                     ];
 
                     switch($postback_data)

@@ -11,9 +11,39 @@
       {
         "type": "image",
         "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
-        "size": "full",
+        "size": "xxl",
         "aspectRatio": "16:9",
-        "aspectMode": "fit"
+        "aspectMode": "cover"
+      },
+      {
+        "type": "text",
+        "text": "ขอบคุณ",
+        "size": "xxl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "align": "center",
+        "weight": "bold"
+      },
+      {
+        "type": "separator",
+        "margin": "xl"
+      },
+      {
+        "type": "text",
+        "text": "เวลาที่ตอบกลับ / Time",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
       },
       {
         "type": "separator",
@@ -60,24 +90,24 @@
         ]
       },
       {
-        "type": "separator",
-        "margin": "lg"
-      },
-      {
-        "type": "text",
-        "text": "แจ้งว่า",
-        "weight": "bold",
-        "size": "xl",
-        "margin": "xxl",
-        "color": "#FFFFFF"
-      },
-      {
-        "type": "text",
-        "text": "ขอบคุณ",
-        "size": "lg",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "align": "center"
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://ci6.googleusercontent.com/proxy/i-eX1cKLUkApcP424Xmzj1EhOnPIUbMrzhPSPSlP4QU3gF5eLgZ_2UGmeFnq51r5n5lyHmI_seG0-dBxkUrJ=s0-d-e1-ft#https://market.viicheck.com/img/icon/thx.png",
+            "margin": "xs",
+            "size": "xxl",
+            "align": "center",
+            "gravity": "center",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "animated": true
+          }
+        ],
+        "borderWidth": "bold",
+        "margin": "none",
+        "cornerRadius": "500px"
       }
     ],
     "backgroundColor": "#07375D",

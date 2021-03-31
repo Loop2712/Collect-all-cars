@@ -12,7 +12,7 @@
 				<hr style="border-style: solid;border-color: #FFFFFF;">
 				<h3 style="color: #FFFFFF">แจ้งว่า</h3>
 				@if($data["postback_data"] == "wait")
-					<h4 style="color: #FFFFFF;line-height: 2;">กรุณารอสักครู่ / Wait a moment</h4>
+					<h4 style="color: #FFFFFF;line-height: 2;">กรุณารอสักครู่ / Please wait a moment</h4>
 					<br>
 					<center>
 						<div>
