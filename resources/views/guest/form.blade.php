@@ -134,9 +134,9 @@
             </div>
 
             <input type="radio" name="phonephone" checked class="" id="show_phone_check" onclick="show_phone();">
-            <p>&nbsp;&nbsp;&nbsp;แสดง / Show</p>
+            <p class="" id="show_phone_check">&nbsp;&nbsp;&nbsp;แสดง / Show</p>
             <input type="radio" name="phonephone" class="d-none" id="not_show_phone_check" onclick="not_show_phone();">
-            <p>&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show</p>
+            <p class="d-none" id="not_show_phone_check">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show</p>
 
             <br>
 
