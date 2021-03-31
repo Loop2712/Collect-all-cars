@@ -134,17 +134,9 @@
             </div>
 
             <input type="checkbox" name="show_phone" onclick="if(this.checked){
-                document.querySelector('#name').classList.add('d-none'),
-                document.querySelector('#name_input').classList.add('d-none'),
-                document.querySelector('#phone').classList.add('d-none'),
-                document.querySelector('#phone_input').classList.add('d-none'),
-                document.querySelector('#phone_input').value(null);
+                not_show_phone();
             }else{
-                document.querySelector('#name').classList.remove('d-none'),
-                document.querySelector('#name_input').classList.remove('d-none'),
-                document.querySelector('#phone').classList.remove('d-none'),
-                document.querySelector('#phone_input').classList.remove('d-none'),
-                document.querySelector('#phone_input').value('{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}');
+                show_phone();
             }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
             <br>
 
@@ -319,24 +311,37 @@
             });
     }
 
-    function check_phone(){
-        var phone = document.querySelector('#phone');
-            phone.classList.add('d-none');
-            phone.removeAttribute("required");
+    function show_phone(){
+        var name = document.querySelector('#name');
+            name.classList.remove('d-none');
 
-        var want_phone = document.querySelector('#want_phone');
-            want_phone.value = "No";
+        var name_input = document.querySelector('#name_input');
+            name_input.classList.remove('d-none');
 
-    }
-
-    function not_check_phone(){
         var phone = document.querySelector('#phone');
             phone.classList.remove('d-none');
 
+        var phone_input = document.querySelector('#phone_input');
         var att = document.createAttribute('required'); 
-            phone.setAttributeNode(att);
+            phone_input.setAttributeNode(att);
+            phone_input.classList.remove('d-none');
+            phone_input.value = '{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}';
 
-        var want_phone = document.querySelector('#want_phone');
-            want_phone.value = "Yes";
+    }
+
+    function not_show_phone(){
+        var name = document.querySelector('#name');
+            name.classList.add('d-none');
+
+        var name_input = document.querySelector('#name_input');
+            name_input.classList.add('d-none');
+
+        var phone = document.querySelector('#phone');
+            phone.classList.add('d-none');
+
+        var phone_input = document.querySelector('#phone_input');
+            phone_input.classList.add('d-none');
+            phone_input.value = null;
+
     }
 </script>
