@@ -10,25 +10,33 @@
     "contents": [
       {
         "type": "box",
-        "layout": "vertical",
+        "layout": "horizontal",
         "contents": [
           {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "SOS",
-                "margin": "xxl",
-                "size": "xl",
-                "flex": 2,
-                "style": "normal",
-                "weight": "bold",
-                "color": "#ff0101"
-              }
-            ],
-            "margin": "lg",
-            "offsetTop": "md"
+            "type": "text",
+            "text": "SOS",
+            "margin": "xxl",
+            "size": "3xl",
+            "style": "normal",
+            "weight": "bold",
+            "color": "#ff0101",
+            "flex": 2,
+            "gravity": "center"
+          },
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "size": "4xl",
+            "align": "center",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "viicheck",
+              "uri": "https://market.viicheck.com/"
+            },
+            "offsetEnd": "lg",
+            "gravity": "center",
+            "offsetTop": "xs"
           },
           {
             "type": "separator",
@@ -268,38 +276,8 @@
         "margin": "md"
       },
       {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [],
-            "offsetStart": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-                "size": "sm",
-                "align": "center",
-                "aspectMode": "fit",
-                "action": {
-                  "type": "uri",
-                  "label": "viicheck",
-                  "uri": "https://market.viicheck.com/"
-                }
-              }
-            ],
-            "offsetBottom": "xxl"
-          }
-        ],
-        "height": "70px",
-        "margin": "xs",
-        "offsetTop": "xxl"
+        "type": "separator",
+        "margin": "xxl"
       }
     ],
     "paddingAll": "0px",
