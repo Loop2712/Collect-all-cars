@@ -133,7 +133,7 @@
                 </div>
             </div>
 
-            <input type="checkbox" name="show_phone" onclick="if(this.checked){
+            <input type="checkbox" name="show_phone" onchange="if(this.checked){
                 not_show_phone()
             }else{
                 show_phone()
