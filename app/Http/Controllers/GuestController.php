@@ -91,7 +91,7 @@ class GuestController extends Controller
             $watermark = Image::make(public_path('watermark.png'));
             $image->insert($watermark , 'bottom-right', 15, 15)->save();
 
-            $image->fit(900, 1200);
+            $image->fit(1200, 900);
             $size = $image->filesize();  
 
             if($size > 112000 ){
