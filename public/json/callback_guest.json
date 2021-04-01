@@ -26,6 +26,15 @@
         "wrap": true
       },
       {
+        "type": "text",
+        "text": "Thankyou",
+        "size": "lg",
+        "margin": "sm",
+        "color": "#FFFFFF",
+        "align": "center",
+        "wrap": true
+      },
+      {
         "type": "box",
         "layout": "vertical",
         "contents": [
@@ -48,6 +57,10 @@
       {
         "type": "separator",
         "margin": "xl"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
       },
       {
         "type": "text",
@@ -122,5 +135,4 @@
     }
   }
 }
-
 }
