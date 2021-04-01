@@ -11,9 +11,9 @@
       {
         "type": "image",
         "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
-        "size": "full",
+        "size": "xxl",
         "aspectRatio": "16:9",
-        "aspectMode": "fit"
+        "aspectMode": "cover"
       },
       {
         "type": "text",
@@ -25,6 +25,35 @@
         "weight": "bold",
         "gravity": "bottom",
         "wrap": true
+      },
+      {
+        "type": "text",
+        "color": "#FFFFFF",
+        "text": "Pleasemove",
+        "margin": "sm",
+        "size": "lg",
+        "align": "center",
+        "wrap": true
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/stickerline/PNG/21.png",
+            "margin": "xs",
+            "align": "center",
+            "gravity": "center",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
       },
       {
         "type": "separator",
@@ -94,6 +123,10 @@
         "color": "#07375D"
       },
       {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
         "type": "box",
         "layout": "vertical",
         "contents": [
@@ -101,14 +134,15 @@
             "type": "image",
             "url": "https://market.viicheck.com/storage/uploads",
             "size": "full",
-            "aspectRatio": "16:9",
+            "aspectRatio": "1:1",
             "animated": true,
             "gravity": "center",
             "align": "center",
             "aspectMode": "fit"
           }
         ],
-        "backgroundColor": "#07375D"
+        "backgroundColor": "#07375D",
+        "margin": "lg"
       }
     ],
     "backgroundColor": "#07375D",
