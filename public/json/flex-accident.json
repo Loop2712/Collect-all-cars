@@ -134,7 +134,7 @@
           {
             "type": "image",
             "url": "https://market.viicheck.com/storage/uploads",
-            "size": "xxl",
+            "size": "3xl",
             "aspectRatio": "1:1",
             "animated": true,
             "gravity": "center",
