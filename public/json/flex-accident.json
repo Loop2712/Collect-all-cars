@@ -61,11 +61,12 @@
       },
       {
         "type": "text",
-        "text": "เวลาที่ถูกแจ้ง",
+        "text": "เวลาที่ถูกแจ้ง / Report time",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
-        "color": "#FFFFFF"
+        "color": "#FFFFFF",
+        "wrap": true
       },
       {
         "type": "text",
@@ -139,7 +140,7 @@
             "gravity": "center",
             "align": "center",
             "aspectMode": "cover",
-            "margin": "xl",
+            "margin": "md",
             "action": {
               "type": "uri",
               "label": "action",
