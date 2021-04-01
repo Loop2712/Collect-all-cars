@@ -133,12 +133,18 @@
           {
             "type": "image",
             "url": "https://market.viicheck.com/storage/uploads",
-            "size": "full",
+            "size": "xxl",
             "aspectRatio": "1:1",
             "animated": true,
             "gravity": "center",
             "align": "center",
-            "aspectMode": "fit"
+            "aspectMode": "cover",
+            "margin": "xl",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/storage/pphhoottoo"
+            }
           }
         ],
         "backgroundColor": "#07375D",
