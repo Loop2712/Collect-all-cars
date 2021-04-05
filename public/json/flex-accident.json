@@ -1,4 +1,7 @@
 {
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
   "type": "bubble",
   "size": "mega",
   "body": {
@@ -213,4 +216,5 @@
       "separator": false
     }
   }
+}
 }
