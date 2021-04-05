@@ -159,7 +159,7 @@
             },
             "gravity": "top",
             "height": "md",
-            "offsetEnd": "-20px"
+            "offsetEnd": "-15px"
           }
         ],
         "backgroundColor": "#07375D",
