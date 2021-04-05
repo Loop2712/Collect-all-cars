@@ -271,18 +271,35 @@ class GuestController extends Controller
 
             switch ($masseng) {
                 case 'รถคุณเกิดอุบัติเหตุค่ะ':
-                    $template_path = storage_path('../public/json/flex-accident.json');   
-                    $string_json = file_get_contents($template_path);
-                    $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                    $string_json = str_replace("datetime",$datetime,$string_json);
-                    $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                    $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                    $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                    $string_json = str_replace("Pleasemove",$masseng_en,$string_json);
-                    $string_json = str_replace("uploads",$photo,$string_json);
-                    $string_json = str_replace("pphhoottoo",$photo,$string_json);
+                    if (empty($phone)) {
+                        $template_path = storage_path('../public/json/flex-accident.json');   
+                        $string_json = file_get_contents($template_path);
+                        $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                        $string_json = str_replace("datetime",$datetime,$string_json);
+                        $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                        $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                        $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                        $string_json = str_replace("Pleasemove",$masseng_en,$string_json);
+                        $string_json = str_replace("uploads",$photo,$string_json);
+                        $string_json = str_replace("pphhoottoo",$photo,$string_json);
 
-                    $messages = [ json_decode($string_json, true) ];
+                        $messages = [ json_decode($string_json, true) ];
+                    }
+                    if (!empty($phone)) {
+                        $template_path = storage_path('../public/json/flex-accident-call.json');   
+                        $string_json = file_get_contents($template_path);
+                        $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                        $string_json = str_replace("datetime",$datetime,$string_json);
+                        $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                        $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                        $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                        $string_json = str_replace("Pleasemove",$masseng_en,$string_json);
+                        $string_json = str_replace("uploads",$photo,$string_json);
+                        $string_json = str_replace("pphhoottoo",$photo,$string_json);
+                        $string_json = str_replace("0999999999",$phone,$string_json);
+
+                        $messages = [ json_decode($string_json, true) ];
+                        }
                     break;
                 
                 default:
