@@ -1,7 +1,4 @@
 {
-    "type": "flex",
-    "altText": "ตัวอย่าง",
-    "contents": {
   "type": "bubble",
   "size": "mega",
   "body": {
@@ -149,17 +146,23 @@
             "flex": 4
           },
           {
-            "type": "button",
-            "style": "link",
-            "position": "absolute",
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/zoom-in.png",
+                "size": "xxl"
+              }
+            ],
             "action": {
               "type": "uri",
-              "label": "🔍",
+              "label": "action",
               "uri": "https://market.viicheck.com/storage/pphhoottoo"
             },
-            "gravity": "top",
-            "height": "md",
-            "offsetEnd": "-15px"
+            "position": "absolute",
+            "offsetEnd": "35px",
+            "offsetBottom": "xs"
           }
         ],
         "backgroundColor": "#07375D",
@@ -210,5 +213,4 @@
       "separator": false
     }
   }
-}
 }
