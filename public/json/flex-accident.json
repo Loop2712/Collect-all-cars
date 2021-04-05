@@ -129,7 +129,22 @@
       },
       {
         "type": "box",
-        "layout": "vertical",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://market.viicheck.com/img/icon/magnifying-glass.png",
+            "position": "absolute",
+            "size": "xxl",
+            "offsetTop": "md",
+            "aspectRatio": "1:1"
+          }
+        ],
+        "justifyContent": "flex-end"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
         "contents": [
           {
             "type": "image",
@@ -145,11 +160,12 @@
               "type": "uri",
               "label": "action",
               "uri": "https://market.viicheck.com/storage/pphhoottoo"
-            }
+            },
+            "flex": 4
           }
         ],
         "backgroundColor": "#07375D",
-        "margin": "lg"
+        "margin": "xl"
       }
     ],
     "backgroundColor": "#07375D",
