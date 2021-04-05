@@ -191,6 +191,29 @@
               }
             ],
             "cornerRadius": "lg"
+          },
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#07375D"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "โทร 0999999999",
+                  "uri": "tel:0999999999"
+                },
+                "color": "#76d128",
+                "style": "primary",
+                "height": "sm"
+              }
+            ],
+            "cornerRadius": "lg"
           }
         ],
         "flex": 0,
