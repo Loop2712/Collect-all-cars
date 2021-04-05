@@ -157,9 +157,9 @@
               "label": "🔍",
               "uri": "https://market.viicheck.com/storage/pphhoottoo"
             },
-            "offsetEnd": "xxl",
             "gravity": "top",
-            "height": "md"
+            "height": "md",
+            "offsetEnd": "-20px"
           }
         ],
         "backgroundColor": "#07375D",
