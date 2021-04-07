@@ -537,8 +537,10 @@ class LineMessagingAPI extends Model
                                 $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                                 $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
                                 $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
-                                $string_json = str_replace("ขอบคุณ","รอสักครู่ / Please wait a moment",$string_json);
+                                $string_json = str_replace("ขอบคุณ","รอสักครู่",$string_json);
+                                $string_json = str_replace("Thankyou","Please wait a moment",$string_json);
                                 $string_json = str_replace("datetime",$datetime,$string_json);
+                                $string_json = str_replace("stickerline","8",$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                             }
@@ -554,6 +556,7 @@ class LineMessagingAPI extends Model
                                 $string_json = str_replace("ขอบคุณ","ขอบคุณค่ะ",$string_json);
                                 $string_json = str_replace("Thankyou","Thank you",$string_json);
                                 $string_json = str_replace("datetime",$datetime,$string_json);
+                                $string_json = str_replace("stickerline","14",$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                             }
