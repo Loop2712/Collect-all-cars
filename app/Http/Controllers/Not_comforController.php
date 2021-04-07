@@ -192,7 +192,8 @@ class Not_comforController extends Controller
                             $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
                             $string_json = str_replace("9กก9999",$registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                            $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not available",$string_json);
+                            $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก",$string_json);
+                            $string_json = str_replace("Thankyou","I'm not available",$string_json);
                             $string_json = str_replace("ประชุม",$content,$string_json);
                             if (!empty($phone)) {
                                 $string_json = str_replace("0999999999",$phone,$string_json);
@@ -206,7 +207,8 @@ class Not_comforController extends Controller
                             $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
                             $string_json = str_replace("9กก9999",$registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                            $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก / I'm not available",$string_json);
+                            $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก",$string_json);
+                            $string_json = str_replace("Thankyou","I'm not available",$string_json);
                             $string_json = str_replace("ประชุม",$content,$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
