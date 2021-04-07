@@ -11,9 +11,67 @@
       {
         "type": "image",
         "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
-        "size": "full",
+        "size": "xxl",
         "aspectRatio": "16:9",
-        "aspectMode": "fit"
+        "aspectMode": "cover"
+      },
+      {
+        "type": "text",
+        "text": "ขอบคุณ",
+        "size": "xxl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "align": "center",
+        "weight": "bold",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "Thankyou",
+        "size": "lg",
+        "margin": "sm",
+        "color": "#FFFFFF",
+        "align": "center",
+        "wrap": true
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/stickerline/PNG/26.png",
+            "margin": "xs",
+            "align": "center",
+            "gravity": "center",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "animated": true
+          }
+        ],
+        "borderWidth": "bold",
+        "cornerRadius": "500px"
+      },
+      {
+        "type": "text",
+        "text": "เนื่องจาก",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "text": "ประชุม",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "align": "center",
+        "weight": "bold"
+      },
+      {
+        "type": "separator",
+        "margin": "xl"
       },
       {
         "type": "separator",
@@ -62,38 +120,6 @@
       {
         "type": "separator",
         "margin": "lg"
-      },
-      {
-        "type": "text",
-        "text": "แจ้งว่า",
-        "weight": "bold",
-        "size": "xl",
-        "margin": "xxl",
-        "color": "#FFFFFF"
-      },
-      {
-        "type": "text",
-        "text": "ขอบคุณ",
-        "size": "lg",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "align": "center"
-      },
-      {
-        "type": "text",
-        "text": "เนื่องจาก",
-        "weight": "bold",
-        "size": "xl",
-        "margin": "xxl",
-        "color": "#FFFFFF"
-      },
-      {
-        "type": "text",
-        "text": "ประชุม",
-        "size": "lg",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "align": "center"
       },
       {
         "type": "box",
