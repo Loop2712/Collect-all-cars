@@ -123,7 +123,7 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
+                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}" onclick="document.getElementById('btn_img').click(); ">
                             </div>
                         </div>
                     </div>
