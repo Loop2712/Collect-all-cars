@@ -10,7 +10,7 @@
                 	<center>
                         <div><br><br>
                             <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                            <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                            <img width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                         </div>
                 	</center>
                 </div>
@@ -19,14 +19,14 @@
                         <div class="row">
                             <div class="col-3">
                                 <br><br><br>
-                                    <img  width="110%" src="{{ asset('/img/icon/download_jpg.png') }}">
+                                    <img  width="110%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
                                 <br><br><br>
                             </div>
                             <div class="col-9">
                                 <br><br><br>
-                                <h3><span class="text-primary">Download</span> and print สติ๊กเกอร์ QR code </h3>
-                                <br>
-                                <h5>ไปแปะไว้หน้ารถได้เลยค่ะ</h5>
+                                <h4 style="line-height: 2;">ปริ้นและนำไปแปะไว้หน้ารถได้เลยค่ะ</h4>
+                                    <hr>
+                                    <p>Print & put on the windscreen of your car.</p>
                                 <br>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
                                 </button>
