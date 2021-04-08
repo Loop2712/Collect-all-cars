@@ -45,14 +45,22 @@
     <center>
         <div class="row">
             <div class="col-12 main-shadow">
-                <div class="col-10">
-                    <center>
-                        <div>
-                            <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                            <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="col-10">
+                                <center>
+                                    <div>
+                                        <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
+                                        <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                                    </div>
+                                </center>
+                            </div>
                         </div>
-                    </center>
+                    </div>
                 </div>
+
+                
                 <div class="col-12">
                     <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
                         <div class="row">

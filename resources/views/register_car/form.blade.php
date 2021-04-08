@@ -217,17 +217,15 @@
                             @foreach($car as $item)
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-12 col-md-2">
-                                            <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                        </div>
-                                        <div class="col-12 col-md-8">
-                                            <span><b>{{ $item->generation }}</b></span>
-                                            <br>
-                                            <span class="text-secondary">{{ $item->registration_number }}</span>
-                                            <br>
-                                            <span class="text-secondary">{{ $item->province }}</span>
-                                        </div>
+                                    <div class="col-12 col-md-2">
+                                        <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <span><b>{{ $item->generation }}</b></span>
+                                        <br>
+                                        <span class="text-secondary">{{ $item->registration_number }}</span>
+                                        <br>
+                                        <span class="text-secondary">{{ $item->province }}</span>
                                     </div>
                                 </div>
                             </div>
