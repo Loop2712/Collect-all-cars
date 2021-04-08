@@ -4,28 +4,11 @@
 <center>
     <div class="row">
         <div class="col-12">
-			<a href="https://lin.ee/xnFKMfc">
-				<img style="margin-top: -40px;" width="100%" src="{{ asset('/img/more/success.jpg') }}">
-			</a>
-			<br><br>
-			<div class="row">
-				<div class="col-6">
-					<center>
-						<a id="btn_add_line" href="https://lin.ee/xnFKMfc">
-							<img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน" width="100%" border="0">
-						</a>
-					</center>
-				</div>
-				<div class="col-6">
-					<center>
-            <a href="https://lin.ee/xnFKMfc">
-  						<img src="{{ asset('/img/more/completed.png') }}" width="100%" border="0" >
-            </a>
-					</center>
-				</div>
-			</div>
-		</div>
-	</div>
+      <img style="margin-top: -40px;" width="100%" src="{{ asset('/img/more/ทางเราได้รับข้อมูลของท่านแล้ว-02.jpg') }}">
+      <br><br>
+      
+    </div>
+  </div>
 </center>
 
 <!-- Button trigger modal -->
