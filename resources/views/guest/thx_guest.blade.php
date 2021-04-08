@@ -48,7 +48,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         console.log("START"); 
-        TimeUnit.sleep(5);
+        TimeUnit.SECONDS.sleep(5);
         document.getElementById("btn_add_line").click();
     });
 </script>
