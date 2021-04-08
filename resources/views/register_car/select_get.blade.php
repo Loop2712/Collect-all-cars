@@ -66,36 +66,38 @@
                         </div>
                     </div>
                 </div>
-                <div style="margin-left: -25px;" class="row">
-                    <div class="col-6">
-                        <div class="col-12">
-                            <center>
-                                <div>
-                                    <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                                    <img width="120%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
-                                </div>
-                                <br>
-                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
-                                </button>
-                                <br><br>
-                            </center>
+                <center>
+                    <div style="margin-left: -25px;" class="row">
+                        <div class="col-6">
+                            <div class="col-12">
+                                <center>
+                                    <div>
+                                        <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
+                                        <img width="120%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                                    </div>
+                                    <br>
+                                    <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
+                                    </button>
+                                    <br><br>
+                                </center>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="col-6">
-                        <div class="col-12">
-                            <center>
-                                <div>
-                                    <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                                    <img width="120%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
-                                </div>
-                                <br>
-                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> ดาวน์โหลด
-                                </button>
-                                <br><br>
-                            </center>
+                        
+                        <div class="col-6">
+                            <div class="col-12">
+                                <center>
+                                    <div>
+                                        <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
+                                        <img width="120%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
+                                    </div>
+                                    <br>
+                                    <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> ดาวน์โหลด
+                                    </button>
+                                    <br><br>
+                                </center>
+                            </div>
                         </div>
-                    </div>
+                    </center>
                 </div>
             </div>
         </div>
