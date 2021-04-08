@@ -123,7 +123,7 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <img width="100%" class="resize" src="{{ asset('/img/more/line_oa.png') }}">
+                                <img style="z-index: 100;" width="100%" class="resize" src="{{ asset('/img/more/line_oa.png') }}">
                             </div>
                         </div>
                     </div>
