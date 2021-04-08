@@ -123,7 +123,7 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}" onclick="document.getElementById('btn_img').click(); ">
+                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}" onclick="document.getElementById('btn_img').click();">
                             </div>
                         </div>
                     </div>
@@ -147,6 +147,10 @@
                         <center>
                             <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
                         </center>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                        
                       </div>
                     </div>
                   </div>
