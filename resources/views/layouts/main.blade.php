@@ -44,14 +44,6 @@
         .main-shadow{
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
         }
-        img.resize {
-            width: 100%;
-            border: 0;
-        }
-        img:hover.resize {
-            width: 300%;
-            border: 0;
-        }
     </style>
     
     

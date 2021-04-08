@@ -123,10 +123,33 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <img style="z-index: -5;" width="100%" class="resize" src="{{ asset('/img/more/line_oa.png') }}">
+                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <button id="btn_img" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#completed">
+                  Launch static backdrop modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="completed" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header d-none">
+                        <h5 class="modal-title" id="staticBackdropLabel">LINE OFFICIAL ACCOUT </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                            <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
+                        </center>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
 
