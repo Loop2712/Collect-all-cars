@@ -53,7 +53,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <br>
-                                        <img style="margin-left: -25px;" width="200%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                                        <img style="margin-left: -20px;" width="200%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
                                     <br>
                                 </div>
                                 <div class="col-9">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div style="margin-left: -25px;" class="row">
                     <div class="col-6">
                         <div class="col-12">
                             <center>
@@ -75,7 +75,7 @@
                                     <img width="120%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
                                 </div>
                                 <br>
-                                <button style="padding-left: 50px;padding-right: 50px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
+                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
                                 </button>
                                 <br><br>
                             </center>
@@ -90,7 +90,7 @@
                                     <img width="120%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                 </div>
                                 <br>
-                                <button style="padding-left: 50px;padding-right: 50px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> ดาวน์โหลด
+                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> ดาวน์โหลด
                                 </button>
                                 <br><br>
                             </center>
