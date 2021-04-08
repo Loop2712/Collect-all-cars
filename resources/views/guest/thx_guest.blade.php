@@ -10,7 +10,9 @@
     </div>
   </div>
 </center>
-
+<a id="btn_add_line" class="d-none" href="https://lin.ee/xnFKMfc">
+  <img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน" width="100%" border="0">
+</a>
 <!-- Button trigger modal -->
 <button id="btn_completed" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#completed">
   Launch static backdrop modal
