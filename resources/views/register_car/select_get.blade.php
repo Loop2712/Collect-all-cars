@@ -64,6 +64,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="col-12">
                             <div class="col-12">
                                 <center>
