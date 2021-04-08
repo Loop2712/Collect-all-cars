@@ -64,6 +64,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr><hr>
                         <div class="col-12">
                             <div class="col-12">
                                 <center>
@@ -77,6 +78,7 @@
                                 </center>
                             </div>
                         </div>
+                        <hr><hr>
                         <div class="col-12">
                             <div class="col-12">
                                 <center>
