@@ -43,11 +43,11 @@
                                 <br><br><br>
                             </div>
                             <div class="col-9">
-                                <br><br><br>
+                                <br>
                                 <h4 style="line-height: 2;">ปริ้นและนำไปแปะไว้หน้ารถได้เลยค่ะ</h4>
                                     <hr>
                                     <p>Print & put on the windscreen of your car.</p>
-                                <br><br>
+                                
                             </div>
                         </div>
                     </a>
