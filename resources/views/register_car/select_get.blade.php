@@ -48,11 +48,21 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
-                            <div class="col-10">
+                            <div class="col-12">
                                 <center>
                                     <div>
                                         <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
                                         <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="col-12">
+                                <center>
+                                    <div>
+                                        <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
+                                        <img width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                     </div>
                                 </center>
                             </div>
