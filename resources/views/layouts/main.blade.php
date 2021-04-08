@@ -51,7 +51,7 @@
         img:hover.resize {
             width: 300%;
             border: 0;
-            z-index: 5;
+            z-index: 100;
         }
     </style>
     
