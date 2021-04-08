@@ -70,7 +70,7 @@
                                 <center>
                                     <div>
                                         <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                                        <img width="65%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
+                                        <img width="120%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
                                     </div>
                                     <br>
                                     <button style="padding-left: 50px;padding-right: 50px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
@@ -85,7 +85,7 @@
                                 <center>
                                     <div>
                                         <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                                        <img width="65%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
+                                        <img width="120%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                     </div>
                                     <br>
                                     <button style="padding-left: 50px;padding-right: 50px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> ดาวน์โหลด
