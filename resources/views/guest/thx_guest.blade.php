@@ -48,8 +48,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         console.log("START"); 
-        TimeUnit.SECONDS.sleep(5);
-        document.getElementById("btn_add_line").click();
+        setTimeout(function(){ 
+          document.getElementById("btn_add_line").click(); 
+        }, 3000);
     });
 </script>
 @endsection
