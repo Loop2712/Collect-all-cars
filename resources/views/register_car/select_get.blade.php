@@ -48,6 +48,28 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
+                            <a id="sticker_v1" href="{{ asset('/img/more/sticker-VII-v1.png') }}" download ></a>
+                            <a id="sticker_v2" href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download ></a>
+                            <div class="row">
+                                <div class="col-3">
+                                    <br>
+                                        <img style="margin-left: -25px;" width="200%" src="{{ asset('/img/icon/download_jpg.png') }}">
+                                    <br>
+                                </div>
+                                <div class="col-9">
+                                    <br>
+                                    <h4><span class="text-primary">Download</span> and print</h4>
+                                    <h5 style="line-height: 2;">สติ๊กเกอร์ QR code </h5>
+                                    <p>ไปแปะไว้หน้ารถได้เลยค่ะ</p>
+                                </div>
+                                <div class="col-12">
+                                    <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
+                                    </button>
+                                    <br><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
                             <div class="col-12">
                                 <center>
                                     <div>
@@ -68,30 +90,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                
-                <div class="col-12">
-                    <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
-                        <div class="row">
-                            <div class="col-3">
-                                <br>
-                                    <img style="margin-left: -25px;" width="200%" src="{{ asset('/img/icon/download_jpg.png') }}">
-                                <br>
-                            </div>
-                            <div class="col-9">
-                                <br>
-                                <h4><span class="text-primary">Download</span> and print</h4>
-                                <h5 style="line-height: 2;">สติ๊กเกอร์ QR code </h5>
-                                <p>ไปแปะไว้หน้ารถได้เลยค่ะ</p>
-                            </div>
-                            <div class="col-12">
-                                <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow"> Download
-                                </button>
-                                <br><br>
-                            </div>
-                        </div>
-                    </a>
                 </div>
             </div>
         </div>
