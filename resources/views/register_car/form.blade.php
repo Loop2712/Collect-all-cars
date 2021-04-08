@@ -174,6 +174,10 @@
 
             </div>
 
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
+            </div>
+
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information'}}&nbsp;&nbsp;&nbsp;</span>
             <a class="btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
             <br><br>
@@ -266,9 +270,7 @@
         </div> 
     </div>
 </div>
-<div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
-</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
