@@ -47,10 +47,10 @@
                                     <img width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                 </div>
                                 <br>
-                                <p>ไทย</p>
+                                <p>ภาษาไทย</p>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
                                 </button>
-                                <br><br>
+                                <br><br><br>
                             </center>
                         </div>
                     </div>
