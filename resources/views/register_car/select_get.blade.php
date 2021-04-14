@@ -21,10 +21,11 @@
                                     <h4 style="line-height: 2;">ปริ้นและนำไปแปะรถของท่านได้เลยค่ะ</h4>
                                     <p>Print & put on the windscreen of your car.</p>
                                 </center>
+                                <hr>
                             </div>
                         </div>
                     </div>
-                    <hr>
+                    
                     <div class="col-6">
                         <div class="col-12">
                             <center>
