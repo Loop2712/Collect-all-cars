@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-8 offset-2">
                                 <br><br>
                                 <center>
                                     <img  width="110%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
