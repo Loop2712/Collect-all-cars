@@ -14,7 +14,6 @@
                                 <center>
                                     <img  width="90%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
                                 </center>
-                                <br><br>
                             </div>
                             <div class="col-12">
                                 <br>
@@ -25,6 +24,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="col-6">
                         <div class="col-12">
                             <center>
@@ -33,6 +33,7 @@
                                     <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
                                 </div>
                                 <br>
+                                <p>English</p>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v1').click(); "> Download
                                 </button>
                             </center>
@@ -46,6 +47,7 @@
                                     <img width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                 </div>
                                 <br>
+                                <p>ไทย</p>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
                                 </button>
                                 <br><br>
