@@ -72,13 +72,13 @@
                                 <div class="col-8 offset-2">
                                     <br><br>
                                     <center>
-                                        <img  width="75%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                                        <img  width="90%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
                                     </center>
                                 </div>
                                 <div class="col-12">
                                     <br>
                                     <center>
-                                        <h4 style="line-height: 2;">ปริ้นและนำไปแปะรถของท่านได้เลยค่ะ</h4>
+                                        <h6 style="line-height: 2;">ปริ้นและนำไปแปะรถของท่านได้เลยค่ะ</h6>
                                         <p>Print & put on the windscreen of your car.</p>
                                     </center>
                                 </div>
