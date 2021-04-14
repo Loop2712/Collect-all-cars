@@ -64,6 +64,59 @@
         </div>
     <div class="row bootstrap snippets bootdeys">
 
+        <div class="col-md-3">
+            <div class="panel text-center">
+                
+                        <!-- <button class="btn btn-primary"> -->
+                        @guest
+                        <div class="pad-all">
+                            <div class="pad-btm">
+                        <button class="btn btn-primary">
+                            <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" style=" color: white;"  >เข้าสู่ระบบ </a>
+                        </button>
+                        <!-- <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}" style=" color: #4169E1;"  >เข้าสู่ระบบ &emsp;&emsp;</a> -->
+                        @else
+                        
+                        <div class="panel-body">
+                        @if( Auth::user()->avatar == 'null')
+                            <img src="https://www.flaticon.com/svg/vstatic/svg/1077/1077114.svg?token=exp=1614951730~hmac=d767afebfe3a53e8d86895bf639cfe3a" style="border-radius: 50%;height: 100px;">
+                        @else
+                            <img style="border-radius: 50%;height: 100px;" src="{{Auth::user()->avatar}}" data-original-title="Usuario"> 
+                        @endif
+                            <h4 class="mar-no" ><br>{{ Auth::user()->name }}</h4>
+                            <p>วันเดือนปีที่ใช้</p>
+                        </div>
+                        <div class="pad-all">
+                            <div class="pad-btm">
+                        <a href="{{ url('/profile') }} " style=" color: #4169E1;" >แก้ไขโปรไฟล์ &emsp;&emsp;</a>   
+                        <!-- </button> -->
+                        <!-- <button class="btn btn-success"> -->
+                            <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                {{ __('ออกจากระบบ') }}</a>
+                                            <!-- </button> -->
+                        @endguest
+                    </div>
+                    <ul class="nav-news-feed">
+                        <li><i class="fa fa-car"></i><div><a href="{{ url('/car') }}">รถยนต์</a></div></li>
+                        <li><i class="fa fa-bicycle"></i><div><a href="{{ url('/motercycle') }}">รถจักรยานยนต์</a></div></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-12">
+                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
+                            </div>
+            </div>
+        </div>    
+    </div>
+        
+        <!-- <div id="mobile-menu-wrap"></div> -->
+        
+    </div>
+
+
+
+
+
     <!-- Header Section Begin -->
     <header class="header" style="background-color: #FFFFFF; margin-top: -10px;border-bottom: 2px solid red">
         <div class="container">
