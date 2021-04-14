@@ -21,15 +21,13 @@
                                     <h4 style="line-height: 2;">ปริ้นและนำไปแปะรถของท่านได้เลยค่ะ</h4>
                                     <p>Print & put on the windscreen of your car.</p>
                                 </center>
-                                <hr>
                             </div>
                         </div>
                     </div>
-                    
                     <div class="col-6">
                         <div class="col-12">
                             <center>
-                                <div><br><br>
+                                <div>
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
                                     <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
                                 </div>
