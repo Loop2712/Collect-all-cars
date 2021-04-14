@@ -321,5 +321,23 @@
     <script src="{{ asset('js/car/main.js')}}"></script>
 </body>
 
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+
+        var name_user = document.querySelector("#name_user");
+            console.log(name_user.value);
+
+            fetch("{{ url('/') }}/api/explode_name/" + name_user.value)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result[0]);
+                    let input_name = document.querySelector("#input_name");
+                    input_name.innerHTML = result[0];
+                    
+                    
+                });
+    });
+</script>
 
 </html>
