@@ -12,15 +12,14 @@
                             <div class="col-8 offset-2">
                                 <br><br>
                                 <center>
-                                    <img  width="110%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                                    <img  width="90%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
                                 </center>
                                 <br><br>
                             </div>
                             <div class="col-12">
-                                <br><br>
+                                <br>
                                 <center>
-                                    <h4 style="line-height: 2;">ปริ้นและนำไปแปะไว้หน้ารถได้เลยค่ะ</h4>
-                                    <hr>
+                                    <h4 style="line-height: 2;">ปริ้นและนำไปแปะรถของท่านได้เลยค่ะ</h4>
                                     <p>Print & put on the windscreen of your car.</p>
                                 </center>
                             </div>
@@ -49,6 +48,7 @@
                                 <br>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
                                 </button>
+                                <br><br>
                             </center>
                         </div>
                     </div>
