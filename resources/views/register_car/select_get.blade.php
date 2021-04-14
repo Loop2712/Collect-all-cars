@@ -12,7 +12,7 @@
                             <div class="col-8 offset-2">
                                 <br><br>
                                 <center>
-                                    <img  width="90%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                                    <img  width="75%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
                                 </center>
                             </div>
                             <div class="col-12">
@@ -41,7 +41,7 @@
                     <div class="col-6">
                         <div class="col-12">
                             <center>
-                                <div><br><br>
+                                <div>
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
                                     <img width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                 </div>
@@ -49,7 +49,7 @@
                                 <p>ภาษาไทย</p>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
                                 </button>
-                                <br><br><br>
+                                <br><br>
                             </center>
                         </div>
                     </div>
