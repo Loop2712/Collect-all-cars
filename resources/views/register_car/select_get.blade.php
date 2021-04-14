@@ -1,4 +1,4 @@
-@extends('news.main')
+@extends('layouts.news')
 
 @section('content')
 <!-- แสดงเฉพาะคอม -->
