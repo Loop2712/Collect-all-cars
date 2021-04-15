@@ -36,9 +36,14 @@
                     <div class="col-10 btn btn-outline-primary" style="border-radius: 10px;font-size: 13px;">
                         <a class="text-primary" href="{{ url('/profile' ) }}">
                             <center>
-                                <i class="fas fa-user-edit"></i>
-                                <br>
-                                ข้อมูลส่วนบุคคล
+                                <div class="row">
+                                    <div class="col-4">
+                                        <i class="fas fa-user-edit"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        ข้อมูลส่วนบุคคล
+                                    </div>
+                                </div>
                             </center>
                         </a>
                     </div>
