@@ -38,16 +38,7 @@
             "align": "center",
             "wrap": true,
             "offsetBottom": "md"
-          }
-        ],
-        "borderColor": "#FFFFFF",
-        "borderWidth": "bold",
-        "cornerRadius": "xxl"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
+          },
           {
             "type": "image",
             "url": "https://market.viicheck.com/img/stickerline/PNG/สติกเกอร์ไลน์.png",
@@ -60,9 +51,9 @@
             "animated": true
           }
         ],
+        "borderColor": "#FFFFFF",
         "borderWidth": "bold",
-        "margin": "none",
-        "cornerRadius": "500px"
+        "cornerRadius": "xxl"
       },
       {
         "type": "separator",
