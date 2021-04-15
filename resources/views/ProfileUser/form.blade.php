@@ -150,11 +150,13 @@
     <div class="row">
         <div class="col-6">
             <div class="form-group float-left">
+                <br>
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
             </div>
         </div>
         <div class="col-6">
             <div class="float-right">
+                <br>
                 <a href="{{ url('/profile') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</button></a>
             </div>
         </div>
