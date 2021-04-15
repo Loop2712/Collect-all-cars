@@ -34,12 +34,12 @@
             "type": "text",
             "color": "#07375D",
             "text": "Please move the car",
-            "margin": "xxl",
-            "size": "xl",
+            "margin": "lg",
+            "size": "lg",
             "align": "center",
-            "weight": "regular",
-            "gravity": "bottom",
-            "wrap": true
+            "weight": "bold",
+            "wrap": true,
+            "offsetBottom": "md"
           },
           {
             "type": "image",
