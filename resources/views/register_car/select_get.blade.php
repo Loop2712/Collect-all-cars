@@ -18,7 +18,7 @@
                             <div class="col-12">
                                 <br>
                                 <center>
-                                    <h4 style="line-height: 2;">ปริ้นและนำไปแปะรถของท่านได้เลยค่ะ</h4>
+                                    <h4 style="line-height: 2;">ปริ้นท์และนำไปแปะรถของท่านได้เลยค่ะ</h4>
                                     <p>Print & put on the windscreen of your car.</p>
                                 </center>
                             </div>
@@ -31,8 +31,6 @@
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
                                     <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
                                 </div>
-                                <br>
-                                <p>English</p>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v1').click(); "> Download
                                 </button>
                             </center>
@@ -45,8 +43,6 @@
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
                                     <img width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                 </div>
-                                <br>
-                                <p>ภาษาไทย</p>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
                                 </button>
                                 <br><br>
@@ -83,7 +79,7 @@
                                 <div class="col-12">
                                     <br>
                                     <center>
-                                        <h6 style="line-height: 2;">ปริ้นและนำไปแปะรถของท่านได้เลยค่ะ</h6>
+                                        <h6 style="line-height: 2;">ปริ้นท์และนำไปแปะรถของท่านได้เลยค่ะ</h6>
                                         <p>Print & put on the windscreen of your car.</p>
                                     </center>
                                 </div>
@@ -99,8 +95,6 @@
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
                                     <img width="120%" src="{{ asset('/img/more/sticker-VII-v1.png') }}"/>
                                 </div>
-                                <br>
-                                <p>English</p>
                                 <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v1').click(); "> Download
                                 </button>
                                 <br><br>
@@ -115,8 +109,6 @@
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
                                     <img width="120%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                 </div>
-                                <br>
-                                <p>ภาษาไทย</p>
                                 <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
                                 </button>
                                 <br><br>
