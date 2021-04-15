@@ -178,13 +178,23 @@
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
             </div>
 
-            <h5 style="font-size: 22px;" class="control-label">ข้อมูลของท่าน</h5>
-            <br>
-            <p style="font-size: 16px;" class="control-label">Your Information</p>
-                <button title="Click to show/hide content" type="button"  class="btn btn-sm "
-                onclick="if(document.getElementById('information') .style.display=='none') 
-                {document.getElementById('information') .style.display=''}else{document.getElementById('information')
-                 .style.display='none'}"> <h6 style="color:#7D7D7D"><i class="fas fa-angle-double-down"></i></h6></button>
+            <div class="col-12">
+                <div class="col-9">
+                    <h5 style="font-size: 22px;" class="control-label">ข้อมูลของท่าน</h5>
+                    <p style="font-size: 16px;" class="control-label">Your Information</p>
+                </div>
+                <div class="col-4">
+                    <button title="Click to show/hide content" type="button"  class="btn btn-sm "
+                        onclick="if(document.getElementById('information') .style.display=='none') 
+                        {document.getElementById('information') .style.display=''}else{document.getElementById('information')
+                        .style.display='none'}"> 
+                        <h6 style="color:#7D7D7D">
+                            <i class="fas fa-angle-double-down"></i>
+                        </h6>
+                    </button>
+                </div>
+            </div>
+
             <br><br>
             <div id="information" class="row" style="display:none">
                 <!-- ซ้าย -->
