@@ -97,6 +97,7 @@
                         <div class="col-12">
                             <label for="massengbox" class="control-label">
                                 @if (Route::has('password.request'))
+                                    <br>
                                     <a class="text-secondary" href="{{ route('password.request') }}">
                                         {{ __('เปลี่ยนรหัสผ่าน') }}
                                     </a>
