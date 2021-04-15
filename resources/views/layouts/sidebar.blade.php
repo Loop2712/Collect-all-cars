@@ -38,7 +38,7 @@
                             <center>
                                 <div class="row">
                                     <div class="col-3">
-                                        <img width="100%" height="200%" src="{{ url('/img/icon/user.png' ) }}">
+                                        <img  src="{{ url('/img/icon/user.png' ) }}">
                                     </div>
                                     <div class="col-9">
                                         ข้อมูลส่วนบุคคล
