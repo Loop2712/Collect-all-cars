@@ -37,7 +37,7 @@
                         <a class="text-primary" href="{{ url('/profile' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/user.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/user.png' ) }}">
                                 </div>
                                 <div class="col-9">
                                     ข้อมูล<br>ส่วนบุคคล
@@ -50,7 +50,7 @@
                         <a class="text-danger" href="{{ url('/sell' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/car.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/car.png' ) }}">
                                 </div>
                                 <div class="col-9">
                                     ขาย<br>รถยนต์
@@ -66,7 +66,7 @@
                         <a class="text-success" href="{{ url('/register_car' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/car-key2.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/car-key2.png' ) }}">
                                 </div>
                                 <div class="col-9">
                                     รถ<br>ของฉัน
@@ -79,7 +79,7 @@
                         <a class="text-warning" href="{{ url('/motercycles' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/motorcycle.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/motorcycle.png' ) }}">
                                 </div>
                                 <div class="col-9">
                                     ขาย<br>จักรยานยนต์
