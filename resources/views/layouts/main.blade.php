@@ -96,6 +96,18 @@
                                             <!-- </button> -->
                         @endguest
                     </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12 col-md-2">
+                            <label for="massengbox" class="control-label">
+                                @if (Route::has('password.request'))
+                                    <a class="text-dark" href="{{ route('password.request') }}">
+                                        <b>{{ __('เปลี่ยนรหัสผ่าน') }}</b>
+                                    </a>
+                                @endif
+                            </label>
+                        </div>            
+                    </div>
                     <ul class="nav-news-feed">
                         <li><i class="fa fa-car"></i><div><a href="{{ url('/car') }}">รถยนต์</a></div></li>
                         <li><i class="fa fa-bicycle"></i><div><a href="{{ url('/motercycle') }}">รถจักรยานยนต์</a></div></li>

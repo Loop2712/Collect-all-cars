@@ -131,17 +131,6 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-12 col-md-2">
-                <label for="massengbox" class="control-label">
-                    @if (Route::has('password.request'))
-                        <a class="text-dark" href="{{ route('password.request') }}">
-                            <b>{{ __('เปลี่ยนรหัสผ่าน') }}</b>
-                        </a>
-                    @endif
-                </label>
-            </div>            
-        </div>
 
     </div>
     </div>
