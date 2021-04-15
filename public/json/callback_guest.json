@@ -37,7 +37,8 @@
             "color": "#07375D",
             "align": "center",
             "wrap": true,
-            "offsetBottom": "md"
+            "offsetBottom": "md",
+            "weight": "bold"
           },
           {
             "type": "image",
