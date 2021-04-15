@@ -174,9 +174,11 @@
 
             </div>
             <div class="form-group">
-                <input class="btn btn-primary" onclick="
+                <button class="btn btn-primary" onclick="
                 document.getElementById('btn_home').click();
                 document.getElementById('submit').click();">
+                    บันทึก
+                </button> 
             </div>
 
             <div class="form-group">
