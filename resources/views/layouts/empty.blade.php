@@ -206,7 +206,7 @@
                 </div>
             </div>
             <div class="canvas__open">
-                <span class="fa fa-bars"></span>
+                <button><i class="fab fa-line"></i></button>
             </div>
         </div>
     </header>
