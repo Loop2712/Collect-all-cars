@@ -24,7 +24,7 @@
             "text": "ขอบคุณ",
             "size": "xxl",
             "margin": "lg",
-            "color": "#ff0101",
+            "color": "#07375D",
             "align": "center",
             "weight": "bold",
             "wrap": true
@@ -34,7 +34,7 @@
             "text": "Thankyou",
             "size": "lg",
             "margin": "lg",
-            "color": "#ff0101",
+            "color": "#07375D",
             "align": "center",
             "wrap": true,
             "offsetBottom": "md"
