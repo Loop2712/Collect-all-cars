@@ -94,9 +94,7 @@
                             <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 {{ __('ออกจากระบบ') }}</a>
                                             <!-- </button> -->
-                        <br>
-                        <div class="row">
-                        <div class="col-12 col-md-2">
+                        <div class="col-12">
                             <label for="massengbox" class="control-label">
                                 @if (Route::has('password.request'))
                                     <a class="text-secondary" href="{{ route('password.request') }}">
@@ -104,8 +102,7 @@
                                     </a>
                                 @endif
                             </label>
-                        </div>            
-                    </div>
+                        </div> 
                         @endguest
                     </div>
                     
