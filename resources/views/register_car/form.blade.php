@@ -182,7 +182,7 @@
                 <div class="row">
                     <div class="col-9">
                         <p style="font-size: 22px;" class="control-label"><b>ข้อมูลของท่าน</b></p>
-                        <p style="font-size: 16px;" class="control-label">Your Information</p>
+                        <p style="font-size: 16px;line-height: 18pt;" class="control-label">Your Information</p>
                     </div>
                     <div class="col-3">
                         <button title="Click to show/hide content" type="button"  class="btn btn-sm "
