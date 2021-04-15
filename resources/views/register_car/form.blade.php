@@ -177,7 +177,8 @@
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
             </div>
-
+            <br><br>
+            <hr>
             <div class="col-12">
                 <div class="row">
                     <div class="col-9">
@@ -269,7 +270,7 @@
                 <div class="col-12">
                     <br><br>
                     <div class="row">
-                        <div class="col-12 offset-7 offset-md-9">
+                        <div class="col-12 offset-7 offset-md-10">
                             <button type="button" class="btn btn-warning " onclick="document.getElementById('edit_information').click(); ">
                                 แก้ไขข้อมูล
                             </button>
