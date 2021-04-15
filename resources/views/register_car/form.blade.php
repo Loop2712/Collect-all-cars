@@ -268,8 +268,9 @@
                 </div>
                 <div class="col-12">
                     <div class="row">
-                        <br><br>
-                        <a class="btn btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
+                        <button type="button" class="btn btn-outline-warning">
+                            <a href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
+                        </button>
                         <br>
                     </div>
                 </div>
