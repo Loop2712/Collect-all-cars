@@ -40,6 +40,7 @@
                                     <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/user.png' ) }}">
                                 </div>
                                 <div class="col-9">
+                                    <br>
                                     ข้อมูลส่วนบุคคล
                                 </div>
                             </div>
