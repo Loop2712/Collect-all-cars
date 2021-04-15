@@ -269,7 +269,7 @@
                 <div class="col-12">
                     <br><br>
                     <div class="row">
-                        <div class="col-12 offset-7">
+                        <div class="col-12 offset-7 offset-md-9">
                             <button type="button" class="btn btn-warning " onclick="document.getElementById('edit_information').click(); ">
                                 แก้ไขข้อมูล
                             </button>
