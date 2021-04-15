@@ -48,10 +48,14 @@
                     <div class="col-1"></div>
                     <div class="col-10 btn btn-outline-danger" style="border-radius: 10px;font-size: 13px;">
                         <a class="text-danger" href="{{ url('/sell' ) }}">
-                            <center><i class="fas fa-car"></i>
-                                <br>
-                                ขายรถยนต์
-                            </center>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/car.png' ) }}">
+                                </div>
+                                <div class="col-9">
+                                    ขาย<br>รถยนต์
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -60,21 +64,27 @@
                 <div class="row">
                     <div class="col-10 btn btn-outline-success" style="border-radius: 10px;font-size: 13px;">
                         <a class="text-success" href="{{ url('/register_car' ) }}">
-                            <center>
-                                <i class="fas fa-motorcycle"></i>
-                                <br>
-                                รถของฉัน
-                            </center>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/car-key2.png' ) }}">
+                                </div>
+                                <div class="col-9">
+                                    รถ<br>ของฉัน
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-10 btn btn-outline-warning" style="border-radius: 10px;font-size: 13px;">
                         <a class="text-warning" href="{{ url('/motercycles' ) }}">
-                            <center>
-                                <i class="fas fa-motorcycle"></i>
-                                <br>
-                                ขายรถจักรยานยนต์ 
-                            </center>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/motorcycle.png' ) }}">
+                                </div>
+                                <div class="col-9">
+                                    ขาย<br>จักรยานยนต์
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
