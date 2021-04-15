@@ -173,19 +173,10 @@
                 </div>
 
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" onclick="
-                document.getElementById('btn_home').click();
-                document.getElementById('submit').click();">
-                    บันทึก
-                </button> 
-            </div>
 
             <div class="form-group">
-                <input id="submit" class="btn btn-primary d-none" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
+                <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
             </div>
-
-            <a id="btn_home" class="d-none" href="{{ url('/') }}"></a>
 
             <hr>
             <div class="col-12">
