@@ -178,7 +178,9 @@
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" onclick="document.getElementById('btn_add_line').click();">
             </div>
 
-            <a id="btn_add_line" class="d-none" href="{{ url('/') }}"></a>
+            <a id="btn_add_line" class="d-none" href="https://lin.ee/xnFKMfc">
+              <img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน" width="100%" border="0">
+            </a>
 
             <hr>
             <div class="col-12">
