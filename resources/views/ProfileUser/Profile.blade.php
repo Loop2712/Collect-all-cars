@@ -14,7 +14,7 @@
 <div class="container bootstrap snippets bootdey">
 <div class="panel-body inf-content">
     <div class="row">
-        <div class="col-md-4"><br><br>
+        <div class="col-md-4">
             @if(!empty($data->ranking))
             @switch($data->ranking)
                 @case('Gold')
