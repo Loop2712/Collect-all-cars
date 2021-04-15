@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <a id="btn_add_line" class="d-none" href="https://lin.ee/xnFKMfc">
+                        <a href="https://lin.ee/xnFKMfc">
                           <button type="button" class="btn btn-success">เสร็จสิ้น</button>
                         </a>
                     </div>
