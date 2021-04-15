@@ -35,19 +35,14 @@
                     <div class="col-1"></div>
                     <div class="col-10 btn btn-outline-primary" style="border-radius: 10px;font-size: 13px;">
                         <a class="text-primary" href="{{ url('/profile' ) }}">
-                            <center>
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <img width="50" src="{{ url('/img/icon/user.png' ) }}">
-                                        </div>
-                                        <div class="col-9">
-                                            ข้อมูลส่วนบุคคล
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img style="margin-left: 2px;" width="50" src="{{ url('/img/icon/user.png' ) }}">
                                 </div>
-                                
-                            </center>
+                                <div class="col-9">
+                                    ข้อมูลส่วนบุคคล
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="col-1"></div>
