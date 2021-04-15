@@ -186,7 +186,7 @@
                     </div>
                     <div class="col-3">
                         <br>
-                        <button title="Click to show/hide content" type="button"  class="btn btn-outline-secondary"
+                        <button title="Click to show/hide content" type="button"  class="btn btn-sm"
                             onclick="if(document.getElementById('information') .style.display=='none') 
                             {document.getElementById('information') .style.display=''}else{document.getElementById('information')
                             .style.display='none'}"> 
