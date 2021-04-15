@@ -119,7 +119,7 @@
                     </div>
                     <div class="col-12">
                         <a href="https://lin.ee/xnFKMfc">
-                          <button type="button" class="btn btn-success" style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; border: none;">เสร็จสิ้น</button>
+                          <button type="button" class="btn btn-success" style="padding-left: 70px;padding-right: 70px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; border: none;">เสร็จสิ้น</button>
                         </a>
                         <br><br>
                     </div>
