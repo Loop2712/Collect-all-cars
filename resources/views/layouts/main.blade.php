@@ -200,6 +200,11 @@
                                                 @endif
                                             @endif
                                             <li>
+                                                @if (Route::has('password.request'))
+                                                    <a href="{{ route('password.request') }}">เปลี่ยนรหัสผ่าน</a>
+                                                @endif
+                                            </li>
+                                            <li>
                                                 <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}</a>
                                             </li>
