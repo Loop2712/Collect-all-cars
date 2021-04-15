@@ -26,7 +26,7 @@
                                     <form action="{{URL::to('/car')}}" method="get">
                                         <div class="select-list">
                                             <div class="select-list-item">
-                                                <p><b>รุ่นรถ / Brand</b></p>
+                                                <p><b>ยี่ห้อ / Brand</b></p>
                                                 <select name="brand" id="brand" class="form-control"  >
                                                     <option value="" data-display="Brand">Select Brand</option>
                                                     @foreach($brand_array as $br)
@@ -39,20 +39,34 @@
                                                 </select>
                                             </div>
                                             <div class="select-list-item">
-                                                <p><b>ปี / year</b></p>
-                                                <select name="year" id="year" class="form-control"  >
-                                                    <option value="" data-display="Year">Select Year</option>
-                                                    @foreach($year_array as $ye)
-                                                        <option 
-                                                                value="{{ $ye->year }}" 
-                                                                {{ request('year') == $ye->year ? 'selected' : ''   }} >
-                                                        {{ $ye->year }} 
-                                                        </option>
-                                                    @endforeach 
+                                                <p><b>รุ่นรถ / Model</b></p>
+                                                <select name="model" id="model" class="form-control"  >
+                                                    <option value="" data-display="Year">Select Model</option>
+                                                         @foreach($model_array as $model)
+                                                                <option 
+                                                                     value="{{ $model->model }}" 
+                                                                        {{ request('model') == $model->model ? 'selected' : ''   }} >
+                                                                {{ $model->model }} 
+                                                             </option>
+                                                          @endforeach 
                                                 </select>
                                             </div>
+
                                             <div class="select-list-item">
-                                                <p><b>สีรถ / Color</b></p>
+                                                <p><b>ปีต่ำสุด / Lowest year</b></p>
+                                                    <input class="form-control" type="text" name="yearmin" id="yearmin" placeholder="Lowest year" value="{{ request('yearmin') }}">
+                                            </div>
+
+                                            <div class="select-list-item">
+                                                <p><b>ปีสุงสุด / Highest year</b></p>
+                                                    <input class="form-control" type="text" name="yearmax"  id="yearmax" placeholder="Highest year" value="{{ request('yearmax') }}"> 
+                                            </div>
+
+                                            
+
+
+                                            <!--<div class="select-list-item">
+                                                <p><b>ปี / Year</b></p>
                                                 <select name="color" id="color" class="form-control"  >
                                                     <option value="" data-display="Color">Select Color</option>
                                                     @foreach($color_array  as $co)
@@ -64,8 +78,9 @@
                                                     @endforeach 
                                                 </select>
                                             </div>
+                                        
                                             <div class="select-list-item">
-                                                <p><b>ประเภทรถ / Type</b></p>
+                                                <p><b>ปี / Year</b></p>
                                                 <select name="typecar" id="typecar" class="form-control"  >
                                                     <option value="" data-display="Type">Select Type</option>
                                                     @foreach($type_array as $ty)
@@ -76,9 +91,10 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                            </div>
+                                            </div>-->
                                         </div>
-                                        <!-- <div class="car-price">
+
+                                         <div class="car-price">
                                             <p>Price Range:</p>
                                             <div class="price-range-wrap">
                                                 <div class="price-range"></div>
@@ -89,7 +105,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
+                                        
+
+                                      <!--  <input class="select-list-item" type="text" name="yearmin"  id="yearmin" placeholder="ปีต่ำสุด" value="{{ request('yearemin') }}"><br>
+                                    <input class="select-list-item" type="text" name="yearmax" id="yearmax" placeholder="ปีสูงสุด" value="{{ request('yearmax') }}"><br>
+-->
+
                                         <button type="submit" class="site-btn">ค้นหา</button>
                                     </form>
                                 </div>

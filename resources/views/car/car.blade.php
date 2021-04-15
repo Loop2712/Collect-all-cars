@@ -60,8 +60,8 @@
                                 </select><br>
                                 <div class="filter-price">
                                     <p>ราคา:</p>
-                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}">
-                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}">
+                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}"><br>
+                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}"><br>
                                     <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
                                 </div>
 
@@ -207,7 +207,8 @@
                                                         <input class="d-none" name="user_id" type="number" id="user_id" value="" >
                                                         <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
                                                             
-                                                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" style="color:#000"><i class="far fa-heart"></i></a>    
+                                                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" style="color:#000"><i class="far fa-heart"></i></a>  
+                                                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="primary-btn sidebar-btn">  </a>
                                                     </form>
                                                 </div>
                                             </div>
