@@ -24,7 +24,7 @@
             "text": "ขอบคุณ",
             "size": "xxl",
             "margin": "sm",
-            "color": "#FFFFFF",
+            "color": "#ff0101",
             "align": "center",
             "weight": "bold",
             "wrap": true
@@ -34,11 +34,21 @@
             "text": "Thankyou",
             "size": "lg",
             "margin": "lg",
-            "color": "#FFFFFF",
+            "color": "#ff0101",
             "align": "center",
             "wrap": true,
             "offsetBottom": "md"
-          },
+          }
+        ],
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl",
+        "backgroundColor": "#FFFFFF"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
           {
             "type": "image",
             "url": "https://market.viicheck.com/img/stickerline/PNG/สติกเกอร์ไลน์.png",
@@ -51,9 +61,9 @@
             "animated": true
           }
         ],
-        "borderColor": "#FFFFFF",
         "borderWidth": "bold",
-        "cornerRadius": "xxl"
+        "margin": "none",
+        "cornerRadius": "500px"
       },
       {
         "type": "separator",
