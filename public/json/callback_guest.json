@@ -54,7 +54,7 @@
         "borderColor": "#ff0101",
         "borderWidth": "bold",
         "cornerRadius": "xxl",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FAEBD7"
       },
       {
         "type": "separator",
