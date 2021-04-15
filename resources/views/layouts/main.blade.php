@@ -111,10 +111,8 @@
                     <ul class="nav-news-feed">
                         <li><i class="fa fa-car"></i><div><a href="{{ url('/car') }}">รถยนต์</a></div></li>
                         <li><i class="fa fa-bicycle"></i><div><a href="{{ url('/motercycle') }}">รถจักรยานยนต์</a></div></li>
-                        
                     </ul>
                 </div>
-                <hr>
                 <div class="col-12">
                     <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
                 </div>
