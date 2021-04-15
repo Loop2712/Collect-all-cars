@@ -177,7 +177,6 @@
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
             </div>
-            <br><br>
             <hr>
             <div class="col-12">
                 <div class="row">
