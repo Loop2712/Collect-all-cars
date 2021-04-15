@@ -53,6 +53,12 @@
                             </center>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <a href="https://lin.ee/xnFKMfc">
+                          <button type="button" class="btn btn-success" style="padding-left: 130px;padding-right: 130px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; border: none;">เสร็จสิ้น</button>
+                        </a>
+                        <br><br>
+                    </di130
                 </div>
             </div>
         </div>
