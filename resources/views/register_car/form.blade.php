@@ -268,11 +268,14 @@
                 </div>
                 <div class="col-12">
                     <div class="row">
-                        <button type="button" class="btn btn-warning ">
-                            แก้ไขข้อมูล
-                        </button>
-                        <br>
-                        <a class="d-none" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
+                        <div class="col-12 ffset-9">
+                            <button type="button" class="btn btn-warning " onclick="document.getElementById('edit_information').click(); ">
+                                แก้ไขข้อมูล
+                            </button>
+                            <br>
+                            <a id="edit_information" class="d-none" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
