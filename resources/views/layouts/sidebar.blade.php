@@ -33,7 +33,7 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-primary" style="border-radius: 10px;font-size: 13px;">
+                    <div class="col-10 btn" style="border-radius: 10px;font-size: 13px;">
                         <a class="text-primary" href="{{ url('/profile' ) }}">
                             <center>
                                 <div class="col-12">
