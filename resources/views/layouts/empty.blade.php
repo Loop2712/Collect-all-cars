@@ -205,9 +205,6 @@
                     </div>
                 </div>
             </div>
-            <div class="">
-                <i class="fab fa-line"></i>
-            </div>
         </div>
     </header>
 
