@@ -16,26 +16,47 @@
         "aspectMode": "cover"
       },
       {
-        "type": "text",
-        "color": "#FFFFFF",
-        "text": "กรุณามาเลื่อนรถด้วยค่ะ",
-        "margin": "xxl",
-        "size": "xxl",
-        "align": "center",
-        "weight": "bold",
-        "gravity": "bottom",
-        "wrap": true
-      },
-      {
-        "type": "text",
-        "color": "#FFFFFF",
-        "text": "Please move the car",
-        "margin": "xxl",
-        "size": "xl",
-        "align": "center",
-        "weight": "regular",
-        "gravity": "bottom",
-        "wrap": true
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "กรุณามาเลื่อนรถด้วยค่ะ",
+            "margin": "xxl",
+            "size": "xxl",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "Please move the car",
+            "margin": "xxl",
+            "size": "xl",
+            "align": "center",
+            "weight": "regular",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/stickerline/PNG/35.2.png",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "margin": "xs",
+            "animated": true,
+            "align": "center",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
       },
       {
         "type": "separator",
