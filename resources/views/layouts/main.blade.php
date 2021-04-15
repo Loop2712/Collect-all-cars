@@ -94,6 +94,7 @@
                             <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 {{ __('ออกจากระบบ') }}</a>
                                             <!-- </button> -->
+                        <br>
                         <div class="row">
                         <div class="col-12 col-md-2">
                             <label for="massengbox" class="control-label">
