@@ -9,7 +9,6 @@
                 <div class="card">
                     <div class="card-header">แก้ไขข้อมูลส่วนตัว</div>
                     <div class="card-body">
-                        <br>
                         @if ($errors->any())
                             <ul class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -26,8 +25,6 @@
                             @include ('ProfileUser.form', ['formMode' => 'edit'])
 
                         </form>
-
-                        <a href="{{ url('/profile') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</button></a>
 
                     </div>
                 </div>
