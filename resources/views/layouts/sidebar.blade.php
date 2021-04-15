@@ -37,7 +37,7 @@
                         <a class="text-primary" href="{{ url('/profile' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img style="margin-left: 2px;" width="50" src="{{ url('/img/icon/user.png' ) }}">
+                                    <img style="margin-left: -6px;" width="40" src="{{ url('/img/icon/user.png' ) }}">
                                 </div>
                                 <div class="col-9">
                                     ข้อมูลส่วนบุคคล
