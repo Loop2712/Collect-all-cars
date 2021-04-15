@@ -38,7 +38,7 @@
                             <center>
                                 <div class="row">
                                     <div class="col-3">
-                                        <i style="width: 100%" class="fas fa-user-edit"></i>
+                                        <i style="width: 100%; height: 200%;" class="fas fa-user-edit"></i>
                                     </div>
                                     <div class="col-9">
                                         ข้อมูลส่วนบุคคล
