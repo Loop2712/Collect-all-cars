@@ -111,7 +111,7 @@
                                 </div>
                                 <br>
                                 <p>ภาษาไทย</p>
-                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
+                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
                                 </button>
                                 <br><br>
                             </center>
@@ -119,8 +119,9 @@
                     </div>
                     <div class="col-12">
                         <a href="https://lin.ee/xnFKMfc">
-                          <button type="button" class="btn btn-success">เสร็จสิ้น</button>
+                          <button type="button" class="btn btn-success" style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;">เสร็จสิ้น</button>
                         </a>
+                        <br><br>
                     </div>
                 </div>
             </div>
