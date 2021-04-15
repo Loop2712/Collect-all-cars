@@ -180,7 +180,7 @@
             <hr>
             <div class="col-12">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-9 col-md-4">
                         <p style="font-size: 22px;" class="control-label"><b>ข้อมูลของท่าน</b></p>
                         <p style="font-size: 16px;line-height: 5pt;" class="control-label">Your Information</p>
                     </div>
