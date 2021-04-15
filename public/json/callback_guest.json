@@ -23,7 +23,7 @@
             "type": "text",
             "text": "ขอบคุณ",
             "size": "xxl",
-            "margin": "sm",
+            "margin": "lg",
             "color": "#ff0101",
             "align": "center",
             "weight": "bold",
