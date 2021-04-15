@@ -184,7 +184,7 @@
                 {document.getElementById('information') .style.display=''}else{document.getElementById('information')
                  .style.display='none'}"> <h6 style="color:#7D7D7D"><i class="fas fa-angle-double-down"></i></span></h6></button>
             <br><br>
-            <div id="information" class="row">
+            <div id="information" class="row" style="display:none">
                 <a class="btn-sm btn-warning text-black-50" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
                 <br>
                 <!-- ซ้าย -->
