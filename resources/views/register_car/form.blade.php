@@ -175,10 +175,10 @@
             </div>
 
             <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" onclick="document.getElementById('btn_home').click();">
+                <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" onclick="document.getElementById('btn_add_line').click();">
             </div>
 
-            <a id="btn_home" class="d-none" href="{{ url('/') }}"></a>
+            <a id="btn_add_line" class="d-none" href="{{ url('/') }}"></a>
 
             <hr>
             <div class="col-12">
