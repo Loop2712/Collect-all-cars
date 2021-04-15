@@ -182,7 +182,7 @@
                 <div class="row">
                     <div class="col-9">
                         <p style="font-size: 22px;" class="control-label"><b>ข้อมูลของท่าน</b></p>
-                        <p style="font-size: 16px;line-height: 18pt;" class="control-label">Your Information</p>
+                        <p style="font-size: 16px;line-height: 5pt;" class="control-label">Your Information</p>
                     </div>
                     <div class="col-3">
                         <button title="Click to show/hide content" type="button"  class="btn btn-sm "
@@ -269,7 +269,7 @@
                 <div class="col-12">
                     <br><br>
                     <div class="row">
-                        <div class="col-12 offset-9">
+                        <div class="col-12 offset-7">
                             <button type="button" class="btn btn-warning " onclick="document.getElementById('edit_information').click(); ">
                                 แก้ไขข้อมูล
                             </button>
