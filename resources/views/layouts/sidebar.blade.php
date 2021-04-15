@@ -37,10 +37,10 @@
                         <a class="text-primary" href="{{ url('/profile' ) }}">
                             <center>
                                 <div class="row">
-                                    <div class="col-4">
-                                        <i class="fas fa-user-edit"></i>
+                                    <div class="col-3">
+                                        <i style="width: 100%" class="fas fa-user-edit"></i>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-9">
                                         ข้อมูลส่วนบุคคล
                                     </div>
                                 </div>
