@@ -181,10 +181,10 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-9">
-                        <h5 style="font-size: 22px;" class="control-label">ข้อมูลของท่าน</h5>
+                        <p style="font-size: 22px;" class="control-label"><b>ข้อมูลของท่าน</b></p>
                         <p style="font-size: 16px;" class="control-label">Your Information</p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <button title="Click to show/hide content" type="button"  class="btn btn-sm "
                             onclick="if(document.getElementById('information') .style.display=='none') 
                             {document.getElementById('information') .style.display=''}else{document.getElementById('information')
@@ -267,15 +267,15 @@
                     </div>
                 </div>
                 <div class="col-12">
+                    <br><br>
                     <div class="row">
-                        <div class="col-12 ffset-9">
+                        <div class="col-12 offset-9">
                             <button type="button" class="btn btn-warning " onclick="document.getElementById('edit_information').click(); ">
                                 แก้ไขข้อมูล
                             </button>
                             <br>
                             <a id="edit_information" class="d-none" href="{{ url('/profile/' . $user->id . '/edit') }}" title="Edit Wishlist">แก้ไขข้อมูล </a>
                         </div>
-                        
                     </div>
                 </div>
             </div>
