@@ -94,9 +94,7 @@
                             <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 {{ __('ออกจากระบบ') }}</a>
                                             <!-- </button> -->
-                        @endguest
-                    </div>
-                    <div class="row">
+                        <div class="row">
                         <div class="col-12 col-md-2">
                             <label for="massengbox" class="control-label">
                                 @if (Route::has('password.request'))
@@ -107,6 +105,9 @@
                             </label>
                         </div>            
                     </div>
+                        @endguest
+                    </div>
+                    
                     <hr>
                     <ul class="nav-news-feed">
                         <li><i class="fa fa-car"></i><div><a href="{{ url('/car') }}">รถยนต์</a></div></li>
