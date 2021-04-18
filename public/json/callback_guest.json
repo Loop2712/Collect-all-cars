@@ -23,8 +23,8 @@
             "type": "text",
             "text": "ขอบคุณ",
             "size": "xxl",
-            "margin": "sm",
-            "color": "#ff0101",
+            "margin": "lg",
+            "color": "#07375D",
             "align": "center",
             "weight": "bold",
             "wrap": true
@@ -34,10 +34,11 @@
             "text": "Thankyou",
             "size": "lg",
             "margin": "lg",
-            "color": "#ff0101",
+            "color": "#07375D",
             "align": "center",
             "wrap": true,
-            "offsetBottom": "md"
+            "offsetBottom": "md",
+            "weight": "bold"
           },
           {
             "type": "image",
@@ -54,7 +55,7 @@
         "borderColor": "#ff0101",
         "borderWidth": "bold",
         "cornerRadius": "xxl",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FAEBD7"
       },
       {
         "type": "separator",
