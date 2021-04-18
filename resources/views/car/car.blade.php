@@ -208,7 +208,7 @@
                                                         <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
                                                             
                                                         <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" style="color:#000"><i class="far fa-heart"></i></a>  
-                                                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="primary-btn sidebar-btn">  </a>
+                                                        
                                                     </form>
                                                 </div>
                                             </div>

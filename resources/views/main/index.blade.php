@@ -27,39 +27,68 @@
                                         <div class="select-list">
                                             <div class="select-list-item">
                                                 <p><b>ยี่ห้อ / Brand</b></p>
-                                                <select name="brand" id="brand" class="form-control"  >
-                                                    <option value="" data-display="Brand">Select Brand</option>
-                                                    @foreach($brand_array as $br)
-                                                        <option 
-                                                            value="{{ $br->brand }}" 
-                                                            {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
-                                                            {{ $br->brand }} 
-                                                        </option>
-                                                    @endforeach 
+                                                <select name="brand" class=" form-control" id="input_car_brand"  onchange="showCar_model();
+                                                     if(this.value=='อื่นๆ'){ 
+                                                           document.querySelector('#brand_input').classList.remove('d-none'),
+                                                           document.querySelector('#generation_input').classList.remove('d-none'),
+                                                           document.querySelector('#brand_input').focus();
+                                                      }else{ 
+                                                          document.querySelector('#brand_input').classList.add('d-none'),
+                                                          document.querySelector('#generation_input').classList.add('d-none');}">
+                                                      @if(!empty($xx))
+                                                         @foreach($xx as $item)
+                                                              <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
+                                                          @endforeach
+                                                      @else
+                                                          <option value="" selected>Select Brand</option> 
+                                                      @endif
+                                                      <br>
+                                                      {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                                                 </select>
+                                                
                                             </div>
+                                         
                                             <div class="select-list-item">
                                                 <p><b>รุ่นรถ / Model</b></p>
-                                                <select name="model" id="model" class="form-control"  >
-                                                    <option value="" data-display="Year">Select Model</option>
-                                                         @foreach($model_array as $model)
-                                                                <option 
-                                                                     value="{{ $model->model }}" 
-                                                                        {{ request('model') == $model->model ? 'selected' : ''   }} >
-                                                                {{ $model->model }} 
-                                                             </option>
-                                                          @endforeach 
+                                                <select name="generation" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
+                                                          document.querySelector('#generation_input').classList.remove('d-none'),
+                                                          document.querySelector('#generation_input').focus();
+                                                     }else{ 
+                                                          document.querySelector('#generation_input').classList.add('d-none');}">
+                                                         <option value="" selected>Select Model</option>     
+                                                         <br> 
+                                                            {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                                                 </select>
                                             </div>
 
                                             <div class="select-list-item">
                                                 <p><b>ปีต่ำสุด / Lowest year</b></p>
-                                                    <input class="form-control" type="text" name="yearmin" id="yearmin" placeholder="Lowest year" value="{{ request('yearmin') }}">
+                                                <select name="yearmin" id="yearmin" class="form-control"  >
+                                                    <option value="" data-display="yearmin">Lowest year</option>
+                                                         @foreach($year_array as $yearmin)
+                                                                <option 
+                                                                     value="{{ $yearmin->year }}" 
+                                                                        {{ request('yearmin') == $yearmin->year ? 'selected' : ''   }} >
+                                                                {{ $yearmin->year }} 
+                                                             </option>
+                                                          @endforeach 
+                                                </select>
                                             </div>
+
+                                        
 
                                             <div class="select-list-item">
                                                 <p><b>ปีสุงสุด / Highest year</b></p>
-                                                    <input class="form-control" type="text" name="yearmax"  id="yearmax" placeholder="Highest year" value="{{ request('yearmax') }}"> 
+                                                <select name="yearmax" id="yearmax" class="form-control"  >
+                                                    <option value="" data-display="yearmax">Highest year</option>
+                                                         @foreach($year_array as $yearmax)
+                                                                <option 
+                                                                     value="{{ $yearmax->year }}" 
+                                                                        {{ request('yearmax') == $yearmax->year ? 'selected' : ''   }} >
+                                                                {{ $yearmax->year }} 
+                                                             </option>
+                                                          @endforeach 
+                                                </select>
                                             </div>
 
                                             
@@ -425,6 +454,59 @@ function check_email() {
 
             });
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        showCar_brand();
+        showMotor_brand();   
+    });
+    function showCar_brand(){
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/car_brand")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                // let input_car_brand = document.querySelector("#input_car_brand");
+                    // input_car_brand.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.brand;
+                    option.value = item.brand;
+                    input_car_brand.add(option);
+                }
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_car_brand.add(option); 
+
+                //QUERY model
+                showCar_model();
+            });
+            return input_car_brand.value;
+    }
+    function showCar_model(){
+        let input_car_brand = document.querySelector("#input_car_brand");
+        fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                // //UPDATE SELECT OPTION
+                let input_car_model = document.querySelector("#input_car_model");
+                    input_car_model.innerHTML = "";
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.model;
+                    option.value = item.model;
+                    input_car_model.add(option);                
+                } 
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_car_model.add(option);  
+            });
+    }
 
 </script>
     
