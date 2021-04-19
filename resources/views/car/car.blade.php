@@ -58,6 +58,7 @@
                                         </option>
                                     @endforeach 
                                 </select><br>
+                                
                                 <div class="filter-price">
                                     <p>ราคา:</p>
                                     <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}"><br>
@@ -198,10 +199,27 @@
                                         <div class="col" >
                                             <div class="row">
                                                 <div class="col-10">
-                                                    <h4 ><a href="{{ url('/car/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}  {{ $item->model  }} {{ $item->submodel  }}</a></h4>
+                                                <div style="font-size:12px; border-radius: 15px;" class="col-lg-4 col-md-5 border border-primary radius: 15px;">{{ $item->year  }} </div>
+
+                                                
+                                                    <h6 ><a href="{{ url('/car/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}   {{ $item->model  }} <br>{{ $item->submodel  }}</a></h5>
                                                 </div>
                                                 <div class="col-2">
-                                                    <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                                               
+                                                <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}           
+        
+                                                        <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
+                                                        <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                                        <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
+
+                                                    <button type="submit" style="border:none; background-color: transparent;">
+                                                       <i class="far fa-heart" ></i> 
+                                                    </button>      
+                                                </form>
+
+                                              
+                                                    <!--<form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
                                                         {{ csrf_field() }}
                                                         <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
                                                         <input class="d-none" name="user_id" type="number" id="user_id" value="" >
@@ -209,7 +227,7 @@
                                                             
                                                         <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" style="color:#000"><i class="far fa-heart"></i></a>  
                                                         
-                                                    </form>
+                                                    </form>-->
                                                 </div>
                                             </div>
                                            
