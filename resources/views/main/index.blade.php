@@ -158,7 +158,7 @@
                                                     @foreach($motorbrand as $brand)
                                                         <option 
                                                             value="{{ $brand->brand }}" 
-                                                            {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
+                                                            {{ request('brand') == $brand->brand ? 'selected' : ''   }}  >
                                                             {{ $brand->brand }} 
                                                         </option>
                                                     @endforeach 
