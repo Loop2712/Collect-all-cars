@@ -199,20 +199,16 @@
                                         <div class="col" >
                                             <div class="row">
                                                 <div class="col-10">
-<<<<<<< HEAD
+
                                                 <div style="font-size:12px; border-radius: 15px;" class="col-2 col-md-4 border border-primary radius: 15px;">{{ $item->year  }} </div>
                                                   
                                         <div class="row">
     <div class="col-sm-3">  <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png"></div>
     <div class="col-sm-9">{{ $item->model }} &nbsp {{ $item->submodel }}</div>
 </div>
-=======
-                                                <div style="font-size:12px; border-radius: 15px;" class="col-lg-4 col-md-5 border border-primary radius: 15px;">{{ $item->year  }} </div>
-                                                <br>
 
-                                                
-                                                    <h6 ><a href="{{ url('/car/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}   {{ $item->model  }} <br>{{ $item->submodel  }}</a></h5>
->>>>>>> d8b7554541cf448b244c0c6a186ebbb1703d4ae3
+                                     
+
                                                 </div>
                                                 <div class="col-2">
                                                
