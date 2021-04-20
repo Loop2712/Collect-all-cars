@@ -50,6 +50,11 @@ class AlertAct extends Command
         $act = Register_car::where('act' , "<=" , $date_30)
                                 ->whereNull('alert_act')
                                 ->get();
+         echo "Hello";
+         echo "<pre>";
+         print_r($act);
+         echo "<pre>";
+         exit();
 
         foreach ($act as $item) {
             $template_path = storage_path('../public/json/flex-act.json');   
