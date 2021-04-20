@@ -35,8 +35,7 @@
                         "2":"รถคุณเปิดไฟค้างไว้ค่ะ / The lights are on",
                         "3":"มีเด็กอยู่ในรถค่ะ / Children in car",
                         "4":"รถคุณเกิดอุบัติเหตุค่ะ / Car Accident",
-                        "5":"แจ้งปัญหาการขับขี่ / Driving Problems",
-                        "6":"อื่นๆ / Others"}',
+                        "5":"แจ้งปัญหาการขับขี่ / Driving Problems"}',
                          true) as $optionKey => $optionValue)
                             <option value="{{ $optionKey }}"  {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach

@@ -266,7 +266,7 @@ class GuestController extends Controller
                 break;
             case "6": 
                 $masseng = $masseng_old;
-                $masseng_en = "Others";
+                $masseng_en = "Report";
                 $stg = "9";
                 break;
         }
