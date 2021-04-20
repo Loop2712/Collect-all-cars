@@ -48,7 +48,7 @@ class AlertAct extends Command
 
         // พรบ
         $act = Register_car::where('act' , "<=" , $date_30)
-                                ->where('alert_act' , "=" , null)
+                                ->whereNull('alert_act')
                                 ->get();
 
         foreach ($act as $item) {
