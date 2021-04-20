@@ -198,19 +198,21 @@
                                         <!-- <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div><br> -->
                                         <div class="col" >
                                             <div class="row">
-                                                <div class="col-10">
+                                                <div class="col-9">
 
-                                                <div style="font-size:12px; border-radius: 15px;" class="col-2 col-md-4 border border-primary radius: 15px;">{{ $item->year  }} </div>
-                                                  
-                                        <div class="row">
-    <div class="col-sm-3">  <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png"></div>
-    <div class="col-sm-9">{{ $item->model }} &nbsp {{ $item->submodel }}</div>
-</div>
-
-                                     
+                                                <div style="font-size:12px; border-radius: 15px; margin-bottom: 10px;" class="col-2 col-md-4 border border-primary radius: 15px;">{{ $item->year  }} </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4">  
+                                                        <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 20px;">{{ $item->model }}</h4>
+                                                        <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">{{ $item->submodel }}</p>
+                                                    </div>
+                                                </div>
 
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                
                                                 <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                         {{ csrf_field() }}           
@@ -237,10 +239,10 @@
                                                 </div>
                                             </div>
                                            
-                                            <p style = "font-size:12px; margin-top: 5px;">{{ $item->location  }}</p>
+                                            <p style = "font-size:12px; margin-top: -5px;">{{ $item->location  }}</p>
                                         </div>
                                         <div class="col">
-                                            
+                                            <hr style="margin-bottom: 25px;">
                                             @if ( $item->price == 'ติดต่อผู้ขาย')
                                                 <h4 style="color:#db2d2e;margin-top: -12px;">{{ $item->price}}<span></span></h4>
                                             @else
