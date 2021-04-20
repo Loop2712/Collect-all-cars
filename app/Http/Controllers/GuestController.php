@@ -242,26 +242,32 @@ class GuestController extends Controller
             case "1":  
                 $masseng = "กรุณาเลื่อนรถด้วยค่ะ";
                 $masseng_en = "Please move the car";
+                $stg = "35.2";
                 break;
             case "2":  
                 $masseng = "รถคุณเปิดไฟค้างไว้ค่ะ";
                 $masseng_en = "The lights are on";
+                $stg = "36";
                 break;
             case "3":  
                 $masseng = "มีเด็กอยู่ในรถค่ะ";
                 $masseng_en = "Children in car";
+                $stg = "5";
                 break;
             case "4":  
                 $masseng = "รถคุณเกิดอุบัติเหตุค่ะ";
                 $masseng_en = "Car Accident";
+                $stg = "21";
                 break;
             case "5":  
                 $masseng = "แจ้งปัญหาการขับขี่";
                 $masseng_en = "Driving Problems";
+                $stg = "37";
                 break;
             case "6": 
                 $masseng = $masseng_old;
-                $masseng_en = "Others";
+                $masseng_en = "Report";
+                $stg = "9";
                 break;
         }
 
@@ -312,6 +318,7 @@ class GuestController extends Controller
                         $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                         $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
                         $string_json = str_replace("Please move the car",$masseng_en,$string_json);
+                        $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
 
                         $messages = [ json_decode($string_json, true) ];
                     }
@@ -325,6 +332,7 @@ class GuestController extends Controller
                         $string_json = str_replace("กรุณามาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
                         $string_json = str_replace("Please move the car",$masseng_en,$string_json);
                         $string_json = str_replace("0999999999",$phone,$string_json);
+                        $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
 
                         $messages = [ json_decode($string_json, true) ];
                     }

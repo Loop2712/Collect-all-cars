@@ -232,38 +232,42 @@
                         <br><br>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-car-side text-danger"></i></h1>
-                            <br>
+                           
                             @foreach($car as $item)
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="col-12 col-md-2">
-                                        <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                <div class="col-8 col-md-8 border border-primary" style= "border-radius: 15px;">
+                                    <div class="row">
+                                        <div class="col-md-5" style="margin-top:12px"> 
+                                            <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                        </div>
+                                        <div class="col-6 col-md-6"> 
+                                            <b>{{ $item->generation }}</b><br>{{ $item->registration_number }} <br>{{ $item->province }}
+                                        </div>
+
                                     </div>
-                                    <div class="col-12 col-md-8">
-                                        <span><b>{{ $item->generation }}</b></span>
-                                        <br>
-                                        <span class="text-secondary">{{ $item->registration_number }}</span>
-                                        <br>
-                                        <span class="text-secondary">{{ $item->province }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
+                                 </div>
+                                
+                            </div><br>
+                                    @endforeach
                         </div>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-motorcycle text-success"></i></h1>
-                            <br>
                             @foreach($motorcycle as $item)
                             <div class="row">
-                                <div class="col-12 col-md-2">
-                                    <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                </div>
-                                <div class="col-12 col-md-8">
-                                    <span><b>{{ $item->generation }}</b></span>
-                                    <br>
-                                    <span class="text-secondary">{{ $item->registration_number }} {{ $item->province }}</span>
-                                </div>
-                            </div>
+                                <div class="col-6 col-md-8 border border-primary" style= "border-radius: 15px;">
+                            
+                                    <div class="row">
+                                        <div class="col-md-5" style="margin-top:12px"> 
+                                            <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                        </div>
+                                        <div class="col-md-6"> 
+                                            <b>{{ $item->generation }}</b><br>{{ $item->registration_number }} <br>{{ $item->province }}
+                                        </div>
+
+                                    </div>
+                                 </div>
+                                
+                            </div><br>
                             @endforeach
                         </div>
                     </div>

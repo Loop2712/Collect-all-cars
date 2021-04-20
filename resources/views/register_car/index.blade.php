@@ -97,19 +97,20 @@
                                             @endif
                                         <!-- <h6 class="text-right"><span class="f-left">insurance</span><span>2021-02-12</span></h6><br> -->
                                         <a class="btn btn-success btn-sm f-left" style="border-radius: 15px;" href="{{ url('/register_car/' . $item->id ) }}"><i class="fas fa-hand-holding-usd"></i> Sell </a>
-                                        <a class="btn btn-primary btn-sm f-right" style="border-radius: 15px;" href="#"><i class="fas fa-donate"></i> Promise</a>
+                                        <a class="btn btn-primary btn-sm f-left" style="border-radius: 15px;" href="#"><i class="fas fa-donate"></i> Promise</a>
                                         
-                                       <button title="Click to show/hide content" type="button"  class="btn btn-sm "
+                                       <button title="Click to show/hide content" type="button"  class="btn btn-sm " action="{{ url('/register_car/' . $item->id ) }}"
                                             onclick="if(document.getElementById('spoiler') .style.display=='none') 
                                                 {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler')
-                                                .style.display='none'}"> <h6 style="color:#7D7D7D">↓</h6></button>
+                                                .style.display='none'}"> <h6 class="text-right" href="{{ url('/register_car/' . $item->id . '/edit') }}">↓</h6></button>
 
                                         <div id="spoiler" style="display:none"> 
-                                            <form method="POST" action="{{ url('/register_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
                                                     
                                                     <button type="submit" class="btn btn-danger btn-sm"  style="border-radius: 15px;" title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> ฉันไม่ใช้รถคันนี้แล้ว</button>
+                                                    <h6 class="text-right"><span class="f-left"></span><span><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit') }}"><i class="fas fa-pencil-alt" style="font-size: 12px;"></i></a></span></h6><br>
                                             </form> </div>
 
                                     </div>

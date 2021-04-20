@@ -16,28 +16,30 @@
         "aspectMode": "cover"
       },
       {
-        "type": "text",
-        "text": "ขอบคุณ",
-        "size": "xxl",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "align": "center",
-        "weight": "bold",
-        "wrap": true
-      },
-      {
-        "type": "text",
-        "text": "Thankyou",
-        "size": "lg",
-        "margin": "sm",
-        "color": "#FFFFFF",
-        "align": "center",
-        "wrap": true
-      },
-      {
         "type": "box",
         "layout": "vertical",
         "contents": [
+          {
+            "type": "text",
+            "text": "ขอบคุณ",
+            "size": "xxl",
+            "margin": "lg",
+            "color": "#07375D",
+            "align": "center",
+            "weight": "bold",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "Thankyou",
+            "size": "lg",
+            "margin": "lg",
+            "color": "#07375D",
+            "align": "center",
+            "wrap": true,
+            "weight": "bold",
+            "offsetBottom": "md"
+          },
           {
             "type": "image",
             "url": "https://market.viicheck.com/img/stickerline/PNG/26.png",
@@ -50,8 +52,10 @@
             "animated": true
           }
         ],
+        "backgroundColor": "#FAEBD7",
+        "borderColor": "#ff0101",
         "borderWidth": "bold",
-        "cornerRadius": "500px"
+        "cornerRadius": "xxl"
       },
       {
         "type": "text",

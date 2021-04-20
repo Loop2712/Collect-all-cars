@@ -139,7 +139,7 @@
 
             <div class="col-md-9 order-lg-1 order-2">
                 <div class="card">
-                    <div class="card-header">Sell</div>
+                    <div class="card-header">เริ่มต้นขายรถของคุณได้เลย!!</div>
                     <div class="card-body">
                         <a href="{{ url('/sell/create') }}" class="btn btn-success btn-sm" title="Add New Sell">
                             <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถเลย!
