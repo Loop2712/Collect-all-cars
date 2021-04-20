@@ -198,36 +198,43 @@
                                         <!-- <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div><br> -->
                                         <div class="col" >
                                             <div class="row">
-                                                <div class="col-9">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div style="font-size:12px; border-radius: 15px; margin-bottom: 10px;" class="col-2 col-md-4 border border-primary radius: 15px;">
+                                                                {{ $item->year  }} 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
+                                                            {{ csrf_field() }}           
+                                                            
+                                                                <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
+                                                                <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                                                <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
 
-                                                <div style="font-size:12px; border-radius: 15px; margin-bottom: 10px;" class="col-2 col-md-4 border border-primary radius: 15px;">{{ $item->year  }} </div>
-                                                <div class="row">
-                                                    <div class="col-sm-4">  
-                                                        <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                                <button type="submit" style="border:none; background-color: transparent;">
+                                                                   <i class="far fa-heart" ></i> 
+                                                                </button>      
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-sm-8">
-                                                        <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 20px;">{{ $item->model }}</h4>
-                                                        <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">{{ $item->submodel }}</p>
+                                                    
+
+                                                    <div class="row">
+                                                        <div class="col-sm-3">  
+                                                            <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 20px;">{{ $item->model }}</h4>
+                                                            <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">{{ $item->submodel }}</p>
+                                                        </div>
                                                     </div>
+
                                                 </div>
 
-                                                </div>
-                                                <div class="col-3">
-                                               
-                                                <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
-                                                        {{ csrf_field() }}           
-                                                        
-                                                        <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
-                                                        <input class="d-none" name="user_id" type="number" id="user_id" value="" >
-                                                        <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
-
-                                                    <button type="submit" style="border:none; background-color: transparent;">
-                                                       <i class="far fa-heart" ></i> 
-                                                    </button>      
-                                                </form>
-
-                                              
-                                                    <!--<form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
+                                                <!-- <div class="col-3">
+                                                    <form id="my_form" method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data" >
                                                         {{ csrf_field() }}
                                                         <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
                                                         <input class="d-none" name="user_id" type="number" id="user_id" value="" >
@@ -235,8 +242,9 @@
                                                             
                                                         <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" style="color:#000"><i class="far fa-heart"></i></a>  
                                                         
-                                                    </form>-->
-                                                </div>
+                                                    </form>
+                                                </div> -->
+
                                             </div>
                                            
                                             <p style = "font-size:12px; margin-top: -5px;">{{ $item->location  }}</p>
