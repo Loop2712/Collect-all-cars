@@ -20,6 +20,15 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+        $act = Register_car::where('act' , "<=" , $date_30)
+                                ->whereNull('alert_act')
+                                ->get();
+
+                                echo("<pre>");
+                                print_r($act);
+                                echo("<pre>");
+                                exit();
+
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
