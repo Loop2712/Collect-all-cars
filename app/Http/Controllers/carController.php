@@ -21,18 +21,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $date_now = date("Y-m-d");
-        $date_add = strtotime("+30 Day");
-        $date_30 = date("Y-m-d" , $date_add);
-        $act = Register_car::where('act' , "<=" , $date_30)
-                                ->whereNull('alert_act')
-                                ->get();
-
-                                echo("<pre>");
-                                print_r($act);
-                                echo("<pre>");
-                                exit();
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
