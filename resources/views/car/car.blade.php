@@ -200,6 +200,7 @@
                                             <div class="row">
                                                 <div class="col-10">
                                                 <div style="font-size:12px; border-radius: 15px;" class="col-lg-4 col-md-5 border border-primary radius: 15px;">{{ $item->year  }} </div>
+                                                <br>
 
                                                 
                                                     <h6 ><a href="{{ url('/car/'.$item->id ) }}" style="color:#000">{{ $item->brand  }}   {{ $item->model  }} <br>{{ $item->submodel  }}</a></h5>
