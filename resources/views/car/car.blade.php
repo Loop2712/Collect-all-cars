@@ -222,8 +222,14 @@
                                                             </div>
                                                             </div>
                                                       
-                                                            <div class="col-3">
-                                                            <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
+                                                            <div class="col-3" style="border:none; background-color: transparent;">
+                                                            <button class="btn-sm">
+                                                                <i class="fa fa-heart text-danger" ></i>
+                                                            </button>
+                                                            <button class="btn-sm">
+                                                                <i class="fa fa-heart " ></i>
+                                                            </button>
+                                                            <!--<form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                             {{ csrf_field() }}           
                                                             
                                                                 <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
@@ -240,7 +246,7 @@
                                                                     @endif
                                                                     
                                                                 </button>      
-                                                            </form>
+                                                            </form> -->
                                                         </div>
                                                     </div>
                                                     
