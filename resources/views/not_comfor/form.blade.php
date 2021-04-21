@@ -1,4 +1,5 @@
 <span style="font-size: 22px;" class="control-label">{{ 'เหตุผลของท่าน / Please give reasons'}}</span>
+<br>
 <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
     <!-- <label for="provider_id" class="control-label">{{ 'Provider Id' }}</label> -->
     <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($not_comfor->provider_id) ? $not_comfor->provider_id : Auth::user()->provider_id}}" readonly>
@@ -9,9 +10,11 @@
     <input class="form-control" name="reply_provider_id" type="hidden" id="reply_provider_id" value="{{ isset($not_comfor->reply_provider_id) ? $not_comfor->reply_provider_id : ''}}" readonly>
     {!! $errors->first('reply_provider_id', '<p class="help-block">:message</p>') !!}
 </div>
+
+(<span class="text-secondary" id="str_title">0</span>/22)</span>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     <!-- <label for="content" class="control-label">{{ 'เหตุผล / Because' }}</label><span style="color: #FF0033;"> *</span> -->
-    <input class="form-control" name="content" type="text" id="content" value="{{ isset($not_comfor->content) ? $not_comfor->content : ''}}" required>
+    <input class="form-control" name="content" type="text" id="content" value="{{ isset($not_comfor->content) ? $not_comfor->content : ''}}" required onkeydown="str_title();">
     {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('want_phone') ? 'has-error' : ''}}">
@@ -37,7 +40,7 @@
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
+    <input id="submit" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
 </div>
 
 <script>
@@ -61,4 +64,28 @@
         var want_phone = document.querySelector('#want_phone');
             want_phone.value = "Yes";
     }
+
+    function str_title() {
+    var content = document.querySelector("#content");
+    var str_title = document.querySelector("#str_title");
+        console.log(content.value);
+
+    let str = content.value
+        console.log(str.length);
+
+        str_title.innerHTML = (str.length + 1) ;
+
+        if (str.length >= 22 ) {
+            // alert("ขออภัย คุณใช้ตัวอักษรเกินกำหนด");
+            document.querySelector('#str_title').classList.remove('text-secondary');
+            document.querySelector('#str_title').classList.add('text-danger');
+            document.querySelector('#submit').classList.add('d-none');
+            document.querySelector('#content').focus();
+        }else{
+            document.querySelector('#str_title').classList.add('text-secondary');
+            document.querySelector('#str_title').classList.remove('text-danger');
+            document.querySelector('#submit').classList.remove('d-none');
+        }
+
+}
 </script>
