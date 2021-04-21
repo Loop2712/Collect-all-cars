@@ -231,11 +231,11 @@
                                                             </button>
                                                             @guest
                                                                 
-                                                               @else
-                                                                <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
-                                                                <input class="d-none" name="user_id" type="number" id="user_id" value="" >
-                                                                <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
-                                                               @endguest
+                                                            @else
+                                                                <input type="hidden" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
+                                                                <input type="hidden" name="user_id" type="number" id="user_id" value="{{ Auth::user()->id }}" >
+                                                                <input type="hidden" name="car_type" type="text" id="car_type" value="car" >
+                                                            @endguest
 
                                                                 
 
