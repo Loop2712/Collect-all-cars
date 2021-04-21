@@ -235,13 +235,16 @@
                            
                             @foreach($car as $item)
                             <div class="row">
-                                <div class="col-5 col-md-8 border border-primary" style= "border-radius: 15px;">
+                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;">
                                     <div class="row">
-                                        <div class="col-5 col-md-5 " style="margin-top:12px"> 
-                                            <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                        <div class="col-3 col-md-3 " style="margin: 10px 0px 0px 15px; "> 
+                                         <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                         </div>
-                                        <div class="col-6 col-md-6"> 
-                                            <b>{{ $item->generation }}</b><br>{{ $item->registration_number }} <br>{{ $item->province }}
+                                        <div class="col-8 col-md-7"> 
+                                        <center>
+                                            <b>{{ $item->generation }}</b><br>
+                                            <span style="font-size: 12px;">{{ $item->registration_number }} <br>{{ $item->province }}</span>
+                                        </center>
                                         </div>
                                     </div>
                                  </div>
@@ -256,17 +259,18 @@
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-motorcycle text-success"></i></h1>
                             @foreach($motorcycle as $item)
-                            <div class="row ">
-                                <div class="col-5 col-md-8 border border-primary" style= "border-radius: 15px;">
-                            
+                            <div class="row">
+                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;">
                                     <div class="row">
-                                        <div class="col-5 col-md-5" style="margin-top:12px" > 
-                                            <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                        <div class="col-3 col-md-3 " style="margin: 10px 0px 0px 15px; "> 
+                                         <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                         </div>
-                                        <div class="col-6 col-md-6" > 
-                                            <b>{{ $item->generation }}</b><br>{{ $item->registration_number }} <br>{{ $item->province }}
+                                        <div class="col-8 col-md-7"> 
+                                        <center>
+                                            <b>{{ $item->generation }}</b><br>
+                                            <span style="font-size: 12px;">{{ $item->registration_number }} <br>{{ $item->province }}</span>
+                                        </center>
                                         </div>
-
                                     </div>
                                  </div>
                                 
