@@ -222,13 +222,23 @@
                                                             </div>
                                                             </div>
                                                       
-                                                            <div class="col-3" style="border:none; background-color: transparent;">
-                                                            <button class="btn-sm">
+                                                            <div class="col-3 car_wish" >
+                                                            <button class="btn-sm d-none" style="border:none; background-color: transparent;">
                                                                 <i class="fa fa-heart text-danger" ></i>
                                                             </button>
-                                                            <button class="btn-sm">
+                                                            <button class="btn-sm" style="border:none; background-color: transparent;" onclick="wish();" >
                                                                 <i class="fa fa-heart " ></i>
                                                             </button>
+                                                            @guest
+                                                                
+                                                               @else
+                                                                <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
+                                                                <input class="d-none" name="user_id" type="number" id="user_id" value="" >
+                                                                <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
+                                                               @endguest
+
+                                                                
+
                                                             <!--<form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                             {{ csrf_field() }}           
                                                             
@@ -344,5 +354,34 @@
         </div>
     </section>
  
+    <script>
 
+    function wish(){
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/car_brand")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                // let input_car_brand = document.querySelector("#input_car_brand");
+                    // input_car_brand.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.brand;
+                    option.value = item.brand;
+                    input_car_brand.add(option);
+                }
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_car_brand.add(option); 
+
+                //QUERY model
+                showCar_model();
+            });
+            return input_car_brand.value;
+    }
+    
+</script>
     @endsection
