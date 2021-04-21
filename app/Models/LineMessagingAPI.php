@@ -139,7 +139,6 @@ class LineMessagingAPI extends Model
                 $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' ");
 
                 $randomCar = DB::table('register_cars')
-                    ->inRandomOrder()
                     ->where('provider_id' , $provider_id)
                     ->where('active' , "Yes")
                     ->limit(3)
