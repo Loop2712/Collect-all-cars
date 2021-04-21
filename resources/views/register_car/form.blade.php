@@ -231,7 +231,7 @@
                         <h5 style="padding-top: 7px;" class="text-info">รถที่คุณลงทะเบียนแล้ว</h5>
                         <br><br>
                         <div class="col-12 col-md-6">
-                            <h1><i class="fas fa-car-side text-danger"></i></h1>
+                            <h1><i class="fas fa-car-side text-danger"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถยนต์</span></h1>
                            
                             @foreach($car as $item)
                             <div class="row">
@@ -257,7 +257,7 @@
                                     @endforeach
                         </div>
                         <div class="col-12 col-md-6">
-                            <h1><i class="fas fa-motorcycle text-success"></i></h1>
+                            <h1><i class="fas fa-motorcycle text-success"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถจักรยานยนต์</span></h1>
                             @foreach($motorcycle as $item)
                             <div class="row">
                                 <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;">
