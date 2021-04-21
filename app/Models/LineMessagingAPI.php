@@ -141,7 +141,7 @@ class LineMessagingAPI extends Model
                 $randomCar = DB::table('register_cars')
                     ->where('provider_id' , $provider_id)
                     ->where('active' , "Yes")
-                    ->orderBy('id', 'DESC')
+                    ->orderBy('id', 'desc')
                     ->limit(3)
                     ->get();
 
