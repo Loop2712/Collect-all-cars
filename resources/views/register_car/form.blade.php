@@ -173,11 +173,11 @@
                 </div>
 
             </div>
-
+            
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
             </div>
-
+            <!-- <button type="button" class="btn btn-primary" onclick="alert('hello')">Primary</button> -->
             <hr>
             <div class="col-12">
                 <div class="row">
@@ -331,8 +331,8 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                // let input_car_brand = document.querySelector("#input_car_brand");
-                    // input_car_brand.innerHTML = "";
+                let input_car_brand = document.querySelector("#input_car_brand");
+                    input_car_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -380,8 +380,8 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                // let input_motor_brand = document.querySelector("#input_motor_brand");
-                //     input_motor_brand.innerHTML = "";
+                let input_motor_brand = document.querySelector("#input_motor_brand");
+                    input_motor_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");

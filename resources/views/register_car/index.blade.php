@@ -189,9 +189,10 @@
                                                 <div class="row d-block d-md-none">
                                                     <div class="col-12">
                                                         <center>
-                                                            <h5 style="position: absolute;right: 37%;top: 20%;">{{ $item->registration_number }}</h5>
-                                                            <p style="position: absolute;right: 30%;top: 50%;">{{ $item->province }} </p>
-                                                            <img width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <br>
+                                                            <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
+                                                            <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="position: absolute;right: 14%;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
@@ -199,9 +200,10 @@
                                                 <div class="row d-none d-lg-block">
                                                     <div class="col-12">
                                                         <center>
-                                                            <h5 style="position: absolute;right: 40%;top: 20%;">{{ $item->registration_number }}</h5>
-                                                            <p style="position: absolute;right: 35%;top: 50%;">{{ $item->province }} </p>
-                                                            <img width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <br>
+                                                            <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
+                                                            <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="position: absolute;right: 24%;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
