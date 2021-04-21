@@ -66,7 +66,7 @@
                                     <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                 @endforeach
                             @else
-                                <option value="" selected> - เลือกรุ่น / Select Model - </option> 
+                                <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option> 
                             @endif
                             <br>
                             {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
