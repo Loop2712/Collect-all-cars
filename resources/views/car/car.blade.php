@@ -356,16 +356,16 @@
  
     <script>
 
-    function wish(){
-        //PARAMETERS
+    function wish(){ 
+        let product_id = document.querySelector("product_id");
+        let user_id = document.querySelector("user_id");
+        let car_type = document.querySelector("car_type");
+            console.log(car_type.value);
         fetch("{{ url('/') }}/api/car_brand")
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                //UPDATE SELECT OPTION
-                // let input_car_brand = document.querySelector("#input_car_brand");
-                    // input_car_brand.innerHTML = "";
-
+                //UPDATE SELE
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.brand;
