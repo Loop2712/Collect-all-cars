@@ -380,8 +380,8 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                let input_motor_brand = document.querySelector("#input_motor_brand");
-                    input_motor_brand.innerHTML = "";
+                // let input_motor_brand = document.querySelector("#input_motor_brand");
+                //     input_motor_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
