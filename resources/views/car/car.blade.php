@@ -157,14 +157,6 @@
                     </div>
                   </div>
                 </div>
-
-
-
-
-
-
-
-
                 <div class="col-lg-9">
                     <!-- <div class="car__filter__option">
                         <div class="row">
@@ -179,23 +171,24 @@
                             </div>
                         </div>
                     </div> -->
-<style>
-    .car_wish .fa
-    {
-    color:#cbcbcb;
-    }
-    .car_wish .fa:hover
-    {
-    color:#FF0000;
-    }
-    .fill-heart{
-        color:#FF0000 !important;
+                    <style>
+                        .car_wish .fa
+                        {
+                        color:#cbcbcb;
+                        }
+                        .car_wish .fa:hover
+                        {
+                        color:#FF0000;
+                        }
+                        .fill-heart{
+                            color:#FF0000 !important;
 
-    }
+                        }
 
-</style>
+                    </style>            
                     <div class="row">
                     @foreach($data as $item)
+                    
                         <div class="col-lg-4 col-md-4">
                         
                             <div class="car__item" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
@@ -223,42 +216,27 @@
                                                             </div>
                                                       
                                                             <div class="col-3 car_wish" >
-                                                            <button class="btn-sm d-none" style="border:none; background-color: transparent;">
-                                                                <i class="fa fa-heart text-danger" ></i>
-                                                            </button>
-                                                            <button class="btn-sm" style="border:none; background-color: transparent;" onclick="wish();" >
-                                                                <i class="fa fa-heart " ></i>
-                                                            </button>
-                                                            @guest
+                                                                <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
+                                                                {{ csrf_field() }}           
                                                                 
-                                                            @else
-                                                                <input type="hidden" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
-                                                                <input type="hidden" name="user_id" type="number" id="user_id" value="{{ Auth::user()->id }}" >
-                                                                <input type="hidden" name="car_type" type="text" id="car_type" value="car" >
-                                                            @endguest
-
-                                                                
-
-                                                            <!--<form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
-                                                            {{ csrf_field() }}           
-                                                            
-                                                                <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
-                                                                <input class="d-none" name="user_id" type="number" id="user_id" value="" >
-                                                                <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
-
-                                                                <button type="submit" style="border:none; background-color: transparent;">
-                                                                    <div class="car_wish">
+                                                                    <input name="product_id" type="hidden" id="product_id" value="{{ $item->id }}" >
+                                                                    <input name="user_id" type="hidden" id="user_id" value="" >
+                                                                    <input name="car_type" type="hidden" id="car_type" value="car" >
                                                                     
-                                                                    @if($item->user_id)
-                                                                        <a href=""><i class="fa fa-heart fill-heart" ></i></a> </div>
-                                                                    @else
-                                                                        <a href=""><i class="fa fa-heart " ></i></a> </div>
-                                                                    @endif
-                                                                    
-                                                                </button>      
-                                                            </form> -->
+                                                                    <button type="submit" style="border:none; background-color: transparent;">
+                                                                        <div class="car_wish">
+                                                                            @foreach($data_wishlist as $key)
+                                                                                @if($item->id == $key->product_id && $key->user_id == Auth::user()->id)
+                                                                                    <a ><i class="fa fa-heart text-danger" ></i></a>
+                                                                                @else
+                                                                                    <a ><i class="fa fa-heart" ></i></a>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </button>      
+                                                                </form> 
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                     
 
                                                     <div class="row">
@@ -343,8 +321,9 @@
                             
                         
                         </div>
-                        @endforeach 
+                        @endforeach
                     </div>
+                    
                     <ul class="row">
 
                     {{ $data->links('pagination.default',['paginator' => $data,'link_limit' => $data->perPage()]) }} 
@@ -353,35 +332,4 @@
             </div>
         </div>
     </section>
- 
-    <script>
-
-    function wish(){ 
-        let product_id = document.querySelector("product_id");
-        let user_id = document.querySelector("user_id");
-        let car_type = document.querySelector("car_type");
-            console.log(car_type.value);
-        fetch("{{ url('/') }}/api/car_brand")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                //UPDATE SELE
-                for(let item of result){
-                    let option = document.createElement("option");
-                    option.text = item.brand;
-                    option.value = item.brand;
-                    input_car_brand.add(option);
-                }
-                let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
-                    input_car_brand.add(option); 
-
-                //QUERY model
-                showCar_model();
-            });
-            return input_car_brand.value;
-    }
-    
-</script>
     @endsection

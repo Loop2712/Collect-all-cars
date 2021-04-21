@@ -140,14 +140,15 @@ class CarController extends Controller
             ->where('model', '!=',"" )
             ->groupBy('model')
             ->get();
-            $wishlist = Wishlist::selectRaw('product_id,count(product_id) as count')
+        $wishlist = Wishlist::selectRaw('product_id,count(product_id) as count')
             ->where('product_id', '!=',"" )
             ->groupBy('product_id')
             ->get();
-        
 
+        $data_wishlist = Wishlist::where('product_id', '!=',"" )->get();
+        
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('car.car',compact('data', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','model_array' ,'gear_array','wishlist'));
+        return view('car.car',compact('data', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','model_array' ,'gear_array','wishlist' , 'data_wishlist' ));
     }
 
     public function main(Request $request)
