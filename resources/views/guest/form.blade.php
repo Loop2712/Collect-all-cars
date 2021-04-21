@@ -132,10 +132,18 @@
                 </div>
             </div>
 
-            <input type="radio" name="phonephone" checked class="d-none" id="show_phone_check" onclick="show_phone();">
+            <input type="radio" name="phonephone" checked class="d-none" id="show_phone_check">
             <span class="d-none" id="p_phone">&nbsp;&nbsp;&nbsp;แสดง / Show</span>
-            <input type="radio" name="phonephone" class="" id="not_show_phone_check" onclick="not_show_phone();">
-            <span class="" id="pnot_phone">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show</span>
+            <input type="radio" name="phonephone" class="d-none" id="not_show_phone_check">
+            <span class="d-none" id="pnot_phone">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show</span>
+
+            <input type="checkbox" name="checkbox" onchange="if(this.checked){
+                not_show_phone();
+                document.getElementById('not_show_phone_check').click(); 
+            }else{
+                show_phone();
+                document.getElementById('show_phone_check').click(); 
+            }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
 
             <br>
 
@@ -313,18 +321,6 @@
     function show_phone(){
         console.log("show_phone"); 
 
-        var not_show_phone_check = document.querySelector('#not_show_phone_check');
-            not_show_phone_check.classList.remove('d-none');
-
-        var pnot_phone = document.querySelector('#pnot_phone');
-            pnot_phone.classList.remove('d-none');
-
-        var show_phone_check = document.querySelector('#show_phone_check');
-            show_phone_check.classList.add('d-none');
-
-        var p_phone = document.querySelector('#p_phone');
-            p_phone.classList.add('d-none');
-
         var name = document.querySelector('#name');
             name.classList.remove('d-none');
 
@@ -344,18 +340,6 @@
 
     function not_show_phone(){
         console.log("not_show_phone"); 
-
-        var not_show_phone_check = document.querySelector('#not_show_phone_check');
-            not_show_phone_check.classList.add('d-none');
-
-        var pnot_phone = document.querySelector('#pnot_phone');
-            pnot_phone.classList.add('d-none');
-
-        var show_phone_check = document.querySelector('#show_phone_check');
-            show_phone_check.classList.remove('d-none');
-
-        var p_phone = document.querySelector('#p_phone');
-            p_phone.classList.remove('d-none');
 
         var name = document.querySelector('#name');
             name.classList.add('d-none');
