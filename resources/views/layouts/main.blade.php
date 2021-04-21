@@ -339,10 +339,8 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START");
 
         var name_user = document.querySelector("#name_user");
-            console.log(name_user.value);
 
             fetch("{{ url('/') }}/api/explode_name/" + name_user.value)
                 .then(response => response.json())
