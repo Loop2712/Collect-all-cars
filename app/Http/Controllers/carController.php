@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CarModel;
 use App\county;
+use App\Models\Wishlist;
 use App\Models\Motercycle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,7 @@ class CarController extends Controller
         $yearmax   = $request->get('yearmax');
         $yearmin   = $request->get('yearmin');
         $model     = $request->get('model');
+        $product_id  = $request->get('product_id');
         $perPage   = 21; 
         
         $milemin = empty($milemin) ? 0 :$milemin;
@@ -52,8 +54,8 @@ class CarController extends Controller
         $needFilter =  !empty($brand)       || !empty($typecar)   || !empty($year)    || !empty($color)    
                     || !empty($fuel)        || !empty($location)  || !empty($gear)
                     || !empty($pricemax)    || !empty($pricemin)  || !empty($milemax) || !empty($milemin) 
-                    || !empty($yearmin)     || !empty($yearmax)   || !empty($model)
-                    || !empty($q);     
+                    || !empty($yearmin)     || !empty($yearmax)   || !empty($model)   || !empty($product_id)
+                    || !empty($q);          
         
         // $q         = !empty($q) ;
                       
@@ -138,9 +140,14 @@ class CarController extends Controller
             ->where('model', '!=',"" )
             ->groupBy('model')
             ->get();
+            $wishlist = Wishlist::selectRaw('product_id,count(product_id) as count')
+            ->where('product_id', '!=',"" )
+            ->groupBy('product_id')
+            ->get();
+        
 
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('car.car',compact('data', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','model_array' ,'gear_array'));
+        return view('car.car',compact('data', 'brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','model_array' ,'gear_array','wishlist'));
     }
 
     public function main(Request $request)
@@ -209,7 +216,6 @@ class CarController extends Controller
             ->where('model', '!=',"" )
             ->groupBy('model')
             ->get();
-
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
         return view('main.index',compact('data','motorbrand', 'motorcolor', 'motorgear','brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array','model_array'));
     }

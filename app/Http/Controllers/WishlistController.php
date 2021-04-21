@@ -19,6 +19,7 @@ class WishlistController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    
     public function index(Request $request)
     {
         $keyword = $request->get('search');

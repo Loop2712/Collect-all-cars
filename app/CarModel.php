@@ -30,6 +30,10 @@ class CarModel extends Model
     public function products(){
         return $this->hasMany('App\Models\Wishlist', 'product_id','id'); 
     } 
+    public function wishlists(){
+        return $this->hasMany('App\Wishlist', 'product_id'); 
+    }
+
     // public function sell(){
     //     return $this->hasMany('App\Sell', 'id'); 
     // } 

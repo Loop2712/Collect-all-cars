@@ -1,3 +1,4 @@
+
 @extends('layouts.main')
 @section('content') 
 
@@ -178,8 +179,21 @@
                             </div>
                         </div>
                     </div> -->
+<style>
+    .car_wish .fa
+    {
+    color:#cbcbcb;
+    }
+    .car_wish .fa:hover
+    {
+    color:#FF0000;
+    }
+    .fill-heart{
+        color:#FF0000 !important;
 
+    }
 
+</style>
                     <div class="row">
                     @foreach($data as $item)
                         <div class="col-lg-4 col-md-4">
@@ -192,7 +206,7 @@
                                     <a href="{{ url('/car/'.$item->id ) }}"><img src="{{ url('/image/'.$item->id ) }}" alt="" > </a>
                                         <!-- <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80" alt="" >  -->
                                     @endif
-                                </div>
+                                </div>  
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
                                         <!-- <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div><br> -->
@@ -201,11 +215,14 @@
                                                 <div class="col-12">
                                                     <div class="row">
                                                         <div class="col-9">
-                                                            <div style="font-size:12px; border-radius: 15px; margin-bottom: 10px;" class="col-2 col-md-4 border border-primary radius: 15px;">
-                                                                {{ $item->year  }} 
+                                                            <div style="font-size:12px; border-radius: 15px; border-width:2px; margin-bottom: 10px;" class="col-4 col-md-4 border border-primary radius: 15px;">
+                                                            {{ $item->year  }} 
+                                                   
+
                                                             </div>
-                                                        </div>
-                                                        <div class="col-3">
+                                                            </div>
+                                                      
+                                                            <div class="col-3">
                                                             <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                             {{ csrf_field() }}           
                                                             
@@ -214,7 +231,14 @@
                                                                 <input class="d-none" name="car_type" type="text" id="car_type" value="car" >
 
                                                                 <button type="submit" style="border:none; background-color: transparent;">
-                                                                   <i class="far fa-heart" ></i> 
+                                                                    <div class="car_wish">
+                                                                    
+                                                                    @if($item->user_id)
+                                                                        <a href=""><i class="fa fa-heart fill-heart" ></i></a> </div>
+                                                                    @else
+                                                                        <a href=""><i class="fa fa-heart " ></i></a> </div>
+                                                                    @endif
+                                                                    
                                                                 </button>      
                                                             </form>
                                                         </div>
@@ -222,12 +246,17 @@
                                                     
 
                                                     <div class="row">
-                                                        <div class="col-sm-3">  
-                                                            <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                        <div class="col-3 col-sm-3">
+                                                            <a href="{{ url('/car/'.$item->id ) }}">  
+                                                                <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                            </a>
                                                         </div>
-                                                        <div class="col-sm-9">
-                                                            <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 20px;">{{ $item->model }}</h4>
-                                                            <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">{{ $item->submodel }}</p>
+                                                        
+                                                        <div class="col-9 col-sm-9">
+                                                            <a href="{{ url('/car/'.$item->id ) }}">
+                                                                <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 20px;">{{ $item->model }}</h4>
+                                                                <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">{{ $item->submodel }}</p>
+                                                            </a>
                                                         </div>
                                                     </div>
 

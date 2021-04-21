@@ -110,7 +110,7 @@
                                                     {{ csrf_field() }}
                                                     
                                                     <button type="submit" class="btn btn-danger btn-sm"  style="border-radius: 15px;" title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> ฉันไม่ใช้รถคันนี้แล้ว</button>
-                                                    <h6 class="text-right"><span class="f-left"></span><span><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit') }}"><i class="fas fa-pencil-alt" style="font-size: 12px;"></i></a></span></h6><br>
+                                                    <span class="f-left"></span><span><a class="btn btn-warning btn-sm" style="border-radius: 15px;" href="{{ url('/register_car/' . $item->id . '/edit') }}"><i  class="fa fa-trash-o" aria-hidden="true">แก้ไขข้อมูลรถ</i></a></span>
                                             </form> </div>
 
                                     </div>

@@ -235,32 +235,35 @@
                            
                             @foreach($car as $item)
                             <div class="row">
-                                <div class="col-8 col-md-8 border border-primary" style= "border-radius: 15px;">
+                                <div class="col-5 col-md-8 border border-primary" style= "border-radius: 15px;">
                                     <div class="row">
-                                        <div class="col-md-5" style="margin-top:12px"> 
+                                        <div class="col-5 col-md-5 " style="margin-top:12px"> 
                                             <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                         </div>
                                         <div class="col-6 col-md-6"> 
                                             <b>{{ $item->generation }}</b><br>{{ $item->registration_number }} <br>{{ $item->province }}
                                         </div>
-
                                     </div>
                                  </div>
                                 
+                            
+
+
+
                             </div><br>
                                     @endforeach
                         </div>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-motorcycle text-success"></i></h1>
                             @foreach($motorcycle as $item)
-                            <div class="row">
-                                <div class="col-6 col-md-8 border border-primary" style= "border-radius: 15px;">
+                            <div class="row ">
+                                <div class="col-5 col-md-8 border border-primary" style= "border-radius: 15px;">
                             
                                     <div class="row">
-                                        <div class="col-md-5" style="margin-top:12px"> 
+                                        <div class="col-5 col-md-5" style="margin-top:12px" > 
                                             <img width="40"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                         </div>
-                                        <div class="col-md-6"> 
+                                        <div class="col-6 col-md-6" > 
                                             <b>{{ $item->generation }}</b><br>{{ $item->registration_number }} <br>{{ $item->province }}
                                         </div>
 
