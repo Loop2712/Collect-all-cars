@@ -96,7 +96,7 @@ class WishlistController extends Controller
         $requestData = $request->all();
         $requestData['user_id'] = Auth::id();
         
-        Wishlist::create($requestData);
+        Wishlist::create($requestData);     
 
         return redirect('wishlist')->with('flash_message', 'car added!');
     }
