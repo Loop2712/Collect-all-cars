@@ -33,27 +33,27 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-primary" style="border-radius: 10px;font-size: 13px;">
-                        <a class="text-primary" href="{{ url('/profile' ) }}">
+                    <div class="col-10 btn btn-outline-danger bg-white main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
+                        <a class="text-danger" href="{{ url('/profile' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img width="40" src="{{ url('/img/icon/user.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/menu_user.png' ) }}">
                                 </div>
                                 <div class="col-9">
-                                    ข้อมูล<br>ส่วนบุคคล
+                                    <span style="font-size: 16px;"><b>ข้อมูล<br>ส่วนบุคคล</b></span>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-danger" style="border-radius: 10px;font-size: 13px;">
-                        <a class="text-danger" href="{{ url('/sell' ) }}">
+                    <div class="col-10 btn btn-outline-white bg-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
+                        <a class="text-white" href="{{ url('/sell' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img width="40" src="{{ url('/img/icon/car.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
                                 </div>
                                 <div class="col-9">
-                                    ขาย<br>รถยนต์
+                                    <span style="font-size: 16px;"><b>ขาย<br>รถยนต์</b></span>
                                 </div>
                             </div>
                         </a>
@@ -62,27 +62,27 @@
             </div>
             <div class="col-6">
                 <div class="row">
-                    <div class="col-10 btn btn-outline-success" style="border-radius: 10px;font-size: 13px;">
-                        <a class="text-success" href="{{ url('/register_car' ) }}">
+                    <div class="col-10 btn btn-outline-white bg-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
+                        <a class="text-white" href="{{ url('/register_car' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img width="40" src="{{ url('/img/icon/car-key2.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/menu_car-key2.png' ) }}">
                                 </div>
                                 <div class="col-9">
-                                    รถ<br>ของฉัน
+                                    <span style="font-size: 16px;"><b>รถ<br>ของฉัน</b></span>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-warning" style="border-radius: 10px;font-size: 13px;">
-                        <a class="text-warning" href="{{ url('/motercycles' ) }}">
+                    <div class="col-10 btn btn-outline-danger bg-white main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
+                        <a class="text-danger" href="{{ url('/motercycles' ) }}">
                             <div class="row">
                                 <div class="col-3">
-                                    <img width="40" src="{{ url('/img/icon/motorcycle.png' ) }}">
+                                    <img width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
                                 </div>
                                 <div class="col-9">
-                                    ขาย<br>จักรยานยนต์
+                                    <span style="font-size: 16px;"><b>ขาย<br>จักรยานยนต์</b></span>
                                 </div>
                             </div>
                         </a>
