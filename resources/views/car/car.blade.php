@@ -292,15 +292,7 @@
                                                                     
                                                                     <button type="submit" style="border:none; background-color: transparent;">
                                                                         <div class="car_wish">
-                                                                            <!-- @foreach($data_wishlist as $key)
-                                                                                @if(!empty($item->id))
-                                                                                    @if($item->id == $key->product_id && $key->user_id == Auth::user()->id)
-                                                                                        <a ><i class="fa fa-heart text-danger" ></i></a>
-                                                                                    @else
-                                                                                        <a ><i class="fa fa-heart" ></i></a>
-                                                                                    @endif
-                                                                                @endif
-                                                                            @endforeach -->
+                                                                            
                                                                         </div>
                                                                     </button>      
                                                                 </form> 
