@@ -200,7 +200,7 @@
             </div>
 
             <br><br>
-            <div id="information" class="row" style="display:none">
+            <div id="information" class="row" style="display:">
                 <!-- ซ้าย -->
                 <div class="col-12 col-md-5">
                     <div class="row">
@@ -234,33 +234,76 @@
                             <h1><i class="fas fa-car-side text-danger"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถยนต์</span></h1>
                            
                             @foreach($car as $item)
-                            <div class="row">
-                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;">
-                                    <div class="row">
-                                        <div class="col-3 col-md-3 " style="margin: 10px 0px 0px 15px; "> 
-                                         <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                            <!-- แสดงเฉพาะคอม -->
+                            <div class="row d-none d-lg-block">
+                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
+                                    <div class="row" style="margin-top: 8px; margin-bottom: 8px;">
+                                        <div class="col-3 col-md-3 " style="margin: 5px 20px 15px 5px;"> 
+                                            <br>
+                                            <img style="margin-top: -10px;" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                         </div>
-                                        <div class="col-8 col-md-7"> 
+                                        <div class="col-8 col-md-7" style="border-left: 1px solid gray;"> 
                                         <center>
-                                            <b>{{ $item->generation }}</b><br>
-                                            <span style="font-size: 12px;">{{ $item->registration_number }} <br>{{ $item->province }}</span>
+                                            <div style="position: relative; z-index: 5">
+                                                <b>{{ $item->generation }}</b>
+                                                <hr style="margin-top: 8px; margin-bottom: 8px;">
+                                                <div style="padding-top: 8px;">
+                                                    <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                    <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                </div>
+                                            </div>
+
+                                            <div style="z-index: 2">
+                                                <img style="position: absolute;right: 4%;top: 37%;" width="150" height="60" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                            </div>
                                         </center>
                                         </div>
                                     </div>
                                  </div>
-                                
-                            
-
-
-
-                            </div><br>
-                                    @endforeach
+                            </div>
+                            <!-- แสดงเฉพาะมือถือ -->
+                            <div class="row d-block d-md-none">
+                                <div class="col-11 border border-primary" style= "border-radius: 15px;padding: 8px;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <br>
+                                                <div class="col-5">
+                                                    <img class="float-right" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-7" style="padding-top: 5px;">
+                                                    <h5><b>{{ $item->brand }}</b></h5>
+                                                    <span style="font-size: 14px;">{{ $item->generation }}</span>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 8px; margin-bottom: 15px;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <div style="position: relative; z-index: 5">
+                                                            <div style="padding-top: 8px;">
+                                                                <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                                <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div style="z-index: 2">
+                                                            <img style="position: absolute;right: 15%;bottom: 10%;" width="200" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                            <br>
+                            @endforeach
                         </div>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-motorcycle text-success"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถจักรยานยนต์</span></h1>
                             @foreach($motorcycle as $item)
                             <div class="row">
-                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;">
+                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                     <div class="row">
                                         <div class="col-3 col-md-3 " style="margin: 10px 0px 0px 15px; "> 
                                          <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
