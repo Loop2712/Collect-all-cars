@@ -223,7 +223,7 @@
                                                             </div>
                                                       
                                                             <div class="col-3">
-                                                            <form method="POST" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
+                                                            <form method="POST" action="{{ url('/') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                             {{ csrf_field() }}           
                                                             
                                                                 <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $item->id }}" >
