@@ -56,11 +56,11 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-9 col-md-9">
+                            <div class="col-9 col-md-11">
                                 <button type="button" class="btn btn-danger main-shadow main-radius" onclick="
                                 document.querySelector('#img_show_car').classList.remove('d-none'),
                                 document.querySelector('#img_show_mortor').classList.add('d-none'),
-                                
+
                                 document.querySelector('#show_car').classList.remove('d-none'),
                                 document.querySelector('#show_mortor').classList.add('d-none');">
                                     <b>รถยนต์</b>
@@ -68,14 +68,14 @@
                                 <button type="button" class="btn btn-danger main-shadow main-radius text-danger bg-white"  onclick="
                                 document.querySelector('#img_show_car').classList.add('d-none'),
                                 document.querySelector('#img_show_mortor').classList.remove('d-none'),
-                                
+
                                 document.querySelector('#show_car').classList.add('d-none'),
                                 document.querySelector('#show_mortor').classList.remove('d-none');">
                                     <b>รถจักรยานยนต์</b>
                                 </button>
                                 <br><br>
                             </div>
-                            <div class="col-3 col-md-3">
+                            <div class="col-3 col-md-1">
                                 <img id="img_show_car" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
                                 <img class="d-none" id="img_show_mortor" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
                             </div>
