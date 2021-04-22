@@ -91,18 +91,18 @@
                         <a href="{{ url('/profile') }} " style=" color: #4169E1;" >แก้ไขโปรไฟล์ &emsp;&emsp;</a>   
                         <!-- </button> -->
                         <!-- <button class="btn btn-success"> -->
-                            <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                {{ __('ออกจากระบบ') }}</a>
-                                            <!-- </button> -->
-                        <div class="col-12">
-                            <label for="massengbox" class="control-label">
+                        <label for="massengbox" class="control-label" >
                                 @if (Route::has('password.request'))
                                     <br>
-                                    <a class="text-secondary" href="{{ route('password.request') }}">
+                                    <a class="text-secondary " href="{{ route('password.request') }}" >
                                         {{ __('เปลี่ยนรหัสผ่าน') }}
                                     </a>
                                 @endif
                             </label>
+                                            <!-- </button> -->
+                        <div class="col-12"><br>
+                        <a href="{{ route('logout') }} " style=" color: #4169E1;" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="text-danger">
+                                                {{ __('ออกจากระบบ') }}</a>
                         </div> 
                         @endguest
                     </div>
@@ -144,10 +144,12 @@
                                 <nav class="header__menu" style="text-align:left;margin-left: 20px;">
                                     <ul>
                                         <li>
-                                        <a href="{{ url('/car') }}" ><h5><b><i class="fas fa-car"></i> รถยนต์</b></h5></a>
+                                        <a href="{{ url('/car') }}" ><h4><b><i class="fas fa-car"></i> รถยนต์</b></h4> </a>
                                         </li>
-                                        <li style="margin-left: 60px;">
-                                        <a href="{{ url('/motercycle') }}" ><h5><b><i class="fas fa-motorcycle"></i> รถจักรยานยนต์</b></h5></a>
+                                        <li><h9 style="border-right:3px solid #000; margin-left: -15px;">&nbsp</h9></li>
+                                        
+                                        <li style="margin-left: 20px;">
+                                        <a href="{{ url('/motercycle') }}" ><h4><b><i class="fas fa-motorcycle"></i> รถจักรยานยนต์</b></h4></a>
                                         </li>
                                     </ul>
                                 </nav>

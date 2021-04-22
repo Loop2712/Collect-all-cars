@@ -2,6 +2,8 @@
 
 @section('content')
 <section>
+
+
 <section class="hero spad set-bg" data-setbg="img/hero-bg.jpg">
         <div class="container">
             <div class="row">
@@ -12,15 +14,15 @@
                     <div class="hero__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">รถยนต์</a>
+                                <a class="nav-link active" style="border-radius: 12px 12px 0px 0px;" data-toggle="tab" href="#tabs-1" role="tab">รถยนต์</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">รถจักรยานยนต์</a>
+                                <a class="nav-link" style="border-radius: 12px 12px 0px 0px;" data-toggle="tab" href="#tabs-2" role="tab">รถจักรยานยนต์</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="hero__tab__form">
+                                <div class="hero__tab__form " style="border-radius: 0px 20px 20px 20px;">
                                     <h3><b>ค้นหารถยนต์ในฝันของคุณ</b></h3>
                                     <h6 style="margin: 0px;">Find Your Dream Car</h6><br>
                                     <form action="{{URL::to('/car')}}" method="get">
@@ -129,7 +131,7 @@
                                                 <div class="price-range"></div>
                                                 <div class="range-slider">
                                                     <div class="price-input">
-                                                        <input type="text" id="amount">
+                                                        <input type="text" id="amount">                                          
                                                         <input type="text" id="tt">
                                                     </div>
                                                 </div>
@@ -146,7 +148,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="hero__tab__form">
+                                <div class="hero__tab__form" style="border-radius: 0px 20px 20px 20px;">
                                     <h4><b>ค้นหารถจักรยานยนต์ในฝันของคุณ</b></h4>
                                     <h6 style="margin: 0px;">Find Your Dream Motorcycle</h6><br>
                                     <form action="{{URL::to('/motercycle')}}" method="get">
