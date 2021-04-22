@@ -275,7 +275,7 @@
                                                 <div class="col-12">
                                                     <div class="row">
                                                         <div class="col-9">
-                                                            <div style="font-size:12px; border-radius: 15px;" class="col-5 col-md-5 border border-primary ">
+                                                            <div  >
                                                                 <center>
                                                                     {{ $item->year  }}
                                                                 </center>
