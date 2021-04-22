@@ -22,9 +22,9 @@
           {
             "type": "text",
             "color": "#07375D",
-            "text": "กรุณามาเลื่อนรถด้วยค่ะ",
+            "text": "กรุณาเลื่อนรถด้วยค่ะ",
             "margin": "lg",
-            "size": "xxl",
+            "size": "xl",
             "align": "center",
             "weight": "bold",
             "wrap": true
