@@ -14,7 +14,8 @@
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-                        <div class="car__filter">
+                        <!-- แสดงเฉพาะคอม -->
+                        <div class="car__filter d-none d-lg-block">
                             <h5>ตัวกรองค้นหา</h5>
                             <form  action="{{URL::to('/car')}}" method="get">
                                 <select class="form-control"  name="brand" id="brand"  onchange="this.form.submit()" >
@@ -122,8 +123,74 @@
                                     <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
                                 </div>
                         </div>
-                        <br>
-                        <div class="row">
+                        <!-- แสดงเฉพาะมือถือ -->
+                        <button  class="btn btn-sm d-block d-md-none"
+                            onclick="if(document.getElementById('search_m') .style.display=='none') 
+                            {document.getElementById('search_m') .style.display=''}else{document.getElementById('search_m')
+                             .style.display='none'}"> 
+                            <h5 style="color:#7D7D7D">ตัวกรองค้นหา</h5>
+                        </button>
+                        <div id="search_m" class="row" style="display:none">
+                            <div class="car__filter d-block d-md-none" >
+                                <br>
+                                <form  action="{{URL::to('/car')}}" method="get">
+                                    <select class="form-control"  name="brand" id="brand"  onchange="this.form.submit()" >
+                                        <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
+                                        @foreach($brand_array as $br)
+                                            <option 
+                                                value="{{ $br->brand }}" 
+                                                {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
+                                                {{ $br->brand }} 
+                                            </option>
+                                        @endforeach 
+                                    </select><br>
+                                    <select  class="form-control"  name="typecar" id="typecar"  onchange="this.form.submit()">
+                                        <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
+                                        @foreach($type_array as $ty)
+                                            <option 
+                                                    value="{{ $ty->type }}" 
+                                                    {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
+                                            {{ $ty->type }} 
+                                            </option>
+                                        @endforeach
+                                    </select><br>
+                                    <select class="form-control"  name="gear" id="gear" onchange="this.form.submit()" >
+                                        <option value="" data-display="ระบบเกียร์">ระบบเกียร์ทั้งหมด</option>
+                                        @foreach($gear_array as $ge)
+                                            <option 
+                                                    value="{{ $ge->gear }}" 
+                                                    {{ request('gear') == $ge->gear ? 'selected' : ''   }} >
+                                            {{ $ge->gear }} 
+                                            </option>
+                                        @endforeach 
+                                    </select><br>
+                                    
+                                    
+                                    <select class="form-control"  name="location" id="location" onchange="this.form.submit()" >
+                                        <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
+                                        @foreach($location_array as $lo)
+                                            <option 
+                                                value="{{ $lo->province }}" 
+                                                {{ request('location') == $lo->province ? 'selected' : ''   }} >
+                                                {{ $lo->province }} 
+                                            </option>
+                                        @endforeach 
+                                    </select><br>
+                                    
+                                    <div class="filter-price">
+                                        <p>ราคา:</p>
+                                        <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}"><br>
+                                        <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}"><br>
+                                        <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
+                                    </div>
+                                </form>
+                                <div class="car__filter__btn">
+                                    <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
+                                </div>
+                            </div>
+                        </div>
+                        <br class="d-none d-lg-block">
+                        <div class="row d-none d-lg-block">
                             <div class="col-12">
                                 <img type="button" width="100%" src="{{ asset('/img/more/line_oa.png') }}" onclick="document.getElementById('btn_img').click();">
                             </div>
@@ -208,10 +275,10 @@
                                                 <div class="col-12">
                                                     <div class="row">
                                                         <div class="col-9">
-                                                            <div style="font-size:12px; border-radius: 15px; border-width:2px; margin-bottom: 10px;" class="col-4 col-md-4 border border-primary radius: 15px;">
-                                                            {{ $item->year  }} 
-                                                   
-
+                                                            <div style="font-size:12px; border-radius: 15px;" class="col-5 col-md-5 border border-primary ">
+                                                                <center>
+                                                                    {{ $item->year  }}
+                                                                </center>
                                                             </div>
                                                             </div>
                                                       
@@ -225,13 +292,7 @@
                                                                     
                                                                     <button type="submit" style="border:none; background-color: transparent;">
                                                                         <div class="car_wish">
-                                                                            @foreach($data_wishlist as $key)
-                                                                                @if($item->id == $key->product_id && $key->user_id == Auth::user()->id)
-                                                                                    <a ><i class="fa fa-heart text-danger" ></i></a>
-                                                                                @else
-                                                                                    <a ><i class="fa fa-heart" ></i></a>
-                                                                                @endif
-                                                                            @endforeach
+                                                                            
                                                                         </div>
                                                                     </button>      
                                                                 </form> 

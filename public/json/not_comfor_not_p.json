@@ -71,7 +71,8 @@
         "margin": "xxl",
         "color": "#FFFFFF",
         "align": "center",
-        "weight": "bold"
+        "weight": "bold",
+        "wrap": true
       },
       {
         "type": "separator",

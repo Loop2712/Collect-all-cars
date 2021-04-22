@@ -130,7 +130,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
-                        <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required>
+                        <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required onchange="check_register_car();">
                         {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
-                        <select name="province" id="province" class="form-control" required>
+                        <select name="province" id="province" class="form-control" required onchange="check_register_car();">
                                 <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
                                 @foreach($location_array as $lo)
                                 <option 
@@ -173,11 +173,11 @@
                 </div>
 
             </div>
-
+            
             <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
+                <input id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
             </div>
-
+            <!-- <button type="button" class="btn btn-primary" onclick="alert('hello')">Primary</button> -->
             <hr>
             <div class="col-12">
                 <div class="row">
@@ -200,7 +200,7 @@
             </div>
 
             <br><br>
-            <div id="information" class="row" style="display:none">
+            <div id="information" class="row" style="display:none;">
                 <!-- ซ้าย -->
                 <div class="col-12 col-md-5">
                     <div class="row">
@@ -234,33 +234,76 @@
                             <h1><i class="fas fa-car-side text-danger"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถยนต์</span></h1>
                            
                             @foreach($car as $item)
-                            <div class="row">
-                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;">
-                                    <div class="row">
-                                        <div class="col-3 col-md-3 " style="margin: 10px 0px 0px 15px; "> 
-                                         <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                            <!-- แสดงเฉพาะคอม -->
+                            <div class="row d-none d-lg-block">
+                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
+                                    <div class="row" style="margin-top: 8px; margin-bottom: 8px;">
+                                        <div class="col-3 col-md-3 " style="margin: 5px 20px 15px 5px;"> 
+                                            <br>
+                                            <img style="margin-top: -10px;" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                         </div>
-                                        <div class="col-8 col-md-7"> 
+                                        <div class="col-8 col-md-7" style="border-left: 1px solid gray;"> 
                                         <center>
-                                            <b>{{ $item->generation }}</b><br>
-                                            <span style="font-size: 12px;">{{ $item->registration_number }} <br>{{ $item->province }}</span>
+                                            <div style="position: relative; z-index: 5">
+                                                <b>{{ $item->generation }}</b>
+                                                <hr style="margin-top: 8px; margin-bottom: 8px;">
+                                                <div style="padding-top: 8px;">
+                                                    <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                    <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                </div>
+                                            </div>
+
+                                            <div style="z-index: 2">
+                                                <img style="position: absolute;right: 4%;top: 37%;" width="150" height="60" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                            </div>
                                         </center>
                                         </div>
                                     </div>
                                  </div>
-                                
-                            
-
-
-
-                            </div><br>
-                                    @endforeach
+                            </div>
+                            <!-- แสดงเฉพาะมือถือ -->
+                            <div class="row d-block d-md-none">
+                                <div class="col-11 border border-primary" style= "border-radius: 15px;padding: 8px;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <br>
+                                                <div class="col-5">
+                                                    <img class="float-right" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-7" style="padding-top: 5px;">
+                                                    <h5><b>{{ $item->brand }}</b></h5>
+                                                    <span style="font-size: 14px;">{{ $item->generation }}</span>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 8px; margin-bottom: 15px;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <div style="position: relative; z-index: 5">
+                                                            <div style="padding-top: 8px;">
+                                                                <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                                <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div style="z-index: 2">
+                                                            <img style="position: absolute;right: 15%;bottom: 10%;" width="200" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                            <br>
+                            @endforeach
                         </div>
                         <div class="col-12 col-md-6">
                             <h1><i class="fas fa-motorcycle text-success"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถจักรยานยนต์</span></h1>
                             @foreach($motorcycle as $item)
                             <div class="row">
-                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;">
+                                <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                     <div class="row">
                                         <div class="col-3 col-md-3 " style="margin: 10px 0px 0px 15px; "> 
                                          <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
@@ -317,6 +360,41 @@
     </div>
 </div>
 
+<!-- รถซ้ำ -->
+<!-- Button trigger modal -->
+<button id="btn_repeatedly" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#not_system">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="not_system" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+            <img width="50%" src="{{ asset('/img/stickerline/PNG/17.png') }}">
+            <br><br>
+            <h5 class="text-danger">รถหมายเลขทะเบียนนี้ท่านลงทะเบียนแล้วค่ะ</h5>
+            <p style="line-height: 2;">กรุณาตรวจสอบใหม่อีกครั้งค่ะ</p>
+            <h5 class="text-danger">This car registration number has been registered.</h5>
+            <p style="line-height: 2;">Please check and try again.</p>
+            <br>
+        </center>
+      </div>
+      <div class="modal-footer d-none">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -331,8 +409,8 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                // let input_car_brand = document.querySelector("#input_car_brand");
-                    // input_car_brand.innerHTML = "";
+                let input_car_brand = document.querySelector("#input_car_brand");
+                    input_car_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -380,8 +458,8 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                // let input_motor_brand = document.querySelector("#input_motor_brand");
-                //     input_motor_brand.innerHTML = "";
+                let input_motor_brand = document.querySelector("#input_motor_brand");
+                    input_motor_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -419,5 +497,30 @@
                     option.value = "อื่นๆ";
                     input_motor_model.add(option);  
             });
+    }
+    function check_register_car(){
+        let registration_number = document.querySelector("#registration_number");
+        let province = document.querySelector("#province");
+
+        fetch("{{ url('/') }}/api/check_register_car/"+registration_number.value+"/"+province.value+"/check_register_car")
+            .then(response => response.json())
+            .then(result => {
+
+            if (result.length == 1 ) {
+                document.querySelector('#submit_form').classList.add('d-none');
+
+                document.getElementById("btn_repeatedly").click();
+
+                let registration_reset = document.querySelector("#registration_number");
+                let province_reset = document.querySelector("#province");
+                    registration_reset.value = "";
+                    province_reset.value = "";
+                document.querySelector('#registration_number').focus();
+            }else{ 
+                document.querySelector('#submit_form').classList.remove('d-none');
+            }
+
+            });
+            return registration_number.value;
     }
 </script>
