@@ -4,6 +4,9 @@
 
     <section class="car spad">
         <div class="container">
+
+
+        
             <div class="row">
                 <div class="col-lg-3">
                     <div class="car__sidebar" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
@@ -37,19 +40,7 @@
                                         {{ $ty->type }} 
                                         </option>
                                     @endforeach
-                                </select><br>
-                                <select class="form-control"  name="gear" id="gear" onchange="this.form.submit()" >
-                                    <option value="" data-display="ระบบเกียร์">ระบบเกียร์ทั้งหมด</option>
-                                    @foreach($gear_array as $ge)
-                                        <option 
-                                                value="{{ $ge->gear }}" 
-                                                {{ request('gear') == $ge->gear ? 'selected' : ''   }} >
-                                        {{ $ge->gear }} 
-                                        </option>
-                                    @endforeach 
-                                </select><br>
-                                
-                                
+                                </select><br>                       
                                 <select class="form-control"  name="location" id="location" onchange="this.form.submit()" >
                                     <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
                                     @foreach($location_array as $lo)
@@ -260,10 +251,25 @@
                         
                             <div class="car__item" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                                 <div class="car__item__pic__slider owl-carousel">
-                                    @if($item->image == "" )
-                                    <a href="{{ url('/car/'.$item->id ) }}"><img src="{{ asset('/img/more/img_more.jpg') }}" alt="" ></a>
+                                
+                                    @if($item->image == "" )  
+                                    <a href="{{ url('/car/'.$item->id ) }}">
+                                    <div class="row d-none d-md-block">
+                                    <div class="row d-none d-md-block">
+                                    <p style="position: absolute;right: 73 %;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
+                                        class="col-2 col-md-3 border border-primary">
+                                                            &nbsp;{{ $item->year  }} </p>
+                                    </div>
+                                    <img"  src="{{ asset('/img/more/img_more.jpg') }}" alt="" ></a>
                                     @else
-                                    <a href="{{ url('/car/'.$item->id ) }}"><img src="{{ url('/image/'.$item->id ) }}" alt="" > </a>
+                                   
+                                    <a href="{{ url('/car/'.$item->id ) }}">
+                                     <div class="row d-none d-md-block">
+                                    <p style="position: absolute;right: 73%;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
+                                        class="col-2 col-md-3 border border-dark">
+                                                            &nbsp;<b>{{ $item->year  }}</b> </p></div>
+                                    
+                                    <img src="{{ url('/image/'.$item->id ) }}" alt="" > </a>
                                         <!-- <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80" alt="" >  -->
                                     @endif
                                 </div>  
@@ -273,15 +279,9 @@
                                         <div class="col" >
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="col-9">
-                                                            <div  >
-                                                                <center>
-                                                                    {{ $item->year  }}
-                                                                </center>
-                                                            </div>
-                                                            </div>
-                                                      
+                                                    
+                                                        
+                                                     
                                                             <div class="col-3 car_wish" >
                                                                 <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}           
@@ -297,7 +297,7 @@
                                                                     </button>      
                                                                 </form> 
                                                             </div>
-                                                        </div>
+                                                      
                                                     
 
                                                     <div class="row">
@@ -331,7 +331,8 @@
 
                                             </div>
                                            
-                                            <p style = "font-size:12px; margin-top: -5px;">{{ $item->location  }}</p>
+                                            
+                                            <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">{{ $item->location }}</p>
                                         </div>
                                         <div class="col">
                                             <hr style="margin-bottom: 25px;">
