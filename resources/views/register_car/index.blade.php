@@ -48,6 +48,7 @@
 
             <div class="col-md-9 order-lg-1 order-2">
                 <div class="card">
+                
                     <div class="card-header">
                         <span style="font-size: 25px;" class="text-dark"><b>รถของฉัน</b></span>
                         <a href="{{ url('/register_car/create') }}" class="float-right btn btn-danger main-shadow main-radius" title="Add New Register_car">
@@ -85,15 +86,16 @@
                             <div class="col-lg-6 col-md-4 ">
                                 <div class="card  order-card">
                                     <div class="card-block">
+                                    <p class="text-right" style="margin: -20px -10px -10px 0px;"><a href="{{ url('/register_car/' . $item->id . '/edit') }}"><u>แก้ไข</u></a> </p>
                                         <div class="row">
                                             <div class="col-12 col-md-12">
-
-                                                <div class="row">
+                                                <div class="row">  
                                                     <div class="col-4 col-md-3">
                                                         <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                                    </div>
+                                                    </div> 
                                                     <div class="col-8 col-md-9">
                                                         <h4>{{ $item->brand }}</h4>
+                                                       
                                                         <p>{{ $item->generation }} </p>
                                                     </div>
                                                 </div>
@@ -222,38 +224,12 @@
                                                 <b><i class="fas fa-donate"></i> &nbsp;ขอสินเชื่อ</b>
                                             </button>
                                         </a>
-                                        @php
-                                            $id = $item->id;
-                                        @endphp
-                                        <button title="Click to show/hide content" type="button"  class="btn btn-sm float-right" action="{{ url('/register_car/' . $item->id ) }}"
-                                            onclick="if(document.getElementById('spoiler') .style.display=='none') 
-                                                {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler')
-                                                .style.display='none'}"> <h6 class="text-right" href="{{ url('/register_car/' . $item->id . '/edit') }}">
-                                                    <h6 style="color:#7D7D7D">
-                                                        <i class="fas fa-angle-double-down"></i>
-                                                    </h6>
-                                        </button>
-
-                                        <div id="spoiler" style="display:none"> 
-                                            <br>
-                                            <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
+                                        <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
-                                                    
-                                                    <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right"   title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
-                                                        <i class="fa fa-trash-o" aria-hidden="true"></i> ฉันไม่ใช้รถคันนี้แล้ว
-                                                    </button>
-
-                                            </form> 
-                                            <span class="float-right">&nbsp;&nbsp;</span>
-                                            <a href="{{ url('/register_car/' . $item->id . '/edit') }}">
-                                                <button class="btn btn-sm btn-warning main-shadow main-radius float-right text-white">
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i> แก้ไขข้อมูลรถ
-                                                </button>
-                                            </a>
-                                            
-                                        </div>
-
+                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right"   title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                            <i class="fa fa-trash"  aria-hidden="true"></i>
+                                                        </button>
                                     </div>
                                 </div>
                             </div>

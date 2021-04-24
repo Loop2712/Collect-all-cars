@@ -162,7 +162,7 @@
                 </div>
                 <div class="col-lg-5">
                         <div class="header__nav" style="padding: 30px;">
-                                <nav class="header__menu" style="text-align:left;margin-left: 20px;">
+                                <nav class="header__menu" style="text-align:left;margin: 10px 0px 0px 20px;">
                             
                             <ul>
                             @guest

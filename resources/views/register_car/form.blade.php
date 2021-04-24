@@ -16,7 +16,7 @@
             </div>
             <br>
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
-            <br><br>
+            <br><br><h4>
             <input type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
 
@@ -29,8 +29,8 @@
                 document.querySelector('#div_car_brand').classList.remove('d-none'),
                 document.querySelector('#input_car_model').classList.remove('d-none'),
                 document.querySelector('#input_car_brand').classList.remove('d-none');">
-            &nbsp;&nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp;&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
-            <br>
+            &nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
+            
             <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
 
@@ -43,8 +43,8 @@
                 document.querySelector('#div_motor_brand').classList.remove('d-none'),
                 document.querySelector('#input_motor_brand').classList.remove('d-none'),
                 document.querySelector('#input_motor_model').classList.remove('d-none');">
-            &nbsp;&nbsp;<i class="fas fa-motorcycle text-success"></i>&nbsp;&nbsp; มอเตอร์ไซต์ / Motorcycle
-            <br><br>
+            &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ / Motorcycle</h4>
+            <br>
             <!-- ข้อมูลรถ -->
             <div class=" row" id="div_data">
                 <div class="col-12 col-md-2">
