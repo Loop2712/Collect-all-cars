@@ -31,7 +31,6 @@
                                 <li>จำนวนที่นั่ง <span>{{ $data->seats  }}</span></li>
                                 <li>ระบบเกียร์ <span>{{ $data->gear  }}</span></li>
                                 <li>ระยะทาง <span>{{ $data->distance  }} km</span></li>
-                                <li>สี <span>{{ $data->color  }}</span></li>
                             </ul>
                             <ul>
                                 <li>น้ำมัน <span>{{ $data->fuel  }}</span></li>
@@ -45,9 +44,9 @@
                         <div class="car__details__sidebar__payment">
                             <ul>
                             @if ( $data->price == 'ติดต่อผู้ขาย')
-                                    <li>Price <span>{{ $data->price}}</span> </li>
+                                    <li>Price <span style="color:#db2d2e">{{ $data->price}}</span> </li>
                                     @else
-                                    <li>Price <span>{{ number_format(intval($data->price))}} บาท</span> </li>
+                                    <li>Price <span style="color:#db2d2e">{{ number_format(intval($data->price))}} บาท</span> </li>
                                         
                                     @endif
                                 
