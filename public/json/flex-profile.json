@@ -233,14 +233,14 @@
             ],
             "paddingTop": "lg",
             "paddingBottom": "lg"
-          },
-          {
-            "type": "separator",
-            "margin": "xxl",
-            "color": "#ff0101"
           }
         ],
         "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "margin": "xxl",
+        "color": "#ff0101"
       },
       {
         "type": "box",
@@ -248,59 +248,94 @@
         "contents": [
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "horizontal",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/car.png",
-                "margin": "md",
-                "size": "xxl",
-                "offsetTop": "xl",
-                "offsetStart": "xxl"
-              },
-              {
-                "type": "text",
-                "text": "รถของฉัน",
-                "margin": "xxl",
-                "size": "md",
-                "weight": "regular",
-                "offsetTop": "md",
-                "offsetStart": "xxl",
-                "flex": 3,
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://market.viicheck.com/img/icon/motorcycle.png",
+                    "margin": "md",
+                    "size": "xxl",
+                    "offsetTop": "md",
+                    "offsetStart": "md"
+                  },
+                  {
+                    "type": "text",
+                    "text": "จักรยานยนต์",
+                    "margin": "xxl",
+                    "size": "md",
+                    "weight": "regular",
+                    "offsetTop": "xs",
+                    "flex": 3,
+                    "action": {
+                      "type": "message",
+                      "label": "จักรยานยนต์",
+                      "text": "จักรยานยนต์"
+                    }
+                  }
+                ],
+                "offsetEnd": "xs",
                 "action": {
                   "type": "message",
-                  "label": "รถของฉัน",
-                  "text": "รถของฉัน"
+                  "label": "จักรยานยนต์",
+                  "text": "จักรยานยนต์"
                 }
               },
               {
-                "type": "text",
-                "text": ">>>",
-                "offsetTop": "md",
-                "action": {
-                  "type": "message",
-                  "label": "รถของฉัน",
-                  "text": "รถของฉัน"
-                },
-                "offsetStart": "xxl",
+                "type": "separator",
                 "color": "#ff0101"
               },
               {
-                "type": "spacer"
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://market.viicheck.com/img/icon/car.png",
+                    "margin": "md",
+                    "size": "xxl",
+                    "offsetStart": "md",
+                    "offsetTop": "md"
+                  },
+                  {
+                    "type": "text",
+                    "text": "รถยนต์",
+                    "margin": "xxl",
+                    "size": "md",
+                    "weight": "regular",
+                    "offsetTop": "xs",
+                    "flex": 3,
+                    "action": {
+                      "type": "message",
+                      "label": "รถยนต์",
+                      "text": "รถยนต์"
+                    },
+                    "offsetStart": "xs"
+                  }
+                ],
+                "action": {
+                  "type": "message",
+                  "label": "รถยนต์",
+                  "text": "รถยนต์"
+                }
               }
             ],
-            "paddingBottom": "lg",
-            "action": {
-              "type": "message",
-              "label": "รถของฉัน",
-              "text": "รถของฉัน"
-            }
-          },
-          {
-            "type": "separator",
-            "margin": "xxl",
-            "color": "#ff0101"
-          },
+            "margin": "lg"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "xxl",
+        "color": "#ff0101"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
           {
             "type": "box",
             "layout": "vertical",
@@ -371,9 +406,6 @@
               "label": "ใบอนุญาตขับรถ",
               "text": "ใบอนุญาตขับรถ"
             }
-          },
-          {
-            "type": "separator"
           }
         ]
       }
