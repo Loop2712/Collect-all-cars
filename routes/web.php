@@ -143,3 +143,5 @@ Route::get('/report/{id}/{content}', 'NewsController@report');
 
 Route::resource('promotion', 'PromotionController');
 
+
+Route::resource('middle_price_car', 'Middle_price_carController');
