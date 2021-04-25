@@ -342,7 +342,8 @@
           },
           {
             "type": "separator",
-            "color": "#ff0101"
+            "color": "#ff0101",
+            "margin": "xl"
           }
         ]
       }
