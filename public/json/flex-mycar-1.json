@@ -107,7 +107,7 @@
                     "margin": "md"
                   }
                 ],
-                "offsetTop": "md",
+                "offsetTop": "xs",
                 "offsetEnd": "xxl"
               },
               {
@@ -121,14 +121,14 @@
                     "size": "xl"
                   }
                 ],
-                "offsetTop": "md"
+                "offsetTop": "xs"
               }
             ],
             "backgroundColor": "#FAEBD7",
             "borderWidth": "semi-bold",
             "borderColor": "#ff0101",
             "cornerRadius": "xxl",
-            "paddingAll": "lg",
+            "paddingAll": "xl",
             "offsetTop": "lg"
           },
           {
@@ -177,7 +177,7 @@
             ],
             "height": "70px",
             "offsetTop": "lg",
-            "margin": "lg"
+            "margin": "xxl"
           },
           {
             "type": "separator",
