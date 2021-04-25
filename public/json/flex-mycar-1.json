@@ -132,56 +132,9 @@
             "offsetTop": "lg"
           },
           {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "uri",
-                      "label": "แก้ไข",
-                      "uri": "https://market.viicheck.com/register_car"
-                    },
-                    "style": "primary",
-                    "height": "sm",
-                    "gravity": "center",
-                    "color": "#FFCC33"
-                  }
-                ],
-                "paddingStart": "lg",
-                "paddingEnd": "lg"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "uri",
-                      "label": "เช็คราคา",
-                      "uri": "https://market.viicheck.com/register_car"
-                    },
-                    "style": "primary",
-                    "height": "sm",
-                    "gravity": "top"
-                  }
-                ],
-                "paddingStart": "lg",
-                "paddingEnd": "lg"
-              }
-            ],
-            "height": "70px",
-            "offsetTop": "lg",
-            "margin": "xxl"
-          },
-          {
             "type": "separator",
-            "margin": "xs"
+            "margin": "xl",
+            "color": "#ffffff"
           }
         ],
         "paddingStart": "md",
@@ -232,7 +185,8 @@
         ],
         "height": "70px",
         "offsetTop": "sm",
-        "margin": "lg"
+        "margin": "lg",
+        "spacing": "md"
       }
     ],
     "paddingAll": "0px",
