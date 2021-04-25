@@ -247,6 +247,15 @@
         "layout": "vertical",
         "contents": [
           {
+            "type": "text",
+            "text": "รถของฉัน",
+            "offsetTop": "lg",
+            "size": "lg",
+            "weight": "bold",
+            "color": "#ff0101",
+            "align": "center"
+          },
+          {
             "type": "box",
             "layout": "horizontal",
             "contents": [
@@ -255,29 +264,18 @@
                 "layout": "baseline",
                 "contents": [
                   {
+                    "type": "spacer",
+                    "size": "xxl"
+                  },
+                  {
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/icon/motorcycle.png",
                     "margin": "md",
-                    "size": "xxl",
+                    "size": "4xl",
                     "offsetTop": "md",
-                    "offsetStart": "md"
-                  },
-                  {
-                    "type": "text",
-                    "text": "จักรยานยนต์",
-                    "margin": "xxl",
-                    "size": "md",
-                    "weight": "regular",
-                    "offsetTop": "xs",
-                    "flex": 3,
-                    "action": {
-                      "type": "message",
-                      "label": "จักรยานยนต์",
-                      "text": "จักรยานยนต์"
-                    }
+                    "offsetStart": "xxl"
                   }
                 ],
-                "offsetEnd": "xs",
                 "action": {
                   "type": "message",
                   "label": "จักรยานยนต์",
@@ -293,37 +291,29 @@
                 "layout": "baseline",
                 "contents": [
                   {
+                    "type": "spacer",
+                    "size": "xxl"
+                  },
+                  {
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/icon/car.png",
                     "margin": "md",
-                    "size": "xxl",
-                    "offsetStart": "md",
+                    "size": "4xl",
+                    "offsetStart": "xxl",
                     "offsetTop": "md"
-                  },
-                  {
-                    "type": "text",
-                    "text": "รถยนต์",
-                    "margin": "xxl",
-                    "size": "md",
-                    "weight": "regular",
-                    "offsetTop": "xs",
-                    "flex": 3,
-                    "action": {
-                      "type": "message",
-                      "label": "รถยนต์",
-                      "text": "รถยนต์"
-                    },
-                    "offsetStart": "xs"
                   }
                 ],
                 "action": {
                   "type": "message",
                   "label": "รถยนต์",
                   "text": "รถยนต์"
-                }
+                },
+                "offsetBottom": "sm",
+                "offsetEnd": "xs"
               }
             ],
-            "margin": "lg"
+            "margin": "lg",
+            "offsetTop": "md"
           }
         ]
       },
@@ -354,7 +344,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "ใบอนุญาตขับรถ",
+                    "text": "ใบอนุญาตขับขี่",
                     "margin": "xxl",
                     "size": "md",
                     "weight": "regular",
