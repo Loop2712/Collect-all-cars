@@ -315,7 +315,8 @@
             "margin": "lg",
             "offsetTop": "md"
           }
-        ]
+        ],
+        "paddingAll": "lg"
       },
       {
         "type": "separator",
