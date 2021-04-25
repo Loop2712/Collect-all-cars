@@ -59,10 +59,6 @@
       },
       {
         "type": "separator",
-        "margin": "xl"
-      },
-      {
-        "type": "separator",
         "margin": "lg"
       },
       {
@@ -88,7 +84,7 @@
       },
       {
         "type": "text",
-        "text": "ผู้ใช้รถเลขทะเบียน",
+        "text": "เลขทะเบียน / Plate No.",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",

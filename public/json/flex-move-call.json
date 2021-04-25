@@ -83,7 +83,7 @@
       },
       {
         "type": "text",
-        "text": "เลขทะเบียน / Car ID",
+        "text": "เลขทะเบียน / Plate No.",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
