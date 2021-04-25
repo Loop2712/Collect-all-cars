@@ -82,16 +82,16 @@
                     "offsetStart": "xs"
                   }
                 ],
-                "offsetTop": "lg"
+                "offsetTop": "md"
               },
               {
                 "type": "text",
                 "text": "ป้ายทะเบียน1",
                 "size": "md",
                 "weight": "regular",
-                "offsetTop": "xxl",
                 "flex": 3,
-                "offsetStart": "xs"
+                "offsetStart": "xs",
+                "offsetTop": "md"
               },
               {
                 "type": "box",
@@ -105,7 +105,7 @@
                     "offsetEnd": "sm"
                   }
                 ],
-                "offsetTop": "xl",
+                "offsetTop": "md",
                 "offsetEnd": "xxl"
               },
               {
@@ -120,7 +120,7 @@
                     "offsetEnd": "md"
                   }
                 ],
-                "offsetTop": "xl"
+                "offsetTop": "md"
               }
             ],
             "backgroundColor": "#FAEBD7",
