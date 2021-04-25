@@ -249,7 +249,6 @@
           {
             "type": "text",
             "text": "รถของฉัน",
-            "offsetTop": "lg",
             "size": "lg",
             "weight": "bold",
             "color": "#ff0101",
@@ -312,11 +311,10 @@
                 "offsetEnd": "xs"
               }
             ],
-            "margin": "lg",
-            "offsetTop": "md"
+            "margin": "lg"
           }
         ],
-        "paddingAll": "lg"
+        "paddingAll": "md"
       },
       {
         "type": "separator",
