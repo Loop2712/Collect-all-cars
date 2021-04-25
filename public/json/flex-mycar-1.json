@@ -78,11 +78,9 @@
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/logo_brand/logo-แบนด์1.png",
                     "margin": "md",
-                    "size": "xxl",
-                    "offsetStart": "xs"
+                    "size": "xxl"
                   }
-                ],
-                "offsetTop": "md"
+                ]
               },
               {
                 "type": "text",
