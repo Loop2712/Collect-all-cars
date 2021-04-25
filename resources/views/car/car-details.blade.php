@@ -60,6 +60,49 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="col-12">
+                    <hr>
+                    <hr>
+                    <div class="row">
+                        <div class="col-2">
+                            <h4>Brand</h4>
+                        </div>
+                        <div class="col-2">
+                            <h4>Model</h4>
+                        </div>
+                        <div class="col-3">
+                            <h4>Submodel</h4>
+                        </div>
+                        <div class="col-2">
+                            <h4>Year</h4>                        
+                        </div>
+                        <div class="col-3">
+                            <h4>Price</h4>
+                        </div>
+                    </div>
+                    <hr>
+                    @foreach($middle_price as $item)
+                    <div class="row">
+                        <div class="col-2">
+                            <span>{{ $item->brand }}</span>
+                        </div>
+                        <div class="col-2">
+                            <span>{{ $item->model }}</span>
+                        </div>
+                        <div class="col-3">
+                            <span>{{ $item->submodel }}</span>
+                        </div>
+                        <div class="col-2">
+                            <span>{{ $item->year }}</span>                        
+                        </div>
+                        <div class="col-3">
+                            <span>{{ $item->price }} บาท</span>
+                        </div>
+                    </div>
+                    <hr>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
