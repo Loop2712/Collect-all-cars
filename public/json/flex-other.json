@@ -156,6 +156,54 @@
             "contents": [
               {
                 "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/money.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "เช็คราคารถมือสอง",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "เช็คราคารถมือสอง",
+                  "text": "เช็คราคารถมือสอง"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "เช็คราคารถมือสอง",
+                  "text": "เช็คราคารถมือสอง"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "เช็คราคารถมือสอง",
+              "text": "เช็คราคารถมือสอง"
+            }
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
                 "url": "https://market.viicheck.com/img/icon/newspaper.png",
                 "size": "3xl",
                 "margin": "none",
