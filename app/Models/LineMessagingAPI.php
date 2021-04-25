@@ -195,7 +195,6 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("ประกัน1","tick",$string_json);
                         }
 
-                        $string_json = str_replace("ดูรถทั้งหมด","ดูทั้งหมด / แก้ไข",$string_json);
 
                         break;
 

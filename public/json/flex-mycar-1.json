@@ -80,7 +80,8 @@
                     "margin": "md",
                     "size": "xxl"
                   }
-                ]
+                ],
+                "offsetTop": "xs"
               },
               {
                 "type": "text",
@@ -99,8 +100,7 @@
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/icon/พรบ1.png",
                     "size": "xl",
-                    "margin": "md",
-                    "offsetEnd": "sm"
+                    "margin": "md"
                   }
                 ],
                 "offsetTop": "md",
@@ -114,8 +114,7 @@
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/icon/ประกัน1.png",
                     "margin": "md",
-                    "size": "xl",
-                    "offsetEnd": "md"
+                    "size": "xl"
                   }
                 ],
                 "offsetTop": "md"
