@@ -24,7 +24,8 @@
                 "flex": 2,
                 "style": "normal",
                 "weight": "bold",
-                "color": "#ff0101"
+                "color": "#ff0101",
+                "offsetStart": "md"
               },
               {
                 "type": "separator",
@@ -52,7 +53,8 @@
               }
             ],
             "margin": "lg",
-            "offsetTop": "md"
+            "offsetTop": "md",
+            "offsetEnd": "sm"
           },
           {
             "type": "separator",
@@ -78,10 +80,12 @@
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/logo_brand/logo-แบนด์1.png",
                     "margin": "md",
-                    "size": "xxl"
+                    "size": "xxl",
+                    "offsetEnd": "xs"
                   }
                 ],
-                "offsetTop": "xs"
+                "offsetTop": "xs",
+                "offsetEnd": "xs"
               },
               {
                 "type": "text",
