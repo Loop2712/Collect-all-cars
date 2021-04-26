@@ -30,7 +30,7 @@
                 document.querySelector('#input_car_model').classList.remove('d-none'),
                 document.querySelector('#input_car_brand').classList.remove('d-none');">
             &nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
-            
+            <br>
             <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
 
