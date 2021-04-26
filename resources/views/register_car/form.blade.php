@@ -175,7 +175,7 @@
             </div>
             
             <div>
-                <button type="button" class="btn btn-primary" onclick="document.getElementById('btn_confirm').click();">บันทึก</button>
+                <button type="button" class="btn btn-primary" onclick="document.getElementById('btn_confirm').click();re_check();">บันทึก</button>
             </div>
             <!-- <button type="button" class="btn btn-primary" onclick="alert('hello')">Primary</button> -->
             <hr>
@@ -415,9 +415,17 @@
         <center>
             <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
             <p style="line-height: 2;">You confirm to register this registration number ?</p>
-            <br>
-            <img style="position: absolute;right: 20%;top: 42%;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-            <br><br><br><br><br>
+            <br><br>
+            <div style="position: relative; z-index: 5">
+                <div style="padding-top: 8px;">
+                    <span id="reg_num" style="font-size: 20px;" class="text-dark"><b>นน3232</b> </span>
+                    <p id="reg_province" style="font-size: 16px;" class="text-secondary">กรุงเทพมหานคร</p>
+                </div>
+            </div>
+            <img style="position: absolute;left: 3%;top: 30%;z-index: 1;transform:rotate(340deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+            <img style="position: absolute;right: 20%;top: 42%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+            <img style="position: absolute;right: 3%;top: 67%;z-index: 1;transform:rotate(23deg);" width="100" src="{{ asset('/img/stickerline/PNG/17.png') }}">
+            <br><br><br>
         </center>
       </div>
       <div class="modal-footer">
@@ -472,6 +480,7 @@
                 // //UPDATE SELECT OPTION
                 let input_car_model = document.querySelector("#input_car_model");
                     input_car_model.innerHTML = "";
+
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.model;
@@ -557,5 +566,18 @@
 
             });
             return registration_number.value;
+    }
+
+    function re_check(){
+        let registration_number = document.querySelector("#registration_number");
+        let province = document.querySelector("#province");
+
+        console.log(registration_number);
+        console.log(province);
+
+        let reg_num = document.querySelector("#reg_num");
+            reg_num.innerHTML = registration_number.value;
+        let reg_province = document.querySelector("#reg_province");
+            reg_province.innerHTML = province.value;
     }
 </script>
