@@ -24,8 +24,7 @@
                 "flex": 2,
                 "style": "normal",
                 "weight": "bold",
-                "color": "#ff0101",
-                "offsetStart": "md"
+                "color": "#ff0101"
               },
               {
                 "type": "separator",
@@ -33,11 +32,12 @@
               },
               {
                 "type": "text",
-                "text": "พรบ",
+                "text": "พรบ.",
                 "margin": "none",
                 "offsetStart": "xxl",
                 "offsetTop": "sm",
-                "color": "#e5a578"
+                "color": "#e5a578",
+                "weight": "bold"
               },
               {
                 "type": "separator",
@@ -49,20 +49,18 @@
                 "margin": "none",
                 "offsetStart": "lg",
                 "offsetTop": "sm",
-                "color": "#e5a578"
+                "color": "#e5a578",
+                "weight": "bold"
               }
             ],
             "margin": "lg",
-            "offsetTop": "md",
-            "offsetEnd": "sm"
+            "offsetTop": "md"
           },
           {
             "type": "separator",
-            "margin": "xxl",
-            "color": "#ff0101"
+            "margin": "xxl"
           }
-        ],
-        "borderColor": "#ff0101"
+        ]
       },
       {
         "type": "box",
@@ -80,21 +78,20 @@
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/logo_brand/logo-แบนด์1.png",
                     "margin": "md",
-                    "size": "xxl",
-                    "offsetEnd": "xs"
+                    "size": "3xl",
+                    "offsetStart": "xs"
                   }
                 ],
-                "offsetTop": "xs",
-                "offsetEnd": "xs"
+                "offsetTop": "lg"
               },
               {
                 "type": "text",
                 "text": "ป้ายทะเบียน1",
-                "size": "md",
-                "weight": "regular",
+                "size": "lg",
+                "weight": "bold",
+                "offsetTop": "xxl",
                 "flex": 3,
-                "offsetStart": "xs",
-                "offsetTop": "md"
+                "offsetStart": "lg"
               },
               {
                 "type": "box",
@@ -104,10 +101,11 @@
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/icon/พรบ1.png",
                     "size": "xl",
-                    "margin": "md"
+                    "margin": "md",
+                    "offsetEnd": "sm"
                   }
                 ],
-                "offsetTop": "xs",
+                "offsetTop": "xl",
                 "offsetEnd": "xxl"
               },
               {
@@ -118,27 +116,20 @@
                     "type": "icon",
                     "url": "https://market.viicheck.com/img/icon/ประกัน1.png",
                     "margin": "md",
-                    "size": "xl"
+                    "size": "xl",
+                    "offsetEnd": "md"
                   }
                 ],
-                "offsetTop": "xs"
+                "offsetTop": "xl"
               }
             ],
-            "backgroundColor": "#FAEBD7",
-            "borderWidth": "semi-bold",
-            "borderColor": "#ff0101",
-            "cornerRadius": "xxl",
-            "paddingAll": "xl",
-            "offsetTop": "lg"
+            "paddingBottom": "lg"
           },
           {
             "type": "separator",
-            "margin": "xl",
-            "color": "#ffffff"
+            "margin": "lg"
           }
-        ],
-        "paddingStart": "md",
-        "paddingEnd": "md"
+        ]
       },
       {
         "type": "box",
@@ -151,14 +142,15 @@
               {
                 "type": "image",
                 "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-                "size": "sm",
+                "size": "md",
                 "align": "center",
                 "aspectMode": "fit",
                 "action": {
                   "type": "uri",
                   "label": "viicheck",
                   "uri": "https://market.viicheck.com/"
-                }
+                },
+                "offsetBottom": "md"
               }
             ],
             "offsetBottom": "xxl"
@@ -179,14 +171,13 @@
                 "gravity": "top",
                 "color": "#ff0101"
               }
-            ],
-            "offsetEnd": "lg"
+            ]
           }
         ],
         "height": "70px",
         "offsetTop": "sm",
-        "margin": "lg",
-        "spacing": "md"
+        "paddingEnd": "xl",
+        "margin": "lg"
       }
     ],
     "paddingAll": "0px",
