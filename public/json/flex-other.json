@@ -167,9 +167,9 @@
                 "weight": "bold",
                 "margin": "xl",
                 "action": {
-                  "type": "message",
-                  "label": "เช็คราคารถมือสอง",
-                  "text": "เช็คราคารถมือสอง"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://market.viicheck.com/middle_price_car"
                 },
                 "flex": 4
               },
@@ -180,17 +180,17 @@
                 "align": "end",
                 "color": "#ff0101",
                 "action": {
-                  "type": "message",
-                  "label": "เช็คราคารถมือสอง",
-                  "text": "เช็คราคารถมือสอง"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://market.viicheck.com/middle_price_car"
                 }
               }
             ],
             "height": "50px",
             "action": {
-              "type": "message",
-              "label": "เช็คราคารถมือสอง",
-              "text": "เช็คราคารถมือสอง"
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/middle_price_car"
             }
           },
           {
