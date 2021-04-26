@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Middle_price_car</div>
                     <div class="card-body">
@@ -30,15 +29,15 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Brand</th><th>Model</th><th>Submodel</th><th>Actions</th>
+                                        <th>#</th><th>Brand</th><th>Model</th><th>Submodel</th><th>Price</th><th class="d-none">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($middle_price_car as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->brand }}</td><td>{{ $item->model }}</td><td>{{ $item->submodel }}</td>
-                                        <td>
+                                        <td>{{ $item->brand }}</td><td>{{ $item->model }}</td><td>{{ $item->submodel }}</td><td>{{ $item->price }} บาท</td>
+                                        <td class="d-none">
                                             <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 

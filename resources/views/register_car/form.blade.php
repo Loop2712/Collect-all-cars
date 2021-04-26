@@ -415,17 +415,16 @@
         <center>
             <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
             <p style="line-height: 2;">You confirm to register this registration number ?</p>
-            <br><br>
+            <br>
             <div style="position: relative; z-index: 5">
                 <div style="padding-top: 8px;">
-                    <span id="reg_num" style="font-size: 20px;" class="text-dark"><b>นน3232</b> </span>
-                    <p id="reg_province" style="font-size: 16px;" class="text-secondary">กรุงเทพมหานคร</p>
+                    <h4 style="margin-top: 15px;"><b id="reg_num"></b></h4>
+                    <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
                 </div>
             </div>
-            <img style="position: absolute;left: 3%;top: 30%;z-index: 1;transform:rotate(340deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
-            <img style="position: absolute;right: 20%;top: 42%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-            <img style="position: absolute;right: 3%;top: 67%;z-index: 1;transform:rotate(23deg);" width="100" src="{{ asset('/img/stickerline/PNG/17.png') }}">
-            <br><br><br>
+            <img style="position: absolute;left: 3%;top: 32%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+            <img style="position: absolute;right: 20%;top: 48%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+            
         </center>
       </div>
       <div class="modal-footer">
