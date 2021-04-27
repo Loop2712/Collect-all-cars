@@ -1,42 +1,49 @@
 {
     "type": "flex",
-    "altText": "โปรโมชั่น",
+    "altText": "ติดต่อ / contact",
     "contents": {
-  "type": "carousel",
-  "contents": [
-    {
-      "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img1"
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v3.png",
+            "size": "4xl",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/"
+            }
+          },
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "align": "center",
+            "aspectMode": "fit",
+            "offsetBottom": "md"
+          }
+        ]
       },
-      "body": {
+      {
         "type": "box",
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
           {
-            "type": "text",
-            "text": "NAME1",
-            "wrap": true,
-            "size": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "TITLE1",
-                "wrap": true,
-                "size": "md"
-              }
-            ],
-            "margin": "lg"
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -44,69 +51,48 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
-                "size": "sm"
+                "url": "https://market.viicheck.com/img/icon/car.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
               },
               {
                 "type": "text",
-                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
-                "wrap": true,
-                "weight": "regular",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "TIME1",
-                    "size": "sm",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "md"
-              }
-            ],
-            "margin": "md"
-          }
-        ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link1"
-      }
-    },
-    {
-      "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img2"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "text",
-            "text": "NAME2",
-            "wrap": true,
-            "size": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
+                "text": "โปรโมชั่นรถยนต์",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "โปรโมชั่นรถยนต์",
+                  "text": "โปรโมชั่นรถยนต์"
+                },
+                "weight": "bold",
+                "flex": 4
+              },
               {
                 "type": "text",
-                "text": "TITLE2",
-                "wrap": true,
-                "size": "md"
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "โปรโมชั่นรถยนต์",
+                  "text": "โปรโมชั่นรถยนต์"
+                }
               }
             ],
-            "margin": "lg"
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "โปรโมชั่นรถยนต์",
+              "text": "โปรโมชั่นรถยนต์"
+            },
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
           },
           {
             "type": "box",
@@ -114,176 +100,60 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
-                "size": "sm"
+                "url": "https://market.viicheck.com/img/icon/motorcycle.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
               },
               {
                 "type": "text",
-                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
-                "wrap": true,
-                "weight": "regular",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "TIME2",
-                    "size": "sm",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "md"
-              }
-            ],
-            "margin": "md"
-          }
-        ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link2"
-      }
-    },
-    {
-      "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img3"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "text",
-            "text": "NAME3",
-            "wrap": true,
-            "size": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "TITLE3",
-                "wrap": true,
-                "size": "md"
-              }
-            ],
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
-                "size": "sm"
+                "text": "โปรโมชั่นรถจักรยานยนต์",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "โปรโมชั่นรถจักรยานยนต์",
+                  "text": "โปรโมชั่นรถจักรยานยนต์"
+                },
+                "flex": 4
               },
               {
                 "type": "text",
-                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
-                "wrap": true,
-                "weight": "regular",
+                "text": ">>>",
                 "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "TIME3",
-                    "size": "sm",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "md"
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "โปรโมชั่นรถจักรยานยนต์",
+                  "text": "โปรโมชั่นรถจักรยานยนต์"
+                }
               }
             ],
-            "margin": "md"
-          }
-        ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link3"
-      }
-    },
-    {
-      "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img4"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "text",
-            "text": "NAME4",
-            "wrap": true,
-            "size": "lg"
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "โปรโมชั่นรถจักรยานยนต์",
+              "text": "โปรโมชั่นรถจักรยานยนต์"
+            }
           },
           {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "TITLE4",
-                "wrap": true,
-                "size": "md"
-              }
-            ],
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
-                "size": "sm"
-              },
-              {
-                "type": "text",
-                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
-                "wrap": true,
-                "weight": "regular",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "TIME4",
-                    "size": "sm",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "md"
-              }
-            ],
-            "margin": "md"
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
           }
-        ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link4"
+        ],
+        "offsetBottom": "md"
       }
+    ],
+    "borderWidth": "bold",
+    "cornerRadius": "xl",
+    "borderColor": "#ff0101"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#ff0101"
     }
-  ]
+  }
 }
 }

@@ -15,7 +15,7 @@
           {
             "type": "image",
             "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v3.png",
-            "size": "5xl",
+            "size": "4xl",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
             "action": {
@@ -27,16 +27,11 @@
           {
             "type": "image",
             "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
-            "size": "xxl",
-            "aspectRatio": "1:1",
+            "size": "full",
+            "aspectRatio": "16:9",
             "align": "center",
             "aspectMode": "fit",
-            "offsetBottom": "lg"
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            "offsetBottom": "md"
           }
         ]
       },
@@ -45,49 +40,6 @@
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/gmail.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "อีเมล / E-Mail",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "mailto:contact.viicheck@gmail.com"
-                },
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "mailto:contact.viicheck@gmail.com"
-                }
-              }
-            ],
-            "height": "50px",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "mailto:contact.viicheck@gmail.com"
-            }
-          },
           {
             "type": "separator",
             "margin": "xl",
@@ -148,6 +100,54 @@
             "contents": [
               {
                 "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/gmail.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "อีเมล / E-Mail",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "mailto:contact.viicheck@gmail.com"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "mailto:contact.viicheck@gmail.com"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "mailto:contact.viicheck@gmail.com"
+            }
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
                 "url": "https://market.viicheck.com/img/icon/facebook.png",
                 "size": "3xl",
                 "margin": "none",
@@ -192,7 +192,8 @@
             "color": "#ff0101",
             "margin": "lg"
           }
-        ]
+        ],
+        "offsetBottom": "md"
       }
     ],
     "borderWidth": "bold",

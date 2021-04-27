@@ -665,8 +665,15 @@ class LineMessagingAPI extends Model
                 break;
 
             case "promotion": 
-
                 $template_path = storage_path('../public/json/flex-promotion.json');   
+                $string_json = file_get_contents($template_path);
+
+                $messages = [ json_decode($string_json, true) ]; 
+                break;
+
+            case "promotion_car": 
+
+                $template_path = storage_path('../public/json/flex-promotion_car.json');   
                 $string_json = file_get_contents($template_path);
 
                 $randomPromotion = DB::table('promotions')
