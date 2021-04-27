@@ -3,155 +3,135 @@
     "altText": "ตัวอย่าง",
     "contents": {
   "type": "bubble",
+  "size": "mega",
   "body": {
     "type": "box",
     "layout": "vertical",
-    "spacing": "md",
     "contents": [
       {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "image",
-            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-            "size": "3xl",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "margin": "none",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://market.viicheck.com/"
-            }
-          },
-          {
-            "type": "image",
-            "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
-            "size": "full",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "margin": "none",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://market.viicheck.com/"
-            },
-            "offsetBottom": "md"
-          }
-        ]
+        "type": "image",
+        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "cover"
       },
       {
         "type": "box",
         "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ขอบคุณ",
+            "size": "xxl",
+            "margin": "lg",
+            "color": "#07375D",
+            "align": "center",
+            "weight": "bold",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "Thankyou",
+            "size": "lg",
+            "margin": "lg",
+            "color": "#07375D",
+            "align": "center",
+            "wrap": true,
+            "offsetBottom": "md",
+            "weight": "bold"
+          },
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/stickerline/PNG/สติกเกอร์ไลน์.png",
+            "margin": "xs",
+            "size": "xxl",
+            "align": "center",
+            "gravity": "center",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "animated": true
+          }
+        ],
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl",
+        "backgroundColor": "#FAEBD7"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เวลาที่ตอบกลับ / Time",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เลขทะเบียน / Plate No.",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
         "spacing": "sm",
         "contents": [
           {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
-          },
-          {
             "type": "box",
             "layout": "baseline",
+            "spacing": "sm",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/car-key.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
+                "type": "text",
+                "wrap": true,
+                "color": "#FFFFFF",
+                "size": "xl",
+                "flex": 6,
+                "text": "9กก9999 "
               },
               {
                 "type": "text",
-                "text": "ซื้อรถมือสอง",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "ซื้อรถมือสอง",
-                  "uri": "https://market.viicheck.com/"
-                }
-              },
-              {
-                "type": "text",
-                "text": ">>>",
+                "text": "กรุงเทพมหานคร",
+                "wrap": true,
+                "color": "#FFFFFF",
                 "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "ซื้อรถมือสอง",
-                  "uri": "https://market.viicheck.com/"
-                }
+                "flex": 8
               }
-            ],
-            "height": "50px",
-            "action": {
-              "type": "uri",
-              "label": "ซื้อรถมือสอง",
-              "uri": "https://market.viicheck.com/"
-            }
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/trade.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "ขายรถกับเรา",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "ขายรถกับเรา",
-                  "uri": "https://market.viicheck.com/sell"
-                },
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "ขายรถกับเรา",
-                  "uri": "https://market.viicheck.com/sell"
-                }
-              }
-            ],
-            "height": "50px",
-            "action": {
-              "type": "uri",
-              "label": "ขายรถกับเรา",
-              "uri": "https://market.viicheck.com/sell"
-            }
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            ]
           }
-        ],
-        "offsetBottom": "md"
+        ]
       }
     ],
+    "backgroundColor": "#07375D",
     "borderColor": "#ff0101",
     "borderWidth": "bold",
     "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
   }
 }
 }

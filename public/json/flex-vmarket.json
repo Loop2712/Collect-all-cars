@@ -15,7 +15,7 @@
           {
             "type": "image",
             "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-            "size": "full",
+            "size": "3xl",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
             "margin": "none",
@@ -24,25 +24,20 @@
               "label": "action",
               "uri": "https://market.viicheck.com/"
             }
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "text": "Vmarket ยินดีให้บริการค่ะ",
-        "size": "lg",
-        "weight": "bold",
-        "margin": "none",
-        "align": "center"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
+          },
           {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            "type": "image",
+            "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "margin": "none",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/"
+            },
+            "offsetBottom": "md"
           }
         ]
       },
@@ -51,6 +46,11 @@
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
           {
             "type": "box",
             "layout": "baseline",
@@ -145,7 +145,8 @@
             "margin": "xl",
             "color": "#ff0101"
           }
-        ]
+        ],
+        "offsetBottom": "md"
       }
     ],
     "borderColor": "#ff0101",
