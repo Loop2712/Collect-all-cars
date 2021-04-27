@@ -30,7 +30,7 @@
                 document.querySelector('#input_car_model').classList.remove('d-none'),
                 document.querySelector('#input_car_brand').classList.remove('d-none');">
             &nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
-            
+            <br>
             <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                 document.querySelector('#div_data').classList.remove('d-none'),
 
@@ -174,8 +174,8 @@
 
             </div>
             
-            <div class="form-group">
-                <input id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
+            <div>
+                <button type="button" class="btn btn-primary" onclick="document.getElementById('btn_confirm').click();re_check();">บันทึก</button>
             </div>
             <!-- <button type="button" class="btn btn-primary" onclick="alert('hello')">Primary</button> -->
             <hr>
@@ -395,6 +395,66 @@
   </div>
 </div>
 
+<!-- ยืนยันการลงทะเบียน -->
+<!-- Button trigger modal -->
+<button id="btn_confirm" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#confirm">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="confirm" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- แสดงเฉพาะคอม -->
+      <div class="modal-body d-none d-lg-block">
+        <center>
+            <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
+            <p style="line-height: 2;">You confirm to register this registration number ?</p>
+            <br><br>
+            <div style="position: relative; z-index: 5">
+                <div style="padding-top: 8px;">
+                    <h4 style="margin-top: 15px;"><b id="reg_num"></b></h4>
+                    <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
+                </div>
+            </div>
+            <img style="position: absolute;left: 40%;top: 33%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+            <img style="position: absolute;right: 20%;top: 55%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+            
+        </center>
+      </div>
+      <!-- แสดงเฉพาะมือถือ -->
+      <div class="modal-body d-block d-md-none">
+        <center>
+            <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
+            <p style="line-height: 2;">You confirm to register this registration number ?</p>
+            <br>
+            <div style="position: relative; z-index: 5">
+                <div style="padding-top: 8px;">
+                    <h4 style="margin-top: 15px;"><b id="reg_num_mo"></b></h4>
+                    <p id="reg_province_mo" style="font-size: 17px;" class="text-dark"></p>
+                </div>
+            </div>
+            <img style="position: absolute;left: 34%;top: 38%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+            <img style="position: absolute;left: 8%;top: 59%;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+            
+        </center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">แก้ไข</button>
+        <div class="form-group">
+            <input id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -437,6 +497,7 @@
                 // //UPDATE SELECT OPTION
                 let input_car_model = document.querySelector("#input_car_model");
                     input_car_model.innerHTML = "";
+
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.model;
@@ -522,5 +583,23 @@
 
             });
             return registration_number.value;
+    }
+
+    function re_check(){
+        let registration_number = document.querySelector("#registration_number");
+        let province = document.querySelector("#province");
+
+        console.log(registration_number);
+        console.log(province);
+
+        let reg_num = document.querySelector("#reg_num");
+            reg_num.innerHTML = registration_number.value;
+        let reg_province = document.querySelector("#reg_province");
+            reg_province.innerHTML = province.value;
+
+        let reg_num_mo = document.querySelector("#reg_num_mo");
+            reg_num_mo.innerHTML = registration_number.value;
+        let reg_province_mo = document.querySelector("#reg_province_mo");
+            reg_province_mo.innerHTML = province.value;
     }
 </script>

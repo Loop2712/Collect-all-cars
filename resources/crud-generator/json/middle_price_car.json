@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "brand",
+            "type": "string"
+        },
+        {
+            "name": "model",
+            "type": "string"
+        },
+        {
+            "name": "submodel",
+            "type": "string"
+        },
+        {
+            "name": "year",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "type": "string"
+        }
+    ]
+}

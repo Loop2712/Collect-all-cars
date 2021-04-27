@@ -242,8 +242,13 @@ class CarController extends Controller
     public function show($id)
     {
         $data = CarModel::findOrFail($id);
+
+        $middle_price = DB::table('middle_price_cars')
+                        ->where('brand',    'LIKE', '%' .$data['brand'].'%')
+                        ->where('model',    'LIKE', '%' .$data['model'].'%')
+                        ->get();
         
-        return view('car.car-details', compact('data'));
+        return view('car.car-details', compact('data' , 'middle_price'));
     }
 
 }

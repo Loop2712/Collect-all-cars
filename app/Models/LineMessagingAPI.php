@@ -136,10 +136,11 @@ class LineMessagingAPI extends Model
 
                 $provider_id = $event["source"]['userId'];
 
-                $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' ");
+                $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' AND car_type = 'car' ");
 
                 $randomCar = DB::table('register_cars')
                     ->where('provider_id' , $provider_id)
+                    ->where('car_type' , "car")
                     ->where('active' , "Yes")
                     ->limit(3)
                     ->get();
@@ -194,7 +195,6 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("ประกัน1","tick",$string_json);
                         }
 
-                        $string_json = str_replace("ดูรถทั้งหมด","ดูทั้งหมด / แก้ไข",$string_json);
 
                         break;
 

@@ -9,6 +9,7 @@ use App\Models\Motercycle;
 use App\county;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MotercleyviewController extends Controller
 {
@@ -141,8 +142,13 @@ class MotercleyviewController extends Controller
     public function show($id)
     {
         $data = Motercycle::findOrFail($id);
+
+        $middle_price = DB::table('middle_price_cars')
+                        ->where('brand',    'LIKE', '%' .$data['brand'].'%')
+                        ->where('model',    'LIKE', '%' .$data['model'].'%')
+                        ->get();
         
-        return view('motercycle.car-details', compact('data'));
+        return view('motercycle.car-details', compact('data', 'middle_price'));
     }
 
 }

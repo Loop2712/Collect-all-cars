@@ -146,7 +146,7 @@
                                                         @if(!empty($item->insurance))
                                                             @if((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
                                                             
-                                                            <h6 class="f-left">insurance</h6>
+                                                            <h6 class="f-left">Insurance</h6>
                                                             <br>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
@@ -155,7 +155,7 @@
                                                             <br>
                                                             <!-- <td><b><a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @elseif((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
-                                                            <h6 class="f-left">insurance</h6>
+                                                            <h6 class="f-left">Insurance</h6>
                                                             <br>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
@@ -164,7 +164,7 @@
                                                             <br>
                                                                  <!-- <td><b><a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                              @else
-                                                            <h6 class="f-left">insurance</h6>
+                                                            <h6 class="f-left">Insurance</h6>
                                                             <br>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
@@ -174,7 +174,7 @@
                                                                 <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                            <h6 class="f-left">insurance</h6>
+                                                            <h6 class="f-left">Insurance</h6>
                                                             <br>
                                                             <span style="font-size: 13px;">
                                                                 <a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
