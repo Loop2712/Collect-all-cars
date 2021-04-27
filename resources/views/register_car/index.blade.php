@@ -64,7 +64,7 @@
 
                                 document.querySelector('#show_car').classList.remove('d-none'),
                                 document.querySelector('#show_mortor').classList.add('d-none');">
-                                    <b>รถยนต์</b>
+                                    <b style="font-size: 15px;">รถยนต์</b>
                                 </button>
                                 <button type="button" class="btn btn-danger main-shadow main-radius text-danger bg-white"  onclick="
                                 document.querySelector('#img_show_car').classList.add('d-none'),
@@ -72,7 +72,7 @@
 
                                 document.querySelector('#show_car').classList.add('d-none'),
                                 document.querySelector('#show_mortor').classList.remove('d-none');">
-                                    <b>รถจักรยานยนต์</b>
+                                    <b style="font-size: 15px;">รถจักรยานยนต์</b>
                                 </button>
                                 <br><br>
                             </div>
@@ -135,7 +135,7 @@
                                                                 <h6 class="f-left">Vehicle Act</h6>
                                                                 <br>
                                                                 <span style="font-size: 13px;">
-                                                                    <a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 12px;"></i>
+                                                                    <a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
                                                                     </a>
                                                                 </span>
                                                             <br>
@@ -177,7 +177,7 @@
                                                             <h6 class="f-left">insurance</h6>
                                                             <br>
                                                             <span style="font-size: 13px;">
-                                                                <a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 12px;"></i>
+                                                                <a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
                                                                 </a>
                                                             </span>
                                                             <br>
@@ -215,12 +215,12 @@
                                         </div>
 
                                         <a href="{{ url('/register_car/' . $item->id ) }}">
-                                            <button type="button" class="btn btn-success main-shadow main-radius">
-                                                <b><i class="fas fa-hand-holding-usd"></i> &nbsp;ขาย</b>
+                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px;">
+                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย </b>
                                             </button>
                                         </a>
                                         <a href="#">
-                                            <button type="button" class="btn btn-primary main-shadow main-radius">
+                                            <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px;">
                                                 <b><i class="fas fa-donate"></i> &nbsp;ขอสินเชื่อ</b>
                                             </button>
                                         </a>
@@ -230,6 +230,7 @@
                                                         <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right"   title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
                                                             <i class="fa fa-trash"  aria-hidden="true"></i>
                                                         </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
