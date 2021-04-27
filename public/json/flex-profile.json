@@ -272,8 +272,8 @@
                 ],
                 "action": {
                   "type": "message",
-                  "label": "รถยนต์",
-                  "text": "รถยนต์"
+                  "label": "จักรยานยนต์",
+                  "text": "จักรยานยนต์"
                 },
                 "width": "80px",
                 "paddingAll": "sm",
