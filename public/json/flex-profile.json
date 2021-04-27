@@ -260,46 +260,14 @@
             "contents": [
               {
                 "type": "box",
-                "layout": "baseline",
+                "layout": "vertical",
                 "contents": [
                   {
-                    "type": "spacer",
-                    "size": "xxl"
-                  },
-                  {
-                    "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/motorcycle.png",
-                    "margin": "md",
-                    "size": "4xl",
-                    "offsetTop": "md",
-                    "offsetStart": "xxl"
-                  }
-                ],
-                "action": {
-                  "type": "message",
-                  "label": "จักรยานยนต์",
-                  "text": "จักรยานยนต์"
-                }
-              },
-              {
-                "type": "separator",
-                "color": "#ff0101"
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "spacer",
-                    "size": "xxl"
-                  },
-                  {
-                    "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/car.png",
-                    "margin": "md",
-                    "size": "4xl",
-                    "offsetStart": "xxl",
-                    "offsetTop": "md"
+                    "type": "image",
+                    "url": "https://market.viicheck.com/img/icon/line_motorcycle.png",
+                    "aspectMode": "fit",
+                    "size": "xl",
+                    "aspectRatio": "1:1"
                   }
                 ],
                 "action": {
@@ -307,18 +275,45 @@
                   "label": "รถยนต์",
                   "text": "รถยนต์"
                 },
-                "offsetBottom": "sm",
-                "offsetEnd": "xs"
+                "width": "80px",
+                "paddingAll": "sm",
+                "offsetStart": "xxl"
+              },
+              {
+                "type": "separator",
+                "color": "#ff0101",
+                "margin": "53px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://market.viicheck.com/img/icon/line_car.png",
+                    "aspectMode": "fit",
+                    "size": "xl",
+                    "aspectRatio": "1:1"
+                  }
+                ],
+                "action": {
+                  "type": "message",
+                  "label": "รถยนต์",
+                  "text": "รถยนต์"
+                },
+                "paddingAll": "sm",
+                "offsetStart": "37px",
+                "width": "80px"
               }
             ],
-            "margin": "lg"
+            "margin": "md"
           }
         ],
         "paddingAll": "md"
       },
       {
         "type": "separator",
-        "margin": "xxl",
+        "margin": "sm",
         "color": "#ff0101"
       },
       {
