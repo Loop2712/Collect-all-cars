@@ -411,19 +411,37 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <!-- แสดงเฉพาะคอม -->
+      <div class="modal-body d-none d-lg-block">
         <center>
             <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
             <p style="line-height: 2;">You confirm to register this registration number ?</p>
             <br><br>
             <div style="position: relative; z-index: 5">
                 <div style="padding-top: 8px;">
-                    <h4 style="margin-top: 15px;"><b id="reg_num">กก9999</b></h4>
-                    <p id="reg_province" style="font-size: 17px;" class="text-dark">กรุงเทพมหานคร</p>
+                    <h4 style="margin-top: 15px;"><b id="reg_num"></b></h4>
+                    <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
                 </div>
             </div>
             <img style="position: absolute;left: 40%;top: 33%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
             <img style="position: absolute;right: 20%;top: 55%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+            
+        </center>
+      </div>
+      <!-- แสดงเฉพาะมือถือ -->
+      <div class="modal-body d-block d-md-none">
+        <center>
+            <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
+            <p style="line-height: 2;">You confirm to register this registration number ?</p>
+            <br>
+            <div style="position: relative; z-index: 5">
+                <div style="padding-top: 8px;">
+                    <h4 style="margin-top: 15px;"><b id="reg_num_mo"></b></h4>
+                    <p id="reg_province_mo" style="font-size: 17px;" class="text-dark"></p>
+                </div>
+            </div>
+            <img style="position: absolute;left: 34%;top: 38%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+            <img style="position: absolute;left: 8%;top: 59%;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
             
         </center>
       </div>
@@ -578,5 +596,10 @@
             reg_num.innerHTML = registration_number.value;
         let reg_province = document.querySelector("#reg_province");
             reg_province.innerHTML = province.value;
+
+        let reg_num_mo = document.querySelector("#reg_num_mo");
+            reg_num_mo.innerHTML = registration_number.value;
+        let reg_province_mo = document.querySelector("#reg_province_mo");
+            reg_province_mo.innerHTML = province.value;
     }
 </script>
