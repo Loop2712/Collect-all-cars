@@ -11,8 +11,12 @@
                         <div class="car__details__pic__large">
                                 @if($data->img == "" )
                                         <img class="car-big-img" src="{{ asset('/img/more/img_more.jpg') }}" alt="" style ="width: 100%;">
+                                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60882ef938080f44"></script>
+
                                     @else
-                                        <img src="{{ $data->img }}" alt="" style ="width: 100%;"> 
+                                        <img src="{{ $data->img }}" alt="" style ="width: 100%;">
+                                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60882ef938080f44"></script>
+ 
                                     @endif
                         </div>
                     </div>
