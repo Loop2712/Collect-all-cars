@@ -15,7 +15,7 @@
           {
             "type": "image",
             "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-            "size": "3xl",
+            "size": "4xl",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
             "margin": "none",

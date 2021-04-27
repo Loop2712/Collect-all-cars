@@ -264,25 +264,24 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://market.viicheck.com/img/icon/line_motorcycle.png",
+                    "url": "https://market.viicheck.com/img/icon/car.png",
                     "aspectMode": "fit",
-                    "size": "xl",
+                    "size": "xs",
                     "aspectRatio": "1:1"
                   }
                 ],
+                "borderColor": "#ff0101",
+                "borderWidth": "semi-bold",
+                "cornerRadius": "xxl",
                 "action": {
                   "type": "message",
-                  "label": "จักรยานยนต์",
-                  "text": "จักรยานยนต์"
-                },
-                "width": "80px",
-                "paddingAll": "sm",
-                "offsetStart": "xxl"
+                  "label": "รถยนต์",
+                  "text": "รถยนต์"
+                }
               },
               {
                 "type": "separator",
-                "color": "#ff0101",
-                "margin": "53px"
+                "margin": "md"
               },
               {
                 "type": "box",
@@ -290,20 +289,20 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://market.viicheck.com/img/icon/line_car.png",
+                    "url": "https://market.viicheck.com/img/icon/motorcycle.png",
                     "aspectMode": "fit",
-                    "size": "xl",
+                    "size": "xs",
                     "aspectRatio": "1:1"
                   }
                 ],
+                "borderColor": "#ff0101",
+                "borderWidth": "semi-bold",
+                "cornerRadius": "xxl",
                 "action": {
                   "type": "message",
-                  "label": "รถยนต์",
-                  "text": "รถยนต์"
-                },
-                "paddingAll": "sm",
-                "offsetStart": "37px",
-                "width": "80px"
+                  "label": "จักรยานยนต์",
+                  "text": "จักรยานยนต์"
+                }
               }
             ],
             "margin": "md"
