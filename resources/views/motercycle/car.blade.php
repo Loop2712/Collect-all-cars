@@ -4,93 +4,203 @@
     <section class="car spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="car__sidebar" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
-                        <div class="car__search">
-                            <h5>ค้นหา</h5>
-                            <form method="GET" action="{{URL::to('/motercycle')}}" accept-charset="UTF-8" role="search">
-                                <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                        <div class="car__filter">
-                            <h5>ตัวกรองค้นหา</h5>
-                            <form  action="{{URL::to('/motercycle')}}" method="get">
-                                <select class="form-control"  class="js-example-basic-single" name="brand" id="brand"  onchange="this.form.submit()">
-                                    <option value="" data-display="Brand">ยี่ห้อทั้งหมด</option>
-                                    @foreach($motorbrand as $br)
+            <div class="col-md-3 car__filter d-none d-lg-block" > 
+                    <form id="1"  action="{{URL::to('/car')}}" method="get">
+                        <select class="form-control"  name="brand" id="brand"  >
+                        
+                            <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
+                                @foreach($motorbrand as $br)
+                             <option 
+                                value="{{ $br->brand }}" 
+                                {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
+                                {{ $br->brand }} 
+                             </option>
+                                 @endforeach 
+                        </select>
+                </div>
+                <div class="col-md-3 car__filter d-none d-lg-block" > 
+                    <select class="form-control"  name="model" id="model"   >
+                        <option value="" data-display="เลือกยี่ห้อ">รุ่นรถทั้งหมด</option>
+                            @foreach($motormodel as $mo)
+                        <option 
+                            value="{{ $mo->model }}" 
+                            {{ request('model') == $mo->model ? 'selected' : ''   }}  >
+                            {{ $mo->model }} 
+                        </option>
+                            @endforeach 
+                    </select>
+                </div>
+                <div class="col-md-2 car__filter d-none d-lg-block">
+                    <select  class="form-control"  name="typecar" id="typecar" >
+                        <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
+                            @foreach($motortype as $ty)
+                        <option 
+                            value="{{ $ty->type }}" 
+                            {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
+                            {{ $ty->type }} 
+                        </option>
+                            @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2 car__filter d-none d-lg-block">  
+                    <select class="form-control" name="year" id="year" >
+                        <option value="" data-display="ปี">ปีทั้งหมด</option>
+                            @foreach($motoryear as $ye)
+                        <option 
+                            alue="{{ $ye->year }}" 
+                            {{ request('year') == $ye->year ? 'selected' : ''   }} >
+                            {{ $ye->year }} 
+                        </option>
+                            @endforeach 
+                    </select><br>
+                </div>
+                <div class="col-md-2 car__filter d-none d-lg-block">  
+                    <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
+                </div> 
+                </form>
+            
+                <div class="col-12">
+                        <!-- แสดงเฉพาะคอม -->
+                        <button  class="btn btn-sm d-none d-lg-block"
+                            onclick="if(document.getElementById('search_m') .style.display=='none') 
+                            {document.getElementById('search_m') .style.display=''}else{document.getElementById('search_m')
+                             .style.display='none'}"> 
+                            <h5 style="color:#7D7D7D" class="fa fa-filter">&nbsp;ตัวกรองค้นหา&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i></h5><br>
+                        </button><br>
+                        <form id="1"  action="{{URL::to('/car')}}" method="get">
+                        <div id="search_m" class="row" style="display:none">
+                        
+                            <div class="col-md-3 car__filter ">                     
+                                   <select class="form-control"  name="location" id="location">
+                                      <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
+                                          @foreach($motorlocation as $lo)
+                                              <option 
+                                                  value="{{ $lo->province }}" 
+                                                 {{ request('location') == $lo->province ? 'selected' : ''   }} >
+                                                 {{ $lo->province }} 
+                                             </option>
+                                         @endforeach 
+                                 </select>
+                            </div>
+                             
+                             <div class="col-md-3 car__filter ">  
+                                 <input class="form-control" type="text" name="pricemin" id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}">
+                              </div>  
+                             <div class="col-md-3 car__filter ">  
+                                 <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}">
+                             </div>
+                                <div class="col-md-3 car__filter ">  
+                                 <select class="form-control"  name="color" id="color" >
+                                     <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
+                                            @foreach($motorcolor  as $co)
+                                     <option 
+                                         value="{{ $co->color  }}" 
+                                            {{ request('color') == $co->color  ? 'selected' : ''   }} >
+                                         {{ $co->color  }} 
+                                     </option>
+                                          @endforeach 
+                                 </select><br>
+                            </div>
+                                <div class="col-md-3 car__filter ">
+                                    <input class="form-control" type="text" name="distancemin" id="milemin" placeholder="ระยะทางต่ำสุด (km.)" value="{{ request('distancemin') }}">  
+                                </div>
+                                <div class="col-md-3 car__filter ">
+                                    <input class="form-control" type="text" name="distancemax" id="milemax" placeholder="ระยะทางสูงสุด (km.)" value="{{ request('distancemax') }}">
+                                </div>
+                                <div class="col-md-3 car__filter ">  
+                                    <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
+                                 <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
+                                </div><br>
+                              </form>                                 
+                </div>
+                
+                <div class="col-md-12">      
+                    <!-- แสดงเฉพาะมือถือ -->
+                    <button  class="btn btn-sm d-block d-md-none"
+                            onclick="if(document.getElementById('search_mo') .style.display=='none') 
+                            {document.getElementById('search_mo') .style.display=''}else{document.getElementById('search_mo')
+                             .style.display='none'}"> 
+                            <h5 style="color:#7D7D7D">ตัวกรองค้นหา</h5>
+                        </button>
+                        <div id="search_mo" class="row" style="display:none">
+                            <div class="col-12 car__filter d-block d-md-none" >
+                                <br>
+                                <form  action="{{URL::to('/car')}}" method="get">
+                                    <select class="form-control"  name="brand" id="brand"  onchange="this.form.submit()" >
+                                        <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
+                                        @foreach($motorbrand as $br)
+                                            <option 
+                                                value="{{ $br->brand }}" 
+                                                {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
+                                                {{ $br->brand }} 
+                                            </option>
+                                        @endforeach 
+                                    </select><br>
+                                    <select class="form-control"  name="model" id="model"   >
+                                        <option value="" data-display="เลือกยี่ห้อ">รุ่นรถทั้งหมด</option>
+                                            @foreach($motormodel as $mo)
                                         <option 
-                                            value="{{ $br->brand }}" 
-                                            {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
-                                            {{ $br->brand }} 
+                                            value="{{ $mo->model }}" 
+                                            {{ request('model') == $mo->model ? 'selected' : ''   }}  >
+                                            {{ $mo->model }} 
                                         </option>
-                                    @endforeach 
-                                </select><br>
-                                <select class="form-control" name="gear" id="gear" onchange="this.form.submit()" >
-                                    <option value="" data-display="Gear">ระบบเกียร์ทั้งหมด</option>
-                                    @foreach($motorgear as $ge)
+                                            @endforeach 
+                                    </select><br>
+                                    <select  class="form-control"  name="typecar" id="typecar"  onchange="this.form.submit()">
+                                        <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
+                                        @foreach($motortype as $ty)
+                                            <option 
+                                                    value="{{ $ty->type }}" 
+                                                    {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
+                                            {{ $ty->type }} 
+                                            </option>
+                                        @endforeach
+                                    </select><br>
+                                    <select class="form-control" name="year" id="year" >
+                                        <option value="" data-display="ปี">ปีทั้งหมด</option>
+                                            @foreach($motoryear as $ye)
                                         <option 
-                                                value="{{ $ge->gear }}" 
-                                                {{ request('gear') == $ge->gear ? 'selected' : ''   }} >
-                                        {{ $ge->gear }} 
+                                            alue="{{ $ye->year }}" 
+                                            {{ request('year') == $ye->year ? 'selected' : ''   }} >
+                                            {{ $ye->year }} 
                                         </option>
-                                    @endforeach 
-                                </select><br>
-                                <!-- <select class="form-control" name="color" id="color" onchange="this.form.submit()" >
-                                    <option value="" data-display="Color">Select Color</option>
-                                    @foreach($motorcolor  as $co)
+                                            @endforeach 
+                                    </select><br>
+                                    
+                                    
+                                    <select class="form-control"  name="location" id="location" onchange="this.form.submit()" >
+                                        <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
+                                        @foreach($motorlocation as $lo)
+                                            <option 
+                                                value="{{ $lo->province }}" 
+                                                {{ request('location') == $lo->province ? 'selected' : ''   }} >
+                                                {{ $lo->province }} 
+                                            </option>
+                                        @endforeach 
+                                    </select><br>
+                                    <select class="form-control"  name="color" id="color" >
+                                        <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
+                                                @foreach($motorcolor  as $co)
                                         <option 
-                                                value="{{ $co->color  }}" 
-                                                {{ request('color') == $co->color  ? 'selected' : ''   }} >
+                                            value="{{ $co->color  }}" 
+                                            {{ request('color') == $co->color  ? 'selected' : ''   }} >
                                             {{ $co->color  }} 
                                         </option>
-                                    @endforeach 
-                                </select><br> -->
-                                <select class="form-control" name="motor" id="motor" onchange="this.form.submit()" >
-                                    <option value="" data-display="Color">เครื่องยนต์(cc.)ทั้งหมด</option>
-                                    @foreach($motor  as $mo)
-                                        <option 
-                                                value="{{ $mo->motor  }}" 
-                                                {{ request('motor') == $mo->motor  ? 'selected' : ''   }} >
-                                            {{ $mo->motor  }} 
-                                        </option>
-                                    @endforeach 
-                                </select><br>
-                                <select class="form-control" name="location" id="location" onchange="this.form.submit()" >
-                                    <option value="" data-display="Location">สถานที่ทั้งหมด</option>
-                                    @foreach($motorlocation as $lo)
-                                        <option 
-                                            value="{{ $lo->province }}" 
-                                            {{ request('location') == $lo->province ? 'selected' : ''   }} >
-                                            {{ $lo->province }} 
-                                        </option>
-                                    @endforeach 
-                                </select><br>
-                                <div class="filter-price">
-                                    <p>Price:</p>
-                                    <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด">
-                                    <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด">
-                                    <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>   </button>
-                                </div>
-                                <!-- <div class="filter-price">
-                                    <p>Distance:</p>
-                                    <input class="form-control" type="text" name=" distancemin"  id="milemin" placeholder="Min (km.)">
-                                    <input class="form-control" type="text" name=" distancemax" id="milemax" placeholder="Max (km.)">
-                                    <button type="submit" class="btn btn-danger btn-sm ">  ค้นหา </button>
-                                </div> -->
-                            </form>
-                            <div class="car__filter__btn">
-                                <a class="btn btn-danger" href="{{URL::to('/motercycle')}}" > <h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6> </a>
-                             
+                                          @endforeach 
+                                    </select><br>
+                                    <input class="form-control" type="text" name="distancemin" id="milemin" placeholder="ระยะทางต่ำสุด (km.)" value="{{ request('distancemin') }}">  
+                                        <br>
+                                    <input class="form-control" type="text" name="distancemax" id="milemax" placeholder="ระยะทางสูงสุด (km.)" value="{{ request('distancemax') }}">
+                                    
+                                    <div class="filter-price">
+                                        <p>ราคา:</p>
+                                        <input class="form-control" type="text" name="pricemin"  id="pricemin" placeholder="ราคาต่ำสุด" value="{{ request('pricemin') }}"><br>
+                                        <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}"><br>
+                                        <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>&nbsp;
+                                        <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
+                                </form>
                             </div>
                         </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <img width="100%" src="{{ asset('/img/more/line_oa.png') }}">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
 

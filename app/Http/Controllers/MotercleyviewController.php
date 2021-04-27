@@ -90,7 +90,23 @@ class MotercleyviewController extends Controller
             ->groupBy('province')
             ->get();
 
-        return view('motercycle.car', compact('data','motor','motorbrand', 'motorcolor', 'motorgear', 'motorlocation'));
+        $motormodel = Motercycle::selectRaw('model,count(brand) as count')
+            ->where('model', '!=',"" )
+            ->groupBy('model')
+            ->get();
+
+        $motoryear = Motercycle::selectRaw('year,count(year) as count')
+            ->where('year', '!=',"" )
+            ->groupBy('year')
+            ->get();
+
+        $motortype = Motercycle::selectRaw('type,count(type) as count')
+            ->where('type', '!=',"" )
+            ->groupBy('type')
+            ->get();
+        
+
+        return view('motercycle.car', compact('data','motor','motorbrand', 'motorcolor', 'motorgear', 'motorlocation','motormodel','motoryear','motortype'));
     }
 
     // public function main(Request $request)
