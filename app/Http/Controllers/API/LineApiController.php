@@ -82,6 +82,9 @@ class LineApiController extends Controller
             case "รถยนต์" : 
                 $line->replyToUser(null, $event, "mycar");
                 break;
+            case "จักรยานยนต์" : 
+                $line->replyToUser(null, $event, "mymotorcycles");
+                break;
             case "ใบอนุญาตขับรถ" : 
                 $line->replyToUser(null, $event, "driver_license");
                 break;
