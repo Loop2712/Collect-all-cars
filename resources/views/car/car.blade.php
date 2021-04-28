@@ -6,29 +6,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 car__filter d-none d-lg-block" > 
-                    <form id="1"  action="{{URL::to('/car')}}" method="get">
-                        <select class="form-control"  name="brand" id="brand"  >
-                        
-                            <option value="" data-display="เลือกยี่ห้อ">ยี่ห้อทั้งหมด</option>
-                                @foreach($brand_array as $br)
-                             <option 
-                                value="{{ $br->brand }}" 
-                                {{ request('brand') == $br->brand ? 'selected' : ''   }}  >
-                                {{ $br->brand }} 
-                             </option>
-                                 @endforeach 
+                    <form action="{{URL::to('/car')}}" method="get">
+                        <select name="brand" class=" form-control" id="input_car_brand"  onchange="showCar_model();
+                            if(this.value=='อื่นๆ'){ 
+                                document.querySelector('#brand_input').classList.remove('d-none'),
+                                document.querySelector('#generation_input').classList.remove('d-none'),
+                                document.querySelector('#brand_input').focus();
+                            }else{ 
+                                document.querySelector('#brand_input').classList.add('d-none'),
+                                document.querySelector('#generation_input').classList.add('d-none');}">
+                                        @if(!empty($xx))
+                                        @foreach($xx as $item)
+                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
+                                        @endforeach
+                                        @else
+                                    <option value="" selected>ยี่ห้อทั้งหมด</option> 
+                                        @endif
+                                         <br>
+                                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
                 </div>
                 <div class="col-md-3 car__filter d-none d-lg-block" > 
-                    <select class="form-control"  name="model" id="model"   >
-                        <option value="" data-display="เลือกยี่ห้อ">รุ่นรถทั้งหมด</option>
-                            @foreach($model_array as $mo)
-                        <option 
-                            value="{{ $mo->model }}" 
-                            {{ request('model') == $mo->model ? 'selected' : ''   }}  >
-                            {{ $mo->model }} 
-                        </option>
-                            @endforeach 
+                    <select name="generation" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
+                            document.querySelector('#generation_input').classList.remove('d-none'),
+                            document.querySelector('#generation_input').focus();
+                        }else{ 
+                            document.querySelector('#generation_input').classList.add('d-none');}">
+                        <option value="" selected>รุ่นรถทั้งหมด</option>     
+                            <br> 
+                            {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                     </select>
                 </div>
                 <div class="col-md-2 car__filter d-none d-lg-block">
@@ -58,17 +64,17 @@
                 <div class="col-md-2 car__filter d-none d-lg-block">  
                     <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
                 </div> 
-                </form>
+                
             
                 <div class="col-12">
                         <!-- แสดงเฉพาะคอม -->
-                        <button  class="btn btn-sm d-none d-lg-block"
+                        <button  class="btn btn-sm d-none d-lg-block" type="button"
                             onclick="if(document.getElementById('search_m') .style.display=='none') 
                             {document.getElementById('search_m') .style.display=''}else{document.getElementById('search_m')
                              .style.display='none'}"> 
                             <h5 style="color:#7D7D7D" class="fa fa-filter">&nbsp;ตัวกรองค้นหา&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i></h5><br>
                         </button><br>
-                        <form id="1"  action="{{URL::to('/car')}}" method="get">
+                       
                         <div id="search_m" class="row" style="display:none">
                         
                             <div class="col-md-3 car__filter ">                     
@@ -90,42 +96,17 @@
                              <div class="col-md-3 car__filter ">  
                                  <input class="form-control" type="text" name="pricemax" id="pricemax" placeholder="ราคาสูงสุด" value="{{ request('pricemax') }}">
                              </div>
-                                <div class="col-md-3 car__filter ">  
-                                 <select class="form-control"  name="color" id="color" >
-                                     <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
-                                            @foreach($color_array  as $co)
-                                     <option 
-                                         value="{{ $co->color  }}" 
-                                            {{ request('color') == $co->color  ? 'selected' : ''   }} >
-                                         {{ $co->color  }} 
-                                     </option>
-                                          @endforeach 
-                                 </select><br>
-                            </div>
-                             <div class="col-md-3 car__filter ">
-                                 <select class="form-control" name="fuel" id="fuel"  >
-                                        <option value="" data-display="เชื้อเพลิง">เชื้อเพลิงทั้งหมด</option>
-                                            @foreach($fuel_array as $pe)
-                                        <option 
-                                            value="{{$pe->fuel}}" 
-                                            {{ request('fuel') == $pe->fuel  ? 'selected' : ''   }} >
-                                            {{ $pe->fuel  }} 
-                                         </option>
-                                         @endforeach 
-                                 </select><br>
-                            </div>
                                 <div class="col-md-3 car__filter ">
                                     <input class="form-control" type="text" name="distancemin" id="milemin" placeholder="ระยะทางต่ำสุด (km.)" value="{{ request('distancemin') }}">  
-                                </div>
+                                </div><br><br>
                                 <div class="col-md-3 car__filter ">
                                     <input class="form-control" type="text" name="distancemax" id="milemax" placeholder="ระยะทางสูงสุด (km.)" value="{{ request('distancemax') }}">
                                 </div>
                                 <div class="col-md-3 car__filter ">  
-                                    <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
                                  <a class="btn btn-danger" href="{{URL::to('/car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
                                 </div><br>
                               </form>                                 
-                </div>
+                </div><br>
                 
                 <div class="col-md-12">      
                     <!-- แสดงเฉพาะมือถือ -->
@@ -434,3 +415,58 @@
         </div>
     </section>
     @endsection
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        showCar_brand();
+        showMotor_brand();   
+    });
+    function showCar_brand(){
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/car_brand")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                // let input_car_brand = document.querySelector("#input_car_brand");
+                    // input_car_brand.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.brand;
+                    option.value = item.brand;
+                    input_car_brand.add(option);
+                }
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_car_brand.add(option); 
+
+                //QUERY model
+                showCar_model();
+            });
+            return input_car_brand.value;
+    }
+    function showCar_model(){
+        let input_car_brand = document.querySelector("#input_car_brand");
+        fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                // //UPDATE SELECT OPTION
+                let input_car_model = document.querySelector("#input_car_model");
+                    input_car_model.innerHTML = "";
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.model;
+                    option.value = item.model;
+                    input_car_model.add(option);                
+                } 
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_car_model.add(option);  
+            });
+    }
+
+</script>
