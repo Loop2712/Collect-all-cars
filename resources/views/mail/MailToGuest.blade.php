@@ -4,8 +4,8 @@
         <div class="col-12" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #07375D;border-width: 5px;margin: 20px;padding: 20px;">
         	<div  class="col-12">
         		<center>
-	        		<img width="60%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
-	        		<div class="col-11" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #FAEBD7;border-width: 5px;margin: 20px;padding: 20px;margin-top: -50px">
+	        		<img width="70%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
+	        		<div class="col-11" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #FAEBD7;border-width: 5px;padding: 20px;margin-top: -50px">
 	        			<span style="color: #07375D;"><b>โปรดรอสักครู่</b></span>
 	        			<br>
 	        			<span style="color: #07375D;line-height: 2;">Please wait a moment</span>
