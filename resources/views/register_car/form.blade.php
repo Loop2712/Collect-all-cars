@@ -200,7 +200,7 @@
             </div>
 
             <br><br>
-            <div id="information" class="row" style="display:none;">
+            <div id="information" class="row" style="display:;">
                 <!-- ซ้าย -->
                 <div class="col-12 col-md-5">
                     <div class="row">
@@ -238,28 +238,38 @@
                             <div class="row d-none d-lg-block">
                                 <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                     <div class="row" style="margin-top: 8px; margin-bottom: 8px;">
-                                        <div class="col-3 col-md-3 " style="margin: 5px 20px 15px 5px;"> 
-                                            <br>
-                                            <img style="margin-top: -10px;" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                        </div>
-                                        <div class="col-8 col-md-7" style="border-left: 1px solid gray;"> 
-                                        <center>
-                                            <div style="position: relative; z-index: 5">
-                                                <b>{{ $item->generation }}</b>
-                                                <hr style="margin-top: 8px; margin-bottom: 8px;">
-                                                <div style="padding-top: 8px;">
-                                                    <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
-                                                    <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                        <div class="col-md-12 " style="margin: 5px 20px 15px 5px;"> 
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img style="margin-top: -10px;" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <b style="font-size: 18px;">{{ $item->brand }}</b>
+                                                    <br>
+                                                    <span>{{ $item->generation }}</span>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <center>
+                                                        <div style="position: relative; z-index: 5">
+                                                            <hr style="margin-top: 8px; margin-bottom: 8px;">
+                                                            <br>
+                                                            <div style="padding-top: 8px;">
+                                                                <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                                <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                            </div>
+                                                        </div>
 
-                                            <div style="z-index: 2">
-                                                <img style="position: absolute;right: 4%;top: 37%;" width="150" height="60" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        <div style="z-index: 2">
+                                                            <img style="position: absolute;right: 8%;top: 28%;" width="240" height="80" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        </div>
+                                                    </center>
+                                                </div>
                                             </div>
-                                        </center>
                                         </div>
-                                    </div>
-                                 </div>
+                                     </div>
+                                </div>
                             </div>
                             <!-- แสดงเฉพาะมือถือ -->
                             <div class="row d-block d-md-none">
@@ -306,25 +316,35 @@
                             <div class="row d-none d-lg-block">
                                 <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                     <div class="row" style="margin-top: 8px; margin-bottom: 8px;">
-                                        <div class="col-3 col-md-3 " style="margin: 5px 20px 15px 5px;"> 
-                                            <br>
-                                            <img style="margin-top: -10px;" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                        </div>
-                                        <div class="col-8 col-md-7" style="border-left: 1px solid gray;"> 
-                                        <center>
-                                            <div style="position: relative; z-index: 5">
-                                                <b>{{ $item->generation }}</b>
-                                                <hr style="margin-top: 8px; margin-bottom: 8px;">
-                                                <div style="padding-top: 8px;">
-                                                    <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
-                                                    <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                        <div class=" col-md-12 " style="margin: 5px 20px 15px 5px;"> 
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img style="margin-top: -10px;" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <b style="font-size: 18px;">{{ $item->brand }}</b>
+                                                    <br>
+                                                    <span>{{ $item->generation }}</span>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <center>
+                                                        <div style="position: relative; z-index: 5">
+                                                            <hr style="margin-top: 8px; margin-bottom: 8px;">
+                                                            <br>
+                                                            <div style="padding-top: 8px;">
+                                                                <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                                <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                            </div>
+                                                        </div>
 
-                                            <div style="z-index: 2">
-                                                <img style="position: absolute;right: 4%;top: 37%;" width="150" height="60" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        <div style="z-index: 2">
+                                                            <img style="position: absolute;right: 8%;top: 28%;" width="240" height="80" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        </div>
+                                                    </center>
+                                                </div>
                                             </div>
-                                        </center>
                                         </div>
                                     </div>
                                  </div>
