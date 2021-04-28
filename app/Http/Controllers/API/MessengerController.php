@@ -13,17 +13,17 @@ class MessengerController extends Controller
     	// i create a method for that.
     	$this->verifyAccess();
 
-    	// $input   = json_decode(file_get_contents('php://input'), true);
-    	// $id 	 = $input['entry'][0]['messaging'][0]['sender']['id'];
-    	// $message = $input['entry'][0]['messaging'][0]['message']['text'];
-     //    $user    = json_decode($this->getUser($id));
+    	$input   = json_decode(file_get_contents('php://input'), true);
+    	$id 	 = $input['entry'][0]['messaging'][0]['sender']['id'];
+    	$message = $input['entry'][0]['messaging'][0]['message']['text'];
+        $user    = json_decode($this->getUser($id));
 
-     //    $response = [
-     //        'recipient' => ['id' => $id],
-     //        'message' => ['text' => "HELLO !!"]
-     //    ];
+        $response = [
+            'recipient' => ['id' => $id],
+            'message' => ['text' => "HELLO !!"]
+        ];
 
-    	// $this->sendMessage($response);
+    	$this->sendMessage($response);
     }
 
     protected function sendMessage($response)
