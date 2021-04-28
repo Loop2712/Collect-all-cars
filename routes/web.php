@@ -43,7 +43,7 @@ Route::get('/select_get', function () {
 });
 
 Route::get('/mail', function () {
-    return view('mail/MailToGuest');
+    return view('mail/MailToGuest_notcomfor');
 });
 
 Route::get('/terms_of_service', function () {
