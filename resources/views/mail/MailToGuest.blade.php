@@ -10,24 +10,17 @@
 	        			<br>
 	        			<span style="color: #07375D;line-height: 2;">Please wait a moment</span>
 	        			<br><br>
-	        			<img width="50%" src="{{ asset('/img/stickerline/PNG/8.png') }}">
+	        			<img width="65%" src="{{ asset('/img/stickerline/PNG/8.png') }}">
 	        		</div>
-	        		<hr style="border-style: solid;border-color: #FFFFFF;">
+	        		<hr style="border-style: solid;border-color: #FFFFFF;margin-top: 40px;margin-bottom: 40px;">
 	        	</center>
+	        	<h3 style="color: #FFFFFF">เวลาที่ตอบกลับ / Time</h3>
+				<h4 style="color: #FFFFFF;line-height: 2;">datetime</h4>
 
-				<h3 style="color: #FFFFFF">ผู้ใช้รถหมายเลขทะเบียน</h3>
+				<hr style="border-style: solid;border-color: #FFFFFF;margin-top: 40px;margin-bottom: 40px;">
+
+				<h3 style="color: #FFFFFF">เลขทะเบียน / Plate No.</h3>
 				<h4 style="color: #FFFFFF;line-height: 2;">กก9999 กรุงเทพมหานคร</h4>
-				<hr style="border-style: solid;border-color: #FFFFFF;">
-				<h3 style="color: #FFFFFF">แจ้งว่า</h3>
-					<h4 style="color: #FFFFFF;line-height: 2;">กรุณารอสักครู่ / Please wait a moment</h4>
-					<br>
-					<center>
-						<div>
-							<img style="border-radius: 70px;" width="60%" src="{{ asset('/img/icon/wait.png') }}">
-						</div>
-						<br>
-					</center>
-				
         	</div>
         </div>
     </div>
