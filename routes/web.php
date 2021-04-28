@@ -28,6 +28,10 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 Route::get('/welcome_line', 'Register_carController@welcome_line');
 Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
 
+// facebook_messenger_api
+Route::get('facebook_messenger_api', 'MessengerController@index');
+Route::post('facebook_messenger_api', 'MessengerController@index');
+
 
 Route::get('/cars', function () {
     return view('auth/login2');
