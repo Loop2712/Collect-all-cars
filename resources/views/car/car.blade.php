@@ -279,8 +279,8 @@
                                             class="col-2 col-md-3 border border-primary">
                                             &nbsp;{{ $item->year  }} 
                                         </p>
-                                        <h4>
-                                            <i style="position: absolute;right: 5%;top: 78%;z-index: 2;" class="fa fa-heart text-secondary" ></i>
+                                        <h4 style="position: absolute;right: 5%;top: 78%;z-index: 2;">
+                                            <i class="fa fa-heart text-secondary" ></i>
                                         </h4>
                                     </div>
                                     <img"  src="{{ asset('/img/more/img_more.jpg') }}" alt="" ></a>
@@ -293,15 +293,6 @@
                                             &nbsp;<b>{{ $item->year  }}</b> 
                                         </p>
                                         <h4 style="position: absolute;right: 5%;top: 78%;z-index: 2;">
-                                            @guest
-                                                @foreach($data_wishlist as $key)
-                                                    @if($item->id == $key->product_id && $key->user_id == Auth::user()->id)
-                                                        <i class="fa fa-heart text-danger" ></i>
-                                                    @else
-                                                        <i class="fa fa-heart text-secondary" ></i>
-                                                    @endif
-                                                @endforeach
-                                            @endguest
                                             <i class="fa fa-heart text-secondary" ></i>
                                         </h4>
                                 </div>
