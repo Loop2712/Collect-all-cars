@@ -200,7 +200,7 @@
             </div>
 
             <br><br>
-            <div id="information" class="row" style="display:;">
+            <div id="information" class="row" style="display:none;">
                 <!-- ซ้าย -->
                 <div class="col-12 col-md-5">
                     <div class="row">
