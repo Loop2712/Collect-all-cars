@@ -21,7 +21,7 @@
 				<hr style="border-style: solid;border-color: #FFFFFF;margin-top: 20px;margin-bottom: 20px;">
 
 				<h3 style="color: #FFFFFF">เลขทะเบียน / Plate No.</h3>
-				<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["google_registration_number"] }} {{ $data["google_province"] }}</h4>
+				<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["registration_number"] }} {{ $data["province"] }}</h4>
 
 				@if( $data["want_phone"] == "Yes" )
 				<a class="btn btn-secondary" href="tel:{{ $data['phone'] }}">{{ $data["phone"] }}</a>
