@@ -30,6 +30,7 @@ Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
 
 // facebook_messenger_api
 Route::get('facebook_messenger_api', 'MessengerController@index');
+Route::get('facebook_callback_guest', 'MessengerController@facebook_callback_guest');
 Route::post('facebook_messenger_api', 'MessengerController@index');
 
 

@@ -12,19 +12,18 @@ class MessengerController extends Controller
     	// here we can verify the webhook.
     	// i create a method for that.
     	$this->verifyAccess();
+    	
+    }
 
-    	$input   = json_decode(file_get_contents('php://input'), true);
-        print_r($input);
-        exit();
-    	$id 	 = $input['entry'][0]['messaging'][0]['sender']['id'];
-    	$message = $input['entry'][0]['messaging'][0]['message']['text'];
+    public function facebook_callback_guest()
+    {
 
         $response = [
-            'recipient' => ['id' => $id],
+            'recipient' => ['id' => "3586484888104628"],
             'message' => ['text' => "HELLO !!"]
         ];
 
-    	$this->sendMessage($response);
+        $this->sendMessage($response);
     }
 
     protected function sendMessage($response)
