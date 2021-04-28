@@ -15,15 +15,15 @@
                             }else{ 
                                 document.querySelector('#brand_input').classList.add('d-none'),
                                 document.querySelector('#generation_input').classList.add('d-none');}">
-                                        @if(!empty($xx))
-                                        @foreach($xx as $item)
-                                    <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
-                                        @endforeach
-                                        @else
-                                    <option value="" selected>ยี่ห้อทั้งหมด</option> 
-                                        @endif
-                                         <br>
-                                        {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
+                            @if(!empty($xx))
+                                @foreach($xx as $item)
+                                <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
+                                @endforeach
+                            @else
+                                <option value="" selected>ยี่ห้อทั้งหมด</option> 
+                            @endif
+                            <br>
+                            {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                         </select>
                 </div>
                 <div class="col-md-3 car__filter d-none d-lg-block" > 
