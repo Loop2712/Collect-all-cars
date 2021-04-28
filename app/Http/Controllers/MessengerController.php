@@ -22,6 +22,10 @@ class MessengerController extends Controller
             'recipient' => ['id' => "3586484888104628"],
             'message' => ['text' => "HELLO !!"]
         ];
+        echo "<pre>";
+        print_r($response);
+        echo "<pre>";
+        exit();
 
         $this->sendMessage($response);
     }

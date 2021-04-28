@@ -275,18 +275,36 @@
                                     <a href="{{ url('/car/'.$item->id ) }}">
                                     <div class="row d-none d-md-block">
                                     <div class="row d-none d-md-block">
-                                    <p style="position: absolute;right: 73 %;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
-                                        class="col-2 col-md-3 border border-primary">
-                                                            &nbsp;{{ $item->year  }} </p>
+                                        <p style="position: absolute;right: 73 %;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
+                                            class="col-2 col-md-3 border border-primary">
+                                            &nbsp;{{ $item->year  }} 
+                                        </p>
+                                        <h4>
+                                            <i style="position: absolute;right: 5%;top: 78%;z-index: 2;" class="fa fa-heart text-secondary" ></i>
+                                        </h4>
                                     </div>
                                     <img"  src="{{ asset('/img/more/img_more.jpg') }}" alt="" ></a>
                                     @else
                                    
                                     <a href="{{ url('/car/'.$item->id ) }}">
                                      <div class="row d-none d-md-block">
-                                    <p style="position: absolute;right: 73%;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
-                                        class="col-2 col-md-3 border border-dark">
-                                                            &nbsp;<b>{{ $item->year  }}</b> </p></div>
+                                        <p style="position: absolute;right: 73%;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
+                                            class="col-2 col-md-3 border border-dark">
+                                            &nbsp;<b>{{ $item->year  }}</b> 
+                                        </p>
+                                        <h4 style="position: absolute;right: 5%;top: 78%;z-index: 2;">
+                                            @guest
+                                                @foreach($data_wishlist as $key)
+                                                    @if($item->id == $key->product_id && $key->user_id == Auth::user()->id)
+                                                        <i class="fa fa-heart text-danger" ></i>
+                                                    @else
+                                                        <i class="fa fa-heart text-secondary" ></i>
+                                                    @endif
+                                                @endforeach
+                                            @endguest
+                                            <i class="fa fa-heart text-secondary" ></i>
+                                        </h4>
+                                </div>
                                     
                                     <img src="{{ url('/image/'.$item->id ) }}" alt="" > </a>
                                         <!-- <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80" alt="" >  -->
@@ -298,7 +316,7 @@
                                         <div class="col" >
                                             <div class="row">
                                                 <div class="col-12 ">
-                                                            <div class="col-3 car_wish" >
+                                                            <!-- <div class="col-3 car_wish" >
                                                                 <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}           
                                                                 
@@ -311,7 +329,7 @@
                                                                         </div>
                                                                     </button>      
                                                                 </form> 
-                                                            </div>
+                                                            </div> -->
                                                       
                                                     
 
