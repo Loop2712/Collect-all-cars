@@ -17,25 +17,27 @@
 				
 	        	<h3 style="color: #FFFFFF">เนื่องจาก</h3>
 	        	<center>
-	        		<h4 style="color: #FFFFFF;line-height: 2;"></h4>
+	        		<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["content"] }}</h4>
 	        	</center>
 
 				<hr style="border-style: solid;border-color: #FFFFFF;margin-top: 20px;margin-bottom: 20px;">
 
 				<h3 style="color: #FFFFFF">เลขทะเบียน / Plate No.</h3>
-				<h4 style="color: #FFFFFF;line-height: 2;"></h4>
-				
-				<div class="row">
-					<center>
-						<div class="col-8">
-							<button type="button" style="background-color: green; color:#ffffff;text-decoration: none;width: 100%;padding: 10px;border-radius: 10px;">
-								<a type="button" style="background-color: green; color:#ffffff;text-decoration: none;" href="tel:0998823219">
-									0998823219
-								</a>
-							</button>
-						</div>
-					</center>
-				</div>
+				<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["registration_number"] }} {{ $data["province"] }}</h4>
+
+				@if( $data["want_phone"] == "Yes" )
+					<div class="row">
+						<center>
+							<div class="col-8">
+								<button type="button" style="background-color: green; color:#ffffff;text-decoration: none;width: 100%;padding: 10px;border-radius: 10px;">
+									<a type="button" style="background-color: green; color:#ffffff;text-decoration: none;" href="tel:{{ $data['phone'] }}">
+										{{ $data["phone"] }}
+									</a>
+								</button>
+							</div>
+						</center>
+					</div>
+				@endif
         	</div>
         </div>
     </div>
