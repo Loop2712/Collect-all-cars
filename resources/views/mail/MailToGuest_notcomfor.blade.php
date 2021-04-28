@@ -16,8 +16,10 @@
 	        	</center>
 				
 	        	<h3 style="color: #FFFFFF">เนื่องจาก</h3>
-				<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["content"] }}</h4>
-
+	        	<center>
+	        		<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["content"] }}</h4>
+	        	</center>
+	        	
 				<hr style="border-style: solid;border-color: #FFFFFF;margin-top: 20px;margin-bottom: 20px;">
 
 				<h3 style="color: #FFFFFF">เลขทะเบียน / Plate No.</h3>
