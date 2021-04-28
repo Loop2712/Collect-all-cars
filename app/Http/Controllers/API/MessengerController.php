@@ -53,7 +53,7 @@ class MessengerController extends Controller
     {
     	// FACEBOOK_MESSENGER_WEBHOOK_TOKEN is not exist yet.
     	// we can set that up in our .env file
-    	$local_token = "facebook_messenger_api";
+    	$local_token = env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
     	$hub_verify_token = request('hub_verify_token');
 
     	// condition if our local token is equal to hub_verify_token
