@@ -5,16 +5,16 @@
         	<div  class="col-12">
         		<center>
 	        		<img width="60%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
-	        		<div class="col-10" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #FAEBD7;border-width: 5px;margin: 20px;padding: 20px;margin-top: -50px">
-	        			<span style="color: #07375D;font-size: 60px">โปรดรอสักครู่</span>
+	        		<div class="col-11" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #FAEBD7;border-width: 5px;margin: 20px;padding: 20px;margin-top: -50px">
+	        			<span style="color: #07375D;"><b>โปรดรอสักครู่</b></span>
 	        			<br>
-	        			<span style="color: #07375D;line-height: 2;font-size: 35px">Please wait a moment</span>
+	        			<span style="color: #07375D;line-height: 2;">Please wait a moment</span>
 	        			<br><br>
-	        			<img width="40%" src="{{ asset('/img/stickerline/PNG/8.png') }}">
+	        			<img width="50%" src="{{ asset('/img/stickerline/PNG/8.png') }}">
 	        		</div>
 	        		<hr style="border-style: solid;border-color: #FFFFFF;">
 	        	</center>
-	        	
+
 				<h3 style="color: #FFFFFF">ผู้ใช้รถหมายเลขทะเบียน</h3>
 				<h4 style="color: #FFFFFF;line-height: 2;">กก9999 กรุงเทพมหานคร</h4>
 				<hr style="border-style: solid;border-color: #FFFFFF;">
