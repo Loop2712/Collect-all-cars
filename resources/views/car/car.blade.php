@@ -275,12 +275,12 @@
                                     <a href="{{ url('/car/'.$item->id ) }}">
                                     <div class="row d-none d-md-block">
                                     <div class="row d-none d-md-block">
-                                        <p style="position: absolute;right: 73 %;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
+                                        <p style="position: absolute;right: 73%;top: 80%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
                                             class="col-2 col-md-3 border border-primary">
                                             &nbsp;{{ $item->year  }} 
                                         </p>
-                                        <h4 style="position: absolute;right: 5%;top: 78%;z-index: 2;">
-                                            <i class="fa fa-heart text-secondary" ></i>
+                                        <h4 style="position: absolute;right: 5%;top: 80%;z-index: 2;">
+                                            <i class="fa fa-heart text-white" ></i>
                                         </h4>
                                     </div>
                                     <img"  src="{{ asset('/img/more/img_more.jpg') }}" alt="" ></a>
@@ -288,12 +288,12 @@
                                    
                                     <a href="{{ url('/car/'.$item->id ) }}">
                                      <div class="row d-none d-md-block">
-                                        <p style="position: absolute;right: 73%;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
+                                        <p style="position: absolute;right: 73%;top: 80%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
                                             class="col-2 col-md-3 border border-dark">
                                             &nbsp;<b>{{ $item->year  }}</b> 
                                         </p>
-                                        <h4 style="position: absolute;right: 5%;top: 78%;z-index: 2;">
-                                            <i class="fa fa-heart text-secondary" ></i>
+                                        <h4 style="position: absolute;right: 5%;top: 80%;z-index: 2;">
+                                            <i class="fa fa-heart text-white" ></i>
                                         </h4>
                                 </div>
                                     
