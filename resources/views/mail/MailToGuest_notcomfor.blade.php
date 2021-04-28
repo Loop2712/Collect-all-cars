@@ -16,14 +16,14 @@
 	        	</center>
 				
 	        	<h3 style="color: #FFFFFF">เนื่องจาก</h3>
-				<h4 style="color: #FFFFFF;line-height: 2;">{{ $google_data["content"] }}</h4>
+				<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["content"] }}</h4>
 
 				<hr style="border-style: solid;border-color: #FFFFFF;margin-top: 20px;margin-bottom: 20px;">
 
 				<h3 style="color: #FFFFFF">เลขทะเบียน / Plate No.</h3>
-				<h4 style="color: #FFFFFF;line-height: 2;">{{ $google_data["google_registration_number"] }} {{ $google_data["google_province"] }}</h4>
+				<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["google_registration_number"] }} {{ $data["google_province"] }}</h4>
 
-				@if( $google_data["want_phone"] == "Yes" )
+				@if( $data["want_phone"] == "Yes" )
 				<a class="btn btn-secondary" href="tel:{{ $data['phone'] }}">{{ $data["phone"] }}</a>
 				@endif
         	</div>
