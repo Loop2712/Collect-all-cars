@@ -265,11 +265,10 @@
 
                     </style>            
                     <div class="row">
-                    @foreach($data as $item)
-                    
+                        @foreach($data as $item)
                         <div class="col-lg-3 col-md-4">
-                       
-                            <div class="car__item" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
+                                <!--คอม-->
+                            <div class="car__item d-none d-lg-block" style="box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
                                 <div class="car__item__pic__slider owl-carousel">
                                 
                                     @if($item->image == "" )  
@@ -298,10 +297,7 @@
                                         <!-- <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div><br> -->
                                         <div class="col" >
                                             <div class="row">
-                                                <div class="col-12">
-                                                    
-                                                        
-                                                     
+                                                <div class="col-12 ">
                                                             <div class="col-3 car_wish" >
                                                                 <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}           
@@ -309,7 +305,6 @@
                                                                     <input name="product_id" type="hidden" id="product_id" value="{{ $item->id }}" >
                                                                     <input name="user_id" type="hidden" id="user_id" value="" >
                                                                     <input name="car_type" type="hidden" id="car_type" value="car" >
-                                                                    
                                                                     <button type="submit" style="border:none; background-color: transparent;">
                                                                         <div class="car_wish">
                                                                             
@@ -320,13 +315,12 @@
                                                       
                                                     
 
-                                                    <div class="row">
-                                                        <div class="col-3 col-sm-3">
+                                                    <div class="row " >
+                                                        <div class="col-3 col-sm-3 ">
                                                             <a href="{{ url('/car/'.$item->id ) }}">  
                                                                 <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                             </a>
                                                         </div>
-                                                        
                                                         <div class="col-9 col-sm-9">
                                                             <a href="{{ url('/car/'.$item->id ) }}">
                                                                 <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 20px;">{{ $item->model }}</h4>
@@ -334,7 +328,6 @@
                                                             </a>
                                                         </div>
                                                     </div>
-
                                                 </div>
 
                                                 <!-- <div class="col-3">
@@ -400,8 +393,84 @@
                                 </div>
                                 
                             </div>
-                            
-                        
+                            <!--มือถือ-->
+     <style>
+    .myimg{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+}
+</style>                       
+                            <div class="car__item d-block d-md-none" ><br>
+                                <div class="car__item__text" style="border:none;">
+                                    <div class="car__item__text__inner">
+                                        <!-- <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div><br> -->
+                                        <div class="col " >
+                                            <div class="row ">
+                                                <div class="col-12 ">
+                                                    <div class="col-3 car_wish  d-none" >
+                                                        <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
+                                                            {{ csrf_field() }}           
+                                                            <input name="product_id" type="hidden" id="product_id" value="{{ $item->id }}" >
+                                                            <input name="user_id" type="hidden" id="user_id" value="" >
+                                                            <input name="car_type" type="hidden" id="car_type" value="car" >
+                                                            <button type="submit" style="border:none; background-color: transparent;">
+                                                            </button>      
+                                                        </form> 
+                                                    </div>
+                                                    <div class="row " >
+                                                        <div class="col-8 ">
+                                                            @if($item->image == "" )  
+                                                                <a href="{{ url('/car/'.$item->id ) }}">
+                                                                    <div class="row d-none d-md-block">
+                                                                        <div class="row d-none d-md-block">
+                                                                            <p style="position: absolute;right: 73 %;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black; margin:0px 0px 0px 0px;" 
+                                                                                class="col-2 col-md-3 border border-primary">
+                                                                                 &nbsp;{{ $item->year  }} 
+                                                                            </p>
+                                                                        </div>
+                                                                        <img" style="margin:-30px 0px 0px -60px" src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="myimg">
+                                                                </a>
+                                                            @else
+                                                                <a href="{{ url('/car/'.$item->id ) }}">
+                                                                    <div class="row d-none d-md-block">
+                                                                        <p style="position: absolute;right: 73%;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black; margin:0px 0px 0px 0px;" 
+                                                                        class="col-2 col-md-3 border border-dark">
+                                                                        &nbsp;<b>{{ $item->year  }}</b> </p>
+                                                                    </div>
+                                                                        <img style="margin:-30px 0px 0px -60px" src="{{ url('/image/'.$item->id ) }}" alt="" class="myimg"> 
+                                                                </a>  
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-9 " style="margin: -135px 0px 0px 105px">
+                                                            <a href="{{ url('/car/'.$item->id ) }}" >
+                                                                    <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 18px;">{{ $item->brand }}&nbsp;{{ $item->model }}</h4>
+                                                                    <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 15px;">{{ $item->submodel }}</p>
+                                                                <div class="col"style="margin: -20px 0px 0px -15px">
+                                                                    <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 12px;">{{ $item->location }}</p>
+                                                                </div>
+                                                                <div class="col"style="margin: -18px 0px 0px -13px ">
+                                                                    <i class="fas fa-calendar"style="color:#BEBEBE; font-size: 15px;"> </i>
+                                                                    <span style="color:#363636; font-size: 13px;">&nbsp;{{ $item->year  }}</span>&nbsp;
+                                                                    <i class="fas fa-tachometer-alt" style="color:#BEBEBE; font-size: 15px;"></i>
+                                                                    <span style="color:#363636; font-size: 13px;">&nbsp;{{ $item->distance  }}</span>  
+                                                                </div>
+                                                                <div class="col"style="margin: 25px 0px 0px 0px">
+                                                                    @if ( $item->price == 'ติดต่อผู้ขาย')
+                                                                        <h4 style="color:#db2d2e;margin-top: -12px;">{{ $item->price}}</h4>
+                                                                    @else
+                                                                        <h4 style="color:#db2d2e;margin-left:-18px;margin-top: -19px;"> <img src="{{ asset('/img/icon/thailand-baht.png') }}" style="width:25px"> {{ number_format(intval($item->price))}}</h4>
+                                                                    @endif
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
                         </div>
                         @endforeach
                     </div>
