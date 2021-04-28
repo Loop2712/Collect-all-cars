@@ -4,14 +4,21 @@
         <div class="col-12" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #07375D;border-width: 5px;margin: 20px;padding: 20px;">
         	<div  class="col-12">
         		<center>
-	        		<img width="80%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
+	        		<img width="60%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
+	        		<div class="col-10" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #FAEBD7;border-width: 5px;margin: 20px;padding: 20px;margin-top: -50px">
+	        			<span style="color: #07375D;font-size: 60px">โปรดรอสักครู่</span>
+	        			<br>
+	        			<span style="color: #07375D;line-height: 2;font-size: 35px">Please wait a moment</span>
+	        			<br><br>
+	        			<img width="40%" src="{{ asset('/img/stickerline/PNG/8.png') }}">
+	        		</div>
 	        		<hr style="border-style: solid;border-color: #FFFFFF;">
 	        	</center>
+	        	
 				<h3 style="color: #FFFFFF">ผู้ใช้รถหมายเลขทะเบียน</h3>
-				<h4 style="color: #FFFFFF;line-height: 2;">{{ $data["registration_number"] }} {{ $data["province"] }}</h4>
+				<h4 style="color: #FFFFFF;line-height: 2;">กก9999 กรุงเทพมหานคร</h4>
 				<hr style="border-style: solid;border-color: #FFFFFF;">
 				<h3 style="color: #FFFFFF">แจ้งว่า</h3>
-				@if($data["postback_data"] == "wait")
 					<h4 style="color: #FFFFFF;line-height: 2;">กรุณารอสักครู่ / Please wait a moment</h4>
 					<br>
 					<center>
@@ -20,17 +27,7 @@
 						</div>
 						<br>
 					</center>
-				@endif
-				@if($data["postback_data"] == "thx")
-					<h4 style="color: #FFFFFF;line-height: 2;">ขอบคุณ / Thank you</h4>
-					<br>
-					<center>
-						<div>
-							<img style="border-radius: 70px;" width="60%" src="{{ asset('/img/icon/thx.png') }}">
-						</div>
-						<br>
-					</center>
-				@endif
+				
         	</div>
         </div>
     </div>

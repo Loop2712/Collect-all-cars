@@ -42,6 +42,10 @@ Route::get('/select_get', function () {
     return view('register_car/select_get');
 });
 
+Route::get('/mail', function () {
+    return view('mail/MailToGuest');
+});
+
 Route::get('/terms_of_service', function () {
     
     return view('terms_of_service');
