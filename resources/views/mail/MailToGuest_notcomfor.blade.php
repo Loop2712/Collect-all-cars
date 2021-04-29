@@ -29,7 +29,7 @@
 					<div class="row">
 						<center>
 							<div class="col-8">
-								<button type="button" style="background-color: green; color:#ffffff;text-decoration: none;width: 100%;padding: 10px;border-radius: 10px;">
+								<button type="button" style="background-color: #76d128; color:#ffffff;text-decoration: none;width: 100%;padding: 10px;border-radius: 10px;">
 									<a type="button" style="background-color: green; color:#ffffff;text-decoration: none;" href="tel:{{ $data['phone'] }}">
 										{{ $data["phone"] }}
 									</a>
