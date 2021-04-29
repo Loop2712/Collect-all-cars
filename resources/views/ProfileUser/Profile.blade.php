@@ -29,7 +29,7 @@
             @endswitch
             @endif
 
-            <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="{{$data->avatar}}" data-original-title="Usuario"> 
+            <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{$data->avatar}}" data-original-title="Usuario"> 
             <ul title="Ratings" class="list-inline ratings text-center">
                 <li><span class="glyphicon glyphicon-star">{{ $data->name }}      </span></li>
                 <li><span class="glyphicon glyphicon-star" style="font-size: 13px;">เป็นสมาชิกมาแล้ว ปี  เดือน  วัน</span></li>
@@ -38,7 +38,180 @@
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
             </ul>
         </div>
-        <div class="col-md-6">
+        <!---------------------------------------มือถือ------------------------------------------------------>
+        <div class="col-md-8 profile-user d-block d-md-none" style="margin:-20px 0px 0px 0px">
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <br><br><h4>ข้อมูลพื้นฐาน <br> Basic information<hr> </h4>
+                    </center>
+                </div>
+                <div class="col-12">
+                    <center>
+                    <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
+                    <br>
+                    <span class="text-primary">{{ $data->username }}<hr> </span>
+                    </center>
+                </div>
+     
+                <div class="col-12">
+                    <center>
+                    <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ / name </b> 
+                    <br>
+                    <span class="text-primary">{{ $data->name }}<hr> </span>
+                    </center>
+                </div>
+                <div class="col-12">
+                    <center>
+                    <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด / Birthday </b> 
+                    <br>
+                    <span class="text-primary">{{ $data->brith }}<hr> </span>
+                    </center>
+                </div>
+                <div class="col-12">
+                    <center>
+                    <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ / Sex </b> 
+                    <br>
+                    <span class="text-primary">{{ $data->sex }}<hr> </span>
+                    </center>
+                </div>
+                <div class="col-12">
+                    <center>
+                    <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
+                    <br>
+                    <span class="text-primary">{{ $data->email }}<hr> </span>
+                    </center>
+                </div>
+                <div class="col-12">
+                    <center>
+                    <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
+                    <br>
+                    <span class="text-primary">{{ $data->phone }}<hr></span>
+                    </center>
+                </div>
+                @if(is_null($data->driver_license) )
+                    <div class="col-md-12"> 
+                        <center>
+                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
+                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>
+                        <center>   
+                    </div>
+                @elseif($data->driver_license == "" ) 
+                    <div class="col-md-12"> 
+                        <center>
+                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
+                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>
+                        <center>   
+                    </div>
+                @else
+                    @if(Auth::check())
+                        @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
+                            <div class="col-md-12"> 
+                                <center>
+                                <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
+                                <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>
+                                <center>   
+                            </div>
+                            <div class="col-md-6">
+                                                <center>
+                                                <label for="massengbox" class="control-label">&nbsp;รถยนต์</label>
+                                                <br>
+                                                <img src="{{ url('storage')}}/{{ $data->driver_license }}" style="width:200px" /><br/><br/> 
+                                                </center>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <center>
+                                                <label for="massengbox" class="control-label">&nbsp;รถจักรยานยนต์</label>
+                                                <br>
+                                                <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" style="width:200px" /><br/><br/>
+                                                </center> 
+                                            </div>
+                        @endif 
+                    @endif               
+                @endif
+
+            </div>
+        </div>
+        <!---------------------------------------คอม------------------------------------------------------>
+        <div class="col-md-8 profile-user d-none d-lg-block" style="margin:-20px 0px 0px 0px">
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <br><br><h4>ข้อมูลพื้นฐาน / Basic information<hr> </h4>
+                    </center>
+                </div>
+                <div class="col-md-12">
+                    <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
+                    &nbsp;&nbsp;
+                    <span class="text-primary">{{ $data->username }}<hr> </span>
+                </div><br>
+     
+                <div class="col-md-12">
+                    <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ / name </b> 
+                    &nbsp;&nbsp;
+                    <span class="text-primary">{{ $data->name }}<hr> </span>
+                </div>
+                <div class="col-md-6">
+                    <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด / Birthday </b> 
+                    &nbsp;&nbsp;
+                    <span class="text-primary">{{ $data->brith }}<hr> </span>
+                </div>
+                <div class="col-md-6">
+                    <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ / Sex </b> 
+                    &nbsp;&nbsp;
+                    <span class="text-primary">{{ $data->sex }}<hr> </span>
+                </div>
+                <div class="col-md-12">
+                    <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
+                    &nbsp;&nbsp;
+                    <span class="text-primary">{{ $data->email }}<hr> </span>
+                </div>
+                <div class="col-md-12">
+                    <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
+                    &nbsp;&nbsp;
+                    <span class="text-primary">{{ $data->phone }}<hr></span>
+                </div>
+                @if(is_null($data->driver_license) )
+                    <div class="col-md-12">
+                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> 
+                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>   
+                    </div>
+                @elseif($data->driver_license == "" ) 
+                    <div class="col-md-12">
+                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> 
+                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>   
+                    </div>
+                @else
+                    @if(Auth::check())
+                        @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
+                            <div class="col-md-12">
+                                <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> 
+                                <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>   
+                            </div>
+                            <div class="col-md-6">
+                                                <center>
+                                                <label for="massengbox" class="control-label">&nbsp;รถยนต์</label>
+                                                <br>
+                                                <img src="{{ url('storage')}}/{{ $data->driver_license }}" style="width:200px" /><br/><br/> 
+                                                </center>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <center>
+                                                <label for="massengbox" class="control-label">&nbsp;รถจักรยานยนต์</label>
+                                                <br>
+                                                <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" style="width:200px" /><br/><br/>
+                                                </center> 
+                                            </div>
+                        @endif 
+                    @endif               
+                @endif
+
+            </div>
+        </div>
+
+
+
+        <!--<div class="col-md-6" style="margin:-20px 0px 0px 0px;">
         <br><br><strong>ข้อมูลพื้นฐาน / Basic information </strong><br><br>
             <div class="table-responsive">
             <table class="table table-user-information">
@@ -134,6 +307,7 @@
                     </tr>
                     @else
                     <tr>        
+                    
                         <td>
                           @if(Auth::check())
                                 @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
@@ -142,10 +316,11 @@
                                 {{ 'ใบอนุญาตขับรถ / Driver license ' }} <br>
                                 <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>                                              
                             </strong>
-                        </td>
-                        <td class="text-primary"> 
+                        </td>-->
+                        <!---------------คอม--------------------------->
+                        <!---<td class="text-primary d-none d-lg-block"> -->
                                     <!-- <div class="row"> -->
-                                          <div class="col-12 col-md-6">
+                                          <!--<div class="col-12 col-md-6">
                                               <label for="massengbox" class="control-label">&nbsp;รถยนต์</label>
                                               <br>
                                               <img src="{{ url('storage')}}/{{ $data->driver_license }}" style="width:200px" /><br/><br/> 
@@ -155,41 +330,28 @@
                                               <br>
                                               <img src="{{ url('storage')}}/{{ $data->driver_license2 }}" style="width:200px" /><br/><br/> 
                                         </div>
-                                    <!-- </div> -->
-                                    @endif 
-                                @endif
-                      
                         </td>
-                    </tr> 
-                    @endif
-                                                      
+                        <td class="d-block d-md-none"></td>
+                    </tr>                                     
                 </tbody>
-                
-            </table>
-            
-            </div>
-        </div>
-            <div class="row">
-                    <div class="col d-flex justify-content-end">
-                        @if(Auth::check())
-                            @if(Auth::user()->id == $data->id )
-                        <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
-                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" title="แก้ไขโปรไฟล์">
-                        <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>แก้ไขโปรไฟล์</h6> </button></a>
-                            @endif
-                        @endif
-                    <!-- </div>
-                    <div class="col d-flex justify-content-end"> -->
-                    <form method="POST" action="{{ url('/profile') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                        <!-- <button class="btn btn-primary" type="submit">Save Changes</button> -->
-                        <input class="d-none form-control" name="active" type="text" id="active" value="{{ isset($profile->active) ? $profile->active : 'No'}}" >
-                        <!-- /////   ปุ่มลบโปรไฟล์   //// -->
-                        <!-- <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>ลบโปรไฟล์</h6> </button></a> -->
-                        </form>
-                    </div>
-            </div> 
-            
+            </table>-->
+            <!----------------------มือถือ------------------------------->
+            <!--<div class="d-block d-md-none" style="margin:-20px 0px 0px 0px">
+                                <label for="massengbox" class="control-label">&nbsp;รถยนต์</label>
+                                    <br>
+                                <img src="{{ url('/img/icon/ป้ายทะเบียน.png' ) }}" style="width:200px" /><br/><br/> 
+                            </div>
+                            <div class="d-block d-md-none">
+                                <label for="massengbox" class="control-label">&nbsp;รถจักรยานยนต์</label>
+                                    <br>
+                                 <img src="{{ url('/img/icon/ป้ายทะเบียน.png' ) }}" style="width:200px" /><br/><br/> 
+                            </div>
+            </div> @endif 
+                @endif               
+            @endif   
+        </div>   -->  
+        
+
                     
             
     </div>
