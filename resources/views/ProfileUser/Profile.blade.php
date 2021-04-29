@@ -151,12 +151,12 @@
                     &nbsp;&nbsp;
                     <span class="text-primary">{{ $data->name }}<hr> </span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด / Birthday </b> 
                     &nbsp;&nbsp;
                     <span class="text-primary">{{ $data->brith }}<hr> </span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ / Sex </b> 
                     &nbsp;&nbsp;
                     <span class="text-primary">{{ $data->sex }}<hr> </span>
