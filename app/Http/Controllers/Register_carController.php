@@ -116,6 +116,13 @@ class Register_carController extends Controller
             ->groupBy('brand')
             ->limit(10)
             ->get();
+        
+        $type_array = CarModel::selectRaw('type,count(type) as count')
+            ->orderByRaw('count DESC')
+            ->where('type', '!=',"" )
+            ->groupBy('type')
+            ->limit(10)
+            ->get();
 
         $user = Auth::user();
 
@@ -134,7 +141,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array'));
     }
 
     /**
