@@ -140,16 +140,6 @@
                                         </option>
                                             @endforeach 
                                     </select><br>
-                                    <select  class="form-control"  name="typecar" id="typecar"  onchange="this.form.submit()">
-                                        <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
-                                        @foreach($type_array as $ty)
-                                            <option 
-                                                    value="{{ $ty->type }}" 
-                                                    {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
-                                            {{ $ty->type }} 
-                                            </option>
-                                        @endforeach
-                                    </select><br>
                                     <select class="form-control" name="year" id="year" >
                                         <option value="" data-display="ปี">ปีทั้งหมด</option>
                                             @foreach($year_array as $ye)
@@ -163,7 +153,7 @@
                                     
                                     
                                     <select class="form-control"  name="location" id="location" onchange="this.form.submit()" >
-                                        <option value="" data-display="สถานที่">สถานที่ทั้งหมด</option>
+                                        <option value="" data-display="สถานที่">จังหวัดทั้งหมด</option>
                                         @foreach($location_array as $lo)
                                             <option 
                                                 value="{{ $lo->province }}" 
@@ -171,26 +161,6 @@
                                                 {{ $lo->province }} 
                                             </option>
                                         @endforeach 
-                                    </select><br>
-                                    <select class="form-control"  name="color" id="color" >
-                                        <option value="" data-display="สีรถ">สีรถทั้งหมด</option>
-                                                @foreach($color_array  as $co)
-                                        <option 
-                                            value="{{ $co->color  }}" 
-                                            {{ request('color') == $co->color  ? 'selected' : ''   }} >
-                                            {{ $co->color  }} 
-                                        </option>
-                                          @endforeach 
-                                    </select><br>
-                                    <select class="form-control" name="fuel" id="fuel"  >
-                                        <option value="" data-display="เชื้อเพลิง">เชื้อเพลิงทั้งหมด</option>
-                                            @foreach($fuel_array as $pe)
-                                        <option 
-                                            value="{{$pe->fuel}}" 
-                                            {{ request('fuel') == $pe->fuel  ? 'selected' : ''   }} >
-                                            {{ $pe->fuel  }} 
-                                         </option>
-                                            @endforeach 
                                     </select><br>
                                     <div class="filter-price">
                                         <p>ระยะทาง:</p>
