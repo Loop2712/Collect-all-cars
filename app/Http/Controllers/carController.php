@@ -40,7 +40,7 @@ class CarController extends Controller
         $yearmin   = $request->get('yearmin');
         $model     = $request->get('model');
         $product_id  = $request->get('product_id');
-        $perPage   = 21; 
+        $perPage   = 44; 
         
         $milemin = empty($milemin) ? 0 :$milemin;
         $milemax = empty($milemax) ? 99000000 :$milemax;
