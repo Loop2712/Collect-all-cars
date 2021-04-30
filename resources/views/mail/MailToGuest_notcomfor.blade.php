@@ -6,7 +6,8 @@
         		<center>
 	        		<img width="70%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
 	        		<div class="col-11" style="border-style: solid;border-color: #ff0101;border-radius: 10px;background-color: #FAEBD7;border-width: 5px;padding: 20px;margin-top: -50px">
-	        			<span style="color: #07375D;font-size: 18px;"><b>ฉันไม่สะดวก</b></span>
+	        			<span style="color: #07375D;font-size: 18px;font-weight: bold;"><b>ฉันไม่สะดวก</b></span>
+	        			<br>
 	        			<span style="color: #07375D;line-height: 2;">I'm not available</span>
 	        			<br><br>
 	        			<img width="65%" src="{{ asset('/img/stickerline/PNG/26.png') }}">
