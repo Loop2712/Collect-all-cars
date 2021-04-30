@@ -1,0 +1,259 @@
+{
+    "type": "flex",
+    "altText": "ViiCHECK ยินดีให้บริการค่ะ",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "size": "4xl",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/"
+            }
+          },
+          {
+            "type": "image",
+            "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/"
+            },
+            "offsetBottom": "md"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "separator",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/user.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "ข้อมูลของคุณ",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "ข้อมูลของคุณ",
+                  "text": "ข้อมูลของคุณ"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "ข้อมูลของคุณ",
+                  "text": "ข้อมูลของคุณ"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "ข้อมูลของคุณ",
+              "text": "ข้อมูลของคุณ"
+            }
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/money.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "เช็คราคารถมือสอง",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://market.viicheck.com/middle_price_car"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://market.viicheck.com/middle_price_car"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/middle_price_car"
+            }
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/faq.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "ถามตอบ / FAQ",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "ถามตอบ / FAQ",
+                  "text": "ถามตอบ / FAQ"
+                },
+                "weight": "bold",
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "FAQ / ถามตอบ",
+                  "text": "FAQ / ถามตอบ"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "FAQ / ถามตอบ",
+              "text": "FAQ / ถามตอบ"
+            },
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/contact.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "ติดต่อ / Contact",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "ติดต่อ / contact",
+                  "text": "ติดต่อ / contact"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "ติดต่อ / contact",
+                  "text": "ติดต่อ / contact"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "ติดต่อ / contact",
+              "text": "ติดต่อ / contact"
+            },
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "color": "#ff0101",
+            "margin": "xl"
+          }
+        ],
+        "offsetBottom": "sm"
+      }
+    ],
+    "borderWidth": "bold",
+    "cornerRadius": "xl",
+    "borderColor": "#ff0101"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#ff0101"
+    }
+  }
+}
+}
