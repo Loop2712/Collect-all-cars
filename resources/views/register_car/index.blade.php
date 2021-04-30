@@ -90,13 +90,12 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="row">  
-                                                    <div class="col-3 col-md-4">
-                                                        &nbsp;&nbsp;
-                                                        <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png"><br> 
-                                                        <p>{{ $item->brand }}</p>
+                                                <div class="col-4 col-md-3">
+                                                        <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                     </div> 
-                                                    <div class="col-8 col-md-8">
-                                                        <h4>{{ $item->generation }} </h4>
+                                                    <div class="col-8 col-md-9">
+                                                        <h4>{{ $item->brand }}</h4>
+                                                        <p>{{ $item->generation }} </p>
                                                     </div>
                                                 </div>
                                                 <hr style="margin-top: -5px;">
