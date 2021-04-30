@@ -268,8 +268,6 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         
 
-                        $string_json = str_replace("ดูรถทั้งหมด","ดูทั้งหมด / แก้ไข",$string_json);
-
                         break;
 
                     default: 
@@ -373,8 +371,6 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("แบนด์3", strtolower($brand[2]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน3",$registration_number[2],$string_json);
                         
-
-                        $string_json = str_replace("ดูรถทั้งหมด","ดูทั้งหมด / แก้ไข",$string_json);
                         break;
 
                 }
@@ -518,8 +514,6 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         
 
-                        $string_json = str_replace("ดูรถทั้งหมด","ดูทั้งหมด / แก้ไข",$string_json);
-
                         break;
 
                     default: 
@@ -623,8 +617,6 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("แบนด์3", strtolower($brand[2]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน3",$registration_number[2],$string_json);
                         
-
-                        $string_json = str_replace("ดูรถทั้งหมด","ดูทั้งหมด / แก้ไข",$string_json);
                         break;
 
                 }
