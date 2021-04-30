@@ -34,6 +34,9 @@ Route::post('facebook_messenger_api', 'MessengerController@index');
 
 Route::get('facebook_callback_guest', 'MessengerController@facebook_callback_guest');
 
+Route::get('/mail', function () {
+    return view('mail/MailToGuest_notcomfor');
+});
 
 Route::get('/cars', function () {
     return view('auth/login2');
