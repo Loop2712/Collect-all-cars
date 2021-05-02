@@ -169,8 +169,8 @@
                             <li>
                                 <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
                             </li>
-                            <li tyle="padding-right: 20px;">
-                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}"  >เข้าสู่ระบบ / สมัครสมาชิก</a>
+                            <li >
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}"  style="font-size:15px;">เข้าสู่ระบบ / สมัครสมาชิก</a>
                             </li>
                             
                                 <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;border-radius: 10px;">ลงขาย</a>

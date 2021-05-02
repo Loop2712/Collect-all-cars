@@ -37,7 +37,7 @@
                             {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                     </select>
                 </div>
-                <div class="col-md-2 car__filter d-none d-lg-block">
+                <div class="col-md-3 car__filter d-none d-lg-block">
                     <select  class="form-control"  name="typecar" id="typecar" >
                         <option value="" data-display="ประเภทรถ">ประเภทรถทั้งหมด</option>
                             @foreach($type_array as $ty)
@@ -61,7 +61,7 @@
                             @endforeach 
                     </select><br>
                 </div>
-                <div class="col-md-2 car__filter d-none d-lg-block">  
+                <div class="col-md-1 car__filter d-none d-lg-block">  
                     <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
                 </div> 
                 
@@ -258,7 +258,7 @@
                                    
                                     <a href="{{ url('/car/'.$item->id ) }}">
                                      <div class="row d-none d-md-block">
-                                        <p style="position: absolute;right: 73%;top: 80%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
+                                        <p style="position: absolute;right: 66%;top: 80%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black;" 
                                             class="col-2 col-md-3 border border-dark">
                                             &nbsp;<b>{{ $item->year  }}</b> 
                                         </p>
