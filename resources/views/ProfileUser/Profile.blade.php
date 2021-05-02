@@ -93,14 +93,12 @@
                     <div class="col-md-12"> 
                         <center>
                         <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
-                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>
                         <center>   
                     </div>
                 @elseif($data->driver_license == "" ) 
                     <div class="col-md-12"> 
                         <center>
                         <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
-                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>
                         <center>   
                     </div>
                 @else
@@ -109,7 +107,6 @@
                             <div class="col-md-12"> 
                                 <center>
                                 <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
-                                <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>
                                 <center>   
                             </div>
                             <div class="col-md-6">
@@ -210,20 +207,17 @@
                 </div>
                 @if(is_null($data->driver_license) )
                     <div class="col-md-12">
-                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> 
-                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>   
+                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>   
                     </div>
                 @elseif($data->driver_license == "" ) 
                     <div class="col-md-12">
-                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> 
-                        <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>   
+                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>   
                     </div>
                 @else
                     @if(Auth::check())
                         @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
                             <div class="col-md-12">
-                                <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> 
-                                <span style="font-size: 13px;" class="text-danger"><b>*ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</b></span>   
+                                <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b 
                             </div>
                             <div class="col-md-6">
                                                 <center>

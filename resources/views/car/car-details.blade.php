@@ -36,11 +36,12 @@
                                 <li>ระบบเกียร์ <span>{{ $data->gear  }}</span></li>
                                 <li>ระยะทาง <span>{{ $data->distance  }} km</span></li>
                             </ul>
+                            <div>
                             <ul>
                                 <li>น้ำมัน <span>{{ $data->fuel  }}</span></li>
-                                <li>สถานที่ <span>{{ $data->location  }}</span></li>
+                                <li >สถานที่ <span style="text-align: right;">{{ $data->location  }}</span></li>
                             </ul>
-                           
+                           </div>
                             <input class="d-none" name="product_id" type="number" id="product_id" value="{{ $data->id}}" >
                             <input class="d-none" name="user_id" type="number" id="user_id" value="" >
                             <input class="d-none" name="car_type" type="text" id="car_type" value="car" >

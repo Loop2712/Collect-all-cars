@@ -72,7 +72,7 @@
                             onclick="if(document.getElementById('search_m') .style.display=='none') 
                             {document.getElementById('search_m') .style.display=''}else{document.getElementById('search_m')
                              .style.display='none'}"> 
-                            <h5 style="color:#7D7D7D" class="fa fa-filter">&nbsp;ตัวกรองค้นหา&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i></h5><br>
+                            <h5 style="color:#7D7D7D" class="fa fa-filter ">&nbsp;ตัวกรองค้นหา&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i></h5><br>
                         </button><br>
                        
                         <div id="search_m" class="row" style="display:none">
@@ -110,7 +110,7 @@
                 
                 <div class="col-md-12">      
                     <!-- แสดงเฉพาะมือถือ -->
-                    <button  class="btn btn-sm d-block d-md-none"
+                    <button  class="btn btn-sm d-block d-md-none"  style="margin:-40px 0px 0px 0px"
                             onclick="if(document.getElementById('search_mo') .style.display=='none') 
                             {document.getElementById('search_mo') .style.display=''}else{document.getElementById('search_mo')
                              .style.display='none'}"> 
@@ -372,20 +372,26 @@
                                 </div>
                                 
                             </div>
-                            <!--มือถือ-->
-     <style>
-    .myimg{
-    width:150px;
-    height:150px;
-    object-fit:cover;
-}
-</style>                       
+                           
+                            
+                        </div>
+                        @endforeach
+                    </div>
+                     <!--มือถือ-->
+                     <style>
+                                .myimg{
+                                width:150px;
+                                height:150px;
+                                object-fit:cover;
+                            }
+                            </style>                       
+                            @foreach($data as $item)
                             <div class="car__item d-block d-md-none" ><br>
                                 <div class="car__item__text" style="border:none;">
                                     <div class="car__item__text__inner">
                                         <!-- <div class="label-date" style="float: left;"><h6>{{ $item->year  }}</h6></div><br> -->
-                                        <div class="col " >
-                                            <div class="row ">
+                                       
+                                             
                                                 <div class="col-12 ">
                                                     <div class="col-3 car_wish  d-none" >
                                                         <form method="POST" action="{{ url('/wishlist') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
@@ -397,31 +403,21 @@
                                                             </button>      
                                                         </form> 
                                                     </div>
-                                                    <div class="row " >
-                                                        <div class="col-8 ">
-                                                            @if($item->image == "" )  
+                                                    
+                                                    <div class="col-8 " style="margin: -30px 0px 0px 105px">
+                                                    @if($item->image == "" )  
+                                                    <br><br><br><br>
                                                                 <a href="{{ url('/car/'.$item->id ) }}">
                                                                     <div class="row d-none d-md-block">
-                                                                        <div class="row d-none d-md-block">
-                                                                            <p style="position: absolute;right: 73 %;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black; margin:0px 0px 0px 0px;" 
-                                                                                class="col-2 col-md-3 border border-primary">
-                                                                                 &nbsp;{{ $item->year  }} 
-                                                                            </p>
-                                                                        </div>
-                                                                        <img" style="margin:-30px 0px 0px -60px" src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="myimg">
+                                                                        <img style="margin:-20px 0px 0px -180px" src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="myimg">
                                                                 </a>
                                                             @else
-                                                                <a href="{{ url('/car/'.$item->id ) }}">
-                                                                    <div class="row d-none d-md-block">
-                                                                        <p style="position: absolute;right: 73%;top: 78%;z-index: 2; font-size:12px; border-radius: 15px; background-color: #DCDCDC; color:black; margin:0px 0px 0px 0px;" 
-                                                                        class="col-2 col-md-3 border border-dark">
-                                                                        &nbsp;<b>{{ $item->year  }}</b> </p>
-                                                                    </div>
-                                                                        <img style="margin:-30px 0px 0px -60px" src="{{ url('/image/'.$item->id ) }}" alt="" class="myimg"> 
+                                                            <a href="{{ url('/car/'.$item->id ) }}">
+                                                                        <img style="margin:-20px 0px 0px -180px" src="{{ url('/image/'.$item->id ) }}" alt="" class="myimg"> 
                                                                 </a>  
                                                             @endif
                                                         </div>
-                                                        <div class="col-9 " style="margin: -135px 0px 0px 105px">
+                                                        <div class="col-10 " style="margin: -140px 0px 0px 90px">
                                                             <a href="{{ url('/car/'.$item->id ) }}" >
                                                                     <h4 style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 18px;">{{ $item->brand }}&nbsp;{{ $item->model }}</h4>
                                                                     <p style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;font-size: 15px;">{{ $item->submodel }}</p>
@@ -443,17 +439,13 @@
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                        </div>
+                                                 
+                                                </div>
                                     </div>  
                                 </div>
                             </div>
-                        </div>
+                        
                         @endforeach
-                    </div>
-                    
                     <ul class="row">
 
                     {{ $data->links('pagination.default',['paginator' => $data,'link_limit' => $data->perPage()]) }} 
