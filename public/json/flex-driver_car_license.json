@@ -28,7 +28,13 @@
                 "margin": "lg"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
           {
             "type": "image",
             "url": "https://market.viicheck.com/storage/ccaarr",
@@ -44,7 +50,10 @@
               "uri": "https://market.viicheck.com/storage/ccaarr"
             }
           }
-        ]
+        ],
+        "borderWidth": "semi-bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
       },
       {
         "type": "separator",
