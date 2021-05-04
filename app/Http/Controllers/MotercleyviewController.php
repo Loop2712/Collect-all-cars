@@ -32,7 +32,7 @@ class MotercleyviewController extends Controller
         $sort      = $request->get('sort','asc');
         $datas     = $request->get('datas');
         $keyword   = $request->get('search');
-        $perPage   = 21;
+        $perPage   = 44;
 
         $pricemin = empty($pricemin) ? 0 :$pricemin;
         $pricemax = empty($pricemax) ? 99000000 :$pricemax;
