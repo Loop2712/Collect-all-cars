@@ -384,7 +384,7 @@
                                 height:150px;
                                 object-fit:cover;
                             }
-                            </style>                       
+                    </style>                       
                             @foreach($data as $item)
                             <div class="car__item d-block d-md-none" ><br>
                                 <div class="car__item__text" style="border:none;">
@@ -408,7 +408,7 @@
                                                     @if($item->image == "" )  
                                                     <br><br><br><br>
                                                                 <a href="{{ url('/car/'.$item->id ) }}">
-                                                                    <div class="row d-none d-md-block">
+                                                                    <div class="row  d-md-block">
                                                                         <img style="margin:-20px 0px 0px -180px" src="{{ asset('/img/more/img_more.jpg') }}" alt="" class="myimg">
                                                                 </a>
                                                             @else
