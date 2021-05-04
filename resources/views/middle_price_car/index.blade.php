@@ -28,8 +28,8 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th>#</th><th>Brand</th><th>Model</th><th>Submodel</th><th>Price</th><th class="d-none">Actions</th>
+                                    <tr class="text-center " style="background-color: green;">
+                                        <th>#</th><th>ยี่ห้อ/Brand</th><th>รุ่น/Model</th><th>รุ่นย่อย/Submodel</th><th>ราคา/Price</th><th class="d-none">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>

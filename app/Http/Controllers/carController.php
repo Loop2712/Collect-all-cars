@@ -212,13 +212,17 @@ class CarController extends Controller
             ->where('gear', '!=',"" )
             ->groupBy('gear')
             ->get();
+        $motormodel = Motercycle::selectRaw('model,count(model) as count')
+            ->where('model', '!=',"" )
+            ->groupBy('model')
+            ->get();
 
         $model_array = CarModel::selectRaw('model,count(model) as count')
             ->where('model', '!=',"" )
             ->groupBy('model')
             ->get();
         //$data = DB::table('data_cars') ->where('brand', 'like', '%'.$search.'%')->paginate(24);
-        return view('main.index',compact('data','motorbrand', 'motorcolor', 'motorgear','brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array','model_array'));
+        return view('main.index',compact('data','motorbrand', 'motorcolor', 'motorgear','brand_array', 'type_array', 'location_array' , 'year_array', 'fuel_array', 'color_array','gear_array','model_array','motormodel'));
     }
 
     

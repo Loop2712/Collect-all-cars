@@ -149,7 +149,7 @@
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="hero__tab__form" style="border-radius: 0px 20px 20px 20px;">
-                                    <h4><b>ค้นหารถจักรยานยนต์ในฝันของคุณ</b></h4>
+                                    <h4><b>ค้นหาจักรยานยนต์ในฝันของคุณ</b></h4>
                                     <h6 style="margin: 0px;">Find Your Dream Motorcycle</h6><br>
                                     <form action="{{URL::to('/motercycle')}}" method="get">
                                         <div class="select-list">
@@ -162,6 +162,19 @@
                                                             value="{{ $brand->brand }}" 
                                                             {{ request('brand') == $brand->brand ? 'selected' : ''   }}  >
                                                             {{ $brand->brand }} 
+                                                        </option>
+                                                    @endforeach 
+                                                </select>
+                                            </div>
+                                            <div class="select-list-item">
+                                                <p><b>ระบบเกียร์ / Gear</b></p>
+                                                <select name="model" id="model" class="form-control"  >
+                                                    <option value="" data-display="model">Select model</option>
+                                                    @foreach($motormodel as $ge)
+                                                        <option 
+                                                                value="{{ $ge->model }}" 
+                                                                {{ request('model') == $ge->model ? 'selected' : ''   }} >
+                                                        {{ $ge->model }} 
                                                         </option>
                                                     @endforeach 
                                                 </select>

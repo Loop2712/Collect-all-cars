@@ -68,21 +68,22 @@
 
                 <div class="col-12">
                     <hr>
+                    <h4 class="text-center">เปรียบเทียบราคากลางกรมขนส่งทางบก</h4>
                     <hr>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-2 text-center" >
                             <h4>Brand</h4>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 text-center">
                             <h4>Model</h4>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3 text-center">
                             <h4>Submodel</h4>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 text-center">
                             <h4>Year</h4>                        
                         </div>
-                        <div class="col-3">
+                        <div class="col-3 text-center">
                             <h4>Price</h4>
                         </div>
                     </div>
