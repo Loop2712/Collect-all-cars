@@ -147,12 +147,12 @@
                                 <nav class="header__menu" style="text-align:left;margin-left: 20px;">
                                     <ul>
                                         <li>
-                                        <a href="{{ url('/car') }}" ><h4><b><i class="fas fa-car"></i> รถยนต์</b></h4> </a>
+                                        <a href="{{ url('/car') }}" style="font-size:15px;"><b><i class="fas fa-car"></i> รถยนต์</b> </a>
                                         </li>
                                         <li><h9 style="border-right:3px solid #000; margin-left: -15px;">&nbsp</h9></li>
                                         
                                         <li style="margin-left: 20px;">
-                                        <a href="{{ url('/motercycle') }}" ><h4><b><i class="fas fa-motorcycle"></i> รถจักรยานยนต์</b></h4></a>
+                                        <a href="{{ url('/motercycle') }}" style="font-size:15px;"><b><i class="fas fa-motorcycle"></i> รถจักรยานยนต์</b></a>
                                         </li>
                                     </ul>
                                 </nav>
