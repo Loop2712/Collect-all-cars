@@ -142,10 +142,10 @@
         max: 4000,
         values: [800, 3200],
         slide: function (event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1] + ".100");
+            $("#amount").val( ui.values[0] + " บาท" + " - " + ui.values[1] + " บาท");
         }
     });
-    $("#amount").val("$" + $(".price-range").slider("values", 0) + " - $" + $(".price-range").slider("values", 1) + ".100");
+    $("#amount").val( $(".price-range").slider("values", 0)+ " บาท" + " - " + $(".price-range").slider("values", 1) + " บาท");
 
     var carSlider = $(".car-price-range");
     carSlider.slider({
@@ -154,10 +154,10 @@
         max: 4000,
         values: [900, 3000],
         slide: function (event, ui) {
-            $("#caramount").val("$" + ui.values[0] + " - $" + ui.values[1] + ".100");
+            $("#caramount").val( ui.values[0] + " บาท" +  " - " + ui.values[1] + " บาท");
         }
     });
-    $("#caramount").val("$" + $(".car-price-range").slider("values", 0) + " - $" + $(".car-price-range").slider("values", 1) + ".100");
+    $("#caramount").val( $(".car-price-range").slider("values", 0)+ " บาท" + " - " + $(".car-price-range").slider("values", 1) + " บาท");
 
     var filterSlider = $(".filter-price-range");
     filterSlider.slider({
@@ -166,10 +166,10 @@
         max: 1200000,
         values: [180000, 1000000],
         slide: function (event, ui) {
-            $("#filterAmount").val("[ " + "$" + ui.values[0] + " - $" + ui.values[1] + " ]");
+            $("#filterAmount").val("[ "  + ui.values[0] + " บาท" + " - " + ui.values[1] + " บาท" + " ]");
         }
     });
-    $("#filterAmount").val("[ " + "$" + $(".filter-price-range").slider("values", 0) + " - $" + $(".filter-price-range").slider("values", 1) + " ]");
+    $("#filterAmount").val("[ "  + $(".filter-price-range").slider("values", 0) + " บาท" + " - " + $(".filter-price-range").slider("values", 1) + " บาท" + " ]");
 
     /*--------------------------
         Select
