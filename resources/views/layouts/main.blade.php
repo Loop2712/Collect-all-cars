@@ -147,12 +147,12 @@
                                 <nav class="header__menu" style="text-align:left;margin-left: 20px;">
                                     <ul>
                                         <li>
-                                        <a href="{{ url('/car') }}" style="font-size:15px;"><b><i class="fas fa-car"></i> รถยนต์</b> </a>
+                                        <a href="{{ url('/car') }}" style="font-size:19px;"><b><i class="fas fa-car"></i> รถยนต์</b> </a>
                                         </li>
                                         <li><h9 style="border-right:3px solid #000; margin-left: -15px;">&nbsp</h9></li>
                                         
                                         <li style="margin-left: 20px;">
-                                        <a href="{{ url('/motercycle') }}" style="font-size:15px;"><b><i class="fas fa-motorcycle"></i> รถจักรยานยนต์</b></a>
+                                        <a href="{{ url('/motercycle') }}" style="font-size:19px;"><b><i class="fas fa-motorcycle"></i> รถจักรยานยนต์</b></a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -162,7 +162,7 @@
                 </div>
                 <div class="col-lg-5">
                         <div class="header__nav" style="padding: 30px;">
-                                <nav class="header__menu" style="text-align:left;margin: 10px 0px 0px 20px;">
+                                <nav class="header__menu" style="text-align:left;margin: 10px 0px 0px 0px;">
                             
                             <ul>
                             @guest
@@ -170,7 +170,7 @@
                                 <a href="{{ url('/wishlist') }}"><i class="far fa-heart"></i></a>
                             </li>
                             <li >
-                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}"  style="font-size:15px;">เข้าสู่ระบบ / สมัครสมาชิก</a>
+                                <a  href="{{ route('login') }}?redirectTo={{ url()->full() }}"  style="font-size:18px;">เข้าสู่ระบบ / สมัครสมาชิก</a>
                             </li>
                             
                                 <a href="{{ url('/sell') }}" class="primary-btn" style="color: white;margin-left: 15px;border-radius: 10px;">ลงขาย</a>
