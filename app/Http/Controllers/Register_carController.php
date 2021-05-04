@@ -228,8 +228,14 @@ class Register_carController extends Controller
             ->where('province', '!=',"" )
             ->groupBy('province')
             ->get();
+        $type_array = CarModel::selectRaw('type,count(type) as count')
+            ->orderByRaw('count DESC')
+            ->where('type', '!=',"" )
+            ->groupBy('type')
+            ->limit(10)
+            ->get();
 
-        return view('register_car.show', compact('register_car','location_array'));
+        return view('register_car.show', compact('register_car','location_array','type_array'));
     }
 
     /**

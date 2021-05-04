@@ -48,6 +48,26 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th> <label  class="control-label">{{ 'ประเภท / CarType' }}</label>  </th>
+                                        <td> 
+                                            <div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
+                                                <select name="type" id="type" class="form-control" required>
+                                                        <option value="" selected > - กรุณาเลือกจังหวัด / Please select car type - </option> 
+                                                        @foreach($type_array as $ty)
+                                                            <option 
+                                                                alue="{{ $ty->type }}" 
+                                                                {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
+                                                                {{ $ty->type }} 
+                                                            </option>
+                                                        @endforeach                                    
+                                                </select>
+                                                {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
+                                            </div> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    
+                                    <tr>
                                         <th> <label  class="control-label">{{ 'ระบบเกียร์ / Gear System' }}</label> </th>
                                         <td>
                                             <div class="form-group">

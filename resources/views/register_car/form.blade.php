@@ -124,24 +124,6 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="generation" class="control-label">{{ 'ประเภทรถ / Car type' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4">
-
-                <select  class="form-control"  name="typecar" id="typecar" required>
-                        <option value="" data-display="ประเภทรถ">-กรุณาเลือกประเภทรถ / please selete car type-</option>
-                            @foreach($type_array as $ty)
-                        <option 
-                            value="{{ $ty->type }}" 
-                            {{ request('typecar') == $ty->type ? 'selected' : ''   }} >
-                            {{ $ty->type }} 
-                        </option>
-                            @endforeach
-                    </select>
-                    
-                </div>
-                
-                <div class="col-12 col-md-2">
                     <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration number' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
