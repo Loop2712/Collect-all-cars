@@ -91,10 +91,13 @@
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="row">  
-                                                <div class="col-4 col-md-3">
-                                                        <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                <div class="d-none d-lg-block col-md-4" >
+                                                <img width="50" style="margin-left:13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                     </div> 
-                                                    <div class="col-8 col-md-9">
+                                                <div class="d-block d-md-none col-4">
+                                                        <img width="50" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                    </div> 
+                                                    <div class="col-7 col-md-8">
                                                         <h4>{{ $item->brand }}</h4>
                                                         <p>{{ $item->generation }} </p>
                                                     </div>
