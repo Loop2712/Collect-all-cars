@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
 use App\Models\Middle_price_car;
 use Illuminate\Http\Request;
-
+use App\CarModel;
 class Middle_price_carController extends Controller
 {
     /**
@@ -17,21 +16,58 @@ class Middle_price_carController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
+        $brand     = $request->get('brand');
+        $model     = $request->get('model');
+        $year      = $request->get('year');
+        $submodel  = $request->get('submodel');
+        $perPage   = 44;
 
-        if (!empty($keyword)) {
-            $middle_price_car = Middle_price_car::where('brand', 'LIKE', "%$keyword%")
-                ->orWhere('model', 'LIKE', "%$keyword%")
-                ->orWhere('submodel', 'LIKE', "%$keyword%")
-                ->orWhere('year', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
+        $pricemin = empty($pricemin) ? 0 :$pricemin;
+        $pricemax = empty($pricemax) ? 99000000 :$pricemax;
+
+        $needFilter =  !empty($brand)       || !empty($model)        || !empty($submodel)    || !empty($year); 
+
+        if($needFilter){
+            $Middle_price_car = Middle_price_car::Where('brand', 'LIKE', "%$brand%")
+                ->Where('model',     'LIKE', "%$model%")
+                ->Where('year',     'LIKE', "%$year%")
+                ->Where('submodel',     'LIKE', "%$submodel%")
+                ->whereBetween('price', [$pricemin,$pricemax])
+                ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
+        }else    if (!empty($keyword)) {
+            $Middle_price_car = Middle_price_car::where()
+                ->orWhere('model', 'LIKE', "%$keyword%")
+                ->orWhere('submodel', 'LIKE', "%$search%")
+                ->orWhere('brand', 'LIKE', "%$keyword%")
+                ->paginate($perPage);
         } else {
-            $middle_price_car = Middle_price_car::latest()->paginate($perPage);
+            $Middle_price_car = Middle_price_car::orderBy('created_at', 'asc')
+                ->paginate($perPage);
         }
 
-        return view('middle_price_car.index', compact('middle_price_car'));
+        $Middelbrand = Middle_price_car::selectRaw('brand,count(brand) as count')
+            ->where('brand', '!=',"" )
+            ->groupBy('brand')
+            ->get();
+
+        $Middelmodel = Middle_price_car::selectRaw('model,count(model) as count')
+            ->where('model', '!=',"" )
+            ->groupBy('model')
+            ->get();
+
+        $Middelsubmodel = Middle_price_car::selectRaw('submodel,count(submodel) as count')
+            ->where('submodel', '!=',"" )
+            ->groupBy('submodel')
+            ->get();
+
+
+
+        
+
+        return view('middle_price_car.index', compact('Middle_price_car','Middelbrand','Middelmodel','Middelsubmodel'));
+
+        
     }
 
     /**
