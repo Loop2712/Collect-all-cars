@@ -1,13 +1,41 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Promotion</div>
+                    <div class="card-header">
+                        <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($promotion as $item)
+                            <div class="col-12 col-md-3" style="padding: 15px;">
+                                <div class="card main-shadow">
+                                    <img src="{{ $item->photo }}" class="card-img-top" style="padding: 10px;">
+                                    <div class="card-body">
+                                        <div>
+                                            <h4 class="card-title">{{ $item->company }}</h4>
+                                            <p style="font-size: 15px;" class="card-title"><b>{{ $item->titel }}</b></p>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-text"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                     <div class="card-body">
                         <a href="{{ url('/promotion/create') }}" class="btn btn-success btn-sm" title="Add New Promotion">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New

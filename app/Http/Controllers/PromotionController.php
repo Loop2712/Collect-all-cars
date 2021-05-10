@@ -25,6 +25,7 @@ class PromotionController extends Controller
                 ->orWhere('titel', 'LIKE', "%$keyword%")
                 ->orWhere('detail', 'LIKE', "%$keyword%")
                 ->orWhere('photo', 'LIKE', "%$keyword%")
+                ->orWhere('type', 'LIKE', "%$keyword%")
                 ->orWhere('time_period', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {

@@ -279,7 +279,7 @@
             "action": {
               "type": "uri",
               "label": "ดูเพิ่มเติม",
-              "uri": "https://market.viicheck.com/promotion?type=carpromotion"
+              "uri": "https://market.viicheck.com/promotion?search=carpromotion"
             }
           },
           {
