@@ -538,8 +538,8 @@
                 </div>
             </div>
             <img style="position: absolute;left: 34%;top: 38%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
-            <img style="position: absolute;left: 8%;top: 59%;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-            
+            <img style="position: absolute;margin: -100px -140px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+
         </center>
       </div>
       <div class="modal-footer">
