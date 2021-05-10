@@ -197,7 +197,7 @@
                                                             <br>
                                                             <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
                                                             <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="position: absolute;right: 14%;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <img style="margin-top: -110px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
@@ -213,7 +213,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <hr style="margin-top: -5px;">
+                                                <hr style="margin-top: -25px;">
                                             </div>
                                         </div>
 
