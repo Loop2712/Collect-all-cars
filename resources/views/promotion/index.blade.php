@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    <!-- <div class="card-body">
                         <a href="{{ url('/promotion/create') }}" class="btn btn-success btn-sm" title="Add New Promotion">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
@@ -83,7 +83,7 @@
                             <div class="pagination-wrapper"> {!! $promotion->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
