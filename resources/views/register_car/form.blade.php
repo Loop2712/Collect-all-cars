@@ -249,7 +249,7 @@
                                 <h5><i class="fas fa-phone text-success"></i>&nbsp; {{ Auth::user()->phone }}</h5>
                                 <p></p>
                                 <h5><i class="fas fa-venus-mars" style="color: #6600FF"></i></i>&nbsp; {{ Auth::user()->sex }}</h5>
-                                <h5><i class="fas fa-map-marked-alt" style="color: #FF0033"></i></i>&nbsp; {{ Auth::user()->location_P }}&nbsp;&nbsp; {{ Auth::user()->location_A }}</h5>
+                                <h5><i class="fas fa-map-marked-alt" style="color: #FF0033"></i></i>&nbsp; {{ Auth::user()->location_A }}&nbsp;&nbsp; {{ Auth::user()->location_P }}</h5>
                                 <input class="d-none form-control" name="name" type="text" id="name" value="{{ isset($register_car->name) ? $register_car->name : Auth::user()->name}}" required readonly>
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                             </div>
