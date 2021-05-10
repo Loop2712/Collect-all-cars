@@ -1,7 +1,7 @@
 {
     "type": "flex",
     "altText": "โปรโมชั่น",
-    "contents": {
+    "contents":{
   "type": "carousel",
   "contents": [
     {
@@ -260,30 +260,6 @@
               }
             ],
             "margin": "md"
-          }
-        ]
-      }
-    },
-    {
-      "type": "bubble",
-      "size": "kilo",
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "filler"
-          },
-          {
-            "type": "button",
-            "action": {
-              "type": "uri",
-              "label": "ดูเพิ่มเติม",
-              "uri": "https://market.viicheck.com/promotion?type=carpromotion"
-            }
-          },
-          {
-            "type": "filler"
           }
         ]
       }
