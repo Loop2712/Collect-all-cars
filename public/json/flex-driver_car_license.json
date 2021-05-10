@@ -43,6 +43,25 @@
               "label": "action",
               "uri": "https://market.viicheck.com/storage/ccaarr"
             }
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://market.viicheck.com/img/icon/zoom-in.png",
+                "size": "xxl"
+              }
+            ],
+            "position": "absolute",
+            "offsetBottom": "xs",
+            "offsetEnd": "35px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://market.viicheck.com/storage/ccaarr"
+            }
           }
         ]
       },
