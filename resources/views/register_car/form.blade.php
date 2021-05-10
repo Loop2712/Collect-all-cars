@@ -1,20 +1,49 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <!-- เบอร์โทร เอาไว้สำหรับแสดงข้อมูลต่อผู้เรียกรถ-->
-                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone" type="hidden" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}" readonly>
-                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+            @if(empty(Auth::user()->phone) or empty(Auth::user()->location_P) or empty(Auth::user()->location_A))
+            <div id="input_information">
+                <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
+                <div class="row">
+                    <div class="col-12 col-md-4 d-none d-lg-block">
+                        <label  class="control-label">{{ 'จังหวัดที่ท่านอยู่ปัจจุบัน / Province your present' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
-                    <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
-                        <input class="form-control" name="sex" type="hidden" id="sex" value="{{ isset($register_car->sex) ? $register_car->sex :  Auth::user()->sex }}" required readonly>
-                        {!! $errors->first('sex', '<p class="help-block">:message</p>') !!}
+                    <div class="col-12 col-md-4 d-none d-lg-block">
+                        <label  class="control-label">{{ 'อำเภอที่ท่านอยู่ปัจจุบัน / District your present' }}</label><span style="color: #FF0033;"> *</span>
+                    </div>
+                    <div class="col-12 col-md-4 d-none d-lg-block">
+                        <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="form-group {{ $errors->has('location_P') ? 'has-error' : ''}}">
+                            <select name="location_P" id="location_P" class="form-control" required>
+                                    <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                            </select>
+                            {!! $errors->first('location_P', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="form-group {{ $errors->has('location_A') ? 'has-error' : ''}}">
+                            <select name="location_A" id="location_A" class="form-control" required>
+                                    <option value="" selected > - กรุณาเลือกอำเภอ / Please select province - </option> 
+                                                                       
+                            </select>
+                            {!! $errors->first('location_A', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+                            <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                            {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                </div>
+                <hr>
             </div>
-            <br>
+            @endif
+            
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
             <br><br>
             <h4>
@@ -171,25 +200,7 @@
                         {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-
-                <div class="col-12 col-md-2">
-                    <label for="location" class="control-label">{{ 'จังหวัดที่ท่านอยู่ปัจจุบัน / Province your present' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
-                        <select name="location" id="location" class="form-control" required>
-                                <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
-                                @foreach($location_array as $lo)
-                                <option 
-                                value="{{ $lo->province }}" 
-                                {{ request('province') == $lo->province ? 'selected' : ''   }} >
-                                {{ $lo->province }} 
-                                </option>
-                                @endforeach                                     
-                        </select>
-                        {!! $errors->first('location', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
+                
 
             </div>
             
@@ -433,12 +444,6 @@
             <div class="form-group {{ $errors->has('active') ? 'has-error' : ''}}">
                 <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($register_car->active) ? $register_car->active : 'Yes'}}"  readonly>
                 {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
-            </div>
-
-            <div class="d-none form-group {{ $errors->has('year') ? 'has-error' : ''}}">
-                <label for="year" class="control-label">{{ 'ปี่ที่ผลิตรถยนต์' }}</label>
-                <input class="form-control" name="year" type="text" id="year" value="{{ isset($register_car->year) ? $register_car->year : ''}}" placeholder="ปี่ที่ผลิตรถยนต์ของคุณ">
-                {!! $errors->first('year', '<p class="help-block">:message</p>') !!}
             </div>
 
         </div> 

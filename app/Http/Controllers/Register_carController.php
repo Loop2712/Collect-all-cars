@@ -206,6 +206,17 @@ class Register_carController extends Controller
                 break;
 
         }
+        // echo "<pre>";
+        // print_r($requestData) ;
+        // echo "<pre>";
+        // exit();
+        DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->update([
+                    'location_P' => $requestData['location_P'],
+                    'location_A' => $requestData['location_A'],
+                    'phone' => $requestData['phone']
+                ]);
 
         Register_car::create($requestData);
 
