@@ -2,46 +2,52 @@
     <div class="row">
         <div class="col-12">
             @if(empty(Auth::user()->phone) or empty(Auth::user()->location_P) or empty(Auth::user()->location_A))
-            <div id="input_information">
-                <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
-                <div class="row">
-                    <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'จังหวัดที่ท่านอยู่ปัจจุบัน / Province your present' }}</label><span style="color: #FF0033;"> *</span>
+                <div id="input_information">
+                    <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
+                    <div class="row">
+                        <div class="col-12 col-md-4 d-none d-lg-block">
+                            <label  class="control-label">{{ 'จังหวัดที่ท่านอยู่ปัจจุบัน / Province your present' }}</label><span style="color: #FF0033;"> *</span>
+                        </div>
+                        <div class="col-12 col-md-4 d-none d-lg-block">
+                            <label  class="control-label">{{ 'อำเภอที่ท่านอยู่ปัจจุบัน / District your present' }}</label><span style="color: #FF0033;"> *</span>
+                        </div>
+                        <div class="col-12 col-md-4 d-none d-lg-block">
+                            <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'อำเภอที่ท่านอยู่ปัจจุบัน / District your present' }}</label><span style="color: #FF0033;"> *</span>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group {{ $errors->has('location_P') ? 'has-error' : ''}}">
+                                <select name="location_P" id="location_P" class="form-control" required onchange="show_location_A();">
+                                        <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                                </select>
+                                {!! $errors->first('location_P', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group {{ $errors->has('location_A') ? 'has-error' : ''}}">
+                                <select name="location_A" id="location_A" class="form-control" required>
+                                        <option value="" selected > - กรุณาเลือกอำเภอ / Please select province - </option> 
+                                                                           
+                                </select>
+                                {!! $errors->first('location_A', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+                                <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                                {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
-                    </div>
+                    <hr>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group {{ $errors->has('location_P') ? 'has-error' : ''}}">
-                            <select name="location_P" id="location_P" class="form-control" required onchange="show_location_A();">
-                                    <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
-                            </select>
-                            {!! $errors->first('location_P', '<p class="help-block">:message</p>') !!}
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group {{ $errors->has('location_A') ? 'has-error' : ''}}">
-                            <select name="location_A" id="location_A" class="form-control" required>
-                                    <option value="" selected > - กรุณาเลือกอำเภอ / Please select province - </option> 
-                                                                       
-                            </select>
-                            {!! $errors->first('location_A', '<p class="help-block">:message</p>') !!}
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                            <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
-                            {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
+            @else
+                <input class="form-control" name="location_P" type="hidden" id="location_P" value="{{ isset($register_car->location_P) ? $register_car->location_P :  Auth::user()->location_P }}" readonly>
+
+                <input class="form-control" name="location_A" type="hidden" id="location_A" value="{{ isset($register_car->location_A) ? $register_car->location_A :  Auth::user()->location_A }}" readonly>
+
+                <input class="form-control" name="phone" type="hidden" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" readonly>
             @endif
             
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
