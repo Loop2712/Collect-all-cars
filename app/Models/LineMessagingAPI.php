@@ -711,6 +711,8 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TIME4",$time_period[4],$string_json);
                 $string_json = str_replace("https://market.viicheck.com/link4",$link[4],$string_json);
 
+                $string_json = str_replace("carpromotion","car",$string_json);
+
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
 
@@ -761,6 +763,8 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TITLE4",$titel[4],$string_json);
                 $string_json = str_replace("TIME4",$time_period[4],$string_json);
                 $string_json = str_replace("https://market.viicheck.com/link4",$link[4],$string_json);
+                
+                $string_json = str_replace("carpromotion","motorcycle",$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
