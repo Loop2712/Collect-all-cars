@@ -67,11 +67,6 @@
             "margin": "md"
           }
         ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link1"
       }
     },
     {
@@ -137,11 +132,6 @@
             "margin": "md"
           }
         ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link2"
       }
     },
     {
@@ -207,11 +197,6 @@
             "margin": "md"
           }
         ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link3"
       }
     },
     {
@@ -277,11 +262,30 @@
             "margin": "md"
           }
         ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://market.viicheck.com/link4"
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "filler"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ดูเพิ่มเติม",
+              "uri": "https://market.viicheck.com/promotion?type=carpromotion"
+            }
+          },
+          {
+            "type": "filler"
+          }
+        ]
       }
     }
   ]
