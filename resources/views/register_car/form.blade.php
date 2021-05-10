@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('location_P') ? 'has-error' : ''}}">
-                            <select name="location_P" id="location_P" class="form-control" required>
+                            <select name="location_P" id="location_P" class="form-control" required onchange="show_location_A();">
                                     <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
                             </select>
                             {!! $errors->first('location_P', '<p class="help-block">:message</p>') !!}
@@ -551,13 +551,14 @@
         console.log("START");
         showCar_brand();
         showMotor_brand();   
+        show_location_P();
     });
     function showCar_brand(){
         //PARAMETERS
         fetch("{{ url('/') }}/api/car_brand")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 //UPDATE SELECT OPTION
                 let input_car_brand = document.querySelector("#input_car_brand");
                     input_car_brand.innerHTML = "";
@@ -583,7 +584,7 @@
         fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 // //UPDATE SELECT OPTION
                 let input_car_model = document.querySelector("#input_car_model");
                     input_car_model.innerHTML = "";
@@ -607,7 +608,7 @@
         fetch("{{ url('/') }}/api/motor_brand")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 //UPDATE SELECT OPTION
                 let input_motor_brand = document.querySelector("#input_motor_brand");
                     input_motor_brand.innerHTML = "";
@@ -633,7 +634,7 @@
         fetch("{{ url('/') }}/api/motor_brand/"+input_motor_brand.value+"/motor_model")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 // //UPDATE SELECT OPTION
                 let input_motor_model = document.querySelector("#input_motor_model");
                     input_motor_model.innerHTML = "";
@@ -679,8 +680,8 @@
         let registration_number = document.querySelector("#registration_number");
         let province = document.querySelector("#province");
 
-        console.log(registration_number);
-        console.log(province);
+        // console.log(registration_number);
+        // console.log(province);
 
         let reg_num = document.querySelector("#reg_num");
             reg_num.innerHTML = registration_number.value;
@@ -691,5 +692,44 @@
             reg_num_mo.innerHTML = registration_number.value;
         let reg_province_mo = document.querySelector("#reg_province_mo");
             reg_province_mo.innerHTML = province.value;
+    }
+
+    function show_location_P(){
+        fetch("{{ url('/') }}/api/location/show_location_P")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let location_P = document.querySelector("#location_P");
+                    // location_P.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.province;
+                    option.value = item.province;
+                    location_P.add(option);
+                }
+            });
+            return location_P.value;
+    }
+
+    function show_location_A(){
+        let location_P = document.querySelector("#location_P");
+        fetch("{{ url('/') }}/api/location/"+location_P.value+"/show_location_A")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let location_A = document.querySelector("#location_A");
+                    location_A.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.amphoe;
+                    option.value = item.amphoe;
+                    location_A.add(option);
+                }
+            });
+            return location_A.value;
     }
 </script>

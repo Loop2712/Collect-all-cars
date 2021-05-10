@@ -28,5 +28,29 @@ class LocationController extends Controller
         	return $check_news;
         }
     }
+
+    public function show_location_P()
+    {
+
+        $location_P = DB::table('districts')
+                        ->select('province')
+                        ->groupBy('province')
+                        ->orderBy('province', 'asc')
+                        ->get();
+
+        return $location_P;
+    }
+
+    public function show_location_A($location_P)
+    {
+
+        $location_A = DB::table('districts')
+                        ->select('amphoe')
+                        ->where('province', $location_P)
+                        ->groupBy('amphoe')
+                        ->orderBy('amphoe', 'asc')
+                        ->get();
+        return $location_A;
+    }
     
 }

@@ -38,6 +38,10 @@ Route::get('/carbrand/{brand}/carmodel','API\SellcarController@CarModel');
 Route::get('/location/{lat}/{lng}/province','API\LocationController@search_location');
 Route::get('/location/{lat}/{lng}/check_news','API\LocationController@check_news');
 
+Route::get('/location/show_location_P','API\LocationController@show_location_P');
+Route::get('/location/{location_P}/show_location_A','API\LocationController@show_location_A');
+
+
 Route::get('/check_user/{id_user}','API\PartnersController@check_user');
 Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersController@put_email');
 Route::get('/check_username/{put_username}/{id_user}','API\PartnersController@check_username');
