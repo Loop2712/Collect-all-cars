@@ -1,6 +1,101 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
+            <!-- รถซ้ำ -->
+            <!-- Button trigger modal -->
+            <button id="btn_repeatedly" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#not_system">
+              Launch static backdrop modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="not_system" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <center>
+                        <img width="50%" src="{{ asset('/img/stickerline/PNG/17.png') }}">
+                        <br><br>
+                        <h5 class="text-danger">รถหมายเลขทะเบียนนี้ท่านลงทะเบียนแล้วค่ะ</h5>
+                        <p style="line-height: 2;">กรุณาตรวจสอบใหม่อีกครั้งค่ะ</p>
+                        <h5 class="text-danger">This car registration number has been registered.</h5>
+                        <p style="line-height: 2;">Please check and try again.</p>
+                        <br>
+                    </center>
+                  </div>
+                  <div class="modal-footer d-none">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ยืนยันการลงทะเบียน -->
+            <!-- Button trigger modal -->
+            <button id="btn_confirm" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#confirm">
+              Launch static backdrop modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirm" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <!-- แสดงเฉพาะคอม -->
+                  <div class="modal-body d-none d-lg-block">
+                    <center>
+                        <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
+                        <p style="line-height: 2;">You confirm to register this registration number ?</p>
+                        <br><br>
+                        <div style="position: relative; z-index: 5">
+                            <div style="padding-top: 8px;">
+                                <h4 style="margin-top: 15px;"><b id="reg_num"></b></h4>
+                                <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
+                            </div>
+                        </div>
+                        <img style="position: absolute;left: 40%;top: 33%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+                        <img style="position: absolute;right: 20%;top: 55%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                        
+                    </center>
+                  </div>
+                  <!-- แสดงเฉพาะมือถือ -->
+                  <div class="modal-body d-block d-md-none">
+                    <center>
+                        <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
+                        <p style="line-height: 2;">You confirm to register this registration number ?</p>
+                        <br>
+                        <div style="position: relative; z-index: 5">
+                            <div style="padding-top: 8px;">
+                                <h4 style="margin-top: 15px;"><b id="reg_num_mo"></b></h4>
+                                <p id="reg_province_mo" style="font-size: 17px;" class="text-dark"></p>
+                            </div>
+                        </div>
+                        <img style="position: absolute;left: 34%;top: 38%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+                        <img style="position: absolute;margin: -100px -140px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+
+                    </center>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">แก้ไข</button>
+                    <div class="form-group">
+                        <input id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             @if(empty(Auth::user()->phone) or empty(Auth::user()->location_P) or empty(Auth::user()->location_A))
                 <div id="input_information">
                     <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
@@ -452,104 +547,11 @@
                 <input class="form-control" name="active" type="hidden" id="active" value="{{ isset($register_car->active) ? $register_car->active : 'Yes'}}"  readonly>
                 {!! $errors->first('active', '<p class="help-block">:message</p>') !!}
             </div>
-            <!-- รถซ้ำ -->
-            <!-- Button trigger modal -->
-            <button id="btn_repeatedly" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#not_system">
-              Launch static backdrop modal
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="not_system" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <center>
-                        <img width="50%" src="{{ asset('/img/stickerline/PNG/17.png') }}">
-                        <br><br>
-                        <h5 class="text-danger">รถหมายเลขทะเบียนนี้ท่านลงทะเบียนแล้วค่ะ</h5>
-                        <p style="line-height: 2;">กรุณาตรวจสอบใหม่อีกครั้งค่ะ</p>
-                        <h5 class="text-danger">This car registration number has been registered.</h5>
-                        <p style="line-height: 2;">Please check and try again.</p>
-                        <br>
-                    </center>
-                  </div>
-                  <div class="modal-footer d-none">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ยืนยันการลงทะเบียน -->
-            <!-- Button trigger modal -->
-            <button id="btn_confirm" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#confirm">
-              Launch static backdrop modal
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="confirm" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <!-- แสดงเฉพาะคอม -->
-                  <div class="modal-body d-none d-lg-block">
-                    <center>
-                        <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
-                        <p style="line-height: 2;">You confirm to register this registration number ?</p>
-                        <br><br>
-                        <div style="position: relative; z-index: 5">
-                            <div style="padding-top: 8px;">
-                                <h4 style="margin-top: 15px;"><b id="reg_num"></b></h4>
-                                <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
-                            </div>
-                        </div>
-                        <img style="position: absolute;left: 40%;top: 33%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
-                        <img style="position: absolute;right: 20%;top: 55%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-                        
-                    </center>
-                  </div>
-                  <!-- แสดงเฉพาะมือถือ -->
-                  <div class="modal-body d-block d-md-none">
-                    <center>
-                        <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
-                        <p style="line-height: 2;">You confirm to register this registration number ?</p>
-                        <br>
-                        <div style="position: relative; z-index: 5">
-                            <div style="padding-top: 8px;">
-                                <h4 style="margin-top: 15px;"><b id="reg_num_mo"></b></h4>
-                                <p id="reg_province_mo" style="font-size: 17px;" class="text-dark"></p>
-                            </div>
-                        </div>
-                        <img style="position: absolute;left: 34%;top: 38%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
-                        <img style="position: absolute;margin: -100px -140px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-
-                    </center>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">แก้ไข</button>
-                    <div class="form-group">
-                        <input id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
         </div> 
     </div>
 </div>
+
 
 
 <script>
