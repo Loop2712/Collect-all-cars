@@ -26,7 +26,7 @@
                     
                     </div><br>
                     <div class="row" style="margin: 0px -5px 0px 10px">
-                            <div class="col-sm-3"> 
+                            <div class="col-sm-3 col-12" > 
                             <form action="{{URL::to('/middle_price_car')}}" method="get">
                                 <select name="brand" class=" form-control" id="input_car_brand"  onchange="showCar_model();
                                     if(this.value=='อื่นๆ'){ 
@@ -43,32 +43,33 @@
                                     @else
                                         <option value="" selected>ยี่ห้อทั้งหมด</option> 
                                     @endif
-                                    <br>
+                                   
                                     {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
                                 </select>
                             </div>
-                            <div class="col-sm-3"> 
+
+                            <div class="col-sm-3 col-12"> 
                                 <select name="generation" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
                                         document.querySelector('#generation_input').classList.remove('d-none'),
                                         document.querySelector('#generation_input').focus();
                                     }else{ 
                                         document.querySelector('#generation_input').classList.add('d-none');}">
                                     <option value="" selected>รุ่นรถทั้งหมด</option>     
-                                        <br> 
+                                        
                                         {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                                 </select>
                             </div>
-                            
-                            <div class="col-sm-3"> 
-                                <input class="form-control" type="text" name="submodel" id="submodel" placeholder="รุ่นย่อย" value="{{ request('sub_model') }}">
+                           
+                            <div class="col-sm-3 col-12"> 
+                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="รุ่นย่อย" value="{{ request('sub_model') }}">
                             </div>
-                            <div class="col-sm-3" > 
+                            <div class="col-sm-3 col-12" > <br class="d-block d-md-none">
                             <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
                             <a class="btn btn-danger" href="{{URL::to('/middle_price_car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
                             </div>
                         </form>
                     </div>
-                    
+                    <br class="d-block d-md-none">
                             <table class="fl-table">
                                 <thead>
                                     <tr>
@@ -103,7 +104,7 @@
                             <div class="pagination-wrapper"> {!! $Middle_price_car->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
-                    <bre>
+                    <br>
                 </div>
             </div>
         </div>
