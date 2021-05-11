@@ -68,7 +68,7 @@
                             </div>
                         </form>
                     </div>
-                    <br>
+                    
                             <table class="fl-table">
                                 <thead>
                                     <tr>
