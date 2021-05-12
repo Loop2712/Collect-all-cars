@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 // VIICHECK.COM
 Route::get('/', function () {
-	
+
+    return view('home_page');
+});
+Route::get('/home', function () {
+
     return view('home_page');
 });
 
@@ -109,7 +113,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/news/create', 'NewsController@create');
 });
 
-// Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('/market', 'CarController@main');
 Route::get('/market/car', 'CarController@index');

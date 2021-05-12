@@ -34,16 +34,15 @@
                 <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
-                          <i class="fas fa-car-crash"></i>
+                          <i style="margin: 12px;" class="fas fa-car-crash"></i>
                           <h4>เหตุฉุกเฉิน</h4>
                       </div>
                       <div class="col-8">
                           <br>
                           <p>เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ
-                          แค่เพียงกดปุ่ม <b>"SOS"</b> จะมีเบอร์
-                          ที่จำเป็นแสดงขึ้นมา ไม่ว่าจะเป็น
-                          <b>จส.100 เหตุด่วนเหตุร้าย ไฟไหม้รถ</b>
-                          หรือแม้กระทั่ง <b>ตำรวจท่องเที่ยว</b></p>
+                          แค่เพียงคุณกดปุ่ม <b class="text-dark">"SOS"</b> เพียงเท่านี้จะมีเบอร์ที่จำเป็นแสดงขึ้นมา ไม่ว่าจะเป็น
+                          <b class="text-dark">จส.100 ไฟไหม้รถ เหตุด่วนเหตุร้าย</b>
+                          หรือแม้กระทั่ง <b class="text-dark">ตำรวจท่องเที่ยว</b></p>
                       </div>
                   </div>
                 </div>
@@ -51,12 +50,12 @@
                 <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
-                          <i class="fas fa-id-card-alt"></i>
+                          <i style="margin: 12px;" class="fas fa-id-card-alt"></i>
                           <h4>ติดต่อเจ้าของรถ</h4>
                       </div>
                       <div class="col-8">
                           <br>
-                          <p>เมื่อการ<b>จอดซ้อนคัน</b>ทำให้คุณไม่สบายใจ
+                          <p>เมื่อการ<b class="text-dark">จอดซ้อนคัน</b>ทำให้คุณไม่สบายใจ
                           เพียงแค่ลงทะเบียนกับเราแล้วนำ
                           สติ๊กเกอร์ไปติดที่ของรถเพียงเท่านี้
                           คุณก็สามารถเดินเที่ยวได้อย่างสบายใจ</p>
@@ -67,17 +66,17 @@
                 <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
-                          <i class="fas fa-user-lock"></i>
+                          <i style="margin: 12px;" class="fas fa-user-lock"></i>
                           <h4>เก็บรวบรวมข้อมูล</h4>
                       </div>
                       <div class="col-8">
                           <br>
                           <p>เก็บรวบรวมข้อมูลของคุณไว้ที่เดียว
-                          วันหมดอายุ <b>พรบ. / ประกัน</b>
+                          วันหมดอายุ <b class="text-dark">พรบ. / ประกัน</b>
                           เมื่อใกล้วันครบกำหนดระบบจะ
                           ทำการแจ้งเตือนและหายห่วงได้เลย
-                          เรื่อง <b>รักษาความเป็นส่วนตัว</b>
-                          <b>ของผู้ใช้บริการ</b> ในระบบของเรา</p>
+                          เรื่อง <b class="text-dark">รักษาความเป็นส่วนตัว</b>
+                          <b class="text-dark">ของผู้ใช้บริการ</b> ในระบบของเรา</p>
                       </div>
                   </div>
                 </div>
