@@ -306,10 +306,10 @@
           </div>
 
           <div class="col-lg-4 col-md-6 align-items-stretch mt-4">
-            <a href="https://market.viicheck.com/middle_price_car">
+            <a href="{{ url('/middle_price_car') }}">
               <div class="icon-box">
                 <div class="icon"><i class="fas fa-clipboard-check"></i></div>
-                <h4><a href="https://market.viicheck.com/middle_price_car">เช็คราคากลางกรมขนส่ง</a></h4>
+                <h4><a href="{{ url('/middle_price_car') }}">เช็คราคากลางกรมขนส่ง</a></h4>
                 <p>เมื่อคิดจะขายหรือขอสินเชื่อ</p>
                 <p>ก็สามารถเช็คราคากลางได้ตลอด</p>
               </div>
@@ -625,10 +625,10 @@
           </div>
 
           <div class="col-lg-4 col-md-6 align-items-stretch mt-4">
-            <a href="https://market.viicheck.com/middle_price_car">
+            <a href="{{ url('/middle_price_car') }}">
               <div class="icon-box" style="padding: 40px 15px;">
                 <div class="icon"><i class="fas fa-clipboard-check"></i></div>
-                <h4><a href="https://market.viicheck.com/middle_price_car">เช็คราคากลางกรมขนส่ง</a></h4>
+                <h4><a href="{{ url('/middle_price_car') }}">เช็คราคากลางกรมขนส่ง</a></h4>
                 <p>เมื่อคิดจะขายหรือขอสินเชื่อ</p>
                 <p>ก็สามารถเช็คราคากลางได้ตลอด</p>
               </div>
