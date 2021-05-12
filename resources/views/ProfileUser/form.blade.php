@@ -146,7 +146,9 @@
         <div class="col-6">
             <div class="float-right">
                 <br>
-                <a href="{{ url('/profile') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ</button></a>
+                <a href="{{ url('/profile') }}" class="btn btn-warning btn-sm" title="Back">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ
+                </a>
             </div>
         </div>
     </div>

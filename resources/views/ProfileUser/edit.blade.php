@@ -1,8 +1,8 @@
-@extends('layouts.main')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br><br><br>
     <div class="container">
-    <br><br>
         <div class="row">
         @include('layouts.sidebar')
             <div class="col-lg-9 col-md-9 order-lg-2 order-1">
@@ -32,4 +32,5 @@
             </div>
         </div>
     </div>
+    <br>
 @endsection

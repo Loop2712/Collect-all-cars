@@ -1,6 +1,7 @@
-@extends('layouts.main')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br><br><br>
 <div class="container">
 <div class="row flex-lg-nowrap">
 @include('layouts.sidebar')
@@ -14,7 +15,7 @@
                         <span style="font-size: 25px;" class="text-dark"><b>ข้อมูลของฉัน</b></span>
                         @if(Auth::check())
                             @if(Auth::user()->id == $data->id )
-                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" class="text-white float-right btn btn-warning main-shadow main-radius" title="Add New Register_car">
+                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" class="text-white float-right btn btn-warning main-shadow main-radius" >
                             <i class="fas fa-user-edit"></i> แก้ไขโปรไฟล์
                         </a>
                             @endif

@@ -83,12 +83,8 @@
               <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
               <a href="#" style="font-size: 18px;"><span><span id="input_name"></span></span> <i class="bi bi-chevron-down"></i></a>
               <ul>
-                <li class="dropdown"><a href="#"><span>📋 &nbsp;ข้อมูลของฉัน</span> <i class="bi bi-chevron-right"></i></a>
-                  <ul>
-                    <li><a href="{{ url('/profile') }}">🤵 โปรไฟล์</a></li>
-                    <li><a href="{{ url('/register_car') }}">🚗 รถของฉัน</a></li>
-                  </ul>
-                </li>
+                <li><a href="{{ url('/profile') }}">🤵 &nbsp;โปรไฟล์</a></li>
+                <li><a href="{{ url('/register_car') }}">🚗 &nbsp;รถของฉัน</a></li>
                 <li>
                     @if(Auth::check())
                         @if(Auth::user()->role == "admin" )
