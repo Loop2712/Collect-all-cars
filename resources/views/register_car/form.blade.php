@@ -101,10 +101,10 @@
                     <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
                     <div class="row">
                         <div class="col-12 col-md-4 d-none d-lg-block">
-                            <label  class="control-label">{{ 'จังหวัดที่ท่านอยู่ปัจจุบัน / Province your present' }}</label><span style="color: #FF0033;"> *</span>
+                            <label  class="control-label">{{ 'จังหวัดที่ท่านอยู่ปัจจุบัน / Province of your current address.' }}</label><span style="color: #FF0033;"> *</span>
                         </div>
                         <div class="col-12 col-md-4 d-none d-lg-block">
-                            <label  class="control-label">{{ 'อำเภอที่ท่านอยู่ปัจจุบัน / District your present' }}</label><span style="color: #FF0033;"> *</span>
+                            <label  class="control-label">{{ 'อำเภอที่ท่านอยู่ปัจจุบัน / District of your current address.' }}</label><span style="color: #FF0033;"> *</span>
                         </div>
                         <div class="col-12 col-md-4 d-none d-lg-block">
                             <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
@@ -113,7 +113,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="form-group {{ $errors->has('location_P') ? 'has-error' : ''}}">
-                                <select name="location_P" id="location_P" class="form-control" required onchange="show_location_A();">
+                                <select name="location_P" id="location_P" class="form-control" required onchange="show_location_A();change_location();">
                                         <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
                                 </select>
                                 {!! $errors->first('location_P', '<p class="help-block">:message</p>') !!}
@@ -122,7 +122,7 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group {{ $errors->has('location_A') ? 'has-error' : ''}}">
                                 <select name="location_A" id="location_A" class="form-control" required>
-                                        <option value="" selected > - กรุณาเลือกอำเภอ / Please select province - </option> 
+                                        <option value="" selected > - กรุณาเลือกอำเภอ / Please select district - </option> 
                                                                            
                                 </select>
                                 {!! $errors->first('location_A', '<p class="help-block">:message</p>') !!}
@@ -130,7 +130,7 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                                <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}">
+                                <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="กรุณาใส่เบอร์ของคุณ" pattern="[0-9]{10}">
                                 {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
@@ -144,6 +144,7 @@
 
                 <input class="form-control" name="phone" type="hidden" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" readonly>
             @endif
+                <input class="form-control" name="location" type="hidden" id="location" value="{{ isset($register_car->location) ? $register_car->location :  Auth::user()->location_P }}" readonly>
             
             <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
             <br><br>
@@ -717,7 +718,9 @@
                     option.value = item.province;
                     location_P.add(option);
                 }
+                
             });
+            
             return location_P.value;
     }
 
@@ -739,5 +742,13 @@
                 }
             });
             return location_A.value;
+    }
+
+    function change_location(){
+        let location = document.querySelector("#location");
+        let location_P = document.querySelector("#location_P");
+
+        location.value = location_P.value;
+        
     }
 </script>
