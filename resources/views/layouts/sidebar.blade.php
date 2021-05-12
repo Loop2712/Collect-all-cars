@@ -31,23 +31,28 @@
     <div class="col-12">
         <div class="row">
             <div class="col-6">
+            <ul class="nav nav-pills nav-pills-danger" role="tablist">
                 <div class="row">
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-danger bg-white main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
-                        <a class="text-danger" href="{{ url('/profile' ) }}">
+                    <div class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
+                    <li class="col-12 nav-item" >
+                        <a   href="{{ url('/profile' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_user.png' ) }}">
                                 </div>
-                                <div class="col-9">
-                                    <span style="font-size: 16px;"><b>ข้อมูล<br>ส่วนบุคคล</b></span>
+                                <div class=" col-9">
+                                    <span style="font-size: 16px;"><b>ข้อมูลส่วนบุคคล</b></span>
                                 </div>
+                                
                             </div>
+
                         </a>
+                        </li>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-white bg-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
-                        <a class="text-white" href="{{ url('/sell' ) }}">
+                    <div class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
+                        <a href="{{ url('/sell' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
@@ -59,11 +64,12 @@
                         </a>
                     </div>
                 </div>
+            </ui>
             </div>
             <div class="col-6">
                 <div class="row">
-                    <div class="col-10 btn btn-outline-white bg-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
-                        <a class="text-white" href="{{ url('/register_car' ) }}">
+                    <div class="col-10 btn btn-outline-danger  main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
+                        <a href="{{ url('/register_car' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_car-key2.png' ) }}">
@@ -75,8 +81,8 @@
                         </a>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-danger bg-white main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
-                        <a class="text-danger" href="{{ url('/motercycles' ) }}">
+                    <div class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
+                        <a href="{{ url('/motercycles' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
@@ -93,3 +99,22 @@
     </div>
     <br>
 </div>
+<style>
+    .nav-pills .nav-item .nav-link {
+    font-size: 12px;
+    color: #DC3545;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #DC3545;
+    padding: 5px 9px 5px 9px;
+}
+.nav-pills.nav-pills-danger .nav-item .nav-link.active, .nav-pills.nav-pills-danger .nav-item .nav-link.active:focus, .nav-pills.nav-pills-danger .nav-item .nav-link.active:hover {
+    background-color: #DC3545;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(244,67,54,.6);
+    color: #fff;
+}
+.call__text{
+
+    color: #DC3545;
+}
+</style>

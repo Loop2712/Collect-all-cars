@@ -58,30 +58,34 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-9 col-md-11">
-                                <button type="button" class="btn btn-danger main-shadow main-radius" onclick="
-                                document.querySelector('#img_show_car').classList.remove('d-none'),
-                                document.querySelector('#img_show_mortor').classList.add('d-none'),
+                            <div class="col-9 col-md-11" style="margin-top:-20px;">
+                            <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
+                                    <li class="nav-item" >
+                                        <a class="nav-link active " href="#" role="tab" data-toggle="tab" onclick="
+                                            document.querySelector('#img_show_car').classList.remove('d-none'),
+                                            document.querySelector('#img_show_mortor').classList.add('d-none'),
+                                            document.querySelector('#show_car').classList.remove('d-none'),
+                                            document.querySelector('#show_mortor').classList.add('d-none');">
+                                            <b style="font-size: 15px;">รถยนต์</b>
+                                        </a>
+                                    </li>&nbsp;
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
+                                                document.querySelector('#img_show_car').classList.add('d-none'),
+                                                document.querySelector('#img_show_mortor').classList.remove('d-none'),
 
-                                document.querySelector('#show_car').classList.remove('d-none'),
-                                document.querySelector('#show_mortor').classList.add('d-none');">
-                                    <b style="font-size: 15px; hover:rad;">รถยนต์</b>
-                                </button>
-                                <button type="button" class="btn btn-danger main-shadow main-radius text-danger bg-white"  onclick="
-                                document.querySelector('#img_show_car').classList.add('d-none'),
-                                document.querySelector('#img_show_mortor').classList.remove('d-none'),
-
-                                document.querySelector('#show_car').classList.add('d-none'),
-                                document.querySelector('#show_mortor').classList.remove('d-none');">
-                                    <b style="font-size: 15px;">รถจักรยานยนต์</b>
-                                </button>
-                                <br><br>
+                                                document.querySelector('#show_car').classList.add('d-none'),
+                                                document.querySelector('#show_mortor').classList.remove('d-none');">
+                                        <b style="font-size: 15px;">รถจักรยานยนต์</b>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="col-3 col-md-1">
                                 <img id="img_show_car" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
                                 <img class="d-none" id="img_show_mortor" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
                             </div>
-                        </div>
+                        </div><br>
                         <div id="show_car" class="row">
                         @foreach($register_car as $item)
                             <div class="col-lg-6 col-md-4 ">
@@ -225,7 +229,7 @@
                                         </a>
                                         <a href="#">
                                             <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px;">
-                                                <b><i class="fas fa-donate"></i> &nbsp;ขอสินเชื่อ</b>
+                                                <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
@@ -382,7 +386,7 @@
                                         </a>
                                         <a href="#">
                                             <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px;">
-                                                <b><i class="fas fa-donate"></i> &nbsp;ขอสินเชื่อ</b>
+                                                <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
