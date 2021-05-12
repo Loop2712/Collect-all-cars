@@ -1,11 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.viicheck')
 
 @section('content')
 <br>
     <div class="container bg-white main-shadow">
         <div class="row" style="margin: 15px ;">
             <div class="col-md-12">
-            	<br>
+            	<br><br><br><br><br><br>
             	<h2 style="margin: 15px;">ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</h2>
             	<br><hr><br>
 

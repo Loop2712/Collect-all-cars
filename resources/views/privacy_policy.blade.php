@@ -1,11 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.viicheck')
 
 @section('content')
 <br>
     <div class="container bg-white main-shadow" >
         <div class="row" style="margin: 15px ;">
             <div class="col-md-12" >
-            	<br>
+            	<br><br><br><br><br><br>
             	<h2 style="margin: 15px;">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล เว็บไซต์ ViiCheck.com</h2>
             	<br><hr><br>
 

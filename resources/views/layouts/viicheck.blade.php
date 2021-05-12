@@ -9,6 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+
   <!-- Favicons -->
   <link rel="shortcut icon" href="{{ url('img/logo/logo_x-icon.png')}}" type="image/x-icon" />
 
@@ -24,6 +25,8 @@
   <link href="{{ asset('Medilab/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('Medilab/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ asset('Medilab/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('Medilab/css/style.css') }}" rel="stylesheet">
@@ -102,7 +105,7 @@
       </nav> -->
       <!-- .navbar -->
       <div  style="padding-top: 10px; ">
-          <a href="https://market.viicheck.com/login" class="appointment-btn scrollto"><span class="d-block d-md-inline">เข้าสู่ระบบ</a>
+          <a href="{{ route('login') }}?redirectTo={{ url()->full() }}" class="appointment-btn scrollto"><span class="d-block d-md-inline">เข้าสู่ระบบ</a>
       </div>
     </div>
   </header><!-- End Header -->
@@ -110,12 +113,10 @@
 
     @yield('content')
 
-<!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="container d-md-flex py-4">
-
-      <div class="d-none d-lg-block me-md-auto text-center text-md-start">
+<!-- ======= Footer WEB ======= -->
+  <footer class="d-none d-lg-block" id="footer">
+    <div class="container d-md-flex py-3">
+      <div class="me-md-auto text-center text-md-start">
         <div class="credits">
           <div class="row">
             <div class="col-1">
@@ -136,16 +137,66 @@
           <div class="row">
             <div class="col-12">
               <div class="row">
-                  <div class="col-9">
-                    <br>
-                    WWW.ViiCHECK.COM 
+                  <div class="col-8">
+                    <span>WWW.ViiCHECK.COM</span>
                     &nbsp;&nbsp;
                     <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
                     &nbsp;&nbsp;
                     <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
-                <div class="col-3">
+                <div class="col-4">
+                  <div class="social-links float-right">
+                    <a href="https://www.facebook.com/ViiCheck-100959585396310" ><i class="fab fa-facebook"></i></a>
+                    <a href="https://line.me/R/ti/p/%40702ytkls" ><i class="fab fa-line"></i></a>
+                    <a href="mailto:contact.viicheck@gmail.com" ><i class="fas fa-mail-bulk"></i></a>
+                    <a href="#" ><i class="fab fa-youtube"></i></a>
+                    <a href="tel:020277856" ><i class="fas fa-phone-alt"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- ======= Footer mobile  ======= -->
+  <footer class="d-block d-md-none" id="footer">
+    <div class="container d-md-flex py-4">
+      <div class="me-md-auto text-center text-md-start">
+        <div class="credits">
+          <div class="row">
+              <div class="col-4">
+                <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
+                  <img width="100%" src="{{ asset('/img/logo/bns_registered.png') }}">
+                </a>
+              </div>
+            <div class="col-4">
+                <img width="100%" src="{{ asset('/img/logo/GreenLogo.png') }}">
+            </div>
+            <div class="col-4">
+                <img width="100%" src="{{ asset('/img/logo/js100.png') }}">
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                  <div class="col-12">
+                    <br>
+                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}">
+                      <b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b>
+                    </a>
+                    <br>
+                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}">
+                      <b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b>
+                    </a>
+                    <br><br>
+                </div>
+                <div class="col-12">
                   <div class="social-links">
                     <a href="https://www.facebook.com/ViiCheck-100959585396310" ><i class="fab fa-facebook"></i></a>
                     <a href="https://line.me/R/ti/p/%40702ytkls" ><i class="fab fa-line"></i></a>
@@ -160,55 +211,7 @@
         </div>
       </div>
     </div>
-
-    <!---------------------footer mobile ------------->
-    <div class="d-block d-md-none container d-md-flex py-4">
-      <div class="me-md-auto text-center text-md-start">
-        <div class="credits">
-          <div class="row" style="margin-top:-40px;">
-              <div class="col-3">
-                <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                  <img width="100%" src="{{ asset('/img/logo/bns_registered.png') }}">
-                </a>
-              </div>
-            <div class="col-3">
-                <img width="100%" src="{{ asset('/img/logo/GreenLogo.png') }}">
-            </div>
-            <div class="col-3">
-                <img width="100%" src="{{ asset('/img/logo/js100.png') }}">
-            </div>
-          </div>
-        </div>
-        <div class="copyright">
-          <div class="row">
-            <div class="col-12">
-              <div class="row">
-                  <div class="col-12">
-                    <br>
-                    WWW.ViiCHECK.COM 
-                    &nbsp;&nbsp;
-                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
-                    &nbsp;&nbsp;
-                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-                <div class="col-12">
-                  <div class="social-links" style="margin-left:-100px">
-                    <a href="https://www.facebook.com/ViiCheck-100959585396310" ><i class="fab fa-facebook"></i></a>
-                    <a href="https://line.me/R/ti/p/%40702ytkls" ><i class="fab fa-line"></i></a>
-                    <a href="mailto:contact.viicheck@gmail.com" ><i class="fas fa-mail-bulk"></i></a>
-                    <a href="#" ><i class="fab fa-youtube"></i></a>
-                    <a href="tel:020277856" ><i class="fas fa-phone-alt"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!------end footer mobile ----------->
-
-  </footer><!-- End Footer -->
+  </footer>
 
     <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -224,6 +227,40 @@
   <script src="{{ asset('Medilab/js/main.js') }}"></script>
 
   <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script>
+
+  <!-- Js Plugins -->
+    
+    <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="{{ asset('js/car/jquery.nice-select.min.js')}}"></script> -->
+    <script src="{{ asset('js/car/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('js/car/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('js/car/mixitup.min.js')}}"></script>
+    <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('js/car/main.js')}}"></script>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+        var name_user = document.querySelector("#name_user");
+
+            fetch("{{ url('/') }}/api/explode_name/" + name_user.value)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result[0]);
+                    let input_name = document.querySelector("#input_name");
+                    input_name.innerHTML = result[0];
+                    
+                    
+                });
+    });
+</script>
 </body>
 
 

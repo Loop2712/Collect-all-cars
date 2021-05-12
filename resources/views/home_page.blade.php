@@ -13,60 +13,75 @@
     <div class="container">
       <h1>ยินดีต้อนรับสู่ ViiCHECK</h1>
       <h2>ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-      <a style="font-size: 18px" href="https://market.viicheck.com/register_car/create" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+      <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
     </div>
   </section>
     <section id="why-us" class="why-us">
       <div class="container">
 
         <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch">
+          <div class="col-lg-5 d-flex align-items-stretch">
             <div class="content">
+              <a href="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" class="galelry-lightbox">
                 <img width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" alt="">
-              <div class="text-center">
-                <br>
-                <a href="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" class="more-btn galelry-lightbox">ดูเพิ่มเติม <i class="bx bx-chevron-right"></i></a>
-              </div>
+              </a>
             </div>
           </div>
-          <div class="col-lg-8 d-flex align-items-stretch">
+          <div class="col-lg-7 d-flex align-items-stretch">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="fas fa-car-crash"></i>
-                    <br>
-                    <h4>เหตุฉุกเฉิน</h4>
-                    <p>เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ
-                    แค่เพียงกดปุ่ม <b>"SOS"</b> จะมีเบอร์
-                    ที่จำเป็นแสดงขึ้นมา ไม่ว่าจะเป็น
-                    <b>จส.100 เหตุด่วนเหตุร้าย ไฟไหม้รถ</b>
-                    หรือแม้กระทั่ง <b>ตำรวจท่องเที่ยว</b></p>
+
+                <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
+                  <div class="row">
+                      <div class="col-4">
+                          <i class="fas fa-car-crash"></i>
+                          <h4>เหตุฉุกเฉิน</h4>
+                      </div>
+                      <div class="col-8">
+                          <br>
+                          <p>เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ
+                          แค่เพียงกดปุ่ม <b>"SOS"</b> จะมีเบอร์
+                          ที่จำเป็นแสดงขึ้นมา ไม่ว่าจะเป็น
+                          <b>จส.100 เหตุด่วนเหตุร้าย ไฟไหม้รถ</b>
+                          หรือแม้กระทั่ง <b>ตำรวจท่องเที่ยว</b></p>
+                      </div>
                   </div>
                 </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="fas fa-id-card-alt"></i>
-                    <br>
-                    <h4>ติดต่อเจ้าของรถ</h4>
-                    <p>เมื่อการ<b>จอดซ้อนคัน</b>ทำให้คุณไม่สบายใจ
-                    เพียงแค่ลงทะเบียนกับเราแล้วนำ
-                    สติ๊กเกอร์ไปติดที่ของรถเพียงเท่านี้
-                    คุณก็สามารถเดินเที่ยวได้อย่างสบายใจ</p>
+
+                <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
+                  <div class="row">
+                      <div class="col-4">
+                          <i class="fas fa-id-card-alt"></i>
+                          <h4>ติดต่อเจ้าของรถ</h4>
+                      </div>
+                      <div class="col-8">
+                          <br>
+                          <p>เมื่อการ<b>จอดซ้อนคัน</b>ทำให้คุณไม่สบายใจ
+                          เพียงแค่ลงทะเบียนกับเราแล้วนำ
+                          สติ๊กเกอร์ไปติดที่ของรถเพียงเท่านี้
+                          คุณก็สามารถเดินเที่ยวได้อย่างสบายใจ</p>
+                      </div>
                   </div>
                 </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="fas fa-user-lock"></i>
-                    <h4>เก็บรวบรวมข้อมูล</h4>
-                    <p>เก็บรวบรวมข้อมูลของคุณไว้ที่เดียว
-                    วันหมดอายุ <b>พรบ. / ประกัน</b>
-                    เมื่อใกล้วันครบกำหนดระบบจะ
-                    ทำการแจ้งเตือนและหายห่วงได้เลย
-                    เรื่อง <b>รักษาความเป็นส่วนตัว</b>
-                    <b>ของผู้ใช้บริการ</b> ในระบบของเรา</p>
+
+                <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
+                  <div class="row">
+                      <div class="col-4">
+                          <i class="fas fa-user-lock"></i>
+                          <h4>เก็บรวบรวมข้อมูล</h4>
+                      </div>
+                      <div class="col-8">
+                          <br>
+                          <p>เก็บรวบรวมข้อมูลของคุณไว้ที่เดียว
+                          วันหมดอายุ <b>พรบ. / ประกัน</b>
+                          เมื่อใกล้วันครบกำหนดระบบจะ
+                          ทำการแจ้งเตือนและหายห่วงได้เลย
+                          เรื่อง <b>รักษาความเป็นส่วนตัว</b>
+                          <b>ของผู้ใช้บริการ</b> ในระบบของเรา</p>
+                      </div>
                   </div>
                 </div>
+                
               </div>
             </div><!-- End .content-->
           </div>
@@ -318,8 +333,8 @@
               <div class="icon-box">
                 <div class="icon"><i class="fas fa-user-lock"></i></div>
                 <h4><a href="https://line.me/R/ti/p/%40702ytkls">เก็บรวบรวมข้อมูล</a></h4>
-                <p>รวบรวมข้อมูลของคุณไว้ที่เดียว สะดวก รวดเร็ว ง่ายต่อการใช้งาน</p>
-                <p>ที่สำคัญปลอดภัยด้วยการรักษาความเป็นส่วนตัวของผู้ใช้บริการ</p>
+                <p>รวบรวมข้อมูลไว้ที่เดียว สะดวก รวดเร็ว ง่ายต่อการใช้งาน</p>
+                <p>และปลอดภัยด้วยการรักษาความเป็นส่วนตัวของผู้ใช้งาน</p>
               </div>
             </a>
           </div>

@@ -1,7 +1,7 @@
-@extends('layouts.main')
+@extends('layouts.viicheck')
 
 @section('content')
-<br><br>
+<br><br><br><br><br><br>
 <div class="container">
     <div class="row justify-content-center" >
         <div class="col-md-12">
@@ -50,7 +50,7 @@
                                             <div class="col-md-12">
                                                 <center>
                                                     <!-- แสดงเฉพาะคอม -->
-                                                    <button style="padding-left: 130px;padding-right: 130px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-none d-lg-block main-shadow">
+                                                    <button style="padding-left: 100px;padding-right: 100px; border-radius: 20px; padding-top: 7px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-none d-lg-block main-shadow">
                                                         {{ __('เข้าสู่ระบบ') }}
                                                     </button>
 
@@ -60,7 +60,7 @@
                                                     </button>
                                                 </center>
                                                 @if (Route::has('password.request'))
-                                                    <a class="btn btn-link text-muted float-left" href="{{ route('password.request') }}">
+                                                    <a style="padding-right: 40px;" class="btn btn-link text-muted float-right" href="{{ route('password.request') }}">
                                                         {{ __('ลืมรหัสผ่าน ?') }}
                                                     </a>
                                                 @endif
@@ -84,7 +84,7 @@
                                         <br>
 
                                         <div class="form-group row">
-                                            <span style="margin-top: -13px;color: #ccc;text-align: center;" class="col-md-12"> เพิ่งเคยเข้ามาใน ViiCHECK ใช่หรือไม่ 
+                                            <span style="font-size: 15px; margin-top: -13px;color: #ccc;text-align: center;" class="col-md-12"> เพิ่งเคยเข้ามาใน ViiCHECK ใช่หรือไม่ 
                                                 <a class="text-danger" href="{{ route('register') }}"><b>สมัครใหม่</b></a> 
                                             </span>
                                         </div>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-12 col-md-12 ">
                                 <center>
-                                    <p>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ<br></p> 
+                                    <p><b>การลงชื่อเข้าใช้หมายความว่าคุณยอมรับ</b><br></p> 
                                     <a class="btn btn-link" style="font-size: 13px;" target="bank" href="{{ url('/privacy_policy') }}"> 
                                         <span style="color:red"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></span>
                                     </a>
@@ -193,4 +193,5 @@
         </div> -->
     </div>
 </div>
+<br>
 @endsection
