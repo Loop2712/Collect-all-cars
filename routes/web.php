@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// VIICHECK.COM
+Route::get('/', function () {
+	
+    return view('home_page');
+});
+
 // Google login
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
@@ -103,15 +109,15 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/news/create', 'NewsController@create');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'CarController@main');
-Route::get('/car', 'CarController@index');
+Route::get('/market', 'CarController@main');
+Route::get('/market/car', 'CarController@index');
 Route::get('/image/{id}','CarController@image');
-Route::get('/car/{id}','CarController@show');
+Route::get('/market/car/{id}','CarController@show');
 
-Route::get('/motercycle', 'MotercleyviewController@index');
-Route::get('/motercycle/{id}', 'MotercleyviewController@show');
+Route::get('/market/motercycle', 'MotercleyviewController@index');
+Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 
 Route::get('/edit_profile', 'ProfileController@edit_profile');
 Route::get('/edit_profile2', 'ProfileController@edit_profile2');
