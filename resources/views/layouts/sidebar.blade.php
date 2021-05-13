@@ -34,9 +34,9 @@
             <ul class="nav nav-pills nav-pills-danger" role="tablist">
                 <div class="row">
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
+                    <div id="btn_profile" class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
                     <li class="col-12 nav-item" >
-                        <a   href="{{ url('/profile' ) }}">
+                        <a id="btn_a_profile" class="text-danger"  href="{{ url('/profile' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_user.png' ) }}">
