@@ -66,7 +66,7 @@
                                             document.querySelector('#img_show_mortor').classList.add('d-none'),
                                             document.querySelector('#show_car').classList.remove('d-none'),
                                             document.querySelector('#show_mortor').classList.add('d-none');">
-                                            <b style="font-size: 15px;">รถยนต์</b>
+                                            <b style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รถยนต์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
                                         </a>
                                     </li>&nbsp;
                                     <li class="nav-item">
