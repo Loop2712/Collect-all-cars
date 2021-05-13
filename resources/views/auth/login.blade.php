@@ -84,7 +84,7 @@
                                         <br>
 
                                         <div class="form-group row">
-                                            <span style="font-size: 15px; margin-top: -13px;color: #ccc;text-align: center;" class="col-md-12"> เพิ่งเคยเข้ามาใน ViiCHECK ใช่หรือไม่ 
+                                            <span style="font-size: 15px; margin-top: -13px;color: #ccc;text-align: center;" class="col-md-12"> เข้ามาใช้บริการ ViiCHECK ครั้งแรก ?
                                                 <a class="text-danger" href="{{ route('register') }}"><b>สมัครใหม่</b></a> 
                                             </span>
                                         </div>
