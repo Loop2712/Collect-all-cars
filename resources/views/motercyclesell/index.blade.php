@@ -195,4 +195,19 @@
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        add_color();
+        
+    });
+    function add_color(){
+        console.log("add_color");
+        document.querySelector('#btn_sellmotorcycle').classList.add('btn-danger');
+        document.querySelector('#btn_sellmotorcycle').classList.remove('btn-outline-danger');
+        document.querySelector('#btn_a_sellmotorcycle').classList.add('text-white');
+        document.querySelector('#btn_a_sellmotorcycle').classList.remove('text-danger');
+    }
+</script>
 @endsection
+

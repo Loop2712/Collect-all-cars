@@ -35,24 +35,23 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div id="btn_profile" class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
-                    <li class="col-12 nav-item" >
                         <a id="btn_a_profile" class="text-danger"  href="{{ url('/profile' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_user.png' ) }}">
                                 </div>
-                                <div class=" col-9">
+                                <div class="col-9">
                                     <span style="font-size: 16px;"><b>ข้อมูลส่วนบุคคล</b></span>
                                 </div>
                                 
                             </div>
 
                         </a>
-                        </li>
+                        
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
-                        <a href="{{ url('/sell' ) }}">
+                    <div id="btn_sellcar" class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
+                        <a id="btn_a_sellcar" class="text-danger" href="{{ url('/sell' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
@@ -68,8 +67,8 @@
             </div>
             <div class="col-6">
                 <div class="row">
-                    <div class="col-10 btn btn-outline-danger  main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
-                        <a href="{{ url('/register_car' ) }}">
+                    <div id="btn_registercar" class="col-10 btn btn-outline-danger  main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
+                        <a id="btn_a_registercar" class="text-danger" href="{{ url('/register_car' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_car-key2.png' ) }}">
@@ -81,8 +80,8 @@
                         </a>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
-                        <a href="{{ url('/motercycles' ) }}">
+                    <div id="btn_sellmotorcycle" class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
+                        <a id="btn_a_sellmotorcycle" class="text-danger" href="{{ url('/motercycles' ) }}">
                             <div class="row">
                                 <div class="col-3">
                                     <img width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">

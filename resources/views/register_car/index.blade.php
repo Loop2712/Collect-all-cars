@@ -106,7 +106,7 @@
                                                         <p>{{ $item->generation }} </p>
                                                     </div>
                                                 </div>
-                                                <hr style="margin-top: -5px;">
+                                                <hr style="margin-top: -10px;">
                                                 <div class="row">
                                                     <div class="col-6 col-md-6">
                                                         @if(!empty($item->act))
@@ -199,9 +199,9 @@
                                                     <div class="col-12">
                                                         <center>
                                                             <br>
-                                                            <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
-                                                            <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="margin-top: -110px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <h5 style="position: relative;top:-10px; z-index: 5">{{ $item->registration_number }}</h5>
+                                                            <p style="position: relative;top:-10px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="margin-top: -85px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
@@ -250,7 +250,7 @@
                         <div class="col-lg-6 col-md-4 ">
                                 <div class="card  order-card">
                                     <div class="card-block">
-                                    <p class="text-right" style="margin: -20px -10px -10px 0px;"><a href="{{ url('/register_car/' . $item->id . '/edit') }}"><u>แก้ไข</u></a> </p>
+                                    <p class="text-right" style="margin: -20px -10px -10px 0px; "><a href="{{ url('/register_car/' . $item->id . '/edit') }}"><u>แก้ไข</u></a> </p>
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="row">  
@@ -286,24 +286,24 @@
                                                                 <br>
                                                                         <!-- <td><b><a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;</a></b></td> -->
                                                             @else
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
-                                                                <span style="font-size: 13px;">
-                                                                    <a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i>
-                                                                    </a>
-                                                                </span>
-                                                                <br>
-                                                                <!-- <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
+                                                            <h6 class="f-left">Insurance</h6>
+                                                            <br>
+                                                            <span style="font-size: 13px;">
+                                                                <a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
+                                                                </a>
+                                                            </span>
+                                                            <br>
+                                                                <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
-                                                                <span style="font-size: 13px;">
-                                                                    <a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
-                                                                    </a>
-                                                                </span>
+                                                            <h6 class="f-left">Insurance</h6>
                                                             <br>
-                                                                    <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
+                                                            <span style="font-size: 13px;">
+                                                                <a class="btn btn-warning btn-sm  main-shadow main-radius" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                                </a>
+                                                            </span>
+                                                            <br>
+                                                            <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
                                                     </div>
                                                     <div class="col-6 col-md-6">
@@ -341,7 +341,7 @@
                                                             <h6 class="f-left">Insurance</h6>
                                                             <br>
                                                             <span style="font-size: 13px;">
-                                                                <a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                            <a class="btn btn-warning btn-sm  main-shadow main-radius" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
                                                                 </a>
                                                             </span>
                                                             <br>
@@ -356,9 +356,9 @@
                                                     <div class="col-12">
                                                         <center>
                                                             <br>
-                                                            <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
-                                                            <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="margin-top: -110px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <h5 style="position: relative;top:-10px; z-index: 5">{{ $item->registration_number }}</h5>
+                                                            <p style="position: relative;top:-10px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="margin-top: -85px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
@@ -408,3 +408,17 @@
         </div>
     </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        add_color();
+        
+    });
+    function add_color(){
+        console.log("add_color");
+        document.querySelector('#btn_registercar').classList.add('btn-danger');
+        document.querySelector('#btn_registercar').classList.remove('btn-outline-danger');
+        document.querySelector('#btn_a_registercar').classList.add('text-white');
+        document.querySelector('#btn_a_registercar').classList.remove('text-danger');
+    }
+</script>
