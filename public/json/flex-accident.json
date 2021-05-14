@@ -10,7 +10,7 @@
     "contents": [
       {
         "type": "image",
-        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
         "size": "xxl",
         "aspectRatio": "16:9",
         "aspectMode": "cover"
@@ -41,7 +41,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/stickerline/PNG/21.png",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/21.png",
             "margin": "xs",
             "align": "center",
             "gravity": "center",
@@ -133,7 +133,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://market.viicheck.com/storage/uploads",
+            "url": "https://www.viicheck.com/storage/uploads",
             "size": "3xl",
             "aspectRatio": "1:1",
             "animated": true,
@@ -144,7 +144,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/storage/pphhoottoo"
+              "uri": "https://www.viicheck.com/storage/pphhoottoo"
             },
             "flex": 4
           },
@@ -154,14 +154,14 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/zoom-in.png",
+                "url": "https://www.viicheck.com/img/icon/zoom-in.png",
                 "size": "xxl"
               }
             ],
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/storage/pphhoottoo"
+              "uri": "https://www.viicheck.com/storage/pphhoottoo"
             },
             "position": "absolute",
             "offsetEnd": "35px",

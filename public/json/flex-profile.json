@@ -88,7 +88,7 @@
                   },
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/ranking/gold.png",
+                    "url": "https://www.viicheck.com/img/ranking/gold.png",
                     "margin": "md",
                     "size": "3xl",
                     "offsetTop": "sm",
@@ -127,7 +127,7 @@
                     "action": {
                       "type": "uri",
                       "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://market.viicheck.com/edit_profile"
+                      "uri": "https://www.viicheck.com/edit_profile"
                     },
                     "wrap": true
                   }
@@ -156,7 +156,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/mail.png",
+                "url": "https://www.viicheck.com/img/icon/mail.png",
                 "margin": "xl",
                 "size": "xxl",
                 "offsetTop": "lg"
@@ -177,7 +177,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/phone.png",
+                "url": "https://www.viicheck.com/img/icon/phone.png",
                 "margin": "xl",
                 "size": "xxl",
                 "offsetTop": "lg"
@@ -198,7 +198,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/birthday.png",
+                "url": "https://www.viicheck.com/img/icon/birthday.png",
                 "margin": "xl",
                 "size": "xxl",
                 "offsetTop": "lg"
@@ -219,7 +219,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/sex.png",
+                "url": "https://www.viicheck.com/img/icon/sex.png",
                 "margin": "xl",
                 "size": "xxl",
                 "offsetTop": "lg"
@@ -264,7 +264,7 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://market.viicheck.com/img/icon/car.png",
+                    "url": "https://www.viicheck.com/img/icon/car.png",
                     "aspectMode": "fit",
                     "size": "xs",
                     "aspectRatio": "1:1"
@@ -290,7 +290,7 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://market.viicheck.com/img/icon/motorcycle.png",
+                    "url": "https://www.viicheck.com/img/icon/motorcycle.png",
                     "aspectMode": "fit",
                     "size": "xs",
                     "aspectRatio": "1:1"
@@ -330,7 +330,7 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/driver-license.png",
+                    "url": "https://www.viicheck.com/img/icon/driver-license.png",
                     "margin": "md",
                     "size": "xxl",
                     "offsetTop": "xl",

@@ -14,26 +14,26 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
             "size": "4xl",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/"
+              "uri": "https://www.viicheck.com/"
             }
           },
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/1.png",
             "size": "full",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/"
+              "uri": "https://www.viicheck.com/"
             },
             "offsetBottom": "md"
           }
@@ -54,7 +54,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/user.png",
+                "url": "https://www.viicheck.com/img/icon/user.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
@@ -102,7 +102,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/money.png",
+                "url": "https://www.viicheck.com/img/icon/money.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
@@ -115,7 +115,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://market.viicheck.com/middle_price_car"
+                  "uri": "https://www.viicheck.com/middle_price_car"
                 },
                 "flex": 4
               },
@@ -128,7 +128,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://market.viicheck.com/middle_price_car"
+                  "uri": "https://www.viicheck.com/middle_price_car"
                 }
               }
             ],
@@ -136,7 +136,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/middle_price_car"
+              "uri": "https://www.viicheck.com/middle_price_car"
             }
           },
           {
@@ -150,7 +150,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/faq.png",
+                "url": "https://www.viicheck.com/img/icon/faq.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
@@ -199,7 +199,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/contact.png",
+                "url": "https://www.viicheck.com/img/icon/contact.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"

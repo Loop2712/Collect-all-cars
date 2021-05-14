@@ -14,7 +14,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
             "size": "4xl",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
@@ -22,12 +22,12 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/"
+              "uri": "https://www.viicheck.com/"
             }
           },
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/1.png",
             "size": "full",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
@@ -35,7 +35,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/"
+              "uri": "https://www.viicheck.com/"
             },
             "offsetBottom": "md"
           }
@@ -57,7 +57,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/car-key.png",
+                "url": "https://www.viicheck.com/img/icon/car-key.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
@@ -70,7 +70,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ซื้อรถมือสอง",
-                  "uri": "https://market.viicheck.com/"
+                  "uri": "https://www.viicheck.com/"
                 }
               },
               {
@@ -82,7 +82,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ซื้อรถมือสอง",
-                  "uri": "https://market.viicheck.com/"
+                  "uri": "https://www.viicheck.com/"
                 }
               }
             ],
@@ -90,7 +90,7 @@
             "action": {
               "type": "uri",
               "label": "ซื้อรถมือสอง",
-              "uri": "https://market.viicheck.com/"
+              "uri": "https://www.viicheck.com/"
             }
           },
           {
@@ -104,7 +104,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/trade.png",
+                "url": "https://www.viicheck.com/img/icon/trade.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
@@ -116,7 +116,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ขายรถกับเรา",
-                  "uri": "https://market.viicheck.com/sell"
+                  "uri": "https://www.viicheck.com/sell"
                 },
                 "weight": "bold"
               },
@@ -129,7 +129,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ขายรถกับเรา",
-                  "uri": "https://market.viicheck.com/sell"
+                  "uri": "https://www.viicheck.com/sell"
                 }
               }
             ],
@@ -137,7 +137,7 @@
             "action": {
               "type": "uri",
               "label": "ขายรถกับเรา",
-              "uri": "https://market.viicheck.com/sell"
+              "uri": "https://www.viicheck.com/sell"
             }
           },
           {

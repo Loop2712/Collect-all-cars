@@ -12,7 +12,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img1"
+        "url": "https://www.viicheck.com/img1"
       },
       "body": {
         "type": "box",
@@ -44,7 +44,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
+                "url": "https://www.viicheck.com/img/icon/clock.png",
                 "size": "sm"
               },
               {
@@ -77,7 +77,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img2"
+        "url": "https://www.viicheck.com/img2"
       },
       "body": {
         "type": "box",
@@ -109,7 +109,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
+                "url": "https://www.viicheck.com/img/icon/clock.png",
                 "size": "sm"
               },
               {
@@ -142,7 +142,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img3"
+        "url": "https://www.viicheck.com/img3"
       },
       "body": {
         "type": "box",
@@ -174,7 +174,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
+                "url": "https://www.viicheck.com/img/icon/clock.png",
                 "size": "sm"
               },
               {
@@ -207,7 +207,7 @@
         "size": "full",
         "aspectRatio": "20:17",
         "aspectMode": "cover",
-        "url": "https://market.viicheck.com/img4"
+        "url": "https://www.viicheck.com/img4"
       },
       "body": {
         "type": "box",
@@ -239,7 +239,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/clock.png",
+                "url": "https://www.viicheck.com/img/icon/clock.png",
                 "size": "sm"
               },
               {
@@ -279,7 +279,7 @@
             "action": {
               "type": "uri",
               "label": "ดูเพิ่มเติม",
-              "uri": "https://market.viicheck.com/promotion?search=carpromotion"
+              "uri": "https://www.viicheck.com/promotion?search=carpromotion"
             }
           },
           {

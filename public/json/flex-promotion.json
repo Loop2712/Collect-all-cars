@@ -14,19 +14,19 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v3.png",
+            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v3.png",
             "size": "4xl",
             "aspectRatio": "16:9",
             "aspectMode": "fit",
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/"
+              "uri": "https://www.viicheck.com/"
             }
           },
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/stickerline/PNG/1.png",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/1.png",
             "size": "full",
             "aspectRatio": "16:9",
             "align": "center",
@@ -51,7 +51,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/car.png",
+                "url": "https://www.viicheck.com/img/icon/car.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"
@@ -100,7 +100,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/motorcycle.png",
+                "url": "https://www.viicheck.com/img/icon/motorcycle.png",
                 "size": "3xl",
                 "margin": "none",
                 "offsetTop": "md"

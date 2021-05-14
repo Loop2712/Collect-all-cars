@@ -76,7 +76,7 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/logo_brand/logo-แบนด์1.png",
+                    "url": "https://www.viicheck.com/img/logo_brand/logo-แบนด์1.png",
                     "margin": "md",
                     "size": "3xl",
                     "offsetStart": "xs"
@@ -99,7 +99,7 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/พรบ1.png",
+                    "url": "https://www.viicheck.com/img/icon/พรบ1.png",
                     "size": "xl",
                     "margin": "md",
                     "offsetEnd": "sm"
@@ -114,7 +114,7 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/ประกัน1.png",
+                    "url": "https://www.viicheck.com/img/icon/ประกัน1.png",
                     "margin": "md",
                     "size": "xl",
                     "offsetEnd": "md"
@@ -141,14 +141,14 @@
             "contents": [
               {
                 "type": "image",
-                "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+                "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
                 "size": "md",
                 "align": "center",
                 "aspectMode": "fit",
                 "action": {
                   "type": "uri",
                   "label": "viicheck",
-                  "uri": "https://market.viicheck.com/"
+                  "uri": "https://www.viicheck.com/"
                 },
                 "offsetBottom": "md"
               }
@@ -164,7 +164,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ดูรถทั้งหมด",
-                  "uri": "https://market.viicheck.com/register_car"
+                  "uri": "https://www.viicheck.com/register_car"
                 },
                 "style": "primary",
                 "height": "sm",

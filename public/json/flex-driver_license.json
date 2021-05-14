@@ -17,7 +17,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/car.png",
+                "url": "https://www.viicheck.com/img/icon/car.png",
                 "size": "xl",
                 "margin": "md",
                 "offsetTop": "sm"
@@ -31,7 +31,7 @@
           },
           {
             "type": "image",
-            "url": "https://market.viicheck.com/storage/ccaarr",
+            "url": "https://www.viicheck.com/storage/ccaarr",
             "align": "center",
             "gravity": "center",
             "size": "full",
@@ -41,7 +41,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/storage/ccaarr"
+              "uri": "https://www.viicheck.com/storage/ccaarr"
             }
           },
           {
@@ -50,7 +50,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/zoom-in.png",
+                "url": "https://www.viicheck.com/img/icon/zoom-in.png",
                 "size": "xxl"
               }
             ],
@@ -60,7 +60,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://market.viicheck.com/storage/ccaarr"
+              "uri": "https://www.viicheck.com/storage/ccaarr"
             }
           }
         ]
@@ -87,7 +87,7 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/motorcycle.png",
+                    "url": "https://www.viicheck.com/img/icon/motorcycle.png",
                     "size": "xxl",
                     "margin": "md",
                     "offsetTop": "sm"
@@ -101,7 +101,7 @@
               },
               {
                 "type": "image",
-                "url": "https://market.viicheck.com/storage/mmotorcycle",
+                "url": "https://www.viicheck.com/storage/mmotorcycle",
                 "align": "center",
                 "gravity": "center",
                 "size": "full",
@@ -111,7 +111,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://market.viicheck.com/storage/mmotorcycle"
+                  "uri": "https://www.viicheck.com/storage/mmotorcycle"
                 }
               },
               {
@@ -120,7 +120,7 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/zoom-in.png",
+                    "url": "https://www.viicheck.com/img/icon/zoom-in.png",
                     "size": "xxl"
                   }
                 ],
@@ -130,7 +130,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://market.viicheck.com/storage/mmotorcycle"
+                  "uri": "https://www.viicheck.com/storage/mmotorcycle"
                 }
               }
             ]

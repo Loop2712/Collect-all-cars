@@ -25,14 +25,14 @@
           },
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
             "size": "4xl",
             "align": "center",
             "aspectMode": "fit",
             "action": {
               "type": "uri",
               "label": "viicheck",
-              "uri": "https://market.viicheck.com/"
+              "uri": "https://www.viicheck.com/"
             },
             "offsetEnd": "lg",
             "gravity": "center",

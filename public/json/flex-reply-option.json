@@ -10,7 +10,7 @@
     "contents": [
       {
         "type": "image",
-        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
         "size": "full",
         "aspectRatio": "16:9",
         "aspectMode": "fit"
@@ -82,7 +82,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ฉันไม่สะดวก / I'm not available",
-                  "uri": "https://market.viicheck.com/not_comfor/create"
+                  "uri": "https://www.viicheck.com/not_comfor/create"
                 },
                 "style": "secondary",
                 "height": "sm",

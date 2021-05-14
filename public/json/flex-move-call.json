@@ -10,7 +10,7 @@
     "contents": [
       {
         "type": "image",
-        "url": "https://market.viicheck.com/img/logo/logo-flex-line.png",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
         "size": "xxl",
         "aspectRatio": "16:9",
         "aspectMode": "cover"
@@ -42,7 +42,7 @@
           },
           {
             "type": "image",
-            "url": "https://market.viicheck.com/img/stickerline/PNG/สติกเกอร์ไลน์.png",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/สติกเกอร์ไลน์.png",
             "margin": "xs",
             "align": "center",
             "gravity": "center",

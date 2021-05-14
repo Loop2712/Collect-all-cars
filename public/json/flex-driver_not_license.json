@@ -17,7 +17,7 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://market.viicheck.com/img/icon/car.png",
+                "url": "https://www.viicheck.com/img/icon/car.png",
                 "size": "xl",
                 "margin": "md",
                 "offsetTop": "sm"
@@ -36,7 +36,7 @@
         "action": {
           "type": "uri",
           "label": "เพิ่มใบอนุญาตขับรถ",
-          "uri": "https://market.viicheck.com/edit_profile"
+          "uri": "https://www.viicheck.com/edit_profile"
         },
         "margin": "lg",
         "height": "sm",
@@ -66,7 +66,7 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://market.viicheck.com/img/icon/motorcycle.png",
+                    "url": "https://www.viicheck.com/img/icon/motorcycle.png",
                     "size": "xxl",
                     "margin": "md",
                     "offsetTop": "sm"
@@ -85,7 +85,7 @@
             "action": {
               "type": "uri",
               "label": "เพิ่มใบอนุญาตขับรถ",
-              "uri": "https://market.viicheck.com/edit_profile"
+              "uri": "https://www.viicheck.com/edit_profile"
             },
             "margin": "lg",
             "height": "sm",
