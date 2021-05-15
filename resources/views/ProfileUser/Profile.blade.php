@@ -103,11 +103,13 @@
                 @if(is_null($data->driver_license) )
                     <div class="col-md-12"> 
                         <center>
+                        <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
                         <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
                         <center>   
                     </div>
                 @elseif($data->driver_license == "" ) 
                     <div class="col-md-12"> 
+                        <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
                         <center>
                         <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
                         <center>   
@@ -117,7 +119,9 @@
                         @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
                             <div class="col-md-12"> 
                                 <center>
-                                <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
+                                <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
+                                <b>
+                                {{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
                                 <center>   
                             </div>
                             <div class="col-md-6">
@@ -227,16 +231,19 @@
                 </div>
                 @if(is_null($data->driver_license) )
                     <div class="col-md-12">
+                        <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
                         <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>   
                     </div>
                 @elseif($data->driver_license == "" ) 
                     <div class="col-md-12">
+                        <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
                         <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>   
                     </div>
                 @else
                     @if(Auth::check())
                         @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
                             <div class="col-md-12">
+                            <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
                                 <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b 
                             </div>
                             <div class="col-md-6">

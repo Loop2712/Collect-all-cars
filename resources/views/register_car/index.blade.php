@@ -109,11 +109,12 @@
                                                 <hr style="margin-top: -10px;">
                                                 <div class="row">
                                                     <div class="col-6 col-md-6">
+                                                    <center>
                                                         @if(!empty($item->act))
                                                             @if((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
                                                                 
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
+                                                                <h6 style="text-align: center; margin-bottom:10px;">Vehicle Act</h6>
+                                                                
                                                                 <span style="font-size: 13px;">
                                                                     <a class=" text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a>
                                                                 </span>
@@ -121,16 +122,16 @@
                                                                     <!-- <td><b><a class=" text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @elseif((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
                                                                 
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
+                                                                <h6 style="text-align: center; margin-bottom:10px;">Vehicle Act</h6>
+                                                                
                                                                 <span style="font-size: 13px;">
                                                                     <a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a>
                                                                 </span>
                                                                 <br>
                                                                         <!-- <td><b><a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;</a></b></td> -->
                                                             @else
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
+                                                                <h6 style="text-align: center; margin-bottom:10px;">Vehicle Act</h6>
+                                                                
                                                                 <span style="font-size: 13px;">
                                                                     <a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                     </a>
@@ -139,22 +140,22 @@
                                                                 <!-- <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
-                                                                <span style="font-size: 13px;">
-                                                                    <a class="btn btn-warning btn-sm  main-shadow main-radius" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
+                                                                <h6 style="text-align: center;">Vehicle Act</h6>
+                                                                <span style="font-size: 13px; margin:100px 100px 0px 0px;">
+                                                                    <a class="btn btn-warning btn-sm  main-shadow main-radius " style=" margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
                                                                     </a>
                                                                 </span>
                                                             <br>
                                                                     <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
+                                                    </center>
                                                     </div>
                                                     <div class="col-6 col-md-6">
+                                                    <center>
                                                         @if(!empty($item->insurance))
                                                             @if((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
                                                             
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center; margin-bottom:10px;">Insurance</h6>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                 </a>
@@ -162,8 +163,7 @@
                                                             <br>
                                                             <!-- <td><b><a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @elseif((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center; margin-bottom:10px;">Insurance</h6>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                 </a>
@@ -171,8 +171,7 @@
                                                             <br>
                                                                  <!-- <td><b><a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                              @else
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center; margin-bottom:10px;">Insurance</h6>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                 </a>
@@ -181,15 +180,14 @@
                                                                 <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
-                                                            <span style="font-size: 13px;">
-                                                                <a class="btn btn-warning btn-sm  main-shadow main-radius" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
-                                                                </a>
+                                                            <h6 style="text-align: center;">Insurance</h6>
+                                                            <span style="font-size: 13px;"><center>
+                                                                <a class="btn btn-warning btn-sm  main-shadow main-radius" style="margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                                </a></center>
                                                             </span>
-                                                            <br>
                                                             <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
+                                                        </center>
                                                     </div>
                                                 </div>
                                                 <br>
@@ -212,7 +210,7 @@
                                                             <br>
                                                             <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
                                                             <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="position: absolute;right: 24%;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <img style="position: absolute;right: 85px;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
@@ -266,11 +264,11 @@
                                                 <hr style="margin-top: -5px;">
                                                 <div class="row">
                                                     <div class="col-6 col-md-6">
+                                                    <center>
                                                         @if(!empty($item->act))
                                                             @if((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
                                                                 
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
+                                                                <h6 style="text-align: center; margin-bottom:10px;">Vehicle Act</h6>
                                                                 <span style="font-size: 13px;">
                                                                     <a class=" text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a>
                                                                 </span>
@@ -278,16 +276,14 @@
                                                                     <!-- <td><b><a class=" text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @elseif((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
                                                                 
-                                                                <h6 class="f-left">Vehicle Act</h6>
-                                                                <br>
+                                                                <h6 style="text-align: center; margin-bottom:10px;">Vehicle Act</h6>
                                                                 <span style="font-size: 13px;">
                                                                     <a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a>
                                                                 </span>
                                                                 <br>
                                                                         <!-- <td><b><a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;</a></b></td> -->
                                                             @else
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center; margin-bottom:10px;">Insurance</h6>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                 </a>
@@ -296,22 +292,22 @@
                                                                 <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center;">Insurance</h6>
                                                             <span style="font-size: 13px;">
-                                                                <a class="btn btn-warning btn-sm  main-shadow main-radius" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                                <a class="btn btn-warning btn-sm  main-shadow main-radius" style=" margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
                                                                 </a>
                                                             </span>
                                                             <br>
                                                             <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
+                                                        </center>
                                                     </div>
                                                     <div class="col-6 col-md-6">
+                                                    <center>
                                                         @if(!empty($item->insurance))
                                                             @if((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
                                                             
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center; margin-bottom:10px;">Insurance</h6>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                 </a>
@@ -319,34 +315,33 @@
                                                             <br>
                                                             <!-- <td><b><a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @elseif((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center; margin-bottom:10px;">Insurance</h6>
                                                             <span style="font-size: 13px;">
                                                                 <a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                 </a>
                                                             </span>
                                                             <br>
                                                                  <!-- <td><b><a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
-                                                             @else
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
-                                                            <span style="font-size: 13px;">
-                                                                <a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
+                                                             @else 
+                                                            <h6 style="text-align: center; margin-bottom:10px;">Insurance</h6>
+                                                            <span style="font-size: 13px; text-align: center;">
+                                                                <a class="text-success"  href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i>
                                                                 </a>
                                                             </span>
                                                             <br>
                                                                 <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                            <h6 class="f-left">Insurance</h6>
-                                                            <br>
+                                                            <h6 style="text-align: center;">Insurance</h6>
+                                                            
                                                             <span style="font-size: 13px;">
-                                                            <a class="btn btn-warning btn-sm  main-shadow main-radius" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                            <a class="btn btn-warning btn-sm  main-shadow main-radius" style=" margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
                                                                 </a>
                                                             </span>
                                                             <br>
                                                             <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
+                                                        </center>
                                                     </div>
                                                 </div>
                                                 <br>
@@ -369,7 +364,7 @@
                                                             <br>
                                                             <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
                                                             <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="position: absolute;right: 24%;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <img style="position: absolute;right: 85px;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
