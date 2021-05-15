@@ -16,29 +16,29 @@
         "aspectMode": "cover"
       },
       {
-        "type": "text",
-        "color": "#FFFFFF",
-        "text": "กรุณามาเลื่อนรถด้วยค่ะ",
-        "margin": "xxl",
-        "size": "xxl",
-        "align": "center",
-        "weight": "bold",
-        "gravity": "bottom",
-        "wrap": true
-      },
-      {
-        "type": "text",
-        "color": "#FFFFFF",
-        "text": "Pleasemove",
-        "margin": "sm",
-        "size": "lg",
-        "align": "center",
-        "wrap": true
-      },
-      {
         "type": "box",
         "layout": "vertical",
         "contents": [
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "กรุณาเลื่อนรถด้วยค่ะ",
+            "margin": "xxl",
+            "size": "xl",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "Pleasemove",
+            "margin": "lg",
+            "size": "lg",
+            "align": "center",
+            "wrap": true
+          },
           {
             "type": "image",
             "url": "https://www.viicheck.com/img/stickerline/PNG/21.png",
@@ -49,11 +49,11 @@
             "aspectRatio": "1:1",
             "aspectMode": "fit"
           }
-        ]
-      },
-      {
-        "type": "separator",
-        "margin": "lg"
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
       },
       {
         "type": "separator",
