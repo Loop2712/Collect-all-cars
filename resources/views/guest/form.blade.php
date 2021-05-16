@@ -26,6 +26,14 @@
                             }else{ 
                                 document.querySelector('#photo_label').classList.add('d-none'),
                                 document.querySelector('#photo_input').classList.add('d-none')
+                            }
+                            if (this.value=='5') {
+                                document.querySelector('#report_drivingd_detail_label').classList.remove('d-none'),
+                                document.querySelector('#report_drivingd_detail_input').classList.remove('d-none'),
+                                document.querySelector('#report_drivingd_detail').focus();
+                            }else{ 
+                                document.querySelector('#report_drivingd_detail_label').classList.add('d-none'),
+                                document.querySelector('#report_drivingd_detail_input').classList.add('d-none')
                             }">
                              <option value="" selected >
                                  - เลือกข้อความ / Select text - 
@@ -50,6 +58,8 @@
                     <label id="masseng_label" for="masseng" class="d-none control-label">{{ 'ข้อความอื่นๆ / Other messages' }}</label>
                     <!-- รูปภาพ -->
                     <label id="photo_label" for="photo" class="d-none control-label">{{ 'รูปภาพ / Photo' }}</label>
+                    <!-- รายละเอียดปัญหาการขับขี่ -->
+                    <label id="report_drivingd_detail_label" for="photo" class="d-none control-label">{{ 'ปัญหาการขับขี่ / Driving problems' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <!-- ข้อความอื่นๆ -->
@@ -61,6 +71,21 @@
                     <div id="photo_input" class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                         <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($guest->photo) ? $guest->photo : ''}}" accept="image/*" multiple="multiple">
                         {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+                    </div>
+                    <!-- รายละเอียดปัญหาการขับขี่ -->
+                    <div id="report_drivingd_detail_input" class="d-none form-group {{ $errors->has('report_drivingd_detail') ? 'has-error' : ''}}">
+                        <select name="report_drivingd_detail" class="form-control"  id="report_drivingd_detail">
+                            @foreach (json_decode('{
+                            "ขับรถอันตราย":"ขับรถอันตราย / Dangerous driving",
+                            "ไม่เปิดไฟเลี้ยว":"ไม่เปิดไฟเลี้ยว / Does not turn on the turn signal",
+                            "หยุดรถกะทันหัน":"หยุดรถกะทันหัน / Stop the car suddenly",
+                            "เล่นโทรศัพท์ขณะขับขี่":"เล่นโทรศัพท์ขณะขับขี่ / Playing phone while driving",
+                            "จอดตรงที่ห้ามจอด":"จอดตรงที่ห้ามจอด / Park where parking is prohibited"}',
+                             true) as $optionKey => $optionValue)
+                            <option value="{{ $optionKey }}"  {{ (isset($guest->report_drivingd_detail) && $guest->report_drivingd_detail == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+                        @endforeach
+                    </select>
+                        {!! $errors->first('report_drivingd_detail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
 

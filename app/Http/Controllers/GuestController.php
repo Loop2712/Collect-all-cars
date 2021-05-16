@@ -223,6 +223,7 @@ class GuestController extends Controller
         $county = $data['county'];
         $phone = $data['phone'];
         $massengbox = $data['massengbox'];
+        $report_drivingd_detail = $data['report_drivingd_detail'];
         $datetime =  date("d-m-Y  h:i:sa");
 
         if (!empty($data['photo'])) {
@@ -260,8 +261,24 @@ class GuestController extends Controller
                 $stg = "21";
                 break;
             case "5":  
-                $masseng = "แจ้งปัญหาการขับขี่";
-                $masseng_en = "Driving Problems";
+                $masseng = $report_drivingd_detail;
+                    switch ($report_drivingd_detail) {
+                        case 'ขับรถอันตราย':
+                            $masseng_en = "Dangerous driving";
+                            break;
+                        case 'ไม่เปิดไฟเลี้ยว':
+                            $masseng_en = "Does not turn on the turn signal";
+                            break;
+                        case 'หยุดรถกะทันหัน':
+                            $masseng_en = "Stop the car suddenly";
+                            break;
+                        case 'เล่นโทรศัพท์ขณะขับขี่':
+                            $masseng_en = "Playing phone while driving";
+                            break;
+                        case 'จอดตรงที่ห้ามจอด':
+                            $masseng_en = "Park where parking is prohibited";
+                            break;
+                    }
                 $stg = "37";
                 break;
             case "6": 
