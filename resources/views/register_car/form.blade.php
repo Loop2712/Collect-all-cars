@@ -162,7 +162,7 @@
                     document.querySelector('#input_car_model').classList.remove('d-none'),
                     document.querySelector('#input_car_brand').classList.remove('d-none');">
                 &nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
-                <br>
+              
                 <!-- แสดงเฉพาะมือถือ -->
                 <div class="d-block d-md-none">
                     <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
@@ -276,7 +276,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration number' }}</label><span style="color: #FF0033;"> *</span>
+                    <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration numbers' }}<span style="color: #FF0033;"> *</span></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
@@ -285,7 +285,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="province" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}</label><span style="color: #FF0033;"> *</span>
+                    <label for="province" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}<span style="color: #FF0033;"> *</span></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
@@ -302,6 +302,26 @@
                         {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
+
+                <div class="col-12 col-md-2">
+                    <label for="province" class="control-label">{{ 'วันหมดอายุ พรบ.' }}</span></label>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('act') ? 'has-error' : ''}}">
+                        <input class="form-control" name="act" type="date" id="act" value="{{ isset($register_car->act) ? $register_car->act : '' }}" >
+                        {!! $errors->first('act', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label for="province" class="control-label">{{ 'วันหมดอายุ ประกัน' }}</span></label>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('insurance') ? 'has-error' : ''}}">
+                        <input class="form-control" name="insurance" type="date" id="insurance" value="{{ isset($register_car->insurance) ? $register_car->insurance : '' }}" >
+                        {!! $errors->first('insurance', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                
                 
 
             </div>
