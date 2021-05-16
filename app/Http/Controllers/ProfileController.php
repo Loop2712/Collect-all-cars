@@ -153,6 +153,11 @@ class ProfileController extends Controller
         $data = User::findOrFail($id);
         $data->update($requestData);
 
+        
+
+        // DB::table('register_cars')
+        //       ->where('user_id', $id)
+        //       ->update(['sex' => $requestData['sex']]);
 
         return redirect('profile')->with('flash_message', 'profile updated!');
     }
