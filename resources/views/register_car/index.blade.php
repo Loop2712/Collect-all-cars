@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.viicheck')
 @section('add')
 <style>
 .order-card {
@@ -43,11 +43,11 @@
 </style>
 @endsection
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top:168px; ">
         <div class="row">
         @include('layouts.sidebar')
 
-            <div class="col-md-9 order-lg-1 order-2">
+            <div class="col-md-9 order-lg-1 order-2" >
                 <div class="card">
                 
                     <div class="card-header">
@@ -56,8 +56,8 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
                         </a>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card-body" style="font-family: K2D, sans-serif;">
+                        <div class="row" >
                             <div class="col-9 col-md-11" style="margin-top:-20px;">
                             <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
                                     <li class="nav-item" >
@@ -91,22 +91,22 @@
                             <div class="col-lg-6 col-md-4 ">
                                 <div class="card  order-card">
                                     <div class="card-block">
-                                    <p class="text-right" style="margin: -20px -10px -10px 0px;"><a href="{{ url('/register_car/' . $item->id . '/edit') }}"><u>แก้ไข</u></a> </p>
+                                    <p class="text-right" style="margin: 5px 10px 0px 0px; font-size:15px"><a href="{{ url('/register_car/' . $item->id . '/edit') }}"><u>แก้ไข</u></a> </p>
                                         <div class="row">
-                                            <div class="col-12 col-md-12">
-                                                <div class="row">  
+                                            <div class="col-12 col-md-12" style="margin-top:-15px;">
+                                                <div class="row" style="margin:10px;">  
                                                 <div class="d-none d-lg-block col-md-4" >
-                                                <img width="50" style="margin-left:13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                     </div> 
                                                 <div class="d-block d-md-none col-4">
                                                         <img width="50" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                     </div> 
                                                     <div class="col-7 col-md-8">
-                                                        <h4>{{ $item->brand }}</h4>
-                                                        <p>{{ $item->generation }} </p>
+                                                        <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
+                                                        <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
                                                     </div>
-                                                </div>
-                                                <hr style="margin-top: -10px;">
+                                                </div><center>
+                                                <hr style="margin-top: -20px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                                 <div class="row">
                                                     <div class="col-6 col-md-6">
                                                     <center>
@@ -141,14 +141,15 @@
                                                             @endif
                                                         @else
                                                                 <h6 style="text-align: center;">Vehicle Act</h6>
-                                                                <span style="font-size: 13px; margin:100px 100px 0px 0px;">
-                                                                    <a class="btn btn-warning btn-sm  main-shadow main-radius " style=" margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
+                                                                <span style="font-size: 13px; margin: 0px 10px;">
+                                                                    <a class="btn btn-warning btn-md  main-shadow main-radius " style="  width: 90%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">
+                                                                        <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
                                                                     </a>
                                                                 </span>
                                                             <br>
-                                                                    <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
+                                                                  <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
-                                                    </center>
+                                                    </center>  
                                                     </div>
                                                     <div class="col-6 col-md-6">
                                                     <center>
@@ -181,9 +182,9 @@
                                                             @endif
                                                         @else
                                                             <h6 style="text-align: center;">Insurance</h6>
-                                                            <span style="font-size: 13px;"><center>
-                                                                <a class="btn btn-warning btn-sm  main-shadow main-radius" style="margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
-                                                                </a></center>
+                                                            <span style="font-size: 13px; ">
+                                                                <a class="btn btn-warning btn-md  main-shadow main-radius" style="width: 90%; margin: 0px 0px 0px -15px;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                                </a>
                                                             </span>
                                                             <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
@@ -191,54 +192,56 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <hr style="margin-top: -8px;">
+                                                <center><hr style="margin-top: -15px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                                 <!-- แสดงเฉพาะมือถือ -->
                                                 <div class="row d-block d-md-none">
                                                     <div class="col-12">
                                                         <center>
                                                             <br>
-                                                            <h5 style="position: relative;top:-10px; z-index: 5">{{ $item->registration_number }}</h5>
-                                                            <p style="position: relative;top:-10px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <p style="position: relative;top: 5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                            <p style="position: relative;top: -13px; color: #000000; z-index: 5">{{ $item->province }} </p>
                                                             <img style="margin-top: -85px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
                                                 <!-- แสดงเฉพาะคอม -->
-                                                <div class="row d-none d-lg-block">
+                                                <div class="row d-none d-lg-block"  style="font-family: K2D, sans-serif;">
                                                     <div class="col-12">
                                                         <center>
                                                             <br>
-                                                            <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
-                                                            <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="position: absolute;right: 85px;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <p style="position: relative;top: 5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                            <p style="position: relative;top: -13px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="position: absolute;right: 104px;top: 20%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <hr class="d-none d-lg-block" style="margin-top: -5px;">
-                                                <hr class="row d-block d-md-none" style="margin-top: -25px;">
+                                                <center>
+                                                <hr class="row d-block d-md-none" style="margin-top: -25px; width: 90%; height:0.3px; color:#BEBEBE;">
+                                                <hr class="d-none d-lg-block" style="margin-top: -15px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                             </div>
                                         </div>
 
                                         <a href="{{ url('/register_car/' . $item->id ) }}">
-                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px;">
-                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย </b>
+                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px ">
+                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย     </b>
                                             </button>
                                         </a>
                                         <a href="#">
-                                            <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px;">
+                                            <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px; margin-top: -20px; padding: 4px 12px">
                                                 <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right"   title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
                                                             <i class="fa fa-trash"  aria-hidden="true"></i>
                                                         </button>
                                         </form>
+                                       
                                     </div>
-                                </div>
+                                </div> <br>
                             </div>
                         
                         @endforeach
@@ -248,20 +251,19 @@
                         <div class="col-lg-6 col-md-4 ">
                                 <div class="card  order-card">
                                     <div class="card-block">
-                                    <p class="text-right" style="margin: -20px -10px -10px 0px; "><a href="{{ url('/register_car/' . $item->id . '/edit') }}"><u>แก้ไข</u></a> </p>
+                                    <p class="text-right" style="margin: 5px 10px 0px 0px;"><a href="{{ url('/register_car/' . $item->id . '/edit') }}"><u>แก้ไข</u></a> </p>
                                         <div class="row">
-                                            <div class="col-12 col-md-12">
-                                                <div class="row">  
-                                                    <div class="col-4 col-md-3">
-                                                        <img width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                            <div class="col-12 col-md-12" style="margin-top:-15px;">
+                                                <div class="row" style="margin:10px;">  
+                                                    <div class="col-4 col-md-4">
+                                                        <img width="50" style="margin:0px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                     </div> 
-                                                    <div class="col-8 col-md-9">
-                                                        <h4>{{ $item->brand }}</h4>
-                                                       
-                                                        <p>{{ $item->generation }} </p>
+                                                    <div class="col-7 col-md-8">
+                                                        <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
+                                                        <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
                                                     </div>
                                                 </div>
-                                                <hr style="margin-top: -5px;">
+                                                 <center><hr style="margin-top: -20px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                                 <div class="row">
                                                     <div class="col-6 col-md-6">
                                                     <center>
@@ -292,11 +294,12 @@
                                                                 <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                            <h6 style="text-align: center;">Insurance</h6>
-                                                            <span style="font-size: 13px;">
-                                                                <a class="btn btn-warning btn-sm  main-shadow main-radius" style=" margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
-                                                                </a>
-                                                            </span>
+                                                        <h6 style="text-align: center;">Vehicle Act</h6>
+                                                                <span style="font-size: 13px; margin: 0px 10px;">
+                                                                    <a class="btn btn-warning btn-md  main-shadow main-radius " style="  width: 90%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">
+                                                                        <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
+                                                                    </a>
+                                                                </span>
                                                             <br>
                                                             <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                         @endif
@@ -333,9 +336,8 @@
                                                             @endif
                                                         @else
                                                             <h6 style="text-align: center;">Insurance</h6>
-                                                            
-                                                            <span style="font-size: 13px;">
-                                                            <a class="btn btn-warning btn-sm  main-shadow main-radius" style=" margin-top: 10px; width: 100%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                            <span style="font-size: 13px; ">
+                                                                <a class="btn btn-warning btn-md  main-shadow main-radius" style="width: 90%; margin: 0px 0px 0px -15px;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
                                                                 </a>
                                                             </span>
                                                             <br>
@@ -345,7 +347,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <hr style="margin-top: -8px;">
+                                                <center><hr style="margin-top: -15px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                                 <!-- แสดงเฉพาะมือถือ -->
                                                 <div class="row d-block d-md-none">
                                                     <div class="col-12">
@@ -358,41 +360,40 @@
                                                     </div>
                                                 </div>
                                                 <!-- แสดงเฉพาะคอม -->
-                                                <div class="row d-none d-lg-block">
+                                                <div class="row d-none d-lg-block" style="font-family: K2D, sans-serif;">
                                                     <div class="col-12">
                                                         <center>
                                                             <br>
-                                                            <h5 style="position: relative; z-index: 5">{{ $item->registration_number }}</h5>
-                                                            <p style="position: relative; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="position: absolute;right: 85px;top: 16%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <p style="position: relative;top: 5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                            <p style="position: relative;top: -13px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="position: absolute;right: 104px;top: 20%;z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <hr class="d-none d-lg-block" style="margin-top: -5px;">
-                                                <hr class="row d-block d-md-none" style="margin-top: -25px;">
+                                                
                                             </div>
                                         </div>
-
+                                        <center><hr style="margin-top: -15px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                         <a href="{{ url('/register_car/' . $item->id ) }}">
-                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px;">
-                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย </b>
+                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px ">
+                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย     </b>
                                             </button>
                                         </a>
                                         <a href="#">
-                                            <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px;">
+                                            <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px; margin-top: -20px; padding: 4px 12px">
                                                 <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right"   title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
                                                             <i class="fa fa-trash"  aria-hidden="true"></i>
                                                         </button>
                                         </form>
                                     </div>
-                                </div>
+                                </div><br>
                             </div>
                             @endforeach
                         </div>

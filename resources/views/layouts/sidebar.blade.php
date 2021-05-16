@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="row d-block d-md-none" style="padding:10px;">
+<div class="row d-block d-md-none" style="padding:10px; margin: -40px 5px">
     <div class="col-12">
         <div class="row">
             <div class="col-6">
@@ -96,7 +96,7 @@
             </div>
         </div>
     </div>
-    <br>
+    <br><br>
 </div>
 <style>
     .nav-pills .nav-item .nav-link {
