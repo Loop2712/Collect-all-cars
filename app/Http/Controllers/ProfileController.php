@@ -205,4 +205,16 @@ class ProfileController extends Controller
         return redirect('profile/'.$id.'/edit');
         
     }
+
+    public function line_mycar(Request $request)
+    {
+        $id = Auth::id();
+
+        if(Auth::check()){
+            return redirect('register_car');
+            // echo Auth::User()->name;
+        }else{
+            return redirect('login/line?redirectTo=register_car');
+        }
+    }
 }

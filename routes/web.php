@@ -123,9 +123,15 @@ Route::get('/market/car/{id}','CarController@show');
 Route::get('/market/motercycle', 'MotercleyviewController@index');
 Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 
+
+// AUTO LOHIN FROM FLEX LINE
+
 Route::get('/edit_profile', 'ProfileController@edit_profile');
 Route::get('/edit_profile2', 'ProfileController@edit_profile2');
 
+Route::get('/line_mycar', 'ProfileController@line_mycar');
+
+// END AUTO LOHIN FROM FLEX LINE
 
 //Route::resource('car','CarController');
 
