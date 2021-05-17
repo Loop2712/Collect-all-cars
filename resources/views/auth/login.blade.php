@@ -55,7 +55,7 @@
                                                     </button>
 
                                                     <!-- แสดงเฉพาะมือถือ -->
-                                                    <button style="padding-left: 105px;padding-right: 105px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none main-shadow">
+                                                    <button style="padding-left: 100px;padding-right: 100px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none main-shadow">
                                                         {{ __('เข้าสู่ระบบ') }}
                                                     </button>
                                                 </center>
@@ -110,7 +110,7 @@
                                             <div class="row d-block d-md-none">
                                                 <div class="col-12">
                                                     <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}">
-                                                        <button style="padding-left: 42px;padding-right: 42px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-success main-shadow">
+                                                        <button style="padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-success main-shadow">
                                                             <img src="{{ asset('/img/icon_login/icon-line.png') }}">&nbsp; Login with LINE
                                                         </button>
                                                     </a>
@@ -118,7 +118,7 @@
                                                 <br>
                                                 <div class="col-12">
                                                     <a href="{{ route('login.facebook') }}">
-                                                        <button style="padding-left: 36px;padding-right: 36px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-primary main-shadow">
+                                                        <button style="padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-primary main-shadow">
                                                             <img src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
                                                         </button>
                                                     </a>
@@ -126,7 +126,7 @@
                                                 <br>
                                                 <div class="col-12">
                                                     <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}">
-                                                        <button style="padding-left: 44px;padding-right: 44px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-danger main-shadow">
+                                                        <button style="padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-danger main-shadow">
                                                             <img src="{{ asset('/img/icon_login/icon-gg.png') }}">&nbsp; Login GOOGLE
                                                         </button>
                                                     </a>
