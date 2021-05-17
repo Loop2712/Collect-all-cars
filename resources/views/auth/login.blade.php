@@ -55,7 +55,7 @@
                                                     </button>
 
                                                     <!-- แสดงเฉพาะมือถือ -->
-                                                    <button style="padding-left: 130px;padding-right: 130px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none main-shadow">
+                                                    <button style="padding-left: 105px;padding-right: 105px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;" type="submit" class="btn btn-danger d-block d-md-none main-shadow">
                                                         {{ __('เข้าสู่ระบบ') }}
                                                     </button>
                                                 </center>
@@ -74,14 +74,14 @@
                                         </div>
                                          <!-- แสดงเฉพาะมือถือ -->
                                         <div class="form-group row ">
-                                            <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-5 d-block d-md-none"></div>
-                                            <span style="margin-top: -13px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-2 d-block d-md-none"> หรือ </span>
-                                            <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-5 d-block d-md-none"></div>
+                                            <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-4 d-block d-md-none"></div>
+                                            <span style="margin-top: -13px;color: #ccc;text-transform: uppercase;text-align: center;" class="col-4 d-block d-md-none"> หรือ </span>
+                                            <div style="height: 1px;width: 100%;background-color: #dbdbdb;" class="col-4 d-block d-md-none"></div>
                                         </div>
 
                                         <div class="col-12 col-md-12">
                                             <!-- แสดงเฉพาะคอม -->
-                                            <div class="row">
+                                            <div class="row d-none d-lg-block">
                                                 <div class="col-12">
                                                     <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}">
                                                         <button style="padding-left: 62px;padding-right: 62px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-success main-shadow">
@@ -89,7 +89,7 @@
                                                         </button>
                                                     </a>
                                                 </div>
-                                                <br><br><br>
+                                                <br>
                                                 <div class="col-12">
                                                     <a href="{{ route('login.facebook') }}">
                                                         <button style="padding-left: 56px;padding-right: 56px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-primary main-shadow">
@@ -97,7 +97,7 @@
                                                         </button>
                                                     </a>
                                                 </div>
-                                                <br><br><br>
+                                                <br>
                                                 <div class="col-12">
                                                     <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}">
                                                         <button style="padding-left: 64px;padding-right: 64px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-danger main-shadow">
@@ -106,9 +106,32 @@
                                                     </a>
                                                 </div>
                                             </div>
-
-                                            
-
+                                            <!-- แสดงเฉพาะมือถือ -->
+                                            <div class="row d-block d-md-none">
+                                                <div class="col-12">
+                                                    <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}">
+                                                        <button style="padding-left: 42px;padding-right: 42px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-success main-shadow">
+                                                            <img src="{{ asset('/img/icon_login/icon-line.png') }}">&nbsp; Login with LINE
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                <br>
+                                                <div class="col-12">
+                                                    <a href="{{ route('login.facebook') }}">
+                                                        <button style="padding-left: 36px;padding-right: 36px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-primary main-shadow">
+                                                            <img src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                <br>
+                                                <div class="col-12">
+                                                    <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}">
+                                                        <button style="padding-left: 44px;padding-right: 44px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-danger main-shadow">
+                                                            <img src="{{ asset('/img/icon_login/icon-gg.png') }}">&nbsp; Login GOOGLE
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <!-- <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}"><img width="160" height="60" src="{{ asset('/img/icon/line.png') }}"></a>
                                             <br>
                                             <a href="{{ route('login.facebook') }}"><img width="160" height="60" src="{{ asset('/img/icon/fb.png') }}"></a>
