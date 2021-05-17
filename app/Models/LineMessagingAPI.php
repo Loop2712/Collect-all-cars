@@ -411,6 +411,7 @@ class LineMessagingAPI extends Model
                         $string_json = file_get_contents($template_path);
 
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
+                        $string_json = str_replace("act1",$id[0],$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
                         // พรบ
                         // เวลาปัจจุบัน
