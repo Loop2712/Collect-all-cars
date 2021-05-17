@@ -80,53 +80,30 @@
                                         </div>
 
                                         <div class="col-12 col-md-12">
-                                            <!-- แสดงเฉพาะคอม -->
-                                            <div class="row d-none d-lg-block">
-                                                <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-12 main-shadow main-radius" style="background-color: #28A745;">
                                                     <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}">
-                                                        <button style="padding-left: 62px;padding-right: 62px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-success main-shadow">
+                                                        <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
                                                             <img src="{{ asset('/img/icon_login/icon-line.png') }}">&nbsp; Login with LINE
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                <br>
-                                                <div class="col-12">
-                                                    <a href="{{ route('login.facebook') }}">
-                                                        <button style="padding-left: 56px;padding-right: 56px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-primary main-shadow">
-                                                            <img src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                <br>
-                                                <div class="col-12">
-                                                    <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}">
-                                                        <button style="padding-left: 64px;padding-right: 64px;padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-danger main-shadow">
-                                                            <img src="{{ asset('/img/icon_login/icon-gg.png') }}">&nbsp; Login GOOGLE
                                                         </button>
                                                     </a>
                                                 </div>
                                             </div>
-                                            <!-- แสดงเฉพาะมือถือ -->
-                                            <div class="row d-block d-md-none">
-                                                <div class="col-12">
-                                                    <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}">
-                                                        <button style="padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-success main-shadow">
-                                                            <img src="{{ asset('/img/icon_login/icon-line.png') }}">&nbsp; Login with LINE
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                <br>
-                                                <div class="col-12">
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12 main-shadow main-radius" style="background-color: #007BFF;">
                                                     <a href="{{ route('login.facebook') }}">
-                                                        <button style="padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-primary main-shadow">
+                                                        <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
                                                             <img src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
                                                         </button>
                                                     </a>
                                                 </div>
-                                                <br>
-                                                <div class="col-12">
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12 main-shadow main-radius" style="background-color: #DC3545;">
                                                     <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}">
-                                                        <button style="padding-top: 10px; padding-bottom: 10px;" type="button" class="btn btn-outline-danger main-shadow">
+                                                        <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
                                                             <img src="{{ asset('/img/icon_login/icon-gg.png') }}">&nbsp; Login GOOGLE
                                                         </button>
                                                     </a>
