@@ -12,15 +12,15 @@
       <div class="col mb-3">
         <div class="card">
             <div class="card-header">
-                        <span style="font-size: 25px;" class="text-dark"><b>ข้อมูลของฉัน</b></span>
-                        @if(Auth::check())
-                            @if(Auth::user()->id == $data->id )
-                        <a href="{{ url('/profile/' . $data->id . '/edit') }}" class="text-white float-right btn btn-warning main-shadow main-radius" >
-                            <i class="fas fa-user-edit"></i> แก้ไขโปรไฟล์
-                        </a>
-                            @endif
-                        @endif
-                    </div>
+                <span style="font-size: 25px;" class="text-dark"><b>ข้อมูลของฉัน</b></span>
+                @if(Auth::check())
+                    @if(Auth::user()->id == $data->id )
+                <a href="{{ url('/profile/' . $data->id . '/edit') }}" class="text-white float-right btn btn-warning main-shadow main-radius" >
+                    <i class="fas fa-user-edit"></i> แก้ไขโปรไฟล์
+                </a>
+                    @endif
+                @endif
+            </div>
           <div class="card-body">
 <div class="container bootstrap snippets bootdey">
 <div class="panel-body inf-content">

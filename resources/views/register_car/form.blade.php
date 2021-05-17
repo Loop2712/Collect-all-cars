@@ -276,7 +276,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-2">
-                    <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Car registration numbers' }}<span style="color: #FF0033;"> *</span></label>
+                    <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Registration numbers' }}<span style="color: #FF0033;"> *</span></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
