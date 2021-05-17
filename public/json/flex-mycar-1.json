@@ -106,7 +106,12 @@
                   }
                 ],
                 "offsetTop": "xl",
-                "offsetEnd": "xxl"
+                "offsetEnd": "xxl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/register_car/act1/edit_act"
+                }
               },
               {
                 "type": "box",
@@ -120,7 +125,12 @@
                     "offsetEnd": "md"
                   }
                 ],
-                "offsetTop": "xl"
+                "offsetTop": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/register_car/act1/edit_act"
+                }
               }
             ],
             "paddingBottom": "lg"
