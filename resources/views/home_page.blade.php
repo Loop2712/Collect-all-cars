@@ -31,13 +31,13 @@
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
 
-                <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
+                <div class="icon-box d-flex"  style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-car-crash"></i>
                           <h4>เหตุฉุกเฉิน</h4>
                       </div>
-                      <div class="col-8">
+                      <div class="col-8" >
                           <br>
                           <p>เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ
                           แค่เพียงคุณกดปุ่ม <b class="text-dark">"SOS"</b> เพียงเท่านี้จะมีเบอร์ที่จำเป็นแสดงขึ้นมา ไม่ว่าจะเป็น
@@ -47,7 +47,7 @@
                   </div>
                 </div>
 
-                <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
+                <div class="icon-box d-flex" style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-id-card-alt"></i>
@@ -63,7 +63,7 @@
                   </div>
                 </div>
 
-                <div class="icon-box d-flex" style="padding: 20px; margin: 10px;">
+                <div class="icon-box d-flex" style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-user-lock"></i>
@@ -100,7 +100,7 @@
                   <a href="https://youtu.be/eHT1gJ0-FQg" class="glightbox play-btn mb-4"></a>
                 </div>
               </div>
-              <div class="col-7" style="padding:20px;">
+              <div class="col-6" style="padding:20px;">
                 <br>
                 <div  class="icon-boxes d-flex flex-column align-items-stretch justify-content-center ">
                   <h3>Top4 ปัญหาโลกแตกเกี่ยวกับการใช้รถใช้ถนน</h3>
@@ -431,11 +431,20 @@
               <div class="col-12" >
                 <br>
                 <div  class="icon-boxes d-flex flex-column align-items-stretch justify-content-center ">
-                  <div class="icon-box" style="margin-top:-10px">
-                    <div class="icon"><i class="fas fa-house-damage"></i></div>
-                    <h4 class="title"><a href="">รถจอดขวางหน้าบ้าน</a></h4>
+                  <center><div class="icon-box" style="margin-top:-10px">
+                    <div class="icon" style="margin:0px;"><i class="fas fa-house-damage"></i></div>
+                    <h4 class="title"><a href="">รถจอดขวางหน้าบ้าน</a></h4></center>
                     <p class="description" style="text-indent: 30px; ">ใครที่อาศัยอยู่ในเขตชุมชน เช่น ตลาด ย่านการค้า หรือบ้านที่รั้วบ้านติดๆกันและมีบ้านทั้งสองฝั่งจะต้องเคยเจอมาแล้วแน่นอน วันดีคืนดีมีใครก็ไม่รู้มาจอดรถขวางหน้าบ้าน จะเอารถออกก็ไม่ได้ จะไปไหนก็ไม่ได้ จะตามตัวเจ้าของรถก็ไม่รู้จะไปตามที่ไหน ซึ่งกรณีเช่นนี้ก็เป็นประเด็นให้เห็นทางโซเชียลบ่อยครั้ง</p>
                   </div>
+
+                 
+                  <center><div class="icon-box" style="margin-top:-10px">
+                    <div class="icon" style="margin:0px;"><i class="fas fa-house-damage"></i></div>
+                    <h5  class="text-center"><b>Top4 ปัญหาโลกแตกเกี่ยวกับการใช้รถใช้ถนน</b></h5>
+                  <p style="text-indent: 50px;">ใครที่เดินทางไปไหนมาไหนบ่อยๆ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน เชื่อว่าต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
+              
+                    </div>
+
 
                   <div class="icon-box">
                     <div class="icon"><i class="fas fa-road"></i></div>
@@ -465,7 +474,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
+    <section id="counts" class="counts d-block d-md-none">
       <div class="container">
 
         <div class="row">
@@ -508,7 +517,7 @@
     </section><!-- End Counts Section -->
 
     <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
+    <section id="gallery" class="gallery d-block d-md-none">
       <div class="container">
 
         <div class="section-title">
@@ -582,7 +591,7 @@
     </section><!-- End Gallery Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <section id="services" class="services d-block d-md-none">
       <div class="container">
 
         <div class="section-title">
