@@ -61,15 +61,15 @@
                             <div class="col-9 col-md-11" style="margin-top:-20px;">
                             <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
                                     <li class="nav-item" >
-                                        <a class="nav-link active " href="#" role="tab" data-toggle="tab" onclick="
+                                        <a class="nav-link active " href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
                                             document.querySelector('#img_show_car').classList.remove('d-none'),
                                             document.querySelector('#img_show_mortor').classList.add('d-none'),
                                             document.querySelector('#show_car').classList.remove('d-none'),
                                             document.querySelector('#show_mortor').classList.add('d-none');">
-                                            <b style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รถยนต์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                            <b style="font-size: 15px; text-center;">รถยนต์</b>
                                         </a>
                                     </li>&nbsp;
-                                    <li class="nav-item">
+                                    <li class="nav-item" style="margin-top:10px;">
                                         <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
                                                 document.querySelector('#img_show_car').classList.add('d-none'),
                                                 document.querySelector('#img_show_mortor').classList.remove('d-none'),
@@ -223,19 +223,19 @@
                                         </div>
 
                                         <a href="{{ url('/register_car/' . $item->id ) }}">
-                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px ">
+                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 115px;">
                                                 <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย     </b>
                                             </button>
                                         </a>
                                         <a href="#">
-                                            <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px; margin-top: -20px; padding: 4px 12px">
+                                            <button type="button" class="btn btn-primary main-shadow main-radius" style=" width: 115px; font-size: 14px; margin-top: -20px; padding: 4px 12px ">
                                                 <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: -10px 32px 10px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
                                                             <i class="fa fa-trash"  aria-hidden="true"></i>
                                                         </button>
                                         </form>

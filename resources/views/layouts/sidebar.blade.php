@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="row d-block d-md-none" style="padding:10px; margin: -40px 5px">
+<div class="row d-block d-md-none" style="padding:10px; margin: -50px 15px">
     <div class="col-12">
         <div class="row">
             <div class="col-6">
@@ -49,7 +49,7 @@
                         </a>
                         
                     </div>
-                    <div class="col-1"></div>
+                    <!--<div class="col-1"></div>
                     <div id="btn_sellcar" class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
                         <a id="btn_a_sellcar" class="text-danger" href="{{ url('/sell' ) }}">
                             <div class="row">
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div>-->
                 </div>
             </ui>
             </div>
@@ -79,7 +79,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-1"></div>
+                    <!--<div class="col-1"></div>
                     <div id="btn_sellmotorcycle" class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;">
                         <a id="btn_a_sellmotorcycle" class="text-danger" href="{{ url('/motercycles' ) }}">
                             <div class="row">
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

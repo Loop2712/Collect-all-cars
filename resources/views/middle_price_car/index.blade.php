@@ -37,6 +37,7 @@
                                     }else{ 
                                         document.querySelector('#brand_input').classList.add('d-none'),
                                         document.querySelector('#generation_input').classList.add('d-none');}">
+                                        ;}">
                                     @if(!empty($xx))
                                         @foreach($xx as $item)
                                         <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
@@ -66,7 +67,7 @@
                             </div>
                             <div class="col-sm-3 col-12" > <br class="d-block d-md-none">
                             <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
-                            <a class="btn btn-danger" href="{{URL::to('/middle_price_car')}}" ><h6 style="color:#fff;font-size:15px">ล้างการค้นหา</h6>  </a>
+                            <a class="btn btn-danger" style="padding-top:2px;" href="{{URL::to('/middle_price_car')}}" ><h6 style="color:#fff;font-size:17px ">ล้างการค้นหา</h6>  </a>
                             </div>
                         </form>
                     </div>
@@ -95,6 +96,7 @@
                                             $price_1 = $price_explode[0];
                                             $price_2 = $price_explode[1];
                                         @endphp
+
                                         <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
                                       
                                         <td class="d-none">
