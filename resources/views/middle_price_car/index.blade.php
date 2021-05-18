@@ -90,13 +90,8 @@
                                         
                                         <td>{{ $item->brand }}</td><td>{{ $item->model }}</td><td>{{ $item->submodel }}</td><td>{{ $item->year }}</td>
                                         
-                                        @php
-                                            $price_explode = explode("-",$item->price);
-                                            $price_1 = $price_explode[0];
-                                            $price_2 = $price_explode[1];
-                                        @endphp
-                                        <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
-
+                                      
+                                      
                                         <td class="d-none">
                                             <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
@@ -111,7 +106,11 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $Middle_price_car->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
+                            'brand' => Request::get('brand'),
+                            'model' => Request::get('model'),
+                            'submodel' => Request::get('submodel'),
+                            ])->render() !!} </div>
                         </div>
 
                     <br>
