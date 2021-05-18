@@ -234,7 +234,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ดูรถทั้งหมด",
-                  "uri": "https://www.viicheck.com/register_car"
+                  "uri": "https://www.viicheck.com/line_mycar"
                 },
                 "style": "primary",
                 "height": "sm",
