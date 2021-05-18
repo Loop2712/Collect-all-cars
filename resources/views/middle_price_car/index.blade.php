@@ -50,14 +50,14 @@
                             </div>
 
                             <div class="col-sm-3 col-12"> 
-                                <select name="generation" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
-                                        document.querySelector('#generation_input').classList.remove('d-none'),
-                                        document.querySelector('#generation_input').focus();
+                            <select name="model" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
+                                        document.querySelector('#model_input').classList.remove('d-none'),
+                                        document.querySelector('#model_input').focus();
                                     }else{ 
-                                        document.querySelector('#generation_input').classList.add('d-none');}">
+                                        document.querySelector('#model_input').classList.add('d-none');}">
                                     <option value="" selected>รุ่นรถทั้งหมด</option>     
                                         
-                                        {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
+                                        {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
                                 </select>
                             </div>
                            
