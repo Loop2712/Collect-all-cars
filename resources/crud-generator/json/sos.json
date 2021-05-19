@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "disaster",
+            "type": "integer"
+        },
+        {
+            "name": "car_fire",
+            "type": "integer"
+        },
+        {
+            "name": "life_saving",
+            "type": "integer"
+        },
+        {
+            "name": "js_100",
+            "type": "integer"
+        },
+        {
+            "name": "highway",
+            "type": "integer"
+        },
+        {
+            "name": "tourist_police",
+            "type": "integer"
+        },
+        {
+            "name": "total",
+            "type": "integer"
+        }
+    ]
+}

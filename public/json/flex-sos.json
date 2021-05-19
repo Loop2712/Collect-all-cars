@@ -76,7 +76,7 @@
                 "action": {
                   "type": "uri",
                   "label": "📞 191 ",
-                  "uri": "tel:191"
+                  "uri": "https://www.viicheck.com/disaster2"
                 },
                 "style": "primary",
                 "height": "sm",
