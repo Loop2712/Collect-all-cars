@@ -8,7 +8,7 @@
                 <div id="btn_register" class="row">
                     <div class="col-12">
                         <div class="main-shadow main-radius float-right " style="padding-bottom: 5px;">
-                            <a class="btn btn-light btn_register" href="#" role="button">ลงทะเบียนรถใหม่ <span class="text-danger">คลิก</span></a>
+                            <a class="btn btn-primary btn_register" href="#" role="button">ลงทะเบียนรถใหม่ <span class="text-danger">คลิก</span></a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
         console.log("START"); 
         setTimeout(function(){ 
           document.getElementById("btn_register").classList.add('d-none');; 
-        }, 8000);
+        }, 6500);
     });
 </script>
 @endsection
