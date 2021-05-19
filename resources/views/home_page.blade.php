@@ -317,10 +317,10 @@
           </div>
 
           <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-            <a href="https://line.me/R/ti/p/%40702ytkls">
+            <a href="{{ url('/promotion') }}">
               <div class="icon-box">
                 <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                <h4><a href="https://line.me/R/ti/p/%40702ytkls">โปรโมชั่นเกี่ยวกับยานพาหนะ</a></h4>
+                <h4><a href="{{ url('/promotion') }}">โปรโมชั่นเกี่ยวกับยานพาหนะ</a></h4>
                 <p>โปรโมชั่นมากมายที่รอให้คุณใช้บริการ</p>
                 <p>รีบเลยก่อนหมดเวลา !</p>
               </div>
@@ -638,10 +638,10 @@
           </div>
 
           <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-            <a href="https://line.me/R/ti/p/%40702ytkls">
+            <a href="{{ url('/promotion') }}">
               <div class="icon-box" style="padding: 40px 15px;">
                 <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                <h4><a href="https://line.me/R/ti/p/%40702ytkls">โปรโมชั่นเกี่ยวกับยานพาหนะ</a></h4>
+                <h4><a href="{{ url('/promotion') }}">โปรโมชั่นเกี่ยวกับยานพาหนะ</a></h4>
                 <p>โปรโมชั่นมากมายที่รอให้คุณใช้บริการ</p>
                 <p>รีบเลยก่อนหมดเวลา !</p>
               </div>
