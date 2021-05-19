@@ -7,7 +7,7 @@
 
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">ราคากลางกรมขนส่งทางบก
+                    <div class="card-header"><h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก</h3>
                                             
 
                     <!--<form method="GET" action="{{ url('/middle_price_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -21,7 +21,7 @@
                             </div>
                         </form>-->
                         
-                    <a href="{{ url('/middle_price_car/create') }}" class="float-right btn btn-success btn-sm" title="Add New Middle_price_car">
+                    <a href="{{ url('/middle_price_car/create') }}" class="d-none float-right btn btn-success btn-sm" title="Add New Middle_price_car">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
                     

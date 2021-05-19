@@ -69,7 +69,17 @@
                                             <b style="font-size: 15px; text-center;">รถยนต์</b>
                                         </a>
                                     </li>&nbsp;
-                                    <li class="nav-item" style="margin-top:10px;">
+                                    <li class="nav-item d-block d-md-none" style="margin-top:10px;">
+                                        <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
+                                                document.querySelector('#img_show_car').classList.add('d-none'),
+                                                document.querySelector('#img_show_mortor').classList.remove('d-none'),
+
+                                                document.querySelector('#show_car').classList.add('d-none'),
+                                                document.querySelector('#show_mortor').classList.remove('d-none');">
+                                        <b style="font-size: 15px;">รถจักรยานยนต์</b>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-none d-lg-block">
                                         <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
                                                 document.querySelector('#img_show_car').classList.add('d-none'),
                                                 document.querySelector('#img_show_mortor').classList.remove('d-none'),
@@ -198,9 +208,10 @@
                                                     <div class="col-12">
                                                         <center>
                                                             <br>
-                                                            <p style="position: relative;top: 5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
-                                                            <p style="position: relative;top: -13px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="margin-top: -85px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <p style="position: relative;top: 0px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                            <p style="position: relative;top: -18px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="margin-top: -95px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            
                                                         </center>
                                                     </div>
                                                 </div>
@@ -235,7 +246,10 @@
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: -10px 32px 10px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                        <button type="submit" class="d-block d-md-none btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: -10px 32px 10px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                            <i class="fa fa-trash"  aria-hidden="true"></i>
+                                                        </button>
+                                                        <button type="submit" class="d-none d-lg-block btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
                                                             <i class="fa fa-trash"  aria-hidden="true"></i>
                                                         </button>
                                         </form>
@@ -353,9 +367,9 @@
                                                     <div class="col-12">
                                                         <center>
                                                             <br>
-                                                            <h5 style="position: relative;top:-10px; z-index: 5">{{ $item->registration_number }}</h5>
-                                                            <p style="position: relative;top:-10px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="margin-top: -85px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <p style="position: relative;top: 0px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                            <p style="position: relative;top: -18px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                            <img style="margin-top: -95px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                         </center>
                                                     </div>
                                                 </div>
@@ -374,21 +388,26 @@
                                                 
                                             </div>
                                         </div>
-                                        <center><hr style="margin-top: -15px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
+                                        <center>
+                                                <hr class="row d-block d-md-none" style="margin-top: -25px; width: 90%; height:0.3px; color:#BEBEBE;">
+                                                <hr class="d-none d-lg-block" style="margin-top: -15px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                         <a href="{{ url('/register_car/' . $item->id ) }}">
-                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px ">
+                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 115px;">
                                                 <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย     </b>
                                             </button>
                                         </a>
                                         <a href="#">
-                                            <button type="button" class="btn btn-primary main-shadow main-radius" style="font-size: 14px; margin-top: -20px; padding: 4px 12px">
+                                            <button type="button" class="btn btn-primary main-shadow main-radius" style=" width: 115px; font-size: 14px; margin-top: -20px; padding: 4px 12px ">
                                                 <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                        <button type="submit" class="d-none d-lg-block btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                            <i class="fa fa-trash"  aria-hidden="true"></i>
+                                                        </button>
+                                                        <button type="submit" class="d-block d-md-none btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: -10px 32px 10px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
                                                             <i class="fa fa-trash"  aria-hidden="true"></i>
                                                         </button>
                                         </form>
