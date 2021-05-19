@@ -49,3 +49,7 @@ Route::get('/check_email/{put_email}','API\PartnersController@check_email');
 
 Route::get('/explode_name/{name_user}', 'ProfileController@explode_name');
 
+// ยี่ห้อจากราคากลาง
+Route::get('/brand_middle_price','API\Brand_middle_price_carsController@getBrand');
+// Route::get('/car_brand/{car_brand}/car_model','API\CarbrandController@getModel');
+

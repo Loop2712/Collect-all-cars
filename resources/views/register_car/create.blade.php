@@ -6,18 +6,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>
+                        <h4>
                             <div class="row">
-                                <div class="col-7">
-                                    ลงทะเบียนใหม่ / Register
+                                <div class="col-6">
+                                    ลงทะเบียนใหม่ <br> Register
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <a href="" class="float-right btn btn-outline-primary main-shadow main-radius" >
                                        <i class="fas fa-user-friends"></i> สำหรับองค์กร
                                     </a>
                                 </div>
                             </div>
-                        </h3>
+                        </h4>
                     </div>
                     <div class="card-body">
                         <a href="{{ url('/register_car') }}" title="Back"><button class="d-none btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>

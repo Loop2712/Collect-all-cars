@@ -584,10 +584,10 @@
     });
     function showCar_brand(){
         //PARAMETERS
-        fetch("{{ url('/') }}/api/car_brand")
+        fetch("{{ url('/') }}/api/brand_middle_price")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 //UPDATE SELECT OPTION
                 let input_car_brand = document.querySelector("#input_car_brand");
                     input_car_brand.innerHTML = "";
