@@ -32,7 +32,7 @@ class Home_pageController extends Controller
                         }
 
         DB::table('middle_price_cars')
-              ->where('id',"<", 1682)
+              ->where('id',">", 1681)
               ->update([
                 'type' => "car",
             ]);
