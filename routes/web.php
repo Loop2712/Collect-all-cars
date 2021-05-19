@@ -14,14 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // VIICHECK.COM
-Route::get('/', function () {
+Route::get('/', 'Home_pageController@home_page');
+Route::get('/home', 'Home_pageController@home_page');
 
-    return view('home_page');
-});
-Route::get('/home', function () {
-
-    return view('home_page');
-});
 
 // Google login
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
