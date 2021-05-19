@@ -31,6 +31,12 @@ class Home_pageController extends Controller
                             $count_guest = $key->count;
                         }
 
+        DB::table('middle_price_cars')
+              ->where('id',"<", 1682)
+              ->update([
+                'type' => "car",
+            ]);
+
         return view('home_page.home_page', compact('count_car','count_motorcycle','count_guest'));
     }
 }
