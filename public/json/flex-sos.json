@@ -76,7 +76,7 @@
                 "action": {
                   "type": "uri",
                   "label": "📞 191 ",
-                  "uri": "tel:191"
+                  "uri": "https://www.viicheck.com/disaster2"
                 },
                 "style": "primary",
                 "height": "sm",
@@ -85,12 +85,7 @@
               }
             ],
             "offsetStart": "sm",
-            "paddingAll": "md",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/disaster2"
-            }
+            "paddingAll": "md"
           },
           {
             "type": "box",
