@@ -671,7 +671,7 @@ class LineMessagingAPI extends Model
                 $string_json = file_get_contents($template_path);
 
                 $randomPromotion = DB::table('promotions')
-                    ->where('type', "carr")
+                    ->where('type', "car")
                     ->inRandomOrder()
                     ->limit(4)
                     ->get();
