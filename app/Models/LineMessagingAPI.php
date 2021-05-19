@@ -671,9 +671,9 @@ class LineMessagingAPI extends Model
                 $string_json = file_get_contents($template_path);
 
                 $randomPromotion = DB::table('promotions')
-                    ->where('type', "carr")
+                    ->where('type', "car")
                     ->inRandomOrder()
-                    ->limit(4)
+                    ->limit(3)
                     ->get();
 
                 for ($i=1; $i < count($randomPromotion);) { 
@@ -707,11 +707,11 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TIME3",$time_period[3],$string_json);
                 $string_json = str_replace("https://www.viicheck.com/link3",$link[3],$string_json);
 
-                $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
-                $string_json = str_replace("NAME4",$company[4],$string_json);
-                $string_json = str_replace("TITLE4",$titel[4],$string_json);
-                $string_json = str_replace("TIME4",$time_period[4],$string_json);
-                $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
+                // $string_json = str_replace("NAME4",$company[4],$string_json);
+                // $string_json = str_replace("TITLE4",$titel[4],$string_json);
+                // $string_json = str_replace("TIME4",$time_period[4],$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
 
                 $string_json = str_replace("carpromotion","car",$string_json);
 
@@ -726,7 +726,7 @@ class LineMessagingAPI extends Model
                 $randomPromotion = DB::table('promotions')
                     ->where('type', "motorcycle")
                     ->inRandomOrder()
-                    ->limit(4)
+                    ->limit(3)
                     ->get();
 
                 for ($i=1; $i < count($randomPromotion);) { 
@@ -760,11 +760,11 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TIME3",$time_period[3],$string_json);
                 $string_json = str_replace("https://www.viicheck.com/link3",$link[3],$string_json);
 
-                $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
-                $string_json = str_replace("NAME4",$company[4],$string_json);
-                $string_json = str_replace("TITLE4",$titel[4],$string_json);
-                $string_json = str_replace("TIME4",$time_period[4],$string_json);
-                $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
+                // $string_json = str_replace("NAME4",$company[4],$string_json);
+                // $string_json = str_replace("TITLE4",$titel[4],$string_json);
+                // $string_json = str_replace("TIME4",$time_period[4],$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
                 
                 $string_json = str_replace("carpromotion","motorcycle",$string_json);
 
