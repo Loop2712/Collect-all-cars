@@ -19,13 +19,39 @@ class ProfileController extends Controller
     public function index()
     {
         $id = Auth::id();
+        $data = User::findOrFail($id);
 
-            $data = User::findOrFail($id);
-            return view('ProfileUser/Profile' , compact('data') );
+        $date_now = date("d-m-Y"); 
 
-
-           
+        $time1=strtotime($data->created_at); //สมัคร
+        $time2=strtotime($date_now); //เวลาปัจจุบัน
         
+        $distanceInSeconds = round(abs($time2 - $time1));
+        $distanceInMinutes = round($distanceInSeconds / 60);
+
+        $month = 0;
+        $days = floor(abs($distanceInMinutes / 1440)); 
+
+
+        if ($days > 30) {
+            $over = $days / 30;
+
+            $month_full = $month + number_format($over,2);
+            $month_explode = explode(".",$month_full);
+            $month = $month_explode[0];
+
+            if (!empty($month_explode[1])) {
+                $days = ($month_explode[1]/100) * 30;
+            }elseif (empty($month_explode[1])) {
+                $days = 0;
+            }
+            
+        }
+
+        return view('ProfileUser/Profile' , compact('data' , 'month' , 'days') );
+
+
+
 
     //     $date = User::select('created_at')
     //     ->where('id', Auth::id());
@@ -216,5 +242,42 @@ class ProfileController extends Controller
         }else{
             return redirect('login/line?redirectTo=register_car');
         }
+    }
+
+    public function member()
+    {
+        $date_now = date("d-m-Y"); 
+        echo $date_now."<br>";
+
+        $time1=strtotime("5-01-2021"); //สมัคร
+        $time2=strtotime("5-05-2021"); //เวลาปัจจุบัน
+        
+        $distanceInSeconds = round(abs($time2 - $time1));
+        $distanceInMinutes = round($distanceInSeconds / 60);
+
+        $month = 0;
+        $days = floor(abs($distanceInMinutes / 1440)); 
+
+        echo "days".$days."<br>";
+
+        if ($days > 30) {
+            $over = $days / 30;
+            echo " over:".number_format($over,2)."<br>";
+
+            $month_full = $month + number_format($over,2);
+            $month_explode = explode(".",$month_full);
+            $month = $month_explode[0];
+
+            if (!empty($month_explode[1])) {
+                $days = ($month_explode[1]/100) * 30;
+            }elseif (empty($month_explode[1])) {
+                $days = 0;
+            }
+            
+        }
+
+        echo " Month:".$month. " /  Days:".number_format($days) ;
+
+        exit();
     }
 }

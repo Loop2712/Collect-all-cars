@@ -43,7 +43,11 @@
             <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{$data->avatar}}" data-original-title="Usuario"> 
             <ul title="Ratings" class="list-inline ratings text-center">
                 <li><span class="glyphicon glyphicon-star">{{ $data->name }}      </span></li>
-                <li><span class="glyphicon glyphicon-star" style="font-size: 13px;">เป็นสมาชิกมาแล้ว ปี  เดือน  วัน</span></li>
+                <li>
+                    <span class="glyphicon glyphicon-star" style="font-size: 13px;">
+                        เป็นสมาชิกมาแล้ว <b>{{ $month }}</b> เดือน <b>{{ number_format($days) }}</b> วัน
+                    </span>
+                </li>
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // VIICHECK.COM
 Route::get('/', 'Home_pageController@home_page');
 Route::get('/home', 'Home_pageController@home_page');
+Route::get('/member', 'ProfileController@member');
 
 
 // Google login
