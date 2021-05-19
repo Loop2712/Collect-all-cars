@@ -67,6 +67,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://www.viicheck.com/link1"
       }
     },
     {
@@ -132,6 +137,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://www.viicheck.com/link2"
       }
     },
     {
@@ -197,6 +207,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://www.viicheck.com/link3"
       }
     },
     {
@@ -262,6 +277,11 @@
             "margin": "md"
           }
         ]
+      },
+      "action": {
+        "type": "uri",
+        "label": "action",
+        "uri": "https://www.viicheck.com/link4"
       }
     },
     {
