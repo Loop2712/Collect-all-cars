@@ -22,6 +22,23 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style> 
+    .btn_register{
+      position: relative;
+      animation-name: example;
+      animation-duration: 10s;
+      animation-delay: 0s;
+    }
+
+    @keyframes example {
+      0%   {left:200px;}
+      25%  {left:0px;}
+      50%  {left:0px;}
+      75%  {left:200px;}
+      100% {left:200px;}
+    }
+    </style>
+
 </head>
 <body style="background-image: url('{{ asset('/img/hero-bg.jpg') }}');
   background-repeat: no-repeat;

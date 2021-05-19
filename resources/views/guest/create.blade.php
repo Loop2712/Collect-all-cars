@@ -4,6 +4,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+
+                <div id="btn_register" class="row">
+                    <div class="col-12">
+                        <div class="main-shadow main-radius float-right " style="padding-bottom: 5px;">
+                            <a class="btn btn-light btn_register" href="#" role="button">ลงทะเบียนรถใหม่ <span class="text-danger">คลิก</span></a>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="card">
                     <div class="card-header">ใส่ข้อมูลรถที่ต้องการติดต่อ</div>
                     <div class="card-body">
@@ -29,4 +38,12 @@
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START"); 
+        setTimeout(function(){ 
+          document.getElementById("btn_register").classList.add('d-none');; 
+        }, 8000);
+    });
+</script>
 @endsection
