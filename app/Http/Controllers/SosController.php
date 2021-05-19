@@ -140,5 +140,7 @@ class SosController extends Controller
                 'total' => $key->total + 1,
             ]);
         }
+
+        return view('sos.disaster2');
     }
 }

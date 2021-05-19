@@ -85,7 +85,12 @@
               }
             ],
             "offsetStart": "sm",
-            "paddingAll": "md"
+            "paddingAll": "md",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/disaster2"
+            }
           },
           {
             "type": "box",
