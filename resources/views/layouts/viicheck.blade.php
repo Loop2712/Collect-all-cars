@@ -52,12 +52,16 @@
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
-        <i class="bi bi-phone"></i> <a href="tel:020277856">020277856</a> 
+        <h4 style="padding-top: 10px;">
+          <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
+          <i class="bi bi-phone"></i> <a href="tel:020277856">020277856</a> 
+        </h4>
       </div>
       <div class="d-none d-lg-flex social-links align-items-center">
-        <a href="https://www.facebook.com/ViiCheck-100959585396310" target="bank"><i class="fab fa-facebook-square text-primary"></i></a>
-        <a href="https://line.me/R/ti/p/%40702ytkls" target="bank"><i class="fab fa-line text-success"></i></a>
+        <h4 style="padding-top: 10px;">
+          <a href="https://www.facebook.com/ViiCheck-100959585396310" target="bank"><i class="fab fa-facebook-square text-primary"></i></a>
+          <a href="https://line.me/R/ti/p/%40702ytkls" target="bank"><i class="fab fa-line text-success"></i></a>
+        <h4 style="padding-top: 10px;">
       </div>
     </div>
   </div>
@@ -108,7 +112,7 @@
               </ul>
           </li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <img class="mobile-nav-toggle main-shadow main-radius"  width="35" src="{{ Auth::user()->avatar }}">
       </nav>
       @endguest
       <!-- .navbar -->
