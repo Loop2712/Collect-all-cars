@@ -1,8 +1,8 @@
-@extends('layouts.empty')
+@extends('layouts.viicheck')
 
 @section('content')
 <!-- แสดงเฉพาะคอม -->
-<div class="container d-none d-lg-block">
+<div class="container d-none d-lg-block" style="margin-top:168px; ">
     <center>
         <div class="row">
             <div class="col-8 offset-2 main-shadow">
@@ -60,10 +60,11 @@
         </div>
     </center>
 </div>
+<br>
 <a class="d-none" id="sticker_v1" href="{{ asset('/img/more/sticker-VII-v1.png') }}" download ></a>
 <a class="d-none" id="sticker_v2" href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download ></a>
 <!-- แสดงเฉพาะมือถือ -->
-<div style="margin-left: 2px;" class="container d-block d-md-none">
+<div style="margin-left: 2px; margin-top:110px;"  class="container d-block d-md-none">
     <center>
         <div class="row">
             <div class="col-12 main-shadow">
@@ -126,4 +127,5 @@
         </div>
     </center>
 </div>
+<br>
 @endsection

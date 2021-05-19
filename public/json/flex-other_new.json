@@ -160,9 +160,9 @@
                 "text": "ถามตอบ / FAQ",
                 "margin": "xl",
                 "action": {
-                  "type": "message",
-                  "label": "ถามตอบ / FAQ",
-                  "text": "ถามตอบ / FAQ"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/faq"
                 },
                 "weight": "bold",
                 "flex": 4
@@ -174,17 +174,17 @@
                 "align": "end",
                 "color": "#ff0101",
                 "action": {
-                  "type": "message",
-                  "label": "FAQ / ถามตอบ",
-                  "text": "FAQ / ถามตอบ"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/faq"
                 }
               }
             ],
             "height": "50px",
             "action": {
-              "type": "message",
-              "label": "FAQ / ถามตอบ",
-              "text": "FAQ / ถามตอบ"
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/faq"
             },
             "margin": "md"
           },
