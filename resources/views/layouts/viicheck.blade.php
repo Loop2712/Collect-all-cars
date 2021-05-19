@@ -53,10 +53,10 @@
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
         <!-- คอม -->
-        <h4 class="d-none d-lg-block" style="padding-top: 10px;">
+        <h6 class="d-none d-lg-block" style="padding-top: 10px;">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
           <i class="bi bi-phone"></i> <a href="tel:020277856">020277856</a> 
-        </h4>
+        </h6>
         <!-- มือถือ -->
         <div class="d-block d-md-none">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
