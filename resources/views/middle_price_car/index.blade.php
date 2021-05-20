@@ -56,7 +56,7 @@
                                         document.querySelector('#model_input').focus();
                                     }else{ 
                                         document.querySelector('#model_input').classList.add('d-none');}">
-                                    <option value="" selected>รุ่นรถทั้งหมด</option>     
+                                    <option value="" selected>รุ่นรถทั้งหมด</option>     
                                         
                                         {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
                                 </select>
