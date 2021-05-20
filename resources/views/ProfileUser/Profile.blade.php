@@ -44,7 +44,7 @@
             <ul title="Ratings" class="list-inline ratings text-center">
                 <li><span class="glyphicon glyphicon-star">{{ $data->name }}      </span></li>
                 <li>
-                    @if(!empty($month) )
+                    <!-- @if(!empty($month) )
                     <span class="glyphicon glyphicon-star" style="font-size: 13px;">
                         เป็นสมาชิกมาแล้ว <b>{{ $month }}</b> เดือน <b>{{ number_format($days) }}</b> วัน
                     </span>
@@ -53,7 +53,7 @@
                     <span class="glyphicon glyphicon-star" style="font-size: 13px;">
                         เป็นสมาชิกมาแล้ว  <b>{{ number_format($days) }}</b> วัน
                     </span>
-                    @endif
+                    @endif -->
                 </li>
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
