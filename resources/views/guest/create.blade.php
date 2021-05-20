@@ -7,8 +7,8 @@
 
                 <div id="btn_register" class="row">
                     <div class="col-12">
-                        <div class="main-shadow main-radius float-right " style="padding-bottom: 5px;">
-                            <a class="btn btn-primary btn_register" href="#" role="button">ลงทะเบียนรถใหม่ <span class="text-danger">คลิก</span></a>
+                        <div class="main-shadow main-radius float-right " style="padding-bottom: 5px">
+                            <a class="btn btn-danger btn_register" href="#" role="button">ลงทะเบียนรถใหม่ <span >คลิก</span></a>
                         </div>
                     </div>
                 </div>

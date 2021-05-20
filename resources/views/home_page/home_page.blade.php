@@ -154,7 +154,7 @@
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="fas fa-car-alt"></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_car }}" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_car * 10 }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ลงทะเบียนแล้ว</p>
             </div>
           </div>
@@ -162,7 +162,7 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="fas fa-motorcycle"></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle }}" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 10 }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ลงทะเบียนแล้ว</p>
             </div>
           </div>
@@ -170,7 +170,7 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
               <i class="fas fa-car-crash"></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_guest }}" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_guest * 10 }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ให้การช่วยเหลือ</p>
             </div>
           </div>
@@ -653,8 +653,8 @@
               <div class="icon-box" style="padding: 40px 15px;">
                 <div class="icon"><i class="fas fa-user-lock"></i></div>
                 <h4><a href="https://line.me/R/ti/p/%40702ytkls">เก็บรวบรวมข้อมูล</a></h4>
-                <p>รวบรวมข้อมูลของคุณไว้ที่เดียว สะดวก รวดเร็ว ง่ายต่อการใช้งาน</p>
-                <p>ที่สำคัญปลอดภัยด้วยการรักษาความเป็นส่วนตัวของผู้ใช้บริการ</p>
+                <p>รวบรวมข้อมูลของคุณไว้ที่เดียว สะดวก รวดเร็ว ง่ายต่อการใช้งาน
+                ที่สำคัญปลอดภัยด้วยการรักษาความเป็นส่วนตัวของผู้ใช้บริการ</p>
               </div>
             </a>
           </div>

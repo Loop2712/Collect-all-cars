@@ -104,30 +104,17 @@
                     <span class="text-primary">{{ $data->phone }}<hr></span>
                     </center>
                 </div>
-                @if(is_null($data->driver_license) )
-                    <div class="col-md-12"> 
-                        <center>
-                        <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
-                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
-                        <center>   
-                    </div>
-                @elseif($data->driver_license == "" ) 
-                    <div class="col-md-12"> 
-                        <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
-                        <center>
-                        <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
-                        <center>   
-                    </div>
-                @else
-                    @if(Auth::check())
-                        @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
-                            <div class="col-md-12"> 
-                                <center>
-                                <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
-                                <b>
-                                {{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
-                                <center>   
-                            </div>
+
+                @if(Auth::check())
+                    @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
+                        <div class="col-md-12"> 
+                            <center>
+                            <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
+                            <b>
+                            {{ 'ใบอนุญาตขับรถ / Driver license ' }}</b> <br>
+                            <center>   
+                        </div>
+                        @if(!empty($data->driver_license))
                             <div class="col-md-6">
                                 <center>
                                 <label for="massengbox" class="control-label">&nbsp;รถยนต์</label>
@@ -135,6 +122,8 @@
                                 <img src="{{ url('storage')}}/{{ $data->driver_license }}" style="width:200px" /><br/><br/> 
                                 </center>
                             </div>
+                        @endif
+                        @if(!empty($data->driver_license2))
                             <div class="col-md-6">
                                 <center>
                                 <label for="massengbox" class="control-label">&nbsp;รถจักรยานยนต์</label>
@@ -145,6 +134,8 @@
                         @endif 
                     @endif               
                 @endif
+
+
                             <div class="col md-12" >
                                 <!-- @if(Auth::check())
                                     @if(Auth::user()->id == $data->id )

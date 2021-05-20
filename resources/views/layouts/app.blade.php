@@ -34,8 +34,8 @@
       0%   {left:200px;}
       25%  {left:0px;}
       50%  {left:0px;}
-      75%  {left:200px;}
-      100% {left:200px;}
+      75%  {left:0;}
+      100% {left:0;}
     }
     </style>
 

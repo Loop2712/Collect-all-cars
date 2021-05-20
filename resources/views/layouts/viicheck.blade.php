@@ -55,12 +55,12 @@
         <!-- คอม -->
         <h6 class="d-none d-lg-block" style="padding-top: 10px;">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
-          <i class="bi bi-phone"></i> <a href="tel:020277856">020277856</a> 
+          <i class="bi bi-phone"></i> <a href="tel:020277856">02-0277856</a> 
         </h6>
         <!-- มือถือ -->
         <div class="d-block d-md-none">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
-          <i class="bi bi-phone"></i> <a href="tel:020277856">020277856</a> 
+          <i class="bi bi-phone"></i> <a href="tel:020277856">02-0277856</a> 
         </div>
       </div>
       <div class="d-none d-lg-flex social-links align-items-center">
