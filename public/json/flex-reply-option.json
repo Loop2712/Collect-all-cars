@@ -20,6 +20,20 @@
         "layout": "vertical",
         "contents": [
           {
+            "type": "text",
+            "text": "* ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
+            "color": "#ffffff",
+            "wrap": true,
+            "align": "center",
+            "gravity": "center"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
             "type": "box",
             "layout": "vertical",
             "contents": [
@@ -95,7 +109,8 @@
             "backgroundColor": "#ffffff"
           }
         ],
-        "backgroundColor": "#07375D"
+        "backgroundColor": "#07375D",
+        "margin": "lg"
       }
     ],
     "backgroundColor": "#07375D",
