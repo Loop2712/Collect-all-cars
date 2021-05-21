@@ -665,100 +665,112 @@ class LineMessagingAPI extends Model
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
 
-        //     case "promotion_car": 
+            case "promotion_car": 
 
-        //         $template_path = storage_path('../public/json/flex-promotion_car.json');   
-        //         $string_json = file_get_contents($template_path);
+                $template_path = storage_path('../public/json/flex-promotion_car.json');   
+                $string_json = file_get_contents($template_path);
 
-        //         $randomPromotion = DB::table('promotions')
-        //             ->where('type', "car")
-        //             ->inRandomOrder()
-        //             ->limit(6)
-        //             ->get();
+                $randomPromotion = DB::table('promotions')
+                    ->where('type', "car")
+                    ->inRandomOrder()
+                    ->limit(3)
+                    ->get();
 
-        //         for ($i=1; $i < count($randomPromotion);) { 
-        //             foreach($randomPromotion as $item ){
-        //                 $company[$i] = $item->company;
-        //                 $titel[$i] = $item->titel;
-        //                 $time_period[$i] = $item->time_period;
-        //                 $link[$i] = $item->link;
-        //                 $photo[$i] = $item->photo;
+                for ($i=1; $i < count($randomPromotion);) { 
+                    foreach($randomPromotion as $item ){
+                        $company[$i] = $item->company;
+                        $titel[$i] = $item->titel;
+                        $time_period[$i] = $item->time_period;
+                        $link[$i] = $item->link;
+                        $photo[$i] = $item->photo;
 
-        //                 $i++;
-        //             }
-        //         }
+                        $i++;
+                    }
+                }
                 
 
-        //         $string_json = str_replace("https://www.viicheck.com/img1",$photo[1],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link1",$link[1],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/img1",$photo[1],$string_json);
+                $string_json = str_replace("NAME1",$company[1],$string_json);
+                $string_json = str_replace("TITLE1",$titel[1],$string_json);
+                $string_json = str_replace("TIME1",$time_period[1],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/link1",$link[1],$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img2",$photo[2],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link2",$link[2],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/img2",$photo[2],$string_json);
+                $string_json = str_replace("NAME2",$company[2],$string_json);
+                $string_json = str_replace("TITLE2",$titel[2],$string_json);
+                $string_json = str_replace("TIME2",$time_period[2],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/link2",$link[2],$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img3",$photo[3],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link3",$link[3],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/img3",$photo[3],$string_json);
+                $string_json = str_replace("NAME3",$company[3],$string_json);
+                $string_json = str_replace("TITLE3",$titel[3],$string_json);
+                $string_json = str_replace("TIME3",$time_period[3],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/link3",$link[3],$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
+                // $string_json = str_replace("NAME4",$company[4],$string_json);
+                // $string_json = str_replace("TITLE4",$titel[4],$string_json);
+                // $string_json = str_replace("TIME4",$time_period[4],$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img5",$photo[5],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link5",$link[5],$string_json);
+                $string_json = str_replace("carpromotion","car",$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img6",$photo[6],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link6",$link[6],$string_json);
+                $messages = [ json_decode($string_json, true) ]; 
+                break;
 
-        //         $string_json = str_replace("carpromotion","car",$string_json);
+            case "promotion_motorcycle": 
 
-        //         $messages = [ json_decode($string_json, true) ]; 
-        //         break;
+                $template_path = storage_path('../public/json/flex-promotion_car.json');   
+                $string_json = file_get_contents($template_path);
 
-        //     case "promotion_motorcycle": 
+                $randomPromotion = DB::table('promotions')
+                    ->where('type', "motorcycle")
+                    ->inRandomOrder()
+                    ->limit(3)
+                    ->get();
 
-        //         $template_path = storage_path('../public/json/flex-promotion_car.json');   
-        //         $string_json = file_get_contents($template_path);
+                for ($i=1; $i < count($randomPromotion);) { 
+                    foreach($randomPromotion as $item ){
+                        $company[$i] = $item->company;
+                        $titel[$i] = $item->titel;
+                        $time_period[$i] = $item->time_period;
+                        $link[$i] = $item->link;
+                        $photo[$i] = $item->photo;
 
-        //         $randomPromotion = DB::table('promotions')
-        //             ->where('type', "motorcycle")
-        //             ->inRandomOrder()
-        //             ->limit(6)
-        //             ->get();
-
-        //         for ($i=1; $i < count($randomPromotion);) { 
-        //             foreach($randomPromotion as $item ){
-        //                 $company[$i] = $item->company;
-        //                 $titel[$i] = $item->titel;
-        //                 $time_period[$i] = $item->time_period;
-        //                 $link[$i] = $item->link;
-        //                 $photo[$i] = $item->photo;
-
-        //                 $i++;
-        //             }
-        //         }
+                        $i++;
+                    }
+                }
                 
 
-        //         $string_json = str_replace("https://www.viicheck.com/img1",$photo[1],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link1",$link[1],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/img1",$photo[1],$string_json);
+                $string_json = str_replace("NAME1",$company[1],$string_json);
+                $string_json = str_replace("TITLE1",$titel[1],$string_json);
+                $string_json = str_replace("TIME1",$time_period[1],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/link1",$link[1],$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img2",$photo[2],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link2",$link[2],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/img2",$photo[2],$string_json);
+                $string_json = str_replace("NAME2",$company[2],$string_json);
+                $string_json = str_replace("TITLE2",$titel[2],$string_json);
+                $string_json = str_replace("TIME2",$time_period[2],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/link2",$link[2],$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img3",$photo[3],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link3",$link[3],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/img3",$photo[3],$string_json);
+                $string_json = str_replace("NAME3",$company[3],$string_json);
+                $string_json = str_replace("TITLE3",$titel[3],$string_json);
+                $string_json = str_replace("TIME3",$time_period[3],$string_json);
+                $string_json = str_replace("https://www.viicheck.com/link3",$link[3],$string_json);
 
-        //         $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
-
-        //         $string_json = str_replace("https://www.viicheck.com/img5",$photo[5],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link5",$link[5],$string_json);
-
-        //         $string_json = str_replace("https://www.viicheck.com/img6",$photo[6],$string_json);
-        //         $string_json = str_replace("https://www.viicheck.com/link6",$link[16,$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/img4",$photo[4],$string_json);
+                // $string_json = str_replace("NAME4",$company[4],$string_json);
+                // $string_json = str_replace("TITLE4",$titel[4],$string_json);
+                // $string_json = str_replace("TIME4",$time_period[4],$string_json);
+                // $string_json = str_replace("https://www.viicheck.com/link4",$link[4],$string_json);
                 
-        //         $string_json = str_replace("carpromotion","motorcycle",$string_json);
+                $string_json = str_replace("carpromotion","motorcycle",$string_json);
 
-        //         $messages = [ json_decode($string_json, true) ]; 
-        //         break;
-        // }
+                $messages = [ json_decode($string_json, true) ]; 
+                break;
+        }
 
         $body = [
             "replyToken" => $event["replyToken"],
