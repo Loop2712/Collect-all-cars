@@ -164,27 +164,10 @@ class Not_comforController extends Controller
     public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
 
     public function _push_Not_comforLine($data)
-    {
-        $provider_id = $data['provider_id'];
-
-        $reply_provider_id = $data['reply_provider_id'];
-        $content = $data['content'];
-        $phone = $data['phone'];
-        $want_phone = $data['want_phone'];
-        if (!empty($data['registration_number'])) {
-            $registration_number = $data['registration_number'];
-        }
-        $province = $data['province'];
-
-        $type_login = DB::table('users')
-                    ->select('type' , 'email' , 'name')
-                    ->where('provider_id', $reply_provider_id)
-                    ->get();
-                        
-        $google_registration_number = $registration_number ;
-        $google_province = $province ;
-
+    {   
         if (empty($data['registration_number'])) {
+
+            $provider_id = $data['provider_id'];
             
             $body = [
                         "to" => $provider_id,
@@ -211,7 +194,26 @@ class Not_comforController extends Controller
                         "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
                     ];
         }
+
         if (!empty($data['registration_number'])) {
+
+            $provider_id = $data['provider_id'];
+
+            $reply_provider_id = $data['reply_provider_id'];
+            $content = $data['content'];
+            $phone = $data['phone'];
+            $want_phone = $data['want_phone'];
+            $registration_number = $data['registration_number'];
+            $province = $data['province'];
+
+            $type_login = DB::table('users')
+                        ->select('type' , 'email' , 'name')
+                        ->where('provider_id', $reply_provider_id)
+                        ->get();
+                            
+            $google_registration_number = $registration_number ;
+            $google_province = $province ;
+
             foreach($type_login as $item){
                 switch ($item->type) {
                     case 'line':
