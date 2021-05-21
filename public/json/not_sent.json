@@ -1,0 +1,52 @@
+{
+    "type": "flex",
+    "altText": "ไม่สามารถทำการตอบกลับได้ค่ะ",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/17.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "align": "center",
+            "aspectMode": "fit"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ไม่สามารถทำการตอบกลับได้ เนื่องจากคุณทำการตอบกลับไปก่อนหน้านี้แล้วค่ะ",
+            "margin": "lg",
+            "size": "lg",
+            "weight": "bold",
+            "wrap": true,
+            "align": "center",
+            "gravity": "center"
+          }
+        ]
+      }
+    ],
+    "borderWidth": "bold",
+    "cornerRadius": "xl",
+    "borderColor": "#ff0101"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#ff0101"
+    }
+  }
+}
+}

@@ -168,10 +168,14 @@ class Not_comforController extends Controller
         if (empty($data['registration_number'])) {
 
             $provider_id = $data['provider_id'];
-            
+
+            $template_path = storage_path('../public/json/not_sent.json');   
+            $string_json = file_get_contents($template_path);
+            $messages = [ json_decode($string_json, true) ];
+
             $body = [
                         "to" => $provider_id,
-                        "messages" => "ไม่สามารถทำการตอบกลับได้ค่ะ เนื่องจากคุณทำการตอบกลับไปก่อนหน้านี้แล้ว",
+                        "messages" => $messages,
                     ];
 
             $opts = [
