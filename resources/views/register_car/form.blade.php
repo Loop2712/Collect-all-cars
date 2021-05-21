@@ -580,7 +580,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         console.log("START");
         showCar_brand();
-        showMotor_brand();   
+        showMotor_brand();
         show_location_P();
     });
     // function juristic(){
@@ -620,6 +620,10 @@
             return input_car_brand.value;
     }
     function showCar_model(){
+        // console.log(input_car_model.options.length);
+        while (input_car_model.options.length > 1) {
+                input_car_model.remove(1);
+            } 
         let input_car_brand = document.querySelector("#input_car_brand");
         // console.log(input_car_brand.value);
         fetch("{{ url('/') }}/api/brand_middle_price/"+input_car_brand.value+"/model")
@@ -634,7 +638,7 @@
                     let option = document.createElement("option");
                     option.text = item.model;
                     option.value = item.model;
-                    input_car_model.add(option);                
+                    input_car_model.add(option);             
                 } 
                 let option = document.createElement("option");
                     option.text = "อื่นๆ";
@@ -671,6 +675,10 @@
             return input_motor_brand.value;
     }
     function showMotor_model(){
+        // console.log(input_motor_model.options.length);
+        while (input_motor_model.options.length > 1) {
+                input_motor_model.remove(1);
+            } 
         let input_motor_brand = document.querySelector("#input_motor_brand");
         fetch("{{ url('/') }}/api/motor_middle_price/"+input_motor_brand.value+"/model")
             .then(response => response.json())

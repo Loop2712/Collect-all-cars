@@ -258,16 +258,16 @@ body{
 
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START");
+        // console.log("START");
         showCar_brand();
         showMotor_brand();   
     });
     function showCar_brand(){
         //PARAMETERS
-        fetch("{{ url('/') }}/api/car_brand")
+        fetch("{{ url('/') }}/api/brand_middle_price")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 //UPDATE SELECT OPTION
                 // let input_car_brand = document.querySelector("#input_car_brand");
                     // input_car_brand.innerHTML = "";
@@ -289,11 +289,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
             return input_car_brand.value;
     }
     function showCar_model(){
+        // console.log(input_car_model.options.length);
+        while (input_car_model.options.length > 1) {
+                input_car_model.remove(1);
+            } 
         let input_car_brand = document.querySelector("#input_car_brand");
-        fetch("{{ url('/') }}/api/car_brand/"+input_car_brand.value+"/car_model")
+        fetch("{{ url('/') }}/api/brand_middle_price/"+input_car_brand.value+"/model")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 // //UPDATE SELECT OPTION
                 // let input_car_model = document.querySelector("#input_car_model");
                 //     input_car_model.innerHTML = "";
