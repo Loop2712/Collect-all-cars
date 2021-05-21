@@ -25,18 +25,37 @@
     <style> 
     .btn_register{
       position: relative;
-      animation-name: example;
+      animation-name: btn_register;
       animation-duration: 10s;
       animation-delay: 0s;
     }
 
-    @keyframes example {
+    .text_click{
+      color: white;
+      animation-name: text_click;
+      animation-duration: 5s;
+      animation-delay: 2s;
+    }
+
+    @keyframes btn_register {
       0%   {left:200px;}
       25%  {left:0px;}
       50%  {left:0px;}
       75%  {left:0;}
       100% {left:0;}
     }
+
+    @keyframes text_click {
+      0%   {color: white;}
+      20%  {color: yellow;}
+      40%  {color: white;}
+      60%   {color: yellow;}
+      80%  {color: white;}
+      95%  {color: yellow;}
+      100%  {color: white;}
+
+    }
+
     </style>
 
 </head>
