@@ -171,7 +171,9 @@ class Not_comforController extends Controller
         $content = $data['content'];
         $phone = $data['phone'];
         $want_phone = $data['want_phone'];
-        $registration_number = $data['registration_number'];
+        if (!empty($data['registration_number'])) {
+            $registration_number = $data['registration_number'];
+        }
         $province = $data['province'];
 
         $type_login = DB::table('users')
@@ -182,7 +184,7 @@ class Not_comforController extends Controller
         $google_registration_number = $registration_number ;
         $google_province = $province ;
 
-        if (empty($registration_number)) {
+        if (empty($data['registration_number'])) {
             
             $body = [
                         "to" => $provider_id,
@@ -209,7 +211,7 @@ class Not_comforController extends Controller
                         "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
                     ];
         }
-        if (!empty($registration_number)) {
+        if (!empty($data['registration_number'])) {
             foreach($type_login as $item){
                 switch ($item->type) {
                     case 'line':
