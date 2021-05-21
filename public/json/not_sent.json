@@ -34,14 +34,16 @@
             "weight": "bold",
             "wrap": true,
             "align": "center",
-            "gravity": "center"
+            "gravity": "center",
+            "color": "#ffffff"
           }
         ]
       }
     ],
     "borderWidth": "bold",
     "cornerRadius": "xl",
-    "borderColor": "#ff0101"
+    "borderColor": "#ff0101",
+    "backgroundColor": "#07375D"
   },
   "styles": {
     "hero": {
