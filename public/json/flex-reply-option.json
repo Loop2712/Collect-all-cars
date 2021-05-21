@@ -96,7 +96,7 @@
                 "action": {
                   "type": "uri",
                   "label": "ฉันไม่สะดวก / I'm not available",
-                  "uri": "https://www.viicheck.com/not_comfor/create"
+                  "uri": "https://www.viicheck.com/not_comfor_login"
                 },
                 "style": "secondary",
                 "height": "sm",

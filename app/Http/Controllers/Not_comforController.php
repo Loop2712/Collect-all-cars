@@ -311,5 +311,17 @@ class Not_comforController extends Controller
 
     }
 
+    public function not_comfor_login(Request $request)
+    {
+        $id = Auth::id();
+
+        if(Auth::check()){
+            return redirect('not_comfor/create');
+            // echo Auth::User()->name;
+        }else{
+            return redirect('login/line?redirectTo=not_comfor/create');
+        }
+    }
+
 
 }
