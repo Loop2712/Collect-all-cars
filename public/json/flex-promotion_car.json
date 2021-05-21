@@ -12,7 +12,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img1",
+            "url": "https://bit.ly/3bEFEbd",
             "size": "full",
             "aspectMode": "cover",
             "aspectRatio": "1:1",
@@ -34,12 +34,11 @@
                 "color": "#ffffff"
               }
             ],
-            "borderColor": "#ffffff",
-            "borderWidth": "medium",
             "position": "absolute",
             "cornerRadius": "xxl",
             "offsetTop": "240px",
-            "offsetStart": "100px"
+            "offsetStart": "100px",
+            "backgroundColor": "#708090cc"
           }
         ],
         "paddingAll": "0px"
@@ -75,12 +74,11 @@
                 "color": "#ffffff"
               }
             ],
-            "borderColor": "#ffffff",
-            "borderWidth": "medium",
             "position": "absolute",
             "cornerRadius": "xxl",
             "offsetTop": "240px",
-            "offsetStart": "100px"
+            "offsetStart": "100px",
+            "backgroundColor": "#708090cc"
           }
         ],
         "paddingAll": "0px"
@@ -116,12 +114,11 @@
                 "color": "#ffffff"
               }
             ],
-            "borderColor": "#ffffff",
-            "borderWidth": "medium",
             "position": "absolute",
             "cornerRadius": "xxl",
             "offsetTop": "240px",
-            "offsetStart": "100px"
+            "offsetStart": "100px",
+            "backgroundColor": "#708090cc"
           }
         ],
         "paddingAll": "0px"
@@ -157,12 +154,11 @@
                 "color": "#ffffff"
               }
             ],
-            "borderColor": "#ffffff",
-            "borderWidth": "medium",
             "position": "absolute",
             "cornerRadius": "xxl",
             "offsetTop": "240px",
-            "offsetStart": "100px"
+            "offsetStart": "100px",
+            "backgroundColor": "#708090cc"
           }
         ],
         "paddingAll": "0px"
@@ -198,12 +194,11 @@
                 "color": "#ffffff"
               }
             ],
-            "borderColor": "#ffffff",
-            "borderWidth": "medium",
             "position": "absolute",
             "cornerRadius": "xxl",
             "offsetTop": "240px",
-            "offsetStart": "100px"
+            "offsetStart": "100px",
+            "backgroundColor": "#708090cc"
           }
         ],
         "paddingAll": "0px"
@@ -239,12 +234,11 @@
                 "color": "#ffffff"
               }
             ],
-            "borderColor": "#ffffff",
-            "borderWidth": "medium",
             "position": "absolute",
             "cornerRadius": "xxl",
             "offsetTop": "240px",
-            "offsetStart": "100px"
+            "offsetStart": "100px",
+            "backgroundColor": "#708090cc"
           }
         ],
         "paddingAll": "0px"
