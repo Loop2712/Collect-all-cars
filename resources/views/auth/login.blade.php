@@ -84,7 +84,7 @@
                                                 <div class="col-12 main-shadow main-radius" style="background-color: #28A745;">
                                                     <a href="{{ route('login.line') }}?redirectTo={{ request('redirectTo') }}">
                                                         <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
-                                                            <img src="{{ asset('/img/icon_login/icon-line.png') }}">&nbsp; Login with LINE
+                                                            <img width="15%" class="main-shadow" style="border-radius: 20px;background-color: #ffff;" src="{{ asset('/img/icon_login/icon-line.png') }}">&nbsp;&nbsp; Login with LINE
                                                         </button>
                                                     </a>
                                                 </div>
@@ -94,7 +94,7 @@
                                                 <div class="col-12 main-shadow main-radius" style="background-color: #007BFF;">
                                                     <a href="{{ route('login.facebook') }}">
                                                         <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
-                                                            <img src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
+                                                            <img width="15%" class="main-shadow" style="border-radius: 20px;background-color: #ffff;" src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
                                                         </button>
                                                     </a>
                                                 </div>
@@ -104,7 +104,7 @@
                                                 <div class="col-12 main-shadow main-radius" style="background-color: #DC3545;">
                                                     <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}">
                                                         <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
-                                                            <img src="{{ asset('/img/icon_login/icon-gg.png') }}">&nbsp; Login GOOGLE
+                                                            <img width="15%" class="main-shadow" style="border-radius: 20px;background-color: #ffff;" src="{{ asset('/img/icon_login/icon-gg.png') }}">&nbsp;&nbsp; Login GOOGLE&nbsp;
                                                         </button>
                                                     </a>
                                                 </div>
