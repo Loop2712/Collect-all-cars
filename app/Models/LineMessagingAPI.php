@@ -673,7 +673,7 @@ class LineMessagingAPI extends Model
                 $randomPromotion = DB::table('promotions')
                     ->where('type', "car")
                     ->inRandomOrder()
-                    ->limit(3)
+                    ->limit(5)
                     ->get();
 
                 for ($i=1; $i < count($randomPromotion);) { 
