@@ -93,11 +93,6 @@ class Not_comforController extends Controller
             $requestData['province'] = $item->province ;
         }
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
-
         Not_comfor::create($requestData);
 
         $this->_push_Not_comforLine($requestData);
