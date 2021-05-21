@@ -295,8 +295,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .then(result => {
                 console.log(result);
                 // //UPDATE SELECT OPTION
-                let input_car_model = document.querySelector("#input_car_model");
-                    input_car_model.innerHTML = "";
+                // let input_car_model = document.querySelector("#input_car_model");
+                //     input_car_model.innerHTML = "";
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.model;

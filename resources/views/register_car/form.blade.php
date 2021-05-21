@@ -573,6 +573,7 @@
     </div>
 </div>
 
+<!-- <p class="btn btn-sm btn-primary" onclick="juristic();">เลขทะเบียนนิติบุคคล</p> -->
 
 
 <script>
@@ -582,6 +583,16 @@
         showMotor_brand();   
         show_location_P();
     });
+    // function juristic(){
+    //     //PARAMETERS
+    //     console.log("เลขทะเบียนนิติบุคคล");
+    //     fetch("https://dataapi.moc.go.th/juristic?juristic_id=0105537004444")
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             console.log(result);
+    //             //UPDATE SELECT OPTION
+    //         });
+    // }
     function showCar_brand(){
         //PARAMETERS
         fetch("{{ url('/') }}/api/brand_middle_price")
@@ -589,8 +600,8 @@
             .then(result => {
                 // console.log(result);
                 //UPDATE SELECT OPTION
-                let input_car_brand = document.querySelector("#input_car_brand");
-                    input_car_brand.innerHTML = "";
+                // let input_car_brand = document.querySelector("#input_car_brand");
+                //     input_car_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -610,14 +621,14 @@
     }
     function showCar_model(){
         let input_car_brand = document.querySelector("#input_car_brand");
-        console.log(input_car_brand.value);
+        // console.log(input_car_brand.value);
         fetch("{{ url('/') }}/api/brand_middle_price/"+input_car_brand.value+"/model")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
                 // //UPDATE SELECT OPTION
-                let input_car_model = document.querySelector("#input_car_model");
-                    input_car_model.innerHTML = "";
+                // let input_car_model = document.querySelector("#input_car_model");
+                //     input_car_model.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -640,8 +651,8 @@
             .then(result => {
                 // console.log(result);
                 //UPDATE SELECT OPTION
-                let input_motor_brand = document.querySelector("#input_motor_brand");
-                    input_motor_brand.innerHTML = "";
+                // let input_motor_brand = document.querySelector("#input_motor_brand");
+                //     input_motor_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -666,8 +677,8 @@
             .then(result => {
                 // console.log(result);
                 // //UPDATE SELECT OPTION
-                let input_motor_model = document.querySelector("#input_motor_model");
-                    input_motor_model.innerHTML = "";
+                // let input_motor_model = document.querySelector("#input_motor_model");
+                //     input_motor_model.innerHTML = "";
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.model;
