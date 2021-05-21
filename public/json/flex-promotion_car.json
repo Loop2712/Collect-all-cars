@@ -6,236 +6,291 @@
   "contents": [
     {
       "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://www.viicheck.com/img1"
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "sm",
         "contents": [
           {
-            "type": "text",
-            "text": "NAME1",
-            "wrap": true,
-            "size": "lg"
+            "type": "image",
+            "url": "https://www.viicheck.com/img1",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "1:1",
+            "gravity": "top"
           },
           {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "text": "TITLE1",
-                "wrap": true,
-                "size": "md"
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "รายละเอียด",
+                  "uri": "https://www.viicheck.com/link1"
+                },
+                "style": "link",
+                "height": "sm",
+                "color": "#ffffff"
               }
             ],
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/clock.png",
-                "size": "sm"
-              },
-              {
-                "type": "text",
-                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
-                "wrap": true,
-                "weight": "regular",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "TIME1",
-                    "size": "sm",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "md"
-              }
-            ],
-            "margin": "md"
+            "borderColor": "#ffffff",
+            "borderWidth": "medium",
+            "position": "absolute",
+            "cornerRadius": "xxl",
+            "offsetTop": "240px",
+            "offsetStart": "100px"
           }
-        ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://www.viicheck.com/link1"
+        ],
+        "paddingAll": "0px"
       }
     },
     {
       "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://www.viicheck.com/img2"
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "sm",
         "contents": [
           {
-            "type": "text",
-            "text": "NAME2",
-            "wrap": true,
-            "size": "lg"
+            "type": "image",
+            "url": "https://www.viicheck.com/img2",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "1:1",
+            "gravity": "top"
           },
           {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "text": "TITLE2",
-                "wrap": true,
-                "size": "md"
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "รายละเอียด",
+                  "uri": "https://www.viicheck.com/link2"
+                },
+                "style": "link",
+                "height": "sm",
+                "color": "#ffffff"
               }
             ],
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/clock.png",
-                "size": "sm"
-              },
-              {
-                "type": "text",
-                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
-                "wrap": true,
-                "weight": "regular",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "TIME2",
-                    "size": "sm",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "md"
-              }
-            ],
-            "margin": "md"
+            "borderColor": "#ffffff",
+            "borderWidth": "medium",
+            "position": "absolute",
+            "cornerRadius": "xxl",
+            "offsetTop": "240px",
+            "offsetStart": "100px"
           }
-        ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://www.viicheck.com/link2"
+        ],
+        "paddingAll": "0px"
       }
     },
     {
       "type": "bubble",
-      "size": "kilo",
-      "hero": {
-        "type": "image",
-        "size": "full",
-        "aspectRatio": "20:17",
-        "aspectMode": "cover",
-        "url": "https://www.viicheck.com/img3"
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "sm",
         "contents": [
           {
-            "type": "text",
-            "text": "NAME3",
-            "wrap": true,
-            "size": "lg"
+            "type": "image",
+            "url": "https://www.viicheck.com/img3",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "1:1",
+            "gravity": "top"
           },
           {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "text": "TITLE3",
-                "wrap": true,
-                "size": "md"
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "รายละเอียด",
+                  "uri": "https://www.viicheck.com/link3"
+                },
+                "style": "link",
+                "height": "sm",
+                "color": "#ffffff"
               }
             ],
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/clock.png",
-                "size": "sm"
-              },
-              {
-                "type": "text",
-                "text": "เมื่อเปลี่ยนยาง Michelin ที่บี-ควิก",
-                "wrap": true,
-                "weight": "regular",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "TIME3",
-                    "size": "sm",
-                    "color": "#ff0101"
-                  }
-                ],
-                "offsetStart": "md"
-              }
-            ],
-            "margin": "md"
+            "borderColor": "#ffffff",
+            "borderWidth": "medium",
+            "position": "absolute",
+            "cornerRadius": "xxl",
+            "offsetTop": "240px",
+            "offsetStart": "100px"
           }
-        ]
-      },
-      "action": {
-        "type": "uri",
-        "label": "action",
-        "uri": "https://www.viicheck.com/link3"
+        ],
+        "paddingAll": "0px"
       }
     },
     {
       "type": "bubble",
-      "size": "kilo",
       "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
-            "type": "filler"
+            "type": "image",
+            "url": "https://www.viicheck.com/img4",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "1:1",
+            "gravity": "top"
           },
           {
-            "type": "button",
-            "action": {
-              "type": "uri",
-              "label": "ดูเพิ่มเติม",
-              "uri": "https://www.viicheck.com/promotion?search=carpromotion"
-            }
-          },
-          {
-            "type": "filler"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "รายละเอียด",
+                  "uri": "https://www.viicheck.com/link4"
+                },
+                "style": "link",
+                "height": "sm",
+                "color": "#ffffff"
+              }
+            ],
+            "borderColor": "#ffffff",
+            "borderWidth": "medium",
+            "position": "absolute",
+            "cornerRadius": "xxl",
+            "offsetTop": "240px",
+            "offsetStart": "100px"
           }
-        ]
+        ],
+        "paddingAll": "0px"
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img5",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "1:1",
+            "gravity": "top"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "รายละเอียด",
+                  "uri": "https://www.viicheck.com/link5"
+                },
+                "style": "link",
+                "height": "sm",
+                "color": "#ffffff"
+              }
+            ],
+            "borderColor": "#ffffff",
+            "borderWidth": "medium",
+            "position": "absolute",
+            "cornerRadius": "xxl",
+            "offsetTop": "240px",
+            "offsetStart": "100px"
+          }
+        ],
+        "paddingAll": "0px"
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img6",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "1:1",
+            "gravity": "top"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "รายละเอียด",
+                  "uri": "https://www.viicheck.com/link6"
+                },
+                "style": "link",
+                "height": "sm",
+                "color": "#ffffff"
+              }
+            ],
+            "borderColor": "#ffffff",
+            "borderWidth": "medium",
+            "position": "absolute",
+            "cornerRadius": "xxl",
+            "offsetTop": "240px",
+            "offsetStart": "100px"
+          }
+        ],
+        "paddingAll": "0px"
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/24.png",
+            "size": "5xl",
+            "aspectMode": "fit",
+            "aspectRatio": "1:1",
+            "gravity": "top",
+            "offsetTop": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "ดูเพิ่มเติม",
+                  "uri": "https://www.viicheck.com/promotion?search=carpromotion"
+                },
+                "style": "link",
+                "height": "sm",
+                "color": "#ffffff"
+              }
+            ],
+            "borderColor": "#ffffff",
+            "borderWidth": "medium",
+            "position": "absolute",
+            "cornerRadius": "xxl",
+            "offsetTop": "240px",
+            "offsetStart": "100px"
+          }
+        ],
+        "paddingAll": "0px",
+        "backgroundColor": "#07375D"
       }
     }
   ]
