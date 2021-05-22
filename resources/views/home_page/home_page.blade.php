@@ -351,7 +351,7 @@
     <div class="container">
       <h1>ยินดีต้อนรับสู่ ViiCHECK</h1>
       <h2>ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-      <a style="font-size: 18px" href="https://market.viicheck.com/register_car/create" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+      <a style="font-size: 18px" href="http://localhost/Collect-all-cars/public/login" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
     </div>
     
   </section>
