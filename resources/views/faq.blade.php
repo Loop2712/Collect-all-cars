@@ -2,7 +2,8 @@
 
 <body>
 	<div class="col-md-12">
-  <h1 style="margin-top:180px; text-align:center;">FAQ คำถามที่พบบ่อย</h1>
+  <h1 class="d-none d-lg-block" style="margin-top:180px; text-align:center;">FAQ คำถามที่พบบ่อย</h1>
+  <h1 class="d-block d-md-none" style="margin-top:150px; text-align:center;">FAQ<br>คำถามที่พบบ่อย</h1>
   	<main>
   		<details open>
     		<summary>ViiCHECK คืออะไร</summary>

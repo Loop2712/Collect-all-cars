@@ -79,7 +79,7 @@
                                         <th>ยี่ห้อ/Brand</th>
                                         <th>รุ่น/Model</th>
                                         <th>รุ่นย่อย/Submodel</th>
-                                        <th>ปี</th>
+                                        <th>ปี/Year</th>
                                         <th>ราคา/Price</th>
                                         <th class="d-none">Actions</th>
                                     </tr>

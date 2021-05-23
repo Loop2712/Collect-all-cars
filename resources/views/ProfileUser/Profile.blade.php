@@ -56,14 +56,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <center>
-                        <br><br><h4>ข้อมูลพื้นฐาน <br> Basic information<hr> </h4>
+                        <br><br><h4>ข้อมูลพื้นฐาน <br> Basic information<hr style=" height:0.3px; color:#778899;"> </h4>
                     </center>
                 </div>
                 <div class="col-12">
                     <center>
                     <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
                     <br>
-                    <span class="text-primary">{{ $data->username }}<hr> </span>
+                    <span class="text-primary">{{ $data->username }}<hr style=" height:0.3px; color:#778899;"> </span>
                     </center>
                 </div>
      
@@ -71,35 +71,35 @@
                     <center>
                     <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ / name </b> 
                     <br>
-                    <span class="text-primary">{{ $data->name }}<hr> </span>
+                    <span class="text-primary">{{ $data->name }}<hr style=" height:0.3px; color:#778899;"> </span>
                     </center>
                 </div>
                 <div class="col-12">
                     <center>
                     <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด / Birthday </b> 
                     <br>
-                    <span class="text-primary">{{ $data->brith }}<hr> </span>
+                    <span class="text-primary">{{ $data->brith }}<hr style=" height:0.3px; color:#778899;"> </span>
                     </center>
                 </div>
                 <div class="col-12">
                     <center>
                     <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ / Sex </b> 
                     <br>
-                    <span class="text-primary">{{ $data->sex }}<hr> </span>
+                    <span class="text-primary">{{ $data->sex }}<hr style=" height:0.3px; color:#778899;"> </span>
                     </center>
                 </div>
                 <div class="col-12">
                     <center>
                     <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
                     <br>
-                    <span class="text-primary">{{ $data->email }}<hr> </span>
+                    <span class="text-primary">{{ $data->email }}<hr style=" height:0.3px; color:#778899;"> </span>
                     </center>
                 </div>
                 <div class="col-12">
                     <center>
                     <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
                     <br>
-                    <span class="text-primary">{{ $data->phone }}<hr></span>
+                    <span class="text-primary">{{ $data->phone }}<hr style=" height:0.3px; color:#778899;"></span>
                     </center>
                 </div>
 
@@ -185,42 +185,43 @@
                         <!-- <button class="btn "><i class="fa fa-pencil-square-o" aria-hidden="true"></i><h6>ลบโปรไฟล์</h6> </button></a> -->
                     </form>
                 </div>
+                
                 <div class="col-md-12" style="margin:-40px 0px 0px 0px">
                 
                     <center>
-                        <br><br><h4>ข้อมูลพื้นฐาน / Basic information<hr> </h4>
+                        <br><br><h4>ข้อมูลพื้นฐาน / Basic information<hr style=" height:0.1px; color:#778899;"></h4>
                     </center>
                 </div>
                 <div class="col-md-12">
                     <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
                     &nbsp;&nbsp;
-                    <span class="text-primary">{{ $data->username }}<hr> </span>
+                    <span class="text-primary">{{ $data->username }}<hr style=" height:0.1px; color:#778899;"> </span>
                 </div><br>
      
                 <div class="col-md-12">
                     <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ / name </b> 
                     &nbsp;&nbsp;
-                    <span class="text-primary">{{ $data->name }}<hr> </span>
+                    <span class="text-primary">{{ $data->name }}<hr style=" height:0.1px; color:#778899;"> </span>
                 </div>
                 <div class="col-md-7">
                     <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด / Birthday </b> 
                     &nbsp;&nbsp;
-                    <span class="text-primary">{{ $data->brith }}<hr> </span>
+                    <span class="text-primary">{{ $data->brith }}<hr style=" height:0.1px; color:#778899;"> </span>
                 </div>
                 <div class="col-md-5">
                     <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ / Sex </b> 
                     &nbsp;&nbsp;
-                    <span class="text-primary">{{ $data->sex }}<hr> </span>
+                    <span class="text-primary">{{ $data->sex }}<hr style=" height:0.1px; color:#778899;"> </span>
                 </div>
                 <div class="col-md-12">
                     <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
                     &nbsp;&nbsp;
-                    <span class="text-primary">{{ $data->email }}<hr> </span>
+                    <span class="text-primary">{{ $data->email }}<hr style=" height:0.3px; color:#778899;"> </span>
                 </div>
                 <div class="col-md-12">
                     <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
                     &nbsp;&nbsp;
-                    <span class="text-primary">{{ $data->phone }}<hr></span>
+                    <span class="text-primary">{{ $data->phone }}<hr style=" height:0.3px; color:#778899;"></span>
                 </div>
                 @if(Auth::check())
                     @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")

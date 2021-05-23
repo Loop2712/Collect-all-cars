@@ -234,19 +234,19 @@
                                         </div>
 
                                         <a href="{{ url('/register_car/' . $item->id ) }}">
-                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 115px;">
-                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย     </b>
+                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 90px;">
+                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย   </b>
                                             </button>
                                         </a>
                                         <a href="#">
-                                            <button type="button" class="btn btn-primary main-shadow main-radius" style=" width: 115px; font-size: 14px; margin-top: -20px; padding: 4px 12px ">
+                                            <button type="button" class="btn btn-primary main-shadow main-radius" style=" width: 90px; font-size: 14px; margin-top: -20px; padding: 4px 12px ">
                                                 <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
                                         <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
-                                                        <button type="submit" class="d-block d-md-none btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: -10px 32px 10px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                        <button type="submit" class="d-block d-md-none btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin-right: 13px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
                                                             <i class="fa fa-trash"  aria-hidden="true"></i>
                                                         </button>
                                                         <button type="submit" class="d-none d-lg-block btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 7px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
