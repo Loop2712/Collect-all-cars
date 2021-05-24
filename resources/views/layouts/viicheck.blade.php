@@ -102,7 +102,7 @@
           <li class="dropdown">
               <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
               <a href="#" style="font-size: 18px;"><span><span id="input_name"></span></span> <i class="bi bi-chevron-down"></i></a>
-              <ul>
+              <ul class="dropdown-active">
                 <li><a href="{{ url('/profile') }}">🤵 &nbsp;โปรไฟล์</a></li>
                 <li><a href="{{ url('/register_car') }}">🚗 &nbsp;รถของฉัน</a></li>
                 <li>
