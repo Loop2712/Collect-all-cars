@@ -108,7 +108,7 @@ body {
   font-size: 33px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 7px;
+  letter-spacing: 3px;
 }
 
 .notfound p {
@@ -146,13 +146,13 @@ body {
 
 	<div id="notfound">
 		<div class="notfound">
-			<div class="notfound-404">
-				<div></div>
-				<h1>404</h1>
+			<div>
+				<div><img src="{{ asset('/img/stickerline/PNG/7.png') }}"></div>
+				<h1>error 404</h1>
 			</div>
-			<h2>Page not found</h2>
-			<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
-			<a href="https://www.viicheck.com/">home page</a>
+			<h2>ไม่สามารถเปิดหน้านี้ได้</h2>
+			<p>ลิงก์อาจจะเสีย หรือเพจอาจถูกลบออกแล้ว โปรดตรวจดูว่าลิงก์ที่คุณพยายามเปิดเป็นลิงก์ที่ถูกต้อง</p>
+			<a href="https://www.viicheck.com/">กลับหน้าแรก</a>
 		</div>
 	</div>
 
