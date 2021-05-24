@@ -588,7 +588,7 @@
     // function juristic(){
     //     //PARAMETERS
     //     console.log("เลขทะเบียนนิติบุคคล");
-    //     fetch("https://dataapi.moc.go.th/juristic?juristic_id=0105537004444")
+    //     fetch("https://dataapi.moc.go.th/juristic?juristic_id=0235553000163")
     //         .then(response => response.json())
     //         .then(result => {
     //             console.log(result);

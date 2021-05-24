@@ -7,14 +7,19 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>
-                            <div class="row">
+                            <div id="row_general" class="row">
                                 <div class="col-6">
                                     ลงทะเบียนใหม่ <br> Register
                                 </div>
                                 <div class="col-6">
-                                    <a href="" class="float-right btn btn-outline-primary main-shadow main-radius" >
+                                    <a id="btn_rg_organization" class="float-right btn btn-outline-primary main-shadow main-radius" onclick="show_organization();">
                                        <i class="fas fa-building"></i> สำหรับองค์กร
                                     </a>
+                                </div>
+                            </div>
+                            <div id="row_organization" class="row d-none">
+                                <div class="col-12">
+                                    ลงทะเบียนสำหรับองค์กร <br> Register for an organization
                                 </div>
                             </div>
                         </h4>
@@ -43,4 +48,13 @@
             </div>
         </div>
     </div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+    });
+    function show_organization(){
+        document.querySelector('#row_general').classList.add('d-none');
+        document.querySelector('#row_organization').classList.remove('d-none');
+    }
+</script>
 @endsection

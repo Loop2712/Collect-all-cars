@@ -1,0 +1,92 @@
+{
+    "fields": [
+        {
+            "name": "juristicID",
+            "type": "string"
+        },
+        {
+            "name": "juristicNameTH",
+            "type": "string"
+        },
+        {
+            "name": "juristicNameEN",
+            "type": "string"
+        },
+        {
+            "name": "juristicType",
+            "type": "string"
+        },
+        {
+            "name": "registerDate",
+            "type": "string"
+        },
+        {
+            "name": "juristicStatus",
+            "type": "string"
+        },
+        {
+            "name": "registerCapital",
+            "type": "string"
+        },
+        {
+            "name": "standardObjective",
+            "type": "string"
+        },
+        {
+            "name": "standardObjectiveDetail",
+            "type": "string"
+        },
+        {
+            "name": "addressDetail",
+            "type": "string"
+        },
+        {
+            "name": "addressName",
+            "type": "string"
+        },
+        {
+            "name": "buildingName",
+            "type": "string"
+        },
+        {
+            "name": "roomNo",
+            "type": "string"
+        },
+        {
+            "name": "floor",
+            "type": "string"
+        },
+        {
+            "name": "villageName",
+            "type": "string"
+        },
+        {
+            "name": "houseNumber",
+            "type": "string"
+        },
+        {
+            "name": "moo",
+            "type": "string"
+        },
+        {
+            "name": "soi",
+            "type": "string"
+        },
+        {
+            "name": "street",
+            "type": "string"
+        },
+        {
+            "name": "subDistrict",
+            "type": "string"
+        },
+        {
+            "name": "sdistrict",
+            "type": "string"
+        },
+        {
+            "name": "province",
+            "type": "string"
+        }
+    ]
+}
