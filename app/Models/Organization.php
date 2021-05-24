@@ -27,5 +27,8 @@ class Organization extends Model
      */
     protected $fillable = ['juristicID', 'juristicNameTH', 'juristicNameEN', 'juristicType', 'registerDate', 'juristicStatus', 'registerCapital', 'standardObjective', 'standardObjectiveDetail', 'addressDetail', 'addressName', 'buildingName', 'roomNo', 'floor', 'villageName', 'houseNumber', 'moo', 'soi', 'street', 'subDistrict', 'sdistrict', 'province'];
 
+    public function register_cars(){
+        return $this->hasMany('App\Models\Register_car', 'organization_id');
+    }
     
 }
