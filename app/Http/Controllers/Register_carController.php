@@ -233,20 +233,34 @@ class Register_carController extends Controller
      */
     public function show($id)
     {
-        $register_car = Register_car::findOrFail($id);
+        $user_id = Auth::id();
+        // ตรวจสอบว่าใช่เจ้าของรถหรือไม่
+        $check_car_user = Register_car::where('user_id',$user_id )->where('id',$id )->get();
 
-        $location_array = county::selectRaw('province')
-            ->where('province', '!=',"" )
-            ->groupBy('province')
-            ->get();
-        $type_array = CarModel::selectRaw('type,count(type) as count')
-            ->orderByRaw('count DESC')
-            ->where('type', '!=',"" )
-            ->groupBy('type')
-            ->limit(10)
-            ->get();
+        foreach ($check_car_user as $key ) {
+            $name = $key->name ;
+        }
+        if (empty($name)) {
 
-        return view('register_car.show', compact('register_car','location_array','type_array'));
+             return view('404');
+
+        }else{
+
+            $register_car = Register_car::findOrFail($id);
+
+            $location_array = county::selectRaw('province')
+                ->where('province', '!=',"" )
+                ->groupBy('province')
+                ->get();
+            $type_array = CarModel::selectRaw('type,count(type) as count')
+                ->orderByRaw('count DESC')
+                ->where('type', '!=',"" )
+                ->groupBy('type')
+                ->limit(10)
+                ->get();
+
+            return view('register_car.show', compact('register_car','location_array','type_array'));
+        }
     }
 
     /**
@@ -259,7 +273,6 @@ class Register_carController extends Controller
     public function edit($id)
     {
         $user_id = Auth::id();
-        $id_rg_car = $id ;
         // ตรวจสอบว่าใช่เจ้าของรถหรือไม่
         $check_car_user = Register_car::where('user_id',$user_id )->where('id',$id )->get();
 
