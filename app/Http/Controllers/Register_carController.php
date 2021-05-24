@@ -259,8 +259,9 @@ class Register_carController extends Controller
     public function edit($id)
     {
         $user_id = Auth::id();
+        $id_rg_car = $id ;
         // ตรวจสอบว่าใช่เจ้าของรถหรือไม่
-        $check_car_user = Register_car::where('user_id',$user_id )->get();
+        $check_car_user = Register_car::where('user_id',$user_id )->where('id',$id )->get();
 
         foreach ($check_car_user as $key ) {
             $name = $key->name ;
