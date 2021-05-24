@@ -66,10 +66,10 @@
                                         <div class="col-2">
                                             <center>
                                                 @if( $item->car_type == "car")
-                                                    <img width="25%" src="https://market.viicheck.com/img/icon/car.png">
+                                                    <img width="25%" src="https://www.viicheck.com/img/icon/car.png">
                                                 @endif
                                                 @if( $item->car_type == "motorcycle")
-                                                    <img width="25%" src="https://market.viicheck.com/img/icon/motorcycle.png">
+                                                    <img width="25%" src="https://www.viicheck.com/img/icon/motorcycle.png">
                                                 @endif
                                             </center>
                                         </div>
