@@ -55,17 +55,15 @@
                   <!-- แสดงเฉพาะคอม -->
                   <div class="modal-body d-none d-lg-block">
                     <center>
-                        <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
-                        <p style="line-height: 2;">Do you confirm to register this registration number ?</p>
-                        <br><br>
+                        
                         <div style="position: relative; z-index: 5">
                             <div style="padding-top: 8px;">
-                                <h4 style="margin-top: 55px;"><b id="reg_num"></b></h4>
+                                <h4 style="margin-top: 165px;"><b id="reg_num"></b></h4>
                                 <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
                             </div>
                         </div>
-                        <img style="position: absolute;left: 40%;top: 33%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
-                        <img style="position: absolute;right: 20%;top: 60%;z-index: 2;" width="300" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                        
+                        <img style="position: absolute;right: 0%;top: 0%;z-index: 2;" width="100%" src="{{ asset('/img/icon/จับภาพ.png') }}">
                         
                     </center>
                   </div>
@@ -77,11 +75,11 @@
                         <br>
                         <div style="position: relative; z-index: 5">
                             <div style="padding-top: 8px;">
-                                <h4 style="margin-top: 15px;"><b id="reg_num_mo"></b></h4>
+                                <h4 style="margin-top: 65px;"><b id="reg_num_mo"></b></h4>
                                 <p id="reg_province_mo" style="font-size: 17px;" class="text-dark"></p>
                             </div>
                         </div>
-                        <img style="position: absolute;left: 34%;top: 38%;z-index: 1;transform:rotate(345deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+                        <img style="position: absolute;margin: -180px -50px;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
                         <img style="position: absolute;margin: -100px -140px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
 
                     </center>
