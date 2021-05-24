@@ -258,39 +258,52 @@ class Register_carController extends Controller
      */
     public function edit($id)
     {
+        $user_id = Auth::id();
+        // ตรวจสอบว่าใช่เจ้าของรถหรือไม่
+        $check_car_user = Register_car::where('user_id',$user_id )->get();
 
-        $register_car = Register_car::findOrFail($id);
+        foreach ($check_car_user as $key ) {
+            $name = $key->name ;
+        }
+        if (empty($name)) {
 
-        $location_array = county::selectRaw('province')
-            ->groupBy('province')
-            ->get();
+             return view('404');
 
-        $xx = Register_car::where('id',$id )->get();
-        // echo "<pre>";
-        // print_r($xx);
-        // echo "<pre>";
-        // exit();
+        }else{
 
-        $car_brand = CarModel::selectRaw('brand,count(brand) as count')
-            ->orderByRaw('count DESC')
-            ->where('brand', '!=',"" )
-            ->groupBy('brand')
-            ->limit(10)
-            ->get();
+            $register_car = Register_car::findOrFail($id);
 
-        $user = Auth::user();
+            $location_array = county::selectRaw('province')
+                ->groupBy('province')
+                ->get();
 
-        $car = Register_car::select('brand', 'generation', 'registration_number', 'province')
-            ->where('user_id', $user->id)
-            ->where('car_type', 'car')
-            ->get();
+            $xx = Register_car::where('id',$id )->get();
+            // echo "<pre>";
+            // print_r($xx);
+            // echo "<pre>";
+            // exit();
 
-        $motorcycle = Register_car::select('brand', 'generation', 'registration_number', 'province')
-            ->where('user_id', $user->id)
-            ->where('car_type', 'motorcycle')
-            ->get();
+            $car_brand = CarModel::selectRaw('brand,count(brand) as count')
+                ->orderByRaw('count DESC')
+                ->where('brand', '!=',"" )
+                ->groupBy('brand')
+                ->limit(10)
+                ->get();
 
-        return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx'));
+            $user = Auth::user();
+
+            $car = Register_car::select('brand', 'generation', 'registration_number', 'province')
+                ->where('user_id', $user->id)
+                ->where('car_type', 'car')
+                ->get();
+
+            $motorcycle = Register_car::select('brand', 'generation', 'registration_number', 'province')
+                ->where('user_id', $user->id)
+                ->where('car_type', 'motorcycle')
+                ->get();
+
+            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx'));
+        }
     }
     public function edit_act($id)
     {
