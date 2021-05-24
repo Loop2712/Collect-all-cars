@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="col-6">
                                     <a href="" class="float-right btn btn-outline-primary main-shadow main-radius" >
-                                       <i class="fas fa-user-friends"></i> สำหรับองค์กร
+                                       <i class="fas fa-building"></i> สำหรับองค์กร
                                     </a>
                                 </div>
                             </div>
