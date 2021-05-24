@@ -55,17 +55,21 @@
                   <!-- แสดงเฉพาะคอม -->
                   <div class="modal-body d-none d-lg-block">
                     <center>
-                        
+                
+                        <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
+                        <p style="line-height: 2;">You confirm to register this registration number ?</p>
+                        <br>
                         <div style="position: relative; z-index: 5">
                             <div style="padding-top: 8px;">
-                                <h4 style="margin-top: 165px;"><b id="reg_num"></b></h4>
+                                <h4 style="margin-top: 70px;"><b id="reg_num"></b></h4>
                                 <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
                             </div>
                         </div>
-                        
-                        <img style="position: absolute;right: 0%;top: 0%;z-index: 2;" width="100%" src="{{ asset('/img/icon/จับภาพ.png') }}">
-                        
+                        <img style="position: absolute;margin: -180px -50px;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
+                        <img style="position: absolute;margin: -100px -140px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+
                     </center>
+
                   </div>
                   <!-- แสดงเฉพาะมือถือ -->
                   <div class="modal-body d-block d-md-none">

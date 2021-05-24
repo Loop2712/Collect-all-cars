@@ -55,7 +55,7 @@
         <!-- คอม -->
         <h6 class="d-none d-lg-block" style="padding-top: 10px; font-family: K2D, sans-serif;">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
-          <i class="bi bi-phone"></i> <a href="tel:020277856">02-0277856</a> 
+          <i class="bi bi-phone"></i> <a  style="font-family: K2D, sans-serif;" href="tel:020277856">02-0277856</a> 
         </h6>
         <!-- มือถือ -->
         <div class="d-block d-md-none">
@@ -82,20 +82,6 @@
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       @guest
         <a href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto"><span class="d-block d-md-inline">เข้าสู่ระบบ</a>
-
-        <div class="d-none d-lg-flex social-links align-items-center">
-        <h4  style="margin:0px 5px 0px 0px; " class="d-none d-lg-block" >
-          <span><a href="https://www.facebook.com/ViiCheck-100959585396310" target="bank"><i  class="fab fa-facebook text-primary"></i></a></span>
-        </h4>
-        <h4 class="d-none d-lg-block" >
-          <a href="https://line.me/R/ti/p/%40702ytkls" target="bank"> 
-            <span class='fa-stack' style="font-size:15px; margin-bottom:-2px; ">
-            <img src="{{ asset('/img/icon_login/icon-line.png') }}" style="width: 26px;" />
-            </span>
-          </a>
-          
-        </h4>
-      </div>
       @else
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
