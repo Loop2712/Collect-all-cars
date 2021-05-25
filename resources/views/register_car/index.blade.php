@@ -422,7 +422,6 @@
             </div>
         </div>
     </div>
-@endsection
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         console.log("START");
@@ -437,3 +436,5 @@
         document.querySelector('#btn_a_registercar').classList.remove('text-danger');
     }
 </script>
+@endsection
+
