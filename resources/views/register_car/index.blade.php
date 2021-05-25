@@ -369,7 +369,8 @@
                                                             <br>
                                                             <p style="position: relative;top: 0px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
                                                             <p style="position: relative;top: -18px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                            <img style="margin-top: -140px; z-index: 2;" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <img style="margin-top: -150px; z-index: 2" width="200"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            
                                                         </center>
                                                     </div>
                                                 </div>
@@ -389,7 +390,7 @@
                                             </div>
                                         </div>
                                         <center>
-                                                <hr class="row d-block d-md-none" style="margin-top: -25px; width: 90%; height:0.3px; color:#BEBEBE;">
+                                                <hr class="row d-block d-md-none" style="margin-top: -50px; width: 90%; height:0.3px; color:#BEBEBE;">
                                                 <hr class="d-none d-lg-block" style="margin-top: -15px; width: 90%; height:0.3px; color:#BEBEBE;"></center>
                                                 <a href="{{ url('/register_car/' . $item->id ) }}">
                                             <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 90px;">
