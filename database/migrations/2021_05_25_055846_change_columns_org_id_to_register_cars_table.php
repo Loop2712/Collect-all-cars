@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOrganizationIdToRegisterCarsTable extends Migration
+class ChangeColumnsOrgIdToRegisterCarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddOrganizationIdToRegisterCarsTable extends Migration
     public function up()
     {
         Schema::table('register_cars', function (Blueprint $table) {
-            $table->string('organization_id')->nullable();
-            $table->string('organization_mail')->nullable();
+            $table->renameColumn('organization_id', 'juristicID');
         });
     }
 
