@@ -14,16 +14,17 @@
                             @foreach($promotion as $item)
                             <div class="col-12 col-md-3" style="padding: 15px;">
                                 <div class="card main-shadow">
-                                    <img src="{{ $item->photo }}" class="card-img-top" style="padding: 10px;">
+                                    <img style="max-width: 100%; height:340px;
+     " src="{{ $item->photo }}" class="card-img-top" style="padding: 10px;">
                                     <div class="card-body">
                                         <div>
                                             <h4 class="card-title">{{ $item->company }}</h4>
-                                            <p style="font-size: 15px;" class="card-title"><b>{{ $item->titel }}</b></p>
+                                            <p style="font-size: 15px;white-space: nowrap;width: 210px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p class="card-text"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
+                                                <p class="card-text"><i class="far fa-clock"></i> <br>{{ $item->time_period }}</p>
                                             </div>
                                             <div class="col-6">
                                                 <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>

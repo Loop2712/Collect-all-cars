@@ -8,11 +8,12 @@
         <div class="call__text">
             <a href="{{ url('/register_car' ) }}">
             <i class="fas fa-motorcycle"></i>&nbsp;&nbsp;รถของฉัน </a>
-        </div><br>
-        <!-- <div class="call__text">
+        </div>
+        <!-- <br>
+        <div class="call__text">
             <a href="{{ url('/wishlist' ) }}">
             <i class="fa fa-heart" ></i>&nbsp;&nbsp;รายการโปรด </a>
-        </div><br> -->
+        </div><br> 
         <div class="call__text">
             <a href="{{ url('/sell' ) }}">
             <i class="fas fa-car"></i>&nbsp;&nbsp;ขายรถยนต์ </a>
@@ -20,9 +21,7 @@
         <div class="call__text">
             <a href="{{ url('/motercycles' ) }}">
             <i class="fas fa-motorcycle"></i>&nbsp;&nbsp;ขายรถจักรยานยนต์ </a>
-        </div><br>
-        
-        
+        </div><br> -->
         </div>
     </div>
 </div>
