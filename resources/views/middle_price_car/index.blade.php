@@ -78,8 +78,6 @@
                                     <tr>
                                         
                                         <th>ยี่ห้อ/Brand</th>
-                                        <th>รุ่น/Model</th>
-                                        <th>รุ่นย่อย/Submodel</th>
                                         <th>ปี/Year</th>
                                         <th>ราคา/Price</th>
                                         <th class="d-none">Actions</th>
@@ -90,7 +88,7 @@
                                 @foreach($Middle_price_car as $item)
                                     <tr>
                                         
-                                        <td>{{ $item->brand }}</td><td>{{ $item->model }}</td><td>{{ $item->submodel }}</td><td>{{ $item->year }}</td>
+                                        <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }}</span><td>{{ $item->year }}</td>
                                         
                                         @php
                                             $price_explode = explode("-",$item->price);

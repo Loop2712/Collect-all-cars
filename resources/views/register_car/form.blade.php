@@ -78,7 +78,7 @@
                       <div class="modal-body d-block d-md-none">
                         <center>
                             <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
-                            <p style="line-height: 2;">You confirm to register this registration number ?</p>
+                            <p style="line-height: 1;">You confirm to register this registration number ?</p>
                             <br>
                             <div style="position: relative; z-index: 5">
                                 <div style="padding-top: 8px;">
