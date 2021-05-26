@@ -25,7 +25,7 @@ class Organization extends Model
      *
      * @var array
      */
-    protected $fillable = ['juristicID', 'juristicNameTH', 'juristicNameEN', 'juristicType', 'registerDate', 'juristicStatus', 'registerCapital', 'standardObjective', 'standardObjectiveDetail', 'addressDetail', 'addressName', 'buildingName', 'roomNo', 'floor', 'villageName', 'houseNumber', 'moo', 'soi', 'street', 'subDistrict', 'sdistrict', 'province'];
+    protected $fillable = ['juristicID', 'juristicNameTH', 'juristicNameEN', 'juristicType', 'registerDate', 'juristicStatus', 'registerCapital', 'standardObjective', 'standardObjectiveDetail', 'addressDetail', 'addressName', 'buildingName', 'roomNo', 'floor', 'villageName', 'houseNumber', 'moo', 'soi', 'street', 'subDistrict', 'district', 'province' , 'mail' , 'phone'];
 
     public function register_cars(){
         return $this->hasMany('App\Models\Register_car', 'organization_id');

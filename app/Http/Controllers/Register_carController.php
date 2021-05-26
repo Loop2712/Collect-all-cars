@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
 use App\CarModel;
 use App\county;
@@ -106,6 +107,30 @@ class Register_carController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+
+        $role = $user->role;
+
+        $Juristic_ID = Organization::where('juristicNameTH', $role )->get();
+
+        $juristicNameTH = "";
+        $juristicID = "" ;
+        $juristicMail = "" ;
+        $juristicPhone = "" ;
+        $juristicProvince = "" ;
+        $juristicDistrict = "" ;
+
+        foreach ($Juristic_ID as $key ) {
+            if (!empty($key->juristicNameTH)) {
+                $juristicNameTH = $key->juristicNameTH ;
+                $juristicID = $key->juristicID ;
+                $juristicMail = $key->mail ;
+                $juristicPhone = $key->phone ;
+                $juristicProvince = $key->province ;
+                $juristicDistrict = $key->district ;
+            }
+        }
+
         $location_array = county::selectRaw('province')
             ->groupBy('province')
             ->get();
@@ -124,8 +149,6 @@ class Register_carController extends Controller
             ->limit(10)
             ->get();
 
-        $user = Auth::user();
-
         $car = Register_car::select('brand', 'generation', 'registration_number', 'province')
             ->where('user_id', $user->id)
             ->where('car_type', 'car')
@@ -141,7 +164,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict'));
     }
 
     /**
@@ -217,6 +240,26 @@ class Register_carController extends Controller
                     'location_A' => $requestData['location_A'],
                     'phone' => $requestData['phone']
                 ]);
+
+        if (!empty($requestData['juristicID'])) {
+
+            $juristicData['juristicID'] = $requestData['juristicID'];
+            $juristicData['juristicNameTH'] = $requestData['juristicNameTH'];
+            $juristicData['mail'] = $requestData['organization_mail'];
+            $juristicData['province'] = $requestData['location_P_2'];
+            $juristicData['district'] = $requestData['location_A_2'];
+            $juristicData['phone'] = $requestData['phone_2'];
+
+            Organization::firstOrCreate($juristicData);
+
+            // Organization::create($juristicData);
+
+            DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->update([
+                    'role' => $requestData['juristicNameTH']
+                ]);
+        }
 
         Register_car::create($requestData);
 
