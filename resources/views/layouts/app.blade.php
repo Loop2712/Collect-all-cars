@@ -47,11 +47,11 @@
 
     @keyframes text_click {
       0%   {color: white;}
-      20%  {color: yellow;}
+      20%  {color: black;}
       40%  {color: white;}
-      60%   {color: yellow;}
+      60%   {color: black;}
       80%  {color: white;}
-      95%  {color: yellow;}
+      95%  {color: black;}
       100%  {color: white;}
 
     }
