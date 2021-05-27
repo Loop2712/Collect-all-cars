@@ -68,7 +68,7 @@
                                             document.querySelector('#show_mortor').classList.add('d-none');">
                                             <b style="font-size: 15px; text-center;">รถยนต์</b>
                                         </a>
-                                    </li>&nbsp;
+                                    </li>&nbsp;<li class="col-5 d-block d-md-none"></li>
                                     <li class="nav-item d-block d-md-none" style="margin-top:10px;">
                                         <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
                                                 document.querySelector('#img_show_car').classList.add('d-none'),
@@ -177,10 +177,10 @@
                                                                 <!-- <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                                <h6 style="text-align: center;">Vehicle Act</h6>
+                                                                <!-- <h6 style="text-align: center;">พรบ.</h6> -->
                                                                 <span style="font-size: 13px; margin: 0px 10px;">
                                                                     <a class="btn btn-warning btn-md  main-shadow main-radius " style="padding:2px 0px;  width: 90%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">
-                                                                        <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;แก้ไข</i>
+                                                                        <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;พรบ.</i>
                                                                     </a>
                                                                 </span>
                                                             <br>
@@ -218,9 +218,9 @@
                                                                 <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                             @endif
                                                         @else
-                                                            <h6 style="text-align: center;">ประกัน</h6>
+                                                            <!-- <h6 style="text-align: center;">ประกัน</h6> -->
                                                             <span style="font-size: 13px; ">
-                                                                <a class="btn btn-warning btn-md  main-shadow main-radius" style="padding:2px 0px; width: 90%; margin: 0px 0px 0px -15px;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;แก้ไข</i>
+                                                                <a class="btn btn-warning btn-md  main-shadow main-radius" style="padding:2px 0px; width: 90%; margin: 0px 0px 0px -15px;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;ประกัน</i>
                                                                 </a>
                                                             </span>
                                                             <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
