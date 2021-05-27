@@ -14,9 +14,7 @@
                             @foreach($promotion as $item)
                             <div class="col-12 col-md-3" style="padding: 15px;">
                                 <div class="card main-shadow">
-                                    <img style="  width: 100%;
-  height: 300px;
-  object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
+                                    <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                     <div class="card-body">
                                         <div>
                                             <h4 class="card-title">{{ $item->company }}</h4>
