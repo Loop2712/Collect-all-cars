@@ -114,13 +114,13 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('location_P_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  '' }}" >
+                        <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  '' }}"  placeholder="จังหวัด">
                         {!! $errors->first('location_P_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('location_A_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  '' }}">
+                        <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  '' }}"  placeholder="อำเภอ">
                         {!! $errors->first('location_A_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
