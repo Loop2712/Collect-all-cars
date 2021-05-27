@@ -1,5 +1,4 @@
 @extends('layouts.viicheck')
-
 @section('content')
     <div class="container" style="margin-top:168px;">
         <div class="row">
@@ -89,12 +88,12 @@
         </div>
     </div>
     <br>
+    <style>
+        .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        }
+    </style>  
 @endsection
-<style>
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-</style>  

@@ -83,19 +83,19 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('juristicID') ? 'has-error' : ''}}">
-                        <input class="form-control" name="juristicID" type="text" id="juristicID" value="{{ isset($register_car->juristicID) ? $register_car->juristicID :  '' }}"  pattern="[0-9]{13}" onchange="juristic();">
+                        <input class="form-control" name="juristicID" type="text" id="juristicID" value="{{ isset($register_car->juristicID) ? $register_car->juristicID :  '' }}"  pattern="[0-9]{13}" onchange="juristic();" placeholder="เลขทะเบียนนิติบุคคล">
                         {!! $errors->first('juristicID', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
-                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : ''}}"  >
+                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : ''}}"  placeholder="ชื่อองค์กร" >
                         {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('organization_mail') ? 'has-error' : ''}}">
-                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value="{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  '' }}"  >
+                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value="{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  '' }}"   placeholder="อีเมล">
                         {!! $errors->first('organization_mail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
