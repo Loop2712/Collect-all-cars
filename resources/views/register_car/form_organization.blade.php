@@ -143,6 +143,7 @@
                 }else{
                     document.querySelector('#show_branch_empty').classList.add('d-none'); 
                     select_location();
+                    clear_input();
                 }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่ / Not the headquarters
         <br><br>
 
@@ -181,25 +182,26 @@
                 }else{
                     document.querySelector('#show_branch_notempty').classList.add('d-none'); 
                     select_location();
+                    clear_input();
                 }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่ / Not the headquarters
         <br><br>
 
         <div id="show_branch_notempty" class="row d-none">
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}"  placeholder="สาขา" readonly>
+                    <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}"  placeholder="สาขา" >
                     {!! $errors->first('branch', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->branch_province }}"  placeholder="จังหวัด" readonly>
+                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->branch_province }}"  placeholder="จังหวัด" >
                     {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch_district') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch_district" type="text" id="branch_district" value="{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}"  placeholder="อำเภอ" readonly>
+                    <input class="form-control" name="branch_district" type="text" id="branch_district" value="{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}"  placeholder="อำเภอ" >
                     {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -331,6 +333,17 @@
         let branch_province = document.querySelector("#branch_province");
 
         location.value = branch_province.value;
+        
+    }
+
+    function clear_input(){
+        let branch = document.querySelector("#branch");
+        let branch_province = document.querySelector("#branch_province");
+        let branch_district = document.querySelector("#branch_district");
+
+        branch.value = "";
+        branch_province.value = "";
+        branch_district.value = "";
         
     }
 
