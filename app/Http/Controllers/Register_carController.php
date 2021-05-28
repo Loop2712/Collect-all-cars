@@ -109,9 +109,9 @@ class Register_carController extends Controller
     {
         $user = Auth::user();
 
-        $role = $user->role;
+        $organization = $user->organization;
 
-        $Juristic_ID = Organization::where('juristicNameTH', $role )->get();
+        $Juristic_ID = Organization::where('juristicNameTH', $organization )->get();
 
         $juristicNameTH = "";
         $juristicID = "" ;
@@ -164,7 +164,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization'));
     }
 
     /**
@@ -238,7 +238,11 @@ class Register_carController extends Controller
                 ->update([
                     'location_P' => $requestData['location_P'],
                     'location_A' => $requestData['location_A'],
-                    'phone' => $requestData['phone']
+                    'phone' => $requestData['phone'],
+                    'organization' => $requestData['juristicNameTH'],
+                    'branch' => $requestData['branch'],
+                    'branch_district' => $requestData['branch_district'],
+                    'branch_province' => $requestData['branch_province'],
                 ]);
 
         if (!empty($requestData['juristicID'])) {
@@ -251,14 +255,10 @@ class Register_carController extends Controller
             $juristicData['phone'] = $requestData['phone_2'];
 
             Organization::firstOrCreate($juristicData);
+        }
 
-            // Organization::create($juristicData);
-
-            DB::table('users')
-                ->where('id', $requestData['user_id'])
-                ->update([
-                    'role' => $requestData['juristicNameTH']
-                ]);
+        if (!empty($requestData['phone_2'])) {
+            $requestData['phone'] = $requestData['phone_2'];
         }
 
         Register_car::create($requestData);

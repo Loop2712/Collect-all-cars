@@ -1,5 +1,6 @@
 <div id="div_organization" class="d-none">
-    <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร / Organization information' }}</span><span style="color: #FF0033;"> *<br><br></span>
+    <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร' }}</span><br>
+    <span style="font-size: 18px;" class="control-label">{{ 'Company info.' }}</span><span style="color: #FF0033;"> *<br><br></span>
     @if(!empty($juristicID))
         <div id="not_empty_juristicID">
             <div class="row">
@@ -114,7 +115,7 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('location_P_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  '' }}"  placeholder="จังหวัด">
+                        <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  '' }}"  placeholder="จังหวัด" onchange="change_location_2();">
                         {!! $errors->first('location_P_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -133,7 +134,80 @@
             </div>
         </div>
     @endif
+
+
+    @if(empty(Auth::user()->branch))
+        <input type="checkbox" name="checkbox" onchange="if(this.checked){
+                    document.querySelector('#show_branch_empty').classList.remove('d-none');
+                    show_location_P_branch();
+                }else{
+                    document.querySelector('#show_branch_empty').classList.add('d-none'); 
+                    select_location();
+                }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่ / Not the headquarters
+        <br><br>
+
+        <div id="show_branch_empty" class="row d-none">
+            <div class="col-12 col-md-4">
+                <div class="form-group {{ $errors->has('branch') ? 'has-error' : ''}}">
+                    <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  '' }}"  placeholder="สาขา">
+                    {!! $errors->first('branch', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
+                    <select name="branch_province" id="branch_province" class="form-control"  onchange="show_location_A_branch();change_location_branch();">
+                            <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                    </select>
+                    {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="form-group {{ $errors->has('branch_district') ? 'has-error' : ''}}">
+                    <select name="branch_district" id="branch_district" class="form-control" >
+                            <option value="" selected > - กรุณาเลือกอำเภอ / Please select district - </option> 
+                                                               
+                    </select>
+                    {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if(!empty(Auth::user()->branch))
+
+        <input id="check_branch_not_empty" type="checkbox" name="checkbox" onchange="if(this.checked){
+                    document.querySelector('#show_branch_notempty').classList.remove('d-none');
+                    change_location_branch();
+                }else{
+                    document.querySelector('#show_branch_notempty').classList.add('d-none'); 
+                    select_location();
+                }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่ / Not the headquarters
+        <br><br>
+
+        <div id="show_branch_notempty" class="row d-none">
+            <div class="col-12 col-md-4">
+                <div class="form-group {{ $errors->has('branch') ? 'has-error' : ''}}">
+                    <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}"  placeholder="สาขา" readonly>
+                    {!! $errors->first('branch', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
+                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->branch_province }}"  placeholder="จังหวัด" readonly>
+                    {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="form-group {{ $errors->has('branch_district') ? 'has-error' : ''}}">
+                    <input class="form-control" name="branch_district" type="text" id="branch_district" value="{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}"  placeholder="อำเภอ" readonly>
+                    {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+    @endif
+<hr>
 </div>
+
 <script>
     
     function juristic(){
@@ -150,10 +224,12 @@
                 juristicNameTH.value = result['juristicNameTH'];
                 location_P_2.value = result['addressDetail']['province'];
                 location_A_2.value = result['addressDetail']['district'];
+
+                let location = document.querySelector("#location");
+                    location.value = result['addressDetail']['province'];
                 //UPDATE SELECT OPTION
                 fetch("{{ url('/') }}/api/juristic/"+result)
             });
-
     }
 
     // องค์กร
@@ -197,6 +273,65 @@
                 }
             });
             return location_A_2.value;
+    }
+
+
+    // สาขา
+    function show_location_P_branch(){
+        fetch("{{ url('/') }}/api/location/show_location_P")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let branch_province = document.querySelector("#branch_province");
+                    // location_P.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.province;
+                    option.value = item.province;
+                    branch_province.add(option);
+                }
+                
+            });
+            
+            return branch_province.value;
+    }
+
+    function show_location_A_branch(){
+        let branch_province = document.querySelector("#branch_province");
+        fetch("{{ url('/') }}/api/location/"+branch_province.value+"/show_location_A")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let branch_district = document.querySelector("#branch_district");
+                    branch_district.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.amphoe;
+                    option.value = item.amphoe;
+                    branch_district.add(option);
+                }
+            });
+            return branch_district.value;
+    }
+
+    function change_location_2(){
+        let location = document.querySelector("#location");
+        let location_P_2 = document.querySelector("#location_P_2");
+
+        location.value = location_P_2.value;
+        
+    }
+
+    function change_location_branch(){
+        let location = document.querySelector("#location");
+        let branch_province = document.querySelector("#branch_province");
+
+        location.value = branch_province.value;
+        
     }
 
 </script>

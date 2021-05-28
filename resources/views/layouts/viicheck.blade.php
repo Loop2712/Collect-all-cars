@@ -92,10 +92,19 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       @guest
-        <a href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto"><span class="d-block d-md-inline">เข้าสู่ระบบ</a>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียน</b></a></li>
+        </ul>
+      </nav>
+      <a href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
+        <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
+      </a>
+          
       @else
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
+          <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียน</b></a></li>
           <li class="dropdown">
               <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
               <a href="#" style="font-size: 18px;"><span><span id="input_name"></span></span> <i class="bi bi-chevron-down"></i></a>

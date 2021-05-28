@@ -9,15 +9,32 @@
                         <h4>
                             <div id="row_general" class="row">
                                 <div class="col-6">
-                                    ลงทะเบียนใหม่ <br> Register
+                                    <span style="font-size: 22px;" class="control-label">ลงทะเบียนใหม่</span><br>
+                                    <span style="font-size: 18px;" class="control-label">Register</span>
                                 </div>
-                                <div class="col-6">
-                                    
+                                <div id="div_btn_rg_organization" class="col-6">
+                                    <a id="btn_rg_organization" class="float-right btn btn-outline-primary main-shadow main-radius" onclick="show_organization();">
+                                       <i class="fas fa-building"></i> สำหรับองค์กร
+                                    </a>
                                 </div>
                             </div>
                             <div id="row_organization" class="row d-none">
-                                <div class="col-12">
-                                    ลงทะเบียนสำหรับองค์กร <br> Register for an organization
+                                <!-- มือถือ -->
+                                <div class="col-12 d-block d-md-none">
+                                    <span style="font-size: 22px;" class="control-label">ลงทะเบียนสำหรับองค์กร</span><br>
+                                    <span style="font-size: 18px;" class="control-label">Register for company</span>
+                                </div>
+                                <div class="col-12 d-block d-md-none">
+                                    <br>
+                                    <a id="btn_back" class="btn btn-outline-success d-none" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
+                                </div>
+                                <!-- คอม -->
+                                <div class="col-6 d-none d-lg-block">
+                                    <span style="font-size: 22px;" class="control-label">ลงทะเบียนสำหรับองค์กร</span><br>
+                                    <span style="font-size: 18px;" class="control-label">Register for company</span>
+                                </div>
+                                <div class="col-6 d-none d-lg-block">
+                                    <a id="btn_back_pc" class="btn btn-outline-success d-none float-right" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
                                 </div>
                             </div>
                         </h4>
@@ -40,10 +57,10 @@
                             @include ('register_car.form', ['formMode' => 'create'])
 
                         </form>
-                        <a id="btn_rg_organization" class="float-right btn btn-outline-primary main-shadow main-radius" onclick="show_organization();">
-                           <i class="fas fa-building"></i> สำหรับองค์กร
-                        </a>
                     </div>
+                    @if(!empty(Auth::user()->organization))
+                        <a id="click_organization" type="hidden" onclick="show_organization();"></a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -51,6 +68,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        document.getElementById("click_organization").click();
     });
     function show_organization(){
         document.querySelector('#row_general').classList.add('d-none');
@@ -62,8 +80,23 @@
         document.querySelector('#row_organization').classList.remove('d-none');
         document.querySelector('#div_organization').classList.remove('d-none');
         document.querySelector('#btn_back').classList.remove('d-none');
+        document.querySelector('#btn_back_pc').classList.remove('d-none');
 
         add_required();
+        select_location();
+        document.getElementById("check_branch_not_empty").click();
+    }
+    function select_location(){
+
+        var location = document.querySelector('#location');
+        var location_P_2 = document.querySelector('#location_P_2');
+
+        location.value = location_P_2.value;
+
+        var phone = document.querySelector('#phone');
+        var phone_2 = document.querySelector('#phone_2');
+
+        phone.value = phone_2.value;
     }
 
     function add_required(){ 

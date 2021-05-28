@@ -102,10 +102,16 @@
                 <!-- หน้าลงทะเบียนสำหรับองค์กร -->
                 @include ('register_car.form_organization')
 
+                @if(Auth::check())
+                    @if(Auth::user()->organization == null )
+
+                    @endif
+                @endif
                 <!-- หน้าลงทะเบียนสำหรับบุคคลทั่วไป -->
                 <div id="div_general" class="">
                     @if(empty(Auth::user()->phone) or empty(Auth::user()->location_P) or empty(Auth::user()->location_A))
-                        <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน / Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
+                        <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน' }}</span><br>
+                        <span style="font-size: 18px;" class="control-label">{{ 'Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
                         <div id="input_information">
                             <div class="row">
                                 <div class="col-12 col-md-4 d-none d-lg-block">
@@ -152,9 +158,9 @@
 
                         <input class="form-control" name="phone" type="hidden" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" readonly>
                     @endif
-
-                    <input class="form-control" name="location" type="hidden" id="location" value="{{ isset($register_car->location) ? $register_car->location :  Auth::user()->location_P }}" readonly>
                 </div>
+
+                <input class="form-control" name="location" type="hidden" id="location" value="{{ isset($register_car->location) ? $register_car->location :  Auth::user()->location_P }}" readonly>
 
                 <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
                 <br><br>
@@ -341,7 +347,6 @@
                 </div>
                 <!-- <button type="button" class="btn btn-primary" onclick="alert('hello')">Primary</button> -->
                 <hr>
-                <a id="btn_back" class="btn btn-outline-success d-none float-right" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
                 <div id="div_information" class="col-12">
                     <div class="row">
                         <div class="col-9 col-md-2">
