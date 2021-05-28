@@ -336,15 +336,15 @@
         
     }
 
-    function clear_input(){
-        let branch = document.querySelector("#branch");
-        let branch_province = document.querySelector("#branch_province");
-        let branch_district = document.querySelector("#branch_district");
+    // function clear_input(){
+    //     let branch = document.querySelector("#branch");
+    //     let branch_province = document.querySelector("#branch_province");
+    //     let branch_district = document.querySelector("#branch_district");
 
-        branch.value = "";
-        branch_province.value = "";
-        branch_district.value = "";
+    //     branch.value = "";
+    //     branch_province.value = "";
+    //     branch_district.value = "";
         
-    }
+    // }
 
 </script>
