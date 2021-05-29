@@ -72,11 +72,11 @@
                         </form>
                     </div>
                     <br class="d-block d-md-none">
-                    <div class="table-responsive">
+<!----------------------------------------------------------mobile--------------------------------------------------------->
+                    <div class="table-responsive d-block d-md-none">
                             <table class="fl-table">
                                 <thead>
                                     <tr>
-                                        
                                         <th>ยี่ห้อ/Brand</th>
                                         <th>ปี/Year</th>
                                         <th>ราคา/Price</th>
@@ -111,11 +111,62 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                                </div>
-                            </div>
-                        
-                            </div>
+                                
+                           
+                            </table>
+                            <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
+                            'brand' => Request::get('brand'),
+                            'model' => Request::get('model'),
+                            'submodel' => Request::get('submodel'),
+                            ])->render() !!} </div>
+                        </div>
+<!---------------------------------------------pc--------------------------------------------------------->
+<br>
+                        <div class="table-responsive d-none d-lg-block ">
+                            <table class="fl-table">
+                                <thead>
+                                    <tr>
+                                        <th>ยี่ห้อ/Brand</th>
+                                        <th>รุ่น/Model</th>
+                                        <th>รุ่นย่อย/SubModel</th>
+                                        <th>ปี/Year</th>
+                                        <th>ราคา/Price</th>
+                                        <th class="d-none">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                                @foreach($Middle_price_car as $item)
+                                    <tr>
+                                        
+                                        <td>{{ $item->brand }}</td>
+                                        <td>{{ $item->model }}</td>
+                                        <td>{{ $item->submodel }}</td>
+                                        <td>{{ $item->year }}</td>
+                                        
+                                        @php
+                                            $price_explode = explode("-",$item->price);
+                                            $price_1 = $price_explode[0];
+                                            $price_2 = $price_explode[1];
+                                        @endphp
 
+                                        <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
+                                      
+                                        <td class="d-none">
+                                            <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                            <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                
+                           
                             </table>
                             <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
                             'brand' => Request::get('brand'),
@@ -126,12 +177,13 @@
 
                     <br>
                 </div>
+                <br>
             </div>
         </div>
     </div>
     <style>
     </style>
-@endsection
+
 <style>
 {
     box-sizing: border-box;
@@ -256,3 +308,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 </script>
+@endsection
