@@ -8,7 +8,8 @@
                     <div class="card-header">
                         <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
                     </div>
-                    <div class="card-body">
+                    <!------------------------------------------------pc--------------------------------------------------->
+                    <div class="card-body d-none d-lg-block">
                         <div class="row">
                             @foreach($promotion as $item)
                             <div class="col-12 col-md-3" style="padding: 15px;">
@@ -29,6 +30,26 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <!------------------------------------------------mobile--------------------------------------------------->
+                    <div class="card-body d-block d-md-none"  style="margin-top:-20px">
+                        <div class="row">
+                            @foreach($promotion as $item)
+                            <div class="col-12" style="padding: 15px;">
+                                <div class="card main-shadow">
+                                    <div class="row">
+                                        <div class="col-4"> <img style="margin:5px 0px 0px 5px; width:100px;height:150px;object-fit:cover;" src="{{ $item->photo }}" alt="" > </div>
+                                        <div class="col-8" style="font-family: K2D, sans-serif;">  
+                                            <h5 class="card-title" style=" margin:10px 0px;"><b>{{ $item->company }}</b></h5>
+                                            <p style="font-size: 15px;white-space: nowrap;width: 190px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
+                                            <p class="card-text"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
+                                            <a href="{{ $item->link }}" class="btn btn-sm btn-primary main-shadow main-radius" >ดูเพิ่มเติม</a>
+                                        </div>
+                                    </div>                           
                                 </div>
                             </div>
                             @endforeach
