@@ -71,11 +71,11 @@
         document.getElementById("click_organization").click();
     });
     function show_organization(){
-        // document.querySelector('#row_general').classList.add('d-none');
-        // document.querySelector('#div_general').classList.add('d-none');
-        // document.querySelector('#div_information').classList.add('d-none');
-        // document.querySelector('#information').classList.add('d-none');
-        // document.querySelector('#btn_rg_organization').classList.add('d-none');
+        document.querySelector('#row_general').classList.add('d-none');
+        document.querySelector('#div_general').classList.add('d-none');
+        document.querySelector('#div_information').classList.add('d-none');
+        document.querySelector('#information').classList.add('d-none');
+        document.querySelector('#btn_rg_organization').classList.add('d-none');
 
         document.querySelector('#row_organization').classList.remove('d-none');
         document.querySelector('#div_organization').classList.remove('d-none');

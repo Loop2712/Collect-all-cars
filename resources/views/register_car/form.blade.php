@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                                        <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="กรุณาใส่เบอร์ของคุณ" pattern="[0-9]{10}">
+                                        <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="กรุณาใส่เบอร์ของคุณ" pattern="[0-9]{9-10}">
                                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>

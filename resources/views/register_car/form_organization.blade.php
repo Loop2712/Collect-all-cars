@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" readonly>
+                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" readonly pattern="[0-9]{9-10}">
                         {!! $errors->first('phone_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" >
+                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" pattern="[0-9]{9-10}">
                         {!! $errors->first('phone_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
