@@ -292,6 +292,22 @@ class GuestController extends Controller
         
         foreach($register_car as $item){
 
+            if (!empty($item->organization_mail)) {
+
+                $mail_data = [
+                    "juristicNameTH" => $item->juristicNameTH,
+                    "registration_number" => $item->registration_number,
+                    "province" => $item->province,
+                    "datetime" => $datetime,
+                    "branch" => $item->branch,
+                    "branch_district" => $item->branch_district,
+                    "branch_province" => $item->branch_province,
+                ];
+
+                $email = $item->organization_mail;
+                Mail::to($email)->send(new MailToGuest($mail_data));
+            }
+
             switch ($masseng) {
                 case 'รถคุณเกิดอุบัติเหตุค่ะ':
                     if (empty($phone)) {

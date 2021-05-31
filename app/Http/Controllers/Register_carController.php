@@ -261,6 +261,12 @@ class Register_carController extends Controller
             $requestData['phone'] = $requestData['phone_2'];
         }
 
+        if (empty($requestData['branch'])) {
+            $requestData['branch'] = "สำนักงานใหญ";
+            $requestData['branch_district'] = $requestData['location_A_2'];
+            $requestData['branch_province'] = $requestData['location_P_2'];
+        }
+
         Register_car::create($requestData);
 
         // return view('register_car.select_get')->with('flash_message', 'Register_car added!');
