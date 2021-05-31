@@ -9,9 +9,9 @@
 
 			<!-- LINE -->
 			@if(Auth::check())
-				<a style="position: absolute;right: 55%;top: 46%;" href="{{ url('/guest/create') }}"><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
+				<a style="position: absolute;right: 55%;top: 36%;" href="{{ url('/guest/create') }}"><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
 			@else
-				<a style="position: absolute;right: 55%;top: 46%;" href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
+				<a style="position: absolute;right: 55%;top: 36%;" href="{{ route('login.line') }}?redirectTo={{ url('/guest/create') }}"><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
 			@endif
 
 			<!-- FACEBOOK -->
@@ -19,9 +19,9 @@
 
 			<!-- GOOGLE -->
 			@if(Auth::check())
-				<a style="position: absolute;right: 16%;top: 46%;" href="{{ url('/guest/create') }}" ><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
+				<a style="position: absolute;right: 15%;top: 36%;" href="{{ url('/guest/create') }}" ><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
 			@else
-				<a style="position: absolute;right: 16%;top: 46%;" href="{{ route('login.google') }}?redirectTo={{ url('/guest/create') }}" ><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
+				<a style="position: absolute;right: 15%;top: 36%;" href="{{ route('login.google') }}?redirectTo={{ url('/guest/create') }}" ><img width="110" src="{{ asset('/img/icon/empty.png') }}"></a>
 			@endif
 		</div>
 		<div class="row">
