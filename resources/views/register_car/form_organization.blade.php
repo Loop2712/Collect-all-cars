@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ isset($register_car->phone) ? $register_car->phone :  $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" readonly>
+                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" readonly>
                         {!! $errors->first('phone_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ isset($register_car->phone) ? $register_car->phone :  $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" >
+                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" >
                         {!! $errors->first('phone_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -195,7 +195,7 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->branch_province }}"  placeholder="จังหวัด" >
+                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->branch_province) ? $register_car->branch_province :  Auth::user()->branch_province }}"  placeholder="จังหวัด" >
                     {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -207,6 +207,20 @@
             </div>
         </div>
     @endif
+
+    <!-- <div class="row">
+        <div class="col-12 col-md-4 d-none d-lg-block">
+            <label  class="control-label">{{ 'เบอร์โทรศัพท์ผู้ประสานงาน / Coordinator phone number.' }}</label><span style="color: #FF0033;"> *</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+                <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="กรุณาใส่เบอร์ของคุณ" pattern="[0-9]{10}">
+                {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+    </div> -->
 <hr>
 </div>
 
