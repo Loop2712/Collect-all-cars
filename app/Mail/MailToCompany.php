@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 use App\Models\LineMessagingAPI;
-
+use App\Models\Guest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
