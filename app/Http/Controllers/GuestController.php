@@ -13,6 +13,9 @@ use App\Models\Profanity;
 use Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailToCompany;
+
 use App\Models\Mylog;
 
 class GuestController extends Controller
