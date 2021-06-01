@@ -302,10 +302,12 @@ class GuestController extends Controller
                     "branch" => $item->branch,
                     "branch_district" => $item->branch_district,
                     "branch_province" => $item->branch_province,
+                    "masseng" => $masseng,
+                    "masseng_en" => $masseng_en,
                 ];
 
                 $email = $item->organization_mail;
-                Mail::to($email)->send(new MailToGuest($mail_data));
+                Mail::to($email)->send(new MailToCompany($mail_data));
             }
 
             switch ($masseng) {
