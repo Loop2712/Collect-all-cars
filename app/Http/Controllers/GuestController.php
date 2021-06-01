@@ -292,8 +292,16 @@ class GuestController extends Controller
         }
 
         $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration' AND province = '$county' AND active = 'Yes'");
-        
+
         foreach($register_car as $item){
+
+            $users = DB::table('users')
+                    ->where('id', $item->user_id)
+                    ->get();
+
+            foreach ($users as $user) {
+                $type_user = $user->type;
+            }
 
             if (!empty($item->organization_mail)) {
 
@@ -313,96 +321,98 @@ class GuestController extends Controller
                 Mail::to($email)->send(new MailToCompany($mail_data));
             }
 
-            switch ($masseng) {
-                case 'รถคุณเกิดอุบัติเหตุค่ะ':
-                    if (empty($phone)) {
-                        $template_path = storage_path('../public/json/flex-accident.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                        $string_json = str_replace("datetime",$datetime,$string_json);
-                        $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                        $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                        $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                        $string_json = str_replace("Pleasemove",$masseng_en,$string_json);
-                        $string_json = str_replace("uploads",$photo,$string_json);
-                        $string_json = str_replace("pphhoottoo",$photo,$string_json);
+            if ($type_user == "line") {
+                switch ($masseng) {
+                    case 'รถคุณเกิดอุบัติเหตุค่ะ':
+                        if (empty($phone)) {
+                            $template_path = storage_path('../public/json/flex-accident.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("Pleasemove",$masseng_en,$string_json);
+                            $string_json = str_replace("uploads",$photo,$string_json);
+                            $string_json = str_replace("pphhoottoo",$photo,$string_json);
 
-                        $messages = [ json_decode($string_json, true) ];
-                    }
-                    if (!empty($phone)) {
-                        $template_path = storage_path('../public/json/flex-accident-call.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                        $string_json = str_replace("datetime",$datetime,$string_json);
-                        $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                        $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                        $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                        $string_json = str_replace("Pleasemove",$masseng_en,$string_json);
-                        $string_json = str_replace("uploads",$photo,$string_json);
-                        $string_json = str_replace("pphhoottoo",$photo,$string_json);
-                        $string_json = str_replace("0999999999",$phone,$string_json);
-
-                        $messages = [ json_decode($string_json, true) ];
+                            $messages = [ json_decode($string_json, true) ];
                         }
-                    break;
-                
-                default:
-                    if (empty($phone)) {
-                        $template_path = storage_path('../public/json/flex-move.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                        $string_json = str_replace("datetime",$datetime,$string_json);
-                        $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                        $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                        $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                        $string_json = str_replace("Please move the car",$masseng_en,$string_json);
-                        $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
+                        if (!empty($phone)) {
+                            $template_path = storage_path('../public/json/flex-accident-call.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("Pleasemove",$masseng_en,$string_json);
+                            $string_json = str_replace("uploads",$photo,$string_json);
+                            $string_json = str_replace("pphhoottoo",$photo,$string_json);
+                            $string_json = str_replace("0999999999",$phone,$string_json);
 
-                        $messages = [ json_decode($string_json, true) ];
-                    }
-                    if (!empty($phone)) {
-                        $template_path = storage_path('../public/json/flex-move-call.json');   
-                        $string_json = file_get_contents($template_path);
-                        $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                        $string_json = str_replace("datetime",$datetime,$string_json);
-                        $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                        $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                        $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
-                        $string_json = str_replace("Please move the car",$masseng_en,$string_json);
-                        $string_json = str_replace("0999999999",$phone,$string_json);
-                        $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
+                            $messages = [ json_decode($string_json, true) ];
+                            }
+                        break;
+                    
+                    default:
+                        if (empty($phone)) {
+                            $template_path = storage_path('../public/json/flex-move.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("Please move the car",$masseng_en,$string_json);
+                            $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
 
-                        $messages = [ json_decode($string_json, true) ];
-                    }
-                    break;
+                            $messages = [ json_decode($string_json, true) ];
+                        }
+                        if (!empty($phone)) {
+                            $template_path = storage_path('../public/json/flex-move-call.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("Please move the car",$masseng_en,$string_json);
+                            $string_json = str_replace("0999999999",$phone,$string_json);
+                            $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
+
+                            $messages = [ json_decode($string_json, true) ];
+                        }
+                        break;
+                }
+
+                $body = [
+                    "to" => $item->provider_id,
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.$this->channel_access_token,
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                //SAVE LOG
+                $data = [
+                    "title" => "https://api.line.me/v2/bot/message/push",
+                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+                ];
+                MyLog::create($data);
+                return $result;
             }
-
-            $body = [
-                "to" => $item->provider_id,
-                "messages" => $messages,
-            ];
-
-            $opts = [
-                'http' =>[
-                    'method'  => 'POST',
-                    'header'  => "Content-Type: application/json \r\n".
-                                'Authorization: Bearer '.$this->channel_access_token,
-                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                    //'timeout' => 60
-                ]
-            ];
-                                
-            $context  = stream_context_create($opts);
-            $url = "https://api.line.me/v2/bot/message/push";
-            $result = file_get_contents($url, false, $context);
-
-            //SAVE LOG
-            $data = [
-                "title" => "https://api.line.me/v2/bot/message/push",
-                "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
-            ];
-            MyLog::create($data);
-            return $result;
             
         }
         
