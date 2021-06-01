@@ -302,8 +302,13 @@
             .then(result => {
                 // console.log(result);
                 //UPDATE SELECT OPTION
-                let county = document.querySelector("#county");
-                    county.innerHTML = "";
+                // let county = document.querySelector("#county");
+                //     county.innerHTML = "";
+
+                let option = document.createElement("option");
+                    option.text = "- กรุณาเลือกจังหวัด / Select province -";
+                    option.value = "- กรุณาเลือกจังหวัด / Select province -";
+                    
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.province;
