@@ -102,11 +102,7 @@
                 <!-- หน้าลงทะเบียนสำหรับองค์กร -->
                 @include ('register_car.form_organization')
 
-                @if(Auth::check())
-                    @if(Auth::user()->organization == null )
-
-                    @endif
-                @endif
+               
                 <!-- หน้าลงทะเบียนสำหรับบุคคลทั่วไป -->
                 <div id="div_general" class="">
                     @if(empty(Auth::user()->phone) or empty(Auth::user()->location_P) or empty(Auth::user()->location_A))

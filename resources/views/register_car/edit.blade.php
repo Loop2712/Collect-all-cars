@@ -26,8 +26,37 @@
                         </form>
 
                     </div>
+                    @if(!empty($juristicNameTH))
+                        <a id="click_organization_edit" type="hidden" onclick="add_required();"></a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+            document.getElementById("click_organization_edit").click();
+        });
+        function add_required(){ 
+
+        // ทั่วไป
+        var location_P = document.querySelector('#location_P');
+        var location_A = document.querySelector('#location_A');
+        var phone = document.querySelector('#phone');
+
+        location_P.removeAttribute('required');
+        location_A.removeAttribute('required');
+        phone.removeAttribute('required');
+
+        document.querySelector('#div_general').classList.add('d-none');
+        document.querySelector('#div_information').classList.add('d-none');
+        document.querySelector('#information').classList.add('d-none');
+        document.querySelector('#btn_rg_organization').classList.add('d-none');
+
+        document.querySelector('#row_organization').classList.remove('d-none');
+        document.querySelector('#div_organization').classList.remove('d-none');
+
+    }
+    </script>
 @endsection

@@ -325,6 +325,29 @@ class Register_carController extends Controller
         // ตรวจสอบว่าใช่เจ้าของรถหรือไม่
         $check_car_user = Register_car::where('user_id',$user_id )->where('id',$id )->get();
 
+        $user = Auth::user();
+        $organization = $user->organization;
+
+        $Juristic_ID = Organization::where('juristicNameTH', $organization )->get();
+
+        $juristicNameTH = "";
+        $juristicID = "" ;
+        $juristicMail = "" ;
+        $juristicPhone = "" ;
+        $juristicProvince = "" ;
+        $juristicDistrict = "" ;
+
+        foreach ($Juristic_ID as $key ) {
+            if (!empty($key->juristicNameTH)) {
+                $juristicNameTH = $key->juristicNameTH ;
+                $juristicID = $key->juristicID ;
+                $juristicMail = $key->mail ;
+                $juristicPhone = $key->phone ;
+                $juristicProvince = $key->province ;
+                $juristicDistrict = $key->district ;
+            }
+        }
+
         foreach ($check_car_user as $key ) {
             $name = $key->name ;
         }
@@ -365,7 +388,7 @@ class Register_carController extends Controller
                 ->where('car_type', 'motorcycle')
                 ->get();
 
-            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx'));
+            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization'));
         }
     }
     public function edit_act($id)
