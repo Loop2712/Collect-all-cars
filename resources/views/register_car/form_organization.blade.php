@@ -236,7 +236,7 @@
         fetch("https://dataapi.moc.go.th/juristic?juristic_id="+juristicID.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 juristicNameTH.value = result['juristicNameTH'];
                 location_P_2.value = result['addressDetail']['province'];
                 location_A_2.value = result['addressDetail']['district'];
@@ -244,7 +244,24 @@
                 let location = document.querySelector("#location");
                     location.value = result['addressDetail']['province'];
                 //UPDATE SELECT OPTION
-                fetch("{{ url('/') }}/api/juristic/"+result)
+                // fetch("{{ url('/') }}/api/juristic/"+result)
+
+                fetch("{{ url('/') }}/api/juristic/", {
+                    method: 'POST', // or 'PUT'
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(result),
+                    })
+
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                });
+
             });
     }
 

@@ -13,6 +13,11 @@
 				หมายเลขทะเบียน <b>{{ $data["registration_number"] }} {{ $data["province"] }} </b>
 				<br>
 				ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b>{{ $data["masseng"] }}</b>
+				<br>
+
+				@if(!empty($data["phone"]))
+					เบอร์โทรศัพท์ติดต่อผู้แจ้ง {{ $data["phone"] }}
+				@endif
 			</div>
 		</div>
 	</div>

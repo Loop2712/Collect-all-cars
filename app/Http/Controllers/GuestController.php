@@ -315,6 +315,7 @@ class GuestController extends Controller
                     "branch_province" => $item->branch_province,
                     "masseng" => $masseng,
                     "masseng_en" => $masseng_en,
+                    "phone" => $phone,
                 ];
 
                 $email = $item->organization_mail;

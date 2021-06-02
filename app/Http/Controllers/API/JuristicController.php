@@ -11,6 +11,10 @@ class JuristicController extends Controller
      public function juristic($result)
     {
     	$requestData = $result->all();
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
 
     	Organization::create($requestData);
 

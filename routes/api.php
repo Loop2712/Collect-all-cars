@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/juristic/{result}', 'API\JuristicController@juristic');
+Route::post('/juristic', 'API\JuristicController@juristic');
 
 Route::post('/lineapi', 'API\LineApiController@store');
 
