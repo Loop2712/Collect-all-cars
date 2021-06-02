@@ -175,7 +175,16 @@ Route::resource('sos', 'SosController');
 
 //เหตุด่วนเหตุร้าย
 Route::get('/disaster2', 'SosController@disaster2');
+//ไฟไหม้รถ
 Route::get('/car_fire', 'SosController@car_fire');
+//หน่วยแพทย์กู้ชีวิต
+Route::get('/life_saving', 'SosController@life_saving');
+//จส100
+Route::get('/js_100', 'SosController@js_100');
+//สายด่วนทางหลวง
+Route::get('/highway', 'SosController@highway');
+//ตำรวจท่องเที่ยว
+Route::get('/tourist_police', 'SosController@tourist_police');
 
 // END SosController
 

@@ -149,7 +149,7 @@
                 "action": {
                   "type": "uri",
                   "label": "📞 1669",
-                  "uri": "tel:1669"
+                  "uri": "https://www.viicheck.com/life_saving"
                 },
                 "style": "primary",
                 "height": "sm",
@@ -182,7 +182,7 @@
                 "action": {
                   "type": "uri",
                   "label": "📞 1137",
-                  "uri": "tel:1137"
+                  "uri": "https://www.viicheck.com/js_100"
                 },
                 "style": "primary",
                 "height": "sm",
@@ -222,7 +222,7 @@
                 "action": {
                   "type": "uri",
                   "label": "📞 1193",
-                  "uri": "tel:1193"
+                  "uri": "https://www.viicheck.com/highway"
                 },
                 "style": "primary",
                 "height": "sm",
@@ -255,7 +255,7 @@
                 "action": {
                   "type": "uri",
                   "label": "📞 1155",
-                  "uri": "tel:1155"
+                  "uri": "https://www.viicheck.com/tourist_police"
                 },
                 "style": "primary",
                 "height": "sm",

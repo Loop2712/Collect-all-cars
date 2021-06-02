@@ -143,7 +143,7 @@ class SosController extends Controller
 
         return view('sos.disaster2');
     }
-    
+
     public function car_fire()
     {
         $car_fire = DB::table('sos')
@@ -161,5 +161,81 @@ class SosController extends Controller
         }
 
         return view('sos.car_fire');
+    }
+
+    public function life_saving()
+    {
+        $life_saving = DB::table('sos')
+                ->select('life_saving', 'total')
+                ->where('id', 1)
+                ->get();
+
+        foreach ($life_saving as $key) {
+            DB::table('sos')
+              ->where('id', 1)
+              ->update([
+                'life_saving' => $key->life_saving + 1,
+                'total' => $key->total + 1,
+            ]);
+        }
+
+        return view('sos.life_saving');
+    }
+
+    public function js_100()
+    {
+        $js_100 = DB::table('sos')
+                ->select('js_100', 'total')
+                ->where('id', 1)
+                ->get();
+
+        foreach ($js_100 as $key) {
+            DB::table('sos')
+              ->where('id', 1)
+              ->update([
+                'js_100' => $key->js_100 + 1,
+                'total' => $key->total + 1,
+            ]);
+        }
+
+        return view('sos.js_100');
+    }
+
+    public function highway()
+    {
+        $highway = DB::table('sos')
+                ->select('highway', 'total')
+                ->where('id', 1)
+                ->get();
+
+        foreach ($highway as $key) {
+            DB::table('sos')
+              ->where('id', 1)
+              ->update([
+                'highway' => $key->highway + 1,
+                'total' => $key->total + 1,
+            ]);
+        }
+
+        return view('sos.highway');
+    }
+
+    public function tourist_police()
+    {
+        $tourist_police = DB::table('sos')
+                ->select('tourist_police', 'total')
+                ->where('id', 1)
+                ->get();
+
+        foreach ($tourist_police as $key) {
+            DB::table('sos')
+              ->where('id', 1)
+              ->update([
+                'tourist_police' => $key->tourist_police + 1,
+                'total' => $key->total + 1,
+            ]);
+        }
+
+        return view('sos.tourist_police');
     }
 }
