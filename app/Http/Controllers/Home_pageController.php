@@ -11,19 +11,6 @@ class Home_pageController extends Controller
 {
      public function home_page()
     {
-        $date_now = date("Y-m-d");
-        $date_add = strtotime("+30 Day");
-        $date_30 = date("Y-m-d" , $date_add);
-
-        // พรบ
-        $act = Register_car::where('act' , "<=" , $date_30)
-                    ->whereNull('alert_act')
-                    ->get();
-         echo "Hello";
-         echo "<pre>";
-         print_r($act);
-         echo "<pre>";
-         exit();
         $register_car = Register_car::selectRaw('count(id) as count')
                         ->where('car_type', 'car')
                         ->get();
