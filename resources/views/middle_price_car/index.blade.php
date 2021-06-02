@@ -115,9 +115,9 @@
                                             $price_1 = $price_explode[0];
                                             $price_2 = $price_explode[1];
                                         @endphp
-                                        <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:right"><b>{{ number_format($price_1) }}</b></p>
+                                        <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:right; color:red;"><b>{{ number_format($price_1) }}</b></p>
                                         <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">ถึง </h5>
-                                        <p style="font-family: K2D, sans-serif;text-align:right"><b>{{ number_format($price_2) }}</b></p>
+                                        <p style="font-family: K2D, sans-serif;text-align:right; color:red;"><b>{{ number_format($price_2) }}</b></p>
                                     </div>
                                 </div>
                             @endforeach
