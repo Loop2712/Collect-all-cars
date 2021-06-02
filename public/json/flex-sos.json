@@ -109,7 +109,7 @@
                 "action": {
                   "type": "uri",
                   "label": "📞 199",
-                  "uri": "tel:199"
+                  "uri": "https://www.viicheck.com/car_fire"
                 },
                 "style": "primary",
                 "height": "sm",

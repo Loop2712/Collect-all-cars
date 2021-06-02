@@ -143,4 +143,23 @@ class SosController extends Controller
 
         return view('sos.disaster2');
     }
+    
+    public function car_fire()
+    {
+        $car_fire = DB::table('sos')
+                ->select('car_fire', 'total')
+                ->where('id', 1)
+                ->get();
+
+        foreach ($car_fire as $key) {
+            DB::table('sos')
+              ->where('id', 1)
+              ->update([
+                'car_fire' => $key->car_fire + 1,
+                'total' => $key->total + 1,
+            ]);
+        }
+
+        return view('sos.car_fire');
+    }
 }

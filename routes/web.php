@@ -175,6 +175,7 @@ Route::resource('sos', 'SosController');
 
 //เหตุด่วนเหตุร้าย
 Route::get('/disaster2', 'SosController@disaster2');
+Route::get('/car_fire', 'SosController@car_fire');
 
 // END SosController
 
