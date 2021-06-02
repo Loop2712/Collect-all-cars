@@ -28,21 +28,26 @@
                 "margin": "lg"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
           {
             "type": "image",
             "url": "https://www.viicheck.com/storage/ccaarr",
-            "align": "center",
             "gravity": "center",
             "size": "full",
-            "aspectMode": "fit",
-            "aspectRatio": "16:9",
-            "margin": "lg",
+            "aspectMode": "cover",
+            "aspectRatio": "1:1",
             "action": {
               "type": "uri",
               "label": "action",
               "uri": "https://www.viicheck.com/storage/ccaarr"
-            }
+            },
+            "animated": true
           },
           {
             "type": "box",
@@ -56,14 +61,19 @@
             ],
             "position": "absolute",
             "offsetBottom": "xs",
-            "offsetEnd": "35px",
+            "offsetEnd": "20px",
             "action": {
               "type": "uri",
               "label": "action",
               "uri": "https://www.viicheck.com/storage/ccaarr"
             }
           }
-        ]
+        ],
+        "margin": "md",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl",
+        "backgroundColor": "#ff0101"
       },
       {
         "type": "separator",
@@ -98,21 +108,26 @@
                     "margin": "lg"
                   }
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
               {
                 "type": "image",
                 "url": "https://www.viicheck.com/storage/mmotorcycle",
-                "align": "center",
                 "gravity": "center",
                 "size": "full",
-                "aspectMode": "fit",
-                "aspectRatio": "16:9",
-                "margin": "lg",
+                "aspectMode": "cover",
+                "aspectRatio": "1:1",
                 "action": {
                   "type": "uri",
                   "label": "action",
                   "uri": "https://www.viicheck.com/storage/mmotorcycle"
-                }
+                },
+                "animated": true
               },
               {
                 "type": "box",
@@ -126,14 +141,19 @@
                 ],
                 "position": "absolute",
                 "offsetBottom": "xs",
-                "offsetEnd": "35px",
+                "offsetEnd": "20px",
                 "action": {
                   "type": "uri",
                   "label": "action",
                   "uri": "https://www.viicheck.com/storage/mmotorcycle"
                 }
               }
-            ]
+            ],
+            "margin": "md",
+            "borderWidth": "bold",
+            "borderColor": "#ff0101",
+            "cornerRadius": "xxl",
+            "backgroundColor": "#ff0101"
           }
         ],
         "margin": "md"
@@ -144,5 +164,4 @@
     "cornerRadius": "xl"
   }
 }
-
 }
