@@ -6,7 +6,7 @@
 			<div class="col-12 col-md-10">
 				<div style="font-size:20px;">
 					<h1>เรียน บริษัท <b>{{ $data["juristicNameTH"] }}</b></h1>
-					<br>
+					
 					ทางเราได้รับการแจ้งปัญหาการขับขี่ยานพาหนะภายในองค์กรของท่าน
 					<br>
 					สาขา <b>{{ $data["branch"] }}</b>
