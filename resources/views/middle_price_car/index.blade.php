@@ -104,7 +104,7 @@
                             @foreach($Middle_price_car as $item)
                                <br> 
                                <div class="row ">
-                                    <div class="col-7 card main-shadow" style="margin-left:15px; border-radius: 20px 0px 0px 20px;">
+                                    <div class="col-6 card main-shadow" style="margin-left:30px; border-radius: 20px 0px 0px 20px;">
                                         <h4 style="margin-top:15px">&nbsp;<b>{{ $item->brand }}</b></h4>
                                         <p style="margin-top:-5px;margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
                                         <p style="margin-top:-10px">&nbsp;ปี {{ $item->year }} </p>
@@ -115,9 +115,9 @@
                                             $price_1 = $price_explode[0];
                                             $price_2 = $price_explode[1];
                                         @endphp
-                                        <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:right"><b>{{ number_format($price_1) }}</b></p>
+                                        <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:right; color:red;"><b>{{ number_format($price_1) }}</b></p>
                                         <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">ถึง </h5>
-                                        <p style="font-family: K2D, sans-serif;text-align:right"><b>{{ number_format($price_2) }}</b></p>
+                                        <p style="font-family: K2D, sans-serif;text-align:right; color:red;"><b>{{ number_format($price_2) }}</b></p>
                                     </div>
                                 </div>
                             @endforeach
