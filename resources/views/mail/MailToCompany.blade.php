@@ -33,7 +33,7 @@
 			</div>
 			<div class="col-12 col-md-2">
 				<br>
-				<button type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;width: 100%;padding: 10px;border-radius: 10px;">
+				<button type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;padding: 10px;border-radius: 10px;">
 					<a type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;" href="tel:{{ $data['phone'] }}">
 						📞 โทรออก
 					</a>
