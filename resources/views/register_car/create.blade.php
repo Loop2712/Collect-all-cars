@@ -59,7 +59,7 @@
                         </form>
                     </div>
                     @if(!empty(Auth::user()->organization))
-                        <a id="click_organization" type="hidden" onclick="show_organization();"></a>
+                        <a id="click_organization" type="hidden" onclick="not_empty_organization();"></a>
                     @endif
                 </div>
             </div>
@@ -70,6 +70,24 @@
         // console.log("START");
         document.getElementById("click_organization").click();
     });
+    function not_empty_organization(){
+
+        document.querySelector('#row_general').classList.add('d-none');
+        document.querySelector('#div_general').classList.add('d-none');
+        document.querySelector('#div_information').classList.add('d-none');
+        document.querySelector('#information').classList.add('d-none');
+        document.querySelector('#btn_rg_organization').classList.add('d-none');
+
+        document.querySelector('#row_organization').classList.remove('d-none');
+        document.querySelector('#div_organization').classList.remove('d-none');
+        document.querySelector('#btn_back_pc').classList.add('d-none');
+        document.querySelector('#btn_back').classList.add('d-none');
+
+        add_required();
+        select_location();
+        document.getElementById("check_branch_not_empty").click();
+
+    }
     function show_organization(){
         document.querySelector('#row_general').classList.add('d-none');
         document.querySelector('#div_general').classList.add('d-none');
