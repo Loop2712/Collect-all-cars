@@ -30,38 +30,47 @@
             ]
           },
           {
-            "type": "image",
-            "url": "https://www.viicheck.com/storage/ccaarr",
-            "align": "center",
-            "gravity": "center",
-            "size": "full",
-            "aspectMode": "fit",
-            "aspectRatio": "16:9",
-            "margin": "lg",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/storage/ccaarr"
-            }
-          },
-          {
             "type": "box",
-            "layout": "baseline",
+            "layout": "horizontal",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/zoom-in.png",
-                "size": "xxl"
+                "type": "image",
+                "url": "https://www.viicheck.com/storage/ccaarr",
+                "gravity": "center",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "1:1",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/storage/ccaarr"
+                },
+                "animated": true
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://www.viicheck.com/img/icon/zoom-in.png",
+                    "size": "xxl"
+                  }
+                ],
+                "position": "absolute",
+                "offsetBottom": "lg",
+                "offsetEnd": "10px",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/storage/ccaarr"
+                }
               }
             ],
-            "position": "absolute",
-            "offsetBottom": "xs",
-            "offsetEnd": "35px",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/storage/ccaarr"
-            }
+            "margin": "md",
+            "backgroundColor": "#ff0101",
+            "borderWidth": "bold",
+            "cornerRadius": "xxl"
           }
         ]
       },
@@ -123,5 +132,4 @@
     "cornerRadius": "xl"
   }
 }
-
 }
