@@ -60,8 +60,8 @@
               }
             ],
             "position": "absolute",
-            "offsetBottom": "xs",
-            "offsetEnd": "20px",
+            "offsetBottom": "lg",
+            "offsetEnd": "10px",
             "action": {
               "type": "uri",
               "label": "action",
@@ -140,8 +140,8 @@
                   }
                 ],
                 "position": "absolute",
-                "offsetBottom": "xs",
-                "offsetEnd": "20px",
+                "offsetBottom": "lg",
+                "offsetEnd": "10px",
                 "action": {
                   "type": "uri",
                   "label": "action",
