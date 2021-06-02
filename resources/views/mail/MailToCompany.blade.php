@@ -1,3 +1,6 @@
+@extends('layouts.news')
+
+@section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-12 col-md-10">
@@ -17,8 +20,13 @@
 
 				@if(!empty($data["phone"]))
 					เบอร์โทรศัพท์ติดต่อผู้แจ้ง {{ $data["phone"] }}
+					<a href="tel:{{ $data['phone'] }}">
+						<button type="button" class="btn btn-outline-success">📞 โทรออก</button>
+					</a>
+					
 				@endif
 			</div>
 		</div>
 	</div>
 </div>
+@endsection
