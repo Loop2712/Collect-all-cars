@@ -28,7 +28,7 @@
         <div class="header__logo">
             <br>
             <center>
-                <img width="150" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+                <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
             </center>        
         </div>
         <main class="py-5">
