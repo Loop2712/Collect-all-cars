@@ -48,13 +48,8 @@ class AlertAct extends Command
 
         // พรบ
         $act = Register_car::where('act' , "<=" , $date_30)
-                                ->whereNull('alert_act')
-                                ->get();
-         echo "Hello";
-         echo "<pre>";
-         print_r($act);
-         echo "<pre>";
-         exit();
+                    ->whereNull('alert_act')
+                    ->get();
 
         foreach ($act as $item) {
             $template_path = storage_path('../public/json/flex-act.json');   
@@ -96,7 +91,6 @@ class AlertAct extends Command
                 ->update(['alert_act' => $date_now]);
 
             MyLog::create($data);
-            return $result;
         }
         // จบ พรบ
 
@@ -146,7 +140,6 @@ class AlertAct extends Command
                 ->update(['alert_insurance' => $date_now]);
 
             MyLog::create($data);
-            return $result;
         }
         // จบ ประกัน
     }
