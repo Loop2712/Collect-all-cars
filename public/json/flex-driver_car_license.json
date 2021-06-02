@@ -70,7 +70,8 @@
             "margin": "md",
             "backgroundColor": "#ff0101",
             "borderWidth": "bold",
-            "cornerRadius": "xxl"
+            "cornerRadius": "xxl",
+            "borderColor": "#ff0101"
           }
         ]
       },
