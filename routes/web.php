@@ -172,6 +172,10 @@ Route::resource('middle_price_car', 'Middle_price_carController');
 
 // SosController
 Route::resource('sos', 'SosController');
+
+//เหตุด่วนเหตุร้าย
 Route::get('/disaster2', 'SosController@disaster2');
+
+// END SosController
 
 Route::resource('organization', 'OrganizationController');
