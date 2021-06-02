@@ -27,9 +27,7 @@
     <div id="app">
         <div class="header__logo">
             <br>
-            <center>
-                <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
-            </center>        
+            <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"> 
         </div>
         <main class="py-5">
             <div class="container">
