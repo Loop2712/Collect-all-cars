@@ -104,7 +104,7 @@
                             @foreach($Middle_price_car as $item)
                                <br> 
                                <div class="row ">
-                                    <div class="col-7 card main-shadow" style="margin-left:15px; border-radius: 20px 0px 0px 20px;">
+                                    <div class="col-6 card main-shadow" style="margin-left:30px; border-radius: 20px 0px 0px 20px;">
                                         <h4 style="margin-top:15px">&nbsp;<b>{{ $item->brand }}</b></h4>
                                         <p style="margin-top:-5px;margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
                                         <p style="margin-top:-10px">&nbsp;ปี {{ $item->year }} </p>
