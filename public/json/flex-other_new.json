@@ -68,7 +68,10 @@
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
                 },
-                "flex": 4
+                "flex": 4,
+                "position": "absolute",
+                "offsetTop": "xxl",
+                "offsetStart": "55px"
               },
               {
                 "type": "text",
@@ -80,7 +83,10 @@
                   "type": "message",
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
-                }
+                },
+                "position": "absolute",
+                "offsetTop": "xxl",
+                "offsetEnd": "1px"
               }
             ],
             "height": "50px",
