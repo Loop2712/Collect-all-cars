@@ -71,8 +71,8 @@
                   "text": "ข้อมูลของคุณ"
                 },
                 "flex": 4,
-                "offsetBottom": "xxl",
-                "offsetEnd": "lg"
+                "offsetBottom": "lg",
+                "offsetEnd": "md"
               },
               {
                 "type": "text",
@@ -85,7 +85,7 @@
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
                 },
-                "offsetBottom": "xxl"
+                "offsetBottom": "lg"
               }
             ],
             "height": "50px",
