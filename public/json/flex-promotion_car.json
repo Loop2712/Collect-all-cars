@@ -14,7 +14,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img1",
             "size": "full",
-            "aspectMode": "fit",
+            "aspectMode": "cover",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -54,7 +54,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img2",
             "size": "full",
-            "aspectMode": "fit",
+            "aspectMode": "cover",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -94,7 +94,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img3",
             "size": "full",
-            "aspectMode": "fit",
+            "aspectMode": "cover",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -134,7 +134,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img4",
             "size": "full",
-            "aspectMode": "fit",
+            "aspectMode": "cover",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -174,7 +174,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img5",
             "size": "full",
-            "aspectMode": "fit",
+            "aspectMode": "cover",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -214,7 +214,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img6",
             "size": "full",
-            "aspectMode": "fit",
+            "aspectMode": "cover",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
