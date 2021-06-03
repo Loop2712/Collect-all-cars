@@ -56,7 +56,8 @@
                 "type": "icon",
                 "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
                 "size": "4xl",
-                "offsetTop": "sm"
+                "offsetTop": "sm",
+                "offsetEnd": "sm"
               },
               {
                 "type": "text",
@@ -71,7 +72,7 @@
                 "flex": 4,
                 "position": "absolute",
                 "offsetTop": "xxl",
-                "offsetStart": "55px"
+                "offsetStart": "50px"
               },
               {
                 "type": "text",
