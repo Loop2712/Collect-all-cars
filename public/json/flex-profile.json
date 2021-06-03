@@ -192,7 +192,7 @@
                 "offsetStart": "md"
               }
             ],
-            "paddingTop": "sm",
+            "paddingTop": "md",
             "paddingBottom": "xs"
           },
           {
@@ -213,7 +213,7 @@
                 "margin": "xxl"
               }
             ],
-            "paddingTop": "xs",
+            "paddingTop": "md",
             "paddingBottom": "sm"
           },
           {
