@@ -193,7 +193,7 @@
               }
             ],
             "paddingTop": "sm",
-            "paddingBottom": "sm"
+            "paddingBottom": "xs"
           },
           {
             "type": "box",
@@ -213,7 +213,7 @@
                 "margin": "xxl"
               }
             ],
-            "paddingTop": "sm",
+            "paddingTop": "xs",
             "paddingBottom": "sm"
           },
           {
