@@ -55,10 +55,9 @@
               {
                 "type": "icon",
                 "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
-                "size": "4xl",
+                "size": "3xl",
                 "margin": "none",
-                "offsetTop": "sm",
-                "offsetEnd": "sm"
+                "offsetTop": "md"
               },
               {
                 "type": "text",
@@ -70,9 +69,7 @@
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
                 },
-                "flex": 4,
-                "offsetBottom": "lg",
-                "offsetEnd": "md"
+                "flex": 4
               },
               {
                 "type": "text",
@@ -84,8 +81,7 @@
                   "type": "message",
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
-                },
-                "offsetBottom": "lg"
+                }
               }
             ],
             "height": "50px",
@@ -109,7 +105,7 @@
                 "url": "https://www.viicheck.com/img/icon/money.png",
                 "size": "3xl",
                 "margin": "none",
-                "offsetTop": "xl"
+                "offsetTop": "md"
               },
               {
                 "type": "text",
