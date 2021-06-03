@@ -55,9 +55,8 @@
               {
                 "type": "icon",
                 "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
+                "size": "4xl",
+                "offsetTop": "sm"
               },
               {
                 "type": "text",
@@ -105,7 +104,7 @@
                 "url": "https://www.viicheck.com/img/icon/money.png",
                 "size": "3xl",
                 "margin": "none",
-                "offsetTop": "md"
+                "offsetTop": "xl"
               },
               {
                 "type": "text",
