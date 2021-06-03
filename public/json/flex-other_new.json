@@ -54,10 +54,11 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/user.png",
-                "size": "3xl",
+                "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
+                "size": "4xl",
                 "margin": "none",
-                "offsetTop": "md"
+                "offsetTop": "sm",
+                "offsetEnd": "sm"
               },
               {
                 "type": "text",
@@ -69,7 +70,9 @@
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
                 },
-                "flex": 4
+                "flex": 4,
+                "offsetBottom": "lg",
+                "offsetEnd": "lg"
               },
               {
                 "type": "text",
@@ -81,7 +84,8 @@
                   "type": "message",
                   "label": "ข้อมูลของคุณ",
                   "text": "ข้อมูลของคุณ"
-                }
+                },
+                "offsetBottom": "lg"
               }
             ],
             "height": "50px",

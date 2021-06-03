@@ -36,8 +36,8 @@
                     <div id="btn_profile" class="col-10 btn btn-outline-danger main-shadow" style="border-width: 2px; border-radius: 10px;font-size: 13px;margin: 5px;margin-left: -5px;">
                         <a id="btn_a_profile" class="text-danger"  href="{{ url('/profile' ) }}">
                             <div class="row">
-                                <div class="col-3">
-                                    <img width="40" src="{{ url('/img/icon/menu_user.png' ) }}">
+                                <div class="col-3" style="margin-top:3px;">
+                                    <img style="margin-left: -9px;" width="55" src="{{ url('/img/stickerline/PNG/tab.png' ) }}">
                                 </div>
                                 <div class="col-9">
                                     <span style="font-size: 16px;"><b>ข้อมูลส่วนบุคคล</b></span>
