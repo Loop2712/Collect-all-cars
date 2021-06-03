@@ -78,9 +78,9 @@
                       {
                         "type": "span",
                         "text": "ข้อมูลของคุณ",
-                        "weight": "bold",
                         "color": "#ff0101",
-                        "size": "lg"
+                        "size": "lg",
+                        "weight": "bold"
                       }
                     ],
                     "size": "sm",
@@ -107,8 +107,9 @@
                       {
                         "type": "span",
                         "text": "E Benze",
-                        "color": "#bcbcbc",
-                        "size": "xl"
+                        "color": "#000000",
+                        "size": "xl",
+                        "weight": "bold"
                       },
                       {
                         "type": "span",
@@ -168,8 +169,8 @@
                 "margin": "xxl"
               }
             ],
-            "paddingTop": "lg",
-            "paddingBottom": "lg"
+            "paddingBottom": "sm",
+            "paddingTop": "sm"
           },
           {
             "type": "box",
@@ -189,8 +190,8 @@
                 "margin": "xxl"
               }
             ],
-            "paddingTop": "lg",
-            "paddingBottom": "lg"
+            "paddingTop": "sm",
+            "paddingBottom": "sm"
           },
           {
             "type": "box",
@@ -210,8 +211,8 @@
                 "margin": "xxl"
               }
             ],
-            "paddingTop": "lg",
-            "paddingBottom": "lg"
+            "paddingTop": "sm",
+            "paddingBottom": "sm"
           },
           {
             "type": "box",
@@ -231,8 +232,8 @@
                 "margin": "xxl"
               }
             ],
-            "paddingTop": "lg",
-            "paddingBottom": "lg"
+            "paddingTop": "sm",
+            "paddingBottom": "sm"
           }
         ],
         "paddingAll": "md"
