@@ -18,9 +18,18 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
-        <a href="https://lin.ee/xnFKMfc">
-            <button type="button" class="btn btn-success">เสร็จสิ้น</button>
-        </a>
+          <div class="row">
+            <div class="col-9">
+                <img  src="{{ asset('/img/logo_brand/logo-bmw.png') }}">
+                <img  src="{{ asset('/img/logo_brand/logo-toyota.png') }}">
+                <img  src="{{ asset('/img/logo_brand/logo-bmw.png') }}">
+            </div>          
+            <div class="col-3">
+              <a href="https://lin.ee/xnFKMfc">
+                  <button type="button" class="btn btn-success">เสร็จสิ้น</button>
+              </a>
+            </div>
+          </div>
       </div>
     </div>
   </div>
