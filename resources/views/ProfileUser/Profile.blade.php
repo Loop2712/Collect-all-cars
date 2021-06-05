@@ -42,7 +42,7 @@
 
             <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{$data->avatar}}" data-original-title="Usuario"> 
             <ul title="Ratings" class="list-inline ratings text-center">
-                <li><span class="glyphicon glyphicon-star">{{ $data->name }}      </span></li>
+                <li><span class="glyphicon glyphicon-star">{{ $data->name }}    <br> เป็นสมาชิกเมื่อ {{$data->created_at->diffForHumans()}}</span></li>
                 <li>
                     
                 </li>

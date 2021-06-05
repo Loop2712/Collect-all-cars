@@ -3,13 +3,14 @@
     <div class="container" style="margin-top:168px;">
         <div class="row">
 
-            <div class="col-md-12">
-                <div class="card">
+            <div class="col-md-12"> 
+            
+            <!------------------------------------------------pc--------------------------------------------------->
+                <div class="card d-none d-lg-block" >
                     <div class="card-header">
                         <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
                     </div>
-                    <!------------------------------------------------pc--------------------------------------------------->
-                    <div class="card-body d-none d-lg-block">
+                    <div class="card-body">
                         <div class="row">
                             @foreach($promotion as $item)
                             <div class="col-12 col-md-3" style="padding: 15px;">
@@ -36,25 +37,7 @@
                         </div>
                     </div>
                     <!------------------------------------------------mobile--------------------------------------------------->
-                    <div class="card-body d-block d-md-none"  style="margin-top:-20px">
-                        <div class="row">
-                            @foreach($promotion as $item)
-                            <div class="col-12" style="padding: 15px;">
-                                <div class="card main-shadow">
-                                    <div class="row">
-                                        <div class="col-4"> <img style="margin:5px 0px 0px 5px; width:100px;height:150px;object-fit:cover;" src="{{ $item->photo }}" alt="" > </div>
-                                        <div class="col-8" style="font-family: K2D, sans-serif;">  
-                                            <h5 class="card-title" style=" margin:10px 0px;"><b>{{ $item->company }}</b></h5>
-                                            <p style="font-size: 15px;white-space: nowrap;width: 190px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
-                                            <p class="card-text"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
-                                            <a href="{{ $item->link }}" class="btn btn-sm btn-primary main-shadow main-radius" >ดูเพิ่มเติม</a>
-                                        </div>
-                                    </div>                           
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
+                    
 
                     <!-- <div class="card-body">
                         <a href="{{ url('/promotion/create') }}" class="btn btn-success btn-sm" title="Add New Promotion">
@@ -104,6 +87,47 @@
                         </div>
 
                     </div> -->
+                </div>
+                
+                <!------------------------------------------------mobile--------------------------------------------------->
+                <div class="card d-block d-md-none" style="margin-top:-50px">
+                    <div class="card-header">
+                        <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
+                    </div>
+                    
+                    <div class="card-body"  style="margin-top:-20px">
+                        <div class="row">
+                            @foreach($promotion as $item)
+                            <a href="{{ $item->link }}">
+                                <div class="col-12 card main-shadow" style=" border-radius: 20px; margin-top:10px"> 
+                                    <div class="row">
+                                        <div class="col-5"> 
+                                            <img style="margin:5px 0px 0px -5px; width:100px;height:100px;object-fit:cover ;" src="{{ $item->photo }}" alt="" >
+                                        </div>
+                                        <div class="col-7" style="color:black;">
+                                            <h5 class="card-title" style=" margin:0px 0px; font-family: K2D, sans-serif;"><strong>{{ $item->company }}</strong></h5>
+                                            <p style="font-size: 15px; font-family: K2D, sans-serif;"class="card-title">{{ $item->titel }}</p>
+                                            <p class="card-text" style=" margin-top:-10px; font-size: 13px; font-family: K2D, sans-serif;"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </a>
+                                
+                                <!-- <div class="card main-shadow" style="margin-top:10px;">
+                                    <div class="row">
+                                        <div class="col-4"> <img style="margin:5px 0px 0px -5px; width:100px;height:150px;object-fit:contain ;" src="{{ $item->photo }}" alt="" > </div>
+                                        <div class="col-8" style="font-family: K2D, sans-serif;">  
+                                            <h5 class="card-title" style=" margin:10px 0px;"><b>{{ $item->company }}</b></h5>
+                                            <p style="font-size: 15px;white-space: nowrap;width: 190px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
+                                            <p class="card-text"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
+                                            <a href="{{ $item->link }}" class="btn btn-sm btn-primary main-shadow main-radius" >ดูเพิ่มเติม</a>
+                                        </div>
+                                    </div>                           
+                                </div> -->
+                            
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

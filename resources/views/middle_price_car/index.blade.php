@@ -102,14 +102,23 @@
                             @endforeach -->
                             <div class="d-block d-md-none">
                             @foreach($Middle_price_car as $item)
-                               <br> 
-                               <div class="row ">
-                                    <div class="col-6 card main-shadow" style="margin-left:30px; border-radius: 20px 0px 0px 20px;">
-                                        <h4 style="margin-top:15px">&nbsp;<b>{{ $item->brand }}</b></h4>
-                                        <p style="margin-top:-5px;margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
-                                        <p style="margin-top:-10px">&nbsp;ปี {{ $item->year }} </p>
-                                    </div><br>
-                                    <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
+                              
+                              
+                               <div class="row" style="margin-top:10px">
+                                    <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 20px 20px 0px 0px;">
+                                        <div class="row ">    
+                                            <div class="col-3 ">
+                                                <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                            </div>
+                                            <div class="col-7 ">
+                                                <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
+                                                <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
+                                                <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!-- <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
                                         @php
                                             $price_explode = explode("-",$item->price);
                                             $price_1 = $price_explode[0];
@@ -118,6 +127,14 @@
                                         <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }}</b></p>
                                         <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">- </h5>
                                         <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
+                                    </div> -->
+                                    <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
+                                    @php
+                                            $price_explode = explode("-",$item->price);
+                                            $price_1 = $price_explode[0];
+                                            $price_2 = $price_explode[1];
+                                        @endphp
+                                        <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></p>
                                     </div>
                                 </div>
                             @endforeach
