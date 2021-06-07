@@ -148,7 +148,6 @@
         "contents": [
           {
             "type": "separator",
-            "margin": "xs",
             "color": "#ff0101"
           },
           {
@@ -160,16 +159,17 @@
                 "url": "https://www.viicheck.com/img/icon/mail.png",
                 "margin": "xl",
                 "size": "xxl",
-                "offsetTop": "lg"
+                "offsetTop": "sm"
               },
               {
                 "type": "text",
                 "text": "benze@gmail.com",
-                "offsetTop": "sm",
-                "margin": "xxl"
+                "margin": "xxl",
+                "offsetBottom": "sm"
               }
             ],
-            "paddingAll": "sm"
+            "paddingAll": "sm",
+            "margin": "md"
           },
           {
             "type": "box",
@@ -180,12 +180,11 @@
                 "url": "https://www.viicheck.com/img/icon/phone.png",
                 "margin": "xl",
                 "size": "xxl",
-                "offsetTop": "lg"
+                "offsetTop": "sm"
               },
               {
                 "type": "text",
                 "text": "0999999999",
-                "offsetTop": "sm",
                 "margin": "xxl"
               }
             ],
@@ -200,12 +199,11 @@
                 "url": "https://www.viicheck.com/img/icon/birthday.png",
                 "margin": "xl",
                 "size": "xxl",
-                "offsetTop": "lg"
+                "offsetTop": "sm"
               },
               {
                 "type": "text",
                 "text": "31/08/1998",
-                "offsetTop": "sm",
                 "margin": "xxl"
               }
             ],
@@ -220,12 +218,11 @@
                 "url": "https://www.viicheck.com/img/icon/sex.png",
                 "margin": "xl",
                 "size": "xxl",
-                "offsetTop": "lg"
+                "offsetTop": "sm"
               },
               {
                 "type": "text",
                 "text": "ชาย",
-                "offsetTop": "sm",
                 "margin": "xxl"
               }
             ],
@@ -235,8 +232,8 @@
       },
       {
         "type": "separator",
-        "margin": "xxl",
-        "color": "#ff0101"
+        "color": "#ff0101",
+        "margin": "md"
       },
       {
         "type": "box",
