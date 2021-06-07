@@ -185,7 +185,8 @@
               {
                 "type": "text",
                 "text": "0999999999",
-                "margin": "xxl"
+                "margin": "xxl",
+                "offsetBottom": "sm"
               }
             ],
             "paddingAll": "sm"
@@ -204,7 +205,8 @@
               {
                 "type": "text",
                 "text": "31/08/1998",
-                "margin": "xxl"
+                "margin": "xxl",
+                "offsetBottom": "sm"
               }
             ],
             "paddingAll": "sm"
@@ -223,7 +225,8 @@
               {
                 "type": "text",
                 "text": "ชาย",
-                "margin": "xxl"
+                "margin": "xxl",
+                "offsetBottom": "sm"
               }
             ],
             "paddingAll": "sm"
