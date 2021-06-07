@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<!{{ คอม {{>
+			<!-- คอม -->
 			<div class="col-md-12 d-none d-lg-block">
 				<div class="row">
 					<div class="col-md-8" style="font-size:18px;">
@@ -44,7 +44,7 @@
 				@endif
 			</div>
 
-			<!{{ มือถือ {{>
+			<!-- มือถือ -->
 			<div class="col-12 d-block d-none">
 				<div class="col-12" style="font-size:14px;">
 					<img width="200" src="{{ asset('/img/stickerline/PNG/37.png') }}">
