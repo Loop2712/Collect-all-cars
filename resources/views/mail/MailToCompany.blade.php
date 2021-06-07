@@ -4,27 +4,25 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div style="font-size:18px;">
-					<div class="row">
-						<div class="col-md-8">
-							<h3>เรียน บริษัท <b>{{ $data["juristicNameTH"] }}</b></h3>
-							
-							ทางเราได้รับการแจ้งปัญหาการขับขี่ยานพาหนะภายในองค์กรของท่าน
-							<br>
-							<b>สาขา</b> {{ $data["branch"] }} <b>อำเภอ/เขต</b> {{ $data["branch_district"] }} <b>จังหวัด</b> {{ $data["branch_province"] }}
-							<br>
-							<br><hr><br>
-							เมื่อเวลา {{ $data["datetime"] }}
-							<br>
-							หมายเลขทะเบียน <b style="font-size:20px;">{{ $data["registration_number"] }} {{ $data["province"] }} </b>
-							<br><br>
-							ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:20px;color: red;">{{ $data["masseng"] }}</b>
-							<br><br>
-						</div>
-						<!-- <div class="col-md-4">
-							<br>
-							<img width="300" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
-						</div> -->
+				<div class="row">
+					<div class="col-md-8" style="font-size:18px;">
+						<h3>เรียน บริษัท <b>{{ $data["juristicNameTH"] }}</b></h3>
+						
+						ทางเราได้รับการแจ้งปัญหาการขับขี่ยานพาหนะภายในองค์กรของท่าน
+						<br>
+						<b>สาขา</b> {{ $data["branch"] }} <b>อำเภอ/เขต</b> {{ $data["branch_district"] }} <b>จังหวัด</b> {{ $data["branch_province"] }}
+						<br>
+						<br><hr><br>
+						เมื่อเวลา {{ $data["datetime"] }}
+						<br>
+						หมายเลขทะเบียน <b style="font-size:20px;">{{ $data["registration_number"] }} {{ $data["province"] }} </b>
+						<br><br>
+						ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:20px;color: red;">{{ $data["masseng"] }}</b>
+						<br><br>
+					</div>
+					<div class="col-md-4">
+						<br>
+						<img width="300" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
 					</div>
 				</div>
 				@if(!empty($data["phone"]))
