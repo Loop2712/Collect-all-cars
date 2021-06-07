@@ -168,9 +168,7 @@
                 "offsetTop": "sm",
                 "margin": "xxl"
               }
-            ],
-            "paddingBottom": "md",
-            "paddingTop": "sm"
+            ]
           },
           {
             "type": "box",
@@ -180,20 +178,16 @@
                 "type": "icon",
                 "url": "https://www.viicheck.com/img/icon/phone.png",
                 "margin": "xl",
-                "size": "xl",
-                "offsetTop": "md",
-                "offsetStart": "xs"
+                "size": "xxl",
+                "offsetTop": "lg"
               },
               {
                 "type": "text",
                 "text": "0999999999",
                 "offsetTop": "sm",
-                "margin": "xxl",
-                "offsetStart": "md"
+                "margin": "xxl"
               }
-            ],
-            "paddingTop": "md",
-            "paddingBottom": "xs"
+            ]
           },
           {
             "type": "box",
@@ -212,9 +206,7 @@
                 "offsetTop": "sm",
                 "margin": "xxl"
               }
-            ],
-            "paddingTop": "md",
-            "paddingBottom": "sm"
+            ]
           },
           {
             "type": "box",
@@ -233,12 +225,9 @@
                 "offsetTop": "sm",
                 "margin": "xxl"
               }
-            ],
-            "paddingTop": "sm",
-            "paddingBottom": "sm"
+            ]
           }
-        ],
-        "paddingAll": "md"
+        ]
       },
       {
         "type": "separator",
@@ -365,9 +354,6 @@
                     },
                     "offsetStart": "xxl",
                     "color": "#ff0101"
-                  },
-                  {
-                    "type": "spacer"
                   }
                 ],
                 "paddingBottom": "md",
