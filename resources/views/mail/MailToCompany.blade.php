@@ -41,7 +41,7 @@
 					</div>
 					<div class="col-md-3">
 						<br><br><br>
-						<img width="100%" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
+						<img width="200" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
 					</div>
 				</div>
 			</div>
