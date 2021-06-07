@@ -8,10 +8,10 @@
                     <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล / Juristic ID   .' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'ชื่อองค์กร / Organization name.' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'จังหวัด / Province.' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'อีเมล / E-Mail' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'อำเภอ / District.' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row">
@@ -22,31 +22,6 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
-                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : $juristicNameTH}}"  readonly>
-                        {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('organization_mail') ? 'has-error' : ''}}">
-                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value="{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  $juristicMail }}"  readonly>
-                        {!! $errors->first('organization_mail', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'จังหวัด / Province.' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'อำเภอ / District.' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('location_P_2') ? 'has-error' : ''}}">
                          <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  $juristicProvince }}"  onchange="change_location_2();" readonly>
                         {!! $errors->first('location_P_2', '<p class="help-block">:message</p>') !!}
@@ -56,6 +31,32 @@
                     <div class="form-group {{ $errors->has('location_A_2') ? 'has-error' : ''}}">
                         <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  $juristicDistrict }}" readonly>
                         {!! $errors->first('location_A_2', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 d-none d-lg-block">
+                    <label  class="control-label">{{ 'ชื่อองค์กร / Organization name.' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4 d-none d-lg-block">
+                    <label  class="control-label">{{ 'อีเมล / E-Mail' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4 d-none d-lg-block">
+                    <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
+                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : $juristicNameTH}}"  readonly>
+                        {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('organization_mail') ? 'has-error' : ''}}">
+                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value="{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  $juristicMail }}"  readonly>
+                        {!! $errors->first('organization_mail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
@@ -75,10 +76,10 @@
                     <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล / Juristic ID   .' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'ชื่อองค์กร / Organization name.' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'จังหวัด / Province.' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'อีเมล / E-Mail' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'อำเภอ / District.' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row">
@@ -89,31 +90,6 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
-                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : ''}}"  placeholder="ชื่อองค์กร" >
-                        {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('organization_mail') ? 'has-error' : ''}}">
-                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value="{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  '' }}"   placeholder="อีเมล">
-                        {!! $errors->first('organization_mail', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'จังหวัด / Province.' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'อำเภอ / District.' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('location_P_2') ? 'has-error' : ''}}">
                         <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  '' }}"  placeholder="จังหวัด" onchange="change_location_2();">
                         {!! $errors->first('location_P_2', '<p class="help-block">:message</p>') !!}
@@ -123,6 +99,31 @@
                     <div class="form-group {{ $errors->has('location_A_2') ? 'has-error' : ''}}">
                         <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  '' }}"  placeholder="อำเภอ">
                         {!! $errors->first('location_A_2', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 d-none d-lg-block">
+                    <label  class="control-label">{{ 'ชื่อองค์กร / Organization name.' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4 d-none d-lg-block">
+                    <label  class="control-label">{{ 'อีเมล / E-Mail' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+                <div class="col-12 col-md-4 d-none d-lg-block">
+                    <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
+                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : ''}}"  placeholder="ชื่อองค์กร" >
+                        {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group {{ $errors->has('organization_mail') ? 'has-error' : ''}}">
+                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value="{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  '' }}"   placeholder="อีเมล">
+                        {!! $errors->first('organization_mail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
