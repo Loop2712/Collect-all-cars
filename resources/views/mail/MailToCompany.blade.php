@@ -19,31 +19,29 @@
 							<br><br>
 							ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:20px;color: red;">{{ $data["masseng"] }}</b>
 							<br><br>
-
-							@if(!empty($data["phone"]))
-							<div class="row">
-								<div class="col-12 col-md-12" style="font-size:20px;">
-									เบอร์โทรศัพท์ติดต่อผู้แจ้ง <b> {{ $data["phone"] }}</b>
-									<br>
-								</div>
-								<div class="col-12 col-md-2">
-									<br>
-									<button type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;padding: 10px;border-radius: 10px;">
-										<a type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;" href="tel:{{ $data['phone'] }}">
-											📞 โทรออก
-										</a>
-									</button>
-								</div>
-							</div>
-							@endif
-
 						</div>
 					</div>
 					<div class="col-md-3">
-						<br><br><br>
+						<br>
 						<img width="200" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
 					</div>
 				</div>
+				@if(!empty($data["phone"]))
+				<div class="row">
+					<div class="col-12 col-md-12" style="font-size:20px;">
+						เบอร์โทรศัพท์ติดต่อผู้แจ้ง <b> {{ $data["phone"] }}</b>
+						<br>
+					</div>
+					<div class="col-12 col-md-2">
+						<br>
+						<button type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;padding: 10px;border-radius: 10px;">
+							<a type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;" href="tel:{{ $data['phone'] }}">
+								📞 โทรออก
+							</a>
+						</button>
+					</div>
+				</div>
+				@endif
 			</div>
 		</div>
 	</div>   
