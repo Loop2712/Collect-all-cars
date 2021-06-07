@@ -12,6 +12,7 @@
 							ทางเราได้รับการแจ้งปัญหาการขับขี่ยานพาหนะภายในองค์กรของท่าน
 							<br>
 							<b>สาขา</b> {{ $data["branch"] }} <b>อำเภอ/เขต</b> {{ $data["branch_district"] }} <b>จังหวัด</b> {{ $data["branch_province"] }}
+							<br>
 							<br><hr><br>
 							เมื่อเวลา {{ $data["datetime"] }}
 							<br>
@@ -20,10 +21,10 @@
 							ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:20px;color: red;">{{ $data["masseng"] }}</b>
 							<br><br>
 						</div>
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<br>
 							<img width="300" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
-						</div>
+						</div> -->
 					</div>
 				</div>
 				@if(!empty($data["phone"]))
