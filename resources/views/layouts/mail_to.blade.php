@@ -29,7 +29,7 @@
             <br>
             <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"> 
         </div>
-        <main class="py-5">
+        <main class="py-4">
             <div class="container">
                 <div class="row">
 
