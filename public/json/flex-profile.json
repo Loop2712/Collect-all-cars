@@ -165,7 +165,7 @@
                 "type": "text",
                 "text": "benze@gmail.com",
                 "margin": "xxl",
-                "offsetBottom": "sm"
+                "offsetBottom": "md"
               }
             ],
             "paddingAll": "sm",
@@ -186,7 +186,7 @@
                 "type": "text",
                 "text": "0999999999",
                 "margin": "xxl",
-                "offsetBottom": "sm"
+                "offsetBottom": "md"
               }
             ],
             "paddingAll": "sm"
@@ -206,7 +206,7 @@
                 "type": "text",
                 "text": "31/08/1998",
                 "margin": "xxl",
-                "offsetBottom": "sm"
+                "offsetBottom": "md"
               }
             ],
             "paddingAll": "sm"
@@ -226,7 +226,7 @@
                 "type": "text",
                 "text": "ชาย",
                 "margin": "xxl",
-                "offsetBottom": "sm"
+                "offsetBottom": "md"
               }
             ],
             "paddingAll": "sm"
