@@ -20,10 +20,10 @@
 						ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:20px;color: red;">{{ $data["masseng"] }}</b>
 						<br><br>
 					</div>
-					<div class="col-md-4">
+					<!-- <div class="col-md-4">
 						<br>
 						<img width="300" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
-					</div>
+					</div> -->
 				</div>
 				@if(!empty($data["phone"]))
 				<div class="row">
