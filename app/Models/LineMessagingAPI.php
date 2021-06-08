@@ -784,6 +784,11 @@ class LineMessagingAPI extends Model
         // เวลาปัจจุบัน
         $datetime =  date("d-m-Y  h:i:sa");
 
+        $data_postback_explode = explode("?",$event["postback"]["data"]);
+        $license_plate = explode("/",$data_postback_explode[1]);  ;
+        $registration_number = $license_plate[0];
+        $province = $license_plate[1];
+
     	// UserId เจ้าของรถ
     	$provider_id = $event["source"]['userId'];
     	
@@ -849,8 +854,8 @@ class LineMessagingAPI extends Model
                                 $to_user = $item->reply_provider_id;
                                 $template_path = storage_path('../public/json/flex-reply-option.json');   
                                 $string_json = file_get_contents($template_path);
-                                $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                                $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+                                $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
+                                $string_json = str_replace("กรุงเทพ",$province,$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                             }
