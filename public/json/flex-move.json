@@ -139,9 +139,9 @@
                 "type": "button",
                 "height": "sm",
                 "action": {
-                  "type": "message",
+                  "type": "postback",
                   "label": "ส่งข้อความตอบกลับ",
-                  "text": "ส่งข้อความตอบกลับ"
+                  "data": "7ยษ2944/กรุงเทพ"
                 },
                 "color": "#3AC0CE",
                 "style": "primary"
