@@ -11,9 +11,95 @@
       {
         "type": "image",
         "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
-        "size": "full",
+        "size": "3xl",
         "aspectRatio": "16:9",
         "aspectMode": "fit"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/icon/ป้ายทะเบียน.png",
+            "size": "full",
+            "aspectMode": "fit",
+            "aspectRatio": "16:9",
+            "offsetBottom": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "7ยษ2944",
+                "color": "#000000",
+                "weight": "bold",
+                "size": "xl",
+                "align": "center",
+                "gravity": "center"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "25px",
+            "width": "250px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "กรุงเทพ",
+                "color": "#000000",
+                "weight": "bold",
+                "size": "lg",
+                "align": "center",
+                "gravity": "center"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "52px",
+            "width": "250px"
+          },
+          {
+            "type": "text",
+            "text": "ข้อความตอบกลับ",
+            "color": "#ffffff",
+            "wrap": true,
+            "align": "center",
+            "gravity": "center",
+            "offsetBottom": "xxl",
+            "size": "xl",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "Reply Message",
+            "color": "#ffffff",
+            "wrap": true,
+            "align": "center",
+            "gravity": "center",
+            "offsetBottom": "xxl",
+            "margin": "md"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "* ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
+            "color": "#ffffff",
+            "wrap": true,
+            "align": "center",
+            "gravity": "center"
+          }
+        ],
+        "margin": "lg"
       },
       {
         "type": "box",
@@ -28,7 +114,7 @@
                 "action": {
                   "type": "postback",
                   "label": "ขอบคุณ / Thank you",
-                  "data": "thx",
+                  "data": "thx?7ยษ2944/กรุงเทพ",
                   "displayText": "ขอบคุณ / Thank you"
                 },
                 "style": "secondary",
@@ -55,7 +141,7 @@
                 "action": {
                   "type": "postback",
                   "label": "รอสักครู่ / Wait a moment",
-                  "data": "wait",
+                  "data": "wait?7ยษ2944/กรุงเทพ",
                   "displayText": "รอสักครู่ / Wait a moment"
                 },
                 "style": "secondary",
@@ -95,22 +181,8 @@
             "backgroundColor": "#ffffff"
           }
         ],
-        "backgroundColor": "#07375D"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "* ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
-            "color": "#ffffff",
-            "wrap": true,
-            "align": "center",
-            "gravity": "center"
-          }
-        ],
-        "margin": "lg"
+        "backgroundColor": "#07375D",
+        "margin": "md"
       }
     ],
     "backgroundColor": "#07375D",

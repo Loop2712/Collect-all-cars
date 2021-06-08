@@ -849,7 +849,9 @@ class LineMessagingAPI extends Model
                                 $to_user = $item->reply_provider_id;
                                 $template_path = storage_path('../public/json/flex-reply-option.json');   
                                 $string_json = file_get_contents($template_path);
-                                
+                                $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                                $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
+
                                 $messages = [ json_decode($string_json, true) ];
                             }
                             break;

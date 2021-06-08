@@ -187,9 +187,10 @@
               {
                 "type": "button",
                 "action": {
-                  "type": "message",
+                  "type": "postback",
                   "label": "ส่งข้อความตอบกลับ",
-                  "text": "ส่งข้อความตอบกลับ"
+                  "data": "ส่งข้อความตอบกลับ?7ยษ2944/กรุงเทพ",
+                  "displayText": "ส่งข้อความตอบกลับ"
                 },
                 "color": "#3AC0CE",
                 "style": "primary",
