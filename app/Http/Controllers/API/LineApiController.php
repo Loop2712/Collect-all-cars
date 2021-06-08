@@ -51,6 +51,8 @@ class LineApiController extends Controller
 
         $data_postback_export = (explode("?",$event["postback"]["data"]));
     	$data_postback = $data_postback_export[0] ;
+        echo $data_postback ;
+        exit();
 
         switch($data_postback){
             case "wait" : 
