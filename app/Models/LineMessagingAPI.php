@@ -21,17 +21,6 @@ class LineMessagingAPI extends Model
     {
     	switch($message_type)
         {
-            case "reply": 
-                // UserId เจ้าของรถ
-                $provider_id = $event["source"]['userId'];
-                $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
-                foreach($reply as $item){
-                    $template_path = storage_path('../public/json/flex-reply-option.json');   
-                    $string_json = file_get_contents($template_path);
-                }
-
-                $messages = [ json_decode($string_json, true) ];
-                break;
         	case "other": 
                 $template_path = storage_path('../public/json/flex-other_new.json');   
                 $string_json = file_get_contents($template_path);
@@ -854,6 +843,15 @@ class LineMessagingAPI extends Model
 
                                 $messages = [ json_decode($string_json, true) ];
                             }
+                            break;
+                        case "reply": 
+                            $reply = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' ");
+                            foreach($reply as $item){
+                                $template_path = storage_path('../public/json/flex-reply-option.json');   
+                                $string_json = file_get_contents($template_path);
+                            }
+
+                            $messages = [ json_decode($string_json, true) ];
                             break;
 
                     }
