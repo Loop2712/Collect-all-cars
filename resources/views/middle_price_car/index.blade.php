@@ -115,6 +115,7 @@
                                             </div>  
                                             <div class="card-block col-5" >
 
+
                                                 <h5 style="font-family: K2D, sans-serif;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</h5>
                                             </div>
                                         </div>
@@ -138,8 +139,23 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
+                                        <!-- <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
 
+                                            <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }}</b></p>
+                                            <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">- </h5>
+                                            <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
+                                        </div> -->
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
+                                            @php
+                                                $price_2 = "";
+
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+
+                                                    if (!empty($price_explode[1])) {
+                                                        $price_2 = $price_explode[1];;
+                                                    }
+                                            @endphp
                                             <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></p>
                                         </div>
                                     </div>
@@ -161,6 +177,12 @@
                                                 <tr>
                                                     
                                                     <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }} <br> ปี : {{ $item->year }}</span>
+                                                    
+                                                    @php
+                                                        $price_explode = explode("-",$item->price);
+                                                        $price_1 = $price_explode[0];
+                                                        $price_2 = $price_explode[1];
+                                                    @endphp
 
                                                     <td style="text-align: right;font-size:15px;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</td>
                                                 
@@ -207,6 +229,18 @@
                                                     <td>{{ $item->model }}</td>
                                                     <td>{{ $item->submodel }}</td>
                                                     <td>{{ $item->year }}</td>
+                                                    
+                                            @php
+                                                $price_2 = "";
+
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+
+                                                    if (!empty($price_explode[1])) {
+                                                        $price_2 = $price_explode[1];;
+                                                    }
+                                            @endphp
+
                                                     <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
                                                 
                                                     <td class="d-none">
@@ -257,7 +291,16 @@
                                             <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
                                         </div> -->
                                         <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
-                                       
+                                            @php
+                                                $price_2 = "";
+
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+
+                                                    if (!empty($price_explode[1])) {
+                                                        $price_2 = $price_explode[1];;
+                                                    }
+                                            @endphp
                                             <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></p>
                                         </div>
                                     </div>
@@ -279,6 +322,8 @@
                                                 <tr>
                                                     
                                                     <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }} <br> ปี : {{ $item->year }}</span>
+                                                    
+                                                    
 
                                                     <td style="text-align: right;font-size:15px;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</td>
                                                 
@@ -325,6 +370,18 @@
                                                     <td>{{ $item->model }}</td>
                                                     <td>{{ $item->submodel }}</td>
                                                     <td>{{ $item->year }}</td>
+                                                    
+                                            @php
+                                                $price_2 = "";
+
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+
+                                                    if (!empty($price_explode[1])) {
+                                                        $price_2 = $price_explode[1];;
+                                                    }
+                                            @endphp
+
                                                     <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
                                                 
                                                     <td class="d-none">
