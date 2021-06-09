@@ -25,7 +25,7 @@ class Middle_price_car extends Model
      *
      * @var array
      */
-    protected $fillable = ['brand', 'model', 'submodel', 'year', 'price'];
+    protected $fillable = ['brand', 'model', 'submodel', 'year', 'price' , 'type'];
 
     
 }

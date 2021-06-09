@@ -4,27 +4,26 @@
 <br><br><br><br><br><br><br>
     <div class="container">
         <div class="row">
-
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก</h3>
-                                            
+                                                
 
-                    <!--<form method="GET" action="{{ url('/middle_price_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                <span class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>-->
+                        <!--<form method="GET" action="{{ url('/middle_price_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-secondary" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>-->
+                            
+                        <a href="{{ url('/middle_price_car/create') }}" class="d-none float-right btn btn-success btn-sm" title="Add New Middle_price_car">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            </a>
                         
-                    <a href="{{ url('/middle_price_car/create') }}" class="d-none float-right btn btn-success btn-sm" title="Add New Middle_price_car">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-                    
                     </div><br>
                     <div class="row" style="margin: 0px -5px 0px 10px">
                             <div class="col-sm-3 col-12" > 
@@ -73,7 +72,34 @@
                         </form>
                     </div>
                     <br class="d-block d-md-none">
-<!----------------------------------------------------------mobile--------------------------------------------------------->
+                    <div class="col-9 col-md-11" style="margin-top:-20px;">
+                            <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
+                                    <li class="nav-item" >
+                                        <a class="nav-link active " href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
+                                            document.querySelector('#show_car').classList.remove('d-none'),
+                                            document.querySelector('#show_mortor').classList.add('d-none');">
+                                            <b style="font-size: 15px; text-center;">รถยนต์</b>
+                                        </a>
+                                    </li>&nbsp;<li class="col-5 d-block d-md-none"></li>
+                                    <li class="nav-item d-block d-md-none" style="margin-top:10px;">
+                                        <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
+                                                document.querySelector('#show_car').classList.add('d-none'),
+                                                document.querySelector('#show_mortor').classList.remove('d-none');">
+                                        <b style="font-size: 15px;">รถจักรยานยนต์</b>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item d-none d-lg-block">
+                                        <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
+                                                document.querySelector('#show_car').classList.add('d-none'),
+                                                document.querySelector('#show_mortor').classList.remove('d-none');">
+                                        <b style="font-size: 15px;">รถจักรยานยนต์</b>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            
+                            <!----------------------------------------------------------mobile--------------------------------------------------------->
 
                    
                     
@@ -100,155 +126,289 @@
                                     </div> <br>
                                 </div>
                             @endforeach -->
+                        <div id="show_car">
                             <div class="d-block d-md-none">
-                            @foreach($Middle_price_car as $item)
-                              
-                              
-                               <div class="row" style="margin-top:10px">
-                                    <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 20px 20px 0px 0px;">
-                                        <div class="row ">    
-                                            <div class="col-3 ">
-                                                <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                            </div>
-                                            <div class="col-7 ">
-                                                <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
-                                                <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
-                                                <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
+                                @foreach($middleprice_cars as $item)
+                                    <div class="row" style="margin-top:10px">
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 20px 20px 0px 0px;">
+                                            <div class="row ">    
+                                                <div class="col-3 ">
+                                                    <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-7 ">
+                                                    <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
+                                                    <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
+                                                    <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
+                                                </div>
                                             </div>
                                         </div>
+                                        <br>
+                                        <!-- <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
+                                            @php
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+                                                $price_2 = $price_explode[1];
+                                            @endphp
+                                            <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }}</b></p>
+                                            <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">- </h5>
+                                            <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
+                                        </div> -->
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
+                                            @php
+                                                    $price_explode = explode("-",$item->price);
+                                                    $price_1 = $price_explode[0];
+                                                    $price_2 = $price_explode[1];
+                                            @endphp
+                                            <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></p>
+                                        </div>
                                     </div>
-                                    <br>
-                                    <!-- <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
-                                        @php
-                                            $price_explode = explode("-",$item->price);
-                                            $price_1 = $price_explode[0];
-                                            $price_2 = $price_explode[1];
-                                        @endphp
-                                        <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }}</b></p>
-                                        <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">- </h5>
-                                        <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
-                                    </div> -->
-                                    <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
-                                    @php
-                                            $price_explode = explode("-",$item->price);
-                                            $price_1 = $price_explode[0];
-                                            $price_2 = $price_explode[1];
-                                        @endphp
-                                        <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></p>
-                                    </div>
-                                </div>
-                            @endforeach
+                                @endforeach
                             </div>
-                    <!-- <div class="table-responsive d-block d-md-none">
-                            <table class="fl-table">
-                                <thead>
-                                    <tr>
-                                        <th style="font-size:15px;">ยี่ห้อ/Brand</th>
+                                <!-- <div class="table-responsive d-block d-md-none">
+                                        <table class="fl-table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="font-size:15px;">ยี่ห้อ/Brand</th>
 
-                                        <th style="font-size:15px;">ราคา/Price(บาท)</th>
-                                        <th class="d-none">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-                                @foreach($Middle_price_car as $item)
-                                    <tr>
-                                        
-                                        <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }} <br> ปี : {{ $item->year }}</span>
-                                        
-                                        @php
-                                            $price_explode = explode("-",$item->price);
-                                            $price_1 = $price_explode[0];
-                                            $price_2 = $price_explode[1];
-                                        @endphp
+                                                    <th style="font-size:15px;">ราคา/Price(บาท)</th>
+                                                    <th class="d-none">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            
+                                            @foreach($Middle_price_car as $item)
+                                                <tr>
+                                                    
+                                                    <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }} <br> ปี : {{ $item->year }}</span>
+                                                    
+                                                    @php
+                                                        $price_explode = explode("-",$item->price);
+                                                        $price_1 = $price_explode[0];
+                                                        $price_2 = $price_explode[1];
+                                                    @endphp
 
-                                        <td style="text-align: right;font-size:15px;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</td>
-                                      
-                                        <td class="d-none">
-                                            <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                                    <td style="text-align: right;font-size:15px;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</td>
+                                                
+                                                    <td class="d-none">
+                                                        <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                                        <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                        <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                            
+                                    
+                                        </table>
+                                        <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
+                                        'brand' => Request::get('brand'),
+                                        'model' => Request::get('model'),
+                                        'submodel' => Request::get('submodel'),
+                                        ])->render() !!} </div>
+                                    </div> -->
+                                <!---------------------------------------------pc--------------------------------------------------------->
+                                <br>
+                                <div class="table-responsive d-none d-lg-block ">
+                                    <table class="fl-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ยี่ห้อ/Brand</th>
+                                                <th>รุ่น/Model</th>
+                                                <th>รุ่นย่อย/SubModel</th>
+                                                <th>ปี/Year</th>
+                                                <th>ราคา/Price</th>
+                                                <th class="d-none">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($middleprice_cars as $item)
+                                                <tr>
+                                                    <td>{{ $item->brand }}</td>
+                                                    <td>{{ $item->model }}</td>
+                                                    <td>{{ $item->submodel }}</td>
+                                                    <td>{{ $item->year }}</td>
+                                                    
+                                                    @php
+                                                        $price_explode = explode("-",$item->price);
+                                                        $price_1 = $price_explode[0];
+                                                        $price_2 = $price_explode[1];
+                                                    @endphp
+
+                                                    <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
+                                                
+                                                    <td class="d-none">
+                                                        <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                                        <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                                        <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>                             
+                                    </table>
+                                    <div class="colpagination-wrapper"> 
+                                        {!! $Middle_price_car->appends([
+                                        'brand' => Request::get('brand'),
+                                        'model' => Request::get('model'),
+                                        'submodel' => Request::get('submodel'),
+                                        ])->render() !!} 
+                                    </div>
+                                </div> 
+                        </div> 
+
+                        <div id="show_mortor">
+                            <div class="d-block d-md-none">
+                                @foreach($middleprice_motorcycles as $item)
+                                    <div class="row" style="margin-top:10px">
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 20px 20px 0px 0px;">
+                                            <div class="row ">    
+                                                <div class="col-3 ">
+                                                    <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-7 ">
+                                                    <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
+                                                    <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
+                                                    <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <!-- <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
+                                            @php
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+                                                $price_2 = $price_explode[1];
+                                            @endphp
+                                            <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }}</b></p>
+                                            <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">- </h5>
+                                            <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
+                                        </div> -->
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
+                                            @php
+                                                    $price_explode = explode("-",$item->price);
+                                                    $price_1 = $price_explode[0];
+                                                    $price_2 = $price_explode[1];
+                                            @endphp
+                                            <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></p>
+                                        </div>
+                                    </div>
                                 @endforeach
-                                </tbody>
-                                
-                           
-                            </table>
-                            <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
-                            'brand' => Request::get('brand'),
-                            'model' => Request::get('model'),
-                            'submodel' => Request::get('submodel'),
-                            ])->render() !!} </div>
-                        </div> -->
-<!---------------------------------------------pc--------------------------------------------------------->
-<br>
-                        <div class="table-responsive d-none d-lg-block ">
-                            <table class="fl-table">
-                                <thead>
-                                    <tr>
-                                        <th>ยี่ห้อ/Brand</th>
-                                        <th>รุ่น/Model</th>
-                                        <th>รุ่นย่อย/SubModel</th>
-                                        <th>ปี/Year</th>
-                                        <th>ราคา/Price</th>
-                                        <th class="d-none">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-                                @foreach($Middle_price_car as $item)
-                                    <tr>
-                                        
-                                        <td>{{ $item->brand }}</td>
-                                        <td>{{ $item->model }}</td>
-                                        <td>{{ $item->submodel }}</td>
-                                        <td>{{ $item->year }}</td>
-                                        
-                                        @php
-                                            $price_explode = explode("-",$item->price);
-                                            $price_1 = $price_explode[0];
-                                            $price_2 = $price_explode[1];
-                                        @endphp
+                            </div>
+                                <!-- <div class="table-responsive d-block d-md-none">
+                                        <table class="fl-table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="font-size:15px;">ยี่ห้อ/Brand</th>
 
-                                        <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
-                                      
-                                        <td class="d-none">
-                                            <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                                    <th style="font-size:15px;">ราคา/Price(บาท)</th>
+                                                    <th class="d-none">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            
+                                            @foreach($Middle_price_car as $item)
+                                                <tr>
+                                                    
+                                                    <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }} <br> ปี : {{ $item->year }}</span>
+                                                    
+                                                    @php
+                                                        $price_explode = explode("-",$item->price);
+                                                        $price_1 = $price_explode[0];
+                                                        $price_2 = $price_explode[1];
+                                                    @endphp
 
-                                            <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                                
-                           
-                            </table>
-                            <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
-                            'brand' => Request::get('brand'),
-                            'model' => Request::get('model'),
-                            'submodel' => Request::get('submodel'),
-                            ])->render() !!} </div>
-                        </div>
+                                                    <td style="text-align: right;font-size:15px;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</td>
+                                                
+                                                    <td class="d-none">
+                                                        <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                                        <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                                        <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                            
+                                    
+                                        </table>
+                                        <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
+                                        'brand' => Request::get('brand'),
+                                        'model' => Request::get('model'),
+                                        'submodel' => Request::get('submodel'),
+                                        ])->render() !!} </div>
+                                    </div> -->
+                                <!---------------------------------------------pc--------------------------------------------------------->
+                                <br>
+                                <div class="table-responsive d-none d-lg-block ">
+                                    <table class="fl-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ยี่ห้อ/Brand</th>
+                                                <th>รุ่น/Model</th>
+                                                <th>รุ่นย่อย/SubModel</th>
+                                                <th>ปี/Year</th>
+                                                <th>ราคา/Price</th>
+                                                <th class="d-none">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($middleprice_motorcycles as $item)
+                                                <tr>
+                                                    <td>{{ $item->brand }}</td>
+                                                    <td>{{ $item->model }}</td>
+                                                    <td>{{ $item->submodel }}</td>
+                                                    <td>{{ $item->year }}</td>
+                                                    
+                                                    @php
+                                                        $price_explode = explode("-",$item->price);
+                                                        $price_1 = $price_explode[0];
+                                                        $price_2 = $price_explode[1];
+                                                    @endphp
+
+                                                    <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
+                                                
+                                                    <td class="d-none">
+                                                        <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                                        <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                                        <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>                             
+                                    </table>
+                                    <div class="colpagination-wrapper"> 
+                                        {!! $Middle_price_car->appends([
+                                        'brand' => Request::get('brand'),
+                                        'model' => Request::get('model'),
+                                        'submodel' => Request::get('submodel'),
+                                        ])->render() !!} 
+                                    </div>
+                                </div> 
+                        </div> 
 
                     <br>
-                </div>
-                <br>
+                </div><br>
             </div>
         </div>
     </div>
-    <style>
-    </style>
 
 <style>
 {

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\Middle_price_car;
@@ -20,18 +20,20 @@ class Middle_price_carController extends Controller
         $model     = $request->get('model');
         $year      = $request->get('year');
         $submodel  = $request->get('submodel');
+        $type      = $request->get('type');
         $perPage   = 44;
 
         $pricemin = empty($pricemin) ? 0 :$pricemin;
         $pricemax = empty($pricemax) ? 99000000 :$pricemax;
 
-        $needFilter =  !empty($brand)       || !empty($model)        || !empty($submodel)    || !empty($year); 
+        $needFilter =  !empty($brand)       || !empty($model)        || !empty($submodel)    || !empty($year)   || !empty($type); 
 
         if($needFilter){
             $Middle_price_car = Middle_price_car::Where('brand', 'LIKE', "%$brand%")
                 ->Where('model',     'LIKE', "%$model%")
                 ->Where('year',     'LIKE', "%$year%")
                 ->Where('submodel',     'LIKE', "%$submodel%")
+                ->Where('type',"motorcycle")
                 ->whereBetween('price', [$pricemin,$pricemax])
                 ->orderBy('created_at', 'asc')
                 ->latest()->paginate($perPage);
@@ -39,12 +41,21 @@ class Middle_price_carController extends Controller
             $Middle_price_car = Middle_price_car::where()
                 ->orWhere('model', 'LIKE', "%$keyword%")
                 ->orWhere('submodel', 'LIKE', "%$search%")
+                ->orWhere('type',"motorcycle")
                 ->orWhere('brand', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
         } else {
             $Middle_price_car = Middle_price_car::orderBy('created_at', 'asc')
                 ->paginate($perPage);
         }
+
+
+
+        $Middelbrand_car = Middle_price_car::selectRaw('brand,count(brand) as count')
+            ->where('brand', '!=',"" )
+            ->where('type', '!=',"motorcycle" )
+            ->groupBy('brand')
+            ->get();
 
         $Middelbrand = Middle_price_car::selectRaw('brand,count(brand) as count')
             ->where('brand', '!=',"" )
@@ -60,12 +71,59 @@ class Middle_price_carController extends Controller
             ->where('submodel', '!=',"" )
             ->groupBy('submodel')
             ->get();
+            
 
+         if (!empty($keyword)) {
+                $middleprice_motorcycles = DB::table('middle_price_cars')
+                            ->orWhere('brand', 'LIKE', "%$keyword%")
+                            ->orWhere('model',     'LIKE', "%$model%")
+                            ->orWhere('year',     'LIKE', "%$year%")
+                            ->orWhere('submodel',     'LIKE', "%$submodel%")
+                            ->orWhere('type',"motorcycle")
+                            ->whereBetween('price', [$pricemin,$pricemax])
+                            ->orderBy('created_at', 'asc')
+                            ->latest()->paginate($perPage)
+                            ->get();
+            } else {
+                $middleprice_motorcycles = DB::table('middle_price_cars')
+                            ->Where('model',     'LIKE', "%$model%")
+                            ->Where('year',     'LIKE', "%$year%")
+                            ->Where('submodel',     'LIKE', "%$submodel%")
+                            ->where('type', "motorcycle")
+                            ->get();
+            }
+        
+            $Middelsubmodel = Middle_price_car::selectRaw('submodel,count(submodel) as count')
+            ->where('submodel', '!=',"" )
+            ->groupBy('submodel')
+            ->get();
+            
 
+         if (!empty($keyword)) {
+                $middleprice_cars = DB::table('middle_price_cars')
+                            ->orWhere('brand', 'LIKE', "%$keyword%")
+                            ->orWhere('model',     'LIKE', "%$model%")
+                            ->orWhere('year',     'LIKE', "%$year%")
+                            ->orWhere('submodel',     'LIKE', "%$submodel%")
+                            ->orWhere('type',"car")
+                            ->whereBetween('price', [$pricemin,$pricemax])
+                            ->orderBy('created_at', 'asc')
+                            ->latest()->paginate($perPage)
+                            ->get();
+            } else {
+                $middleprice_cars = DB::table('middle_price_cars')
+                            ->Where('model',     'LIKE', "%$model%")
+                            ->Where('year',     'LIKE', "%$year%")
+                            ->Where('submodel',     'LIKE', "%$submodel%")
+                            ->where('type', "car")
+                            ->get();
+            }
 
         
 
-        return view('middle_price_car.index', compact('Middle_price_car','Middelbrand','Middelmodel','Middelsubmodel'));
+        
+
+        return view('middle_price_car.index', compact('Middle_price_car','Middelbrand','Middelmodel','Middelsubmodel','middleprice_motorcycles','middleprice_cars'));
 
         
     }
