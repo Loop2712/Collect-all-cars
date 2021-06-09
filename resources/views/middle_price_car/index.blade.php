@@ -132,7 +132,7 @@
                                             @if($price_2 != "")
                                                 <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
                                             @else
-                                                <td style="text-align: right;">{{ number_format($price_1) }} - {{ $price_2 }} บาท</td>
+                                                <td style="text-align: right;">{{ number_format($price_1) }} บาท</td>
                                             @endif
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@
                                                     @if($price_2 != "")
                                                         <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
                                                     @else
-                                                        <td style="text-align: right;">{{ number_format($price_1) }} - {{ $price_2 }} บาท</td>
+                                                        <td style="text-align: right;">{{ number_format($price_1) }} บาท</td>
                                                     @endif
                                                 
                                                     <td class="d-none">
@@ -234,7 +234,7 @@
                                             @if($price_2 != "")
                                                 <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
                                             @else
-                                                <td style="text-align: right;">{{ number_format($price_1) }} - {{ $price_2 }} บาท</td>
+                                                <td style="text-align: right;">{{ number_format($price_1) }} บาท</td>
                                             @endif
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@
                                                 @if($price_2 != "")
                                                     <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
                                                 @else
-                                                    <td style="text-align: right;">{{ number_format($price_1) }} - {{ $price_2 }} บาท</td>
+                                                    <td style="text-align: right;">{{ number_format($price_1) }} บาท</td>
                                                 @endif
                                                 
                                                     <td class="d-none">
