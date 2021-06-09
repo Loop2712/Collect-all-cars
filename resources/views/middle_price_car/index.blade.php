@@ -100,28 +100,6 @@
 
                             
                             <!----------------------------------------------------------mobile--------------------------------------------------------->
-
-                   
-                    
-                            <!-- @foreach($Middle_price_car as $item)
-                                <div class="d-block d-md-none col-12" style="font-family: K2D, sans-serif;">
-                                    <div class="card  order-card main-shadow main-radius">                        
-                                        <div class="row">
-                                            <div class="card-block col-7">
-                                                <h4 class="">&nbsp;<b>{{ $item->brand }}</b></h4>
-                                                    <p>&nbsp;{{ $item->model }} , {{ $item->submodel }}</p>
-                                                    <p>&nbsp;ปี {{ $item->year }} </p>
-                                           
-                                            </div>  
-                                            <div class="card-block col-5" >
-
-
-                                                <h5 style="font-family: K2D, sans-serif;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</h5>
-                                            </div>
-                                        </div>
-                                    </div> <br>
-                                </div>
-                            @endforeach -->
                         <div id="show_car">
                             <div class="d-block d-md-none">
                                 @foreach($middleprice_cars as $item)
@@ -139,12 +117,7 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <!-- <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
 
-                                            <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }}</b></p>
-                                            <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">- </h5>
-                                            <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
-                                        </div> -->
                                         <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
                                             @php
                                                 $price_2 = "";
@@ -161,53 +134,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                                <!-- <div class="table-responsive d-block d-md-none">
-                                        <table class="fl-table">
-                                            <thead>
-                                                <tr>
-                                                    <th style="font-size:15px;">ยี่ห้อ/Brand</th>
-
-                                                    <th style="font-size:15px;">ราคา/Price(บาท)</th>
-                                                    <th class="d-none">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            
-                                            @foreach($Middle_price_car as $item)
-                                                <tr>
-                                                    
-                                                    <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }} <br> ปี : {{ $item->year }}</span>
-                                                    
-                                                    @php
-                                                        $price_explode = explode("-",$item->price);
-                                                        $price_1 = $price_explode[0];
-                                                        $price_2 = $price_explode[1];
-                                                    @endphp
-
-                                                    <td style="text-align: right;font-size:15px;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</td>
-                                                
-                                                    <td class="d-none">
-                                                        <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                                        <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                                        <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                            {{ method_field('DELETE') }}
-                                                            {{ csrf_field() }}
-                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                            
-                                    
-                                        </table>
-                                        <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
-                                        'brand' => Request::get('brand'),
-                                        'model' => Request::get('model'),
-                                        'submodel' => Request::get('submodel'),
-                                        ])->render() !!} </div>
-                                    </div> -->
+                                
                                 <!---------------------------------------------pc--------------------------------------------------------->
                                 <br>
                                 <div class="table-responsive d-none d-lg-block ">
@@ -284,12 +211,7 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <!-- <div class="col-4 card main-shadow" style="border-radius: 0px 20px 20px 0px; ">
-
-                                            <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }}</b></p>
-                                            <h5 style="font-family: K2D, sans-serif; text-align: center;margin-top:-5px;">- </h5>
-                                            <p style="font-family: K2D, sans-serif;text-align:center; color:red;"><b>{{ number_format($price_2) }}</b></p>
-                                        </div> -->
+                                       
                                         <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
                                             @php
                                                 $price_2 = "";
@@ -306,49 +228,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                                <!-- <div class="table-responsive d-block d-md-none">
-                                        <table class="fl-table">
-                                            <thead>
-                                                <tr>
-                                                    <th style="font-size:15px;">ยี่ห้อ/Brand</th>
-
-                                                    <th style="font-size:15px;">ราคา/Price(บาท)</th>
-                                                    <th class="d-none">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            
-                                            @foreach($Middle_price_car as $item)
-                                                <tr>
-                                                    
-                                                    <td style="text-align: left;"><b>{{ $item->brand }}</b><br><span style="font-size:15px; color:#7B7D7D;">{{ $item->model }}&nbsp;{{ $item->submodel }} <br> ปี : {{ $item->year }}</span>
-                                                    
-                                                    
-
-                                                    <td style="text-align: right;font-size:15px;">{{ number_format($price_1) }}<br> ถึง <br>{{ number_format($price_2) }}</td>
-                                                
-                                                    <td class="d-none">
-                                                        <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                                        <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                                        <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                            {{ method_field('DELETE') }}
-                                                            {{ csrf_field() }}
-                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                            
-                                    
-                                        </table>
-                                        <div class="colpagination-wrapper"> {!! $Middle_price_car->appends([
-                                        'brand' => Request::get('brand'),
-                                        'model' => Request::get('model'),
-                                        'submodel' => Request::get('submodel'),
-                                        ])->render() !!} </div>
-                                    </div> -->
+                                
                                 <!---------------------------------------------pc--------------------------------------------------------->
                                 <br>
                                 <div class="table-responsive d-none d-lg-block ">
