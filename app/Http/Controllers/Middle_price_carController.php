@@ -119,11 +119,17 @@ class Middle_price_carController extends Controller
                             ->get();
             }
 
-        
+            $price_2 = "";
+            foreach ($middleprice_cars as $item) {
+                $price_explode = explode("-",$item->price);
+                $price_1 = $price_explode[0];
+                
+                    if (!empty($price_explode[1])) {
+                        $price_2 = $price_explode[1];;
+                    }
+            }
 
-        
-
-        return view('middle_price_car.index', compact('Middle_price_car','Middelbrand','Middelmodel','Middelsubmodel','middleprice_motorcycles','middleprice_cars'));
+        return view('middle_price_car.index', compact('Middle_price_car','Middelbrand','Middelmodel','Middelsubmodel','middleprice_motorcycles','middleprice_cars' , 'price_1' , 'price_2'));
 
         
     }
