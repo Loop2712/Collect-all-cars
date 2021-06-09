@@ -265,7 +265,7 @@
                                 </div> 
                         </div> 
 
-                        <div id="show_mortor">
+                        <div id="show_mortor" class="d-none">
                             <div class="d-block d-md-none">
                                 @foreach($middleprice_motorcycles as $item)
                                     <div class="row" style="margin-top:10px">
