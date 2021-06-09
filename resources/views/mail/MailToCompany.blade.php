@@ -6,7 +6,7 @@
 			<!-- คอม -->
 			<div class="col-md-12">
 				<div class="row">
-					<div class="col-md-8" style="font-size:16px;">
+					<div class="col-md-8" style="font-size:18px;">
 						<h3>เรียน บริษัท <b>{{ $data["juristicNameTH"] }}</b></h3>
 						
 						ทางเราได้รับการแจ้งปัญหาการขับขี่ยานพาหนะภายในองค์กรของท่าน
@@ -16,9 +16,9 @@
 						<br><hr><br>
 						เมื่อเวลา {{ $data["datetime"] }}
 						<br>
-						หมายเลขทะเบียน <b style="font-size:18px;">{{ $data["registration_number"] }} {{ $data["province"] }} </b>
+						หมายเลขทะเบียน <b style="font-size:20px;">{{ $data["registration_number"] }} {{ $data["province"] }} </b>
 						<br><br>
-						ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:18px;color: red;">{{ $data["masseng"] }}</b>
+						ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:20px;color: red;">{{ $data["masseng"] }}</b>
 						<br><br>
 					</div>
 					<div class="col-md-4">
@@ -28,7 +28,7 @@
 				</div>
 				@if(!empty($data["phone"]))
 				<div class="row">
-					<div class="col-md-12" style="font-size:18px;">
+					<div class="col-md-12" style="font-size:20px;">
 						เบอร์โทรศัพท์ติดต่อผู้แจ้ง <b> {{ $data["phone"] }}</b>
 						<br>
 					</div>
