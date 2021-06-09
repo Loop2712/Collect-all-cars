@@ -126,7 +126,7 @@
                                                 $price_1 = $price_explode[0];
 
                                                     if (!empty($price_explode[1])) {
-                                                        $price_2 = $price_explode[1];;
+                                                        $price_2 = $price_explode[1];
                                                     }
                                             @endphp
                                             <p style="font-family: K2D, sans-serif;margin-top:10px;text-align:center; color:red;"><b>{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></p>
