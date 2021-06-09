@@ -56,6 +56,18 @@
 
     }
 
+    .data_organization{
+      position: relative;
+      animation-name: data_organization;
+      animation-duration: 3s;
+      animation-delay: 0s;
+    }
+
+    @keyframes data_organization {
+      0%   {left:0px; top:-160px; opacity: 0.1;}
+      100% {left:0px; top:0px; opacity: 1;}
+    }
+
     </style>
 
 </head>

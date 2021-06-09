@@ -24,7 +24,7 @@
             "url": "https://www.viicheck.com/img/icon/ป้ายทะเบียน.png",
             "size": "full",
             "aspectMode": "fit",
-            "aspectRatio": "16:9",
+            "aspectRatio": "18:9",
             "offsetBottom": "xxl"
           },
           {
@@ -42,7 +42,7 @@
               }
             ],
             "position": "absolute",
-            "offsetTop": "25px",
+            "offsetTop": "18px",
             "width": "250px"
           },
           {
@@ -60,7 +60,7 @@
               }
             ],
             "position": "absolute",
-            "offsetTop": "52px",
+            "offsetTop": "48px",
             "width": "250px"
           },
           {
@@ -99,7 +99,7 @@
             "gravity": "center"
           }
         ],
-        "margin": "lg"
+        "margin": "sm"
       },
       {
         "type": "box",
