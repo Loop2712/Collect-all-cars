@@ -72,24 +72,17 @@
                         </form>
                     </div>
                     <br class="d-block d-md-none">
-                    <div class="col-9 col-md-11" style="margin-top:-20px;">
+                    <div class="col-11 col-md-11" style="margin-top:-20px;">
                             <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
                                     <li class="nav-item" >
-                                        <a class="nav-link active " href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
+                                        <a class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
                                             document.querySelector('#show_car').classList.remove('d-none'),
                                             document.querySelector('#show_mortor').classList.add('d-none');">
                                             <b style="font-size: 15px; text-center;">รถยนต์</b>
                                         </a>
-                                    </li>&nbsp;<li class="col-5 d-block d-md-none"></li>
-                                    <li class="nav-item d-block d-md-none" style="margin-top:10px;">
-                                        <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
-                                                document.querySelector('#show_car').classList.add('d-none'),
-                                                document.querySelector('#show_mortor').classList.remove('d-none');">
-                                        <b style="font-size: 15px;">รถจักรยานยนต์</b>
-                                        </a>
                                     </li>
-                                    <li class="nav-item d-none d-lg-block">
-                                        <a class="nav-link" href="#" role="tab" data-toggle="tab" onclick="
+                                    <li class="nav-item ">
+                                        <a class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="
                                                 document.querySelector('#show_car').classList.add('d-none'),
                                                 document.querySelector('#show_mortor').classList.remove('d-none');">
                                         <b style="font-size: 15px;">รถจักรยานยนต์</b>
@@ -97,7 +90,7 @@
                                     </li>
                                 </ul>
                             </div>
-
+<br>
                             
                             <!----------------------------------------------------------mobile--------------------------------------------------------->
                         <div id="show_car">
@@ -110,15 +103,15 @@
                                                     <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                 </div>
                                                 <div class="col-7 ">
-                                                    <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
-                                                    <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
+                                                    <h5 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h5>
+                                                    <p style="margin-bottom:0px; margin-left:5px;">{{ $item->model }} , {{ $item->submodel }}</p>
                                                     <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
                                                 </div>
                                             </div>
                                         </div>
                                         <br>
 
-                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px; padding:6.5px; ">
                                             @php
                                                 $price_2 = "";
 
@@ -130,9 +123,9 @@
                                                     }
                                             @endphp
                                             @if($price_2 != "")
-                                                <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
+                                                <center><td><b style="color: #FF0000;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></td></center>
                                             @else
-                                                <td style="text-align: right;">{{ number_format($price_1) }} บาท</td>
+                                            <center><td><b style="color: #FF0000;">{{ number_format($price_1) }} บาท</b></td></center>
                                             @endif
                                         </div>
                                     </div>
@@ -154,7 +147,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($middleprice_cars as $item)
+                                            @foreach($Middle_price_car as $item)
                                                 <tr>
                                                     <td>{{ $item->brand }}</td>
                                                     <td>{{ $item->model }}</td>
@@ -220,7 +213,7 @@
                                         </div>
                                         <br>
                                        
-                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px;">
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px; padding:6.5px">
                                             @php
                                                 $price_2 = "";
 
@@ -232,9 +225,9 @@
                                                     }
                                             @endphp
                                             @if($price_2 != "")
-                                                <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
+                                                <center><td style="text-align:"><b style="color: #FF0000;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></td></center>
                                             @else
-                                                <td style="text-align: right;">{{ number_format($price_1) }} บาท</td>
+                                            <center><td style="text-align: center;"><b style="color: #FF0000;">{{ number_format($price_1) }} บาท</b></td></center>
                                             @endif
                                         </div>
                                     </div>
@@ -310,11 +303,7 @@
     </div>
 
 <style>
-{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
+
 body{
     font-family: Helvetica;
     -webkit-font-smoothing: antialiased;
