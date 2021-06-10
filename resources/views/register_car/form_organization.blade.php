@@ -96,6 +96,9 @@
                         <div id="div_wrong" class="text-danger d-none">
                             <i class="fas fa-times-circle"></i>&nbsp;&nbsp;ไม่พบข้อมูล กรุณาตรวจสอบความถูกต้อง
                         </div> 
+                        <div id="div_not_open" class="text-danger d-none">
+                            <i class="fas fa-times-circle"></i>&nbsp;&nbsp;กิจการไม่ได้ดำเนินการอยู่
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -273,6 +276,10 @@
                 }else if (result == "") {
                     document.querySelector('#div_spinner').classList.add('d-none');
                     document.querySelector('#div_wrong').classList.remove('d-none');
+                }else if (result['juristicStatus'] != "ยังดำเนินกิจการอยู่") {
+                    document.querySelector('#div_spinner').classList.add('d-none');
+                    document.querySelector('#div_wrong').classList.add('d-none');
+                    document.querySelector('#div_not_open').classList.remove('d-none');
                 }
                 else{ 
                     document.querySelector('#div_spinner').classList.add('d-none');
