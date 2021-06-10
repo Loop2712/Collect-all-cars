@@ -137,7 +137,7 @@
                                         <a class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
                                             document.querySelector('#show_car').classList.remove('d-none'),
                                             document.querySelector('#show_mortor').classList.add('d-none');">
-                                            <b style="font-size: 15px; text-align: center;">รถยนต์</b>
+                                            <b style="font-size: 15px; text-center;">รถยนต์</b>
                                         </a>
                                     </li>
                                     &nbsp;&nbsp;
@@ -145,7 +145,7 @@
                                         <a class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="
                                                 document.querySelector('#show_car').classList.add('d-none'),
                                                 document.querySelector('#show_mortor').classList.remove('d-none');">
-                                        <b style="font-size: 15px;text-align: center;">รถจักรยานยนต์</b>
+                                        <b style="font-size: 15px;">รถจักรยานยนต์</b>
                                         </a>
                                     </li>
                                 </ul>
@@ -154,7 +154,7 @@
                             <!----------------------------------------------------------mobile--------------------------------------------------------->
                         <div id="show_car">
                             <div class="d-block d-md-none">
-                                @foreach($Middle_price_car as $item)
+                                @foreach($middleprice_cars as $item)
                                     <div class="row" style="margin-top:10px">
                                         <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 20px 20px 0px 0px;padding: 7px;">
                                             <div class="row ">    
@@ -190,7 +190,7 @@
                                     </div>
                                 @endforeach
                                 <br>
-                                <div class="colpagination-wrapper "> 
+                                <div class="colpagination-wrapper col-10"> 
                                     {!! $Middle_price_car->appends([
                                     'brand' => Request::get('brand'),
                                     'model' => Request::get('model'),
@@ -214,7 +214,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($Middle_price_car as $item)
+                                            @foreach($middleprice_cars as $item)
                                                 <tr>
                                                     <td>{{ $item->brand }}</td>
                                                     <td>{{ $item->model }}</td>
@@ -253,7 +253,108 @@
                                         </tbody>                             
                                     </table>
                                     <br>
-                                    <div style="margin-left: 10px;" class="colpagination-wrapper"> 
+                                    <div class="colpagination-wrapper"> 
+                                        {!! $Middle_price_car->appends([
+                                        'brand' => Request::get('brand'),
+                                        'model' => Request::get('model'),
+                                        'submodel' => Request::get('submodel'),
+                                        ])->render() !!} 
+                                    </div>
+                                </div> 
+                        </div> 
+                        <!----------------------------------------------------------mobile--------------------------------------------------------->
+                        <div id="show_mortor" class="d-none">
+                            <div class="d-block d-md-none">
+                                @foreach($middleprice_motorcycles as $item)
+                                    <div class="row" style="margin-top:10px">
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 20px 20px 0px 0px;padding: 7px;">
+                                            <div class="row ">    
+                                                <div class="col-3 ">
+                                                    <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-7 ">
+                                                    <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
+                                                    <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
+                                                    <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                       
+                                        <div class="col-10 card main-shadow" style="margin-left:30px; border-radius: 0px 0px 20px 20px; padding:6.5px">
+                                            @php
+                                                $price_2 = "";
+
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+
+                                                    if (!empty($price_explode[1])) {
+                                                        $price_2 = $price_explode[1];
+                                                    }
+                                            @endphp
+                                            @if($price_2 != "")
+                                                <center><td style="text-align:"><b style="color: #FF0000;font-size: 17px;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</b></td></center>
+                                            @else
+                                            <center><td style="text-align: center;"><b style="color: #FF0000;font-size: 17px;">{{ number_format($price_1) }} บาท</b></td></center>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                                
+                                <!---------------------------------------------pc--------------------------------------------------------->
+                                <br>
+                                <div class="table-responsive d-none d-lg-block ">
+                                    <table class="fl-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ยี่ห้อ/Brand</th>
+                                                <th>รุ่น/Model</th>
+                                                <th>รุ่นย่อย/SubModel</th>
+                                                <th>ปี/Year</th>
+                                                <th>ราคา/Price</th>
+                                                <th class="d-none">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($middleprice_motorcycles as $item)
+                                                <tr>
+                                                    <td>{{ $item->brand }}</td>
+                                                    <td>{{ $item->model }}</td>
+                                                    <td>{{ $item->submodel }}</td>
+                                                    <td>{{ $item->year }}</td>
+                                                    
+                                            @php
+                                                $price_2 = "";
+
+                                                $price_explode = explode("-",$item->price);
+                                                $price_1 = $price_explode[0];
+
+                                                    if (!empty($price_explode[1])) {
+                                                        $price_2 = $price_explode[1];
+                                                    }
+                                            @endphp
+                                                @if($price_2 != "")
+                                                    <td style="text-align: right;">{{ number_format($price_1) }} - {{ number_format($price_2) }} บาท</td>
+                                                @else
+                                                    <td style="text-align: right;">{{ number_format($price_1) }} บาท</td>
+                                                @endif
+                                                
+                                                    <td class="d-none">
+                                                        <a href="{{ url('/middle_price_car/' . $item->id) }}" title="View Middle_price_car"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                                        <a href="{{ url('/middle_price_car/' . $item->id . '/edit') }}" title="Edit Middle_price_car"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                                        <form method="POST" action="{{ url('/middle_price_car' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Middle_price_car" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>                             
+                                    </table>
+                                    <div class="colpagination-wrapper"> 
                                         {!! $Middle_price_car->appends([
                                         'brand' => Request::get('brand'),
                                         'model' => Request::get('model'),
@@ -272,7 +373,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        showCar_brand(); 
+        showCar_brand();
+        showMotor_brand();   
     });
     function showCar_brand(){
         //PARAMETERS
