@@ -94,7 +94,7 @@
       @guest
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียน</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
         </ul>
       </nav>
       <a href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
@@ -104,7 +104,7 @@
       @else
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียน</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li class="dropdown">
               <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
               <a href="#" style="font-size: 18px;"><span><span id="input_name"></span></span> <i class="bi bi-chevron-down"></i></a>
