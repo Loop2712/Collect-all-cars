@@ -13,26 +13,29 @@
                     <div class="card-body">
                         <div class="row">
                             @foreach($promotion as $item)
-                            <div class="col-12 col-md-3" style="padding: 15px;">
-                                <div class="card main-shadow">
-                                    <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
-                                    <div class="card-body">
-                                        <div>
-                                            <h4 class="card-title">{{ $item->company }}</h4>
-                                            <p style="font-size: 15px;white-space: nowrap;width: 210px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <p class="card-text"><i class="far fa-clock"></i> <br>{{ $item->time_period }}</p>
+                                <div class="col-12 col-md-3" style="padding: 15px;">
+                                    <a href="{{ $item->link }}" class="text-dark">
+                                        <div class="card main-shadow">
+                                            <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
+                                            <div class="card-body">
+                                                <div>
+                                                    <h4 class="card-title">{{ $item->company }}</h4>
+                                                    <p style="font-size: 15px;white-space: nowrap;width: 210px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <p class="card-text"><i class="far fa-clock"></i>&nbsp;{{ $item->time_period }}</p>
+                                                    </div>
+                                                    <!-- <div class="col-6">
+                                                        <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
+                                                    </div> -->
+                                                </div>
                                             </div>
-                                            <div class="col-6">
-                                                <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </div> 
+                                    </a>
                                 </div>
-                            </div>
+                           
                             @endforeach
                         </div>
                     </div>
@@ -101,10 +104,10 @@
                             <a href="{{ $item->link }}">
                                 <div class="col-12 card main-shadow" style=" border-radius: 20px; margin-top:10px"> 
                                     <div class="row">
-                                        <div class="col-5"> 
-                                            <img style="margin:5px 0px 0px -5px; width:100px;height:100px;object-fit:cover ;" src="{{ $item->photo }}" alt="" >
+                                        <div class="col-5" style="bgcolor:Black"> 
+                                            <img style="margin:2px 0px 0px -5px; width:100px;height:100px;object-fit:contain ;" src="{{ $item->photo }}" alt="" >
                                         </div>
-                                        <div class="col-7" style="color:black;">
+                                        <div class="col-7" style="color:black;padding:7px;">
                                             <h5 class="card-title" style=" margin:0px 0px; font-family: K2D, sans-serif;"><strong>{{ $item->company }}</strong></h5>
                                             <p style="font-size: 15px; font-family: K2D, sans-serif;"class="card-title">{{ $item->titel }}</p>
                                             <p class="card-text" style=" margin-top:-10px; font-size: 13px; font-family: K2D, sans-serif;"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
