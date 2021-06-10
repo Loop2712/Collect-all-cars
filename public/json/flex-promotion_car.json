@@ -42,7 +42,7 @@
           }
         ],
         "paddingAll": "0px",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#000000cc"
       }
     },
     {
@@ -83,7 +83,7 @@
           }
         ],
         "paddingAll": "0px",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#000000cc"
       }
     },
     {
@@ -124,7 +124,7 @@
           }
         ],
         "paddingAll": "0px",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#000000cc"
       }
     },
     {
@@ -165,7 +165,7 @@
           }
         ],
         "paddingAll": "0px",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#000000cc"
       }
     },
     {
@@ -206,7 +206,7 @@
           }
         ],
         "paddingAll": "0px",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#000000cc"
       }
     },
     {
@@ -247,7 +247,7 @@
           }
         ],
         "paddingAll": "0px",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#000000cc"
       }
     },
     {
@@ -290,7 +290,7 @@
           }
         ],
         "paddingAll": "0px",
-        "backgroundColor": "#07375D"
+        "backgroundColor": "#07375Dcc"
       }
     }
   ]
