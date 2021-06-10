@@ -14,7 +14,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img1",
             "size": "full",
-            "aspectMode": "cover",
+            "aspectMode": "fit",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -41,7 +41,8 @@
             "backgroundColor": "#708090cc"
           }
         ],
-        "paddingAll": "0px"
+        "paddingAll": "0px",
+        "backgroundColor": "#000000"
       }
     },
     {
@@ -54,7 +55,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img2",
             "size": "full",
-            "aspectMode": "cover",
+            "aspectMode": "fit",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -81,7 +82,8 @@
             "backgroundColor": "#708090cc"
           }
         ],
-        "paddingAll": "0px"
+        "paddingAll": "0px",
+        "backgroundColor": "#000000"
       }
     },
     {
@@ -94,7 +96,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img3",
             "size": "full",
-            "aspectMode": "cover",
+            "aspectMode": "fit",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -121,7 +123,8 @@
             "backgroundColor": "#708090cc"
           }
         ],
-        "paddingAll": "0px"
+        "paddingAll": "0px",
+        "backgroundColor": "#000000"
       }
     },
     {
@@ -134,7 +137,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img4",
             "size": "full",
-            "aspectMode": "cover",
+            "aspectMode": "fit",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -161,7 +164,8 @@
             "backgroundColor": "#708090cc"
           }
         ],
-        "paddingAll": "0px"
+        "paddingAll": "0px",
+        "backgroundColor": "#000000"
       }
     },
     {
@@ -174,7 +178,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img5",
             "size": "full",
-            "aspectMode": "cover",
+            "aspectMode": "fit",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -201,7 +205,8 @@
             "backgroundColor": "#708090cc"
           }
         ],
-        "paddingAll": "0px"
+        "paddingAll": "0px",
+        "backgroundColor": "#000000"
       }
     },
     {
@@ -214,7 +219,7 @@
             "type": "image",
             "url": "https://www.viicheck.com/img6",
             "size": "full",
-            "aspectMode": "cover",
+            "aspectMode": "fit",
             "aspectRatio": "1:1",
             "gravity": "top"
           },
@@ -241,7 +246,8 @@
             "backgroundColor": "#708090cc"
           }
         ],
-        "paddingAll": "0px"
+        "paddingAll": "0px",
+        "backgroundColor": "#000000"
       }
     },
     {
