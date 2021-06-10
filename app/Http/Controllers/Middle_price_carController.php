@@ -112,11 +112,12 @@ class Middle_price_carController extends Controller
                             ->get();
             } else {
                 $middleprice_cars = DB::table('middle_price_cars')
+                            ->orderBy('brand', 'asc')
                             ->Where('model',     'LIKE', "%$model%")
                             ->Where('year',     'LIKE', "%$year%")
                             ->Where('submodel',     'LIKE', "%$submodel%")
                             ->where('type', "car")
-                            ->get();
+                            ->latest()->paginate($perPage);
             }
 
 
