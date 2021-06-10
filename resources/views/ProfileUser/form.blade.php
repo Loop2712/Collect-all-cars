@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('avatar ') ? 'has-error' : ''}}">
-                    <input class="form-control" name="avatar " type="file" id="avatar " value="{{ isset($data->avatar ) ? $data->avatar  : ''}}" accept="image/*" multiple="multiple">
+                    <input class="form-control" name="avatar" type="file" id="avatar " value="{{ isset($data->avatar ) ? $data->avatar  : ''}}" accept="image/*" multiple="multiple">
                         {!! $errors->first('avatar ', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
