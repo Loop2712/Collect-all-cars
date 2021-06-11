@@ -123,7 +123,7 @@ class GuestController extends Controller
             $requestData['masseng'] = str_replace($p->content, "", $requestData['masseng']);
             
         }
-        
+       
         Guest::create($requestData);
 
         DB::table('register_cars')
@@ -144,8 +144,7 @@ class GuestController extends Controller
 
                   if ($key->type == "line") {
                       return view('guest/thx_guest')->with('flash_message', 'Guest added!');
-                  }
-                  if ($key->type == "google") {
+                  }else {
                       return view('guest/thx_guest_google')->with('flash_message', 'Guest added!');
                   }
               }

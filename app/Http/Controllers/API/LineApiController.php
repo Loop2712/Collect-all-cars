@@ -60,7 +60,7 @@ class LineApiController extends Controller
                 $line->_pushguestLine(null, $event, "thx");
                 break;
             case "ส่งข้อความตอบกลับ" : 
-                $line->_pushguestLine(null, $event, "reply");
+                $line->select_reply(null, $event, "reply");
                 break;
         }   
 

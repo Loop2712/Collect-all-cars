@@ -16,6 +16,51 @@ use App\Mail\MailToGuest;
 class LineMessagingAPI extends Model
 {
     public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+    public function select_reply($data, $event, $postback_data)
+    {
+        // ป้ายทะเบียนรถที่ถูกเรียก
+        $data_postback_explode = explode("?",$event["postback"]["data"]);
+        $license_plate = explode("/",$data_postback_explode[1]);  ;
+        $registration_number = $license_plate[0];
+        $province = $license_plate[1];
+
+        $template_path = storage_path('../public/json/flex-reply-option.json');   
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
+        $string_json = str_replace("กรุงเทพ",$province,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.$this->channel_access_token,
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "reply Success",
+            "content" => "reply Success",
+        ];
+        MyLog::create($data);
+        return $result;
+
+    }
 
     public function replyToUser($data, $event, $message_type)
     {
@@ -849,17 +894,6 @@ class LineMessagingAPI extends Model
                                 $messages = [ json_decode($string_json, true) ];
                             }
                             break;
-                        case "reply": 
-                            foreach($reply as $item){
-                                $to_user = $item->reply_provider_id;
-                                $template_path = storage_path('../public/json/flex-reply-option.json');   
-                                $string_json = file_get_contents($template_path);
-                                $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
-                                $string_json = str_replace("กรุงเทพ",$province,$string_json);
-
-                                $messages = [ json_decode($string_json, true) ];
-                            }
-                            break;
 
                     }
 
@@ -889,7 +923,11 @@ class LineMessagingAPI extends Model
                     ];
 
                     DB::table('register_cars')
-                            ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                            ->where([ 
+                                    ['registration_number', $google_registration_number],
+                                    ['province', $google_province],
+                                    ['now', "Yes"] 
+                                ])
                             ->update(['now' => null]);
 
                     MyLog::create($data);
@@ -919,7 +957,11 @@ class LineMessagingAPI extends Model
 
                     }
                     DB::table('register_cars')
-                            ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                            ->where([ 
+                                    ['registration_number', $google_registration_number],
+                                    ['province', $google_province],
+                                    ['now', "Yes"] 
+                                ])
                             ->update(['now' => null]);
                     break;
 
