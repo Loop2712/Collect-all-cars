@@ -3,11 +3,11 @@
         <div class="card-body" style="padding: 2rem;">
         <div class="call__text">
             <a href="{{ url('/profile' ) }}">
-            <img width="28" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/tab.png') }}"> ข้อมูลส่วนบุคคล </a>
+            <img width="34" style="margin-left: -8px;" src="{{ url('/img/stickerline/PNG/tab.png') }}"> ข้อมูลส่วนบุคคล </a>
         </div><br>
         <div class="call__text">
             <a href="{{ url('/register_car' ) }}">
-            <i class="fas fa-motorcycle"></i>&nbsp;&nbsp;รถของฉัน </a>
+            <img width="28" style="margin-left: -5px;" src="{{ url('/img/icon/menu_car.png') }}">&nbsp;&nbsp;รถของฉัน </a>
         </div>
         <!-- <br>
         <div class="call__text">
