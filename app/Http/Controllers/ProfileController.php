@@ -171,10 +171,21 @@ class ProfileController extends Controller
 
         }
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
+        if ($request->hasFile('photo')) {
+            $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
+
+            $img_avatar = Image::make(storage_path("app/public")."/".$requestData['photo']);
+
+            $size_avatar = $img_avatar->filesize();  
+
+            if($size_avatar > 512000 ){
+                $img_avatar->resize(
+                    intval($img_avatar->width()/2) , 
+                    intval($img_avatar->height()/2)
+                )->save(); 
+            }
+
+        }
 
         $data = User::findOrFail($id);
         $data->update($requestData);

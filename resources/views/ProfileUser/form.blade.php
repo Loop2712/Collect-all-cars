@@ -10,9 +10,9 @@
                     <label  class="control-label"><b>{{ 'รูปภาพ  / Photo ' }}</b></label>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('avatar ') ? 'has-error' : ''}}">
-                    <input class="form-control" name="avatar" type="file" id="avatar " value="{{ isset($data->avatar ) ? $data->avatar  : ''}}" accept="image/*" multiple="multiple">
-                        {!! $errors->first('avatar ', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                    <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple">
+                        {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
-                        <select name="sex" class="form-control"  id="sex" required onchange="if(this.value=='3'){ 
+                        <select name="sex" class="form-control"  id="sex" onchange="if(this.value=='3'){ 
                                 document.querySelector('#masseng_label').classList.remove('d-none'),
                                 document.querySelector('#masseng_input').classList.remove('d-none'),
                                 document.querySelector('#masseng').focus();

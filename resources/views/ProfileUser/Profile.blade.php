@@ -40,7 +40,12 @@
             @endswitch
             @endif
 
-            <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{$data->avatar}}" data-original-title="Usuario"> 
+            @if(!empty($data->photo))
+                <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ $data->photo }}" data-original-title="Usuario"> 
+            @else
+                <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{$data->avatar}}" data-original-title="Usuario"> 
+            @endif
+            
             <ul title="Ratings" class="list-inline ratings text-center">
                 <li><span class="glyphicon glyphicon-star">{{ $data->name }}    <br> เป็นสมาชิกเมื่อ {{$data->created_at->diffForHumans()}}</span></li>
                 <li>
