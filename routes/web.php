@@ -168,7 +168,9 @@ Route::get('/report/{id}/{content}', 'NewsController@report');
 Route::resource('promotion', 'PromotionController');
 
 
-Route::resource('middle_price_car', 'Middle_price_carController');
+
+Route::get('/middle_price_car', 'Middle_price_carController@index');
+Route::get('/middle_price_motorcycle', 'Middle_price_carController@index_motor');
 
 // SosController
 Route::resource('sos', 'SosController');

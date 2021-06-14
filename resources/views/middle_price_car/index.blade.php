@@ -131,7 +131,7 @@
                         </form>
                     </div>
                     <br >
-                    <div class="col-11 col-md-11" style="margin-top:-20px;">
+                    <!-- <div class="col-11 col-md-11" style="margin-top:-20px;">
                             <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
                                     <li class="nav-item" >
                                         <a class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
@@ -149,7 +149,16 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
+
+                            <div class="col-md-12">
+                            <button id="btn_car" class="btn btn-outline-danger" >
+                                <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
+                            </button>
+                            <button id="btn_motorcycle" class="btn btn-outline-danger" >
+                                <a id="btn_a_motorcycle" href="{{ url('/middle_price_motorcycle' ) }}">รถจักรยานยนต์</a>
+                            </button>
+                        </div>
 
                             <!----------------------------------------------------------mobile--------------------------------------------------------->
                         <div id="show_car">
@@ -205,7 +214,7 @@
                                     <table class="fl-table">
                                         <thead>
                                             <tr>
-                                                <th>ยี่ห้อ/Brand</th>
+                                                <th>ยี่ห้อ/Brandsss</th>
                                                 <th>รุ่น/Model</th>
                                                 <th>รุ่นย่อย/SubModel</th>
                                                 <th>ปี/Year</th>
@@ -324,6 +333,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     option.value = "อื่นๆ";
                     input_car_model.add(option);  
             });
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        add_color();
+        
+    });
+    function add_color(){
+        console.log("add_color");
+        document.querySelector('#btn_car').classList.add('btn-danger');
+        document.querySelector('#btn_car').classList.remove('btn-outline-danger');
+        document.querySelector('#btn_a_car').classList.add('text-white');
+        document.querySelector('#btn_a_car').classList.remove('text-danger');
     }
 
 </script>

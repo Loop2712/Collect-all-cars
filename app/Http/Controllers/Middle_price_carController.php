@@ -142,7 +142,7 @@ class Middle_price_carController extends Controller
             
 
 
-        return view('middle_price_car.index_motor', compact('Middelbrand','Middelmodel','Middelsubmodel','middleprice_motorcycles','middleprice_cars'));
+        return view('middle_price_car.index_motor', compact('Middelbrand','Middelmodel','Middelsubmodel','middleprice_motorcycles'));
 
         
     }

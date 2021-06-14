@@ -1,9 +1,47 @@
-<center>
+<!-- 
     <br>
     <p style="position: relative;top: -5px; z-index: 5; font-size:20px;"><b>{{ $registration_number }}</b></p>
     <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $province }} </p>
     <img style="position: absolute;right: 50px;top: 13%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-</center>
+    <div class="row">
+                                                    <div class="col-12">
+                                                        <center>
+                                                            <div style="position: relative; z-index: 5">
+                                                                <div style="padding-top: 8px;">
+                                                                    <span style="font-size: 20px;" class="text-dark"><b>{{ $registration_number }}</b> </span>
+                                                                    <p style="font-size: 14px;" class="text-dark">{{ $province }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div style="z-index: 2">
+                                                                <img style="position: absolute;right: 19%;bottom: 10%;" width="250" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            </div>
+                                                        </center>
+                                                    </div>
+                                                </div> -->
+
+                     <div class="modal-body d-block d-md-none">
+                        <center>
+                            <div style="position: relative; z-index: 5">
+                                <div style="padding-top: 8px;">
+                                    <span style="font-size: 20px;" class="text-dark"><b style=" margin: top -10px;0px;">{{ $registration_number }}</b> </span>
+                                    <p style="font-size: 14px;" class="text-dark">{{ $province }}</p>
+                                </div>
+                            </div>
+                            <img style="position: absolute;margin: -90px -140px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                        </center>
+                    </div>
+
+                    <div class="modal-body d-none d-lg-block">
+                        
+                            <div style="position: relative; z-index: 5">
+                                <div style="padding-top: 8px;">
+                                    <span style="font-size: 20px;" class="text-dark"><b style=" margin:0px 120px;">{{ $registration_number }}</b> </span>
+                                    <p style="font-size: 14px; margin:0px 120px;" class="text-dark">{{ $province }}</p>
+                                </div>
+                            </div>
+                            <img style="position: absolute;margin: -75px 0px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                        <br style="d-none d-lg-block">
+                    </div>
 
 <input class="form-control" name="registration_number" type="hidden" id="registration_number" value="{{ isset($not_comfor->registration_number) ? $not_comfor->registration_number : $registration_number}}" readonly>
     {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
