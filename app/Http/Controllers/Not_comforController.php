@@ -46,9 +46,15 @@ class Not_comforController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('not_comfor.create');
+        $requestData = $request->all();
+
+        $license_plate = explode(".",$requestData['license_plate']);  ;
+        $registration_number = $license_plate[0];
+        $province = $license_plate[1];
+
+        return view('not_comfor.create', compact('registration_number' , 'province'));
     }
 
     /**
@@ -80,18 +86,17 @@ class Not_comforController extends Controller
         }
 
         $register_cars = DB::table('register_cars')
-                    ->select('reply_provider_id', 'phone' , 'registration_number' , 'province')
+                    ->select('reply_provider_id')
                     ->where([
                             ['provider_id', $requestData['provider_id']],
+                            ['registration_number', $requestData['registration_number']],
+                            ['province', $requestData['province']],
                             ['now', "Yes"],
                         ])
                     ->get();
 
         foreach($register_cars as $item){
             $requestData['reply_provider_id'] = $item->reply_provider_id ; 
-            $requestData['phone'] = $item->phone ;
-            $requestData['registration_number'] = $item->registration_number ;
-            $requestData['province'] = $item->province ;
         }
 
         Not_comfor::create($requestData);
@@ -166,7 +171,7 @@ class Not_comforController extends Controller
 
     public function _push_Not_comforLine($data)
     {   
-        if (empty($data['registration_number'])) {
+        if (empty($data['reply_provider_id'])) {
 
             $provider_id = $data['provider_id'];
 
@@ -200,7 +205,7 @@ class Not_comforController extends Controller
                     ];
         }
 
-        if (!empty($data['registration_number'])) {
+        if (!empty($data['reply_provider_id'])) {
 
             $provider_id = $data['provider_id'];
 
@@ -278,7 +283,11 @@ class Not_comforController extends Controller
                                 ];
 
                                 DB::table('register_cars')
-                                    ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                                    ->where([ 
+                                            ['registration_number', $google_registration_number],
+                                            ['province', $google_province],
+                                            ['now', "Yes"]
+                                        ])
                                     ->update(['now' => null]);
                                 
                                 MyLog::create($data);
@@ -299,7 +308,11 @@ class Not_comforController extends Controller
                             Mail::to($email)->send(new MailToGuest_notcomfor($google_data));
 
                             DB::table('register_cars')
-                                ->where([ ['provider_id', $provider_id],['now', "Yes"] ])
+                                ->where([ 
+                                        ['registration_number', $google_registration_number],
+                                        ['province', $google_province],
+                                        ['now', "Yes"] 
+                                    ])
                                 ->update(['now' => null]);
                         break;
 

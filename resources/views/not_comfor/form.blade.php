@@ -1,3 +1,15 @@
+<center>
+    <br>
+    <p style="position: relative;top: -5px; z-index: 5; font-size:20px;"><b>{{ $registration_number }}</b></p>
+    <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $province }} </p>
+    <img style="position: absolute;right: 50px;top: 13%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+</center>
+
+<input class="form-control" name="registration_number" type="hidden" id="registration_number" value="{{ isset($not_comfor->registration_number) ? $not_comfor->registration_number : $registration_number}}" readonly>
+    {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
+
+<input class="form-control" name="province" type="hidden" id="province" value="{{ isset($not_comfor->province) ? $not_comfor->province : $province}}" readonly>
+    {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
 <span style="font-size: 22px;" class="control-label">{{ 'เหตุผลของท่าน / Please give reasons'}}</span>
 <br>
 <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
