@@ -312,15 +312,15 @@ class Not_comforController extends Controller
 
     }
 
-    public function not_comfor_login(Request $request)
+    public function not_comfor_login(Request $request , $license_plate)
     {
         $id = Auth::id();
 
         if(Auth::check()){
-            return redirect('not_comfor/create');
+            return redirect('not_comfor/create?license_plate=$license_plate');
             // echo Auth::User()->name;
         }else{
-            return redirect('login/line?redirectTo=not_comfor/create');
+            return redirect('login/line?redirectTo=not_comfor/create&license_plate=$license_plate');
         }
     }
 

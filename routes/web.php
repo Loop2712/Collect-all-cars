@@ -129,7 +129,7 @@ Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 	Route::get('/edit_profile2', 'ProfileController@edit_profile2');
 
 	Route::get('/line_mycar', 'ProfileController@line_mycar');
-	Route::get('/not_comfor_login', 'Not_comforController@not_comfor_login');
+	Route::get('/not_comfor_login/{license_plate}', 'Not_comforController@not_comfor_login');
 // END AUTO LOHIN FROM FLEX LINE
 
 //Route::resource('car','CarController');
