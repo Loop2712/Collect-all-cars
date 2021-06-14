@@ -834,6 +834,9 @@ class LineMessagingAPI extends Model
         $registration_number = $license_plate[0];
         $province = $license_plate[1];
 
+        $google_registration_number = $license_plate[0] ;
+        $google_province = $license_plate[1] ;
+
     	// UserId เจ้าของรถ
     	$provider_id = $event["source"]['userId'];
     	
@@ -841,7 +844,8 @@ class LineMessagingAPI extends Model
     	$reply = DB::table('register_cars')
 	            ->select('reply_provider_id','registration_number','province')
                 ->where([
-                        ['provider_id', $provider_id],
+                        ['registration_number', $registration_number],
+                        ['province', $province],
                         ['now', "Yes"],
                     ])
 	            ->get();
@@ -853,9 +857,8 @@ class LineMessagingAPI extends Model
                         ->select('type' , 'email' , 'name')
                         ->where('provider_id', $item->reply_provider_id)
                         ->get();
-                        
-            $google_registration_number = $item->registration_number ;
-            $google_province = $item->province ;
+
+            $to_user = $item->reply_provider_id;
         }
 
         foreach($type_login as $item){
@@ -863,36 +866,30 @@ class LineMessagingAPI extends Model
                 case 'line':
                     switch($postback_data){
                         case "wait": 
-                            foreach($reply as $item){
-                                $to_user = $item->reply_provider_id;
-                                $template_path = storage_path('../public/json/callback_guest.json');   
-                                $string_json = file_get_contents($template_path);
-                                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
-                                $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
-                                $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
-                                $string_json = str_replace("ขอบคุณ","โปรดรอสักครู่",$string_json);
-                                $string_json = str_replace("Thankyou","Please wait a moment",$string_json);
-                                $string_json = str_replace("datetime",$datetime,$string_json);
-                                $string_json = str_replace("สติกเกอร์ไลน์","8",$string_json);
+                            $template_path = storage_path('../public/json/callback_guest.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
+                            $string_json = str_replace("9กก9999",$registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
+                            $string_json = str_replace("ขอบคุณ","โปรดรอสักครู่",$string_json);
+                            $string_json = str_replace("Thankyou","Please wait a moment",$string_json);
+                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("สติกเกอร์ไลน์","8",$string_json);
 
-                                $messages = [ json_decode($string_json, true) ];
-                            }
+                            $messages = [ json_decode($string_json, true) ];
                             break;
                         case "thx":
-                            foreach($reply as $item){
-                                $to_user = $item->reply_provider_id;
-                                $template_path = storage_path('../public/json/callback_guest.json');   
-                                $string_json = file_get_contents($template_path);
-                                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
-                                $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
-                                $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
-                                $string_json = str_replace("ขอบคุณ","ขอบคุณค่ะ",$string_json);
-                                $string_json = str_replace("Thankyou","Thank you",$string_json);
-                                $string_json = str_replace("datetime",$datetime,$string_json);
-                                $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
+                            $template_path = storage_path('../public/json/callback_guest.json');   
+                            $string_json = file_get_contents($template_path);
+                            $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
+                            $string_json = str_replace("9กก9999",$registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
+                            $string_json = str_replace("ขอบคุณ","ขอบคุณค่ะ",$string_json);
+                            $string_json = str_replace("Thankyou","Thank you",$string_json);
+                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
 
-                                $messages = [ json_decode($string_json, true) ];
-                            }
+                            $messages = [ json_decode($string_json, true) ];
                             break;
 
                     }
