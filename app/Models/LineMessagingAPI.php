@@ -879,7 +879,7 @@ class LineMessagingAPI extends Model
                             $messages = [ json_decode($string_json, true) ];
                             break;
                         case "thx":
-                            $template_path = storage_path('../public/json/callback_guest.json');   
+                            $template_path = storage_path('../public/json/text_success.json');   
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                             $string_json = str_replace("9กก9999",$registration_number,$string_json);
