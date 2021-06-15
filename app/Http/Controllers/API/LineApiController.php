@@ -55,9 +55,11 @@ class LineApiController extends Controller
         switch($data_postback){
             case "wait" : 
                 $line->_pushguestLine(null, $event, "wait");
+                $line->reply_success(null, $event);
                 break;
              case "thx" : 
                 $line->_pushguestLine(null, $event, "thx");
+                $line->reply_success(null, $event);
                 break;
             case "ส่งข้อความตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
