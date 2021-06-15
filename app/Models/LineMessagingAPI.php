@@ -928,6 +928,40 @@ class LineMessagingAPI extends Model
                             ->update(['now' => null]);
 
                     MyLog::create($data);
+
+                    // ระบบได้รับข้อความแล้ว
+                    $body2 = [
+                        "replyToken" => $event["replyToken"],
+                        "messages" => [
+                                          {
+                                           "type":"text",
+                                           "text":"ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ"
+                                          }
+                                      ],
+                    ];
+
+                    $opts2 = [
+                        'http' =>[
+                            'method'  => 'POST',
+                            'header'  => "Content-Type: application/json \r\n".
+                                        'Authorization: Bearer '.$this->channel_access_token,
+                            'content' => json_encode($body2, JSON_UNESCAPED_UNICODE),
+                            //'timeout' => 60
+                        ]
+                    ];
+                                        
+                    $context2  = stream_context_create($opts2);
+                    //https://api-data.line.me/v2/bot/message/11914912908139/content
+                    $url2 = "https://api.line.me/v2/bot/message/reply";
+                    $result2 = file_get_contents($url2, false, $context2);
+
+                    //SAVE LOG
+                    $data2 = [
+                        "title" => "ระบบได้รับข้อความแล้ว",
+                        "content" => "reply Success",
+                    ];
+                    MyLog::create($data2);
+
                     return $result;
                     break;
 
