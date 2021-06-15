@@ -47,7 +47,8 @@ class LineApiController extends Controller
 
     public function postbackHandler($event)
     {
-    	$line = new LineMessagingAPI();
+        $line = new LineMessagingAPI();
+    	$line2 = new LineMessagingAPI();
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
@@ -55,6 +56,7 @@ class LineApiController extends Controller
         switch($data_postback){
             case "wait" : 
                 $line->_pushguestLine(null, $event, "wait");
+                $line2->reply_success(null, $event, "wait");
                 break;
              case "thx" : 
                 $line->_pushguestLine(null, $event, "thx");
