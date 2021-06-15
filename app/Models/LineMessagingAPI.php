@@ -890,16 +890,10 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
 
                             // $messages = [ json_decode($string_json, true) ];
-                            $messages = [
-                                          {
-                                               "type":"text",
-                                               "text":"Hello, user"
-                                          },
-                                          {
-                                               "type":"text",
-                                               "text":"May I help you?"
-                                          }
-                                      ];
+                            $messages = {
+                                           "type":"text",
+                                           "text":"Hello, user"
+                                        }
                             break;
 
                     }
