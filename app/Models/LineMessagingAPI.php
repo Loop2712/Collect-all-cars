@@ -16,6 +16,43 @@ use App\Mail\MailToGuest;
 class LineMessagingAPI extends Model
 {
     public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+
+    public function reply_success($event)
+    {
+        $template_path = storage_path('../public/json/text_success.json');   
+
+        $messages = [ json_decode($string_json, true) ];
+
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.$this->channel_access_token,
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
+            "content" => "reply Success",
+        ];
+        MyLog::create($data);
+        return $result;
+
+    }
     public function select_reply($data, $event, $postback_data)
     {
         // ป้ายทะเบียนรถที่ถูกเรียก
@@ -879,7 +916,7 @@ class LineMessagingAPI extends Model
                             $messages = [ json_decode($string_json, true) ];
                             break;
                         case "thx":
-                            $template_path = storage_path('../public/json/text_success.json');   
+                            $template_path = storage_path('../public/json/callback_guest.json');   
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                             $string_json = str_replace("9กก9999",$registration_number,$string_json);
@@ -928,6 +965,7 @@ class LineMessagingAPI extends Model
                             ->update(['now' => null]);
 
                     MyLog::create($data);
+                    $this->reply_success($event);
                     return $result;
                     break;
 
