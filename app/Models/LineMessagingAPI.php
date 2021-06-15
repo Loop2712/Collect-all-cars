@@ -893,7 +893,7 @@ class LineMessagingAPI extends Model
                             $messages = {
                                            "type":"text",
                                            "text":"Hello, user"
-                                        }
+                                        };
                             break;
 
                     }
