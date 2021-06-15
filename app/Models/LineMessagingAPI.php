@@ -965,7 +965,6 @@ class LineMessagingAPI extends Model
                             ->update(['now' => null]);
 
                     MyLog::create($data);
-                    $this->reply_success($event);
                     return $result;
                     break;
 
