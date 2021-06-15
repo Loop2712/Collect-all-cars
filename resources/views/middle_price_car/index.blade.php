@@ -214,7 +214,7 @@
                                     <table class="fl-table">
                                         <thead>
                                             <tr>
-                                                <th>ยี่ห้อ/Brandsss</th>
+                                                <th>ยี่ห้อ/Brand</th>
                                                 <th>รุ่น/Model</th>
                                                 <th>รุ่นย่อย/SubModel</th>
                                                 <th>ปี/Year</th>

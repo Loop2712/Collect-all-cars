@@ -169,9 +169,9 @@ Route::resource('promotion', 'PromotionController');
 
 
 
-Route::get('/middle_price_car', 'Middle_price_carController@index');
-Route::get('/middle_price_motorcycle', 'Middle_price_carController@index_motor');
 
+Route::get('/middle_price_motorcycle', 'Middle_price_carController@index_motor');
+Route::resource('middle_price_car', 'Middle_price_carController');
 // SosController
 Route::resource('sos', 'SosController');
 
