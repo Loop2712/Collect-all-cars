@@ -889,11 +889,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("datetime",$datetime,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
 
-                            // $messages = [ json_decode($string_json, true) ];
-                            $messages = {
-                                           "type":"text",
-                                           "text":"Hello, user"
-                                        };
+                            $messages = [ json_decode($string_json, true) ];
                             break;
 
                     }
