@@ -54,7 +54,7 @@ class LineApiController extends Controller
 
         switch($data_postback){
             case "wait" : 
-                // $line->_pushguestLine(null, $event, "wait");
+                $line->_pushguestLine(null, $event, "wait");
                 $line->reply_success($event);
                 break;
              case "thx" : 
