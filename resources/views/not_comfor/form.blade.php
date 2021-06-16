@@ -32,7 +32,6 @@
                     </div>
 
                     <div class="modal-body d-none d-lg-block">
-                        
                             <div style="position: relative; z-index: 5">
                                 <div style="padding-top: 8px;">
                                     <span style="font-size: 20px;" class="text-dark"><b style=" margin:0px 120px;">{{ $registration_number }}</b> </span>

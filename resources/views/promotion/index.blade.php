@@ -2,15 +2,35 @@
 @section('content')
     <div class="container" style="margin-top:168px;">
         <div class="row">
-
             <div class="col-md-12"> 
-            
             <!------------------------------------------------pc--------------------------------------------------->
                 <div class="card d-none d-lg-block" >
                     <div class="card-header">
                         <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
                     </div>
-                    <div class="card-body">
+                    <br>
+                    <div class="col-9 col-md-11" style="margin-top:-20px;">
+                        <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
+                            <li class="nav-item" >
+                            <a class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
+                                    document.querySelector('#show_car').classList.remove('d-none'),
+                                    document.querySelector('#show_mortor').classList.add('d-none');">
+                                    <b style="font-size: 15px; text-center;">รถยนต์</b>
+                                </a>
+                            </li>&nbsp;
+                            <li class="nav-item d-none d-lg-block">
+                            <a class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="                                        
+                                        document.querySelector('#show_car').classList.add('d-none'),
+                                        document.querySelector('#show_mortor').classList.remove('d-none');">
+                                <b style="font-size: 15px;">รถจักรยานยนต์</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    
+                            
+                    <div  id="show_car" class="card-body">
                         <div class="row">
                             @foreach($promotion as $item)
                                 <div class="col-12 col-md-3" style="padding: 15px;">
@@ -30,6 +50,33 @@
                                                     <!-- <div class="col-6">
                                                         <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
                                                     </div> -->
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </a>
+                                </div>
+                           
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div  id="show_mortor" class="card-body d-none">
+                        <div class="row">
+                            @foreach($promotion_motor as $item)
+                                <div class="col-12 col-md-3" style="padding: 15px;">
+                                    <a href="{{ $item->link }}" class="text-dark">
+                                        <div class="card main-shadow">
+                                            <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
+                                            <div class="card-body">
+                                                <div>
+                                                    <h4 class="card-title">{{ $item->company }}</h4>
+                                                    <p style="font-size: 15px;white-space: nowrap;width: 210px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <p class="card-text"><i class="far fa-clock"></i>&nbsp;{{ $item->time_period }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div> 
@@ -97,8 +144,27 @@
                     <div class="card-header">
                         <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
                     </div>
-                    
-                    <div class="card-body"  style="margin-top:-20px">
+                    <div class="col-12 col-md-11" style="margin-top:20px;">
+                        <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
+                            <li class="nav-item" >
+                            <a class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
+                                    document.querySelector('#show_car_m').classList.remove('d-none'),
+                                    document.querySelector('#show_mortor_m').classList.add('d-none');">
+                                    <b style="font-size: 15px; text-center;">รถยนต์</b>
+                                </a>
+                            </li>
+                          &nbsp;
+                            <li class="nav-item d-block d-md-none" >
+                            <a class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="
+                                        document.querySelector('#show_car_m').classList.add('d-none'),
+                                        document.querySelector('#show_mortor_m').classList.remove('d-none');">
+                                <b style="font-size: 15px;">รถจักรยานยนต์</b>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    <div id="show_car_m" class="card-body"  style="margin-top:-20px">
                         <div class="row">
                             @foreach($promotion as $item)
                             <a href="{{ $item->link }}">
@@ -131,11 +197,41 @@
                             @endforeach
                         </div>
                     </div>
+
+                    <div id="show_mortor_m" class="card-body d-none"  style="margin-top:-20px">
+                        <div class="row">
+                            @foreach($promotion_motor as $item)
+                            <a href="{{ $item->link }}">
+                                <div class="col-12 card main-shadow" style=" border-radius: 20px; margin-top:10px"> 
+                                    <div class="row">
+                                        <div class="col-5" style="bgcolor:Black"> 
+                                            <img style="margin:2px 0px 0px -5px; width:100px;height:100px;object-fit:contain ;" src="{{ $item->photo }}" alt="" >
+                                        </div>
+                                        <div class="col-7" style="color:black;padding:7px;">
+                                            <h5 class="card-title" style=" margin:0px 0px; font-family: K2D, sans-serif;"><strong>{{ $item->company }}</strong></h5>
+                                            <p style="font-size: 15px; font-family: K2D, sans-serif;"class="card-title">{{ $item->titel }}</p>
+                                            <p class="card-text" style=" margin-top:-10px; font-size: 13px; font-family: K2D, sans-serif;"><i class="far fa-clock"></i> {{ $item->time_period }}</p>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
+
+
+
+
             </div>
+
+
+
+            
+
         </div>
     </div>
-    <br>
+   
     <style>
         .center {
         display: block;

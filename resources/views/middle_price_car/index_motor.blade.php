@@ -65,7 +65,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก</h3>
+                    <div class="card-header">
+                        <h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก 
+                            <img style="float: right;" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
+                        </h3>
                                                 
 
                         <!--<form method="GET" action="{{ url('/middle_price_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -230,6 +233,8 @@
                     <button id="btn_motorcycle" class="btn btn-outline-danger" >
                         <a id="btn_a_motorcycle" href="{{ url('/middle_price_motorcycle' ) }}">รถจักรยานยนต์</a>
                     </button>
+                   
+                           
                 </div>
                 
 
@@ -271,6 +276,13 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                <div class="colpagination-wrapper "> 
+                                    {!! $middleprice_motorcycles->appends([
+                                    'brand' => Request::get('brand'),
+                                    'model' => Request::get('model'),
+                                    'submodel' => Request::get('submodel'),
+                                    ])->render() !!} 
+                                </div>
                             </div>
                                 
                                 <!---------------------------------------------pc--------------------------------------------------------->

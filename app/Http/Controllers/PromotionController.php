@@ -25,14 +25,33 @@ class PromotionController extends Controller
                 ->orWhere('titel', 'LIKE', "%$keyword%")
                 ->orWhere('detail', 'LIKE', "%$keyword%")
                 ->orWhere('photo', 'LIKE', "%$keyword%")
-                ->orWhere('type', 'LIKE', "%$keyword%")
+                ->orWhere('type', 'LIKE', "car")
                 ->orWhere('time_period', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $promotion = Promotion::latest()->paginate($perPage);
+            $promotion = Promotion::latest()->Where('type', 'LIKE', "car")
+            ->paginate($perPage);
+
         }
 
-        return view('promotion.index', compact('promotion'));
+        if (!empty($keyword)) {
+            $promotion_motor = Promotion::where('company', 'LIKE', "%$keyword%")
+                ->orWhere('titel', 'LIKE', "%$keyword%")
+                ->orWhere('detail', 'LIKE', "%$keyword%")
+                ->orWhere('photo', 'LIKE', "%$keyword%")
+                ->orWhere('type', 'LIKE', "car")
+                ->orWhere('time_period', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $promotion_motor = Promotion::latest()->Where('type', 'LIKE', "motorcycle")
+            ->paginate($perPage);
+
+        }
+
+       
+        
+
+        return view('promotion.index', compact('promotion' ,'promotion_motor' ));
     }
 
     /**

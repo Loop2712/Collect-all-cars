@@ -65,7 +65,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก</h3>
+                    <div class="card-header">
+                        <h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก
+                            <img id="img_show_car" style="float:right;" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
+                        </h3>
                                                 
 
                         <!--<form method="GET" action="{{ url('/middle_price_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -161,6 +164,7 @@
                         </div>
 
                             <!----------------------------------------------------------mobile--------------------------------------------------------->
+                       
                         <div id="show_car">
                             <div class="d-block d-md-none">
                                 @foreach($Middle_price_car as $item)
