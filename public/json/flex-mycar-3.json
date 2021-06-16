@@ -107,7 +107,12 @@
                   }
                 ],
                 "offsetTop": "xl",
-                "offsetEnd": "xxl"
+                "offsetEnd": "xxl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                }
               },
               {
                 "type": "box",
@@ -121,7 +126,12 @@
                     "offsetEnd": "md"
                   }
                 ],
-                "offsetTop": "xl"
+                "offsetTop": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                }
               }
             ],
             "paddingBottom": "lg"
@@ -176,7 +186,12 @@
                   }
                 ],
                 "offsetTop": "xl",
-                "offsetEnd": "xxl"
+                "offsetEnd": "xxl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act2"
+                }
               },
               {
                 "type": "box",
@@ -190,7 +205,12 @@
                     "offsetEnd": "md"
                   }
                 ],
-                "offsetTop": "xl"
+                "offsetTop": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act2"
+                }
               }
             ],
             "paddingBottom": "lg"
@@ -245,7 +265,12 @@
                   }
                 ],
                 "offsetTop": "xl",
-                "offsetEnd": "xxl"
+                "offsetEnd": "xxl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act3"
+                }
               },
               {
                 "type": "box",
@@ -259,7 +284,12 @@
                     "offsetEnd": "md"
                   }
                 ],
-                "offsetTop": "xl"
+                "offsetTop": "xl",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act3"
+                }
               }
             ],
             "paddingBottom": "lg"
