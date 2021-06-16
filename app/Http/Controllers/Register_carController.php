@@ -397,7 +397,7 @@ class Register_carController extends Controller
             $register_car = Register_car::findOrFail($id);
             return view('register_car.edit_act', compact('register_car'));
         }else{
-            return redirect('login/line?redirectTo=edit_act', compact('register_car'));
+            return redirect('login/line');
         }
     }
 

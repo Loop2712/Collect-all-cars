@@ -103,9 +103,6 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('register_car', 'Register_carController');
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::get('/register_car/{id}/edit_act', 'Register_carController@edit_act');
-	Route::get('/edit_act', function () {
-	    return view('register_car/edit_act');
-	});
 	Route::resource('deliver', 'DeliverController')->except(['index']);
 	Route::resource('guest', 'GuestController');
 	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
