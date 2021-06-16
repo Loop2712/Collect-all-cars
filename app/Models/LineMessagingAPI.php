@@ -277,6 +277,7 @@ class LineMessagingAPI extends Model
                         // คันที่1
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
+                        $string_json = str_replace("act1",$id[0],$string_json);
 
                         // พรบ
                         // เวลาปัจจุบัน
@@ -339,6 +340,7 @@ class LineMessagingAPI extends Model
                         // คันที่2
                         $string_json = str_replace("แบนด์2", strtolower($brand[1]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
+                        $string_json = str_replace("act2",$id[1],$string_json);
                         
 
                         break;
@@ -349,6 +351,7 @@ class LineMessagingAPI extends Model
                         // คันที่1
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
+                        $string_json = str_replace("act1",$id[0],$string_json);
 
                         // เวลาปัจจุบัน
                         $date_now = date("Y-m-d "); 
@@ -439,10 +442,12 @@ class LineMessagingAPI extends Model
                         // คันที่2
                         $string_json = str_replace("แบนด์2", strtolower($brand[1]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
+                        $string_json = str_replace("act2",$id[1],$string_json);
 
                         // คันที่3
                         $string_json = str_replace("แบนด์3", strtolower($brand[2]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน3",$registration_number[2],$string_json);
+                        $string_json = str_replace("act3",$id[2],$string_json);
                         
                         break;
 
