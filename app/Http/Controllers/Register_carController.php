@@ -448,8 +448,6 @@ class Register_carController extends Controller
     public function edit_act_login(Request $request , $car_id)
     {
         $id = Auth::id();
-        echo $car_id ;
-        exit();
 
         if(Auth::check()){
             return redirect('register_car/{' . $car_id . '}/edit_act');
