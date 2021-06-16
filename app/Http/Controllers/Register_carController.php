@@ -394,9 +394,10 @@ class Register_carController extends Controller
     public function edit_act($id)
     {
         if(Auth::check()){
-            return redirect('register_car/'.$id.'/edit_act');
+            $register_car = Register_car::findOrFail($id);
+            return view('register_car.edit_act', compact('register_car'));
         }else{
-            return redirect('login/line?redirectTo=register_car/'.$id.'/edit_act');
+            return redirect('login/line?redirectTo=edit_act', compact('register_car'));
         }
     }
 
