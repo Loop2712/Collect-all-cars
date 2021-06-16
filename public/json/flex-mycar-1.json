@@ -110,7 +110,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/register_car/act1/edit_act"
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
                 }
               },
               {
@@ -129,7 +129,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/register_car/act1/edit_act"
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
                 }
               }
             ],

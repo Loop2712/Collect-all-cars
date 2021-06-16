@@ -393,12 +393,8 @@ class Register_carController extends Controller
     }
     public function edit_act($id)
     {
-        if(Auth::check()){
-            $register_car = Register_car::findOrFail($id);
-            return view('register_car.edit_act', compact('register_car'));
-        }else{
-            return redirect('login/line');
-        }
+        $register_car = Register_car::findOrFail($id);
+        return view('register_car.edit_act', compact('register_car'));
     }
 
     /**
@@ -446,6 +442,17 @@ class Register_carController extends Controller
             return redirect('register_car/create');
         }else{
             return redirect('/login/line?redirectTo=register_car/create');
+        }
+    }
+
+    public function edit_act_login(Request $request , $car_id)
+    {
+        $id = Auth::id();
+
+        if(Auth::check()){
+            return redirect('register_car/' . $car_id . '/edit_act');
+        }else{
+            return redirect('login/line?redirectTo=register_car/' . $car_id . '/edit_act');
         }
     }
 
