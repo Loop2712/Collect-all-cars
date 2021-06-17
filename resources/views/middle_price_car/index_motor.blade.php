@@ -248,7 +248,7 @@
                                                 <div class="col-3 ">
                                                     <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                 </div>
-                                                <div class="col-7 ">
+                                                <div class="col-9 ">
                                                     <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
                                                     <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
                                                     <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
