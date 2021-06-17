@@ -12,6 +12,49 @@
         "contents": [
           {
             "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/38.png",
+            "size": "5xl",
+            "aspectMode": "fit",
+            "aspectRatio": "1:1",
+            "gravity": "top",
+            "offsetTop": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ดูโปรโมชั่นเพิ่มเติม",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/promotion?search=carpromotion"
+                },
+                "size": "lg",
+                "align": "center",
+                "gravity": "center",
+                "offsetTop": "xl",
+                "weight": "bold"
+              }
+            ],
+            "backgroundColor": "#ffffff",
+            "height": "70px",
+            "offsetTop": "xxl"
+          }
+        ],
+        "paddingAll": "0px",
+        "backgroundColor": "#000000"
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
             "url": "https://www.viicheck.com/img1",
             "size": "full",
             "aspectMode": "fit",
@@ -244,44 +287,6 @@
             "offsetTop": "220px",
             "offsetStart": "100px",
             "backgroundColor": "#708090cc"
-          }
-        ],
-        "paddingAll": "0px",
-        "backgroundColor": "#000000"
-      }
-    },
-    {
-      "type": "bubble",
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/PNG/38.png",
-            "size": "5xl",
-            "aspectMode": "fit",
-            "aspectRatio": "1:1",
-            "gravity": "top",
-            "offsetTop": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "ดูโปรโมชั่นเพิ่มเติม",
-                  "uri": "https://www.viicheck.com/promotion?search=carpromotion"
-                },
-                "offsetTop": "sm"
-              }
-            ],
-            "backgroundColor": "#ffffff",
-            "height": "70px",
-            "offsetTop": "xxl"
           }
         ],
         "paddingAll": "0px",
