@@ -36,7 +36,7 @@
             ],
             "position": "absolute",
             "cornerRadius": "xxl",
-            "offsetTop": "200px",
+            "offsetTop": "220px",
             "offsetStart": "100px",
             "backgroundColor": "#708090cc"
           }
@@ -77,7 +77,7 @@
             ],
             "position": "absolute",
             "cornerRadius": "xxl",
-            "offsetTop": "200px",
+            "offsetTop": "220px",
             "offsetStart": "100px",
             "backgroundColor": "#708090cc"
           }
@@ -118,7 +118,7 @@
             ],
             "position": "absolute",
             "cornerRadius": "xxl",
-            "offsetTop": "200px",
+            "offsetTop": "220px",
             "offsetStart": "100px",
             "backgroundColor": "#708090cc"
           }
@@ -159,7 +159,7 @@
             ],
             "position": "absolute",
             "cornerRadius": "xxl",
-            "offsetTop": "200px",
+            "offsetTop": "220px",
             "offsetStart": "100px",
             "backgroundColor": "#708090cc"
           }
@@ -200,7 +200,7 @@
             ],
             "position": "absolute",
             "cornerRadius": "xxl",
-            "offsetTop": "200px",
+            "offsetTop": "220px",
             "offsetStart": "100px",
             "backgroundColor": "#708090cc"
           }
@@ -241,7 +241,7 @@
             ],
             "position": "absolute",
             "cornerRadius": "xxl",
-            "offsetTop": "200px",
+            "offsetTop": "220px",
             "offsetStart": "100px",
             "backgroundColor": "#708090cc"
           }
@@ -273,20 +273,15 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "ดูเพิ่มเติม",
+                  "label": "ดูโปรโมชั่นเพิ่มเติม",
                   "uri": "https://www.viicheck.com/promotion?search=carpromotion"
                 },
-                "style": "link",
-                "height": "sm",
-                "color": "#ffffff"
+                "offsetTop": "sm"
               }
             ],
-            "borderColor": "#ffffff",
-            "borderWidth": "medium",
-            "position": "absolute",
-            "cornerRadius": "xxl",
-            "offsetTop": "200px",
-            "offsetStart": "100px"
+            "backgroundColor": "#ffffff",
+            "height": "70px",
+            "offsetTop": "xxl"
           }
         ],
         "paddingAll": "0px",
