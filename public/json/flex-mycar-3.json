@@ -101,7 +101,7 @@
                   {
                     "type": "icon",
                     "url": "https://www.viicheck.com/img/icon/พรบ1.png",
-                    "size": "xl",
+                    "size": "3xl",
                     "margin": "md",
                     "offsetEnd": "sm"
                   }
@@ -122,7 +122,7 @@
                     "type": "icon",
                     "url": "https://www.viicheck.com/img/icon/ประกัน1.png",
                     "margin": "md",
-                    "size": "xl",
+                    "size": "3xl",
                     "offsetEnd": "md"
                   }
                 ],
@@ -180,7 +180,7 @@
                   {
                     "type": "icon",
                     "url": "https://www.viicheck.com/img/icon/พรบ2.png",
-                    "size": "xl",
+                    "size": "3xl",
                     "margin": "md",
                     "offsetEnd": "sm"
                   }
@@ -201,7 +201,7 @@
                     "type": "icon",
                     "url": "https://www.viicheck.com/img/icon/ประกัน2.png",
                     "margin": "md",
-                    "size": "xl",
+                    "size": "3xl",
                     "offsetEnd": "md"
                   }
                 ],
@@ -259,7 +259,7 @@
                   {
                     "type": "icon",
                     "url": "https://www.viicheck.com/img/icon/พรบ3.png",
-                    "size": "xl",
+                    "size": "3xl",
                     "margin": "md",
                     "offsetEnd": "sm"
                   }
@@ -280,7 +280,7 @@
                     "type": "icon",
                     "url": "https://www.viicheck.com/img/icon/ประกัน3.png",
                     "margin": "md",
-                    "size": "xl",
+                    "size": "3xl",
                     "offsetEnd": "md"
                   }
                 ],
