@@ -22,14 +22,17 @@
                             if (this.value=='4') {
                                 document.querySelector('#photo_label').classList.remove('d-none'),
                                 document.querySelector('#photo_input').classList.remove('d-none'),
+                                add_required_photo(),
                                 document.querySelector('#photo').focus();
                             }else{ 
                                 document.querySelector('#photo_label').classList.add('d-none'),
-                                document.querySelector('#photo_input').classList.add('d-none')
+                                document.querySelector('#photo_input').classList.add('d-none'),
+                                remove_required_photo();
                             }
                             if (this.value=='5') {
                                 document.querySelector('#report_drivingd_detail_label').classList.remove('d-none'),
                                 document.querySelector('#report_drivingd_detail_input').classList.remove('d-none'),
+                                remove_required_photo(),
                                 document.querySelector('#report_drivingd_detail').focus();
                             }else{ 
                                 document.querySelector('#report_drivingd_detail_label').classList.add('d-none'),
@@ -385,6 +388,20 @@
             phone_input.removeAttribute('required');
             phone_input.classList.add('d-none');
             
+
+    }
+    function add_required_photo(){ 
+
+        var photo = document.querySelector('#photo');
+        photo.setAttributeNode(document.createAttribute('required'));
+
+
+    }
+    function remove_required_photo(){ 
+
+        var photo = document.querySelector('#photo');
+
+        photo.removeAttribute('required');
 
     }
 </script>
