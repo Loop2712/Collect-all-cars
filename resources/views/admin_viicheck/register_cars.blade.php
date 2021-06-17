@@ -6,7 +6,19 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">รถลงทะเบียน Vmove / <span style="font-size: 18px;">Vmove register</span> </h3>
+                    <h3 class="card-header">
+                        รถลงทะเบียน Vmove / <span style="font-size: 18px;">Vmove register</span> 
+                        <form method="GET" action="{{ url('/report_register_cars') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                            <span class="input-group-append">
+                                <button class="btn btn-secondary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    </h3>
                         <br>
                         <div class="container">
                             <div class="row">

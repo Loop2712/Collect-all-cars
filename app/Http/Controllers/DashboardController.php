@@ -225,9 +225,21 @@ class DashboardController extends Controller
         return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest' , 'vmotercycle_desc_location' , 'vmotercycle_desc_count' , 'report_news'));
     }
 
-    public function report_register_cars()
+    public function report_register_cars(Request $request)
     {
-        $report_register_cars = Register_car::latest()->paginate(25);
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $report_register_cars = Register_car::where('brand', 'LIKE', "%$keyword%")
+                ->orWhere('generation', 'LIKE', "%$keyword%")
+                ->orWhere('registration_number', 'LIKE', "%$keyword%")
+                ->orWhere('car_type', 'LIKE', "%$keyword%")
+                ->orWhere('name', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $report_register_cars = Register_car::latest()->paginate(25);
+        }
 
         return view('admin_viicheck.register_cars', compact('report_register_cars'));
     }
