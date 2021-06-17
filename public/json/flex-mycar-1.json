@@ -99,8 +99,8 @@
                 "contents": [
                   {
                     "type": "icon",
-                    "url": "https://www.viicheck.com/img/icon/พรบ1.png",
-                    "size": "xl",
+                    "url": "https://www.viicheck.com/img/icon/tick.png",
+                    "size": "3xl",
                     "margin": "md",
                     "offsetEnd": "sm"
                   }
