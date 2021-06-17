@@ -89,7 +89,7 @@
                     </div><br>
                     
             
-                    <div class="row" style="margin-left: 2px;">
+                    <!-- <div class="row" style="margin-left: 2px;">
                             <div class="col-sm-3 col-12" > 
                             <form action="{{URL::to('/middle_price_motorcycle')}}" method="get">
                                 <select name="brand" class=" form-control" id="input_motor_brand"  onchange="showMotor_model();
@@ -134,10 +134,10 @@
                             <a class="btn btn-danger" style="padding-top:2px;" href="{{URL::to('/middle_price_motorcycle')}}" ><h6 style="color:#fff;font-size:17px ">ล้างการค้นหา</h6>  </a>
                             </div>
                         </form>
-                    </div><br>
+                    </div><br> -->
 
                 <!-- ข้อมูลรถ -->
-                <!-- <div class="col-md-12">
+                <div class="col-md-12">
                     <div class=" row"   >
                         <div class="col-12 col-md-3">
                             <form action="{{URL::to('/middle_price_motorcycle')}}" method="get">
@@ -222,7 +222,7 @@
                                 </div>
                         </form>
                     </div>
-                </div> -->
+                </div>
 
                     
 
