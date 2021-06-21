@@ -69,72 +69,12 @@
                         <h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก 
                             <img style="float: right;" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
                         </h3>
-                                                
-
-                        <!--<form method="GET" action="{{ url('/middle_price_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                    <span class="input-group-append">
-                                        <button class="btn btn-secondary" type="submit">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>-->
                             
                         <a href="{{ url('/middle_price_car/create') }}" class="d-none float-right btn btn-success btn-sm" title="Add New Middle_price_car">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
                             </a>
                         
                     </div><br>
-                    
-            
-                    <!-- <div class="row" style="margin-left: 2px;">
-                            <div class="col-sm-3 col-12" > 
-                            <form action="{{URL::to('/middle_price_motorcycle')}}" method="get">
-                                <select name="brand" class=" form-control" id="input_motor_brand"  onchange="showMotor_model();
-                                    if(this.value=='อื่นๆ'){ 
-                                        document.querySelector('#brand_input').classList.remove('d-none'),
-                                        document.querySelector('#generation_input').classList.remove('d-none'),
-                                        document.querySelector('#brand_input').focus();
-                                    }else{ 
-                                        document.querySelector('#brand_input').classList.add('d-none'),
-                                        document.querySelector('#generation_input').classList.add('d-none');}">
-                                        ;}">
-                                    @if(!empty($xx))
-                                        @foreach($xx as $item)
-                                        <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
-                                        @endforeach
-                                    @else
-                                        <option value="" selected>ยี่ห้อทั้งหมด</option> 
-                                    @endif
-                                   
-                                    {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
-                                </select>
-                            </div>
-
-                            <div class="col-sm-3 col-12"> 
-                            <br class="d-block d-md-none">
-                            <select name="model" id="input_motor_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
-                                        document.querySelector('#model_input').classList.remove('d-none'),
-                                        document.querySelector('#model_input').focus();
-                                    }else{ 
-                                        document.querySelector('#model_input').classList.add('d-none');}">
-                                    <option value="" selected>รุ่นรถทั้งหมด</option>     
-                                        
-                                        {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
-                                </select>
-                            </div>
-                           
-                            <div class="col-sm-3 col-12"> 
-                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="รุ่นย่อย" value="{{ request('sub_model') }}">
-                            </div>
-                            <div class="col-sm-3 col-12" > <br class="d-block d-md-none">
-                            <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
-                            <a class="btn btn-danger" style="padding-top:2px;" href="{{URL::to('/middle_price_motorcycle')}}" ><h6 style="color:#fff;font-size:17px ">ล้างการค้นหา</h6>  </a>
-                            </div>
-                        </form>
-                    </div><br> -->
 
                 <!-- ข้อมูลรถ -->
                 <div class="col-md-12">
@@ -278,8 +218,8 @@
                                 @endforeach
                                 <div class="colpagination-wrapper "> 
                                     {!! $middleprice_motorcycles->appends([
-                                    'brand' => Request::get('brand'),
-                                    'model' => Request::get('model'),
+                                    'brand' => Request::get('motor_brand'),
+                                    'model' => Request::get('motor_generation'),
                                     'submodel' => Request::get('submodel'),
                                     ])->render() !!} 
                                 </div>
@@ -339,8 +279,8 @@
                                     </table>
                                     <div class="colpagination-wrapper"> 
                                         {!! $middleprice_motorcycles->appends([
-                                        'brand' => Request::get('brand'),
-                                        'model' => Request::get('model'),
+                                        'brand' => Request::get('motor_brand'),
+                                        'model' => Request::get('motor_generation'),
                                         'submodel' => Request::get('submodel'),
                                         ])->render() !!} 
                                     </div>
