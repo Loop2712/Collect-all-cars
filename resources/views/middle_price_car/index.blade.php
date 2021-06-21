@@ -66,7 +66,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก
+                        <h3 style="margin-top:5px;">Department of Land Transport
                             <img id="img_show_car" style="float:right;" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
                         </h3>
                                                 
@@ -162,7 +162,7 @@
                                 <a id="btn_a_motorcycle" href="{{ url('/middle_price_motorcycle' ) }}">รถจักรยานยนต์</a>
                             </button>
                         </div>
-
+             
                             <!----------------------------------------------------------mobile--------------------------------------------------------->
                        
                         <div id="show_car">
