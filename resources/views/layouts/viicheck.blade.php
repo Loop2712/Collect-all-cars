@@ -41,6 +41,21 @@
         .main-radius{
             border-radius: 5px;
         }
+        body {
+            top: 0px !important; 
+            }
+
+        .goog-logo-link {
+                display:none !important;
+            } 
+                
+        .goog-te-gadget {
+                color: transparent !important;
+            }
+
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+            } 
     </style>
     
     
@@ -67,12 +82,16 @@
         <h6 class="d-none d-lg-block" style="padding-top: 10px; font-family: K2D, sans-serif;">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
           <i class="bi bi-phone"></i> <a  style="font-family: K2D, sans-serif;" href="tel:020277856">02-0277856</a> 
+          <div style="margin-bottom:-18px; float: right; margin-left:508px;" id="google_translate_element"></div>
+          
         </h6>
+        
         <!-- มือถือ -->
         <div class="d-block d-md-none">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
           <i class="bi bi-phone"></i> <a href="tel:020277856">02-0277856</a> 
         </div>
+        
       </div>
       
     </div>
@@ -95,13 +114,7 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
         <li>
-          <div id="google_translate_element"></div>
-            <script type="text/javascript">
-              function googleTranslateElementInit() {
-                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-              }
-            </script>
-            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+          <!-- <div id="google_translate_element"></div> -->
         </li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
         </ul>
@@ -114,13 +127,7 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
         <li>
-          <div id="google_translate_element"></div>
-            <script type="text/javascript">
-              function googleTranslateElementInit() {
-                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-              }
-            </script>
-            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+          <!-- <div id="google_translate_element"></div> -->
         </li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li class="dropdown">
@@ -298,6 +305,12 @@
     <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
     <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('js/car/main.js')}}"></script>
+    <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
+              }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 <script>
