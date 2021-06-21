@@ -185,8 +185,34 @@
 
         </div>
 
+
       </div>
     </section><!-- End Counts Section -->
+    <!-- ======= Doctors Section ======= -->
+    <section id="doctors" class="doctors">
+      <div class="container">
+
+        <div class="row">
+          <div style="margin-left: 50px;" class="col-md-5 main-shadow main-radius">
+            <div class="member d-flex align-items-start">
+              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt=""></div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5 main-shadow main-radius">
+            <div class="member d-flex align-items-start">
+              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt=""></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <center>
+          <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+      </center>
+    </section><!-- End Doctors Section -->
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
@@ -508,6 +534,31 @@
 
       </div>
     </section><!-- End Counts Section -->
+    <!-- ======= Doctors Section ======= -->
+    <section id="doctors" class="doctors">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-12 main-shadow main-radius">
+            <div class="member d-flex align-items-start">
+              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt=""></div>
+            </div>
+          </div>
+          <div class="col-12 main-shadow main-radius">
+            <div class="member d-flex align-items-start">
+              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt=""></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <center>
+          <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+      </center>
+    </section><!-- End Doctors Section -->
+
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery d-block d-md-none">
