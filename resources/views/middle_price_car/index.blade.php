@@ -133,7 +133,7 @@
                             </div>
                         </form>
                     </div>
-                    <br >
+                   <br class="d-none d-lg-block">
                     <!-- <div class="col-11 col-md-11" style="margin-top:-20px;">
                             <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
                                     <li class="nav-item" >
@@ -153,7 +153,7 @@
                                     </li>
                                 </ul>
                             </div> -->
-
+                            <hr class="d-block d-md-none" style=" height:0.7px; color:dark;">
                             <div class="col-md-12">
                             <button id="btn_car" class="btn btn-outline-danger" >
                                 <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
