@@ -262,6 +262,9 @@ class LineMessagingAPI extends Model
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance == null){
+                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                        }
                         if ($insurance <= 30 && $insurance >= 1) {
                             $string_json = str_replace("ประกัน1","warning",$string_json);
                         }
@@ -297,6 +300,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 1
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act == null){
+                            $string_json = str_replace("พรบ1","edit",$string_json);
+                        }
                         if ($act <= 30 && $act >= 1) {
                             $string_json = str_replace("พรบ1","warning",$string_json);
                         }
@@ -308,6 +314,9 @@ class LineMessagingAPI extends Model
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance == null){
+                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                        }
                         if ($insurance <= 30 && $insurance >= 1) {
                             $string_json = str_replace("ประกัน1","warning",$string_json);
                         }
@@ -320,6 +329,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 2
                         $act2 = (strtotime($dtae_act2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act2 == null){
+                            $string_json = str_replace("พรบ2","edit",$string_json);
+                        }
                         if ($act2 <= 30 && $act2 >= 1) {
                             $string_json = str_replace("พรบ2","warning",$string_json);
                         }
@@ -331,6 +343,9 @@ class LineMessagingAPI extends Model
 
                         $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance2 == null){
+                            $string_json = str_replace("ประกัน2","edit",$string_json);
+                        }
                         if ($insurance2 <= 30 && $insurance2 >= 1) {
                             $string_json = str_replace("ประกัน2","warning",$string_json);
                         }
@@ -376,6 +391,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 1
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act == null){
+                            $string_json = str_replace("พรบ1","edit",$string_json);
+                        }
                         if ($act <= 30 && $act >= 1) {
                             $string_json = str_replace("พรบ1","warning",$string_json);
                         }
@@ -387,6 +405,9 @@ class LineMessagingAPI extends Model
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance == null){
+                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                        }
                         if ($insurance <= 30 && $insurance >= 1) {
                             $string_json = str_replace("ประกัน1","warning",$string_json);
                         }
@@ -399,6 +420,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 2
                         $act2 = (strtotime($dtae_act2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act2 == null){
+                            $string_json = str_replace("พรบ2","edit",$string_json);
+                        }
                         if ($act2 <= 30 && $act2 >= 1) {
                             $string_json = str_replace("พรบ2","warning",$string_json);
                         }
@@ -410,6 +434,9 @@ class LineMessagingAPI extends Model
 
                         $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance2 == null){
+                            $string_json = str_replace("ประกัน2","edit",$string_json);
+                        }
                         if ($insurance2 <= 30 && $insurance2 >= 1) {
                             $string_json = str_replace("ประกัน2","warning",$string_json);
                         }
@@ -422,6 +449,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 3
                         $act3 = (strtotime($dtae_act3) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act3 == null){
+                            $string_json = str_replace("พรบ3","edit",$string_json);
+                        }
                         if ($act3 <= 30 && $act3 >= 1) {
                             $string_json = str_replace("พรบ3","warning",$string_json);
                         }
@@ -433,6 +463,9 @@ class LineMessagingAPI extends Model
 
                         $insurance3 = (strtotime($dtae_insurance3) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance3 == null){
+                            $string_json = str_replace("ประกัน3","edit",$string_json);
+                        }
                         if ($insurance3 <= 30 && $insurance3 >= 1) {
                             $string_json = str_replace("ประกัน3","warning",$string_json);
                         }
@@ -503,6 +536,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act == null){
+                            $string_json = str_replace("พรบ1","edit",$string_json);
+                        }
                         if ($act <= 30 && $act >= 1) {
                             $string_json = str_replace("พรบ1","warning",$string_json);
                         }
@@ -514,6 +550,9 @@ class LineMessagingAPI extends Model
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance == null){
+                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                        }
                         if ($insurance <= 30 && $insurance >= 1) {
                             $string_json = str_replace("ประกัน1","warning",$string_json);
                         }
@@ -548,6 +587,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 1
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act == null){
+                            $string_json = str_replace("พรบ1","edit",$string_json);
+                        }
                         if ($act <= 30 && $act >= 1) {
                             $string_json = str_replace("พรบ1","warning",$string_json);
                         }
@@ -559,6 +601,9 @@ class LineMessagingAPI extends Model
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance == null){
+                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                        }
                         if ($insurance <= 30 && $insurance >= 1) {
                             $string_json = str_replace("ประกัน1","warning",$string_json);
                         }
@@ -571,6 +616,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 2
                         $act2 = (strtotime($dtae_act2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act2 == null){
+                            $string_json = str_replace("พรบ2","edit",$string_json);
+                        }
                         if ($act2 <= 30 && $act2 >= 1) {
                             $string_json = str_replace("พรบ2","warning",$string_json);
                         }
@@ -582,6 +630,9 @@ class LineMessagingAPI extends Model
 
                         $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance2 == null){
+                            $string_json = str_replace("ประกัน2","edit",$string_json);
+                        }
                         if ($insurance2 <= 30 && $insurance2 >= 1) {
                             $string_json = str_replace("ประกัน2","warning",$string_json);
                         }
@@ -625,6 +676,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 1
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act == null){
+                            $string_json = str_replace("พรบ1","edit",$string_json);
+                        }
                         if ($act <= 30 && $act >= 1) {
                             $string_json = str_replace("พรบ1","warning",$string_json);
                         }
@@ -636,6 +690,9 @@ class LineMessagingAPI extends Model
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance == null){
+                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                        }
                         if ($insurance <= 30 && $insurance >= 1) {
                             $string_json = str_replace("ประกัน1","warning",$string_json);
                         }
@@ -648,6 +705,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 2
                         $act2 = (strtotime($dtae_act2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act2 == null){
+                            $string_json = str_replace("พรบ2","edit",$string_json);
+                        }
                         if ($act2 <= 30 && $act2 >= 1) {
                             $string_json = str_replace("พรบ2","warning",$string_json);
                         }
@@ -659,6 +719,9 @@ class LineMessagingAPI extends Model
 
                         $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance2 == null){
+                            $string_json = str_replace("ประกัน2","edit",$string_json);
+                        }
                         if ($insurance2 <= 30 && $insurance2 >= 1) {
                             $string_json = str_replace("ประกัน2","warning",$string_json);
                         }
@@ -671,6 +734,9 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 3
                         $act3 = (strtotime($dtae_act3) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_act3 == null){
+                            $string_json = str_replace("พรบ3","edit",$string_json);
+                        }
                         if ($act3 <= 30 && $act3 >= 1) {
                             $string_json = str_replace("พรบ3","warning",$string_json);
                         }
@@ -682,6 +748,9 @@ class LineMessagingAPI extends Model
 
                         $insurance3 = (strtotime($dtae_insurance3) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        if ($dtae_insurance3 == null){
+                            $string_json = str_replace("ประกัน3","edit",$string_json);
+                        }
                         if ($insurance3 <= 30 && $insurance3 >= 1) {
                             $string_json = str_replace("ประกัน3","warning",$string_json);
                         }
