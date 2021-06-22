@@ -1,17 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br><br><br>
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">Create New Organization</div>
                     <div class="card-body">
-                        <a href="{{ url('/organization') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+                        <!-- <a href="{{ url('/organization') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a> -->
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">

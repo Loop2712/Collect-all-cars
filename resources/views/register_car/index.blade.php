@@ -45,7 +45,11 @@
 @section('content')
     <div class="container" style="margin-top:168px; ">
         <div class="row">
-        @include('layouts.sidebar')
+        @if(!empty(Auth::user()->organization))
+            @include('layouts.organization_sidebar')
+        @else
+            @include('layouts.sidebar')
+        @endif
 
             <div class="col-md-9 order-lg-1 order-2" >
                 <div class="card">

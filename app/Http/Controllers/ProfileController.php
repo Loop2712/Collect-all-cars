@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Register_car;
+use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -20,6 +21,11 @@ class ProfileController extends Controller
     {
         $id = Auth::id();
         $data = User::findOrFail($id);
+
+        $organization = "";
+        if (!empty($data['organization'])) {
+            $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
+        }
 
         $date_now = date("d-m-Y"); 
 
@@ -48,7 +54,7 @@ class ProfileController extends Controller
             
         }
 
-        return view('ProfileUser/Profile' , compact('data' , 'month' , 'days') );
+        return view('ProfileUser/Profile' , compact('data' , 'month' , 'days','organization') );
 
 
 

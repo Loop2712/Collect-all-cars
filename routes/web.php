@@ -190,4 +190,4 @@ Route::get('/tourist_police', 'SosController@tourist_police');
 
 // END SosController
 
-Route::resource('organization', 'OrganizationController');
+Route::resource('organization', 'OrganizationController')->except(['index','show']);

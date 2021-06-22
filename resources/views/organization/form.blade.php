@@ -1,11 +1,11 @@
 <div class="form-group {{ $errors->has('juristicID') ? 'has-error' : ''}}">
     <label for="juristicID" class="control-label">{{ 'Juristicid' }}</label>
-    <input class="form-control" name="juristicID" type="text" id="juristicID" value="{{ isset($organization->juristicID) ? $organization->juristicID : ''}}" >
+    <input class="form-control" name="juristicID" type="text" id="juristicID" value="{{ isset($organization->juristicID) ? $organization->juristicID : ''}}" readonly>
     {!! $errors->first('juristicID', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
     <label for="juristicNameTH" class="control-label">{{ 'Juristicnameth' }}</label>
-    <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($organization->juristicNameTH) ? $organization->juristicNameTH : ''}}" >
+    <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($organization->juristicNameTH) ? $organization->juristicNameTH : ''}}" readonly>
     {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('juristicNameEN') ? 'has-error' : ''}}">
@@ -111,5 +111,5 @@
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
 </div>

@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br><br><br>
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
+            @include('layouts.organization_sidebar')
 
             <div class="col-md-9">
                 <div class="card">
