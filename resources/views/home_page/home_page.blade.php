@@ -189,7 +189,7 @@
       </div>
     </section><!-- End Counts Section -->
     <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors">
+    <!-- <section id="doctors" class="doctors">
       <div class="container">
 
         <div class="row">
@@ -212,7 +212,8 @@
       <center>
           <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
       </center>
-    </section><!-- End Doctors Section -->
+    </section> -->
+    <!-- End Doctors Section -->
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
@@ -535,7 +536,7 @@
       </div>
     </section><!-- End Counts Section -->
     <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors">
+    <!-- <section id="doctors" class="doctors">
       <div class="container">
 
         <div class="row">
@@ -557,7 +558,8 @@
       <center>
           <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
       </center>
-    </section><!-- End Doctors Section -->
+    </section> -->
+    <!-- End Doctors Section -->
 
 
     <!-- ======= Gallery Section ======= -->
@@ -709,7 +711,6 @@
               </div>
             </a>
           </div>
-
         </div>
 
       </div>
