@@ -248,17 +248,17 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
-                        if (empty($act)){
+                        if ($act == null){
                             $string_json = str_replace("พรบ1","edit",$string_json);
                         }
-                        // if ($act <= 30 && $act >= 1) {
-                        //     $string_json = str_replace("พรบ1","warning",$string_json);
-                        // }
-                        // if ($act <= 0){
-                        //     $string_json = str_replace("พรบ1","wrong",$string_json);
-                        // }else{
-                        //     $string_json = str_replace("พรบ1","tick",$string_json);
-                        // }
+                        if ($act <= 30 && $act >= 1) {
+                            $string_json = str_replace("พรบ1","warning",$string_json);
+                        }
+                        if ($act <= 0){
+                            $string_json = str_replace("พรบ1","wrong",$string_json);
+                        }else{
+                            $string_json = str_replace("พรบ1","tick",$string_json);
+                        }
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
