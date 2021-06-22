@@ -85,7 +85,7 @@
               <i class="bi bi-phone"></i> <a  style="font-family: K2D, sans-serif;" href="tel:020277856">02-0277856</a>
             </h6>
             <h3>
-              <div style="margin-top:20px; float: right; margin-left:508px;">
+              <div style="margin-top:-30px; float: right; margin-left:908px;">
                 <div id="google_translate_element"></div>
               </div>
             </h3>
