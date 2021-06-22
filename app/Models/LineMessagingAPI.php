@@ -255,7 +255,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("พรบ1","warning",$string_json);
                         }
                         if ($act <= 0){
-                            $string_json = str_replace("พรบ1","wrong",$string_json);
+                            $string_json = str_replace("พรบ1","edit",$string_json);
                         }else{
                             $string_json = str_replace("พรบ1","tick",$string_json);
                         }
