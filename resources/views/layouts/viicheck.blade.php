@@ -81,10 +81,16 @@
         </h4>
         <h6 class="d-none d-lg-block" style="padding-top: 10px; font-family: K2D, sans-serif;">
           <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
-          <i class="bi bi-phone"></i> <a  style="font-family: K2D, sans-serif;" href="tel:020277856">02-0277856</a> 
-          <div style="margin-bottom:-18px; float: right; margin-left:508px;" id="google_translate_element"></div>
-          
+          <i class="bi bi-phone"></i> <a  style="font-family: K2D, sans-serif;" href="tel:020277856">02-0277856</a>
         </h6>
+        <h3>
+          <div style="margin-top:20px; float: right; margin-left:508px;">
+            <div id="google_translate_element"></div>
+          </div>
+        </h3>
+        <h3 style="margin-top:40px;">
+          &nbsp;<i class="fas fa-language float-right"></i>
+        </h3>
         
         <!-- มือถือ -->
         <div class="d-block d-md-none">
