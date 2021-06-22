@@ -265,6 +265,7 @@
                       <b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b>
                     </a>
                     <br><br>
+                    <div id="google_translate_element2"></div>
                 </div>
 
                 
@@ -318,6 +319,11 @@
     <script type="text/javascript">
               function googleTranslateElementInit() {
                 new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
+              }
+    </script>
+    <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element2');
               }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
