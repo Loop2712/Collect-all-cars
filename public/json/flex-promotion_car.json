@@ -275,7 +275,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/promotion?search=carpromotion"
+                  "uri": "https://www.viicheck.com/promotion?pomo_type=carpromotion"
                 },
                 "size": "lg",
                 "align": "center",
