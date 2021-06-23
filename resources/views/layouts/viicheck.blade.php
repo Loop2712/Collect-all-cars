@@ -90,7 +90,7 @@
               </div>
             </h3>
             <h3 style="margin-top:40px;">
-              &nbsp;<i class="fas fa-language float-right"></i>
+            &nbsp;&nbsp;<i class="fas fa-language float-right"></i>
             </h3>
         </div>
 

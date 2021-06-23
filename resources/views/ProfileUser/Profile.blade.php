@@ -63,12 +63,12 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <center>
-                                                        <br><br><h4>ข้อมูลพื้นฐาน <br> Basic information<hr style=" height:0.3px; color:#778899;"> </h4>
+                                                        <br><br><h4>ข้อมูลพื้นฐาน <hr style=" height:0.3px; color:#778899;"> </h4>
                                                     </center>
                                                 </div>
                                                 <div class="col-12">
                                                     <center>
-                                                    <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
+                                                    <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้ </b> 
                                                     <br>
                                                     <span class="text-primary">{{ $data->username }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                     </center>
@@ -76,35 +76,35 @@
                                      
                                                 <div class="col-12">
                                                     <center>
-                                                    <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ / name </b> 
+                                                    <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ</b> 
                                                     <br>
                                                     <span class="text-primary">{{ $data->name }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                     </center>
                                                 </div>
                                                 <div class="col-12">
                                                     <center>
-                                                    <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด / Birthday </b> 
+                                                    <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด</b> 
                                                     <br>
                                                     <span class="text-primary">{{ $data->brith }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                     </center>
                                                 </div>
                                                 <div class="col-12">
                                                     <center>
-                                                    <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ / Sex </b> 
+                                                    <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ</b> 
                                                     <br>
                                                     <span class="text-primary">{{ $data->sex }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                     </center>
                                                 </div>
                                                 <div class="col-12">
                                                     <center>
-                                                    <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
+                                                    <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล</b> 
                                                     <br>
                                                     <span class="text-primary">{{ $data->email }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                     </center>
                                                 </div>
                                                 <div class="col-12">
                                                     <center>
-                                                    <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
+                                                    <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์</b> 
                                                     <br>
                                                     <span class="text-primary">{{ $data->phone }}<hr style=" height:0.3px; color:#778899;"></span>
                                                     </center>
@@ -196,37 +196,37 @@
                                                 <div class="col-md-12" style="margin:-40px 0px 0px 0px">
                                                 
                                                     <center>
-                                                        <br><br><h4>ข้อมูลพื้นฐาน / Basic information<hr style=" height:0.1px; color:#778899;"></h4>
+                                                        <br><br><h4>ข้อมูลพื้นฐาน<hr style=" height:0.1px; color:#778899;"></h4>
                                                     </center>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
+                                                    <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้</b> 
                                                     &nbsp;&nbsp;
                                                     <span class="text-primary">{{ $data->username }}<hr style=" height:0.1px; color:#778899;"> </span>
                                                 </div><br>
                                      
                                                 <div class="col-md-12">
-                                                    <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ / name </b> 
+                                                    <i class="far fa-address-card"></i> &nbsp;<b>ชื่อ</b> 
                                                     &nbsp;&nbsp;
                                                     <span class="text-primary">{{ $data->name }}<hr style=" height:0.1px; color:#778899;"> </span>
                                                 </div>
                                                 <div class="col-md-7">
-                                                    <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด / Birthday </b> 
+                                                    <i class="fas fa-birthday-cake"></i> &nbsp;<b>วันเกิด</b> 
                                                     &nbsp;&nbsp;
                                                     <span class="text-primary">{{ $data->brith }}<hr style=" height:0.1px; color:#778899;"> </span>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ / Sex </b> 
+                                                    <i class="fas fa-venus-mars"></i></i> &nbsp;<b>เพศ</b> 
                                                     &nbsp;&nbsp;
                                                     <span class="text-primary">{{ $data->sex }}<hr style=" height:0.1px; color:#778899;"> </span>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
+                                                    <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล</b> 
                                                     &nbsp;&nbsp;
                                                     <span class="text-primary">{{ $data->email }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
+                                                    <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์</b> 
                                                     &nbsp;&nbsp;
                                                     <span class="text-primary">{{ $data->phone }}<hr style=" height:0.3px; color:#778899;"></span>
                                                 </div>
@@ -321,12 +321,12 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <center>
-                                                                    <br><br><h4>ข้อมูลพื้นฐาน <br> Basic information<hr style=" height:0.3px; color:#778899;"> </h4>
+                                                                    <br><br><h4>ข้อมูลพื้นฐาน<hr style=" height:0.3px; color:#778899;"> </h4>
                                                                 </center>
                                                             </div>
                                                             <div class="col-12">
                                                                 <center>
-                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
+                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้</b> 
                                                                 <br>
                                                                 <span class="text-primary">{{ $data->username }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                                 </center>
@@ -334,21 +334,21 @@
                                                  
                                                             <div class="col-12">
                                                                 <center>
-                                                                <i class="far fa-address-card"></i> &nbsp;<b>ชื่อองค์กร / Name organization </b> 
+                                                                <i class="far fa-address-card"></i> &nbsp;<b>ชื่อองค์กร</b> 
                                                                 <br>
                                                                 <span class="text-primary">{{ $itemkey->juristicNameTH }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                                 </center>
                                                             </div>
                                                             <div class="col-12">
                                                                 <center>
-                                                                <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
+                                                                <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล</b> 
                                                                 <br>
                                                                 <span class="text-primary">{{ $itemkey->mail }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                                 </center>
                                                             </div>
                                                             <div class="col-12">
                                                                 <center>
-                                                                <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
+                                                                <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์</b> 
                                                                 <br>
                                                                 <span class="text-primary">{{ $itemkey->phone }}<hr style=" height:0.3px; color:#778899;"></span>
                                                                 </center>
@@ -408,27 +408,27 @@
                                                             <div class="col-md-12" style="margin:-40px 0px 0px 0px">
                                                             
                                                                 <center>
-                                                                    <br><br><h4>ข้อมูลพื้นฐาน / Basic information<hr style=" height:0.1px; color:#778899;"></h4>
+                                                                    <br><br><h4>ข้อมูลพื้นฐาน<hr style=" height:0.1px; color:#778899;"></h4>
                                                                 </center>
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้  / Username </b> 
+                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้</b> 
                                                                 &nbsp;&nbsp;
                                                                 <span class="text-primary">{{ $data->username }}<hr style=" height:0.1px; color:#778899;"> </span>
                                                             </div><br>
                                                  
                                                             <div class="col-md-12">
-                                                                <i class="far fa-address-card"></i> &nbsp;<b>ชื่อองค์กร / Name organization </b> 
+                                                                <i class="far fa-address-card"></i> &nbsp;<b>ชื่อองค์กร</b> 
                                                                 &nbsp;&nbsp;
                                                                 <span class="text-primary">{{ $itemkey->juristicNameTH }}<hr style=" height:0.1px; color:#778899;"> </span>
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล  / E-mail </b> 
+                                                                <i class="far fa-envelope"></i></i> &nbsp;<b>อีเมล</b> 
                                                                 &nbsp;&nbsp;
                                                                 <span class="text-primary">{{ $itemkey->mail }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์ / Phone</b> 
+                                                                <i class="fas fa-phone-alt"></i></i> &nbsp;<b>โทรศัพท์</b> 
                                                                 &nbsp;&nbsp;
                                                                 <span class="text-primary">{{ $itemkey->phone }}<hr style=" height:0.3px; color:#778899;"></span>
                                                             </div>

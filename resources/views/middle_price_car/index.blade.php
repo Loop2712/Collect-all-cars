@@ -66,10 +66,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 style="margin-top:5px;">Department of Land Transport
+                        <h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก
                             <img id="img_show_car" style="float:right;" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
+                            
                         </h3>
-                                                
+                                          
 
                         <!--<form method="GET" action="{{ url('/middle_price_car') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                 <div class="input-group">
@@ -87,6 +88,15 @@
                             </a>
                         
                     </div><br>
+                    <div class="col-md-12">
+                                <button id="btn_car" class="btn btn-outline-danger" >
+                                    <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
+                                </button>
+                                <button id="btn_motorcycle" class="btn btn-outline-danger" >
+                                    <a id="btn_a_motorcycle" href="{{ url('/middle_price_motorcycle' ) }}">รถจักรยานยนต์</a>
+                                </button>
+                        </div>
+                        <br>
                     <div class="row" style="margin-left: 2px;">
                             <div class="col-sm-3 col-12" > 
                             <form action="{{URL::to('/middle_price_car')}}" method="get">
@@ -133,7 +143,7 @@
                             </div>
                         </form>
                     </div>
-                   <br class="d-none d-lg-block">
+          
                     <!-- <div class="col-11 col-md-11" style="margin-top:-20px;">
                             <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
                                     <li class="nav-item" >
@@ -153,18 +163,12 @@
                                     </li>
                                 </ul>
                             </div> -->
-                            <hr class="d-block d-md-none" style=" height:0.7px; color:dark;">
-                            <div class="col-md-12">
-                            <button id="btn_car" class="btn btn-outline-danger" >
-                                <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
-                            </button>
-                            <button id="btn_motorcycle" class="btn btn-outline-danger" >
-                                <a id="btn_a_motorcycle" href="{{ url('/middle_price_motorcycle' ) }}">รถจักรยานยนต์</a>
-                            </button>
-                        </div>
+                           
+                        
              
                             <!----------------------------------------------------------mobile--------------------------------------------------------->
-                       
+                            
+                            <br class="d-block d-md-none">
                         <div id="show_car">
                             <div class="d-block d-md-none">
                                 @foreach($Middle_price_car as $item)

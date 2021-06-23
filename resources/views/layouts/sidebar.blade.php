@@ -3,7 +3,7 @@
         <div class="card-body" style="padding: 2rem;">
         <div class="call__text">
             <a href="{{ url('/profile' ) }}">
-            <img width="34" style="margin-left: -8px;" src="{{ url('/img/stickerline/PNG/tab.png') }}"> ข้อมูลส่วนบุคคล </a>
+            <img width="34" style="margin-left: -8px;" src="{{ url('/img/stickerline/PNG/tab.png') }}"> ข้อมูลส่วนบุคคลd </a>
         </div><br>
         <div class="call__text">
             <a href="{{ url('/register_car' ) }}">

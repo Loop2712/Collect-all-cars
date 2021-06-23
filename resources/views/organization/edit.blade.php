@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">แก้ไขข้อมูลองค์กร {{ $organization->juristicNameTH }}</div>
                     <div class="card-body">
