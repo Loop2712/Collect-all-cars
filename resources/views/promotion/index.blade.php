@@ -2,10 +2,10 @@
 @section('content')
     <div class="container" style="margin-top:168px;">
         @if(Request::get('pomo_type') == "car")
-            <a class="d-none" id="btn_click_pomo" onclick="document.getElementById('pomo_car').click();">btn_click_pomo_car</a>
+            <a class="d-none" id="btn_click_pomo" onclick="document.getElementById('pomo_car').click();document.getElementById('pomo_car_m').click();">btn_click_pomo_car</a>
         @endif
         @if(Request::get('pomo_type') == "motorcycle")
-            <a class="d-none" id="btn_click_pomo" onclick="document.getElementById('pomo_mortor').click();">btn_click_pomo_mortor</a>
+            <a class="d-none" id="btn_click_pomo" onclick="document.getElementById('pomo_mortor').click();document.getElementById('pomo_mortor_m').click();">btn_click_pomo_mortor</a>
         @endif
         <div class="row">
             <div class="col-md-12"> 
@@ -153,7 +153,7 @@
                     <div class="col-12 col-md-11" style="margin-top:20px;">
                         <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
                             <li class="nav-item" >
-                            <a class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
+                            <a id="pomo_car_m" class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
                                     document.querySelector('#show_car_m').classList.remove('d-none'),
                                     document.querySelector('#show_mortor_m').classList.add('d-none');">
                                     <b style="font-size: 15px; text-center;">รถยนต์</b>
@@ -161,7 +161,7 @@
                             </li>
                           &nbsp;
                             <li class="nav-item d-block d-md-none" >
-                            <a class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="
+                            <a id="pomo_mortor_m" class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="
                                         document.querySelector('#show_car_m').classList.add('d-none'),
                                         document.querySelector('#show_mortor_m').classList.remove('d-none');">
                                 <b style="font-size: 15px;">รถจักรยานยนต์</b>
