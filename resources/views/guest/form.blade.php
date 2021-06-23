@@ -263,7 +263,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START"); 
+        // console.log("START"); 
     });
     function check_registration(){
         let registration = document.querySelector("#registration");
@@ -303,21 +303,31 @@
         fetch("{{ url('/') }}/api/check_registration/"+registration.value+"/province")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result.length);
                 //UPDATE SELECT OPTION
-                // let county = document.querySelector("#county");
-                //     county.innerHTML = "";
+                if (result.length == 1 ) {
+                    let county = document.querySelector("#county");
+                    county.innerHTML = "";
 
-                let option = document.createElement("option");
+                    for(let item of result){
+                        let option = document.createElement("option");
+                        option.text = item.province;
+                        option.value = item.province;
+                        county.add(option);                
+                    }
+                }else{ 
+                    let option = document.createElement("option");
                     option.text = "- กรุณาเลือกจังหวัด / Select province -";
                     option.value = "- กรุณาเลือกจังหวัด / Select province -";
                     
-                for(let item of result){
-                    let option = document.createElement("option");
-                    option.text = item.province;
-                    option.value = item.province;
-                    county.add(option);                
+                    for(let item of result){
+                        let option = document.createElement("option");
+                        option.text = item.province;
+                        option.value = item.province;
+                        county.add(option);                
+                    }
                 }
+                
                 check_time();
             });
     }
