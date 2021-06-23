@@ -69,29 +69,29 @@
       <div class="contact-info d-flex align-items-center">
         <!-- คอม -->
         <div class="d-none d-lg-block">
-            <h4  style="margin:0px 5px 0px 10px; "  >
-              <span><a href="https://www.facebook.com/ViiCheck-100959585396310" target="bank"><i  class="fab fa-facebook text-primary"></i></a></span>
-            </h4>
-            <h4>
-              <a href="https://line.me/R/ti/p/%40702ytkls" target="bank"> 
-                <span class='fa-stack' style="font-size:15px; margin-bottom:-2px; ">
-                <img src="{{ asset('/img/icon_login/icon-line.png') }}" style="width: 26px;" />
-                </span>
+          <h6 style="margin-bottom:-8px;">
+            <span>
+              <a href="https://www.facebook.com/ViiCheck-100959585396310" target="bank">
+                <i style="font-size:22px;" class="fab fa-facebook text-primary"></i>
               </a>
-              
-            </h4>
-            <h6 style="padding-top: 10px; font-family: K2D, sans-serif;">
-              <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
-              <i class="bi bi-phone"></i> <a  style="font-family: K2D, sans-serif;" href="tel:020277856">02-0277856</a>
-            </h6>
-            <h3>
-              <div style="margin-top:-30px; float: right; margin-left:908px;">
+              <a href="https://line.me/R/ti/p/%40702ytkls" target="bank"> 
+                <i style="font-size:23px;" class="fab fa-line text-success"></i>
+              </a>
+            </span>
+
+            <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
+            <i class="bi bi-phone"></i> <a  style="font-family: K2D, sans-serif;" href="tel:020277856">02-0277856</a>
+
+            <span>
+              <div style="margin-top:-25px; margin-left:955px;position: absolute;">
                 <div id="google_translate_element"></div>
               </div>
-            </h3>
-            <h3 style="margin-top:40px;">
-            &nbsp;&nbsp;<i class="fas fa-language float-right"></i>
-            </h3>
+              <div style="margin-top:-12px; margin-left:1070px;position: absolute;">
+                <i style="font-size:30px;" class="fas fa-language float-right"></i>
+              </div>
+            </span>
+          </h6>
+
         </div>
 
         <!-- มือถือ -->
