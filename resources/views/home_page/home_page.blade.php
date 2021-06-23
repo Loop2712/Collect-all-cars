@@ -365,6 +365,26 @@
             </a>
           </div>
 
+          <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
+            <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
+              <div class="icon-box">
+                <img width="60%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
+                <br>
+                <button type="button" class="btn btn-danger">Download</button>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
+            <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
+              <div class="icon-box">
+                <img width="60%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
+                <br>
+                <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
+              </div>
+            </a>
+          </div>
+
         </div>
 
       </div>
@@ -711,6 +731,27 @@
               </div>
             </a>
           </div>
+
+          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
+            <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download>
+              <div class="icon-box" style="padding: 40px 15px;">
+                <img width="80%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
+                <br>
+                <button type="button" class="btn btn-danger">Download</button>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
+            <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
+              <div class="icon-box" style="padding: 40px 15px;">
+                <img width="80%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
+                <br>
+                <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
+              </div>
+            </a>
+          </div>
+
         </div>
 
       </div>

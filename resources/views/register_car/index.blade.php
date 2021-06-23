@@ -55,7 +55,13 @@
                 <div class="card">
                 
                     <div class="card-header">
-                        <span style="font-size: 25px;" class="text-dark"><b>รถของฉัน</b></span>
+
+                        @if(!empty(Auth::user()->organization))
+                            <span style="font-size: 25px;" class="text-dark"><b>รถองค์กร</b></span>
+                        @else
+                            <span style="font-size: 25px;" class="text-dark"><b>รถของฉัน</b></span>
+                        @endif
+                        
                         <a href="{{ url('/register_car/create') }}" class="float-right btn btn-danger main-shadow main-radius" title="Add New Register_car">
                             <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
                         </a>
