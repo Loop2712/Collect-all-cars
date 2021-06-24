@@ -1,4 +1,4 @@
-@extends('layouts.viicheck')
+@extends('layouts.mail_to')
 
 @section('content')
 	<div class="container">
@@ -6,6 +6,7 @@
 			<!-- คอม -->
 			<div class="col-md-12">
 				<div class="row">
+					<div id="google_translate_element"></div>
 					<div class="col-md-8" style="font-size:18px;">
 						<h3>เรียน บริษัท <b>{{ $data["juristicNameTH"] }}</b></h3>
 						
@@ -45,4 +46,10 @@
 			</div>
 		</div>
 	</div>   
+	<script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
+              }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 @endsection
