@@ -161,7 +161,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label  class="control-label"><b>สถานะ</b></label>
+                    <label  class="control-label"><b>สถานะนิติบุคคล</b></label>
                     <div class="form-group {{ $errors->has('juristicStatus') ? 'has-error' : ''}}">
                         <input class="form-control" name="juristicStatus" type="text" id="juristicStatus" value="{{ isset($organization->juristicStatus) ? $organization->juristicStatus : ''}}" >
                         {!! $errors->first('juristicStatus', '<p class="help-block">:message</p>') !!}
@@ -175,14 +175,14 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label  class="control-label"><b>ประกอบธุรกิจ</b></label>
+                    <label  class="control-label"><b>วัตถุประสงค์</b></label>
                     <div class="form-group {{ $errors->has('standardObjective') ? 'has-error' : ''}}">
                         <input class="form-control" name="standardObjective" type="text" id="standardObjective" value="{{ isset($organization->standardObjective) ? $organization->standardObjective : ''}}" >
                         {!! $errors->first('standardObjective', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label  class="control-label"><b>รายละเอียดการประกอบธุรกิจ</b></label>
+                    <label  class="control-label"><b>รายละเอียดวัตถุประสงค์จัดตั้ง</b></label>
                     <div class="form-group {{ $errors->has('standardObjectiveDetail') ? 'has-error' : ''}}">
                         <input class="form-control" name="standardObjectiveDetail" type="text" id="standardObjectiveDetail" value="{{ isset($organization->standardObjectiveDetail) ? $organization->standardObjectiveDetail : ''}}" >
                         {!! $errors->first('standardObjectiveDetail', '<p class="help-block">:message</p>') !!}
@@ -205,35 +205,35 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>ชื่อที่อยู่</b></label>
+                <label  class="control-label"><b>ชื่อสาขา</b></label>
                 <div class="form-group {{ $errors->has('addressName') ? 'has-error' : ''}}">
                     <input class="form-control" name="addressName" type="text" id="addressName" value="{{ isset($organization->addressName) ? $organization->addressName : ''}}" >
                     {!! $errors->first('addressName', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>ชื่ออาคาร</b></label>
+                <label  class="control-label"><b>อาคาร</b></label>
                 <div class="form-group {{ $errors->has('buildingName') ? 'has-error' : ''}}">
                     <input class="form-control" name="buildingName" type="text" id="buildingName" value="{{ isset($organization->buildingName) ? $organization->buildingName : ''}}" >
                     {!! $errors->first('buildingName', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>หมายเลขห้อง</b></label>
+                <label  class="control-label"><b>เลขที่ห้อง</b></label>
                 <div class="form-group {{ $errors->has('roomNo') ? 'has-error' : ''}}">
                     <input class="form-control" name="roomNo" type="text" id="roomNo" value="{{ isset($organization->roomNo) ? $organization->roomNo : ''}}" >
                     {!! $errors->first('roomNo', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>ชั้น</b></label>
+                <label  class="control-label"><b>ชั้นที่</b></label>
                 <div class="form-group {{ $errors->has('floor') ? 'has-error' : ''}}">
                     <input class="form-control" name="floor" type="text" id="floor" value="{{ isset($organization->floor) ? $organization->floor : ''}}" >
                     {!! $errors->first('floor', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>ชื่อหมู่บ้าน</b></label>
+                <label  class="control-label"><b>หมู่บ้าน</b></label>
                 <div class="form-group {{ $errors->has('villageName') ? 'has-error' : ''}}">
                     <input class="form-control" name="villageName" type="text" id="villageName" value="{{ isset($organization->villageName) ? $organization->villageName : ''}}" >
                     {!! $errors->first('villageName', '<p class="help-block">:message</p>') !!}
@@ -247,7 +247,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>หมู่</b></label>
+                <label  class="control-label"><b>หมู่ที่</b></label>
                 <div class="form-group {{ $errors->has('moo') ? 'has-error' : ''}}">
                     <input class="form-control" name="moo" type="text" id="moo" value="{{ isset($organization->moo) ? $organization->moo : ''}}" >
                     {!! $errors->first('moo', '<p class="help-block">:message</p>') !!}
@@ -268,14 +268,14 @@
             </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>ตำบล</b></label>
+                <label  class="control-label"><b>แขวง / ตำบล</b></label>
                 <div class="form-group {{ $errors->has('subDistrict') ? 'has-error' : ''}}">
                 <input class="form-control" name="subDistrict" type="text" id="subDistrict" value="{{ isset($organization->subDistrict) ? $organization->subDistrict : ''}}" >
                 {!! $errors->first('subDistrict', '<p class="help-block">:message</p>') !!}
             </div>
             </div>
             <div class="col-12 col-md-6">
-                <label  class="control-label"><b>อำเภอ</b></label>
+                <label  class="control-label"><b>เขต / อำเภอ</b></label>
                 <div class="form-group {{ $errors->has('sdistrict') ? 'has-error' : ''}}">
                     <input class="form-control" name="sdistrict" type="text" id="sdistrict" value="{{ isset($organization->sdistrict) ? $organization->sdistrict : ''}}" >
                     {!! $errors->first('sdistrict', '<p class="help-block">:message</p>') !!}

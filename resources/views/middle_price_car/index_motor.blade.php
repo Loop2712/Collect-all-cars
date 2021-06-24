@@ -75,7 +75,15 @@
                             </a>
                         
                     </div><br>
-
+                    <div class="col-md-12">
+                        <button id="btn_car" class="btn btn-outline-danger" >
+                            <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
+                        </button>
+                        <button id="btn_motorcycle" class="btn btn-outline-danger" >
+                            <a id="btn_a_motorcycle" href="{{ url('/middle_price_motorcycle' ) }}">รถจักรยานยนต์</a>
+                        </button>
+                    </div>
+                    <br>
                 <!-- ข้อมูลรถ -->
                 <div class="col-md-12">
                     <div class=" row"   >
@@ -163,20 +171,8 @@
                         </form>
                     </div>
                 </div>
-<hr class="d-block d-md-none" style=" height:0.7px; color:dark;">
-                <div class="col-md-12">
-                    <button id="btn_car" class="btn btn-outline-danger" >
-                        <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
-                    </button>
-                    <button id="btn_motorcycle" class="btn btn-outline-danger" >
-                        <a id="btn_a_motorcycle" href="{{ url('/middle_price_motorcycle' ) }}">รถจักรยานยนต์</a>
-                    </button>
-                   
-                           
-                </div>
-                
-
                         <!----------------------------------------------------------mobile--------------------------------------------------------->
+                       
                         <div>
                             <div class="d-block d-md-none">
                                 @foreach($middleprice_motorcycles as $item)
@@ -214,13 +210,13 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                <div class="colpagination-wrapper "> 
-                                    {!! $middleprice_motorcycles->appends([
-                                    'brand' => Request::get('motor_brand'),
-                                    'model' => Request::get('motor_generation'),
-                                    'submodel' => Request::get('submodel'),
-                                    ])->render() !!} 
-                                </div>
+                                <div class="colpagination-wrapper"> 
+                                        {!! $middleprice_motorcycles->appends([
+                                        'motor_brand' => Request::get('motor_brand'),
+                                        'motor_generation' => Request::get('motor_generation'),
+                                        'submodel' => Request::get('submodel'),
+                                        ])->render() !!} 
+                                    </div>
                             </div>
                                 
                                 <!---------------------------------------------pc--------------------------------------------------------->

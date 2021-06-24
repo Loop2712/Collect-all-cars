@@ -207,13 +207,13 @@
                                     </div>
                                 @endforeach
                                 <br>
-                                <div class="colpagination-wrapper "> 
-                                    {!! $Middle_price_car->appends([
-                                    'brand' => Request::get('brand'),
-                                    'model' => Request::get('model'),
-                                    'submodel' => Request::get('submodel'),
-                                    ])->render() !!} 
-                                </div>
+                                <div class="colpagination-wrapper"> 
+                                        {!! $Middle_price_car->appends([
+                                        'motor_brand' => Request::get('motor_brand'),
+                                        'motor_generation' => Request::get('motor_generation'),
+                                        'submodel' => Request::get('submodel'),
+                                        ])->render() !!} 
+                                    </div>
                             </div>
                                 
                                 <!---------------------------------------------pc--------------------------------------------------------->
@@ -270,10 +270,10 @@
                                         </tbody>                             
                                     </table>
                                     <br>
-                                    <div style="margin-left: 10px;" class="colpagination-wrapper"> 
+                                    <div class="colpagination-wrapper"> 
                                         {!! $Middle_price_car->appends([
-                                        'brand' => Request::get('brand'),
-                                        'model' => Request::get('model'),
+                                        'motor_brand' => Request::get('motor_brand'),
+                                        'motor_generation' => Request::get('motor_generation'),
                                         'submodel' => Request::get('submodel'),
                                         ])->render() !!} 
                                     </div>
