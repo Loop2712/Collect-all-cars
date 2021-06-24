@@ -1,4 +1,4 @@
-@extends('layouts.mail_to')
+@extends('layouts.viicheck')
 
 @section('content')
 	<div class="container">

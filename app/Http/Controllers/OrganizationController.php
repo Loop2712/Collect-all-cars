@@ -75,7 +75,7 @@ class OrganizationController extends Controller
         
         Organization::create($requestData);
 
-        return redirect('organization')->with('flash_message', 'Organization added!');
+        return redirect('/profile')->with('flash_message', 'Organization added!');
     }
 
     /**
@@ -122,7 +122,7 @@ class OrganizationController extends Controller
         $organization = Organization::findOrFail($id);
         $organization->update($requestData);
 
-        return redirect('organization')->with('flash_message', 'Organization updated!');
+        return redirect('/profile')->with('flash_message', 'Organization updated!');
     }
 
     /**
