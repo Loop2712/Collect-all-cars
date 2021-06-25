@@ -238,4 +238,23 @@ class SosController extends Controller
 
         return view('sos.tourist_police');
     }
+
+    public function lawyers()
+    {
+        $lawyers = DB::table('sos')
+                ->select('lawyers', 'total')
+                ->where('id', 1)
+                ->get();
+
+        foreach ($lawyers as $key) {
+            DB::table('sos')
+              ->where('id', 1)
+              ->update([
+                'lawyers' => $key->lawyers + 1,
+                'total' => $key->total + 1,
+            ]);
+        }
+
+        return view('sos.lawyers');
+    }
 }

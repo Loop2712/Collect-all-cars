@@ -25,7 +25,7 @@ class So extends Model
      *
      * @var array
      */
-    protected $fillable = ['disaster', 'car_fire', 'life_saving', 'js_100', 'highway', 'tourist_police', 'total'];
+    protected $fillable = ['disaster', 'car_fire', 'life_saving', 'js_100', 'highway', 'tourist_police','lawyers', 'total'];
 
     
 }

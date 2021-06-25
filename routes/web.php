@@ -187,6 +187,8 @@ Route::get('/js_100', 'SosController@js_100');
 Route::get('/highway', 'SosController@highway');
 //ตำรวจท่องเที่ยว
 Route::get('/tourist_police', 'SosController@tourist_police');
+//ทนายความ
+Route::get('/lawyers', 'SosController@lawyers');
 
 // END SosController
 
