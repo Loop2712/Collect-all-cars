@@ -15,7 +15,7 @@ use App\Mail\MailToGuest;
 
 class LineMessagingAPI extends Model
 {
-    public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
+    // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
     public function reply_success($event)
     {
