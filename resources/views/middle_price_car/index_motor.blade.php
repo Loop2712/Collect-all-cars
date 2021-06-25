@@ -76,7 +76,7 @@
                         
                     </div><br>
                     <div class="col-md-12">
-                        <button id="btn_car" class="btn btn-outline-danger" >
+                        <button id="btn_car" class="btn btn-outline-danger" style="width: 125px;">
                             <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
                         </button>
                         <button id="btn_motorcycle" class="btn btn-outline-danger" >
@@ -163,11 +163,10 @@
                                 <div class="col-md-3 col-12"> 
                                     <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="รุ่นย่อย" value="{{ request('sub_model') }}">
                                 </div>
-
-                                <div class="col-sm-3 col-12" > <br class="d-block d-md-none">
-                                    <button type="submit" class="btn btn-danger btn-sm "> <h6 style="color:#fff">ค้นหา</h6>  </button>
-                                    <a class="btn btn-danger" style="padding-top:2px;" href="{{URL::to('/middle_price_motorcycle')}}" ><h6 style="color:#fff;font-size:17px ">ล้างการค้นหา</h6>  </a>
-                                </div>
+                            <div class="col-sm-3 col-12" > <br class="d-block d-md-none">
+                                <button type="submit" style="font-size: 1em; color:#fff" class="btn btn-danger btn-sm "> ค้นหา  </button>
+                                <a class="btn btn-danger btn-sm"  style="font-size: 1em; color:#fff" href="{{URL::to('/middle_price_car')}}" >ล้างการค้นหา  </a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -220,8 +219,8 @@
                             </div>
                                 
                                 <!---------------------------------------------pc--------------------------------------------------------->
-                                <br>
-                                <div class="table-responsive d-none d-lg-block ">
+                                
+                                <div class="table-responsive d-none d-lg-block " style="margin-top:9px;">
                                     <table class="fl-table">
                                         <thead>
                                             <tr>
