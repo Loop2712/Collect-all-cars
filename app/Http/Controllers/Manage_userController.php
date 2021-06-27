@@ -72,6 +72,16 @@ class Manage_userController extends Controller
         $email = "กรุณาเพิ่มอีเมล" ;
         $password = uniqid();
         $provider_id = uniqid($partners.'-', true);
+        
+        switch ($partners) {
+            case '2bgreen':
+                $organization = "2บี กรีน จำกัด" ;
+                break;
+            
+            default:
+                $organization = null ;
+                break;
+        }
 
         // echo "name >> ".$name."<br>";
         // echo "username >> ".$username."<br>";
@@ -87,6 +97,7 @@ class Manage_userController extends Controller
         $user->password = Hash::make($password);
         $user->email = $email;
         $user->role = $partners;
+        $user->organization = $organization;
 
 
         $user->save();

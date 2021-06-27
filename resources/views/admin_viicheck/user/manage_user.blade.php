@@ -19,7 +19,7 @@
                             <img width="22" src="https://m.thaiware.com/upload_misc/software/2017_07/thumbnails/13243_170703102646Yi.jpg"> JS100
                         </a>
                         <a href="{{ url('/manage_user') }}?search=2BGreen" class="btn btn-outline-success ">
-                            <img width="22" src="https://www.viicheck.com/images/GreenLogo.png"> 2BGreen
+                            <!-- <img width="22" src="https://www.viicheck.com/img/logo/GreenLogo.png">  -->2BGreen
                         </a>
                         <a href="{{ url('/manage_user') }}?search=" class="btn btn-outline-info ">
                             <i class="fas fa-users"></i> ทั้งหมด

@@ -156,9 +156,17 @@
                 @endif
                 <li>
                     @if(Auth::check())
-                        @if(Auth::user()->role == "admin" )
+                        <!-- @if(Auth::user()->role == "admin" )
                             <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
-                        @endif
+                        @endif -->
+                      @switch (Auth::user()->role)
+                        @case("admin") 
+                          <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
+                        @break
+                        @case("2bgreen") 
+                          <a href="{{ url('/report_register_cars_2bgreen') }}" target="blank">📊 &nbsp; Partners 2bgreen</a>
+                        @break
+                      @endswitch
                     @endif
                 </li>
                 <li>

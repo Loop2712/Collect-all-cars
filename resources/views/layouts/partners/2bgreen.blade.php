@@ -1,5 +1,5 @@
 @if(Auth::check())
-    @if(Auth::user()->role == "admin" )
+    @if(Auth::user()->role == "2bgreen" )
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>viicheck admin</title>
+  <title>viicheck 2bgreen</title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
   <!-- Fonts -->
@@ -37,8 +37,10 @@
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="{{url('/dashboard')}}">
+        <a class="navbar-brand" href="#">
           <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img">
+          <span>&nbsp;x&nbsp;</span>
+          <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img">
         </a>
       </div>
       <div class="navbar-inner">
@@ -47,77 +49,15 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ url('/dashboard') }}">
-                <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text"><b>ภาพรวมของระบบ</b></span>
-              </a>
-            </li>
-            <li class="nav-item" id="Vmarket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-              <a class="nav-link" href="#">
-                <i class="ni ni-cart text-warning"></i>
-                <span class="nav-link-text">V Market</span><span>&nbsp;&nbsp;<i class="fas fa-angle-down"></i></span>
-              </a>
-            </li>
-                <div class="dropdown-menu" aria-labelledby="Vmarket">
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-car"></i>
-                      <span class="nav-link-text">Buy Car</span>
-                    </a>
-                    </li>
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-hand-holding-usd"></i>
-                      <span class="nav-link-text">Sell Car</span>
-                    </a>
-                    </li>
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-motorcycle"></i>
-                      <span class="nav-link-text">Buy Motorcycle</span>
-                    </a>
-                    </li>
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-coins"></i>
-                      <span class="nav-link-text">Sell Motorcycle</span>
-                    </a>
-                    </li>
-                </div>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/report_register_cars') }}">
+              <a class="nav-link" href="{{ url('/report_register_cars_2bgreen') }}">
                 <i class="fas fa-car text-success"></i>
-                <span class="nav-link-text">V Move รถลงทะเบียน </span>
+                <span class="nav-link-text">รถลงทะเบียน </span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/guest') }}">
+              <a class="nav-link" href="{{ url('/guest_latest_2bgreen') }}">
                 <i class="fas fa-car-crash text-danger"></i>
-                <span class="nav-link-text">V Move แจ้งเตือนเจ้าของรถ</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/add_news') }}">
-                <i class="far fa-newspaper" style="color: #5F9EA0"></i>
-                <span class="nav-link-text">V News เพิ่มข่าว</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/report_news') }}">
-                <i class="fas fa-video-slash" style="color: #FA8072"></i>
-                <span class="nav-link-text">V News รายงานไม่เหมาะสม</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/manage_user') }}">
-                <i class="fas fa-user-cog text-info"></i>
-                <span class="nav-link-text">จัดการผู้ใช้</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/profanity') }}">
-                <i class="fas fa-ban text-orange"></i>
-                <span class="nav-link-text">แบนคำหยาบคาย</span>
+                <span class="nav-link-text">รถที่ถูกรายงาน</span>
               </a>
             </li>
           </ul>
@@ -125,32 +65,20 @@
           <hr class="my-3">
           <!-- Heading -->
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Social</span>
+            <span class="docs-normal">ติดต่อ ViiCHECK</span>
           </h6>
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="https://manager.line.biz/account/@702ytkls" target="_blank">
-                <i style="color: lightgreen" class="fab fa-line"></i>
-                <span class="nav-link-text">Line Official Account</span>
+              <a class="nav-link" href="tel:020277856" target="_blank">
+                <i style="color: lightcoral;" class="fas fa-phone-volume"></i>
+                <span class="nav-link-text">02-0277856</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" target="_blank">
-                <i style="color: lightblue" class="fab fa-facebook-square"></i>
-                <span class="nav-link-text">Facebook Page</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://market.viicheck.com/" target="_blank">
-                <i style="color: #FF9999" class="fas fa-car"></i>
-                <span class="nav-link-text">V Market</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://market.viicheck.com/news" target="_blank">
-                <i style="color: #94adf7  " class="far fa-newspaper"></i>
-                <span class="nav-link-text">V News</span>
+              <a class="nav-link" href="mailto:contact.viicheck@gmail.com" target="_blank">
+                <i style="color: lightseagreen;" class="fas fa-mail-bulk"></i>
+                <span class="nav-link-text">contact.viicheck@gmail.com</span>
               </a>
             </li>
           </ul>
@@ -161,7 +89,7 @@
   <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
-    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-success border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Navbar links -->
@@ -195,11 +123,6 @@
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
-                  <span>My profile</span>
-                </a>
-                <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>

@@ -793,5 +793,173 @@
       </div>
     </section><!-- End Services Section -->
     </div>
+    @if(Auth::check())
+                <input type="hidden" name="id_user" id="id_user" value="{{ Auth::user()->id }}">
+
+                <!-- Button trigger modal -->
+                <button id="btn_check_user_Modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#check_user_Modal">
+                  Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="check_user_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ยินดีต้อนรับคุณ <span id="name_user" class="text-primary"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p><b>คุณต้องการเปลี่ยนชื่อผู้ใช้และรหัสผ่านหรือไม่</b></p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button>
+                        <button type="button" class="btn btn-primary" onclick="open_put_email();">ใช่ ฉันต้องการเปลี่ยน</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- email -->
+                <!-- Button trigger modal -->
+                <button id="btn_email_Modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#email_Modal">
+                  Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="email_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">กรุณากรอกอีเมล</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <label for="put_username" class="control-label"><b>{{ 'ชื่อผู้ใช้' }}</b></label> 
+                        <span><a id="text_check" href="#" class="text-success" onclick="check_username();">&nbsp;ตรวจสอบ</a></span>
+                        <input class="form-control" type="text" name="put_username" id="put_username" value="{{ Auth::user()->username }}">
+                        <span id="check" class="d-none text-success"><i class="fas fa-check-circle text-success"></i>&nbsp;ชื่อผู้ใช้นี้ใช้งานได้</span>
+                        <span id="times" class="d-none text-danger"><i class="fas fa-times-circle text-danger"></i>&nbsp;ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว</span>
+                        <br><br>
+                        <div id="div_email" class="d-none">
+                            <p><b>คุณจำเป็นต้องกรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน</b></p>
+                            <span><a id="text_check" href="#" class="text-success" onclick="check_email();">&nbsp;ตรวจสอบ</a></span>
+
+                            <input class="form-control" type="email" name="put_email" id="put_email" value="{{ Auth::user()->email }}">
+                            <span id="email_check" class="d-none text-success"><i class="fas fa-check-circle text-success"></i>&nbsp;อีเมลนี้ใช้งานได้</span>
+                            <span id="email_times" class="d-none text-danger"><i class="fas fa-times-circle text-danger"></i>&nbsp;อีเมลนี้ไม่สามารถใช้งานได้</span>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่ใช่</button> -->
+                        <button id="btn_ok" type="button" class="btn btn-primary d-none" onclick="put_email();">ยืนยัน</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                @if (Route::has('password.request'))
+                    <a id="reset" class="text-dark d-none" href="{{ route('password.request') }}">
+                        <b>{{ __('เปลี่ยนรหัสผ่าน') }}</b>
+                    </a>
+                @endif
+            @endif
   </main><!-- End #main -->
+  <script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("START");
+    check_user();
+});
+
+function check_user() {
+    let id_user = document.querySelector("#id_user");
+    console.log(id_user.value);
+
+        fetch("{{ url('/') }}/api/check_user/" + id_user.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    document.getElementById("btn_check_user_Modal").click();
+
+                    for(let item of result){
+                        let name_user = document.querySelector("#name_user");
+                            name_user.innerHTML = item.name;
+
+                    }
+                }
+                
+                
+            });
+}
+
+function open_put_email() {
+    document.getElementById("btn_email_Modal").click();
+}
+
+function put_email() {
+
+    let put_email = document.querySelector("#put_email");
+    let put_username = document.querySelector("#put_username");
+    let id_user = document.querySelector("#id_user");
+    console.log(put_email.value);
+    console.log(id_user.value);
+
+        fetch("{{ url('/') }}/api/put_email/" + put_email.value + "/" + id_user.value + "/" + put_username.value )
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById("reset").click();
+            });
+}
+
+function check_username() {
+
+    let put_username = document.querySelector("#put_username");
+    let id_user = document.querySelector("#id_user");
+
+        fetch("{{ url('/') }}/api/check_username/"  + put_username.value +"/" + id_user.value )
+            .then(response => response.json())
+            .then(result => {
+                console.log(result.length);
+                
+                if (result.length == 0){
+                    document.querySelector('#check').classList.remove('d-none');
+                    document.querySelector('#times').classList.add('d-none');
+                    document.querySelector('#div_email').classList.remove('d-none');
+                } else{
+                    document.querySelector('#check').classList.add('d-none');
+                    document.querySelector('#times').classList.remove('d-none');
+                    document.querySelector('#div_email').classList.add('d-none');
+                }
+
+            });
+}
+
+function check_email() {
+
+    let put_email = document.querySelector("#put_email");
+
+        fetch("{{ url('/') }}/api/check_email/"  + put_email.value )
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                
+                if (result.length == 0){
+                    document.querySelector('#email_check').classList.remove('d-none');
+                    document.querySelector('#email_times').classList.add('d-none');
+                    document.querySelector('#btn_ok').classList.remove('d-none');
+                } else{
+                    document.querySelector('#email_check').classList.add('d-none');
+                    document.querySelector('#email_times').classList.remove('d-none');
+                    document.querySelector('#btn_ok').classList.add('d-none');
+                }
+
+            });
+}
+</script>
 @endsection
