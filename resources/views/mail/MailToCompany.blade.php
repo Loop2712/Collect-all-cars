@@ -29,9 +29,8 @@
 							<br>
 							@if(!empty($data["phone"]))
 								เบอร์โทรศัพท์ติดต่อผู้แจ้ง 
-								<a href="tel:{{ $data['phone'] }}">
-									 <i class="fas fa-phone-volume"></i> {{ $data["phone"] }}
-								</a>
+								<i class="fas fa-phone-volume"></i>
+								<a href="tel:{{ $data['phone'] }}">{{ $data["phone"] }}</a>
 							@endif
 							<br><hr><br>
 							<!-- ----------------------------------------------------------------- -->
