@@ -185,12 +185,12 @@
             </div>
 
             <div class="form-group {{ $errors->has('register_car_id') ? 'has-error' : ''}}">
-                <input class="form-control" name="register_car_id" type="text" id="register_car_id" value="{{ isset($register_car->register_car_id) ? $register_car->register_car_id : ''}}" required readonly>
+                <input class="form-control" name="register_car_id" type="hidden" id="register_car_id" value="{{ isset($register_car->register_car_id) ? $register_car->register_car_id : ''}}" required readonly>
                 {!! $errors->first('register_car_id', '<p class="help-block">:message</p>') !!}
             </div>
 
             <div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">
-                <input class="form-control" name="organization" type="text" id="organization" value="{{ isset($register_car->organization) ? $register_car->organization : ''}}" required readonly>
+                <input class="form-control" name="organization" type="hidden" id="organization" value="{{ isset($register_car->organization) ? $register_car->organization : ''}}" required readonly>
                 {!! $errors->first('organization', '<p class="help-block">:message</p>') !!}
             </div>
 
@@ -439,11 +439,11 @@
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                // if (result.length == 1 ) {
-                //     let county = document.querySelector("#county");
-                //     county.innerHTML = "";
-
-                // }
+                for(let item of result){
+                    register_car_id.value = item.id;
+                    organization.value = item.juristicNameTH;
+                    // console.log(registration_car);
+                }
                 
             });
     }
