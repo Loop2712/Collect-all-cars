@@ -55,7 +55,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/guest_latest_2bgreen') }}">
+              <a class="nav-link" href="{{ url('/guest_2bgreen') }}">
                 <i class="fas fa-car-crash text-danger"></i>
                 <span class="nav-link-text">รถที่ถูกรายงาน</span>
               </a>

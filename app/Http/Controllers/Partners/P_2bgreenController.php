@@ -41,19 +41,25 @@ class P_2bgreenController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 20;
-        $guest = Guest::groupBy('provider_id')
-                    ->groupBy('user_id')
-                    ->groupBy('name')
-                    ->selectRaw('count(provider_id) as count , name , user_id')
+        $guest = Guest::where('organization', "2บี กรีน จำกัด")
+                    ->groupBy('registration')
+                    ->groupBy('county')
+                    ->groupBy('register_car_id')
+                    ->selectRaw('count(register_car_id) as count , registration , county')
                     ->orderByRaw('count DESC')
                     ->latest()->paginate($perPage);
+
+                    // echo "<pre>";
+                    // print_r($guest);
+                    // echo "<pre>";
+                    // exit();
 
         return view('Partners_2bgreen.P_2begreen_guest', compact('guest'));
     }
 
     public function guest_latest_2bgreen(Request $request)
     {
-        $guest_latest = Guest::latest()->paginate(25);
+        $guest_latest = Guest::where('organization', "2บี กรีน จำกัด")->latest()->paginate(25);
 
         return view('Partners_2bgreen.P_2begreen_guest_latest', compact('guest_latest'));
     }

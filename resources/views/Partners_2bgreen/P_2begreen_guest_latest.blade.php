@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">รถที่ถูกรายงาน</h3>
-                    <!-- <div class="card-body">
+                    <h3 class="card-header">รถที่ถูกรายงานล่าสุด</h3>
+                    <div class="card-body">
                         <a class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_2bgreen') }}">
                             <i class="fas fa-angle-double-up"></i> จำนวนการรายงานมากที่สุด
                         </a>
@@ -15,7 +15,7 @@
                         <a class="btn btn-sm btn-outline-success text-success" href="{{ url('/guest_latest_2bgreen') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
-                    </div> -->
+                    </div>
                         <!-- ล่าสุด -->
                         <div id="latest" class="container">
                             <div class="row">

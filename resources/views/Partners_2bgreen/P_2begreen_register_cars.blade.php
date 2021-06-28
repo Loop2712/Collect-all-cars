@@ -28,7 +28,7 @@
                                             <b>คันที่</b><br>
                                             Number
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <b>ยี่ห้อ</b><br>
                                             Brand
                                         </div>
@@ -36,7 +36,7 @@
                                             <b>รุ่น</b><br>
                                             Model
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <center>
                                                 <b>หมายเลขทะเบียน</b><br>
                                                 Registration number
@@ -48,12 +48,12 @@
                                                 Car type
                                             </center>
                                         </div>
-                                        <!-- <div class="col-3">
+                                        <div class="col-2">
                                             <center>
-                                                <b>เจ้าของรถ</b><br>
-                                                Car owner
+                                                <b>ผู้ลงทะเบียน</b><br>
+                                                Registrant
                                             </center>
-                                        </div> -->
+                                        </div>
                                     </div>
                                     <hr>
                                     @foreach($report_register_cars as $item)
@@ -63,13 +63,13 @@
                                                 {{ $item->id }}
                                             </center>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <p style="color: #FF0000; font-size: 20px;"><b>{{ $item->brand }}</b></p>
                                         </div>
                                         <div class="col-3">
                                             <p style="color: #ff6363; font-size: 20px;"><b>{{ $item->generation }}</b></p>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <center>
                                                 <span> {{ $item->registration_number }}</span><br>
                                                 <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>
@@ -85,14 +85,15 @@
                                                 @endif
                                             </center>
                                         </div>
-                                        <!-- <div class="col-3">
-                                            <p class="float-right text-success">
-                                                <span style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">
-                                                    <b>{{ $item->name }}</b>
-                                                    <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}"><i class="far fa-eye text-info"></i></a>
-                                                </span>
-                                            </p>
-                                        </div> -->
+                                        <div class="col-2">
+                                            <center>
+                                                <p class="text-success">
+                                                    <span style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">
+                                                        <b>{{ $item->name }}</b>
+                                                    </span>
+                                                </p>
+                                            </center>
+                                        </div>
                                     </div>
                                     <hr>
                                     @endforeach

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">รถที่ถูกรายงาน</h3>
+                    <h3 class="card-header">รถที่ถูกรายงานมากที่สุด</h3>
                     <div class="card-body">
                         <!-- <div>
                             <form method="GET" action="{{ url('/guest') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -35,12 +35,16 @@
                                     <div class="row alert alert-secondary">
                                         <div class="col-1"></div>
                                         <div class="col-3">
-                                            <b>หมายเลขทะเบียน</b><br>
-                                            Registration number
+                                            <center>
+                                                <b>หมายเลขทะเบียน</b><br>
+                                                Registration number
+                                            </center>
                                         </div>
                                         <div class="col-3">
-                                            <b>จำนวนการรายงานทั้งหมด</b><br>
-                                            All reports
+                                            <center>
+                                                <b>จำนวนการรายงานทั้งหมด</b><br>
+                                                All reports
+                                            </center>
                                         </div>
                                     </div>
                                     <hr>
@@ -50,8 +54,15 @@
                                             <center>{{ $loop->iteration }}</center>
                                         </div>
                                         <div class="col-3">
-                                            <b>{{ $item->registration }}</b><br>
-                                            {{ $item->county }}
+                                            <center>
+                                                <b>{{ $item->registration }}</b><br>
+                                                {{ $item->county }}
+                                            </center>
+                                        </div>
+                                        <div class="col-3">
+                                            <center>
+                                                <b>{{ $item->count }}</b>
+                                            </center>
                                         </div>
                                     </div>
                                     <hr>
