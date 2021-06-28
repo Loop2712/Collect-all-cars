@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
-                        <select name="county" id="county" class="form-control" required>
+                        <select name="county" id="county" class="form-control" required onchange="add_reg_id();">
                                 <option value="" selected > - กรุณาเลือกจังหวัด / Select province - </option> 
                                 <!-- @foreach($location_array as $lo)
                                 <option 
@@ -182,6 +182,16 @@
             <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
                 <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ isset($register_car->user_id) ? $register_car->user_id : Auth::user()->id}}" required readonly>
                 {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+            </div>
+
+            <div class="form-group {{ $errors->has('register_car_id') ? 'has-error' : ''}}">
+                <input class="form-control" name="register_car_id" type="text" id="register_car_id" value="{{ isset($register_car->register_car_id) ? $register_car->register_car_id : ''}}" required readonly>
+                {!! $errors->first('register_car_id', '<p class="help-block">:message</p>') !!}
+            </div>
+
+            <div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">
+                <input class="form-control" name="organization" type="text" id="organization" value="{{ isset($register_car->organization) ? $register_car->organization : ''}}" required readonly>
+                {!! $errors->first('organization', '<p class="help-block">:message</p>') !!}
             </div>
 
         </div>
@@ -303,7 +313,7 @@
         fetch("{{ url('/') }}/api/check_registration/"+registration.value+"/province")
             .then(response => response.json())
             .then(result => {
-                console.log(result.length);
+                // console.log(result.length);
                 //UPDATE SELECT OPTION
                 if (result.length == 1 ) {
                     let county = document.querySelector("#county");
@@ -329,6 +339,7 @@
                 }
                 
                 check_time();
+                add_reg_id();
             });
     }
 
@@ -413,5 +424,27 @@
 
         photo.removeAttribute('required');
 
+    }
+
+    function add_reg_id(){
+        let registration = document.querySelector("#registration");
+        let county = document.querySelector("#county");
+        // console.log(registration.value);
+        // console.log(county.value);
+        let register_car_id = document.querySelector("#register_car_id");
+        let organization = document.querySelector("#organization");
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/add_reg_id/"+registration.value+"/"+county.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                // if (result.length == 1 ) {
+                //     let county = document.querySelector("#county");
+                //     county.innerHTML = "";
+
+                // }
+                
+            });
     }
 </script>

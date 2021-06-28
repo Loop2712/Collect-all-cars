@@ -130,4 +130,15 @@ class CarbrandController extends Controller
     
     }
 
+    public function add_reg_id($registration, $province)
+    {
+        $registration = str_replace(" ", "", $registration);
+        $registration = DB::table('register_cars')
+            ->where('registration_number', $registration )
+            ->where('province', $province )
+            ->get();
+
+        return $registration;
+    }
+
 }
