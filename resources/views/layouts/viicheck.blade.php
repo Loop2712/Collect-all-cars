@@ -123,9 +123,8 @@
       @guest
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-        <li>
-          <!-- <div id="google_translate_element"></div> -->
-        </li>
+          <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
         </ul>
       </nav>
@@ -139,10 +138,18 @@
         <li>
           <!-- <div id="google_translate_element"></div> -->
         </li>
+          <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li class="dropdown">
               <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
-              <a href="#" style="font-size: 18px;"><span><span id="input_name"></span></span> <i class="bi bi-chevron-down"></i></a>
+              <a href="#" style="font-size: 18px;">
+                <span class="btn btn-primary main-shadow main-radius">
+                  <b><span id="input_name"></span></b>
+                  <i class="bi bi-chevron-down"></i>
+                </span> 
+                
+              </a>
               <ul class="dropdown-active">
                 <a href="{{ url('/profile') }}">
                 <li>

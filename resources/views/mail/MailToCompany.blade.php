@@ -3,46 +3,46 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<!-- คอม -->
+			<!{{ คอม {{>
 			<div class="col-md-12">
 				<div class="row">
-					<div id="google_translate_element"></div>
-					<div class="col-md-8" style="font-size:18px;">
-						<h3>เรียน บริษัท <b>{{ $data["juristicNameTH"] }}</b></h3>
-						
-						ทางเราได้รับการแจ้งปัญหาการขับขี่ยานพาหนะภายในองค์กรของท่าน
-						<br>
-						<b>สาขา</b> {{ $data["branch"] }} <b>อำเภอ/เขต</b> {{ $data["branch_district"] }} <b>จังหวัด</b> {{ $data["branch_province"] }}
-						<br>
-						<br><hr><br>
-						เมื่อเวลา {{ $data["datetime"] }}
-						<br>
-						หมายเลขทะเบียน <b style="font-size:20px;">{{ $data["registration_number"] }} {{ $data["province"] }} </b>
-						<br><br>
-						ปัญหาการขับขี่ที่ได้รับแจ้งคือ <b style="font-size:20px;color: red;">{{ $data["masseng"] }}</b>
-						<br><br>
-					</div>
-					<div class="col-md-4">
-						<br>
-						<img width="300" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
+					<div class="col-md-12" style="font-size:16px;">
+						<h4>เรียน บริษัท <b>{{ $data["juristicNameTH"] }}</b></h4>
+						<span>
+							ทางเราได้รับการแจ้งปัญหาการขับขี่ยานพาหนะภายในองค์กรของท่าน
+							<br>
+							สาขา {{ $data["branch"] }} 
+							<br>
+							อำเภอ/เขต {{ $data["branch_district"] }}
+							<br>
+							จังหวัด {{ $data["branch_province"] }}
+							<br>
+							<br><hr><br>
+							<!-- ----------------------------------------------------------------- -->
+							<img width="20%" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
+							<br><br>
+							เมื่อเวลา {{ $data["datetime"] }}
+							<br>
+							หมายเลขทะเบียน <span style="font-size:18px;">{{ $data["registration_number"] }} {{ $data["province"] }} </span>
+							<br>
+							ปัญหาการขับขี่ที่ได้รับแจ้งคือ <span style="font-size:18px;color: red;">{{ $data["masseng"] }}</span>
+							<br>
+							@if(!empty($data["phone"]))
+								เบอร์โทรศัพท์ติดต่อผู้แจ้ง 
+								<a href="tel:{{ $data['phone'] }}">
+									 📞 {{ $data["phone"] }}
+								</a>
+							@endif
+							<br><hr><br>
+							<!-- ----------------------------------------------------------------- -->
+							ติดต่อ ViiCHECK
+							<br><br>
+							📞 : <a href="tel:020277856">02 0277856</a>
+							<br>
+							📩 : <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
+						</span>
 					</div>
 				</div>
-				@if(!empty($data["phone"]))
-				<div class="row">
-					<div class="col-md-12" style="font-size:20px;">
-						เบอร์โทรศัพท์ติดต่อผู้แจ้ง <b> {{ $data["phone"] }}</b>
-						<br>
-					</div>
-					<div class="col-md-2">
-						<br>
-						<button type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;padding: 10px;border-radius: 10px;">
-							<a type="button" style="background-color: #69b528; color:#ffffff;text-decoration: none;" href="tel:{{ $data['phone'] }}">
-								📞 โทรออก
-							</a>
-						</button>
-					</div>
-				</div>
-				@endif
 			</div>
 		</div>
 	</div>   

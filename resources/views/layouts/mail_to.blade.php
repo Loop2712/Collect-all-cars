@@ -24,21 +24,25 @@
 
 </head>
 <body>
-    <div id="app">
-        <div class="header__logo">
-            <br>
-            <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"> 
-        </div>
-        <main class="py-4">
-            <div class="container">
-                <div class="row">
-
-                    @yield('content')
-                    
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <br>
+                    <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"> 
+                    <div style="float: right;margin-top: 40px;" id="google_translate_element"></div>
                 </div>
+                <hr style="color:red;">
             </div>
-        </main>
-
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @yield('content')
+            </div>
+        </div>
     </div>
 
     </div>
