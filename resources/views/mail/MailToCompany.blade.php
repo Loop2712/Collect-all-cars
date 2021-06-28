@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<!{{ คอม {{>
+			<!-- คอม -->
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12" style="font-size:16px;">
