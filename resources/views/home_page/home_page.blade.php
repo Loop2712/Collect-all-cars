@@ -370,17 +370,23 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
+          <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
             <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
               <div class="icon-box">
-                <img width="72%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
-                <br>
-                <button type="button" class="btn btn-danger">Download</button>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
+                  <img width="72%" src="{{ asset('/img/more/sticker-VII-en.png') }}" class="img-fluid" alt="">
+                  <br>
+                  <button type="button" class="btn btn-danger">Download</button>
+                </div>
+              </div>
+              <div style="position: relative;top: -115px;left: -18px; z-index: 5; color: #fff;">
+                  <p style="font-size:16px;">ติดต่อเจ้าของรถสแกนเลย</p>
               </div>
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
+          <!-- <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
             <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
               <div class="icon-box">
                 <img width="72%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
@@ -388,21 +394,21 @@
                 <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
               </div>
             </a>
-          </div>
+          </div> -->
 
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
+          <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
             <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
               <div class="icon-box">
-                <br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
                   <br>
-                    <img width="80%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
+                    <img width="75%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
                     <br>
                     <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
                 </div>
-                <div style="position: relative;top: -90px;left: -8px; z-index: 5; color: #fff;">
-                    <p style="font-size:34px;line-height: 20pt"><b>ติดต่อ</b></p>
-                    <p style="font-size:20px;line-height: 20pt">เจ้าของรถ</p>
+                <div style="position: relative;top: -115px;left: -18px; z-index: 5; color: #fff;">
+                    <p style="font-size:49px;line-height: 30pt"><b>ติดต่อ</b></p>
+                    <p style="font-size:35px;line-height: 30pt">เจ้าของรถ</p>
                 </div>
               </div>
             </a>
