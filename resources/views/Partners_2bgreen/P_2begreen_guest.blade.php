@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">รถที่ถูกรายงานมากที่สุด</h3>
+                    <h3 class="card-header">รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)</h3>
                     <div class="card-body">
                         <!-- <div>
                             <form method="GET" action="{{ url('/guest') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -21,7 +21,7 @@
                             </form>
                         </div> -->
                         <a class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_2bgreen') }}">
-                            <i class="fas fa-angle-double-up"></i> จำนวนการรายงานมากที่สุด
+                            <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
                         </a>
 
                         <a class="btn btn-sm btn-outline-success text-success" href="{{ url('/guest_latest_2bgreen') }}">
