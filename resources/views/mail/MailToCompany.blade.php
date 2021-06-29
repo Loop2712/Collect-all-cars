@@ -32,7 +32,7 @@
 								<i class="fas fa-phone-volume"></i>
 								<a href="tel:{{ $data['phone'] }}">{{ $data["phone"] }}</a>
 							@endif
-							<br><hr><br><br>
+							<br><br><hr><br>
 							<!-- ----------------------------------------------------------------- -->
 							ติดต่อ ViiCHECK
 							<br><br>
