@@ -29,16 +29,16 @@
 							<br>
 							@if(!empty($data["phone"]))
 								เบอร์โทรศัพท์ติดต่อผู้แจ้ง 
-								<i class="fas fa-phone-volume"></i>
+								📞
 								<a href="tel:{{ $data['phone'] }}">{{ $data["phone"] }}</a>
 							@endif
 							<br><br><hr><br>
 							<!-- ----------------------------------------------------------------- -->
 							ติดต่อ ViiCHECK
 							<br><br>
-							<i class="fas fa-phone-volume"></i> : <a href="tel:020277856">02 0277856</a>
+							📞 : <a href="tel:020277856">02 0277856</a>
 							<br>
-							<i class="fas fa-mail-bulk"></i> : <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
+							📩 : <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
 						</span>
 					</div>
 				</div>
