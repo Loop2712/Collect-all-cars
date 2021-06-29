@@ -19,7 +19,7 @@
 							<br>
 							<br><hr><br>
 							<!-- ----------------------------------------------------------------- -->
-							<img width="20%" src="{{ asset('/img/stickerline/PNG/37.png') }}"> 
+							<img width="20%" src="{{ asset('/img/stickerline/PNG/37.1.png') }}"> 
 							<br><br>
 							เมื่อเวลา {{ $data["datetime"] }}
 							<br>
