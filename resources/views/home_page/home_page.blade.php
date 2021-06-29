@@ -373,15 +373,15 @@
           <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
             <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
               <div class="icon-box">
-                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-                  <img width="72%" src="{{ asset('/img/more/sticker-VII-en.png') }}" class="img-fluid" alt="">
+                  <img width="75%" src="{{ asset('/img/more/sticker-VII-en.png') }}" class="img-fluid" alt="">
                   <br>
                   <button type="button" class="btn btn-danger">Download</button>
                 </div>
               </div>
-              <div style="position: relative;top: -115px;left: -18px; z-index: 5; color: #fff;">
-                  <p style="font-size:16px;">ติดต่อเจ้าของรถสแกนเลย</p>
+              <div style="position: relative;top: -113px;left: -18px; z-index: 5; color: #fff;">
+                  <!-- <p style="font-size:16px;">ติดต่อเจ้าของรถสแกนเลย</p> -->
               </div>
             </a>
           </div>
@@ -413,6 +413,26 @@
               </div>
             </a>
           </div>
+
+          <!-- <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
+            <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
+              <div class="icon-box">
+                <div class="circle">Hello I am A Circle</div>
+                <style type="text/css">
+                  .circle {
+                          width: 500px;
+                          height: 500px;
+                          border-radius: 50%;
+                          font-size: 26px;
+                          color: #fff;
+                          line-height: 500px;
+                          text-align: center;
+                          background: #000
+                        }
+                </style>
+              </div>
+            </a>
+          </div> -->
 
         </div>
 
