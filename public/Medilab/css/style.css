@@ -928,6 +928,8 @@ section {
     opacity: 0;
   }
 }
+
+
 /*--------------------------------------------------------------
 # About1
 --------------------------------------------------------------*/
@@ -1146,6 +1148,7 @@ section {
   border: 1px solid #d5e1ed;
   padding: 40px 15px;
   transition: all ease-in-out 0.3s;
+  height: 100%;
 }
 
 .services .icon-box .icon {

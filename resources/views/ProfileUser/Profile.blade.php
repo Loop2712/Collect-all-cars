@@ -432,8 +432,183 @@
                                                                 &nbsp;&nbsp;
                                                                 <span class="text-primary">{{ $itemkey->phone }}<hr style=" height:0.3px; color:#778899;"></span>
                                                             </div>
+                                                            
+                                                            
                                                         </div>
                                                     </div>
+                                                        <div class="col md-12" >
+                                                            <div class="row">
+                                                                <div class="col-md-12"> 
+                                                                    <b>
+                                                                        <h4 class="text-center">รายละเอียดองค์กร</h4>
+                                                                    </b>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>หมายเลขนิติบุคคล</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->juristicID }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>ชื่อนิติบุคคล(TH)</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->juristicNameTH }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>ชื่อนิติบุคคล(EN)</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->juristicNameEN }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>ประเภทนิติบุคคล</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->juristicType }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>วันที่จดทะเบียน</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->registerDate }}</span>
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6">
+                                                                    <b>สถานะนิติบุคคล</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->juristicStatus }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>ทุนจดทะเบียน</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->registerCapital }}</span>
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6">
+                                                                    <b>	รหัสหมวดหมู่ tsic</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->standardObjective }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                   <b>รายละเอียดวัตถุประสงค์จัดตั้ง</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->standardObjectiveDetail }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+
+                                                                <div class="col-md-12"> 
+                                                                    <b>
+                                                                        <h4 class="text-center">ที่อยู่องค์กร</h4>
+                                                                    </b>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>รายการที่อยู่</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->addressDetail }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>ชื่อสาขา</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->addressName }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>อาคาร</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->buildingName }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>เลขที่ห้อง</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->roomNo }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>	ชั้นที่</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->floor }}</span>
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6">
+                                                                    <b>หมู่บ้าน</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->villageName }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>เลขที่บ้าน</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->houseNumber }}</span>
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6">
+                                                                    <b>หมู่ที่</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->moo }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                   <b>ซอย</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->soi }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>	ถนน</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->street }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>	แขวง / ตำบล</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->subDistrict }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>เขต / อำเภอ</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->district}}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6">
+                                                                    <b>	จังหวัด</b> 
+                                                                    &nbsp;&nbsp;
+                                                                    <span class="text-primary">{{ $itemkey->province }}</span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <hr style=" height:0.3px; color:#778899;">
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>  

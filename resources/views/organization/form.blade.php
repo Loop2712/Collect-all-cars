@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label  class="control-label"><b>วัตถุประสงค์</b></label>
+                    <label  class="control-label"><b>รหัสหมวดหมู่ tsic</b></label>
                     <div class="form-group {{ $errors->has('standardObjective') ? 'has-error' : ''}}">
                         <input class="form-control" name="standardObjective" type="text" id="standardObjective" value="{{ isset($organization->standardObjective) ? $organization->standardObjective : ''}}" >
                         {!! $errors->first('standardObjective', '<p class="help-block">:message</p>') !!}
@@ -186,6 +186,20 @@
                     <div class="form-group {{ $errors->has('standardObjectiveDetail') ? 'has-error' : ''}}">
                         <input class="form-control" name="standardObjectiveDetail" type="text" id="standardObjectiveDetail" value="{{ isset($organization->standardObjectiveDetail) ? $organization->standardObjectiveDetail : ''}}" >
                         {!! $errors->first('standardObjectiveDetail', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label  class="control-label"><b>mail</b></label>
+                    <div class="form-group {{ $errors->has('mail') ? 'has-error' : ''}}">
+                        <input class="form-control" name="mail" type="text" id="mail" value="{{ isset($organization->mail) ? $organization->mail : ''}}" >
+                        {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label  class="control-label"><b>phone</b></label>
+                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+                        <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($organization->phone) ? $organization->phone : ''}}" >
+                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
             </div>

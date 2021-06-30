@@ -230,10 +230,10 @@
         </div>
       </div>
 
-      <div class="container-fluid">
+      <!-- <div class="container-fluid">
         <div class="row no-gutters">
 
-          <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
+          
           <div class="col-lg-4 col-md-4 d-none">
             <div class="gallery-item">
               <a href="{{ asset('/img/more/Advantages.jpg') }}" class="galelry-lightbox">
@@ -241,7 +241,7 @@
               </a>
             </div>
           </div>
-          <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
+         
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
               <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="galelry-lightbox">
@@ -292,7 +292,94 @@
 
         </div>
 
-      </div>  
+      </div>   -->
+
+      <div class="container-fluid">
+        <div class="row no-gutters">
+
+          <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
+          <div class="col-lg-4 col-md-4 d-none">
+            <div class="gallery-item">
+              <a href="{{ asset('/img/more/Advantages.jpg') }}" class="galelry-lightbox">
+                <img src="{{ asset('/img/more/Advantages.jpg') }}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+          <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
+          <div class="col-lg-4 col-md-4">
+            <div class="gallery-item">
+              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="galelry-lightbox">
+                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-01.jpg') }}" class="img-fluid">
+              </a>
+            </div> 
+            <div style="position: relative;margin-top: -150px;left:200px; z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>สแกน <span style="color: #EB2424;">QR CODE</span></b></p>
+              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">เพื่อเข้าสู่ Line Official ของ <span style="color: #EB2424;">Viicheck</span></p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <div class="gallery-item">
+              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" class="galelry-lightbox">
+                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-02.jpg') }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            <div style="position: relative;margin-top: -180px;left:250px; z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:30px;line-height: 20pt; width:200px; overflow: visible;"><b>ลง<span style="color: #EB2424;">ทะเบียน</span></b></p>
+              <p style="font-size:15px;line-height: 15pt; width:200px; overflow: visible;">ในการใช้งาน <span style="color: #EB2424;">Viicheck</span></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4">
+            <div class="gallery-item">
+              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="galelry-lightbox">
+                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-04.jpg') }}" class="img-fluid">
+              </a>
+            </div>
+            <div style="position: relative;margin-top: -180px;left:200px; z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>กรอก<span style="color: #EB2424;">ข้อมูล</span></b></p>
+              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">รถของคุณเพื่อใช้บริการ <span style="color: #EB2424;">Viicheck</span></p>
+            </div>  
+          </div>
+      
+          <div class="col-lg-4 col-md-4" style="margin-top:72px">
+            <div class="gallery-item">
+              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" class="galelry-lightbox">
+                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-07.jpg') }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            <div style="position: relative;margin-top: -180px;left:200px; z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b>ยืนยันการลงทะเบียน</b></p>
+              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">กด"<span style="color: #EB2424;">ยืนยัน</span>"เมื่อข้อมูลถูกต้อง</p>
+            </div> 
+          </div>
+
+          <div class="col-lg-4 col-md-4" style="margin-top:72px">
+            <div class="gallery-item">
+              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" class="galelry-lightbox">
+                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-05.jpg') }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            <div style="position: relative;margin-top: -180px;left:200px; z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b><span style="color: #EB2424;">Download</span> and Print</b></p>
+              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">สติ๊กเกอร์<span style="color: #EB2424;">ViiCHECK</span>ได้เลย!</p>
+            </div> 
+          </div>
+
+          <div class="col-lg-4 col-md-4" style="margin-top:72px">
+            <div class="gallery-item">
+              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" class="galelry-lightbox">
+                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-06.jpg') }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            <div style="position: relative;margin-top: -180px;left:230px; z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:3px;line-height: 10pt; width:180px; overflow: visible;margin-left:40px;"><b>ร่วมกันสร้างสังคมแห่งการช่วยแบ่งปันความสุข</b></p>
+              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">และมิตรภาพที่ดีกับ"<span style="color: #EB2424;">ViiCHECK</span>"</p>
+            </div> 
+          </div>
+
+        </div>
+
+      </div>
     </section><!-- End Gallery Section -->
 
     <!-- ======= Services Section ======= -->
@@ -439,6 +526,7 @@
       </div>
     </section><!-- End Services Section -->
 </div>
+
 
 <!-------------------------------------------------มือถือ-------------------------------------------------->
 
