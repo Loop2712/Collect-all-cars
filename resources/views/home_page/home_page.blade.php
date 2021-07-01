@@ -11,9 +11,9 @@
     <div class="d-none d-lg-block">
     <section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1>ยินดีต้อนรับสู่ ViiCHECK</h1>
-      <h2>ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-      <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+      <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+      <h2 style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
+      <a style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
     </div>
   </section>
     <section id="why-us" class="why-us">
