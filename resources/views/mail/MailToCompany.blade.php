@@ -19,7 +19,10 @@
 							<br>
 							<br><hr><br>
 							<!-- ------------------------------------------------------------- -->
-							<img width="20%" src="{{ asset('/img/stickerline/PNG/37.1.png') }}"> 
+							<div style="position: absolute;right: 30px;top: 30%;z-index: 2;margin-left: 40px;">
+								<img width="20%" src="{{ asset('/img/stickerline/PNG/37.2.png') }}"> 
+							</div>
+							<div style="position: relative;top: -20px;left: 220px; z-index: 5; color: #fff;" class="circle">รายงานปัญหาการขับขี่</div>
 							<br><br>
 							เมื่อเวลา {{ $data["datetime"] }}
 							<br>

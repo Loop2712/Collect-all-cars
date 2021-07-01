@@ -22,6 +22,23 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+            .circle {
+              width: 330px;
+              height: 150px;
+              border-radius: 50%;
+              font-size: 22px;
+              color: #fff;
+              line-height: 155px;
+              text-align: center;
+              background: radial-gradient(
+                ellipse at center,
+                rgba(0, 128, 172, 1) 0%,
+                rgba(0, 118, 162, 1) 70%,
+                rgba(0, 108, 172, 0) 70.3%
+              );
+            }
+    </style>
 
 </head>
 <body>
