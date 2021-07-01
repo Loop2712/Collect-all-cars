@@ -27,6 +27,10 @@
                         <a class="btn btn-sm btn-outline-success text-success" href="{{ url('/guest_latest_2bgreen') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
+
+                        <a class="btn btn-sm btn-outline-primary text-primary float-right" >
+                            <i class="fas fa-calendar-alt"></i> เลือกเดือน
+                        </a>
                     </div>
                         <!-- มากสุด -->
                         <div id="the_most" class="container">
@@ -36,14 +40,26 @@
                                         <div class="col-1"></div>
                                         <div class="col-3">
                                             <center>
-                                                <b>หมายเลขทะเบียน</b><br>
-                                                Registration number
+                                                <b>ยี่ห้อ / รุ่น</b><br>
+                                                Brand / Model
                                             </center>
                                         </div>
                                         <div class="col-3">
                                             <center>
-                                                <b>จำนวนการรายงานทั้งหมด</b><br>
+                                                <b>หมายเลขทะเบียน</b><br>
+                                                Registration number
+                                            </center>
+                                        </div>
+                                        <div class="col-2">
+                                            <center>
+                                                <b>รายงานทั้งหมด</b><br>
                                                 All reports
+                                            </center>
+                                        </div>
+                                        <div class="col-3">
+                                            <center>
+                                                <b>รายงานประจำเดือน</b><br>
+                                                Monthly reports
                                             </center>
                                         </div>
                                     </div>
@@ -55,13 +71,26 @@
                                         </div>
                                         <div class="col-3">
                                             <center>
-                                                <b>{{ $item->registration }}</b><br>
-                                                {{ $item->county }}
+                                                <b>{{ $item->register_cars->brand }}</b><br>
+                                                {{ $item->register_cars->generation }}
                                             </center>
                                         </div>
                                         <div class="col-3">
                                             <center>
+                                                <b>{{ $item->registration }}</b><br>
+                                                {{ $item->county }}
+                                            </center>
+                                        </div>
+                                        <div class="col-2">
+                                            <center>
                                                 <b>{{ $item->count }}</b>
+                                            </center>
+                                        </div>
+                                        <div class="col-3">
+                                            <center>
+                                                <b></b>
+                                                <br>
+                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น .. % ของทั้งหมด</span>
                                             </center>
                                         </div>
                                     </div>

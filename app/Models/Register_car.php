@@ -34,5 +34,9 @@ class Register_car extends Model
     public function organization(){
         return $this->belongsTo('App\Models\Organization', 'organization_id' , 'id'); 
     }
+
+    public function guests(){
+        return $this->hasMany('App\Models\Guest');
+    }
     
 }

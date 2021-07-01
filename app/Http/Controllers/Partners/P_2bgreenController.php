@@ -45,7 +45,7 @@ class P_2bgreenController extends Controller
                     ->groupBy('registration')
                     ->groupBy('county')
                     ->groupBy('register_car_id')
-                    ->selectRaw('count(register_car_id) as count , registration , county')
+                    ->selectRaw('count(register_car_id) as count , registration , county , register_car_id')
                     ->orderByRaw('count DESC')
                     ->latest()->paginate($perPage);
 

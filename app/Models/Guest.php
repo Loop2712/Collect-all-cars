@@ -31,4 +31,7 @@ class Guest extends Model
         return $this->belongsTo('App\User', 'user_id', 'id'); 
     }
     
+     public function register_cars(){
+        return $this->belongsTo('App\Models\Register_car', 'register_car_id' , 'id'); 
+    }
 }

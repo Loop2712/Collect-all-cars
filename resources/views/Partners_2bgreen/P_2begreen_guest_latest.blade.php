@@ -78,6 +78,10 @@
                                                         {{ $item->masseng }}
                                                     @break
                                                 @endswitch
+                                                <br>
+                                                @if(!empty($item->masseng))
+                                                    {{ $item->masseng }}
+                                                @endif
                                             </center>
                                         </div>
                                         <div class="col-4">
