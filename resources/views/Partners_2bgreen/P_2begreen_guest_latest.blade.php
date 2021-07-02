@@ -80,7 +80,7 @@
                                                 @endswitch
                                                 <br>
                                                 @if(!empty($item->report_drivingd_detail))
-                                                    {{ $item->report_drivingd_detail }}
+                                                    <span class="text-danger">{{ $item->report_drivingd_detail }}</span>
                                                 @endif
                                             </center>
                                         </div>
