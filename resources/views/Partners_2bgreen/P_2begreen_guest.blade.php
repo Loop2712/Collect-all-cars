@@ -36,7 +36,7 @@
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
                                         <div class="col-1"></div>
-                                        <div class="col-2">
+                                        <div class="col-3">
                                             <center>
                                                 <b>ยี่ห้อ / รุ่น</b><br>
                                                 Brand / Model
@@ -54,20 +54,26 @@
                                                 All reports
                                             </center>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <center>
-                                                <b>
-                                                    รายงานประจำเดือน 
-                                                    (<span>ม.ค.</span> - <span>ธ.ค.</span>)
-                                                </b>
-                                                <button type="button" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#staticBackdrop">
-                                                  <i class="fas fa-calendar-alt"></i>
-                                                </button>
-                                                <br>
-                                                <span>
-                                                    Monthly reports
-                                                    (<span>jan</span> - <span>dec</span>)
-                                                </span>
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <b>
+                                                            รายงานเดือน 
+                                                            (<span id="month_th_1"></span> - <span id="month_th_2"></span>)
+                                                        </b>
+                                                        <br>
+                                                        <span>
+                                                            Monthly reports
+                                                            (<span id="month_en_1"></span> - <span id="month_en_2"></span>)
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-2">
+                                                       <button type="button" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#staticBackdrop">
+                                                          <i class="fas fa-calendar-alt"></i>
+                                                        </button> 
+                                                    </div>
+                                                </div>
                                             </center>
                                         </div>
                                     </div>
@@ -77,7 +83,7 @@
                                         <div class="col-1">
                                             <center>{{ $loop->iteration }}</center>
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-3">
                                             <center>
                                                 <b>{{ $item->register_cars->brand }}</b><br>
                                                 {{ $item->register_cars->generation }}
@@ -94,11 +100,11 @@
                                                 <b>{{ $item->count }}</b>
                                             </center>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <center>
-                                                <b></b>
+                                                <b>{{ $item->count }}</b>
                                                 <br>
-                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น .. % ของทั้งหมด</span>
+                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ ($item->count / $item->count) * 100 }} % ของทั้งหมด</span>
                                             </center>
                                         </div>
                                     </div>
@@ -125,31 +131,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <select class="form-control">
-            <option>- กรุณาเลือกปี -</option>
-            <option>2564</option>
-            <option>2563</option>
-            <option>2562</option>
-            <option>2561</option>
-            <option>2560</option>
+        <select class="form-control" id="select_year">
+            <option value="2021">2564</option>
+            <option value="2020">2563</option>
+            <option value="2019">2562</option>
+            <option value="2018">2561</option>
+            <option value="2017">2560</option>
         </select>
         <hr>
         <div class="row">
             <div class="col-5">
-                <select class="form-control">
-                    <option>- กรุณาเลือกเดือน -</option>
-                    <option>มกราคม</option>
-                    <option>กุมภาพันธ์</option>
-                    <option>มีนาคม</option>
-                    <option>เมษายน</option>
-                    <option>พฤษภาคม</option>
-                    <option>มิถุนายน</option>
-                    <option>กรกฎาคม</option>
-                    <option>สิงหาคม</option>
-                    <option>กันยายน</option>
-                    <option>ตุลาคม</option>
-                    <option>พฤศจิกายน</option>
-                    <option>ธันวาคม</option>
+                <select class="form-control" id="select_month_1">
+                    <option value="jan">มกราคม</option>
+                    <option value="feb">กุมภาพันธ์</option>
+                    <option value="mar">มีนาคม</option>
+                    <option value="apr">เมษายน</option>
+                    <option value="may">พฤษภาคม</option>
+                    <option value="jun">มิถุนายน</option>
+                    <option value="jul">กรกฎาคม</option>
+                    <option value="aug">สิงหาคม</option>
+                    <option value="sep">กันยายน</option>
+                    <option value="oct">ตุลาคม</option>
+                    <option value="nov">พฤศจิกายน</option>
+                    <option value="dec">ธันวาคม</option>
                 </select>
             </div>
             <div class="col-2">
@@ -158,20 +162,19 @@
                 </center>
             </div>
             <div class="col-5">
-                <select class="form-control">
-                    <option>- กรุณาเลือกเดือน -</option>
-                    <option>มกราคม</option>
-                    <option>กุมภาพันธ์</option>
-                    <option>มีนาคม</option>
-                    <option>เมษายน</option>
-                    <option>พฤษภาคม</option>
-                    <option>มิถุนายน</option>
-                    <option>กรกฎาคม</option>
-                    <option>สิงหาคม</option>
-                    <option>กันยายน</option>
-                    <option>ตุลาคม</option>
-                    <option>พฤศจิกายน</option>
-                    <option>ธันวาคม</option>
+                <select class="form-control" id="select_month_2">
+                    <option value="jan">มกราคม</option>
+                    <option value="feb">กุมภาพันธ์</option>
+                    <option value="mar">มีนาคม</option>
+                    <option value="apr">เมษายน</option>
+                    <option value="may">พฤษภาคม</option>
+                    <option value="jun">มิถุนายน</option>
+                    <option value="jul">กรกฎาคม</option>
+                    <option value="aug">สิงหาคม</option>
+                    <option value="sep">กันยายน</option>
+                    <option value="oct">ตุลาคม</option>
+                    <option value="nov">พฤศจิกายน</option>
+                    <option value="dec">ธันวาคม</option>
                 </select>
             </div>
         </div>
@@ -198,7 +201,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary" onclick="monthly();">ยืนยัน</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="monthly();">ยืนยัน</button>
       </div>
     </div>
   </div>
@@ -206,30 +209,112 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
-    console.log("START");
-    check_user();
+    // console.log("START");
 });
 
 function monthly() {
-    let id_user = document.querySelector("#id_user");
-    console.log(id_user.value);
+    let select_year = document.querySelector("#select_year");
+    let select_month_1 = document.querySelector("#select_month_1");
+    let select_month_2 = document.querySelector("#select_month_2");
+    console.log(select_year.value);
+    console.log(select_month_1.value);
+    console.log(select_month_2.value);
 
-        fetch("{{ url('/') }}/api/check_user/" + id_user.value)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                if (result) {
-                    document.getElementById("btn_check_user_Modal").click();
+    let month_en_1 = document.querySelector("#month_en_1");
+    let month_en_2 = document.querySelector("#month_en_2");
+    month_en_1.innerHTML = select_month_1.value;
+    month_en_2.innerHTML = select_month_2.value;
 
-                    for(let item of result){
-                        let name_user = document.querySelector("#name_user");
-                            name_user.innerHTML = item.name;
+    let month_th_1 = document.querySelector("#month_th_1");
+    let month_th_2 = document.querySelector("#month_th_2");
+    
+    switch (month_en_1.innerHTML) {
+        case "jan":
+            month_th_1.innerHTML  = "ม.ค.";
+            break;
+        case "feb":
+            month_th_1.innerHTML  = "ก.พ.";
+            break;
+        case "mar":
+            month_th_1.innerHTML  = "มี.ค.";
+            break;
+        case "apr":
+            month_th_1.innerHTML  = "เม.ย.";
+            break;
+        case "may":
+            month_th_1.innerHTML  = "พ.ค.";
+            break;
+        case "jun":
+            month_th_1.innerHTML  = "มิ.ย.";
+            break;
+        case "jul":
+            month_th_1.innerHTML  = "ก.ค.";
+            break;
+        case "aug":
+            month_th_1.innerHTML  = "ส.ค.";
+            break;
+        case "sep":
+            month_th_1.innerHTML  = "ก.ย.";
+            break;
+        case "oct":
+            month_th_1.innerHTML  = "ต.ค.";
+            break;
+        case "nov":
+            month_th_1.innerHTML  = "พ.ย.";
+            break;
+        case "dec":
+            month_th_1.innerHTML  = "ธ.ค.";
+            break;
 
-                    }
-                }
+        }
+
+    switch (month_en_2.innerHTML) {
+        case "jan":
+            month_th_2.innerHTML  = "ม.ค.";
+            break;
+        case "feb":
+            month_th_2.innerHTML  = "ก.พ.";
+            break;
+        case "mar":
+            month_th_2.innerHTML  = "มี.ค.";
+            break;
+        case "apr":
+            month_th_2.innerHTML  = "เม.ย.";
+            break;
+        case "may":
+            month_th_2.innerHTML  = "พ.ค.";
+            break;
+        case "jun":
+            month_th_2.innerHTML  = "มิ.ย.";
+            break;
+        case "jul":
+            month_th_2.innerHTML  = "ก.ค.";
+            break;
+        case "aug":
+            month_th_2.innerHTML  = "ส.ค.";
+            break;
+        case "sep":
+            month_th_2.innerHTML  = "ก.ย.";
+            break;
+        case "oct":
+            month_th_2.innerHTML  = "ต.ค.";
+            break;
+        case "nov":
+            month_th_2.innerHTML  = "พ.ย.";
+            break;
+        case "dec":
+            month_th_2.innerHTML  = "ธ.ค.";
+            break;
+
+        }
+
+        fetch("{{ url('/') }}/guest_2bgreen/select_month/" + month_en_1.innerHTML + "/" + month_en_2.innerHTML + "/" + select_year.value)
+            // .then(response => response.json())
+            // .then(result => {
+            //     console.log(result);
                 
                 
-            });
+            // });
 }
 
 </script>

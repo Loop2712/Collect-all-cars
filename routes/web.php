@@ -104,6 +104,7 @@ Route::middleware(['auth', 'role:2bgreen'])->group(function () {
 
 	Route::get('/report_register_cars_2bgreen', 'Partners\P_2bgreenController@report_register_cars');
 	Route::get('/guest_2bgreen', 'Partners\P_2bgreenController@guest_2bgreen');
+	// Route::get('/guest_2bgreen/select_month/{month_1}/{month_2}/{year}', 'Partners\P_2bgreenController@select_month');
 	Route::get('/guest_latest_2bgreen', 'Partners\P_2bgreenController@guest_latest_2bgreen');
 
 });

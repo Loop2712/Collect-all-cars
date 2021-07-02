@@ -25,19 +25,25 @@
                                             <b>ครั้งที่</b><br>
                                             Number
                                         </div>
+                                        <div class="col-2">
+                                            <center>
+                                                <b>ยี่ห้อ / รุ่น</b><br>
+                                                Brand / Model
+                                            </center>
+                                        </div>
                                         <div class="col-3">
                                             <center>
                                                 <b>หมายเลขทะเบียน</b><br>
                                                 Registration number
                                             </center>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <center>
                                                 <b>เหตุผล</b><br>
                                                 Reason
                                             </center>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <center>
                                                 <b>วันที่</b><br>
                                                 Date
@@ -50,13 +56,19 @@
                                         <div class="col-1">
                                             <center>{{ $item->id }}</center>
                                         </div>
+                                        <div class="col-2">
+                                            <center>
+                                                <b>{{ $item->register_cars->brand }}</b><br>
+                                                {{ $item->register_cars->generation }}
+                                            </center>
+                                        </div>
                                         <div class="col-3">
                                             <center>
                                                 <b>{{ $item->registration }}</b><br>
                                                 {{ $item->county }}
                                             </center>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <center>
                                                 @switch($item->massengbox)
                                                     @case('1')
@@ -84,7 +96,7 @@
                                                 @endif
                                             </center>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <center>
                                                 <b>{{ $item->created_at }}</b>
                                             </center>
