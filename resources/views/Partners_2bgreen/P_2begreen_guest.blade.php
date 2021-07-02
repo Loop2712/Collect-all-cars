@@ -198,9 +198,39 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary">ยืนยัน</button>
+        <button type="button" class="btn btn-primary" onclick="monthly();">ยืนยัน</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("START");
+    check_user();
+});
+
+function monthly() {
+    let id_user = document.querySelector("#id_user");
+    console.log(id_user.value);
+
+        fetch("{{ url('/') }}/api/check_user/" + id_user.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    document.getElementById("btn_check_user_Modal").click();
+
+                    for(let item of result){
+                        let name_user = document.querySelector("#name_user");
+                            name_user.innerHTML = item.name;
+
+                    }
+                }
+                
+                
+            });
+}
+
+</script>
 @endsection

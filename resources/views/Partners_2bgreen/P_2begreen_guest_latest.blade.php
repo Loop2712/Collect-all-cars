@@ -79,8 +79,8 @@
                                                     @break
                                                 @endswitch
                                                 <br>
-                                                @if(!empty($item->masseng))
-                                                    {{ $item->masseng }}
+                                                @if(!empty($item->report_drivingd_detail))
+                                                    {{ $item->report_drivingd_detail }}
                                                 @endif
                                             </center>
                                         </div>
