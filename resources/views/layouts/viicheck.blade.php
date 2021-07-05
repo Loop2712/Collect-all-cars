@@ -58,6 +58,52 @@
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
             } 
+
+        .btn_register{
+          position: relative;
+          animation-name: btn_register;
+          animation-duration: 10s;
+          animation-delay: 0s;
+        }
+
+        .text_click{
+          color: white;
+          animation-name: text_click;
+          animation-duration: 5s;
+          animation-delay: 2s;
+        }
+
+        @keyframes btn_register {
+          0%   {left:200px;}
+          25%  {left:0px;}
+          50%  {left:0px;}
+          75%  {left:0;}
+          100% {left:0;}
+        }
+
+        @keyframes text_click {
+          0%   {color: white;}
+          20%  {color: black;}
+          40%  {color: white;}
+          60%   {color: black;}
+          80%  {color: white;}
+          95%  {color: black;}
+          100%  {color: white;}
+
+        }
+
+        .data_organization{
+          position: relative;
+          animation-name: data_organization;
+          animation-duration: 3s;
+          animation-delay: 0s;
+        }
+
+        @keyframes data_organization {
+          0%   {left:0px; top:-160px; opacity: 0.1;}
+          100% {left:0px; top:0px; opacity: 1;}
+        }
+
     </style>
     
     
