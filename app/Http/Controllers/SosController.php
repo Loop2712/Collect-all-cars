@@ -257,4 +257,8 @@ class SosController extends Controller
 
         return view('sos.lawyers');
     }
+    public function sosmap()
+    {
+        return view('sos.sosmap');
+    }
 }

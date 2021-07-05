@@ -11,10 +11,13 @@
     <div class="d-none d-lg-block">
     <section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
-      <h2 style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
+    <div class="row">
+    <div class="col-sm-6">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
+    <div class="col-sm-6" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+      <h2 style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
       <a style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
     </div>
+
   </section>
     <section id="why-us" class="why-us">
       <div class="container">
@@ -23,8 +26,31 @@
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="content">
               <a href="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" class="galelry-lightbox">
-                <img width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" alt="">
-              </a>
+                <img width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-NO-TEXT.jpeg') }}" alt="">
+              </a><center>
+              <div style="position: absolute;top: 60%;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:20px; width:250px; overflow: visible;"><b>ให้เราได้ช่วยเหลือคุณ</b></p>
+              
+            </div>
+            <div style="position: absolute;top: 77%;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>จอดรถขวางผู้อื่น</b></p>
+            </div>
+            <div style="position: absolute;top: 77%;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>รถเกิดอุบัติเหตุ</b></p>
+            </div>
+            <div style="position: absolute;top: 77%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมปิดไฟหน้ารถ</b></p>
+            </div>
+            <div style="position: absolute;top: 90%;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>แจ้งปัญหาการขับขี่</b></p>
+            </div>
+            <div style="position: absolute;top: 90%;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมเด็กเล็กไว้ในรถ</b></p>
+            </div>
+            <div style="position: absolute;top: 90%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ปัญหาอื่นๆ</b></p>
+            </div>
+            </center>
             </div>
           </div>
           <div class="col-lg-7 d-flex align-items-stretch">

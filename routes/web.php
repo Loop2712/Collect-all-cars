@@ -201,6 +201,7 @@ Route::get('/tourist_police', 'SosController@tourist_police');
 //ทนายความ
 Route::get('/lawyers', 'SosController@lawyers');
 
+Route::get('/sosmap', 'SosController@sosmap');
 // END SosController
 
 Route::resource('organization', 'OrganizationController')->except(['index','show']);
