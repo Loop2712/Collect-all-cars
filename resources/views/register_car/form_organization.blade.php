@@ -2,6 +2,9 @@
 <div id="div_organization" class="d-none">
     <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร' }}</span><br>
     <span style="font-size: 18px;" class="control-label">{{ 'Company info.' }}</span><span style="color: #FF0033;"> *<br><br></span>
+    <div id="div_data">
+        
+    </div>
     @if(!empty($juristicID))
         <div id="not_empty_juristicID">
             <div class="row">
@@ -268,7 +271,7 @@
         fetch("https://dataapi.moc.go.th/juristic?juristic_id="+juristicID.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result == null) {
                     document.querySelector('#div_spinner').classList.add('d-none');
@@ -292,24 +295,6 @@
 
                 let location = document.querySelector("#location");
                     location.value = result['addressDetail']['province'];
-                //UPDATE SELECT OPTION
-                // fetch("{{ url('/') }}/api/juristic/"+result)
-
-                fetch("{{ url('/') }}/api/juristic/", {
-                    method: 'POST', // or 'PUT'
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(result),
-                    })
-
-                    .then(response => response.json())
-                    .then(result => {
-                        console.log('Success:', result);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                });
 
             });
     }
