@@ -204,3 +204,8 @@ Route::get('/lawyers', 'SosController@lawyers');
 // END SosController
 
 Route::resource('organization', 'OrganizationController')->except(['index','show']);
+
+Route::get('/test_webcam', function () {
+    
+    return view('test_webcam');
+});
