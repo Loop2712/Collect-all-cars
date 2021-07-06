@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- ถ่ายภาพป้ายทะเบียน -->
-                <div id="div_photo_registration" class="d-none">
+                <!-- <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
                             <video style="border: 5px solid navy;background-color: #666;width: 100%;height: 200px;" autoplay="true" id="videoElement"></video>
@@ -106,7 +106,7 @@
                     <input type="text" name="" id="text_img">
                     <canvas style="display:none" id="canvas"></canvas>
                     <img src="" width="100%"  height="120" id="photo2">
-                </div>
+                </div> -->
                 
                 <!-- สิ้นสุดถ่ายภาพป้ายทะเบียน -->
 
