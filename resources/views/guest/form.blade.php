@@ -96,7 +96,7 @@
                 <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
-                            <video style="border: 5px solid navy;background-color: #666;width: 100%;" autoplay="true" id="videoElement"></video>
+                            <video style="border: 5px solid navy;background-color: #666;width: 100%;height: 200px;" autoplay="true" id="videoElement"></video>
                         </div>
                         <img style="position: relative;top: 30px;left: 5px; z-index: 5; color: #fff;" width="95%" src="{{ asset('/img/more/testtest.png') }}">
                         <br><br><br><br>
@@ -105,7 +105,7 @@
                     <a class="btn btn-sm btn-primary" onclick="capture();">capture</a>
                     <input type="text" name="" id="text_img">
                     <canvas style="display:none" id="canvas"></canvas>
-                    <img src="" width="100%" height="120" id="photo2">
+                    <img src="" width="100%"  height="120" id="photo2">
                 </div>
                 
                 <!-- สิ้นสุดถ่ายภาพป้ายทะเบียน -->
