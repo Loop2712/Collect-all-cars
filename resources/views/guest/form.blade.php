@@ -92,18 +92,41 @@
                     </div>
                 </div>
 
+                <!-- ถ่ายภาพป้ายทะเบียน -->
+                <div id="div_photo_registration" class="d-none">
+                    <div class="col-12">
+                        <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
+                            <video style="border: 5px solid navy;background-color: #666;width: 100%;" autoplay="true" id="videoElement"></video>
+                        </div>
+                        <img style="position: relative;top: 30px;left: 5px; z-index: 5; color: #fff;" width="95%" src="{{ asset('/img/more/testtest.png') }}">
+                        <br><br><br><br>
+                    </div>
+                    <a class="btn btn-sm btn-primary" onclick="stop();">STOP</a>
+                    <a class="btn btn-sm btn-primary" onclick="capture();">capture</a>
+                    <input type="text" name="" id="text_img">
+                    <canvas style="display:none" id="canvas"></canvas>
+                    <img src="" width="100%" height="120" id="photo2">
+                </div>
+                
+                <!-- สิ้นสุดถ่ายภาพป้ายทะเบียน -->
 
                 <div class="col-12 col-md-2">
-                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car Registration number' }}</label></label><span style="color: #FF0033;"> *</span>
+                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car Registration number' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
+
                 <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('registration') ? 'has-error' : ''}}">
-                        <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required onchange="check_registration()">
+                  <label class="sr-only" for="inlineFormInputGroupUsername">เช่น กก9999 / Ex. กก9999</label>
+                  <div class="input-group">
+                    <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
+                    <div class="input-group-prepend" onclick="capture_registration();">
+                      <div class="input-group-text"><i class="fas fa-camera"></i></div>
                     </div>
+                  </div>
                 </div>
+
                 <div class="col-12 col-md-2">
-                    <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of Vehicle registration' }}</label></label><span style="color: #FF0033;"> *</span>
+                    <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of Vehicle registration' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
@@ -273,8 +296,59 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START"); 
+        // console.log("START");
     });
+    function capture_registration(){
+        document.querySelector('#div_photo_registration').classList.remove('d-none');
+
+        var video = document.querySelector("#videoElement");
+        var photo2 = document.querySelector("#photo2");
+        var canvas = document.querySelector("#canvas");
+        var text_img = document.querySelector("#text_img");
+        var context = canvas.getContext('2d');
+
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+              video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+              console.log("Something went wrong!");
+            });
+        }
+    }
+
+    function stop(e) {
+        document.querySelector('#div_photo_registration').classList.add('d-none');
+        var video = document.querySelector("#videoElement");
+        var photo2 = document.querySelector("#photo2");
+        var canvas = document.querySelector("#canvas");
+        var text_img = document.querySelector("#text_img");
+        var context = canvas.getContext('2d');
+          
+          var stream = video.srcObject;
+          var tracks = stream.getTracks();
+
+          for (var i = 0; i < tracks.length; i++) {
+            var track = tracks[i];
+            track.stop();
+          }
+
+          video.srcObject = null;
+    }
+
+    function capture() {
+        var video = document.querySelector("#videoElement");
+        var photo2 = document.querySelector("#photo2");
+        var canvas = document.querySelector("#canvas");
+        var text_img = document.querySelector("#text_img");
+        var context = canvas.getContext('2d');
+
+        context.drawImage(video, 90, 130, 1000, 450, 0, 0, 500, 250);
+        photo2.setAttribute('src',canvas.toDataURL('image/png'));
+        text_img.value = canvas.toDataURL('image/png');
+    }
+
     function check_registration(){
         let registration = document.querySelector("#registration");
         //PARAMETERS
@@ -447,4 +521,5 @@
                 
             });
     }
+
 </script>
