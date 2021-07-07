@@ -96,7 +96,7 @@
                 <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
-                            <video style="border: 5px solid navy;background-color: #666;width: 280px;height: 250px;" autoplay="true" id="videoElement"></video>
+                            <video style="border: 5px solid navy;background-color: #666;width: 100%;height: 250px;" autoplay="true" id="videoElement"></video>
                         </div>
                         <img style="position: relative; z-index: 5; color: #fff;width: 80%;top: 60px;right: -25px;"  src="{{ asset('/img/more/testtest.png') }}">
                     </div>
