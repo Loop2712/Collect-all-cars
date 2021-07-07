@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToCompany;
 
 use App\Models\Mylog;
-use Alimranahmed\LaraOCR\Facades\OCR;
 
 class GuestController extends Controller
 {
@@ -110,9 +109,6 @@ class GuestController extends Controller
             //         intval($image->height()/4)
             //     )->save(); 
             // }
-            // $text_img = OCR::scan(storage_path("app/public")."/".$requestData['photo']);
-            // echo "TEXT >>>>>>>>>".$text_img;
-            // exit();
         }
 
 
