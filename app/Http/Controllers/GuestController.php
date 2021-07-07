@@ -110,9 +110,9 @@ class GuestController extends Controller
             //         intval($image->height()/4)
             //     )->save(); 
             // }
-            $text_img = OCR::scan(storage_path("app/public")."/".$requestData['photo']);
-            echo $text_img;
-            exit();
+            // $text_img = OCR::scan(storage_path("app/public")."/".$requestData['photo']);
+            // echo "TEXT >>>>>>>>>".$text_img;
+            // exit();
         }
 
 
