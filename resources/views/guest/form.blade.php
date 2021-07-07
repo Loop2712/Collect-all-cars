@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- ถ่ายภาพป้ายทะเบียน -->
-                <div id="div_photo_registration" class="d-none">
+                <div id="div_photo_registration" class="">
                     <div class="col-12">
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
                             <video style="border: 5px solid navy;background-color: #666;width: 100%;height: 250px;" autoplay="true" id="videoElement"></video>
@@ -304,6 +304,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        capture_registration();
     });
     function capture_registration(){
         document.querySelector('#div_photo_registration').classList.remove('d-none');
@@ -351,7 +352,7 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 90, 130, 1000, 450, 0, 0, 500, 250);
+        context.drawImage(video, 50, 70, 750, 400, 0, 0, 480, 250);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
     }
