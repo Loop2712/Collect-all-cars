@@ -74,6 +74,15 @@
 	   	context.drawImage(video, 90, 130, 1000, 450, 0, 0, 500, 250);
 	   	photo.setAttribute('src',canvas.toDataURL('image/png'));
 	   	text_img.value = canvas.toDataURL('image/png');
+
+	   	fetch("{{ url('/') }}/api/ocr_capture/"+text_img.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                console.log("result");
+                //UPDATE SELECT OPTION
+                
+            });
 	}
 </script>
 </body>

@@ -355,6 +355,15 @@
         context.drawImage(video, 110, 200, 700, 320, 0, 0, 500, 250);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
+
+        fetch("{{ url('/') }}/api/ocr_capture/"+text_img.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                console.log("result");
+                //UPDATE SELECT OPTION
+                
+            });
     }
 
     function check_registration(){
