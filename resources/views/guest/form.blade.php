@@ -98,11 +98,17 @@
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
                             <video style="border: 5px solid navy;background-color: #666;width: 100%;height: 250px;" autoplay="true" id="videoElement"></video>
                         </div>
-                        <img style="position: relative; z-index: 5; color: #fff;width: 80%;top: 60px;right: -25px;"  src="{{ asset('/img/more/testtest.png') }}">
+
+                        <img style="position: relative; z-index: 5;width: 80%;top: 60px;right: -25px;"  src="{{ asset('/img/more/testtest.png') }}">
+
+                        <a style="position: relative; z-index: 5;top: -30px;right: -25px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
                     </div>
+                    <br><br><br><br><br><br><br>
                     <div class="col-12">
-                        <a class="btn btn-sm btn-primary" onclick="stop();">STOP</a>
-                        <a class="btn btn-sm btn-primary" onclick="capture();">capture</a>
+                        <center>
+                            <a class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                        </center>
+                        <br>
                         <input type="text" name="" id="text_img">
                         <canvas style="display:none" id="canvas"></canvas>
                         <img src="" width="100%"  height="120" id="photo2">
