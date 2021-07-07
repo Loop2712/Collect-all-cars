@@ -111,7 +111,7 @@
                         <br>
                         <input type="text" name="" id="text_img">
                         <canvas style="display:none" id="canvas"></canvas>
-                        <img src="" width="100%"  height="120" id="photo2">
+                        <img src="" width="100%"  height="150" id="photo2">
                     </div>
                 </div>
                 
@@ -352,7 +352,7 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 50, 70, 750, 400, 0, 0, 480, 250);
+        context.drawImage(video, 110, 130, 700, 320, 0, 0, 500, 250);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
     }
