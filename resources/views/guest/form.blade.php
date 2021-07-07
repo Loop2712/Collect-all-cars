@@ -98,7 +98,7 @@
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
                             <video style="border: 5px solid navy;background-color: #666;width: 100%;height: 100%;" autoplay="true" id="videoElement"></video>
                         </div>
-                        <img style="position: relative;top: 30px;left: 45px; z-index: 5; color: #fff;" width="65%" src="{{ asset('/img/more/testtest.png') }}">
+                        <img style="position: relative; z-index: 5; color: #fff;" width="100%" src="{{ asset('/img/more/testtest.png') }}">
                         <br><br><br><br><br><br><br><br><br><br>
                     </div>
                     <a class="btn btn-sm btn-primary" onclick="stop();">STOP</a>
