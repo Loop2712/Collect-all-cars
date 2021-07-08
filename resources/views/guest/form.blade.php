@@ -315,7 +315,11 @@
         if (navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices.getUserMedia({ video: true })
             .then(function (stream) {
-              video.srcObject = stream;
+              if (typeof video.srcObject == "object") {
+                  video.srcObject = stream;
+                } else {
+                  video.src = URL.createObjectURL(stream);
+                }
             })
             .catch(function (err0r) {
               console.log("Something went wrong!");
