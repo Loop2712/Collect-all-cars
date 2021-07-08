@@ -104,7 +104,6 @@
                         <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
 
                         <a style="position: relative; z-index: 6;top: -60px;right: -55px;" class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                        <a style="position: relative; z-index: 6;top: -30px;right: -55px;" class="btn btn-sm btn-primary" onclick="flip();"><i class="fas fa-camera"></i> flip</a>
                     </div>
                     <div class="col-12">
                         <input type="text" name="" id="text_img">
@@ -326,17 +325,6 @@
               console.log("Something went wrong!");
             });
         }
-    }
-
-    function flip() {
-        var video = document.querySelector("#videoElement");
-        var photo2 = document.querySelector("#photo2");
-        var canvas = document.querySelector("#canvas");
-        var text_img = document.querySelector("#text_img");
-        var context = canvas.getContext('2d');
-
-        video.flip();
-        video.start();
     }
 
     function stop(e) {
