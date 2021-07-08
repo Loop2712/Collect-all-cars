@@ -103,7 +103,7 @@
 
                         <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
 
-                        <a style="position: relative; z-index: 6;top: -80px;right: -55px;" class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                        <a style="position: relative; z-index: 6;top: -60px;right: -55px;" class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                     </div>
                     <div class="col-12">
                         <input type="text" name="" id="text_img">
