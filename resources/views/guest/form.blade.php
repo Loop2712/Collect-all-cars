@@ -107,8 +107,8 @@
                     </div>
                     <div class="col-12">
                         <input type="text" name="" id="text_img">
-                        <canvas style="background-color: red;" id="canvas" width="250" height="150"></canvas>
-                        <img src="" width="250" height="150" id="photo2">
+                        <canvas style="background-color: red;" id="canvas" width="250" height="100"></canvas>
+                        <img src="" width="250" height="100" id="photo2">
                     </div>
                 </div>
                 
@@ -349,7 +349,7 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 75, 60, 255, 255, 0, 0, 250, 150);
+        context.drawImage(video, 30, 80, 580, 255, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
