@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- ถ่ายภาพป้ายทะเบียน -->
-                <div id="div_photo_registration" class="">
+                <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
                         <div id="container">
                             <video width="100%" height="300" autoplay="true" id="videoElement"></video>
@@ -123,7 +123,7 @@
                   <div class="input-group">
                     <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
-                    <div class="input-group-prepend" onclick="capture_registration();">
+                    <div class="input-group-prepend" onclick="">
                       <div class="input-group-text"><i class="fas fa-camera"></i></div>
                     </div>
                   </div>
@@ -301,7 +301,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        capture_registration();
+        // capture_registration();
     });
     function capture_registration(){
         document.querySelector('#div_photo_registration').classList.remove('d-none');
