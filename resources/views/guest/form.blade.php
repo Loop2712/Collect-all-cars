@@ -95,11 +95,11 @@
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="">
                     <div class="col-12">
-                        <div id="container" style="position: absolute;right: 0px;top: -40%;z-index: 2;">
-                            <video width="100%" height="500" autoplay="true" id="videoElement"></video>
+                        <div id="container">
+                            <video width="100%" height="300" autoplay="true" id="videoElement"></video>
                         </div>
 
-                        <img style="position: relative; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%">
+                        <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300">
 
                         <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
 
