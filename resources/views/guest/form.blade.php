@@ -96,10 +96,10 @@
                 <div id="div_photo_registration" class="">
                     <div class="col-12">
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
-                            <video style="width: 100%;height: 250px;" autoplay="true" id="videoElement"></video>
+                            <video style="width: 100%;" autoplay="true" id="videoElement"></video>
                         </div>
 
-                        <img style="position: relative; z-index: 5;top: -25px;right: 15px;"  src="{{ asset('/img/more/testtest.png') }}" width="280" height="280">
+                        <img style="position: relative; z-index: 5;top: -25px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%">
 
                         <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
 
