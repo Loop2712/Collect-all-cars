@@ -96,22 +96,19 @@
                 <div id="div_photo_registration" class="">
                     <div class="col-12">
                         <div id="container" style="position: absolute;right: 0px;top: -10%;z-index: 2;">
-                            <video style="border: 5px solid navy;background-color: #666;width: 100%;height: 250px;" autoplay="true" id="videoElement"></video>
+                            <video style="width: 100%;height: 250px;" autoplay="true" id="videoElement"></video>
                         </div>
 
-                        <img style="position: relative; z-index: 5;width: 80%;top: 60px;right: -25px;"  src="{{ asset('/img/more/testtest.png') }}">
+                        <img style="position: relative; z-index: 5;top: -25px;right: 15px;"  src="{{ asset('/img/more/testtest.png') }}" width="280" height="280">
 
-                        <a style="position: relative; z-index: 5;top: -30px;right: -25px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
+                        <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
+
+                        <a style="position: relative; z-index: 6;top: -80px;right: -55px;" class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                     </div>
-                    <br><br><br><br><br><br><br>
                     <div class="col-12">
-                        <center>
-                            <a class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                        </center>
-                        <br>
                         <input type="text" name="" id="text_img">
-                        <canvas style="display:none" id="canvas"></canvas>
-                        <img src="" width="100%"  height="150" id="photo2">
+                        <canvas style="background-color: red;" id="canvas" width="250" height="150"></canvas>
+                        <img src="" width="250" height="150" id="photo2">
                     </div>
                 </div>
                 
@@ -352,7 +349,7 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 110, 200, 700, 320, 0, 0, 500, 250);
+        context.drawImage(video, 75, 60, 255, 255, 0, 0, 250, 150);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
