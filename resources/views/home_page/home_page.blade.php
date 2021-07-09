@@ -25,32 +25,35 @@
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="content">
-              <a href="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" class="galelry-lightbox">
-                <img width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-NO-TEXT.jpeg') }}" alt="">
-              </a><center>
-              <div style="position: absolute;top: 60%;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:20px; width:250px; overflow: visible;"><b>ให้เราได้ช่วยเหลือคุณ</b></p>
-              
-            </div>
-            <div style="position: absolute;top: 77%;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>จอดรถขวางผู้อื่น</b></p>
-            </div>
-            <div style="position: absolute;top: 77%;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>รถเกิดอุบัติเหตุ</b></p>
-            </div>
-            <div style="position: absolute;top: 77%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมปิดไฟหน้ารถ</b></p>
-            </div>
-            <div style="position: absolute;top: 90%;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>แจ้งปัญหาการขับขี่</b></p>
-            </div>
-            <div style="position: absolute;top: 90%;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมเด็กเล็กไว้ในรถ</b></p>
-            </div>
-            <div style="position: absolute;top: 90%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ปัญหาอื่นๆ</b></p>
-            </div>
-            </center>
+              <a href="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" class="galelry-lightbox"> 
+                <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-NO-TEXT.jpeg') }}">
+              </a>
+              <div class="text-center">
+                <h4 style="margin-top: -230px;"><b id="reg_num"></b>ให้เราได้ช่วยเหลือคุณ</h4>
+              </div>
+              <center>
+                  <div style="position: absolute;top: 309px;left: 31%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลงทะเบียนแล้วใช้ได้ทันที!</b></p>
+                  </div>
+                  <div style="position: absolute;top: 467px;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>จอดรถขวางผู้อื่น</b></p>
+                  </div>
+                  <div style="position: absolute;top: 467px;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>รถเกิดอุบัติเหตุ</b></p>
+                  </div>
+                  <div style="position: absolute;top: 467px;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมปิดไฟหน้ารถ</b></p>
+                  </div>
+                  <div style="position: absolute;top: 548px;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>แจ้งปัญหาการขับขี่</b></p>
+                  </div>
+                  <div style="position: absolute;top: 548px;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมเด็กเล็กไว้ในรถ</b></p>
+                  </div>
+                  <div style="position: absolute;top: 548px;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ปัญหาอื่นๆ</b></p>
+                  </div>
+              </center>
             </div>
           </div>
           <div class="col-lg-7 d-flex align-items-stretch">
@@ -336,9 +339,10 @@
             <div class="gallery-item">
               <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-01.jpg') }}" class="img-fluid">
+                <img style="position: absolute;top:30px; left: 45%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/28.png') }}">
               </a>
             </div> 
-            <div style="position: absolute;top: 50%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+            <div style="position: absolute;top: 60%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>สแกน <span style="color: #EB2424;">QR CODE</span></b></p>
               <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">เพื่อเข้าสู่ Line Official ของ <span style="color: #EB2424;">Viicheck</span></p>
             </div>
@@ -347,6 +351,7 @@
             <div class="gallery-item">
               <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-02.jpg') }}" alt="" class="img-fluid">
+                <img style="position: absolute;top:170px; left: 0%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/10.png') }}">
               </a>
             </div>
             <div style="position: absolute;top: 44%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
@@ -359,45 +364,51 @@
             <div class="gallery-item">
               <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-04.jpg') }}" class="img-fluid">
+                <img style="position: absolute;top:30px; left: 59%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/15.png') }}">
               </a>
             </div>
-            <div style="position: absolute;top: 50%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+            <div style="position: absolute;top: 60%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>กรอก<span style="color: #EB2424;">ข้อมูล</span></b></p>
               <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">รถของคุณเพื่อใช้บริการ <span style="color: #EB2424;">Viicheck</span></p>
+              
             </div>  
           </div>
       
-          <div class="col-lg-4 col-md-4" style="margin-top:72px">
+          <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
               <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-07.jpg') }}" alt="" class="img-fluid">
+                <img style="position: absolute;top:30px; left: 75%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/15.png') }}">
               </a>
             </div>
-            <div style="position: absolute;top: 50%;left: 73%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+            <div style="position: absolute;top: 60%;left: 73%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b>ยืนยันการลงทะเบียน</b></p>
               <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">กด"<span style="color: #EB2424;">ยืนยัน</span>"เมื่อข้อมูลถูกต้อง</p>
             </div> 
           </div>
 
-          <div class="col-lg-4 col-md-4" style="margin-top:72px">
+          <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
               <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-05.jpg') }}" alt="" class="img-fluid">
+                <img style="position: absolute;top:50px; left: 50%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                <img style="position: absolute;top:50px; left: 70%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/20.png') }}">
               </a>
             </div>
-            <div style="position: absolute;top: 50%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+            <div style="position: absolute;top: 70%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b><span style="color: #EB2424;">Download</span> and Print</b></p>
               <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">สติ๊กเกอร์<span style="color: #EB2424;">ViiCHECK</span>ได้เลย!</p>
             </div> 
           </div>
 
-          <div class="col-lg-4 col-md-4" style="margin-top:72px">
+          <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
               <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-06.jpg') }}" alt="" class="img-fluid">
+                <img style="position: absolute;top:40px; left: 67%;z-index: 1;transform:rotate(360deg);" width="130" src="{{ asset('/img/stickerline/PNG/24.png') }}">
               </a>
             </div>
-            <div style="position: absolute;top: 50%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
+            <div style="position: absolute;top: 70%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:2px;line-height: 10pt; width:200px; overflow: visible;margin-left:10px;"><b>ร่วมกันสร้างสังคมแห่งการช่วยแบ่งปันความสุข</b></p>
               <p style="font-size:15px;line-height: 15pt; width:200px; overflow: visible;">และมิตรภาพที่ดีกับ"<span style="color: #EB2424;">ViiCHECK</span>"</p>
             </div> 

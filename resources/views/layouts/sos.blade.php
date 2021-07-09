@@ -27,6 +27,9 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.shadow-box {
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, .25), 0 3px 9px 7px rgba(0, 0, 0, 0.08) !important;
+}
    </style>
 @yield('content')
 
