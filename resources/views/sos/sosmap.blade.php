@@ -4,7 +4,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-NoP20OejFNd_gxMizvmRCDHwRPg0gJI" ></script>
 <style type="text/css">
     #map {
-      height: calc(35vh);
+      height: calc(30vh);
     }
     
 </style>
@@ -33,26 +33,24 @@ function showPosition(position) {
 
         // console.log(position.coords.latitude);
         // console.log(position.coords.longitude);
-        
+
         console.log(lat.value);
     
 
     fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                console.log(result[0]);
 
-                // let location = document.querySelector("#location");
-                //     location.innerHTML = "";
-                // for(let item of result){
-                //     let province = document.querySelector("#province");
-                //     province.value = item.changwat_th
-                    
-                //     let option = document.createElement("option");
-                //     option.text = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
-                //     option.value = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
-                //     location.add(option);                
-                // }
+                let location_user = document.querySelector("#location_user");
+                    location_user.innerHTML = 
+                        "&nbsp;&nbsp;&nbsp;" + 
+                        result[0]['tambon_th'] +
+                        " "+ 
+                        result[0]['amphoe_th'] +
+                        " "+ 
+                        result[0]['changwat_th'];
+                           
                 
             });
 }
@@ -72,8 +70,14 @@ function initMap(position) {
         map: map,
     });
 
+    const infowindow = new google.maps.InfoWindow({
+        content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+      });
+
+      google.maps.event.addListener(marker, "click", () => {
+        infowindow.open(map, marker);
+      });
     }
-    google.maps.event.addDomListener(window, 'load', initMap);
 
 </script>
 <input type="hidden" id="lat" name="lat" readonly>
@@ -92,13 +96,21 @@ function initMap(position) {
                     </div>
                     <div class="col-10" style="margin-bottom:-100px">
                         <p style="color:#4B4B4B ">&nbsp;&nbsp;&nbsp;ใกล้กับ</p>
-                        <p style="margin-top:-15px; color:#B3B6B7" id="location_user">&nbsp;&nbsp;&nbsp;</p>
+                        <p style="margin-top:-15px; color:#B3B6B7" id="location_user"></p>
                     </div>
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <br>
+                        <a class="btn btn-danger btn-block shadow-box" href="" >
+                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ
+                        </a>
+                    </div>
+                    <div class="col-2"></div>
                 </div>
             </div>
         
         <div class="card shadow p-3 mb-5 bg-body rounded" style="margin-top:-35px">
-            <div class="row">
+            <div class="row" >
                 <div class="col-3" >
                     <center>
                         <button class="btn-sos btn d-flex justify-content-center align-items-center" style="background-color: #188038;">
