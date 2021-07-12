@@ -101,7 +101,7 @@ function initMap(position) {
                     <div class="col-2"></div>
                     <div class="col-8">
                         <br>
-                        <a class="btn btn-danger btn-block shadow-box" href="" >
+                        <a class="btn btn-danger btn-block shadow-box" href="" onclick="getLocation();">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ
                         </a>
                     </div>
