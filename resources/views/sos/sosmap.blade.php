@@ -11,7 +11,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
-    getLocation();
+    document.getElementById("btn_getLocation").click();
     
 });
 
@@ -34,13 +34,13 @@ function showPosition(position) {
         // console.log(position.coords.latitude);
         // console.log(position.coords.longitude);
 
-        console.log(lat.value);
+        // console.log(lat.value);
     
 
     fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
             .then(response => response.json())
             .then(result => {
-                console.log(result[0]);
+                // console.log(result[0]);
 
                 let location_user = document.querySelector("#location_user");
                     location_user.innerHTML = 
@@ -82,6 +82,7 @@ function initMap(position) {
 </script>
 <input type="hidden" id="lat" name="lat" readonly>
 <input type="hidden" id="lng" name="lng" readonly> 
+<p style="display:none;" onclick="getLocation();" id="btn_getLocation"></p>
 <div class="container d-block d-md-none" >
         <div class="row">
             <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map">
@@ -101,7 +102,7 @@ function initMap(position) {
                     <div class="col-2"></div>
                     <div class="col-8">
                         <br>
-                        <a class="btn btn-danger btn-block shadow-box" href="" onclick="getLocation();">
+                        <a class="btn btn-danger btn-block shadow-box" href="">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ
                         </a>
                     </div>
