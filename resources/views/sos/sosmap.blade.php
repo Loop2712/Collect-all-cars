@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-10" style="margin-bottom:-100px">
                         <p style="color:#4B4B4B ">&nbsp;&nbsp;&nbsp;ตำแหน่งของคุณ</p>
-                        <p style="margin-top:-15px; color:#B3B6B7" id="location_user">&nbsp;&nbsp;&nbsp;กรุณาเปิดตำแหน่งที่ตั้งของคุณ</p>
+                        <p style="margin-top:-15px; color:#B3B6B7" id="location_user"><span class="text-danger">&nbsp;&nbsp;&nbsp;กรุณาเปิดตำแหน่งที่ตั้งของคุณ</span></p>
                     </div>
                     <div class="col-2"></div>
                     <div class="col-8">
