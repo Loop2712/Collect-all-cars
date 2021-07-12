@@ -17,13 +17,13 @@
                         </button>
                     </div>
                     <div class="col-10" style="margin-bottom:-100px">
-                        <p style="color:#4B4B4B ">&nbsp;&nbsp;&nbsp;ใกล้กับ</p>
+                        <p style="color:#4B4B4B ">&nbsp;&nbsp;&nbsp;ตำแหน่งของคุณ</p>
                         <p style="margin-top:-15px; color:#B3B6B7" id="location_user"></p>
                     </div>
                     <div class="col-2"></div>
                     <div class="col-8">
                         <br>
-                        <a class="btn btn-danger btn-block shadow-box" href="">
+                        <a class="btn btn-danger btn-block shadow-box text-white" onclick="getLocation();">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ
                         </a>
                     </div>
@@ -111,9 +111,8 @@
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
-    console.log("START");
+    // console.log("START");
     getLocation();
-    console.log("START");
     
 });
 
@@ -136,7 +135,7 @@ function showPosition(position) {
         // console.log(position.coords.latitude);
         // console.log(position.coords.longitude);
 
-        // console.log(lat.value);
+        console.log(lat.value);
     
 
     fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
