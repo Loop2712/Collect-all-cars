@@ -12,29 +12,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
     getLocation();
-
-    let lat = document.querySelector("#lat");
-    let lng = document.querySelector("#lng");
     
-
-    fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                
-                // let location = document.querySelector("#location");
-                //     location.innerHTML = "";
-                // for(let item of result){
-                //     let province = document.querySelector("#province");
-                //     province.value = item.changwat_th
-                    
-                //     let option = document.createElement("option");
-                //     option.text = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
-                //     option.value = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
-                //     location.add(option);                
-                // }
-                
-            });
 });
 
 function getLocation() {
@@ -55,6 +33,28 @@ function showPosition(position) {
 
         // console.log(position.coords.latitude);
         // console.log(position.coords.longitude);
+        
+        console.log(lat.value);
+    
+
+    fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                // let location = document.querySelector("#location");
+                //     location.innerHTML = "";
+                // for(let item of result){
+                //     let province = document.querySelector("#province");
+                //     province.value = item.changwat_th
+                    
+                //     let option = document.createElement("option");
+                //     option.text = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
+                //     option.value = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
+                //     location.add(option);                
+                // }
+                
+            });
 }
 
 function initMap(position) {
@@ -72,9 +72,7 @@ function initMap(position) {
         map: map,
     });
 
-
     }
-
     google.maps.event.addDomListener(window, 'load', initMap);
 
 </script>
