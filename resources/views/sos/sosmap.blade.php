@@ -112,16 +112,17 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("START");
     getLocation();
+    console.log("START");
     
 });
 
 function getLocation() {
-  if (navigator.geolocation) {
+  // if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
     navigator.geolocation.getCurrentPosition(initMap);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
+  // } else { 
+  //   x.innerHTML = "Geolocation is not supported by this browser.";
+  // }
 }
 
 function showPosition(position) {
