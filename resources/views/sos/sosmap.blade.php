@@ -23,7 +23,7 @@
                     <div class="col-2"></div>
                     <div class="col-8">
                         <br>
-                        <a class="btn btn-danger btn-block shadow-box text-white" onclick="getLocation();">
+                        <a class="btn btn-danger btn-block shadow-box text-white" >
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ
                         </a>
                     </div>
@@ -112,10 +112,12 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
-    getLocation();
+    START();
     
 });
-
+function START() {
+    getLocation();
+}
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -135,7 +137,7 @@ function showPosition(position) {
         // console.log(position.coords.latitude);
         // console.log(position.coords.longitude);
 
-        console.log(lat.value);
+        // console.log(lat.value);
     
 
     fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
