@@ -3,7 +3,7 @@
 
 <input type="hidden" id="lat" name="lat" readonly>
 <input type="hidden" id="lng" name="lng" readonly> 
-<a type="" class="btn" id="btn_get_location" onclick="getLocation();"> btn_get_location</a>
+<!-- <a type="" class="btn" id="btn_get_location" onclick="getLocation();"> btn_get_location</a> -->
 <div class="container d-block d-md-none" >
         <div class="row">
             <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map">
@@ -122,8 +122,7 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(showPosition);
     navigator.geolocation.getCurrentPosition(initMap);
   } else { 
-    // x.innerHTML = "Geolocation is not supported by this browser.";
-    document.getElementById("btn_get_location").click();
+    x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
