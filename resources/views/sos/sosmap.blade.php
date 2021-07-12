@@ -10,19 +10,16 @@
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
-    // console.log("START");
-    document.getElementById("btn_getLocation").click();
+    console.log("START");
     
-});
-
-function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
     navigator.geolocation.getCurrentPosition(initMap);
   } else { 
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
-}
+    
+});
 
 function showPosition(position) {
     let lat = document.querySelector("#lat");
