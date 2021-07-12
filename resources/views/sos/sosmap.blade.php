@@ -1,21 +1,100 @@
 @extends('layouts.sos')
 @section('content')
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-NoP20OejFNd_gxMizvmRCDHwRPg0gJI" ></script>
+<style type="text/css">
+    #map {
+      height: calc(35vh);
+    }
+    
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    // console.log("START");
+    getLocation();
 
+    let lat = document.querySelector("#lat");
+    let lng = document.querySelector("#lng");
+    
+
+    fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                
+                // let location = document.querySelector("#location");
+                //     location.innerHTML = "";
+                // for(let item of result){
+                //     let province = document.querySelector("#province");
+                //     province.value = item.changwat_th
+                    
+                //     let option = document.createElement("option");
+                //     option.text = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
+                //     option.value = item.tambon_th +" "+ item.amphoe_th +" "+ item.changwat_th
+                //     location.add(option);                
+                // }
+                
+            });
+});
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(initMap);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+    let lat = document.querySelector("#lat");
+    let lng = document.querySelector("#lng");
+
+        lat.value = position.coords.latitude ;
+        lng.value = position.coords.longitude ;
+
+        // console.log(position.coords.latitude);
+        // console.log(position.coords.longitude);
+}
+
+function initMap(position) {
+
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude ;
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: lat , lng: lng}, 
+        zoom: 15,
+        });
+
+    var marker = new google.maps.Marker({
+        position: {lat: lat , lng: lng }, 
+        map: map,
+    });
+
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initMap);
+
+</script>
+<input type="hidden" id="lat" name="lat" readonly>
+<input type="hidden" id="lng" name="lng" readonly> 
 <div class="container d-block d-md-none" >
         <div class="row">
-            <div class="col-12" style="margin-top:15px; margin-bottom:10px" >
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4989368.068715823!2d100.32470292487557!3d14.23861745451566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1625474458473!5m2!1sth!2sth" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map">
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4989368.068715823!2d100.32470292487557!3d14.23861745451566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1625474458473!5m2!1sth!2sth" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
             </div>
             <div class="col-12 card shadow p-3 mb-5 bg-body rounded" >
                 <div class="row">
                     <div class="col-2">
                         <button class="btn-sos btn d-flex justify-content-center align-items-center" style="background-color: #E8F0FE;">
-                            <i class="fas fa-home"style="color:#2077E8"></i>
+                            <i class="fas fa-map-marker-alt text-danger"></i>
                         </button>
                     </div>
                     <div class="col-10" style="margin-bottom:-100px">
-                        <p style="color:#4B4B4B ">&nbsp;&nbsp;&nbsp;ที่อยู่</p>
-                        <p style="margin-top:-15px; color:#B3B6B7" >&nbsp;&nbsp;&nbsp;xxxxxxxxxxxxxxxxxxxxxxxx</p>
+                        <p style="color:#4B4B4B ">&nbsp;&nbsp;&nbsp;ใกล้กับ</p>
+                        <p style="margin-top:-15px; color:#B3B6B7" id="location_user">&nbsp;&nbsp;&nbsp;</p>
                     </div>
                 </div>
             </div>
