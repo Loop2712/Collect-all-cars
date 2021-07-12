@@ -1,85 +1,8 @@
 @extends('layouts.sos')
 @section('content')
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-NoP20OejFNd_gxMizvmRCDHwRPg0gJI" ></script>
-<style type="text/css">
-    #map {
-      height: calc(30vh);
-    }
-    
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    console.log("START");
-    
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    navigator.geolocation.getCurrentPosition(initMap);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-    
-});
 
-function showPosition(position) {
-    let lat = document.querySelector("#lat");
-    let lng = document.querySelector("#lng");
-
-        lat.value = position.coords.latitude ;
-        lng.value = position.coords.longitude ;
-
-        // console.log(position.coords.latitude);
-        // console.log(position.coords.longitude);
-
-        // console.log(lat.value);
-    
-
-    fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result[0]);
-
-                let location_user = document.querySelector("#location_user");
-                    location_user.innerHTML = 
-                        "&nbsp;&nbsp;&nbsp;" + 
-                        result[0]['tambon_th'] +
-                        " "+ 
-                        result[0]['amphoe_th'] +
-                        " "+ 
-                        result[0]['changwat_th'];
-                           
-                
-            });
-}
-
-function initMap(position) {
-
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude ;
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: lat , lng: lng}, 
-        zoom: 15,
-        });
-
-    var marker = new google.maps.Marker({
-        position: {lat: lat , lng: lng }, 
-        map: map,
-    });
-
-    const infowindow = new google.maps.InfoWindow({
-        content: "<p>Marker Location:" + marker.getPosition() + "</p>",
-      });
-
-      google.maps.event.addListener(marker, "click", () => {
-        infowindow.open(map, marker);
-      });
-    }
-
-</script>
 <input type="hidden" id="lat" name="lat" readonly>
 <input type="hidden" id="lng" name="lng" readonly> 
-<p onclick="getLocation();" id="btn_getLocation">cdzfnb</p>
 <div class="container d-block d-md-none" >
         <div class="row">
             <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map">
@@ -177,4 +100,84 @@ function initMap(position) {
     </div>
 </div>
 <br><br>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-NoP20OejFNd_gxMizvmRCDHwRPg0gJI" ></script>
+<style type="text/css">
+    #map {
+      height: calc(30vh);
+    }
+    
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("START");
+    getLocation();
+    
+});
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(initMap);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+    let lat = document.querySelector("#lat");
+    let lng = document.querySelector("#lng");
+
+        lat.value = position.coords.latitude ;
+        lng.value = position.coords.longitude ;
+
+        // console.log(position.coords.latitude);
+        // console.log(position.coords.longitude);
+
+        // console.log(lat.value);
+    
+
+    fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result[0]);
+
+                let location_user = document.querySelector("#location_user");
+                    location_user.innerHTML = 
+                        "&nbsp;&nbsp;&nbsp;" + 
+                        result[0]['tambon_th'] +
+                        " "+ 
+                        result[0]['amphoe_th'] +
+                        " "+ 
+                        result[0]['changwat_th'];
+                           
+                
+            });
+}
+
+function initMap(position) {
+
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude ;
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: lat , lng: lng}, 
+        zoom: 15,
+        });
+
+    var marker = new google.maps.Marker({
+        position: {lat: lat , lng: lng }, 
+        map: map,
+    });
+
+    const infowindow = new google.maps.InfoWindow({
+        content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+      });
+
+      google.maps.event.addListener(marker, "click", () => {
+        infowindow.open(map, marker);
+      });
+    }
+
+</script>
 @endsection
