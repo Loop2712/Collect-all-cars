@@ -25,9 +25,7 @@
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="content">
-              <a href="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" class="galelry-lightbox"> 
-                <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-NO-TEXT.jpeg') }}">
-              </a>
+              <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-NO-TEXT.jpeg') }}">
               <div class="text-center">
                 <h4 style="margin-top: -230px;"><b id="reg_num"></b>ให้เราได้ช่วยเหลือคุณ</h4>
               </div>
@@ -329,18 +327,14 @@
           <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
           <div class="col-lg-4 col-md-4 d-none">
             <div class="gallery-item">
-              <a href="{{ asset('/img/more/Advantages.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/more/Advantages.jpg') }}" alt="" class="img-fluid">
-              </a>
             </div>
           </div>
           <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-01.jpg') }}" class="img-fluid">
                 <img style="position: absolute;top:30px; left: 45%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/28.png') }}">
-              </a>
             </div> 
             <div style="position: absolute;top: 60%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>สแกน <span style="color: #EB2424;">QR CODE</span></b></p>
@@ -349,10 +343,8 @@
           </div>
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-02.jpg') }}" alt="" class="img-fluid">
                 <img style="position: absolute;top:170px; left: 0%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/10.png') }}">
-              </a>
             </div>
             <div style="position: absolute;top: 44%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:30px;line-height: 20pt; width:200px; overflow: visible;"><b>ลง<span style="color: #EB2424;">ทะเบียน</span></b></p>
@@ -362,10 +354,8 @@
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-04.jpg') }}" class="img-fluid">
                 <img style="position: absolute;top:30px; left: 59%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/15.png') }}">
-              </a>
             </div>
             <div style="position: absolute;top: 60%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>กรอก<span style="color: #EB2424;">ข้อมูล</span></b></p>
@@ -376,10 +366,8 @@
       
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-07.jpg') }}" alt="" class="img-fluid">
                 <img style="position: absolute;top:30px; left: 75%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/15.png') }}">
-              </a>
             </div>
             <div style="position: absolute;top: 60%;left: 73%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b>ยืนยันการลงทะเบียน</b></p>
@@ -389,11 +377,9 @@
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-05.jpg') }}" alt="" class="img-fluid">
                 <img style="position: absolute;top:50px; left: 50%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/25.png') }}">
                 <img style="position: absolute;top:50px; left: 70%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/20.png') }}">
-              </a>
             </div>
             <div style="position: absolute;top: 70%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b><span style="color: #EB2424;">Download</span> and Print</b></p>
@@ -403,10 +389,8 @@
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-06.jpg') }}" alt="" class="img-fluid">
                 <img style="position: absolute;top:40px; left: 67%;z-index: 1;transform:rotate(360deg);" width="130" src="{{ asset('/img/stickerline/PNG/24.png') }}">
-              </a>
             </div>
             <div style="position: absolute;top: 70%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:2px;line-height: 10pt; width:200px; overflow: visible;margin-left:10px;"><b>ร่วมกันสร้างสังคมแห่งการช่วยแบ่งปันความสุข</b></p>
@@ -588,7 +572,6 @@
             <img width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" alt="">
               <div class="text-center">
                 <br>
-                <a href="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" class="more-btn galelry-lightbox">ดูเพิ่มเติม <i class="bx bx-chevron-right"></i></a>
               </div>
             </div>
           </div>
@@ -784,57 +767,43 @@
           <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
           <div class="col-lg-4 col-md-4 d-none">
             <div class="gallery-item">
-              <a href="{{ asset('/img/more/Advantages.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/more/Advantages.jpg') }}" alt="" class="img-fluid">
-              </a>
+              <img src="{{ asset('/img/more/Advantages.jpg') }}" alt="" class="img-fluid">
             </div>
           </div>
           <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="img-fluid">
-              </a>
+              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="img-fluid">
             </div>
           </div>
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" alt="" class="img-fluid">
-              </a>
+              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" alt="" class="img-fluid">
             </div>
           </div>
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="img-fluid">
-              </a>
+              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="img-fluid">
             </div>
           </div>
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" alt="" class="img-fluid">
-              </a>
+              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" alt="" class="img-fluid">
             </div>
           </div>
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" alt="" class="img-fluid">
-              </a>
+              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" alt="" class="img-fluid">
             </div>
           </div>
 
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" class="galelry-lightbox">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" alt="" class="img-fluid">
-              </a>
             </div>
           </div>
 
