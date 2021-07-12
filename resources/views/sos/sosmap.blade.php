@@ -82,7 +82,7 @@ function initMap(position) {
 </script>
 <input type="hidden" id="lat" name="lat" readonly>
 <input type="hidden" id="lng" name="lng" readonly> 
-<p style="display:none;" onclick="getLocation();" id="btn_getLocation"></p>
+<p onclick="getLocation();" id="btn_getLocation">cdzfnb</p>
 <div class="container d-block d-md-none" >
         <div class="row">
             <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map">
