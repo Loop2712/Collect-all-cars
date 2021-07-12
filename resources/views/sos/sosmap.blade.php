@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-10" style="margin-bottom:-100px">
                         <p style="color:#4B4B4B ">&nbsp;&nbsp;&nbsp;ตำแหน่งของคุณ</p>
-                        <p style="margin-top:-15px; color:#B3B6B7" id="location_user"></p>
+                        <p style="margin-top:-15px; color:#B3B6B7" id="location_user">กรุณาเปิดตำแหน่งที่ตั้งของคุณ</p>
                     </div>
                     <div class="col-2"></div>
                     <div class="col-8">
@@ -112,12 +112,10 @@
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
-    START();
+    getLocation();
     
 });
-function START() {
-    getLocation();
-}
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
