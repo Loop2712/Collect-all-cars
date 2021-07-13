@@ -31,7 +31,7 @@
                 </div>
             </div>
         
-        <div class="col-12 card shadow p-3 mb-5 bg-body rounded" style="margin-top:-35px">
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="margin-top:-35px">
             <div class="row" >
                 <div class="col-3" >
                     <center>
@@ -120,6 +120,7 @@ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
     navigator.geolocation.getCurrentPosition(initMap);
+    navigator.geolocation.getCurrentPosition(geocodeLatLng);
   } else { 
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
@@ -177,8 +178,34 @@ function initMap(position) {
 
       google.maps.event.addListener(marker, "click", () => {
         infowindow.open(map, marker);
+        geocodeLatLng();
       });
     }
+
+function geocodeLatLng(position) {
+
+    const geocoder = new google.maps.Geocoder();
+    var lat = position.coords.latitude ;
+    var lng = position.coords.longitude ;
+    const latlng = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng),
+    };
+
+    geocoder
+        .geocode({ location: latlng })
+        .then((response) => {
+        if (response.results[0]) {
+        
+            marker.setPosition(latlng);
+            infowindow.setContent(response.results[0].formatted_address);
+            infowindow.open(map, marker);
+        } else {
+            window.alert("No results found");
+        }
+    })
+    .catch((e) => window.alert("Geocoder failed due to: " + e));
+}
 
 </script>
 @endsection
