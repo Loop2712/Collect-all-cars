@@ -31,7 +31,7 @@
                 </div>
             </div>
         
-        <div class="card shadow p-3 mb-5 bg-body rounded" style="margin-top:-35px">
+        <div class="col-12 card shadow p-3 mb-5 bg-body rounded" style="margin-top:-35px">
             <div class="row" >
                 <div class="col-3" >
                     <center>
