@@ -514,9 +514,9 @@
                     <br>
                     <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
                 </div>
-                <div style="position: relative;top: -115px;left: -18px; z-index: 5; color: #fff;">
-                    <p style="font-size:49px;line-height: 30pt"><b>ติดต่อ</b></p>
-                    <p style="font-size:35px;line-height: 30pt">เจ้าของรถ</p>
+                <div style="position: relative;top: -120px;left: -18px; z-index: 5; color: #fff;">
+                    <p style="font-size:39px;line-height: 30pt"><b>ติดต่อ</b></p>
+                    <p style="font-size:25px;line-height: 30pt">เจ้าของรถ</p>
                 </div>
               </div>
             </a>
