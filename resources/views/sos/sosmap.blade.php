@@ -105,7 +105,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-NoP20OejFNd_gxMizvmRCDHwRPg0gJI" ></script>
 <style type="text/css">
     #map {
-      height: calc(30vh);
+      height: calc(35vh);
     }
     
 </style>
@@ -120,26 +120,26 @@ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
     navigator.geolocation.getCurrentPosition(initMap);
-    navigator.geolocation.getCurrentPosition(geocodeLatLng);
   } else { 
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
 function showPosition(position) {
-    let lat = document.querySelector("#lat");
-    let lng = document.querySelector("#lng");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
 
-        lat.value = position.coords.latitude ;
-        lng.value = position.coords.longitude ;
+    lat_text.value = position.coords.latitude ;
+    lng_text.value = position.coords.longitude ;
 
-        // console.log(position.coords.latitude);
-        // console.log(position.coords.longitude);
+    let lat = parseFloat(lat_text.value) ;
+    let lng = parseFloat(lng_text.value) ;
 
-        // console.log(lat.value);
+        // console.log(lat);
+        // console.log(lng);
     
 
-    fetch("{{ url('/') }}/api/location/" + lat.value +"/"+lng.value+"/province")
+    fetch("{{ url('/') }}/api/location/" + lat_text.value +"/"+lng_text.value+"/province")
             .then(response => response.json())
             .then(result => {
                 // console.log(result[0]);
@@ -158,54 +158,99 @@ function showPosition(position) {
 }
 
 function initMap(position) {
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
 
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude ;
+    lat_text.value = position.coords.latitude ;
+    lng_text.value = position.coords.longitude ;
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: lat , lng: lng}, 
+    let lat = parseFloat(lat_text.value) ;
+    let lng = parseFloat(lng_text.value) ;
+
+    const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
-        });
-
-    var marker = new google.maps.Marker({
-        position: {lat: lat , lng: lng }, 
-        map: map,
+        center: { lat: lat, lng: lng },
     });
-
-    const infowindow = new google.maps.InfoWindow({
-        content: "<p>Marker Location:" + marker.getPosition() + "</p>",
-      });
-
-      google.maps.event.addListener(marker, "click", () => {
-        infowindow.open(map, marker);
-        geocodeLatLng();
-      });
-    }
-
-function geocodeLatLng(position) {
-
     const geocoder = new google.maps.Geocoder();
-    var lat = position.coords.latitude ;
-    var lng = position.coords.longitude ;
-    const latlng = {
-        lat: parseFloat(lat),
-        lng: parseFloat(lng),
-    };
+    const infowindow = new google.maps.InfoWindow();
+    document.getElementById("submit").addEventListener("click", () => {
+        geocodeLatLng(geocoder, map, infowindow);
+    });
+}
 
-    geocoder
-        .geocode({ location: latlng })
-        .then((response) => {
-        if (response.results[0]) {
-        
-            marker.setPosition(latlng);
-            infowindow.setContent(response.results[0].formatted_address);
-            infowindow.open(map, marker);
-        } else {
-            window.alert("No results found");
-        }
+function geocodeLatLng(geocoder, map, infowindow) {
+  
+  const latlng = {
+    lat: lat,
+    lng: lng,
+  };
+  geocoder
+    .geocode({ location: latlng })
+    .then((response) => {
+      if (response.results[0]) {
+        map.setZoom(11);
+        const marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+        });
+        infowindow.setContent(response.results[0].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        window.alert("No results found");
+      }
     })
     .catch((e) => window.alert("Geocoder failed due to: " + e));
 }
+
+// function initMap(position) {
+
+//     var lat = position.coords.latitude;
+//     var lng = position.coords.longitude ;
+
+//     var map = new google.maps.Map(document.getElementById('map'), {
+//         center: {lat: lat , lng: lng}, 
+//         zoom: 15,
+//         });
+
+//     var marker = new google.maps.Marker({
+//         position: {lat: lat , lng: lng }, 
+//         map: map,
+//     });
+
+//     const infowindow = new google.maps.InfoWindow({
+//         content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+//       });
+
+//       google.maps.event.addListener(marker, "click", () => {
+//         infowindow.open(map, marker);
+//         geocodeLatLng();
+//       });
+//     }
+
+// function geocodeLatLng(position) {
+
+//     var geocoder = new google.maps.Geocoder();
+//     var lat = position.coords.latitude ;
+//     var lng = position.coords.longitude ;
+//     const latlng = {
+//         lat: parseFloat(lat),
+//         lng: parseFloat(lng),
+//     };
+
+//     geocoder
+//         .geocode({ location: latlng })
+//         .then((response) => {
+//         if (response.results[0]) {
+        
+//             marker.setPosition(latlng);
+//             infowindow.setContent(response.results[0].formatted_address);
+//             infowindow.open(map, marker);
+//         } else {
+//             window.alert("No results found");
+//         }
+//     })
+//     .catch((e) => window.alert("Geocoder failed due to: " + e));
+// }
 
 </script>
 @endsection
