@@ -222,11 +222,11 @@
                                     <table class="fl-table">
                                         <thead>
                                             <tr>
-                                                <th>ยี่ห้อ/Brand</th>
-                                                <th>รุ่น/Model</th>
-                                                <th>รุ่นย่อย/SubModel</th>
-                                                <th>ปี/Year</th>
-                                                <th>ราคา/Price</th>
+                                                <th>ยี่ห้อ</th>
+                                                <th>รุ่น</th>
+                                                <th>รุ่นย่อย</th>
+                                                <th>ปี</th>
+                                                <th>ราคา</th>
                                                 <th class="d-none">Actions</th>
                                             </tr>
                                         </thead>

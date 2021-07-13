@@ -76,7 +76,7 @@
                         
                     </div><br>
                     <div class="col-md-12">
-                        <button id="btn_car" class="btn btn-outline-danger" style="width: 125px;">
+                        <button id="btn_car" class="btn btn-outline-danger" style=: 125px;">
                             <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
                         </button>
                         <button id="btn_motorcycle" class="btn btn-outline-danger" >
@@ -224,11 +224,11 @@
                                     <table class="fl-table">
                                         <thead>
                                             <tr>
-                                                <th>ยี่ห้อ/Brand</th>
-                                                <th>รุ่น/Model</th>
-                                                <th>รุ่นย่อย/SubModel</th>
-                                                <th>ปี/Year</th>
-                                                <th>ราคา/Price</th>
+                                                <th>ยี่ห้อ</th>
+                                                <th>รุ่น</th>
+                                                <th>รุ่นย่อย</th>
+                                                <th>ปี</th>
+                                                <th>ราคา</th>
                                                 <th class="d-none">Actions</th>
                                             </tr>
                                         </thead>

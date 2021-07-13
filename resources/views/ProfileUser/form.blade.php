@@ -2,12 +2,12 @@
     <div class="row">
         </body>
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label"><b>{{ 'ข้อมูลพื้นฐาน / Basic information '}}</b></span>
+            <span style="font-size: 22px;" class="control-label"><b>{{ 'ข้อมูลพื้นฐาน'}}</b></span>
           
           <br><br>
           <div class="row">
                 <div class="col-12 col-md-2">
-                    <label  class="control-label"><b>{{ 'รูปภาพ  / Photo ' }}</b></label>
+                    <label  class="control-label"><b>{{ 'รูปภาพ' }}</b></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
@@ -18,7 +18,7 @@
             </div>
             <div class="row d-none">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'ชื่อผู้ใช้  / Username' }}</b></label><span style="color: #FF0033;"> *</span>
+                    <label for="massengbox" class="control-label"><b>{{ 'ชื่อผู้ใช้' }}</b></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('username') ? 'has-error' : ''}}">
@@ -29,7 +29,7 @@
         </div>
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'ชื่อ / Name' }}</b></label><span style="color: #FF0033;"> *</span>
+                    <label for="massengbox" class="control-label"><b>{{ 'ชื่อ' }}</b></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'วันเกิด / Birthday ' }}</b></label>
+                    <label for="massengbox" class="control-label"><b>{{ 'วันเกิด' }}</b></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('brith') ? 'has-error' : ''}}">
@@ -51,7 +51,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'เพศ / Sex ' }}</b></label></label>
+                    <label for="massengbox" class="control-label"><b>{{ 'เพศ' }}</b></label></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
@@ -64,7 +64,7 @@
                                 document.querySelector('#masseng_input').classList.add('d-none')
                             }">
                              <option value="" selected >
-                                 - โปรดเลือก / Please select - 
+                                 - โปรดเลือก - 
                              </option>  
                         @foreach (json_decode('{"ผู้ชาย":"ผู้ชาย","ผู้หญิง":"ผู้หญิง","ไม่ต้องการตอบ":"ไม่ต้องการตอบ"}', true) as $optionKey => $optionValue)
                             <option  ption value="{{ $optionKey }}"  {{ (isset($data->sex) && $data->sex == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
@@ -78,7 +78,7 @@
             
             <div class="col-12">
             <br><br>
-            <span style="font-size: 22px;" class="control-label"><b>{{ 'ข้อมูลติดต่อ / Contact information  '}}</b></span>
+            <span style="font-size: 22px;" class="control-label"><b>{{ 'ข้อมูลติดต่อ'}}</b></span>
           
           <br><br>
            
@@ -88,7 +88,7 @@
 
         <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'อีเมล  / E-mail' }}</b></label></label>
+                    <label for="massengbox" class="control-label"><b>{{ 'อีเมล' }}</b></label></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
@@ -99,7 +99,7 @@
         </div>
         <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'โทรศัพท์ / Phone ' }}</b></label></label>
+                    <label for="massengbox" class="control-label"><b>{{ 'โทรศัพท์' }}</b></label></label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
@@ -112,7 +112,7 @@
         <div class="row">
             <div class="col-12 col-md-2">
                 <label for="massengbox" class="control-label">
-                    <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b><br>
+                    <b>{{ 'ใบอนุญาตขับรถ' }}</b><br>
                     <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>
                 </label>
             </div>

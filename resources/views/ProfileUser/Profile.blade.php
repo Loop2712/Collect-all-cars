@@ -234,7 +234,7 @@
                                                     @if(Auth::user()->id == $data->id || Auth::user()->role == "admin")
                                                         <div class="col-md-12">
                                                             <img src="{{ url('/img/icon/driver-license-icon.png' ) }}" style="width: 18px;" />
-                                                            <b>{{ 'ใบอนุญาตขับรถ / Driver license ' }}</b>   
+                                                            <b>{{ 'ใบอนุญาตขับรถ' }}</b>   
                                                         </div>
                                                         @if(!empty($data->driver_license))
                                                             <div class="col-md-12">

@@ -158,7 +158,7 @@
 
                 <input class="form-control" name="location" type="hidden" id="location" value="{{ isset($register_car->location) ? $register_car->location :  Auth::user()->location_P }}" readonly>
 
-                <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ / Vehicle Information' }}</span><span style="color: #FF0033;"> *</span>
+                <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ' }}</span><span style="color: #FF0033;"> *</span>
                 <br><br>
                 <h4>
                     <input type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
@@ -173,7 +173,7 @@
                         document.querySelector('#div_car_brand').classList.remove('d-none'),
                         document.querySelector('#input_car_model').classList.remove('d-none'),
                         document.querySelector('#input_car_brand').classList.remove('d-none');">
-                    &nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp; รถยนต์ / Car &nbsp;&nbsp;&nbsp;
+                    &nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp; รถยนต์ &nbsp;&nbsp;&nbsp;
                   
                     <!-- แสดงเฉพาะมือถือ -->
                     <div class="d-block d-md-none">
@@ -205,14 +205,14 @@
                             document.querySelector('#div_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_model').classList.remove('d-none');">
-                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ / Motorcycle
+                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์
                     </div>
                 </h4>
                 <br>
                 <!-- ข้อมูลรถ -->
                 <div class=" row" id="div_data">
                     <div class="col-12 col-md-2">
-                        <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ / Brand' }}</label><span style="color: #FF0033;"> *</span>
+                        <label for="brand" id="brand_label" class="control-label">{{ 'ยี่ห้อรถ' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                     <div class="col-12 col-md-4">
                         <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
@@ -230,7 +230,7 @@
                                         <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                     @endforeach
                                 @else
-                                    <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option> 
+                                    <option value="" selected> - เลือกยี่ห้อ - </option> 
                                 @endif
                                 <br>
                                 {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
@@ -246,7 +246,7 @@
                                 }else{ 
                                     document.querySelector('#brand_input').classList.add('d-none'),
                                     document.querySelector('#generation_input').classList.add('d-none');}">
-                                <option value="" selected> - เลือกยี่ห้อ / Select Brand - </option>
+                                <option value="" selected> - เลือกยี่ห้อ - </option>
                                 <br>
                                 {!! $errors->first('motor_brand', '<p class="help-block">:message</p>') !!}
                             </select>
@@ -257,7 +257,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-2">
-                        <label for="generation" class="control-label">{{ 'รุ่นรถ / Model' }}</label><span style="color: #FF0033;"> *</span>
+                        <label for="generation" class="control-label">{{ 'รุ่นรถ' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
@@ -267,7 +267,7 @@
                                     document.querySelector('#generation_input').focus();
                                 }else{ 
                                     document.querySelector('#generation_input').classList.add('d-none');}">
-                                    <option value="" selected> - เลือกรุ่น / Select Model - </option>     
+                                    <option value="" selected> - เลือกรุ่น - </option>     
                                     <br> 
                                     {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                             </select>
@@ -277,7 +277,7 @@
                                     document.querySelector('#generation_input').focus();
                                 }else{ 
                                     document.querySelector('#generation_input').classList.add('d-none');}">
-                                    <option value="" selected> - เลือกรุ่น / Select Model - </option>     
+                                    <option value="" selected> - เลือกรุ่น - </option>     
                                     <br>  
                                     {!! $errors->first('motor_generation', '<p class="help-block">:message</p>') !!}            
                             </select>
@@ -288,21 +288,21 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-2">
-                        <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ / Registration numbers' }}<span style="color: #FF0033;"> *</span></label>
+                        <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ' }}<span style="color: #FF0033;"> *</span></label>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
-                            <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required onchange="check_register_car();">
+                            <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999 " required onchange="check_register_car();">
                             {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-12 col-md-2">
-                        <label for="province" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of vehicle registration' }}<span style="color: #FF0033;"> *</span></label>
+                        <label for="province" class="control-label">{{ 'จังหวัดของทะเบียนรถ' }}<span style="color: #FF0033;"> *</span></label>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
                             <select name="province" id="province" class="form-control" required onchange="check_register_car();">
-                                    <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                                    <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
                                     @foreach($location_array as $lo)
                                     <option 
                                     value="{{ $lo->province }}" 
@@ -347,9 +347,8 @@
                     <div class="row">
                         <div class="col-9 col-md-2">
                             <p style="font-size: 22px;" class="control-label"><b>ข้อมูลของท่าน</b></p>
-                            <p style="font-size: 16px;line-height: 5pt;" class="control-label">Your Information</p>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3" style="margin-top:-20px">
                             <br>
                             <button title="Click to show/hide content" type="button"  class="btn btn-sm"
                                 onclick="if(document.getElementById('information') .style.display=='none') 
