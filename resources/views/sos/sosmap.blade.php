@@ -4,6 +4,10 @@
 <input type="hidden" id="lat" name="lat" readonly>
 <input type="hidden" id="lng" name="lng" readonly> 
 <input type="hidden" id="latlng" name="latlng" readonly> 
+
+<a class="btn btn-danger btn-block shadow-box text-white" id="ssaa" onclick="SearchMap();">
+    ssaa
+</a>
 <!-- 
 <a class="btn btn-danger btn-block shadow-box text-white" id="submit">
     submit
@@ -104,7 +108,7 @@
 </div>
 <br><br>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920" ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920&language=th" ></script>
 <style type="text/css">
     #map {
       height: calc(35vh);
@@ -237,6 +241,14 @@
         // console.log("START");
         getLocation();
     });
+    function SearchMap(){
+        // console.log("SearchMap");
+        fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=ร้านอาหาร&keyword=ก๋วยเตี๋ยว&key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result); 
+            });
+    }
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -263,6 +275,8 @@
 
         let lat = parseFloat(lat_text.value) ;
         let lng = parseFloat(lng_text.value) ;
+        console.log(lat);
+        console.log(lng);
     }
 
     function initMap(position) {
