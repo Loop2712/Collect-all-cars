@@ -1,6 +1,7 @@
 @extends('layouts.sos')
 @section('content')
 
+<a id="Ct_f5" class="d-none" href="JavaScript: location.reload(true);">Refresh page</a>
 <input type="hidden" id="lat" name="lat" readonly>
 <input type="hidden" id="lng" name="lng" readonly> 
 <input type="hidden" id="latlng" name="latlng" readonly> 
@@ -26,8 +27,14 @@
                     </div>
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a id="btn_help" class="btn btn-danger btn-block shadow-box text-white d-none" >
-                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ
+                        <a id="btn_help_test" class="btn btn-danger btn-block shadow-box text-white d-none" >
+                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ทดสอบ
+                        </a>
+                        <a id="btn_help_mt" class="btn btn-danger btn-block shadow-box text-white d-none" >
+                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ มธ
+                        </a>
+                        <a id="btn_help_vru" class="btn btn-danger btn-block shadow-box text-white d-none" >
+                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ VRU
                         </a>
                     </div> 
                 </div>
@@ -275,13 +282,23 @@
         //     const test_d = { lat: 14.1127626, lng: 100.6074465 };
         // // END พื้นที่ ทดสอบ
 
-        // ตรวจสอบว่าอยู่ในพื้นที่บริการไหน
-        if (lat < 14.1150621 && lat > 14.1127626 && lng > 100.6013697 && lng < 100.6074465) {
-            document.querySelector('#btn_help').classList.remove('d-none');
-        } else {
-            console.log("ไม่อยู่ในพื้นที่ให้บริการ");
-        }
+        // // พื้นที่ VRU 
+        //     const vru_a = { lat: 14.1357294, lng: 100.6054468 };
+        //     const vru_b = { lat: 14.1357294, lng: 100.6179993 };
 
+        //     const vru_c = { lat: 14.1319187, lng: 100.6054468 };
+        //     const vru_d = { lat: 14.1319187, lng: 100.6179993 };
+        // // END พื้นที่ VRU
+
+        // ตรวจสอบว่าอยู่ในพื้นที่บริการไหน
+
+        if (lat < 14.1150621 && lat > 14.1127626 && lng > 100.6013697 && lng < 100.6074465) {
+            // พื้นที่ทดสอบ
+            document.querySelector('#btn_help_test').classList.remove('d-none');
+        } else if (lat < 14.1357294 && lat > 14.1319187 && lng > 100.6054468 && lng < 100.6179993) {
+            // VRU
+            document.querySelector('#btn_help_vru').classList.remove('d-none');
+        }
         
         // END ตรวจสอบว่าอยู่ในพื้นที่บริการไหน
     }
@@ -338,10 +355,11 @@
 
         document.getElementById("submit").addEventListener("click", () => {
             geocodeLatLng(geocoder, map, infowindow);
-          });
+        });
+
         marker_user.addListener("click", () => {
             geocodeLatLng(geocoder, map, infowindow);
-          });
+        });
     }
 
     function geocodeLatLng(geocoder, map, infowindow) {
