@@ -4,10 +4,6 @@
 <input type="hidden" id="lat" name="lat" readonly>
 <input type="hidden" id="lng" name="lng" readonly> 
 <input type="hidden" id="latlng" name="latlng" readonly> 
-
-<a class="btn btn-danger btn-block shadow-box text-white" id="ssaa" onclick="SearchMap();">
-    ssaa
-</a>
 <!-- 
 <a class="btn btn-danger btn-block shadow-box text-white" id="submit">
     submit
@@ -37,7 +33,7 @@
                 </div>
             </div>
         
-        <div class="col-12 card shadow p-3 mb-5 bg-body rounded" style="margin-top:-35px">
+        <div class="col-12 card shadow p-3 mb-5 bg-body rounded d-none" style="margin-top:-35px">
             <div class="row" >
                 <div class="col-3" >
                     <center>
@@ -80,17 +76,17 @@
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
                     <a class="btn btn-danger btn-block shadow-box" href="tel:191" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
                 </div>
-                <div class="col-6 ">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">ไฟไหม้รถ</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:199" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 199</a>
+                <div class="col-6">
+                    <p style="font-size:15px; text-align: center; margin-top:10px; ">จ.ส.100</p>
+                    <a class="btn btn-danger btn-block shadow-box" href="tel:1137" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
                 </div>
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">หน่วยแพทย์กู้ชีวิต</p>
                     <a class="btn btn-danger btn-block shadow-box" href="tel:1669" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
                 </div>
-                <div class="col-6">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">จ.ส.100</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:1137" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
+                <div class="col-6 ">
+                    <p style="font-size:15px; text-align: center; margin-top:10px; ">ป่อเต็กตึ๊ง</p>
+                    <a class="btn btn-danger btn-block shadow-box" href="tel:1418" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
                 </div>
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">สายด่วนทางหลวง</p>
@@ -100,6 +96,7 @@
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">ทนายอาสา</p>
                     <a class="btn btn-danger btn-block shadow-box" href="tel:1167" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1167</a>
                 </div>
+
                
             </div> <br>
         </div>
@@ -111,7 +108,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920&language=th" ></script>
 <style type="text/css">
     #map {
-      height: calc(35vh);
+      height: calc(45vh);
     }
     
 </style>
@@ -240,16 +237,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         getLocation();
-        // SearchMap();
     });
-    function SearchMap(){
-        console.log("SearchMap");
-        fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.1140055,100.60408&radius=500&type=restaurant&keyword=ก๋วยเตี๋ยว&key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920")
-            .then(response => response.json())
-            .then(result => {
-                console.log(response); 
-            });
-    }
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -281,14 +269,45 @@
     }
 
     function initMap(position) {
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+        let latlng = document.querySelector("#latlng");
+
+        lat_text.value = position.coords.latitude ;
+        lng_text.value = position.coords.longitude ;
+        latlng.value = position.coords.latitude+","+position.coords.longitude ;
+        let lat = parseFloat(lat_text.value) ;
+        let lng = parseFloat(lng_text.value) ;
+
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 5,
-            center: { lat: 14.940032, lng: 100.992541 },
+            zoom: 15,
+            center: { lat: lat, lng: lng },
         });
+
+        // ตำแหน่ง USER
+            const user = { lat: lat, lng: lng };
+            const marker_user = new google.maps.Marker({ map, position: user });
+
+        // พื้นที่ VRU 
+            const vru_a = { lat: 14.1357294, lng: 100.6054468 };
+            const vru_b = { lat: 14.1357294, lng: 100.6179993 };
+
+            const vru_c = { lat: 14.1319187, lng: 100.6054468 };
+            const vru_d = { lat: 14.1319187, lng: 100.6179993 };
+
+            const marker_vru_a = new google.maps.Marker({ map, position: vru_a });
+            const marker_vru_b = new google.maps.Marker({ map, position: vru_b });
+            const marker_vru_c = new google.maps.Marker({ map, position: vru_c });
+            const marker_vru_d = new google.maps.Marker({ map, position: vru_d });
+        // END พื้นที่ VRU 
+
         const geocoder = new google.maps.Geocoder();
         const infowindow = new google.maps.InfoWindow();
 
         document.getElementById("submit").addEventListener("click", () => {
+            geocodeLatLng(geocoder, map, infowindow);
+          });
+        marker_user.addListener("click", () => {
             geocodeLatLng(geocoder, map, infowindow);
           });
     }
