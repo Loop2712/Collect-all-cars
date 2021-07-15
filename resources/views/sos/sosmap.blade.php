@@ -240,13 +240,14 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         getLocation();
+        // SearchMap();
     });
     function SearchMap(){
-        // console.log("SearchMap");
-        fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=ร้านอาหาร&keyword=ก๋วยเตี๋ยว&key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920")
+        console.log("SearchMap");
+        fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.1140055,100.60408&radius=500&type=restaurant&keyword=ก๋วยเตี๋ยว&key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920")
             .then(response => response.json())
             .then(result => {
-                console.log(result); 
+                console.log(response); 
             });
     }
 
@@ -286,6 +287,7 @@
         });
         const geocoder = new google.maps.Geocoder();
         const infowindow = new google.maps.InfoWindow();
+
         document.getElementById("submit").addEventListener("click", () => {
             geocodeLatLng(geocoder, map, infowindow);
           });
