@@ -258,14 +258,32 @@
         lng_text.value = position.coords.longitude ;
         latlng.value = position.coords.latitude+","+position.coords.longitude ;
 
-        document.querySelector('#btn_help').classList.remove('d-none');
+        let lat = parseFloat(lat_text.value) ;
+        let lng = parseFloat(lng_text.value) ;
+
+        // console.log(lat);
+        // console.log(lng);
+
         let location_user = document.querySelector("#location_user");
             location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
 
-        let lat = parseFloat(lat_text.value) ;
-        let lng = parseFloat(lng_text.value) ;
-        console.log(lat);
-        console.log(lng);
+        // // พื้นที่ ทดสอบ
+        //     const test_a = { lat: 14.1150621, lng: 100.6013697 };
+        //     const test_b = { lat: 14.1150621, lng: 100.6074465 };
+
+        //     const test_c = { lat: 14.1127626, lng: 100.6013697 };
+        //     const test_d = { lat: 14.1127626, lng: 100.6074465 };
+        // // END พื้นที่ ทดสอบ
+
+        // ตรวจสอบว่าอยู่ในพื้นที่บริการไหน
+        if (lat < 14.1150621 && lat > 14.1127626 && lng > 100.6013697 && lng < 100.6074465) {
+            document.querySelector('#btn_help').classList.remove('d-none');
+        } else {
+            console.log("ไม่อยู่ในพื้นที่ให้บริการ");
+        }
+
+        
+        // END ตรวจสอบว่าอยู่ในพื้นที่บริการไหน
     }
 
     function initMap(position) {
@@ -288,18 +306,32 @@
             const user = { lat: lat, lng: lng };
             const marker_user = new google.maps.Marker({ map, position: user });
 
-        // พื้นที่ VRU 
-            const vru_a = { lat: 14.1357294, lng: 100.6054468 };
-            const vru_b = { lat: 14.1357294, lng: 100.6179993 };
+        // // พื้นที่ ทดสอบ 
+        //     const test_a = { lat: 14.1150621, lng: 100.6013697 };
+        //     const test_b = { lat: 14.1150621, lng: 100.6074465 };
 
-            const vru_c = { lat: 14.1319187, lng: 100.6054468 };
-            const vru_d = { lat: 14.1319187, lng: 100.6179993 };
+        //     const test_c = { lat: 14.1127626, lng: 100.6013697 };
+        //     const test_d = { lat: 14.1127626, lng: 100.6074465 };
 
-            const marker_vru_a = new google.maps.Marker({ map, position: vru_a });
-            const marker_vru_b = new google.maps.Marker({ map, position: vru_b });
-            const marker_vru_c = new google.maps.Marker({ map, position: vru_c });
-            const marker_vru_d = new google.maps.Marker({ map, position: vru_d });
-        // END พื้นที่ VRU 
+        //     const marker_test_a = new google.maps.Marker({ map, position: test_a });
+        //     const marker_test_b = new google.maps.Marker({ map, position: test_b });
+        //     const marker_test_c = new google.maps.Marker({ map, position: test_c });
+        //     const marker_test_d = new google.maps.Marker({ map, position: test_d });
+
+        // // END พื้นที่ ทดสอบ
+
+        // // พื้นที่ VRU 
+        //     const vru_a = { lat: 14.1357294, lng: 100.6054468 };
+        //     const vru_b = { lat: 14.1357294, lng: 100.6179993 };
+
+        //     const vru_c = { lat: 14.1319187, lng: 100.6054468 };
+        //     const vru_d = { lat: 14.1319187, lng: 100.6179993 };
+
+        //     const marker_vru_a = new google.maps.Marker({ map, position: vru_a });
+        //     const marker_vru_b = new google.maps.Marker({ map, position: vru_b });
+        //     const marker_vru_c = new google.maps.Marker({ map, position: vru_c });
+        //     const marker_vru_d = new google.maps.Marker({ map, position: vru_d });
+        // // END พื้นที่ VRU 
 
         const geocoder = new google.maps.Geocoder();
         const infowindow = new google.maps.InfoWindow();
