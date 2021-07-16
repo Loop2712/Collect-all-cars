@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Sos_map;
 use Illuminate\Http\Request;
+use Auth;
 
 class Sos_mapController extends Controller
 {
@@ -122,5 +123,14 @@ class Sos_mapController extends Controller
         Sos_map::destroy($id);
 
         return redirect('sos_map')->with('flash_message', 'Sos_map deleted!');
+    }
+
+    public function sos_help()
+    {
+        $user = Auth::user();
+
+        Sos_map::create($requestData);
+
+        return redirect('sos_map');
     }
 }

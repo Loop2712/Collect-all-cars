@@ -23,14 +23,8 @@
                     </div>
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a id="btn_help_test" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ทดสอบ
-                        </a>
-                        <a id="btn_help_mt" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ มธ
-                        </a>
-                        <a id="btn_help_vru" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ VRU
+                        <a id="a_help" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
+                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ <span id="area_help"></span>
                         </a>
                     </div> 
                 </div>
@@ -334,10 +328,14 @@
 
         if (lat < 14.1150621 && lat > 14.1127626 && lng > 100.6013697 && lng < 100.6074465) {
             // พื้นที่ทดสอบ
-            document.querySelector('#btn_help_test').classList.remove('d-none');
+            document.querySelector('#a_help').classList.remove('d-none');
+            let area_help = document.querySelector("#area_help");
+                area_help.innerHTML = "ทดสอบ"
         } else if (lat < 14.1357294 && lat > 14.1319187 && lng > 100.6054468 && lng < 100.6179993) {
             // VRU
-            document.querySelector('#btn_help_vru').classList.remove('d-none');
+            document.querySelector('#a_help').classList.remove('d-none');
+            let area_help = document.querySelector("#area_help");
+                area_help.innerHTML = "VRU"
         }
         
         // END ตรวจสอบว่าอยู่ในพื้นที่บริการไหน
@@ -434,9 +432,22 @@
         let text_phone = document.querySelector("#text_phone");
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
-            console.log(lat_text.value);
-            console.log(lng_text.value);
-            console.log(text_phone.innerHTML);
+        let area_help = document.querySelector("#area_help");
+            // console.log(area_help.innerHTML);
+            // console.log(lat_text.value);
+            // console.log(lng_text.value);
+            // console.log(text_phone.innerHTML);
+
+        const data_sos = {
+            lat : lat_text.value,
+            lng : lng_text.value,
+            phone : text_phone.innerHTML,
+            content : "help_area",
+            area : area_help.innerHTML
+        };
+
+        // console.log(data_sos);
+
     }
 
     function edit_phone() {

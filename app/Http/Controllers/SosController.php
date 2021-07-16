@@ -262,8 +262,6 @@ class SosController extends Controller
     {
         $user = Auth::user();
 
-        // $phone = $user->phone;
-
         return view('sos.sosmap', compact('user'));
     }
 }
