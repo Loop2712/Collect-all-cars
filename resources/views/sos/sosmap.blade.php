@@ -124,11 +124,7 @@
                 <br><br>
                 โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
                 <br>
-                <b>
-                    <span style="font-size:22px;" id="text_phone">
-                        @if(!empty($user->phone)){{ $user->phone }}@endif
-                    </span>
-                </b>
+                <b><span style="font-size:22px;" id="text_phone">@if(!empty($user->phone)){{ $user->phone }}@endif</span></b>
                 @if(!empty($user->phone))
                     <br>
                     <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
@@ -436,7 +432,11 @@
 
     function confirm_phone() {
         let text_phone = document.querySelector("#text_phone");
-            // console.log(text_phone.innerHTML);
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+            console.log(lat_text.value);
+            console.log(lng_text.value);
+            console.log(text_phone.innerHTML);
     }
 
     function edit_phone() {
