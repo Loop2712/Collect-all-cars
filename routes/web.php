@@ -216,3 +216,4 @@ Route::get('/Flip_Camera', function () {
     
     return view('Flip_Camera');
 });
+// Route::resource('sos_map', 'Sos_mapController');

@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "content",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "lat",
+            "type": "integer"
+        },
+        {
+            "name": "lng",
+            "type": "integer"
+        },
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        }
+    ]
+}
