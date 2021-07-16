@@ -34,19 +34,19 @@
                     <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลงทะเบียนแล้วใช้ได้ทันที!</b></p>
                   </div>
                   <div style="position: absolute;top: 467px;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>จอดรถขวางผู้อื่น</b></p>
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>จอดรถขวาง</b></p>
                   </div>
                   <div style="position: absolute;top: 467px;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
                     <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>รถเกิดอุบัติเหตุ</b></p>
                   </div>
                   <div style="position: absolute;top: 467px;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมปิดไฟหน้ารถ</b></p>
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ไฟรถเปิดอยู่</b></p>
                   </div>
                   <div style="position: absolute;top: 548px;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>แจ้งปัญหาการขับขี่</b></p>
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ปัญหาการขับขี่</b></p>
                   </div>
                   <div style="position: absolute;top: 548px;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลืมเด็กเล็กไว้ในรถ</b></p>
+                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>เด็กอยู่ในรถ</b></p>
                   </div>
                   <div style="position: absolute;top: 548px;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
                     <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ปัญหาอื่นๆ</b></p>
@@ -334,7 +334,7 @@
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-01.jpg') }}" class="img-fluid">
-                <img style="position: absolute;top:30px; left: 45%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/28.png') }}">
+                <img style="position: absolute;top:30px; left: 45%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/39.png') }}">
             </div> 
             <div style="position: absolute;top: 60%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
               <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>สแกน <span style="color: #EB2424;">QR CODE</span></b></p>
@@ -378,7 +378,7 @@
           <div class="col-lg-4 col-md-4">
             <div class="gallery-item">
                 <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-05.jpg') }}" alt="" class="img-fluid">
-                <img style="position: absolute;top:50px; left: 50%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                <img style="position: absolute;top:50px; left: 50%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/43.png') }}">
                 <img style="position: absolute;top:50px; left: 70%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/20.png') }}">
             </div>
             <div style="position: absolute;top: 70%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
