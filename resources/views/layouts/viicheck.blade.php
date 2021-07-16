@@ -403,7 +403,7 @@
             fetch("{{ url('/') }}/api/explode_name/" + name_user.value)
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result[0]);
+                    // console.log(result[0]);
                     let input_name = document.querySelector("#input_name");
                     input_name.innerHTML = result[0];
                     

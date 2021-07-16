@@ -23,13 +23,13 @@
                     </div>
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a id="btn_help_test" class="btn btn-danger btn-block shadow-box text-white d-none" >
+                        <a id="btn_help_test" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ทดสอบ
                         </a>
-                        <a id="btn_help_mt" class="btn btn-danger btn-block shadow-box text-white d-none" >
+                        <a id="btn_help_mt" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ มธ
                         </a>
-                        <a id="btn_help_vru" class="btn btn-danger btn-block shadow-box text-white d-none" >
+                        <a id="btn_help_vru" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ VRU
                         </a>
                     </div> 
@@ -103,7 +103,55 @@
                
             </div> <br>
         </div>
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+          Launch static backdrop modal
+        </button> -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+            @if(!empty($user))
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">สวัสดีคุณ <b style="color:blue;">{{ $user->name }}</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}">
+                <br><br>
+                โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
+                <br>
+                <b>
+                    <span style="font-size:22px;" id="text_phone">
+                        @if(!empty($user->phone)){{ $user->phone }}@endif
+                    </span>
+                </b>
+                @if(!empty($user->phone))
+                    <br>
+                    <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
+                    <input style="margin-top:15px;" class="form-control d-none"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" pattern="[0-9]{9-10}" onchange="edit_phone();">
+                @endif
+
+                @if(empty($user->phone))
+                    <br><br>
+                    <input class="form-control"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" pattern="[0-9]{9-10}" onchange="add_phone();">
+                @endif
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="
+                    document.querySelector('#input_phone').classList.remove('d-none');">
+                    แก้ไข
+                </button>
+
+                <button type="button" class="btn btn-primary" onclick="confirm_phone();">ยืนยัน</button>
+              </div>
+            @endif
+            </div>
+          </div>
+        </div>
     </div>
 </div>
 <br><br>
@@ -385,6 +433,26 @@
             })
             .catch((e) => window.alert("Geocoder failed due to: " + e));
         }
+
+    function confirm_phone() {
+        let text_phone = document.querySelector("#text_phone");
+            // console.log(text_phone.innerHTML);
+    }
+
+    function edit_phone() {
+        let text_phone = document.querySelector("#text_phone");
+        let input_phone = document.querySelector("#input_phone");
+            text_phone.innerHTML = input_phone.value ;
+            // console.log(text_phone.innerHTML);
+    }
+
+    function add_phone() {
+        let text_phone = document.querySelector("#text_phone");
+        let input_not_phone = document.querySelector("#input_not_phone");
+            text_phone.innerHTML = input_not_phone.value ;
+            // console.log(text_phone.innerHTML);
+    }
+
 </script>
 
 @endsection

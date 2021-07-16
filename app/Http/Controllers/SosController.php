@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\So;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class SosController extends Controller
 {
@@ -259,6 +260,10 @@ class SosController extends Controller
     }
     public function sosmap()
     {
-        return view('sos.sosmap');
+        $user = Auth::user();
+
+        // $phone = $user->phone;
+
+        return view('sos.sosmap', compact('user'));
     }
 }
