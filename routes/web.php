@@ -122,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('motercycles', 'MotorcyclesellController');
 	Route::resource('profile', 'ProfileController');
 	Route::get('/news/create', 'NewsController@create');
+	Route::get('/sosmap', 'SosController@sosmap');
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
@@ -201,7 +202,7 @@ Route::get('/tourist_police', 'SosController@tourist_police');
 //ทนายความ
 Route::get('/lawyers', 'SosController@lawyers');
 
-Route::get('/sosmap', 'SosController@sosmap');
+
 // END SosController
 
 Route::resource('organization', 'OrganizationController')->except(['index','show']);
