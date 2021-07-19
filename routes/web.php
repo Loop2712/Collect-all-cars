@@ -127,6 +127,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
+Route::get('/sos_login', 'Sos_mapController@sos_login');
 
 Route::get('/market', 'CarController@main');
 Route::get('/market/car', 'CarController@index');

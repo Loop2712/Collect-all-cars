@@ -157,5 +157,14 @@ class Sos_mapController extends Controller
         return redirect('sos_map')->with('flash_message', 'Sos_map deleted!');
     }
 
+    public function sos_login()
+    {
+        if(Auth::check()){
+            return redirect('sos_map/create');
+        }else{
+            return redirect('login/line?redirectTo=sos_map/create');
+        }
+    }
+
 
 }
