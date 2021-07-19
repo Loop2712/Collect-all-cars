@@ -2,12 +2,12 @@
     <div class="row">
         <!-- ข้อมูลรถที่ต้องการติดต่อ -->
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถที่ต้องการติดต่อ / Vehicle information'}}</span>
+            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถที่ต้องการติดต่อ'}}</span>
             <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
             <br><br>
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label">{{ 'ข้อความ / Message' }}</label></label><span style="color: #FF0033;"> *</span>
+                    <label for="massengbox" class="control-label">{{ 'ข้อความ' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
@@ -39,14 +39,14 @@
                                 document.querySelector('#report_drivingd_detail_input').classList.add('d-none')
                             }">
                              <option value="" selected >
-                                 - เลือกข้อความ / Select text - 
+                                 - เลือกข้อความ - 
                              </option>  
                         @foreach (json_decode('{
-                        "1":"กรุณาเลื่อนรถด้วยค่ะ / Please move the car",
-                        "2":"รถคุณเปิดไฟค้างไว้ค่ะ / The lights are on",
-                        "3":"มีเด็กอยู่ในรถค่ะ / Children in car",
-                        "4":"รถคุณเกิดอุบัติเหตุค่ะ / Car Accident",
-                        "5":"แจ้งปัญหาการขับขี่ / Driving Problems"}',
+                        "1":"กรุณาเลื่อนรถด้วยค่ะ",
+                        "2":"รถคุณเปิดไฟค้างไว้ค่ะ",
+                        "3":"มีเด็กอยู่ในรถค่ะ",
+                        "4":"รถคุณเกิดอุบัติเหตุค่ะ",
+                        "5":"แจ้งปัญหาการขับขี่"}',
                          true) as $optionKey => $optionValue)
                             <option value="{{ $optionKey }}"  {{ (isset($guest->massengbox) && $guest->massengbox == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
@@ -58,11 +58,11 @@
                 
                 <div class="col-12 col-md-2">
                     <!-- ข้อความอื่นๆ -->
-                    <label id="masseng_label" for="masseng" class="d-none control-label">{{ 'ข้อความอื่นๆ / Other messages' }}</label>
+                    <label id="masseng_label" for="masseng" class="d-none control-label">{{ 'ข้อความอื่นๆ' }}</label>
                     <!-- รูปภาพ -->
-                    <label id="photo_label" for="photo" class="d-none control-label">{{ 'รูปภาพ / Photo' }}</label>
+                    <label id="photo_label" for="photo" class="d-none control-label">{{ 'รูปภาพ' }}</label>
                     <!-- รายละเอียดปัญหาการขับขี่ -->
-                    <label id="report_drivingd_detail_label" for="photo" class="d-none control-label">{{ 'ปัญหาการขับขี่ / Driving problems' }}</label>
+                    <label id="report_drivingd_detail_label" for="photo" class="d-none control-label">{{ 'ปัญหาการขับขี่' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <!-- ข้อความอื่นๆ -->
@@ -79,11 +79,11 @@
                     <div id="report_drivingd_detail_input" class="d-none form-group {{ $errors->has('report_drivingd_detail') ? 'has-error' : ''}}">
                         <select name="report_drivingd_detail" class="form-control"  id="report_drivingd_detail">
                             @foreach (json_decode('{
-                            "ขับรถอันตราย":"ขับรถอันตราย / Dangerous driving",
-                            "ไม่เปิดไฟเลี้ยว":"ไม่เปิดไฟเลี้ยว / Does not turn on the turn signal",
-                            "หยุดรถกะทันหัน":"หยุดรถกะทันหัน / Stop the car suddenly",
-                            "เล่นโทรศัพท์ขณะขับขี่":"เล่นโทรศัพท์ขณะขับขี่ / Playing phone while driving",
-                            "จอดตรงที่ห้ามจอด":"จอดตรงที่ห้ามจอด / Park where parking is prohibited"}',
+                            "ขับรถอันตราย":"ขับรถอันตราย",
+                            "ไม่เปิดไฟเลี้ยว":"ไม่เปิดไฟเลี้ยว",
+                            "หยุดรถกะทันหัน":"หยุดรถกะทันหัน",
+                            "เล่นโทรศัพท์ขณะขับขี่":"เล่นโทรศัพท์ขณะขับขี่",
+                            "จอดตรงที่ห้ามจอด":"จอดตรงที่ห้ามจอด"}',
                              true) as $optionKey => $optionValue)
                             <option value="{{ $optionKey }}"  {{ (isset($guest->report_drivingd_detail) && $guest->report_drivingd_detail == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                         @endforeach
@@ -115,13 +115,13 @@
                 <!-- สิ้นสุดถ่ายภาพป้ายทะเบียน -->
 
                 <div class="col-12 col-md-2">
-                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ / Car Registration number' }}</label><span style="color: #FF0033;"> *</span>
+                    <label for="registration" class="control-label">{{ 'ทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
 
                 <div class="col-12 col-md-4">
-                  <label class="sr-only" for="inlineFormInputGroupUsername">เช่น กก9999 / Ex. กก9999</label>
+                  <label class="sr-only" for="inlineFormInputGroupUsername">เช่น กก9999</label>
                   <div class="input-group">
-                    <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999 / Ex. กก9999" required onchange="check_registration()">
+                    <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     <div class="input-group-prepend" onclick="">
                       <div class="input-group-text"><i class="fas fa-camera"></i></div>
@@ -130,12 +130,12 @@
                 </div>
 
                 <div class="col-12 col-md-2">
-                    <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ / Province of Vehicle registration' }}</label><span style="color: #FF0033;"> *</span>
+                    <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
                         <select name="county" id="county" class="form-control" required onchange="add_reg_id();">
-                                <option value="" selected > - กรุณาเลือกจังหวัด / Select province - </option> 
+                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
                                 <!-- @foreach($location_array as $lo)
                                 <option 
                                 value="{{ $lo->province }}" 
@@ -167,17 +167,17 @@
             &nbsp;&nbsp;&nbsp;แสดง / Show&nbsp;&nbsp;&nbsp; -->
             <!-- <br> -->
             <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="phone" id="phone" class="control-label">{{ 'เบอร์โทร / Phone number' }}</label>
+                <div class="col-12 col-md-2" style="margin-top:10px">
+                    <label for="phone" id="phone" class="control-label">{{ 'เบอร์โทร' }}</label>
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4" style="margin-top:10px">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                         <input class="form-control" name="phone" type="tel" id="phone_input" value="{{ isset($guest->phone) ? $guest->phone : Auth::user()->phone}}" placeholder="เช่น 0999999999 / Ex. 0999999999" pattern="[0-9]{10}" required>
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="d-none col-12 col-md-2">
-                    <label for="name" id="name" class="d-none control-label">{{ 'ชื่อ / Name' }}</label>
+                    <label for="name" id="name" class="d-none control-label">{{ 'ชื่อ' }}</label>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
@@ -188,9 +188,9 @@
             </div>
 
             <input type="radio" name="phonephone" checked class="d-none" id="show_phone_check">
-            <span class="d-none" id="p_phone">&nbsp;&nbsp;&nbsp;แสดง / Show</span>
+            <span class="d-none" id="p_phone">&nbsp;&nbsp;&nbsp;แสดง</span>
             <input type="radio" name="phonephone" class="d-none" id="not_show_phone_check">
-            <span class="d-none" id="pnot_phone">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show</span>
+            <span class="d-none" id="pnot_phone">&nbsp;&nbsp;&nbsp;ไม่แสดง</span>
 
             <input type="checkbox" name="checkbox" onchange="if(this.checked){
                 not_show_phone();
@@ -198,7 +198,7 @@
             }else{
                 show_phone();
                 document.getElementById('show_phone_check').click(); 
-            }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+            }">&nbsp;&nbsp;&nbsp;ไม่แสดง
 
             <br>
 

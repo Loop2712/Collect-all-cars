@@ -9,9 +9,8 @@
                     <div class="card-header">
                         <h4>
                             <div id="row_general" class="row">
-                                <div class="col-6">
-                                    <span style="font-size: 22px;" class="control-label">ลงทะเบียนใหม่</span><br>
-                                    <span style="font-size: 18px;" class="control-label">Register</span>
+                                <div class="col-6" style="margin-top:5px;">
+                                    <span style="font-size: 22px; " class="control-label">ลงทะเบียนใหม่</span>
                                 </div>
                                 <div id="div_btn_rg_organization" class="col-6">
                                     <a id="btn_rg_organization" class="float-right btn btn-outline-primary main-shadow main-radius" onclick="show_organization();">
@@ -30,9 +29,8 @@
                                     <a id="btn_back" class="btn btn-outline-success d-none" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
                                 </div>
                                 <!-- คอม -->
-                                <div class="col-6 d-none d-lg-block">
+                                <div class="col-6 d-none d-lg-block" style="margin-top:5px;">
                                     <span style="font-size: 22px;" class="control-label">ลงทะเบียนสำหรับองค์กร</span><br>
-                                    <span style="font-size: 18px;" class="control-label">Register for company</span>
                                 </div>
                                 <div class="col-6 d-none d-lg-block">
                                     <a id="btn_back_pc" class="btn btn-outline-success d-none float-right" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
