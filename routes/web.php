@@ -202,6 +202,8 @@ Route::get('/highway', 'SosController@highway');
 Route::get('/tourist_police', 'SosController@tourist_police');
 //ทนายความ
 Route::get('/lawyers', 'SosController@lawyers');
+// ป่อเต็กตึ๊ง
+Route::get('/pok_tek_tung', 'SosController@pok_tek_tung');
 
 
 // END SosController

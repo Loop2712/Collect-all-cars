@@ -70,7 +70,30 @@ class Sos_mapController extends Controller
                 'phone' => $requestData['phone'],
           ]);
 
-        return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
+        switch ($requestData['content']) {
+            case 'help_area':
+                return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
+                break;
+            case 'police':
+                return redirect('/disaster2')->with('flash_message', 'Sos_map added!');
+                break;
+            case 'js100':
+                return redirect('/js_100')->with('flash_message', 'Sos_map added!');
+                break;
+            case 'life_saving':
+                return redirect('/life_saving')->with('flash_message', 'Sos_map added!');
+                break;
+            case 'pok_tek_tung':
+                return redirect('/pok_tek_tung')->with('flash_message', 'Sos_map added!');
+                break;
+            case 'highway':
+                return redirect('/highway')->with('flash_message', 'Sos_map added!');
+                break;
+            case 'lawyers':
+                return redirect('/lawyers')->with('flash_message', 'Sos_map added!');
+                break;
+        }
+        
     }
 
     /**
@@ -133,5 +156,6 @@ class Sos_mapController extends Controller
 
         return redirect('sos_map')->with('flash_message', 'Sos_map deleted!');
     }
+
 
 }

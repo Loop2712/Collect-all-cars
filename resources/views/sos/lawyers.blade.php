@@ -9,7 +9,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal_1167" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-body" style="margin:-16.5px;">
         <center>

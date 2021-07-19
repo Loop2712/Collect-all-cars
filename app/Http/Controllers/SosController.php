@@ -258,6 +258,25 @@ class SosController extends Controller
 
         return view('sos.lawyers');
     }
+
+    public function pok_tek_tung()
+    {
+        $pok_tek_tung = DB::table('sos')
+                ->select('pok_tek_tung', 'total')
+                ->where('id', 1)
+                ->get();
+
+        foreach ($pok_tek_tung as $key) {
+            DB::table('sos')
+              ->where('id', 1)
+              ->update([
+                'pok_tek_tung' => $key->pok_tek_tung + 1,
+                'total' => $key->total + 1,
+            ]);
+        }
+
+        return view('sos.pok_tek_tung');
+    }
     // public function sosmap()
     // {
     //     $user = Auth::user();

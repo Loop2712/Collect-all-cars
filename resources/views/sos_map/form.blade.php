@@ -65,27 +65,27 @@
             <div class="row">
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:191" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="police();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
                 </div>
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">จ.ส.100</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:1137" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
+                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="js100();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
                 </div>
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">หน่วยแพทย์กู้ชีวิต</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:1669" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
+                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="life_saving();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
                 </div>
                 <div class="col-6 ">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">ป่อเต็กตึ๊ง</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:1418" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
+                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="pok_tek_tung();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
                 </div>
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">สายด่วนทางหลวง</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:1193" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
+                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="highway();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
                 </div>
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">ทนายอาสา</p>
-                    <a class="btn btn-danger btn-block shadow-box" href="tel:1167" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1167</a>
+                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="lawyers();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1167</a>
                 </div>
 
                
@@ -337,6 +337,84 @@
             text_phone.innerHTML = input_not_phone.value ;
             phone.value = input_not_phone.value ;
             // console.log(text_phone.innerHTML);
+    }
+
+    function police() {
+        let text_phone = document.querySelector("#text_phone");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+
+        let content = document.querySelector("#content");
+
+            content.value = "police" ;
+
+        document.querySelector("#btn_submit").click();
+
+    }
+
+    function js100() {
+        let text_phone = document.querySelector("#text_phone");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+
+        let content = document.querySelector("#content");
+
+            content.value = "js100" ;
+
+        document.querySelector("#btn_submit").click();
+
+    }
+
+    function life_saving() {
+        let text_phone = document.querySelector("#text_phone");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+
+        let content = document.querySelector("#content");
+
+            content.value = "life_saving" ;
+
+        document.querySelector("#btn_submit").click();
+
+    }
+
+    function pok_tek_tung() {
+        let text_phone = document.querySelector("#text_phone");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+
+        let content = document.querySelector("#content");
+
+            content.value = "pok_tek_tung" ;
+
+        document.querySelector("#btn_submit").click();
+
+    }
+
+    function highway() {
+        let text_phone = document.querySelector("#text_phone");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+
+        let content = document.querySelector("#content");
+
+            content.value = "highway" ;
+
+        document.querySelector("#btn_submit").click();
+
+    }
+
+    function lawyers() {
+        let text_phone = document.querySelector("#text_phone");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+
+        let content = document.querySelector("#content");
+
+            content.value = "lawyers" ;
+
+        document.querySelector("#btn_submit").click();
+
     }
 
 </script>

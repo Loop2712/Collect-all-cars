@@ -1,14 +1,14 @@
 @extends('layouts.mail_to')
 @section('content')
-<a id="tel1669" class="d-none" href="tel:1669"></a>
+<a id="tel1418" class="d-none" href="tel:1418"></a>
 
 <!-- Button trigger modal -->
-<button id="btn_1669" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_1669">
+<button id="btn_1418" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_1418">
   Launch static backdrop modal
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="modal_1669" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal_1418" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-body" style="margin:-16.5px;">
@@ -29,9 +29,9 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START"); 
         setTimeout(function(){ 
-          document.getElementById("tel1669").click(); 
+          document.getElementById("tel1418").click(); 
         }, 100);
-        document.getElementById("btn_1669").click();
+        document.getElementById("btn_1418").click();
 
     });
     function btn_add_line(){
