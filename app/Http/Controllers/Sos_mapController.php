@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Sos_map;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class Sos_mapController extends Controller
 {
@@ -45,7 +46,7 @@ class Sos_mapController extends Controller
     public function create()
     {
         $user = Auth::user();
-        
+
         return view('sos_map.create', compact('user'));
     }
 
@@ -63,7 +64,13 @@ class Sos_mapController extends Controller
         
         Sos_map::create($requestData);
 
-        return redirect('sos_map')->with('flash_message', 'Sos_map added!');
+        DB::table('users')
+              ->where('id', $requestData['user_id'])
+              ->update([
+                'phone' => $requestData['phone'],
+          ]);
+
+        return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
     }
 
     /**

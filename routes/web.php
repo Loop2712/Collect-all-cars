@@ -122,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('motercycles', 'MotorcyclesellController');
 	Route::resource('profile', 'ProfileController');
 	Route::get('/news/create', 'NewsController@create');
-	Route::resource('sos_map', 'Sos_mapController');
+	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
 	// Route::get('/sosmap', 'SosController@sosmap');
 });
 
@@ -216,5 +216,15 @@ Route::get('/test_webcam', function () {
 Route::get('/Flip_Camera', function () {
     
     return view('Flip_Camera');
+});
+
+Route::get('/sos_thank', function () {
+    
+    return view('sos_map/sos_thank');
+});
+
+Route::get('/sos_thank_area', function () {
+    
+    return view('sos_map/sos_thank_area');
 });
 

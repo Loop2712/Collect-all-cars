@@ -1,4 +1,4 @@
-<div> <!-- style="display:none;" -->
+<div style="display:none;">
     <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
         <label for="content" class="control-label">{{ 'Content' }}</label>
         <input class="form-control" name="content" type="text" id="content" value="{{ isset($sos_map->content) ? $sos_map->content : ''}}" >
