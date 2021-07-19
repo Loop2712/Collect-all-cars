@@ -122,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('motercycles', 'MotorcyclesellController');
 	Route::resource('profile', 'ProfileController');
 	Route::get('/news/create', 'NewsController@create');
+	Route::resource('sos_map', 'Sos_mapController');
 	// Route::get('/sosmap', 'SosController@sosmap');
 });
 
@@ -216,4 +217,4 @@ Route::get('/Flip_Camera', function () {
     
     return view('Flip_Camera');
 });
-Route::resource('sos_map', 'Sos_mapController');
+
