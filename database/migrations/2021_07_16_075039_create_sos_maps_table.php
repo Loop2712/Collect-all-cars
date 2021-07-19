@@ -18,8 +18,8 @@ class CreateSosMapsTable extends Migration
             $table->string('content')->nullable();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
-            $table->integer('lat')->nullable();
-            $table->integer('lng')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
             $table->string('area')->nullable();
             $table->integer('user_id')->nullable();
             });

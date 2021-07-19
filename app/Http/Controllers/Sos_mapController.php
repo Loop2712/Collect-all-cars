@@ -44,7 +44,9 @@ class Sos_mapController extends Controller
      */
     public function create()
     {
-        return view('sos_map.create');
+        $user = Auth::user();
+        
+        return view('sos_map.create', compact('user'));
     }
 
     /**
@@ -125,12 +127,4 @@ class Sos_mapController extends Controller
         return redirect('sos_map')->with('flash_message', 'Sos_map deleted!');
     }
 
-    public function sos_help()
-    {
-        $user = Auth::user();
-
-        Sos_map::create($requestData);
-
-        return redirect('sos_map');
-    }
 }

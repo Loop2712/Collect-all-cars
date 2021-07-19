@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a id="a_help" class="btn btn-danger btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
+                        <a id="a_help" class="btn btn-warning btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือพื้นที่ <span id="area_help"></span>
                         </a>
                     </div> 
@@ -118,21 +118,20 @@
                 <br><br>
                 โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
                 <br>
-                <b><span style="font-size:22px;" id="text_phone">@if(!empty($user->phone)){{ $user->phone }}@endif</span></b>
+                <input style="margin-top:15px;" class="form-control text-center" type="phone" id="text_phone" value="@if(!empty($user->phone)){{ $user->phone }}@endif" readonly>
                 @if(!empty($user->phone))
-                    <br>
                     <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
-                    <input style="margin-top:15px;" class="form-control d-none"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" pattern="[0-9]{9-10}" onchange="edit_phone();">
+                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" pattern="[0-9]{9-10}" onchange="edit_phone();">
                 @endif
 
                 @if(empty($user->phone))
-                    <br><br>
-                    <input class="form-control"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" pattern="[0-9]{9-10}" onchange="add_phone();">
+                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" pattern="[0-9]{9-10}" onchange="add_phone();">
                 @endif
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="
-                    document.querySelector('#input_phone').classList.remove('d-none');">
+                    document.querySelector('#input_phone').classList.remove('d-none'),
+                    document.querySelector('#text_phone').classList.add('d-none');">
                     แก้ไข
                 </button>
 
@@ -433,34 +432,31 @@
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
         let area_help = document.querySelector("#area_help");
-            // console.log(area_help.innerHTML);
-            // console.log(lat_text.value);
-            // console.log(lng_text.value);
-            // console.log(text_phone.innerHTML);
 
-        const data_sos = {
-            lat : lat_text.value,
-            lng : lng_text.value,
-            phone : text_phone.innerHTML,
-            content : "help_area",
-            area : area_help.innerHTML
-        };
+            console.log(area_help.innerHTML);
+            console.log(lat_text.value);
+            console.log(lng_text.value);
+            console.log(text_phone.value);
 
-        // console.log(data_sos);
+        // fetch("{{ url('/') }}/api/send_sos/" + lat_text.value + "/" + lng_text.value + "/" + text_phone + "/" area_help)
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         console.log(result);
+        //     });
 
     }
 
     function edit_phone() {
         let text_phone = document.querySelector("#text_phone");
         let input_phone = document.querySelector("#input_phone");
-            text_phone.innerHTML = input_phone.value ;
+            text_phone.value = input_phone.value ;
             // console.log(text_phone.innerHTML);
     }
 
     function add_phone() {
         let text_phone = document.querySelector("#text_phone");
         let input_not_phone = document.querySelector("#input_not_phone");
-            text_phone.innerHTML = input_not_phone.value ;
+            text_phone.value = input_not_phone.value ;
             // console.log(text_phone.innerHTML);
     }
 

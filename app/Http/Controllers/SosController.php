@@ -258,10 +258,10 @@ class SosController extends Controller
 
         return view('sos.lawyers');
     }
-    public function sosmap()
-    {
-        $user = Auth::user();
+    // public function sosmap()
+    // {
+    //     $user = Auth::user();
 
-        return view('sos.sosmap', compact('user'));
-    }
+    //     return view('sos.sosmap', compact('user'));
+    // }
 }

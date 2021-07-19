@@ -122,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('motercycles', 'MotorcyclesellController');
 	Route::resource('profile', 'ProfileController');
 	Route::get('/news/create', 'NewsController@create');
-	Route::get('/sosmap', 'SosController@sosmap');
+	// Route::get('/sosmap', 'SosController@sosmap');
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
@@ -185,7 +185,7 @@ Route::resource('promotion', 'PromotionController')->except(['create','show','ed
 Route::get('/middle_price_motorcycle', 'Middle_price_carController@index_motor');
 Route::resource('middle_price_car', 'Middle_price_carController')->except(['create','show','edit']);
 // SosController
-Route::resource('sos', 'SosController');
+// Route::resource('sos', 'SosController');
 
 //เหตุด่วนเหตุร้าย
 Route::get('/disaster2', 'SosController@disaster2');
@@ -216,4 +216,4 @@ Route::get('/Flip_Camera', function () {
     
     return view('Flip_Camera');
 });
-// Route::resource('sos_map', 'Sos_mapController');
+Route::resource('sos_map', 'Sos_mapController');
