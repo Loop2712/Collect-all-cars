@@ -1,7 +1,6 @@
 
 <div id="div_organization" class="d-none">
-    <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร' }}</span><br>
-    <span style="font-size: 18px;" class="control-label">{{ 'Company info.' }}</span><span style="color: #FF0033;"> *<br><br></span>
+    <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร' }}</span><span style="color: #FF0033;"> *<br><br></span>
     <div id="div_data">
         
     </div>
@@ -9,7 +8,7 @@
         <div id="not_empty_juristicID">
             <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล / Juristic ID   .' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row">
@@ -23,13 +22,13 @@
 
             <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'ชื่อองค์กร / Organization name.' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'ชื่อองค์กร' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'อำเภอ / District.' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'อำเภอ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'จังหวัด / Province.' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'จังหวัด' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row">
@@ -57,7 +56,7 @@
                     <label  class="control-label">{{ 'อีเมล / E-Mail' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'เบอร์โทรศัพท์' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row">
@@ -81,7 +80,7 @@
         <div id="empty_juristicID">
             <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล / Juristic ID   .' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row">
@@ -109,13 +108,13 @@
             <div id="div_data_organization" class="d-none data_organization">
                 <div class="row">
                     <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'ชื่อองค์กร / Organization name.' }}</label><span style="color: #FF0033;"> *</span>
+                        <label  class="control-label">{{ 'ชื่อองค์กร' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                     <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'อำเภอ / District.' }}</label><span style="color: #FF0033;"> *</span>
+                        <label  class="control-label">{{ 'อำเภอ' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                     <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'จังหวัด / Province.' }}</label><span style="color: #FF0033;"> *</span>
+                        <label  class="control-label">{{ 'จังหวัด' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                 </div>
                 <div class="row">
@@ -140,10 +139,10 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'อีเมล / E-Mail' }}</label><span style="color: #FF0033;"> *</span>
+                        <label  class="control-label">{{ 'อีเมล' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                     <div class="col-12 col-md-4 d-none d-lg-block">
-                        <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
+                        <label  class="control-label">{{ 'เบอร์โทรศัพท์' }}</label><span style="color: #FF0033;"> *</span>
                     </div>
                 </div>
                 <div class="row">
@@ -169,7 +168,7 @@
                                 document.querySelector('#show_branch_empty').classList.add('d-none'); 
                                 select_location();
                                 clear_input();
-                            }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่ / Not the headquarters
+                            }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่
                     <br><br>
 
                     <div id="show_branch_empty" class="row d-none">

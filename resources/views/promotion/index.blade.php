@@ -34,13 +34,11 @@
                         </ul>
                     </div>
 
-                    
-                            
                     <div  id="show_car" class="card-body">
                         <div class="row">
                             @foreach($promotion as $item)
                                 <div class="col-12 col-md-3" style="padding: 15px;">
-                                    <a href="{{ $item->link }}" class="text-dark">
+                                    <a href="{{ $item->link }}" class="text-dark" target="_blank" rel="noopener noreferrer">
                                         <div class="card main-shadow">
                                             <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                             <div class="card-body">
@@ -70,7 +68,7 @@
                         <div class="row">
                             @foreach($promotion_motor as $item)
                                 <div class="col-12 col-md-3" style="padding: 15px;">
-                                    <a href="{{ $item->link }}" class="text-dark">
+                                    <a href="{{ $item->link }}" class="text-dark" target="_blank" rel="noopener noreferrer">
                                         <div class="card main-shadow">
                                             <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                             <div class="card-body">

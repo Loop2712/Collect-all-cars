@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br><br>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -46,4 +47,5 @@
             }, 6500);
         });
     </script> -->
+    <br>
 @endsection
