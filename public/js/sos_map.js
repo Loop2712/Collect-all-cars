@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
                 area_help.innerHTML = "VRU"
+        }else{
+            document.querySelector('#btn_quick_help').classList.remove('d-none');
         }
         
         // END ตรวจสอบว่าอยู่ในพื้นที่บริการไหน
