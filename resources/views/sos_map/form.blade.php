@@ -233,6 +233,24 @@
             const user = { lat: lat, lng: lng };
             const marker_user = new google.maps.Marker({ map, position: user });
 
+            const triangleCoords = [
+                { lat: 14.1150621, lng: 100.6013697 },
+                { lat: 14.1150621, lng: 100.6074465 },
+                { lat: 14.1127626, lng: 100.6074465 },
+                { lat: 14.1127626, lng: 100.6013697 },
+                
+              ];
+              // Construct the polygon.
+              const bermudaTriangle = new google.maps.Polygon({
+                paths: triangleCoords,
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#FF0000",
+                fillOpacity: 0.35,
+              });
+              bermudaTriangle.setMap(map);
+
         // // พื้นที่ ทดสอบ 
         //     const test_a = { lat: 14.1150621, lng: 100.6013697 };
         //     const test_b = { lat: 14.1150621, lng: 100.6074465 };
