@@ -72,6 +72,8 @@ class Sos_mapController extends Controller
 
         switch ($requestData['content']) {
             case 'help_area':
+                // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
+                // $this->_pushLine($requestData);
                 return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
                 break;
             case 'police':
