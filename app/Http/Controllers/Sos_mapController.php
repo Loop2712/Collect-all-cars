@@ -9,6 +9,7 @@ use App\Models\Sos_map;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Mylog;
 
 class Sos_mapController extends Controller
 {
@@ -176,7 +177,7 @@ class Sos_mapController extends Controller
     {   
         $template_path = storage_path('../public/json/flex-accident.json');   
         $string_json = file_get_contents($template_path);
-        $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+        $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 

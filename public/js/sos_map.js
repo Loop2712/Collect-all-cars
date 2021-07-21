@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // luck
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "บ้านลัค"
+                area_help.innerHTML = "ทดสอบ"
 
         } else{
             document.querySelector('#btn_quick_help').classList.remove('d-none');
