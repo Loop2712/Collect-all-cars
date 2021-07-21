@@ -175,21 +175,42 @@ class Sos_mapController extends Controller
 
     protected function _pushLine($data)
     {   
-        $template_path = storage_path('../public/json/flex-accident.json');   
+        $datetime =  date("d-m-Y  h:i:sa");
+        // flex ask_for_help
+        $template_path = storage_path('../public/json/ask_for_help.json');   
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
+        $string_json = str_replace("datetime",$datetime,$string_json);
+        $string_json = str_replace("name",$data['name'],$string_json);
+        $string_json = str_replace("0999999999",$data['phone'],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
+        // location
+        $template_path_location = storage_path('../public/json/location.json');   
+        $string_json_location = file_get_contents($template_path_location);
+        $string_json_location = str_replace("name",$data['name'],$string_json_location);
+        $string_json_location = str_replace("99999",$data['lat'],$string_json_location);
+        $string_json_location = str_replace("88888",$data['lng'],$string_json_location);
+
+        $messages_location = [ json_decode($string_json_location, true) ];
+
+        //ตรวจสอบพื้นที่
         switch ($data['area']) {
             case 'ทดสอบ':
                 $body = [
                     "to" => "U912994894c449f2237f73f18b5703e89",
                     "messages" => $messages,
                 ];
+
+                $body_location = [
+                    "to" => "U912994894c449f2237f73f18b5703e89",
+                    "messages" => $messages_location,
+                ];
                 break;
         }
 
+        // flex ask_for_help
         $opts = [
             'http' =>[
                 'method'  => 'POST',
@@ -210,7 +231,28 @@ class Sos_mapController extends Controller
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
-        return $result;
+
+        // LOCATION
+        $opts_location = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.$this->channel_access_token,
+                'content' => json_encode($body_location, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context_location  = stream_context_create($opts_location);
+        $url_location = "https://api.line.me/v2/bot/message/push";
+        $result_location = file_get_contents($url_location, false, $context_location);
+
+        //SAVE LOG
+        $data_location = [
+            "title" => "https://api.line.me/v2/bot/message/push",
+            "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
+        ];
+        MyLog::create($data_location);
         
     }
 

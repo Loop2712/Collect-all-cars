@@ -1,0 +1,153 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "ขอความช่วยเหลือ",
+            "margin": "xxl",
+            "size": "xl",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "Ask for help",
+            "margin": "lg",
+            "size": "lg",
+            "align": "center",
+            "weight": "bold",
+            "wrap": true,
+            "offsetBottom": "md"
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/21.png",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "margin": "xs",
+            "animated": true,
+            "align": "center",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เวลา / Time",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "จาก / From",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "คุณ name",
+            "size": "lg",
+            "margin": "lg",
+            "color": "#FFFFFF"
+          }
+        ],
+        "spacing": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "lg",
+        "color": "#07375D"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "height": "sm",
+                "action": {
+                  "type": "uri",
+                  "label": "โทร 0999999999",
+                  "uri": "tel:0999999999"
+                },
+                "color": "#76d128",
+                "style": "primary"
+              }
+            ],
+            "cornerRadius": "lg",
+            "borderColor": "#FF0000"
+          }
+        ],
+        "flex": 0,
+        "borderColor": "#000000",
+        "backgroundColor": "#07375D"
+      }
+    ],
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}
+}
