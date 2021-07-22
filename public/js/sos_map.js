@@ -435,6 +435,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
                 area_help.innerHTML = "ทดสอบ"
+                
+        } else if ( inside([ lat, lng ], area_luck) ) {
+            // luck
+            document.querySelector('#a_help').classList.remove('d-none');
+            let area_help = document.querySelector("#area_help");
+                area_help.innerHTML = "ทดสอบ"
 
         } else if ( inside([ lat, lng ], area_vru) ) {
             // VRU
@@ -447,12 +453,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
                 area_help.innerHTML = "TU"
-
-        } else if ( inside([ lat, lng ], area_luck) ) {
-            // luck
-            document.querySelector('#a_help').classList.remove('d-none');
-            let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "ทดสอบ"
 
         } else if ( inside([ lat, lng ], area_kmutnb) ) {
             // luck

@@ -199,14 +199,19 @@ class Sos_mapController extends Controller
         switch ($data['area']) {
             case 'ทดสอบ':
                 $body = [
-                    "to" => "U912994894c449f2237f73f18b5703e89",
+                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
                     "messages" => $messages,
                 ];
 
                 $body_location = [
-                    "to" => "U912994894c449f2237f73f18b5703e89",
+                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
                     "messages" => $messages_location,
                 ];
+                // echo "<pre>";
+                // print_r($body);
+                // echo "<pre>";
+                // exit();
+
                 break;
         }
 
@@ -222,12 +227,12 @@ class Sos_mapController extends Controller
         ];
                             
         $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
+        $url = "https://api.line.me/v2/bot/message/multicast";
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
-            "title" => "https://api.line.me/v2/bot/message/push",
+            "title" => "https://api.line.me/v2/bot/message/multicast",
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
@@ -244,12 +249,12 @@ class Sos_mapController extends Controller
         ];
                             
         $context_location  = stream_context_create($opts_location);
-        $url_location = "https://api.line.me/v2/bot/message/push";
+        $url_location = "https://api.line.me/v2/bot/message/multicast";
         $result_location = file_get_contents($url_location, false, $context_location);
 
         //SAVE LOG
         $data_location = [
-            "title" => "https://api.line.me/v2/bot/message/push",
+            "title" => "https://api.line.me/v2/bot/message/multicast",
             "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data_location);
