@@ -197,7 +197,7 @@ class Sos_mapController extends Controller
 
         //ตรวจสอบพื้นที่
         switch ($data['area']) {
-            case 'ทดสอบ':
+            case 'ViiCHECK':
                 $body = [
                     "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
                     "messages" => $messages,
