@@ -115,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::get('/register_car/{id}/edit_act', 'Register_carController@edit_act');
 	Route::resource('deliver', 'DeliverController')->except(['index']);
-	Route::resource('guest', 'GuestController');
+	Route::resource('guest', 'GuestController')->except(['index']);
 	Route::resource('not_comfor', 'Not_comforController')->except(['index']);
 	Route::resource('wishlist', 'WishlistController');
 	Route::resource('sell', 'SellController');

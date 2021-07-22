@@ -1,4 +1,4 @@
-@extends('layouts.viicheck')
+@extends('layouts.admin')
 
 @section('content')
 <br>
