@@ -207,11 +207,6 @@ class Sos_mapController extends Controller
                     "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
                     "messages" => $messages_location,
                 ];
-                // echo "<pre>";
-                // print_r($body);
-                // echo "<pre>";
-                // exit();
-
                 break;
         }
 

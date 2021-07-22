@@ -427,20 +427,41 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 [ 13.820254, 100.514284 ],
             ];
 
-        // let lat = 13.822463;
-        // let lng = 100.512578;
+        // พื้นที่ หมู่บ้านซิเมนต์ไทย
+            const area_thai_cement = [
+                [ 13.833294, 100.539767 ],
+                [ 13.830202, 100.541761 ],
+                [ 13.830106, 100.549475 ],
+                [ 13.833513, 100.551297 ],
+                [ 13.831744, 100.546931 ],
+                [ 13.834021, 100.545848 ],
+                [ 13.833294, 100.544432 ],
+                [ 13.832725, 100.544441 ],
+                [ 13.832541, 100.543981 ],
+                [ 13.834477, 100.542781 ],
+                [ 13.836728, 100.540570 ],
+            ];
+
+        // let lat = 13.8334364;
+        // let lng = 100.5405355;
 
         if ( inside([ lat, lng ], area_test) ) {
             // พื้นที่ทดสอบ
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "ทดสอบ"
-                
+                area_help.innerHTML = "ViiCHECK"
+
         } else if ( inside([ lat, lng ], area_luck) ) {
             // luck
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "ทดสอบ"
+                area_help.innerHTML = "ViiCHECK"
+
+        } else if ( inside([ lat, lng ], area_thai_cement) ) {
+            // หมู่บ้านซิเมนต์ไทย
+            document.querySelector('#a_help').classList.remove('d-none');
+            let area_help = document.querySelector("#area_help");
+                area_help.innerHTML = "ViiCHECK"
 
         } else if ( inside([ lat, lng ], area_vru) ) {
             // VRU
@@ -455,7 +476,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 area_help.innerHTML = "TU"
 
         } else if ( inside([ lat, lng ], area_kmutnb) ) {
-            // luck
+            // KMUTNB
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
                 area_help.innerHTML = "KMUTNB"
