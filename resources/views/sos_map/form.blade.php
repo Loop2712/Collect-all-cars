@@ -43,7 +43,7 @@
 
 <input type="hidden" id="latlng" name="latlng" readonly> 
 
-<div class="container"> <!-- d-block d-md-none -->
+<div class="container d-block d-md-none"> <!-- d-block d-md-none -->
         <div class="row">
             <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map">
                     <img style="  width: 100%;height: 100%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;">
