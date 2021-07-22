@@ -303,9 +303,69 @@ document.addEventListener('DOMContentLoaded', (event) => {
           });
           draw_area_luck.setMap(map);
     // END พื้นที่ บ้านลัค
+
+    // พื้นที่ พระจอมเกล้าพระนครเหนือ
+        const kmutnb_a = { lat: 13.819200, lng: 100.512753 };
+        const kmutnb_b = { lat: 13.818744, lng: 100.514181 };
+        const kmutnb_c = { lat: 13.819357, lng: 100.514901 };
+        const kmutnb_d = { lat: 13.819157, lng: 100.515523 };
+        const kmutnb_e = { lat: 13.819333, lng: 100.515561 };
+        const kmutnb_f = { lat: 13.819222, lng: 100.516228 };
+        const kmutnb_g = { lat: 13.821000, lng: 100.517113 };
+        const kmutnb_i = { lat: 13.822192, lng: 100.514845 };
+        const kmutnb_j = { lat: 13.824593, lng: 100.512288 };
+        const kmutnb_k = { lat: 13.824234, lng: 100.511526 };
+        const kmutnb_l = { lat: 13.823348, lng: 100.512004 };
+        const kmutnb_m = { lat: 13.822952, lng: 100.511392 };
+        const kmutnb_n = { lat: 13.821650, lng: 100.512422 };
+        const kmutnb_o = { lat: 13.820254, lng: 100.514284 };
+
+        const area_kmutnb = [kmutnb_a,kmutnb_b,kmutnb_c,kmutnb_d,kmutnb_e,
+            kmutnb_f,kmutnb_g,kmutnb_i,kmutnb_j,kmutnb_k,kmutnb_l,kmutnb_m,kmutnb_n,kmutnb_o,];
+
+        // Construct the polygon.
+        const draw_area_kmutnb = new google.maps.Polygon({
+            paths: area_kmutnb,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_kmutnb.setMap(map);
+    // END พื้นที่ พระจอมเกล้าพระนครเหนือ
+
+    // พื้นที่ หมู่บ้านซิเมนต์ไทย
+        const thai_cement_a = { lat: 13.833294, lng: 100.539767 };
+        const thai_cement_b = { lat: 13.830202, lng: 100.541761 };
+        const thai_cement_c = { lat: 13.830106, lng: 100.549475 };
+        const thai_cement_d = { lat: 13.833513, lng: 100.551297 };
+        const thai_cement_e = { lat: 13.831744, lng: 100.546931 };
+        const thai_cement_f = { lat: 13.834021, lng: 100.545848 };
+        const thai_cement_g = { lat: 13.833294, lng: 100.544432 };
+        const thai_cement_h = { lat: 13.832725, lng: 100.544441 };
+        const thai_cement_i = { lat: 13.832541, lng: 100.543981 };
+        const thai_cement_j = { lat: 13.834477, lng: 100.542781 };
+        const thai_cement_k = { lat: 13.836728, lng: 100.540570 };
+
+        const area_thai_cement = [thai_cement_a,thai_cement_b,thai_cement_c,thai_cement_d,thai_cement_e,thai_cement_f,thai_cement_g,
+            thai_cement_h,thai_cement_i,thai_cement_j,thai_cement_k,];
+
+        // Construct the polygon.
+        const draw_area_thai_cement = new google.maps.Polygon({
+            paths: area_thai_cement,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_thai_cement.setMap(map);
+    // END พื้นที่ หมู่บ้านซิเมนต์ไทย
+
     }
 
-    function check_area(lat,lng) {
+    function check_area(lat,lng) { //lat,lng
 
         // // พื้นที่ ทดสอบ
         const area_test = [
@@ -349,6 +409,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 [ 14.187077, 101.164133 ],
             ];
 
+        // พื้นที่ พระจอมเกล้าพระนครเหนือ
+            const area_kmutnb = [
+                [ 13.819200, 100.512753 ],
+                [ 13.818744, 100.514181 ],
+                [ 13.819357, 100.514901 ],
+                [ 13.819157, 100.515523 ],
+                [ 13.819333, 100.515561 ],
+                [ 13.819222, 100.516228 ],
+                [ 13.821000, 100.517113 ],
+                [ 13.822192, 100.514845 ],
+                [ 13.824593, 100.512288 ],
+                [ 13.824234, 100.511526 ],
+                [ 13.823348, 100.512004 ],
+                [ 13.822952, 100.511392 ],
+                [ 13.821650, 100.512422 ],
+                [ 13.820254, 100.514284 ],
+            ];
+
+        // let lat = 13.822463;
+        // let lng = 100.512578;
+
         if ( inside([ lat, lng ], area_test) ) {
             // พื้นที่ทดสอบ
             document.querySelector('#a_help').classList.remove('d-none');
@@ -372,6 +453,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
                 area_help.innerHTML = "ทดสอบ"
+
+        } else if ( inside([ lat, lng ], area_kmutnb) ) {
+            // luck
+            document.querySelector('#a_help').classList.remove('d-none');
+            let area_help = document.querySelector("#area_help");
+                area_help.innerHTML = "KMUTNB"
 
         } else{
             document.querySelector('#btn_quick_help').classList.remove('d-none');
