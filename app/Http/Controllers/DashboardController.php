@@ -11,6 +11,7 @@ use App\Models\News;
 use App\Models\Report_news;
 use App\Models\Motercycle;
 use Illuminate\Support\Facades\DB;
+use App\Models\Sos_map;
 
 class DashboardController extends Controller
 {
@@ -105,6 +106,19 @@ class DashboardController extends Controller
 	            foreach ($all_vnews as $key ) {
 				        	$count_vnews = $key->count;
 				        }
+
+        // sos 28 วันที่ผ่านมา
+        $sos28 =Sos_map::whereDate('created_at',">=" , $day28)
+                ->selectRaw('count(id) as count')
+                ->get();
+                foreach ($sos28 as $key ) {
+                            $new_sos = $key->count;
+                        } 
+        $all_sos =Sos_map::selectRaw('count(id) as count')
+                        ->get();
+                foreach ($all_sos as $key ) {
+                            $count_sos = $key->count;
+                        }
 
 		// รถที่ลงประกาศขาย จัดอันดับตามจังหวัด 5 อันดับ (Car)
 		$vmarket_desc =CarModel::groupBy('location')
@@ -222,7 +236,7 @@ class DashboardController extends Controller
                     ->latest()->paginate(5);
 
 
-        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest' , 'vmotercycle_desc_location' , 'vmotercycle_desc_count' , 'report_news'));
+        return view('admin_viicheck.dashboard', compact('all_user' , 'count_line' , 'count_facebook' , 'count_google' , 'count_web','new_car' , 'count_car' , 'new_vmove' , 'count_vmove' , 'new_vmove_report' , 'count_vmove_report' , 'new_vnews' , 'count_vnews' , 'vmarket_desc' , 'vmarket_desc_location' , 'vmarket_desc_count' , 'vmove_desc_province' , 'vmove_desc_count', 'vnews_desc_province' , 'vnews_desc_count' , 'guest' , 'vmotercycle_desc_location' , 'vmotercycle_desc_count' , 'report_news' , 'new_sos' , 'count_sos'));
     }
 
     public function report_register_cars(Request $request)

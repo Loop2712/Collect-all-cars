@@ -4,7 +4,7 @@
       <div class="card-header border-0">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="mb-0">ประเภทการลงชื่อเข้าใช้งาน / Login type</h3>
+            <h3 class="mb-0">ประเภทการลงชื่อเข้าใช้งาน</h3>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
               </th>
               <th scope="col">
                 <div class="col text-right">
-                  <p class="btn btn-sm">ทั้งหมด / Total : {{ $all_user }}</p>
+                  <p class="btn btn-sm">ทั้งหมด : {{ $all_user }}</p>
                     <!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
                 </div>
               </th>
