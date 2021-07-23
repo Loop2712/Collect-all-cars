@@ -277,6 +277,32 @@ class SosController extends Controller
 
         return view('sos.pok_tek_tung');
     }
+
+    public function view_sos(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $view_map = DB::table('sos_maps')
+                ->where('name', 'LIKE', "%$keyword%")
+                ->orWhere('created_at', 'LIKE', "%$keyword%")
+                ->orWhere('content', 'LIKE', "%$keyword%")
+                ->orWhere('name', 'LIKE', "%$keyword%")
+                ->orWhere('phone', 'LIKE', "%$keyword%")
+                ->orWhere('lat', 'LIKE', "%$keyword%")
+                ->orWhere('lng', 'LIKE', "%$keyword%")
+                ->orWhere('area', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $view_map = DB::table('sos_maps')->get();
+        }
+
+        return view('admin_viicheck.sos', compact('view_map'));
+    }
+
+
+    // }
     // public function sosmap()
     // {
     //     $user = Auth::user();

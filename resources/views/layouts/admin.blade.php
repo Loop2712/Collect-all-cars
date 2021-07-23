@@ -13,7 +13,7 @@
   <link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-
+  <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
   <!-- Icons -->
   <link rel="stylesheet" href="{{ asset('admin/vendor/nucleo/css/nucleo.css')}}" type="text/css">
   <link rel="stylesheet" href="{{ asset('admin/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
@@ -106,6 +106,12 @@
               <a class="nav-link" href="{{ url('/report_news') }}">
                 <i class="fas fa-video-slash" style="color: #FA8072"></i>
                 <span class="nav-link-text">V News รายงานไม่เหมาะสม</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/sos') }}">
+              <i class="fas fa-question-circle text-warning"></i>
+                <span class="nav-link-text">ขอความช่วยเหลือ</span>
               </a>
             </li>
             <li class="nav-item">
