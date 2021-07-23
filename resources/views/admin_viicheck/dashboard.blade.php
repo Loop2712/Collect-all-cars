@@ -93,7 +93,7 @@
                           <h6 class=" text-muted ls-1 mb-1">Vmove</h6>
                       </div>
                       <div class="col-md-3">
-                          <a style="float: right;" href="{{ url('/guest') }}" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i> See more</a>
+                          <a style="float: right;" href="{{ url('/guest') }}" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i> ดูเพิ่มเติม</a>
                       </div>
                   </div>
                   <h5 class="h3 mb-0">รายงานแจ้งเตือนเจ้าของรถ</h5>
@@ -135,7 +135,7 @@
                           <h6 class=" text-muted ls-1 mb-1">VNews</h6>
                       </div>
                       <div class="col-md-3">
-                          <a style="float: right;" href="{{ url('/report_news') }}" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i> See more</a>
+                          <a style="float: right;" href="{{ url('/report_news') }}" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i> ดูเพิ่มเติม</a>
                       </div>
                   </div>
                   <h5 class="h3 mb-0">รายงานความไม่เหมาะสม</h5>
@@ -147,6 +147,7 @@
             </div>
           </div>
         </div>
+        @include('admin_viicheck/sosChart')
         <!-- type_login -->
       </div>
       <div class="chart">
