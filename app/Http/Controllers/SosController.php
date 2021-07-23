@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use App\Models\Sos_map;
 use App\Models\So;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -283,6 +283,15 @@ class SosController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        $sos_all_request = Sos_map::selectRaw('count(id) as count')->get();
+                    foreach ($sos_all_request as $key) {
+                            $sos_all = $key->count ;
+                        }
+        
+        $area = Sos_map::selectRaw('area')
+        ->groupBy('area')
+        ->get();
+
         if (!empty($keyword)) {
             $view_map = DB::table('sos_maps')
                 ->where('name', 'LIKE', "%$keyword%")
@@ -295,11 +304,16 @@ class SosController extends Controller
                 ->orWhere('area', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $view_map = DB::table('sos_maps')->get();
+            $view_map = DB::table('sos_maps')
+            ->latest()->paginate($perPage);
         }
 
-        return view('admin_viicheck.sos', compact('view_map'));
+       
+
+        return view('admin_viicheck.sos', compact('view_map' , 'sos_all' , 'area'));
     }
+
+    
 
 
     // }
