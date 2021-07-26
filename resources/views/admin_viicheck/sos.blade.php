@@ -42,10 +42,10 @@
                                 </span>
                             </div>
                         </form> -->
-                        <div class="col-md-2 float-right">
+                        <div class="col-md-3 float-right">
                         <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
                                 @if(!empty($area))
-                                    <option value="">เลือกสถานที่</option>   
+                                    <option value="">เลือกพื้นที่รับผิดชอบ</option>   
                                     @foreach($area as $item)
                                         <option value="{{ url('/sos') }}?search={{ $item->area }}">
                                                 {{ $item->area }}
@@ -68,14 +68,14 @@
                                         <center><b>Id</b></center>
                                     </div> -->
                                     <div class="col-1">
-                                            <b>ที่</b><br>
+                                            <br>
                                             
                                     </div>
                                     <div class="col-2">
                                             <b>เวลา</b><br>
                                             Time
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                             <b>ประเภท</b><br>
                                             Type
                                     </div>
@@ -87,13 +87,9 @@
                                             <b>พื้นที่รับผิดชอบ</b><br>
                                             Area
                                     </div>
-                                    <div class="col-2">
-                                            <b>เบอร์</b><br>
-                                            Phone
-                                    </div>
-                                    <div class="col-2">
-                                            <b>ชื่อ</b><br>
-                                            Name
+                                    <div class="col-3">
+                                            <b>ชื่อ / เบอร์</b><br>
+                                            Name / Phone
                                     </div>
                                     
                                 
@@ -112,12 +108,12 @@
                                                 {{ $item->created_at }}
                                             </h6>
                                         </div>
-                                        <div class="col-1">
+                                        <div class="col-2">
                                                 @switch($item->content)
                                                 @case('police')
                                                     <h6>ตำรวจ</h6>
                                                 @break
-                                                @case('JS100')
+                                                @case('js100')
                                                     <h6>จส.100</h6>
                                                 @break
                                                 @case('life_saving')
@@ -132,14 +128,14 @@
                                                 @case('lawyers')
                                                     <h6>ทนายอาสา</h6>
                                                 @break
-                                                @case(null)
-                                                    <h6></h6>
+                                                @case('help_area')
+                                                    <h6>ขอความช่วยเหลือ</h6>
                                                 @break
                                             @endswitch
                                         </div>
                                         <div class="col-2">
-                                            <h6>
-                                                ...
+                                            <h6 class="text-info">
+                                                <a href="https://www.google.co.th/search?q={{$item->lat}},{{$item->lng}}" target="bank"><i class="fas fa-search-location"></i> ดูแผนที่</a>
                                             </h6>
                                         </div>
                                         <div class="col-2">
@@ -147,14 +143,15 @@
                                                 {{ $item->area }}
                                             </h6>
                                         </div>
-                                        <div class="col-2">
-                                            <h6>
-                                                {{ $item->phone }}
-                                            </h6>
-                                        </div>
-                                        <div class="col-2">
-                                            <h5 class="text-success"><span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;{{ $item->name }}
+                                        <div class="col-3">
+                                            <h5 class="text-success">
+                                                <span style="font-size: 15px;">
+                                                    <a target="break" href="{{ url('/').'/profile/'.$item->id }}">
+                                                    <i class="far fa-eye text-primary"></i>
+                                                    </a>
+                                                </span>&nbsp;{{ $item->name }}
                                             </h5>
+                                            {{ $item->phone }}
                                         </div>
                                         
                                         

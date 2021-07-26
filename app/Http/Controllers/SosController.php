@@ -289,8 +289,9 @@ class SosController extends Controller
                         }
         
         $area = Sos_map::selectRaw('area')
-        ->groupBy('area')
-        ->get();
+            ->where('area', '!=', null)
+            ->groupBy('area')
+            ->get();
 
         if (!empty($keyword)) {
             $view_map = DB::table('sos_maps')
