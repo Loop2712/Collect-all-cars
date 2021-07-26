@@ -20,25 +20,75 @@
           </h5>
           <br>
           <div class="row">
-              <div class="col-md-2">
-                <label  class="control-label">{{ 'เลือกปี' }}</label>
-                <select class="form-control" id="sos_year" onchange="getChart();">
-                  <option value="ทั้งหมด">ทั้งหมด</option>
-                  <option value="2021">2564</option>
-                </select>
-              </div>
-              <div class="col-md-2">
-                <label  class="control-label">{{ 'เลือกเดือน' }}</label>
-                <select class="form-control" id="select_month" onchange="getChart();">
-                  <option value="ทั้งหมด">ทั้งหมด</option>
-                  <option value="มกราคม">มกราคม</option>
-                </select>
-              </div>
-              <div class="col-md-5"></div>
-              <div class="col-md-3">
-                <br><br>
-                <div style="float: right;">ทั้งหมด : <span id="sos_all"></span> ครั้ง</div>
-              </div>
+            <div class="col-md-2">
+              <label  class="control-label">{{ 'เลือกปี' }}</label>
+              <select class="form-control" id="select_year" onchange="select_year();" value="">
+                <option value="">ทั้งหมด</option>
+                <option value="2020">2563</option>
+                <option value="2021">2564</option>
+                <option value="2022">2565</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label  class="control-label">{{ 'เลือกเดือน' }}</label>
+              <select class="form-control" id="select_month" onchange="select_month();">
+                <option value="">ทั้งหมด</option>
+                <option value="01">มกราคม</option>
+                <option value="02">กุมภาพันธ์</option>
+                <option value="03">มีนาคม</option>
+                <option value="04">เมษายน</option>
+                <option value="05">พฤษภาคม</option>
+                <option value="06">มิถุนายน</option>
+                <option value="07">กรกฎาคม</option>
+                <option value="08">สิงหาคม</option>
+                <option value="09">กันยายน</option>
+                <option value="10">ตุลาคม</option>
+                <option value="11">พฤศจิกายน</option>
+                <option value="12">ธันวาคม</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label  class="control-label">{{ 'เลือกพื้นที่รับผิดชอบ' }}</label>
+              <select class="form-control" id="select_area" onchange="select_area();">
+                <option value="">ทั้งหมด</option> 
+                @if(!empty($area))
+                    @foreach($area as $item)
+                        <option value="{{ $item->area }}">
+                                {{ $item->area }}
+                        </option>   
+
+                    @endforeach
+                @else
+                    <option value="" selected></option> 
+                @endif
+              </select>
+            </div>
+            <div class="col-md-1">
+              <br>
+              <form style="float: right;" method="GET" action="{{ url('/sos_detail_chart') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+                <div class="input-group">
+                    <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
+                    <input type="hidden" class="form-control" id="input_month" name="month" value="{{ request('month') }}">
+                    <input type="hidden" class="form-control" id="input_area" name="area" value="{{ request('area') }}">
+
+                    <button style="margin-top: 7px;" class="btn btn-primary" type="submit">
+                        ค้นหา
+                    </button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-2">
+              <br>
+              <a href="{{URL::to('/sos_detail_chart')}}" >
+                <button style="margin-top: 7px;" class="btn btn-danger">
+                        ล้างการค้นหา
+                </button>
+              </a>
+            </div>
+            <div class="col-md-3">
+              <br><br>
+              <div style="float: right;">ทั้งหมด : <span id="sos_all"></span> ครั้ง</div>
+            </div>
           </div>
         </div>
       </div>
@@ -139,6 +189,39 @@
                           borderWidth: 1.5
                       }]
                   }
+              });
+
+              function select_year(){
+                var select_year = document.getElementById('select_year').value;
+                  // console.log(select_year);
+                var input_year = document.getElementById('input_year');
+                  input_year.value = select_year;
+              }
+              function select_month(){
+                var select_month = document.getElementById('select_month').value;
+                  // console.log(select_month);
+                var input_month = document.getElementById('input_month');
+                  input_month.value = select_month;
+              }
+              function select_area(){
+                var select_area = document.getElementById('select_area').value;
+                  // console.log(select_area);
+                var input_area = document.getElementById('input_area');
+                  input_area.value = select_area;
+              }
+              document.addEventListener('DOMContentLoaded', (event) => {
+                var input_year = document.getElementById('input_year').value;
+                var input_month = document.getElementById('input_month').value;
+                var input_area = document.getElementById('input_area').value;
+
+                var select_year = document.getElementById('select_year');
+                var select_month = document.getElementById('select_month');
+                var select_area = document.getElementById('select_area');
+
+                  select_year.value = input_year ;
+                  select_month.value = input_month ;
+                  select_area.value = input_area ;
+
               });
             </script>
           </div>
