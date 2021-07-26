@@ -1,21 +1,25 @@
+@extends('layouts.admin')
+
+@section('content')
+<br>
 <div class="col-md-12">
   <div class="card">
     <div class="card-header bg-transparent">
       <div class="row align-items-center">
         <div class="col">
           <div class="row">
-              <div class="col-md-9">
-                  <h6 class=" text-muted ls-1 mb-1">SOS</h6>
+              <div class="col-md-12">
+                  <h6 class=" text-muted ls-1 mb-1">
+                    SOS
+                    <a style="float: right">ขอความช่วยเหลือทั้งหมด : <span id="sos_all">{{ $sos_all }}</span> ครั้ง</a>
+                  </h6>
               </div>
           </div>
           <h5 class="h3 mb-0">
             ขอความช่วยเหลือ
-            <a style="float: right;" href="{{ url('/sos') }}" class="btn btn-sm btn-primary"> <i class="far fa-eye"></i> ดูเพิ่มเติม</a>
-            <br>
-            <p style="float: right;margin-top: 20px;">ขอความช่วยเหลือทั้งหมด : <span id="sos_all">{{ $sos_all }}</span> ครั้ง</p>
           </h5>
           <br>
-          <!-- <div class="row">
+          <div class="row">
               <div class="col-md-2">
                 <label  class="control-label">{{ 'เลือกปี' }}</label>
                 <select class="form-control" id="sos_year" onchange="getChart();">
@@ -33,9 +37,9 @@
               <div class="col-md-5"></div>
               <div class="col-md-3">
                 <br><br>
-                <div style="float: right;">ขอความช่วยเหลือทั้งหมด : <span id="sos_all"></span> ครั้ง</div>
+                <div style="float: right;">ทั้งหมด : <span id="sos_all"></span> ครั้ง</div>
               </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -141,3 +145,4 @@
     </div>
   </div>
 </div>
+@endsection

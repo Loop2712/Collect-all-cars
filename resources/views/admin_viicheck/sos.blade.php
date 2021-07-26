@@ -4,6 +4,11 @@
 <br>
     <div class="container">
         <div class="row">
+            <div class="col-12">
+                <a href="{{ url('/sos_detail_chart') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูกราฟ <i class="fas fa-chart-line"></i></a>
+            </div>
+            <br>
+            <br>
             <div class="col-md-12">
                 <div class="card">
                     <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>

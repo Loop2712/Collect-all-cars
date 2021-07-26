@@ -79,6 +79,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/manage_user/change_ToGuest', 'Manage_userController@change_ToGuest');
 	Route::get('/manage_user/change_ToJS100', 'Manage_userController@change_ToJS100');
 	Route::get('/sos', 'SosController@view_sos');
+	Route::get('/sos_detail_chart', 'SosController@sos_detail_chart');
 
 	Route::get('/guest', function () {
 	    return view('guest');
