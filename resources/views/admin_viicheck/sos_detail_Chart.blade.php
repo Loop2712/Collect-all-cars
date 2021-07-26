@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-3">
               <br><br>
-              <div style="float: right;">ทั้งหมด : <span id="sos_all"></span> ครั้ง</div>
+              <div style="float: right;">ทั้งหมด : <b>{{ $total }}</b> ครั้ง</div>
             </div>
           </div>
         </div>
