@@ -8,106 +8,166 @@
                 <div class="card">
                     <h3 class="card-header">
                         รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)
-                    </h3>
-                    <div class="card-body">
-                        <!-- <div>
-                            <form method="GET" action="{{ url('/guest') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                    <span class="input-group-append">
-                                        <button class="btn btn-secondary" type="submit">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div> -->
-                        <a class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_2bgreen') }}">
-                            <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
-                        </a>
-
-                        <a class="btn btn-sm btn-outline-success text-success" href="{{ url('/guest_latest_2bgreen') }}">
+                        <a style="float:right;" class="btn btn-sm btn-outline-success text-success" href="{{ url('/guest_latest_2bgreen') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
+                    </h3>
+                    <div class="card-body">
+                        <!-- <a class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_2bgreen') }}">
+                            <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
+                        </a> -->
+                        <div class="row">
+                            <div class="col-md-2">
+                              <br><br>
+                            </div>
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_year" onchange="select_year();">
+                                    <option value="">เลือกปี</option>
+                                    <option value="2020">2563</option>
+                                    <option value="2021">2564</option>
+                                    <option value="2022">2565</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_month_1" onchange="select_month_1();">
+                                    <option value="">เลือกเดือน</option>
+                                    <option value="01">มกราคม</option>
+                                    <option value="02">กุมภาพันธ์</option>
+                                    <option value="03">มีนาคม</option>
+                                    <option value="04">เมษายน</option>
+                                    <option value="05">พฤษภาคม</option>
+                                    <option value="06">มิถุนายน</option>
+                                    <option value="07">กรกฎาคม</option>
+                                    <option value="08">สิงหาคม</option>
+                                    <option value="09">กันยายน</option>
+                                    <option value="10">ตุลาคม</option>
+                                    <option value="11">พฤศจิกายน</option>
+                                    <option value="12">ธันวาคม</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <center>
+                                    <br>
+                                    <label style="margin-top:7px;" class="control-label">{{ 'ถึง' }}</label>
+                                </center>
+                            </div>
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_month_2" onchange="select_month_2();">
+                                    <option value="">เลือกเดือน</option>
+                                    <option value="01">มกราคม</option>
+                                    <option value="02">กุมภาพันธ์</option>
+                                    <option value="03">มีนาคม</option>
+                                    <option value="04">เมษายน</option>
+                                    <option value="05">พฤษภาคม</option>
+                                    <option value="06">มิถุนายน</option>
+                                    <option value="07">กรกฎาคม</option>
+                                    <option value="08">สิงหาคม</option>
+                                    <option value="09">กันยายน</option>
+                                    <option value="10">ตุลาคม</option>
+                                    <option value="11">พฤศจิกายน</option>
+                                    <option value="12">ธันวาคม</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <br>
+                                <form style="float: right;" method="GET" action="{{ url('/guest_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+                                    <div class="input-group">
+                                        <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
+                                        <input type="hidden" class="form-control" id="input_month_1" name="month_1" value="{{ request('month_1') }}">
+                                        <input type="hidden" class="form-control" id="input_month_2" name="month_2" value="{{ request('month_2') }}">
+
+                                        <button class="btn btn-primary" type="submit">
+                                            ค้นหา
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <br>
+                                <a href="{{URL::to('/guest_2bgreen')}}" >
+                                    <button class="btn btn-danger">
+                                        ล้างการค้นหา
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                         <!-- มากสุด -->
                         <div id="the_most" class="container">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
-                                        <div class="col-9">
+                                        <div class="col-12">
                                             <div class="row">
-                                                <div class="col-2"></div>
-                                                <div class="col-3">
+                                                <div class="col-2">
                                                     <center>
                                                         <b>ยี่ห้อ / รุ่น</b><br>
                                                         Brand / Model
                                                     </center>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-2">
                                                     <center>
                                                         <b>หมายเลขทะเบียน</b><br>
                                                         Registration number
                                                     </center>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-2">
                                                     <center>
                                                         <b>รายงานทั้งหมด</b><br>
                                                         All reports
                                                     </center>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <center>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <center>
+                                                <div class="col-3">
+                                                    <center>
+                                                        <b>รายงานต่อเดือน</b> (<span id="month_th_1"></span> - <span id="month_th_2"></span>)
+                                                        <br>
+                                                        Reports per month (<span id="month_en_1"></span> - <span id="month_en_2"></span>)
+                                                    </center>
+                                                </div>
+                                                <div class="col-3">
+                                                    <center>
                                                         <b>ผู้ลงทะเบียน</b><br>
                                                         Registrant
                                                     </center>
-                                                    </div>
                                                 </div>
-                                            </center>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-9">
+                                        <div class="col-12">
                                             @foreach($guest as $item)
                                             <div class="row">
                                                 <div class="col-2">
-                                                    <center>{{ $loop->iteration }}</center>
-                                                </div>
-                                                <div class="col-3">
                                                     <center>
                                                         <b>{{ $item->register_cars->brand }}</b><br>
                                                         {{ $item->register_cars->generation }}
                                                     </center>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-2">
                                                     <center>
                                                         <b>{{ $item->registration }}</b><br>
                                                         {{ $item->county }}
                                                     </center>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-2">
                                                     <center>
                                                         <b>{{ $item->count }}</b>
                                                     </center>
                                                 </div>
-                                            </div>
-                                            <hr>
-                                            @endforeach
-                                        </div>
-                                        <div class="col-3">
-                                            @foreach($guest as $key)
-                                            <div class="row">
-                                                <div class="col-12">
+                                                <div class="col-3">
                                                     <center>
-                                                        <b>{{ $key->register_cars->name }}</b>
+                                                        <b>{{ $count_per_month }}</b>
+                                                    </center>
+                                                </div>
+                                                <div class="col-3">
+                                                    <center>
+                                                        <b>{{ $item->register_cars->name }}</b>
                                                         <br>
-                                                        <a target="bank" href="{{ url('/profile/'.$key->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
+                                                        <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
                                                         <br>
                                                     </center>
                                                 </div>
@@ -125,86 +185,6 @@
             </div>
         </div>
     </div>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">กรุณาเลือกเดือนที่ต้องการ</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <select class="form-control" id="select_year" onchange="select_year();">
-            <option value="">เลือกปี</option>
-            <option value="2020">2563</option>
-            <option value="2021">2564</option>
-            <option value="2022">2565</option>
-        </select>
-        <hr>
-        <div class="row">
-            <div class="col-5">
-                <select class="form-control" id="select_month_1" onchange="select_month_1();">
-                    <option value="">เลือกเดือน</option>
-                    <option value="01">มกราคม</option>
-                    <option value="02">กุมภาพันธ์</option>
-                    <option value="03">มีนาคม</option>
-                    <option value="04">เมษายน</option>
-                    <option value="05">พฤษภาคม</option>
-                    <option value="06">มิถุนายน</option>
-                    <option value="07">กรกฎาคม</option>
-                    <option value="08">สิงหาคม</option>
-                    <option value="09">กันยายน</option>
-                    <option value="10">ตุลาคม</option>
-                    <option value="11">พฤศจิกายน</option>
-                    <option value="12">ธันวาคม</option>
-                </select>
-            </div>
-            <div class="col-2">
-                <center>
-                    <span>ถึง</span>
-                </center>
-            </div>
-            <div class="col-5">
-                <select class="form-control" id="select_month_2" onchange="select_month_2();">
-                    <option value="">เลือกเดือน</option>
-                    <option value="01">มกราคม</option>
-                    <option value="02">กุมภาพันธ์</option>
-                    <option value="03">มีนาคม</option>
-                    <option value="04">เมษายน</option>
-                    <option value="05">พฤษภาคม</option>
-                    <option value="06">มิถุนายน</option>
-                    <option value="07">กรกฎาคม</option>
-                    <option value="08">สิงหาคม</option>
-                    <option value="09">กันยายน</option>
-                    <option value="10">ตุลาคม</option>
-                    <option value="11">พฤศจิกายน</option>
-                    <option value="12">ธันวาคม</option>
-                </select>
-            </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="monthly();">ยืนยัน</button> -->
-        <form style="float: right;" method="GET" action="{{ url('/guest_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
-            <div class="input-group">
-                <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
-                <input type="hidden" class="form-control" id="input_month_1" name="month_1" value="{{ request('month_1') }}">
-                <input type="hidden" class="form-control" id="input_month_2" name="month_2" value="{{ request('month_2') }}">
-
-                <button style="margin-top: 7px;" class="btn btn-primary" type="submit">
-                    ค้นหา
-                </button>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
     function select_year(){
         let select_year = document.getElementById('select_year').value;
