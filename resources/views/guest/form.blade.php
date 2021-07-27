@@ -78,6 +78,7 @@
                     <!-- รายละเอียดปัญหาการขับขี่ -->
                     <div id="report_drivingd_detail_input" class="d-none form-group {{ $errors->has('report_drivingd_detail') ? 'has-error' : ''}}">
                         <select name="report_drivingd_detail" class="form-control"  id="report_drivingd_detail">
+                            <option value="">- เลือกเหตุผล -</option>
                             @foreach (json_decode('{
                             "ขับรถอันตราย":"ขับรถอันตราย",
                             "ไม่เปิดไฟเลี้ยว":"ไม่เปิดไฟเลี้ยว",

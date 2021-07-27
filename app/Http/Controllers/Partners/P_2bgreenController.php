@@ -61,7 +61,7 @@ class P_2bgreenController extends Controller
                     ->orderByRaw('count DESC')
                     ->latest()->paginate($perPage);
 
-        if (!empty($month_1) or !empty($month_2) or !empty($year)) {
+        if (!empty($year)) {
             
             foreach ($guest as $key ) {
 
@@ -70,9 +70,9 @@ class P_2bgreenController extends Controller
                         ->whereMonth('created_at', ">=" ,   "$month_1")
                         ->whereMonth('created_at', "<=" ,   "$month_2")
                         ->whereYear('created_at', "$year")
-                        // ->groupBy('registration')
-                        // ->groupBy('county')
-                        // ->groupBy('register_car_id')
+                        ->groupBy('registration')
+                        ->groupBy('county')
+                        ->groupBy('register_car_id')
                         ->selectRaw('count(register_car_id) as count , registration , county , register_car_id')
                         ->orderByRaw('count DESC')
                         ->latest()->paginate($perPage);

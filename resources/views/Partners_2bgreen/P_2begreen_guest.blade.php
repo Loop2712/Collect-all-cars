@@ -104,7 +104,7 @@
                                             <center>
                                                 <b>{{ $count_per_month }}</b>
                                                 <br>
-                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ ($count_per_month / $item->count) * 100 }} % ของทั้งหมด({{ $item->count }})</span>
+                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ number_format(($count_per_month / $item->count) * 100,2) }} % ของทั้งหมด({{ $item->count }})</span>
                                             </center>
                                         </div>
                                     </div>
@@ -211,6 +211,11 @@
           // console.log(select_month_1);
         var input_month_1 = document.getElementById('input_month_1');
           input_month_1.value = select_month_1;
+
+        var select_month_2 = document.getElementById('select_month_2');
+          select_month_2.value = select_month_1 ;
+        var input_month_2 = document.getElementById('input_month_2');
+          input_month_2.value = select_month_2.value;
     }
     function select_month_2(){
         var select_month_2 = document.getElementById('select_month_2').value;
@@ -230,6 +235,16 @@
         select_year.value = input_year ;
         select_month_1.value = input_month_1 ;
         select_month_2.value = input_month_2 ;
+
+        var month_th_1 = document.getElementById('month_th_1');
+            month_th_1.innerHTML = select_month_1.value;
+        var month_th_2 = document.getElementById('month_th_2');
+            month_th_2.innerHTML = select_month_2.value;
+
+        var month_en_1 = document.getElementById('month_en_1');
+            month_en_1.innerHTML = select_month_1.value;
+        var month_en_2 = document.getElementById('month_en_2');
+            month_en_2.innerHTML = select_month_2.value;
 
     });
 
