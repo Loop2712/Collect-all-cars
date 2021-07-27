@@ -271,7 +271,7 @@
     </div>
 </div>
 <!-- โปรไฟล์องค์กร -->
-@if(!empty($data->organization))
+@if(!empty($organization))
 @foreach ($organization as $itemkey)
     <div class="container d-none" id="profile_organization">
         <div class="row">
