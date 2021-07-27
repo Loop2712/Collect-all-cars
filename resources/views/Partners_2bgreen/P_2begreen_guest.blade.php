@@ -102,9 +102,9 @@
                                         </div>
                                         <div class="col-3">
                                             <center>
-                                                <b>{{ $item->count }}</b>
+                                                <b>{{ $count_per_month }}</b>
                                                 <br>
-                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ ($item->count / $item->count) * 100 }} % ของทั้งหมด</span>
+                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ ($count_per_month / $item->count) * 100 }} % ของทั้งหมด({{ $item->count }})</span>
                                             </center>
                                         </div>
                                     </div>
@@ -131,29 +131,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <select class="form-control" id="select_year">
-            <option value="2021">2564</option>
+        <select class="form-control" id="select_year" onchange="select_year();">
+            <option value="">เลือกปี</option>
             <option value="2020">2563</option>
-            <option value="2019">2562</option>
-            <option value="2018">2561</option>
-            <option value="2017">2560</option>
+            <option value="2021">2564</option>
+            <option value="2022">2565</option>
         </select>
         <hr>
         <div class="row">
             <div class="col-5">
-                <select class="form-control" id="select_month_1">
-                    <option value="jan">มกราคม</option>
-                    <option value="feb">กุมภาพันธ์</option>
-                    <option value="mar">มีนาคม</option>
-                    <option value="apr">เมษายน</option>
-                    <option value="may">พฤษภาคม</option>
-                    <option value="jun">มิถุนายน</option>
-                    <option value="jul">กรกฎาคม</option>
-                    <option value="aug">สิงหาคม</option>
-                    <option value="sep">กันยายน</option>
-                    <option value="oct">ตุลาคม</option>
-                    <option value="nov">พฤศจิกายน</option>
-                    <option value="dec">ธันวาคม</option>
+                <select class="form-control" id="select_month_1" onchange="select_month_1();">
+                    <option value="">เลือกเดือน</option>
+                    <option value="01">มกราคม</option>
+                    <option value="02">กุมภาพันธ์</option>
+                    <option value="03">มีนาคม</option>
+                    <option value="04">เมษายน</option>
+                    <option value="05">พฤษภาคม</option>
+                    <option value="06">มิถุนายน</option>
+                    <option value="07">กรกฎาคม</option>
+                    <option value="08">สิงหาคม</option>
+                    <option value="09">กันยายน</option>
+                    <option value="10">ตุลาคม</option>
+                    <option value="11">พฤศจิกายน</option>
+                    <option value="12">ธันวาคม</option>
                 </select>
             </div>
             <div class="col-2">
@@ -162,160 +162,76 @@
                 </center>
             </div>
             <div class="col-5">
-                <select class="form-control" id="select_month_2">
-                    <option value="jan">มกราคม</option>
-                    <option value="feb">กุมภาพันธ์</option>
-                    <option value="mar">มีนาคม</option>
-                    <option value="apr">เมษายน</option>
-                    <option value="may">พฤษภาคม</option>
-                    <option value="jun">มิถุนายน</option>
-                    <option value="jul">กรกฎาคม</option>
-                    <option value="aug">สิงหาคม</option>
-                    <option value="sep">กันยายน</option>
-                    <option value="oct">ตุลาคม</option>
-                    <option value="nov">พฤศจิกายน</option>
-                    <option value="dec">ธันวาคม</option>
+                <select class="form-control" id="select_month_2" onchange="select_month_2();">
+                    <option value="">เลือกเดือน</option>
+                    <option value="01">มกราคม</option>
+                    <option value="02">กุมภาพันธ์</option>
+                    <option value="03">มีนาคม</option>
+                    <option value="04">เมษายน</option>
+                    <option value="05">พฤษภาคม</option>
+                    <option value="06">มิถุนายน</option>
+                    <option value="07">กรกฎาคม</option>
+                    <option value="08">สิงหาคม</option>
+                    <option value="09">กันยายน</option>
+                    <option value="10">ตุลาคม</option>
+                    <option value="11">พฤศจิกายน</option>
+                    <option value="12">ธันวาคม</option>
                 </select>
             </div>
         </div>
-        <!-- <div class="row">
-            <div class="col-4">
-                <input type="checkbox" name="jan">&nbsp;&nbsp;&nbsp;มกราคม <br>
-                <input type="checkbox" name="apr">&nbsp;&nbsp;&nbsp;เมษายน <br>
-                <input type="checkbox" name="jul">&nbsp;&nbsp;&nbsp;กรกฎาคม <br>
-                <input type="checkbox" name="oct">&nbsp;&nbsp;&nbsp;ตุลาคม <br>
-            </div>
-            <div class="col-4">
-                <input type="checkbox" name="feb">&nbsp;&nbsp;&nbsp;กุมภาพันธ์ <br>
-                <input type="checkbox" name="may">&nbsp;&nbsp;&nbsp;พฤษภาคม <br>
-                <input type="checkbox" name="aug">&nbsp;&nbsp;&nbsp;สิงหาคม <br>
-                <input type="checkbox" name="nov">&nbsp;&nbsp;&nbsp;พฤศจิกายน <br>
-            </div>
-            <div class="col-4">
-                <input type="checkbox" name="mar">&nbsp;&nbsp;&nbsp;มีนาคม <br>
-                <input type="checkbox" name="jun">&nbsp;&nbsp;&nbsp;มิถุนายน <br>
-                <input type="checkbox" name="sep">&nbsp;&nbsp;&nbsp;กันยายน. <br>
-                <input type="checkbox" name="dec">&nbsp;&nbsp;&nbsp;ธันวาคม <br>
-            </div>
-        </div> -->
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="monthly();">ยืนยัน</button>
+        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="monthly();">ยืนยัน</button> -->
+        <form style="float: right;" method="GET" action="{{ url('/guest_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+            <div class="input-group">
+                <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
+                <input type="hidden" class="form-control" id="input_month_1" name="month_1" value="{{ request('month_1') }}">
+                <input type="hidden" class="form-control" id="input_month_2" name="month_2" value="{{ request('month_2') }}">
+
+                <button style="margin-top: 7px;" class="btn btn-primary" type="submit">
+                    ค้นหา
+                </button>
+            </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    // console.log("START");
-});
+    function select_year(){
+        var select_year = document.getElementById('select_year').value;
+          // console.log(select_year);
+        var input_year = document.getElementById('input_year');
+          input_year.value = select_year;
+    }
+    function select_month_1(){
+        var select_month_1 = document.getElementById('select_month_1').value;
+          // console.log(select_month_1);
+        var input_month_1 = document.getElementById('input_month_1');
+          input_month_1.value = select_month_1;
+    }
+    function select_month_2(){
+        var select_month_2 = document.getElementById('select_month_2').value;
+          // console.log(select_month_2);
+        var input_month_2 = document.getElementById('input_month_2');
+          input_month_2.value = select_month_2;
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var input_year = document.getElementById('input_year').value;
+        var input_month_1 = document.getElementById('input_month_1').value;
+        var input_month_2 = document.getElementById('input_month_2').value;
 
-function monthly() {
-    let select_year = document.querySelector("#select_year");
-    let select_month_1 = document.querySelector("#select_month_1");
-    let select_month_2 = document.querySelector("#select_month_2");
-    console.log(select_year.value);
-    console.log(select_month_1.value);
-    console.log(select_month_2.value);
+        var select_year = document.getElementById('select_year');
+        var select_month_1 = document.getElementById('select_month_1');
+        var select_month_2 = document.getElementById('select_month_2');
 
-    let month_en_1 = document.querySelector("#month_en_1");
-    let month_en_2 = document.querySelector("#month_en_2");
-    month_en_1.innerHTML = select_month_1.value;
-    month_en_2.innerHTML = select_month_2.value;
+        select_year.value = input_year ;
+        select_month_1.value = input_month_1 ;
+        select_month_2.value = input_month_2 ;
 
-    let month_th_1 = document.querySelector("#month_th_1");
-    let month_th_2 = document.querySelector("#month_th_2");
-    
-    switch (month_en_1.innerHTML) {
-        case "jan":
-            month_th_1.innerHTML  = "ม.ค.";
-            break;
-        case "feb":
-            month_th_1.innerHTML  = "ก.พ.";
-            break;
-        case "mar":
-            month_th_1.innerHTML  = "มี.ค.";
-            break;
-        case "apr":
-            month_th_1.innerHTML  = "เม.ย.";
-            break;
-        case "may":
-            month_th_1.innerHTML  = "พ.ค.";
-            break;
-        case "jun":
-            month_th_1.innerHTML  = "มิ.ย.";
-            break;
-        case "jul":
-            month_th_1.innerHTML  = "ก.ค.";
-            break;
-        case "aug":
-            month_th_1.innerHTML  = "ส.ค.";
-            break;
-        case "sep":
-            month_th_1.innerHTML  = "ก.ย.";
-            break;
-        case "oct":
-            month_th_1.innerHTML  = "ต.ค.";
-            break;
-        case "nov":
-            month_th_1.innerHTML  = "พ.ย.";
-            break;
-        case "dec":
-            month_th_1.innerHTML  = "ธ.ค.";
-            break;
-
-        }
-
-    switch (month_en_2.innerHTML) {
-        case "jan":
-            month_th_2.innerHTML  = "ม.ค.";
-            break;
-        case "feb":
-            month_th_2.innerHTML  = "ก.พ.";
-            break;
-        case "mar":
-            month_th_2.innerHTML  = "มี.ค.";
-            break;
-        case "apr":
-            month_th_2.innerHTML  = "เม.ย.";
-            break;
-        case "may":
-            month_th_2.innerHTML  = "พ.ค.";
-            break;
-        case "jun":
-            month_th_2.innerHTML  = "มิ.ย.";
-            break;
-        case "jul":
-            month_th_2.innerHTML  = "ก.ค.";
-            break;
-        case "aug":
-            month_th_2.innerHTML  = "ส.ค.";
-            break;
-        case "sep":
-            month_th_2.innerHTML  = "ก.ย.";
-            break;
-        case "oct":
-            month_th_2.innerHTML  = "ต.ค.";
-            break;
-        case "nov":
-            month_th_2.innerHTML  = "พ.ย.";
-            break;
-        case "dec":
-            month_th_2.innerHTML  = "ธ.ค.";
-            break;
-
-        }
-
-        fetch("{{ url('/') }}/guest_2bgreen/select_month/" + month_en_1.innerHTML + "/" + month_en_2.innerHTML + "/" + select_year.value)
-            // .then(response => response.json())
-            // .then(result => {
-            //     console.log(result);
-                
-                
-            // });
-}
+    });
 
 </script>
 @endsection

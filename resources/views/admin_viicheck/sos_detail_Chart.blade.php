@@ -22,7 +22,7 @@
           <div class="row">
             <div class="col-md-2">
               <label  class="control-label">{{ 'เลือกปี' }}</label>
-              <select class="form-control" id="select_year" onchange="select_year();" value="">
+              <select class="form-control" id="select_year" onchange="select_year();">
                 <option value="">ทั้งหมด</option>
                 <option value="2020">2563</option>
                 <option value="2021">2564</option>

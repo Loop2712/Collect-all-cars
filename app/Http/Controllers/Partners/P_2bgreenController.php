@@ -39,10 +39,19 @@ class P_2bgreenController extends Controller
 
     public function guest_2bgreen(Request $request)
     {
-        $keyword = $request->get('search');
-        $month_1 = "4";
-        $month_2 = "6";
-        $year = "2021";
+        $count_per_month = 0 ;
+        $year = $request->get('year');
+        $month_1 = $request->get('month_1');
+        $month_2 = $request->get('month_2');
+
+        if ($month_1 == "") {
+            $month_1 = $month_2 ;
+        }
+
+        if ($month_2 == "") {
+            $month_2 = $month_1 ;
+        }
+
         $perPage = 20;
         $guest = Guest::where('organization', "2บี กรีน จำกัด")
                     ->groupBy('registration')
@@ -52,30 +61,31 @@ class P_2bgreenController extends Controller
                     ->orderByRaw('count DESC')
                     ->latest()->paginate($perPage);
 
-        foreach ($guest as $key ) {
-            // echo "<br>";
-            // echo $key->register_car_id;
+        if (!empty($month_1) or !empty($month_2) or !empty($year)) {
+            
+            foreach ($guest as $key ) {
 
-            $monthly_reports = Guest::where('organization', "2บี กรีน จำกัด")
-                    ->where('register_car_id',  $key->register_car_id)
-                    ->whereMonth('created_at', ">=" ,   "$month_1")
-                    ->whereMonth('created_at', "<=" ,   "$month_2")
-                    ->whereYear('created_at', "$year")
-                    ->groupBy('registration')
-                    ->groupBy('county')
-                    ->groupBy('register_car_id')
-                    ->selectRaw('count(register_car_id) as count , registration , county , register_car_id')
-                    ->orderByRaw('count DESC')
-                    ->latest()->paginate($perPage);
+                $monthly_reports = Guest::where('organization', "2บี กรีน จำกัด")
+                        ->where('register_car_id',  $key->register_car_id)
+                        ->whereMonth('created_at', ">=" ,   "$month_1")
+                        ->whereMonth('created_at', "<=" ,   "$month_2")
+                        ->whereYear('created_at', "$year")
+                        ->groupBy('registration')
+                        ->groupBy('county')
+                        ->groupBy('register_car_id')
+                        ->selectRaw('count(register_car_id) as count , registration , county , register_car_id')
+                        ->orderByRaw('count DESC')
+                        ->latest()->paginate($perPage);
+            }
+
+            foreach ($monthly_reports as $item ) {
+                $count_per_month = $item->count ;
+            }
+        } else {
+            $monthly_reports = "" ;
         }
-        // exit();
 
-                    // echo "<pre>";
-                    // print_r($monthly_reports);
-                    // echo "<pre>";
-                    // exit();
-
-        return view('Partners_2bgreen.P_2begreen_guest', compact('guest','monthly_reports'));
+        return view('Partners_2bgreen.P_2begreen_guest', compact('guest','monthly_reports','count_per_month'));
     }
 
     public function guest_latest_2bgreen(Request $request)
