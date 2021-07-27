@@ -39,7 +39,6 @@ class P_2bgreenController extends Controller
 
     public function guest_2bgreen(Request $request)
     {
-        $count_per_month = 0 ;
         $year = $request->get('year');
         $month_1 = $request->get('month_1');
         $month_2 = $request->get('month_2');
@@ -81,7 +80,11 @@ class P_2bgreenController extends Controller
             foreach ($monthly_reports as $item ) {
                 $count_per_month = $item->count ;
             }
+        } else if(!empty($month_1) and empty($year)) {
+            $count_per_month = "กรุณาเลือกปี" ;
+            $monthly_reports = "" ;
         } else {
+            $count_per_month = "กรุณาระบุข้อมูล" ;
             $monthly_reports = "" ;
         }
 

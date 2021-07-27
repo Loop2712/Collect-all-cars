@@ -104,7 +104,9 @@
                                             <center>
                                                 <b>{{ $count_per_month }}</b>
                                                 <br>
-                                                <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ number_format(($count_per_month / $item->count) * 100,2) }} % ของทั้งหมด({{ $item->count }})</span>
+                                                @if(gettype($count_per_month) == 'integer')
+                                                    <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ number_format(($count_per_month / $item->count) * 100,2) }} % ของทั้งหมด({{ $item->count }})</span>
+                                                @endif
                                             </center>
                                         </div>
                                     </div>
