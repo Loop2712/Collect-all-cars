@@ -203,49 +203,63 @@
 
 <script>
     function select_year(){
-        var select_year = document.getElementById('select_year').value;
+        let select_year = document.getElementById('select_year').value;
           // console.log(select_year);
-        var input_year = document.getElementById('input_year');
+        let input_year = document.getElementById('input_year');
           input_year.value = select_year;
     }
     function select_month_1(){
-        var select_month_1 = document.getElementById('select_month_1').value;
+        let select_month_1 = document.getElementById('select_month_1').value;
           // console.log(select_month_1);
-        var input_month_1 = document.getElementById('input_month_1');
+        let input_month_1 = document.getElementById('input_month_1');
           input_month_1.value = select_month_1;
 
-        var select_month_2 = document.getElementById('select_month_2');
+        let select_month_2 = document.getElementById('select_month_2');
           select_month_2.value = select_month_1 ;
-        var input_month_2 = document.getElementById('input_month_2');
+        let input_month_2 = document.getElementById('input_month_2');
           input_month_2.value = select_month_2.value;
     }
     function select_month_2(){
-        var select_month_2 = document.getElementById('select_month_2').value;
-          // console.log(select_month_2);
-        var input_month_2 = document.getElementById('input_month_2');
-          input_month_2.value = select_month_2;
+        let select_month_2 = document.getElementById('select_month_2').value;
+        let select_month_1 = document.getElementById('select_month_1').value;
+            int_month_1 = parseInt(select_month_1);
+            int_month_2 = parseInt(select_month_2);
+
+            if (int_month_2 < int_month_1) {
+                let va_1 = select_month_1 ;
+                    select_month_1 = select_month_2;
+                    select_month_2 = va_1;
+
+                let input_month_1 = document.getElementById('input_month_1');
+                    input_month_1.value = select_month_1;
+                let input_month_2 = document.getElementById('input_month_2');
+                    input_month_2.value = select_month_2;
+            }else{
+                let input_month_2 = document.getElementById('input_month_2');
+                    input_month_2.value = select_month_2;
+            }
     }
     document.addEventListener('DOMContentLoaded', (event) => {
-        var input_year = document.getElementById('input_year').value;
-        var input_month_1 = document.getElementById('input_month_1').value;
-        var input_month_2 = document.getElementById('input_month_2').value;
+        let input_year = document.getElementById('input_year').value;
+        let input_month_1 = document.getElementById('input_month_1').value;
+        let input_month_2 = document.getElementById('input_month_2').value;
 
-        var select_year = document.getElementById('select_year');
-        var select_month_1 = document.getElementById('select_month_1');
-        var select_month_2 = document.getElementById('select_month_2');
+        let select_year = document.getElementById('select_year');
+        let select_month_1 = document.getElementById('select_month_1');
+        let select_month_2 = document.getElementById('select_month_2');
 
         select_year.value = input_year ;
         select_month_1.value = input_month_1 ;
         select_month_2.value = input_month_2 ;
 
-        var month_th_1 = document.getElementById('month_th_1');
+        let month_th_1 = document.getElementById('month_th_1');
             month_th_1.innerHTML = select_month_1.value;
-        var month_th_2 = document.getElementById('month_th_2');
+        let month_th_2 = document.getElementById('month_th_2');
             month_th_2.innerHTML = select_month_2.value;
 
-        var month_en_1 = document.getElementById('month_en_1');
+        let month_en_1 = document.getElementById('month_en_1');
             month_en_1.innerHTML = select_month_1.value;
-        var month_en_2 = document.getElementById('month_en_2');
+        let month_en_2 = document.getElementById('month_en_2');
             month_en_2.innerHTML = select_month_2.value;
 
     });

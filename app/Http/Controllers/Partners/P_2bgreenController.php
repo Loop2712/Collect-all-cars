@@ -39,6 +39,7 @@ class P_2bgreenController extends Controller
 
     public function guest_2bgreen(Request $request)
     {
+        $count_per_month = 0 ;
         $year = $request->get('year');
         $month_1 = $request->get('month_1');
         $month_2 = $request->get('month_2');
