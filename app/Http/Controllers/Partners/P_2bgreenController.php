@@ -44,14 +44,6 @@ class P_2bgreenController extends Controller
         $month_1 = $request->get('month_1');
         $month_2 = $request->get('month_2');
 
-        if ($month_1 == "") {
-            $month_1 = $month_2 ;
-        }
-
-        if ($month_2 == "") {
-            $month_2 = $month_1 ;
-        }
-
         $perPage = 20;
         $guest = Guest::where('organization', "2บี กรีน จำกัด")
                     ->groupBy('registration')
@@ -60,6 +52,7 @@ class P_2bgreenController extends Controller
                     ->selectRaw('count(register_car_id) as count , registration , county , register_car_id')
                     ->orderByRaw('count DESC')
                     ->latest()->paginate($perPage);
+
 
         if (!empty($year) and !empty($month_1)) {
             
@@ -77,19 +70,8 @@ class P_2bgreenController extends Controller
                         ->orderByRaw('count DESC')
                         ->latest()->paginate($perPage);
             }
-
-            foreach ($monthly_reports as $item ) {
-                $count_per_month = $item->count ;
-            }
-        } else if(!empty($month_1) and empty($year)) {
-            $count_per_month = "กรุณาเลือกปี" ;
-            $monthly_reports = "" ;
-        } else {
-            $count_per_month = "กรุณาระบุข้อมูล" ;
-            $monthly_reports = "" ;
         }
-
-        return view('Partners_2bgreen.P_2begreen_guest', compact('guest','monthly_reports','count_per_month'));
+        return view('Partners_2bgreen.P_2begreen_guest', compact('guest','count_per_month'));
     }
 
     public function guest_latest_2bgreen(Request $request)
