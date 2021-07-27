@@ -35,83 +35,86 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
-                                        <div class="col-1"></div>
-                                        <div class="col-3">
-                                            <center>
-                                                <b>ยี่ห้อ / รุ่น</b><br>
-                                                Brand / Model
-                                            </center>
-                                        </div>
-                                        <div class="col-3">
-                                            <center>
-                                                <b>หมายเลขทะเบียน</b><br>
-                                                Registration number
-                                            </center>
-                                        </div>
-                                        <div class="col-2">
-                                            <center>
-                                                <b>รายงานทั้งหมด</b><br>
-                                                All reports
-                                            </center>
+                                        <div class="col-9">
+                                            <div class="row">
+                                                <div class="col-2"></div>
+                                                <div class="col-3">
+                                                    <center>
+                                                        <b>ยี่ห้อ / รุ่น</b><br>
+                                                        Brand / Model
+                                                    </center>
+                                                </div>
+                                                <div class="col-4">
+                                                    <center>
+                                                        <b>หมายเลขทะเบียน</b><br>
+                                                        Registration number
+                                                    </center>
+                                                </div>
+                                                <div class="col-3">
+                                                    <center>
+                                                        <b>รายงานทั้งหมด</b><br>
+                                                        All reports
+                                                    </center>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-3">
                                             <center>
                                                 <div class="row">
-                                                    <div class="col-10">
-                                                        <b>
-                                                            รายงานเดือน 
-                                                            (<span id="month_th_1"></span> - <span id="month_th_2"></span>)
-                                                        </b>
-                                                        <br>
-                                                        <span>
-                                                            Monthly reports
-                                                            (<span id="month_en_1"></span> - <span id="month_en_2"></span>)
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-2">
-                                                       <button type="button" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#staticBackdrop">
-                                                          <i class="fas fa-calendar-alt"></i>
-                                                        </button> 
+                                                    <div class="col-12">
+                                                        <center>
+                                                        <b>ผู้ลงทะเบียน</b><br>
+                                                        Registrant
+                                                    </center>
                                                     </div>
                                                 </div>
                                             </center>
                                         </div>
                                     </div>
                                     <hr>
-                                    @foreach($guest as $item)
                                     <div class="row">
-                                        <div class="col-1">
-                                            <center>{{ $loop->iteration }}</center>
+                                        <div class="col-9">
+                                            @foreach($guest as $item)
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <center>{{ $loop->iteration }}</center>
+                                                </div>
+                                                <div class="col-3">
+                                                    <center>
+                                                        <b>{{ $item->register_cars->brand }}</b><br>
+                                                        {{ $item->register_cars->generation }}
+                                                    </center>
+                                                </div>
+                                                <div class="col-4">
+                                                    <center>
+                                                        <b>{{ $item->registration }}</b><br>
+                                                        {{ $item->county }}
+                                                    </center>
+                                                </div>
+                                                <div class="col-3">
+                                                    <center>
+                                                        <b>{{ $item->count }}</b>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            @endforeach
                                         </div>
                                         <div class="col-3">
-                                            <center>
-                                                <b>{{ $item->register_cars->brand }}</b><br>
-                                                {{ $item->register_cars->generation }}
-                                            </center>
-                                        </div>
-                                        <div class="col-3">
-                                            <center>
-                                                <b>{{ $item->registration }}</b><br>
-                                                {{ $item->county }}
-                                            </center>
-                                        </div>
-                                        <div class="col-2">
-                                            <center>
-                                                <b>{{ $item->count }}</b>
-                                            </center>
-                                        </div>
-                                        <div class="col-3">
-                                            <center>
-                                                <b>{{ $count_per_month }}</b>
-                                                <br>
-                                                @if(gettype($count_per_month) == 'integer')
-                                                    <span class="text-secondary" style="font-size:14px;">คิดเป็น {{ number_format(($count_per_month / $item->count) * 100,2) }} % ของทั้งหมด({{ $item->count }})</span>
-                                                @endif
-                                            </center>
+                                            @foreach($guest as $key)
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <b>{{ $key->register_cars->name }}</b>
+                                                        <a href="{{ url('/profile/'.$key->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
+                                                        <br>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    <hr>
-                                    @endforeach
                                     <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
                                 </div>
                             </div>
