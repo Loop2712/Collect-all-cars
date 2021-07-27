@@ -60,7 +60,7 @@ class P_2bgreenController extends Controller
                     ->orderByRaw('count DESC')
                     ->latest()->paginate($perPage);
 
-        if (!empty($year)) {
+        if (!empty($year) and !empty($month_1)) {
             
             foreach ($guest as $key ) {
 
