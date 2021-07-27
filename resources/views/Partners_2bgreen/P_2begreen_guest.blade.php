@@ -106,7 +106,8 @@
                                                 <div class="col-12">
                                                     <center>
                                                         <b>{{ $key->register_cars->name }}</b>
-                                                        <a href="{{ url('/profile/'.$key->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
+                                                        <br>
+                                                        <a target="bank" href="{{ url('/profile/'.$key->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
                                                         <br>
                                                     </center>
                                                 </div>
