@@ -48,7 +48,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 15,
             center: { lat: lat, lng: lng },
+            mapTypeId: "terrain",
         });
+        // 40.7504479,-73.9936564,19
 
         // ตำแหน่ง USER
         const user = { lat: lat, lng: lng };
