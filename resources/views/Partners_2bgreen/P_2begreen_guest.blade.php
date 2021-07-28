@@ -168,6 +168,10 @@
                                                 <div class="col-3">
                                                     <center>
                                                         <b>{{ $count_per_month[$item->register_car_id] }}</b>
+                                                        <br>
+                                                        @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
+                                                            <span class="text-secondary" style="font-size:14px;">คิดเป็น <b>{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
+                                                        @endif
                                                     </center>
                                                 </div>
                                                 <div class="col-3">
