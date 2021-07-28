@@ -24,9 +24,16 @@
                                 <label  class="control-label">{{ '' }}</label>
                                 <select class="form-control" id="select_year" onchange="select_year();">
                                     <option value="">เลือกปี</option>
-                                    <option value="2020">2563</option>
-                                    <option value="2021">2564</option>
-                                    <option value="2022">2565</option>
+                                        @if(!empty($guest_year))
+                                            @foreach($guest_year as $item)
+                                                <option value="{{ $item->date }}">
+                                                        {{ $item->date + 543 }}
+                                                </option>   
+
+                                            @endforeach
+                                        @else
+                                            <option value="" selected></option> 
+                                        @endif
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -75,9 +82,9 @@
                                 <br>
                                 <form style="float: right;" method="GET" action="{{ url('/guest_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
                                     <div class="input-group">
-                                        <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
-                                        <input type="hidden" class="form-control" id="input_month_1" name="month_1" value="{{ request('month_1') }}">
-                                        <input type="hidden" class="form-control" id="input_month_2" name="month_2" value="{{ request('month_2') }}">
+                                        <input type="number" class="form-control d-none" id="input_year" name="year"value="{{ request('year') }}">
+                                        <input type="number" class="form-control d-none" id="input_month_1" name="month_1" value="{{ request('month_1') }}">
+                                        <input type="number" class="form-control d-none" id="input_month_2" name="month_2" value="{{ request('month_2') }}">
 
                                         <button class="btn btn-primary" type="submit">
                                             ค้นหา
@@ -160,7 +167,7 @@
                                                 </div>
                                                 <div class="col-3">
                                                     <center>
-                                                        <b>{{ $count_per_month }}</b>
+                                                        <b>{{ $count_per_month[$item->register_car_id] }}</b>
                                                     </center>
                                                 </div>
                                                 <div class="col-3">
