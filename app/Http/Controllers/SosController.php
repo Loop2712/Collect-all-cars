@@ -281,6 +281,7 @@ class SosController extends Controller
     public function view_sos(Request $request)
     {
         $keyword = $request->get('search');
+        $search_area = $request->get('search_area');
         $perPage = 25;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->get();
@@ -307,6 +308,12 @@ class SosController extends Controller
         } else {
             $view_map = DB::table('sos_maps')
             ->latest()->paginate($perPage);
+        }
+
+        if (!empty($search_area)) {
+            $view_map = DB::table('sos_maps')
+                ->where('area', 'LIKE', "$search_area")
+                ->latest()->paginate($perPage);
         }
 
        

@@ -8,6 +8,10 @@
             <div class="row">
                 <div class="col-12">
                     <br><br>
+                    <input class="d-none" type="text" id="va_zoom" name="" value="6">
+                    <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
+                    <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+                    <input class="d-none" type="text" id="search_area" name="" value="{{ url()->full() }}">
                     <div class="card">
                         <div id="map"></div>
                     </div>
@@ -64,7 +68,7 @@
                                     @if(!empty($area))
                                         <option value="">เลือกพื้นที่รับผิดชอบ</option>   
                                         @foreach($area as $item)
-                                            <option value="{{ url('/sos') }}?search={{ $item->area }}">
+                                            <option value="{{ url('/sos') }}?search_area={{ $item->area }}">
                                                     {{ $item->area }}
                                             </option>   
 
@@ -195,14 +199,29 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
+
+        let search_area = document.getElementById("search_area").value;
+        let split_1 = search_area.split("?")[1];
+        let split_2 = split_1.split("=")[0];
+            // console.log(split_2);
+            if (split_2 === "search_area") {
+                change_area();
+            }
     });
 
-    let map;
-
     function initMap() {
+        let text_zoom = document.getElementById("va_zoom").value;
+        let num_zoom = parseFloat(text_zoom);
+
+        let text_center_lat = document.getElementById("center_lat").value;
+        let num_center_lat = parseFloat(text_center_lat);
+
+        let text_center_lng = document.getElementById("center_lng").value;
+        let num_center_lng = parseFloat(text_center_lng);
+
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 13.7248936, lng: 100.4930264 },
-            zoom: 6,
+            center: { lat: num_center_lat, lng: num_center_lng },
+            zoom: num_zoom,
         });
         // 13.7248936,100.4930264 lat lng ประเทศไทย
 
@@ -217,6 +236,41 @@
             });     
         @endforeach
 
+    }
+
+    function change_area() {
+
+        let search_area = document.getElementById("search_area").value;
+        let text_area = search_area.split("=")[1];
+            console.log(text_area);
+
+        let text_zoom = document.getElementById("va_zoom");
+        let text_center_lat = document.getElementById("center_lat");
+        let text_center_lng = document.getElementById("center_lng");
+
+        switch(text_area) {
+            case "ViiCHECK":
+                text_zoom.value = "6" ;
+                text_center_lat.value = "13.7248936" ;
+                text_center_lng.value = "100.4930264" ;
+                break;
+            case "VRU":
+                text_zoom.value = "15.4" ;
+                text_center_lat.value = "14.1337902" ;
+                text_center_lng.value = "100.6124206" ;
+                break;
+            case "TU":
+                text_zoom.value = "14.5" ;
+                text_center_lat.value = "14.0731804" ;
+                text_center_lng.value = "100.6064698" ;
+                break;
+            case "KMUTNB":
+                text_zoom.value = "16.5" ;
+                text_center_lat.value = "13.8211903" ;
+                text_center_lng.value = "100.5138453" ;
+                break;
+        }
+        initMap();
     }
 
     function draw_area(map) {
