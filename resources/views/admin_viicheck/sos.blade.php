@@ -176,15 +176,6 @@
                             </div>
                         </div>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" name="lat" type="text" id="lat" value="" >
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="lng" type="text" id="lng" value="" >
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="latlng" name="latlng" readonly> 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -203,75 +194,181 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        getLocation();
+        initMap();
     });
 
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        navigator.geolocation.getCurrentPosition(initMap);
-        // navigator.geolocation.getCurrentPosition(geocodeLatLng);
-      } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-      }
-    }
+    let map;
 
-    function showPosition(position) {
-        let lat_text = document.querySelector("#lat");
-        let lng_text = document.querySelector("#lng");
-        let latlng = document.querySelector("#latlng");
-
-        lat_text.value = position.coords.latitude ;
-        lng_text.value = position.coords.longitude ;
-        latlng.value = position.coords.latitude+","+position.coords.longitude ;
-
-        let lat = parseFloat(lat_text.value) ;
-        let lng = parseFloat(lng_text.value) ;
-
-        // console.log(lat);
-        // console.log(lng);
-
-        let location_user = document.querySelector("#location_user");
-            location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
-
-        check_area(lat,lng);
-    }
-
-    function initMap(position) {
-        let lat_text = document.querySelector("#lat");
-        let lng_text = document.querySelector("#lng");
-        let latlng = document.querySelector("#latlng");
-
-        lat_text.value = position.coords.latitude ;
-        lng_text.value = position.coords.longitude ;
-        latlng.value = position.coords.latitude+","+position.coords.longitude ;
-        let lat = parseFloat(lat_text.value) ;
-        let lng = parseFloat(lng_text.value) ;
-
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 15,
-            center: { lat: lat, lng: lng },
-            mapTypeId: "terrain",
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 13.7248936, lng: 100.4930264 },
+            zoom: 6,
         });
-        // 40.7504479,-73.9936564,19
+        // 13.7248936,100.4930264 lat lng ประเทศไทย
 
-        // ตำแหน่ง USER
-        const user = { lat: lat, lng: lng };
-        const marker_user = new google.maps.Marker({ map, position: user });
-
+        //วาดพื้นที่รับผิดชอบ
         draw_area(map);
 
-        const geocoder = new google.maps.Geocoder();
-        const infowindow = new google.maps.InfoWindow();
+        //ปักหมุด
+        @foreach($view_map as $item)
+            var marker = new google.maps.Marker({
+                position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 
+                map: map,
+            });     
+        @endforeach
 
-        document.getElementById("submit").addEventListener("click", () => {
-            geocodeLatLng(geocoder, map, infowindow);
-        });
-
-        marker_user.addListener("click", () => {
-            geocodeLatLng(geocoder, map, infowindow);
-        });
     }
+
+    function draw_area(map) {
+        // พื้นที่ทดสอบ
+        const area_test = [
+            { lat: 14.1150621, lng: 100.6013697 },
+            { lat: 14.1150621, lng: 100.6074465 },
+            { lat: 14.1127626, lng: 100.6074465 },
+            { lat: 14.1127626, lng: 100.6013697 },
+          ];
+
+          // Construct the polygon.
+          const draw_area_test = new google.maps.Polygon({
+            paths: area_test,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_test.setMap(map);
+        // // END พื้นที่ ทดสอบ
+
+        // // พื้นที่ VRU 
+        const area_vru = [
+            { lat: 14.1357294, lng: 100.6054468 },
+            { lat: 14.1357294, lng: 100.6179993 },
+            { lat: 14.1319187, lng: 100.6179993 },
+            { lat: 14.1319187, lng: 100.6054468 },
+            
+          ];
+          // Construct the polygon.
+          const draw_area_vru = new google.maps.Polygon({
+            paths: area_vru,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_vru.setMap(map);
+        // // END พื้นที่ VRU 
+
+        // พื้นที่ TU
+        const tu_a = { lat: 14.077896, lng: 100.593465 };
+        const tu_b = { lat: 14.080425, lng: 100.600798 };
+        const tu_c = { lat: 14.076168, lng: 100.600594 };
+        const tu_d = { lat: 14.076193, lng: 100.617410 };
+        const tu_e = { lat: 14.066614, lng: 100.616926 };
+        const tu_f = { lat: 14.066762, lng: 100.605290 };
+        const tu_g = { lat: 14.065550, lng: 100.605443 };
+        const tu_h = { lat: 14.066020, lng: 100.597200 };
+        const tu_i = { lat: 14.075945, lng: 100.596154 };
+        const tu_j = { lat: 14.076391, lng: 100.594189 };
+
+        const area_tu = [tu_a,tu_b,tu_c,tu_d,tu_e,tu_f,tu_g,tu_h,tu_i,tu_j,];
+
+          // Construct the polygon.
+        const draw_area_tu = new google.maps.Polygon({
+            paths: area_tu,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_tu.setMap(map);
+        // // END พื้นที่ TU
+
+        // พื้นที่ บ้านลัค
+        const luck_a = { lat: 14.187077, lng: 101.162882 };
+        const luck_b = { lat: 14.187651, lng: 101.162502 };
+        const luck_c = { lat: 14.188048, lng: 101.163155 };
+        const luck_d = { lat: 14.188600, lng: 101.163246 };
+        const luck_e = { lat: 14.188644, lng: 101.164103 };
+        const luck_f = { lat: 14.187386, lng: 101.164194 };
+        const luck_h = { lat: 14.187077, lng: 101.164133 };
+
+        const area_luck = [luck_a,luck_b,luck_c,luck_d,luck_e,luck_f,luck_h,];
+
+        // Construct the polygon.
+        const draw_area_luck = new google.maps.Polygon({
+            paths: area_luck,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_luck.setMap(map);
+        // END พื้นที่ บ้านลัค
+
+        // พื้นที่ พระจอมเกล้าพระนครเหนือ
+        const kmutnb_a = { lat: 13.819200, lng: 100.512753 };
+        const kmutnb_b = { lat: 13.818744, lng: 100.514181 };
+        const kmutnb_c = { lat: 13.819357, lng: 100.514901 };
+        const kmutnb_d = { lat: 13.819157, lng: 100.515523 };
+        const kmutnb_e = { lat: 13.819333, lng: 100.515561 };
+        const kmutnb_f = { lat: 13.819222, lng: 100.516228 };
+        const kmutnb_g = { lat: 13.821000, lng: 100.517113 };
+        const kmutnb_i = { lat: 13.822192, lng: 100.514845 };
+        const kmutnb_j = { lat: 13.824593, lng: 100.512288 };
+        const kmutnb_k = { lat: 13.824234, lng: 100.511526 };
+        const kmutnb_l = { lat: 13.823348, lng: 100.512004 };
+        const kmutnb_m = { lat: 13.822952, lng: 100.511392 };
+        const kmutnb_n = { lat: 13.821650, lng: 100.512422 };
+        const kmutnb_o = { lat: 13.820254, lng: 100.514284 };
+
+        const area_kmutnb = [kmutnb_a,kmutnb_b,kmutnb_c,kmutnb_d,kmutnb_e,
+            kmutnb_f,kmutnb_g,kmutnb_i,kmutnb_j,kmutnb_k,kmutnb_l,kmutnb_m,kmutnb_n,kmutnb_o,];
+
+        // Construct the polygon.
+        const draw_area_kmutnb = new google.maps.Polygon({
+            paths: area_kmutnb,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_kmutnb.setMap(map);
+        // END พื้นที่ พระจอมเกล้าพระนครเหนือ
+
+        // พื้นที่ หมู่บ้านซิเมนต์ไทย
+        const thai_cement_a = { lat: 13.833294, lng: 100.539767 };
+        const thai_cement_b = { lat: 13.830202, lng: 100.541761 };
+        const thai_cement_c = { lat: 13.830106, lng: 100.549475 };
+        const thai_cement_d = { lat: 13.833513, lng: 100.551297 };
+        const thai_cement_e = { lat: 13.831744, lng: 100.546931 };
+        const thai_cement_f = { lat: 13.834021, lng: 100.545848 };
+        const thai_cement_g = { lat: 13.833294, lng: 100.544432 };
+        const thai_cement_h = { lat: 13.832725, lng: 100.544441 };
+        const thai_cement_i = { lat: 13.832541, lng: 100.543981 };
+        const thai_cement_j = { lat: 13.834477, lng: 100.542781 };
+        const thai_cement_k = { lat: 13.836728, lng: 100.540570 };
+
+        const area_thai_cement = [thai_cement_a,thai_cement_b,thai_cement_c,thai_cement_d,thai_cement_e,thai_cement_f,thai_cement_g,
+            thai_cement_h,thai_cement_i,thai_cement_j,thai_cement_k,];
+
+        // Construct the polygon.
+        const draw_area_thai_cement = new google.maps.Polygon({
+            paths: area_thai_cement,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          draw_area_thai_cement.setMap(map);
+        // END พื้นที่ หมู่บ้านซิเมนต์ไทย
+    }
+
 </script>
 
 @endsection
