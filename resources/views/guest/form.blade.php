@@ -53,7 +53,6 @@
                     </select>
                         {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
                     </div>
-                    <br>
                 </div>
                 
                 <div class="col-12 col-md-2">
@@ -97,10 +96,10 @@
                 <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
                         <div id="container">
-                            <video width="100%" height="300" autoplay="true" id="videoElement"></video>
+                            <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
                         </div>
 
-                        <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300">
+                        <!-- <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300"> -->
 
                         <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
 
@@ -124,13 +123,14 @@
                   <div class="input-group">
                     <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
-                    <div class="input-group-prepend" onclick="">
+                    <div class="input-group-prepend" onclick="capture_registration();">
                       <div class="input-group-text"><i class="fas fa-camera"></i></div>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-12 col-md-2">
+                    <br>
                     <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
