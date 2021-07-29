@@ -114,6 +114,16 @@
               <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 67%;">
                 <canvas id="canvas_2" width="250" height="250"></canvas>
               </div>
+              <div style="z-index: 15;">
+                <!-- 00.00 -->
+                <h2 class="text-danger" style="position:absolute;margin-top: 6.5%;margin-left: 26.7%;">
+                  <b> {{ $sos_time_00 }} </b>
+                </h2>
+                <!-- 01.00 -->
+                <h2 class="text-danger" style="position:absolute;margin-top: 9%;margin-left: 31%;">
+                  <b> {{ $sos_time_01 }} </b>
+                </h2>
+              </div>
               <div id="img_bg_1" class="col-md-6">
                 <center>
                   <img width="70%" src="{{ asset('/img/more/clock-am.png') }}">
