@@ -1,36 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+  #img_bg_1{
+    background-image: url("{{ asset('/img/bg car/am.png') }}");
+    background-size: cover;
+  }
+  #img_bg_2{
+    background-image: url("{{ asset('/img/bg car/pm.png') }}");
+    background-size: cover;
+  }
+</style>
 <br>
 <div class="col-md-12">
-  <div class="card">
-    <div class="card-header bg-transparent">
-      <div class="row align-items-center">
-        <div class="col">
-          <div class="row">
-              <div class="col-md-6">
-                <center>
-                  <!-- clock widget start -->
-                  <script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-180x170r9.css?v=0.0.1"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> 
-                  <div id="tw_19_295951090">
-                  </div> 
-                  <script type="text/javascript"> function setWidgetData_295951090(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_295951090 = -1; widgetSrc = "https://widgets.booked.net/time/info?ver=2;domid=209;type=19;id=295951090;scode=2;city_id=18061;wlangid=1;mode=2;details=0;background=ffffff;border_color=ffffff;color=363636;add_background=ffffff;add_color=333333;head_color=ffffff;border=0;transparent=0"; var widgetUrl = location.href; widgetSrc += '&ref=' + widgetUrl; var wstrackId = ""; if (wstrackId) { widgetSrc += ';wstrackId=' + wstrackId + ';' } var timeBookedScript = document.createElement("script"); timeBookedScript.setAttribute("type", "text/javascript"); timeBookedScript.src = widgetSrc; document.body.appendChild(timeBookedScript); 
-                  </script>
-                  <!-- clock widget end -->
-
-                  <img width="70%" src="{{ asset('/img/more/clock-am.png') }}">
-                </center>
-              </div>
-              <div class="col-md-6">
-                <center>
-                  <img width="70%" src="{{ asset('/img/more/clock-pm.png') }}">
-                </center>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
   <div class="card">
     <div class="card-header bg-transparent">
       <div class="row align-items-center">
@@ -122,7 +104,31 @@
       </div>
     </div>
     <div class="card-body">
-        
+      <div class="card-header bg-transparent">
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="row main-shadow main-radius">
+              <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 17%;">
+                <canvas id="canvas_1" width="250" height="250"></canvas>
+              </div>
+              <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 67%;">
+                <canvas id="canvas_2" width="250" height="250"></canvas>
+              </div>
+              <div id="img_bg_1" class="col-md-6">
+                <center>
+                  <img width="70%" src="{{ asset('/img/more/clock-am.png') }}">
+                </center>
+              </div>
+              <div id="img_bg_2" class="col-md-6">
+                <center>
+                  <img width="70%" src="{{ asset('/img/more/clock-pm.png') }}">
+                </center>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br>
         <div class="row">
           <canvas id="sosChart" height="70"></canvas>
             <script>
@@ -251,6 +257,168 @@
                   select_area.value = input_area ;
 
               });
+            </script>
+            <script>
+              var canvas = document.getElementById("canvas_1");
+              var ctx = canvas.getContext("2d");
+              var radius = canvas.height / 2;
+              ctx.translate(radius, radius);
+              radius = radius * 0.90
+              setInterval(drawClock, 1000);
+
+              function drawClock() {
+                drawFace(ctx, radius);
+                drawNumbers(ctx, radius);
+                drawTime(ctx, radius);
+              }
+
+              function drawFace(ctx, radius) {
+                var grad;
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, 2*Math.PI);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+                grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+                grad.addColorStop(0, '#333');
+                grad.addColorStop(0.5, 'white');
+                grad.addColorStop(1, '#333');
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = radius*0.1;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+                ctx.fillStyle = '#333';
+                ctx.fill();
+              }
+
+              function drawNumbers(ctx, radius) {
+                var ang;
+                var num;
+                ctx.font = radius*0.15 + "px arial";
+                ctx.textBaseline="middle";
+                ctx.textAlign="center";
+                for(num = 1; num < 13; num++){
+                  ang = num * Math.PI / 6;
+                  ctx.rotate(ang);
+                  ctx.translate(0, -radius*0.85);
+                  ctx.rotate(-ang);
+                  ctx.fillText(num.toString(), 0, 0);
+                  ctx.rotate(ang);
+                  ctx.translate(0, radius*0.85);
+                  ctx.rotate(-ang);
+                }
+              }
+
+              function drawTime(ctx, radius){
+                  var now = new Date();
+                  var hour = now.getHours();
+                  var minute = now.getMinutes();
+                  var second = now.getSeconds();
+                  //hour
+                  hour=hour%12;
+                  hour=(hour*Math.PI/6)+
+                  (minute*Math.PI/(6*60))+
+                  (second*Math.PI/(360*60));
+                  drawHand(ctx, hour, radius*0.5, radius*0.07);
+                  //minute
+                  minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+                  drawHand(ctx, minute, radius*0.8, radius*0.07);
+                  // second
+                  second=(second*Math.PI/30);
+                  drawHand(ctx, second, radius*0.9, radius*0.02);
+              }
+
+              function drawHand(ctx, pos, length, width) {
+                  ctx.beginPath();
+                  ctx.lineWidth = width;
+                  ctx.lineCap = "round";
+                  ctx.moveTo(0,0);
+                  ctx.rotate(pos);
+                  ctx.lineTo(0, -length);
+                  ctx.stroke();
+                  ctx.rotate(-pos);
+              }
+            </script>
+            <script>
+              var canvas_2 = document.getElementById("canvas_2");
+              var ctx_2 = canvas_2.getContext("2d");
+              var radius_2 = canvas_2.height / 2;
+              ctx_2.translate(radius_2, radius_2);
+              radius_2 = radius_2 * 0.90
+              setInterval(drawClock_2, 1000);
+
+              function drawClock_2() {
+                drawFace_2(ctx_2, radius_2);
+                drawNumbers_2(ctx_2, radius_2);
+                drawTime_2(ctx_2, radius_2);
+              }
+
+              function drawFace_2(ctx_2, radius_2) {
+                var grad_2;
+                ctx_2.beginPath();
+                ctx_2.arc(0, 0, radius_2, 0, 2*Math.PI);
+                ctx_2.fillStyle = 'white';
+                ctx_2.fill();
+                grad_2 = ctx_2.createRadialGradient(0,0,radius_2*0.95, 0,0,radius_2*1.05);
+                grad_2.addColorStop(0, '#333');
+                grad_2.addColorStop(0.5, 'white');
+                grad_2.addColorStop(1, '#333');
+                ctx_2.strokeStyle = grad_2;
+                ctx_2.lineWidth = radius_2*0.1;
+                ctx_2.stroke();
+                ctx_2.beginPath();
+                ctx_2.arc(0, 0, radius_2*0.1, 0, 2*Math.PI);
+                ctx_2.fillStyle = '#333';
+                ctx_2.fill();
+              }
+
+              function drawNumbers_2(ctx_2, radius_2) {
+                var ang_2;
+                var num_2;
+                ctx_2.font = radius_2*0.15 + "px arial";
+                ctx_2.textBaseline="middle";
+                ctx_2.textAlign="center";
+                for(num_2 = 1; num_2 < 13; num_2++){
+                  ang_2 = num_2 * Math.PI / 6;
+                  ctx_2.rotate(ang_2);
+                  ctx_2.translate(0, -radius_2*0.85);
+                  ctx_2.rotate(-ang_2);
+                  ctx_2.fillText(num_2.toString(), 0, 0);
+                  ctx_2.rotate(ang_2);
+                  ctx_2.translate(0, radius_2*0.85);
+                  ctx_2.rotate(-ang_2);
+                }
+              }
+
+              function drawTime_2(ctx_2, radius_2){
+                  var now_2 = new Date();
+                  var hour_2 = now_2.getHours();
+                  var minute_2 = now_2.getMinutes();
+                  var second_2 = now_2.getSeconds();
+                  //hour
+                  hour_2=hour_2%12;
+                  hour_2=(hour_2*Math.PI/6)+
+                  (minute_2*Math.PI/(6*60))+
+                  (second_2*Math.PI/(360*60));
+                  drawHand_2(ctx_2, hour_2, radius_2*0.5, radius_2*0.07);
+                  //minute
+                  minute_2=(minute_2*Math.PI/30)+(second_2*Math.PI/(30*60));
+                  drawHand_2(ctx_2, minute_2, radius_2*0.8, radius_2*0.07);
+                  // second
+                  second_2=(second_2*Math.PI/30);
+                  drawHand_2(ctx_2, second_2, radius_2*0.9, radius_2*0.02);
+              }
+
+              function drawHand_2(ctx_2, pos_2, length_2, width_2) {
+                  ctx_2.beginPath();
+                  ctx_2.lineWidth = width_2;
+                  ctx_2.lineCap = "round";
+                  ctx_2.moveTo(0,0);
+                  ctx_2.rotate(pos_2);
+                  ctx_2.lineTo(0, -length_2);
+                  ctx_2.stroke();
+                  ctx_2.rotate(-pos_2);
+              }
             </script>
           </div>
     </div>

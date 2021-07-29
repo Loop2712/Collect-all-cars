@@ -29,6 +29,14 @@
 
   <!-- script Chart.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+  <style type="text/css">
+        .main-shadow{
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+        }
+        .main-radius{
+            border-radius: 5px;
+        }
+  </style>
 </head>
 
 <body style="background-color: #F0FFFF">
