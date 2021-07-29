@@ -8,6 +8,34 @@
       <div class="row align-items-center">
         <div class="col">
           <div class="row">
+              <div class="col-md-6">
+                <center>
+                  <!-- clock widget start -->
+                  <script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-180x170r9.css?v=0.0.1"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> 
+                  <div id="tw_19_295951090">
+                  </div> 
+                  <script type="text/javascript"> function setWidgetData_295951090(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_295951090 = -1; widgetSrc = "https://widgets.booked.net/time/info?ver=2;domid=209;type=19;id=295951090;scode=2;city_id=18061;wlangid=1;mode=2;details=0;background=ffffff;border_color=ffffff;color=363636;add_background=ffffff;add_color=333333;head_color=ffffff;border=0;transparent=0"; var widgetUrl = location.href; widgetSrc += '&ref=' + widgetUrl; var wstrackId = ""; if (wstrackId) { widgetSrc += ';wstrackId=' + wstrackId + ';' } var timeBookedScript = document.createElement("script"); timeBookedScript.setAttribute("type", "text/javascript"); timeBookedScript.src = widgetSrc; document.body.appendChild(timeBookedScript); 
+                  </script>
+                  <!-- clock widget end -->
+
+                  <img width="70%" src="{{ asset('/img/more/clock-am.png') }}">
+                </center>
+              </div>
+              <div class="col-md-6">
+                <center>
+                  <img width="70%" src="{{ asset('/img/more/clock-pm.png') }}">
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="card">
+    <div class="card-header bg-transparent">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="row">
               <div class="col-md-12">
                   <h6 class=" text-muted ls-1 mb-1">
                     SOS

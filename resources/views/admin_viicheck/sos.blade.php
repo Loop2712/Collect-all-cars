@@ -203,10 +203,14 @@
         let search_area = document.getElementById("search_area").value;
         let split_1 = search_area.split("?")[1];
         let split_2 = split_1.split("=")[0];
-            // console.log(split_2);
+            // console.log(split_1.split("=")[1]);
             if (split_2 === "search_area") {
                 change_area();
             }
+        // let select_area_help = document.getElementById("select_area_help");
+        //     select_area_help.innerHTML = split_1.split("=")[1];
+            // console.log(select_area_help.innerHTML);
+
     });
 
     function initMap() {
@@ -242,7 +246,7 @@
 
         let search_area = document.getElementById("search_area").value;
         let text_area = search_area.split("=")[1];
-            console.log(text_area);
+            // console.log(text_area);
 
         let text_zoom = document.getElementById("va_zoom");
         let text_center_lat = document.getElementById("center_lat");
@@ -305,11 +309,11 @@
           // Construct the polygon.
           const draw_area_vru = new google.maps.Polygon({
             paths: area_vru,
-            strokeColor: "#FF0000",
+            strokeColor: "#008450",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
           });
           draw_area_vru.setMap(map);
         // // END พื้นที่ VRU 
