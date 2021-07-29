@@ -289,11 +289,11 @@
           // Construct the polygon.
           const draw_area_test = new google.maps.Polygon({
             paths: area_test,
-            strokeColor: "#FF0000",
+            strokeColor: "#008450",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
           });
           draw_area_test.setMap(map);
         // // END พื้นที่ ทดสอบ
@@ -335,11 +335,11 @@
           // Construct the polygon.
         const draw_area_tu = new google.maps.Polygon({
             paths: area_tu,
-            strokeColor: "#FF0000",
+            strokeColor: "#008450",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
           });
           draw_area_tu.setMap(map);
         // // END พื้นที่ TU
@@ -358,11 +358,11 @@
         // Construct the polygon.
         const draw_area_luck = new google.maps.Polygon({
             paths: area_luck,
-            strokeColor: "#FF0000",
+            strokeColor: "#008450",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
           });
           draw_area_luck.setMap(map);
         // END พื้นที่ บ้านลัค
@@ -389,11 +389,11 @@
         // Construct the polygon.
         const draw_area_kmutnb = new google.maps.Polygon({
             paths: area_kmutnb,
-            strokeColor: "#FF0000",
+            strokeColor: "#008450",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
           });
           draw_area_kmutnb.setMap(map);
         // END พื้นที่ พระจอมเกล้าพระนครเหนือ
@@ -417,11 +417,11 @@
         // Construct the polygon.
         const draw_area_thai_cement = new google.maps.Polygon({
             paths: area_thai_cement,
-            strokeColor: "#FF0000",
+            strokeColor: "#008450",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
           });
           draw_area_thai_cement.setMap(map);
         // END พื้นที่ หมู่บ้านซิเมนต์ไทย
