@@ -96,6 +96,7 @@
                 <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
                         <div id="container">
+                            <canvas style="background-color: red; position: absolute;" id="canvas" width="250" height="100"></canvas>
                             <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
                         </div>
 
