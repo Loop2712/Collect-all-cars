@@ -1,134 +1,195 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    
-    <style type="text/css">
-      .screenshot-image {
-    width: 150px;
-    height: 90px;
-    border-radius: 4px;
-    border: 2px solid whitesmoke;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    position: absolute;
-    bottom: 5px;
-    left: 10px;
-    background: white;
-}
 
-.display-cover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    margin: 5% auto;
-    position: relative;
-}
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="image" content="../../../images/webrtc-icon-192x192.png">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
 
-video {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.2);
-}
+    <base target="_blank">
 
-.video-options {
-    position: absolute;
-    left: 20px;
-    top: 30px;
-}
+    <title>Select audio and video sources</title>
 
-.controls {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    display: flex;
-}
+    <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../css/main.css">
 
-.controls > button {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    border-radius: 100%;
-    margin: 0 6px;
-    background: transparent;
-}
+    <style>
+        div.select {
+            display: inline-block;
+            margin: 0 0 1em 0;
+        }
 
-.controls > button:hover svg {
-    color: white !important;
-}
+        p.small {
+            font-size: 0.7em;
+        }
 
-@media (min-width: 300px) and (max-width: 400px) {
-    .controls {
-        flex-direction: column;
-    }
-
-    .controls button {
-        margin: 5px 0 !important;
-    }
-}
-
-.controls > button > svg {
-    height: 20px;
-    width: 18px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-}
-
-.controls button:nth-child(1) {
-    border: 2px solid #D2002E;
-}
-
-.controls button:nth-child(1) svg {
-    color: #D2002E;
-}
-
-.controls button:nth-child(2) {
-    border: 2px solid #008496;
-}
-
-.controls button:nth-child(2) svg {
-    color: #008496;
-}
-
-.controls button:nth-child(3) {
-    border: 2px solid #00B541;
-}
-
-.controls button:nth-child(3) svg {
-    color: #00B541;
-}
-
-.controls > button {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    border-radius: 100%;
-    margin: 0 6px;
-    background: transparent;
-}
-
-.controls > button:hover svg {
-    color: white;
-}
+        label {
+            width: 12em;
+            display: inline-block;
+        }
     </style>
-    <title>Document</title>
-</head>
-<body>
-  <video id="webcam" autoplay playsinline width="640" height="480"></video>
-  <canvas id="canvas" class="d-none"></canvas>
-  <audio id="snapSound" src="audio/snap.wav" preload = "auto"></audio>
 
-<script src="https://unpkg.com/feather-icons"></script>
-<script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+</head>
+
+<body>
+<div id="container">
+
+    <h1><a href="//webrtc.github.io/samples/" title="WebRTC samples homepage">WebRTC samples</a><span>Select sources &amp; outputs</span>
+    </h1>
+
+    <p>Get available audio, video sources and audio output devices from <code>mediaDevices.enumerateDevices()</code>
+        then set the source for <code>getUserMedia()</code> using a <code>deviceId</code> constraint.</p>
+    <p><b>Note:</b> without permission, the browser will restrict the available devices to at most one per type.</p>
+
+    <div class="select">
+        <label for="audioSource">Audio input source: </label><select id="audioSource"></select>
+    </div>
+
+    <div class="select">
+        <label for="audioOutput">Audio output destination: </label><select id="audioOutput"></select>
+    </div>
+
+    <div class="select">
+        <label for="videoSource">Video source: </label><select id="videoSource"></select>
+    </div>
+
+    <video id="video" playsinline autoplay></video>
+
+    <p><b>Note:</b> If you hear a reverb sound your microphone is picking up the output of your
+        speakers/headset, lower the volume and/or move the microphone further away from your speakers/headset.</p>
+
+    <a href="https://github.com/webrtc/samples/tree/gh-pages/src/content/devices/input-output"
+       title="View source for this page on GitHub" id="viewSource">View source on GitHub</a>
+</div>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/main.js" async></script>
+
+<script src="../../../js/lib/ga.js"></script>
 <script>
-  const webcamElement = document.getElementById('webcam');
-  const canvasElement = document.getElementById('canvas');
-  const snapSoundElement = document.getElementById('snapSound');
-  const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+    /*
+*  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+*
+*  Use of this source code is governed by a BSD-style license
+*  that can be found in the LICENSE file in the root of the source
+*  tree.
+*/
+
+'use strict';
+
+const videoElement = document.querySelector('video');
+const audioInputSelect = document.querySelector('select#audioSource');
+const audioOutputSelect = document.querySelector('select#audioOutput');
+const videoSelect = document.querySelector('select#videoSource');
+const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
+
+audioOutputSelect.disabled = !('sinkId' in HTMLMediaElement.prototype);
+
+function gotDevices(deviceInfos) {
+  // Handles being called several times to update labels. Preserve values.
+  const values = selectors.map(select => select.value);
+  selectors.forEach(select => {
+    while (select.firstChild) {
+      select.removeChild(select.firstChild);
+    }
+  });
+  for (let i = 0; i !== deviceInfos.length; ++i) {
+    const deviceInfo = deviceInfos[i];
+    const option = document.createElement('option');
+    option.value = deviceInfo.deviceId;
+    if (deviceInfo.kind === 'audioinput') {
+      option.text = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
+      audioInputSelect.appendChild(option);
+    } else if (deviceInfo.kind === 'audiooutput') {
+      option.text = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
+      audioOutputSelect.appendChild(option);
+    } else if (deviceInfo.kind === 'videoinput') {
+      option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
+      videoSelect.appendChild(option);
+    } else {
+      console.log('Some other kind of source/device: ', deviceInfo);
+    }
+  }
+  selectors.forEach((select, selectorIndex) => {
+    if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
+      select.value = values[selectorIndex];
+    }
+  });
+}
+
+navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+
+// Attach audio output device to video element using device/sink ID.
+function attachSinkId(element, sinkId) {
+  if (typeof element.sinkId !== 'undefined') {
+    element.setSinkId(sinkId)
+        .then(() => {
+          console.log(`Success, audio output device attached: ${sinkId}`);
+        })
+        .catch(error => {
+          let errorMessage = error;
+          if (error.name === 'SecurityError') {
+            errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`;
+          }
+          console.error(errorMessage);
+          // Jump back to first output device in the list as it's the default.
+          audioOutputSelect.selectedIndex = 0;
+        });
+  } else {
+    console.warn('Browser does not support output device selection.');
+  }
+}
+
+function changeAudioDestination() {
+  const audioDestination = audioOutputSelect.value;
+  attachSinkId(videoElement, audioDestination);
+}
+
+function gotStream(stream) {
+  window.stream = stream; // make stream available to console
+  videoElement.srcObject = stream;
+  // Refresh button list in case labels have become available
+  return navigator.mediaDevices.enumerateDevices();
+}
+
+function handleError(error) {
+  console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
+}
+
+function start() {
+  if (window.stream) {
+    window.stream.getTracks().forEach(track => {
+      track.stop();
+    });
+  }
+  const audioSource = audioInputSelect.value;
+  const videoSource = videoSelect.value;
+  const constraints = {
+    audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
+    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+  };
+  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
+}
+
+audioInputSelect.onchange = start;
+audioOutputSelect.onchange = changeAudioDestination;
+
+videoSelect.onchange = start;
+
+start();
 </script>
 </body>
 </html>
