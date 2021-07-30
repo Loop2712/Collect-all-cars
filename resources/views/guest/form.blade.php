@@ -95,10 +95,6 @@
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
-                        <a style="float:right;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
-                        <br><br>
-                    </div>
-                    <div class="col-12">
                         <div id="container">
                             <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
                         </div>
@@ -108,7 +104,9 @@
                     </div>
                     <div class="col-12">
                         <center>
-                            <a class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                            <a class="btn btn-sm btn-primary text-white" onclick=""><i class="fas fa-sync-alt"></i></a>
+                            <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                            <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
                         </center>
                     </div>
                     
