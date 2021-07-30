@@ -98,7 +98,7 @@
                         <div id="container">
                             <div class="row">
                                 <div class="col-12">
-                                        <canvas style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;top:25%" width="245" height="100"></canvas>
+                                        <canvas style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;top:30%" width="240" height="120"></canvas>
                                     <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
                                 </div>
                             </div>
