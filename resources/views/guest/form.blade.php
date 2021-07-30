@@ -110,11 +110,12 @@
                     <div class="col-12">
                         <center>
                             <div class="select">
-                                <label for="videoSource">Video source: </label><select id="videoSource"></select>
+                                <label for="videoSource">เลือกกล้อง</label>
+                                <select id="videoSource"></select>
                             </div>
-                            <a class="btn btn-sm btn-primary text-white" onclick=""><i class="fas fa-sync-alt"></i></a>
+                            <br>
                             <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                            <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
+                            <a class="btn btn-sm btn-primary text-white" onclick="stop();">ปิด</a>
                         </center>
                     </div>
                     
