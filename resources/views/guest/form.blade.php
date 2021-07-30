@@ -91,24 +91,40 @@
                         {!! $errors->first('report_drivingd_detail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-
+                
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
-                    <div class="col-12">
-                        <div id="container">
-                            <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                    <div class="d-block d-md-none">
+                        <div class="col-12">
+                            <div id="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                            <canvas style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;top:30%;left: 10%;" width="220" height="120"></canvas>
+                                        <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300"> -->
+
                         </div>
-
-                        <!-- <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300"> -->
-
-                        <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
-
-                        <a style="position: relative; z-index: 6;top: -60px;right: -55px;" class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                    </div>
-                    <div class="col-12">
-                        <input type="text" name="" id="text_img">
-                        <canvas style="background-color: red;" id="canvas" width="250" height="100"></canvas>
-                        <img src="" width="250" height="100" id="photo2">
+                        <div class="col-12">
+                            <center>
+                                <div id="div_videoSource" class="select">
+                                    <label for="videoSource">เลือกกล้อง</label>
+                                    <select id="videoSource"></select>
+                                </div>
+                                <br>
+                                <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                                <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
+                            </center>
+                        </div>
+                        
+                        <div class="col-12">
+                            <input type="text" name="" id="text_img">
+                            <canvas style="background-color: red;" id="canvas" width="250" height="100"></canvas>
+                            <img src="" width="250" height="100" id="photo2">
+                        </div>
                     </div>
                 </div>
                 
@@ -117,14 +133,14 @@
                 <div class="col-12 col-md-2">
                     <label for="registration" class="control-label">{{ 'ทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
-
+                <br>
                 <div class="col-12 col-md-4">
                   <label class="sr-only" for="inlineFormInputGroupUsername">เช่น กก9999</label>
                   <div class="input-group">
                     <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     <div class="input-group-prepend" onclick="capture_registration();">
-                      <div class="input-group-text"><i class="fas fa-camera"></i></div>
+                      <div class="input-group-text d-block d-md-none"><i class="fas fa-camera"></i></div>
                     </div>
                   </div>
                 </div>
@@ -304,6 +320,7 @@
         // console.log("START");
         // capture_registration();
     });
+
     function capture_registration(){
         document.querySelector('#div_photo_registration').classList.remove('d-none');
 
@@ -326,6 +343,7 @@
               console.log("Something went wrong!");
             });
         }
+
     }
 
     function stop(e) {
@@ -354,7 +372,7 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 30, 200, 500, 255, 0, 0, 250, 100);
+        context.drawImage(video, 30, 200, 500, 255, 0, 0, 220, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
@@ -532,5 +550,65 @@
                 
             });
     }
+
+    const videoElement = document.querySelector('video');
+    const videoSelect = document.querySelector('select#videoSource');
+    const selectors = [videoSelect];
+
+function gotDevices(deviceInfos) {
+  // Handles being called several times to update labels. Preserve values.
+  const values = selectors.map(select => select.value);
+  selectors.forEach(select => {
+    while (select.firstChild) {
+      select.removeChild(select.firstChild);
+    }
+  });
+  for (let i = 0; i !== deviceInfos.length; ++i) {
+    const deviceInfo = deviceInfos[i];
+    const option = document.createElement('option');
+    option.value = deviceInfo.deviceId;
+    if (deviceInfo.kind === 'videoinput') {
+      option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
+      videoSelect.appendChild(option);
+    } else {
+      console.log('Some other kind of source/device: ', deviceInfo);
+    }
+  }
+  selectors.forEach((select, selectorIndex) => {
+    if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
+      select.value = values[selectorIndex];
+    }
+  });
+}
+
+navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+
+
+function gotStream(stream) {
+  window.stream = stream; // make stream available to console
+  videoElement.srcObject = stream;
+  // Refresh button list in case labels have become available
+  return navigator.mediaDevices.enumerateDevices();
+}
+
+function handleError(error) {
+  console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
+}
+
+function start() {
+  if (window.stream) {
+    window.stream.getTracks().forEach(track => {
+      track.stop();
+    });
+  }
+  const videoSource = videoSelect.value;
+  const constraints = {
+    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+  };
+  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
+}
+
+
+videoSelect.onchange = start;
 
 </script>
