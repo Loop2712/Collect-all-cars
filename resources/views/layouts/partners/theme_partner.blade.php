@@ -18,14 +18,14 @@
     <meta name="author" content="CodedThemes"/>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="assets/fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <!-- animation css -->
-    <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="{{ asset('/partner/plugins/animation/css/animate.min.css') }}">
     <!-- vendor css -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="stylesheet" href="{{ asset('/partner/css/style.css') }}">
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -41,18 +41,16 @@
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-               <a href="index.html" class="b-brand">
+               <a href="#" class="b-brand">
                    <div class="b-bg">
                       <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="#">
-          <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
-          <span> <b>x</b>  </span>
-          <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="40%" style="margin-top:-5px">
-        </a>
-      </div>
+                            <a class="navbar-brand" href="#">
+                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
+                                <span> <b>x</b>  </span>
+                                <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="40%" style="margin-top:-5px">
+                            </a>
+                        </div>
                    </div>
-                  
-                   
                </a>
                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
            </div>
@@ -62,19 +60,19 @@
                         <label style="font-size:13px">ข้อมูลรถ</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/report_register_cars_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="feather fas fa-car"></i></span><span class="pcoded-mtext">รถลงทะเบียน</span></a>
+                        <a href="{{ url('/report_register_cars_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car"></i></i></span><span class="pcoded-mtext">รถลงทะเบียน</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/guest_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="feather fas fa-car"></i></span><span class="pcoded-mtext">รถที่ถูกรายงาน</span></a>
+                        <a href="{{ url('/guest_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงาน</span></a>
                     </li>
                     <li class="nav-item pcoded-menu-caption">
                         <label style="font-size:13px">ติดต่อ ViiCHECK</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="tel:020277856" class="nav-link "><span class="pcoded-micon"><i class="feather fas fa-car"></i></span><span class="pcoded-mtext">02-0277856</span></a>
+                        <a href="tel:020277856" class="nav-link "><span class="pcoded-micon"><i class="fas fa-phone-alt"></i></i></span><span class="pcoded-mtext">02-0277856</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="mailto:contact.viicheck@gmail.com" class="nav-link "><span class="pcoded-micon"><i class="feather fas fa-car"></i></span><span class="pcoded-mtext">contact.viicheck@gmail.com</span></a>
+                        <a href="mailto:contact.viicheck@gmail.com" class="nav-link "><span class="pcoded-micon"><i class="far fa-envelope"></i></i></span><span class="pcoded-mtext">contact.viicheck@gmail.com</span></a>
                     </li>
 
                     <!-- <li class="nav-item pcoded-menu-caption">
@@ -128,11 +126,16 @@
     <header class="navbar pcoded-header navbar-expand-lg navbar-light">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
-            <a href="index.html" class="b-brand">
+            <a href="#" class="b-brand">
                    <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
+                      <div class="sidenav-header  align-items-center">
+                            <a class="navbar-brand" href="#">
+                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="20%" style="margin-top:-10px">
+                                <span> <b style="color:#888;"> x </b>  </span>
+                                <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="20%" style="margin-top:-2px">
+                            </a>
+                        </div>
                    </div>
-                   <span class="b-title">Datta Able</span>
                </a>
         </div>
         <a class="mobile-menu" id="mobile-header" href="javascript:">
@@ -141,14 +144,14 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Dropdown</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="javascript:">Action</a></li>
                         <li><a class="dropdown-item" href="javascript:">Another action</a></li>
                         <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <div class="main-search">
                         <div class="input-group">
@@ -181,7 +184,7 @@
                                 </li>
                                 <li class="notification">
                                     <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="partner/images/user/avatar-1.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>New ticket Added</p>
@@ -193,7 +196,7 @@
                                 </li>
                                 <li class="notification">
                                     <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="partner/images/user/avatar-2.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>Prchace New Theme and make payment</p>
@@ -202,7 +205,7 @@
                                 </li>
                                 <li class="notification">
                                     <div class="media">
-                                        <img class="img-radius" src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="partner/images/user/avatar-3.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>currently login</p>
@@ -223,7 +226,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
-                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                                <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
                                 <span>John Doe</span>
                                 <a href="auth-signin.html" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
@@ -299,9 +302,10 @@
     <!-- Warning Section Ends -->
 
     <!-- Required Js -->
-<script src="assets/js/vendor-all.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/pcoded.min.js"></script>
+<script src="partner/js/vendor-all.min.js"></script>
+	<script src="partner/plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script src="partner/js/pcoded.min.js"></script>
 
 </body>
 </html>

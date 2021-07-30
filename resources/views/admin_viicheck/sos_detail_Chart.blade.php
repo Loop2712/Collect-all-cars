@@ -108,11 +108,21 @@
         <div class="row align-items-center">
           <div class="col">
             <div class="row main-shadow main-radius">
-              <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 17%;">
+              <!-- <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 17%;">
                 <canvas id="canvas_1" width="250" height="250"></canvas>
               </div>
-              <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 67%;">
+              <div style="z-index: 10;position: absolute;margin-top: 120px;margin-left: 65%;">
                 <canvas id="canvas_2" width="250" height="250"></canvas>
+              </div> -->
+              <div class="col-md-6" style="z-index: 10; ">
+                <center>
+                  <canvas id="canvas_1" width="185px" height="185" style="margin-top:120px"></canvas>
+                </center>
+              </div>
+              <div class="col-md-6" style="z-index: 10;">
+                <center>
+                  <canvas id="canvas_2"  width="185px" height="185" style="margin-top:120px"></canvas>
+                </center>
               </div>
               <div style="z-index: 15;">
                 <!-- 00.00 -->
@@ -124,14 +134,14 @@
                   <b> {{ $sos_time_01 }} </b>
                 </h2>
               </div>
-              <div id="img_bg_1" class="col-md-6">
+              <div id="img_bg_1" class="col-md-6" style="margin-top:-300px;">
                 <center>
-                  <img width="70%" src="{{ asset('/img/more/clock-am.png') }}">
+                  <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
                 </center>
               </div>
-              <div id="img_bg_2" class="col-md-6">
+              <div id="img_bg_2" class="col-md-6" style="margin-top:-300px;">
                 <center>
-                  <img width="70%" src="{{ asset('/img/more/clock-pm.png') }}">
+                  <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
                 </center>
               </div>
               </div>

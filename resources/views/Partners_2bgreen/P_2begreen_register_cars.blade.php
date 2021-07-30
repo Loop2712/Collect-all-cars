@@ -2,13 +2,39 @@
 
 @section('content')
 <br>
+<div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Dropdown</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:">Action</a></li>
+                        <li><a class="dropdown-item" href="javascript:">Another action</a></li>
+                        <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
+                    </ul>
+                </li> -->
+                <li class="nav-item">
+                    <div class="main-search">
+                        <div class="input-group">
+                            <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
+                            <a href="javascript:" class="input-group-append search-close">
+                                <i class="feather icon-x input-group-text"></i>
+                            </a>
+                            <span class="input-group-append search-btn btn btn-primary">
+                                <i class="feather icon-search input-group-text"></i>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+</div>
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
+                
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>รถลงทะเบียน องค์กร <b>2บี กรีน จำกัด</b></h5>
-                                            <span>asf</span>
+                                            <h5 style="margin-top:10px;">รถลงทะเบียน องค์กร <b>2บี กรีน จำกัด</b></h5>
                                             <form method="GET" action="{{ url('/report_register_cars') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
@@ -61,6 +87,7 @@
                                                 </table>
                                             </div>
                                         </div>
+                                        
                                         
                                     </div>
                                 </div>

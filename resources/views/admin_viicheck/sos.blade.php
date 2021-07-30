@@ -63,7 +63,8 @@
                                     </span>
                                 </div>
                             </form> -->
-                            <div class="col-md-3 float-right">
+                            <div class="col-md-4" style="margin-left:-15px">
+                                <br>
                             <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
                                     @if(!empty($area))
                                         <option value="">เลือกพื้นที่รับผิดชอบ</option>   
