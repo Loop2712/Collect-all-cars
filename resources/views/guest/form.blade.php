@@ -91,7 +91,7 @@
                         {!! $errors->first('report_drivingd_detail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-
+                
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
@@ -109,13 +109,13 @@
                     </div>
                     <div class="col-12">
                         <center>
-                            <div class="select">
+                            <div id="div_videoSource" class="select">
                                 <label for="videoSource">เลือกกล้อง</label>
                                 <select id="videoSource"></select>
                             </div>
                             <br>
                             <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                            <a class="btn btn-sm btn-primary text-white" onclick="stop();">ปิด</a>
+                            <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
                         </center>
                     </div>
                     
@@ -131,7 +131,7 @@
                 <div class="col-12 col-md-2">
                     <label for="registration" class="control-label">{{ 'ทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
-
+                <br>
                 <div class="col-12 col-md-4">
                   <label class="sr-only" for="inlineFormInputGroupUsername">เช่น กก9999</label>
                   <div class="input-group">
@@ -318,6 +318,7 @@
         // console.log("START");
         // capture_registration();
     });
+
     function capture_registration(){
         document.querySelector('#div_photo_registration').classList.remove('d-none');
 
@@ -340,6 +341,7 @@
               console.log("Something went wrong!");
             });
         }
+        
     }
 
     function stop(e) {
@@ -547,22 +549,9 @@
             });
     }
 
-</script>
-<script>
-    /*
-*  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
-*
-*  Use of this source code is governed by a BSD-style license
-*  that can be found in the LICENSE file in the root of the source
-*  tree.
-*/
-
-'use strict';
-
-const videoElement = document.querySelector('video');
-const videoSelect = document.querySelector('select#videoSource');
-const selectors = [videoSelect];
-
+    const videoElement = document.querySelector('video');
+    const videoSelect = document.querySelector('select#videoSource');
+    const selectors = [videoSelect];
 
 function gotDevices(deviceInfos) {
   // Handles being called several times to update labels. Preserve values.
@@ -592,24 +581,6 @@ function gotDevices(deviceInfos) {
 
 navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
 
-// Attach audio output device to video element using device/sink ID.
-function attachSinkId(element, sinkId) {
-  if (typeof element.sinkId !== 'undefined') {
-    element.setSinkId(sinkId)
-        .then(() => {
-          console.log(`Success, audio output device attached: ${sinkId}`);
-        })
-        .catch(error => {
-          let errorMessage = error;
-          if (error.name === 'SecurityError') {
-            errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`;
-          }
-          console.error(errorMessage);
-        });
-  } else {
-    console.warn('Browser does not support output device selection.');
-  }
-}
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
@@ -638,5 +609,4 @@ function start() {
 
 videoSelect.onchange = start;
 
-start();
 </script>

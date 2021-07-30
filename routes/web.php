@@ -218,11 +218,6 @@ Route::get('/test_webcam', function () {
     return view('test_webcam');
 });
 
-Route::get('/Flip_Camera', function () {
-    
-    return view('Flip_Camera');
-});
-
 Route::get('/sos_thank', function () {
     
     return view('sos_map/sos_thank');
