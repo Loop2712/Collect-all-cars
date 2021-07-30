@@ -95,16 +95,23 @@
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
                     <div class="col-12">
+                        <a style="float:right;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
+                        <br><br>
+                    </div>
+                    <div class="col-12">
                         <div id="container">
                             <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
                         </div>
 
                         <!-- <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300"> -->
 
-                        <a style="position: relative; z-index: 6;top: -280px;right: -225px;" class="btn btn-sm btn-primary" onclick="stop();">X</a>
-
-                        <a style="position: relative; z-index: 6;top: -60px;right: -55px;" class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                     </div>
+                    <div class="col-12">
+                        <center>
+                            <a class="btn btn-sm btn-primary" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                        </center>
+                    </div>
+                    
                     <div class="col-12">
                         <input type="text" name="" id="text_img">
                         <canvas style="background-color: red;" id="canvas" width="250" height="100"></canvas>
