@@ -213,11 +213,6 @@ Route::get('/pok_tek_tung', 'SosController@pok_tek_tung');
 
 Route::resource('organization', 'OrganizationController')->except(['index','show']);
 
-Route::get('/test_webcam', function () {
-    
-    return view('test_webcam');
-});
-
 Route::get('/sos_thank', function () {
     
     return view('sos_map/sos_thank');
@@ -226,5 +221,10 @@ Route::get('/sos_thank', function () {
 Route::get('/sos_thank_area', function () {
     
     return view('sos_map/sos_thank_area');
+});
+
+Route::get('/test_ocr', function () {
+    
+    return view('test_ocr');
 });
 

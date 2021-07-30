@@ -94,35 +94,37 @@
                 
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
-                    <div class="col-12">
-                        <div id="container">
-                            <div class="row">
-                                <div class="col-12">
-                                        <canvas style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;top:30%;left: 10%;" width="220" height="120"></canvas>
-                                    <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                    <div class="d-block d-md-none">
+                        <div class="col-12">
+                            <div id="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                            <canvas style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;top:30%;left: 10%;" width="220" height="120"></canvas>
+                                        <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300"> -->
+
                         </div>
-
-                        <!-- <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300"> -->
-
-                    </div>
-                    <div class="col-12">
-                        <center>
-                            <div id="div_videoSource" class="select">
-                                <label for="videoSource">เลือกกล้อง</label>
-                                <select id="videoSource"></select>
-                            </div>
-                            <br>
-                            <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                            <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
-                        </center>
-                    </div>
-                    
-                    <div class="col-12">
-                        <input type="text" name="" id="text_img">
-                        <canvas style="background-color: red;" id="canvas" width="250" height="100"></canvas>
-                        <img src="" width="250" height="100" id="photo2">
+                        <div class="col-12">
+                            <center>
+                                <div id="div_videoSource" class="select">
+                                    <label for="videoSource">เลือกกล้อง</label>
+                                    <select id="videoSource"></select>
+                                </div>
+                                <br>
+                                <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                                <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
+                            </center>
+                        </div>
+                        
+                        <div class="col-12">
+                            <input type="text" name="" id="text_img">
+                            <canvas style="background-color: red;" id="canvas" width="250" height="100"></canvas>
+                            <img src="" width="250" height="100" id="photo2">
+                        </div>
                     </div>
                 </div>
                 
@@ -138,7 +140,7 @@
                     <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     <div class="input-group-prepend" onclick="capture_registration();">
-                      <div class="input-group-text"><i class="fas fa-camera"></i></div>
+                      <div class="input-group-text d-block d-md-none"><i class="fas fa-camera"></i></div>
                     </div>
                   </div>
                 </div>
@@ -341,7 +343,7 @@
               console.log("Something went wrong!");
             });
         }
-        
+
     }
 
     function stop(e) {
