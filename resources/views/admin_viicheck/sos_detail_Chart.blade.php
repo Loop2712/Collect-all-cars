@@ -9,6 +9,7 @@
   #img_bg_2{
     background-image: url("{{ asset('/img/bg car/pm.png') }}");
     background-size: cover;
+    
   }
 </style>
 <br>
@@ -117,6 +118,7 @@
               <div class="col-md-6" style="z-index: 10; ">
                 <center>
                   <canvas id="canvas_1" width="185px" height="185" style="margin-top:120px"></canvas>
+                  
                 </center>
               </div>
               <div class="col-md-6" style="z-index: 10;">
@@ -124,31 +126,104 @@
                   <canvas id="canvas_2"  width="185px" height="185" style="margin-top:120px"></canvas>
                 </center>
               </div>
-              <div class="col-md-12" style="z-index: 15;">
-                <!-- 00.00 -->
+              <!-- <div class="col-md-12" >
+                00.00
                 <h2 class="text-danger" style="margin-top: -230px;margin-left: 400px;">
                   <b> {{ $sos_time_00 }} </b>
                 </h2>
-                <!-- 01.00 -->
+                01.00
                 <h2 class="text-danger" style="margin-top: 9px;margin-left: 31px;">
                   <b> {{ $sos_time_01 }} </b>
                 </h2>
-              </div>
+              </div> -->
               <div id="img_bg_1" class="col-md-6" style="margin-top:-300px;">
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
+                  <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
+                    <b> {{ $sos_time_00 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
+                    <b> {{ $sos_time_01 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -160px;">
+                    <b> {{ $sos_time_02 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 155px;">
+                    <b> {{ $sos_time_03 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 210px;">
+                    <b> {{ $sos_time_04 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
+                    <b> {{ $sos_time_05 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
+                    <b> {{ $sos_time_06 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 215px;">
+                    <b> {{ $sos_time_07 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
+                    <b> {{ $sos_time_08 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -165px;">
+                    <b> {{ $sos_time_09 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -60px;">
+                    <b> {{ $sos_time_10 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 60px;">
+                    <b> {{ $sos_time_11 }} </b>
+                  </h2>
                 </center>
               </div>
               <div id="img_bg_2" class="col-md-6" style="margin-top:-300px;">
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
+                  <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
+                    <b> {{ $sos_time_00 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
+                    <b> {{ $sos_time_01 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -160px;">
+                    <b> {{ $sos_time_02 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 155px;">
+                    <b> {{ $sos_time_03 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 210px;">
+                    <b> {{ $sos_time_04 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
+                    <b> {{ $sos_time_05 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
+                    <b> {{ $sos_time_06 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 215px;">
+                    <b> {{ $sos_time_07 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
+                    <b> {{ $sos_time_08 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -165px;">
+                    <b> {{ $sos_time_09 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -60px;">
+                    <b> {{ $sos_time_10 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 60px;">
+                    <b> {{ $sos_time_11 }} </b>
+                  </h2>
+                  <h2 style="margin-bottom:70px"></h2>
                 </center>
               </div>
               </div>
             </div>
           </div>
         </div>
-        <br><br>
+        <br><brฬ
         <div class="row">
           <canvas id="sosChart" height="70"></canvas>
             <script>
