@@ -143,37 +143,37 @@
                     <b> {{ $sos_time_00 }} </b>
                   </h2>
                   <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
-                    <b> {{ $sos_time_01 }} </b>
+                    <b> {{ $sos_time_11 }} </b>
                   </h2>
                   <h2 class="text-danger" style="margin-top: -20px;margin-left: -160px;">
-                    <b> {{ $sos_time_02 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 155px;">
-                    <b> {{ $sos_time_03 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 210px;">
-                    <b> {{ $sos_time_04 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
-                    <b> {{ $sos_time_05 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
-                    <b> {{ $sos_time_06 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 215px;">
-                    <b> {{ $sos_time_07 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
-                    <b> {{ $sos_time_08 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -165px;">
-                    <b> {{ $sos_time_09 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -60px;">
                     <b> {{ $sos_time_10 }} </b>
                   </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 155px;">
+                    <b> {{ $sos_time_01 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 210px;">
+                    <b> {{ $sos_time_02 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
+                    <b> {{ $sos_time_09 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
+                    <b> {{ $sos_time_08 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 215px;">
+                    <b> {{ $sos_time_03 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
+                    <b> {{ $sos_time_04 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -165px;">
+                    <b> {{ $sos_time_07 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -60px;">
+                    <b> {{ $sos_time_06 }} </b>
+                  </h2>
                   <h2 class="text-danger" style="margin-top: -45px;margin-left: 60px;">
-                    <b> {{ $sos_time_11 }} </b>
+                    <b> {{ $sos_time_05 }} </b>
                   </h2>
                 </center>
               </div>
@@ -184,37 +184,37 @@
                     <b> {{ $sos_time_12 }} </b>
                   </h2>
                   <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
-                    <b> {{ $sos_time_13 }} </b>
+                    <b> {{ $sos_time_23 }} </b>
                   </h2>
                   <h2 class="text-danger" style="margin-top: -20px;margin-left: -160px;">
-                    <b> {{ $sos_time_14 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 155px;">
-                    <b> {{ $sos_time_15 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 210px;">
-                    <b> {{ $sos_time_16 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
-                    <b> {{ $sos_time_17 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
-                    <b> {{ $sos_time_18 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 215px;">
-                    <b> {{ $sos_time_19 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
-                    <b> {{ $sos_time_20 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -165px;">
-                    <b> {{ $sos_time_21 }} </b>
-                  </h2>
-                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -60px;">
                     <b> {{ $sos_time_22 }} </b>
                   </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 155px;">
+                    <b> {{ $sos_time_13 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 210px;">
+                    <b> {{ $sos_time_14 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
+                    <b> {{ $sos_time_21 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
+                    <b> {{ $sos_time_20 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 215px;">
+                    <b> {{ $sos_time_15 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
+                    <b> {{ $sos_time_16 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -165px;">
+                    <b> {{ $sos_time_19 }} </b>
+                  </h2>
+                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -60px;">
+                    <b> {{ $sos_time_18 }} </b>
+                  </h2>
                   <h2 class="text-danger" style="margin-top: -45px;margin-left: 60px;">
-                    <b> {{ $sos_time_23 }} </b>
+                    <b> {{ $sos_time_17 }} </b>
                   </h2>
                   <h2 style="margin-bottom:70px"></h2>
                 </center>
