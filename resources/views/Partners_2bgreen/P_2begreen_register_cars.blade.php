@@ -2,6 +2,14 @@
 
 @section('content')
 <br>
+<style>
+    .navbar-brand {
+    background: #28A745;}
+    .header-logo{
+    background: #28A745;}
+    .sidenav-header{
+    background: #28A745;}
+</style>
 <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
@@ -35,7 +43,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 style="margin-top:10px;">รถลงทะเบียน องค์กร <b>2บี กรีน จำกัด</b></h5>
-                                            <form method="GET" action="{{ url('/report_register_cars') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                                            <form method="GET" action="{{ url('/report_register_cars_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                                     <span class="input-group-append">
@@ -59,30 +67,33 @@
                                                             <th>ผู้ลงทะเบียน</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>@foreach($report_register_cars as $item)
-                                                       <center>  
-                                                           <tr class="text-center">
-                                                            <td scope="row">  {{ $item->id }}</th>
-                                                            <td>{{ $item->brand }}</td>
-                                                            <td>{{ $item->generation }}</td>
-                                                            <td>
-                                                                <span> {{ $item->registration_number }}</span><br>
-                                                                <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>
-                                                            </td>
-                                                            <td class="col-md-2">
-                                                                @if( $item->car_type == "car")
-                                                                    <img width="25%" src="https://www.viicheck.com/img/icon/car.png">
-                                                                @endif
-                                                                @if( $item->car_type == "motorcycle")
-                                                                    <img width="25%" src="https://www.viicheck.com/img/icon/motorcycle.png">
-                                                                @endif
-                                                            </td>
-                                                            <td>
-                                                            {{ $item->name }}
-                                                            </td>
-                                                       
-                                                        </tr>  </center>
+                                                    <tbody>
+                                                        @foreach($report_register_cars as $item)
+                                                            <center>  
+                                                                <tr class="text-center">
+                                                                    <td scope="row">  {{ $item->id }}</th>
+                                                                    <td>{{ $item->brand }}</td>
+                                                                    <td>{{ $item->generation }}</td>
+                                                                    <td>
+                                                                        <span> {{ $item->registration_number }}</span><br>
+                                                                        <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>
+                                                                    </td>
+                                                                    <td class="col-md-2">
+                                                                        @if( $item->car_type == "car")
+                                                                            <img width="25%" src="https://www.viicheck.com/img/icon/car.png">
+                                                                        @endif
+                                                                        @if( $item->car_type == "motorcycle")
+                                                                            <img width="25%" src="https://www.viicheck.com/img/icon/motorcycle.png">
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
+                                                                    {{ $item->name }}
+                                                                    </td>
+                                                                </tr>  
+                                                            </center>
                                                         @endforeach
+                                                        
+                                                        <div class="pagination-wrapper"> {!! $report_register_cars->appends(['search' => Request::get('search')])->render() !!} </div>
                                                     </tbody>
                                                 </table>
                                             </div>

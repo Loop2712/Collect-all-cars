@@ -1,25 +1,30 @@
-@extends('layouts.partners.2bgreen')
+@extends('layouts.partners.theme_partner')
 
 @section('content')
 <br>
+<style>
+    .navbar-brand {
+    background: #28A745;}
+    .header-logo{
+    background: #28A745;}
+    .sidenav-header{
+    background: #28A745;}
+</style>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">
+                    <h4 class="card-header">
                         รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)
                         <a style="float:right;" class="btn btn-sm btn-outline-success text-success" href="{{ url('/guest_latest_2bgreen') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
-                    </h3>
+                    </h4>
                     <div class="card-body">
                         <!-- <a class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_2bgreen') }}">
                             <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
                         </a> -->
-                        <div class="row">
-                            <div class="col-md-2">
-                              <br><br>
-                            </div>
+                        <div class="row justify-content-center" style="margin-top:-15px">
                             <div class="col-md-2">
                                 <label  class="control-label">{{ '' }}</label>
                                 <select class="form-control" id="select_year" onchange="select_year();">
@@ -103,7 +108,58 @@
                         </div>
                     </div>
                         <!-- มากสุด -->
-                        <div id="the_most" class="container">
+                        <div class="card-block table-border-style" style="margin-top:-30px">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr class="text-center">
+                                                            <th>ยี่ห้อ / รุ่น</th>
+                                                            <th>หมายเลขทะเบียน</th>
+                                                            <th>รายงานทั้งหมด</th>
+                                                            <th>
+                                                                <b>รายงานต่อเดือน</b> (<span id="month_th_1"></span> - <span id="month_th_2"></span>)
+                                                               
+                                                            </th>
+                                                            <th>ผู้ลงทะเบียน</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($guest as $item)
+                                                           <tr class="text-center">
+                                                                <td scope="row">
+                                                                    <b>{{ $item->register_cars->brand }}</b><br>
+                                                                    {{ $item->register_cars->generation }}
+                                                                </td>
+                                                                <td>
+                                                                    <b>{{ $item->registration }}</b><br>
+                                                                        {{ $item->county }}
+                                                                </td>
+                                                                <td><b>{{ $item->count }}</b></td>
+                                                                
+                                                                <td >
+                                                                    <b>{{ $count_per_month[$item->register_car_id] }}</b>
+                                                                    <br>
+                                                                    @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
+                                                                        <span class="text-secondary" style="font-size:14px;">คิดเป็น <b class="text-warning">{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <b>{{ $item->register_cars->name }}</b>
+                                                                    <br>
+                                                                    <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
+                                                                    <br>
+                                                                </td>
+                                                            </tr>  
+                                                        @endforeach
+                                                    </tbody>
+                                                    <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+
+                        <!-- <div id="the_most" class="container">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
@@ -190,7 +246,7 @@
                                     <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

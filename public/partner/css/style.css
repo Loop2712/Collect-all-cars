@@ -119,6 +119,7 @@ strong {
 
 .img-radius {
   border-radius: 50%;
+  width: 30%;
 }
 
 .page-header-title + .breadcrumb {
@@ -199,7 +200,7 @@ p.text-muted {
   padding: 20px 25px;
   position: relative;
 }
-.card .card-header h5 {
+.card .card-header h5,h4{
   margin-bottom: 0;
   color: #000;
   font-size: 17px;
@@ -209,7 +210,7 @@ p.text-muted {
   line-height: 1.1;
   position: relative;
 }
-.card .card-header h5:after {
+.card .card-header h5:after,h4:after {
   content: "";
   background-color: #04a9f5;
   position: absolute;
@@ -221,7 +222,7 @@ p.text-muted {
 .card .card-header.borderless {
   border-bottom: none;
 }
-.card .card-header.borderless h5:after {
+.card .card-header.borderless h5:after,h4:after {
   display: none;
 }
 .card .card-header .card-header-right {
@@ -1932,7 +1933,7 @@ p.text-muted {
   border-radius: 0.25rem 0.25rem 0 0;
   padding: 15px;
   position: relative;
-  background: #04a9f5;
+  background: #28A745;
 }
 .pcoded-header .dropdown .profile-notification .pro-head img {
   width: 40px;
@@ -1976,7 +1977,7 @@ p.text-muted {
   background: transparent;
 }
 .pcoded-header .dropdown.drp-user.show:before {
-  color: #04a9f5;
+  color: #28A745;
 }
 
 /* header css end */
@@ -2135,7 +2136,7 @@ p.text-muted {
   display: block;
   width: 100%;
   height: 2.8px;
-  background-color: #a9b7d0;
+  background-color: #ffffff;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -webkit-backface-visibility: hidden;
@@ -2147,7 +2148,7 @@ p.text-muted {
   position: absolute;
   left: 0;
   height: 2.8px;
-  background-color: #a9b7d0;
+  background-color: #ffffff;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -webkit-backface-visibility: hidden;
@@ -3103,6 +3104,7 @@ p.text-muted {
   position: relative;
   color: #888;
 }
+.menu-styler h4,
 .menu-styler h5,
 .menu-styler h6 {
   color: #111;

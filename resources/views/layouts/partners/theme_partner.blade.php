@@ -46,7 +46,7 @@
                       <div class="sidenav-header  align-items-center">
                             <a class="navbar-brand" href="#">
                                 <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
-                                <span> <b>x</b>  </span>
+                                <span style="color:#FFFFFF ;"> <b>x</b>  </span>
                                 <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="40%" style="margin-top:-5px">
                             </a>
                         </div>
@@ -60,10 +60,13 @@
                         <label style="font-size:13px">ข้อมูลรถ</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/report_register_cars_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car"></i></i></span><span class="pcoded-mtext">รถลงทะเบียน</span></a>
+                        <a href="{{ url('/report_register_cars_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car"></i></i></span><span class="pcoded-mtext" >รถลงทะเบียน</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="{{ url('/guest_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงาน</span></a>
+                    </li>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                        <a href="{{ url('/guest_latest_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fad fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงานล่าสุด</span></a>
                     </li>
                     <li class="nav-item pcoded-menu-caption">
                         <label style="font-size:13px">ติดต่อ ViiCHECK</label>
@@ -152,22 +155,10 @@
                         <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
                     </ul>
                 </li> -->
-                <li class="nav-item">
-                    <div class="main-search">
-                        <div class="input-group">
-                            <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
-                            <a href="javascript:" class="input-group-append search-close">
-                                <i class="feather icon-x input-group-text"></i>
-                            </a>
-                            <span class="input-group-append search-btn btn btn-primary">
-                                <i class="feather icon-search input-group-text"></i>
-                            </span>
-                        </div>
-                    </div>
-                </li>
+                <br>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li>
+            <ul class="navbar-nav ml-auto"></form>
+                <!-- <li>
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
                         <div class="dropdown-menu dropdown-menu-right notification">
@@ -218,25 +209,44 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <li>
+                <div class="profile-notification">
+                            <!-- <div class="pro-head">
+                                <img  src="{{ Auth::user()->avatar }}" class="img-radius" >
+                                <span>{{ Auth::user()->name }}</span>&nbsp;
+                                <a href="{{ route('logout') }}" class="dud-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    <i class="feather icon-log-out"></i>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                                </form>
+                            </div> -->
                     <div class="dropdown drp-user">
                         <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon feather icon-settings"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
-                                <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                            @if(!empty($data->photo))
+                                                <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ $data->photo }}" data-original-title="Usuario"> 
+                                            @else
+                                                <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                                            @endif
+                            <!-- <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                                <span>{{ Auth::user()->name }}</span>
+                                <a href="{{ route('logout') }}" class="dud-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     <i class="feather icon-log-out"></i>
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                                </form>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                                <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
+                                <!-- <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li> -->
+                                <li><a href="{{URL::to('/')}}" class="dropdown-item"><i class="fal fa-home"></i></i> Home</a></li>
+                                <li><a href="{{ url('/profile') }}" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+                                <li><a href="{{ url('/register_car') }}" class="dropdown-item"><i class="fal fa-car"></i></i> My Car</a></li>
                             </ul>
                         </div>
                     </div>
