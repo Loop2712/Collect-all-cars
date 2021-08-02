@@ -119,7 +119,7 @@
                         
                         <div class="col-12">
                             <input type="text" name="" id="text_img">
-                            <canvas style="background-color: red;" id="canvas" width="250" height="100"></canvas>
+                            <canvas id="canvas" width="250" height="100"></canvas>
                             <img src="" width="250" height="100" id="photo2">
                         </div>
                     </div>
