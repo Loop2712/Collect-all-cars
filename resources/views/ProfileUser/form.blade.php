@@ -156,12 +156,12 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START");
+        // console.log("START");
         add_color();
         
     });
     function add_color(){
-        console.log("add_color");
+        // console.log("add_color");
         document.querySelector('#btn_profile').classList.add('btn-danger');
         document.querySelector('#btn_profile').classList.remove('btn-outline-danger');
         document.querySelector('#btn_a_profile').classList.add('text-white');

@@ -104,9 +104,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- <img style="position: absolute; z-index: 5;top: 0px;right: 0px;"  src="{{ asset('/img/more/testtest.png') }}" width="100%" height="300"> -->
-
                         </div>
                         <div class="col-12">
                             <center>
@@ -372,7 +369,7 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 30, 200, 500, 255, 0, 0, 220, 100);
+        context.drawImage(video, 30, 200, 500, 255, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
