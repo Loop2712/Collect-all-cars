@@ -28,31 +28,49 @@
                 <div class="col-md-12">
                     <div class="card">
                         <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>
-                            <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ $sos_all }}</span>
+                            <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ count($view_map) }}</span>
                         </h3>
                         <div class="card-body">
-                            <a href="{{ url('/sos') }}?search=police" class="btn btn-outline-dark ">
-                                 ตำรวจ
-                            </a>
-                            <a href="{{ url('/sos') }}?search=JS100" class="btn btn-outline-success ">
-                                 JS100
-                            </a>
-                            <a href="{{ url('/sos') }}?search=life_saving" class="btn btn-outline-warning ">
-                                แพทย์
-                            </a>
-                            <a href="{{ url('/sos') }}?search=pok_tek_tung" class="btn btn-outline-info ">
-                                <i class="fas fa-users"></i> ป่อเต็กตึ๊ง
-                            </a>
-                            <a href="{{ url('/sos') }}?search=highway" class="btn btn-outline-danger ">
-                                 ทางหลวง
-                            </a>
-                            <a href="{{ url('/sos') }}?search=lawyers" class="btn btn-outline-secondary ">
-                                 ทนายอาสา
-                            </a>
-                            <a href="{{ url('/sos') }}" class="btn btn-outline-info ">
-                                <i class="fas fa-users"></i> ทั้งหมด
-                            </a>
+                            <div class="row">
+                                <div class="col-9">
+                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=police" class="btn btn-outline-dark ">
+                                         ตำรวจ
+                                    </a>
+                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=JS100" class="btn btn-outline-success ">
+                                         JS100
+                                    </a>
+                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=life_saving" class="btn btn-outline-warning ">
+                                        แพทย์
+                                    </a>
+                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=pok_tek_tung" class="btn btn-outline-info ">
+                                        <i class="fas fa-users"></i> ป่อเต็กตึ๊ง
+                                    </a>
+                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=highway" class="btn btn-outline-danger ">
+                                         ทางหลวง
+                                    </a>
+                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=lawyers" class="btn btn-outline-secondary ">
+                                         ทนายอาสา
+                                    </a>
+                                    <a style="margin-top: 5px;" href="{{ url('/sos') }}" class="btn btn-outline-info ">
+                                        <i class="fas fa-users"></i> ทั้งหมด
+                                    </a>
+                                </div>
+                                <div class="col-3">
+                                    <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
+                                        @if(!empty($area))
+                                            <option value="">เลือกพื้นที่รับผิดชอบ</option>   
+                                            @foreach($area as $item)
+                                                <option value="{{ url('/sos') }}?search_area={{ $item->area }}">
+                                                        {{ $item->area }}
+                                                </option>   
 
+                                            @endforeach
+                                        @else
+                                            <option value="" selected></option> 
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
                             <!-- <form method="GET" action="{{ url('/sos') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
@@ -63,24 +81,7 @@
                                     </span>
                                 </div>
                             </form> -->
-                            <div class="col-md-4" style="margin-left:-15px">
-                                <br>
-                            <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
-                                    @if(!empty($area))
-                                        <option value="">เลือกพื้นที่รับผิดชอบ</option>   
-                                        @foreach($area as $item)
-                                            <option value="{{ url('/sos') }}?search_area={{ $item->area }}">
-                                                    {{ $item->area }}
-                                            </option>   
-
-                                        @endforeach
-                                    @else
-                                        <option value="" selected></option> 
-                                    @endif
-                                    
-                                </select>
-                                
-                            </div>
+                            
                         </div>
                         <div class="container">
                             <div class="row">
