@@ -63,6 +63,14 @@ class P_2bgreenController extends Controller
                 ->selectRaw('count(register_car_id) as count , registration , county , register_car_id')
                 ->orderByRaw('count DESC')
                 ->latest()->paginate($perPage);
+       
+        if (count($guest) == 0) {
+            $i = (count($guest)) ;
+            $count_per_month[$i] = array();
+            $count_per_month[$i] = "กรุณาระบุปีที่ต้องการเลือก" ;
+
+            $i = "";
+        }
 
         if (!empty($year) and !empty($month_1) and !empty($month_2)) {
             foreach($guest as $guest_key ){
