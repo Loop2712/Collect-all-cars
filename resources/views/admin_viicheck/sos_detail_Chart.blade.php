@@ -114,45 +114,40 @@
               <div style="z-index: 10;position: absolute;margin-top: 120px;margin-left: 65%;">
                 <canvas id="canvas_2" width="250" height="250"></canvas>
               </div> -->
-
-              <div class="col-12">
-                <div class="row">
-                  <div class="col-md-12" style="z-index: 15;">
-                    <!-- 00.00 -->
-                    <h2 class="text-danger" style="position:absolute;margin-top: 5.5%;margin-left: 25.3%;">
-                      <b> {{ $sos_time_00 }} </b>
-                    </h2>
-                    <!-- 01.00 -->
-                    <h2 class="text-danger" style="position:absolute;margin-top: 9%;margin-left: 31%;">
-                      <b> {{ $sos_time_01 }} </b>
-                    </h2>
-                  </div>
-                  <div class="col-md-6" style="z-index: 10; ">
-                    <center>
-                      <canvas id="canvas_1" width="185px" height="185" style="margin-top:120px"></canvas>
-                    </center>
-                  </div>
-                  <div class="col-md-6" style="z-index: 10;">
-                    <center>
-                      <canvas id="canvas_2"  width="185px" height="185" style="margin-top:120px"></canvas>
-                    </center>
-                  </div>
-                  <div id="img_bg_1" class="col-md-6" style="margin-top:-300px;">
-                    <center>
-                      <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
-                    </center>
-                  </div>
-                  <div id="img_bg_2" class="col-md-6" style="margin-top:-300px;">
-                    <center>
-                      <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
-                    </center>
-                  </div>
-                </div>
+              <div class="col-md-6" style="z-index: 10; ">
+                <center>
+                  <canvas id="canvas_1" width="185px" height="185" style="margin-top:120px"></canvas>
+                </center>
+              </div>
+              <div class="col-md-6" style="z-index: 10;">
+                <center>
+                  <canvas id="canvas_2"  width="185px" height="185" style="margin-top:120px"></canvas>
+                </center>
+              </div>
+              <div class="col-md-12" style="z-index: 15;">
+                <!-- 00.00 -->
+                <h2 class="text-danger" style="margin-top: -230px;margin-left: 400px;">
+                  <b> {{ $sos_time_00 }} </b>
+                </h2>
+                <!-- 01.00 -->
+                <h2 class="text-danger" style="margin-top: 9px;margin-left: 31px;">
+                  <b> {{ $sos_time_01 }} </b>
+                </h2>
+              </div>
+              <div id="img_bg_1" class="col-md-6" style="margin-top:-300px;">
+                <center>
+                  <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
+                </center>
+              </div>
+              <div id="img_bg_2" class="col-md-6" style="margin-top:-300px;">
+                <center>
+                  <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
+                </center>
+              </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
         <br><br>
         <div class="row">
           <canvas id="sosChart" height="70"></canvas>
