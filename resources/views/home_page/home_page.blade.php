@@ -477,72 +477,8 @@
               </div>
             </a>
           </div>
-
-          <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-            <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
-              <div class="icon-box">
-              <br><br><br><br><br><br><br><br><br><br>
-                <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-                  <img width="75%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
-                  <br>
-                  <button type="button" class="btn btn-danger">Download</button>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-            <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
-              <div class="icon-box">
-                <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-                  <img width="75%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
-                  <br>
-                  <button type="button" class="btn btn-danger">Download</button>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-            <a href="{{ asset('/img/more/sticker-VII-v1.png') }}"  ></a>
-              <div class="icon-box">
-                <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-                  <img width="75%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
-                  <br>
-                  <button type="button" class="btn btn-danger" onclick="download_sticker();">Download</button>
-                  <div style="position: relative;top: -150px;left: -5px; z-index: 5; color: #fff;">
-                    <p id="text_sticker_1" style="font-size:25px;line-height: 20pt"><b>CONTACT</b></p>
-                    <p id="text_sticker_2" style="font-size:15px;line-height: 15pt"><B>THE OWNER</B></p>
-                    <a href="" id="a_sticker" class="d-none"></a>
-                    <a href="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" id="a_sticker_2" download class="d-none">
-                  </div>
-                  <script>
-                    function download_sticker() {
-
-                      let text_sticker_1 = document.querySelector('#text_sticker_1');
-                      let text_sticker_2 = document.querySelector('#text_sticker_2');
-                      // console.log(text_sticker_1.innerText);
-                      // console.log(text_sticker_2.innerText);
-
-                      // fetch("{{ url('/') }}/api/download_sticker/" + text_sticker_1.innerText + "/" + text_sticker_2.innerText+"");
-
-                      let link_url = ("{{ url('/') }}/api/download_sticker/" + text_sticker_1.innerText + "/" + text_sticker_2.innerText+"");
-                        // console.log(link_url);
-
-                      var a_sticker = document.getElementById("a_sticker");
-                      var att = document.createAttribute("href");
-                        att.value = link_url;
-                        a_sticker.setAttributeNode(att);   
-
-                      document.getElementById("a_sticker").click(); 
-                      
-                      setTimeout(function(){ 
-                          document.getElementById("a_sticker_2").click(); 
-                        }, 300);
-
-                    }
-                  </script>
-                </div>
-                </div>
-              </div>
+          <!-- สติกเกอร์ -->
+          @include('home_page/download_sticker')
           </div>
 
           <!-- <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
@@ -1065,7 +1001,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
     check_user();
 });
-
+function check_language() {
+    let language = document.querySelector(".goog-te-combo");
+      console.log(language.value);
+      console.log(language);
+  }
 function check_user() {
     let id_user = document.querySelector("#id_user");
     // console.log(id_user.value);

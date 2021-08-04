@@ -132,7 +132,7 @@
 
             <span>
               <div style="margin-top:-25px; margin-left:955px;position: absolute;">
-                <div id="google_translate_element"></div>
+                <div id="google_translate_element" onchange="check_language();"></div>
               </div>
               <div style="margin-top:-12px; margin-left:1070px;position: absolute;">
                 <i style="font-size:30px;" class="fas fa-language float-right"></i>
