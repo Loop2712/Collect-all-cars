@@ -11,6 +11,10 @@
     background-size: cover;
     
   }
+  #img_bg_3{
+    background-image: url("{{ asset('/img/more/0112.jpg') }}");
+    background-size: cover;
+  }
 </style>
 <br>
 <div class="col-md-12">
@@ -108,7 +112,7 @@
       <div class="card-header bg-transparent">
         <div class="row align-items-center">
           <div class="col">
-            <div class="row main-shadow main-radius">
+            <div class="row main-shadow main-radius" id="img_bg_3">
               <!-- <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 17%;">
                 <canvas id="canvas_1" width="250" height="250"></canvas>
               </div>
@@ -136,7 +140,7 @@
                   <b> {{ $sos_time_01 }} </b>
                 </h2>
               </div> -->
-              <div id="img_bg_1" class="col-md-6" style="margin-top:-300px;">
+              <div id="" class="col-md-6" style="margin-top:-300px;">
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
                   <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
@@ -177,7 +181,7 @@
                   </h2>
                 </center>
               </div>
-              <div id="img_bg_2" class="col-md-6" style="margin-top:-300px;">
+              <div id="" class="col-md-6" style="margin-top:-300px;">
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
                   <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
@@ -223,7 +227,7 @@
             </div>
           </div>
         </div>
-        <br><brฬ
+        <br><br>
         <div class="row">
           <canvas id="sosChart" height="70"></canvas>
             <script>
@@ -392,6 +396,7 @@
                 ctx.font = radius*0.15 + "px arial";
                 ctx.textBaseline="middle";
                 ctx.textAlign="center";
+                ctx.fillText('am', 0, 20);
                 for(num = 1; num < 13; num++){
                   ang = num * Math.PI / 6;
                   ctx.rotate(ang);
@@ -406,21 +411,25 @@
 
               function drawTime(ctx, radius){
                   var now = new Date();
+                  // console.log(now);
                   var hour = now.getHours();
                   var minute = now.getMinutes();
                   var second = now.getSeconds();
-                  //hour
-                  hour=hour%12;
-                  hour=(hour*Math.PI/6)+
-                  (minute*Math.PI/(6*60))+
-                  (second*Math.PI/(360*60));
-                  drawHand(ctx, hour, radius*0.5, radius*0.07);
-                  //minute
-                  minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
-                  drawHand(ctx, minute, radius*0.8, radius*0.07);
-                  // second
-                  second=(second*Math.PI/30);
-                  drawHand(ctx, second, radius*0.9, radius*0.02);
+                  if (hour < 12 ) {
+                    //hour
+                    hour=hour%12;
+                    hour=(hour*Math.PI/6)+
+                    (minute*Math.PI/(6*60))+
+                    (second*Math.PI/(360*60));
+                    drawHand(ctx, hour, radius*0.5, radius*0.07);
+                    //minute
+                    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+                    drawHand(ctx, minute, radius*0.8, radius*0.07);
+                    // second
+                    second=(second*Math.PI/30);
+                    drawHand(ctx, second, radius*0.9, radius*0.02);
+                  }
+                  
               }
 
               function drawHand(ctx, pos, length, width) {
@@ -473,6 +482,7 @@
                 ctx_2.font = radius_2*0.15 + "px arial";
                 ctx_2.textBaseline="middle";
                 ctx_2.textAlign="center";
+                ctx_2.fillText('pm', 0, 20);
                 for(num_2 = 1; num_2 < 13; num_2++){
                   ang_2 = num_2 * Math.PI / 6;
                   ctx_2.rotate(ang_2);
@@ -490,18 +500,20 @@
                   var hour_2 = now_2.getHours();
                   var minute_2 = now_2.getMinutes();
                   var second_2 = now_2.getSeconds();
-                  //hour
-                  hour_2=hour_2%12;
-                  hour_2=(hour_2*Math.PI/6)+
-                  (minute_2*Math.PI/(6*60))+
-                  (second_2*Math.PI/(360*60));
-                  drawHand_2(ctx_2, hour_2, radius_2*0.5, radius_2*0.07);
-                  //minute
-                  minute_2=(minute_2*Math.PI/30)+(second_2*Math.PI/(30*60));
-                  drawHand_2(ctx_2, minute_2, radius_2*0.8, radius_2*0.07);
-                  // second
-                  second_2=(second_2*Math.PI/30);
-                  drawHand_2(ctx_2, second_2, radius_2*0.9, radius_2*0.02);
+                  if (hour_2 >= 12 ) {
+                    //hour
+                    hour_2=hour_2%12;
+                    hour_2=(hour_2*Math.PI/6)+
+                    (minute_2*Math.PI/(6*60))+
+                    (second_2*Math.PI/(360*60));
+                    drawHand_2(ctx_2, hour_2, radius_2*0.5, radius_2*0.07);
+                    //minute
+                    minute_2=(minute_2*Math.PI/30)+(second_2*Math.PI/(30*60));
+                    drawHand_2(ctx_2, minute_2, radius_2*0.8, radius_2*0.07);
+                    // second
+                    second_2=(second_2*Math.PI/30);
+                    drawHand_2(ctx_2, second_2, radius_2*0.9, radius_2*0.02);
+                  }
               }
 
               function drawHand_2(ctx_2, pos_2, length_2, width_2) {

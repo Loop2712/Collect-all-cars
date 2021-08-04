@@ -65,7 +65,7 @@ Route::get('/ocr_capture/{img}','API\OcrController@ocr_capture');
 
 // download sticker
 
-Route::get('/download_sticker/{text_sticker_1}/{text_sticker_2}','API\CarbrandController@download_sticker');
+Route::get('/download_sticker/{text_sticker_1}/{text_sticker_2}','API\ImageController@download_sticker');
 
 
 
