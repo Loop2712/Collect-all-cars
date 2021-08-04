@@ -141,6 +141,7 @@
                 </h2>
               </div> -->
               <div id="" class="col-md-6" style="margin-top:-300px;">
+                <img style="position:absolute;right: 50px;" width="80px" src="{{ asset('/img/more/sun.png') }}" >
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
                   <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
@@ -182,6 +183,7 @@
                 </center>
               </div>
               <div id="" class="col-md-6" style="margin-top:-300px;">
+                <img style="position:absolute;left: 20px;" width="70px" src="{{ asset('/img/more/moon.png') }}" >
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
                   <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
@@ -428,6 +430,12 @@
                     // second
                     second=(second*Math.PI/30);
                     drawHand(ctx, second, radius*0.9, radius*0.02);
+                  }else {
+                    //hour
+                    drawHand_2(ctx, 12.56, radius*0.5, radius*0.07);
+                    //minute
+                    minute=(12.56);
+                    drawHand_2(ctx, minute, radius*0.8, radius*0.07);
                   }
                   
               }
@@ -513,6 +521,12 @@
                     // second
                     second_2=(second_2*Math.PI/30);
                     drawHand_2(ctx_2, second_2, radius_2*0.9, radius_2*0.02);
+                  }else {
+                    //hour
+                    drawHand_2(ctx_2, 12.56, radius_2*0.5, radius_2*0.07);
+                    //minute
+                    minute_2=(12.56);
+                    drawHand_2(ctx_2, minute_2, radius_2*0.8, radius_2*0.07);
                   }
               }
 
