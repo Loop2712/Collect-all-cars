@@ -1,4 +1,4 @@
-<div class="col-lg-8 col-md-8  align-items-stretch mt-8"></div>
+<!-- <div class="col-lg-8 col-md-8  align-items-stretch mt-8"></div>
 <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
     <div class="input-group">
       <select class="form-control">
@@ -112,76 +112,38 @@
         <option value="iw">ฮีบรู</option>
         <option value="ht">เฮติครีโอล</option>
       </select>
-    <select class="form-control" >
-      <option>เลือกภาษา</option>
-      <option>กรีก</option>
-      <option>กันนาดา</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-    </div>
-</div>
+</div> -->
 <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-  <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
+  <a href="{{ asset('/img/sticker_qr/sticker_qr_en.png') }}" download >
   <div class="icon-box">
   <br><br><br><br><br><br><br><br><br><br>
     <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-      <img width="75%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
-      <br>
+      <img width="75%" src="{{ asset('/img/sticker_qr/sticker_qr_en.png') }}" class="img-fluid" alt="">
+      <br><br>
       <button type="button" class="btn btn-danger">Download</button>
     </div>
   </div>
   </a>
   </div>
   <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-  <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
+  <a href="{{ asset('/img/sticker_qr/sticker_qr_th.png') }}" download >
   <div class="icon-box">
     <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-      <img width="75%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
-      <br>
-      <button type="button" class="btn btn-danger">Download</button>
+      <img width="75%" src="{{ asset('/img/sticker_qr/sticker_qr_th.png') }}" class="img-fluid" alt="">
+      <br><br>
+      <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
     </div>
   </div>
   </a>
   </div>
   <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
+  <a id="sticker_qr_1" href="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" download >
   <div class="icon-box">
     <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-      <img width="75%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
-      <br>
-      <button type="button" class="btn btn-danger" onclick="download_sticker();">Download</button>
-      <div style="position: relative;top: -150px;left: -5px; z-index: 5; color: #fff;">
-        <p id="text_sticker_1" style="font-size:25px;line-height: 20pt"><b>CONTACT</b></p>
-        <p id="text_sticker_2" style="font-size:15px;line-height: 15pt"><B>THE OWNER</B></p>
-        <a href="" id="a_sticker" class="d-none"></a>
-        <a href="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" id="a_sticker_2" download class="d-none">
-      </div>
-      <script>
-        function download_sticker() {
-
-          let text_sticker_1 = document.querySelector('#text_sticker_1');
-          let text_sticker_2 = document.querySelector('#text_sticker_2');
-          // console.log(text_sticker_1.innerText);
-          // console.log(text_sticker_2.innerText);
-
-          // fetch("{{ url('/') }}/api/download_sticker/" + text_sticker_1.innerText + "/" + text_sticker_2.innerText+"");
-
-          let link_url = ("{{ url('/') }}/api/download_sticker/" + text_sticker_1.innerText + "/" + text_sticker_2.innerText+"");
-            // console.log(link_url);
-
-          var a_sticker = document.getElementById("a_sticker");
-          var att = document.createAttribute("href");
-            att.value = link_url;
-            a_sticker.setAttributeNode(att);   
-
-          document.getElementById("a_sticker").click(); 
-          
-          setTimeout(function(){ 
-              document.getElementById("a_sticker_2").click(); 
-            }, 300);
-
-        }
-      </script>
+      <img id="sticker_qr_2" width="75%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
+      <br><br>
+      <button type="button" class="btn btn-danger">Download</button>
     </div>
   </div>
-</div>
+  </a>
+  </div>

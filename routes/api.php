@@ -63,9 +63,6 @@ Route::get('/motor_middle_price/{motor_brand}/model','API\Brand_middle_price_car
 // OCR
 Route::get('/ocr_capture/{img}','API\OcrController@ocr_capture');
 
-// download sticker
-
-Route::get('/download_sticker/{text_sticker_1}/{text_sticker_2}','API\ImageController@download_sticker');
 
 
 

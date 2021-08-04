@@ -68,6 +68,9 @@
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="{{ url('/guest_latest_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fad fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงานล่าสุด</span></a>
                     </li>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                        <a href="{{ url('/sos_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-hands-helping"></i></span><span class="pcoded-mtext">ขอความช่วยเหลือ</span></a>
+                    </li>
                     <li class="nav-item pcoded-menu-caption">
                         <label style="font-size:13px">ติดต่อ ViiCHECK</label>
                     </li>

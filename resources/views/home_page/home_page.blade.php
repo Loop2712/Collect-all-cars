@@ -1004,7 +1004,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function check_language() {
     let language = document.querySelector(".goog-te-combo");
       console.log(language.value);
-      console.log(language);
+      // console.log(language);
+
+    let link_url = ("{{ url('/') }}/img/sticker_qr/sticker_qr_" + language.value +".png");
+      console.log(link_url);
+
+      var sticker_qr_1 = document.getElementById("sticker_qr_1");
+      var sticker_qr_2 = document.getElementById("sticker_qr_2");
+
+      var att_1 = document.createAttribute("href");
+        att_1.value = link_url;
+      var att_2 = document.createAttribute("src");
+        att_2.value = link_url;
+
+        sticker_qr_1.setAttributeNode(att_1); 
+        sticker_qr_2.setAttributeNode(att_2); 
   }
 function check_user() {
     let id_user = document.querySelector("#id_user");
