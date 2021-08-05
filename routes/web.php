@@ -108,7 +108,9 @@ Route::middleware(['auth', 'role:2bgreen'])->group(function () {
 	Route::get('/guest_2bgreen', 'Partners\P_2bgreenController@guest_2bgreen');
 	// Route::get('/guest_2bgreen/select_month/{month_1}/{month_2}/{year}', 'Partners\P_2bgreenController@select_month');
 	Route::get('/guest_latest_2bgreen', 'Partners\P_2bgreenController@guest_latest_2bgreen');
-	Route::get('/sos_2bgreen', 'Partners\P_2bgreenController@sos_detail_chart');
+	Route::get('/sos_detail_2bgreen', 'Partners\P_2bgreenController@sos_detail_chart');
+	Route::get('/sos_2bgreen', 'Partners\P_2bgreenController@view_sos');
+	
 
 });
 // END ADMIN 2bgreen

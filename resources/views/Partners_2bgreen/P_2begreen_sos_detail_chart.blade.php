@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-1">
               <br>
-              <form style="float:right;" method="GET" action="{{ url('/sos_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+              <form style="float:right;" method="GET" action="{{ url('/sos_detail_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
                 <div class="input-group">
                     <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
                     <input type="hidden" class="form-control" id="input_month" name="month" value="{{ request('month') }}">
@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-4">
               <br>
-              <a href="{{URL::to('/sos_2bgreen')}}" >
+              <a href="{{URL::to('/sos_detail_2bgreen')}}" >
                 <button style="margin-top: 7px;" class="btn btn-danger">
                         ล้างการค้นหา
                 </button>
