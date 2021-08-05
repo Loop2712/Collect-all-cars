@@ -105,13 +105,13 @@
               </div> -->
               <div class="col-md-6" style="z-index: 10; ">
                 <center>
-                  <canvas id="canvas_1" width="185px" height="185" style="margin-top:120px"></canvas>
+                  <canvas id="canvas_1" width="185px" height="185" style="margin-top:180px"></canvas>
                   
                 </center>
               </div>
               <div class="col-md-6" style="z-index: 10;">
                 <center>
-                  <canvas id="canvas_2"  width="185px" height="185" style="margin-top:120px"></canvas>
+                  <canvas id="canvas_2"  width="185px" height="185" style="margin-top:180px"></canvas>
                 </center>
               </div>
               <!-- <div class="col-md-12" >
@@ -124,41 +124,41 @@
                   <b> {{ $sos_time_01 }} </b>
                 </h2>
               </div> -->
-              <div id="" class="col-md-6" style="margin-top:-300px;">
-                <img style="position:absolute;right: 50px;" width="80px" src="{{ asset('/img/more/sun.png') }}" >
+              <div id="" class="col-md-6" style="margin-top:-320px;">
+                <img style="position:absolute;right: 50px; margin-top:-50px;"  width="80px" src="{{ asset('/img/more/sun.png') }}" >
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
                   <h2 class="text-danger" style="margin-top: -335px;margin-left: 60px;">
                     <b> {{ $sos_time_00 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -60px;">
                     <b> {{ $sos_time_11 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -160px;">
+                  <h2 class="text-danger" style="margin-top: -30px;margin-left: -160px;">
                     <b> {{ $sos_time_10 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -85px;margin-left: 155px;">
+                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 155px;">
                     <b> {{ $sos_time_01 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -10px;margin-left: 210px;">
+                  <h2 class="text-danger" style="margin-top: -7px;margin-left: 210px;">
                     <b> {{ $sos_time_02 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
+                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -210px;">
                     <b> {{ $sos_time_09 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
+                  <h2 class="text-danger" style="margin-top: 5px;margin-left: -210px;">
                     <b> {{ $sos_time_08 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -90px;margin-left: 215px;">
+                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 215px;">
                     <b> {{ $sos_time_03 }} </b>
                   </h2>
                   <h2 class="text-danger" style="margin-top: -10px;margin-left: 155px;">
                     <b> {{ $sos_time_04 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -px;margin-left: -165px;">
+                  <h2 class="text-danger" style="margin-top: -55px;margin-left: -165px;">
                     <b> {{ $sos_time_07 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -35px;margin-left: -60px;">
                     <b> {{ $sos_time_06 }} </b>
                   </h2>
                   <h2 class="text-danger" style="margin-top: -60px;margin-left: 60px;">
@@ -166,44 +166,44 @@
                   </h2>
                 </center>
               </div>
-              <div id="" class="col-md-6" style="margin-top:-300px;">
-                <img style="position:absolute;left: 20px;" width="70px" src="{{ asset('/img/more/moon.png') }}" >
+              <div id="" class="col-md-6" style="margin-top:-320px;">
+                <img style="position:absolute;left: 20px; margin-top:-45px;" width="70px" src="{{ asset('/img/more/moon.png') }}" >
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
-                  <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
+                  <h2 class="text-danger" style="margin-top: -335px;margin-left: 60px;">
                     <b> {{ $sos_time_12 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -60px;">
                     <b> {{ $sos_time_23 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -160px;">
+                  <h2 class="text-danger" style="margin-top: -30px;margin-left: -160px;">
                     <b> {{ $sos_time_22 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 155px;">
+                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 155px;">
                     <b> {{ $sos_time_13 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 210px;">
+                  <h2 class="text-danger" style="margin-top: -7px;margin-left: 210px;">
                     <b> {{ $sos_time_14 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -210px;">
+                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -210px;">
                     <b> {{ $sos_time_21 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: 20px;margin-left: -210px;">
-                    <b> {{ $sos_time_20 }} </b>
+                  <h2 class="text-danger" style="margin-top: 5px;margin-left: -210px;">
+                    <b> {{ $sos_time_20 }}</b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 215px;">
+                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 215px;">
                     <b> {{ $sos_time_15 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
+                  <h2 class="text-danger" style="margin-top: -10px;margin-left: 155px;">
                     <b> {{ $sos_time_16 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -165px;">
+                  <h2 class="text-danger" style="margin-top: -55px;margin-left: -165px;">
                     <b> {{ $sos_time_19 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -20px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -35px;margin-left: -60px;">
                     <b> {{ $sos_time_18 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -45px;margin-left: 60px;">
+                  <h2 class="text-danger" style="margin-top: -60px;margin-left: 60px;">
                     <b> {{ $sos_time_17 }} </b>
                   </h2>
                   <h2 style="margin-bottom:70px"></h2>
