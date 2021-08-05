@@ -277,10 +277,10 @@
   function drawNumbers(ctx, radius) {
     var ang;
     var num;
-    ctx.font = radius*0.15 + "px arial";
+    ctx.font = radius*0.175 + "px arial";
     ctx.textBaseline="middle";
     ctx.textAlign="center";
-    ctx.fillText('am', 0, 20);
+    ctx.fillText('AM', 0, 20);
     for(num = 1; num < 13; num++){
       ang = num * Math.PI / 6;
       ctx.rotate(ang);
@@ -369,10 +369,10 @@
   function drawNumbers_2(ctx_2, radius_2) {
     var ang_2;
     var num_2;
-    ctx_2.font = radius_2*0.15 + "px arial";
+    ctx_2.font = radius_2*0.175 + "px arial";
     ctx_2.textBaseline="middle";
     ctx_2.textAlign="center";
-    ctx_2.fillText('pm', 0, 20);
+    ctx_2.fillText('PM', 0, 20);
     for(num_2 = 1; num_2 < 13; num_2++){
       ang_2 = num_2 * Math.PI / 6;
       ctx_2.rotate(ang_2);
