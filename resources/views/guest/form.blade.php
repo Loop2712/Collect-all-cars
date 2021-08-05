@@ -91,7 +91,9 @@
                         {!! $errors->first('report_drivingd_detail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                
+
+                </style>
+              
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
                     <div class="d-block d-md-none">
@@ -99,22 +101,33 @@
                             <div id="container">
                                 <div class="row">
                                     <div class="col-12">
-                                            <canvas style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;top:30%;left: 10%;" width="220" height="120"></canvas>
-                                        <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                                        <div class="d-flex justify-content-center bg-light"> 
+                                            <select class="col-4" style="position: absolute; z-index:10;" id="videoSource"></select>
+                                             <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
+                                            <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
+                                            <img class="d-flex align-self-center" style="position: absolute;" width="100%" src="{{ asset('/img/icon/12.png') }}">
+                                            <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="240 px" height="40 px">
+                                          
+                                        </canvas>
+
+                                            <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px">asdasd</canvas>
+                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
+                            <div class="row">
                             <center>
-                                <div id="div_videoSource" class="select">
-                                    <label for="videoSource">เลือกกล้อง</label>
-                                    <select id="videoSource"></select>
+                                <div class="col-8" id="div_videoSource" class="select">
+                                    <!-- <label for="videoSource">เลือกกล้อง</label> -->
+                                    <!-- <select style="margin-top:-150px" class="col-8" id="videoSource"></select> -->
                                 </div>
                                 <br>
                                 <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                                 <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
-                            </center>
+                            </center></div>
                         </div>
                         
                         <div class="col-12">
