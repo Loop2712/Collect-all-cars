@@ -106,11 +106,11 @@
                                     <div class="col-12">
                                         <div class="d-flex justify-content-center bg-light"> 
                                             <p style="position: absolute"class="text-white">สแกนป้ายทะเบียน</p>
-                                            <p style="position: absolute; margin-top:5%"class="text-white">กรุณาวางป้ายทะเบียนให้ตรงกรอบ</p>
+                                            <p style="position: absolute; margin-top:6%"class="text-white">กรุณาวางป้ายทะเบียนให้ตรงกรอบ</p>
                                            
                                             <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
                                             <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
-                                            <img class="align-self-center" style="position: absolute;" width="80%" src="{{ asset('/img/icon/14.png') }}">
+                                            <img class="align-self-center" style="position: absolute;" width="80%" height="50%" src="{{ asset('/img/icon/14.png') }}">
                                             <!-- <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
                                             <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas> -->
                                             <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
