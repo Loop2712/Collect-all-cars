@@ -6,21 +6,26 @@
         <div id="empty_juristicID">
             <div class="row" id="div_selest_organization_1">
                 <div class="col-12 col-md-4">
-                    <label  class="control-label">{{ 'องค์กรที่ลงทะเบียนแล้ว' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'เลือกองค์กร' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row" id="div_selest_organization_2">
                 <div class="col-12 col-md-4">
                     <div class="form-group">
-                        <select name="selest_organization" id="selest_organization" class="form-control" >
-                                <option value="" selected > - กรุณาเลือกองค์กร - </option> 
+                        <select name="selest_organization" id="selest_organization" class="form-control" required onchange="change_selest_organization();">
+                                <option value="" selected > - กรุณาเลือกองค์กร - </option>
+                                @foreach($select_Organization as $item)
+                                    <option value="{{ $item->juristicNameTH }}">{{ $item->juristicNameTH }}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
+                    @if(!empty(Auth::user()->role))
                     <div class="form-group">
                         <button type="button" class="btn btn-success" onclick="click_btn_organization_new();">ลงทะเบียนองค์กรใหม่</button>
                     </div>
+                    @endif
                 </div>
             </div>
             <div id="div_input_juristicID" class="d-none">
@@ -106,47 +111,42 @@
                         </div>
                     </div>
                 </div>
+                <input type="checkbox" name="checkbox" onchange="if(this.checked){
+                            document.querySelector('#show_branch_empty').classList.remove('d-none');
+                            show_location_P_branch();
+                        }else{
+                            document.querySelector('#show_branch_empty').classList.add('d-none'); 
+                            select_location();
+                            clear_input();
+                        }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่
+                <br><br>
 
-                @if(empty(Auth::user()->branch))
-                    <input type="checkbox" name="checkbox" onchange="if(this.checked){
-                                document.querySelector('#show_branch_empty').classList.remove('d-none');
-                                show_location_P_branch();
-                            }else{
-                                document.querySelector('#show_branch_empty').classList.add('d-none'); 
-                                select_location();
-                                clear_input();
-                            }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่
-                    <br><br>
-
-                    <div id="show_branch_empty" class="row d-none">
-                        <div class="col-12 col-md-4">
-                            <div class="form-group {{ $errors->has('branch') ? 'has-error' : ''}}">
-                                <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  '' }}"  placeholder="สาขา">
-                                {!! $errors->first('branch', '<p class="help-block">:message</p>') !!}
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
-                                <select name="branch_province" id="branch_province" class="form-control"  onchange="show_location_A_branch();change_location_branch();">
-                                        <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
-                                </select>
-                                {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <div class="form-group {{ $errors->has('branch_district') ? 'has-error' : ''}}">
-                                <select name="branch_district" id="branch_district" class="form-control" >
-                                        <option value="" selected > - กรุณาเลือกอำเภอ - </option> 
-                                                                           
-                                </select>
-                                {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
-                            </div>
+                <div id="show_branch_empty" class="row d-none">
+                    <div class="col-12 col-md-4">
+                        <div class="form-group {{ $errors->has('branch') ? 'has-error' : ''}}">
+                            <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  '' }}"  placeholder="สาขา">
+                            {!! $errors->first('branch', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
-                @endif
-
+                    <div class="col-12 col-md-4">
+                        <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
+                            <select name="branch_province" id="branch_province" class="form-control"  onchange="show_location_A_branch();change_location_branch();">
+                                    <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                            </select>
+                            {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="form-group {{ $errors->has('branch_district') ? 'has-error' : ''}}">
+                            <select name="branch_district" id="branch_district" class="form-control" >
+                                    <option value="" selected > - กรุณาเลือกอำเภอ - </option> 
+                                                                       
+                            </select>
+                            {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
     @endif
 
@@ -199,7 +199,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
-                    <label  class="control-label">{{ 'อีเมล / E-Mail' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'อีเมล' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4 d-none d-lg-block">
                     <label  class="control-label">{{ 'เบอร์โทรศัพท์' }}</label><span style="color: #FF0033;"> *</span>
@@ -220,37 +220,24 @@
                 </div>
             </div>
         </div>
-    @endif
+        <label  class="control-label">{{ 'สาขา' }}</label>
 
-
-    @if(!empty(Auth::user()->branch))
-
-        <input id="check_branch_not_empty" type="checkbox" name="checkbox" onchange="if(this.checked){
-                    document.querySelector('#show_branch_notempty').classList.remove('d-none');
-                    change_location_branch();
-                }else{
-                    document.querySelector('#show_branch_notempty').classList.add('d-none'); 
-                    select_location();
-                    clear_input();
-                }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่ / Not the headquarters
-        <br><br>
-
-        <div id="show_branch_notempty" class="row d-none">
+        <div id="show_branch_notempty" class="row">
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}"  placeholder="สาขา" >
+                    <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}"  placeholder="สาขา" readonly>
                     {!! $errors->first('branch', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->branch_province) ? $register_car->branch_province :  Auth::user()->branch_province }}"  placeholder="จังหวัด" >
+                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->branch_province) ? $register_car->branch_province :  Auth::user()->branch_province }}"  placeholder="จังหวัด" readonly>
                     {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch_district') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch_district" type="text" id="branch_district" value="{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}"  placeholder="อำเภอ" >
+                    <input class="form-control" name="branch_district" type="text" id="branch_district" value="{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}"  placeholder="อำเภอ" readonly>
                     {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -451,6 +438,36 @@
         div_input_juristicID.classList.remove('d-none');
 
         juristicID.focus();
+
+        juristicID.setAttributeNode(document.createAttribute('required'));
+    }
+
+    function change_selest_organization(){
+        let selest_organization = document.querySelector("#selest_organization");
+            // console.log(selest_organization.value);
+        let juristicNameTH = document.querySelector("#juristicNameTH");
+        let location_A_2 = document.querySelector("#location_A_2");
+        let location_P_2 = document.querySelector("#location_P_2");
+        let organization_mail = document.querySelector("#organization_mail");
+        let phone_2 = document.querySelector("#phone_2");
+        let juristicID = document.querySelector("#juristicID");
+
+        fetch("{{ url('/') }}/api/selest_organization/"+selest_organization.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result[0]);
+                juristicNameTH.value = result[0].juristicNameTH;
+                location_A_2.value = result[0].district;
+                location_P_2.value = result[0].province;
+                organization_mail.value = result[0].mail;
+                phone_2.value = result[0].phone;
+                juristicID.value = result[0].juristicID;
+
+            });
+
+        document.querySelector('#div_data_organization').classList.remove('d-none');
+        organization_mail.setAttributeNode(document.createAttribute('readonly'));
+        phone_2.setAttributeNode(document.createAttribute('readonly'));
     }
 
 </script>
