@@ -125,17 +125,17 @@
           height:10%;
           border-radius: 10px;
         } 
-        ul {
+        .ul-dot {
           list-style-type: none;
         }
 
-        ul li { 
+        .ul-dot .li-dot { 
           font-family: Arial;
           font-size: 12px;
           color:#ffff;
         }
 
-        ul li:before {
+        .ul-dot .li-dot:before {
           background-color: #43FF00;
           border-radius: 50%;
           content: "";

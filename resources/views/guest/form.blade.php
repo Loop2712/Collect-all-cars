@@ -110,19 +110,19 @@
                                            
                                             <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
                                             <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
-                                            <img class="align-self-center" style="position: absolute;" width="80%" height="30%" src="{{ asset('/img/icon/14.png') }}">
+                                            <img class="align-self-center" style="position: absolute;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
                                             <!-- <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
                                             <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas> -->
-                                            <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
+                                            <!-- <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>หมายเลขทะเบียน</b> </legend>
                                             </fieldset>
                                             <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 46px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
-                                            </fieldset>
-                                            <ul style=" position: absolute;margin-top: 250px; margin-left:-18px">
+                                            </fieldset> -->
+                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 250px; margin-left:-18px">
                                                <span style="color:#ffff;">ข้อแนะนำ  </span> 
-                                                <li>หลีกเลี่ยงแสงสะท้อน และไม่มืดหรือสว่างเกินไป</li>
-                                                <li>รูปไม่เบลอ เห็นตัวอักษรชัดเจน และเห็นภาพเต็มใบ</li>
+                                                <li class="li-dot">หลีกเลี่ยงแสงสะท้อน และไม่มืดหรือสว่างเกินไป</li>
+                                                <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน และเห็นภาพเต็มใบ</li>
                                             </ul>
                                             <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
                                         </div>
@@ -133,10 +133,10 @@
                         <div class="col-12">
                             <div class="row">
                             <center>
-                                <div class="col-8" id="div_videoSource" class="select">
+                                <!-- <div class="col-8" id="div_videoSource" class="select">
                                     <label for="videoSource">เลือกกล้อง</label>
                                     <select style="margin-top:-150px" class="col-8" id="videoSource"></select>
-                                </div>
+                                </div> -->
                                 <br>
                                 <!-- <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                                 <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a> -->
