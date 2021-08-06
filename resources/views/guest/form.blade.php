@@ -116,7 +116,7 @@
                                             <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>หมายเลขทะเบียน</b> </legend>
                                             </fieldset>
-                                            <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 40px; position: absolute;" >
+                                            <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 43px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
                                             </fieldset>
                                             <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
