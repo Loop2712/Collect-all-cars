@@ -113,21 +113,21 @@
         }
 
         .redo-fieldset {
-          border: 2px solid gray;
+          border: 2px solid black;
           padding : 10px;
           width:60%;
           height:10%;
           border-radius: 10px;
         } 
         .redo-fieldset2 {
-          border: 2px solid gray;
+          border: 2px solid black;
           width:50%;
-          height:7%;
+          height:10%;
           border-radius: 10px;
         } 
 
         .redo-legend {
-        color: gray;
+        color: black;
         }
 
         @keyframes data_organization {
