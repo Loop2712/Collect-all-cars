@@ -93,13 +93,12 @@
                 </div>
                 
                 <style>.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
+  width: 50px;
+  height: 50px;
+  padding: 13px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
 }</style>
 
                 <!-- ถ่ายภาพป้ายทะเบียน -->
@@ -110,7 +109,7 @@
                                 <div class="row">
                                 <div class="col-12">
                                         <div class="d-flex justify-content-end bg-light"> 
-                                            <a style="position: absolute; z-index:10; margin-right:5px" class="text-white" onclick="stop();">X</a>
+                                            <a style="position: absolute; z-index:10; margin-right:5px" class="text-white" onclick="stop();"> <b>X</b> </a>
                                         </div>
                                     </div>
                                     <div class="col-12">
