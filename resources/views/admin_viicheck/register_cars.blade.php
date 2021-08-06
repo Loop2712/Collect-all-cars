@@ -2,7 +2,7 @@
 
 @section('content')
 <br>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -20,7 +20,7 @@
                     </form>
                     </h3>
                         <br>
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">
@@ -28,13 +28,11 @@
                                             <b>คันที่</b><br>
                                             Number
                                         </div>
-                                        <div class="col-2">
-                                            <b>ยี่ห้อ</b><br>
-                                            Brand
-                                        </div>
-                                        <div class="col-2">
-                                            <b>รุ่น</b><br>
-                                            Model
+                                        <div class="col-3">
+                                            <center>
+                                                <b>ยี่ห้อ / รุ่น</b><br>
+                                                Brand / Model
+                                            </center>
                                         </div>
                                         <div class="col-2">
                                             <center>
@@ -48,10 +46,16 @@
                                                 Car type
                                             </center>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <center>
-                                                <b>เจ้าของรถ</b><br>
-                                                Car owner
+                                                <b>องค์กร</b><br>
+                                                organizationr
+                                            </center>
+                                        </div>
+                                        <div class="col-2">
+                                            <center>
+                                                <b>ผู้ลงทะเบียน</b><br>
+                                                Registrant
                                             </center>
                                         </div>
                                     </div>
@@ -63,11 +67,12 @@
                                                 {{ $item->id }}
                                             </center>
                                         </div>
-                                        <div class="col-2">
-                                            <p style="color: #FF0000; font-size: 20px;"><b>{{ $item->brand }}</b></p>
-                                        </div>
-                                        <div class="col-2">
-                                            <p style="color: #ff6363; font-size: 20px;"><b>{{ $item->generation }}</b></p>
+                                        <div class="col-3">
+                                            <center>
+                                                <span style="color: #FF0000; font-size: 20px;"><b>{{ $item->brand }}</b></span>
+                                                <br>
+                                                <span style="color: #ff6363; font-size: 17px;">{{ $item->generation }}</span>
+                                            </center>
                                         </div>
                                         <div class="col-2">
                                             <center>
@@ -85,7 +90,18 @@
                                                 @endif
                                             </center>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
+                                            <center>
+                                                @if(!empty($item->juristicNameTH))
+                                                    <b>{{ $item->juristicNameTH }}</b>
+                                                    <br>
+                                                    สาขา {{ $item->branch }}
+                                                @else
+                                                    ส่วนบุคคล
+                                                @endif
+                                            </center>
+                                        </div>
+                                        <div class="col-2">
                                             <p class="float-right text-success">
                                                 <span style="display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;">
                                                     <b>{{ $item->name }}</b>

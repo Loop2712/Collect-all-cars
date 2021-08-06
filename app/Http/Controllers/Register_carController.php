@@ -252,7 +252,7 @@ class Register_carController extends Controller
             // Organization::firstOrCreate($juristicData);
         }
 
-        if (empty($requestData['branch'])) {
+        if ( empty($requestData['branch']) and !empty($requestData['juristicNameTH'])) {
             $requestData['branch'] = "สำนักงานใหญ";
             $requestData['branch_district'] = $requestData['location_A_2'];
             $requestData['branch_province'] = $requestData['location_P_2'];

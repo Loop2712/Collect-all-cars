@@ -445,8 +445,11 @@ class DashboardController extends Controller
             $report_register_cars = Register_car::where('brand', 'LIKE', "%$keyword%")
                 ->orWhere('generation', 'LIKE', "%$keyword%")
                 ->orWhere('registration_number', 'LIKE', "%$keyword%")
+                ->orWhere('province', 'LIKE', "%$keyword%")
                 ->orWhere('car_type', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
+                ->orWhere('juristicNameTH', 'LIKE', "%$keyword%")
+                ->orWhere('branch', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $report_register_cars = Register_car::latest()->paginate(25);

@@ -27,7 +27,10 @@ class P_2bgreenController extends Controller
             $report_register_cars = Register_car::where('brand', 'LIKE', "%$keyword%")
                 ->orWhere('generation', 'LIKE', "%$keyword%")
                 ->orWhere('registration_number', 'LIKE', "%$keyword%")
+                ->orWhere('province', 'LIKE', "%$keyword%")
                 ->orWhere('car_type', 'LIKE', "%$keyword%")
+                ->orWhere('name', 'LIKE', "%$keyword%")
+                ->orWhere('branch', 'LIKE', "%$keyword%")
                 ->where('juristicNameTH', "2บี กรีน จำกัด")
                 ->latest()->paginate($perPage);
         } else {

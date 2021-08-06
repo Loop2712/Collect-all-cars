@@ -326,9 +326,17 @@
                                                             </div>
                                                             <div class="col-12">
                                                                 <center>
-                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้</b> 
+                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้</b> 
                                                                 <br>
                                                                 <span class="text-primary">{{ $data->username }}<hr style=" height:0.3px; color:#778899;"> </span>
+                                                                </center>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <center>
+                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ลงทะเบียน</b> 
+                                                                <br>
+                                                                <span class="text-primary">{{ $data->name }}<hr style=" height:0.3px; color:#778899;"> </span>
                                                                 </center>
                                                             </div>
                                                  
@@ -412,9 +420,15 @@
                                                                 </center>
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ใช้</b> 
+                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้</b> 
                                                                 &nbsp;&nbsp;
                                                                 <span class="text-primary">{{ $data->username }}<hr style=" height:0.1px; color:#778899;"> </span>
+                                                            </div><br>
+
+                                                            <div class="col-md-12">
+                                                                <i class="far fa-user"></i> &nbsp;<b>ชื่อผู้ลงทะเบียน</b> 
+                                                                &nbsp;&nbsp;
+                                                                <span class="text-primary">{{ $data->name }}<hr style=" height:0.1px; color:#778899;"> </span>
                                                             </div><br>
                                                  
                                                             <div class="col-md-12">

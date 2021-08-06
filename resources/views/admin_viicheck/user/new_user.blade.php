@@ -2,12 +2,12 @@
 
 @section('content')
 <br>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <h3 class="card-header">สร้างบัญชีผู้ใช้ / <span style="font-size: 18px;">Create an account</span></h3>
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
                                 <div class="card-body">

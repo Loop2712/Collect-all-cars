@@ -12,7 +12,7 @@
             <div class="row" id="div_selest_organization_2">
                 <div class="col-12 col-md-4">
                     <div class="form-group">
-                        <select name="selest_organization" id="selest_organization" class="form-control" required onchange="change_selest_organization();">
+                        <select name="selest_organization" id="selest_organization" class="form-control" onchange="change_selest_organization();">
                                 <option value="" selected > - กรุณาเลือกองค์กร - </option>
                                 @foreach($select_Organization as $item)
                                     <option value="{{ $item->juristicNameTH }}">{{ $item->juristicNameTH }}</option>

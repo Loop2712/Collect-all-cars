@@ -42,19 +42,21 @@
                 
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5 style="margin-top:10px;">รถลงทะเบียน องค์กร <b>2บี กรีน จำกัด</b></h5>
-                                            <form method="GET" action="{{ url('/report_register_cars_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                                    <span class="input-group-append">
-                                                        <button class="btn btn-secondary" type="submit">
-                                                            <i class="fa fa-search"></i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </form>
+                                            <h3 style="margin-top:10px;">
+                                                รถลงทะเบียน <b>2บี กรีน จำกัด</b>
+                                                <form method="GET" action="{{ url('/report_register_cars_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                                        <span class="input-group-append">
+                                                            <button class="btn btn-secondary" type="submit">
+                                                                <i class="fa fa-search"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                            </h3>
                                         </div>
-                                        <div class="card-block table-border-style" style="margin-top:-30px">
+                                        <div class="card-block table-border-style" style="margin-top:-30px;font-size: 16px;">
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
@@ -87,7 +89,11 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                    {{ $item->name }}
+                                                                    <center>
+                                                                        <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}"><i class="far fa-eye text-info"></i>{{ $item->name }}</a>
+                                                                        <br>
+                                                                        <b>สาขา</b> {{ $item->user->branch }}
+                                                                    </center>
                                                                     </td>
                                                                 </tr>  
                                                             </center>

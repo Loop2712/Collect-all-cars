@@ -2,12 +2,12 @@
 
 @section('content')
 <br>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <h3 class="card-header">บัญชีผู้ใช้ {{ $partners }}</h3>
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
                                 <div class="card-body">
