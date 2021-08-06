@@ -109,9 +109,14 @@
                                             <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
                                             <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
                                             <img class="align-self-center" style="position: absolute;" width="90%" src="{{ asset('/img/icon/14.png') }}">
-                                            <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
-                                            <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas>
-                                            <!-- <a class="text-white d-flex align-self-end btn-primary btn-circle" style="position: absolute;" onclick="capture();"><i class="fas fa-camera"></i> -->
+                                            <!-- <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
+                                            <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas> -->
+                                            <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
+                                                <legend class="reset-this redo-legend" > <b>หมายเลขทะเบียน</b> </legend>
+                                            </fieldset>
+                                            <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 33px; position: absolute;" >
+                                                <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
+                                            </fieldset>
                                             <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
                                         </div>
                                     </div>

@@ -108,6 +108,29 @@
           border-radius: 25px;
         }
 
+        .reset-this {
+          all: initial;
+        }
+
+        .redo-fieldset {
+          border: 2px solid gray;
+          padding : 10px;
+          width:60%;
+          height:10%;
+          border-radius: 10px;
+        } 
+        .redo-fieldset2 {
+          border: 2px solid gray;
+          padding : 10px;
+          width:50%;
+          height:1%;
+          border-radius: 10px;
+        } 
+
+        .redo-legend {
+        color: gray;
+        }
+
         @keyframes data_organization {
           0%   {left:0px; top:-160px; opacity: 0.1;}
           100% {left:0px; top:0px; opacity: 1;}
