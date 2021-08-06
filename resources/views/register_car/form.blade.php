@@ -106,39 +106,30 @@
                 <!-- หน้าลงทะเบียนสำหรับบุคคลทั่วไป -->
                 <div id="div_general" class="">
                     @if(empty(Auth::user()->phone) or empty(Auth::user()->location_P) or empty(Auth::user()->location_A))
-                        <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลของท่าน' }}</span><br>
-                        <span style="font-size: 18px;" class="control-label">{{ 'Your Information' }}</span><span style="color: #FF0033;"> *<br><br></span>
+                        <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลผู้ลงทะเบียน' }}</span><span style="color: #FF0033;"> *<br><br></span>
                         <div id="input_information">
                             <div class="row">
-                                <div class="col-12 col-md-4 d-none d-lg-block">
-                                    <label  class="control-label">{{ 'จังหวัดที่อยู่ปัจจุบัน / Province of your current address.' }}</label><span style="color: #FF0033;"> *</span>
-                                </div>
-                                <div class="col-12 col-md-4 d-none d-lg-block">
-                                    <label  class="control-label">{{ 'อำเภอที่อยู่ปัจจุบัน / District of your current address.' }}</label><span style="color: #FF0033;"> *</span>
-                                </div>
-                                <div class="col-12 col-md-4 d-none d-lg-block">
-                                    <label  class="control-label">{{ 'เบอร์โทรศัพท์ / Phone number' }}</label><span style="color: #FF0033;"> *</span>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-12 col-md-4">
+                                    <label  class="control-label">{{ 'จังหวัดที่อยู่ปัจจุบัน' }}</label><span style="color: #FF0033;"> *</span>
                                     <div class="form-group {{ $errors->has('location_P') ? 'has-error' : ''}}">
                                         <select name="location_P" id="location_P" class="form-control" required onchange="show_location_A();change_location();">
-                                                <option value="" selected > - กรุณาเลือกจังหวัด / Please select province - </option> 
+                                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
                                         </select>
                                         {!! $errors->first('location_P', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
+                                    <label  class="control-label">{{ 'อำเภอที่อยู่ปัจจุบัน' }}</label><span style="color: #FF0033;"> *</span>
                                     <div class="form-group {{ $errors->has('location_A') ? 'has-error' : ''}}">
                                         <select name="location_A" id="location_A" class="form-control" required>
-                                                <option value="" selected > - กรุณาเลือกอำเภอ / Please select district - </option> 
+                                                <option value="" selected > - กรุณาเลือกอำเภอ  - </option> 
                                                                                    
                                         </select>
                                         {!! $errors->first('location_A', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
+                                    <label  class="control-label">{{ 'เบอร์โทรศัพท์' }}</label><span style="color: #FF0033;"> *</span>
                                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                                         <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="กรุณาใส่เบอร์ของคุณ" pattern="[0-9]{9-10}">
                                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}

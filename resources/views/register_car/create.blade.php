@@ -89,9 +89,6 @@
     }
     function show_organization(){
         document.querySelector('#row_general').classList.add('d-none');
-        document.querySelector('#div_general').classList.add('d-none');
-        document.querySelector('#div_information').classList.add('d-none');
-        document.querySelector('#information').classList.add('d-none');
         document.querySelector('#btn_rg_organization').classList.add('d-none');
 
         document.querySelector('#row_organization').classList.remove('d-none');
@@ -117,15 +114,6 @@
     }
 
     function add_required(){ 
-
-        // ทั่วไป
-        var location_P = document.querySelector('#location_P');
-        var location_A = document.querySelector('#location_A');
-        var phone = document.querySelector('#phone');
-
-        location_P.removeAttribute('required');
-        location_A.removeAttribute('required');
-        phone.removeAttribute('required');
 
         // องค์กร
         var juristicID = document.querySelector('#juristicID');

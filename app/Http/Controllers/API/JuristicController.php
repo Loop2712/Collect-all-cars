@@ -8,15 +8,34 @@ use App\Models\Organization;
 
 class JuristicController extends Controller
 {
-     public function juristic($result)
+     public function juristic()
     {
-    	$requestData = $result->all();
+    	
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
         echo "<pre>";
-        print_r($requestData);
+        print_r($data);
         echo "<pre>";
-        exit();
+        echo "<br>";
 
-    	Organization::create($requestData);
+        $data['standardObjectiveDetail'] =  $data['standardObjectiveDetail']['objectiveDescription'];
+        
+        $data['addressName'] =  $data['addressDetail']['addressName'];
+        $data['buildingName'] =  $data['addressDetail']['buildingName'];
+        $data['roomNo'] =  $data['addressDetail']['roomNo'];
+        $data['floor'] =  $data['addressDetail']['floor'];
+        $data['villageName'] =  $data['addressDetail']['villageName'];
+        $data['houseNumber'] =  $data['addressDetail']['houseNumber'];
+        $data['moo'] =  $data['addressDetail']['moo'];
+        $data['soi'] =  $data['addressDetail']['soi'];
+        $data['street'] =  $data['addressDetail']['street'];
+        $data['subDistrict'] =  $data['addressDetail']['subDistrict'];
+        $data['district'] =  $data['addressDetail']['district'];
+        $data['province'] =  $data['addressDetail']['province'];
+
+        $data['addressDetail'] =  "";
+
+    	Organization::firstOrCreate($data);
 
         // return $requestData;
     }

@@ -178,9 +178,9 @@ class Register_carController extends Controller
     {
         
         $requestData = $request->all();
+
         // update registration_number
         $requestData['registration_number'] = str_replace(" ", "", $requestData['registration_number']);
-
         // rebrand
         $motor_brand = $requestData['motor_brand'];
         $motor_generation = $requestData['motor_generation'];
@@ -247,14 +247,21 @@ class Register_carController extends Controller
 
         if (!empty($requestData['juristicID'])) {
 
-            $juristicData['juristicID'] = $requestData['juristicID'];
-            $juristicData['juristicNameTH'] = $requestData['juristicNameTH'];
-            $juristicData['mail'] = $requestData['organization_mail'];
-            $juristicData['province'] = $requestData['location_P_2'];
-            $juristicData['district'] = $requestData['location_A_2'];
-            $juristicData['phone'] = $requestData['phone_2'];
+            DB::table('organizations')
+                ->where('juristicNameTH', $requestData['juristicNameTH'])
+                ->update([
+                    'mail' => $requestData['organization_mail'],
+                    'phone' => $requestData['phone_2'],
+                ]);
 
-            Organization::firstOrCreate($juristicData);
+            // $juristicData['juristicID'] = $requestData['juristicID'];
+            // $juristicData['juristicNameTH'] = $requestData['juristicNameTH'];
+            // $juristicData['mail'] = $requestData['organization_mail'];
+            // $juristicData['province'] = $requestData['location_P_2'];
+            // $juristicData['district'] = $requestData['location_A_2'];
+            // $juristicData['phone'] = $requestData['phone_2'];
+
+            // Organization::firstOrCreate($juristicData);
         }
 
         if (!empty($requestData['phone_2'])) {
