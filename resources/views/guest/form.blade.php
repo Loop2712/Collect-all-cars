@@ -91,28 +91,39 @@
                         {!! $errors->first('report_drivingd_detail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
+                
+                <style>.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}</style>
 
-                </style>
-              
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
                     <div class="d-block d-md-none">
                         <div class="col-12">
                             <div id="container">
                                 <div class="row">
+                                <div class="col-12">
+                                        <div class="d-flex justify-content-end bg-light"> 
+                                            <a style="position: absolute; z-index:10; margin-right:5px" class="text-white" onclick="stop();">X</a>
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="d-flex justify-content-center bg-light"> 
-                                            <select class="col-4" style="position: absolute; z-index:10;" id="videoSource"></select>
+                                            <select class="col-4 d-none" style="position: absolute; z-index:10;" id="videoSource"></select>
                                              <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
                                             <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
-                                            <img class="d-flex align-self-center" style="position: absolute;" width="100%" src="{{ asset('/img/icon/12.png') }}">
-                                            <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="240 px" height="40 px">
-                                          
-                                        </canvas>
-
-                                            <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px">asdasd</canvas>
+                                            <img class="align-self-center" style="position: absolute;" width="90%" src="{{ asset('/img/icon/13.png') }}">
+                                            <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
+                                            <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas>
+                                            <!-- <a class="text-white d-flex align-self-end btn-primary btn-circle" style="position: absolute;" onclick="capture();"><i class="fas fa-camera"></i> -->
+                                            <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
                                         </div>
-                                       
                                     </div>
                                 </div>
                             </div>
@@ -125,8 +136,8 @@
                                     <!-- <select style="margin-top:-150px" class="col-8" id="videoSource"></select> -->
                                 </div>
                                 <br>
-                                <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                                <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
+                                <!-- <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
+                                <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a> -->
                             </center></div>
                         </div>
                         
