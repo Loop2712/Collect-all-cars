@@ -8,15 +8,15 @@ use App\Models\Organization;
 
 class JuristicController extends Controller
 {
-     public function juristic()
+    public function juristic()
     {
     	
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
-        echo "<pre>";
-        print_r($data);
-        echo "<pre>";
-        echo "<br>";
+        // echo "<pre>";
+        // print_r($data);
+        // echo "<pre>";
+        // echo "<br>";
 
         $data['standardObjectiveDetail'] =  $data['standardObjectiveDetail']['objectiveDescription'];
         
@@ -38,6 +38,13 @@ class JuristicController extends Controller
     	Organization::firstOrCreate($data);
 
         // return $requestData;
+    }
+
+    public function selest_organization($organization)
+    {
+        $data = Organization::where('juristicNameTH', $organization)->get();
+
+        return $data ;
     }
 
 }

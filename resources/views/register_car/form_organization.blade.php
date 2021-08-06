@@ -12,8 +12,11 @@
             <div class="row" id="div_selest_organization_2">
                 <div class="col-12 col-md-4">
                     <div class="form-group">
-                        <select name="selest_organization" id="selest_organization" class="form-control" >
-                                <option value="" selected > - กรุณาเลือกองค์กร - </option> 
+                        <select name="selest_organization" id="selest_organization" class="form-control" required onchange="change_selest_organization();">
+                                <option value="" selected > - กรุณาเลือกองค์กร - </option>
+                                @foreach($select_Organization as $item)
+                                    <option value="{{ $item->juristicNameTH }}">{{ $item->juristicNameTH }}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
@@ -451,6 +454,34 @@
         div_input_juristicID.classList.remove('d-none');
 
         juristicID.focus();
+
+        juristicID.setAttributeNode(document.createAttribute('required'));
+    }
+
+    function change_selest_organization(){
+        let selest_organization = document.querySelector("#selest_organization");
+            // console.log(selest_organization.value);
+        let juristicNameTH = document.querySelector("#juristicNameTH");
+        let location_A_2 = document.querySelector("#location_A_2");
+        let location_P_2 = document.querySelector("#location_P_2");
+        let organization_mail = document.querySelector("#organization_mail");
+        let phone_2 = document.querySelector("#phone_2");
+
+        fetch("{{ url('/') }}/api/selest_organization/"+selest_organization.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result[0]);
+                juristicNameTH.value = result[0].juristicNameTH;
+                location_A_2.value = result[0].district;
+                location_P_2.value = result[0].province;
+                organization_mail.value = result[0].mail;
+                phone_2.value = result[0].phone;
+
+            });
+
+        document.querySelector('#div_data_organization').classList.remove('d-none');
+        organization_mail.setAttributeNode(document.createAttribute('readonly'));
+        phone_2.setAttributeNode(document.createAttribute('readonly'));
     }
 
 </script>

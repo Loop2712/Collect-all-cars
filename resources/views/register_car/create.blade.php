@@ -123,7 +123,7 @@
         var phone_2 = document.querySelector('#phone_2');
         var juristicNameTH = document.querySelector('#juristicNameTH');
 
-        juristicID.setAttributeNode(document.createAttribute('required'));
+        // juristicID.setAttributeNode(document.createAttribute('required'));
         organization_mail.setAttributeNode(document.createAttribute('required'));
         location_P_2.setAttributeNode(document.createAttribute('required'));
         location_A_2.setAttributeNode(document.createAttribute('required'));

@@ -113,6 +113,9 @@ class Register_carController extends Controller
 
         $Juristic_ID = Organization::where('juristicNameTH', $organization )->get();
 
+        $select_Organization = Organization::selectRaw('juristicNameTH')->groupBy('juristicNameTH')->get();
+        
+
         $juristicNameTH = "";
         $juristicID = "" ;
         $juristicMail = "" ;
@@ -164,7 +167,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization','select_Organization'));
     }
 
     /**
@@ -178,7 +181,10 @@ class Register_carController extends Controller
     {
         
         $requestData = $request->all();
-
+        echo "<pre>";
+        print_r($requestData);
+        echo "</pre>";
+        exit();
         // update registration_number
         $requestData['registration_number'] = str_replace(" ", "", $requestData['registration_number']);
         // rebrand
