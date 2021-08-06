@@ -121,7 +121,6 @@
         } 
         .redo-fieldset2 {
           border: 2px solid gray;
-          padding : 2px;
           width:50%;
           height:10%;
           border-radius: 10px;
