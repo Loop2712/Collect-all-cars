@@ -125,6 +125,26 @@
           height:10%;
           border-radius: 10px;
         } 
+        ul {
+          list-style-type: none;
+        }
+
+        ul li { 
+          font-family: Arial;
+          font-size: 12px;
+          color:#ffff;
+        }
+
+        ul li:before {
+          background-color: #43FF00;
+          border-radius: 50%;
+          content: "";
+          display: inline-block;
+          margin-right: 10px;
+          margin-bottom: 2px;
+          height: 10px;
+          width: 10px;
+        }
 
         .redo-legend {
         color: black;
