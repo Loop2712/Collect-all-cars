@@ -119,7 +119,7 @@
                                             <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 46px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
                                             </fieldset> -->
-                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 250px; margin-left:-18px">
+                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 150px; margin-left:-18px">
                                                <span style="color:#ffff;">ข้อแนะนำ  </span> 
                                                 <li class="li-dot">หลีกเลี่ยงแสงสะท้อน และไม่มืดหรือสว่างเกินไป</li>
                                                 <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน และเห็นภาพเต็มใบ</li>
