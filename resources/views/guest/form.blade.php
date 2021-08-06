@@ -91,15 +91,6 @@
                         {!! $errors->first('report_drivingd_detail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                
-                <style>.btn-circle {
-  width: 50px;
-  height: 50px;
-  padding: 13px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-}</style>
 
                 <!-- ถ่ายภาพป้ายทะเบียน -->
                 <div id="div_photo_registration" class="d-none">
@@ -107,7 +98,7 @@
                         <div class="col-12">
                             <div id="container">
                                 <div class="row">
-                                <div class="col-12">
+                                    <div class="col-12">
                                         <div class="d-flex justify-content-end bg-light"> 
                                             <a style="position: absolute; z-index:10; margin-right:5px" class="text-white" onclick="stop();"> <b>X</b> </a>
                                         </div>
@@ -115,9 +106,9 @@
                                     <div class="col-12">
                                         <div class="d-flex justify-content-center bg-light"> 
                                             <select class="col-4 d-none" style="position: absolute; z-index:10;" id="videoSource"></select>
-                                             <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
+                                            <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
                                             <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
-                                            <img class="align-self-center" style="position: absolute;" width="90%" src="{{ asset('/img/icon/13.png') }}">
+                                            <img class="align-self-center" style="position: absolute;" width="90%" src="{{ asset('/img/icon/14.png') }}">
                                             <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
                                             <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas>
                                             <!-- <a class="text-white d-flex align-self-end btn-primary btn-circle" style="position: absolute;" onclick="capture();"><i class="fas fa-camera"></i> -->

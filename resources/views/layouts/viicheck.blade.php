@@ -99,6 +99,15 @@
           animation-delay: 0s;
         }
 
+        .btn-circle {
+          width: 50px;
+          height: 50px;
+          padding: 13px 16px;
+          font-size: 18px;
+          line-height: 1.33;
+          border-radius: 25px;
+        }
+
         @keyframes data_organization {
           0%   {left:0px; top:-160px; opacity: 0.1;}
           100% {left:0px; top:0px; opacity: 1;}
