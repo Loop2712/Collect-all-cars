@@ -119,7 +119,7 @@
                                             <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 46px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
                                             </fieldset> -->
-                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 180px; margin-left:-18px">
+                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 180px;padding-right: 20px;padding-left: 30px;">
                                                <span style="color:#ffff;">ข้อแนะนำ  </span> 
                                                 <li class="li-dot">หลีกเลี่ยงแสงสะท้อน และไม่มืดหรือสว่างเกินไป</li>
                                                 <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน และเห็นภาพเต็มใบ</li>
@@ -354,7 +354,7 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+          navigator.mediaDevices.getUserMedia({ video: true })
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
                   video.srcObject = stream;
