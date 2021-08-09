@@ -133,10 +133,10 @@
                         <div class="col-12">
                             <div class="row">
                             <center>
-                                <!-- <div class="col-8" id="div_videoSource" class="select">
+                                <div class="col-8" id="div_videoSource" class="select">
                                     <label for="videoSource">เลือกกล้อง</label>
                                     <select style="margin-top:-150px" class="col-8" id="videoSource"></select>
-                                </div> -->
+                                </div>
                                 <br>
                                 <!-- <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                                 <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a> -->
