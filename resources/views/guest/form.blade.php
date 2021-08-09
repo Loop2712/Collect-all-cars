@@ -119,7 +119,7 @@
                                             <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 46px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
                                             </fieldset> -->
-                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 35px;">
+                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 30px;">
                                                <span style="color:#ffff;">ข้อแนะนำ  </span> 
                                                 <li class="li-dot">หลีกเลี่ยงแสงสะท้อน ไม่มืดหรือสว่างเกินไป</li>
                                                 <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน และเห็นภาพเต็มใบ</li>
@@ -133,11 +133,11 @@
                         <div class="col-12">
                             <div class="row">
                             <center>
-                                <div class="col-8" id="div_videoSource" class="select">
+                                <!-- <div class="col-8" id="div_videoSource" class="select">
                                     <label for="videoSource">เลือกกล้อง</label>
                                     <select style="margin-top:-150px" class="col-8" id="videoSource"></select>
                                 </div>
-                                <br>
+                                <br> -->
                                 <!-- <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                                 <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a> -->
                             </center></div>
@@ -354,7 +354,7 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true })
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
                   video.srcObject = stream;
