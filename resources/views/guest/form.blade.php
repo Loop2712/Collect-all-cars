@@ -110,7 +110,7 @@
                                            
                                             <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
                                             <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
-                                            <img class="align-self-center" style="position: absolute;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
+                                            <img class="align-self-center" style="position: absolute;margin-top: -20px;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
                                             <!-- <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
                                             <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas> -->
                                             <!-- <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
@@ -119,7 +119,7 @@
                                             <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 46px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
                                             </fieldset> -->
-                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 10px;padding-left: 10px;">
+                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 20px;">
                                                <span style="color:#ffff;">ข้อแนะนำ  </span> 
                                                 <li class="li-dot">หลีกเลี่ยงแสงสะท้อน ไม่มืดหรือสว่างเกินไป</li>
                                                 <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน และเห็นภาพเต็มใบ</li>
