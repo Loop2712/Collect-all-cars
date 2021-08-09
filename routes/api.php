@@ -62,7 +62,7 @@ Route::get('/motor_middle_price','API\Brand_middle_price_carsController@getMotor
 Route::get('/motor_middle_price/{motor_brand}/model','API\Brand_middle_price_carsController@getMotorModel');
 
 // OCR
-Route::get('/img_register/{img}','API\ImageController@img_register');
+Route::post('/img_register/','API\ImageController@img_register');
 
 
 

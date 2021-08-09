@@ -265,11 +265,6 @@
             .then(result => {
                 // console.log(result);
 
-                const person = {
-                    name: 'benze',
-                    age: 23
-                };
-
                 fetch("{{ url('/') }}/api/juristic", {
                     method: 'post',
                     body: JSON.stringify(result),

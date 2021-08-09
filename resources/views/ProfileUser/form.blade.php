@@ -215,7 +215,8 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+          navigator.mediaDevices.getUserMedia({ video: true }) 
+          // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
                   video.srcObject = stream;
@@ -254,18 +255,25 @@
         var photo2 = document.querySelector("#photo2");
         var canvas = document.querySelector("#canvas");
         var text_img = document.querySelector("#text_img");
-        var photo_canvas = document.querySelector("#photo_canvas");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 30, 200, 500, 255, 0, 0, 250, 100);
+        context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
-        
-        // var dl_img = document.getElementById("dl_img");
-        //     var att = document.createAttribute("href");
-        //     att.value = text_img.value;
-        //     dl_img.setAttributeNode(att);
 
+        fetch("{{ url('/') }}/api/img_register", {
+            method: 'post',
+            body: JSON.stringify(text_img.value),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            // console.log(text);
+        }).catch(function(error){
+            // console.error(error);
+        });
     }
     
 </script>
