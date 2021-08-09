@@ -111,7 +111,12 @@ class ProfileController extends Controller
     {
         $data = User::findOrFail($id);
 
-        return view('ProfileUser/Profile' , compact('data') );
+        $organization = "";
+            if (!empty($data['organization'])) {
+            $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
+            }
+
+        return view('ProfileUser/Profile' , compact('data' ,'organization') );
     }
 
     /**
