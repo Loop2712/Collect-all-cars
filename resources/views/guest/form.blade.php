@@ -395,7 +395,7 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 10, 100, 460, 200, 0, 0, 250, 100);
+        context.drawImage(video, 10, 100, 460, 190, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
