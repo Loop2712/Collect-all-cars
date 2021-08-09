@@ -8,5 +8,10 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageController extends Controller
 {
-    
+    public function img_register($img)
+    {
+    	echo "IMG >>>>>" ;
+    	// echo $img ;
+    	exit();
+    }
 }
