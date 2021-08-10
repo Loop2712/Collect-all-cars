@@ -162,11 +162,11 @@
                   <div class="input-group">
                     <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
-                    @if(Auth::user()->id == "1" or Auth::user()->id == "64")
+                    <!-- @if(Auth::user()->id == "1" or Auth::user()->id == "64") -->
                     <div class="input-group-prepend" onclick="capture_registration();">
                       <div class="input-group-text d-block d-md-none"><i class="fas fa-camera"></i></div>
                     </div>
-                    @endif
+                    <!-- @endif -->
                   </div>
                 </div>
 
@@ -356,7 +356,7 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true }) 
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
