@@ -42,7 +42,7 @@ class JuristicController extends Controller
 
     public function selest_organization($organization)
     {
-        $data = Organization::where('juristicNameTH', $organization)->get();
+        $data = Organization::where('juristicID', $organization)->get();
 
         return $data ;
     }
