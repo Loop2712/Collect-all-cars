@@ -18,9 +18,18 @@ class ImageController extends Controller
 
     function base64_to_jpeg($base64_string) {
 
-		$img = base64_encode( $base64_string);
-    	echo $img ;
+    	$output_file = "./img/ocr/img_register.png";
 
-    	// return $img;
+    	$data = explode( ',', $base64_string );
+
+		$fp = fopen($output_file, "w+");
+ 
+		// write the data in image file
+		fwrite($fp, base64_decode( $data[ 1 ] ) );
+		 
+		// close an open file pointer
+		fclose($fp);
+
+		// return $output_file; 
 	}
 }
