@@ -9,6 +9,7 @@ use App\Models\Register_car;
 use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Sos_map;
 
 class ProfileController extends Controller
 {
@@ -27,57 +28,26 @@ class ProfileController extends Controller
             $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
         }
 
-        $date_now = date("d-m-Y"); 
+        // รถของฉัน
+        $myCars = Register_car::where('user_id', $id)
+            ->where('car_type', "car")
+            ->where('active', "Yes")
+            ->where('juristicNameTH', null)
+            ->get();
 
-        $time1=strtotime($data->created_at); //สมัคร
-        $time2=strtotime($date_now); //เวลาปัจจุบัน
-        
-        $distanceInSeconds = round(abs($time2 - $time1));
-        $distanceInMinutes = round($distanceInSeconds / 60);
+        $myMotors = Register_car::where('user_id', $id)
+            ->where('car_type', "motorcycle")
+            ->where('active', "Yes")
+            ->where('juristicNameTH', null)
+            ->get();
 
-        $month = 0;
-        $days = floor(abs($distanceInMinutes / 1440)); 
+        // รถขององค์กร
 
-
-        if ($days > 30) {
-            $over = $days / 30;
-
-            $month_full = $month + number_format($over,2);
-            $month_explode = explode(".",$month_full);
-            $month = $month_explode[0];
-
-            if (!empty($month_explode[1])) {
-                $days = ($month_explode[1]/100) * 30;
-            }elseif (empty($month_explode[1])) {
-                $days = 0;
-            }
-            
-        }
-
-        return view('ProfileUser/Profile' , compact('data' , 'month' , 'days','organization') );
+        // SOS
+        $mySos = Sos_map::where('user_id', $id)->get();
 
 
-
-
-    //     $date = User::select('created_at')
-    //     ->where('id', Auth::id());
-    //     $birthday = $date;      //รูปแบบการเก็บค่าข้อมูลวันเกิด
-    //     $today = date("Y-m-d");   //จุดต้องเปลี่ยน
-            
-    
-    //     list($byear, $bmonth, $bday)= explode("-",$birthday);       //จุดต้องเปลี่ยน
-    //     list($tyear, $tmonth, $tday)= explode("-",$today);                //จุดต้องเปลี่ยน
-            
-    //     $mbirthday = mktime(0, 0, 0, $bmonth, $bday, $byear); 
-    //     $mnow = mktime(0, 0, 0, $tmonth, $tday, $tyear );
-    //     $mage = ($mnow - $mbirthday);
-    // $u_y=date("Y", $mage)-1970;
-    // $u_m=date("m",$mage)-1;
-    // $u_d=date("d",$mage)-1;
-
-        
-        // 'u_y','u_m','u_d'
-
+        return view('ProfileUser/Profile' , compact('data' ,'organization','myCars','myMotors','mySos') );
     }
 
     /**
