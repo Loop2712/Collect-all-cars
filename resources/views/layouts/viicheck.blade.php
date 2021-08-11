@@ -255,11 +255,6 @@
                   <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/tab.png') }}">&nbsp;โปรไฟล์
                 </li>
                 </a>
-                @if(!empty(Auth::user()->organization))
-                    <li><a href="{{ url('/register_car') }}">🚗 &nbsp;รถองค์กร</a></li>
-                @else
-                    <li><a href="{{ url('/register_car') }}">🚗 &nbsp;รถของฉัน</a></li>
-                @endif
                 <li>
                     @if(Auth::check())
                         <!-- @if(Auth::user()->role == "admin" )
