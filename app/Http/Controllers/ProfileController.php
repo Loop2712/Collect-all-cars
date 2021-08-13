@@ -116,23 +116,32 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        if (Auth::id() == $id )
+        $user_id = Auth::id();
+        
+        echo $user_id;
+        echo "<br>";
+        exit();
+
+        if (Auth::id() == $id or $data['role'] == "admin" )
         {
             $data = User::findOrFail($id);
-
             $organization = "";
-                if (!empty($data['organization'])) {
+            if (!empty($data['organization'])) {
                 $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
-                }
+            }
+            
+            // รถทั้งหมด
+            $myCar_all = Register_car::where('user_id', $id)
+                ->where('active', "Yes")
+                ->get();
 
-                // รถของฉัน
+            // รถของฉัน
             $myCars = Register_car::where('user_id', $id)
                 ->where('car_type', "car")
                 ->where('active', "Yes")
                 ->where('juristicNameTH', null)
                 ->get();
 
-            $myMotors = "" ;
             $myMotors = Register_car::where('user_id', $id)
                 ->where('car_type', "motorcycle")
                 ->where('active', "Yes")
@@ -140,18 +149,43 @@ class ProfileController extends Controller
                 ->get();
 
             // รถขององค์กร
+            if (!empty($data['organization'])) {
+                $org_myCars = Register_car::where('user_id', $id)
+                    ->where('car_type', "car")
+                    ->where('active', "Yes")
+                    ->where('juristicNameTH', $data['organization'])
+                    ->get();
+
+                $org_myMotors = Register_car::where('user_id', $id)
+                    ->where('car_type', "motorcycle")
+                    ->where('active', "Yes")
+                    ->where('juristicNameTH', $data['organization'])
+                    ->get();
+            }else{
+                $org_myCars = Register_car::where('car_type', "ไม่มี")
+                    ->get();
+
+                $org_myMotors = Register_car::where('car_type', "ไม่มี")
+                    ->get();
+            }
 
             // SOS
             $mySos = Sos_map::where('user_id', $id)->get();
 
             //ถูกเรียก
-            // $reported = Guest::where('register_car_id', )
-            //     ->get();
+            $reported = 0 ;
+            foreach ($myCar_all as $key) {
+
+                $search_reported = Guest::where('register_car_id', $key->id)
+                    ->get();
+
+                $reported = $reported + count($search_reported);
+            }
 
             //เรียกผู้อื่น
             $myReport = Guest::where('user_id', $id)->get();
 
-            return view('ProfileUser/Profile' , compact('data' ,'organization','myCars','myMotors','mySos','myReport') );
+            return view('ProfileUser/Profile' , compact('data' ,'organization','myCars','myMotors','mySos','myReport','reported','org_myCars','org_myMotors') );
             
         }else
             return view('404');
