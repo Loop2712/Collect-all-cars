@@ -238,7 +238,7 @@ class Sos_mapController extends Controller
 
         //SAVE LOG
         $data = [
-            "title" => "https://api.line.me/v2/bot/message/push",
+            "title" => "ขอมูลขอความช่วยเหลือ",
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
@@ -260,7 +260,7 @@ class Sos_mapController extends Controller
 
         //SAVE LOG
         $data_location = [
-            "title" => "https://api.line.me/v2/bot/message/push",
+            "title" => "location ขอความช่วยเหลือ",
             "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data_location);
