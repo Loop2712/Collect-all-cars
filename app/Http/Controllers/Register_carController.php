@@ -181,7 +181,7 @@ class Register_carController extends Controller
     {
         
         $requestData = $request->all();
-        
+
         // update registration_number
         $requestData['registration_number'] = str_replace(" ", "", $requestData['registration_number']);
         // rebrand
@@ -262,18 +262,31 @@ class Register_carController extends Controller
         // print_r($requestData);
         // echo "</pre>";
         // exit();
-
-        DB::table('users')
-            ->where('id', $requestData['user_id'])
-            ->update([
-                'location_P' => $requestData['location_P'],
-                'location_A' => $requestData['location_A'],
-                'phone' => $requestData['phone'],
-                'organization' => $requestData['juristicNameTH'],
-                'branch' => $requestData['branch'],
-                'branch_district' => $requestData['branch_district'],
-                'branch_province' => $requestData['branch_province'],
-            ]);
+        if (empty(Auth::user()->location_P)) {
+            
+            DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->update([
+                    'location_P' => $requestData['location_P'],
+                    'location_A' => $requestData['location_A'],
+                    'phone' => $requestData['phone'],
+                    'organization' => $requestData['juristicNameTH'],
+                    'branch' => $requestData['branch'],
+                    'branch_district' => $requestData['branch_district'],
+                    'branch_province' => $requestData['branch_province'],
+                ]);
+        }
+        if (!empty(Auth::user()->location_P) and empty(Auth::user()->organization)) {
+            
+            DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->update([
+                    'organization' => $requestData['juristicNameTH'],
+                    'branch' => $requestData['branch'],
+                    'branch_district' => $requestData['branch_district'],
+                    'branch_province' => $requestData['branch_province'],
+                ]);
+        }
 
         Register_car::create($requestData);
 
