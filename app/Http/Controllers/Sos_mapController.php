@@ -203,11 +203,11 @@ class Sos_mapController extends Controller
                     "messages" => $messages,
                 ];
 
-                // $body_location = [
-                //     "to" => "C8e711bfe67fac5d29e4fee6a59ca1efb",
-                //     "messages" => $messages_location,
-                // ];
-                // break;
+                $body_location = [
+                    "to" => "C8e711bfe67fac5d29e4fee6a59ca1efb",
+                    "messages" => $messages_location,
+                ];
+                break;
             // case 'TU':
             //     $body = [
             //         "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
@@ -243,27 +243,27 @@ class Sos_mapController extends Controller
         ];
         MyLog::create($data);
 
-        // // LOCATION
-        // $opts_location = [
-        //     'http' =>[
-        //         'method'  => 'POST',
-        //         'header'  => "Content-Type: application/json \r\n".
-        //                     'Authorization: Bearer '.$this->channel_access_token,
-        //         'content' => json_encode($body_location, JSON_UNESCAPED_UNICODE),
-        //         //'timeout' => 60
-        //     ]
-        // ];
+        // LOCATION
+        $opts_location = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.$this->channel_access_token,
+                'content' => json_encode($body_location, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
                             
-        // $context_location  = stream_context_create($opts_location);
-        // $url_location = "https://api.line.me/v2/bot/message/multicast";
-        // $result_location = file_get_contents($url_location, false, $context_location);
+        $context_location  = stream_context_create($opts_location);
+        $url_location = "https://api.line.me/v2/bot/message/push";
+        $result_location = file_get_contents($url_location, false, $context_location);
 
-        // //SAVE LOG
-        // $data_location = [
-        //     "title" => "https://api.line.me/v2/bot/message/multicast",
-        //     "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
-        // ];
-        // MyLog::create($data_location);
+        //SAVE LOG
+        $data_location = [
+            "title" => "https://api.line.me/v2/bot/message/push",
+            "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
+        ];
+        MyLog::create($data_location);
         
     }
 
