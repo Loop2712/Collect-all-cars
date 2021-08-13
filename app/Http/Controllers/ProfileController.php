@@ -116,15 +116,20 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $user_id = Auth::id();
-        
-        echo $user_id;
-        echo "<br>";
-        exit();
+        $data = User::findOrFail($id);
 
-        if (Auth::id() == $id or $data['role'] == "admin" )
+        if (!empty($data['organization'])) {
+            switch ($data['organization']) {
+                case '2บี กรีน จำกัด':
+                    $user_organization = "2bgreen";
+                    break;
+            }
+        }else{
+            $user_organization = "0";
+        }
+        
+        if (Auth::id() == $id or Auth::user()->role == "admin" or Auth::user()->role == $user_organization)
         {
-            $data = User::findOrFail($id);
             $organization = "";
             if (!empty($data['organization'])) {
                 $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
@@ -185,7 +190,7 @@ class ProfileController extends Controller
             //เรียกผู้อื่น
             $myReport = Guest::where('user_id', $id)->get();
 
-            return view('ProfileUser/Profile' , compact('data' ,'organization','myCars','myMotors','mySos','myReport','reported','org_myCars','org_myMotors') );
+            return view('ProfileUser/Profile' , compact('data' ,'organization','myCars','myMotors','mySos','myReport','reported','org_myCars','org_myMotors','user_organization') );
             
         }else
             return view('404');

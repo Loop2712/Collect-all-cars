@@ -82,11 +82,11 @@
                     </div>
                     <hr>
                     @if(Auth::check())
-                        @if(Auth::user()->id == $data->id or Auth::user()->role == "admin")
+                        @if(Auth::user()->id == $data->id or Auth::user()->role == "admin" or Auth::user()->role == $user_organization)
                             <div class="main-shadow" style="padding:15px;">
                                 <button style="width: 100%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ใบอนุญาตขับขี่</button>
-                                <br>
-                                <span style="color:red;font-size: 14px;line-height: 30pt;">*ใบอนุญาตขับขี่จะไม่แสดงให้ผู้อื่นเห็น</span>
+                                <br><br>
+                                <!-- <span style="color:red;font-size: 14px;line-height: 30pt;">*ใบอนุญาตขับขี่จะไม่แสดงให้ผู้อื่นเห็น</span> -->
                                 <h5><i class="fas fa-car-side text-danger"></i> รถยนต์</h5>
                                 <br>
                                 <center>
