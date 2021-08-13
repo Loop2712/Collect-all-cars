@@ -9,7 +9,9 @@
             <div style="float:right;">
                 <a href="{{ url('/profile') }}" type="button" class="btn btn-danger text-white">ข้อมูลโปรไฟล์</a>
                 <a href="{{ url('/register_car') }}" type="button" class="btn btn-outline-danger text-danger">ข้อมูลรถของฉัน</a>
-                <a type="button" class="btn btn-outline-danger text-danger">ข้อมูลรถองค์</a>
+                @if(!empty($organization))
+                    <a type="button" class="btn btn-outline-danger text-danger">ข้อมูลรถองค์กร</a>
+                @endif
             </div>
         </div>
     </div>
@@ -126,7 +128,7 @@
                                 <center><i class="fas fa-birthday-cake"></i> <b>&nbsp;วันเกิด</b></center>
                             </div>
                             <div class="col-8">
-                                {{ $data->birth }}
+                                {{ $data->brith }}
                             </div>
                             <hr style="margin-top: 20px;height:0.1px;width: 96%;">
 
@@ -183,27 +185,29 @@
                             </div>
                             <hr style="margin-top: 20px;height:0.1px;width: 96%;">
 
-                            <div class="col-4">
-                                <center> <b>รถองค์กร</b></center>
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img width="30" src="{{ url('/img/icon/line_car.png') }}">
-                                    </div>
-                                    <div class="col-2">
-                                        <b class="text-primary">2</b>
-                                    </div>
-                                    <div class="col-2">
-                                        <img width="30" src="{{ url('/img/icon/line_motorcycle.png') }}">
-                                    </div>
-                                    <div class="col-2">
-                                        <b class="text-primary">0</b>
-                                    </div>
-                                    <div class="col-4"></div>
+                            @if(!empty($organization))
+                                <div class="col-4">
+                                    <center> <b>รถองค์กร</b></center>
                                 </div>
-                            </div>
-                            <hr style="margin-top: 20px;height:0.1px;width: 96%;">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img width="30" src="{{ url('/img/icon/line_car.png') }}">
+                                        </div>
+                                        <div class="col-2">
+                                            <b class="text-primary">{{ count($org_myCars) }}</b>
+                                        </div>
+                                        <div class="col-2">
+                                            <img width="30" src="{{ url('/img/icon/line_motorcycle.png') }}">
+                                        </div>
+                                        <div class="col-2">
+                                            <b class="text-primary">{{ count($org_myMotors) }}</b>
+                                        </div>
+                                        <div class="col-4"></div>
+                                    </div>
+                                </div>
+                                <hr style="margin-top: 20px;height:0.1px;width: 96%;">
+                            @endif
 
                             <div class="col-4">
                                 <center> <b>ขอความช่วยเหลือ</b></center>
@@ -227,7 +231,7 @@
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col-2">
-                                        <b class="text-primary">&nbsp;&nbsp;2</b>
+                                        <b class="text-primary">&nbsp;&nbsp;{{ $reported }}</b>
                                     </div>
                                     <div class="col-2">
                                         ครั้ง
@@ -243,7 +247,7 @@
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col-2">
-                                        <b class="text-primary">&nbsp;&nbsp;2</b>
+                                        <b class="text-primary">&nbsp;&nbsp;{{ count($myReport) }}</b>
                                     </div>
                                     <div class="col-2">
                                         ครั้ง

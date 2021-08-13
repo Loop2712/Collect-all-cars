@@ -199,26 +199,26 @@ class Sos_mapController extends Controller
         switch ($data['area']) {
             case 'ViiCHECK':
                 $body = [
-                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+                    "to" => "C8e711bfe67fac5d29e4fee6a59ca1efb",
                     "messages" => $messages,
                 ];
 
                 $body_location = [
-                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+                    "to" => "C8e711bfe67fac5d29e4fee6a59ca1efb",
                     "messages" => $messages_location,
                 ];
                 break;
-            case 'TU':
-                $body = [
-                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
-                    "messages" => $messages,
-                ];
+            // case 'TU':
+            //     $body = [
+            //         "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+            //         "messages" => $messages,
+            //     ];
 
-                $body_location = [
-                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
-                    "messages" => $messages_location,
-                ];
-                break;
+            //     $body_location = [
+            //         "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+            //         "messages" => $messages_location,
+            //     ];
+            //     break;
         }
 
         // flex ask_for_help
