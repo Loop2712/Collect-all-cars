@@ -24,6 +24,12 @@ class Register_carController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
+        $type_car = $request->get('type');
+
+            if (empty($type_car)) {
+                $type_car = "all";
+            }
+
         $perPage = 25;
 
         $user = Auth::user();
@@ -97,7 +103,7 @@ class Register_carController extends Controller
         // เวลาปัจจุบัน
         $date_now = date("Y-m-d "); 
 
-        return view('register_car.index', compact('register_car' , 'register_motorcycles' , 'date_now'));
+        return view('register_car.index', compact('register_car' , 'register_motorcycles' , 'date_now' ,'type_car'));
     }
 
     /**

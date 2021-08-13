@@ -1,278 +1,47 @@
 @extends('layouts.viicheck')
+@section('add')
+<style>
+.order-card {
+    color: #fff;
+}
 
-@section('content')
-<br><br><br><br><br><br><br>
-<input type="hidden" name="type_cer" id="type_car" value="{{ $type_car }}">
-<!-- ----------------------------------- แสดงผลเฉพาะคอม --------------------------------- -->
-<div class="container d-none d-lg-block">
-    <div class="row">
-        <div class="col-12">
-            <a href="{{ url('/register_car/create') }}" class="btn btn-success main-shadow main-radius" title="Add New Register_car">
-                <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
-            </a>
-            <div style="float:right;">
-                <a href="{{ url('/profile') }}" type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลโปรไฟล์</a>
-                <a href="{{ url('/register_car') }}" type="button" class="btn btn-danger text-white main-shadow main-radius">ข้อมูลรถของฉัน</a>
-                @if(!empty($organization))
-                    <a type="button" class="btn btn-outline-danger text-danger">ข้อมูลรถองค์กร</a>
-                @endif
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-2">
-                    <a href="{{ url('/register_car') }}?type=all">
-                        <button id="btn_type_all" style="width: 100%;"  class="btn btn-sm btn-danger main-shadow main-radius">
-                            ทั้งหมด
-                        </button>
-                    </a>
-                </div>
-                <div class="col-2">
-                    <a href="{{ url('/register_car') }}?type=car">
-                        <button id="btn_type_car" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
-                            รถยนต์
-                        </button>
-                    </a>
-                </div>
-                <div class="col-2">
-                    <a href="{{ url('/register_car') }}?type=motorcycle">
-                        <button id="btn_type_motorcycle" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
-                            รถจักรยานยนต์
-                        </button>
-                    </a>
-                </div>
-                <div class="col-6">
-                    <div style="float:right;">
-                        @if(!empty($type_car))
-                            @switch($type_car)
-                                @case('all')
-                                    <img class="" id="img_show_car" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
-                                    &nbsp;&nbsp;
-                                    <img class="" id="img_show_mortor" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
-                                @break
-                                @case('car')
-                                    <img class="" id="img_show_car" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
-                                @break
-                                @case('motorcycle')
-                                    <img class="" id="img_show_mortor" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
-                                @break
-                            @endswitch
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-12">
-            <div class="row">
-                @foreach($register_car as $item)
-                <div class="col-4">
-                    <div class="main-shadow" style="padding:15px;">
-                        <div class="card  order-card">
-                            <div class="card-block">
-                                <p class="text-right" style="font-size:15px">
-                                    <a href="{{ url('/register_car/' . $item->id . '/edit') }}" class="text-right" style="margin: 5px 10px 0px 0px; font-size:15px">
-                                        <u>แก้ไข</u>
-                                    </a> 
-                                </p>
-                                <div class="row">
-                                    <div class="col-12 col-md-12" style="margin-top:-15px;">
-                                        <div class="row" style="margin:10px;">  
-                                            <div class="d-none d-lg-block col-md-4" >
-                                                <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                            </div> 
-                                            <div class="col-7 col-md-8">
-                                                <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
-                                                <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
-                                            </div>
-                                        </div>
-                                        <center>
-                                            <hr style="margin-top: -20px; width: 90%; height:0.3px; color:#BEBEBE;">
-                                        </center>
-                                        <div class="row"  style="font-family: K2D, sans-serif;">
-                                            <div class="col-12">
-                                                <center>
-                                                    <br>
-                                                    <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
-                                                    <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                    <img style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-                                                </center>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        
-                                        <br>
-                                        <center>
-                                            <hr class="" style="margin-top: -50px; width: 90%; height:0.3px; color:#BEBEBE;">
-                                        </center>
-                                        <div class="row">
-                                            <div class="col-6 col-md-6">
-                                            <center>
-                                                @if(!empty($item->act))
-                                                    @if((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
-                                                        
-                                                        <h5 style="text-align: center; margin-bottom:10px;">พรบ.</h5>
-                                                        
-                                                        <span style="font-size: 13px;">
-                                                            <a class=" text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><b>{{ $item->act }}</b>&nbsp;<i class="fas fa-pencil-alt"></i></a>
-                                                        </span>
-                                                        <br>    
-                                                            <!-- <td><b><a class=" text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
-                                                    @elseif((strtotime($item->act) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
-                                                        
-                                                        <h5 style="text-align: center; margin-bottom:10px;">พรบ.</h5>
-                                                        
-                                                        <span style="font-size: 13px;">
-                                                            <a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><b>{{ $item->act }}</b>&nbsp;<i class="fas fa-pencil-alt"></i></a>
-                                                        </span>
-                                                        <br>
-                                                                <!-- <td><b><a class=" text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;</a></b></td> -->
-                                                    @else
-                                                        <h5 style="text-align: center; margin-bottom:10px;">พรบ.</h5>
-                                                        
-                                                        <span style="font-size: 13px;">
-                                                            <a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><b>{{ $item->act }}</b>&nbsp;<i class="fas fa-pencil-alt"></i>
-                                                            </a>
-                                                        </span>
-                                                        <br>
-                                                        <!-- <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
-                                                    @endif
-                                                @else
-                                                        <!-- <h6 style="text-align: center;">พรบ.</h6> -->
-                                                        <span style="font-size: 13px; margin: 0px 10px;">
-                                                            <a class="btn btn-warning btn-md  main-shadow main-radius " style="padding:2px 0px;  width: 90%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">
-                                                                <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;<b>พรบ.</b></i>
-                                                            </a>
-                                                        </span>
-                                                    <br>
-                                                          <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
-                                                @endif
-                                            </center>  
-                                            </div>
-                                            <div class="col-6 col-md-6">
-                                            <center>
-                                                @if(!empty($item->insurance))
-                                                    @if((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 30 && (strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) >= 1)
-                                                    
-                                                    <h5 style="text-align: center; margin-bottom:10px;">ประกัน</h5>
-                                                    <span style="font-size: 13px;">
-                                                        <a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><b>{{ $item->insurance }}</b>&nbsp;<i class="fas fa-pencil-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                    <br>
-                                                    <!-- <td><b><a class="text-warning" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
-                                                    @elseif((strtotime($item->insurance) - strtotime($date_now))/  ( 60 * 60 * 24 ) <= 0)
-                                                    <h5 style="text-align: center; margin-bottom:10px;">ประกัน</h5>
-                                                    <span style="font-size: 13px;">
-                                                        <a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><b>{{ $item->insurance }}</b>&nbsp;<i class="fas fa-pencil-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                    <br>
-                                                         <!-- <td><b><a class="text-danger" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
-                                                     @else
-                                                    <h5 style="text-align: center; margin-bottom:10px;">ประกัน</h5>
-                                                    <span style="font-size: 13px;">
-                                                        <a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><b>{{ $item->insurance }}</b>&nbsp;<i class="fas fa-pencil-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                    <br>
-                                                        <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
-                                                    @endif
-                                                @else
-                                                    <!-- <h6 style="text-align: center;">ประกัน</h6> -->
-                                                    <span style="font-size: 13px; ">
-                                                        <a class="btn btn-warning btn-md  main-shadow main-radius" style="padding:2px 0px; width: 90%; margin: 0px 0px 0px -15px;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;ประกัน</i>
-                                                        </a>
-                                                    </span>
-                                                    <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
-                                                @endif
-                                                </center>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <a href="{{ url('/register_car/' . $item->id ) }}">
-                                    <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 90px;">
-                                        <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย   </b>
-                                    </button>
-                                </a>
-                                <a href="#">
-                                    <button type="button" class="btn btn-primary main-shadow main-radius" style=" width: 90px; font-size: 14px; margin-top: -20px; padding: 4px 12px ">
-                                        <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
-                                    </button>
-                                </a>
-                                <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
-                                        <i class="fa fa-trash"  aria-hidden="true"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<!-- ----------------------------------- สิ้นสุดแสดงผลเฉพาะคอม --------------------------------- -->
+.bg-c-monte-carlo {
+    background: linear-gradient(45deg,#CC95C0,#DBD4B4,#7AA1D2);
+}
 
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START");
-        add_color();
-        
-    });
-    function add_color(){
-        console.log("START");
-        let type_car = document.querySelector('#type_car').value;
-        let btn_type_all = document.querySelector('#btn_type_all');
-        let btn_type_car = document.querySelector('#btn_type_car');
-        let btn_type_motorcycle = document.querySelector('#btn_type_motorcycle');
+.bg-c-paradise {
+    background: linear-gradient(30deg,#7AA1D2,#F8CDDA);
+}
 
-        switch(type_car) {
-            case 'all':
-                btn_type_all.classList.add('btn-danger');
-                btn_type_car.classList.remove('btn-danger');
-                btn_type_motorcycle.classList.remove('btn-danger');
 
-                btn_type_all.classList.remove('btn-outline-danger');
-                btn_type_car.classList.add('btn-outline-danger');
-                btn_type_motorcycle.classList.add('btn-outline-danger');
-             break;
-            case 'car':
-                btn_type_all.classList.remove('btn-danger');
-                btn_type_car.classList.add('btn-danger');
-                btn_type_motorcycle.classList.remove('btn-danger');
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
 
-                btn_type_all.classList.add('btn-outline-danger');
-                btn_type_car.classList.remove('btn-outline-danger');
-                btn_type_motorcycle.classList.add('btn-outline-danger');
-                break;
-            case 'motorcycle':
-                btn_type_all.classList.remove('btn-danger');
-                btn_type_car.classList.remove('btn-danger');
-                btn_type_motorcycle.classList.add('btn-danger');
+.card .card-block {
+    padding: 25px;
+}
 
-                btn_type_all.classList.add('btn-outline-danger');
-                btn_type_car.classList.add('btn-outline-danger');
-                btn_type_motorcycle.classList.remove('btn-outline-danger');
-                break;
-        }
-    }
-</script>
+.order-card i {
+    font-size: 17px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+
+}
+</style>
 @endsection
-
 @section('content')
     <div class="container" style="margin-top:168px; ">
         <div class="row">
@@ -673,5 +442,19 @@
             </div>
         </div>
     </div>
-
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        add_color();
+        
+    });
+    function add_color(){
+        console.log("add_color");
+        document.querySelector('#btn_registercar').classList.add('btn-danger');
+        document.querySelector('#btn_registercar').classList.remove('btn-outline-danger');
+        document.querySelector('#btn_a_registercar').classList.add('text-white');
+        document.querySelector('#btn_a_registercar').classList.remove('text-danger');
+    }
+</script>
 @endsection
+

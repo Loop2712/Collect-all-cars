@@ -7,10 +7,10 @@
     <div class="row">
         <div class="col-12">
             <div style="float:right;">
-                <a href="{{ url('/profile') }}" type="button" class="btn btn-danger text-white">ข้อมูลโปรไฟล์</a>
-                <a href="{{ url('/register_car') }}" type="button" class="btn btn-outline-danger text-danger">ข้อมูลรถของฉัน</a>
+                <a href="{{ url('/profile') }}" type="button" class="btn btn-danger text-white main-shadow main-radius">ข้อมูลโปรไฟล์</a>
+                <a href="{{ url('/register_car') }}" type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลรถของฉัน</a>
                 @if(!empty($organization))
-                    <a type="button" class="btn btn-outline-danger text-danger">ข้อมูลรถองค์กร</a>
+                    <a type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลรถองค์กร</a>
                 @endif
             </div>
         </div>
