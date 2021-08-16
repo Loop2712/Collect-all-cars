@@ -12,21 +12,26 @@
                     <div class="col-12 col-md-6">
                         <label  class="control-label"><b>{{ 'รูปภาพโปรไฟล์' }}</b></label>
                         <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                            <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple">
+                            <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple" onchange="document.querySelector('#img_old').classList.add('d-none');">
                                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
                         </div>
                         <br>
                         <center>
-                            @if(!empty($data->avatar) and empty($data->photo))
-                                <img style="border-radius: 50%;" width="300" src="{{ $data->avatar }}" class="img-circle img-thumbnail isTooltip">
-                            @endif
-                            @if(!empty($data->photo))
-                                <img style="border-radius: 50%;" width="300" src="{{ url('storage')}}/{{ $data->photo }}" class="img-circle img-thumbnail isTooltip">
-                            @endif
-                            @if(empty($data->avatar) and empty($data->photo))
-                                <img style="border-radius: 50%;" width="300" src="{{ url('/img/icon/user.png') }}" class="img-circle img-thumbnail isTooltip">
-                            @endif
+                            <div id="img_old" class="">
+                                @if(!empty($data->avatar) and empty($data->photo))
+                                    <img style="border-radius: 50%;" width="300" src="{{ $data->avatar }}" class="img-circle img-thumbnail isTooltip">
+                                @endif
+                                @if(!empty($data->photo))
+                                    <img style="border-radius: 50%;" width="300" src="{{ url('storage')}}/{{ $data->photo }}" class="img-circle img-thumbnail isTooltip">
+                                @endif
+                                @if(empty($data->avatar) and empty($data->photo))
+                                    <img style="border-radius: 50%;" width="300" src="{{ url('/img/icon/user.png') }}" class="img-circle img-thumbnail isTooltip">
+                                @endif
+                            </div>
+                            
+                            <div id="dvPreview"></div>
                         </center>
+                            
                     </div>
 
                     <div class="col-12 col-md-6">
@@ -200,4 +205,33 @@
         document.querySelector('#btn_a_profile').classList.add('text-white');
         document.querySelector('#btn_a_profile').classList.remove('text-danger');
     }
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#photo").change(function () {
+            var dvPreview = $("#dvPreview");
+            dvPreview.html("");
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var divImagePreview = $("<div/>");
+
+                    var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
+                    divImagePreview.append(hiddenRotation);
+
+                    var img = $("<img />");
+                    img.attr("style", "border-radius: 50%;");
+                    img.attr("class", "img-circle img-thumbnail isTooltip");
+                    img.attr("width", "300");
+                    img.attr("src", e.target.result);
+                    divImagePreview.append(img);
+
+                    dvPreview.append(divImagePreview);
+                }
+                reader.readAsDataURL(file[0]);
+            });
+        });
+    });
 </script>
