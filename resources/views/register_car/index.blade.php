@@ -310,10 +310,10 @@
                                 <div class="row">
                                     <div class="col-12" style="margin-top:-15px;">
                                         <div class="row" style="margin:10px;">  
-                                            <div class="d-none d-lg-block" >
+                                            <div class="col-4" >
                                                 <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div> 
-                                            <div class="col-12">
+                                            <div class="col-8">
                                                 <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
                                                 <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
                                             </div>
