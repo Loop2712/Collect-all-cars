@@ -158,7 +158,7 @@
 
                                                     <video width="100%" height="100%" autoplay="true" id="video_driver_license"></video>
                                                     
-                                                    <img class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
+                                                    <img class="align-self-center" style="position: absolute;margin-top: -100px;" width="90%"  src="{{ asset('/img/icon/16.png') }}">
 
                                                     <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 25px;">
                                                        <span style="color:#ffff;">ข้อแนะนำ  </span> 
