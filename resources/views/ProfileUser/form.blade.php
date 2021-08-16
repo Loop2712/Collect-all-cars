@@ -77,11 +77,12 @@
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <!-- ใบขับขี่คอม -->
+    <div class="container d-none d-lg-block">
         <div class="row">
             <div class="col-12">
-                <button style="width: 30%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger d-none d-lg-block">ใบอนุญาตขับขี่</button>
-                <button style="width: 60%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger d-block d-md-none">ใบอนุญาตขับขี่</button>
+                <button style="width: 30%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger ">ใบอนุญาตขับขี่</button>
                 <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -96,7 +97,6 @@
                         </center>
                         <br>
                     </div>
-                    <hr class="d-block d-md-none">
                     <div class="col-12 col-md-6">
                         <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
                         <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
@@ -106,6 +106,60 @@
                         <br>
                         <center>
                             <img width="250" src="{{ url('storage')}}/{{ $data->driver_license2 }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ใบขับขี่มือถือ -->
+    <div class="container d-block d-md-none">
+        <div class="row">
+            <div class="col-12">
+                <button style="width: 60%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ใบอนุญาตขับขี่</button>
+                <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="control-label"><b>{{ 'รถยนต์' }}</b></label>
+                        <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
+                            <center>
+                                <button type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="document.querySelector('#driver_license_capture').classList.remove('d-none');">
+                                    <i class="fas fa-camera"></i> ถ่ายรูป
+                                </button>
+                            </center>
+                            <br>
+                            <div id="driver_license_capture" class="d-none">
+                                <center>
+                                    <img width="250" src="{{ url('storage')}}/{{ $data->driver_license }}">
+                                </center>
+                            </div>
+                        </div>
+                        <!-- รูปตัวอย่าง -->
+                        <center>
+                            <img width="250" src="{{ url('storage')}}/{{ $data->driver_license }}">
+                        </center>
+                        <br>
+                    </div>
+                    <hr>
+                    <div class="col-12">
+                        <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
+                        <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
+                            <center>
+                                <button type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="document.querySelector('#driver_license2_capture').classList.remove('d-none');">
+                                    <i class="fas fa-camera"></i> ถ่ายรูป
+                                </button>
+                            </center>
+                            <br>
+                            <div id="driver_license2_capture" class="d-none">
+                                <center>
+                                    <img width="250" src="{{ url('storage')}}/{{ $data->driver_license }}">
+                                </center>
+                            </div>
+                        </div>
+                        <!-- รูปตัวอย่าง -->
+                        <center>
+                            <img width="250" src="{{ url('storage')}}/{{ $data->driver_license2 }}">
+                        </center>
                     </div>
                 </div>
             </div>
