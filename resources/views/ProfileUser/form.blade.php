@@ -230,7 +230,7 @@
                                 var text_img_car = document.querySelector("#text_img_car");
                                 var context_car = canvas_car.getContext('2d');
 
-                                context_car.drawImage(video, 40, 180, 400, 210, 0, 0, 250, 150);
+                                context_car.drawImage(video, 30, 180, 400, 150, 0, 0, 250, 150);
                                 photo_car.setAttribute('src',canvas_car.toDataURL('image/png'));
                                 text_img_car.value = canvas_car.toDataURL('image/png');
 
