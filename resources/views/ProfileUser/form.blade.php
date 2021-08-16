@@ -139,10 +139,10 @@
                 <div class="row">
                     <div class="col-12">
                         <label  class="control-label"><b>{{ 'รูปภาพโปรไฟล์' }}</b></label>
-                        <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                        <!-- <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                             <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple">
                                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
-                        </div>
+                        </div> -->
                         <br>
                         <center>
                             @if(!empty($data->avatar) and empty($data->photo))
