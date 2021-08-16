@@ -247,7 +247,16 @@
                                 // }).catch(function(error){
                                 //     console.error(error);
                                 // });
-                                video.srcObject = null;
+
+                                var stream = video.srcObject;
+                                    var tracks = stream.getTracks();
+
+                                    for (var i = 0; i < tracks.length; i++) {
+                                        var track = tracks[i];
+                                        track.stop();
+                                    }
+
+                                    video.srcObject = null;
                                 document.querySelector('#driver_license_capture').classList.add('d-none');
                                 document.querySelector("#btn_click_capture").classList.remove('d-none');
                             }
