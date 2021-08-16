@@ -117,6 +117,7 @@ Route::middleware(['auth', 'role:2bgreen'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 	Route::resource('register_car', 'Register_carController');
+	Route::get('/register_car_organization', 'Register_carController@index_organization');
 	Route::get('/register_car/create', 'Register_carController@create')->name('register_car_create');
 	Route::get('/register_car/{id}/edit_act', 'Register_carController@edit_act');
 	Route::resource('deliver', 'DeliverController')->except(['index']);

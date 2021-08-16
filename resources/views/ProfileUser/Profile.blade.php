@@ -10,7 +10,7 @@
                 <a href="{{ url('/profile') }}" type="button" class="btn btn-danger text-white main-shadow main-radius">ข้อมูลโปรไฟล์</a>
                 <a href="{{ url('/register_car') }}" type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลรถของฉัน</a>
                 @if(!empty($organization))
-                    <a type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลรถองค์กร</a>
+                    <a href="{{ url('/register_car_organization') }}" type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลรถองค์กร</a>
                 @endif
             </div>
         </div>
@@ -169,13 +169,17 @@
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col-2">
-                                        <img width="30" src="{{ url('/img/icon/line_car.png') }}">
+                                        <a href="{{ URL('/register_car?type=car') }}">
+                                            <img width="30" src="{{ url('/img/icon/line_car.png') }}">
+                                        </a>
                                     </div>
                                     <div class="col-2">
                                         <b class="text-primary">{{ count($myCars) }}</b>
                                     </div>
                                     <div class="col-2">
-                                        <img width="30" src="{{ url('/img/icon/line_motorcycle.png') }}">
+                                        <a href="{{ URL('/register_car?type=motorcycle') }}">
+                                            <img width="30" src="{{ url('/img/icon/line_motorcycle.png') }}">
+                                        </a>
                                     </div>
                                     <div class="col-2">
                                         <b class="text-primary">{{ count($myMotors) }}</b>
@@ -192,13 +196,17 @@
                                 <div class="col-8">
                                     <div class="row">
                                         <div class="col-2">
-                                            <img width="30" src="{{ url('/img/icon/line_car.png') }}">
+                                            <a href="{{ URL('/register_car_organization?type=car') }}">
+                                                <img width="30" src="{{ url('/img/icon/line_car.png') }}">
+                                            </a>
                                         </div>
                                         <div class="col-2">
                                             <b class="text-primary">{{ count($org_myCars) }}</b>
                                         </div>
                                         <div class="col-2">
-                                            <img width="30" src="{{ url('/img/icon/line_motorcycle.png') }}">
+                                            <a href="{{ URL('/register_car_organization?type=motorcycle') }}">
+                                                <img width="30" src="{{ url('/img/icon/line_motorcycle.png') }}">
+                                            </a>
                                         </div>
                                         <div class="col-2">
                                             <b class="text-primary">{{ count($org_myMotors) }}</b>
