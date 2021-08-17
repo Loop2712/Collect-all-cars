@@ -154,6 +154,12 @@
           0%   {left:0px; top:-160px; opacity: 0.1;}
           100% {left:0px; top:0px; opacity: 1;}
         }
+        .footer-bottom { /* ส่วนด้านล่าง */
+          position:absolute;
+          width:100%;
+          bottom:0; /* stick to bottom */
+          text-align:center;
+        }
 
     </style>
     
@@ -304,7 +310,7 @@
     @yield('content')
 
 <!-- ======= Footer WEB ======= -->
-  <footer class="d-none d-lg-block" id="footer">
+  <footer class="d-none d-lg-block footer-bottom" id="footer">
     <div class="container d-md-flex py-3">
       <div class="me-md-auto text-center text-md-start">
         <div class="credits">
