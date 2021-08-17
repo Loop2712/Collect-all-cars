@@ -192,20 +192,55 @@
                         <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
                         <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
                             <center>
-                                <button type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="document.querySelector('#driver_license2_capture').classList.remove('d-none');">
+                                <button id="btn_click_capture_motor" type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="
+                                document.querySelector('#driver_license2_capture').classList.remove('d-none'),
+                                document.querySelector('#btn_click_capture_motor').classList.add('d-none'),
+                                capture_driver_license_motor();">
                                     <i class="fas fa-camera"></i> ถ่ายรูป
                                 </button>
                             </center>
                             <br>
                             <div id="driver_license2_capture" class="d-none">
                                 <center>
-                                    <img width="250" src="{{ url('storage')}}/{{ $data->driver_license }}">
+                                    <div id="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-end bg-light"> 
+                                                    <a style="position: absolute; z-index:10; margin-right:10px" class="text-white" onclick="stop_motor();"> <b>X</b> </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-center bg-light">
+
+                                                    <video width="100%" height="100%" autoplay="true" id="video_driver_license2"></video>
+                                                    
+                                                    <img class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="43%" src="{{ asset('/img/icon/16.png') }}">
+
+                                                    <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 25px;">
+                                                       <span style="color:#ffff;">ข้อแนะนำ  </span> 
+                                                        <li class="li-dot">หลีกเลี่ยงแสงสะท้อน ไม่มืดหรือสว่างเกินไป</li>
+                                                        <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน</li>
+                                                    </ul>
+                                                    <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture_motor();"><i class="fas fa-camera"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </center>
                             </div>
                         </div>
                         <!-- รูปตัวอย่าง -->
                         <center>
-                            <img width="250" src="{{ url('storage')}}/{{ $data->driver_license2 }}">
+                            <div id="driver_license2_old_mobile" class="">
+                                <img width="250" src="{{ url('storage')}}/{{ $data->driver_license2 }}">
+                            </div>
+                            <div id="driver_license2_new_mobile" class="d-none">
+                                <div class="col-12">
+                                    <input type="hidden" name="text_img_motor" id="text_img_motor">
+                                    <canvas id="canvas_motor" width="250" height="150" class="d-none"></canvas>
+                                    <img src="" width="250" height="150" id="photo_motor">
+                                </div>
+                            </div>
                         </center>
                     </div>
                 </div>
@@ -330,7 +365,7 @@
         });
     });
 </script>
-<!-- ใบขับขี่คอม -->
+<!-- ใบขับขี่รถยนต์ -->
 <script>
 function capture_driver_license(){
 
@@ -403,5 +438,81 @@ function capture() {
         video.srcObject = null;
     document.querySelector('#driver_license_capture').classList.add('d-none');
     document.querySelector("#btn_click_capture").classList.remove('d-none');
+}
+</script>
+
+<!-- ใบขับขี่มอไซต์ -->
+<script>
+function capture_driver_license_motor(){
+
+    var video_motor = document.querySelector("#video_driver_license2");
+    var photo_motor = document.querySelector("#photo_motor");
+    var canvas_motor = document.querySelector("#canvas_motor");
+    var text_img_motor = document.querySelector("#text_img_motor");
+    var context_motor = canvas_motor.getContext('2d');
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video_motor: { facingMode: { exact: "environment" } } }) 
+      // { video: { facingMode: { exact: "environment" } } }
+        .then(function (stream) {
+          if (typeof video_motor.srcObject == "object") {
+              video_motor.srcObject = stream;
+            } else {
+              video_motor.src = URL.createObjectURL(stream);
+            }
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
+    }
+
+}
+
+function stop_motor(e) {
+    document.querySelector("#driver_license2_capture").classList.add('d-none');
+    document.querySelector("#btn_click_capture_motor").classList.remove('d-none');
+
+    var video_motor = document.querySelector("#video_driver_license2");
+    var photo__motor = document.querySelector("#photo_motor");
+    var canvas__motor = document.querySelector("#canvas__motor");
+    var text_img__motor = document.querySelector("#text_img__motor");
+    var context__motor = canvas__motor.getContext('2d');
+      
+      var stream = video_motor.srcObject;
+      var tracks = stream.getTracks();
+
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+        track.stop();
+      }
+
+      video_motor.srcObject = null;
+}
+
+function capture_motor() {
+    document.querySelector("#driver_license2_old_mobile").classList.add('d-none');
+    document.querySelector("#driver_license2_new_mobile").classList.remove('d-none');
+
+    var video_motor = document.querySelector("#video_driver_license2");
+    var photo_motor = document.querySelector("#photo_motor");
+    var canvas_motor = document.querySelector("#canvas_motor");
+    var text_img_motor = document.querySelector("#text_img_motor");
+    var context_motor = canvas_moto.getContext('2d');
+
+    context_motor.drawImage(video_motor, 20, 90, 430, 270, 0, 0, 250, 150);
+    photo_motor.setAttribute('src',canvas_motor.toDataURL('image/png'));
+    text_img_motor.value = canvas_motor.toDataURL('image/png');
+
+    var stream = video_motor.srcObject;
+        var tracks = stream.getTracks();
+
+        for (var i = 0; i < tracks.length; i++) {
+            var track = tracks[i];
+            track.stop();
+        }
+
+        video_motor.srcObject = null;
+    document.querySelector('#driver_license2_capture').classList.add('d-none');
+    document.querySelector("#btn_click_capture_motor").classList.remove('d-none');
 }
 </script>
