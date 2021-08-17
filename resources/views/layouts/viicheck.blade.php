@@ -310,6 +310,7 @@
     @yield('content')
 
 <!-- ======= Footer WEB ======= -->
+  <br><br>
   <footer class="d-none d-lg-block footer-bottom" id="footer">
     <div class="container d-md-flex py-3">
       <div class="me-md-auto text-center text-md-start">

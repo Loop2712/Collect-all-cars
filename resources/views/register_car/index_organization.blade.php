@@ -81,7 +81,7 @@
                     <div class="main-shadow" style="padding:15px;">
                         <div class="card  order-card">
                             <div class="card-block">
-                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-success main-shadow main-radius">
+                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-primary main-shadow main-radius">
                                     <b>{{ $juristicNameTH }}</b>
                                 </button>
                                 <p class="text-right" style="font-size:15px">
