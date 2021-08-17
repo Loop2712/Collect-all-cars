@@ -4,6 +4,7 @@
 <br><br><br><br><br><br>
 <!-- ------------------------------------------------- แสดงเฉพาะคอม ----------------------------------- -->
 <div class="container d-none d-lg-block">
+    @if(Auth::user()->id == $data->id )
     <div class="row">
         <div class="col-12">
             <br>
@@ -16,6 +17,7 @@
             </div>
         </div>
     </div>
+    @endif
     <br>
     <div class="row">
         <div class="col-12">
