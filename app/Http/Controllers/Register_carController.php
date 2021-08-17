@@ -369,6 +369,8 @@ class Register_carController extends Controller
 
         $Juristic_ID = Organization::where('juristicNameTH', $organization )->get();
 
+        $select_Organization = Organization::selectRaw('juristicNameTH')->groupBy('juristicNameTH')->get();
+
         $juristicNameTH = "";
         $juristicID = "" ;
         $juristicMail = "" ;
@@ -427,7 +429,7 @@ class Register_carController extends Controller
                 ->where('car_type', 'motorcycle')
                 ->get();
 
-            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization'));
+            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization' , 'select_Organization'));
         }
     }
     public function edit_act($id)
