@@ -452,7 +452,7 @@ function capture_driver_license_motor(){
     var context_motor = canvas_motor.getContext('2d');
 
     if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video_motor: { facingMode: { exact: "environment" } } }) 
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
       // { video: { facingMode: { exact: "environment" } } }
         .then(function (stream) {
           if (typeof video_motor.srcObject == "object") {
