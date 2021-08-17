@@ -149,14 +149,19 @@
                                                         <!-- <td><b><a class=" text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->act }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                     @endif
                                                 @else
-                                                        <!-- <h6 style="text-align: center;">พรบ.</h6> -->
+                                                    <h5>
                                                         <span style="font-size: 13px; margin: 0px 10px;">
                                                             <a class="btn btn-warning btn-md  main-shadow main-radius " style="padding:2px 0px;  width: 90%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">
                                                                 <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;<b>พรบ.</b></i>
                                                             </a>
                                                         </span>
+                                                    </h5>
+                                                    <span style="font-size: 13px;">
+                                                        <a class=" text-warning" >
+                                                            &nbsp;
+                                                        </a>
+                                                    </span>
                                                     <br>
-                                                          <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
                                                 @endif
                                             </center>  
                                             </div>
@@ -190,36 +195,51 @@
                                                         <!-- <td><b><a class="text-success" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">{{ $item->insurance }}&nbsp;<i class="fas fa-pencil-alt"></i></a></b></td> -->
                                                     @endif
                                                 @else
-                                                    <!-- <h6 style="text-align: center;">ประกัน</h6> -->
-                                                    <span style="font-size: 13px; ">
-                                                        <a class="btn btn-warning btn-md  main-shadow main-radius" style="padding:2px 0px; width: 90%; margin: 0px 0px 0px -15px;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;ประกัน</i>
+                                                    <h5>
+                                                        <span style="font-size: 13px; ">
+                                                            <a class="btn btn-warning btn-md  main-shadow main-radius" style="padding:2px 0px; width: 90%; margin: 0px 0px 0px -15px;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;ประกัน</i>
+                                                            </a>
+                                                        </span>
+                                                    </h5>
+                                                    <span style="font-size: 13px;">
+                                                        <a class=" text-warning" >
+                                                            &nbsp;
                                                         </a>
                                                     </span>
-                                                    <!-- <td><a class="btn btn-warning btn-sm" href="{{ url('/register_car/' . $item->id . '/edit_act') }}"><i class="fas fa-pencil-alt"></i></a></td> -->
+                                                    <br>
                                                 @endif
                                                 </center>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-                                <a href="{{ url('/register_car/' . $item->id ) }}">
-                                    <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 90px;">
-                                        <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย   </b>
-                                    </button>
-                                </a>
-                                <a href="#">
-                                    <button type="button" class="btn btn-primary main-shadow main-radius" style=" width: 90px; font-size: 14px; margin-top: -20px; padding: 4px 12px ">
-                                        <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
-                                    </button>
-                                </a>
-                                <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
-                                        <i class="fa fa-trash"  aria-hidden="true"></i>
-                                    </button>
-                                </form>
+                                <div style="float:right;">
+                                    <div>
+                                        <a style="float:right;margin-right: 10px;margin-bottom: 10px;" data-toggle="collapse" data-target="#collapseExample{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample{{ $item->id }}">
+                                            <i class="fas fa-sort-down"></i>
+                                        </a>
+                                    </div>
+                                    <br>
+                                    <div style="margin-top:10px;" class="collapse" id="collapseExample{{ $item->id }}">
+                                        <a href="{{ url('/register_car/' . $item->id ) }}">
+                                            <button type="button" class="btn btn-success main-shadow main-radius"style="font-size: 14px; margin: 0px 0px 20px 20px; padding: 4px 12px;  width: 90px;">
+                                                <b><i class="fas fa-hand-holding-usd" ></i>&nbsp;ขาย   </b>
+                                            </button>
+                                        </a>
+                                        <a href="#">
+                                            <button type="button" class="btn btn-primary main-shadow main-radius" style=" width: 90px; font-size: 14px; margin-top: -20px; padding: 4px 12px ">
+                                                <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
+                                            </button>
+                                        </a>
+                                        <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                <i class="fa fa-trash"  aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

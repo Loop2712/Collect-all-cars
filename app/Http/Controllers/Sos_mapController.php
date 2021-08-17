@@ -208,6 +208,17 @@ class Sos_mapController extends Controller
                     "messages" => $messages_location,
                 ];
                 break;
+            case 'KMUTNB':
+                $body = [
+                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
+                    "messages" => $messages,
+                ];
+
+                $body_location = [
+                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
+                    "messages" => $messages_location,
+                ];
+                break;
             // case 'TU':
             //     $body = [
             //         "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
