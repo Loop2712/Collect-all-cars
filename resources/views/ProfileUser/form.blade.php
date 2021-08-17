@@ -173,94 +173,6 @@
                                 </center>
                             </div>
                         </div>
-                        <script>
-                            function capture_driver_license(){
-
-                                var video = document.querySelector("#video_driver_license");
-                                var photo_car = document.querySelector("#photo_car");
-                                var canvas_car = document.querySelector("#canvas_car");
-                                var text_img_car = document.querySelector("#text_img_car");
-                                var context_car = canvas_car.getContext('2d');
-
-                                if (navigator.mediaDevices.getUserMedia) {
-                                  navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
-                                  // { video: { facingMode: { exact: "environment" } } }
-                                    .then(function (stream) {
-                                      if (typeof video.srcObject == "object") {
-                                          video.srcObject = stream;
-                                        } else {
-                                          video.src = URL.createObjectURL(stream);
-                                        }
-                                    })
-                                    .catch(function (err0r) {
-                                      console.log("Something went wrong!");
-                                    });
-                                }
-
-                            }
-
-                            function stop(e) {
-                                document.querySelector("#driver_license_capture").classList.add('d-none');
-                                document.querySelector("#btn_click_capture").classList.remove('d-none');
-
-                                var video = document.querySelector("#video_driver_license");
-                                var photo_car = document.querySelector("#photo_car");
-                                var canvas_car = document.querySelector("#canvas_car");
-                                var text_img_car = document.querySelector("#text_img_car");
-                                var context_car = canvas_car.getContext('2d');
-                                  
-                                  var stream = video.srcObject;
-                                  var tracks = stream.getTracks();
-
-                                  for (var i = 0; i < tracks.length; i++) {
-                                    var track = tracks[i];
-                                    track.stop();
-                                  }
-
-                                  video.srcObject = null;
-                            }
-
-                            function capture() {
-                                document.querySelector("#driver_license_old_mobile").classList.add('d-none');
-                                document.querySelector("#driver_license_new_mobile").classList.remove('d-none');
-
-                                var video = document.querySelector("#video_driver_license");
-                                var photo_car = document.querySelector("#photo_car");
-                                var canvas_car = document.querySelector("#canvas_car");
-                                var text_img_car = document.querySelector("#text_img_car");
-                                var context_car = canvas_car.getContext('2d');
-
-                                context_car.drawImage(video, 20, 90, 430, 270, 0, 0, 250, 150);
-                                photo_car.setAttribute('src',canvas_car.toDataURL('image/png'));
-                                text_img_car.value = canvas_car.toDataURL('image/png');
-
-                                // fetch("{{ url('/') }}/api/img_register", {
-                                //     method: 'post',
-                                //     body: JSON.stringify(text_img.value),
-                                //     headers: {
-                                //         'Content-Type': 'application/json'
-                                //     }
-                                // }).then(function (response){
-                                //     return response.text();
-                                // }).then(function(text){
-                                //     console.log(text);
-                                // }).catch(function(error){
-                                //     console.error(error);
-                                // });
-
-                                var stream = video.srcObject;
-                                    var tracks = stream.getTracks();
-
-                                    for (var i = 0; i < tracks.length; i++) {
-                                        var track = tracks[i];
-                                        track.stop();
-                                    }
-
-                                    video.srcObject = null;
-                                document.querySelector('#driver_license_capture').classList.add('d-none');
-                                document.querySelector("#btn_click_capture").classList.remove('d-none');
-                            }
-                        </script>
                         <center>
                             <div id="driver_license_old_mobile" class="">
                                 <!-- รูปตัวอย่าง -->
@@ -268,7 +180,7 @@
                             </div>
                             <div id="driver_license_new_mobile" class="d-none">
                                 <div class="col-12">
-                                    <input type="hidden" name="" id="text_img_car">
+                                    <input type="hidden" name="text_img_car" id="text_img_car">
                                     <canvas id="canvas_car" width="250" height="150" class="d-none"></canvas>
                                     <img src="" width="250" height="150" id="photo_car">
                                 </div>
@@ -301,21 +213,21 @@
         </div>
     </div>
     <hr>
-    <div class="col-12">
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group float-left">
-                    <br>
-                    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'ส่งข้อมูล' }}">
-                </div>
+</div>
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group float-left">
+                <br>
+                <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'ส่งข้อมูล' }}">
             </div>
-            <div class="col-6">
-                <div class="float-right">
-                    <br>
-                    <a href="{{ url('/profile') }}" class="btn btn-warning text-white" title="Back">
-                        กลับ
-                    </a>
-                </div>
+        </div>
+        <div class="col-6">
+            <div class="float-right">
+                <br>
+                <a href="{{ url('/profile') }}" class="btn btn-warning text-white" title="Back">
+                    กลับ
+                </a>
             </div>
         </div>
     </div>
@@ -417,4 +329,79 @@
             });
         });
     });
+</script>
+<!-- ใบขับขี่คอม -->
+<script>
+function capture_driver_license(){
+
+    var video = document.querySelector("#video_driver_license");
+    var photo_car = document.querySelector("#photo_car");
+    var canvas_car = document.querySelector("#canvas_car");
+    var text_img_car = document.querySelector("#text_img_car");
+    var context_car = canvas_car.getContext('2d');
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+      // { video: { facingMode: { exact: "environment" } } }
+        .then(function (stream) {
+          if (typeof video.srcObject == "object") {
+              video.srcObject = stream;
+            } else {
+              video.src = URL.createObjectURL(stream);
+            }
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
+    }
+
+}
+
+function stop(e) {
+    document.querySelector("#driver_license_capture").classList.add('d-none');
+    document.querySelector("#btn_click_capture").classList.remove('d-none');
+
+    var video = document.querySelector("#video_driver_license");
+    var photo_car = document.querySelector("#photo_car");
+    var canvas_car = document.querySelector("#canvas_car");
+    var text_img_car = document.querySelector("#text_img_car");
+    var context_car = canvas_car.getContext('2d');
+      
+      var stream = video.srcObject;
+      var tracks = stream.getTracks();
+
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+        track.stop();
+      }
+
+      video.srcObject = null;
+}
+
+function capture() {
+    document.querySelector("#driver_license_old_mobile").classList.add('d-none');
+    document.querySelector("#driver_license_new_mobile").classList.remove('d-none');
+
+    var video = document.querySelector("#video_driver_license");
+    var photo_car = document.querySelector("#photo_car");
+    var canvas_car = document.querySelector("#canvas_car");
+    var text_img_car = document.querySelector("#text_img_car");
+    var context_car = canvas_car.getContext('2d');
+
+    context_car.drawImage(video, 20, 90, 430, 270, 0, 0, 250, 150);
+    photo_car.setAttribute('src',canvas_car.toDataURL('image/png'));
+    text_img_car.value = canvas_car.toDataURL('image/png');
+
+    var stream = video.srcObject;
+        var tracks = stream.getTracks();
+
+        for (var i = 0; i < tracks.length; i++) {
+            var track = tracks[i];
+            track.stop();
+        }
+
+        video.srcObject = null;
+    document.querySelector('#driver_license_capture').classList.add('d-none');
+    document.querySelector("#btn_click_capture").classList.remove('d-none');
+}
 </script>
