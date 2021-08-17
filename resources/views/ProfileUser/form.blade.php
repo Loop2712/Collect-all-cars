@@ -191,7 +191,7 @@
                     <hr>
                     <div class="col-12">
                         <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
-                        <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
+                        <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
                             <center>
                                 <button id="btn_click_capture2" type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="
                                 document.querySelector('#driver_license_capture2').classList.remove('d-none'),
@@ -233,7 +233,7 @@
                         <center>
                             <div id="driver_license_old_mobile2" class="">
                                 <!-- รูปตัวอย่าง -->
-                                <img width="250" height="150" src="{{ url('storage')}}/{{ $data->driver_license }}">
+                                <img width="250" height="150" src="{{ url('storage')}}/{{ $data->driver_license2 }}">
                             </div>
                             <div id="driver_license_new_mobile2" class="d-none">
                                 <div class="col-12">
