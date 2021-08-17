@@ -182,7 +182,7 @@
                                 <div class="col-12">
                                     <input type="hidden" name="text_img_car" id="text_img_car">
                                     <canvas id="canvas_car" width="250" height="150" class="d-none"></canvas>
-                                    <img src="" width="250" height="150" id="photo_car">
+                                    <img style="margin-left:-10px;" src="" width="250" height="150" id="photo_car">
                                 </div>
                             </div>
                         </center>
@@ -239,7 +239,7 @@
                                 <div class="col-12">
                                     <input type="hidden" name="text_img_motor" id="text_img_motor">
                                     <canvas id="canvas_motor" width="250" height="150" class="d-none"></canvas>
-                                    <img src="" width="250" height="150" id="photo_motor">
+                                    <img style="margin-left:-10px;" src="" width="250" height="150" id="photo_motor">
                                 </div>
                             </div>
                         </center>
