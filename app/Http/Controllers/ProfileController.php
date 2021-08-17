@@ -279,36 +279,40 @@ class ProfileController extends Controller
 
         }
 
-        // ใบขับขี่รถยนต์
-        $name_file_car = uniqid('license_car-', true);
-        $output_file_car = "./storage/uploads/".$name_file_car.".png";
+        if (!empty($requestData['text_img_car'])) {
+            // ใบขับขี่รถยนต์
+            $name_file_car = uniqid('license_car-', true);
+            $output_file_car = "./storage/uploads/".$name_file_car.".png";
 
-        $data_64_car = explode( ',', $requestData['text_img_car'] );
+            $data_64_car = explode( ',', $requestData['text_img_car'] );
 
-        $fp_car = fopen($output_file_car, "w+");
- 
-        fwrite($fp_car, base64_decode( $data_64_car[ 1 ] ) );
-         
-        fclose($fp_car);
+            $fp_car = fopen($output_file_car, "w+");
+     
+            fwrite($fp_car, base64_decode( $data_64_car[ 1 ] ) );
+             
+            fclose($fp_car);
 
-        $url_img_car = str_replace("./storage/","",$output_file_car);
-        $requestData['driver_license'] = $url_img_car ;
+            $url_img_car = str_replace("./storage/","",$output_file_car);
+            $requestData['driver_license'] = $url_img_car ;
+        }
+        
+        if (!empty($requestData['text_img_motor'])) {
+            // ใบขับขี่มอไซต์
+            $name_file_motor = uniqid('license_motor-', true);
+            $output_file_motor = "./storage/uploads/".$name_file_motor.".png";
 
-        // ใบขับขี่มอไซต์
-        $name_file_motor = uniqid('license_motor-', true);
-        $output_file_motor = "./storage/uploads/".$name_file_motor.".png";
+            $data_64_motor = explode( ',', $requestData['text_img_motor'] );
 
-        $data_64_motor = explode( ',', $requestData['text_img_motor'] );
+            $fp_motor = fopen($output_file_motor, "w+");
+     
+            fwrite($fp_motor, base64_decode( $data_64_motor[ 1 ] ) );
+             
+            fclose($fp_motor);
 
-        $fp_motor = fopen($output_file_motor, "w+");
- 
-        fwrite($fp_motor, base64_decode( $data_64_motor[ 1 ] ) );
-         
-        fclose($fp_motor);
-
-        $url_img_motor = str_replace("./storage/","",$output_file_motor);
-        $requestData['driver_license2'] = $url_img_motor ;
-
+            $url_img_motor = str_replace("./storage/","",$output_file_motor);
+            $requestData['driver_license2'] = $url_img_motor ;
+        }
+        
         $data = User::findOrFail($id);
         $data->update($requestData);
 
