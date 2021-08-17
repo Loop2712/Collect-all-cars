@@ -224,10 +224,10 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $requestData = $request->all();
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         if ($request->hasFile('driver_license')) {
             $requestData['driver_license'] = $request->file('driver_license')->store('uploads', 'public');
