@@ -279,6 +279,20 @@ class ProfileController extends Controller
 
         }
 
+        // ใบขับขี่รถยนต์
+        $name_file_car = uniqid('license_car-', true);
+        $output_file_car = "./storage/uploads/".$name_file_car.".png";
+
+        $data_64_car = explode( ',', $requestData['text_img_car'] );
+
+        $fp_car = fopen($output_file_car, "w+");
+ 
+        fwrite($fp_car, base64_decode( $data_64_car[ 1 ] ) );
+         
+        fclose($fp_car);
+
+        $requestData['driver_license'] = $output_file_car ;
+
         $data = User::findOrFail($id);
         $data->update($requestData);
 
