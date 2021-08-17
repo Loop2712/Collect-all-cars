@@ -60,6 +60,7 @@
                             </span>
                         </center>
                         <br>
+                        @if(Auth::user()->id == $data->id )
                         <div class="row">
                             <div class="col-12">
                                 <div style="float:right;">
@@ -80,6 +81,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <hr>
                     @if(Auth::check())
