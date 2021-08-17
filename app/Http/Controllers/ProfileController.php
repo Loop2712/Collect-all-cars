@@ -291,7 +291,23 @@ class ProfileController extends Controller
          
         fclose($fp_car);
 
-        $requestData['driver_license'] = $output_file_car ;
+        $url_img_car = str_replace("./storage/","",$output_file_car);
+        $requestData['driver_license'] = $url_img_car ;
+
+        // ใบขับขี่มอไซต์
+        $name_file_motor = uniqid('license_motor-', true);
+        $output_file_motor = "./storage/uploads/".$name_file_motor.".png";
+
+        $data_64_motor = explode( ',', $requestData['text_img_motor'] );
+
+        $fp_motor = fopen($output_file_motor, "w+");
+ 
+        fwrite($fp_motor, base64_decode( $data_64_motor[ 1 ] ) );
+         
+        fclose($fp_motor);
+
+        $url_img_motor = str_replace("./storage/","",$output_file_motor);
+        $requestData['driver_license2'] = $url_img_motor ;
 
         $data = User::findOrFail($id);
         $data->update($requestData);
