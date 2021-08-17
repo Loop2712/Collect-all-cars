@@ -46,7 +46,7 @@
                     </a>
                 </div>
                 <div class="col-6">
-                    <div style="float:right;">
+                    <!-- <div style="float:right;">
                         @if(!empty($type_car))
                             @switch($type_car)
                                 @case('all')
@@ -62,7 +62,7 @@
                                 @break
                             @endswitch
                         @endif
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

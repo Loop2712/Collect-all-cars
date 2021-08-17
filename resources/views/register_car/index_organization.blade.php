@@ -47,6 +47,9 @@
                 </div>
                 <div class="col-6">
                     <div style="float:right;">
+                        <img class="" id="img_show_car" width="120" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
+                    </div>
+                    <!-- <div style="float:right;">
                         <img class="" id="img_show_car" width="100" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         @if(!empty($type_car))
@@ -64,7 +67,7 @@
                                 @break
                             @endswitch
                         @endif
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
