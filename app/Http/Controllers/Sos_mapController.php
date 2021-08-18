@@ -199,15 +199,14 @@ class Sos_mapController extends Controller
         switch ($data['area']) {
             case 'ViiCHECK':
                 $body = [
-                    "to" => "U912994894c449f2237f73f18b5703e89",
+                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
                     "messages" => $messages,
                 ];
 
                 $body_location = [
-                    "to" => "U912994894c449f2237f73f18b5703e89",
+                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
                     "messages" => $messages_location,
                 ];
-                // Cba50fb3f4750133fde6d5fab2b2fc04d
                 break;
             case 'KMUTNB':
                 $body = [
