@@ -491,6 +491,7 @@
 
 <!-- ------------------------------------------------- แสดงเฉพาะมือถือ ----------------------------------- -->
 <div class="container d-block d-md-none">
+    @if(Auth::user()->id == $data->id )
     <div class="row">
         <div class="col-12">
             <div style="float:right;">
@@ -502,6 +503,7 @@
             </div>
         </div>
     </div>
+    @endif
     <br>
     <div class="row">
         <div class="col-12">
@@ -546,6 +548,7 @@
                             </span>
                         </center>
                         <br>
+                        @if(Auth::user()->id == $data->id )
                         <div class="row">
                             <div class="col-12">
                                 <div style="float:right;">
@@ -566,6 +569,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <hr>
                     @if(Auth::check())
