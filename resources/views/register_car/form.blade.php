@@ -1,3 +1,4 @@
+<input type="hidden" name="car_type_old" id="car_type_old" value="{{ $car_type_old }}">
 <div>
     <div class="container">
         <div class="row">
@@ -58,7 +59,7 @@
                 <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ' }}</span><span style="color: #FF0033;"> *</span>
                 <br><br>
                 <h4>
-                    <input type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
+                    <input id="btn_type_car" type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
                         document.querySelector('#div_data').classList.remove('d-none'),
 
                         document.querySelector('#div_motor_brand').classList.add('d-none'),
@@ -74,7 +75,7 @@
                   
                     <!-- แสดงเฉพาะมือถือ -->
                     <div class="d-block d-md-none">
-                        <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
+                        <input id="btn_type_motor_mobile" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                             document.querySelector('#div_data').classList.remove('d-none'),
 
                             document.querySelector('#brand_input').classList.add('d-none'),
@@ -90,7 +91,7 @@
                     </div>
                     <!-- แสดงเฉพาะคอม -->
                     <div class="d-none d-lg-block">
-                        <input type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
+                        <input id="btn_type_motor_pc" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                             document.querySelector('#div_data').classList.remove('d-none'),
 
                             document.querySelector('#brand_input').classList.add('d-none'),
@@ -122,10 +123,8 @@
                                 }else{ 
                                     document.querySelector('#brand_input').classList.add('d-none'),
                                     document.querySelector('#generation_input').classList.add('d-none');}">
-                                @if(!empty($xx))
-                                    @foreach($xx as $item)
-                                        <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
-                                    @endforeach
+                                @if(!empty($brand_old))
+                                    <option value="{{ $brand_old }}" selected>{{ $brand_old }}</option>
                                 @else
                                     <option value="" selected> - เลือกยี่ห้อ - </option> 
                                 @endif
@@ -143,7 +142,11 @@
                                 }else{ 
                                     document.querySelector('#brand_input').classList.add('d-none'),
                                     document.querySelector('#generation_input').classList.add('d-none');}">
-                                <option value="" selected> - เลือกยี่ห้อ - </option>
+                                @if(!empty($brand_old))
+                                    <option value="{{ $brand_old }}" selected>{{ $brand_old }}</option>
+                                @else
+                                    <option value="" selected> - เลือกยี่ห้อ - </option> 
+                                @endif
                                 <br>
                                 {!! $errors->first('motor_brand', '<p class="help-block">:message</p>') !!}
                             </select>
@@ -164,7 +167,11 @@
                                     document.querySelector('#generation_input').focus();
                                 }else{ 
                                     document.querySelector('#generation_input').classList.add('d-none');}">
-                                    <option value="" selected> - เลือกรุ่น - </option>     
+                                    @if(!empty($generation_old))
+                                        <option value="{{ $generation_old }}" selected>{{ $generation_old }}</option>
+                                    @else
+                                        <option value="" selected> - เลือกรุ่น - </option> 
+                                    @endif
                                     <br> 
                                     {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                             </select>
@@ -174,7 +181,11 @@
                                     document.querySelector('#generation_input').focus();
                                 }else{ 
                                     document.querySelector('#generation_input').classList.add('d-none');}">
-                                    <option value="" selected> - เลือกรุ่น - </option>     
+                                    @if(!empty($generation_old))
+                                        <option value="{{ $generation_old }}" selected>{{ $generation_old }}</option>
+                                    @else
+                                        <option value="" selected> - เลือกรุ่น - </option> 
+                                    @endif     
                                     <br>  
                                     {!! $errors->first('motor_generation', '<p class="help-block">:message</p>') !!}            
                             </select>
@@ -199,14 +210,25 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
                             <select name="province" id="province" class="form-control" required onchange="check_register_car();">
-                                    <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
-                                    @foreach($location_array as $lo)
-                                    <option 
-                                    value="{{ $lo->province }}" 
-                                    {{ request('province') == $lo->province ? 'selected' : ''   }} >
-                                    {{ $lo->province }} 
-                                    </option>
-                                    @endforeach                                     
+                                    @if(!empty($province_old))
+                                        <option value="{{ $province_old }}" selected>{{ $province_old }}</option>
+                                        @foreach($location_array as $lo)
+                                        <option 
+                                        value="{{ $lo->province }}" 
+                                        {{ request('province') == $lo->province ? 'selected' : ''   }} >
+                                        {{ $lo->province }} 
+                                        </option>
+                                        @endforeach    
+                                    @else
+                                        <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                                        @foreach($location_array as $lo)
+                                        <option 
+                                        value="{{ $lo->province }}" 
+                                        {{ request('province') == $lo->province ? 'selected' : ''   }} >
+                                        {{ $lo->province }} 
+                                        </option>
+                                        @endforeach    
+                                    @endif
                             </select>
                             {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
                         </div>

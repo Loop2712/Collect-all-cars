@@ -404,11 +404,14 @@ class Register_carController extends Controller
                 ->groupBy('province')
                 ->get();
 
-            $xx = Register_car::where('id',$id )->get();
-            // echo "<pre>";
-            // print_r($xx);
-            // echo "<pre>";
-            // exit();
+            $data_car_old = Register_car::where('id',$id )->get();
+
+            foreach ($data_car_old as $item) {
+                $car_type_old =  $item->car_type;
+                $brand_old  = $item->brand;
+                $generation_old  = $item->generation;
+                $province_old  =  $item->province;
+            }
 
             $car_brand = CarModel::selectRaw('brand,count(brand) as count')
                 ->orderByRaw('count DESC')
@@ -429,7 +432,7 @@ class Register_carController extends Controller
                 ->where('car_type', 'motorcycle')
                 ->get();
 
-            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization' , 'select_Organization'));
+            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle', 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization' , 'select_Organization','car_type_old','brand_old','generation_old','province_old'));
         }
     }
     public function edit_act($id)
