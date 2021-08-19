@@ -20,7 +20,7 @@ class ImageController extends Controller
 
     function base64_to_jpeg($base64_string) {
 
-    	$path = './img/ocr/img_register.png';
+    	$path = public_path('img/ocr/img_register.png');
 
     	$data = explode( ',', $base64_string );
 
