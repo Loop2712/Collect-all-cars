@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 
+use Google\Cloud\Vision\VisionClient;
+
 class ImageController extends Controller
 {
     public function img_register()
@@ -18,11 +20,12 @@ class ImageController extends Controller
 
     function base64_to_jpeg($base64_string) {
 
-    	$output_file = "./img/ocr/img_register.png";
+    	// $path = './img/ocr/img_register.png';
+    	$path = storage_path('app\public\ocr\img_register.png');
 
     	$data = explode( ',', $base64_string );
 
-		$fp = fopen($output_file, "w+");
+		$fp = fopen($path, "w+");
  
 		// write the data in image file
 		fwrite($fp, base64_decode( $data[ 1 ] ) );
@@ -30,6 +33,23 @@ class ImageController extends Controller
 		// close an open file pointer
 		fclose($fp);
 
-		// return $output_file; 
+		$this->detectText($path);
+
 	}
+
+	public function detectText($path)
+    {
+        $key_path = storage_path('app\public\ckartisan-c48273251fdf.json');
+        // echo $key_path;
+        // echo"<br>";
+        // echo $path  ;
+        // exit();
+        $vision = new VisionClient(['keyFile' => json_decode(file_get_contents($key_path), true)]);         
+        $image = $vision->image(file_get_contents($path), [ 'TEXT_DETECTION' ] );        
+        $result = $vision->annotate($image);
+        print_r($result); exit;
+        $texts = $result->text();
+  
+
+    }
 }
