@@ -47,7 +47,6 @@ class ImageController extends Controller
 
         print_r($result); exit;
         $texts = $result->text();
-  
 
     }
 }
