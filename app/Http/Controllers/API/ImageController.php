@@ -32,20 +32,19 @@ class ImageController extends Controller
 		// close an open file pointer
 		fclose($fp);
 
-		// $this->detectText($path);
+		$this->detectText();
 
 	}
 
-	public function detectText($path)
+	public function detectText()
     {
-        $key_path = storage_path('app/public/ckartisan-c48273251fdf.json');
-        echo $key_path;
-        echo"<br>";
-        echo $path  ;
-        exit();
-        $vision = new VisionClient(['keyFile' => json_decode(file_get_contents($key_path), true)]);         
-        $image = $vision->image(file_get_contents($path), [ 'TEXT_DETECTION' ] );        
+        $vision = new VisionClient(['keyFile' => json_decode('./ckartisan-c48273251fdf.json', true)]);  
+
+        $img_register = fopen('./img/ocr/img_register.png', 'r');
+
+        $image = $vision->image($img_register, [ 'TEXT_DETECTION' ] );        
         $result = $vision->annotate($image);
+
         print_r($result); exit;
         $texts = $result->text();
   
