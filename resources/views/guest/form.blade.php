@@ -144,9 +144,9 @@
                         </div>
                         
                         <div class="col-12">
-                            <input type="text" name="" id="text_img">
-                            <canvas id="canvas" width="250" height="100"></canvas>
-                            <img src="" width="250" height="100" id="photo2">
+                            <input type="hidden" name="" id="text_img">
+                            <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
+                            <img  src="" width="250" height="100" id="photo2">
                         </div>
                     </div>
                 </div>
