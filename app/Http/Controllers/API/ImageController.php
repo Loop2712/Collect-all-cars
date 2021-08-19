@@ -40,10 +40,10 @@ class ImageController extends Controller
 	public function detectText($path)
     {
         $key_path = storage_path('app\public\ckartisan-c48273251fdf.json');
-        // echo $key_path;
-        // echo"<br>";
-        // echo $path  ;
-        // exit();
+        echo $key_path;
+        echo"<br>";
+        echo $path  ;
+        exit();
         $vision = new VisionClient(['keyFile' => json_decode(file_get_contents($key_path), true)]);         
         $image = $vision->image(file_get_contents($path), [ 'TEXT_DETECTION' ] );        
         $result = $vision->annotate($image);

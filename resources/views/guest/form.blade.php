@@ -411,9 +411,9 @@
         }).then(function (response){
             return response.text();
         }).then(function(text){
-            console.log(text);
+            // console.log(text);
         }).catch(function(error){
-            console.error(error);
+            // console.error(error);
         });
 
     }
@@ -516,7 +516,7 @@
     }
 
     function show_phone(){
-        console.log("show_phone"); 
+        // console.log("show_phone"); 
 
         var name = document.querySelector('#name');
             name.classList.remove('d-none');
@@ -536,7 +536,7 @@
     }
 
     function not_show_phone(){
-        console.log("not_show_phone"); 
+        // console.log("not_show_phone"); 
 
         var name = document.querySelector('#name');
             name.classList.add('d-none');
@@ -580,7 +580,7 @@
         fetch("{{ url('/') }}/api/add_reg_id/"+registration.value+"/"+county.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 //UPDATE SELECT OPTION
                 for(let item of result){
                     register_car_id.value = item.id;
