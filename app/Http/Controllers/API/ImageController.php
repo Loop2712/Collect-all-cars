@@ -20,8 +20,7 @@ class ImageController extends Controller
 
     function base64_to_jpeg($base64_string) {
 
-    	// $path = './img/ocr/img_register.png';
-    	$path = storage_path('app/public/ocr/img_register.png');
+    	$path = './img/ocr/img_register.png';
 
     	$data = explode( ',', $base64_string );
 
@@ -33,7 +32,7 @@ class ImageController extends Controller
 		// close an open file pointer
 		fclose($fp);
 
-		$this->detectText($path);
+		// $this->detectText($path);
 
 	}
 
