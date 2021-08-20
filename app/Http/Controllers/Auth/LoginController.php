@@ -156,6 +156,7 @@ class LoginController extends Controller
             $user->provider_id = $data->id;
             $user->type = $type;
             $user->username = $data->name;
+            $user->status = "active";
 
             if (!empty($data->email)) {
                 $user->email = $data->email;

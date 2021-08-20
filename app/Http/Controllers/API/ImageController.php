@@ -38,7 +38,7 @@ class ImageController extends Controller
 
 	public function detectText()
     {
-        $vision = new VisionClient(['keyFile' => json_decode(public_path('ckartisan-c48273251fdf.json'), true)]);  
+        $vision = new VisionClient(['keyFile' => json_decode(public_path('ckartisan-c48273251fdf.json'), true)]); 
 
         $img_register = fopen(public_path('img/ocr/img_register.png'), 'r');
 
