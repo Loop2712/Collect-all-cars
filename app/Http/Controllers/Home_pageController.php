@@ -11,12 +11,6 @@ class Home_pageController extends Controller
 {
      public function home_page()
     {
-        DB::table('users')
-                ->where('status', null)
-                ->update([
-                    'status' => "active",
-                ]);
-
         $register_car = Register_car::selectRaw('count(id) as count')
                         ->where('car_type', 'car')
                         ->get();
