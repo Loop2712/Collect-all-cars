@@ -231,4 +231,3 @@ Route::get('/test_ocr', function () {
     
     return view('test_ocr');
 });
-

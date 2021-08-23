@@ -264,7 +264,7 @@
         fetch("https://dataapi.moc.go.th/juristic?juristic_id="+juristicID.value)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 fetch("{{ url('/') }}/api/juristic", {
                     method: 'post',
@@ -275,9 +275,9 @@
                 }).then(function (response){
                     return response.text();
                 }).then(function(text){
-                    console.log(text);
+                    // console.log(text);
                 }).catch(function(error){
-                    console.error(error);
+                    // console.error(error);
                 });
 
                 if (result == null) {

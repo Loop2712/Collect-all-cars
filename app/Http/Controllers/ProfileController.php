@@ -417,4 +417,14 @@ class ProfileController extends Controller
 
         exit();
     }
+
+    public function cancel_Profile($id,$reason,$reason_other,$amend)
+    {
+        // echo $id."<br>" ;
+        // echo $reason."<br>" ;
+        // echo $reason_other."<br>" ;
+        // echo $amend."<br>" ;
+        exit();
+    }
+
 }

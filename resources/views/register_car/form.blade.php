@@ -1,4 +1,6 @@
+@if(!empty($car_type_old))
 <input type="hidden" name="car_type_old" id="car_type_old" value="{{ $car_type_old }}">
+@endif
 <div>
     <div class="container">
         <div class="row">
