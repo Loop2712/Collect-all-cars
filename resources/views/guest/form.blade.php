@@ -340,6 +340,39 @@
   </div>
 </div>
 
+<!-- รถยกเลิกไปแล้ว -->
+<!-- Button trigger modal -->
+<button id="btn_car_cancel"  class="d-none" data-toggle="modal" data-target="#car_cancel"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="car_cancel" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Warning <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+            <img width="50%" src="{{ asset('/img/icon/cry.png') }}">
+            <br><br>
+            <h5 class="text-danger">
+                ขออภัยค่ะ รถคันนี้เจ้าของรถ<br>
+                ได้ทำการยกเลิกแล้ว
+            </h5>
+            <br>
+        </center>
+      </div>
+      <div class="modal-footer d-none">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -580,12 +613,16 @@
         fetch("{{ url('/') }}/api/add_reg_id/"+registration.value+"/"+county.value)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                // console.log(result[0].active);
                 //UPDATE SELECT OPTION
                 for(let item of result){
                     register_car_id.value = item.id;
                     organization.value = item.juristicNameTH;
                     // console.log(registration_car);
+                }
+
+                if (result[0].active === "No") {
+                    document.querySelector('#btn_car_cancel').click();
                 }
                 
             });
