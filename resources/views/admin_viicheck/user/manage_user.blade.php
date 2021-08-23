@@ -215,6 +215,22 @@
                             @foreach($all_user as $item)
                             <div class="col-12">
                                 <div class="row">
+                                    <div class="col-12">
+                                        <div class="">
+                                            @switch($item->status)
+                                                @case('active')
+                                                    <p class="btn btn-sm btn-success " href="">
+                                                        <i class="fas fa-check"></i> Active
+                                                    </p>
+                                                @break
+                                                @case('expired')
+                                                    <p class="btn btn-sm btn-danger " href="">
+                                                        <i class="fas fa-times"></i> Expired
+                                                    </p>
+                                                @break
+                                            @endswitch
+                                        </div>
+                                    </div>
                                     <div class="col-9">
                                         <h5 class="text-success">
                                             <span style="font-size: 15px;">
