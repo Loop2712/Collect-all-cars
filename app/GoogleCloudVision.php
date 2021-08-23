@@ -19,7 +19,7 @@ class GoogleCloudVision //extends Model
         
         //CALL GOOGLE VISION OBJECT AND DO TEXT DETECTION
         // AIzaSyAYROqDzrounZaB4J8etaV4yhBhhELZNE8
-        $key_path = storage_path('app/public/viicheck-31bb20f48c28.json');
+        $key_path = storage_path('app/public/viicheck-7eacf7f234d1.json');
         $vision = new VisionClient(['keyFile' => json_decode(file_get_contents($key_path), true)]);         
         $image = $vision->image(public_path('/img/ocr/img_register.png'), [ 'TEXT_DETECTION' ] );        
         $result = $vision->annotate($image);
