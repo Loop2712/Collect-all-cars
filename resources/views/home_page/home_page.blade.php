@@ -19,6 +19,31 @@
     </div>
 
   </section>
+    @if(Auth::check())
+      <!-- MODAL ยินดีต้อนรับกลับมา -->
+      <button  id="btn_welcome_home" class="d-none" data-toggle="modal" data-target="#welcome_home">
+      </button>
+      <div id="welcome_home" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog ">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="col-12">
+                <center>
+                  <img style="width:100%;position:absolute;" src="{{ url('/') }}/img/more/giphy.gif">
+                  <img style="width:80%;position:absolute;right: 50px;" src="{{ url('/') }}/img/more/1360.gif">
+                  <img style="width:100%;position: relative;" src="{{ url('/') }}/img/stickerline/PNG/3.png">
+                  <br><br>
+                  <h2>ยินดีต้อนรับกลับมา</h2>
+                  <h1 class="text-primary"><b>คุณ {{ Auth::user()->name }}</b></h1>
+                  <p>วีคิดถึงคุณที่สุด คุณหายไปตั้ง {{ $cancel_ago }}</p>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- สิ้นสุด MODAL ยินดีต้อนรับกลับมา -->
+    @endif
     <section id="why-us" class="why-us">
       <div class="container">
 

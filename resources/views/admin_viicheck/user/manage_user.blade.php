@@ -76,8 +76,8 @@
                                     </div>
                                     <div class="col-2">
                                         <center>
-                                            <b>เปลี่ยนสถานะ</b><br>
-                                            Change role
+                                            <b>สถานะ</b><br>
+                                            Status
                                         </center>
                                     </div>
                                 </div>
@@ -131,16 +131,18 @@
                                         </div>
                                         <div class="col-2">
                                             <center>
-                                                <div class="btn-group">
-                                                  <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    เปลี่ยน <i class="fas fa-sync"></i>
-                                                  </button>
-                                                  <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ url('/manage_user/change_ToGuest') }}?id={{ $item->id }}">&nbsp;<i class="fas fa-user "></i> Guest</a>
-                                                    <a class="dropdown-item" href="{{ url('/manage_user/change_ToJS100') }}?id={{ $item->id }}"><img width="25" src="https://m.thaiware.com/upload_misc/software/2017_07/thumbnails/13243_170703102646Yi.jpg">&nbsp;&nbsp; JS100</a>
-                                                    <a class="dropdown-item" href="{{ url('/manage_user/change_ToAdmin') }}?id={{ $item->id }}"><img width="30" src="https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png"> Admin</a>
-                                                  </div>
-                                                </div>
+                                                @switch($item->status)
+                                                    @case('active')
+                                                        <p class="btn btn-sm btn-success " href="">
+                                                            <i class="fas fa-check"></i> Active
+                                                        </p>
+                                                    @break
+                                                    @case('expired')
+                                                        <p class="btn btn-sm btn-danger " href="">
+                                                            <i class="fas fa-times"></i> Expired
+                                                        </p>
+                                                    @break
+                                                @endswitch
                                             </center>
                                         </div>
                                     </div>

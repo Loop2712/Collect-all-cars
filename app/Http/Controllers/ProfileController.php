@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Sos_map;
 use App\Models\Guest;
+use App\Models\Cancel_Profile;
 
 class ProfileController extends Controller
 {
@@ -420,11 +421,103 @@ class ProfileController extends Controller
 
     public function cancel_Profile($id,$reason,$reason_other,$amend)
     {
-        // echo $id."<br>" ;
-        // echo $reason."<br>" ;
-        // echo $reason_other."<br>" ;
-        // echo $amend."<br>" ;
-        exit();
+        $requestData['user_id'] = $id ;
+
+        switch ($reason) {
+            case '1':
+                $requestData['reason'] = "ไม่ต้องการใช้บริการอีกต่อไป" ;
+                break;
+            case '2':
+                $requestData['reason'] = "ไม่ได้รับความสะดวกสบายการการใช้บริการ" ;
+                break;
+            case '3':
+                $requestData['reason'] = "ไม่ได้รับประโยชน์จากการใช้บริการ" ;
+                break;
+            case '4':
+                $requestData['reason'] = "อื่นๆ" ;
+                break;
+        }
+
+        if ($reason_other == "null") {
+            $requestData['reason_other'] = null ;
+        }else {
+            $requestData['reason_other'] = $reason_other ;
+        }
+
+        if ($amend == "null") {
+            $requestData['amend'] = null ;
+        }else {
+            $requestData['amend'] = $amend ;
+        }
+
+        Cancel_Profile::create($requestData);
+
+        DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'status' => "expired",
+                ]);
+
+        DB::table('data_cars')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "No",
+                ]);
+
+        DB::table('motorcycles_datas')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "No",
+                ]);
+
+        DB::table('news')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "No",
+                ]);
+
+        DB::table('register_cars')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "No",
+                ]);
+
+        return $id;
+    }
+
+    public function welcome_home($id)
+    {
+        DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'status' => "active",
+                ]);
+
+        DB::table('data_cars')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "Yes",
+                ]);
+
+        DB::table('motorcycles_datas')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "Yes",
+                ]);
+
+        DB::table('news')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "Yes",
+                ]);
+
+        DB::table('register_cars')
+                ->where('user_id', $id)
+                ->update([
+                    'active' => "Yes",
+                ]);
+
+        return $id;
     }
 
 }

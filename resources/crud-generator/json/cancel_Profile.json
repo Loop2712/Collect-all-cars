@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "reason",
+            "type": "string"
+        },
+        {
+            "name": "reason_other",
+            "type": "string"
+        },
+        {
+            "name": "amend",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        }
+    ]
+}

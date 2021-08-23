@@ -77,7 +77,7 @@
                   document.querySelector('#reason_other').focus();">
               <label for="4">&nbsp;&nbsp;อื่นๆ</label><br>
 
-              <input class="form-control d-none" type="text" name="reason_other" id="reason_other" value="" onchange="document.querySelector('#btn_next_1').classList.remove('d-none');">
+              <input class="form-control d-none" type="text" name="reason_other" id="reason_other" value="" onkeydown="document.querySelector('#btn_next_1').classList.remove('d-none');">
             </div>
           </div>
         </div>
@@ -172,5 +172,7 @@
       }
 
       fetch("{{ url('/') }}/api/confirm_cancel/"+id_user+"/"+reason+"/"+reason_other+"/"+amend+"/profile");
+      
+      document.querySelector('#btn_logout').click();
     }
 </script>

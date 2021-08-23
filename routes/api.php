@@ -66,6 +66,8 @@ Route::post('/img_register/','API\ImageController@img_register');
 
 // cancel_Profile
 Route::get('/confirm_cancel/{id_user}/{reason}/{reason_other}/{amend}/profile','ProfileController@cancel_Profile');
+// welcome_home
+Route::get('/welcome_home/{status_id}/profile','ProfileController@welcome_home');
 
 
 

@@ -238,6 +238,9 @@
       </a>
           
       @else
+      <input id="status_user" type="hidden" name="" value="{{ Auth::user()->status }}">
+      <input id="status_id" type="hidden" name="" value="{{ Auth::user()->id }}">
+      
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
         <li>
@@ -282,7 +285,7 @@
                     @endif
                 </li>
                 <li>
-                    <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <a id="btn_logout" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     🏃‍♂️ &nbsp;{{ __(' Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                       @csrf
@@ -418,6 +421,8 @@
     </div>
   </footer>
 
+
+
     <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -470,6 +475,14 @@
                     
                     
                 });
+
+        var status_user = document.querySelector('#status_user').value;
+        var status_id = document.querySelector('#status_id').value;
+
+        if (status_user === 'expired') {
+          document.querySelector('#btn_welcome_home').click();
+          fetch("{{ url('/') }}/api/welcome_home/"+status_id+"/profile");
+        }
     });
 </script>
 </body>

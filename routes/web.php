@@ -231,3 +231,5 @@ Route::get('/test_ocr', function () {
     
     return view('test_ocr');
 });
+
+Route::resource('cancel_-profile', 'Cancel_ProfileController');
