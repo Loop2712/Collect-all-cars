@@ -18,7 +18,8 @@ class GoogleCloudVision //extends Model
         //https://onlinelearningportal.website/google-vision-api-implementation-with-laravel-5-8/
         
         //CALL GOOGLE VISION OBJECT AND DO TEXT DETECTION
-        $key_path = storage_path('app/public/ckartisan-c48273251fdf.json');
+        // AIzaSyAYROqDzrounZaB4J8etaV4yhBhhELZNE8
+        $key_path = storage_path('app/public/viicheck-31bb20f48c28.json');
         $vision = new VisionClient(['keyFile' => json_decode(file_get_contents($key_path), true)]);         
         $image = $vision->image(public_path('/img/ocr/img_register.png'), [ 'TEXT_DETECTION' ] );        
         $result = $vision->annotate($image);
