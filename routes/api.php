@@ -62,7 +62,11 @@ Route::get('/motor_middle_price','API\Brand_middle_price_carsController@getMotor
 Route::get('/motor_middle_price/{motor_brand}/model','API\Brand_middle_price_carsController@getMotorModel');
 
 // OCR
-Route::get('/ocr_capture/{img}','API\OcrController@ocr_capture');
+Route::post('/img_register/','API\ImageController@img_register');
+
+// cancel_Profile
+Route::get('/confirm_cancel/{id_user}/{reason}/{reason_other}/{amend}/profile','ProfileController@cancel_Profile');
+
 
 
 

@@ -154,6 +154,12 @@
           0%   {left:0px; top:-160px; opacity: 0.1;}
           100% {left:0px; top:0px; opacity: 1;}
         }
+        .footer-bottom { /* ส่วนด้านล่าง */
+          position:absolute;
+          width:100%;
+          bottom:0; /* stick to bottom */
+          text-align:center;
+        }
 
     </style>
     
@@ -255,11 +261,6 @@
                   <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/tab.png') }}">&nbsp;โปรไฟล์
                 </li>
                 </a>
-                @if(!empty(Auth::user()->organization))
-                    <li><a href="{{ url('/register_car') }}">🚗 &nbsp;รถองค์กร</a></li>
-                @else
-                    <li><a href="{{ url('/register_car') }}">🚗 &nbsp;รถของฉัน</a></li>
-                @endif
                 <li>
                     @if(Auth::check())
                         <!-- @if(Auth::user()->role == "admin" )
@@ -290,7 +291,15 @@
               </ul>
           </li>
         </ul>
-        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
+        @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
+            <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
+        @endif
+        @if(!empty(Auth::user()->photo))
+            <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+        @endif
+        @if(empty(Auth::user()->avatar) and empty(Auth::user()->photo))
+            <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ url('/img/icon/user.png') }}">
+        @endif
       </nav>
       @endguest
       <!-- .navbar -->
@@ -301,7 +310,8 @@
     @yield('content')
 
 <!-- ======= Footer WEB ======= -->
-  <footer class="d-none d-lg-block" id="footer">
+  <br><br>
+  <footer class="d-none d-lg-block footer-bottom" id="footer">
     <div class="container d-md-flex py-3">
       <div class="me-md-auto text-center text-md-start">
         <div class="credits">

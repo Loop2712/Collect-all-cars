@@ -57,62 +57,29 @@
 
                         </form>
                     </div>
-                    @if(!empty(Auth::user()->organization))
-                        <a id="click_organization" type="hidden" onclick="not_empty_organization();"></a>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
+    <br><br><br>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        document.getElementById("click_organization").click();
+        // console.log("");
     });
-    function not_empty_organization(){
-
-        document.querySelector('#row_general').classList.add('d-none');
-        document.querySelector('#div_general').classList.add('d-none');
-        document.querySelector('#div_information').classList.add('d-none');
-        document.querySelector('#information').classList.add('d-none');
-        document.querySelector('#btn_rg_organization').classList.add('d-none');
-
-        document.querySelector('#row_organization').classList.remove('d-none');
-        document.querySelector('#div_organization').classList.remove('d-none');
-        document.querySelector('#btn_back_pc').classList.add('d-none');
-        document.querySelector('#btn_back').classList.add('d-none');
-
-        add_required();
-        select_location();
-        document.getElementById("check_branch_not_empty").click();
-
-    }
     function show_organization(){
+
         document.querySelector('#row_general').classList.add('d-none');
         document.querySelector('#btn_rg_organization').classList.add('d-none');
 
+        document.querySelector('#blade_organization').classList.remove('d-none');
+
         document.querySelector('#row_organization').classList.remove('d-none');
-        document.querySelector('#div_organization').classList.remove('d-none');
         document.querySelector('#btn_back').classList.remove('d-none');
         document.querySelector('#btn_back_pc').classList.remove('d-none');
 
         add_required();
-        select_location();
-        document.getElementById("check_branch_not_empty").click();
     }
-    function select_location(){
-
-        var location = document.querySelector('#location');
-        var location_P_2 = document.querySelector('#location_P_2');
-
-        location.value = location_P_2.value;
-
-        var phone = document.querySelector('#phone');
-        var phone_2 = document.querySelector('#phone_2');
-
-        phone.value = phone_2.value;
-    }
-
+    
     function add_required(){ 
 
         // องค์กร
@@ -122,6 +89,9 @@
         var location_A_2 = document.querySelector('#location_A_2');
         var phone_2 = document.querySelector('#phone_2');
         var juristicNameTH = document.querySelector('#juristicNameTH');
+        var branch = document.querySelector('#branch');
+        var branch_province = document.querySelector('#branch_province');
+        var branch_district = document.querySelector('#branch_district');
 
         // juristicID.setAttributeNode(document.createAttribute('required'));
         organization_mail.setAttributeNode(document.createAttribute('required'));
@@ -130,7 +100,16 @@
         phone_2.setAttributeNode(document.createAttribute('required'));
         juristicNameTH.setAttributeNode(document.createAttribute('required'));
 
+        juristicNameTH.value = "{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : $juristicNameTH}}";
+        location_A_2.value = "{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  $juristicDistrict }}";
+        location_P_2.value = "{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  $juristicProvince }}";
+        organization_mail.value = "{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  $juristicMail }}";
+        phone_2.value = "{{ $juristicPhone }}";
+        juristicID.value = "{{ isset($register_car->juristicID) ? $register_car->juristicID :  $juristicID }}";
 
+        branch.value = "{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}";
+        branch_province.value = "{{ isset($register_car->branch_province) ? $register_car->branch_province :  Auth::user()->branch_province }}";
+        branch_district.value = "{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}";
     }
 
 </script>

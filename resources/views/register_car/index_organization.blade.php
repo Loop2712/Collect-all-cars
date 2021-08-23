@@ -13,9 +13,9 @@
             </a>
             <div style="float:right;">
                 <a href="{{ url('/profile') }}" type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลโปรไฟล์</a>
-                <a href="{{ url('/register_car') }}" type="button" class="btn btn-danger text-white main-shadow main-radius">ข้อมูลรถของฉัน</a>
+                <a href="{{ url('/register_car') }}" type="button" class="btn btn-outline-danger text-danger main-shadow main-radius">ข้อมูลรถของฉัน</a>
                 @if(!empty($organization))
-                    <a href="{{ url('/register_car_organization') }}" type="button" class="btn btn-outline-danger text-danger">ข้อมูลรถองค์กร</a>
+                    <a href="{{ url('/register_car_organization') }}" type="button" class="btn btn-danger text-white main-shadow main-radius">ข้อมูลรถองค์กร</a>
                 @endif
             </div>
         </div>
@@ -25,28 +25,33 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-2">
-                    <a href="{{ url('/register_car') }}?type=all">
+                    <a href="{{ url('/register_car_organization') }}?type=all">
                         <button id="btn_type_all" style="width: 100%;"  class="btn btn-sm btn-danger main-shadow main-radius">
                             ทั้งหมด
                         </button>
                     </a>
                 </div>
                 <div class="col-2">
-                    <a href="{{ url('/register_car') }}?type=car">
+                    <a href="{{ url('/register_car_organization') }}?type=car">
                         <button id="btn_type_car" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถยนต์
                         </button>
                     </a>
                 </div>
                 <div class="col-2">
-                    <a href="{{ url('/register_car') }}?type=motorcycle">
+                    <a href="{{ url('/register_car_organization') }}?type=motorcycle">
                         <button id="btn_type_motorcycle" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถจักรยานยนต์
                         </button>
                     </a>
                 </div>
                 <div class="col-6">
+                    <div style="float:right;">
+                        <img class="" id="img_show_car" width="120" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
+                    </div>
                     <!-- <div style="float:right;">
+                        <img class="" id="img_show_car" width="100" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         @if(!empty($type_car))
                             @switch($type_car)
                                 @case('all')
@@ -77,7 +82,7 @@
                         <div class="card  order-card">
                             <div class="card-block">
                                 <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-primary main-shadow main-radius">
-                                    <b>ส่วนบุคคล</b>
+                                    <b>{{ $juristicNameTH }}</b>
                                 </button>
                                 <p class="text-right" style="font-size:15px">
                                     <a href="{{ url('/register_car/' . $item->id . '/edit') }}" class="text-right" style="margin: 5px 10px 0px 0px; font-size:15px">
@@ -149,9 +154,9 @@
                                                 @else
                                                     <h5>
                                                         <span style="font-size: 13px; margin: 0px 10px;">
-                                                        <a class="btn btn-warning btn-md  main-shadow main-radius " style="padding:2px 0px;  width: 90%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">
-                                                            <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;<b>พรบ.</b></i>
-                                                        </a>
+                                                            <a class="btn btn-warning btn-md  main-shadow main-radius " style="padding:2px 0px;  width: 90%;" href="{{ url('/register_car/' . $item->id . '/edit_act') }}">
+                                                                <i class="fas fa-pencil-alt" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;<b>พรบ.</b></i>
+                                                            </a>
                                                         </span>
                                                     </h5>
                                                     <span style="font-size: 13px;">
@@ -160,7 +165,7 @@
                                                         </a>
                                                     </span>
                                                     <br>
-                                            @endif
+                                                @endif
                                             </center>  
                                             </div>
                                             <div class="col-6 col-md-6">
@@ -261,13 +266,13 @@
                         <button class="btn btn-outline-danger text-danger">โปรไฟล์</button>
                     </a>
                     <a href="{{ url('/register_car') }}">
-                        <button class="btn btn-danger text-white main-shadow main-radius">
+                        <button class="btn btn-outline-danger text-danger">
                             รถของฉัน
                         </button>
                     </a>
                     @if(!empty($organization))
                     <a href="{{ url('/register_car_organization') }}">
-                        <button class="btn btn-outline-danger text-danger">
+                        <button class="btn btn-danger text-white main-shadow main-radius">
                             รถองค์กร
                         </button>
                     </a>
@@ -277,6 +282,7 @@
         </div>
         <div class="col-12">
             <br>
+            <img class="" id="img_show_car" width="120" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
             <a style="float:right;" href="{{ url('/register_car/create') }}" class="btn btn-success main-shadow main-radius" title="Add New Register_car">
                 <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
             </a>
@@ -287,21 +293,21 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-4">
-                    <a href="{{ url('/register_car') }}?type=all">
+                    <a href="{{ url('/register_car_organization') }}?type=all">
                         <button id="btn_type_all_mobile" style="width: 100%;"  class="btn btn-sm btn-danger main-shadow main-radius">
                             ทั้งหมด
                         </button>
                     </a>
                 </div>
                 <div class="col-4">
-                    <a href="{{ url('/register_car') }}?type=car">
+                    <a href="{{ url('/register_car_organization') }}?type=car">
                         <button id="btn_type_car_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถยนต์
                         </button>
                     </a>
                 </div>
                 <div class="col-4">
-                    <a href="{{ url('/register_car') }}?type=motorcycle">
+                    <a href="{{ url('/register_car_organization') }}?type=motorcycle">
                         <button id="btn_type_motorcycle_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             จักรยานยนต์
                         </button>
@@ -319,8 +325,8 @@
                     <div class="main-shadow" style="padding:15px;">
                         <div class="card  order-card">
                             <div class="card-block">
-                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-primary main-shadow main-radius">
-                                    <b>ส่วนบุคคล</b>
+                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-success main-shadow main-radius">
+                                    <b>{{ $juristicNameTH }}</b>
                                 </button>
                                 <p class="text-right" style="font-size:15px">
                                     <a href="{{ url('/register_car/' . $item->id . '/edit') }}" class="text-right" style="margin: 5px 10px 0px 0px; font-size:15px">

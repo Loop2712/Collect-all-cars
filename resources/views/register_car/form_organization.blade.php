@@ -1,23 +1,25 @@
 
-<div id="div_organization" class="d-none">
+<div id="div_organization" class="">
     <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร' }}</span><span style="color: #FF0033;"> *<br><br></span>
 
     @if(empty($juristicID))
         <div id="empty_juristicID">
             <div class="row" id="div_selest_organization_1">
                 <div class="col-12 col-md-4">
-                    <label  class="control-label">{{ 'เลือกองค์กร' }}</label><span style="color: #FF0033;"> *</span>
+                    <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
             </div>
             <div class="row" id="div_selest_organization_2">
                 <div class="col-12 col-md-4">
                     <div class="form-group">
-                        <select name="selest_organization" id="selest_organization" class="form-control" onchange="change_selest_organization();">
+                        <input class="form-control" name="selest_organization" type="text" id="selest_organization" value=""  pattern="[0-9]{13}" onchange="change_selest_organization();" placeholder="เลขทะเบียนนิติบุคคล">
+
+                        <!-- <select name="selest_organization" id="selest_organization" class="form-control" onchange="change_selest_organization();">
                                 <option value="" selected > - กรุณาเลือกองค์กร - </option>
                                 @foreach($select_Organization as $item)
                                     <option value="{{ $item->juristicNameTH }}">{{ $item->juristicNameTH }}</option>
                                 @endforeach
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
@@ -116,7 +118,6 @@
                             show_location_P_branch();
                         }else{
                             document.querySelector('#show_branch_empty').classList.add('d-none'); 
-                            select_location();
                             clear_input();
                         }">&nbsp;&nbsp;&nbsp;ไม่ใช่สำนักงานใหญ่
                 <br><br>
@@ -160,7 +161,7 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('juristicID') ? 'has-error' : ''}}">
-                        <input class="form-control" name="juristicID" type="text" id="juristicID" value="{{ isset($register_car->juristicID) ? $register_car->juristicID :  $juristicID }}"  pattern="[0-9]{13}" readonly>
+                        <input class="form-control" name="juristicID" type="text" id="juristicID" value=""  pattern="[0-9]{13}" readonly>
                         {!! $errors->first('juristicID', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -180,19 +181,19 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
-                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : $juristicNameTH}}"  readonly>
+                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value=""  readonly>
                         {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('location_A_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  $juristicDistrict }}" readonly>
+                        <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="" readonly>
                         {!! $errors->first('location_A_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('location_P_2') ? 'has-error' : ''}}">
-                         <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  $juristicProvince }}"  onchange="change_location_2();" readonly>
+                         <input class="form-control" name="location_P_2" type="text" id="location_P_2" value=""  onchange="change_location_2();" readonly>
                         {!! $errors->first('location_P_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -208,13 +209,13 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('organization_mail') ? 'has-error' : ''}}">
-                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value="{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  $juristicMail }}"  readonly>
+                        <input class="form-control" name="organization_mail" type="email" id="organization_mail" value=""  readonly>
                         {!! $errors->first('organization_mail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : ''}}">
-                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value="{{ $juristicPhone }}"  placeholder="กรุณาใส่เบอร์ติดต่อ" readonly pattern="[0-9]{9-10}">
+                        <input class="form-control" name="phone_2" type="phone_2" id="phone_2" value=""  placeholder="กรุณาใส่เบอร์ติดต่อ" readonly pattern="[0-9]{9-10}">
                         {!! $errors->first('phone_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
@@ -225,19 +226,19 @@
         <div id="show_branch_notempty" class="row">
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch" type="text" id="branch" value="{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}"  placeholder="สาขา" readonly>
+                    <input class="form-control" name="branch" type="text" id="branch" value=""  placeholder="สาขา" readonly>
                     {!! $errors->first('branch', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch_province') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch_province" type="text" id="branch_province" value="{{ isset($register_car->branch_province) ? $register_car->branch_province :  Auth::user()->branch_province }}"  placeholder="จังหวัด" readonly>
+                    <input class="form-control" name="branch_province" type="text" id="branch_province" value=""  placeholder="จังหวัด" readonly>
                     {!! $errors->first('branch_province', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="form-group {{ $errors->has('branch_district') ? 'has-error' : ''}}">
-                    <input class="form-control" name="branch_district" type="text" id="branch_district" value="{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}"  placeholder="อำเภอ" readonly>
+                    <input class="form-control" name="branch_district" type="text" id="branch_district" value=""  placeholder="อำเภอ" readonly>
                     {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -263,12 +264,7 @@
         fetch("https://dataapi.moc.go.th/juristic?juristic_id="+juristicID.value)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
-
-                const person = {
-                    name: 'benze',
-                    age: 23
-                };
+                console.log(result);
 
                 fetch("{{ url('/') }}/api/juristic", {
                     method: 'post',
@@ -279,9 +275,9 @@
                 }).then(function (response){
                     return response.text();
                 }).then(function(text){
-                    console.log(text);
+                    // console.log(text);
                 }).catch(function(error){
-                    console.error(error);
+                    // console.error(error);
                 });
 
                 if (result == null) {
@@ -455,7 +451,7 @@
         fetch("{{ url('/') }}/api/selest_organization/"+selest_organization.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result[0]);
+                // console.log(result[0]);
                 juristicNameTH.value = result[0].juristicNameTH;
                 location_A_2.value = result[0].district;
                 location_P_2.value = result[0].province;

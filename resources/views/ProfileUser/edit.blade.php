@@ -2,12 +2,11 @@
 
 @section('content')
 <br><br><br><br><br><br><br>
-    <div class="container">
-        <div class="row">
-        @include('layouts.sidebar')
-            <div class="col-lg-9 col-md-9 order-lg-2 order-1">
+<div class="container">
+    <div class="row">
+        <div class="col-12">
                 <div class="card">
-                    <div class="card-header">แก้ไขข้อมูลส่วนตัว</div>
+                    <h3 class="card-header">แก้ไขข้อมูลส่วนตัว</h3>
                     <div class="card-body">
                         @if ($errors->any())
                             <ul class="alert alert-danger">

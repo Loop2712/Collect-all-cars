@@ -108,9 +108,9 @@
                                             <p style="position: absolute"class="text-white">สแกนป้ายทะเบียน</p>
                                             <p style="position: absolute; margin-top:6%"class="text-white">กรุณาวางป้ายทะเบียนให้ตรงกรอบ</p>
                                            
-                                            <video width="100%" height="70%" autoplay="true" id="videoElement"></video>
+                                            <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
                                             <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
-                                            <img class="align-self-center" style="position: absolute;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
+                                            <img class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
                                             <!-- <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
                                             <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas> -->
                                             <!-- <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
@@ -119,10 +119,10 @@
                                             <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 46px; position: absolute;" >
                                                 <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
                                             </fieldset> -->
-                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 180px; margin-left:-18px">
+                                            <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 25px;">
                                                <span style="color:#ffff;">ข้อแนะนำ  </span> 
-                                                <li class="li-dot">หลีกเลี่ยงแสงสะท้อน และไม่มืดหรือสว่างเกินไป</li>
-                                                <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน และเห็นภาพเต็มใบ</li>
+                                                <li class="li-dot">หลีกเลี่ยงแสงสะท้อน ไม่มืดหรือสว่างเกินไป</li>
+                                                <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน</li>
                                             </ul>
                                             <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
                                         </div>
@@ -136,17 +136,17 @@
                                 <!-- <div class="col-8" id="div_videoSource" class="select">
                                     <label for="videoSource">เลือกกล้อง</label>
                                     <select style="margin-top:-150px" class="col-8" id="videoSource"></select>
-                                </div> -->
-                                <br>
+                                </div>
+                                <br> -->
                                 <!-- <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
                                 <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a> -->
                             </center></div>
                         </div>
                         
                         <div class="col-12">
-                            <input type="text" name="" id="text_img">
-                            <canvas id="canvas" width="250" height="100"></canvas>
-                            <img src="" width="250" height="100" id="photo2">
+                            <input type="hidden" name="" id="text_img">
+                            <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
+                            <img  src="" width="250" height="100" id="photo2">
                         </div>
                     </div>
                 </div>
@@ -162,9 +162,11 @@
                   <div class="input-group">
                     <input class="form-control" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="เช่น กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
+                    
                     <div class="input-group-prepend" onclick="capture_registration();">
                       <div class="input-group-text d-block d-md-none"><i class="fas fa-camera"></i></div>
                     </div>
+                    
                   </div>
                 </div>
 
@@ -354,7 +356,8 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+          navigator.mediaDevices.getUserMedia({ video: true }) 
+          // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
                   video.srcObject = stream;
@@ -395,9 +398,23 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
-        context.drawImage(video, 30, 200, 500, 255, 0, 0, 250, 100);
+        context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
+
+        fetch("{{ url('/') }}/api/img_register", {
+            method: 'post',
+            body: JSON.stringify(text_img.value),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            // console.log(text);
+        }).catch(function(error){
+            // console.error(error);
+        });
 
     }
 
@@ -499,7 +516,7 @@
     }
 
     function show_phone(){
-        console.log("show_phone"); 
+        // console.log("show_phone"); 
 
         var name = document.querySelector('#name');
             name.classList.remove('d-none');
@@ -519,7 +536,7 @@
     }
 
     function not_show_phone(){
-        console.log("not_show_phone"); 
+        // console.log("not_show_phone"); 
 
         var name = document.querySelector('#name');
             name.classList.add('d-none');
@@ -563,7 +580,7 @@
         fetch("{{ url('/') }}/api/add_reg_id/"+registration.value+"/"+county.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 //UPDATE SELECT OPTION
                 for(let item of result){
                     register_car_id.value = item.id;
@@ -573,65 +590,5 @@
                 
             });
     }
-
-    const videoElement = document.querySelector('video');
-    const videoSelect = document.querySelector('select#videoSource');
-    const selectors = [videoSelect];
-
-function gotDevices(deviceInfos) {
-  // Handles being called several times to update labels. Preserve values.
-  const values = selectors.map(select => select.value);
-  selectors.forEach(select => {
-    while (select.firstChild) {
-      select.removeChild(select.firstChild);
-    }
-  });
-  for (let i = 0; i !== deviceInfos.length; ++i) {
-    const deviceInfo = deviceInfos[i];
-    const option = document.createElement('option');
-    option.value = deviceInfo.deviceId;
-    if (deviceInfo.kind === 'videoinput') {
-      option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
-      videoSelect.appendChild(option);
-    } else {
-      console.log('Some other kind of source/device: ', deviceInfo);
-    }
-  }
-  selectors.forEach((select, selectorIndex) => {
-    if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
-      select.value = values[selectorIndex];
-    }
-  });
-}
-
-navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
-
-
-function gotStream(stream) {
-  window.stream = stream; // make stream available to console
-  videoElement.srcObject = stream;
-  // Refresh button list in case labels have become available
-  return navigator.mediaDevices.enumerateDevices();
-}
-
-function handleError(error) {
-  console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
-}
-
-function start() {
-  if (window.stream) {
-    window.stream.getTracks().forEach(track => {
-      track.stop();
-    });
-  }
-  const videoSource = videoSelect.value;
-  const constraints = {
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
-  };
-  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
-}
-
-
-videoSelect.onchange = start;
 
 </script>

@@ -34,9 +34,19 @@
             </div>
         </div>
     </div>
+    <br><br><br>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+            let car_type_old = document.querySelector('#car_type_old').value;
+                if (car_type_old === 'car') {
+                    document.getElementById("btn_type_car").click();
+                }
+                if (car_type_old === 'motorcycle') {
+                    document.getElementById("btn_type_motor_mobile").click();
+                    document.getElementById("btn_type_motor_pc").click();
+                }
+
             document.getElementById("click_organization_edit").click();
         });
         function add_required(){ 

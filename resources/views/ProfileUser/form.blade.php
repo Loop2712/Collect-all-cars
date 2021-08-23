@@ -1,196 +1,275 @@
-<div class="container">
-    <div class="row">
-        </body>
-        <div class="col-12">
-            <span style="font-size: 22px;" class="control-label"><b>{{ 'ข้อมูลพื้นฐาน'}}</b></span>
-          
-          <br><br>
-          <div class="row">
-                <div class="col-12 col-md-2">
-                    <label  class="control-label"><b>{{ 'รูปภาพ' }}</b></label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                    <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple">
-                        {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-            </div>
-            <div class="row d-none">
-                <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'ชื่อผู้ใช้' }}</b></label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('username') ? 'has-error' : ''}}">
-                    <input class="form-control" name="username" type="text" id="username" value="{{ isset($data->username) ? $data->username : ''}}" >
-                        {!! $errors->first('username', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-        </div>
-            <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'ชื่อ' }}</b></label><span style="color: #FF0033;"> *</span>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                    <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" >
-                        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'วันเกิด' }}</b></label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('brith') ? 'has-error' : ''}}">
-                    <input class="form-control" name="brith" type="date" id="brith" value="{{ isset($data->brith) ? $data->brith : ''}}" >
-                        {!! $errors->first('brith', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'เพศ' }}</b></label></label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
-                        <select name="sex" class="form-control"  id="sex" onchange="if(this.value=='3'){ 
-                                document.querySelector('#masseng_label').classList.remove('d-none'),
-                                document.querySelector('#masseng_input').classList.remove('d-none'),
-                                document.querySelector('#masseng').focus();
-                            }else{ 
-                                document.querySelector('#masseng_label').classList.add('d-none'),
-                                document.querySelector('#masseng_input').classList.add('d-none')
-                            }">
-                             <option value="" selected >
-                                 - โปรดเลือก - 
-                             </option>  
-                        @foreach (json_decode('{"ผู้ชาย":"ผู้ชาย","ผู้หญิง":"ผู้หญิง","ไม่ต้องการตอบ":"ไม่ต้องการตอบ"}', true) as $optionKey => $optionValue)
-                            <option  ption value="{{ $optionKey }}"  {{ (isset($data->sex) && $data->sex == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
-                        @endforeach
-                    </select>
-                        {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
-                    </div>  
-                </div>
-            </div>
-            </div>
-            
+
+<div>
+    <div class="container">
+        <div class="row">
             <div class="col-12">
-            <br><br>
-            <span style="font-size: 22px;" class="control-label"><b>{{ 'ข้อมูลติดต่อ'}}</b></span>
-          
-          <br><br>
-           
-          
-        
-        
+                <button style="width: 30%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger d-none d-lg-block">ข้อมูลพื้นฐาน</button>
+                <button style="width: 60%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger d-block d-md-none">ข้อมูลพื้นฐาน</button>
+                <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <label  class="control-label"><b>{{ 'รูปภาพโปรไฟล์' }}</b></label>
+                        <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                            <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple" onchange="document.querySelector('#img_profile_old').classList.add('d-none');">
+                                {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <br>
+                        <center>
+                            <div id="img_profile_old" class="">
+                                @if(!empty($data->avatar) and empty($data->photo))
+                                    <img style="border-radius: 50%;" width="300" src="{{ $data->avatar }}" class="img-circle img-thumbnail isTooltip">
+                                @endif
+                                @if(!empty($data->photo))
+                                    <img style="border-radius: 50%;" width="300" src="{{ url('storage')}}/{{ $data->photo }}" class="img-circle img-thumbnail isTooltip">
+                                @endif
+                                @if(empty($data->avatar) and empty($data->photo))
+                                    <img style="border-radius: 50%;" width="300" src="{{ url('/img/icon/user.png') }}" class="img-circle img-thumbnail isTooltip">
+                                @endif
+                            </div>
+                            
+                            <div id="img_profile_new"></div>
+                        </center>
+                            
+                    </div>
 
-        <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'อีเมล' }}</b></label></label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-                    <input class="form-control" name="email" type="text" id="email" value="{{ isset($data->email ) ? $data->email  : ''}}" >
-                        {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+                    <div class="col-12 col-md-6">
+                        <br class="d-block d-md-none">
+                        <label for="massengbox" class="control-label"><b>{{ 'ชื่อ' }}</b></label><span style="color: #FF0033;"> *</span>
+                        <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+                            <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" >
+                                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <label for="massengbox" class="control-label"><b>{{ 'วันเกิด' }}</b></label>
+                        <div class="form-group {{ $errors->has('brith') ? 'has-error' : ''}}">
+                            <input class="form-control" name="brith" type="date" id="brith" value="{{ isset($data->brith) ? $data->brith : ''}}" >
+                                    {!! $errors->first('brith', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <label for="massengbox" class="control-label"><b>{{ 'เพศ' }}</b></label>
+                        <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
+                            <select name="sex" class="form-control"  id="sex" onchange="if(this.value=='3'){ 
+                                    document.querySelector('#masseng_label').classList.remove('d-none'),
+                                    document.querySelector('#masseng_input').classList.remove('d-none'),
+                                    document.querySelector('#masseng').focus();
+                                }else{ 
+                                    document.querySelector('#masseng_label').classList.add('d-none'),
+                                    document.querySelector('#masseng_input').classList.add('d-none')
+                                }">
+                                <option value="" selected >
+                                     - โปรดเลือก - 
+                                </option>  
+                                @foreach (json_decode('{"ผู้ชาย":"ผู้ชาย","ผู้หญิง":"ผู้หญิง","ไม่ต้องการตอบ":"ไม่ต้องการตอบ"}', true) as $optionKey => $optionValue)
+                                    <option  ption value="{{ $optionKey }}"  {{ (isset($data->sex) && $data->sex == $optionKey) ? 'selected' : ''}}>    {{ $optionValue }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <label for="massengbox" class="control-label"><b>{{ 'อีเมล' }}</b></label>
+                        <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+                            <input class="form-control" name="email" type="text" id="email" value="{{ isset($data->email ) ? $data->email  : ''}}" >
+                            {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <label for="massengbox" class="control-label"><b>{{ 'เบอร์โทรศัพท์' }}</b></label>
+                        <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+                            <input class="form-control" name="phone" type="number" id="phone" value="{{ isset($data->phone) ? $data->phone : ''}}" >
+                            {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                        </div>
                     </div>
                 </div>
+                <br><br>
+            </div>
         </div>
+    </div>
+
+    <!-- ใบขับขี่คอม -->
+    <div class="container d-none d-lg-block">
         <div class="row">
-                <div class="col-12 col-md-2">
-                    <label for="massengbox" class="control-label"><b>{{ 'โทรศัพท์' }}</b></label></label>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-                    <input class="form-control" name="phone" type="number" id="phone" value="{{ isset($data->phone) ? $data->phone : ''}}" >
-                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+            <div class="col-12">
+                <button style="width: 30%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger ">ใบอนุญาตขับขี่</button>
+                <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <label class="control-label"><b>{{ 'รถยนต์' }}</b></label>
+                        <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
+                            <input class="form-control" name="driver_license" type="file" id="driver_license" value="{{ isset($data->driver_license) ? $data->driver_license : ''}}" onchange="document.querySelector('#driver_license_old').classList.add('d-none');">
+                            {!! $errors->first('driver_license', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <br>
+                        <center>
+                            <div id="driver_license_old" class="">
+                                <img width="250" src="{{ url('storage')}}/{{ $data->driver_license }}">
+                            </div>
+                            <div id="driver_license_new"></div>
+                        </center>
+                        <br>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
+                        <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
+                            <input class="form-control" name="driver_license2" type="file" id="driver_license2" value="{{ isset($data->driver_license2) ? $data->driver_license2 : ''}}" onchange="document.querySelector('#driver_license2_old').classList.add('d-none');">
+                            {!! $errors->first('driver_license2', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <br>
+                        <center>
+                            <div id="driver_license2_old" class="">
+                                <img width="250" src="{{ url('storage')}}/{{ $data->driver_license2 }}">
+                            </div>
+                            <div id="driver_license2_new"></div>
+                        </center>
+                        <br>
                     </div>
                 </div>
+            </div>
         </div>
-        <hr>
+    </div>
+
+    <!-- ใบขับขี่มือถือ -->
+    <div class="container d-block d-md-none">
         <div class="row">
-            <div class="col-12 col-md-2">
-                <label for="massengbox" class="control-label">
-                    <b>{{ 'ใบอนุญาตขับรถ' }}</b><br>
-                    <span style="font-size: 13px;" class="text-danger">ใบอนุญาตขับรถจะไม่แสดงให้ผู้อื่นเห็น</span>
-                </label>
-            </div>
-            <div class="col-12 col-md-4">
-                <span style="font-size: 15px;">รถยนต์</span><br>
-                <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
-                <input class="form-control" name="driver_license" type="file" id="driver_license" value="{{ isset($data->driver_license) ? $data->driver_license : ''}}" >
-                    {!! $errors->first('driver_license', '<p class="help-block">:message</p>') !!}
-                </div>
-                <br>
-                <span style="font-size: 15px;">รถจักยานยนต์</span><br>
-                <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
-                <input class="form-control" name="driver_license2" type="file" id="driver_license2" value="{{ isset($data->driver_license2) ? $data->driver_license2 : ''}}" >
-                    {!! $errors->first('driver_license2', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-        </div>
-        <hr>
-
-    </div>
-    </div>
-</div>
-<div class="col-12">
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group float-left">
-                <br>
-                <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="float-right">
-                <br>
-                <a href="{{ url('/profile') }}" class="btn btn-warning btn-sm" title="Back">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i> กลับ
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ----------------------------------------------------------------- -->
-<a onclick="capture_registration();">กด</a>
-
-<input class="form-control" name="photo" type="file" id="photo_canvas" value="">
-
-<div id="div_photo_registration" class="d-none">
-    <div class="d-block d-md-none">
-        <div class="col-12">
-            <div id="container">
+            <div class="col-12">
+                <button style="width: 60%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ใบอนุญาตขับขี่</button>
+                <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
                 <div class="row">
                     <div class="col-12">
-                            <canvas style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;top:30%;left: 10%;" width="220" height="120"></canvas>
-                        <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                        <label class="control-label"><b>{{ 'รถยนต์' }}</b></label>
+                        <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
+                            <center>
+                                <button id="btn_click_capture" type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="
+                                document.querySelector('#driver_license_capture').classList.remove('d-none'),
+                                document.querySelector('#btn_click_capture').classList.add('d-none'),
+                                capture_driver_license();">
+                                    <i class="fas fa-camera"></i> ถ่ายรูป
+                                </button>
+                            </center>
+                            <br>
+                            <div id="driver_license_capture" class="d-none">
+                                <center>
+                                    <div id="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-end bg-light"> 
+                                                    <a style="position: absolute; z-index:10; margin-right:10px" class="text-white" onclick="stop();"> <b>X</b> </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-center bg-light">
+
+                                                    <video width="100%" height="100%" autoplay="true" id="video_driver_license"></video>
+                                                    
+                                                    <img class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="43%" src="{{ asset('/img/icon/16.png') }}">
+
+                                                    <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 25px;">
+                                                       <span style="color:#ffff;">ข้อแนะนำ  </span> 
+                                                        <li class="li-dot">หลีกเลี่ยงแสงสะท้อน ไม่มืดหรือสว่างเกินไป</li>
+                                                        <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน</li>
+                                                    </ul>
+                                                    <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <center>
+                            <div id="driver_license_old_mobile" class="">
+                                <!-- รูปตัวอย่าง -->
+                                <img width="250" height="150" src="{{ url('storage')}}/{{ $data->driver_license }}">
+                            </div>
+                            <div id="driver_license_new_mobile" class="d-none">
+                                <div class="col-12">
+                                    <input type="hidden" name="text_img_car" id="text_img_car">
+                                    <canvas id="canvas_car" width="250" height="150" class="d-none"></canvas>
+                                    <img style="margin-left:-10px;" src="" width="250" height="150" id="photo_car">
+                                </div>
+                            </div>
+                        </center>
+                        <br>
+                    </div>
+                    <hr>
+                    <div class="col-12">
+                        <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
+                        <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
+                            <center>
+                                <button id="btn_click_capture2" type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="
+                                document.querySelector('#driver_license_capture2').classList.remove('d-none'),
+                                document.querySelector('#btn_click_capture2').classList.add('d-none'),
+                                capture_driver_license2();">
+                                    <i class="fas fa-camera"></i> ถ่ายรูป
+                                </button>
+                            </center>
+                            <br>
+                            <div id="driver_license_capture2" class="d-none">
+                                <center>
+                                    <div id="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-end bg-light"> 
+                                                    <a style="position: absolute; z-index:10; margin-right:10px" class="text-white" onclick="stop2();"> <b>X</b> </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-center bg-light">
+
+                                                    <video width="100%" height="100%" autoplay="true" id="video_driver_license2"></video>
+                                                    
+                                                    <img class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="43%" src="{{ asset('/img/icon/16.png') }}">
+
+                                                    <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 25px;">
+                                                       <span style="color:#ffff;">ข้อแนะนำ  </span> 
+                                                        <li class="li-dot">หลีกเลี่ยงแสงสะท้อน ไม่มืดหรือสว่างเกินไป</li>
+                                                        <li class="li-dot">รูปไม่เบลอ เห็นตัวอักษรชัดเจน</li>
+                                                    </ul>
+                                                    <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture2();"><i class="fas fa-camera"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <center>
+                            <div id="driver_license_old_mobile2" class="">
+                                <!-- รูปตัวอย่าง -->
+                                <img width="250" height="150" src="{{ url('storage')}}/{{ $data->driver_license2 }}">
+                            </div>
+                            <div id="driver_license_new_mobile2" class="d-none">
+                                <div class="col-12">
+                                    <input type="hidden" name="text_img_motor" id="text_img_motor">
+                                    <canvas id="canvas_motor" width="250" height="150" class="d-none"></canvas>
+                                    <img style="margin-left:-10px;" src="" width="250" height="150" id="photo_motor">
+                                </div>
+                            </div>
+                        </center>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <center>
-                <div id="div_videoSource" class="select">
-                    <label for="videoSource">เลือกกล้อง</label>
-                    <select id="videoSource"></select>
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group float-left">
+                    <br>
+                    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'ส่งข้อมูล' }}">
                 </div>
-                <br>
-                <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a>
-            </center>
-        </div>
-        
-        <div class="col-12">
-            <input type="text" name="" id="text_img">
-            <canvas id="canvas" width="250" height="100"></canvas>
-            <img src="" width="250" height="100" id="photo2">
+            </div>
+            <div class="col-6">
+                <div class="float-right">
+                    <br>
+                    <a href="{{ url('/profile') }}" class="btn btn-warning text-white" title="Back">
+                        กลับ
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-    <!-- <a id="dl_img" href="" download>ดาวน์โหลด</a> -->
+
+
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -205,67 +284,236 @@
         document.querySelector('#btn_a_profile').classList.remove('text-danger');
     }
 
-    function capture_registration(){
-        document.querySelector('#div_photo_registration').classList.remove('d-none');
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#photo").change(function () {
+            var img_profile_new = $("#img_profile_new");
+            img_profile_new.html("");
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var divImagePreview = $("<div/>");
 
-        var video = document.querySelector("#videoElement");
-        var photo2 = document.querySelector("#photo2");
-        var canvas = document.querySelector("#canvas");
-        var text_img = document.querySelector("#text_img");
-        var context = canvas.getContext('2d');
+                    var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
+                    divImagePreview.append(hiddenRotation);
 
-        if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
-            .then(function (stream) {
-              if (typeof video.srcObject == "object") {
-                  video.srcObject = stream;
-                } else {
-                  video.src = URL.createObjectURL(stream);
+                    var img = $("<img />");
+                    img.attr("style", "border-radius: 50%;");
+                    img.attr("class", "img-circle img-thumbnail isTooltip");
+                    img.attr("width", "300");
+                    img.attr("src", e.target.result);
+                    divImagePreview.append(img);
+
+                    img_profile_new.append(divImagePreview);
                 }
-            })
-            .catch(function (err0r) {
-              console.log("Something went wrong!");
+                reader.readAsDataURL(file[0]);
             });
-        }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#driver_license").change(function () {
+            var driver_license_new = $("#driver_license_new");
+            driver_license_new.html("");
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var divImagePreview = $("<div/>");
 
+                    var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
+                    divImagePreview.append(hiddenRotation);
+
+                    var img = $("<img />");
+                    img.attr("width", "250");
+                    img.attr("src", e.target.result);
+                    divImagePreview.append(img);
+
+                    driver_license_new.append(divImagePreview);
+                }
+                reader.readAsDataURL(file[0]);
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#driver_license2").change(function () {
+            var driver_license2_new = $("#driver_license2_new");
+            driver_license2_new.html("");
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var divImagePreview = $("<div/>");
+
+                    var hiddenRotation = $("<input type='hidden' id='hfRotation' value='0' />");
+                    divImagePreview.append(hiddenRotation);
+
+                    var img = $("<img />");
+                    img.attr("width", "250");
+                    img.attr("src", e.target.result);
+                    divImagePreview.append(img);
+
+                    driver_license2_new.append(divImagePreview);
+                }
+                reader.readAsDataURL(file[0]);
+            });
+        });
+    });
+</script>
+<!-- ใบขับขี่รถยนต์ -->
+<script>
+function capture_driver_license(){
+
+    var video = document.querySelector("#video_driver_license");
+    var photo_car = document.querySelector("#photo_car");
+    var canvas_car = document.querySelector("#canvas_car");
+    var text_img_car = document.querySelector("#text_img_car");
+    var context_car = canvas_car.getContext('2d');
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+      // { video: { facingMode: { exact: "environment" } } }
+        .then(function (stream) {
+          if (typeof video.srcObject == "object") {
+              video.srcObject = stream;
+            } else {
+              video.src = URL.createObjectURL(stream);
+            }
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
     }
 
-    function stop(e) {
-        document.querySelector('#div_photo_registration').classList.add('d-none');
-        var video = document.querySelector("#videoElement");
-        var photo2 = document.querySelector("#photo2");
-        var canvas = document.querySelector("#canvas");
-        var text_img = document.querySelector("#text_img");
-        var context = canvas.getContext('2d');
-          
-          var stream = video.srcObject;
-          var tracks = stream.getTracks();
+}
 
-          for (var i = 0; i < tracks.length; i++) {
+function stop(e) {
+    document.querySelector("#driver_license_capture").classList.add('d-none');
+    document.querySelector("#btn_click_capture").classList.remove('d-none');
+
+    var video = document.querySelector("#video_driver_license");
+    var photo_car = document.querySelector("#photo_car");
+    var canvas_car = document.querySelector("#canvas_car");
+    var text_img_car = document.querySelector("#text_img_car");
+    var context_car = canvas_car.getContext('2d');
+      
+      var stream = video.srcObject;
+      var tracks = stream.getTracks();
+
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+        track.stop();
+      }
+
+      video.srcObject = null;
+}
+
+function capture() {
+    document.querySelector("#driver_license_old_mobile").classList.add('d-none');
+    document.querySelector("#driver_license_new_mobile").classList.remove('d-none');
+
+    var video = document.querySelector("#video_driver_license");
+    var photo_car = document.querySelector("#photo_car");
+    var canvas_car = document.querySelector("#canvas_car");
+    var text_img_car = document.querySelector("#text_img_car");
+    var context_car = canvas_car.getContext('2d');
+
+    context_car.drawImage(video, 20, 90, 430, 270, 0, 0, 250, 150);
+    photo_car.setAttribute('src',canvas_car.toDataURL('image/png'));
+    text_img_car.value = canvas_car.toDataURL('image/png');
+
+    var stream = video.srcObject;
+        var tracks = stream.getTracks();
+
+        for (var i = 0; i < tracks.length; i++) {
             var track = tracks[i];
             track.stop();
-          }
+        }
 
-          video.srcObject = null;
+        video.srcObject = null;
+    document.querySelector('#driver_license_capture').classList.add('d-none');
+    document.querySelector("#btn_click_capture").classList.remove('d-none');
+}
+</script>
+
+<!-- ใบขับขี่มอไซต์ -->
+<script>
+function capture_driver_license2(){
+
+    var video = document.querySelector("#video_driver_license2");
+    var photo_motor = document.querySelector("#photo_motor");
+    var canvas_motor = document.querySelector("#canvas_motor");
+    var text_img_motor = document.querySelector("#text_img_motor");
+    var context_motor = canvas_motor.getContext('2d');
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+      // { video: { facingMode: { exact: "environment" } } }
+        .then(function (stream) {
+          if (typeof video.srcObject == "object") {
+              video.srcObject = stream;
+            } else {
+              video.src = URL.createObjectURL(stream);
+            }
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
     }
 
-    function capture() {
-        var video = document.querySelector("#videoElement");
-        var photo2 = document.querySelector("#photo2");
-        var canvas = document.querySelector("#canvas");
-        var text_img = document.querySelector("#text_img");
-        var photo_canvas = document.querySelector("#photo_canvas");
-        var context = canvas.getContext('2d');
+}
 
-        context.drawImage(video, 30, 200, 500, 255, 0, 0, 250, 100);
-        photo2.setAttribute('src',canvas.toDataURL('image/png'));
-        text_img.value = canvas.toDataURL('image/png');
-        
-        // var dl_img = document.getElementById("dl_img");
-        //     var att = document.createAttribute("href");
-        //     att.value = text_img.value;
-        //     dl_img.setAttributeNode(att);
+function stop2(e) {
+    document.querySelector("#driver_license_capture2").classList.add('d-none');
+    document.querySelector("#btn_click_capture2").classList.remove('d-none');
 
-    }
-    
+    var video = document.querySelector("#video_driver_license2");
+    var photo_motor = document.querySelector("#photo_motor");
+    var canvas_motor = document.querySelector("#canvas_motor");
+    var text_img_motor = document.querySelector("#text_img_motor");
+    var context_motor = canvas_motor.getContext('2d');
+      
+      var stream = video.srcObject;
+      var tracks = stream.getTracks();
+
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+        track.stop();
+      }
+
+      video.srcObject = null;
+}
+
+function capture2() {
+    document.querySelector("#driver_license_old_mobile2").classList.add('d-none');
+    document.querySelector("#driver_license_new_mobile2").classList.remove('d-none');
+
+    var video = document.querySelector("#video_driver_license2");
+    var photo_motor = document.querySelector("#photo_motor");
+    var canvas_motor = document.querySelector("#canvas_motor");
+    var text_img_motor = document.querySelector("#text_img_motor");
+    var context_motor = canvas_motor.getContext('2d');
+
+    context_motor.drawImage(video, 20, 90, 430, 270, 0, 0, 250, 150);
+    photo_motor.setAttribute('src',canvas_motor.toDataURL('image/png'));
+    text_img_motor.value = canvas_motor.toDataURL('image/png');
+
+    var stream = video.srcObject;
+        var tracks = stream.getTracks();
+
+        for (var i = 0; i < tracks.length; i++) {
+            var track = tracks[i];
+            track.stop();
+        }
+
+        video.srcObject = null;
+    document.querySelector('#driver_license_capture2').classList.add('d-none');
+    document.querySelector("#btn_click_capture2").classList.remove('d-none');
+}
 </script>

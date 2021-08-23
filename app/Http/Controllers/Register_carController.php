@@ -23,81 +23,99 @@ class Register_carController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
         $user = Auth::user();
-        // echo ($user->id);
-        // exit();
 
-        // CAR
-        if (!empty($keyword)) {
-            $register_car = DB::table('register_cars')
-                        ->orWhere('brand', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "car")
+        $type_car = $request->get('type');
 
-                        ->orWhere('generation', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "car")
+            if (empty($type_car)) {
+                $type_car = "all";
+            }
 
-                        ->orWhere('registration_number', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "car")
-
-                        ->orWhere('province', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "car")
-
-                        ->get();
-        } else {
-            $register_car = DB::table('register_cars')
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "car")
-                        ->get();
+        switch ($type_car) {
+            case 'all':
+                $register_car = DB::table('register_cars')
+                    ->where('user_id', $user->id)
+                    ->where('juristicNameTH', null)
+                    ->where('active', "Yes")
+                    ->get();
+                break;
+            case 'car':
+                $register_car = DB::table('register_cars')
+                    ->where('user_id', $user->id)
+                    ->where('juristicNameTH', null)
+                    ->where('car_type', "car")
+                    ->where('active', "Yes")
+                    ->get();
+                break;
+            case 'motorcycle':
+                $register_car = DB::table('register_cars')
+                    ->where('user_id', $user->id)
+                    ->where('juristicNameTH', null)
+                    ->where('car_type', "motorcycle")
+                    ->where('active', "Yes")
+                    ->get();
+                break;
         }
 
-        // MOTORCYCLES
-        if (!empty($keyword)) {
-            $register_motorcycles = DB::table('register_cars')
-                        ->orWhere('brand', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "motorcycle")
-
-                        ->orWhere('generation', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "motorcycle")
-
-                        ->orWhere('registration_number', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "motorcycle")
-
-                        ->orWhere('province', 'LIKE', "%$keyword%")
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "motorcycle")
-
-                        ->get();
-        } else {
-            $register_motorcycles = DB::table('register_cars')
-                        ->where('user_id', $user->id)
-                        ->where('active', "Yes")
-                        ->where('car_type', "motorcycle")
-                        ->get();
+        $organization = "";
+        if (!empty($user['organization'])) {
+            $organization = Organization::where('juristicNameTH', $user['organization'] )->get();
         }
 
         // เวลาปัจจุบัน
         $date_now = date("Y-m-d "); 
 
-        return view('register_car.index', compact('register_car' , 'register_motorcycles' , 'date_now'));
+        return view('register_car.index', compact('register_car' , 'date_now' ,'type_car','organization'));
+    }
+
+    public function index_organization(Request $request)
+    {
+        $user = Auth::user();
+
+        $type_car = $request->get('type');
+
+            if (empty($type_car)) {
+                $type_car = "all";
+            }
+
+        $organization = "";
+        if (!empty($user['organization'])) {
+            $organization = Organization::where('juristicNameTH', $user['organization'] )->get();
+                foreach ($organization as $key ) {
+                    $juristicNameTH = $key->juristicNameTH;
+                }
+        }
+
+        switch ($type_car) {
+            case 'all':
+                $register_car = DB::table('register_cars')
+                    ->where('user_id', $user->id)
+                    ->where('juristicNameTH', $user['organization'])
+                    ->where('active', "Yes")
+                    ->get();
+                break;
+            case 'car':
+                $register_car = DB::table('register_cars')
+                    ->where('user_id', $user->id)
+                    ->where('juristicNameTH', $user['organization'])
+                    ->where('car_type', "car")
+                    ->where('active', "Yes")
+                    ->get();
+                break;
+            case 'motorcycle':
+                $register_car = DB::table('register_cars')
+                    ->where('user_id', $user->id)
+                    ->where('juristicNameTH', $user['organization'])
+                    ->where('car_type', "motorcycle")
+                    ->where('active', "Yes")
+                    ->get();
+                break;
+        }
+
+        // เวลาปัจจุบัน
+        $date_now = date("Y-m-d "); 
+
+        return view('register_car.index_organization', compact('register_car' , 'date_now' ,'type_car','organization','juristicNameTH'));
     }
 
     /**
@@ -181,7 +199,7 @@ class Register_carController extends Controller
     {
         
         $requestData = $request->all();
-        
+
         // update registration_number
         $requestData['registration_number'] = str_replace(" ", "", $requestData['registration_number']);
         // rebrand
@@ -262,18 +280,31 @@ class Register_carController extends Controller
         // print_r($requestData);
         // echo "</pre>";
         // exit();
-
-        DB::table('users')
-            ->where('id', $requestData['user_id'])
-            ->update([
-                'location_P' => $requestData['location_P'],
-                'location_A' => $requestData['location_A'],
-                'phone' => $requestData['phone'],
-                'organization' => $requestData['juristicNameTH'],
-                'branch' => $requestData['branch'],
-                'branch_district' => $requestData['branch_district'],
-                'branch_province' => $requestData['branch_province'],
-            ]);
+        if (empty(Auth::user()->location_P)) {
+            
+            DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->update([
+                    'location_P' => $requestData['location_P'],
+                    'location_A' => $requestData['location_A'],
+                    'phone' => $requestData['phone'],
+                    'organization' => $requestData['juristicNameTH'],
+                    'branch' => $requestData['branch'],
+                    'branch_district' => $requestData['branch_district'],
+                    'branch_province' => $requestData['branch_province'],
+                ]);
+        }
+        if (!empty(Auth::user()->location_P) and empty(Auth::user()->organization)) {
+            
+            DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->update([
+                    'organization' => $requestData['juristicNameTH'],
+                    'branch' => $requestData['branch'],
+                    'branch_district' => $requestData['branch_district'],
+                    'branch_province' => $requestData['branch_province'],
+                ]);
+        }
 
         Register_car::create($requestData);
 
@@ -338,6 +369,8 @@ class Register_carController extends Controller
 
         $Juristic_ID = Organization::where('juristicNameTH', $organization )->get();
 
+        $select_Organization = Organization::selectRaw('juristicNameTH')->groupBy('juristicNameTH')->get();
+
         $juristicNameTH = "";
         $juristicID = "" ;
         $juristicMail = "" ;
@@ -371,11 +404,14 @@ class Register_carController extends Controller
                 ->groupBy('province')
                 ->get();
 
-            $xx = Register_car::where('id',$id )->get();
-            // echo "<pre>";
-            // print_r($xx);
-            // echo "<pre>";
-            // exit();
+            $data_car_old = Register_car::where('id',$id )->get();
+
+            foreach ($data_car_old as $item) {
+                $car_type_old =  $item->car_type;
+                $brand_old  = $item->brand;
+                $generation_old  = $item->generation;
+                $province_old  =  $item->province;
+            }
 
             $car_brand = CarModel::selectRaw('brand,count(brand) as count')
                 ->orderByRaw('count DESC')
@@ -396,7 +432,7 @@ class Register_carController extends Controller
                 ->where('car_type', 'motorcycle')
                 ->get();
 
-            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle','xx' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization'));
+            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle', 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization' , 'select_Organization','car_type_old','brand_old','generation_old','province_old'));
         }
     }
     public function edit_act($id)

@@ -199,15 +199,37 @@ class Sos_mapController extends Controller
         switch ($data['area']) {
             case 'ViiCHECK':
                 $body = [
-                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
                     "messages" => $messages,
                 ];
 
                 $body_location = [
-                    "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
                     "messages" => $messages_location,
                 ];
                 break;
+            case 'KMUTNB':
+                $body = [
+                    "to" => "Uad0cd91b2c1740aa467d38ddd256c40d",
+                    "messages" => $messages,
+                ];
+
+                $body_location = [
+                    "to" => "Uad0cd91b2c1740aa467d38ddd256c40d",
+                    "messages" => $messages_location,
+                ];
+                break;
+            // case 'TU':
+            //     $body = [
+            //         "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+            //         "messages" => $messages,
+            //     ];
+
+            //     $body_location = [
+            //         "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
+            //         "messages" => $messages_location,
+            //     ];
+            //     break;
         }
 
         // flex ask_for_help
@@ -222,12 +244,12 @@ class Sos_mapController extends Controller
         ];
                             
         $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/multicast";
+        $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
-            "title" => "https://api.line.me/v2/bot/message/multicast",
+            "title" => "ขอมูลขอความช่วยเหลือ",
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
@@ -244,12 +266,12 @@ class Sos_mapController extends Controller
         ];
                             
         $context_location  = stream_context_create($opts_location);
-        $url_location = "https://api.line.me/v2/bot/message/multicast";
+        $url_location = "https://api.line.me/v2/bot/message/push";
         $result_location = file_get_contents($url_location, false, $context_location);
 
         //SAVE LOG
         $data_location = [
-            "title" => "https://api.line.me/v2/bot/message/multicast",
+            "title" => "location ขอความช่วยเหลือ",
             "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data_location);

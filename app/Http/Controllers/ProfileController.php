@@ -9,6 +9,8 @@ use App\Models\Register_car;
 use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Sos_map;
+use App\Models\Guest;
 
 class ProfileController extends Controller
 {
@@ -26,58 +28,63 @@ class ProfileController extends Controller
         if (!empty($data['organization'])) {
             $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
         }
-
-        $date_now = date("d-m-Y"); 
-
-        $time1=strtotime($data->created_at); //สมัคร
-        $time2=strtotime($date_now); //เวลาปัจจุบัน
         
-        $distanceInSeconds = round(abs($time2 - $time1));
-        $distanceInMinutes = round($distanceInSeconds / 60);
+        // รถทั้งหมด
+        $myCar_all = Register_car::where('user_id', $id)
+            ->where('active', "Yes")
+            ->get();
 
-        $month = 0;
-        $days = floor(abs($distanceInMinutes / 1440)); 
+        // รถของฉัน
+        $myCars = Register_car::where('user_id', $id)
+            ->where('car_type', "car")
+            ->where('active', "Yes")
+            ->where('juristicNameTH', null)
+            ->get();
 
+        $myMotors = Register_car::where('user_id', $id)
+            ->where('car_type', "motorcycle")
+            ->where('active', "Yes")
+            ->where('juristicNameTH', null)
+            ->get();
 
-        if ($days > 30) {
-            $over = $days / 30;
+        // รถขององค์กร
+        if (!empty($data['organization'])) {
+            $org_myCars = Register_car::where('user_id', $id)
+                ->where('car_type', "car")
+                ->where('active', "Yes")
+                ->where('juristicNameTH', $data['organization'])
+                ->get();
 
-            $month_full = $month + number_format($over,2);
-            $month_explode = explode(".",$month_full);
-            $month = $month_explode[0];
+            $org_myMotors = Register_car::where('user_id', $id)
+                ->where('car_type', "motorcycle")
+                ->where('active', "Yes")
+                ->where('juristicNameTH', $data['organization'])
+                ->get();
+        }else{
+            $org_myCars = Register_car::where('car_type', "ไม่มี")
+                ->get();
 
-            if (!empty($month_explode[1])) {
-                $days = ($month_explode[1]/100) * 30;
-            }elseif (empty($month_explode[1])) {
-                $days = 0;
-            }
-            
+            $org_myMotors = Register_car::where('car_type', "ไม่มี")
+                ->get();
         }
 
-        return view('ProfileUser/Profile' , compact('data' , 'month' , 'days','organization') );
+        // SOS
+        $mySos = Sos_map::where('user_id', $id)->get();
 
+        //ถูกเรียก
+        $reported = 0 ;
+        foreach ($myCar_all as $key) {
 
+            $search_reported = Guest::where('register_car_id', $key->id)
+                ->get();
 
+            $reported = $reported + count($search_reported);
+        }
 
-    //     $date = User::select('created_at')
-    //     ->where('id', Auth::id());
-    //     $birthday = $date;      //รูปแบบการเก็บค่าข้อมูลวันเกิด
-    //     $today = date("Y-m-d");   //จุดต้องเปลี่ยน
-            
-    
-    //     list($byear, $bmonth, $bday)= explode("-",$birthday);       //จุดต้องเปลี่ยน
-    //     list($tyear, $tmonth, $tday)= explode("-",$today);                //จุดต้องเปลี่ยน
-            
-    //     $mbirthday = mktime(0, 0, 0, $bmonth, $bday, $byear); 
-    //     $mnow = mktime(0, 0, 0, $tmonth, $tday, $tyear );
-    //     $mage = ($mnow - $mbirthday);
-    // $u_y=date("Y", $mage)-1970;
-    // $u_m=date("m",$mage)-1;
-    // $u_d=date("d",$mage)-1;
+        //เรียกผู้อื่น
+        $myReport = Guest::where('user_id', $id)->get();
 
-        
-        // 'u_y','u_m','u_d'
-
+        return view('ProfileUser/Profile' , compact('data' ,'organization','myCars','myMotors','mySos','myReport','reported','org_myCars','org_myMotors') );
     }
 
     /**
@@ -111,12 +118,82 @@ class ProfileController extends Controller
     {
         $data = User::findOrFail($id);
 
-        $organization = "";
+        if (!empty($data['organization'])) {
+            switch ($data['organization']) {
+                case '2บี กรีน จำกัด':
+                    $user_organization = "2bgreen";
+                    break;
+            }
+        }else{
+            $user_organization = "0";
+        }
+        
+        if (Auth::id() == $id or Auth::user()->role == "admin" or Auth::user()->role == $user_organization)
+        {
+            $organization = "";
             if (!empty($data['organization'])) {
-            $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
+                $organization = Organization::where('juristicNameTH', $data['organization'] )->get();
+            }
+            
+            // รถทั้งหมด
+            $myCar_all = Register_car::where('user_id', $id)
+                ->where('active', "Yes")
+                ->get();
+
+            // รถของฉัน
+            $myCars = Register_car::where('user_id', $id)
+                ->where('car_type', "car")
+                ->where('active', "Yes")
+                ->where('juristicNameTH', null)
+                ->get();
+
+            $myMotors = Register_car::where('user_id', $id)
+                ->where('car_type', "motorcycle")
+                ->where('active', "Yes")
+                ->where('juristicNameTH', null)
+                ->get();
+
+            // รถขององค์กร
+            if (!empty($data['organization'])) {
+                $org_myCars = Register_car::where('user_id', $id)
+                    ->where('car_type', "car")
+                    ->where('active', "Yes")
+                    ->where('juristicNameTH', $data['organization'])
+                    ->get();
+
+                $org_myMotors = Register_car::where('user_id', $id)
+                    ->where('car_type', "motorcycle")
+                    ->where('active', "Yes")
+                    ->where('juristicNameTH', $data['organization'])
+                    ->get();
+            }else{
+                $org_myCars = Register_car::where('car_type', "ไม่มี")
+                    ->get();
+
+                $org_myMotors = Register_car::where('car_type', "ไม่มี")
+                    ->get();
             }
 
-        return view('ProfileUser/Profile' , compact('data' ,'organization') );
+            // SOS
+            $mySos = Sos_map::where('user_id', $id)->get();
+
+            //ถูกเรียก
+            $reported = 0 ;
+            foreach ($myCar_all as $key) {
+
+                $search_reported = Guest::where('register_car_id', $key->id)
+                    ->get();
+
+                $reported = $reported + count($search_reported);
+            }
+
+            //เรียกผู้อื่น
+            $myReport = Guest::where('user_id', $id)->get();
+
+            return view('ProfileUser/Profile' , compact('data' ,'organization','myCars','myMotors','mySos','myReport','reported','org_myCars','org_myMotors','user_organization') );
+            
+        }else
+            return view('404');
     }
 
     /**
@@ -147,6 +224,10 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $requestData = $request->all();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         if ($request->hasFile('driver_license')) {
             $requestData['driver_license'] = $request->file('driver_license')->store('uploads', 'public');
@@ -198,6 +279,40 @@ class ProfileController extends Controller
 
         }
 
+        if (!empty($requestData['text_img_car'])) {
+            // ใบขับขี่รถยนต์
+            $name_file_car = uniqid('license_car-', true);
+            $output_file_car = "./storage/uploads/".$name_file_car.".png";
+
+            $data_64_car = explode( ',', $requestData['text_img_car'] );
+
+            $fp_car = fopen($output_file_car, "w+");
+     
+            fwrite($fp_car, base64_decode( $data_64_car[ 1 ] ) );
+             
+            fclose($fp_car);
+
+            $url_img_car = str_replace("./storage/","",$output_file_car);
+            $requestData['driver_license'] = $url_img_car ;
+        }
+        
+        if (!empty($requestData['text_img_motor'])) {
+            // ใบขับขี่มอไซต์
+            $name_file_motor = uniqid('license_motor-', true);
+            $output_file_motor = "./storage/uploads/".$name_file_motor.".png";
+
+            $data_64_motor = explode( ',', $requestData['text_img_motor'] );
+
+            $fp_motor = fopen($output_file_motor, "w+");
+     
+            fwrite($fp_motor, base64_decode( $data_64_motor[ 1 ] ) );
+             
+            fclose($fp_motor);
+
+            $url_img_motor = str_replace("./storage/","",$output_file_motor);
+            $requestData['driver_license2'] = $url_img_motor ;
+        }
+        
         $data = User::findOrFail($id);
         $data->update($requestData);
 
@@ -302,4 +417,14 @@ class ProfileController extends Controller
 
         exit();
     }
+
+    public function cancel_Profile($id,$reason,$reason_other,$amend)
+    {
+        // echo $id."<br>" ;
+        // echo $reason."<br>" ;
+        // echo $reason_other."<br>" ;
+        // echo $amend."<br>" ;
+        exit();
+    }
+
 }

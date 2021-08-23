@@ -72,6 +72,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'provider_id' => uniqid('Viicheck-', true),
+            'status' => "active",
         ]);
     }
 }
