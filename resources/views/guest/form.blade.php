@@ -169,10 +169,11 @@
                   </div>
                 </div>
 
-                    <input type="text" name="test_ocr" id="test_ocr" readonly class="form-control">
+                <br class="d-block d-md-none">
+                <br class="d-block d-md-none">
+                <input type="text" name="test_ocr" id="test_ocr" readonly class="form-control d-block d-md-none">
 
                 <div class="col-12 col-md-2">
-                    <br>
                     <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
