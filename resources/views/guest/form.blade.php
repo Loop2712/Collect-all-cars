@@ -166,9 +166,10 @@
                     <div class="input-group-prepend" onclick="capture_registration();">
                       <div class="input-group-text d-block d-md-none"><i class="fas fa-camera"></i></div>
                     </div>
-                    
                   </div>
                 </div>
+
+                    <input type="text" name="test_ocr" id="test_ocr" readonly class="form-control">
 
                 <div class="col-12 col-md-2">
                     <br>
@@ -430,21 +431,35 @@
         var canvas = document.querySelector("#canvas");
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
+        var test_ocr = document.querySelector("#test_ocr");
 
         context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
-        fetch("{{ url('/') }}/api/img_register", {
+        const data = {
+            requests: [
+                {
+                    image: {
+                        content: text_img.value.replace(/^data:.+;base64,/, "")
+                    },
+                        features: [{ type: "TEXT_DETECTION" }]
+                }
+            ]
+        };
+        
+        let url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAYROqDzrounZaB4J8etaV4yhBhhELZNE8";
+
+        fetch( url , {
             method: 'post',
-            body: JSON.stringify(text_img.value),
+            body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             }
         }).then(function (response){
             return response.text();
         }).then(function(text){
-            // console.log(text);
+            console.log(text);
         }).catch(function(error){
             // console.error(error);
         });
