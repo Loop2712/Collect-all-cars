@@ -447,7 +447,7 @@
                 }
             ]
         };
-        
+
         let url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAYROqDzrounZaB4J8etaV4yhBhhELZNE8";
 
         fetch( url , {
@@ -459,7 +459,7 @@
         }).then(function (response){
             return response.text();
         }).then(function(text){
-            console.log(text);
+            console.log(text.textAnnotations);
         }).catch(function(error){
             // console.error(error);
         });
