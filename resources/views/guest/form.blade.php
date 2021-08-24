@@ -390,7 +390,7 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true }) 
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
@@ -456,19 +456,12 @@
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(function (response){
-            const jsonResponse = response.json();
-            for (const va of jsonResponse.responses) {
-              console.log(va);
-              console.log(va.fullTextAnnotation.text);
-              // result.textContent = value.fullTextAnnotation.text;
-            };
-            return response.text();
-        }).then(function(text){
-            console.log(text.description);
-        }).catch(function(error){
-            // console.error(error);
-        });
+        })
+        .then(response => response.json())
+            .then(result => {
+                // console.log(result['responses']['0']['fullTextAnnotation']['text']); 
+                test_ocr.value = result['responses']['0']['fullTextAnnotation']['text'];
+            });
 
     }
 
