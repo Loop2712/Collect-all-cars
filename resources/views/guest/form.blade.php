@@ -457,9 +457,15 @@
                 "Content-Type": "application/json"
             }
         }).then(function (response){
+            const jsonResponse = response.json();
+            for (const va of jsonResponse.responses) {
+              console.log(va);
+              console.log(va.fullTextAnnotation.text);
+              // result.textContent = value.fullTextAnnotation.text;
+            };
             return response.text();
         }).then(function(text){
-            console.log(text.textAnnotations);
+            console.log(text.description);
         }).catch(function(error){
             // console.error(error);
         });
