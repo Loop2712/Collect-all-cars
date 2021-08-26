@@ -89,9 +89,8 @@
                     <hr>
                     @if(Auth::check())
                         @if(Auth::user()->id == $data->id or Auth::user()->role == "admin" or Auth::user()->role == $user_organization)
+                            <button style="width: 100%;border-radius: 100px 100px 0px 0px;"  class="btn btn-danger">ใบอนุญาตขับขี่</button>
                             <div class="main-shadow" style="padding:15px;">
-                                <button style="width: 100%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ใบอนุญาตขับขี่</button>
-                                <br><br>
                                 <!-- <span style="color:red;font-size: 14px;line-height: 30pt;">*ใบอนุญาตขับขี่จะไม่แสดงให้ผู้อื่นเห็น</span> -->
                                 <h5><i class="fas fa-car-side text-danger"></i> รถยนต์</h5>
                                 <br>
@@ -118,10 +117,10 @@
                     @endif
                 </div>
                 <div class="col-8">
+                <button style="width: 40%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ข้อมูลพื้นฐาน</button>
                     <div class="main-shadow" style="padding:15px;">
                         <div class="row">
-                            <button style="width: 40%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ข้อมูลพื้นฐาน</button>
-                            <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
+                            <hr style="margin-top: -15px;height:0.2px;width: 96%;border-color: red;">
                             <div class="col-4">
                                 <center><i class="far fa-user"></i> <b>&nbsp;ชื่อผู้ใช้</b></center>
                             </div>
@@ -165,10 +164,10 @@
                     </div>
                     <br>
                     <hr>
+                    <button style="width: 40%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ข้อมูลทั่วไป</button>
                     <div class="main-shadow" style="padding:15px;">
                         <div class="row">
-                            <button style="width: 40%;border-radius: 100px 0px 100px 0px;"  class="btn btn-danger">ข้อมูลทั่วไป</button>
-                            <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
+                            <hr style="margin-top: -15px;height:0.1px;width: 96%;border-color: red;">
                             <div class="col-4">
                                 <center> <b>รถของฉัน</b></center>
                             </div>

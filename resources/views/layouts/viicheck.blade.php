@@ -31,6 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="{{ asset('Medilab/css/style.css') }}" rel="stylesheet">
   
@@ -160,7 +161,17 @@
           bottom:0; /* stick to bottom */
           text-align:center;
         }
-
+        .gradient {
+          background: #56d4e1;
+          background: -webkit-linear-gradient(to right, rgba(86, 212, 225, 1), rgba(146, 38, 222, 1));
+          background: linear-gradient(to right, rgba(86, 212, 225, 1), rgba(146, 38, 222, 1))
+        }
+        .containers {
+          min-height: 30vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
     </style>
     
     
