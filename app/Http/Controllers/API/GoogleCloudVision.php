@@ -20,9 +20,9 @@ class GoogleCloudVision
         if (!empty($num_of_registration)) {
             $register_car = Register_car::where('registration_number', 'LIKE', "%$num_of_registration%")->get();
         } else {
-            $register_car = ""
+            $register_car = "";
         }
-        
+
         return $register_car ;
     }
 
