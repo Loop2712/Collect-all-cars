@@ -67,7 +67,7 @@
             }
           ]
         };
-        const url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAYROqDzrounZaB4J8etaV4yhBhhELZNE8";
+        const url = "https://vision.googleapis.com/v1/images:annotate?key=";
         const response = await fetch(url, {
           method: "POST",
           headers: {

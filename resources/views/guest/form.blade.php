@@ -146,8 +146,9 @@
                         <div class="col-12">
                             <input type="hidden" name="" id="text_img">
                             <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
-                            <img  src="" width="250" height="100" id="photo2">
+                            <img class="" src="" width="250" height="100" id="photo2">
                         </div>
+                        <br>
                     </div>
                 </div>
                 
@@ -168,11 +169,7 @@
                     </div>
                   </div>
                 </div>
-
-                <br class="d-block d-md-none">
-                <br class="d-block d-md-none">
-                <input type="text" name="test_ocr" id="test_ocr" readonly class="form-control d-block d-md-none">
-
+                <br><br>
                 <div class="col-12 col-md-2">
                     <label for="county" class="control-label">{{ 'จังหวัดของทะเบียนรถ' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
@@ -391,7 +388,7 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+          navigator.mediaDevices.getUserMedia({ video: true }) 
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
@@ -449,8 +446,7 @@
             ]
         };
 
-        let url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAYROqDzrounZaB4J8etaV4yhBhhELZNE8";
-
+        let url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus";
         fetch( url , {
             method: 'post',
             body: JSON.stringify(data),
@@ -460,8 +456,49 @@
         })
         .then(response => response.json())
             .then(result => {
-                // console.log(result['responses']['0']['fullTextAnnotation']['text']); 
-                test_ocr.value = result['responses']['0']['fullTextAnnotation']['text'];
+
+                let length = result['responses']['0']['textAnnotations']['length'];
+                let locale = result['responses']['0']['textAnnotations']['0']['locale'];
+
+                if (length === 4 && locale === "th") {
+                    let text_result_1 = result['responses']['0']['textAnnotations']['1']['description'];
+                    let text_result_2 = result['responses']['0']['textAnnotations']['2']['description'];
+                    let text_result_3 = result['responses']['0']['textAnnotations']['3']['description'];
+
+                    let registration = document.querySelector("#registration");
+                    let county = document.querySelector("#county");
+                        
+                        registration.value = text_result_1+text_result_2;
+                        county.innerHTML = "";
+
+                        let option = document.createElement("option");
+                            option.text = text_result_3;
+                            option.value = text_result_3;
+                            county.add(option);  
+
+                        check_time();
+                        add_reg_id();         
+
+                } else {
+                    let text_result_0 = result['responses']['0']['textAnnotations']['0']['description'];
+
+                    let text_result_arr = {
+                            "text_result_0": text_result_0
+                        };
+
+                        fetch( "{{ url('/') }}/api/search_reg_ocr" , {
+                            method: 'post',
+                            body: JSON.stringify(text_result_arr),
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(result => {
+                            // console.log(result);
+                        });
+
+                }
             });
 
     }
@@ -628,7 +665,7 @@
         fetch("{{ url('/') }}/api/add_reg_id/"+registration.value+"/"+county.value)
             .then(response => response.json())
             .then(result => {
-                // console.log(result[0].active);
+                // console.log(result);
                 //UPDATE SELECT OPTION
                 for(let item of result){
                     register_car_id.value = item.id;
@@ -636,8 +673,18 @@
                     // console.log(registration_car);
                 }
 
+                if (result['length'] === 0) {
+                    document.querySelector('#submit_form').classList.add('d-none');
+                    // alert("รถหมายเลขทะเบียนนี้ไม่มีในระบบ");
+                    document.getElementById("btn_not_system").click();
+                } else{
+                    document.querySelector('#submit_form').classList.remove('d-none');
+                }
+
                 if (result[0].active === "No") {
                     document.querySelector('#btn_car_cancel').click();
+                    registration.value = "" ;
+                    county.value = "" ;
                 }
                 
             });
