@@ -522,19 +522,22 @@
                         })
                         .then(response => response.json())
                         .then(result => {
-                            console.log(result);
-                            let div_content = document.querySelector("#div_content");
-                                div_content.textContent = "";
-                            for(let item of result){
-                                let para = document.createElement("P");
-                                let att = document.createAttribute("id");
-                                    att.value = "reg_"+item.id; 
-                                    para.setAttributeNode(att); 
 
-                                para.innerHTML = item.registration_number+"<br>"+item.province+"<hr>";
-                                div_content.appendChild(para);               
+                            if (result) {
+                                let div_content = document.querySelector("#div_content");
+                                    div_content.textContent = "";
+                                for(let item of result){
+                                    let para = document.createElement("P");
+                                    let att = document.createAttribute("id");
+                                        att.value = "reg_"+item.id; 
+                                        para.setAttributeNode(att); 
+
+                                    para.innerHTML = item.registration_number+"<br>"+item.province+"<hr>";
+                                    div_content.appendChild(para);               
+                                }
+                                document.querySelector('#btn_select_registration').click();
                             }
-                            document.querySelector('#btn_select_registration').click();
+                            
                         });
 
                 }

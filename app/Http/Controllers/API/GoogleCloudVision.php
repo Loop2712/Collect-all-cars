@@ -17,13 +17,12 @@ class GoogleCloudVision
 
         $num_of_registration =  preg_replace('/\D/', '', $data['text_result_0']);
 
-        $register_car = Register_car::where('registration_number', 'LIKE', "%$num_of_registration%")->get();
-
-        // echo "<pre>";
-        // print_r($register_car);
-        // echo "<pre>";
-        // exit();
-  
+        if (!empty($num_of_registration)) {
+            $register_car = Register_car::where('registration_number', 'LIKE', "%$num_of_registration%")->get();
+        } else {
+            $register_car = ""
+        }
+        
         return $register_car ;
     }
 
