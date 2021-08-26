@@ -474,7 +474,7 @@
         };
 
         let url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus";
-        fetch( url , {
+        fetch( url, {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
@@ -483,7 +483,7 @@
         })
         .then(response => response.json())
             .then(result => {
-
+                console.log(result);
                 let length = result['responses']['0']['textAnnotations']['length'];
                 let locale = result['responses']['0']['textAnnotations']['0']['locale'];
 
