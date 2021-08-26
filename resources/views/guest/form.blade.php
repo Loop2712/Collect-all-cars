@@ -272,9 +272,9 @@
 
 <!-- ไม่มีในระบบ -->
 <!-- Button trigger modal -->
-<button id="btn_not_system" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#not_system">
+<a id="btn_not_system" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#not_system">
   Launch static backdrop modal
-</button>
+</a>
 
 <!-- Modal -->
 <div class="modal fade" id="not_system" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -307,9 +307,9 @@
 
 <!-- ซ้ำ -->
 <!-- Button trigger modal -->
-<button id="btn_repeatedly" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#repeatedly">
+<a id="btn_repeatedly" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#repeatedly">
   Launch static backdrop modal
-</button>
+</a>
 
 <!-- Modal -->
 <div class="modal fade" id="repeatedly" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -341,7 +341,7 @@
 
 <!-- รถยกเลิกไปแล้ว -->
 <!-- Button trigger modal -->
-<button id="btn_car_cancel"  class="d-none" data-toggle="modal" data-target="#car_cancel"></button>
+<a id="btn_car_cancel"  class="d-none" data-toggle="modal" data-target="#car_cancel"></a>
 
 <!-- Modal -->
 <div class="modal fade" id="car_cancel" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -372,6 +372,33 @@
   </div>
 </div>
 
+<!-- เลือกป้ายทะเบียนรถ -->
+<!-- Button trigger modal -->
+<a id="btn_select_registration"  class="d-none" data-toggle="modal" data-target="#select_registration"></a>
+
+<!-- Modal -->
+<div class="modal fade" id="select_registration" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Please select <i class="fas fa-clipboard-check text-success"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-12 text-center" id="div_content">
+            
+        </div>
+      </div>
+      <div class="modal-footer d-none">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -388,7 +415,7 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+          navigator.mediaDevices.getUserMedia({ video: true }) 
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
@@ -495,7 +522,19 @@
                         })
                         .then(response => response.json())
                         .then(result => {
-                            // console.log(result);
+                            console.log(result);
+                            let div_content = document.querySelector("#div_content");
+
+                            for(let item of result){
+                                let para = document.createElement("P");
+                                let att = document.createAttribute("id");
+                                    att.value = "reg_"+item.id; 
+                                    para.setAttributeNode(att); 
+
+                                para.innerHTML = item.registration_number+"<br>"+item.province+"<hr>";
+                                div_content.appendChild(para);               
+                            }
+                            document.querySelector('#btn_select_registration').click();
                         });
 
                 }

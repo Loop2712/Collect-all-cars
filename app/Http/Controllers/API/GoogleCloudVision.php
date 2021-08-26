@@ -15,20 +15,16 @@ class GoogleCloudVision
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
 
-        echo "<pre>";
-        print_r($data);
-        echo "<pre>";
-        echo "<br>";
+        $num_of_registration =  preg_replace('/\D/', '', $data['text_result_0']);
+
+        $register_car = Register_car::where('registration_number', 'LIKE', "%$num_of_registration%")->get();
 
         // echo "<pre>";
-        // print_r(explode("\n",$text_result));
+        // print_r($register_car);
         // echo "<pre>";
-        // $reg_replace = str_replace("world","Peter","Hello world!");
-
-        // $register_car = Register_car::where('registration_number', $user['organization'] )->get();
-        exit();
+        // exit();
   
-
+        return $register_car ;
     }
 
     
