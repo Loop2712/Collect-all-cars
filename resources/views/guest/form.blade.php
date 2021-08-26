@@ -483,7 +483,7 @@
         })
         .then(response => response.json())
             .then(result => {
-                
+
                 let length = result['responses']['0']['textAnnotations']['length'];
                 let locale = result['responses']['0']['textAnnotations']['0']['locale'];
 
@@ -524,7 +524,7 @@
                         .then(result => {
                             console.log(result);
                             let div_content = document.querySelector("#div_content");
-
+                                div_content.textContent = "";
                             for(let item of result){
                                 let para = document.createElement("P");
                                 let att = document.createAttribute("id");
