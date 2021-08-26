@@ -536,6 +536,8 @@
                                     div_content.appendChild(para);               
                                 }
                                 document.querySelector('#btn_select_registration').click();
+                            } else {
+                                // ระบบไม่สามารถดำเนินการต่อได้ โปรดตรวจสอบ..
                             }
                             
                         });
