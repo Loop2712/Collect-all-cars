@@ -483,7 +483,7 @@
         })
         .then(response => response.json())
             .then(result => {
-                console.log(result);
+                
                 let length = result['responses']['0']['textAnnotations']['length'];
                 let locale = result['responses']['0']['textAnnotations']['0']['locale'];
 
