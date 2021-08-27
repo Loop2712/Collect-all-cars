@@ -154,6 +154,7 @@
                                 <canvas class="d-none"  id="canvas_motor" width="225" height="225"></canvas>
                                 <center>
                                     <img class="d-none" src="" width="225" height="225" id="photo_motor">
+                                    <input type="text" id="test_num_motor" name="" value="">
                                 </center>
                             </div>
 
@@ -526,6 +527,23 @@
                     }
                 } else {
                     console.log(result);
+
+                    let length = result['responses']['0']['textAnnotations']['length'];
+                    let locale = result['responses']['0']['textAnnotations']['0']['locale'];
+
+                    if (length === 4 && locale === "th") {
+                        let text_result_1 = result['responses']['0']['textAnnotations']['1']['description'];
+                        let text_result_2 = result['responses']['0']['textAnnotations']['2']['description'];
+                        let text_result_3 = result['responses']['0']['textAnnotations']['3']['description'];
+
+                        let test_num_motor = document.querySelector('#test_num_motor');
+                            test_num_motor.value = text_result_1+" "+text_result_2+"/"+text_result_3;
+
+                    }
+
+                    
+                    console.log(length);
+                    console.log(locale);
                 }
 
             });
