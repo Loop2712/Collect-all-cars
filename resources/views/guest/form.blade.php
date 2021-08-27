@@ -96,6 +96,19 @@
                 <div id="div_photo_registration" class="d-none">
                     <div class="d-block d-md-none">
                         <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div style="float: right;">
+                                        <p id="btn_click_frame_car" class="btn btn-primary btn-sm" onclick="frame_car();">
+                                            <i class="fas fa-car-side"></i>
+                                        </p>
+                                        <p id="btn_click_frame_motor" class="btn btn-outline-success btn-sm" onclick="frame_motor();">
+                                            <i class="fas fa-motorcycle"></i>
+                                        </p>
+                                    </div>
+                                    <br><br>
+                                </div>
+                            </div>
                             <div id="container">
                                 <div class="row">
                                     <div class="col-12">
@@ -109,16 +122,13 @@
                                             <p style="position: absolute; margin-top:6%"class="text-white">กรุณาวางป้ายทะเบียนให้ตรงกรอบ</p>
                                            
                                             <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
-                                            <!-- <canvas class="d-flex align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid;" width="220 px" height="120 px"></canvas> -->
-                                            <img class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
-                                            <!-- <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:-25px;" width="255 px" height="40 px"></canvas>
-                                            <canvas class="align-self-center" style="background-color: none; position: absolute;border-color: red;border-width: 2px;border-style: solid; margin-top:55px;" width="190 px" height="20 px"></canvas> -->
-                                            <!-- <fieldset class="reset-this redo-fieldset align-self-center" style="margin-top: -43px; position: absolute;" >
-                                                <legend class="reset-this redo-legend" > <b>หมายเลขทะเบียน</b> </legend>
-                                            </fieldset>
-                                            <fieldset class="reset-this redo-fieldset2 align-self-center" style="margin-top: 46px; position: absolute;" >
-                                                <legend class="reset-this redo-legend" > <b>จังหวัด</b> </legend>
-                                            </fieldset> -->
+
+                                            <img id="img_frame_car" class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
+
+                                            <img id="img_frame_motor" class="align-self-center d-none" style="position: absolute;margin-top: -100px;" width="80%" height="80%" src="{{ asset('/img/icon/15.1.png') }}">
+
+                                            <input type="hidden" name="type_reg" id="type_reg" value="car">
+
                                             <ul class="ul-dot align-self-center" style=" position: absolute;margin-top: 130px;padding-right: 20px;padding-left: 25px;">
                                                <span style="color:#ffff;">ข้อแนะนำ  </span> 
                                                 <li class="li-dot">หลีกเลี่ยงแสงสะท้อน ไม่มืดหรือสว่างเกินไป</li>
@@ -357,7 +367,7 @@
                 // }
         context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
 
-        
+
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
@@ -688,6 +698,47 @@
                 }
                 
             });
+    }
+
+    function frame_car() {
+        var btn_click_frame_car = document.querySelector("#btn_click_frame_car");
+        var btn_click_frame_motor = document.querySelector("#btn_click_frame_motor");
+        var img_frame_car = document.querySelector("#img_frame_car");
+        var img_frame_motor = document.querySelector("#img_frame_motor");
+        var type_reg = document.querySelector("#type_reg");
+
+        type_reg.value = "car" ;
+        console.log(type_reg.value);
+
+        img_frame_car.classList.remove('d-none');
+        img_frame_motor.classList.add('d-none');
+
+        btn_click_frame_car.classList.remove('btn-outline-primary');
+        btn_click_frame_car.classList.add('btn-primary');
+
+        btn_click_frame_motor.classList.remove('btn-success');
+        btn_click_frame_motor.classList.add('btn-outline-success');
+    }
+
+    function frame_motor() {
+        var btn_click_frame_car = document.querySelector("#btn_click_frame_car");
+        var btn_click_frame_motor = document.querySelector("#btn_click_frame_motor");
+        var img_frame_car = document.querySelector("#img_frame_car");
+        var img_frame_motor = document.querySelector("#img_frame_motor");
+
+        var type_reg = document.querySelector("#type_reg");
+
+        type_reg.value = "motorcycle" ;
+        console.log(type_reg.value);
+
+        img_frame_car.classList.add('d-none');
+        img_frame_motor.classList.remove('d-none');
+
+        btn_click_frame_car.classList.add('btn-outline-primary');
+        btn_click_frame_car.classList.remove('btn-primary');
+
+        btn_click_frame_motor.classList.add('btn-success');
+        btn_click_frame_motor.classList.remove('btn-outline-success');
     }
 
 </script>
