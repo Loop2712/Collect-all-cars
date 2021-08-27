@@ -312,7 +312,7 @@
             
             photo2.classList.add('d-none');
             photo_motor.classList.add('d-none');
-            
+
             document.querySelector('#div_spinner').classList.add('d-none');
 
         var div_btn_click_frame = document.querySelector("#div_btn_click_frame");
@@ -430,102 +430,104 @@
         .then(response => response.json())
             .then(result => {
 
-                //เช็คก่อนว่าเป็นรถยนต์หรือมอไซค์
-                // if (type_reg === 'car') {
+                // เช็คก่อนว่าเป็นรถยนต์หรือมอไซค์
+                if (type_reg === 'car') {
 
-                // }
+                    let length = result['responses']['0']['textAnnotations']['length'];
+                    let locale = result['responses']['0']['textAnnotations']['0']['locale'];
 
-                let length = result['responses']['0']['textAnnotations']['length'];
-                let locale = result['responses']['0']['textAnnotations']['0']['locale'];
+                    if (length === 4 && locale === "th") {
+                        let text_result_1 = result['responses']['0']['textAnnotations']['1']['description'];
+                        let text_result_2 = result['responses']['0']['textAnnotations']['2']['description'];
+                        let text_result_3 = result['responses']['0']['textAnnotations']['3']['description'];
 
-                if (length === 4 && locale === "th") {
-                    let text_result_1 = result['responses']['0']['textAnnotations']['1']['description'];
-                    let text_result_2 = result['responses']['0']['textAnnotations']['2']['description'];
-                    let text_result_3 = result['responses']['0']['textAnnotations']['3']['description'];
-
-                    let registration = document.querySelector("#registration");
-                    let county = document.querySelector("#county");
-                        
-                        registration.value = text_result_1+text_result_2;
-                        county.innerHTML = "";
-
-                        let option = document.createElement("option");
-                            option.text = text_result_3;
-                            option.value = text_result_3;
-                            county.add(option);  
-
-                        check_time();
-                        add_reg_id();  
-                        div_spinner.classList.add('d-none');       
-
-                } else if (length !== 4 || locale !== "th") {
-                    let text_result_0 = result['responses']['0']['textAnnotations']['0']['description'];
-
-                    let text_result_arr = {
-                            "text_result_0": text_result_0
-                        };
-
-                        fetch( "{{ url('/') }}/api/search_reg_ocr" , {
-                            method: 'post',
-                            body: JSON.stringify(text_result_arr),
-                            headers: {
-                                "Content-Type": "application/json"
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(result => {
-                            if (result) {
-                                let div_content = document.querySelector("#div_content");
-                                    div_content.textContent = "";
-                                for(let item of result){
-
-                                    // <div>
-                                    let div = document.createElement("div");
-                                    let id = document.createAttribute("id");
-                                        id.value = "reg_"+item.id;
-                                    let onClick = document.createAttribute("onClick");
-                                        onClick.value = "show_reg('"+item.registration_number+"','"+item.province+"');";
-
-                                        div.setAttributeNode(id); 
-                                        div.setAttributeNode(onClick);
-
-                                    // <p>
-                                    let para = document.createElement("P");
-                                    let style_para = document.createAttribute("style");
-                                        style_para.value = "position: relative;top: 85px; z-index: 5; font-size:18px;";
-                                        para.setAttributeNode(style_para); 
-                                        para.innerHTML = item.registration_number+"<br>"+item.province+"<br>";
-
-                                    // <img>
-                                    let img = document.createElement("img");
-                                    let style_img = document.createAttribute("style");
-                                        style_img.value = "position: absolute;right: 40px;z-index: 2;";
-                                    let src_img = document.createAttribute("src");
-                                        src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
-                                    let width_img = document.createAttribute("width");
-                                        width_img.value = "250";
-                                        
-                                        img.setAttributeNode(style_img); 
-                                        img.setAttributeNode(src_img); 
-                                        img.setAttributeNode(width_img); 
-
-                                    // <hr>
-                                    let br = document.createElement("br");
-
-                                    div.appendChild(para);
-                                    div.appendChild(img);
-                                    div.appendChild(br);
-
-                                    div_content.appendChild(div);               
-                                }
-                                document.querySelector('#btn_select_registration').click();
-                                div_spinner.classList.add('d-none');       
-
-                            } 
+                        let registration = document.querySelector("#registration");
+                        let county = document.querySelector("#county");
                             
-                        });
+                            registration.value = text_result_1+text_result_2;
+                            county.innerHTML = "";
 
+                            let option = document.createElement("option");
+                                option.text = text_result_3;
+                                option.value = text_result_3;
+                                county.add(option);  
+
+                            check_time();
+                            add_reg_id();  
+                            div_spinner.classList.add('d-none');       
+
+                    } else if (length !== 4 || locale !== "th") {
+                        let text_result_0 = result['responses']['0']['textAnnotations']['0']['description'];
+
+                        let text_result_arr = {
+                                "text_result_0": text_result_0
+                            };
+
+                            fetch( "{{ url('/') }}/api/search_reg_ocr" , {
+                                method: 'post',
+                                body: JSON.stringify(text_result_arr),
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(result => {
+                                if (result) {
+                                    let div_content = document.querySelector("#div_content");
+                                        div_content.textContent = "";
+                                    for(let item of result){
+
+                                        // <div>
+                                        let div = document.createElement("div");
+                                        let id = document.createAttribute("id");
+                                            id.value = "reg_"+item.id;
+                                        let onClick = document.createAttribute("onClick");
+                                            onClick.value = "show_reg('"+item.registration_number+"','"+item.province+"');";
+
+                                            div.setAttributeNode(id); 
+                                            div.setAttributeNode(onClick);
+
+                                        // <p>
+                                        let para = document.createElement("P");
+                                        let style_para = document.createAttribute("style");
+                                            style_para.value = "position: relative;top: 85px; z-index: 5; font-size:18px;";
+                                            para.setAttributeNode(style_para); 
+                                            para.innerHTML = item.registration_number+"<br>"+item.province+"<br>";
+
+                                        // <img>
+                                        let img = document.createElement("img");
+                                        let style_img = document.createAttribute("style");
+                                            style_img.value = "position: absolute;right: 40px;z-index: 2;";
+                                        let src_img = document.createAttribute("src");
+                                            src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
+                                        let width_img = document.createAttribute("width");
+                                            width_img.value = "250";
+                                            
+                                            img.setAttributeNode(style_img); 
+                                            img.setAttributeNode(src_img); 
+                                            img.setAttributeNode(width_img); 
+
+                                        // <hr>
+                                        let br = document.createElement("br");
+
+                                        div.appendChild(para);
+                                        div.appendChild(img);
+                                        div.appendChild(br);
+
+                                        div_content.appendChild(div);               
+                                    }
+                                    document.querySelector('#btn_select_registration').click();
+                                    div_spinner.classList.add('d-none');       
+
+                                } 
+                                
+                            });
+
+                    }
+                } else {
+                    console.log(result);
                 }
+
             });
 
     }
