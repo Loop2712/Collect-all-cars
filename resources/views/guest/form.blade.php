@@ -154,7 +154,7 @@
                                 <canvas class="d-none"  id="canvas_motor" width="225" height="225"></canvas>
                                 <center>
                                     <img class="d-none" src="" width="225" height="225" id="photo_motor">
-                                    <!-- <input type="text" id="test_num_motor" name="" value=""> -->
+                                    <input type="text" id="test_num_motor" name="" value="">
                                 </center>
                             </div>
                             <br>
