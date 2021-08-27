@@ -265,14 +265,14 @@
             <div class="div_modal">
                 @include ('guest.form_modal')
             </div>
-
+            <div class="form-group">
+                <input class="d-none btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
+            </div>
         </div>
     </div>
 </div>
 
-<div class="form-group">
-    <input class="d-none btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
-</div>
+
 
 
 <script>
