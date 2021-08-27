@@ -96,7 +96,7 @@
                 <div id="div_photo_registration" class="d-none">
                     <div class="d-block d-md-none">
                         <div class="col-12">
-                            <div class="row">
+                            <div id="div_btn_click_frame" class="row">
                                 <div class="col-12">
                                     <div style="float: right;">
                                         <p id="btn_click_frame_car" class="btn btn-primary btn-sm" onclick="frame_car();">
@@ -311,6 +311,9 @@
             photo2.classList.add('d-none');
         document.querySelector('#div_spinner').classList.add('d-none');
 
+        var div_btn_click_frame = document.querySelector("#div_btn_click_frame");
+            div_btn_click_frame.classList.remove('d-none');
+
         if (navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
           // { video: { facingMode: { exact: "environment" } } }
@@ -360,6 +363,8 @@
 
         var div_spinner = document.querySelector("#div_spinner");
             div_spinner.classList.remove('d-none');
+        var div_btn_click_frame = document.querySelector("#div_btn_click_frame");
+            div_btn_click_frame.classList.add('d-none');
 
         //เช็คก่อนว่าเป็นรถยนต์หรือมอไซค์
                 // if (type_reg === 'car') {
