@@ -125,7 +125,7 @@
 
                                             <img id="img_frame_car" class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
 
-                                            <img id="img_frame_motor" class="align-self-center d-none" style="position: absolute;margin-top: -100px;" width="80%" height="80%" src="{{ asset('/img/icon/15.1.png') }}">
+                                            <img id="img_frame_motor" class="align-self-center d-none" style="position: absolute;margin-top: -100px;" width="80%" height="50%" src="{{ asset('/img/icon/15.1.png') }}">
 
                                             <input type="hidden" name="type_reg" id="type_reg" value="car">
 
