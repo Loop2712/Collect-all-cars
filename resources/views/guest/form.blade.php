@@ -147,6 +147,10 @@
                             <input type="hidden" name="" id="text_img">
                             <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
                             <img class="d-none" src="" width="250" height="100" id="photo2">
+                            <br><br>
+                            <div id="div_spinner" class="d-none text-success">
+                                <div  class="spinner-border text-success"></div> &nbsp;&nbsp;กำลังตรวจสอบ..
+                            </div>
                         </div>
                         <br>
                     </div>
@@ -340,6 +344,9 @@
             div_cam.classList.add('d-none');
             photo2.classList.remove('d-none');
 
+        var div_spinner = document.querySelector("#div_spinner");
+            div_spinner.classList.remove('d-none');
+
         context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
@@ -386,7 +393,8 @@
                             county.add(option);  
 
                         check_time();
-                        add_reg_id();         
+                        add_reg_id();  
+                        div_spinner.classList.add('d-none');       
 
                 } else if (length !== 4 || locale !== "th") {
                     let text_result_0 = result['responses']['0']['textAnnotations']['0']['description'];
@@ -410,13 +418,20 @@
                                 for(let item of result){
                                     let para = document.createElement("P");
                                     let att = document.createAttribute("id");
-                                        att.value = "reg_"+item.id; 
+                                    let onClick = document.createAttribute("onClick");
+
+                                        onClick.value = "show_reg('"+item.registration_number+"','"+item.province+"');";
+                                        
+                                        att.value = "reg_"+item.id;
                                         para.setAttributeNode(att); 
+                                        para.setAttributeNode(onClick); 
 
                                     para.innerHTML = item.registration_number+"<br>"+item.province+"<hr>";
                                     div_content.appendChild(para);               
                                 }
                                 document.querySelector('#btn_select_registration').click();
+                                div_spinner.classList.add('d-none');       
+
                             } 
                             
                         });
@@ -424,6 +439,26 @@
                 }
             });
 
+    }
+
+    function show_reg(reg_number , reg_province){
+        // console.log(reg_number);
+        // console.log(reg_province);
+
+        let registration = document.querySelector("#registration");
+        let county = document.querySelector("#county");
+            
+            registration.value = reg_number;
+            county.innerHTML = "";
+
+            let option = document.createElement("option");
+                option.text = reg_province;
+                option.value = reg_province;
+                county.add(option);  
+
+            check_time();
+            add_reg_id();   
+            document.querySelector('#btn_close_select_registration').click();      
     }
 
     function check_registration(){
