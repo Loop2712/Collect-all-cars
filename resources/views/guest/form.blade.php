@@ -103,7 +103,7 @@
                                             <a style="position: absolute; z-index:10; margin-right:10px" class="text-white" onclick="stop();"> <b>X</b> </a>
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" id="div_cam">
                                         <div class="d-flex justify-content-center bg-light"> 
                                             <p style="position: absolute"class="text-white">สแกนป้ายทะเบียน</p>
                                             <p style="position: absolute; margin-top:6%"class="text-white">กรุณาวางป้ายทะเบียนให้ตรงกรอบ</p>
@@ -146,7 +146,7 @@
                         <div class="col-12">
                             <input type="hidden" name="" id="text_img">
                             <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
-                            <img class="" src="" width="250" height="100" id="photo2">
+                            <img class="d-none" src="" width="250" height="100" id="photo2">
                         </div>
                         <br>
                     </div>
@@ -289,6 +289,9 @@
         var canvas = document.querySelector("#canvas");
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
+        var div_cam = document.querySelector("#div_cam");
+            div_cam.classList.remove('d-none');
+            photo2.classList.add('d-none');
 
         if (navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
@@ -333,6 +336,9 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
         var test_ocr = document.querySelector("#test_ocr");
+        var div_cam = document.querySelector("#div_cam");
+            div_cam.classList.add('d-none');
+            photo2.classList.remove('d-none');
 
         context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
