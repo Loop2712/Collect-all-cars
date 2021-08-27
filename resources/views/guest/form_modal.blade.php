@@ -115,8 +115,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="col-12 text-center" id="div_content">
-            
+        <div class="col-12 text-center" >
+            <div class="row">
+              <br>
+              <div class="col-12" id="div_content" style="position: relative;top: -70px;">
+              </div>
+            </div>
         </div>
       </div>
       <div class="modal-footer d-none">

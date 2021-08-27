@@ -416,18 +416,45 @@
                                 let div_content = document.querySelector("#div_content");
                                     div_content.textContent = "";
                                 for(let item of result){
-                                    let para = document.createElement("P");
-                                    let att = document.createAttribute("id");
+
+                                    // <div>
+                                    let div = document.createElement("div");
+                                    let id = document.createAttribute("id");
+                                        id.value = "reg_"+item.id;
                                     let onClick = document.createAttribute("onClick");
-
                                         onClick.value = "show_reg('"+item.registration_number+"','"+item.province+"');";
-                                        
-                                        att.value = "reg_"+item.id;
-                                        para.setAttributeNode(att); 
-                                        para.setAttributeNode(onClick); 
 
-                                    para.innerHTML = item.registration_number+"<br>"+item.province+"<hr>";
-                                    div_content.appendChild(para);               
+                                        div.setAttributeNode(id); 
+                                        div.setAttributeNode(onClick);
+
+                                    // <p>
+                                    let para = document.createElement("P");
+                                    let style_para = document.createAttribute("style");
+                                        style_para.value = "position: relative;top: 85px; z-index: 5; font-size:18px;";
+                                        para.setAttributeNode(style_para); 
+                                        para.innerHTML = item.registration_number+"<br>"+item.province+"<br>";
+
+                                    // <img>
+                                    let img = document.createElement("img");
+                                    let style_img = document.createAttribute("style");
+                                        style_img.value = "position: absolute;right: 40px;z-index: 2;";
+                                    let src_img = document.createAttribute("src");
+                                        src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
+                                    let width_img = document.createAttribute("width");
+                                        width_img.value = "250";
+                                        
+                                        img.setAttributeNode(style_img); 
+                                        img.setAttributeNode(src_img); 
+                                        img.setAttributeNode(width_img); 
+
+                                    // <hr>
+                                    let br = document.createElement("br");
+
+                                    div.appendChild(para);
+                                    div.appendChild(img);
+                                    div.appendChild(br);
+
+                                    div_content.appendChild(div);               
                                 }
                                 document.querySelector('#btn_select_registration').click();
                                 div_spinner.classList.add('d-none');       
