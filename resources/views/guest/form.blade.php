@@ -148,8 +148,11 @@
                             <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
                             <img class="d-none" src="" width="250" height="100" id="photo2">
                             <br><br>
-                            <div id="div_spinner" class="d-none text-success">
-                                <div  class="spinner-border text-success"></div> &nbsp;&nbsp;กำลังตรวจสอบ..
+                            <div id="div_spinner" class="d-none">
+                                <div class="spinner-border text-success"></div> 
+                                <span class="text-success">&nbsp;&nbsp;กำลังตรวจสอบ..</span>
+                                <br>
+                                <span style="font-size:12px;color:#f26363;">หากรอนานกรุณาลองใหม่อีกครั้ง</span>
                             </div>
                         </div>
                         <br>
