@@ -396,7 +396,7 @@
                 show_img_motor.classList.remove('d-none');
 
                 let context = canvas_motor.getContext('2d');
-                    context.drawImage(video, 60, 100, 380, 170, 0, 0, 250, 250);
+                    context.drawImage(video, 60, 90, 400, 170, 0, 0, 250, 250);
 
                 photo_motor.setAttribute('src',canvas_motor.toDataURL('image/png'));
                 text_img.value = canvas_motor.toDataURL('image/png');
