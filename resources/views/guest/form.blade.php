@@ -351,7 +351,13 @@
         var div_spinner = document.querySelector("#div_spinner");
             div_spinner.classList.remove('d-none');
 
+        //เช็คก่อนว่าเป็นรถยนต์หรือมอไซค์
+                // if (type_reg === 'car') {
+
+                // }
         context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
+
+        
         photo2.setAttribute('src',canvas.toDataURL('image/png'));
         text_img.value = canvas.toDataURL('image/png');
 
@@ -376,6 +382,11 @@
         })
         .then(response => response.json())
             .then(result => {
+
+                //เช็คก่อนว่าเป็นรถยนต์หรือมอไซค์
+                // if (type_reg === 'car') {
+
+                // }
 
                 let length = result['responses']['0']['textAnnotations']['length'];
                 let locale = result['responses']['0']['textAnnotations']['0']['locale'];
