@@ -110,6 +110,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Please select <i class="fas fa-clipboard-check text-success"></i></h5>
+        <button id="btn_close_select_registration" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <div class="col-12 text-center" >
@@ -119,9 +122,6 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>
