@@ -291,7 +291,7 @@
         var context = canvas.getContext('2d');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: video: { facingMode: { exact: "environment" } } }) 
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
