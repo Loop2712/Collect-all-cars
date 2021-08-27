@@ -141,7 +141,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-12" id="div_show_img">
+                        <div class="col-12">
                             <input type="hidden" name="" id="text_img">
                             <!-- CAR -->
                             <div id="show_img_car" class="d-none">
@@ -303,16 +303,16 @@
 
         var video = document.querySelector("#videoElement");
         var photo2 = document.querySelector("#photo2");
+        var photo_motor = document.querySelector("#photo_motor");
         var canvas = document.querySelector("#canvas");
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
-        
         var div_cam = document.querySelector("#div_cam");
             div_cam.classList.remove('d-none');
-
-        var div_show_img = document.querySelector("#div_show_img");
-            div_show_img.classList.add('d-none');
-
+            
+            photo2.classList.add('d-none');
+            photo_motor.classList.add('d-none');
+            
             document.querySelector('#div_spinner').classList.add('d-none');
 
         var div_btn_click_frame = document.querySelector("#div_btn_click_frame");
