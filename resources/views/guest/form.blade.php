@@ -382,7 +382,7 @@
                         check_time();
                         add_reg_id();         
 
-                } else {
+                } else if (length !== 4 || locale !== "th") {
                     let text_result_0 = result['responses']['0']['textAnnotations']['0']['description'];
 
                     let text_result_arr = {
@@ -398,7 +398,6 @@
                         })
                         .then(response => response.json())
                         .then(result => {
-
                             if (result) {
                                 let div_content = document.querySelector("#div_content");
                                     div_content.textContent = "";
@@ -412,9 +411,7 @@
                                     div_content.appendChild(para);               
                                 }
                                 document.querySelector('#btn_select_registration').click();
-                            } else {
-                                document.querySelector('#btn_not_continue').click();
-                            }
+                            } 
                             
                         });
 
