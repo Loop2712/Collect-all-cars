@@ -64,7 +64,9 @@ class GuestController extends Controller
             ->groupBy('province')
             ->get();
 
-        return view('guest.create', compact('location_array'));
+        $gg_key = env('GOOGLE_KEY_API');
+
+        return view('guest.create', compact('location_array','gg_key'));
     }
 
     /**
