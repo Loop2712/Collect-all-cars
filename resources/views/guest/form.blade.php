@@ -538,7 +538,20 @@
                         let text_result_2 = result['responses']['0']['textAnnotations']['2']['description'];
                         let text_result_3 = result['responses']['0']['textAnnotations']['3']['description'];
 
-                        test_num_motor.value = text_result_1+" "+text_result_2+"/"+text_result_3;
+                        let registration = document.querySelector("#registration");
+                        let county = document.querySelector("#county");
+                            
+                            registration.value = text_result_1+text_result_3;
+                            county.innerHTML = "";
+
+                            let option = document.createElement("option");
+                                option.text = text_result_2;
+                                option.value = text_result_2;
+                                county.add(option);  
+
+                            check_time();
+                            add_reg_id();  
+                            div_spinner.classList.add('d-none');    
 
                     } else {
 
