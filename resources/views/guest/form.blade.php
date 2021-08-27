@@ -140,23 +140,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="row">
-                            <center>
-                                <!-- <div class="col-8" id="div_videoSource" class="select">
-                                    <label for="videoSource">เลือกกล้อง</label>
-                                    <select style="margin-top:-150px" class="col-8" id="videoSource"></select>
-                                </div>
-                                <br> -->
-                                <!-- <a class="btn btn-sm btn-primary text-white" onclick="capture();"><i class="fas fa-camera"></i> ถ่ายภาพ</a>
-                                <a class="btn btn-sm btn-primary text-white" onclick="stop();">X</a> -->
-                            </center></div>
-                        </div>
                         
                         <div class="col-12">
                             <input type="hidden" name="" id="text_img">
-                            <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
-                            <img class="d-none" src="" width="250" height="100" id="photo2">
+                            <!-- CAR -->
+                            <div id="show_img_car" class="d-none">
+                                <canvas class="d-none"  id="canvas" width="250" height="100"></canvas>
+                                <img class="d-none" src="" width="250" height="100" id="photo2">
+                            </div>
+                            
+                            <!-- MOTOR -->
+                            <div id="show_img_motor" class="d-none">
+                                <canvas class="d-none"  id="canvas_motor" width="225" height="225"></canvas>
+                                <center>
+                                    <img class="d-none" src="" width="225" height="225" id="photo_motor">
+                                </center>
+                            </div>
+
                             <br><br>
                             <div id="div_spinner" class="d-none">
                                 <div class="spinner-border text-success"></div> 
@@ -351,30 +351,58 @@
     }
 
     function capture() {
+        var show_img_car = document.querySelector("#show_img_car");
+        var show_img_motor = document.querySelector("#show_img_motor");
+
         var video = document.querySelector("#videoElement");
+        var text_img = document.querySelector("#text_img");
+
+        // CAR
         var photo2 = document.querySelector("#photo2");
         var canvas = document.querySelector("#canvas");
-        var text_img = document.querySelector("#text_img");
-        var context = canvas.getContext('2d');
-        var test_ocr = document.querySelector("#test_ocr");
+        // MOTOR
+        var photo_motor = document.querySelector("#photo_motor");
+        var canvas_motor = document.querySelector("#canvas_motor");
+
         var div_cam = document.querySelector("#div_cam");
             div_cam.classList.add('d-none');
-            photo2.classList.remove('d-none');
 
         var div_spinner = document.querySelector("#div_spinner");
             div_spinner.classList.remove('d-none');
         var div_btn_click_frame = document.querySelector("#div_btn_click_frame");
             div_btn_click_frame.classList.add('d-none');
 
-        //เช็คก่อนว่าเป็นรถยนต์หรือมอไซค์
-                // if (type_reg === 'car') {
+        let type_reg = document.querySelector("#type_reg").value;
+            
+            //เช็คว่าเป็นรถยนต์หรือมอไซค์
+            if (type_reg === 'car') {
+                photo2.classList.remove('d-none');
+                show_img_car.classList.remove('d-none');
 
-                // }
-        context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
+                photo_motor.classList.add('d-none');
+                show_img_motor.classList.add('d-none');
 
+                let context = canvas.getContext('2d');
+                    context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 100);
 
-        photo2.setAttribute('src',canvas.toDataURL('image/png'));
-        text_img.value = canvas.toDataURL('image/png');
+                photo2.setAttribute('src',canvas.toDataURL('image/png'));
+                text_img.value = canvas.toDataURL('image/png');
+
+            } else {
+                photo2.classList.add('d-none');
+                show_img_car.classList.add('d-none');
+
+                photo_motor.classList.remove('d-none');
+                show_img_motor.classList.remove('d-none');
+
+                let context = canvas_motor.getContext('2d');
+                    context.drawImage(video, 45, 140, 380, 170, 0, 0, 250, 250);
+
+                photo_motor.setAttribute('src',canvas_motor.toDataURL('image/png'));
+                text_img.value = canvas_motor.toDataURL('image/png');
+            }
+
+        
 
         const data = {
             requests: [
@@ -713,7 +741,6 @@
         var type_reg = document.querySelector("#type_reg");
 
         type_reg.value = "car" ;
-        console.log(type_reg.value);
 
         img_frame_car.classList.remove('d-none');
         img_frame_motor.classList.add('d-none');
@@ -734,7 +761,6 @@
         var type_reg = document.querySelector("#type_reg");
 
         type_reg.value = "motorcycle" ;
-        console.log(type_reg.value);
 
         img_frame_car.classList.add('d-none');
         img_frame_motor.classList.remove('d-none');
