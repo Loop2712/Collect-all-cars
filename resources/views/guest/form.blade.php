@@ -165,7 +165,6 @@
                                 <span style="font-size:12px;color:#f26363;">หากรอนานกรุณาลองใหม่อีกครั้ง</span>
                             </div>
                         </div>
-                        <br>
                     </div>
                 </div>
                 
