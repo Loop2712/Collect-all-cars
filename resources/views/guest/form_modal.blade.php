@@ -113,11 +113,8 @@
       </div>
       <div class="modal-body">
         <div class="col-12 text-center" >
-            <div class="row">
-              <br>
-                <div class="col-12"  >
-                   <center id="div_content">
-                  </center>
+            <div class="row" class="d-flex align-items-center">
+                <div class="col-12"  id="div_content" class="d-flex align-items-center" style="margin-top:-70px;">
               </div>
             </div>
         </div>

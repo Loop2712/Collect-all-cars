@@ -317,7 +317,7 @@
             div_btn_click_frame.classList.remove('d-none');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+          navigator.mediaDevices.getUserMedia({ video: true }) 
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
@@ -488,14 +488,14 @@
                                         // <p>
                                         let para = document.createElement("P");
                                         let style_para = document.createAttribute("style");
-                                            style_para.value = "position: relative;top: 85px; z-index: 5; font-size:18px;";
+                                            style_para.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
                                             para.setAttributeNode(style_para); 
                                             para.innerHTML = item.registration_number+"<br>"+item.province+"<br>";
 
                                         // <img>
                                         let img = document.createElement("img");
                                         let style_img = document.createAttribute("style");
-                                            style_img.value = "right: 40px;z-index: 2;";
+                                            style_img.value = "right: 40px;z-index: 2;margin-top:-110px;";
                                         let src_img = document.createAttribute("src");
                                             src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
                                         let width_img = document.createAttribute("width");
@@ -513,7 +513,7 @@
                                         div.appendChild(br);
 
                                         let style_div_content = document.createAttribute("style");
-                                            style_div_content.value = "position: relative;top: -70px;";
+                                            style_div_content.value = "position: relative;";
 
                                         div_content.appendChild(div);               
                                         div_content.setAttributeNode(style_div_content);               
@@ -598,14 +598,14 @@
                                         // <p>
                                         let para = document.createElement("P");
                                         let style_para = document.createAttribute("style");
-                                            style_para.value = "position: relative;top: 115px; z-index: 5; font-size:18px;";
+                                            style_para.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
                                             para.setAttributeNode(style_para); 
                                             para.innerHTML = first_text_reg+"<br>"+item.province+"<br>"+second_text_reg;
 
                                         // <img>
                                         let img = document.createElement("img");
                                         let style_img = document.createAttribute("style");
-                                            style_img.value = "right: 65px;z-index: 2;";
+                                            style_img.value = "right: 65px;z-index: 2;margin-top:-110px";
                                         let src_img = document.createAttribute("src");
                                             src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
                                         let width_img = document.createAttribute("width");
@@ -626,7 +626,7 @@
                                         div.appendChild(br);
 
                                         let style_div_content = document.createAttribute("style");
-                                            style_div_content.value = "position: relative;top: -90px;";
+                                            style_div_content.value = "position: relative;";
 
                                         div_content.appendChild(div);               
                                         div_content.setAttributeNode(style_div_content);               
