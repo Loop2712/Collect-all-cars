@@ -17,14 +17,15 @@ class GoogleCloudVision
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
 
-        $text = $this->replace_A_to_Z($data['text_result_0']);
-        
-        $num_ecplode = explode(" ",$text) ;
+        // $text = $this->replace_A_to_Z($data['text_result_0']);
+        // $num_ecplode = explode(" ",$text) ;
+
+        $num_ecplode = explode(" ",$data['text_result_0']) ;
 
         if (!empty($num_ecplode[1])){
             $num_of_registration =  preg_replace('/\D/', '', $num_ecplode[1]);
         }else{
-            $num_of_registration =  preg_replace('/\D/', '', $text);
+            $num_of_registration =  preg_replace('/\D/', '', $data['text_result_0']);
         }
 
         if (!empty($num_of_registration)) {
