@@ -98,6 +98,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 	Route::resource('report_news', 'Report_newsController');
 
+	Route::resource('insurance', 'InsuranceController');
+
 });
 // END ADMIN VIICHECK
 

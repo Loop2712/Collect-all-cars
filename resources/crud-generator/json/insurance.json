@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "company",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "status_partner",
+            "type": "string"
+        }
+    ]
+}

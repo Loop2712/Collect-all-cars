@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CarModel;
 use DB;
+use App\Models\Insurance;
 
 class CarbrandController extends Controller
 {
@@ -139,6 +140,16 @@ class CarbrandController extends Controller
             ->get();
 
         return $registration;
+    }
+
+    public function phone_insurance($name_insurance)
+    {
+
+        $phones = Insurance::where('company',$name_insurance )
+            ->get();
+
+        return $phones;
+
     }
 
 }

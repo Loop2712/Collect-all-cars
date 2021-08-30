@@ -129,6 +129,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{{ url('/insurance') }}">
+                <i class="fas fa-hands-helping text-success"></i>
+                <span class="nav-link-text">บริษัทประกันภัย</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ url('/profanity') }}">
                 <i class="fas fa-ban text-orange"></i>
                 <span class="nav-link-text">แบนคำหยาบคาย</span>

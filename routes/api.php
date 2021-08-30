@@ -33,6 +33,8 @@ Route::get('/check_register_car/{registration_number}/{province}/check_register_
 
 Route::get('/add_reg_id/{registration}/{province}','API\CarbrandController@add_reg_id');
 
+Route::get('/phone_insurance/{name_insurance}/name_insurance','API\CarbrandController@phone_insurance');
+
 Route::get('/check_registration/{registration}','API\CarbrandController@check_registration');
 Route::get('/check_registration/{registration}/province','API\CarbrandController@check_province');
 Route::get('/check_time/{registration}/{county}/{user_id}','API\CarbrandController@check_time');

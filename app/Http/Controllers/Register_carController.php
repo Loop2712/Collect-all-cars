@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Organization;
+use App\Models\Insurance;
 use Illuminate\Support\Facades\DB;
 use App\CarModel;
 use App\county;
@@ -180,12 +181,16 @@ class Register_carController extends Controller
             ->where('car_type', 'motorcycle')
             ->get();
 
+        $name_insurance = Insurance::where('company', '!=',"" )
+            ->groupBy('company')
+            ->get();
+
         // echo "<pre>";
-        // print_r($register_car);
+        // print_r($name_insurance);
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization','select_Organization'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization','select_Organization','name_insurance'));
     }
 
     /**
@@ -411,6 +416,7 @@ class Register_carController extends Controller
                 $brand_old  = $item->brand;
                 $generation_old  = $item->generation;
                 $province_old  =  $item->province;
+                $name_insurance_old  =  $item->name_insurance;
             }
 
             $car_brand = CarModel::selectRaw('brand,count(brand) as count')
@@ -432,7 +438,11 @@ class Register_carController extends Controller
                 ->where('car_type', 'motorcycle')
                 ->get();
 
-            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle', 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization' , 'select_Organization','car_type_old','brand_old','generation_old','province_old'));
+            $name_insurance = Insurance::where('company', '!=',"" )
+                ->groupBy('company')
+                ->get();
+
+            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle', 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization' , 'select_Organization','car_type_old','brand_old','generation_old','province_old','name_insurance_old','name_insurance'));
         }
     }
     public function edit_act($id)
