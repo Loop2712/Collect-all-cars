@@ -271,7 +271,7 @@
 
                         <div class="col-12 col-md-6">
                             <div class="form-group {{ $errors->has('phone_insurance') ? 'has-error' : ''}}">
-                                <input class="form-control" name="phone_insurance" type="text" id="phone_insurance" value="{{ isset($register_car->phone_insurance) ? $register_car->phone_insurance : '' }}" readonly>
+                                <input class="form-control" name="phone_insurance" type="hidden" id="phone_insurance" value="{{ isset($register_car->phone_insurance) ? $register_car->phone_insurance : '' }}" readonly>
                                 {!! $errors->first('phone_insurance', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
