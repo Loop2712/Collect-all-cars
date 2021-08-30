@@ -600,7 +600,7 @@
                                         let style_para = document.createAttribute("style");
                                             style_para.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
                                             para.setAttributeNode(style_para); 
-                                            para.innerHTML = first_text_reg+"<br>"+item.province+"<br>"+second_text_reg;
+                                            para.innerHTML = first_text_reg+"<br><br>"+item.province+"<br>"+second_text_reg;
 
                                         // <img>
                                         let img = document.createElement("img");
