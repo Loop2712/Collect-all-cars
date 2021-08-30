@@ -154,7 +154,6 @@
                                 <canvas class="d-none"  id="canvas_motor" width="225" height="225"></canvas>
                                 <center>
                                     <img class="d-none" src="" width="225" height="225" id="photo_motor">
-                                    <input type="text" id="test_num_motor" name="" value="">
                                 </center>
                             </div>
                             <br>
@@ -513,7 +512,11 @@
                                         div.appendChild(img);
                                         div.appendChild(br);
 
+                                        let style_div_content = document.createAttribute("style");
+                                            style_div_content.value = "position: relative;top: -70px;";
+
                                         div_content.appendChild(div);               
+                                        div_content.setAttributeNode(style_div_content);               
                                     }
                                     document.querySelector('#btn_select_registration').click();
                                     div_spinner.classList.add('d-none');       
@@ -526,7 +529,6 @@
                 } else {
                     // รถจักยานยนต์
                     // console.log(result);
-                    let test_num_motor = document.querySelector('#test_num_motor');
 
                     let length = result['responses']['0']['textAnnotations']['length'];
                     let locale = result['responses']['0']['textAnnotations']['0']['locale'];
@@ -554,12 +556,89 @@
 
                     } else {
 
-                        test_num_motor.value = result['responses']['0']['textAnnotations']['0']['description'];
+                        let length_number = length - 1 ;
+                        let text_number = result['responses']['0']['textAnnotations'][length_number]['description'];
+
+                        let text_result_arr = {
+                                "text_number": text_number
+                            };
+
+                            fetch( "{{ url('/') }}/api/search_reg_ocr_motor" , {
+                                method: 'post',
+                                body: JSON.stringify(text_result_arr),
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(result => {
+                                if (result) {
+                                    let div_content = document.querySelector("#div_content");
+                                        div_content.textContent = "";
+                                    for(let item of result){
+
+                                        let text_reg_all = item.registration_number;
+                                        
+                                        let numberArr_1 = text_reg_all.split(text_number);
+                                        let first_text_reg = numberArr_1[0];
+
+                                        let numberArr_2 = text_reg_all.split(first_text_reg);
+                                        let second_text_reg = numberArr_2[1];
+
+                                        // <div>
+                                        let div = document.createElement("div");
+                                        let id = document.createAttribute("id");
+                                            id.value = "reg_"+item.id;
+                                        let onClick = document.createAttribute("onClick");
+                                            onClick.value = "show_reg('"+item.registration_number+"','"+item.province+"');";
+
+                                            div.setAttributeNode(id); 
+                                            div.setAttributeNode(onClick);
+
+                                        // <p>
+                                        let para = document.createElement("P");
+                                        let style_para = document.createAttribute("style");
+                                            style_para.value = "position: relative;top: 115px; z-index: 5; font-size:18px;";
+                                            para.setAttributeNode(style_para); 
+                                            para.innerHTML = first_text_reg+"<br>"+item.province+"<br>"+second_text_reg;
+
+                                        // <img>
+                                        let img = document.createElement("img");
+                                        let style_img = document.createAttribute("style");
+                                            style_img.value = "position: absolute;right: 65px;z-index: 2;";
+                                        let src_img = document.createAttribute("src");
+                                            src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
+                                        let width_img = document.createAttribute("width");
+                                            width_img.value = "200";
+                                        let height_img = document.createAttribute("height");
+                                            height_img.value = "120";
+                                            
+                                            img.setAttributeNode(style_img); 
+                                            img.setAttributeNode(src_img); 
+                                            img.setAttributeNode(width_img); 
+                                            img.setAttributeNode(height_img); 
+
+                                        // <hr>
+                                        let br = document.createElement("br");
+
+                                        div.appendChild(para);
+                                        div.appendChild(img);
+                                        div.appendChild(br);
+
+                                        let style_div_content = document.createAttribute("style");
+                                            style_div_content.value = "position: relative;top: -90px;";
+
+                                        div_content.appendChild(div);               
+                                        div_content.setAttributeNode(style_div_content);               
+                                    }
+                                    document.querySelector('#btn_select_registration').click();
+                                    div_spinner.classList.add('d-none');       
+
+                                } 
+                                
+                            });
                     }
 
-                    
-                    console.log(length);
-                    console.log(locale);
                 }
 
             });

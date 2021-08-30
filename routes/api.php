@@ -63,6 +63,7 @@ Route::get('/motor_middle_price/{motor_brand}/model','API\Brand_middle_price_car
 
 // OCR
 Route::post('/search_reg_ocr','API\GoogleCloudVision@search_registration_ocr');
+Route::post('/search_reg_ocr_motor','API\GoogleCloudVision@search_registration_ocr_motor');
 
 // cancel_Profile
 Route::get('/confirm_cancel/{id_user}/{reason}/{reason_other}/{amend}/profile','ProfileController@cancel_Profile');

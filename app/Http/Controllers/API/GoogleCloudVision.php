@@ -40,6 +40,36 @@ class GoogleCloudVision
         return $register_car ;
     }
 
+    public function search_registration_ocr_motor()
+    {
+        $num_ecplode[1] = "";
+
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+
+        // $text = $this->replace_A_to_Z($data['text_number']);
+        // $num_ecplode = explode(" ",$text) ;
+
+        $num_ecplode = explode(" ",$data['text_number']) ;
+
+        if (!empty($num_ecplode[1])){
+            $num_of_registration =  preg_replace('/\D/', '', $num_ecplode[1]);
+        }else{
+            $num_of_registration =  preg_replace('/\D/', '', $data['text_number']);
+        }
+
+        if (!empty($num_of_registration)) {
+            $register_car = Register_car::where('registration_number', 'LIKE', "%$num_of_registration%")
+                ->where('car_type', "motorcycle")
+                ->get();
+    
+        } else {
+            $register_car = "";
+        }
+
+        return $register_car ;
+    }
+
     // Convert a string to an array with multibyte string
     function getMBStrSplit($string, $split_length = 1){
         mb_internal_encoding('UTF-8');
