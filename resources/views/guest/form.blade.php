@@ -531,7 +531,7 @@
                     let length = result['responses']['0']['textAnnotations']['length'];
                     let locale = result['responses']['0']['textAnnotations']['0']['locale'];
 
-                    if (length >= 4 && locale === "th") {
+                    if (length === 4 && locale === "th") {
 
                         let text_result_1 = result['responses']['0']['textAnnotations']['1']['description'];
                         let text_result_2 = result['responses']['0']['textAnnotations']['2']['description'];
