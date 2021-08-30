@@ -33,7 +33,7 @@ class AlertAct extends Command
         parent::__construct();
     }
 
-    public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
+    public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
 
     /**
      * Execute the console command.
