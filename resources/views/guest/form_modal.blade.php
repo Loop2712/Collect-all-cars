@@ -115,7 +115,9 @@
         <div class="col-12 text-center" >
             <div class="row">
               <br>
-              <div class="col-12" id="div_content" >
+                <div class="col-12"  >
+                   <center id="div_content">
+                  </center>
               </div>
             </div>
         </div>

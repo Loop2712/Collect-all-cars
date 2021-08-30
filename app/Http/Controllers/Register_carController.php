@@ -394,7 +394,7 @@ class Register_carController extends Controller
         }
         if (empty($name)) {
 
-             return view('404');
+             return view('/errors/404');
 
         }else{
 
