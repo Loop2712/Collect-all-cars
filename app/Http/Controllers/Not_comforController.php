@@ -167,7 +167,7 @@ class Not_comforController extends Controller
         return redirect('not_comfor')->with('flash_message', 'Not_comfor deleted!');
     }
 
-    public $channel_access_token = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=";
+    // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
     public function _push_Not_comforLine($data)
     {   
@@ -188,7 +188,7 @@ class Not_comforController extends Controller
                 'http' =>[
                     'method'  => 'POST',
                     'header'  => "Content-Type: application/json \r\n".
-                                'Authorization: Bearer '.$this->channel_access_token,
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
                     'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
                     //'timeout' => 60
                 ]
@@ -266,7 +266,7 @@ class Not_comforController extends Controller
                             'http' =>[
                                 'method'  => 'POST',
                                 'header'  => "Content-Type: application/json \r\n".
-                                            'Authorization: Bearer '.$this->channel_access_token,
+                                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
                                 'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
                                 //'timeout' => 60
                             ]
