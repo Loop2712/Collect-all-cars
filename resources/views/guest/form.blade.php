@@ -605,7 +605,7 @@
                                         // <img>
                                         let img = document.createElement("img");
                                         let style_img = document.createAttribute("style");
-                                            style_img.value = "position: absolute;right: 65px;z-index: 2;";
+                                            style_img.value = "right: 65px;z-index: 2;";
                                         let src_img = document.createAttribute("src");
                                             src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
                                         let width_img = document.createAttribute("width");
