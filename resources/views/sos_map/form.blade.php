@@ -61,18 +61,12 @@
                         <a id="btn_quick_help" class="btn btn-warning btn-block shadow-box text-white d-none" onclick="police();">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือด่วน
                         </a>
-                        <div id="div_goto" class="d-none">
-                            <hr>
-                            <a class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
-                                <i class="fas fa-hands-helping"></i> ติดต่อประกัน
-                            </a>
-                        </div>
                     </div> 
                 </div>
             </div>
 
         <div class="col-12 card shadow" style="margin-top:-35px;">
-            <!-- <div class="row">
+            <div class="row">
                 <div id="div_goto" class="col-12 d-none">
                     <br>
                     <a class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
@@ -80,7 +74,7 @@
                     </a>
                     <hr>
                 </div>
-            </div> -->
+            </div>
             <div class="row">
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
