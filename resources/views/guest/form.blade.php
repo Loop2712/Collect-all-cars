@@ -317,7 +317,7 @@
             div_btn_click_frame.classList.remove('d-none');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+          navigator.mediaDevices.getUserMedia({ video: true }) 
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
@@ -573,17 +573,24 @@
                             .then(response => response.json())
                             .then(result => {
                                 if (result) {
+                                    // console.log(result);
                                     let div_content = document.querySelector("#div_content");
                                         div_content.textContent = "";
                                     for(let item of result){
-
-                                        let text_reg_all = item.registration_number;
                                         
-                                        let numberArr_1 = text_reg_all.split(text_number);
-                                        let first_text_reg = numberArr_1[0];
+                                        let replace_not_digit = item.registration_number.replace(/\D/g, '/');
 
-                                        let numberArr_2 = text_reg_all.split(first_text_reg);
-                                        let second_text_reg = numberArr_2[1];
+                                        let split = replace_not_digit.split('/') ;
+                                        let i = split.length - 1 ;
+
+                                        let second_text_reg = split[i];
+
+                                        let split_2 = item.registration_number.split(second_text_reg);
+
+                                        let first_text_reg = split_2[0];
+
+                                        // console.log(first_text_reg);
+                                        // console.log(second_text_reg);
 
                                         // <div>
                                         let div = document.createElement("div");
@@ -600,12 +607,12 @@
                                         let style_para = document.createAttribute("style");
                                             style_para.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
                                             para.setAttributeNode(style_para); 
-                                            para.innerHTML = first_text_reg+"<br><br>"+item.province+"<br>"+second_text_reg;
+                                            para.innerHTML = first_text_reg+"<br>"+item.province+"<br>"+second_text_reg;
 
                                         // <img>
                                         let img = document.createElement("img");
                                         let style_img = document.createAttribute("style");
-                                            style_img.value = "right: 65px;z-index: 2;margin-top:-110px";
+                                            style_img.value = "right: 65px;z-index: 2;margin-top:-135px";
                                         let src_img = document.createAttribute("src");
                                             src_img.value = "{{ asset('/img/icon/ป้ายทะเบียน.png') }}";
                                         let width_img = document.createAttribute("width");
