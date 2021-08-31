@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
+        
+        document.querySelector('#div_goto').classList.remove('d-none');
 
         lat_text.value = position.coords.latitude ;
         lng_text.value = position.coords.longitude ;
@@ -30,8 +32,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         let location_user = document.querySelector("#location_user");
             location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
-
-        document.querySelector('#div_goto').classList.remove('d-none');
 
         check_area(lat,lng);
     }
