@@ -67,7 +67,7 @@
 
         <div class="col-12 card shadow" style="margin-top:-35px;">
             <div class="row">
-                <div id="div_goto" class="col-12">
+                <div id="div_goto" class="col-12 d-none">
                     <br>
                     <a class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
                         <i class="fas fa-hands-helping"></i> ติดต่อประกัน
@@ -162,7 +162,7 @@
 
 <script>
     function contact_insurance(){
-        
+
         let latlng = document.querySelector("#latlng").value;
         let div_goto = document.querySelector("#div_goto");
         
