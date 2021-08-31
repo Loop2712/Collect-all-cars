@@ -162,6 +162,18 @@ class Sos_mapController extends Controller
         return redirect('sos_map')->with('flash_message', 'Sos_map deleted!');
     }
 
+    public function sos_insurance()
+    {
+        $user = Auth::user();
+
+        $register_car = DB::table('register_cars')
+            ->where('user_id', $user->id)
+            ->where('active', "Yes")
+            ->get();
+
+        return view('sos_map.sos_insurance', compact('register_car'));
+    }
+
     public function sos_login()
     {
         if(Auth::check()){

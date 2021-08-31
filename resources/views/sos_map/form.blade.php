@@ -67,6 +67,15 @@
 
         <div class="col-12 card shadow" style="margin-top:-35px;">
             <div class="row">
+                <div class="col-12">
+                    <br>
+                    <a href="{{ url('/sos_insurance') }}" class="btn btn-info btn-block shadow-box text-white ">
+                        <i class="fas fa-hands-helping"></i> ติดต่อประกัน
+                    </a>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-6">
                     <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
                     <a class="btn btn-danger btn-block shadow-box text-white" onclick="police();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>

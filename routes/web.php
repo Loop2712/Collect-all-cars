@@ -131,6 +131,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('profile', 'ProfileController');
 	Route::get('/news/create', 'NewsController@create');
 	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
+	Route::get('sos_insurance', 'Sos_mapController@sos_insurance');
 	// Route::get('/sosmap', 'SosController@sosmap');
 });
 
