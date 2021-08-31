@@ -67,9 +67,9 @@
 
         <div class="col-12 card shadow" style="margin-top:-35px;">
             <div class="row">
-                <div class="col-12">
+                <div id="div_goto" class="col-12">
                     <br>
-                    <a href="{{ url('/sos_insurance') }}" class="btn btn-info btn-block shadow-box text-white ">
+                    <a class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
                         <i class="fas fa-hands-helping"></i> ติดต่อประกัน
                     </a>
                     <hr>
@@ -151,7 +151,7 @@
 </div>
 <br><br>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920&language=th" ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 <style type="text/css">
     #map {
       height: calc(45vh);
@@ -159,3 +159,25 @@
     
 </style>
 <script src="{{ asset('js/sos_map.js')}}"></script>
+
+<script>
+    function contact_insurance(){
+        
+        let latlng = document.querySelector("#latlng").value;
+        let div_goto = document.querySelector("#div_goto");
+        
+        let a = document.createElement("a");
+        let href = document.createAttribute("href");
+            href.value = "{{ url('/sos_insurance') }}?latlng="+latlng;
+
+        let id = document.createAttribute("id");
+            id.value = "goto_sos_insurance";
+
+        a.setAttributeNode(href); 
+        a.setAttributeNode(id); 
+
+        div_goto.appendChild(a);  
+
+        document.querySelector("#goto_sos_insurance").click();
+    }    
+</script>

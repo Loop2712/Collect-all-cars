@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <input type="hidden" id="latlng" name="latlng" readonly>
+                        <input type="hidden" id="latlng" name="latlng" value="{{ $latlng }}" readonly>
 
                         @foreach($register_car as $item)
                             <div class="col-12 card shadow">
@@ -17,7 +17,7 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <center>
-                                                    <img style="margin-top:18px;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                    <img style="margin-top:18px;width: 85%;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                 </center>
                                             </div>
                                             <div class="col-8 text-center">
@@ -50,8 +50,4 @@
             </div>
         </div>
     </div>
-
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG1_Wtq39qpBpTSaSne1jNv4GtMqIB920&language=th" ></script>
-    <script src="{{ asset('js/sos_map.js')}}"></script>
 @endsection
