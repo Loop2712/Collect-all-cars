@@ -248,6 +248,7 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group {{ $errors->has('name_insurance') ? 'has-error' : ''}}">
                                 <select name="name_insurance" id="name_insurance" class="form-control" onchange="search_phone_insurance();">
+
                                     @if(!empty($name_insurance_old))
                                         <option value="{{ $name_insurance_old }}" selected>{{ $name_insurance_old }}</option>
                                         @foreach($name_insurance as $item)
@@ -256,6 +257,7 @@
                                             {{ $item->company }} 
                                             </option>
                                         @endforeach  
+                                        <option value="insurance_another" >อื่นๆ</option>
                                     @else
                                         <option value="" selected>- เลือกบริษัทประกันภัย -</option>
                                         @foreach($name_insurance as $item)
@@ -264,16 +266,30 @@
                                             {{ $item->company }} 
                                             </option>
                                         @endforeach 
+                                        <option value="insurance_another" >อื่นๆ</option>
                                     @endif
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-2">
+                            <label for="province" class="control-label">{{ 'เบอร์โทรบริษัทประกันภัย' }}</span></label>
+                        </div>
+                        <div class="col-12 col-md-4">
                             <div class="form-group {{ $errors->has('phone_insurance') ? 'has-error' : ''}}">
-                                <input class="form-control" name="phone_insurance" type="hidden" id="phone_insurance" value="{{ isset($register_car->phone_insurance) ? $register_car->phone_insurance : '' }}" readonly>
+                                <input class="form-control" name="phone_insurance" type="text" id="phone_insurance" value="{{ isset($register_car->phone_insurance) ? $register_car->phone_insurance : '' }}" readonly>
                                 {!! $errors->first('phone_insurance', '<p class="help-block">:message</p>') !!}
                             </div>
+                        </div>
+
+                        <div id="insurance_another" class="d-none">
+                            <div class="col-12 col-md-4 offset-2">
+                                <div class="form-group {{ $errors->has('name_insurance_another') ? 'has-error' : ''}}">
+                                    <input class="form-control" name="name_insurance_another" type="text" id="name_insurance_another" value="" >
+                                    {!! $errors->first('name_insurance', '<p class="help-block">:message</p>') !!}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6"></div>
                         </div>
 
                         <div class="col-12 col-md-2">
@@ -856,14 +872,28 @@
     function search_phone_insurance(){
 
         let name_insurance = document.querySelector("#name_insurance").value;
+
+        if (name_insurance === "insurance_another") {
+
+            document.querySelector('#insurance_another').classList.remove('d-none'),
+            document.querySelector('#phone_insurance').setAttributeNode(document.createAttribute('required')),
+            document.querySelector('#phone_insurance').removeAttribute('readonly'),
+            document.querySelector('#name_insurance_another').focus();
+
+        } else { 
+
+            document.querySelector('#insurance_another').classList.add('d-none'),
+            document.querySelector('#phone_insurance').setAttributeNode(document.createAttribute('readonly')),
+            document.querySelector('#phone_insurance').removeAttribute('required');
         
 
-        fetch("{{ url('/') }}/api/phone_insurance/"+name_insurance+"/name_insurance")
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                let phone_insurance = document.querySelector("#phone_insurance");
-                    phone_insurance.value = result[0]['phone'] ;
-            });
+            fetch("{{ url('/') }}/api/phone_insurance/"+name_insurance+"/name_insurance")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    let phone_insurance = document.querySelector("#phone_insurance");
+                        phone_insurance.value = result[0]['phone'] ;
+                });
+        }
     }
 </script>

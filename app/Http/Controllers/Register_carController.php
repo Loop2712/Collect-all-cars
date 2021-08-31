@@ -311,6 +311,11 @@ class Register_carController extends Controller
                 ]);
         }
 
+        if (!empty($requestData['name_insurance_another'])) {
+        
+            $requestData['name_insurance'] = $requestData['name_insurance_another'];
+        }
+
         Register_car::create($requestData);
 
         // return view('register_car.select_get')->with('flash_message', 'Register_car added!');
