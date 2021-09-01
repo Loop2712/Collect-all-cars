@@ -446,8 +446,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // let lat = 13.8334364;
         // let lng = 100.5405355;
-        document.querySelector('#div_goto').classList.remove('d-none');
-        
+
         if ( inside([ lat, lng ], area_test) ) {
             // พื้นที่ทดสอบ
             document.querySelector('#a_help').classList.remove('d-none');
@@ -487,7 +486,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         } else{
             document.querySelector('#btn_quick_help').classList.remove('d-none');
         }
-
+        
+        document.querySelector('#div_goto').classList.remove('d-none');
 
     }
 
