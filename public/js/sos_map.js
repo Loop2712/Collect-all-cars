@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
-        
-        document.querySelector('#div_goto').classList.remove('d-none');
 
         lat_text.value = position.coords.latitude ;
         lng_text.value = position.coords.longitude ;
@@ -488,6 +486,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         } else{
             document.querySelector('#btn_quick_help').classList.remove('d-none');
         }
+        
+        document.querySelector('#div_goto').classList.remove('d-none');
 
     }
 
