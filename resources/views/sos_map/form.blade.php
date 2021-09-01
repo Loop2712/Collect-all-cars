@@ -168,7 +168,7 @@
         
         let a = document.createElement("a");
         let href = document.createAttribute("href");
-            href.value = "{{ url('/sos_insurance') }}?latlng="+latlng;
+            href.value = "{{ url('/sos_insurance_blade') }}?latlng="+latlng;
 
         let id = document.createAttribute("id");
             id.value = "goto_sos_insurance";

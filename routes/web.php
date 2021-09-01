@@ -100,6 +100,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 	Route::resource('insurance', 'InsuranceController');
 
+	Route::resource('sos_insurance', 'Sos_insuranceController');
+
 });
 // END ADMIN VIICHECK
 
@@ -131,7 +133,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('profile', 'ProfileController');
 	Route::get('/news/create', 'NewsController@create');
 	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
-	Route::get('sos_insurance', 'Sos_mapController@sos_insurance');
+	Route::get('sos_insurance_blade', 'Sos_mapController@sos_insurance_blade');
 	// Route::get('/sosmap', 'SosController@sosmap');
 });
 

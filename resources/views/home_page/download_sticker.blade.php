@@ -113,10 +113,10 @@
         <option value="ht">เฮติครีโอล</option>
       </select>
 </div> -->
-<div class="col-lg-4 col-md-4  align-items-stretch mt-4">
+<div class="col-lg-6 col-md-6  align-items-stretch mt-4">
   <a href="{{ asset('/img/sticker_qr/sticker_qr_en.png') }}" download >
   <div class="icon-box">
-  <br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
       <img width="75%" src="{{ asset('/img/sticker_qr/sticker_qr_en.png') }}" class="img-fluid" alt="">
       <br><br>
@@ -125,7 +125,7 @@
   </div>
   </a>
   </div>
-  <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
+  <!-- <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
   <a href="{{ asset('/img/sticker_qr/sticker_qr_th.png') }}" download >
   <div class="icon-box">
     <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
@@ -135,12 +135,12 @@
     </div>
   </div>
   </a>
-  </div>
-  <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-  <a id="sticker_qr_1" href="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" download >
+  </div> -->
+  <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
+  <a id="sticker_qr_1" href="{{ asset('/img/sticker_qr/sticker_qr_th.png') }}" download >
   <div class="icon-box">
     <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-      <img id="sticker_qr_2" width="75%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
+      <img id="sticker_qr_2" width="75%" src="{{ asset('/img/sticker_qr/sticker_qr_th.png') }}" class="img-fluid" alt="">
       <br><br>
       <button type="button" class="btn btn-danger">Download</button>
     </div>

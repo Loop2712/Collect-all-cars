@@ -73,6 +73,10 @@ Route::get('/confirm_cancel/{id_user}/{reason}/{reason_other}/{amend}/profile','
 Route::get('/welcome_home/{status_id}/profile','ProfileController@welcome_home');
 
 
+Route::post('/save_sos_insurance', 'API\Save_sos_insuranceController@Save_sos');
+Route::get('/save_sos_insurance/{name_insurance}/select_insurance', 'API\Save_sos_insuranceController@Save_sos_2');
+
+
 
 
 

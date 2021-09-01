@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Sos_map;
+use App\Models\Insurance;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -162,9 +163,10 @@ class Sos_mapController extends Controller
         return redirect('sos_map')->with('flash_message', 'Sos_map deleted!');
     }
 
-    public function sos_insurance(Request $request)
+    public function sos_insurance_blade(Request $request)
     {
         $user = Auth::user();
+
         $latlng = $request->get('latlng');
 
         $register_car = DB::table('register_cars')
@@ -172,7 +174,11 @@ class Sos_mapController extends Controller
             ->where('active', "Yes")
             ->get();
 
-        return view('sos_map.sos_insurance', compact('register_car','latlng'));
+         $name_insurance = Insurance::where('company', '!=',"" )
+            ->groupBy('company')
+            ->get();
+
+        return view('sos_map.sos_insurance', compact('register_car','latlng','name_insurance'));
     }
 
     public function sos_login()
