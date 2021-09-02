@@ -272,24 +272,21 @@
                             </div>
                         </div>
 
+                        <div id="insurance_another" class="d-none col-12 col-md-6">
+                            <div class="form-group {{ $errors->has('name_insurance_another') ? 'has-error' : ''}}">
+                                <input class="form-control" name="name_insurance_another" type="text" id="name_insurance_another" value="" >
+                                {!! $errors->first('name_insurance', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+
                         <div class="col-12 col-md-2">
-                            <label for="province" class="control-label">{{ 'เบอร์โทรบริษัทประกันภัย' }}</span></label>
+                            <label for="province" class="control-label">{{ 'เบอร์โทรบริษัทประกัน' }}</span></label>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group {{ $errors->has('phone_insurance') ? 'has-error' : ''}}">
                                 <input class="form-control" name="phone_insurance" type="text" id="phone_insurance" value="{{ isset($register_car->phone_insurance) ? $register_car->phone_insurance : '' }}" readonly>
                                 {!! $errors->first('phone_insurance', '<p class="help-block">:message</p>') !!}
                             </div>
-                        </div>
-
-                        <div id="insurance_another" class="d-none">
-                            <div class="col-12 col-md-4 offset-2">
-                                <div class="form-group {{ $errors->has('name_insurance_another') ? 'has-error' : ''}}">
-                                    <input class="form-control" name="name_insurance_another" type="text" id="name_insurance_another" value="" >
-                                    {!! $errors->first('name_insurance', '<p class="help-block">:message</p>') !!}
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6"></div>
                         </div>
 
                         <div class="col-12 col-md-2">
@@ -877,6 +874,7 @@
 
             document.querySelector('#insurance_another').classList.remove('d-none'),
             document.querySelector('#phone_insurance').setAttributeNode(document.createAttribute('required')),
+            document.querySelector('#phone_insurance').value = "",
             document.querySelector('#phone_insurance').removeAttribute('readonly'),
             document.querySelector('#name_insurance_another').focus();
 
