@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     { 
-        $schedule->command('cron:alert_act')->everyMinute(); 
+        $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
     }
 
     /**
