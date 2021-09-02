@@ -8,6 +8,7 @@ use App\Models\Register_car;
 use App\Models\Guest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cancel_Profile;
+use App\Models\Mylog;
 
 class Home_pageController extends Controller
 {
