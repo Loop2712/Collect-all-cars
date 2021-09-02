@@ -24,6 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     { 
+        // ->daily();
         $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
     }
 
