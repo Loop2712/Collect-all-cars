@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Models\Register_car;
 use App\Models\MyLog;
+use App\Models\LineMessagingAPI;
 
 class AlertAct extends Command
 {
@@ -47,7 +48,7 @@ class AlertAct extends Command
         $line = new LineMessagingAPI();
 
         $line->alert_act();
-        
+
     }
 
 }
