@@ -1102,6 +1102,7 @@ class LineMessagingAPI extends Model
 
         // พรบ
         $act = Register_car::where('act' , "<=" , $date_30)
+                    ->where('provider_id', 'LIKE', "%U%")
                     ->whereNull('alert_act')
                     ->get();
 
