@@ -1102,6 +1102,7 @@ class LineMessagingAPI extends Model
 
         // พรบ
         $act = Register_car::where('act' , "<=" , $date_30)
+                    ->where('user_id'  , "1")
                     ->whereNull('alert_act')
                     ->get();
 
@@ -1150,6 +1151,7 @@ class LineMessagingAPI extends Model
 
         // ประกัน
         $insurance = Register_car::where('insurance' , "<=" , $date_30)
+                                ->where('user_id'  , "1")
                                 ->where('alert_insurance' , "=" , null)
                                 ->get();
 
