@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Models\Register_car;
-use App\Models\Mylog;
+use App\Models\MyLog;
 
 class AlertAct extends Command
 {
