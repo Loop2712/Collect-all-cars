@@ -1112,6 +1112,7 @@ class LineMessagingAPI extends Model
             $string_json = str_replace("ตัวอย่าง","พรบ. ของคุณใกล้หมดอายุ",$string_json);
             $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
+            $string_json = str_replace("car_id",$item->id,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
@@ -1162,6 +1163,7 @@ class LineMessagingAPI extends Model
             $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
             $string_json = str_replace("พรบ","ประกัน",$string_json);
+            $string_json = str_replace("car_id",$item->id,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 

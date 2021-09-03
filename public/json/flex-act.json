@@ -7,17 +7,125 @@
   "body": {
     "type": "box",
     "layout": "vertical",
-    "spacing": "md",
-    "action": {
-      "type": "uri",
-      "uri": "https://linecorp.com"
-    },
     "contents": [
       {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/17.png",
+            "margin": "xs",
+            "align": "center",
+            "gravity": "center",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "animated": true
+          }
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
         "type": "text",
-        "text": "ผู้ใช้รถทะเบียน",
+        "text": "พรบ",
+        "size": "3xl",
+        "margin": "lg",
+        "color": "#FFFFFF",
+        "weight": "bold",
+        "decoration": "underline",
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "text": "ของคุณเหลือน้อยกว่า",
+        "size": "lg",
+        "margin": "lg",
+        "color": "#FFFFFF",
+        "decoration": "none",
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "text": "30",
+        "size": "3xl",
+        "margin": "lg",
+        "color": "#FFFFFF",
+        "weight": "bold",
+        "decoration": "underline",
+        "align": "center",
+        "style": "italic"
+      },
+      {
+        "type": "text",
+        "text": "วันจะหมดอายุ",
+        "size": "lg",
+        "margin": "lg",
+        "color": "#FFFFFF",
+        "decoration": "none",
+        "align": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เลขทะเบียน / Plate No.",
+        "weight": "bold",
         "size": "xl",
-        "weight": "bold"
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "wrap": true,
+                "color": "#FFFFFF",
+                "size": "xl",
+                "flex": 6,
+                "text": "9กก9999"
+              },
+              {
+                "type": "text",
+                "text": "กรุงเทพมหานคร",
+                "wrap": true,
+                "color": "#FFFFFF",
+                "size": "sm",
+                "flex": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "lg",
+        "color": "#07375D"
       },
       {
         "type": "box",
@@ -25,133 +133,57 @@
         "spacing": "sm",
         "contents": [
           {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "text",
-                "text": "9กก9999",
-                "margin": "none",
-                "size": "lg",
-                "align": "center",
-                "weight": "bold",
-                "gravity": "center",
-                "flex": 5,
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "กรุงเทพมหานคร",
-                "flex": 6
-              }
-            ],
-            "margin": "lg"
+            "type": "separator",
+            "margin": "md"
           },
           {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            "type": "text",
+            "text": "ขออภัยหากท่านต่ออายุแล้ว",
+            "wrap": true,
+            "color": "#FFFFFF",
+            "size": "sm",
+            "flex": 8,
+            "margin": "xl"
           },
           {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "text": "พรบ ของคุณเหลือ",
-                "size": "md",
-                "align": "center",
-                "margin": "md",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "พรบ",
-                    "decoration": "underline",
-                    "size": "lg",
-                    "color": "#FF0000"
-                  },
-                  {
-                    "type": "span",
-                    "text": "  ของคุณเหลือน้อยกว่า"
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": "30",
-                "size": "3xl",
-                "align": "center",
-                "decoration": "underline",
-                "margin": "lg",
-                "color": "#FF0000"
-              },
-              {
-                "type": "text",
-                "text": "วันจะหมดอายุ",
-                "size": "md",
-                "align": "center",
-                "margin": "lg"
-              },
-              {
-                "type": "separator",
-                "margin": "lg",
-                "color": "#ff0101"
-              },
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ขออภัยหากท่านต่ออายุแล้ว",
-                    "align": "start",
-                    "gravity": "center",
-                    "size": "md"
-                  }
-                ],
-                "margin": "xl"
-              },
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "image",
-                    "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-                    "size": "sm",
-                    "align": "center",
-                    "aspectMode": "fit",
-                    "gravity": "bottom",
-                    "aspectRatio": "16:9"
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "uri",
-                      "label": "แก้ไขวันที่",
-                      "uri": "https://www.viicheck.com/register_car"
-                    },
-                    "style": "primary",
-                    "height": "sm",
-                    "margin": "xxl",
-                    "gravity": "center",
-                    "color": "#ff0101"
-                  }
-                ],
-                "margin": "xl"
-              },
-              {
-                "type": "separator"
+                "type": "button",
+                "height": "sm",
+                "action": {
+                  "type": "uri",
+                  "label": "แก้ไขวันที่",
+                  "uri": "https://www.viicheck.com/register_car/edit_act_login/car_id"
+                },
+                "color": "#3AC0CE",
+                "style": "primary"
               }
-            ]
+            ],
+            "cornerRadius": "lg",
+            "margin": "lg"
+          },
+          {
+            "type": "separator",
+            "color": "#07375D",
+            "margin": "md"
           }
-        ]
+        ],
+        "flex": 0,
+        "borderColor": "#000000",
+        "backgroundColor": "#07375D"
       }
     ],
-    "borderWidth": "bold",
+    "backgroundColor": "#07375D",
     "borderColor": "#ff0101",
+    "borderWidth": "bold",
     "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
   }
 }
-
 }
