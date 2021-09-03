@@ -8,7 +8,7 @@ use App\Models\Cancel_Profile;
 use App\Models\Cancel_after_6_month;
 use App\User;
 
-class Cancel_after_6_month extends Command
+class Cancel_after extends Command
 {
     /**
      * The name and signature of the console command.

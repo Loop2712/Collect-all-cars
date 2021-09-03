@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\AlertAct::class,
-        Commands\Cancel_after_6_month::class,
+        Commands\Cancel_after::class,
     ];
 
     /**
