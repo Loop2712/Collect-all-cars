@@ -2,7 +2,7 @@
 
 @section('content')
 <br><br><br><br><br>
-    <div class="container">
+    <div class="container d-block d-md-none">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -36,30 +36,68 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-8">
-                                                @if(!empty($item->name_insurance))
-                                                    <span id="name_insurance_{{ $item->id }}" class="text-success"><b>{{ $item->name_insurance }}</b></span>
-                                                @else
-                                                    <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
-                                                        <option value="" selected>- เลือกบริษัทประกัน -</option>
-                                                        @foreach($name_insurance as $item)
-                                                            <option value="{{ $item->company }}" 
-                                                            {{ request('company') == $item->company ? 'selected' : ''   }} >
-                                                            {{ $item->company }} 
-                                                            </option>
-                                                        @endforeach  
-                                                    </select>
-                                                @endif
-                                            </div>
-                                            <div class="col-4">
-                                                @if(!empty($item->name_insurance))
-                                                    <button onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius"><i class="fas fa-phone-alt"></i> ติดต่อ</button>
-                                                    <a id="btn_call_insurance" href="tel:{{ $item->phone_insurance }}" ></a>
-                                                @else
-                                                    <button onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none"><i class="fas fa-phone-alt"></i> ติดต่อ</button>
-                                                    <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
-                                                @endif
-                                            </div>
+                                            @if(!empty($item->name_insurance))
+                                                <div class="collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                            <span id="name_insurance_{{ $item->id }}" class="text-success">
+                                                                <b>{{ $item->name_insurance }}</b>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <button onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
+                                                                <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                            </button>
+                                                            <a id="btn_call_insurance" href="tel:{{ $item->phone_insurance }}" ></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <span data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary" style="font-size:14px;">
+                                                      อื่นๆ <i class="fas fa-angle-down"></i>
+                                                </span>
+                                                <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
+                                                    <div class="row" style="margin-top: 10px;">
+                                                        <div class="col-8">
+                                                            <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
+                                                                <option value="" selected>- เลือกบริษัทประกัน -</option>
+                                                                @foreach($select_ins as $item_2)
+                                                                    <option value="{{ $item_2->company }}" 
+                                                                    {{ request('company') == $item_2->company ? 'selected' : ''   }} >
+                                                                    {{ $item_2->company }} 
+                                                                    </option>
+                                                                @endforeach  
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <button onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
+                                                            <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                        </button>
+                                                        <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
+                                                            <option value="" selected>- เลือกบริษัทประกัน -</option>
+                                                            @foreach($name_insurance as $item)
+                                                                <option value="{{ $item->company }}" 
+                                                                {{ request('company') == $item->company ? 'selected' : ''   }} >
+                                                                {{ $item->company }} 
+                                                                </option>
+                                                            @endforeach  
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <button onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
+                                                            <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                        </button>
+                                                        <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div> 
@@ -139,6 +177,31 @@
 
         }
 
+        function select_ins(loop){
+
+            let tag_select_ins = document.querySelector("#tag_select_ins_"+loop).value;
+            let btn_other_ins = document.querySelector("#btn_other_ins_"+loop);
+            let btn_call_other_ins = document.querySelector("#btn_call_other_ins_"+loop);
+
+            fetch("{{ url('/') }}/api/save_sos_insurance/"+tag_select_ins+"/select_insurance")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    // console.log(result[0]['phone']);
+
+                    if (result[0]['phone']) {
+
+                        let href = document.createAttribute("href");
+                            href.value = "tel:"+result[0]['phone'];
+                            btn_call_other_ins.setAttributeNode(href); 
+
+                            btn_other_ins.classList.remove('d-none');
+                    }
+
+                });
+
+        }
+
         function call_select_insurance(loop){
 
             let name = document.querySelector("#name").value ; 
@@ -177,6 +240,47 @@
                 });
 
             document.querySelector("#btn_call_select_insurance_"+loop).click();
+
+        }
+
+        function call_other_ins(loop){
+
+            let name = document.querySelector("#name").value ; 
+            let user_id = document.querySelector("#user_id").value ; 
+            let user_phone = document.querySelector("#user_phone").value ;
+            let car_id = document.querySelector("#car_id_"+loop).innerText ; 
+
+            let latlng = document.querySelector("#latlng").value ; 
+            let lat = latlng.split(",")[0];
+            let lng = latlng.split(",")[1];
+
+            let tag_select_ins = document.querySelector("#tag_select_ins_"+loop).value;
+
+            let data_sos_insurance = {
+                "name" : name,
+                "user_id" : user_id,
+                "phone" : user_phone,
+                "lat" : lat,
+                "lng" : lng,
+                "insurance" : tag_select_ins,
+                "car_id" : car_id,
+            };
+
+            fetch("{{ url('/') }}/api/save_sos_insurance", {
+                method: 'post',
+                body: JSON.stringify(data_sos_insurance),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+                }).then(function (response){
+                    return response.text();
+                }).then(function(text){
+                    // console.log(text);
+                }).catch(function(error){
+                    // console.error(error);
+                });
+
+            document.querySelector("#btn_call_other_ins_"+loop).click();
 
         }
 

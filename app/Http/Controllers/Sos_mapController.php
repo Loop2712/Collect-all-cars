@@ -178,7 +178,11 @@ class Sos_mapController extends Controller
             ->groupBy('company')
             ->get();
 
-        return view('sos_map.sos_insurance', compact('register_car','latlng','name_insurance'));
+        $select_ins = Insurance::where('company', '!=',"" )
+            ->groupBy('company')
+            ->get();
+
+        return view('sos_map.sos_insurance', compact('register_car','latlng','name_insurance','select_ins'));
     }
 
     public function sos_login()
