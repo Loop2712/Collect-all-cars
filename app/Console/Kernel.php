@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\AlertAct::class,
+        Commands\Cancel_after_6_month::class,
     ];
 
     /**
@@ -24,8 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     { 
-        // ->daily();
         $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
+        $schedule->command('cron:cancel_after_6_month')->everyMinute()->withoutOverlapping(5);
     }
 
     /**

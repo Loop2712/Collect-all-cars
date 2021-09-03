@@ -1,0 +1,84 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "username",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "type": "string"
+        },
+        {
+            "name": "provider_id",
+            "type": "string"
+        },
+        {
+            "name": "avatar",
+            "type": "string"
+        },
+        {
+            "name": "role",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "brith",
+            "type": "string"
+        },
+        {
+            "name": "sex",
+            "type": "string"
+        },
+        {
+            "name": "ranking",
+            "type": "string"
+        },
+        {
+            "name": "driver_license",
+            "type": "string"
+        },
+        {
+            "name": "driver_license2",
+            "type": "string"
+        },
+        {
+            "name": "location_P",
+            "type": "string"
+        },
+        {
+            "name": "location_A",
+            "type": "string"
+        },
+        {
+            "name": "organization",
+            "type": "string"
+        },
+        {
+            "name": "branch",
+            "type": "string"
+        },
+        {
+            "name": "branch_district",
+            "type": "string"
+        },
+        {
+            "name": "branch_province",
+            "type": "string"
+        },
+        {
+            "name": "photo",
+            "type": "string"
+        }
+    ]
+}
