@@ -67,8 +67,7 @@
         "color": "#FFFFFF",
         "weight": "bold",
         "decoration": "underline",
-        "align": "center",
-        "style": "italic"
+        "align": "center"
       },
       {
         "type": "text",
@@ -155,7 +154,7 @@
                 "action": {
                   "type": "uri",
                   "label": "แก้ไขวันที่",
-                  "uri": "https://www.viicheck.com/register_car/edit_act_login/car_id"
+                  "uri": "https://www.viicheck.com/edit_act_login/car_id"
                 },
                 "color": "#3AC0CE",
                 "style": "primary"
