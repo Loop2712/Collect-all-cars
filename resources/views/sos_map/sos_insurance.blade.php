@@ -48,7 +48,7 @@
                                                             <button onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
                                                                 <i class="fas fa-phone-alt"></i> ติดต่อ
                                                             </button>
-                                                            <a id="btn_call_insurance" href="tel:{{ $item->phone_insurance }}" ></a>
+                                                            <a id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,7 +148,7 @@
                     // console.error(error);
                 });
 
-            document.querySelector("#btn_call_insurance").click();
+            document.querySelector("#btn_call_insurance_"+loop).click();
 
         }
 

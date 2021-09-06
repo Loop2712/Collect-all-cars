@@ -1,0 +1,155 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "เรียน",
+            "margin": "xxl",
+            "size": "lg",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "TNK",
+            "margin": "xl",
+            "size": "xl",
+            "align": "center",
+            "weight": "bold",
+            "wrap": true,
+            "offsetBottom": "md"
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/21.png",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "margin": "xs",
+            "animated": true,
+            "align": "center",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เลขทะเบียน",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "กก9999",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "contents": [
+          {
+            "type": "span",
+            "text": "กก9999",
+            "size": "xl",
+            "weight": "bold"
+          },
+          {
+            "type": "span",
+            "text": " "
+          },
+          {
+            "type": "span",
+            "text": "กทม"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เวลา",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "lg",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "จาก",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "คุณ name",
+            "size": "lg",
+            "margin": "lg",
+            "color": "#FFFFFF"
+          }
+        ],
+        "spacing": "sm"
+      }
+    ],
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}
+}
