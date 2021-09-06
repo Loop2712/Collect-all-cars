@@ -42,6 +42,16 @@
             "offsetBottom": "md"
           },
           {
+            "type": "text",
+            "color": "#07375D",
+            "text": "ขอความช่วยเหลือด่วน",
+            "margin": "sm",
+            "size": "lg",
+            "align": "center",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
             "type": "image",
             "url": "https://www.viicheck.com/img/stickerline/PNG/21.png",
             "size": "xxl",
@@ -64,7 +74,7 @@
       },
       {
         "type": "text",
-        "text": "เลขทะเบียน",
+        "text": "หมายเลขทะเบียน",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
@@ -81,7 +91,7 @@
           {
             "type": "span",
             "text": "กก9999",
-            "size": "xl",
+            "size": "xxl",
             "weight": "bold"
           },
           {
@@ -139,6 +149,41 @@
           }
         ],
         "spacing": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "separator",
+        "margin": "lg",
+        "color": "#07375D"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "โทร 0999999999",
+              "uri": "tel:0999999999"
+            },
+            "height": "sm",
+            "style": "primary",
+            "color": "#76d128"
+          }
+        ],
+        "borderColor": "#FF0000",
+        "cornerRadius": "lg",
+        "background": {
+          "type": "linearGradient",
+          "angle": "0deg",
+          "startColor": "#00FA9A",
+          "endColor": "#ffffff",
+          "centerColor": "#00FA9A"
+        }
       }
     ],
     "backgroundColor": "#07375D",

@@ -62,6 +62,7 @@ class Save_sos_insuranceController extends Controller
             $string_json = str_replace("กทม",$item->province,$string_json);
             $string_json = str_replace("datetime",$datetime,$string_json);
             $string_json = str_replace("name",$data['name'],$string_json);
+            $string_json = str_replace("0999999999",$data['phone'],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
         }
