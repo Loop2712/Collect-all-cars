@@ -77,13 +77,12 @@ class Save_sos_insuranceController extends Controller
         $messages_location = [ json_decode($string_json_location, true) ];
 
         $body = [
-            // U912994894c449f2237f73f18b5703e89
-            "to" => "C6b6f1f82af9f572d0185a8e253cffc3a",
+            "to" => "U912994894c449f2237f73f18b5703e89",
             "messages" => $messages,
         ];
 
         $body_location = [
-            "to" => "C6b6f1f82af9f572d0185a8e253cffc3a",
+            "to" => "U912994894c449f2237f73f18b5703e89",
             "messages" => $messages_location,
         ];
 
