@@ -29,7 +29,7 @@ class Save_sos_insuranceController extends Controller
         if ($status_partner == "Yes") {
 
             // ส่งข้อมูลผ่านไลน์ 
-            // $this->_pushLine($data);
+            $this->_pushLine($data);
 
             // ส่งข้อมูลผ่านเมล
             $data_cars = Register_car::where('id', $data['car_id'])->get();
@@ -148,5 +148,6 @@ class Save_sos_insuranceController extends Controller
         ];
         MyLog::create($data_location);
         
+        return $data;
     }
 }
