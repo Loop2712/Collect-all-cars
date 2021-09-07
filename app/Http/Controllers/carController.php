@@ -40,9 +40,23 @@ class CarController extends Controller
             $ipaddress = 'UNKNOWN';
 
         echo $ipaddress;
+
         echo "<br>";
-        // echo $_SERVER['REMOTE_HOST'];
-        echo "<br>";
+
+        $ip = $ipaddress; // your ip address here
+        $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
+        
+        if($query && $query['status'] == 'success')
+        {
+            echo 'Your City is ' . $query['city'];
+            echo '<br />';
+            echo 'Your State is ' . $query['region'];
+            echo '<br />';
+            echo 'Your Zipcode is ' . $query['zip'];
+            echo '<br />';
+            echo 'Your Coordinates are ' . $query['lat'] . ', ' . $query['lon'];
+        }
+            echo "<br>";
         // $record = geoip_record_by_name($ipaddress);
         
         // if ($record) {
