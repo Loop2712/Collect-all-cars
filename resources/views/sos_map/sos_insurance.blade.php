@@ -24,7 +24,7 @@
                                                 </center>
                                             </div>
                                             <div class="col-8 text-center">
-                                                <div style="margin-top:10px;">
+                                                <div style="margin-top:23px;">
                                                     <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
                                                     <h5><b>{{ $item->registration_number }}</b></h5>
                                                     <span>{{ $item->province }}</span>
@@ -40,21 +40,23 @@
                                                 <div class="collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
                                                     <div class="row">
                                                         <div class="col-8">
-                                                            <span id="name_insurance_{{ $item->id }}" class="text-success">
+                                                            <img style="width: 30%;" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                                            <br>
+                                                            <h4 style="font-size:18px; padding-top: 8px;" id="name_insurance_{{ $item->id }}" class="text-success">
                                                                 <b>{{ $item->name_insurance }}</b>
-                                                            </span>
+                                                            </h4>
                                                         </div>
                                                         <div class="col-4">
-                                                            <button onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
+                                                            <button style="margin-top:25px;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
                                                                 <i class="fas fa-phone-alt"></i> ติดต่อ
                                                             </button>
                                                             <a id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <br>
-                                                <span data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary" style="font-size:14px;">
-                                                      อื่นๆ <i class="fas fa-angle-down"></i>
+
+                                                <span data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary" style="font-size:14px;padding-top: 15px;">
+                                                      บริษัทประกันอื่นๆ <i class="fas fa-angle-down"></i>
                                                 </span>
                                                 <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
                                                     <div class="row" style="margin-top: 10px;">
