@@ -47,7 +47,7 @@
             <div class="col-12">
                 <div>
                     <br>
-                    <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"> 
+                    <img width="200" src="{{ url('/img/logo/VII-check-LOGO-W-v1.png') }}"> 
                     <div style="float: right;margin-top: 40px;" id="google_translate_element"></div>
                 </div>
                 <hr style="color:red;">

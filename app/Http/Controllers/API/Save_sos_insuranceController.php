@@ -8,6 +8,8 @@ use App\Models\Sos_insurance;
 use App\Models\Insurance;
 use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
+use App\Mail\MailToInsurance;
+use Illuminate\Support\Facades\Mail;
 
 class Save_sos_insuranceController extends Controller
 {
@@ -26,8 +28,24 @@ class Save_sos_insuranceController extends Controller
 
         if ($status_partner == "Yes") {
 
-            // ตรวจสอบ status_partner แล้วส่งข้อมูลผ่านไลน์ 
+            // ส่งข้อมูลผ่านไลน์ 
             $this->_pushLine($data);
+
+            // ส่งข้อมูลผ่านเมล
+            $data_cars = Register_car::where('id', $data['car_id'])->get();
+            $datetime =  date("d-m-Y  h:i:sa");
+            $data['lat'] = "@".$data['lat'];
+
+
+                foreach ($data_cars as $item ) {
+                    $data['registration_number'] = $item->registration_number;
+                    $data['province'] = $item->province;
+                    $data['datetime'] = $datetime;
+
+                    $email = "thanakorn.tnk12@gmail.com";
+                    Mail::to($email)->send(new MailToInsurance($data));
+                }
+            
         }
 
         DB::table('register_cars')
