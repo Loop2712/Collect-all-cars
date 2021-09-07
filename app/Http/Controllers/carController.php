@@ -39,15 +39,21 @@ class CarController extends Controller
         else
             $ipaddress = 'UNKNOWN';
 
-        echo $ipaddress;
+        // echo $ipaddress;
 
         echo "<br>";
 
         $ip = $ipaddress; // your ip address here
         $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
-        
+
         if($query && $query['status'] == 'success')
         {
+            echo "<pre>";
+            print_r($query);
+            echo "<pre>";
+
+            echo "<br>";
+
             echo 'Your City is ' . $query['city'];
             echo '<br />';
             echo 'Your State is ' . $query['region'];
@@ -56,13 +62,7 @@ class CarController extends Controller
             echo '<br />';
             echo 'Your Coordinates are ' . $query['lat'] . ', ' . $query['lon'];
         }
-            echo "<br>";
-        // $record = geoip_record_by_name($ipaddress);
         
-        // if ($record) {
-        //     print_r($record);
-        // }
-
         exit();
 
 
