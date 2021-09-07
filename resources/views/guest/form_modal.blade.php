@@ -120,7 +120,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <p id="btn_close_select_registration" class="btn btn-secondary" data-dismiss="modal">ปิด</p>
+        <p id="btn_close_select_registration" class="btn btn-secondary" data-dismiss="modal">Close</p>
       </div>
     </div>
   </div>

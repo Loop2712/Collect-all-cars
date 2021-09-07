@@ -470,7 +470,29 @@
                             })
                             .then(response => response.json())
                             .then(result => {
-                                if (result) {
+                                // console.log(result.length);
+                                if (result.length === 0) {
+                                    // หาไม่เจอข้อมูล
+                                    let div_content = document.querySelector("#div_content");
+                                        div_content.textContent = "";
+                                        
+                                    let para = document.createElement("P");
+                                    let style_para = document.createAttribute("style");
+                                        style_para.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
+                                        para.setAttributeNode(style_para); 
+                                        para.innerHTML = "Registration information"+"<br>"+"not found."+"<br>";
+
+                                    let style_div_content = document.createAttribute("style");
+                                            style_div_content.value = "position: relative;";
+
+                                        div_content.appendChild(para);                
+                                        div_content.setAttributeNode(style_div_content);
+
+                                    document.querySelector('#btn_select_registration').click();
+                                    div_spinner.classList.add('d-none'); 
+
+                                }else {
+                                    // มีข้อมูล
                                     let div_content = document.querySelector("#div_content");
                                         div_content.textContent = "";
                                     for(let item of result){
@@ -554,7 +576,7 @@
                             add_reg_id();  
                             div_spinner.classList.add('d-none');    
 
-                    } else {
+                    }else if (length !== 4 || locale !== "th"){
 
                         let length_number = length - 1 ;
                         let text_number = result['responses']['0']['textAnnotations'][length_number]['description'];
@@ -572,8 +594,29 @@
                             })
                             .then(response => response.json())
                             .then(result => {
-                                if (result) {
-                                    // console.log(result);
+                                // console.log(result.length);
+                                if (result.length === 0) {
+                                    // หาไม่เจอข้อมูล
+                                    let div_content = document.querySelector("#div_content");
+                                        div_content.textContent = "";
+                                        
+                                    let para = document.createElement("P");
+                                    let style_para = document.createAttribute("style");
+                                        style_para.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
+                                        para.setAttributeNode(style_para); 
+                                        para.innerHTML = "Registration information"+"<br>"+"not found."+"<br>";
+
+                                    let style_div_content = document.createAttribute("style");
+                                            style_div_content.value = "position: relative;";
+
+                                        div_content.appendChild(para);                
+                                        div_content.setAttributeNode(style_div_content);
+
+                                    document.querySelector('#btn_select_registration').click();
+                                    div_spinner.classList.add('d-none'); 
+
+                                } else {
+                                    // มีข้อมูล
                                     let div_content = document.querySelector("#div_content");
                                         div_content.textContent = "";
                                     for(let item of result){
