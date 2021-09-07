@@ -241,3 +241,11 @@ Route::get('/test_ocr', function () {
 Route::resource('cancel_-profile', 'Cancel_ProfileController');
 
 Route::resource('cancel_after_6_month', 'Cancel_after_6_monthController');
+
+
+
+
+
+
+// CHECK IP
+Route::get('/check_ip', 'Home_pageController@check_ip');

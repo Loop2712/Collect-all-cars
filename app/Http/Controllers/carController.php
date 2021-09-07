@@ -22,52 +22,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-
-        $ipaddress = '';
-        if (getenv('HTTP_CLIENT_IP'))
-            $ipaddress = getenv('HTTP_CLIENT_IP');
-        else if(getenv('HTTP_X_FORWARDED_FOR'))
-            $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-        else if(getenv('HTTP_X_FORWARDED'))
-            $ipaddress = getenv('HTTP_X_FORWARDED');
-        else if(getenv('HTTP_FORWARDED_FOR'))
-            $ipaddress = getenv('HTTP_FORWARDED_FOR');
-        else if(getenv('HTTP_FORWARDED'))
-           $ipaddress = getenv('HTTP_FORWARDED');
-        else if(getenv('REMOTE_ADDR'))
-            $ipaddress = getenv('REMOTE_ADDR');
-        else
-            $ipaddress = 'UNKNOWN';
-
-        // echo $ipaddress;
-
-        $ip = $ipaddress; // your ip address here
-        $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
-
-        if($query && $query['status'] == 'success')
-        {
-            // echo "<pre>";
-            // print_r($query);
-            // echo "<pre>";
-
-            // echo "<br>";
-
-            echo 'Your country is ' . $query['country'];
-            echo '<br />';
-            echo 'Your countryCode is ' . $query['countryCode'];
-            echo '<br />';
-            echo 'Your City is ' . $query['city'];
-            echo '<br />';
-            echo 'Your State is ' . $query['region'];
-            echo '<br />';
-            echo 'Your Zipcode is ' . $query['zip'];
-            echo '<br />';
-            echo 'Your Coordinates are ' . $query['lat'] . ', ' . $query['lon'];
-        }
-
-        exit();
-
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
