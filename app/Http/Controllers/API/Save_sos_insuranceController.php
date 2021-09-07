@@ -45,7 +45,6 @@ class Save_sos_insuranceController extends Controller
             // ส่งข้อมูลผ่านไลน์ 
             $this->_pushLine($data);
             
-            
         }
 
         DB::table('register_cars')
@@ -124,29 +123,8 @@ class Save_sos_insuranceController extends Controller
             "title" => "ข้อมูลเรียกประกัน",
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
+
         MyLog::create($data);
-
-        // LOCATION
-        $opts_location = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body_location, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context_location  = stream_context_create($opts_location);
-        $url_location = "https://api.line.me/v2/bot/message/push";
-        $result_location = file_get_contents($url_location, false, $context_location);
-
-        //SAVE LOG
-        $data_location = [
-            "title" => "location ข้อมูลเรียกประกัน",
-            "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
-        ];
-        MyLog::create($data_location);
         
         return $data;
     }
