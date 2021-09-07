@@ -26,6 +26,13 @@ class Save_sos_insuranceController extends Controller
 
         Sos_insurance::create($data);
 
+        DB::table('register_cars')
+              ->where('id', $data['car_id'])
+              ->update([
+                'name_insurance' => $data['insurance'],
+                'phone_insurance' => $phone_insurance,
+          ]);
+
         if ($status_partner == "Yes") {
 
             // ส่งข้อมูลผ่านเมล
@@ -46,13 +53,6 @@ class Save_sos_insuranceController extends Controller
             $this->_pushLine($data);
             
         }
-
-        DB::table('register_cars')
-              ->where('id', $data['car_id'])
-              ->update([
-                'name_insurance' => $data['insurance'],
-                'phone_insurance' => $phone_insurance,
-          ]);
 
     }
 
