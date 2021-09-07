@@ -21,7 +21,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/PNG/17.png",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/37.3.png",
             "margin": "xs",
             "align": "center",
             "gravity": "center",
@@ -66,12 +66,37 @@
         "margin": "lg",
         "color": "#FFFFFF",
         "weight": "bold",
-        "decoration": "underline",
+        "align": "center",
+        "contents": [
+          {
+            "type": "span",
+            "text": "30",
+            "weight": "bold",
+            "decoration": "underline"
+          },
+          {
+            "type": "span",
+            "text": " "
+          },
+          {
+            "type": "span",
+            "text": "วัน",
+            "size": "lg"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "text": "จะหมดอายุวันที่",
+        "size": "lg",
+        "margin": "xl",
+        "color": "#FFFFFF",
+        "decoration": "none",
         "align": "center"
       },
       {
         "type": "text",
-        "text": "วันจะหมดอายุ",
+        "text": "00/00/0000",
         "size": "lg",
         "margin": "lg",
         "color": "#FFFFFF",
