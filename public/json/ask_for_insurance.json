@@ -173,17 +173,22 @@
             "height": "sm",
             "style": "primary",
             "color": "#76d128"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "Google Map",
+              "uri": "https://www.google.co.th/maps/search/lat,lng/lat_mail,lng,16z"
+            },
+            "height": "sm",
+            "style": "primary",
+            "color": "#3AC0CE",
+            "margin": "md"
           }
         ],
         "borderColor": "#FF0000",
-        "cornerRadius": "lg",
-        "background": {
-          "type": "linearGradient",
-          "angle": "0deg",
-          "startColor": "#00FA9A",
-          "endColor": "#ffffff",
-          "centerColor": "#00FA9A"
-        }
+        "cornerRadius": "lg"
       }
     ],
     "backgroundColor": "#07375D",
@@ -198,3 +203,4 @@
   }
 }
 }
+

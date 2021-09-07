@@ -81,26 +81,16 @@ class Save_sos_insuranceController extends Controller
             $string_json = str_replace("name",$data['name'],$string_json);
             $string_json = str_replace("0999999999",$data['phone'],$string_json);
 
+            $string_json = str_replace("lat",$data['lat'],$string_json);
+            $string_json = str_replace("lng",$data['lng'],$string_json);
+            $string_json = str_replace("lat_mail",$data['lat_mail'],$string_json);
+
             $messages = [ json_decode($string_json, true) ];
         }
-
-        // location
-        $template_path_location = storage_path('../public/json/location.json');   
-        $string_json_location = file_get_contents($template_path_location);
-        $string_json_location = str_replace("name",$data['name'],$string_json_location);
-        $string_json_location = str_replace("99999",$data['lat'],$string_json_location);
-        $string_json_location = str_replace("88888",$data['lng'],$string_json_location);
-
-        $messages_location = [ json_decode($string_json_location, true) ];
 
         $body = [
             "to" => "U912994894c449f2237f73f18b5703e89",
             "messages" => $messages,
-        ];
-
-        $body_location = [
-            "to" => "U912994894c449f2237f73f18b5703e89",
-            "messages" => $messages_location,
         ];
 
         // flex ask_for_help
