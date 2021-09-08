@@ -150,9 +150,8 @@ class P_2bgreenController extends Controller
     public function sos_insurance(Request $request)
     {
         $name_insurance = "2B-Green";
-        $perPage = 9;
 
-        $sos_insurance = Sos_insurance::where('insurance', $name_insurance)->latest()->paginate($perPage);
+        $sos_insurance = Sos_insurance::where('insurance', $name_insurance)->get();
 
         return view('Partners_2bgreen.P_2begreen_sos_insurance', compact('sos_insurance'));
     }
