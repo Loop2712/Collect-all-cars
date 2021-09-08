@@ -158,7 +158,7 @@
 
             text_center_lat.value = lat ;
             text_center_lng.value = lng ;
-            text_zoom.value = 16.5 ;
+            text_zoom.value = 15.5 ;
 
         initMap();
     }
