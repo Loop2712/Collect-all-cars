@@ -38,5 +38,9 @@ class Register_car extends Model
     public function guests(){
         return $this->hasMany('App\Models\Guest');
     }
+
+    public function sos_insurances(){
+        return $this->hasMany('App\Models\Sos_insurance', 'car_id');
+    }
     
 }

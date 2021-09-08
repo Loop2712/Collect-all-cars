@@ -34,51 +34,42 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary text-center">
-                                        <!-- <div class="col-1">
-                                            <center><b>Id</b></center>
-                                        </div> -->
-                                        <div class="col-1">
-
-                                        </div>
                                         <div class="col-2">
-                                                <b>วัน / เวลา</b>
-                                        </div>
-                                        <div class="col-2">
-                                                <b>ยี่ห้อ / รุ่น</b>
-                                        </div>
-                                        <div class="col-2">
-                                                <b>หมายเลขทะเบียน</b>
-                                        </div>
-                                        <div class="col-2">
-                                                <b>ตำแหน่ง</b>
+                                            <b>วัน / เวลา</b>
                                         </div>
                                         <div class="col-3">
-                                                <b>ชื่อ / เบอร์</b>
+                                            <b>ยี่ห้อ / รุ่น</b>
+                                        </div>
+                                        <div class="col-2">
+                                            <b>หมายเลขทะเบียน</b>
+                                        </div>
+                                        <div class="col-2">
+                                            <b>ตำแหน่ง</b>
+                                        </div>
+                                        <div class="col-3">
+                                            <b>ชื่อ / เบอร์</b>
                                         </div>
                                     </div>
                                     @foreach($sos_insurance as $item)
                                         <div class="row text-center">
-                                        <div class="col-1 ">
-                                                <h6>
-                                                    {{ $item->id }}
-                                                </h6>
-                                            </div>
                                             <div class="col-2 ">
                                                 <h6>
                                                     {{ $item->created_at }}
                                                 </h6>
                                             </div>
+                                            <div class="col-3">
+                                                <span style="font-size:18px;"><b>{{ $item->register_cars->brand }}</b></span>
+                                                <br>
+                                                <span style="font-size:15px;">{{ $item->register_cars->generation }}</span>
+                                            </div>
                                             <div class="col-2">
-
+                                                <span style="font-size:18px;"><b>{{ $item->register_cars->registration_number }}</b></span>
+                                                <br>
+                                                <span style="font-size:15px;">{{ $item->register_cars->province }}</span>
                                             </div>
                                             <div class="col-2">
                                                 <h6 class="text-info">
                                                     <a href="https://www.google.co.th/search?q={{$item->lat}},{{$item->lng}}" target="bank"><i class="fas fa-search-location"></i> ดูแผนที่</a>
-                                                </h6>
-                                            </div>
-                                            <div class="col-2">
-                                                <h6>
-                                                    
                                                 </h6>
                                             </div>
                                             <div class="col-3">

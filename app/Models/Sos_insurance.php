@@ -27,5 +27,8 @@ class Sos_insurance extends Model
      */
     protected $fillable = ['name', 'phone', 'lat', 'lng', 'insurance', 'user_id','car_id'];
 
+     public function register_cars(){
+        return $this->belongsTo('App\Models\Register_car', 'car_id' , 'id'); 
+    }
     
 }
