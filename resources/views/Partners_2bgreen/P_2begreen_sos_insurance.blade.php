@@ -136,8 +136,8 @@
         let num_center_lng = parseFloat(text_center_lng);
 
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 13.7248936, lng: 100.4930264 },
-            zoom: 6,
+            center: { lat: num_center_lat, lng: num_center_lng },
+            zoom: num_zoom,
         });
         // 13.7248936,100.4930264 lat lng ประเทศไทย
 
