@@ -174,12 +174,14 @@ class Sos_mapController extends Controller
             ->where('active', "Yes")
             ->get();
 
-         $name_insurance = Insurance::where('company', '!=',"" )
+        $name_insurance = Insurance::where('company', '!=',"" )
             ->groupBy('company')
+            ->orderBy('company')
             ->get();
 
         $select_ins = Insurance::where('company', '!=',"" )
             ->groupBy('company')
+            ->orderBy('company')
             ->get();
 
         return view('sos_map.sos_insurance', compact('register_car','latlng','name_insurance','select_ins'));
