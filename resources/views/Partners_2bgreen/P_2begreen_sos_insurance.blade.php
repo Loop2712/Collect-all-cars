@@ -11,6 +11,13 @@
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn btn-primary float-right">
+                                <i class="fas fa-redo-alt"></i> คืนค่าแผนที่
+                            </button>
+                        </div>
+                    </div>
                     <div class="card">
                         <div id="map"></div>
                     </div>
@@ -69,7 +76,7 @@
                                             <div class="col-2">
                                                 <h6 class="text-info">
                                                     <a class="btn" onclick="change_area('{{$item->lat}}','{{$item->lng}}');">
-                                                        <i class="fas fa-search-location"></i> ดูแผนที่
+                                                        <i class="fas fa-map-marked-alt"></i> ดูแผนที่
                                                     </a>
                                                 </h6>
                                             </div>
