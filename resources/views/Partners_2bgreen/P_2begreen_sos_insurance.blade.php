@@ -137,7 +137,7 @@
 
         map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 13.7248936, lng: 100.4930264 },
-            zoom: 10,
+            zoom: 6,
         });
         // 13.7248936,100.4930264 lat lng ประเทศไทย
 
