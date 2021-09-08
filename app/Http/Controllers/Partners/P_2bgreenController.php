@@ -14,6 +14,7 @@ use App\Models\Report_news;
 use App\Models\Motercycle;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sos_map;
+use App\Models\Sos_insurance;
 
 class P_2bgreenController extends Controller
 {
@@ -148,25 +149,11 @@ class P_2bgreenController extends Controller
 
     public function sos_insurance(Request $request)
     {
-        // $keyword = $request->get('search');
-        $search_area = "ViiCHECK";
-        $perPage = 25;
+        $perPage = 9;
 
-        $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
-                    foreach ($sos_all_request as $key) {
-                            $sos_all = $key->count ;
-                        }
-        
-        $area = Sos_map::selectRaw('area')
-            ->where('area', $search_area)
-            ->groupBy('area')
-            ->get();
+        $sos_insurance = Sos_insurance::latest()->paginate($perPage);
 
-        $view_map = DB::table('sos_maps')
-            ->where('area', $search_area)
-            ->latest()->paginate($perPage);
-
-        return view('Partners_2bgreen.P_2begreen_sos', compact('view_map' , 'sos_all' , 'area'));
+        return view('Partners_2bgreen.P_2begreen_sos_insurance', compact('sos_insurance'));
     }
 
     public function view_sos(Request $request)
