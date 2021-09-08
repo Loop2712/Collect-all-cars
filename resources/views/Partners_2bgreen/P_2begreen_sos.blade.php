@@ -101,7 +101,9 @@
                                             </div>
                                             <div class="col-2">
                                                 <h6 class="text-info">
-                                                    <a href="https://www.google.co.th/search?q={{$item->lat}},{{$item->lng}}" target="bank"><i class="fas fa-search-location"></i> ดูแผนที่</a>
+                                                    <a href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                                        <i class="fas fa-search-location"></i> ดูแผนที่
+                                                    </a>
                                                 </h6>
                                             </div>
                                             <div class="col-2">

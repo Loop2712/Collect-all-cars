@@ -316,9 +316,9 @@ class SosController extends Controller
                 ->latest()->paginate($perPage);
         }
 
-       
+       $text_at = '@' ;
 
-        return view('admin_viicheck.sos', compact('view_map' , 'sos_all' , 'area'));
+        return view('admin_viicheck.sos', compact('view_map' , 'sos_all' , 'area','text_at'));
     }
 
     public function sos_detail_chart(Request $request)

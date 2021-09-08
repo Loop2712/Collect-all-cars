@@ -176,9 +176,10 @@ class P_2bgreenController extends Controller
             ->where('area', $search_area)
             ->latest()->paginate($perPage);
 
+        $text_at = '@' ;
        
 
-        return view('Partners_2bgreen.P_2begreen_sos', compact('view_map' , 'sos_all' , 'area'));
+        return view('Partners_2bgreen.P_2begreen_sos', compact('view_map' , 'sos_all' , 'area','text_at'));
     }
 
     public function sos_detail_chart(Request $request)
