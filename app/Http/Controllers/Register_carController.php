@@ -183,6 +183,7 @@ class Register_carController extends Controller
 
         $name_insurance = Insurance::where('company', '!=',"" )
             ->groupBy('company')
+            ->orderBy('company')
             ->get();
 
         // echo "<pre>";
