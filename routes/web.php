@@ -249,3 +249,5 @@ Route::resource('cancel_after_6_month', 'Cancel_after_6_monthController');
 
 // CHECK IP
 Route::get('/check_ip', 'Home_pageController@check_ip');
+Route::resource('partner', 'PartnerController');
+Route::resource('group_line', 'Group_lineController');

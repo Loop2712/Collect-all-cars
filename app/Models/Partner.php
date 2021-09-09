@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Insurance extends Model
+class Partner extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'insurances';
+    protected $table = 'partners';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Insurance extends Model
      *
      * @var array
      */
-    protected $fillable = ['company', 'phone', 'status_partner','line_group','mail'];
+    protected $fillable = ['name', 'phone', 'line_group', 'mail'];
 
     
 }

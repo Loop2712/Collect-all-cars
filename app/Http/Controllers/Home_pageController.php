@@ -88,23 +88,23 @@ class Home_pageController extends Controller
 
         if($query && $query['status'] == 'success')
         {
-            // echo "<pre>";
-            // print_r($query);
-            // echo "<pre>";
+            echo "<pre>";
+            print_r($query);
+            echo "<pre>";
 
-            // echo "<br>";
+            echo "<br>";
 
-            echo 'Your country is ' . $query['country'];
-            echo '<br />';
-            echo 'Your countryCode is ' . $query['countryCode'];
-            echo '<br />';
-            echo 'Your City is ' . $query['city'];
-            echo '<br />';
-            echo 'Your State is ' . $query['region'];
-            echo '<br />';
-            echo 'Your Zipcode is ' . $query['zip'];
-            echo '<br />';
-            echo 'Your Coordinates are ' . $query['lat'] . ', ' . $query['lon'];
+            // echo 'Your country is ' . $query['country'];
+            // echo '<br />';
+            // echo 'Your countryCode is ' . $query['countryCode'];
+            // echo '<br />';
+            // echo 'Your City is ' . $query['city'];
+            // echo '<br />';
+            // echo 'Your State is ' . $query['region'];
+            // echo '<br />';
+            // echo 'Your Zipcode is ' . $query['zip'];
+            // echo '<br />';
+            // echo 'Your Coordinates are ' . $query['lat'] . ', ' . $query['lon'];
         }
 
         exit();

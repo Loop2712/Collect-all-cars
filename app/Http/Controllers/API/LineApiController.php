@@ -13,7 +13,6 @@ class LineApiController extends Controller
 {
     public function store(Request $request)
 	{
-
         //SAVE LOG
         $requestData = $request->all();
         $data = [
@@ -31,6 +30,9 @@ class LineApiController extends Controller
                 break;
             case "postback" :
                 $this->postbackHandler($event);
+                break;
+            case "join" :
+                $this->save_group_line($event);
                 break;
         }
 	}
@@ -116,6 +118,11 @@ class LineApiController extends Controller
         }   
     }
 
-
+    public function save_group_line($event)
+    {
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('<channel access token>');
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '<channel secret>']);
+        $response = $bot->getGroupMemberIds(<groupId>, <continuationToken>);
+    }
 
 }

@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "line_group",
+            "type": "string"
+        },
+        {
+            "name": "mail",
+            "type": "string"
+        }
+    ]
+}
