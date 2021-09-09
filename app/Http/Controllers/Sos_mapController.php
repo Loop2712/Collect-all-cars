@@ -201,6 +201,7 @@ class Sos_mapController extends Controller
     protected function _pushLine($data)
     {   
         $datetime =  date("d-m-Y  h:i:sa");
+        $text_at = '@' ;
         // flex ask_for_help
         $template_path = storage_path('../public/json/ask_for_help.json');   
         $string_json = file_get_contents($template_path);
@@ -209,16 +210,11 @@ class Sos_mapController extends Controller
         $string_json = str_replace("name",$data['name'],$string_json);
         $string_json = str_replace("0999999999",$data['phone'],$string_json);
 
+        $string_json = str_replace("lat",$data['lat'],$string_json);
+        $string_json = str_replace("lng",$data['lng'],$string_json);
+        $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
+
         $messages = [ json_decode($string_json, true) ];
-
-        // location
-        $template_path_location = storage_path('../public/json/location.json');   
-        $string_json_location = file_get_contents($template_path_location);
-        $string_json_location = str_replace("name",$data['name'],$string_json_location);
-        $string_json_location = str_replace("99999",$data['lat'],$string_json_location);
-        $string_json_location = str_replace("88888",$data['lng'],$string_json_location);
-
-        $messages_location = [ json_decode($string_json_location, true) ];
 
         //ตรวจสอบพื้นที่
         switch ($data['area']) {
@@ -227,21 +223,11 @@ class Sos_mapController extends Controller
                     "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
                     "messages" => $messages,
                 ];
-
-                $body_location = [
-                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
-                    "messages" => $messages_location,
-                ];
                 break;
             case 'KMUTNB':
                 $body = [
                     "to" => "Uad0cd91b2c1740aa467d38ddd256c40d",
                     "messages" => $messages,
-                ];
-
-                $body_location = [
-                    "to" => "Uad0cd91b2c1740aa467d38ddd256c40d",
-                    "messages" => $messages_location,
                 ];
                 break;
             // case 'TU':
@@ -278,28 +264,6 @@ class Sos_mapController extends Controller
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
-
-        // LOCATION
-        $opts_location = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body_location, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context_location  = stream_context_create($opts_location);
-        $url_location = "https://api.line.me/v2/bot/message/push";
-        $result_location = file_get_contents($url_location, false, $context_location);
-
-        //SAVE LOG
-        $data_location = [
-            "title" => "location ขอความช่วยเหลือ",
-            "content" => json_encode($result_location, JSON_UNESCAPED_UNICODE),
-        ];
-        MyLog::create($data_location);
         
     }
 

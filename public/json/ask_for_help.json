@@ -128,6 +128,18 @@
                 },
                 "color": "#76d128",
                 "style": "primary"
+              },
+              {
+                "type": "button",
+                "height": "sm",
+                "action": {
+                  "type": "uri",
+                  "label": "Google Map",
+                  "uri": "https://www.google.co.th/maps/search/lat,lng/lat_mail,lng,16z"
+                },
+                "color": "#3AC0CE",
+                "style": "primary",
+                "margin": "md"
               }
             ],
             "cornerRadius": "lg",
