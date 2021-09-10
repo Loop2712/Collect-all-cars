@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
 use App\Models\LineMessagingAPI;
+use App\Models\Group_line;
 
 class LineApiController extends Controller
 {
@@ -135,6 +136,7 @@ class LineApiController extends Controller
         $result = file_get_contents($url, false, $context);
 
         $data_group_line = json_decode($result);
+        Group_line::create($data_group_line);
 
         $data = [
             "title" => "บันทึก Name Group Line",
