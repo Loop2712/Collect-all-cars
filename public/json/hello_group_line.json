@@ -1,0 +1,125 @@
+{
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/1.png",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "margin": "xs",
+            "animated": true,
+            "align": "center",
+            "gravity": "center"
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          }
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
+      },
+      {
+        "type": "text",
+        "text": "สวัสดีค่ะ",
+        "weight": "bold",
+        "size": "xxl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true,
+        "align": "center",
+        "gravity": "center"
+      },
+      {
+        "type": "text",
+        "text": "ขอบคุณมากนะคะที่ให้วีเป็นส่วนหนึ่งของ GROUP",
+        "weight": "bold",
+        "size": "lg",
+        "margin": "md",
+        "color": "#FFFFFF",
+        "wrap": true,
+        "align": "center",
+        "gravity": "center"
+      },
+      {
+        "type": "text",
+        "text": "วีจะทำหน้าที่ให้ดีที่สุดนะคะ",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xl",
+        "color": "#FFFFFF",
+        "wrap": true,
+        "align": "center",
+        "gravity": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "text",
+        "text": "หากมีข้อสงสัยติดต่อ",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "📩 contact.viicheck@gmail.com",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true,
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "mailto:contact.viicheck@gmail.com"
+        }
+      },
+      {
+        "type": "text",
+        "text": "📞 02-0277856",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true,
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "tel:020277856"
+        }
+      }
+    ],
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}

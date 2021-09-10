@@ -19,9 +19,10 @@ class LineMessagingAPI extends Model
 
     public function hello_line_group($data)
     {
-        $template_path = storage_path('../public/json/flex-act.json');   
+        $template_path = storage_path('../public/json/hello_group_line.json');   
         $string_json = file_get_contents($template_path);
-        $string_json = str_replace("ตัวอย่าง","พรบ. ของคุณใกล้หมดอายุ",$string_json);
+        $string_json = str_replace("ตัวอย่าง","สวัสดีค่ะ",$string_json);
+        $string_json = str_replace("GROUP",$data['groupName'],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
