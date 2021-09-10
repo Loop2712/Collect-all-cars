@@ -134,9 +134,11 @@ class LineApiController extends Controller
         $url = "https://api.line.me/v2/bot/group/".$group_id."/summary";
         $result = file_get_contents($url, false, $context);
 
+        $data_group_line = json_decode($result);
+
         $data = [
             "title" => "บันทึก Name Group Line",
-            "content" => $result['groupName'],
+            "content" => $data_group_line->groupName,
         ];
         MyLog::create($data);  
     }
