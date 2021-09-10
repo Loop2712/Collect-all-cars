@@ -51,7 +51,7 @@ class CarController extends Controller
                             
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/push";
-        $result = file_get_contents($url, false, $context);
+        $result_2 = file_get_contents($url, false, $context);
 
         $data = [
             "title" => "Hello Line Group",
@@ -59,7 +59,7 @@ class CarController extends Controller
         ];
 
         MyLog::create($data);
-        return $result;
+        return $result_2;
 
     }
 
