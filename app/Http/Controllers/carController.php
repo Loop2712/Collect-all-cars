@@ -22,6 +22,42 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+
+        $template_path_video = storage_path('../public/json/video_guide.json');   
+        $string_json_video = file_get_contents($template_path_video);
+
+        $messages_video = [ json_decode($string_json_video, true) ];
+
+        $body_video = [
+            "to" => "U912994894c449f2237f73f18b5703e89",
+            // "to" => $save_name_group['groupId'],
+            "messages" => $messages_video,
+        ];
+
+        $opts_video = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body_video, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context_video  = stream_context_create($opts_video);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url_video = "https://api.line.me/v2/bot/message/push";
+        $result_video = file_get_contents($url_video, false, $context_video);
+
+        //SAVE LOG
+        $data_video = [
+            "title" => "VIDEO LINE GROUP",
+            "content" => json_encode($result_video, JSON_UNESCAPED_UNICODE),
+        ];
+
+        MyLog::create($data_video);
+
+        exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
