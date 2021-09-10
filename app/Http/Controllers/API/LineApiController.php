@@ -143,7 +143,7 @@ class LineApiController extends Controller
             "pictureUrl" => $data_group_line->pictureUrl,
         ];
         
-        Group_line::create($save_name_group);
+        Group_line::firstOrCreate($save_name_group);
 
         $data = [
             "title" => "บันทึก Name Group Line",
