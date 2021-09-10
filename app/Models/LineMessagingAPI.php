@@ -1243,7 +1243,7 @@ class LineMessagingAPI extends Model
 
         // ---------------- VIDEO --------------------- //
 
-        $template_path_video = storage_path('../public/json/hello_group_line.json');   
+        $template_path_video = storage_path('../public/json/video_guide.json');   
         $string_json_video = file_get_contents($template_path_video);
 
         $messages_video = [ json_decode($string_json_video, true) ];
