@@ -129,7 +129,7 @@ class LineApiController extends Controller
             ]
         ];
 
-        $group_id = $group_id = $event['source']['groupId'];;
+        $group_id = $event['source']['groupId'];
 
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/group/".$group_id."/summary";
