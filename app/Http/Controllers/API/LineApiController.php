@@ -136,7 +136,7 @@ class LineApiController extends Controller
         $result = file_get_contents($url, false, $context);
 
         $data_group_line = json_decode($result);
-        
+
         $save_name_group = [
             "groupId" => $data_group_line->groupId,
             "groupName" => $data_group_line->groupName,
@@ -150,6 +150,9 @@ class LineApiController extends Controller
             "content" => $data_group_line->groupName,
         ];
         MyLog::create($data);  
+
+        $line = new LineMessagingAPI();
+        $line->hello_line_group($save_name_group);
     }
 
 
