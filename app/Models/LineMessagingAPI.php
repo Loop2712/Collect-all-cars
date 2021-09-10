@@ -1249,7 +1249,7 @@ class LineMessagingAPI extends Model
         $messages_video = [ json_decode($string_json_video, true) ];
 
         $body_video = [
-            "replyToken" => $event["replyToken"],
+            "to" => $save_name_group['groupId'],
             "messages" => $messages_video,
         ];
 
@@ -1265,12 +1265,12 @@ class LineMessagingAPI extends Model
                             
         $context_video  = stream_context_create($opts_video);
         //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url_video = "https://api.line.me/v2/bot/message/reply";
+        $url_video = "https://api.line.me/v2/bot/message/push";
         $result_video = file_get_contents($url_video, false, $context_video);
 
         //SAVE LOG
         $data_video = [
-            "title" => "HELLO LINE GROUP",
+            "title" => "VIDEO LINE GROUP",
             "content" => json_encode($result_video, JSON_UNESCAPED_UNICODE),
         ];
 
