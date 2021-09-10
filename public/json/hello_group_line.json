@@ -29,10 +29,6 @@
             "animated": true,
             "align": "center",
             "gravity": "center"
-          },
-          {
-            "type": "separator",
-            "margin": "xxl"
           }
         ],
         "backgroundColor": "#FAEBD7",
