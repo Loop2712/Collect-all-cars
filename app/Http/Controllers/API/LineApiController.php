@@ -143,6 +143,9 @@ class LineApiController extends Controller
             "pictureUrl" => $data_group_line->pictureUrl,
         ];
         
+        $line = new LineMessagingAPI();
+        $line->hello_line_group($save_name_group);
+        
         Group_line::create($save_name_group);
 
         $data = [
@@ -151,8 +154,6 @@ class LineApiController extends Controller
         ];
         MyLog::create($data);  
 
-        $line = new LineMessagingAPI();
-        $line->hello_line_group($save_name_group);
     }
 
 

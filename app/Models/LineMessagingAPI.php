@@ -48,7 +48,7 @@ class LineMessagingAPI extends Model
         //SAVE LOG
         $data = [
             "title" => "Hello Line Group",
-            "content" => "Hello Line Group".$data['groupName'],
+            "content" => "Hello Line Group",
         ];
 
         MyLog::create($data);
