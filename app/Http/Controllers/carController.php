@@ -15,6 +15,54 @@ use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
+
+    public function hello_line_group($data)
+    {
+        echo "<pre>";
+        print_r($data);
+        echo "<pre>";
+        echo "<br>";
+        echo $data['groupName'] ;
+        echo "<br>";
+        echo $data['groupId'] ;
+        // exit();
+
+        $template_path = storage_path('../public/json/hello_group_line.json');   
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ตัวอย่าง","สวัสดีค่ะ",$string_json);
+        $string_json = str_replace("GROUP",$data['groupName'],$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data['groupId'],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        $data = [
+            "title" => "Hello Line Group",
+            "content" => "Hello Line Group",
+        ];
+
+        MyLog::create($data);
+        return $result;
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +70,40 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+
+        $opts = [
+            'http' =>[
+                'method'  => 'GET',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            ]
+        ];
+
+        $group_id = "C1334c5e39e4b5b5abdb9e2cdde9201ef";
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/group/".$group_id."/summary";
+        $result = file_get_contents($url, false, $context);
+
+        $data_group_line = json_decode($result);
+
+        $save_name_group = [
+            "groupId" => $data_group_line->groupId,
+            "groupName" => $data_group_line->groupName,
+            "pictureUrl" => $data_group_line->pictureUrl,
+        ];
+        
+        $this->hello_line_group($save_name_group);
+
+        // Group_line::create($save_name_group);
+
+        // $data = [
+        //     "title" => "บันทึก Name Group Line",
+        //     "content" => $data_group_line->groupName,
+        // ];
+        // MyLog::create($data);  
+
+        exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
