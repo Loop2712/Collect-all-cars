@@ -152,7 +152,7 @@ class LineApiController extends Controller
         MyLog::create($data);
 
         $line = new LineMessagingAPI();
-        $line->pushLinegroup(null, $event, "wait");
+        $line->pushLinegroup();
 
     }
 
