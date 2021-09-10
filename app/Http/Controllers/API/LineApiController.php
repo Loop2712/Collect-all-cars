@@ -31,9 +31,9 @@ class LineApiController extends Controller
             case "postback" :
                 $this->postbackHandler($event);
                 break;
-            // case "join" :
-            //     $this->save_group_line($event);
-            //     break;
+            case "join" :
+                $this->save_group_line($event);
+                break;
         }
 	}
 
@@ -118,11 +118,28 @@ class LineApiController extends Controller
         }   
     }
 
-    // public function save_group_line($event)
-    // {
-    //     $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('<channel access token>');
-    //     $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '<channel secret>']);
-    //     $response = $bot->getGroupMemberIds(<groupId>, <continuationToken>);
-    // }
+    public function save_group_line($event)
+    {
+        $opts = [
+            'http' =>[
+                'method'  => 'GET',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            ]
+        ];
+
+        $group_id = $event['source']['groupId'];
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/group/".$group_id."/summary";
+        $result = file_get_contents($url, false, $context);
+
+        $data = [
+            "title" => "บันทึก Name Group Line",
+            "content" => $result['groupName'],
+        ];
+        MyLog::create($data);  
+    }
+
 
 }
