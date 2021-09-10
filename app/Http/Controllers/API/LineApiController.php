@@ -151,82 +151,8 @@ class LineApiController extends Controller
         ];
         MyLog::create($data);
 
-        // $this->hello_line_group($save_name_group, $event);
-
-        $template_path = storage_path('../public/json/hello_group_line.json');   
-
-        $string_json = file_get_contents($template_path);
-        $messages = [ json_decode($string_json, true) ];
-
-
-        $body = [
-            "replyToken" => $event["replyToken"],
-            "messages" => $messages,
-        ];
-
-        $opts_group = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context_group  = stream_context_create($opts_group);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url_group = "https://api.line.me/v2/bot/message/reply";
-        $result_group = file_get_contents($url_group, false, $context_group);
-
-        //SAVE LOG
-        $data_group = [
-            "title" => "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
-            "content" => "reply Success",
-        ];
-        MyLog::create($data_group);
-
-          
-
-    }
-
-    public function hello_line_group($data, $event)
-    {
-        $template_path = storage_path('../public/json/hello_group_line.json');   
-        $string_json = file_get_contents($template_path);
-        $string_json = str_replace("ตัวอย่าง","สวัสดีค่ะ",$string_json);
-        $string_json = str_replace("GROUP",$data['groupName'],$string_json);
-
-        $messages = [ json_decode($string_json, true) ];
-
-        $body = [
-            "replyToken" => $event["replyToken"],
-            "messages" => $messages,
-        ];
-
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context  = stream_context_create($opts);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url = "https://api.line.me/v2/bot/message/reply";
-        $result = file_get_contents($url, false, $context);
-
-        //SAVE LOG
-        $data = [
-            "title" => "Hello Line Group",
-            "content" => "Hello Line Group",
-        ];
-
-        MyLog::create($data);
-        return $result;
+        $line = new LineMessagingAPI();
+        $line->pushLinegroup(null, $event, "wait");
 
     }
 

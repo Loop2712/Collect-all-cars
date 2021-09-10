@@ -1204,5 +1204,42 @@ class LineMessagingAPI extends Model
         // จบ ประกัน
     }
 
+    public function pushLinegroup()
+    {
+        $template_path = storage_path('../public/json/hello_group_line.json');   
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ตัวอย่าง","สวัสดีค่ะ",$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => "C1334c5e39e4b5b5abdb9e2cdde9201ef",
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "HELLO LINE GROUP",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+        ];
+
+        MyLog::create($data);
+    }
+
+
 
 }
