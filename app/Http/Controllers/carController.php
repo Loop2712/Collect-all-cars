@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 class CarController extends Controller
 {
 
-    public function hello_line_group($data)
+    public function hello_line_group($data,$group_id)
     {
         echo "<pre>";
         print_r($data);
@@ -35,7 +35,7 @@ class CarController extends Controller
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
-            "to" => $data['groupId'],
+            "to" => $group_id,
             "messages" => $messages,
         ];
 
@@ -93,7 +93,7 @@ class CarController extends Controller
             "pictureUrl" => $data_group_line->pictureUrl,
         ];
         
-        $this->hello_line_group($save_name_group);
+        $this->hello_line_group($save_name_group , $group_id);
 
         // Group_line::create($save_name_group);
 
