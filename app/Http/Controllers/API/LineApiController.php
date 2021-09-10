@@ -143,7 +143,7 @@ class LineApiController extends Controller
             "pictureUrl" => $data_group_line->pictureUrl,
         ];
         
-        $this->hello_line_group($save_name_group);
+        $this->hello_line_group($save_name_group, $event);
 
         Group_line::create($save_name_group);
 
@@ -155,7 +155,7 @@ class LineApiController extends Controller
 
     }
 
-    public function hello_line_group($data)
+    public function hello_line_group($data, $event)
     {
         $template_path = storage_path('../public/json/hello_group_line.json');   
         $string_json = file_get_contents($template_path);
@@ -165,7 +165,7 @@ class LineApiController extends Controller
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
-            "to" => $data['groupId'],
+            "replyToken" => $event["replyToken"],
             "messages" => $messages,
         ];
 
@@ -180,7 +180,8 @@ class LineApiController extends Controller
         ];
                             
         $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
