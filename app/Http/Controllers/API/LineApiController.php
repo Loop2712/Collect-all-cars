@@ -129,14 +129,21 @@ class LineApiController extends Controller
             ]
         ];
 
-        $group_id = $event['source']['groupId'];
+        $group_id = $group_id = $event['source']['groupId'];;
 
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/group/".$group_id."/summary";
         $result = file_get_contents($url, false, $context);
 
         $data_group_line = json_decode($result);
-        Group_line::create($data_group_line);
+        
+        $save_name_group = [
+            "groupId" => $data_group_line->groupId,
+            "groupName" => $data_group_line->groupName,
+            "pictureUrl" => $data_group_line->pictureUrl,
+        ];
+        
+        Group_line::create($save_name_group);
 
         $data = [
             "title" => "บันทึก Name Group Line",
