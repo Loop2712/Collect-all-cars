@@ -143,15 +143,50 @@ class LineApiController extends Controller
             "pictureUrl" => $data_group_line->pictureUrl,
         ];
         
-        $this->hello_line_group($save_name_group, $event);
-
         Group_line::create($save_name_group);
 
         $data = [
             "title" => "บันทึก Name Group Line",
             "content" => $data_group_line->groupName,
         ];
-        MyLog::create($data);  
+        MyLog::create($data);
+
+        // $this->hello_line_group($save_name_group, $event);
+
+        $template_path = storage_path('../public/json/hello_group_line.json');   
+
+        $string_json = file_get_contents($template_path);
+        $messages = [ json_decode($string_json, true) ];
+
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts_group = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context_group  = stream_context_create($opts_group);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url_group = "https://api.line.me/v2/bot/message/reply";
+        $result_group = file_get_contents($url_group, false, $context_group);
+
+        //SAVE LOG
+        $data_group = [
+            "title" => "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
+            "content" => "reply Success",
+        ];
+        MyLog::create($data_group);
+
+          
 
     }
 
