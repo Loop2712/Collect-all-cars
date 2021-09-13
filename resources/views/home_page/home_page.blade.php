@@ -48,7 +48,7 @@
       <div class="container">
         @if(Auth::check())
           @if(Auth::user()->id == 1)
-            <h1 id="check_country" onclick="check_country('{{ Auth::user()->id }}');">ตรวจสอบ country</h1>
+            <h1 id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}');">ตรวจสอบ country</h1>
               <!-- Button trigger modal -->
               <button id="btn_select_language" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Launch demo modal
@@ -1055,7 +1055,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
     check_user();
-    document.querySelector("#check_country").click();
+    document.querySelector("#change_country").click();
 });
 function check_language() {
     let language = document.querySelector(".goog-te-combo");
@@ -1163,14 +1163,17 @@ function check_email() {
             });
 }
 
-function check_country(user_id) {
+function change_country(user_id, country , language) {
 
-    console.log("check_country");
-    console.log(user_id);
+    // console.log(user_id);
+    // console.log(country);
+    // console.log(language);
 
-    fetch("{{ url('/') }}/api/check_country/"  + user_id );
+    if (country === "") {
+      fetch("{{ url('/') }}/api/change_country/"  + user_id );
+    }
 
-    if (language_user === "") {
+    if (language === "") {
         document.querySelector('#btn_select_language').click();
     }
 }

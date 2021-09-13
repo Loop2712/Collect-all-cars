@@ -48,7 +48,7 @@ Route::get('/location/{lat}/{lng}/check_news','API\LocationController@check_news
 Route::get('/location/show_location_P','API\LocationController@show_location_P');
 Route::get('/location/{location_P}/show_location_A','API\LocationController@show_location_A');
 
-Route::get('/check_country/{user_id}','API\LocationController@check_country');
+Route::get('/change_country/{user_id}','API\LocationController@change_country');
 
 
 Route::get('/check_user/{id_user}','API\PartnersController@check_user');
