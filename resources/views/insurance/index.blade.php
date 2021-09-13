@@ -33,6 +33,8 @@
                                         <th>ชื่อบริษัทประกันภัย</th>
                                         <th>เบอร์โทรศัพท์</th>
                                         <th>สถานะพาร์ทเนอร์</th>
+                                        <th>Line Group</th>
+                                        <th>Mail</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -43,6 +45,27 @@
                                         <td>{{ $item->company }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->status_partner }}</td>
+
+                                        @if(!empty($item->line_group))
+                                            <td>{{ $item->line_group }}</td>
+                                        @elseif(empty($item->line_group) and $item->status_partner == "Yes")
+                                            <td>
+                                                <select class="btn btn-sm btn-outline-success">
+                                                    <option value="" selected>- เลือกกลุ่มไลน์ -</option>
+                                                    @foreach($group_line as $item)
+                                                        <option value="{{ $item->groupName }}" 
+                                                        {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+                                                        {{ $item->groupName }} 
+                                                        </option>
+                                                    @endforeach 
+                                                </select>
+                                            </td>
+                                        @else
+                                            <th></th>
+                                        @endif
+
+                                        
+                                        <td>{{ $item->mail }}</td>
                                         <td>
                                             <!-- <a href="{{ url('/insurance/' . $item->id) }}" title="View Insurance"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a> -->
                                             <a href="{{ url('/insurance/' . $item->id . '/edit') }}" title="Edit Insurance"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข</button></a>

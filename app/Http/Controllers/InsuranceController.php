@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Models\Insurance;
 use Illuminate\Http\Request;
 
+use App\Models\Group_line;
+
 class InsuranceController extends Controller
 {
     /**
@@ -29,7 +31,9 @@ class InsuranceController extends Controller
             $insurance = Insurance::latest()->paginate($perPage);
         }
 
-        return view('insurance.index', compact('insurance'));
+        $group_line = Group_line::where('owner', null)->get();
+
+        return view('insurance.index', compact('insurance','group_line'));
     }
 
     /**
