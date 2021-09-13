@@ -76,7 +76,8 @@ Route::get('/welcome_home/{status_id}/profile','ProfileController@welcome_home')
 Route::post('/save_sos_insurance', 'API\Save_sos_insuranceController@Save_sos');
 Route::get('/save_sos_insurance/{name_insurance}/select_insurance', 'API\Save_sos_insuranceController@Save_sos_2');
 
-Route::get('/insurance_select_line_group/{name_line_group}/{company}', 'API\API_line_group@save_line_group');
+Route::get('/insurance_select_line_group/{name_line_group}/{company}', 'API\API_line_group@save_line_group_insurance');
+Route::get('/partner_viicheck_select_line_group/{name_line_group}/{name_partner}', 'API\API_line_group@save_line_group_partner_viicheck');
 
 
 

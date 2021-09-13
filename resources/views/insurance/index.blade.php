@@ -96,7 +96,7 @@
 
             fetch("{{ url('/') }}/api/insurance_select_line_group/" + select_line_group + "/" + company);
 
-            var delayInMilliseconds = 1500; //1 second
+            var delayInMilliseconds = 1500;
 
                 setTimeout(function() {
                     window.location.reload(true);

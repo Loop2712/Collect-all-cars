@@ -124,13 +124,19 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/manage_user') }}">
-                <i class="fas fa-user-cog text-info"></i>
+                <i class="fas fa-user-cog text-primary"></i>
                 <span class="nav-link-text">จัดการผู้ใช้</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/insurance') }}">
+              <a class="nav-link" href="{{ url('/partner_viicheck') }}">
                 <i class="fas fa-hands-helping text-success"></i>
+                <span class="nav-link-text">Partner ViiCHECK</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/insurance') }}">
+                <i class="fas fa-user-shield text-info"></i>
                 <span class="nav-link-text">บริษัทประกันภัย</span>
               </a>
             </li>
@@ -138,6 +144,12 @@
               <a class="nav-link" href="{{ url('/profanity') }}">
                 <i class="fas fa-ban text-orange"></i>
                 <span class="nav-link-text">แบนคำหยาบคาย</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/group_line') }}">
+                <i style="color: lightgreen" class="fab fa-line"></i>
+                <span class="nav-link-text">Group Line</span>
               </a>
             </li>
           </ul>

@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Partner;
 use Illuminate\Http\Request;
+use App\Models\Group_line;
 
 class PartnerController extends Controller
 {
@@ -30,7 +31,9 @@ class PartnerController extends Controller
             $partner = Partner::latest()->paginate($perPage);
         }
 
-        return view('partner.index', compact('partner'));
+        $group_line = Group_line::where('owner', null)->get();
+
+        return view('partner.index', compact('partner','group_line'));
     }
 
     /**

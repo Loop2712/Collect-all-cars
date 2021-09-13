@@ -1,17 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <br>
+    <div class="container-fluid">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Group_line</div>
+                    <h3 class="card-header">Group_line</h3>
                     <div class="card-body">
-                        <a href="{{ url('/group_line/create') }}" class="btn btn-success btn-sm" title="Add New Group_line">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
 
                         <form method="GET" action="{{ url('/group_line') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
@@ -30,15 +26,23 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>GroupId</th><th>GroupName</th><th>PictureUrl</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>GroupId</th>
+                                        <th>ชื่อกลุ่มไลน์</th>
+                                        <th>เจ้าของกลุ่ม</th>
+                                        <!-- <th>PictureUrl</th> -->
+                                        <!-- <th>Actions</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($group_line as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->groupId }}</td><td>{{ $item->groupName }}</td><td>{{ $item->pictureUrl }}</td>
-                                        <td>
+                                        <td>{{ $item->groupId }}</td>
+                                        <td>{{ $item->groupName }}</td>
+                                        <td>{{ $item->owner }}</td>
+                                        <!-- <td>{{ $item->pictureUrl }}</td> -->
+                                        <!-- <td>
                                             <a href="{{ url('/group_line/' . $item->id) }}" title="View Group_line"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/group_line/' . $item->id . '/edit') }}" title="Edit Group_line"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
@@ -47,7 +51,7 @@
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Group_line" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 @endforeach
                                 </tbody>

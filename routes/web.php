@@ -102,6 +102,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 	Route::resource('sos_insurance', 'Sos_insuranceController');
 
+	Route::resource('partner_viicheck', 'PartnerController');
+	Route::resource('group_line', 'Group_lineController');
+
 });
 // END ADMIN VIICHECK
 
@@ -244,10 +247,5 @@ Route::resource('cancel_after_6_month', 'Cancel_after_6_monthController');
 
 
 
-
-
-
 // CHECK IP
 Route::get('/check_ip', 'Home_pageController@check_ip');
-Route::resource('partner', 'PartnerController');
-Route::resource('group_line', 'Group_lineController');
