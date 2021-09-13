@@ -50,7 +50,7 @@
                                             <td>{{ $item->line_group }}</td>
                                         @elseif(empty($item->line_group) and $item->status_partner == "Yes")
                                             <td>
-                                                <select class="btn btn-sm btn-outline-success">
+                                                <select id="select_line_group_{{ $loop->iteration }}" class="btn btn-sm btn-outline-success" onchange="change_line_group('{{ $loop->iteration }}','{{ $item->company }}');">
                                                     <option value="" selected>- เลือกกลุ่มไลน์ -</option>
                                                     @foreach($group_line as $item)
                                                         <option value="{{ $item->groupName }}" 
@@ -61,10 +61,9 @@
                                                 </select>
                                             </td>
                                         @else
-                                            <th></th>
+                                            <th> <!-- // --> </th>
                                         @endif
 
-                                        
                                         <td>{{ $item->mail }}</td>
                                         <td>
                                             <!-- <a href="{{ url('/insurance/' . $item->id) }}" title="View Insurance"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a> -->
@@ -88,4 +87,21 @@
             </div>
         </div>
     </div>
+    <script>
+        
+        function change_line_group(loop, company){
+            let select_line_group = document.querySelector("#select_line_group_" + loop).value;
+            console.log(select_line_group);
+            console.log(company);
+
+            fetch("{{ url('/') }}/api/insurance_select_line_group/" + select_line_group + "/" + company);
+
+            var delayInMilliseconds = 1500; //1 second
+
+                setTimeout(function() {
+                    window.location.reload(true);
+                }, delayInMilliseconds);
+        }
+
+    </script>
 @endsection
