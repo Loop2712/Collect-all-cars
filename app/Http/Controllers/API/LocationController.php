@@ -53,4 +53,49 @@ class LocationController extends Controller
         return $location_A;
     }
     
+
+    public function check_country($user_id)
+    {
+        $data_user = DB::table('users')->where('id', $user_id)->get();
+
+        foreach ($data_user as $item) {
+
+            $language_user = $item->language;
+
+            // ถ้า country ว่างตรวจหา country และอัพเดท
+            if (empty($item->country)) {
+                
+                $ipaddress = '';
+                if (getenv('HTTP_CLIENT_IP'))
+                    $ipaddress = getenv('HTTP_CLIENT_IP');
+                else if(getenv('HTTP_X_FORWARDED_FOR'))
+                    $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+                else if(getenv('HTTP_X_FORWARDED'))
+                    $ipaddress = getenv('HTTP_X_FORWARDED');
+                else if(getenv('HTTP_FORWARDED_FOR'))
+                    $ipaddress = getenv('HTTP_FORWARDED_FOR');
+                else if(getenv('HTTP_FORWARDED'))
+                   $ipaddress = getenv('HTTP_FORWARDED');
+                else if(getenv('REMOTE_ADDR'))
+                    $ipaddress = getenv('REMOTE_ADDR');
+                else
+                    $ipaddress = 'UNKNOWN';
+
+                $ip = $ipaddress; // your ip address here
+                $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
+
+                if($query && $query['status'] == 'success')
+                {
+                    DB::table('users')
+                        ->where('id', $user_id)
+                        ->update([
+                            'country' => $query['countryCode'],
+                    ]);
+                }
+            }
+        }
+       
+        return $language_user;
+    }
+    
 }

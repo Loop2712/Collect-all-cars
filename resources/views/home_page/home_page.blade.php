@@ -46,7 +46,36 @@
     @endif
     <section id="why-us" class="why-us">
       <div class="container">
+        @if(Auth::check())
+          @if(Auth::user()->id == 1)
+            <h1 id="check_country" onclick="check_country('{{ Auth::user()->id }}');">ตรวจสอบ country</h1>
+              <!-- Button trigger modal -->
+              <button id="btn_select_language" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+              </button>
 
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          @endif
+        @endif
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="content">
@@ -1014,6 +1043,7 @@
                   </div>
                 </div>
 
+
                 @if (Route::has('password.request'))
                     <a id="reset" class="text-dark d-none" href="{{ route('password.request') }}">
                         <b>{{ __('เปลี่ยนรหัสผ่าน') }}</b>
@@ -1025,6 +1055,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
     check_user();
+    document.querySelector("#check_country").click();
 });
 function check_language() {
     let language = document.querySelector(".goog-te-combo");
@@ -1131,5 +1162,18 @@ function check_email() {
 
             });
 }
+
+function check_country(user_id) {
+
+    console.log("check_country");
+    console.log(user_id);
+
+    fetch("{{ url('/') }}/api/check_country/"  + user_id );
+
+    if (language_user === "") {
+        document.querySelector('#btn_select_language').click();
+    }
+}
+
 </script>
 @endsection
