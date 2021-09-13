@@ -29,6 +29,15 @@
             "animated": true,
             "align": "center",
             "gravity": "center"
+          },
+          {
+            "type": "text",
+            "text": "GROUP",
+            "weight": "bold",
+            "align": "center",
+            "margin": "xl",
+            "size": "lg",
+            "offsetBottom": "lg"
           }
         ],
         "backgroundColor": "#FAEBD7",
@@ -38,9 +47,9 @@
       },
       {
         "type": "text",
-        "text": "สวัสดีค่ะ",
+        "text": "ขอบคุณมากนะคะ",
         "weight": "bold",
-        "size": "xxl",
+        "size": "xl",
         "margin": "xxl",
         "color": "#FFFFFF",
         "wrap": true,
@@ -49,21 +58,26 @@
       },
       {
         "type": "text",
-        "text": "ขอบคุณมากนะคะที่ให้วีเป็นส่วนหนึ่งของ GROUP",
+        "text": "ที่ให้วีเป็นส่วนหนึ่งของการให้บริการ",
         "weight": "bold",
-        "size": "lg",
-        "margin": "md",
+        "size": "md",
+        "margin": "xl",
         "color": "#FFFFFF",
         "wrap": true,
         "align": "center",
         "gravity": "center"
       },
       {
+        "type": "separator",
+        "margin": "xxl",
+        "color": "#07375D"
+      },
+      {
         "type": "text",
         "text": "วีจะทำหน้าที่ให้ดีที่สุดนะคะ",
         "weight": "bold",
         "size": "md",
-        "margin": "xl",
+        "margin": "lg",
         "color": "#FFFFFF",
         "wrap": true,
         "align": "center",
