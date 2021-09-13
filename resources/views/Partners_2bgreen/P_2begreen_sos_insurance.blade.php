@@ -13,7 +13,7 @@
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
                     <div class="row">
                         <div class="col-12">
-                            <button class="btn btn-primary float-right">
+                            <button class="btn btn-primary float-right" onclick="re_map('13.7248936','100.4930264');">
                                 <i class="fas fa-redo-alt"></i> คืนค่าแผนที่
                             </button>
                         </div>
@@ -159,6 +159,22 @@
             text_center_lat.value = lat ;
             text_center_lng.value = lng ;
             text_zoom.value = 15.5 ;
+
+        initMap();
+    }
+
+    function re_map(lat, lng) {
+
+        // console.log(lat);
+        // console.log(lng);
+
+        let text_zoom = document.getElementById("va_zoom");
+        let text_center_lat = document.getElementById("center_lat");
+        let text_center_lng = document.getElementById("center_lng");
+
+            text_center_lat.value = lat ;
+            text_center_lng.value = lng ;
+            text_zoom.value = 6 ;
 
         initMap();
     }
