@@ -470,10 +470,10 @@ class Register_carController extends Controller
         
         $requestData = $request->all();
         
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
         
         $register_car = Register_car::findOrFail($id);
         $register_car->update($requestData);
