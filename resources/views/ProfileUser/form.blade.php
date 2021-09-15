@@ -76,6 +76,35 @@
                             <input class="form-control" name="phone" type="number" id="phone" value="{{ isset($data->phone) ? $data->phone : ''}}" >
                             {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                         </div>
+                        <label for="massengbox" class="control-label"><b>{{ 'ภาษา' }}</b></label>
+                        <div class="form-group {{ $errors->has('language') ? 'has-error' : ''}}">
+                            <div style="margin-top: 10px;" class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img class="btn" id="img_flag_th" style="filter: grayscale(100%);" width="80" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th');">
+                                        </div>
+                                        <div style="margin-left: -10px;" class="col-2">
+                                            <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/en.png') }}" onclick="change_language('en');">
+                                        </div>
+                                        <div style="margin-top: 1px;" class="col-2">
+                                            <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/zh-TW.png') }}" onclick="change_language('zh-TW');">
+                                        </div>
+                                        <div style="margin-left: -15px;" class="col-2">
+                                            <img class="btn" id="img_flag_ja" style="filter: grayscale(100%);"  width="103" src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja');">
+                                        </div>
+                                        <div class="col-2">
+                                            <img class="btn" id="img_flag_ko" style="filter: grayscale(100%);"  width="83" src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko');">
+                                        </div>
+                                        <div style="margin-left: -7px;" class="col-2">
+                                            <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es');">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input class="form-control" name="language" type="hidden" id="language" value="{{ isset($data->language) ? $data->language : ''}}">
+                            {!! $errors->first('language', '<p class="help-block">:message</p>') !!}
+                        </div>
                     </div>
                 </div>
                 <br><br>
@@ -272,8 +301,13 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
+
+        let input_language = document.querySelector('#language');
+        change_color_img(input_language.value);
+
         // console.log("START");
         add_color();
+        
         
     });
     function add_color(){
@@ -282,6 +316,104 @@
         document.querySelector('#btn_profile').classList.remove('btn-outline-danger');
         document.querySelector('#btn_a_profile').classList.add('text-white');
         document.querySelector('#btn_a_profile').classList.remove('text-danger');
+    }
+
+    function change_language(language)
+    {
+        let input_language = document.querySelector('#language');
+            input_language.value = language ;
+            change_color_img(language);
+    }
+
+    function change_color_img(language)
+    {
+        let img_th = document.querySelector('#img_flag_th');
+        let img_en = document.querySelector('#img_flag_en');
+        let img_zh_TW = document.querySelector('#img_flag_zh_TW');
+        let img_ja = document.querySelector('#img_flag_ja');
+        let img_ko = document.querySelector('#img_flag_ko');
+        let img_es = document.querySelector('#img_flag_es');
+
+        let style_gray_th= document.createAttribute("style");
+            style_gray_th.value = "filter: grayscale(100%);";
+
+        let style_gray_en= document.createAttribute("style");
+            style_gray_en.value = "filter: grayscale(100%);";
+
+        let style_gray_zh_TW= document.createAttribute("style");
+            style_gray_zh_TW.value = "filter: grayscale(100%);";
+
+        let style_gray_ja= document.createAttribute("style");
+            style_gray_ja.value = "filter: grayscale(100%);";
+
+        let style_gray_ko= document.createAttribute("style");
+            style_gray_ko.value = "filter: grayscale(100%);";
+
+        let style_gray_es= document.createAttribute("style");
+            style_gray_es.value = "filter: grayscale(100%);";
+
+        switch(language) {
+            case 'th':
+                let attr_th = img_th.getAttributeNode("style");   
+                img_th.removeAttributeNode(attr_th);
+
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_es.setAttributeNode(style_gray_es);
+              break;
+            case 'en':
+                let attr_en = img_en.getAttributeNode("style");   
+                img_en.removeAttributeNode(attr_en);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_es.setAttributeNode(style_gray_es);
+              break;
+            case 'zh-TW':
+                let attr_zh_TW = img_zh_TW.getAttributeNode("style");   
+                img_zh_TW.removeAttributeNode(attr_zh_TW);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_es.setAttributeNode(style_gray_es);
+              break;
+            case 'ja':
+                let attr_ja = img_ja.getAttributeNode("style");   
+                img_ja.removeAttributeNode(attr_ja);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_es.setAttributeNode(style_gray_es);
+              break;
+            case 'ko':
+                let attr_ko = img_ko.getAttributeNode("style");   
+                img_ko.removeAttributeNode(attr_ko);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_es.setAttributeNode(style_gray_es);
+              break;
+            case 'es':
+                let attr_es = img_es.getAttributeNode("style");   
+                img_es.removeAttributeNode(attr_es);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+              break;
+          }
     }
 
 </script>

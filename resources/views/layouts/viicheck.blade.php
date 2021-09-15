@@ -639,7 +639,7 @@ function change_country(user_id, country , language) {
         document.querySelector('#btn_select_language').click();
     }else {
 
-      var delayInMilliseconds = 2000; //2 second
+      var delayInMilliseconds = 1500; //1.5 second
 
         setTimeout(function() {
 
