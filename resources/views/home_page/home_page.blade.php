@@ -82,7 +82,7 @@
                           </div>
                           <div class="col-4">
                             <div class="btn" onclick="user_language('en', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                              <img width="75" src="{{ url('/img/national-flag/en.png') }}">
+                              <img width="60" src="{{ url('/img/national-flag/en.png') }}">
                               <br>
                               <h5 style="margin-top:10px;">English</h5>
                             </div>

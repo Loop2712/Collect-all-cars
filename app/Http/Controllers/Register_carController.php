@@ -375,31 +375,6 @@ class Register_carController extends Controller
         // ตรวจสอบว่าใช่เจ้าของรถหรือไม่
         $check_car_user = Register_car::where('user_id',$user_id )->where('id',$id )->get();
 
-        $user = Auth::user();
-        $organization = $user->organization;
-
-        $Juristic_ID = Organization::where('juristicNameTH', $organization )->get();
-
-        $select_Organization = Organization::selectRaw('juristicNameTH')->groupBy('juristicNameTH')->get();
-
-        $juristicNameTH = "";
-        $juristicID = "" ;
-        $juristicMail = "" ;
-        $juristicPhone = "" ;
-        $juristicProvince = "" ;
-        $juristicDistrict = "" ;
-
-        foreach ($Juristic_ID as $key ) {
-            if (!empty($key->juristicNameTH)) {
-                $juristicNameTH = $key->juristicNameTH ;
-                $juristicID = $key->juristicID ;
-                $juristicMail = $key->mail ;
-                $juristicPhone = $key->phone ;
-                $juristicProvince = $key->province ;
-                $juristicDistrict = $key->district ;
-            }
-        }
-
         foreach ($check_car_user as $key ) {
             $name = $key->name ;
         }
@@ -423,6 +398,21 @@ class Register_carController extends Controller
                 $generation_old  = $item->generation;
                 $province_old  =  $item->province;
                 $name_insurance_old  =  $item->name_insurance;
+
+                $juristicNameTH = $item->juristicNameTH;
+                $juristicMail = $item->organization_mail ;
+                $juristicProvince = $item->branch_province ;
+                $juristicDistrict = $item->branch_district ;
+
+            }
+
+            $juristicID = "";
+            $juristicPhone = "";
+
+            $data_juristicNameTH = Organization::where('juristicNameTH', $juristicNameTH )->get();
+            foreach ($data_juristicNameTH as $key_data) {
+                $juristicID = $key_data->juristicID ;
+                $juristicPhone = $key_data->phone ;
             }
 
             $car_brand = CarModel::selectRaw('brand,count(brand) as count')
@@ -448,7 +438,7 @@ class Register_carController extends Controller
                 ->groupBy('company')
                 ->get();
 
-            return view('register_car.edit', compact('register_car','location_array','car_brand','user','car','motorcycle', 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization' , 'select_Organization','car_type_old','brand_old','generation_old','province_old','name_insurance_old','name_insurance'));
+            return view('register_car.edit', compact('register_car' , 'data_car_old','location_array','car_brand','user','car','motorcycle' ,'car_type_old','brand_old','generation_old','province_old','name_insurance_old','name_insurance','juristicNameTH', 'juristicID', 'juristicMail', 'juristicPhone', 'juristicProvince', 'juristicDistrict'));
         }
     }
     public function edit_act($id)
@@ -469,11 +459,6 @@ class Register_carController extends Controller
     {
         
         $requestData = $request->all();
-        
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
         
         $register_car = Register_car::findOrFail($id);
         $register_car->update($requestData);

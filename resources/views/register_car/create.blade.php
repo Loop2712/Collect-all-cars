@@ -100,7 +100,7 @@
         phone_2.setAttributeNode(document.createAttribute('required'));
         juristicNameTH.setAttributeNode(document.createAttribute('required'));
 
-        juristicNameTH.value = "{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : $juristicNameTH}}";
+        juristicNameTH.value = "{{ isset($register_car->juristicNameTH) ? $register_car->juristicNameTH : $juristicNameTH}}";
         location_A_2.value = "{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  $juristicDistrict }}";
         location_P_2.value = "{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  $juristicProvince }}";
         organization_mail.value = "{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  $juristicMail }}";

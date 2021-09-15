@@ -28,7 +28,7 @@
 
                     </div>
                     @if(!empty($juristicNameTH))
-                        <a id="click_organization_edit" type="hidden" onclick="add_required();"></a>
+                        <a id="click_organization_edit" class="btn" onclick="show_organization_edit();">click_organization_edit</a>
                     @endif
                 </div>
             </div>
@@ -49,25 +49,44 @@
 
             document.getElementById("click_organization_edit").click();
         });
-        function add_required(){ 
 
-        // ทั่วไป
-        var location_P = document.querySelector('#location_P');
-        var location_A = document.querySelector('#location_A');
-        var phone = document.querySelector('#phone');
+    function show_organization_edit(){
 
-        location_P.removeAttribute('required');
-        location_A.removeAttribute('required');
-        phone.removeAttribute('required');
+        document.querySelector('#blade_organization').classList.remove('d-none');
 
-        document.querySelector('#div_general').classList.add('d-none');
-        document.querySelector('#div_information').classList.add('d-none');
-        document.querySelector('#information').classList.add('d-none');
-        document.querySelector('#btn_rg_organization').classList.add('d-none');
+        add_required_edit();
+    }
+    
+    function add_required_edit(){ 
 
-        document.querySelector('#row_organization').classList.remove('d-none');
-        document.querySelector('#div_organization').classList.remove('d-none');
+        // องค์กร
+        var juristicID = document.querySelector('#juristicID');
+        var organization_mail = document.querySelector('#organization_mail');
+        var location_P_2 = document.querySelector('#location_P_2');
+        var location_A_2 = document.querySelector('#location_A_2');
+        var phone_2 = document.querySelector('#phone_2');
+        var juristicNameTH = document.querySelector('#juristicNameTH');
+        var branch = document.querySelector('#branch');
+        var branch_province = document.querySelector('#branch_province');
+        var branch_district = document.querySelector('#branch_district');
 
+        // juristicID.setAttributeNode(document.createAttribute('required'));
+        organization_mail.setAttributeNode(document.createAttribute('required'));
+        location_P_2.setAttributeNode(document.createAttribute('required'));
+        location_A_2.setAttributeNode(document.createAttribute('required'));
+        phone_2.setAttributeNode(document.createAttribute('required'));
+        juristicNameTH.setAttributeNode(document.createAttribute('required'));
+
+        juristicNameTH.value = "{{ isset($register_car->juristicNameTH) ? $register_car->juristicNameTH : $juristicNameTH}}";
+        location_A_2.value = "{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  $juristicDistrict }}";
+        location_P_2.value = "{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  $juristicProvince }}";
+        organization_mail.value = "{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  $juristicMail }}";
+        phone_2.value = "{{ $juristicPhone }}";
+        juristicID.value = "{{ isset($register_car->juristicID) ? $register_car->juristicID :  $juristicID }}";
+
+        branch.value = "{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}";
+        branch_province.value = "{{ isset($register_car->branch_province) ? $register_car->branch_province :  Auth::user()->branch_province }}";
+        branch_district.value = "{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}";
     }
     </script>
 @endsection

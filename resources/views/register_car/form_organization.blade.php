@@ -13,13 +13,6 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group">
                         <input class="form-control" name="selest_organization" type="text" id="selest_organization" value=""  pattern="[0-9]{13}" onchange="change_selest_organization();" placeholder="เลขทะเบียนนิติบุคคล">
-
-                        <!-- <select name="selest_organization" id="selest_organization" class="form-control" onchange="change_selest_organization();">
-                                <option value="" selected > - กรุณาเลือกองค์กร - </option>
-                                @foreach($select_Organization as $item)
-                                    <option value="{{ $item->juristicNameTH }}">{{ $item->juristicNameTH }}</option>
-                                @endforeach
-                        </select> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
