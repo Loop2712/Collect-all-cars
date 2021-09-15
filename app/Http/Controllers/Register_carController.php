@@ -461,7 +461,9 @@ class Register_carController extends Controller
         $requestData = $request->all();
         
         $register_car = Register_car::findOrFail($id);
+
         $register_car->update($requestData);
+        
         DB::table('register_cars')
                 ->where('id', $id)
                 ->update(['alert_act' => null]);
@@ -469,7 +471,11 @@ class Register_carController extends Controller
                 ->where('id', $id)
                 ->update(['alert_insurance' => null]);
 
-        return redirect('register_car')->with('flash_message', 'Register_car updated!');
+        if (!empty($register_car['juristicNameTH'])) {
+            return redirect('register_car_organization')->with('flash_message', 'Register_car updated!');
+        }else {
+            return redirect('register_car')->with('flash_message', 'Register_car updated!');
+        }
     }
 
     /**
