@@ -255,7 +255,6 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
         <li>
-          <!-- <div id="google_translate_element"></div> -->
         </li>
           <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
@@ -319,6 +318,99 @@
       <!-- .navbar -->
     </div>
   </header><!-- End Header -->
+
+  <!-- --------------------------------------------- -->
+  @if(Auth::check())
+    @if(Auth::user()->role == "admin")
+      <h1 class="d-none" id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}');">
+      </h1>
+      <div class="d-none">
+        <a id="btn_change_language_th" href="javascript:trocarIdioma('th')">th</a>
+        <a id="btn_change_language_en" href="javascript:trocarIdioma('en')">en</a>
+        <a id="btn_change_language_zh-TW" href="javascript:trocarIdioma('zh-TW')">zh-TW</a>
+        <a id="btn_change_language_ja" href="javascript:trocarIdioma('ja')">ja</a>
+        <a id="btn_change_language_ko" href="javascript:trocarIdioma('ko')">ko</a>
+        <a id="btn_change_language_es" href="javascript:trocarIdioma('es')">es</a>
+      </div>
+      
+        <!-- Button trigger modal -->
+        <button id="btn_select_language" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal">
+          BTN เลือกภาษา
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  <img width="35" src="{{ url('/img/icon/translation.png') }}">
+                  &nbsp;
+                  <span>Please select language</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="col-12">
+                  <div class="row text-center">
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('th', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/th.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Thai</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('en', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="60" src="{{ url('/img/national-flag/en.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">English</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('zh-TW', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Chinese</h5>
+                      </div>
+                    </div>
+                    <br><br><br><br><br>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Japan</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('ko', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Korean</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('es', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/es.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Spanish</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+    @endif
+  @endif
+  <!-- --------------------------------------------- -->
 
 
     @yield('content')
@@ -464,12 +556,46 @@
     <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
     <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('js/car/main.js')}}"></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
               function googleTranslateElementInit() {
                 new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
               }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+
+    <script type="text/javascript">
+    var comboGoogleTradutor = 'null'; //Varialvel global
+
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'po',
+            // includedLanguages: 'th,en,zh-TW,ja,ko,es',
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+        }, 'google_translate_element');
+
+        comboGoogleTradutor = document.getElementById("google_translate_element").querySelector(".goog-te-combo");
+    }
+
+    function changeEvent(el) {
+        if (el.fireEvent) {
+            el.fireEvent('onchange');
+        } else {
+            var evObj = document.createEvent("HTMLEvents");
+
+            evObj.initEvent("change", false, true);
+            el.dispatchEvent(evObj);
+        }
+    }
+
+    function trocarIdioma(sigla) {
+        if (comboGoogleTradutor) {
+            comboGoogleTradutor.value = sigla;
+            changeEvent(comboGoogleTradutor);//Dispara a troca
+        }
+    }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 <script>
@@ -495,6 +621,89 @@
           fetch("{{ url('/') }}/api/welcome_home/"+status_id+"/profile");
         }
     });
+
+    document.querySelector("#change_country").click();
+
+
+function change_country(user_id, country , language) {
+
+    // console.log(user_id);
+    // console.log(country);
+    // console.log(language);
+
+    if (country === "") {
+      fetch("{{ url('/') }}/api/change_country/"  + user_id );
+    }
+
+    if (language === "") {
+        document.querySelector('#btn_select_language').click();
+    }else {
+
+      var delayInMilliseconds = 2000; //2 second
+
+        setTimeout(function() {
+
+          switch(language) {
+            case 'th':
+                document.querySelector('#btn_change_language_th').click();
+              break;
+            case 'en':
+                document.querySelector('#btn_change_language_en').click();
+              break;
+            case 'zh-TW':
+                document.querySelector('#btn_change_language_zh-TW').click();
+              break;
+            case 'ja':
+                document.querySelector('#btn_change_language_ja').click();
+              break;
+            case 'ko':
+                document.querySelector('#btn_change_language_ko').click();
+              break;
+            case 'es':
+                document.querySelector('#btn_change_language_es').click();
+              break;
+          }
+
+      }, delayInMilliseconds);
+    }
+
+}
+
+function user_language(language, user_id) {
+
+    // console.log(language);
+    // console.log(user_id);
+
+    fetch("{{ url('/') }}/api/user_language/"  + language + "/" + user_id);
+
+    var delayInMilliseconds = 1500; //1.5 second
+
+      setTimeout(function() {
+
+        switch(language) {
+          case 'th':
+              document.querySelector('#btn_change_language_th').click();
+            break;
+          case 'en':
+              document.querySelector('#btn_change_language_en').click();
+            break;
+          case 'zh-TW':
+              document.querySelector('#btn_change_language_zh-TW').click();
+            break;
+          case 'ja':
+              document.querySelector('#btn_change_language_ja').click();
+            break;
+          case 'ko':
+              document.querySelector('#btn_change_language_ko').click();
+            break;
+          case 'es':
+              document.querySelector('#btn_change_language_es').click();
+            break;
+        }
+
+    }, delayInMilliseconds);
+      
+}
 </script>
 </body>
 

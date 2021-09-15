@@ -46,89 +46,6 @@
     @endif
     <section id="why-us" class="why-us">
       <div class="container">
-
-        <!-- --------------------------------------------- -->
-        @if(Auth::check())
-          @if(Auth::user()->id == 1)
-            <h1 id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}');">ตรวจสอบ country</h1>
-              <!-- Button trigger modal -->
-              <button id="btn_select_language" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                BTN เลือกภาษา
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">
-                        <img width="35" src="{{ url('/img/icon/translation.png') }}">
-                        &nbsp;
-                        <span>Please select language</span>
-                      </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="col-12">
-                        <div class="row text-center">
-                          <div class="col-4">
-                            <div class="btn" onclick="user_language('th', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                              <img width="55" src="{{ url('/img/national-flag/th.png') }}">
-                              <br>
-                              <h5 style="margin-top:10px;">Thai</h5>
-                            </div>
-                          </div>
-                          <div class="col-4">
-                            <div class="btn" onclick="user_language('en', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                              <img width="60" src="{{ url('/img/national-flag/en.png') }}">
-                              <br>
-                              <h5 style="margin-top:10px;">English</h5>
-                            </div>
-                          </div>
-                          <div class="col-4">
-                            <div class="btn" onclick="user_language('zh-TW', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                              <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
-                              <br>
-                              <h5 style="margin-top:10px;">Chinese</h5>
-                            </div>
-                          </div>
-                          <br><br><br><br><br>
-                          <div class="col-4">
-                            <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                              <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
-                              <br>
-                              <h5 style="margin-top:10px;">Japan</h5>
-                            </div>
-                          </div>
-                          <div class="col-4">
-                            <div class="btn" onclick="user_language('ko', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                              <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
-                              <br>
-                              <h5 style="margin-top:10px;">Korean</h5>
-                            </div>
-                          </div>
-                          <div class="col-4">
-                            <div class="btn" onclick="user_language('es', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                              <img width="55" src="{{ url('/img/national-flag/es.png') }}">
-                              <br>
-                              <h5 style="margin-top:10px;">Spanish</h5>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
-                  </div>
-                </div>
-              </div>
-          @endif
-        @endif
-        <!-- --------------------------------------------- -->
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="content">
@@ -1108,7 +1025,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
     check_user();
-    document.querySelector("#change_country").click();
 });
 function check_language() {
     let language = document.querySelector(".goog-te-combo");
@@ -1136,7 +1052,7 @@ function check_user() {
         fetch("{{ url('/') }}/api/check_user/" + id_user.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 if (result) {
                     document.getElementById("btn_check_user_Modal").click();
 
@@ -1160,8 +1076,8 @@ function put_email() {
     let put_email = document.querySelector("#put_email");
     let put_username = document.querySelector("#put_username");
     let id_user = document.querySelector("#id_user");
-    console.log(put_email.value);
-    console.log(id_user.value);
+    // console.log(put_email.value);
+    // console.log(id_user.value);
 
         fetch("{{ url('/') }}/api/put_email/" + put_email.value + "/" + id_user.value + "/" + put_username.value )
             .then(response => response.json())
@@ -1179,7 +1095,7 @@ function check_username() {
         fetch("{{ url('/') }}/api/check_username/"  + put_username.value +"/" + id_user.value )
             .then(response => response.json())
             .then(result => {
-                console.log(result.length);
+                // console.log(result.length);
                 
                 if (result.length == 0){
                     document.querySelector('#check').classList.remove('d-none');
@@ -1201,7 +1117,7 @@ function check_email() {
         fetch("{{ url('/') }}/api/check_email/"  + put_email.value )
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 
                 if (result.length == 0){
                     document.querySelector('#email_check').classList.remove('d-none');
@@ -1216,38 +1132,8 @@ function check_email() {
             });
 }
 
-function change_country(user_id, country , language) {
-
-    // console.log(user_id);
-    // console.log(country);
-    // console.log(language);
-
-    if (country === "") {
-      fetch("{{ url('/') }}/api/change_country/"  + user_id );
-    }
-
-    if (language === "") {
-        document.querySelector('#btn_select_language').click();
-    }
-
-    // var delayInMilliseconds = 3000; //3 second
-
-    // setTimeout(function() {
-      
-    //   let tag_gg = document.querySelector(".goog-te-gadget");
-
-    //   console.log(tag_gg);
-
-    // }, delayInMilliseconds);
-}
-
-function user_language(language, user_id) {
-
-    // console.log(language);
-    // console.log(user_id);
-
-    fetch("{{ url('/') }}/api/user_language/"  + language + "/" + user_id);
-}
 
 </script>
+
+
 @endsection
