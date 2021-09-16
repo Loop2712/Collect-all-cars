@@ -284,15 +284,16 @@
             <div class="col-6">
                 <div class="form-group float-left">
                     <br>
-                    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'ส่งข้อมูล' }}">
+
                 </div>
             </div>
             <div class="col-6">
                 <div class="float-right">
                     <br>
                     <a href="{{ url('/profile') }}" class="btn btn-warning text-white" title="Back">
-                        กลับ
+                        BACK
                     </a>
+                    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'SAVE' : 'ส่งข้อมูล' }}">
                 </div>
             </div>
         </div>
