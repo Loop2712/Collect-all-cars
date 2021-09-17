@@ -166,10 +166,6 @@ class Time_zoneController extends Controller
 
             
         }
-
-        // echo "<pre>";
-        // print_r($messages);
-        // echo "<pre>";
         exit();
     }
 }
