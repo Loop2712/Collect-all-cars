@@ -145,22 +145,22 @@ class Time_zoneController extends Controller
 
                 $data_time_zone['DST'] =  $key['results'][$i]['DST_Jul_1_2020'];
 
-                // echo "$i >>> " . $data_time_zone['CountryCode'];
-                // echo "<br>";
-                // echo "$i >>> " . $data_time_zone['TimeZone'];
-                // echo "<br>";
-                // echo "$i >>> " . $data_time_zone['UTC'];
-                // echo "<br>";
-                // echo "$i >>> " . $data_time_zone['DST'];
-                // echo "<br>";
-                // echo "<-------------------------------------------------------->";
-                // echo "<br>";
+                echo "$i >>> " . $data_time_zone['CountryCode'];
+                echo "<br>";
+                echo "$i >>> " . $data_time_zone['TimeZone'];
+                echo "<br>";
+                echo "$i >>> " . $data_time_zone['UTC'];
+                echo "<br>";
+                echo "$i >>> " . $data_time_zone['DST'];
+                echo "<br>";
+                echo "<-------------------------------------------------------->";
+                echo "<br>";
 
                 // echo "<pre>";
                 // print_r($data_time_zone);
                 // echo "<pre>";
 
-                Time_zone::create($data_time_zone);
+                // Time_zone::create($data_time_zone);
                 
             }
 

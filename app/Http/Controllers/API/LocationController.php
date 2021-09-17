@@ -85,6 +85,7 @@ class LocationController extends Controller
                     ->where('id', $user_id)
                     ->update([
                         'country' => $query['countryCode'],
+                        'time_zone' => $query['timezone'],
                 ]);
             }
         }
