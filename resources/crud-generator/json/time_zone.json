@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "CountryCode",
+            "type": "string"
+        },
+        {
+            "name": "TimeZone",
+            "type": "string"
+        },
+        {
+            "name": "UTC",
+            "type": "string"
+        },
+        {
+            "name": "DST",
+            "type": "string"
+        }
+    ]
+}

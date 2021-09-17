@@ -1,0 +1,5915 @@
+{
+"results" : [
+
+  {
+    "objectId": "Czx7Sxf5x5",
+    "CountryCode": "NG",
+    "TimeZone": "Africa/Lagos",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:20:50.128Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "oqts6mjw76"
+    }
+  },
+  {
+    "objectId": "gDuq17M3jb",
+    "CountryCode": "BI",
+    "TimeZone": "Africa/Bujumbura",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T18:57:04.860Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qEgnSc4sip"
+    }
+  },
+  {
+    "objectId": "aKdV2TgVJG",
+    "CountryCode": "ZW",
+    "TimeZone": "Africa/Harare",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:33:45.459Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "hvaqvemFp8"
+    }
+  },
+  {
+    "objectId": "wyAAeLJg8q",
+    "CountryCode": "GQ",
+    "TimeZone": "Africa/Malabo",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:08:33.954Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "hzdCZRHhIY"
+    }
+  },
+  {
+    "objectId": "0v1BB9LyVz",
+    "CountryCode": "GM",
+    "TimeZone": "Africa/Banjul",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:08:05.290Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "DGGLf2Q1tS"
+    }
+  },
+  {
+    "objectId": "VNipNL9iMh",
+    "CountryCode": "TZ",
+    "TimeZone": "Africa/Dar_es_Salaam",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:30:40.278Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "UIOtsTw0oX"
+    }
+  },
+  {
+    "objectId": "bgQ8kzQlKV",
+    "CountryCode": "GW",
+    "TimeZone": "Africa/Bissau",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:09:16.145Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "HhLTUnF1fz"
+    }
+  },
+  {
+    "objectId": "libwQgETPN",
+    "CountryCode": "GH",
+    "TimeZone": "Africa/Accra",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:07:33.827Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vCIN9WyEHn"
+    }
+  },
+  {
+    "objectId": "n9XKuUtSuC",
+    "CountryCode": "RW",
+    "TimeZone": "Africa/Kigali",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:25:10.856Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vtGcP4T5wj"
+    }
+  },
+  {
+    "objectId": "PKczD2QUUQ",
+    "CountryCode": "SL",
+    "TimeZone": "Africa/Freetown",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:26:55.254Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "xzEkRDMtUU"
+    }
+  },
+  {
+    "objectId": "pgDqLh6NCD",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Ushuaia",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:17.325Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "Vx3GN75HGH",
+    "CountryCode": "AG",
+    "TimeZone": "America/Antigua",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:52:18.599Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "I8RkNYNHa4"
+    }
+  },
+  {
+    "objectId": "HMZ9UIqdfY",
+    "CountryCode": "CO",
+    "TimeZone": "America/Bogota",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:02:32.461Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "R3I0XpBMHj"
+    }
+  },
+  {
+    "objectId": "4rQq4VtCVM",
+    "CountryCode": "BW",
+    "TimeZone": "Africa/Gaborone",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:59:06.063Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9l8d95idZG"
+    }
+  },
+  {
+    "objectId": "fXGALj718h",
+    "CountryCode": "BR",
+    "TimeZone": "America/Araguaina",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:57:54.871Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "mgSk9lDVQy",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Tucuman",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:18.781Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "kZrh4RgFWb",
+    "CountryCode": "MR",
+    "TimeZone": "Africa/Nouakchott",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:18:00.981Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "1hYnFHML5d"
+    }
+  },
+  {
+    "objectId": "2pOOGHOGEG",
+    "CountryCode": "SS",
+    "TimeZone": "Africa/Juba",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:27:27.180Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ICkEMQPTMM"
+    }
+  },
+  {
+    "objectId": "GZSVHAGgMm",
+    "CountryCode": "LS",
+    "TimeZone": "Africa/Maseru",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:14:36.548Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "fl5yo1HfMR"
+    }
+  },
+  {
+    "objectId": "8c50Yk0Sba",
+    "CountryCode": "MA",
+    "TimeZone": "Africa/Casablanca",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:15:20.830Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Smz1hTRSIU"
+    }
+  },
+  {
+    "objectId": "WAjuYpDPcc",
+    "CountryCode": "ZA",
+    "TimeZone": "Africa/Johannesburg",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:33:31.768Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "LQBwxAvUsE"
+    }
+  },
+  {
+    "objectId": "GJO7VFCjj3",
+    "CountryCode": "GN",
+    "TimeZone": "Africa/Conakry",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:08:19.408Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "l2E7bFn2O6"
+    }
+  },
+  {
+    "objectId": "0gjoZfSTcq",
+    "CountryCode": "EG",
+    "TimeZone": "Africa/Cairo",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:05:16.937Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "hFkwjKITta"
+    }
+  },
+  {
+    "objectId": "9IgyS3CP5V",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/San_Juan",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:22.174Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "FF19sFoy2h",
+    "CountryCode": "ST",
+    "TimeZone": "Africa/Sao_Tome",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:27:32.656Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "0fiEmgrqKa"
+    }
+  },
+  {
+    "objectId": "uwNo3YzXsD",
+    "CountryCode": "NE",
+    "TimeZone": "Africa/Niamey",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:20:34.897Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "lpk34LaX1T"
+    }
+  },
+  {
+    "objectId": "lSmKjAsGZd",
+    "CountryCode": "LY",
+    "TimeZone": "Africa/Tripoli",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:15:12.121Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "FgwdDPUXmJ"
+    }
+  },
+  {
+    "objectId": "AB1hd96HSJ",
+    "CountryCode": "AI",
+    "TimeZone": "America/Anguilla",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:52:26.953Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8iGu4upB6j"
+    }
+  },
+  {
+    "objectId": "S5qWb8smGm",
+    "CountryCode": "CA",
+    "TimeZone": "America/Blanc-Sablon",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:59:41.377Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "BqsMQn9GsJ",
+    "CountryCode": "UG",
+    "TimeZone": "Africa/Kampala",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:30:57.626Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "VrjHD4Le7A"
+    }
+  },
+  {
+    "objectId": "4Lz6iAijhp",
+    "CountryCode": "CG",
+    "TimeZone": "Africa/Brazzaville",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:00:54.876Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5jipXp430E"
+    }
+  },
+  {
+    "objectId": "7UTTmvuBpI",
+    "CountryCode": "BB",
+    "TimeZone": "America/Barbados",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:56:08.785Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "27DB6uofpp"
+    }
+  },
+  {
+    "objectId": "57D4zE6sWm",
+    "CountryCode": "US",
+    "TimeZone": "America/Adak",
+    "UTC_Jan_1_2020": -10,
+    "DST_Jul_1_2020": -9,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:31:13.084Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "1cS0qgxqeZ",
+    "CountryCode": "SO",
+    "TimeZone": "Africa/Mogadishu",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:27:15.990Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "0ncikAUv2i"
+    }
+  },
+  {
+    "objectId": "W0Eaqj8QnN",
+    "CountryCode": "MW",
+    "TimeZone": "Africa/Blantyre",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:18:34.734Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "clpCIxZu1P"
+    }
+  },
+  {
+    "objectId": "G9nVDopTls",
+    "CountryCode": "BF",
+    "TimeZone": "Africa/Ouagadougou",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:56:35.947Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "buIC80yx3R"
+    }
+  },
+  {
+    "objectId": "NkMNCWPGsI",
+    "CountryCode": "CA",
+    "TimeZone": "America/Atikokan",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:59:42.268Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "dcieGadry1",
+    "CountryCode": "MZ",
+    "TimeZone": "Africa/Maputo",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:19:44.684Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9CVfAKT2WO"
+    }
+  },
+  {
+    "objectId": "9gq0BNRegR",
+    "CountryCode": "EH",
+    "TimeZone": "Africa/El_Aaiun",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:05:25.550Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cRUrTJH6np"
+    }
+  },
+  {
+    "objectId": "K2VCTbHcjX",
+    "CountryCode": "TD",
+    "TimeZone": "Africa/Ndjamena",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:28:36.585Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lQ5LYAawJ"
+    }
+  },
+  {
+    "objectId": "z6EGp7eY7v",
+    "CountryCode": "ZM",
+    "TimeZone": "Africa/Lusaka",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:33:39.679Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Hf8Po3Jb1p"
+    }
+  },
+  {
+    "objectId": "PEiRRNqC6k",
+    "CountryCode": "SD",
+    "TimeZone": "Africa/Khartoum",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:25:48.821Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uPVdFzQ71M"
+    }
+  },
+  {
+    "objectId": "8jHw8ynZWW",
+    "CountryCode": "KE",
+    "TimeZone": "Africa/Nairobi",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:12:16.938Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "hWGVevpYaK"
+    }
+  },
+  {
+    "objectId": "VKHcJGqQHW",
+    "CountryCode": "ER",
+    "TimeZone": "Africa/Asmara",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:05:33.724Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "rVI3whtxQX"
+    }
+  },
+  {
+    "objectId": "YL0fEpBhVh",
+    "CountryCode": "DJ",
+    "TimeZone": "Africa/Djibouti",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:03:49.183Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "DKDsqKRrNW"
+    }
+  },
+  {
+    "objectId": "VRyv3J0jPk",
+    "CountryCode": "CF",
+    "TimeZone": "Africa/Bangui",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:00:48.595Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "CAFBhOmYoF"
+    }
+  },
+  {
+    "objectId": "Nt4Y00eT5O",
+    "CountryCode": "BJ",
+    "TimeZone": "Africa/Porto-Novo",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:57:13.752Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "zVrvUTYEeC"
+    }
+  },
+  {
+    "objectId": "1sQLwCJpE8",
+    "CountryCode": "BR",
+    "TimeZone": "America/Bahia",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:57:56.466Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "HvsLREeyhD",
+    "CountryCode": "ML",
+    "TimeZone": "Africa/Bamako",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:16:26.143Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jreQzrjZx6"
+    }
+  },
+  {
+    "objectId": "eL8DQAHjQM",
+    "CountryCode": "GA",
+    "TimeZone": "Africa/Libreville",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:06:51.354Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "2aC5hV2kfd"
+    }
+  },
+  {
+    "objectId": "xFOa2n1l5K",
+    "CountryCode": "ET",
+    "TimeZone": "Africa/Addis_Ababa",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:05:54.852Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "RG4CMN42m1"
+    }
+  },
+  {
+    "objectId": "wzvv5nXmGp",
+    "CountryCode": "DZ",
+    "TimeZone": "Africa/Algiers",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:04:49.703Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8XKDe93BnC"
+    }
+  },
+  {
+    "objectId": "aayofaF3N7",
+    "CountryCode": "CI",
+    "TimeZone": "Africa/Abidjan",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:01:08.447Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "egoIFgkxC3"
+    }
+  },
+  {
+    "objectId": "wTDw4sXsYr",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Mendoza",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:23.169Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "YMrjdiGBKm",
+    "CountryCode": "CD",
+    "TimeZone": "Africa/Lubumbashi",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:00:40.180Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "7UlxnC5LyT"
+    }
+  },
+  {
+    "objectId": "mvfTncPNgO",
+    "CountryCode": "TG",
+    "TimeZone": "Africa/Lome",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:28:48.732Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "LlF4qcKuXw"
+    }
+  },
+  {
+    "objectId": "toHgK62zHC",
+    "CountryCode": "SZ",
+    "TimeZone": "Africa/Mbabane",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:27:59.304Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uVLeKcyCeh"
+    }
+  },
+  {
+    "objectId": "aLzqL2YMAd",
+    "CountryCode": "MX",
+    "TimeZone": "America/Bahia_Banderas",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:18:42.871Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "M60R1MF4MD",
+    "CountryCode": "ES",
+    "TimeZone": "Africa/Ceuta",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:05:44.321Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5Vs8zprtNC"
+    }
+  },
+  {
+    "objectId": "ANVZuFlU4i",
+    "CountryCode": "US",
+    "TimeZone": "America/Denver",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:31:15.200Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "uZXUpzfqYV",
+    "CountryCode": "VE",
+    "TimeZone": "America/Caracas",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:32:27.171Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "RJHFlkiRRU"
+    }
+  },
+  {
+    "objectId": "a8PcSM1D4e",
+    "CountryCode": "BR",
+    "TimeZone": "America/Campo_Grande",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:57:57.407Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "vWHWVgE0Pa",
+    "CountryCode": "CR",
+    "TimeZone": "America/Costa_Rica",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:02:39.628Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "CcOW7twmeX"
+    }
+  },
+  {
+    "objectId": "fDKVe2D9kg",
+    "CountryCode": "US",
+    "TimeZone": "America/Detroit",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:31:14.149Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "ZcDtlZeBJD",
+    "CountryCode": "CD",
+    "TimeZone": "Africa/Kinshasa",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:00:41.856Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "7UlxnC5LyT"
+    }
+  },
+  {
+    "objectId": "fMnvMlikvd",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Rio_Gallegos",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:24.485Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "gxuhA4BXEg",
+    "CountryCode": "LR",
+    "TimeZone": "Africa/Monrovia",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:14:30.168Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ZoFyPeNM5E"
+    }
+  },
+  {
+    "objectId": "fFxsyVbhWL",
+    "CountryCode": "AO",
+    "TimeZone": "Africa/Luanda",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:53:24.451Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "khAszEtDXl"
+    }
+  },
+  {
+    "objectId": "v3B4Uu2dvl",
+    "CountryCode": "CM",
+    "TimeZone": "Africa/Douala",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:01:38.110Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "pUFZ2RIIvG"
+    }
+  },
+  {
+    "objectId": "vNcV15WF7f",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Catamarca",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:27.778Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "6pZw0srPHC",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/La_Rioja",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:25.605Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "FTgIoQSfCS",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Jujuy",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:26.754Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "Fd076NzVVh",
+    "CountryCode": "MX",
+    "TimeZone": "America/Cancun",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:18:50.722Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "DBM0OCaJ3v",
+    "CountryCode": "TN",
+    "TimeZone": "Africa/Tunis",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:29:33.549Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "6FCCfIIcf0"
+    }
+  },
+  {
+    "objectId": "TtK6whAWpE",
+    "CountryCode": "US",
+    "TimeZone": "America/Boise",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:31:17.853Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "sp6OFJCYuk",
+    "CountryCode": "SN",
+    "TimeZone": "Africa/Dakar",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.230Z",
+    "updatedAt": "2020-02-11T19:27:10.164Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "loX389odU1"
+    }
+  },
+  {
+    "objectId": "EpTMAAzlPM",
+    "CountryCode": "BR",
+    "TimeZone": "America/Cuiaba",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T18:57:59.976Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "Lh4qGSM9dW",
+    "CountryCode": "PY",
+    "TimeZone": "America/Asuncion",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:23:50.065Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "4GJnHdhGyv"
+    }
+  },
+  {
+    "objectId": "w9006NhilK",
+    "CountryCode": "KY",
+    "TimeZone": "America/Cayman",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:13:32.187Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "4lgb4MnCu4"
+    }
+  },
+  {
+    "objectId": "wuitzju1e9",
+    "CountryCode": "CA",
+    "TimeZone": "America/Edmonton",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T18:59:43.265Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "y3g51Vwhhx",
+    "CountryCode": "NA",
+    "TimeZone": "Africa/Windhoek",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:19:52.187Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cJ8QXx4aDG"
+    }
+  },
+  {
+    "objectId": "EtPnBmML7o",
+    "CountryCode": "BR",
+    "TimeZone": "America/Eirunepe",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T18:57:58.777Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "FpYRQZcRwO",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Salta",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:32.121Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "eOpjmA7DPg",
+    "CountryCode": "GF",
+    "TimeZone": "America/Cayenne",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:07:19.770Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "0FjIYpVd8h"
+    }
+  },
+  {
+    "objectId": "I2EwRmOfaQ",
+    "CountryCode": "CA",
+    "TimeZone": "America/Creston",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T18:59:44.150Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "TGx0ELJbTQ",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Buenos_Aires",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:34.237Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "0NvM4HVWnq",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/Cordoba",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:31.154Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "MWV3rCEclC",
+    "CountryCode": "AR",
+    "TimeZone": "America/Argentina/San_Luis",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:54:32.995Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "emj7gm2L4O"
+    }
+  },
+  {
+    "objectId": "vF58C7GxNV",
+    "CountryCode": "BZ",
+    "TimeZone": "America/Belize",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:59:29.916Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "v9SGqANrU2"
+    }
+  },
+  {
+    "objectId": "JcITuALKkb",
+    "CountryCode": "US",
+    "TimeZone": "America/Anchorage",
+    "UTC_Jan_1_2020": -9,
+    "DST_Jul_1_2020": -8,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T19:31:18.841Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "bWECKKdkv1",
+    "CountryCode": "BR",
+    "TimeZone": "America/Belem",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:58:01.359Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "mS4xMBiZdZ",
+    "CountryCode": "CW",
+    "TimeZone": "America/Curacao",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:03:06.608Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "6RJs1GA7WP"
+    }
+  },
+  {
+    "objectId": "hGOy934kLq",
+    "CountryCode": "CA",
+    "TimeZone": "America/Cambridge_Bay",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:59:49.604Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "KmDIzpFEF5",
+    "CountryCode": "GL",
+    "TimeZone": "America/Danmarkshavn",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:07:47.025Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "S3kieBKF1Q"
+    }
+  },
+  {
+    "objectId": "oJAzk1ZuxT",
+    "CountryCode": "US",
+    "TimeZone": "America/Chicago",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:31:19.293Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "aNpb4Z4cYd",
+    "CountryCode": "CA",
+    "TimeZone": "America/Dawson_Creek",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T18:59:45.645Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "g3Ds2IHHds",
+    "CountryCode": "AW",
+    "TimeZone": "America/Aruba",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:55:36.414Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qCMlm28jY0"
+    }
+  },
+  {
+    "objectId": "OJGqpAkly3",
+    "CountryCode": "BR",
+    "TimeZone": "America/Boa_Vista",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.231Z",
+    "updatedAt": "2020-02-11T18:58:02.438Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "4COiAVuBoa",
+    "CountryCode": "CA",
+    "TimeZone": "America/Dawson",
+    "UTC_Jan_1_2020": -8,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T18:59:48.421Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "kg4bJLjWua",
+    "CountryCode": "MX",
+    "TimeZone": "America/Chihuahua",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:18:52.238Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "ANCofEIYIb",
+    "CountryCode": "DM",
+    "TimeZone": "America/Dominica",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.234Z",
+    "updatedAt": "2020-02-11T19:04:34.226Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "K9EoQTanO6"
+    }
+  },
+  {
+    "objectId": "nZ3jw3gEQI",
+    "CountryCode": "CA",
+    "TimeZone": "America/Glace_Bay",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:50.833Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "DbQrVqe686",
+    "CountryCode": "GP",
+    "TimeZone": "America/Guadeloupe",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:08:27.444Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "j5lw2HxbXZ"
+    }
+  },
+  {
+    "objectId": "VYkty8kRzD",
+    "CountryCode": "GD",
+    "TimeZone": "America/Grenada",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:07:03.830Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8DHNNAHDXI"
+    }
+  },
+  {
+    "objectId": "G0EBhtrKhq",
+    "CountryCode": "TC",
+    "TimeZone": "America/Grand_Turk",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:28:28.311Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "bzZECrPB6P"
+    }
+  },
+  {
+    "objectId": "3ILZtGrR08",
+    "CountryCode": "BR",
+    "TimeZone": "America/Fortaleza",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:04.144Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "L0RcUJwHOF",
+    "CountryCode": "CA",
+    "TimeZone": "America/Fort_Nelson",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:52.044Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "qFTdJKvNOD",
+    "CountryCode": "GL",
+    "TimeZone": "America/Godthab",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -2,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:07:47.913Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "S3kieBKF1Q"
+    }
+  },
+  {
+    "objectId": "ZNyYnODagF",
+    "CountryCode": "SV",
+    "TimeZone": "America/El_Salvador",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:27:39.559Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "neXLLQcOcE"
+    }
+  },
+  {
+    "objectId": "xhDYC4qj0j",
+    "CountryCode": "CA",
+    "TimeZone": "America/Iqaluit",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:56.792Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "g0cvx9FIHG",
+    "CountryCode": "EC",
+    "TimeZone": "America/Guayaquil",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:04:57.438Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "w42L24Frj9"
+    }
+  },
+  {
+    "objectId": "0DfAsBiFJO",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Tell_City",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:22.333Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "FJylazJBiZ",
+    "CountryCode": "CA",
+    "TimeZone": "America/Inuvik",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:57.973Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "DbsGYlDLTo",
+    "CountryCode": "BQ",
+    "TimeZone": "America/Kralendijk",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:57:49.057Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "lP9UmD2WgK"
+    }
+  },
+  {
+    "objectId": "v9hXFuK1xC",
+    "CountryCode": "CA",
+    "TimeZone": "America/Goose_Bay",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:53.119Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "RvAISNThXk",
+    "CountryCode": "GT",
+    "TimeZone": "America/Guatemala",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:09:00.223Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Rkb0Ji6GtG"
+    }
+  },
+  {
+    "objectId": "VhEl5vIzLc",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Indianapolis",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:23.621Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "AxaxGNX56o",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Petersburg",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:22.909Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "w95wFXlupa",
+    "CountryCode": "CU",
+    "TimeZone": "America/Havana",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:02:46.937Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "YNRVNxzcFx"
+    }
+  },
+  {
+    "objectId": "aY3tkPtdem",
+    "CountryCode": "MX",
+    "TimeZone": "America/Hermosillo",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:18:55.138Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "r0CTG0BiZ5",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Knox",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:20.823Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "qgAjfGu2CZ",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Winamac",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:24.369Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "BMt9lvEUIs",
+    "CountryCode": "CA",
+    "TimeZone": "America/Halifax",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:55.967Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "sg95ul0cdv",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Vevay",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:25.528Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "i7IYVAUTy4",
+    "CountryCode": "GY",
+    "TimeZone": "America/Guyana",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:09:22.600Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uyLj6RP9AZ"
+    }
+  },
+  {
+    "objectId": "tMIMQmjOgX",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Marengo",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:20.230Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "Y9bPMmls6v",
+    "CountryCode": "US",
+    "TimeZone": "America/Kentucky/Louisville",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:30.083Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "UTeEhnekyX",
+    "CountryCode": "US",
+    "TimeZone": "America/Indiana/Vincennes",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:26.882Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "EuS2c4OEV0",
+    "CountryCode": "MX",
+    "TimeZone": "America/Matamoros",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:18:55.603Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "Qn7sgDyRXN",
+    "CountryCode": "MX",
+    "TimeZone": "America/Merida",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:18:56.929Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "WvvPaIfQ1s",
+    "CountryCode": "JM",
+    "TimeZone": "America/Jamaica",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:11:58.512Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "iRCCJGZ3RJ"
+    }
+  },
+  {
+    "objectId": "4aE1FHVXNZ",
+    "CountryCode": "US",
+    "TimeZone": "America/Los_Angeles",
+    "UTC_Jan_1_2020": -8,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:31.381Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "hh9uSdRyIR",
+    "CountryCode": "US",
+    "TimeZone": "America/Juneau",
+    "UTC_Jan_1_2020": -9,
+    "DST_Jul_1_2020": -8,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:33.014Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "78KZpv06dD",
+    "CountryCode": "PE",
+    "TimeZone": "America/Lima",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:22:04.992Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8IhgzPlSIn"
+    }
+  },
+  {
+    "objectId": "wR8MbeA8Dm",
+    "CountryCode": "MF",
+    "TimeZone": "America/Marigot",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:15:52.312Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ta7ARILnW0"
+    }
+  },
+  {
+    "objectId": "5JGZECQYwi",
+    "CountryCode": "BR",
+    "TimeZone": "America/Maceio",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:07.080Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "4akoQdSGVp",
+    "CountryCode": "BO",
+    "TimeZone": "America/La_Paz",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:57:41.677Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "PdgGA5Y5Tt"
+    }
+  },
+  {
+    "objectId": "5yuakln9GD",
+    "CountryCode": "US",
+    "TimeZone": "America/Kentucky/Monticello",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:34.673Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "VWnrMH5QOS",
+    "CountryCode": "SX",
+    "TimeZone": "America/Lower_Princes",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:27:46.550Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nc6YPq9LzZ"
+    }
+  },
+  {
+    "objectId": "r5OdYW1hUR",
+    "CountryCode": "CA",
+    "TimeZone": "America/Moncton",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:59.713Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "ynIRkazSrn",
+    "CountryCode": "UY",
+    "TimeZone": "America/Montevideo",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:54.876Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "R0GyWd9YXw"
+    }
+  },
+  {
+    "objectId": "fscEPEGI9b",
+    "CountryCode": "MQ",
+    "TimeZone": "America/Martinique",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:17:53.800Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "zA1OoRvjvL"
+    }
+  },
+  {
+    "objectId": "vwYLJ7TnzA",
+    "CountryCode": "PA",
+    "TimeZone": "America/Panama",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:21:58.588Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "fjNf3u1Mx1"
+    }
+  },
+  {
+    "objectId": "GlWzmopRS5",
+    "CountryCode": "NI",
+    "TimeZone": "America/Managua",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:20:57.533Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "sCGe1vsv7x"
+    }
+  },
+  {
+    "objectId": "Gn9EV3l0jD",
+    "CountryCode": "PM",
+    "TimeZone": "America/Miquelon",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -2,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:23:01.257Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "iiFNu3iWEe"
+    }
+  },
+  {
+    "objectId": "K3Z9J3vIDG",
+    "CountryCode": "US",
+    "TimeZone": "America/New_York",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:48:43.445Z"
+  },
+  {
+    "objectId": "dO6IwLDFqV",
+    "CountryCode": "US",
+    "TimeZone": "America/Metlakatla",
+    "UTC_Jan_1_2020": -9,
+    "DST_Jul_1_2020": -8,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:37.254Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "POts9Zzrpy",
+    "CountryCode": "MX",
+    "TimeZone": "America/Mexico_City",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:18:59.797Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "QZIu9dK38h",
+    "CountryCode": "BR",
+    "TimeZone": "America/Manaus",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:08.214Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "g5c3P0Dbx6",
+    "CountryCode": "US",
+    "TimeZone": "America/Menominee",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:35.834Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "tpfSczIWEG",
+    "CountryCode": "MX",
+    "TimeZone": "America/Mazatlan",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:19:01.865Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "aYeMsUtZ3N",
+    "CountryCode": "US",
+    "TimeZone": "America/North_Dakota/Center",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:48:43.445Z"
+  },
+  {
+    "objectId": "GRQIwyzjRy",
+    "CountryCode": "MX",
+    "TimeZone": "America/Monterrey",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:19:00.816Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "te7ktMSD9W",
+    "CountryCode": "MS",
+    "TimeZone": "America/Montserrat",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:18:06.537Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "zowYF6xHFj"
+    }
+  },
+  {
+    "objectId": "SzGyjp5EG4",
+    "CountryCode": "CA",
+    "TimeZone": "America/Nipigon",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:59:58.971Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "IWz9dWVN7c",
+    "CountryCode": "US",
+    "TimeZone": "America/North_Dakota/New_Salem",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:31:38.496Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BXkZTl2omc"
+    }
+  },
+  {
+    "objectId": "sL9aCcSBhb",
+    "CountryCode": "BS",
+    "TimeZone": "America/Nassau",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:41.519Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5xyA61UG1h"
+    }
+  },
+  {
+    "objectId": "fozRpyOlsw",
+    "CountryCode": "BR",
+    "TimeZone": "America/Noronha",
+    "UTC_Jan_1_2020": -2,
+    "DST_Jul_1_2020": -2,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:09.718Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "cqv5QNcVon",
+    "CountryCode": "US",
+    "TimeZone": "America/Nome",
+    "UTC_Jan_1_2020": -9,
+    "DST_Jul_1_2020": -8,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:48:43.445Z"
+  },
+  {
+    "objectId": "6fkzK5ePw7",
+    "CountryCode": "US",
+    "TimeZone": "America/Phoenix",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:48:43.445Z"
+  },
+  {
+    "objectId": "dhAFbfOYV9",
+    "CountryCode": "SR",
+    "TimeZone": "America/Paramaribo",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:27:20.755Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "iNVlDu9rb9"
+    }
+  },
+  {
+    "objectId": "svdcwhVth0",
+    "CountryCode": "TT",
+    "TimeZone": "America/Port_of_Spain",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:29:54.548Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "CseuLCM1Du"
+    }
+  },
+  {
+    "objectId": "o5ltzKyprB",
+    "CountryCode": "CL",
+    "TimeZone": "America/Punta_Arenas",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:01:22.529Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "dnDRHIFqGe"
+    }
+  },
+  {
+    "objectId": "PV5KkPXA2U",
+    "CountryCode": "US",
+    "TimeZone": "America/North_Dakota/Beulah",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:48:43.445Z"
+  },
+  {
+    "objectId": "JI8JFdo692",
+    "CountryCode": "HT",
+    "TimeZone": "America/Port-au-Prince",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:10:10.381Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "QLFfURjWpu"
+    }
+  },
+  {
+    "objectId": "XAjIuz3DwD",
+    "CountryCode": "MX",
+    "TimeZone": "America/Ojinaga",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:19:02.906Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "WXH8voW48c",
+    "CountryCode": "CA",
+    "TimeZone": "America/Rankin_Inlet",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:00:00.250Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "uhPXeGTpUB",
+    "CountryCode": "BR",
+    "TimeZone": "America/Santarem",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:11.503Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "5PhK1nFOsa",
+    "CountryCode": "CA",
+    "TimeZone": "America/Rainy_River",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:00:04.115Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "hcRAbVOtYO",
+    "CountryCode": "KN",
+    "TimeZone": "America/St_Kitts",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:13:06.503Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "wHnODFxZFO"
+    }
+  },
+  {
+    "objectId": "5fZHeldE2g",
+    "CountryCode": "BR",
+    "TimeZone": "America/Porto_Velho",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:13.246Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "hgcFuaZy9s",
+    "CountryCode": "CA",
+    "TimeZone": "America/Pangnirtung",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:00:01.761Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "iGaNt5XuSu",
+    "CountryCode": "CA",
+    "TimeZone": "America/Resolute",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:00:02.382Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "hHBatyB0UT",
+    "CountryCode": "GL",
+    "TimeZone": "America/Scoresbysund",
+    "UTC_Jan_1_2020": -1,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:07:48.883Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "S3kieBKF1Q"
+    }
+  },
+  {
+    "objectId": "rxTHOxhX29",
+    "CountryCode": "BR",
+    "TimeZone": "America/Rio_Branco",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:18.957Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "D3neAwwtXR",
+    "CountryCode": "BR",
+    "TimeZone": "America/Recife",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T18:58:17.980Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "VRqcrPB8Nw",
+    "CountryCode": "PR",
+    "TimeZone": "America/Puerto_Rico",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:23:17.164Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Gk9CYF6qoa"
+    }
+  },
+  {
+    "objectId": "gAqJIxCSRj",
+    "CountryCode": "HN",
+    "TimeZone": "America/Tegucigalpa",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:09:45.024Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "pM1H87l6Bm"
+    }
+  },
+  {
+    "objectId": "rhDdrYVfgA",
+    "CountryCode": "DO",
+    "TimeZone": "America/Santo_Domingo",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:04:40.085Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "BkDVxFnLbN"
+    }
+  },
+  {
+    "objectId": "LVJ5JKf1s7",
+    "CountryCode": "US",
+    "TimeZone": "America/Sitka",
+    "UTC_Jan_1_2020": -9,
+    "DST_Jul_1_2020": -8,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T18:48:43.446Z"
+  },
+  {
+    "objectId": "Zmjx4afRLH",
+    "CountryCode": "BR",
+    "TimeZone": "America/Sao_Paulo",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T18:58:16.468Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qq2ryXaIYG"
+    }
+  },
+  {
+    "objectId": "qMvUssoAeT",
+    "CountryCode": "VI",
+    "TimeZone": "America/St_Thomas",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:32:40.474Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qMGd0YmE4G"
+    }
+  },
+  {
+    "objectId": "6BcBRAi5Zw",
+    "CountryCode": "CA",
+    "TimeZone": "America/Regina",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.445Z",
+    "updatedAt": "2020-02-11T19:00:05.334Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "4xb3NbJQd6",
+    "CountryCode": "CL",
+    "TimeZone": "America/Santiago",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:01:23.203Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "dnDRHIFqGe"
+    }
+  },
+  {
+    "objectId": "tGGfB6KVZY",
+    "CountryCode": "GL",
+    "TimeZone": "America/Thule",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:07:50.364Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "S3kieBKF1Q"
+    }
+  },
+  {
+    "objectId": "n9TxkUUTDA",
+    "CountryCode": "VC",
+    "TimeZone": "America/St_Vincent",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:32:19.009Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "SaCgGB3Wn9"
+    }
+  },
+  {
+    "objectId": "DNIsWgyFSW",
+    "CountryCode": "CA",
+    "TimeZone": "America/Thunder_Bay",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:09.731Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "VO4EtRrQtB",
+    "CountryCode": "VG",
+    "TimeZone": "America/Tortola",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:32:34.250Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mNiifJ3CK4"
+    }
+  },
+  {
+    "objectId": "tEMYaIuILq",
+    "CountryCode": "CA",
+    "TimeZone": "America/Yellowknife",
+    "UTC_Jan_1_2020": -7,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:11.256Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "BsixeUEWnZ",
+    "CountryCode": "LC",
+    "TimeZone": "America/St_Lucia",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:14:11.551Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "GOaMR5GKXm"
+    }
+  },
+  {
+    "objectId": "EKlxr5s4DN",
+    "CountryCode": "BL",
+    "TimeZone": "America/St_Barthelemy",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T18:57:22.126Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "akNOeSv404"
+    }
+  },
+  {
+    "objectId": "BlYQs3KxHe",
+    "CountryCode": "CA",
+    "TimeZone": "America/Vancouver",
+    "UTC_Jan_1_2020": -8,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:16.329Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "puN2ExN9DD",
+    "CountryCode": "CA",
+    "TimeZone": "America/Swift_Current",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:10.481Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "V9BteXS9Pj",
+    "CountryCode": "CA",
+    "TimeZone": "America/St_Johns",
+    "UTC_Jan_1_2020": -3.5,
+    "DST_Jul_1_2020": -2.5,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:08.702Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "UcJqsE8yFh",
+    "CountryCode": "CA",
+    "TimeZone": "America/Toronto",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -4,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:13.401Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "yPCuQ7IKWH",
+    "CountryCode": "CA",
+    "TimeZone": "America/Whitehorse",
+    "UTC_Jan_1_2020": -8,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:11.833Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "meMkOqGmsb",
+    "CountryCode": "US",
+    "TimeZone": "America/Yakutat",
+    "UTC_Jan_1_2020": -9,
+    "DST_Jul_1_2020": -8,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T18:48:43.446Z"
+  },
+  {
+    "objectId": "vCwwahFnWa",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Casey",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T18:53:38.781Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "mDVbgprSaZ",
+    "CountryCode": "MX",
+    "TimeZone": "America/Tijuana",
+    "UTC_Jan_1_2020": -8,
+    "DST_Jul_1_2020": -7,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:19:03.753Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jbrIeE76hr"
+    }
+  },
+  {
+    "objectId": "6EjeFHSX8Z",
+    "CountryCode": "CA",
+    "TimeZone": "America/Winnipeg",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -5,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T19:00:17.722Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mTtBWeeHCo"
+    }
+  },
+  {
+    "objectId": "sZTqmfBffV",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Davis",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.446Z",
+    "updatedAt": "2020-02-11T18:53:31.883Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "i720hjvNNh",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/DumontDUrville",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:40.587Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "bOYmQn9Kuf",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Syowa",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:47.911Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "ZcueL50BtJ",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Vostok",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:52.245Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "2FhsiB27Hy",
+    "CountryCode": "KZ",
+    "TimeZone": "Asia/Almaty",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:13:40.898Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nRlkwMtWiB"
+    }
+  },
+  {
+    "objectId": "QB0fQ2gwHl",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Rothera",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:46.536Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "b4GD4JFdhe",
+    "CountryCode": "JO",
+    "TimeZone": "Asia/Amman",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:12:06.402Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "AVGAFwTSFb"
+    }
+  },
+  {
+    "objectId": "7XXxgH9rKB",
+    "CountryCode": "KZ",
+    "TimeZone": "Asia/Aqtobe",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:13:45.141Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nRlkwMtWiB"
+    }
+  },
+  {
+    "objectId": "GxmbNDmEug",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/McMurdo",
+    "UTC_Jan_1_2020": 13,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:43.596Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "nkAQIHq4eB",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Mawson",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:42.574Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "rySqB0zJZ2",
+    "CountryCode": "AU",
+    "TimeZone": "Antarctica/Macquarie",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:55:17.187Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "ZHhesjfF5O",
+    "CountryCode": "YE",
+    "TimeZone": "Asia/Aden",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:33:19.222Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9tt1nNL4xu"
+    }
+  },
+  {
+    "objectId": "6voJhscgax",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Palmer",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:45.625Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "nRd28gMWrG",
+    "CountryCode": "KZ",
+    "TimeZone": "Asia/Aqtau",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:13:44.357Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nRlkwMtWiB"
+    }
+  },
+  {
+    "objectId": "STtBsYd25K",
+    "CountryCode": "AQ",
+    "TimeZone": "Antarctica/Troll",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:53:50.033Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Fs3xs9NlJa"
+    }
+  },
+  {
+    "objectId": "eeb0eUv2q0",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Anadyr",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:24:20.522Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "MHrZDrinFt",
+    "CountryCode": "SJ",
+    "TimeZone": "Arctic/Longyearbyen",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:26:41.528Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "HmcygKfUvr"
+    }
+  },
+  {
+    "objectId": "sHxFZUVGDz",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Chita",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:24:23.120Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "BXlZGUTibd",
+    "CountryCode": "TL",
+    "TimeZone": "Asia/Dili",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:29:18.821Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uy6B519CzE"
+    }
+  },
+  {
+    "objectId": "xd65RJ9FRo",
+    "CountryCode": "LB",
+    "TimeZone": "Asia/Beirut",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:14:04.784Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "P2wZxWNxtr"
+    }
+  },
+  {
+    "objectId": "yEw1gaxGbU",
+    "CountryCode": "AZ",
+    "TimeZone": "Asia/Baku",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:55:51.405Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "mDMzJJXtB2"
+    }
+  },
+  {
+    "objectId": "3zin9KwfNN",
+    "CountryCode": "LK",
+    "TimeZone": "Asia/Colombo",
+    "UTC_Jan_1_2020": 5.5,
+    "DST_Jul_1_2020": 5.5,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:14:24.551Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9N0Bhm2Ge4"
+    }
+  },
+  {
+    "objectId": "grPsJ6QCpy",
+    "CountryCode": "KG",
+    "TimeZone": "Asia/Bishkek",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:12:25.976Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "KoZCNHDS5X"
+    }
+  },
+  {
+    "objectId": "AMPw3faWUG",
+    "CountryCode": "TH",
+    "TimeZone": "Asia/Bangkok",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:28:55.275Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "k2lukc4AyV"
+    }
+  },
+  {
+    "objectId": "xyTCRZR65e",
+    "CountryCode": "BH",
+    "TimeZone": "Asia/Bahrain",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:56:58.161Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "gXKD3sCcJI"
+    }
+  },
+  {
+    "objectId": "FzEBGfs2Z3",
+    "CountryCode": "TM",
+    "TimeZone": "Asia/Ashgabat",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:29:28.228Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qURMHRB5Bh"
+    }
+  },
+  {
+    "objectId": "WfeSg9o6CL",
+    "CountryCode": "KZ",
+    "TimeZone": "Asia/Atyrau",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:13:46.060Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nRlkwMtWiB"
+    }
+  },
+  {
+    "objectId": "uAXwlvLgFn",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Barnaul",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:24:21.706Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "rBUAet8wt6",
+    "CountryCode": "BD",
+    "TimeZone": "Asia/Dhaka",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:56:22.991Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "AWnxgoUzw0"
+    }
+  },
+  {
+    "objectId": "8Ca0jTX5qs",
+    "CountryCode": "IQ",
+    "TimeZone": "Asia/Baghdad",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:11:09.678Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nvhpnKO5rE"
+    }
+  },
+  {
+    "objectId": "gCjMGQqEIp",
+    "CountryCode": "MN",
+    "TimeZone": "Asia/Choibalsan",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:16:41.382Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "76H3yHIo7U"
+    }
+  },
+  {
+    "objectId": "e4QVRQ4kxe",
+    "CountryCode": "SY",
+    "TimeZone": "Asia/Damascus",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T19:27:52.010Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "aCjqJX3che"
+    }
+  },
+  {
+    "objectId": "y8eBojt4Oa",
+    "CountryCode": "BN",
+    "TimeZone": "Asia/Brunei",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:57:34.878Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "W1DBYJ0DT4"
+    }
+  },
+  {
+    "objectId": "ZCrrYHdReX",
+    "CountryCode": "IL",
+    "TimeZone": "Asia/Jerusalem",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:10:42.388Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "4lBFb6Wpq5"
+    }
+  },
+  {
+    "objectId": "VmZt48S1Td",
+    "CountryCode": "TJ",
+    "TimeZone": "Asia/Dushanbe",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:29:02.623Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "temdDhXHMy"
+    }
+  },
+  {
+    "objectId": "pedQEJRb2K",
+    "CountryCode": "HK",
+    "TimeZone": "Asia/Hong_Kong",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:09:29.638Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "KtRJin3dy9"
+    }
+  },
+  {
+    "objectId": "DufbM55tmY",
+    "CountryCode": "PS",
+    "TimeZone": "Asia/Gaza",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:23:23.975Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "yP5OXMfgmQ"
+    }
+  },
+  {
+    "objectId": "SvVEsFG9ci",
+    "CountryCode": "PS",
+    "TimeZone": "Asia/Hebron",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:23:27.231Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "yP5OXMfgmQ"
+    }
+  },
+  {
+    "objectId": "d5gpPyFQnk",
+    "CountryCode": "AE",
+    "TimeZone": "Asia/Dubai",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.484Z",
+    "updatedAt": "2020-02-11T18:52:04.062Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "VqASvLCk8S"
+    }
+  },
+  {
+    "objectId": "X3PkFV9nR8",
+    "CountryCode": "MN",
+    "TimeZone": "Asia/Hovd",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:16:46.282Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "76H3yHIo7U"
+    }
+  },
+  {
+    "objectId": "10HDs9FuEj",
+    "CountryCode": "NP",
+    "TimeZone": "Asia/Kathmandu",
+    "UTC_Jan_1_2020": 5.75,
+    "DST_Jul_1_2020": 5.75,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:21:20.313Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uq5oiRuEKm"
+    }
+  },
+  {
+    "objectId": "PUAPyJQmV7",
+    "CountryCode": "ID",
+    "TimeZone": "Asia/Jakarta",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:10:23.078Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "pOykqMaxZB"
+    }
+  },
+  {
+    "objectId": "PcW2Bc5mRh",
+    "CountryCode": "CY",
+    "TimeZone": "Asia/Famagusta",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:03:22.502Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "1KRscl4VTZ"
+    }
+  },
+  {
+    "objectId": "rNIUHsoCxl",
+    "CountryCode": "AF",
+    "TimeZone": "Asia/Kabul",
+    "UTC_Jan_1_2020": 4.5,
+    "DST_Jul_1_2020": 4.5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T18:52:09.872Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "MEzedNnNVw"
+    }
+  },
+  {
+    "objectId": "IQk3mVdGVn",
+    "CountryCode": "PK",
+    "TimeZone": "Asia/Karachi",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:22:46.750Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "YE4pRFqDqA"
+    }
+  },
+  {
+    "objectId": "L7GdsbSd0b",
+    "CountryCode": "ID",
+    "TimeZone": "Asia/Jayapura",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:10:25.045Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "pOykqMaxZB"
+    }
+  },
+  {
+    "objectId": "CMe1H2o2u5",
+    "CountryCode": "VN",
+    "TimeZone": "Asia/Ho_Chi_Minh",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:32:48.681Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "MFNxWtOZIm"
+    }
+  },
+  {
+    "objectId": "TOFkvC4DFy",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Irkutsk",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:24.169Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "huMjyz0o1c",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Kamchatka",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:24.619Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "km3ZrYdb5c",
+    "CountryCode": "OM",
+    "TimeZone": "Asia/Muscat",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:21:53.373Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ta4EmTNWmu"
+    }
+  },
+  {
+    "objectId": "GKuuGXD9hR",
+    "CountryCode": "MY",
+    "TimeZone": "Asia/Kuala_Lumpur",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:19:28.354Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "SHOmq2VQlZ"
+    }
+  },
+  {
+    "objectId": "kfJcKBoTL3",
+    "CountryCode": "MY",
+    "TimeZone": "Asia/Kuching",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:19:30.667Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "SHOmq2VQlZ"
+    }
+  },
+  {
+    "objectId": "z8CGuu5XDH",
+    "CountryCode": "KZ",
+    "TimeZone": "Asia/Oral",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:13:46.950Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nRlkwMtWiB"
+    }
+  },
+  {
+    "objectId": "ZAO3HYeMBq",
+    "CountryCode": "IN",
+    "TimeZone": "Asia/Kolkata",
+    "UTC_Jan_1_2020": 5.5,
+    "DST_Jul_1_2020": 5.5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:10:54.668Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "DlHQBjd2Ke"
+    }
+  },
+  {
+    "objectId": "QAZLsCgKqg",
+    "CountryCode": "MO",
+    "TimeZone": "Asia/Macau",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:16:55.082Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "larowCNukg"
+    }
+  },
+  {
+    "objectId": "RnLUrTaXmz",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Khandyga",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:25.565Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "WOZdThv8Ef",
+    "CountryCode": "KW",
+    "TimeZone": "Asia/Kuwait",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:13:25.875Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qlkgJorlNV"
+    }
+  },
+  {
+    "objectId": "s7Y2SaHGRw",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Krasnoyarsk",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:26.131Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "EwI3r0dR1H",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Novokuznetsk",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:33.044Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "DnwtKDs3wJ",
+    "CountryCode": "PH",
+    "TimeZone": "Asia/Manila",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:22:37.733Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "pmnzGTREty"
+    }
+  },
+  {
+    "objectId": "eIylAoqSUd",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Magadan",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:27.939Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "Hi2uZMGkBg",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Novosibirsk",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:33.821Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "qYx3htAbm1",
+    "CountryCode": "ID",
+    "TimeZone": "Asia/Makassar",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:10:25.783Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "pOykqMaxZB"
+    }
+  },
+  {
+    "objectId": "BEHs6AuQ2C",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Omsk",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:34.953Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "R8jTbBzWJO",
+    "CountryCode": "CY",
+    "TimeZone": "Asia/Nicosia",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:03:24.098Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "1KRscl4VTZ"
+    }
+  },
+  {
+    "objectId": "nM6B2B0Dur",
+    "CountryCode": "KZ",
+    "TimeZone": "Asia/Qyzylorda",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:13:49.088Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nRlkwMtWiB"
+    }
+  },
+  {
+    "objectId": "etx2AlvAKf",
+    "CountryCode": "KZ",
+    "TimeZone": "Asia/Qostanay",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:13:47.880Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nRlkwMtWiB"
+    }
+  },
+  {
+    "objectId": "4EWKHV6WQi",
+    "CountryCode": "ID",
+    "TimeZone": "Asia/Pontianak",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:10:26.717Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "pOykqMaxZB"
+    }
+  },
+  {
+    "objectId": "ozcmMssnS8",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Sakhalin",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:35.530Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "TINm0ohDHB",
+    "CountryCode": "QA",
+    "TimeZone": "Asia/Qatar",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:23:57.669Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "fadJTpiTZO"
+    }
+  },
+  {
+    "objectId": "o7LYw36erS",
+    "CountryCode": "GE",
+    "TimeZone": "Asia/Tbilisi",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:07:13.055Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "J7QoCukbse"
+    }
+  },
+  {
+    "objectId": "POuv0MaUnU",
+    "CountryCode": "KH",
+    "TimeZone": "Asia/Phnom_Penh",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:12:34.282Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "EpBnGVkBLF"
+    }
+  },
+  {
+    "objectId": "KI1yHTHRYF",
+    "CountryCode": "SG",
+    "TimeZone": "Asia/Singapore",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:26:00.361Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "AnLxFNCcFS"
+    }
+  },
+  {
+    "objectId": "sTc3JLj7qk",
+    "CountryCode": "KP",
+    "TimeZone": "Asia/Pyongyang",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:13:13.499Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cbUYyXWdUS"
+    }
+  },
+  {
+    "objectId": "JRDW1qvGLD",
+    "CountryCode": "TW",
+    "TimeZone": "Asia/Taipei",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:30:06.450Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "UnNh8r7cvJ"
+    }
+  },
+  {
+    "objectId": "3EGf6BTByV",
+    "CountryCode": "CN",
+    "TimeZone": "Asia/Shanghai",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:01:45.513Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jPsWdF78Gn"
+    }
+  },
+  {
+    "objectId": "H7HpkJAHOi",
+    "CountryCode": "UZ",
+    "TimeZone": "Asia/Samarkand",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:32:02.450Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "E4wHs4HoxE"
+    }
+  },
+  {
+    "objectId": "M8rGIp2kzo",
+    "CountryCode": "UZ",
+    "TimeZone": "Asia/Tashkent",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:32:03.601Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "E4wHs4HoxE"
+    }
+  },
+  {
+    "objectId": "JzZhrqsQ8D",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Srednekolymsk",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:36.561Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "PNP3hPPGFQ",
+    "CountryCode": "SA",
+    "TimeZone": "Asia/Riyadh",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:25:23.711Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "PqGe1JXHMY"
+    }
+  },
+  {
+    "objectId": "4DTuFE2ePJ",
+    "CountryCode": "KR",
+    "TimeZone": "Asia/Seoul",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:13:19.688Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "H27W1K2Jx0"
+    }
+  },
+  {
+    "objectId": "l0AnLSOIeD",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Tomsk",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:38.110Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "DkWiELht0j",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Ust-Nera",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:38.934Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "M3ruEWjcUy",
+    "CountryCode": "JP",
+    "TimeZone": "Asia/Tokyo",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:12:11.038Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "UN9yBtQstI"
+    }
+  },
+  {
+    "objectId": "3CrY9HASlR",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Yekaterinburg",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:41.293Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "ddrvxihGvV",
+    "CountryCode": "MN",
+    "TimeZone": "Asia/Ulaanbaatar",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:16:48.874Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "76H3yHIo7U"
+    }
+  },
+  {
+    "objectId": "JkOHRzZ1rM",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Vladivostok",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:39.798Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "LmVuRk9p1h",
+    "CountryCode": "IR",
+    "TimeZone": "Asia/Tehran",
+    "UTC_Jan_1_2020": 3.5,
+    "DST_Jul_1_2020": 4.5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:11:15.633Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "wv4OCjRaNi"
+    }
+  },
+  {
+    "objectId": "bly7aUdpPv",
+    "CountryCode": "BT",
+    "TimeZone": "Asia/Thimphu",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T18:58:46.980Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ZvhrzA2APU"
+    }
+  },
+  {
+    "objectId": "QgX4EN4g0i",
+    "CountryCode": "LA",
+    "TimeZone": "Asia/Vientiane",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:13:58.760Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "eaNpdUY6IC"
+    }
+  },
+  {
+    "objectId": "VfMyGtBiac",
+    "CountryCode": "CN",
+    "TimeZone": "Asia/Urumqi",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:01:46.456Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jPsWdF78Gn"
+    }
+  },
+  {
+    "objectId": "ypc5UKjSu3",
+    "CountryCode": "AM",
+    "TimeZone": "Asia/Yerevan",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T18:53:15.779Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "hVs5HyPvID"
+    }
+  },
+  {
+    "objectId": "NLGIJ6XDJR",
+    "CountryCode": "RU",
+    "TimeZone": "Asia/Yakutsk",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:24:40.655Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "FJV3aG2CEZ",
+    "CountryCode": "MM",
+    "TimeZone": "Asia/Yangon",
+    "UTC_Jan_1_2020": 6.5,
+    "DST_Jul_1_2020": 6.5,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:16:34.010Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cz9fi68eVU"
+    }
+  },
+  {
+    "objectId": "VOfNDSj2Si",
+    "CountryCode": "BM",
+    "TimeZone": "Atlantic/Bermuda",
+    "UTC_Jan_1_2020": -4,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T18:57:29.207Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nj3z9SHzzq"
+    }
+  },
+  {
+    "objectId": "R3dEFC7PGp",
+    "CountryCode": "FO",
+    "TimeZone": "Atlantic/Faroe",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:06:36.743Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "D1Tu0ghkZ3"
+    }
+  },
+  {
+    "objectId": "70ZDtvFZ5O",
+    "CountryCode": "CV",
+    "TimeZone": "Atlantic/Cape_Verde",
+    "UTC_Jan_1_2020": -1,
+    "DST_Jul_1_2020": -1,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:02:59.191Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "LrFc6CEfje"
+    }
+  },
+  {
+    "objectId": "1U96kOGKOd",
+    "CountryCode": "PT",
+    "TimeZone": "Atlantic/Azores",
+    "UTC_Jan_1_2020": -1,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:23:33.827Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "EZzqrmo1am"
+    }
+  },
+  {
+    "objectId": "wqxIR2Ee03",
+    "CountryCode": "ES",
+    "TimeZone": "Atlantic/Canary",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:05:45.812Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5Vs8zprtNC"
+    }
+  },
+  {
+    "objectId": "O8M9QtaGvP",
+    "CountryCode": "IS",
+    "TimeZone": "Atlantic/Reykjavik",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:11:37.919Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5VTtzmVSWN"
+    }
+  },
+  {
+    "objectId": "qZBWkEPnpx",
+    "CountryCode": "PT",
+    "TimeZone": "Atlantic/Madeira",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.485Z",
+    "updatedAt": "2020-02-11T19:23:34.721Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "EZzqrmo1am"
+    }
+  },
+  {
+    "objectId": "xwqx6r6L9p",
+    "CountryCode": "GS",
+    "TimeZone": "Atlantic/South_Georgia",
+    "UTC_Jan_1_2020": -2,
+    "DST_Jul_1_2020": -2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:08:47.983Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "SyJ1XgC9NA"
+    }
+  },
+  {
+    "objectId": "Kl8J09L0Nx",
+    "CountryCode": "SH",
+    "TimeZone": "Atlantic/St_Helena",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 0,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:26:28.525Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "S4rLvSxvNl"
+    }
+  },
+  {
+    "objectId": "wxLWydZ1bu",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Currie",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:23.022Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "AsQ7pkAiuY",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Adelaide",
+    "UTC_Jan_1_2020": 10.5,
+    "DST_Jul_1_2020": 9.5,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:18.234Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "HeGMFkZgts",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Hobart",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:22.217Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "MoYDZui1Pn",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Broken_Hill",
+    "UTC_Jan_1_2020": 10.5,
+    "DST_Jul_1_2020": 9.5,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:19.735Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "jXGhrJVEdA",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Darwin",
+    "UTC_Jan_1_2020": 9.5,
+    "DST_Jul_1_2020": 9.5,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:20.427Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "pwh9BRDIq6",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Lord_Howe",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 10.5,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:27.149Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "wDGIKmU1BW",
+    "CountryCode": "RS",
+    "TimeZone": "Europe/Belgrade",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:24:14.416Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "AqY4dkqJok"
+    }
+  },
+  {
+    "objectId": "6lBZfasUqS",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Brisbane",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:19.013Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "2hAEuQH4ij",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Lindeman",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:23.823Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "23VUJanKvu",
+    "CountryCode": "AD",
+    "TimeZone": "Europe/Andorra",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:51:55.981Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "sv7fjDVISU"
+    }
+  },
+  {
+    "objectId": "sO2dZh0Yxp",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Astrakhan",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:24:44.149Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "1Dfp3BwHeS",
+    "CountryCode": "FK",
+    "TimeZone": "Atlantic/Stanley",
+    "UTC_Jan_1_2020": -3,
+    "DST_Jul_1_2020": -3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:06:17.242Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "xoqwbHS99Z"
+    }
+  },
+  {
+    "objectId": "W9fN0Kbrup",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Perth",
+    "UTC_Jan_1_2020": 8,
+    "DST_Jul_1_2020": 8,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:26.137Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "zUBuD3r54u",
+    "CountryCode": "SK",
+    "TimeZone": "Europe/Bratislava",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:26:49.873Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "2PuVugMMXs"
+    }
+  },
+  {
+    "objectId": "pGsuR6XmnG",
+    "CountryCode": "NL",
+    "TimeZone": "Europe/Amsterdam",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:21:05.847Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9FyUSGZNnf"
+    }
+  },
+  {
+    "objectId": "UnaXjrz5Is",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Melbourne",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:25.265Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "ijwmtBGJFV",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Eucla",
+    "UTC_Jan_1_2020": 8.75,
+    "DST_Jul_1_2020": 8.75,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:21.210Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "SpdFuX1a9f",
+    "CountryCode": "AU",
+    "TimeZone": "Australia/Sydney",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:55:28.064Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8lauBzPLI5"
+    }
+  },
+  {
+    "objectId": "ZugcjEjckn",
+    "CountryCode": "GR",
+    "TimeZone": "Europe/Athens",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:08:39.829Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "zuCmaUX1g9"
+    }
+  },
+  {
+    "objectId": "1dglAC43xq",
+    "CountryCode": "BE",
+    "TimeZone": "Europe/Brussels",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T18:56:29.357Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "TySeDEiFtc"
+    }
+  },
+  {
+    "objectId": "dPrmSL5eXs",
+    "CountryCode": "GI",
+    "TimeZone": "Europe/Gibraltar",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:07:40.432Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "usW9VKCd8N"
+    }
+  },
+  {
+    "objectId": "upbcV9PGXj",
+    "CountryCode": "IE",
+    "TimeZone": "Europe/Dublin",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:10:34.106Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "FSUOeNw5vK"
+    }
+  },
+  {
+    "objectId": "gH06dMEkw7",
+    "CountryCode": "JE",
+    "TimeZone": "Europe/Jersey",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:11:51.993Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cbmMpY1LjE"
+    }
+  },
+  {
+    "objectId": "SqhKPZnh8U",
+    "CountryCode": "FI",
+    "TimeZone": "Europe/Helsinki",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:06:02.156Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nfHDWPtgDF"
+    }
+  },
+  {
+    "objectId": "A7rLAzuL8e",
+    "CountryCode": "DK",
+    "TimeZone": "Europe/Copenhagen",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:03:55.820Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "3SYcv5XaFE"
+    }
+  },
+  {
+    "objectId": "s4WHfEQbvH",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Kirov",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:24:44.936Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "EiHA6M5KuD",
+    "CountryCode": "ES",
+    "TimeZone": "Europe/Madrid",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:05:47.754Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5Vs8zprtNC"
+    }
+  },
+  {
+    "objectId": "ORBBJLB8kY",
+    "CountryCode": "GG",
+    "TimeZone": "Europe/Guernsey",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:07:27.667Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "k96wKD7ZpG"
+    }
+  },
+  {
+    "objectId": "7CURFM4wXV",
+    "CountryCode": "HU",
+    "TimeZone": "Europe/Budapest",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:10:15.441Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "f5WB3Ij653"
+    }
+  },
+  {
+    "objectId": "sZNftGCkYB",
+    "CountryCode": "MD",
+    "TimeZone": "Europe/Chisinau",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:15:35.648Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "bmYANF81hv"
+    }
+  },
+  {
+    "objectId": "razToHZKPO",
+    "CountryCode": "UA",
+    "TimeZone": "Europe/Kiev",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:30:47.660Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "CzhIuuHOMH"
+    }
+  },
+  {
+    "objectId": "htGGqRLD7h",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Kaliningrad",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:24:45.632Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "BmWV16Lz8X",
+    "CountryCode": "AX",
+    "TimeZone": "Europe/Mariehamn",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T18:55:44.771Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uvRzGTBaqW"
+    }
+  },
+  {
+    "objectId": "kgWEEPHlMh",
+    "CountryCode": "DE",
+    "TimeZone": "Europe/Berlin",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:03:41.049Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cXVjaWqsnY"
+    }
+  },
+  {
+    "objectId": "TRZGMtnctD",
+    "CountryCode": "RO",
+    "TimeZone": "Europe/Bucharest",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:24:08.530Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5QOfVVtfWk"
+    }
+  },
+  {
+    "objectId": "M8NEC6Mwaj",
+    "CountryCode": "IM",
+    "TimeZone": "Europe/Isle_of_Man",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:10:48.691Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "AheHxSBPbE"
+    }
+  },
+  {
+    "objectId": "uuzCIGK1Nz",
+    "CountryCode": "FR",
+    "TimeZone": "Europe/Paris",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:06:43.988Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vBQFvgbzPX"
+    }
+  },
+  {
+    "objectId": "RnBAhnr0lX",
+    "CountryCode": "LU",
+    "TimeZone": "Europe/Luxembourg",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:14:53.644Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5LNFOuO2Wh"
+    }
+  },
+  {
+    "objectId": "NFbFY8eZM0",
+    "CountryCode": "GB",
+    "TimeZone": "Europe/London",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:06:57.217Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "asMYxtQNZx"
+    }
+  },
+  {
+    "objectId": "FjIMrJMzny",
+    "CountryCode": "SI",
+    "TimeZone": "Europe/Ljubljana",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:26:34.535Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "oQQC8mAbuz"
+    }
+  },
+  {
+    "objectId": "wgGQdBlMUi",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Moscow",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:24:46.692Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "MPBdszTkHo",
+    "CountryCode": "LV",
+    "TimeZone": "Europe/Riga",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:14:59.439Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "SRLc1TCwHn"
+    }
+  },
+  {
+    "objectId": "eVlno8tXiC",
+    "CountryCode": "DE",
+    "TimeZone": "Europe/Busingen",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:03:42.419Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cXVjaWqsnY"
+    }
+  },
+  {
+    "objectId": "0NkUVPKbV0",
+    "CountryCode": "TR",
+    "TimeZone": "Europe/Istanbul",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.540Z",
+    "updatedAt": "2020-02-11T19:29:48.007Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "r1dBFhG3I7"
+    }
+  },
+  {
+    "objectId": "FH1sOE1j4T",
+    "CountryCode": "MT",
+    "TimeZone": "Europe/Malta",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:18:13.199Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "HEXUplP1Se"
+    }
+  },
+  {
+    "objectId": "H56EffTUcL",
+    "CountryCode": "PT",
+    "TimeZone": "Europe/Lisbon",
+    "UTC_Jan_1_2020": 0,
+    "DST_Jul_1_2020": 1,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:23:35.657Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "EZzqrmo1am"
+    }
+  },
+  {
+    "objectId": "5xehb2bVxq",
+    "CountryCode": "MC",
+    "TimeZone": "Europe/Monaco",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:15:29.070Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "nE8gX0MFSZ"
+    }
+  },
+  {
+    "objectId": "YP31f4ADoi",
+    "CountryCode": "CZ",
+    "TimeZone": "Europe/Prague",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:03:34.452Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "FIdcKBVyI3"
+    }
+  },
+  {
+    "objectId": "Hoa1nlaStJ",
+    "CountryCode": "NO",
+    "TimeZone": "Europe/Oslo",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:21:14.576Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "T6MXJLAUjG"
+    }
+  },
+  {
+    "objectId": "jW1s1gIGI8",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Simferopol",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:24:51.557Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "nU1RKCav52",
+    "CountryCode": "IT",
+    "TimeZone": "Europe/Rome",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:11:44.095Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "hOu7Is3jvO"
+    }
+  },
+  {
+    "objectId": "GmAGSsKFH9",
+    "CountryCode": "SE",
+    "TimeZone": "Europe/Stockholm",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:25:54.739Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "220UohZbeo"
+    }
+  },
+  {
+    "objectId": "XSwlfovyrM",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Saratov",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:24:49.323Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "LDM4bW7Cl7",
+    "CountryCode": "BY",
+    "TimeZone": "Europe/Minsk",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T18:59:22.254Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "5oTW0cNpxA"
+    }
+  },
+  {
+    "objectId": "prCXTfweSQ",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Samara",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:24:48.520Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "GY5a4uwlx0",
+    "CountryCode": "SM",
+    "TimeZone": "Europe/San_Marino",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:27:01.610Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "80T3vlLgy2"
+    }
+  },
+  {
+    "objectId": "9BoAEYG0jt",
+    "CountryCode": "BA",
+    "TimeZone": "Europe/Sarajevo",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T18:56:00.530Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "OWstcXnnAs"
+    }
+  },
+  {
+    "objectId": "3cqfy1EVgg",
+    "CountryCode": "UA",
+    "TimeZone": "Europe/Uzhgorod",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:30:48.712Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "CzhIuuHOMH"
+    }
+  },
+  {
+    "objectId": "TTt7YiJgj7",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Ulyanovsk",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:24:49.797Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "PgK5EdfrrW",
+    "CountryCode": "ME",
+    "TimeZone": "Europe/Podgorica",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:15:46.707Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "wY0pApCtUt"
+    }
+  },
+  {
+    "objectId": "5VuC78ZqXM",
+    "CountryCode": "HR",
+    "TimeZone": "Europe/Zagreb",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:09:51.418Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uj5JYO5BE3"
+    }
+  },
+  {
+    "objectId": "Frj7lgPy4R",
+    "CountryCode": "PL",
+    "TimeZone": "Europe/Warsaw",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:22:54.682Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "bejQecXKxm"
+    }
+  },
+  {
+    "objectId": "PxZ9wygEJL",
+    "CountryCode": "AL",
+    "TimeZone": "Europe/Tirane",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T18:52:35.725Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8rTBsf4ObQ"
+    }
+  },
+  {
+    "objectId": "jTgjjr4InW",
+    "CountryCode": "LT",
+    "TimeZone": "Europe/Vilnius",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:14:43.642Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9kbcTFZyKo"
+    }
+  },
+  {
+    "objectId": "gue4GipIZn",
+    "CountryCode": "VA",
+    "TimeZone": "Europe/Vatican",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:32:12.398Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "HkXpCV8aEI"
+    }
+  },
+  {
+    "objectId": "jYNlyU0Hiw",
+    "CountryCode": "MK",
+    "TimeZone": "Europe/Skopje",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:16:17.503Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "dAH4X1RHQb"
+    }
+  },
+  {
+    "objectId": "JEaXxKLw3U",
+    "CountryCode": "EE",
+    "TimeZone": "Europe/Tallinn",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:05:08.179Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "kGAoZ5pH7T"
+    }
+  },
+  {
+    "objectId": "yjPZWFHj5L",
+    "CountryCode": "BG",
+    "TimeZone": "Europe/Sofia",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T18:56:51.206Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "LHOE9MSsmI"
+    }
+  },
+  {
+    "objectId": "GhX3kYcPwu",
+    "CountryCode": "IO",
+    "TimeZone": "Indian/Chagos",
+    "UTC_Jan_1_2020": 6,
+    "DST_Jul_1_2020": 6,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:11:02.044Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "WUeznxS4oA"
+    }
+  },
+  {
+    "objectId": "YxGjCdgeoj",
+    "CountryCode": "LI",
+    "TimeZone": "Europe/Vaduz",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:14:17.967Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "f83FzMh6Ty"
+    }
+  },
+  {
+    "objectId": "BkRTjv3yEE",
+    "CountryCode": "TF",
+    "TimeZone": "Indian/Kerguelen",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:28:42.917Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9yGMMYfLDC"
+    }
+  },
+  {
+    "objectId": "Gf6LUz6eNF",
+    "CountryCode": "YT",
+    "TimeZone": "Indian/Mayotte",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:33:25.767Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "987PhBD5EQ"
+    }
+  },
+  {
+    "objectId": "IJbx5gUoKn",
+    "CountryCode": "CC",
+    "TimeZone": "Indian/Cocos",
+    "UTC_Jan_1_2020": 6.5,
+    "DST_Jul_1_2020": 6.5,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:00:25.337Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Ovzp6Ca4tr"
+    }
+  },
+  {
+    "objectId": "ScR0Uf4r7M",
+    "CountryCode": "AT",
+    "TimeZone": "Europe/Vienna",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T18:54:49.366Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "sbCG0KlS9w"
+    }
+  },
+  {
+    "objectId": "SXaOhmDuGz",
+    "CountryCode": "RU",
+    "TimeZone": "Europe/Volgograd",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:24:52.408Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vg1c2CxgQ3"
+    }
+  },
+  {
+    "objectId": "3VbxIW90QL",
+    "CountryCode": "UA",
+    "TimeZone": "Europe/Zaporozhye",
+    "UTC_Jan_1_2020": 2,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:30:50.631Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "CzhIuuHOMH"
+    }
+  },
+  {
+    "objectId": "xPLXeJzXts",
+    "CountryCode": "CH",
+    "TimeZone": "Europe/Zurich",
+    "UTC_Jan_1_2020": 1,
+    "DST_Jul_1_2020": 2,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:01:01.836Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "c2ZdW21DZq"
+    }
+  },
+  {
+    "objectId": "Hfv5bMXJFs",
+    "CountryCode": "NZ",
+    "TimeZone": "Pacific/Auckland",
+    "UTC_Jan_1_2020": 13,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:21:40.750Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "2vGNu7Yn7D"
+    }
+  },
+  {
+    "objectId": "RPTWRpbaJz",
+    "CountryCode": "MU",
+    "TimeZone": "Indian/Mauritius",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:18:19.637Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cxnFBlqeWx"
+    }
+  },
+  {
+    "objectId": "uR6lvDu9K1",
+    "CountryCode": "CX",
+    "TimeZone": "Indian/Christmas",
+    "UTC_Jan_1_2020": 7,
+    "DST_Jul_1_2020": 7,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:03:13.634Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "8tlFatlW3B"
+    }
+  },
+  {
+    "objectId": "i0ZpxCiMiK",
+    "CountryCode": "TV",
+    "TimeZone": "Pacific/Funafuti",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:30:00.202Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "R9v6O9hXN8"
+    }
+  },
+  {
+    "objectId": "OiDoeYBhGi",
+    "CountryCode": "SC",
+    "TimeZone": "Indian/Mahe",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:25:43.252Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "vRMloHTZn5"
+    }
+  },
+  {
+    "objectId": "LKcY3cquJ8",
+    "CountryCode": "NZ",
+    "TimeZone": "Pacific/Chatham",
+    "UTC_Jan_1_2020": 13.75,
+    "DST_Jul_1_2020": 12.75,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:21:41.865Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "2vGNu7Yn7D"
+    }
+  },
+  {
+    "objectId": "ztU7ovU4G3",
+    "CountryCode": "KM",
+    "TimeZone": "Indian/Comoro",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:12:54.523Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "SJvwuMEme7"
+    }
+  },
+  {
+    "objectId": "OU1BRRyeAO",
+    "CountryCode": "MG",
+    "TimeZone": "Indian/Antananarivo",
+    "UTC_Jan_1_2020": 3,
+    "DST_Jul_1_2020": 3,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:15:59.042Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "09fXl7u3FD"
+    }
+  },
+  {
+    "objectId": "y0oufBskSg",
+    "CountryCode": "MV",
+    "TimeZone": "Indian/Maldives",
+    "UTC_Jan_1_2020": 5,
+    "DST_Jul_1_2020": 5,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:18:27.675Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ovfuQeRszZ"
+    }
+  },
+  {
+    "objectId": "JEZKUvhkaV",
+    "CountryCode": "RE",
+    "TimeZone": "Indian/Reunion",
+    "UTC_Jan_1_2020": 4,
+    "DST_Jul_1_2020": 4,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:24:03.350Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ZRHFFbzHPq"
+    }
+  },
+  {
+    "objectId": "cfAF55Ycv0",
+    "CountryCode": "VU",
+    "TimeZone": "Pacific/Efate",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:32:56.142Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "z3FhnVKZEk"
+    }
+  },
+  {
+    "objectId": "yjY4C2Nw6U",
+    "CountryCode": "WS",
+    "TimeZone": "Pacific/Apia",
+    "UTC_Jan_1_2020": 14,
+    "DST_Jul_1_2020": 13,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:33:11.297Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "FgCSmJ0kEH"
+    }
+  },
+  {
+    "objectId": "kaL7vHK6Fl",
+    "CountryCode": "CL",
+    "TimeZone": "Pacific/Easter",
+    "UTC_Jan_1_2020": -5,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:01:25.032Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "dnDRHIFqGe"
+    }
+  },
+  {
+    "objectId": "C59cIiN2Mo",
+    "CountryCode": "EC",
+    "TimeZone": "Pacific/Galapagos",
+    "UTC_Jan_1_2020": -6,
+    "DST_Jul_1_2020": -6,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:04:59.807Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "w42L24Frj9"
+    }
+  },
+  {
+    "objectId": "CSMSLaHIMF",
+    "CountryCode": "PF",
+    "TimeZone": "Pacific/Gambier",
+    "UTC_Jan_1_2020": -9,
+    "DST_Jul_1_2020": -9,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:22:19.208Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Ms1BrT4Gl8"
+    }
+  },
+  {
+    "objectId": "DEYXnYD1LG",
+    "CountryCode": "SB",
+    "TimeZone": "Pacific/Guadalcanal",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:25:36.676Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "7LyrWI5wCC"
+    }
+  },
+  {
+    "objectId": "lng445KEY6",
+    "CountryCode": "FJ",
+    "TimeZone": "Pacific/Fiji",
+    "UTC_Jan_1_2020": 13,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:06:09.116Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "0iYnsd3adu"
+    }
+  },
+  {
+    "objectId": "x55REeTMMY",
+    "CountryCode": "TK",
+    "TimeZone": "Pacific/Fakaofo",
+    "UTC_Jan_1_2020": 13,
+    "DST_Jul_1_2020": 13,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:29:12.369Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "xxYK5gIxUh"
+    }
+  },
+  {
+    "objectId": "YeMhlEup7m",
+    "CountryCode": "KI",
+    "TimeZone": "Pacific/Enderbury",
+    "UTC_Jan_1_2020": 13,
+    "DST_Jul_1_2020": 13,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:12:42.843Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qCcuxOqgkB"
+    }
+  },
+  {
+    "objectId": "j4OAB3E94Z",
+    "CountryCode": "PG",
+    "TimeZone": "Pacific/Bougainville",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:22:28.121Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uonlBdxrxQ"
+    }
+  },
+  {
+    "objectId": "DIvy4TxPE8",
+    "CountryCode": "FM",
+    "TimeZone": "Pacific/Chuuk",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.541Z",
+    "updatedAt": "2020-02-11T19:06:26.046Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Y3YvNEgaqp"
+    }
+  },
+  {
+    "objectId": "LTXHU6B5qL",
+    "CountryCode": "GU",
+    "TimeZone": "Pacific/Guam",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:09:08.981Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "E1fDBUFjuu"
+    }
+  },
+  {
+    "objectId": "y0hXl8NQHD",
+    "CountryCode": "FM",
+    "TimeZone": "Pacific/Kosrae",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:06:30.252Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Y3YvNEgaqp"
+    }
+  },
+  {
+    "objectId": "Ay3ANtPIeN",
+    "CountryCode": "US",
+    "TimeZone": "Pacific/Honolulu",
+    "UTC_Jan_1_2020": -10,
+    "DST_Jul_1_2020": -10,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T22:24:39.990Z"
+  },
+  {
+    "objectId": "BwZvBZ1TE5",
+    "CountryCode": "NF",
+    "TimeZone": "Pacific/Norfolk",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:20:41.221Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "NHfUsjuEP3"
+    }
+  },
+  {
+    "objectId": "MODx7ZSr5b",
+    "CountryCode": "KI",
+    "TimeZone": "Pacific/Kiritimati",
+    "UTC_Jan_1_2020": 14,
+    "DST_Jul_1_2020": 14,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:12:44.896Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qCcuxOqgkB"
+    }
+  },
+  {
+    "objectId": "ZepTuKOnV0",
+    "CountryCode": "NU",
+    "TimeZone": "Pacific/Niue",
+    "UTC_Jan_1_2020": -11,
+    "DST_Jul_1_2020": -11,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:21:33.705Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "QJRUbL4g9z"
+    }
+  },
+  {
+    "objectId": "tCUBxDF7Jm",
+    "CountryCode": "PW",
+    "TimeZone": "Pacific/Palau",
+    "UTC_Jan_1_2020": 9,
+    "DST_Jul_1_2020": 9,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:23:43.075Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9r4GHFt1Gt"
+    }
+  },
+  {
+    "objectId": "hKgQcodLHH",
+    "CountryCode": "CK",
+    "TimeZone": "Pacific/Rarotonga",
+    "UTC_Jan_1_2020": -10,
+    "DST_Jul_1_2020": -10,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:01:16.217Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "2Icy8PIAyj"
+    }
+  },
+  {
+    "objectId": "qcUHFGclUH",
+    "CountryCode": "MH",
+    "TimeZone": "Pacific/Kwajalein",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:16:07.952Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ZTZhlMFIyJ"
+    }
+  },
+  {
+    "objectId": "TDBdtwFE3U",
+    "CountryCode": "AS",
+    "TimeZone": "Pacific/Pago_Pago",
+    "UTC_Jan_1_2020": -11,
+    "DST_Jul_1_2020": -11,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T18:54:42.259Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "s6ejWUPV5j"
+    }
+  },
+  {
+    "objectId": "1SX1ZZFEh5",
+    "CountryCode": "FM",
+    "TimeZone": "Pacific/Pohnpei",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:06:31.462Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Y3YvNEgaqp"
+    }
+  },
+  {
+    "objectId": "ca4V0HcoMS",
+    "CountryCode": "NR",
+    "TimeZone": "Pacific/Nauru",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:21:27.813Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "dhD7xYDFi6"
+    }
+  },
+  {
+    "objectId": "HmVyTRjfnO",
+    "CountryCode": "PN",
+    "TimeZone": "Pacific/Pitcairn",
+    "UTC_Jan_1_2020": -8,
+    "DST_Jul_1_2020": -8,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:23:09.116Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "wo6WYeq2XC"
+    }
+  },
+  {
+    "objectId": "coCTliABkA",
+    "CountryCode": "UM",
+    "TimeZone": "Pacific/Midway",
+    "UTC_Jan_1_2020": -11,
+    "DST_Jul_1_2020": -11,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:31:05.557Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9noh09Cgce"
+    }
+  },
+  {
+    "objectId": "DUx7yqzQRj",
+    "CountryCode": "PG",
+    "TimeZone": "Pacific/Port_Moresby",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:22:31.224Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "uonlBdxrxQ"
+    }
+  },
+  {
+    "objectId": "1Iy03fSpTd",
+    "CountryCode": "MP",
+    "TimeZone": "Pacific/Saipan",
+    "UTC_Jan_1_2020": 10,
+    "DST_Jul_1_2020": 10,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:17:07.590Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "cljDTSxy5A"
+    }
+  },
+  {
+    "objectId": "Xxy9jbZrBI",
+    "CountryCode": "MH",
+    "TimeZone": "Pacific/Majuro",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:16:10.694Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "ZTZhlMFIyJ"
+    }
+  },
+  {
+    "objectId": "OrnXmkLaXk",
+    "CountryCode": "PF",
+    "TimeZone": "Pacific/Tahiti",
+    "UTC_Jan_1_2020": -10,
+    "DST_Jul_1_2020": -10,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:22:22.412Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Ms1BrT4Gl8"
+    }
+  },
+  {
+    "objectId": "jeLcVDk8f0",
+    "CountryCode": "NC",
+    "TimeZone": "Pacific/Noumea",
+    "UTC_Jan_1_2020": 11,
+    "DST_Jul_1_2020": 11,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:20:26.837Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "7Ewydti2W5"
+    }
+  },
+  {
+    "objectId": "egcoxkIHKj",
+    "CountryCode": "TO",
+    "TimeZone": "Pacific/Tongatapu",
+    "UTC_Jan_1_2020": 13,
+    "DST_Jul_1_2020": 13,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:29:41.250Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "jYnYAs4gVv"
+    }
+  },
+  {
+    "objectId": "jZWAJBUEjk",
+    "CountryCode": "KI",
+    "TimeZone": "Pacific/Tarawa",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:12:45.897Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "qCcuxOqgkB"
+    }
+  },
+  {
+    "objectId": "G7Nz0NLAvu",
+    "CountryCode": "PF",
+    "TimeZone": "Pacific/Marquesas",
+    "UTC_Jan_1_2020": -9.5,
+    "DST_Jul_1_2020": -9.5,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:22:20.370Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "Ms1BrT4Gl8"
+    }
+  },
+  {
+    "objectId": "MOjGZtehlS",
+    "CountryCode": "UM",
+    "TimeZone": "Pacific/Wake",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:31:06.482Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "9noh09Cgce"
+    }
+  },
+  {
+    "objectId": "6U3IK6scx0",
+    "CountryCode": "WF",
+    "TimeZone": "Pacific/Wallis",
+    "UTC_Jan_1_2020": 12,
+    "DST_Jul_1_2020": 12,
+    "createdAt": "2020-02-11T18:48:43.572Z",
+    "updatedAt": "2020-02-11T19:33:02.830Z",
+    "Country": {
+      "__type": "Pointer",
+      "className": "Continentscountriescities_Country",
+      "objectId": "t6iLvc2Vki"
+    }
+  }
+]
+}

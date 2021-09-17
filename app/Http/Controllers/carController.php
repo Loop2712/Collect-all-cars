@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Register_car;
 
-
+use App\Models\Time_zone;
 use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
