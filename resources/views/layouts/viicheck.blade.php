@@ -359,7 +359,7 @@
                       <div class="btn" onclick="user_language('th', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/th.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Thai</h5>
+                        <h5 style="margin-top:10px;">ไทย</h5>
                       </div>
                     </div>
                     <div class="col-4">
@@ -373,7 +373,7 @@
                       <div class="btn" onclick="user_language('zh-TW', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Chinese</h5>
+                        <h5 style="margin-top:10px;">中國人</h5>
                       </div>
                     </div>
                     <br><br><br><br><br>
@@ -381,21 +381,21 @@
                       <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Japan</h5>
+                        <h5 style="margin-top:10px;">日本</h5>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" onclick="user_language('ko', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Korean</h5>
+                        <h5 style="margin-top:10px;">한국인</h5>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" onclick="user_language('es', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/es.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Spanish</h5>
+                        <h5 style="margin-top:10px;">Español</h5>
                       </div>
                     </div>
                   </div>
@@ -557,11 +557,11 @@
     <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('js/car/main.js')}}"></script>
     <!-- <script type="text/javascript">
-              function googleTranslateElementInit() {
+              function googleTranslateElementInit2() {
                 new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
               }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script> -->
 
     <script type="text/javascript">
     var comboGoogleTradutor = 'null'; //Varialvel global
