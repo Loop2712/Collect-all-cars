@@ -82,7 +82,7 @@ Route::get('/save_sos_insurance/{name_insurance}/select_insurance', 'API\Save_so
 Route::get('/insurance_select_line_group/{name_line_group}/{company}', 'API\API_line_group@save_line_group_insurance');
 Route::get('/partner_viicheck_select_line_group/{name_line_group}/{name_partner}', 'API\API_line_group@save_line_group_partner_viicheck');
 
-
+Route::get('/change_language/{language}/{user_id}', 'API\API_language@change_language');
 
 
 

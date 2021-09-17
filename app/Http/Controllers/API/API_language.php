@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use Auth;
+use Illuminate\Support\Facades\DB;
+
+class API_language extends Controller
+{
+    public function change_language($language , $user_id)
+    {
+        DB::table('users')
+              ->where('id', $user_id)
+              ->update([
+                'language' => $language,
+        ]);
+
+        return $language;
+    }
+}

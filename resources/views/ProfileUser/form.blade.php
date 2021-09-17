@@ -82,22 +82,22 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-2">
-                                            <img class="btn" id="img_flag_th" style="filter: grayscale(100%);" width="80" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th');">
+                                            <img class="btn" id="img_flag_th" style="filter: grayscale(100%);" width="80" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th' , '{{ $data->id }}');">
                                         </div>
                                         <div style="margin-left: -10px;" class="col-2">
-                                            <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/en.png') }}" onclick="change_language('en');">
+                                            <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/en.png') }}" onclick="change_language('en' , '{{ $data->id }}');">
                                         </div>
                                         <div style="margin-top: 1px;" class="col-2">
-                                            <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/zh-TW.png') }}" onclick="change_language('zh-TW');">
+                                            <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
                                         </div>
                                         <div style="margin-left: -15px;" class="col-2">
-                                            <img class="btn" id="img_flag_ja" style="filter: grayscale(100%);"  width="103" src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja');">
+                                            <img class="btn" id="img_flag_ja" style="filter: grayscale(100%);"  width="103" src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja' , '{{ $data->id }}');">
                                         </div>
                                         <div class="col-2">
-                                            <img class="btn" id="img_flag_ko" style="filter: grayscale(100%);"  width="83" src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko');">
+                                            <img class="btn" id="img_flag_ko" style="filter: grayscale(100%);"  width="83" src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko' , '{{ $data->id }}');">
                                         </div>
                                         <div style="margin-left: -7px;" class="col-2">
-                                            <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es');">
+                                            <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
                                         </div>
                                     </div>
                                 </div>
@@ -319,11 +319,41 @@
         document.querySelector('#btn_a_profile').classList.remove('text-danger');
     }
 
-    function change_language(language)
+    function change_language(language , user_id)
     {
         let input_language = document.querySelector('#language');
             input_language.value = language ;
             change_color_img(language);
+
+            fetch("{{ url('/') }}/api/change_language/" + language + "/"  + user_id);
+
+            switch(language) {
+            case 'th':
+                alert("เปลี่ยนภาษาเรียบร้อย");
+                document.querySelector('#btn_change_language_th').click();
+              break;
+            case 'en':
+                alert("The language has been changed successfully.");
+                document.querySelector('#btn_change_language_en').click();
+              break;
+            case 'zh-TW':
+                alert("語言已成功更改。");
+                document.querySelector('#btn_change_language_zh-TW').click();
+              break;
+            case 'ja':
+                alert("言語は正常に変更されました。");
+                document.querySelector('#btn_change_language_ja').click();
+              break;
+            case 'ko':
+                alert("언어가 성공적으로 변경되었습니다.");
+                document.querySelector('#btn_change_language_ko').click();
+              break;
+            case 'es':
+                alert("El idioma se ha cambiado correctamente.");
+                document.querySelector('#btn_change_language_es').click();
+              break;
+          }
+
     }
 
     function change_color_img(language)
@@ -415,6 +445,7 @@
                 img_ko.setAttributeNode(style_gray_ko);
               break;
           }
+
     }
 
 </script>
