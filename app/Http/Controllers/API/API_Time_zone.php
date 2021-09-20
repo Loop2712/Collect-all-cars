@@ -39,17 +39,8 @@ class API_Time_zone extends Controller
             $UTC_time_zone = "+".$UTC_time_zone;
             $time_2 = $datetime ;
         }
-
-        echo $name_time_zone ;
-        echo "<br>";
-
-        echo $UTC_time_zone ;
-        echo "<br>";
-
+        
         $time_zone = $time_2 . ", UTC " . $UTC_time_zone ;
-
-        echo $time_zone ;
-        echo "<br>";
 
         return $time_zone;
     }

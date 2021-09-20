@@ -312,6 +312,11 @@ class GuestController extends Controller
             $time_zone = new API_Time_zone();
             $time_zone->change_Time_zone($name_time_zone);
 
+            echo "<pre>";
+            print_r($time_zone);
+            echo "<pre>";
+            exit();
+            
             if (!empty($item->organization_mail)) {
 
                 $mail_data = [
