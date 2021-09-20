@@ -970,28 +970,20 @@ class LineMessagingAPI extends Model
         foreach($reply as $item){
             
             $type_login = DB::table('users')
-                        ->select('type' , 'email' , 'name')
+                        ->select('type' , 'email' , 'name', 'time_zone')
                         ->where('provider_id', $item->reply_provider_id)
                         ->get();
 
             $to_user = $item->reply_provider_id;
         }
 
-        $users = DB::table('users')
-                    ->where('provider_id', $to_user)
-                    ->get();
-
-        foreach ($users as $user) {
-            $name_time_zone = $user->time_zone;
-        }
-
-        // TIME ZONE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
-
         foreach($type_login as $item){
             switch ($item->type) {
                 case 'line':
+                    // TIME ZONE LINE
+                    $API_Time_zone = new API_Time_zone();
+                    $time_zone = $API_Time_zone->change_Time_zone($item->time_zone);
+
                     switch($postback_data){
                         case "wait": 
                             $template_path = storage_path('../public/json/callback_guest.json');   
@@ -1060,17 +1052,7 @@ class LineMessagingAPI extends Model
                     break;
 
                 case 'google':
-
-                    // $email = $item->email ;
-
-                    // $google_users = DB::table('users')
-                    //         ->where('email', $email)
-                    //         ->where('type', "google")
-                    //         ->get();
-
-                    // foreach ($google_users as $google_user) {
-                    //     $google_name_time_zone = $google_user->time_zone;
-                    // }
+                
                     // // TIME ZONE
                     // $google_API_Time_zone = new API_Time_zone();
                     // $google_time_zone = $google_API_Time_zone->change_Time_zone($google_name_time_zone);
