@@ -12,6 +12,7 @@ use App\Models\Mylog;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToGuest;
+use App\Http\Controllers\API\API_Time_zone;
 
 class LineMessagingAPI extends Model
 {
@@ -976,6 +977,18 @@ class LineMessagingAPI extends Model
             $to_user = $item->reply_provider_id;
         }
 
+        $users = DB::table('users')
+                    ->where('provider_id', $to_user)
+                    ->get();
+
+        foreach ($users as $user) {
+            $name_time_zone = $user->time_zone;
+        }
+        
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
         foreach($type_login as $item){
             switch ($item->type) {
                 case 'line':
@@ -988,7 +1001,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                             $string_json = str_replace("ขอบคุณ","โปรดรอสักครู่",$string_json);
                             $string_json = str_replace("Thankyou","Please wait a moment",$string_json);
-                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","8",$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
@@ -1001,7 +1014,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                             $string_json = str_replace("ขอบคุณ","ขอบคุณค่ะ",$string_json);
                             $string_json = str_replace("Thankyou","Thank you",$string_json);
-                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
@@ -1053,7 +1066,7 @@ class LineMessagingAPI extends Model
                         "registration_number" => $google_registration_number,
                         "province" => $google_province,
                         "postback_data" => $postback_data,
-                        "datetime" => $datetime,
+                        "datetime" => $time_zone,
                     ];
 
                     switch($postback_data)

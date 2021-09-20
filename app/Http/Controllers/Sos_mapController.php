@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
+use App\Http\Controllers\API\API_Time_zone;
 
 class Sos_mapController extends Controller
 {
@@ -201,6 +202,11 @@ class Sos_mapController extends Controller
     protected function _pushLine($data)
     {   
         $datetime =  date("d-m-Y  h:i:sa");
+
+        // TIME ZONE
+        // $API_Time_zone = new API_Time_zone();
+        // $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
         $text_at = '@' ;
         // flex ask_for_help
         $template_path = storage_path('../public/json/ask_for_help.json');   
