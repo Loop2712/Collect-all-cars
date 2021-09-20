@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToCompany;
 
 use App\Models\Mylog;
+use App\Models\Time_zone;
+use App\Http\Controllers\API\API_Time_zone;
 
 class GuestController extends Controller
 {
@@ -302,7 +304,13 @@ class GuestController extends Controller
 
             foreach ($users as $user) {
                 $type_user = $user->type;
+                $name_time_zone = $user->time_zone;
             }
+
+            // TIME ZONE
+
+            $API_Time_zone = new API_Time_zone();
+            $API_Time_zone->change_Time_zone($name_time_zone);
 
             if (!empty($item->organization_mail)) {
 
@@ -362,7 +370,7 @@ class GuestController extends Controller
                             $template_path = storage_path('../public/json/flex-move.json');   
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                             $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
@@ -375,7 +383,7 @@ class GuestController extends Controller
                             $template_path = storage_path('../public/json/flex-move-call.json');   
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
-                            $string_json = str_replace("datetime",$datetime,$string_json);
+                            $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                             $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
