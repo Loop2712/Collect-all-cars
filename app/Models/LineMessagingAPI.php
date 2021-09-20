@@ -1068,8 +1068,8 @@ class LineMessagingAPI extends Model
                             ->where('type', "google")
                             ->get();
 
-                    foreach ($users as $user) {
-                        $google_name_time_zone = $user->time_zone;
+                    foreach ($users as $google_user) {
+                        $google_name_time_zone = $google_user->time_zone;
                     }
                     // TIME ZONE
                     $google_API_Time_zone = new API_Time_zone();
