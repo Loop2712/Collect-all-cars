@@ -14,6 +14,10 @@ class API_Time_zone extends Controller
     {
         $datetime =  date("d-m-Y  h:i:sa");
 
+        // $name_time_zone = "Asia/Bangkok" ; //+7
+        // // $name_time_zone = "Asia/Ust-Nera" ; //+10
+        // // $name_time_zone = "America/Antigua" ; //-4
+
         $data_time_zone = DB::table('time_zones')
                         ->where('TimeZone', $name_time_zone)
                         ->get();
@@ -36,7 +40,16 @@ class API_Time_zone extends Controller
             $time_2 = $datetime ;
         }
 
+        echo $name_time_zone ;
+        echo "<br>";
+
+        echo $UTC_time_zone ;
+        echo "<br>";
+
         $time_zone = $time_2 . ", UTC " . $UTC_time_zone ;
+
+        echo $time_zone ;
+        echo "<br>";
 
         return $time_zone;
     }
