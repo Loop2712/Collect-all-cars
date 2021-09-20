@@ -978,12 +978,13 @@ class LineMessagingAPI extends Model
         }
 
         foreach($type_login as $item){
+            
+            // TIME ZONE LINE
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($item->time_zone);
+
             switch ($item->type) {
                 case 'line':
-                    // TIME ZONE LINE
-                    $API_Time_zone = new API_Time_zone();
-                    $time_zone = $API_Time_zone->change_Time_zone($item->time_zone);
-
                     switch($postback_data){
                         case "wait": 
                             $template_path = storage_path('../public/json/callback_guest.json');   
@@ -1053,16 +1054,12 @@ class LineMessagingAPI extends Model
 
                 case 'google':
 
-                    // TIME ZONE google
-                    $google_API_Time_zone = new API_Time_zone();
-                    $google_time_zone = $google_API_Time_zone->change_Time_zone($item->time_zone);
-
                     $google_data = [
                         "name" => $item->name,
                         "registration_number" => $google_registration_number,
                         "province" => $google_province,
                         "postback_data" => $postback_data,
-                        "datetime" => $google_time_zone,
+                        "datetime" => $time_zone,
                     ];
 
                     switch($postback_data)
