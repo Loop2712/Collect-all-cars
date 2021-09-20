@@ -1052,17 +1052,17 @@ class LineMessagingAPI extends Model
                     break;
 
                 case 'google':
-                
-                    // // TIME ZONE
-                    // $google_API_Time_zone = new API_Time_zone();
-                    // $google_time_zone = $google_API_Time_zone->change_Time_zone($google_name_time_zone);
+
+                    // TIME ZONE google
+                    $google_API_Time_zone = new API_Time_zone();
+                    $google_time_zone = $google_API_Time_zone->change_Time_zone($item->time_zone);
 
                     $google_data = [
                         "name" => $item->name,
                         "registration_number" => $google_registration_number,
                         "province" => $google_province,
                         "postback_data" => $postback_data,
-                        "datetime" => $datetime,
+                        "datetime" => $google_time_zone,
                     ];
 
                     switch($postback_data)
