@@ -1063,12 +1063,12 @@ class LineMessagingAPI extends Model
                 
                     $email = $item->email ;
 
-                    $users = DB::table('users')
+                    $google_users = DB::table('users')
                             ->where('email', $email)
                             ->where('type', "google")
                             ->get();
 
-                    foreach ($users as $google_user) {
+                    foreach ($google_users as $google_user) {
                         $google_name_time_zone = $google_user->time_zone;
                     }
                     // TIME ZONE
