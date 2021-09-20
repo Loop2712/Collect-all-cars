@@ -1060,35 +1060,37 @@ class LineMessagingAPI extends Model
                     break;
 
                 case 'google':
-                
-                    $email = $item->email ;
 
-                    $google_users = DB::table('users')
-                            ->where('email', $email)
-                            ->where('type', "google")
-                            ->get();
+                    // $email = $item->email ;
 
-                    foreach ($google_users as $google_user) {
-                        $google_name_time_zone = $google_user->time_zone;
-                    }
-                    // TIME ZONE
-                    $google_API_Time_zone = new API_Time_zone();
-                    $google_time_zone = $google_API_Time_zone->change_Time_zone($google_name_time_zone);
+                    // $google_users = DB::table('users')
+                    //         ->where('email', $email)
+                    //         ->where('type', "google")
+                    //         ->get();
+
+                    // foreach ($google_users as $google_user) {
+                    //     $google_name_time_zone = $google_user->time_zone;
+                    // }
+                    // // TIME ZONE
+                    // $google_API_Time_zone = new API_Time_zone();
+                    // $google_time_zone = $google_API_Time_zone->change_Time_zone($google_name_time_zone);
 
                     $google_data = [
                         "name" => $item->name,
                         "registration_number" => $google_registration_number,
                         "province" => $google_province,
                         "postback_data" => $postback_data,
-                        "datetime" => $google_time_zone,
+                        "datetime" => $datetime,
                     ];
 
                     switch($postback_data)
                     {
                         case "wait":
+                            $email = $item->email ;
                             Mail::to($email)->send(new MailToGuest($google_data));
                             break;
                         case "thx":
+                            $email = $item->email ;
                             Mail::to($email)->send(new MailToGuest($google_data));
                             break;
 
