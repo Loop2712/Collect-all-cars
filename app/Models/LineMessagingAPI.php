@@ -984,7 +984,7 @@ class LineMessagingAPI extends Model
         foreach ($users as $user) {
             $name_time_zone = $user->time_zone;
         }
-        
+
         // TIME ZONE
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
@@ -1060,23 +1060,35 @@ class LineMessagingAPI extends Model
                     break;
 
                 case 'google':
+                
+                    $email = $item->email ;
+
+                    $users = DB::table('users')
+                            ->where('email', $email)
+                            ->where('type', "google")
+                            ->get();
+
+                    foreach ($users as $user) {
+                        $google_name_time_zone = $user->time_zone;
+                    }
+                    // TIME ZONE
+                    $google_API_Time_zone = new API_Time_zone();
+                    $google_time_zone = $google_API_Time_zone->change_Time_zone($google_name_time_zone);
 
                     $google_data = [
                         "name" => $item->name,
                         "registration_number" => $google_registration_number,
                         "province" => $google_province,
                         "postback_data" => $postback_data,
-                        "datetime" => $time_zone,
+                        "datetime" => $google_time_zone,
                     ];
 
                     switch($postback_data)
                     {
                         case "wait":
-                            $email = $item->email;
                             Mail::to($email)->send(new MailToGuest($google_data));
                             break;
                         case "thx":
-                            $email = $item->email;
                             Mail::to($email)->send(new MailToGuest($google_data));
                             break;
 
