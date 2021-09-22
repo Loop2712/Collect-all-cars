@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "th",
+            "type": "string"
+        },
+        {
+            "name": "en",
+            "type": "string"
+        },
+        {
+            "name": "zh_TW",
+            "type": "string"
+        },
+        {
+            "name": "ja",
+            "type": "string"
+        },
+        {
+            "name": "ko",
+            "type": "string"
+        },
+        {
+            "name": "es",
+            "type": "string"
+        }
+    ]
+}

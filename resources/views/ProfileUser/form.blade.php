@@ -81,22 +81,22 @@
                             <div style="margin-top: 10px;" class="row">
                                 <div class="col-12">
                                     <div class="row">
-                                        <div class="col-2">
+                                        <div class="col-4 col-md-2">
                                             <img class="btn" id="img_flag_th" style="filter: grayscale(100%);" width="80" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th' , '{{ $data->id }}');">
                                         </div>
-                                        <div style="margin-left: -10px;" class="col-2">
+                                        <div style="margin-left: -10px;" class="col-4 col-md-2">
                                             <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/en.png') }}" onclick="change_language('en' , '{{ $data->id }}');">
                                         </div>
-                                        <div style="margin-top: 1px;" class="col-2">
+                                        <div style="margin-top: 1px;" class="col-4 col-md-2">
                                             <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
                                         </div>
-                                        <div style="margin-left: -15px;" class="col-2">
+                                        <div style="margin-left: -10px;" class="col-4 col-md-2">
                                             <img class="btn" id="img_flag_ja" style="filter: grayscale(100%);"  width="103" src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja' , '{{ $data->id }}');">
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-4 col-md-2">
                                             <img class="btn" id="img_flag_ko" style="filter: grayscale(100%);"  width="83" src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko' , '{{ $data->id }}');">
                                         </div>
-                                        <div style="margin-left: -7px;" class="col-2">
+                                        <div style="margin-left: 0px;" class="col-4 col-md-2">
                                             <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
                                         </div>
                                     </div>

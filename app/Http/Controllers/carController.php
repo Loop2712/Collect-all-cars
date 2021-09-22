@@ -24,8 +24,8 @@ class CarController extends Controller
     {
         $datetime =  date("d-m-Y  h:i:sa");
 
-        $name_time_zone = "Asia/Bangkok" ; //+7
-        // $name_time_zone = "Asia/Ust-Nera" ; //+10
+        // $name_time_zone = "Asia/Bangkok" ; //+7
+        $name_time_zone = "Asia/Ust-Nera" ; //+10
         // $name_time_zone = "America/Antigua" ; //-4
 
         $data_time_zone = DB::table('time_zones')

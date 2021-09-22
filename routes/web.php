@@ -105,6 +105,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('partner_viicheck', 'PartnerController');
 	Route::resource('group_line', 'Group_lineController');
 
+	Route::resource('time_zone', 'Time_zoneController');
+	Route::get('/create_time_zone', 'Time_zoneController@create_time_zone');
+	Route::resource('text_topic', 'Text_topicController');
+
 });
 // END ADMIN VIICHECK
 
@@ -250,5 +254,3 @@ Route::resource('cancel_after_6_month', 'Cancel_after_6_monthController');
 // CHECK IP
 Route::get('/check_ip', 'Home_pageController@check_ip');
 
-Route::resource('time_zone', 'Time_zoneController');
-Route::get('/create_time_zone', 'Time_zoneController@create_time_zone');
