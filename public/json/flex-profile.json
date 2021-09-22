@@ -128,7 +128,7 @@
                     "action": {
                       "type": "uri",
                       "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://www.viicheck.com/edit_profile"
+                      "uri": "https://www.viicheck.com/edit_profile?openExternalBrowser=1"
                     },
                     "wrap": true
                   }
