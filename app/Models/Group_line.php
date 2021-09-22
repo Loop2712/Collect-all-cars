@@ -25,7 +25,7 @@ class Group_line extends Model
      *
      * @var array
      */
-    protected $fillable = ['groupId', 'groupName', 'pictureUrl','owner'];
+    protected $fillable = ['groupId', 'groupName', 'pictureUrl','owner','time_zone'];
 
     
 }
