@@ -23,7 +23,22 @@ class Save_sos_insuranceController extends Controller
             foreach ($insurance as $key) {
                 $phone_insurance = $key->phone ;
                 $status_partner = $key->status_partner ;
+                $name_line_group = $key->line_group ;
             }
+
+        $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+
+        foreach ($data_line_group as $key_line) {
+            $groupId = $key_line->groupId ;
+            $name_time_zone = $key_line->time_zone ;
+        }
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        $data['groupId'] = $groupId ;
+        $data['time_zone'] = $time_zone ;
 
         Sos_insurance::create($data);
 
@@ -44,7 +59,7 @@ class Save_sos_insuranceController extends Controller
                 foreach ($data_cars as $item ) {
                     $data['registration_number'] = $item->registration_number;
                     $data['province'] = $item->province;
-                    $data['datetime'] = $datetime;
+                    $data['datetime'] = $time_zone;
 
                     $email = "thanakorn.tnk12@gmail.com";
                     Mail::to($email)->send(new MailToInsurance($data));
@@ -78,7 +93,7 @@ class Save_sos_insuranceController extends Controller
             $string_json = str_replace("TNK",$data['insurance'],$string_json);
             $string_json = str_replace("กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กทม",$item->province,$string_json);
-            $string_json = str_replace("datetime",$datetime,$string_json);
+            $string_json = str_replace("datetime",$data['time_zone'],$string_json);
             $string_json = str_replace("name",$data['name'],$string_json);
             $string_json = str_replace("0999999999",$data['phone'],$string_json);
 
@@ -90,7 +105,7 @@ class Save_sos_insuranceController extends Controller
         }
 
         $body = [
-            "to" => "U912994894c449f2237f73f18b5703e89",
+            "to" => $data['groupId'] ,
             "messages" => $messages,
         ];
 
