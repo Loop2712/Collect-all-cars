@@ -14,7 +14,7 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-4">
-                                    <form >
+                                    <form action="{{ url('/text_topic') }}">
                                         <div class="input-group">
                                             <input class="form-control" type="text" name="text_th" id="text_th" placeholder="เพิ่ม text topic">
                                             <span class="input-group-append">
@@ -25,6 +25,14 @@
                                         </div>
                                     </form>
                                 </div>
+                                <!-- <div class="col-3">
+                                    <input class="form-control" type="text" name="text_th" id="text_th" placeholder="เพิ่ม text topic">
+                                </div>
+                                <div class="col-1">
+                                    <a class="btn btn-success text-white" onclick="add_text_topic();">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>เพิ่ม
+                                    </a>
+                                </div> -->
                                 <div class="col-8">
                                     <form method="GET" action="{{ url('/text_topic') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                         <div class="input-group">
