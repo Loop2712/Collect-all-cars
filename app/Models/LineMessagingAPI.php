@@ -142,10 +142,14 @@ class LineMessagingAPI extends Model
                 $user = DB::select("SELECT * FROM users WHERE provider_id = '$provider_id'");
 
                 foreach($user as $item){
-
+                    if (!empty($item->photo)) {
+                        $photo_profile = $item->photo ;
+                    }else {
+                        $photo_profile = $item->avatar ;
+                    }
                     $template_path = storage_path('../public/json/flex-profile.json');   
                     $string_json = file_get_contents($template_path);
-                    $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$item->avatar,$string_json);
+                    $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_profile,$string_json);
                     $string_json = str_replace("E Benze",$item->name,$string_json);
                     $string_json = str_replace("benze@gmail.com",$item->email,$string_json);
                     // เบอร์โทร
