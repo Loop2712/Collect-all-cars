@@ -16,7 +16,7 @@ class API_line_group extends Controller
         DB::table('group_lines')
               ->where('groupName', $name_line_group)
               ->update([
-                'owner' => $company,
+                'owner' => $company." (Iinsurance)",
         ]);
 
         DB::table('insurances')
@@ -33,7 +33,7 @@ class API_line_group extends Controller
         DB::table('group_lines')
               ->where('groupName', $name_line_group)
               ->update([
-                'owner' => $name_partner,
+                'owner' => $name_partner." (Partner)",
         ]);
 
         DB::table('partners')
