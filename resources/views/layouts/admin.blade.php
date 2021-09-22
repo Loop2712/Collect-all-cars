@@ -152,6 +152,12 @@
                 <span class="nav-link-text">Group Line</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/text_topic') }}">
+                <i class="fas fa-font text-danger"></i>
+                <span class="nav-link-text">Text Topic</span>
+              </a>
+            </li>
           </ul>
           <!-- Divider -->
           <hr class="my-3">

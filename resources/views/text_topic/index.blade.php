@@ -13,11 +13,17 @@
                         </a> -->
                         <div class="col-12">
                             <div class="row">
-                                <div class="col-3">
-                                    <input class="form-control" type="text" name="text_th" id="text_th">
-                                </div>
-                                <div class="col-1">
-                                    <a class="btn btn-success btn-sm text-white" onclick="translate_text_th();">แปล</a>
+                                <div class="col-4">
+                                    <form >
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="text_th" id="text_th" placeholder="เพิ่ม text topic">
+                                            <span class="input-group-append">
+                                                <button class="btn btn-success" onclick="add_text_topic();">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>เพิ่ม
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="col-8">
                                     <form method="GET" action="{{ url('/text_topic') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -39,22 +45,35 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Th</th><th>En</th><th>Zh TW</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>ไทย</th>
+                                        <th>อังกฤษ</th>
+                                        <th>จีน</th>
+                                        <th>ญี่ปุ่น</th>
+                                        <th>เกาหลี</th>
+                                        <th>สเปน</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($text_topic as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->th }}</td><td>{{ $item->en }}</td><td>{{ $item->zh_TW }}</td>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->th }}</td>
+                                        <td>{{ $item->en }}</td>
+                                        <td>{{ $item->zh_TW }}</td>
+                                        <td>{{ $item->ja }}</td>
+                                        <td>{{ $item->ko }}</td>
+                                        <td>{{ $item->es }}</td>
                                         <td>
-                                            <a href="{{ url('/text_topic/' . $item->id) }}" title="View Text_topic"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/text_topic/' . $item->id . '/edit') }}" title="Edit Text_topic"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <!-- <a href="{{ url('/text_topic/' . $item->id) }}" title="View Text_topic"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/text_topic/' . $item->id . '/edit') }}" title="Edit Text_topic"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> -->
 
                                             <form method="POST" action="{{ url('/text_topic' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Text_topic" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Text_topic" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                    <i class="fas fa-trash-alt"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -70,17 +89,12 @@
         </div>
     </div>
     <script>
-        function translate_text_th(){
+        function add_text_topic(){
 
             let text_th = document.querySelector('#text_th');
                 console.log(text_th.value);
 
-            fetch("https://translate.google.com/?hl=th&sl=th&tl=en&text=" + text_th.value + "&op=translate")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-            });
-            
+            fetch("{{ url('/') }}/api/add_text_topic/"+text_th.value);
         }
     </script>
 @endsection

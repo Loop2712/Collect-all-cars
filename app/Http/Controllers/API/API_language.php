@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Text_topic;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -19,5 +19,17 @@ class API_language extends Controller
         ]);
 
         return $language;
+    }
+
+    public function add_text_topic($text_th)
+    {
+      
+      $requestData = array();
+
+      $requestData['th'] = $text_th ;
+        
+      Text_topic::create($requestData);
+
+      return $text_th;
     }
 }

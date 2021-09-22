@@ -84,6 +84,8 @@ Route::get('/partner_viicheck_select_line_group/{name_line_group}/{name_partner}
 
 Route::get('/change_language/{language}/{user_id}', 'API\API_language@change_language');
 
+Route::get('/add_text_topic/{text_th}', 'API\API_language@add_text_topic');
+
 
 
 
