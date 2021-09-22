@@ -141,6 +141,7 @@ class LineApiController extends Controller
             "groupId" => $data_group_line->groupId,
             "groupName" => $data_group_line->groupName,
             "pictureUrl" => $data_group_line->pictureUrl,
+            "time_zone" => "Asia/Bangkok",
         ];
         
         Group_line::firstOrCreate($save_name_group);
