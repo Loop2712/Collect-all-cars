@@ -358,7 +358,7 @@ class ProfileController extends Controller
             return redirect('profile/'.$id.'/edit?openExternalBrowser=1');
             // echo Auth::User()->name;
         }else{
-            return redirect('login/line?redirectTo=edit_profile2?openExternalBrowser=1');
+            return redirect('login/line?redirectTo=edit_profile2');
         }
     }
 
