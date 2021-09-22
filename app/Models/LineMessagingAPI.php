@@ -144,7 +144,7 @@ class LineMessagingAPI extends Model
                 foreach($user as $item){
                     
                     if (!empty($item->photo)) {
-                        $photo_profile = "www.viicheck.com/public/storage/".$item->photo ;
+                        $photo_profile = "https://www.viicheck.com/storage/".$item->photo ;
                     }
                     if (empty($item->photo)) {
                         $photo_profile = $item->avatar ;
