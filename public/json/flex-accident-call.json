@@ -73,7 +73,8 @@
         "text": "datetime",
         "size": "lg",
         "margin": "xxl",
-        "color": "#FFFFFF"
+        "color": "#FFFFFF",
+        "wrap": true
       },
       {
         "type": "separator",
