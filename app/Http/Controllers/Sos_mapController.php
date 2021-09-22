@@ -203,16 +203,30 @@ class Sos_mapController extends Controller
     {   
         $datetime =  date("d-m-Y  h:i:sa");
 
+        $data_partners = DB::table('partners')->where('name', $data['area'])->get();
+
+        foreach ($data_partners as $data_partner) {
+            $name_partner = $data_partner->name ;
+            $name_line_group = $data_partner->line_group ;
+        }
+
+        $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+        }
+
         // TIME ZONE
-        // $API_Time_zone = new API_Time_zone();
-        // $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
         $text_at = '@' ;
         // flex ask_for_help
         $template_path = storage_path('../public/json/ask_for_help.json');   
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
-        $string_json = str_replace("datetime",$datetime,$string_json);
+        $string_json = str_replace("datetime",$time_zone,$string_json);
         $string_json = str_replace("name",$data['name'],$string_json);
         $string_json = str_replace("0999999999",$data['phone'],$string_json);
 
@@ -222,20 +236,10 @@ class Sos_mapController extends Controller
 
         $messages = [ json_decode($string_json, true) ];
 
-        //ตรวจสอบพื้นที่
-        switch ($data['area']) {
-            case 'ViiCHECK':
-                $body = [
-                    "to" => "Cba50fb3f4750133fde6d5fab2b2fc04d",
-                    "messages" => $messages,
-                ];
-                break;
-            case 'KMUTNB':
-                $body = [
-                    "to" => "Uad0cd91b2c1740aa467d38ddd256c40d",
-                    "messages" => $messages,
-                ];
-                break;
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
             // case 'TU':
             //     $body = [
             //         "to" => ["U912994894c449f2237f73f18b5703e89","Uf0a0825f324fcd74fa014b6a80d0b24a"],
