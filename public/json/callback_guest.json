@@ -30,17 +30,6 @@
             "wrap": true
           },
           {
-            "type": "text",
-            "text": "Thankyou",
-            "size": "lg",
-            "margin": "lg",
-            "color": "#07375D",
-            "align": "center",
-            "wrap": true,
-            "offsetBottom": "md",
-            "weight": "bold"
-          },
-          {
             "type": "image",
             "url": "https://www.viicheck.com/img/stickerline/PNG/สติกเกอร์ไลน์.png",
             "margin": "xs",
@@ -63,7 +52,7 @@
       },
       {
         "type": "text",
-        "text": "เวลาที่ตอบกลับ / Time",
+        "text": "เวลาที่ตอบกลับ",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
@@ -84,7 +73,7 @@
       },
       {
         "type": "text",
-        "text": "เลขทะเบียน / Plate No.",
+        "text": "หมายเลขทะเบียน",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
