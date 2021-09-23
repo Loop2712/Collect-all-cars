@@ -163,7 +163,7 @@
               },
               {
                 "type": "text",
-                "text": "ถามตอบ / FAQ",
+                "text": "ถามตอบ",
                 "margin": "xl",
                 "action": {
                   "type": "uri",
@@ -212,7 +212,7 @@
               },
               {
                 "type": "text",
-                "text": "ติดต่อ / Contact",
+                "text": "ติดต่อ",
                 "weight": "bold",
                 "margin": "xl",
                 "action": {

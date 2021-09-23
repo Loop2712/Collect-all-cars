@@ -13,6 +13,7 @@ use App\Models\Mylog;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToGuest;
 use App\Http\Controllers\API\API_Time_zone;
+use App\Models\Text_topic;
 
 class LineMessagingAPI extends Model
 {
@@ -102,12 +103,46 @@ class LineMessagingAPI extends Model
     }
 
     public function replyToUser($data, $event, $message_type)
-    {
+    {   
+        $data_users = DB::table('users')
+                    ->where('provider_id', $event["source"]['userId'])
+                    ->where('status', "active")
+                    ->get();
+
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
+
     	switch($message_type)
         {
         	case "other": 
+
+                $data_topic = [
+                    "ข้อมูลของคุณ",
+                    "เช็คราคารถมือสอง",
+                    "ถามตอบ",
+                    "ติดต่อ",
+                ];
+
+                for ($i=0; $i < count($data_topic); $i++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$i])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$i] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
                 $template_path = storage_path('../public/json/flex-other_new.json');   
                 $string_json = file_get_contents($template_path);
+                $string_json = str_replace("ข้อมูลของคุณ",$data_topic[0],$string_json);
+                $string_json = str_replace("เช็คราคารถมือสอง",$data_topic[1],$string_json);
+                $string_json = str_replace("ถามตอบ",$data_topic[2],$string_json);
+                $string_json = str_replace("ติดต่อ",$data_topic[3],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
