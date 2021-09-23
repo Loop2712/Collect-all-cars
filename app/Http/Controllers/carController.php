@@ -22,28 +22,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $event["source"]['userId'] = 'U912994894c449f2237f73f18b5703e89' ;
-
-        $data_users = DB::table('users')
-                    ->where('provider_id', $event["source"]['userId'])
-                    ->where('status', "active")
-                    ->get();
-
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-        }
-
-        $text_topic = DB::table('text_topics')
-                ->select('th')
-                ->where($user_language, $event["message"]["text"])
-                ->get();
-
-        foreach ($text_topic as $item) {
-            $text_th = $item->th ;
-        }
-
-        exit();
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');

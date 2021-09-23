@@ -81,7 +81,7 @@ class LineApiController extends Controller
         foreach ($data_users as $data_user) {
             $user_language = $data_user->language ;
         }
-
+        
         $text_topic = DB::table('text_topics')
                 ->select('th')
                 ->where($user_language, $event["message"]["text"])
