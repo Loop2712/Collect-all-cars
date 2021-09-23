@@ -22,7 +22,8 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $event["source"]['userId'] = "U912994894c449f2237f73f18b5703e89" ;
+        $event["source"]['userId'] = 'U912994894c449f2237f73f18b5703e89' ;
+
         $data_users = DB::table('users')
                     ->where('provider_id', $event["source"]['userId'])
                     ->where('status', "active")
@@ -32,50 +33,14 @@ class CarController extends Controller
             $user_language = $data_user->language ;
         }
 
-        echo $user_language;
-        echo "<br>";
-        echo "<pre>";
-        print_r($data_users);
-        echo "<pre>";
+        $text_topic = DB::table('text_topics')
+                ->select('th')
+                ->where($user_language, $event["message"]["text"])
+                ->get();
 
-        $data_topic = [
-            "กรุณาเลื่อนรถด้วยค่ะ",
-            "เวลาที่ถูกแจ้ง",
-            "เลขทะเบียน",
-            "ส่งข้อความตอบกลับ",
-        ];
-
-        echo "<br>";
-        echo "<pre>";
-        print_r($data_topic);
-        echo "<pre>";
-
-        echo "<br>";
-        $count_data_topic = count($data_topic);
-        echo $count_data_topic;
-        echo "<br>";
-        echo $data_topic[0];
-        echo "<br>";
-
-        for ($i=0; $i < $count_data_topic; $i++) { 
-
-            $text_topic = DB::table('text_topics')
-                    ->select($user_language)
-                    ->where('th', $data_topic[$i])
-                    ->where('en', "!=", null)
-                    ->get();
-
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$i] = $item_of_text_topic->$user_language ;
-            }
-
-            
+        foreach ($text_topic as $item) {
+            $text_th = $item->th ;
         }
-
-        echo "<br>";
-        echo "<pre>";
-        print_r($data_topic);
-        echo "<pre>";
 
         exit();
 
