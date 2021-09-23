@@ -73,10 +73,27 @@ class LineApiController extends Controller
 
     public function textHandler($event)
     {
+        $data_users = DB::table('users')
+                    ->where('provider_id', $event["source"]['userId'])
+                    ->where('status', "active")
+                    ->get();
+
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
+
+        $text_topic = DB::table('text_topics')
+                ->select('th')
+                ->where($user_language, $event["message"]["text"])
+                ->get();
+
+        foreach ($text_topic as $item) {
+            $text_th = $item->th ;
+        }
         
         $line = new LineMessagingAPI();
 
-        switch( strtolower($event["message"]["text"]) )
+        switch( strtolower($text_th) )
         {     
             case "อื่นๆ" :  
                 $line->replyToUser(null, $event, "other");
