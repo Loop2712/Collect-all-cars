@@ -28,7 +28,7 @@ class API_language extends Controller
 
       $requestData['th'] = $text_th ;
         
-      Text_topic::create($requestData);
+      Text_topic::firstOrCreate($requestData);
 
       return $text_th;
     }

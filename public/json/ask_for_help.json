@@ -31,17 +31,6 @@
             "wrap": true
           },
           {
-            "type": "text",
-            "color": "#07375D",
-            "text": "Ask for help",
-            "margin": "lg",
-            "size": "lg",
-            "align": "center",
-            "weight": "bold",
-            "wrap": true,
-            "offsetBottom": "md"
-          },
-          {
             "type": "image",
             "url": "https://www.viicheck.com/img/stickerline/PNG/21.png",
             "size": "xxl",
@@ -64,7 +53,7 @@
       },
       {
         "type": "text",
-        "text": "เวลา / Time",
+        "text": "เวลา",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
@@ -85,7 +74,7 @@
       },
       {
         "type": "text",
-        "text": "จาก / From",
+        "text": "จาก",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
