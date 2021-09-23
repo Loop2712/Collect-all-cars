@@ -73,28 +73,22 @@ class LineApiController extends Controller
 
     public function textHandler($event)
     {
-        if ($event["message"]["text"] != 'อื่นๆ' or $event["message"]["text"] != 'โปรโมชั่น') {
-            
-            $data_users = DB::table('users')
-                    ->where('provider_id', $event["source"]['userId'])
-                    ->where('status', "active")
-                    ->get();
+        $data_users = DB::table('users')
+                ->where('provider_id', $event["source"]['userId'])
+                ->where('status', "active")
+                ->get();
 
-            foreach ($data_users as $data_user) {
-                $user_language = $data_user->language ;
-            }
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
 
-            $text_topic = DB::table('text_topics')
-                    ->select('th')
-                    ->where($user_language, $event["message"]["text"])
-                    ->get();
+        $text_topic = DB::table('text_topics')
+                ->select('th')
+                ->where($user_language, $event["message"]["text"])
+                ->get();
 
-            foreach ($text_topic as $item) {
-                $text_th = $item->th ;
-            }
-            
-        }else {
-            $text_th = $event["message"]["text"] ;
+        foreach ($text_topic as $item) {
+            $text_th = $item->th ;
         }
         
         
