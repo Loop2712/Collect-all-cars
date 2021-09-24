@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Revolution\Line\Facades\Bot;
 use Illuminate\Http\Request;
 use Redirect;
+use App\Http\Controllers\API\LineApiController;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -177,17 +179,17 @@ class LoginController extends Controller
         Auth::login($user);
 
         if ($type == "line") {
-            echo $user->provider_id ;
 
-            echo "<br>";
+            $provider_id = $user->provider_id ;
 
-            echo "<pre>";
-            print_r($user);
-            echo "<pre>";
-            exit();
+            $data_users = DB::table('users')
+                ->where('provider_id', $provider_id)
+                ->get();
+
+            $lineAPI = new LineApiController();
+            $lineAPI->check_language_user($data_users);
+
         }
-
-        
 
     }
 }
