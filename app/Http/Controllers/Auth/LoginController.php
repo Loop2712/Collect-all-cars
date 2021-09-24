@@ -184,9 +184,10 @@ class LoginController extends Controller
             echo "<pre>";
             print_r($user);
             echo "<pre>";
+            exit();
         }
 
-        exit();
+        
 
     }
 }
