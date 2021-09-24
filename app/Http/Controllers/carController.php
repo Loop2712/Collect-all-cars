@@ -23,30 +23,27 @@ class CarController extends Controller
     public function index(Request $request)
     {
         $richMenuId_start = "richmenu-ec43e96f5f12d586fa478fb8a5b88202" ;
-        $provider_id = "U3a438f62414079bc9c843245be578f45";
+        $provider_id = "U912994894c449f2237f73f18b5703e89";
+
         $x = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
 
         echo $x ;
 
-        
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => 'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            ]
+        ];
 
-        $data_users = DB::table('users')
-                ->where('provider_id', $provider_id)
-                ->where('status', "active")
-                ->get();
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
 
-        echo "<pre>" ;
-        print_r($data_users);
-        echo "<pre>" ;
-        echo "<br>" ;
-
-        if (!empty($data_users[0])) {
-            echo "NO empty" ;
-            // เช็คภาษาของ User
-        }else {
-            echo "empty" ;
-            // ตั้งค่าริชเมนูเริ่มต้น
-        }
+        $data = [
+            "title" => "set_richmanu_start",
+            "content" => $provider_id,
+        ];
+        MyLog::create($data);
 
         exit();
 
