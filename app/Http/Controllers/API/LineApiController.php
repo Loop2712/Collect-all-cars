@@ -204,14 +204,13 @@ class LineApiController extends Controller
         $opts = [
             'http' =>[
                 'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'header'  => 'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
             ]
         ];
 
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
-        $result = file_get_contents($url, true, $context);
+        $result = file_get_contents($url, false, $context);
 
         $data = [
             "title" => "set_richmanu_start",

@@ -29,7 +29,8 @@ class CarController extends Controller
         $opts = [
             'http' =>[
                 'method'  => 'POST',
-                'header'  => 'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
             ]
         ];
 
