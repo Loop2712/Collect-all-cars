@@ -210,7 +210,6 @@ class LineApiController extends Controller
 
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
-        $result = file_get_contents($url, false, $context);
 
         $data = [
             "title" => "set_richmanu_start",
