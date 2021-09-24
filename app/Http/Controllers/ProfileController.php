@@ -12,6 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Sos_map;
 use App\Models\Guest;
 use App\Models\Cancel_Profile;
+use App\Http\Controllers\API\LineApiController;
 
 class ProfileController extends Controller
 {
@@ -481,6 +482,17 @@ class ProfileController extends Controller
                 ->update([
                     'active' => "No",
                 ]);
+
+        $data_users = DB::table('users')
+                ->where('id', $id)
+                ->get();
+
+        foreach ($data_users as $data_user) {
+            $provider_id = $data_user->provider_id ;
+        }
+
+        $lineAPI = new LineApiController();
+        $lineAPI->set_richmanu_start($provider_id);
 
         return $id;
     }
