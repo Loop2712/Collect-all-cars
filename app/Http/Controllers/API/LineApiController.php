@@ -122,11 +122,8 @@ class LineApiController extends Controller
             case "ใบอนุญาตขับรถ" : 
                 $line->replyToUser(null, $event, "driver_license");
                 break;
-            case "ติดต่อ / contact" :  
+            case "ติดต่อ" :  
                 $line->replyToUser(null, $event, "contact");
-                break;
-            case "sos" :  
-                $line->replyToUser(null, $event, "sos");
                 break;
             case "โปรโมชั่น" :  
                 $line->replyToUser(null, $event, "promotion");
