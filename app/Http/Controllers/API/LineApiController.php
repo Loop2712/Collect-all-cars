@@ -212,4 +212,54 @@ class LineApiController extends Controller
         MyLog::create($data);
     }
 
+    public function check_language_user($data_users)
+    {
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+            $provider_id = $data_user->provider_id ;
+        }
+
+        if (empty($user_language)) {
+            // ริชเมนูเดิม
+            $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
+        }else {
+            switch ($user_language) {
+                case 'th':
+                    $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
+                    break;
+                case 'en':
+                    $richMenuId = "EN" ;
+                    break;
+                case 'zh-TW':
+                    $richMenuId = "zh-TW" ;
+                    break;
+                case 'ja':
+                    $richMenuId = "ja" ;
+                    break;
+                case 'ko':
+                    $richMenuId = "ko" ;
+                    break;
+                case 'es':
+                    $richMenuId = "es" ;
+                    break;
+            }
+        }
+
+        $this->set_richmanu_language($provider_id , $richMenuId , $user_language);
+        
+    }
+
+    public function set_richmanu_language($provider_id , $richMenuId , $user_language)
+    {
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
+        $response = $bot->linkRichMenu($provider_id, $richMenuId);
+
+        $data = [
+            "title" => "set_richmanu_" . $user_language,
+            "content" => $provider_id,
+        ];
+        MyLog::create($data);
+    }
+
 }
