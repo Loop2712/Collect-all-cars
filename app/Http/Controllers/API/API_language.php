@@ -24,33 +24,8 @@ class API_language extends Controller
                 ->where('status', "active")
                 ->get();
 
-        foreach ($data_users as $data_user) {
-            $provider_id = $data_user->provider_id ;
-        }
-
-        switch ($language) {
-          case 'th':
-              $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
-              break;
-          case 'en':
-              $richMenuId = "richmenu-e335c46ce1d4bfe6688cc4bdb19f8769" ;
-              break;
-          case 'zh-TW':
-              $richMenuId = "zh-TW" ;
-              break;
-          case 'ja':
-              $richMenuId = "ja" ;
-              break;
-          case 'ko':
-              $richMenuId = "ko" ;
-              break;
-          case 'es':
-              $richMenuId = "es" ;
-              break;
-      }
-
-      $lineAPI = new LineApiController();
-      $lineAPI->set_richmanu_language($provider_id , $richMenuId , $language);
+        $lineAPI = new LineApiController();
+        $lineAPI->check_language_user($data_users);
 
         // return $language;
     }
