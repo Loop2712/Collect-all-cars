@@ -12,6 +12,7 @@ use App\Models\Register_car;
 
 use App\Models\Time_zone;
 use Illuminate\Support\Facades\DB;
+use App\Models\Mylog;
 
 class CarController extends Controller
 {
