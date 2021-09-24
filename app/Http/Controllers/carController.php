@@ -23,35 +23,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $richMenuId_start = "richmenu-ec43e96f5f12d586fa478fb8a5b88202" ;
-        $provider_id = "U912994894c449f2237f73f18b5703e89";
-
-        $x = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
-
-        echo $x ;
-
-        // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
-        // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
-        // $response = $bot->linkRichMenu($provider_id, $richMenuId_start);
-
-        // $opts = [
-        //     'http' =>[
-        //         'method'  => 'POST',
-        //         'header'  => 'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-        //     ]
-        // ];
-
-        // $context  = stream_context_create($opts);
-        // $url = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
-
-        // $data = [
-        //     "title" => "set_richmanu_start",
-        //     "content" => $provider_id,
-        // ];
-        // MyLog::create($data);
-
-        exit();
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
