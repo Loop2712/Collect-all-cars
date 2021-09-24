@@ -35,6 +35,9 @@ class LineApiController extends Controller
             case "join" :
                 $this->save_group_line($event);
                 break;
+            case "follow" :
+                $this->user_follow_line($event);
+                break;
         }
 	}
 
@@ -175,5 +178,45 @@ class LineApiController extends Controller
 
     }
 
+    public function user_follow_line($event)
+    {
+        $provider_id = $event['source']['userId'];
+
+        $data_users = DB::table('users')
+                ->where('provider_id', $provider_id)
+                ->where('status', "active")
+                ->get();
+
+        if (!empty($data_users[0])) {
+            // เช็คภาษาของ User
+            $this->check_language_user($data_users);
+        }else {
+            // ตั้งค่าริชเมนูเริ่มต้น
+            $this->set_richmanu_start($provider_id);
+        }
+
+    }
+
+    public function set_richmanu_start($provider_id)
+    {
+        $richMenuId_start = "richmenu-ec43e96f5f12d586fa478fb8a5b88202" ;
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => 'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            ]
+        ];
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
+        $result = file_get_contents($url, false, $context);
+
+        $data = [
+            "title" => "set_richmanu_start",
+            "content" => $provider_id,
+        ];
+        MyLog::create($data);
+    }
 
 }
