@@ -18,7 +18,7 @@ class API_language extends Controller
                 'language' => $language,
         ]);
 
-        return $language;
+        // return $language;
     }
 
     public function add_text_topic($text_th)
