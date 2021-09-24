@@ -23,6 +23,19 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+
+        $provider_id = "U912994894c449f2237f73f18b5703e89" ;
+
+        $data_users = DB::table('users')
+                ->where('provider_id', $provider_id)
+                ->where('status', "active")
+                ->get();
+
+        echo "<pre>";
+        print_r($data_users);
+        echo "<pre>";
+
+        exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');

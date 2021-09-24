@@ -176,9 +176,15 @@ class LoginController extends Controller
         //LOGIN
         Auth::login($user);
 
-        echo "<pre>";
-        print_r($user);
-        echo "<pre>";
+        if ($type == "line") {
+            echo $user->provider_id ;
+
+            echo "<br>";
+
+            echo "<pre>";
+            print_r($user);
+            echo "<pre>";
+        }
 
         exit();
 
