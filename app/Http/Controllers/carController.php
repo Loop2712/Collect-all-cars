@@ -23,54 +23,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $provider_id = "U912994894c449f2237f73f18b5703e89";
-
-        $data_users = DB::table('users')
-                ->where('provider_id', $provider_id)
-                ->where('status', "active")
-                ->get();
-
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-        }
-
-        if (empty($user_language)) {
-            // ริชเมนูเดิม
-            $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
-        }else {
-            switch ($user_language) {
-                case 'th':
-                    $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
-                    echo "set rich manu TH" ;
-                    break;
-                case 'en':
-                    $richMenuId = "EN" ;
-                    echo "set rich manu EN" ;
-                    break;
-                case 'zh-TW':
-                    $richMenuId = "zh-TW" ;
-                    echo "set rich manu zh-TW" ;
-                    break;
-                case 'ja':
-                    $richMenuId = "ja" ;
-                    echo "set rich manu ja" ;
-                    break;
-                case 'ko':
-                    $richMenuId = "ko" ;
-                    echo "set rich manu ko" ;
-                    break;
-                case 'es':
-                    $richMenuId = "es" ;
-                    echo "set rich manu es" ;
-                    break;
-            }
-        }
-
-        // echo $user_language ;
-
-        exit();
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
