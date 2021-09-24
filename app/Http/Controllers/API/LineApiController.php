@@ -201,15 +201,9 @@ class LineApiController extends Controller
     {
         $richMenuId_start = "richmenu-ec43e96f5f12d586fa478fb8a5b88202" ;
 
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => 'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-            ]
-        ];
-
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/user/" . $provider_id . "/richmenu/" . $richMenuId_start;
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
+        $response = $bot->linkRichMenu($provider_id, $richMenuId_start);
 
         $data = [
             "title" => "set_richmanu_start",
