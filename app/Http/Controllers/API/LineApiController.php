@@ -219,7 +219,7 @@ class LineApiController extends Controller
         }
 
         if (empty($user_language)) {
-            // ริชเมนูเดิม
+            // ริชเมนู TH
             $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
         }else {
             switch ($user_language) {
@@ -227,7 +227,7 @@ class LineApiController extends Controller
                     $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
                     break;
                 case 'en':
-                    $richMenuId = "richmenu-e335c46ce1d4bfe6688cc4bdb19f8769" ;
+                    $richMenuId = "richmenu-9194867623e5cf6233a7d894fc3f6b1a" ;
                     break;
                 case 'zh-TW':
                     $richMenuId = "zh-TW" ;
