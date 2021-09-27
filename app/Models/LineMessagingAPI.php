@@ -1032,10 +1032,11 @@ class LineMessagingAPI extends Model
 
                 $template_path = storage_path('../public/json/flex-promotion.json');   
                 $string_json = file_get_contents($template_path);
-
-                $string_json = str_replace("โปรโมชั่น",$data_topic[0],$string_json);
+                
                 $string_json = str_replace("โปรโมชั่นรถยนต์",$data_topic[1],$string_json);
                 $string_json = str_replace("โปรโมชั่นรถจักรยานยนต์",$data_topic[2],$string_json);
+                $string_json = str_replace("โปรโมชั่น",$data_topic[0],$string_json);
+                
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
