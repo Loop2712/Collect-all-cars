@@ -636,6 +636,26 @@ class LineMessagingAPI extends Model
 
             case "mymotorcycles": 
 
+                $data_topic = [
+                    "รถของฉัน",
+                    "พรบ",
+                    "ประกัน",
+                    "ดูรถทั้งหมด",
+                ];
+
+                for ($i=0; $i < count($data_topic); $i++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$i])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$i] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
                 $provider_id = $event["source"]['userId'];
 
                 $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' AND car_type = 'motorcycle' ");
@@ -704,6 +724,10 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("ประกัน1","tick",$string_json);
                         }
 
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
 
                         break;
 
@@ -787,6 +811,11 @@ class LineMessagingAPI extends Model
                         // คันที่2
                         $string_json = str_replace("แบนด์2", strtolower($brand[1]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
+
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
                         
 
                         break;
@@ -909,6 +938,11 @@ class LineMessagingAPI extends Model
                         // คันที่3
                         $string_json = str_replace("แบนด์3", strtolower($brand[2]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน3",$registration_number[2],$string_json);
+
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
                         
                         break;
 
