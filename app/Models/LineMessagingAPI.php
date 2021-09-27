@@ -153,8 +153,31 @@ class LineMessagingAPI extends Model
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
             case "contact": 
+
+                $data_topic = [
+                    "โทร",
+                    "อีเมล",
+                    "Facebook",
+                ];
+
+                for ($i=0; $i < count($data_topic); $i++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$i])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$i] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
                 $template_path = storage_path('../public/json/flex-contact.json');   
                 $string_json = file_get_contents($template_path);
+                $string_json = str_replace("โทร",$data_topic[0],$string_json);
+                $string_json = str_replace("อีเมล",$data_topic[1],$string_json);
+                $string_json = str_replace("Facebook",$data_topic[2],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
