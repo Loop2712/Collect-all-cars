@@ -177,7 +177,7 @@
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
                     <div class="input-group-prepend" onclick="capture_registration();">
-                      <div class="input-group-text d-block d-md-none"><a href="#tag_video"><i class="fas fa-camera"></i></a></div>
+                      <div class="input-group-text d-block d-md-none"><i class="fas fa-camera"></i></div>
                     </div>
                   </div>
                 </div>
