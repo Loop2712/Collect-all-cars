@@ -621,6 +621,11 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("แบนด์3", strtolower($brand[2]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน3",$registration_number[2],$string_json);
                         $string_json = str_replace("act3",$id[2],$string_json);
+
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
                         
                         break;
 
