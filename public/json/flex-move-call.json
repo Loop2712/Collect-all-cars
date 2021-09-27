@@ -30,17 +30,6 @@
             "wrap": true
           },
           {
-            "type": "text",
-            "color": "#07375D",
-            "text": "Please move the car",
-            "margin": "lg",
-            "size": "lg",
-            "align": "center",
-            "weight": "bold",
-            "wrap": true,
-            "offsetBottom": "md"
-          },
-          {
             "type": "image",
             "url": "https://www.viicheck.com/img/stickerline/PNG/สติกเกอร์ไลน์.png",
             "margin": "xs",
@@ -63,7 +52,7 @@
       },
       {
         "type": "text",
-        "text": "เวลาที่ถูกแจ้ง / Time",
+        "text": "เวลาที่ถูกแจ้ง",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
@@ -84,7 +73,7 @@
       },
       {
         "type": "text",
-        "text": "เลขทะเบียน / Plate No.",
+        "text": "หมายเลขทะเบียน",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",

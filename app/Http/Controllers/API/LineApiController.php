@@ -107,9 +107,9 @@ class LineApiController extends Controller
             case "ข่าวสาร" :  
                 $line->replyToUser(null, $event, "vnews");
                 break;
-            case "vmarket" :  
-                $line->replyToUser(null, $event, "vmarket");
-                break;
+            // case "vmarket" :  
+            //     $line->replyToUser(null, $event, "vmarket");
+            //     break;
             case "ข้อมูลของคุณ" :  
                 $line->replyToUser(null, $event, "profile");
                 break;

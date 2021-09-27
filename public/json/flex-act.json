@@ -109,7 +109,7 @@
       },
       {
         "type": "text",
-        "text": "เลขทะเบียน / Plate No.",
+        "text": "หมายเลขทะเบียน",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",

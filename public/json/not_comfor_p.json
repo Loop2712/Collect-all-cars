@@ -30,17 +30,6 @@
             "wrap": true
           },
           {
-            "type": "text",
-            "text": "Thankyou",
-            "size": "lg",
-            "margin": "lg",
-            "color": "#07375D",
-            "align": "center",
-            "wrap": true,
-            "weight": "bold",
-            "offsetBottom": "md"
-          },
-          {
             "type": "image",
             "url": "https://www.viicheck.com/img/stickerline/PNG/26.png",
             "margin": "xs",
@@ -80,7 +69,7 @@
       },
       {
         "type": "text",
-        "text": "เลขทะเบียน / Plate No.",
+        "text": "หมายเลขทะเบียน",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",

@@ -1,6 +1,6 @@
 {
     "type": "flex",
-    "altText": "ติดต่อ / contact",
+    "altText": "ติดต่อ",
     "contents": {
   "type": "bubble",
   "body": {
@@ -58,7 +58,7 @@
               },
               {
                 "type": "text",
-                "text": "โทร / Call",
+                "text": "โทร",
                 "margin": "xl",
                 "action": {
                   "type": "uri",
@@ -107,7 +107,7 @@
               },
               {
                 "type": "text",
-                "text": "อีเมล / E-Mail",
+                "text": "อีเมล",
                 "weight": "bold",
                 "margin": "xl",
                 "action": {

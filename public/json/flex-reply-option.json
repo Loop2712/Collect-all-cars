@@ -92,9 +92,9 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "label": "ขอบคุณ / Thank you",
+                  "label": "ขอบคุณ",
                   "data": "thx?7ยษ2944/กรุงเทพ",
-                  "displayText": "ขอบคุณ / Thank you"
+                  "displayText": "ขอบคุณ"
                 },
                 "style": "secondary",
                 "height": "sm",
@@ -119,9 +119,9 @@
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "label": "รอสักครู่ / Wait a moment",
+                  "label": "รอสักครู่",
                   "data": "wait?7ยษ2944/กรุงเทพ",
-                  "displayText": "รอสักครู่ / Wait a moment"
+                  "displayText": "รอสักครู่"
                 },
                 "style": "secondary",
                 "height": "sm",
@@ -146,7 +146,7 @@
                 "type": "button",
                 "action": {
                   "type": "uri",
-                  "label": "ฉันไม่สะดวก / I'm not available",
+                  "label": "ฉันไม่สะดวก",
                   "uri": "https://www.viicheck.com/not_comfor_login/7ยษ2944.กรุงเทพ"
                 },
                 "style": "secondary",

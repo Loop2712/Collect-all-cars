@@ -31,15 +31,6 @@
             "wrap": true
           },
           {
-            "type": "text",
-            "color": "#07375D",
-            "text": "Pleasemove",
-            "margin": "lg",
-            "size": "lg",
-            "align": "center",
-            "wrap": true
-          },
-          {
             "type": "image",
             "url": "https://www.viicheck.com/img/stickerline/PNG/21.png",
             "margin": "xs",
@@ -61,7 +52,7 @@
       },
       {
         "type": "text",
-        "text": "เวลาที่ถูกแจ้ง / Report time",
+        "text": "เวลาที่ถูกแจ้ง",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
@@ -82,7 +73,7 @@
       },
       {
         "type": "text",
-        "text": "เลขทะเบียน / Car ID",
+        "text": "หมายเลขทะเบียน",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",

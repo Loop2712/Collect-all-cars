@@ -59,7 +59,7 @@
                   },
                   {
                     "type": "text",
-                    "text": " Ranking",
+                    "text": "อันดับ",
                     "size": "xxs",
                     "margin": "xxl",
                     "offsetEnd": "sm",
@@ -244,7 +244,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "รถของฉัน",
+            "text": "รถของคุณ",
             "size": "lg",
             "weight": "bold",
             "color": "#ff0101",
@@ -334,7 +334,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "ใบอนุญาตขับขี่",
+                    "text": "ใบอนุญาตขับรถ",
                     "margin": "xxl",
                     "size": "md",
                     "weight": "regular",

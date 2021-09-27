@@ -217,8 +217,8 @@
                 "margin": "xl",
                 "action": {
                   "type": "message",
-                  "label": "ติดต่อ / contact",
-                  "text": "ติดต่อ / contact"
+                  "label": "ติดต่อ",
+                  "text": "ติดต่อ"
                 },
                 "flex": 4
               },
@@ -230,16 +230,16 @@
                 "color": "#ff0101",
                 "action": {
                   "type": "message",
-                  "label": "ติดต่อ / contact",
-                  "text": "ติดต่อ / contact"
+                  "label": "ติดต่อ",
+                  "text": "ติดต่อ"
                 }
               }
             ],
             "height": "50px",
             "action": {
               "type": "message",
-              "label": "ติดต่อ / contact",
-              "text": "ติดต่อ / contact"
+              "label": "ติดต่อ",
+              "text": "ติดต่อ"
             },
             "margin": "md"
           },
