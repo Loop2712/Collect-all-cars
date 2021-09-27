@@ -97,8 +97,6 @@ class LineApiController extends Controller
         
         $line = new LineMessagingAPI();
 
-        $text_th = $event["message"]["text"];
-
         switch( strtolower($text_th) )
         {     
             case "อื่นๆ" :  
