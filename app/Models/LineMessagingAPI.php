@@ -311,6 +311,26 @@ class LineMessagingAPI extends Model
                 break;
             case "mycar": 
 
+                $data_topic = [
+                    "รถของฉัน",
+                    "พรบ",
+                    "ประกัน",
+                    "ดูรถทั้งหมด",
+                ];
+
+                for ($i=0; $i < count($data_topic); $i++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$i])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$i] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
                 $provider_id = $event["source"]['userId'];
 
                 $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' AND car_type = 'car' ");
@@ -339,6 +359,11 @@ class LineMessagingAPI extends Model
                     case "1": 
                         $template_path = storage_path('../public/json/flex-mycar-1.json');   
                         $string_json = file_get_contents($template_path);
+
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
 
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
@@ -385,6 +410,12 @@ class LineMessagingAPI extends Model
                     case "2": 
                         $template_path = storage_path('../public/json/flex-mycar-2.json');   
                         $string_json = file_get_contents($template_path);
+
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
+
                         // คันที่1
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
@@ -471,6 +502,12 @@ class LineMessagingAPI extends Model
                     default: 
                         $template_path = storage_path('../public/json/flex-mycar-3.json');   
                         $string_json = file_get_contents($template_path);
+
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
+                        
                         // คันที่1
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
