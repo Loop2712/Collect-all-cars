@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12 col-md-2">
-                    <label id="label_massengbox" for="massengbox" class="control-label">{{ 'ข้อความ' }}</label></label><span style="color: #FF0033;"> *</span>
+                    <label for="massengbox" class="control-label">{{ 'ข้อความ' }}</label></label><span style="color: #FF0033;"> *</span>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('massengbox') ? 'has-error' : ''}}">
@@ -177,7 +177,7 @@
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
                     <div class="input-group-prepend" onclick="capture_registration();">
-                      <div class="input-group-text d-block d-md-none"><a href="#label_massengbox"><i class="fas fa-camera"></i></a></div>
+                      <div class="input-group-text d-block d-md-none"><a href="#div_rgc"><i class="fas fa-camera"></i></a></div>
                     </div>
                   </div>
                 </div>
