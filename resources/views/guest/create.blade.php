@@ -15,7 +15,7 @@
                 </div>
                 
                 <div class="card">
-                    <div class="card-header">ใส่ข้อมูลรถที่ต้องการติดต่อ</div>
+                    <div class="card-header">ข้อมูลรถที่ต้องการติดต่อ</div>
                     <div class="card-body">
                         <a href="{{ url('/guest') }}" title="Back"><button class="d-none btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
 

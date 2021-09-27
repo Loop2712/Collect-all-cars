@@ -118,7 +118,7 @@
                                             <p style="position: absolute"class="text-white">สแกนป้ายทะเบียน</p>
                                             <p style="position: absolute; margin-top:6%"class="text-white">กรุณาวางป้ายทะเบียนให้ตรงกรอบ</p>
                                            
-                                            <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                                            <video id="tag_video" width="100%" height="100%" autoplay="true" id="videoElement"></video>
 
                                             <img id="img_frame_car" class="align-self-center" style="position: absolute;margin-top: -100px;" width="80%" height="30%" src="{{ asset('/img/icon/15.png') }}">
 
@@ -177,7 +177,7 @@
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
                     <div class="input-group-prepend" onclick="capture_registration();">
-                      <div class="input-group-text d-block d-md-none"><i class="fas fa-camera"></i></div>
+                      <div class="input-group-text d-block d-md-none"><a href="#tag_video"><i class="fas fa-camera"></i></a></div>
                     </div>
                   </div>
                 </div>
