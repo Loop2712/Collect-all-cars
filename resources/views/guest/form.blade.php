@@ -2,9 +2,6 @@
     <div class="row">
         <!-- ข้อมูลรถที่ต้องการติดต่อ -->
         <div class="col-12">
-            <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถที่ต้องการติดต่อ'}}</span>
-            <!-- <span style="color: #FF0033;"> *</span><span style="color: #FF0033;font-size: 13px;"> (ระบบจะไม่แสดงข้อมูล / The system will not display the information.)</span> -->
-            <br><br>
             <div class="row">
                 <div class="col-12 col-md-2">
                     <label for="massengbox" class="control-label">{{ 'ข้อความ' }}</label></label><span style="color: #FF0033;"> *</span>
