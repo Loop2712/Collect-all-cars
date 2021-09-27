@@ -360,11 +360,6 @@ class LineMessagingAPI extends Model
                         $template_path = storage_path('../public/json/flex-mycar-1.json');   
                         $string_json = file_get_contents($template_path);
 
-                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
-                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
-                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
-                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
-
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
                         $string_json = str_replace("act1",$id[0],$string_json);
@@ -403,6 +398,11 @@ class LineMessagingAPI extends Model
                         }else{
                             $string_json = str_replace("ประกัน1","tick",$string_json);
                         }
+
+                        $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
+                        $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+                        $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
 
 
                         break;
