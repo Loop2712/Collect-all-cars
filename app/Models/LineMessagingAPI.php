@@ -1132,9 +1132,6 @@ class LineMessagingAPI extends Model
                 $template_path = storage_path('../public/json/flex-promotion_car.json');   
                 $string_json = file_get_contents($template_path);
 
-                $string_json = str_replace("โปรโมชั่น",$data_topic[1],$string_json);
-                $string_json = str_replace("รายละเอียด",$data_topic[2],$string_json);
-
                 $randomPromotion = DB::table('promotions')
                     ->where('type', "motorcycle")
                     ->inRandomOrder()
@@ -1173,6 +1170,9 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("https://www.viicheck.com/link6",$link[6],$string_json);
                 
                 $string_json = str_replace("carpromotion","motorcycle",$string_json);
+
+                $string_json = str_replace("โปรโมชั่น",$data_topic[1],$string_json);
+                $string_json = str_replace("รายละเอียด",$data_topic[2],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
