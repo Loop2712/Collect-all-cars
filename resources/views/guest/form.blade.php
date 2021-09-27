@@ -110,7 +110,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="d-flex justify-content-end bg-light"> 
-                                            <a style="position: absolute; z-index:10; margin-right:10px" class="text-white" onclick="stop();"> <b>X</b> </a>
+                                            <a style="position: absolute; z-index:10; margin-right:10px" class="text-white" onclick="stop();"> <i class="fas fa-times"></i></a>
                                         </div>
                                     </div>
                                     <div class="col-12" id="div_cam">
