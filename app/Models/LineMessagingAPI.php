@@ -195,6 +195,29 @@ class LineMessagingAPI extends Model
                 break;
             case "profile": 
 
+                $data_topic = [
+                    "อันดับ",
+                    "ข้อมูลของคุณ",
+                    "แก้ไข",
+                    "รถของคุณ",
+                    "ใบอนุญาตขับรถ",
+                    "รถยนต์",
+                    "จักรยานยนต์",
+                ];
+
+                for ($i=0; $i < count($data_topic); $i++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$i])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$i] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
                 $provider_id = $event["source"]['userId'];
 
                 $user = DB::select("SELECT * FROM users WHERE provider_id = '$provider_id'");
@@ -210,6 +233,13 @@ class LineMessagingAPI extends Model
 
                     $template_path = storage_path('../public/json/flex-profile.json');   
                     $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("อันดับ",$data_topic[0],$string_json);
+                    $string_json = str_replace("ข้อมูลของคุณ",$data_topic[1],$string_json);
+                    $string_json = str_replace("แก้ไข",$data_topic[2],$string_json);
+                    $string_json = str_replace("รถของคุณ",$data_topic[3],$string_json);
+                    $string_json = str_replace("ใบอนุญาตขับรถ",$data_topic[4],$string_json);
+                    $string_json = str_replace("รถยนต์",$data_topic[5],$string_json);
+                    $string_json = str_replace("จักรยานยนต์",$data_topic[6],$string_json);
                     $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_profile,$string_json);
                     $string_json = str_replace("E Benze",$item->name,$string_json);
                     $string_json = str_replace("benze@gmail.com",$item->email,$string_json);
