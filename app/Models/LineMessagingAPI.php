@@ -1114,6 +1114,7 @@ class LineMessagingAPI extends Model
             case "promotion_motorcycle": 
 
                 $data_topic = [
+                    "ดูโปรโมชั่นเพิ่มเติม",
                     "โปรโมชั่น",
                     "รายละเอียด",
                 ];
