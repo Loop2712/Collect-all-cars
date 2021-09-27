@@ -882,6 +882,24 @@ class LineMessagingAPI extends Model
 
             case "driver_license":
 
+                $data_topic = [
+                    "รถยนต์",
+                    "จักรยานยนต์",
+                ];
+
+                for ($i=0; $i < count($data_topic); $i++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$i])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$i] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
                 $provider_id = $event["source"]['userId'];
 
                 $user = DB::select("SELECT * FROM users WHERE provider_id = '$provider_id'");
@@ -890,22 +908,30 @@ class LineMessagingAPI extends Model
                     if ( !empty($item->driver_license) && !empty($item->driver_license2) ) {
                         $template_path = storage_path('../public/json/flex-driver_license.json');   
                         $string_json = file_get_contents($template_path);
+                        $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
+                        $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
                         $string_json = str_replace("ccaarr",$item->driver_license,$string_json);
                         $string_json = str_replace("mmotorcycle",$item->driver_license2,$string_json);
                     }
                     if ( !empty($item->driver_license) && empty($item->driver_license2) ) {
                         $template_path = storage_path('../public/json/flex-driver_car_license.json');   
                         $string_json = file_get_contents($template_path);
+                        $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
+                        $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
                         $string_json = str_replace("ccaarr",$item->driver_license,$string_json);
                     }
                     if ( empty($item->driver_license) && !empty($item->driver_license2) ) {
                         $template_path = storage_path('../public/json/flex-driver_moto_license.json');   
                         $string_json = file_get_contents($template_path);
+                        $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
+                        $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
                         $string_json = str_replace("mmotorcycle",$item->driver_license2,$string_json);
                     }
                     if ( empty($item->driver_license) && empty($item->driver_license2) ) {
                         $template_path = storage_path('../public/json/flex-driver_not_license.json');
                         $string_json = file_get_contents($template_path);
+                        $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
+                        $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
                     }
                 }
 
