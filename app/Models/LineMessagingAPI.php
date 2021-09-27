@@ -195,34 +195,41 @@ class LineMessagingAPI extends Model
                 break;
             case "profile": 
 
-                $data_topic = [
-                    "อันดับ",
-                    "ข้อมูลของคุณ",
-                    "แก้ไข",
-                    "รถของคุณ",
-                    "ใบอนุญาตขับรถ",
-                    "รถยนต์",
-                    "จักรยานยนต์",
-                ];
-
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
-
                 $provider_id = $event["source"]['userId'];
 
                 $user = DB::select("SELECT * FROM users WHERE provider_id = '$provider_id'");
 
                 foreach($user as $item){
+
+                    if (!empty($item->sex)) {
+                        $sex = $item->sex ;
+                    }else{
+                        $sex = "กรุณาระบุเพศ" ;
+                    }
+
+                    $data_topic = [
+                        "อันดับ",
+                        "ข้อมูลของคุณ",
+                        "แก้ไข",
+                        "รถของคุณ",
+                        "ใบอนุญาตขับรถ",
+                        "รถยนต์",
+                        "จักรยานยนต์",
+                        $sex,
+                    ];
+
+                    for ($i=0; $i < count($data_topic); $i++) { 
+
+                        $text_topic = DB::table('text_topics')
+                                ->select($user_language)
+                                ->where('th', $data_topic[$i])
+                                ->where('en', "!=", null)
+                                ->get();
+
+                        foreach ($text_topic as $item_of_text_topic) {
+                            $data_topic[$i] = $item_of_text_topic->$user_language ;
+                        }
+                    }
                     
                     if (!empty($item->photo)) {
                         $photo_profile = "https://www.viicheck.com/storage/".$item->photo ;
@@ -240,6 +247,7 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("ใบอนุญาตขับรถ",$data_topic[4],$string_json);
                     $string_json = str_replace("รถยนต์",$data_topic[5],$string_json);
                     $string_json = str_replace("จักรยานยนต์",$data_topic[6],$string_json);
+                    $string_json = str_replace("ชาย",$data_topic[7],$string_json);
                     $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_profile,$string_json);
                     $string_json = str_replace("E Benze",$item->name,$string_json);
                     $string_json = str_replace("benze@gmail.com",$item->email,$string_json);
@@ -255,12 +263,13 @@ class LineMessagingAPI extends Model
                     }else{
                         $string_json = str_replace("31/08/1998","กรุณาเพิ่มวันเกิด",$string_json);
                     }
+
                     // เพศ
-                    if (!empty($item->sex)) {
-                        $string_json = str_replace("ชาย",$item->sex,$string_json);
-                    }else{
-                        $string_json = str_replace("ชาย","กรุณาระบุเพศ",$string_json);
-                    }
+                    // if (!empty($item->sex)) {
+                    //     $string_json = str_replace("ชาย",$item->sex,$string_json);
+                    // }else{
+                    //     $string_json = str_replace("ชาย","กรุณาระบุเพศ",$string_json);
+                    // }
                     // ranking
                     if (!empty($item->ranking)) {
                         switch ($item->ranking) {
