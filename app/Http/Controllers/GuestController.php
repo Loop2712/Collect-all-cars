@@ -297,6 +297,7 @@ class GuestController extends Controller
                     "เวลาที่ถูกแจ้ง",
                     "หมายเลขทะเบียน",
                     "ส่งข้อความตอบกลับ",
+                    "โทร",
                 ];
 
                 for ($i=0; $i < count($data_topic); $i++) { 
@@ -366,6 +367,7 @@ class GuestController extends Controller
                             $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
                             $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
                             $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
+                            $string_json = str_replace("โทร",$data_topic[4],$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
                             }
@@ -402,6 +404,7 @@ class GuestController extends Controller
                             $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
                             $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
                             $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
+                            $string_json = str_replace("โทร",$data_topic[4],$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
                         }
