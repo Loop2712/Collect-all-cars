@@ -78,6 +78,7 @@ class LineMessagingAPI extends Model
             "รอสักครู่",
             "ฉันไม่สะดวก",
             "เลือกการตอบกลับ",
+            "ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
         ];
 
         for ($i=0; $i < count($data_topic); $i++) { 
@@ -102,6 +103,7 @@ class LineMessagingAPI extends Model
         $string_json = str_replace("รอสักครู่",$data_topic[1],$string_json);
         $string_json = str_replace("ฉันไม่สะดวก",$data_topic[2],$string_json);
         $string_json = str_replace("เลือกการตอบกลับ",$data_topic[3],$string_json);
+        $string_json = str_replace("ตอบกลับได้เพียง 1 ข้อ เท่านั้น",$data_topic[4],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
