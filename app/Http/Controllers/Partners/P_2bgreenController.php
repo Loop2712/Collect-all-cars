@@ -144,11 +144,6 @@ class P_2bgreenController extends Controller
             }
         }
 
-        echo "<pre>";
-        print_r($guest);
-        echo "<pre>";
-        exit();
-
         return view('Partners_2bgreen.P_2begreen_guest', compact('guest','count_per_month','guest_year'));
     }
 
