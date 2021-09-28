@@ -122,6 +122,7 @@ class LineMessagingAPI extends Model
                     "เช็คราคารถมือสอง",
                     "ถามตอบ",
                     "ติดต่อ",
+                    "ยินดีให้บริการค่ะ",
                 ];
 
                 for ($i=0; $i < count($data_topic); $i++) { 
@@ -143,6 +144,7 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("เช็คราคารถมือสอง",$data_topic[1],$string_json);
                 $string_json = str_replace("ถามตอบ",$data_topic[2],$string_json);
                 $string_json = str_replace("ติดต่อ",$data_topic[3],$string_json);
+                $string_json = str_replace("ยินดีให้บริการค่ะ",$data_topic[4],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
