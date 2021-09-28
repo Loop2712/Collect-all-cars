@@ -57,25 +57,7 @@ class LineApiController extends Controller
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
-
-        // $data_users = DB::table('users')
-        //         ->where('provider_id', $event["source"]['userId'])
-        //         ->where('status', "active")
-        //         ->get();
-
-        // foreach ($data_users as $data_user) {
-        //     $user_language = $data_user->language ;
-        // }
         
-        // $text_topic = DB::table('text_topics')
-        //         ->select('th')
-        //         ->where($user_language, $data_postback)
-        //         ->get();
-
-        // foreach ($text_topic as $item) {
-        //     $text_th = $item->th ;
-        // }
-
         switch($data_postback){
             case "wait" : 
                 $line->_pushguestLine(null, $event, "wait");

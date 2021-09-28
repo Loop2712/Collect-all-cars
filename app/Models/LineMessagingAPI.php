@@ -64,10 +64,44 @@ class LineMessagingAPI extends Model
         $registration_number = $license_plate[0];
         $province = $license_plate[1];
 
+        $data_users = DB::table('users')
+                    ->where('provider_id', $event["source"]['userId'])
+                    ->where('status', "active")
+                    ->get();
+
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
+
+        $data_topic = [
+            "ขอบคุณ",
+            "รอสักครู่",
+            "ฉันไม่สะดวก",
+            "เลือกการตอบกลับ",
+        ];
+
+        for ($i=0; $i < count($data_topic); $i++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($user_language)
+                    ->where('th', $data_topic[$i])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$i] = $item_of_text_topic->$user_language ;
+            }
+        }
+
         $template_path = storage_path('../public/json/flex-reply-option.json');   
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
         $string_json = str_replace("กรุงเทพ",$province,$string_json);
+
+        $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
+        $string_json = str_replace("รอสักครู่",$data_topic[1],$string_json);
+        $string_json = str_replace("ฉันไม่สะดวก",$data_topic[2],$string_json);
+        $string_json = str_replace("เลือกการตอบกลับ",$data_topic[3],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
