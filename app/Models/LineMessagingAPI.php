@@ -1314,34 +1314,36 @@ class LineMessagingAPI extends Model
             $to_user = $item->reply_provider_id;
         }
 
-        $data_users = DB::table('users')
-                    ->where('provider_id', $to_user)
-                    ->where('status', "active")
-                    ->get();
-
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-        }
-
-        $data_topic = [
+        $data_Text_topic = [
             "โปรดรอสักครู่",
             "ขอบคุณค่ะ",
             "เวลาที่ตอบกลับ",
             "หมายเลขทะเบียน",
         ];
 
-        for ($i=0; $i < count($data_topic); $i++) { 
+        $data_topic = $this->language_for_user($data_Text_topic, $to_user);
 
-            $text_topic = DB::table('text_topics')
-                    ->select($user_language)
-                    ->where('th', $data_topic[$i])
-                    ->where('en', "!=", null)
-                    ->get();
+        // $data_users = DB::table('users')
+        //             ->where('provider_id', $to_user)
+        //             ->where('status', "active")
+        //             ->get();
 
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$i] = $item_of_text_topic->$user_language ;
-            }
-        }
+        // foreach ($data_users as $data_user) {
+        //     $user_language = $data_user->language ;
+        // }
+
+        // for ($i=0; $i < count($data_topic); $i++) { 
+
+        //     $text_topic = DB::table('text_topics')
+        //             ->select($user_language)
+        //             ->where('th', $data_topic[$i])
+        //             ->where('en', "!=", null)
+        //             ->get();
+
+        //     foreach ($text_topic as $item_of_text_topic) {
+        //         $data_topic[$i] = $item_of_text_topic->$user_language ;
+        //     }
+        // }
 
         foreach($type_login as $item){
             
@@ -1619,5 +1621,32 @@ class LineMessagingAPI extends Model
 
     }
 
+    public function language_for_user($data_topic, $to_user)
+    {
+        $data_users = DB::table('users')
+                    ->where('provider_id', $to_user)
+                    ->where('status', "active")
+                    ->get();
+
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
+
+        for ($i=0; $i < count($data_topic); $i++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($user_language)
+                    ->where('th', $data_topic[$i])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$i] = $item_of_text_topic->$user_language ;
+            }
+        }
+
+        return $data_topic ;
+
+    }
 
 }
