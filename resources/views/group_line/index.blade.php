@@ -27,9 +27,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>GroupId</th>
                                         <th>ชื่อกลุ่มไลน์</th>
                                         <th>เจ้าของกลุ่ม</th>
+                                        <th>Time zone</th>
+                                        <th>ภาษา</th>
+                                        <th>GroupId</th>
                                         <!-- <th>PictureUrl</th> -->
                                         <!-- <th>Actions</th> -->
                                     </tr>
@@ -38,9 +40,11 @@
                                 @foreach($group_line as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->groupId }}</td>
                                         <td>{{ $item->groupName }}</td>
                                         <td>{{ $item->owner }}</td>
+                                        <td>{{ $item->time_zone }}</td>
+                                        <td>{{ $item->language }}</td>
+                                        <td>{{ $item->groupId }}</td>
                                         <!-- <td>{{ $item->pictureUrl }}</td> -->
                                         <!-- <td>
                                             <a href="{{ url('/group_line/' . $item->id) }}" title="View Group_line"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
