@@ -283,11 +283,35 @@ class GuestController extends Controller
             foreach ($users as $user) {
                 $type_user = $user->type;
                 $name_time_zone = $user->time_zone;
+                $user_language = $user->language;
             }
 
             // TIME ZONE
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+            if ($massengbox != "6") {
+
+                $data_topic = [
+                    $masseng,
+                    "เวลาที่ถูกแจ้ง",
+                    "หมายเลขทะเบียน",
+                    "ส่งข้อความตอบกลับ",
+                ];
+
+                for ($i=0; $i < count($data_topic); $i++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$i])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$i] = $item_of_text_topic->$user_language ;
+                    }
+                }
+            }
 
             if (!empty($item->organization_mail)) {
 
@@ -299,7 +323,7 @@ class GuestController extends Controller
                     "branch" => $item->branch,
                     "branch_district" => $item->branch_district,
                     "branch_province" => $item->branch_province,
-                    "masseng" => $masseng,
+                    "masseng" => $data_topic[0],
                     "phone" => $phone,
                 ];
 
@@ -313,27 +337,35 @@ class GuestController extends Controller
                         if (empty($phone)) {
                             $template_path = storage_path('../public/json/flex-accident.json');   
                             $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
                             $string_json = str_replace("uploads",$photo,$string_json);
                             $string_json = str_replace("pphhoottoo",$photo,$string_json);
+
+                            $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
+                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
+                            $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
                         }
                         if (!empty($phone)) {
                             $template_path = storage_path('../public/json/flex-accident-call.json');   
                             $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
                             $string_json = str_replace("uploads",$photo,$string_json);
                             $string_json = str_replace("pphhoottoo",$photo,$string_json);
                             $string_json = str_replace("0999999999",$phone,$string_json);
+
+                            $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
+                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
+                            $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
                             }
@@ -343,25 +375,33 @@ class GuestController extends Controller
                         if (empty($phone)) {
                             $template_path = storage_path('../public/json/flex-move.json');   
                             $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
+
+                            $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
+                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
+                            $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
                         }
                         if (!empty($phone)) {
                             $template_path = storage_path('../public/json/flex-move-call.json');   
                             $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง",$masseng,$string_json);
+                            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
-                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$masseng,$string_json);
+                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
                             $string_json = str_replace("0999999999",$phone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
+
+                            $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
+                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
+                            $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
                         }
