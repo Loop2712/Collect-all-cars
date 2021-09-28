@@ -14,6 +14,7 @@ use App\Models\Profanity;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToGuest_notcomfor;
+use App\Models\LineMessagingAPI;
 
 class Not_comforController extends Controller
 {
@@ -171,12 +172,23 @@ class Not_comforController extends Controller
 
     public function _push_Not_comforLine($data)
     {   
+        $line = new LineMessagingAPI();
+
         if (empty($data['reply_provider_id'])) {
 
             $provider_id = $data['provider_id'];
 
+            $data_Text_topic = [
+                "ไม่สามารถทำการตอบกลับได้ เนื่องจากคุณทำการตอบกลับไปก่อนหน้านี้แล้วค่ะ",
+                "ไม่สามารถทำการตอบกลับได้ค่ะ",
+            ];
+
+            $data_topic = $line->language_for_user($data_Text_topic, $provider_id);
+
             $template_path = storage_path('../public/json/not_sent.json');   
             $string_json = file_get_contents($template_path);
+            $string_json = str_replace("ไม่สามารถทำการตอบกลับได้ เนื่องจากคุณทำการตอบกลับไปก่อนหน้านี้แล้วค่ะ",$data_topic[0],$string_json);
+            $string_json = str_replace("ไม่สามารถทำการตอบกลับได้ค่ะ",$data_topic[1],$string_json);
             $messages = [ json_decode($string_json, true) ];
 
             $body = [
@@ -209,6 +221,16 @@ class Not_comforController extends Controller
 
             $provider_id = $data['provider_id'];
 
+            $data_Text_topic = [
+                "ผู้ใช้แจ้งว่า",
+                "ฉันไม่สะดวก",
+                "เนื่องจาก",
+                "หมายเลขทะเบียน",
+                "โทร",
+            ];
+
+            $data_topic = $line->language_for_user($data_Text_topic, $provider_id);
+
             $reply_provider_id = $data['reply_provider_id'];
             $content = $data['content'];
             $phone = $data['phone'];
@@ -231,27 +253,32 @@ class Not_comforController extends Controller
                             case "Yes":  
                                 $template_path = storage_path('../public/json/not_comfor_p.json');   
                                 $string_json = file_get_contents($template_path);
-                                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
+                                $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                                 $string_json = str_replace("9กก9999",$registration_number,$string_json);
                                 $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                                $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก",$string_json);
-                                $string_json = str_replace("Thankyou","I'm not available",$string_json);
+                                $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
                                 $string_json = str_replace("ประชุม",$content,$string_json);
                                 if (!empty($phone)) {
                                     $string_json = str_replace("0999999999",$phone,$string_json);
                                 }
+
+                                $string_json = str_replace("เนื่องจาก",$data_topic[2],$string_json);
+                                $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
+                                $string_json = str_replace("โทร",$data_topic[4],$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                                 break;
                             case "No":  
                                 $template_path = storage_path('../public/json/not_comfor_not_p.json');   
                                 $string_json = file_get_contents($template_path);
-                                $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า",$string_json);
+                                $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                                 $string_json = str_replace("9กก9999",$registration_number,$string_json);
                                 $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                                $string_json = str_replace("ขอบคุณ","ฉันไม่สะดวก",$string_json);
-                                $string_json = str_replace("Thankyou","I'm not available",$string_json);
+                                $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
                                 $string_json = str_replace("ประชุม",$content,$string_json);
+
+                                $string_json = str_replace("เนื่องจาก",$data_topic[2],$string_json);
+                                $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                                 break;

@@ -127,20 +127,11 @@ class LineMessagingAPI extends Model
 
     public function replyToUser($data, $event, $message_type)
     {   
-        $data_users = DB::table('users')
-                    ->where('provider_id', $event["source"]['userId'])
-                    ->where('status', "active")
-                    ->get();
-
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-        }
-
     	switch($message_type)
         {
         	case "other": 
 
-                $data_topic = [
+                $data_Text_topic = [
                     "ข้อมูลของคุณ",
                     "เช็คราคารถมือสอง",
                     "ถามตอบ",
@@ -148,18 +139,7 @@ class LineMessagingAPI extends Model
                     "ยินดีให้บริการค่ะ",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $template_path = storage_path('../public/json/flex-other_new.json');   
                 $string_json = file_get_contents($template_path);
@@ -179,24 +159,13 @@ class LineMessagingAPI extends Model
                 break;
             case "contact": 
 
-                $data_topic = [
+                $data_Text_topic = [
                     "โทร",
                     "อีเมล",
                     "Facebook",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $template_path = storage_path('../public/json/flex-contact.json');   
                 $string_json = file_get_contents($template_path);
@@ -232,7 +201,7 @@ class LineMessagingAPI extends Model
                         $sex = "กรุณาระบุเพศ" ;
                     }
 
-                    $data_topic = [
+                    $data_Text_topic = [
                         "อันดับ",
                         "ข้อมูลของคุณ",
                         "แก้ไข",
@@ -243,18 +212,7 @@ class LineMessagingAPI extends Model
                         $sex,
                     ];
 
-                    for ($i=0; $i < count($data_topic); $i++) { 
-
-                        $text_topic = DB::table('text_topics')
-                                ->select($user_language)
-                                ->where('th', $data_topic[$i])
-                                ->where('en', "!=", null)
-                                ->get();
-
-                        foreach ($text_topic as $item_of_text_topic) {
-                            $data_topic[$i] = $item_of_text_topic->$user_language ;
-                        }
-                    }
+                    $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
                     
                     if (!empty($item->photo)) {
                         $photo_profile = "https://www.viicheck.com/storage/".$item->photo ;
@@ -336,25 +294,14 @@ class LineMessagingAPI extends Model
                 break;
             case "mycar": 
 
-                $data_topic = [
+                $data_Text_topic = [
                     "รถของฉัน",
                     "พรบ",
                     "ประกัน",
                     "ดูรถทั้งหมด",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $provider_id = $event["source"]['userId'];
 
@@ -661,25 +608,14 @@ class LineMessagingAPI extends Model
 
             case "mymotorcycles": 
 
-                $data_topic = [
+                $data_Text_topic = [
                     "รถของฉัน",
                     "พรบ",
                     "ประกัน",
                     "ดูรถทั้งหมด",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $provider_id = $event["source"]['userId'];
 
@@ -978,23 +914,12 @@ class LineMessagingAPI extends Model
 
             case "driver_license":
 
-                $data_topic = [
+                $data_Text_topic = [
                     "รถยนต์",
                     "จักรยานยนต์",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $provider_id = $event["source"]['userId'];
 
@@ -1036,24 +961,13 @@ class LineMessagingAPI extends Model
 
             case "promotion": 
 
-                $data_topic = [
+                $data_Text_topic = [
                     "โปรโมชั่น",
                     "โปรโมชั่นรถยนต์",
                     "โปรโมชั่นรถจักรยานยนต์",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $template_path = storage_path('../public/json/flex-promotion.json');   
                 $string_json = file_get_contents($template_path);
@@ -1068,24 +982,13 @@ class LineMessagingAPI extends Model
 
             case "promotion_car": 
 
-                $data_topic = [
+                $data_Text_topic = [
                     "ดูโปรโมชั่นเพิ่มเติม",
                     "โปรโมชั่น",
                     "รายละเอียด",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $template_path = storage_path('../public/json/flex-promotion_car.json');   
                 $string_json = file_get_contents($template_path);
@@ -1138,24 +1041,13 @@ class LineMessagingAPI extends Model
 
             case "promotion_motorcycle": 
 
-                $data_topic = [
+                $data_Text_topic = [
                     "ดูโปรโมชั่นเพิ่มเติม",
                     "โปรโมชั่น",
                     "รายละเอียด",
                 ];
 
-                for ($i=0; $i < count($data_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
+                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
                 $template_path = storage_path('../public/json/flex-promotion_car.json');   
                 $string_json = file_get_contents($template_path);
