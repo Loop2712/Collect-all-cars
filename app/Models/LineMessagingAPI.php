@@ -1315,13 +1315,35 @@ class LineMessagingAPI extends Model
                     ->get();
 
         foreach ($act as $item) {
+
+            $data_Text_topic = [
+                    "พรบ. ของคุณใกล้หมดอายุ",
+                    "พรบ",
+                    "ของคุณเหลือน้อยกว่า",
+                    "วัน",
+                    "จะหมดอายุวันที่",
+                    "หมายเลขทะเบียน",
+                    "ขออภัยหากท่านต่ออายุแล้ว",
+                    "แก้ไขวันที่",
+                ];
+
+            $data_topic = $this->language_for_user($data_Text_topic, $item->provider_id);
+
             $template_path = storage_path('../public/json/flex-act.json');   
             $string_json = file_get_contents($template_path);
-            $string_json = str_replace("ตัวอย่าง","พรบ. ของคุณใกล้หมดอายุ",$string_json);
+            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
             $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
             $string_json = str_replace("00/00/0000",$item->act,$string_json);
             $string_json = str_replace("car_id",$item->id,$string_json);
+
+            $string_json = str_replace("พรบ",$data_topic[1],$string_json);
+            $string_json = str_replace("ของคุณเหลือน้อยกว่า",$data_topic[2],$string_json);
+            $string_json = str_replace("วัน",$data_topic[3],$string_json);
+            $string_json = str_replace("จะหมดอายุวันที่",$data_topic[4],$string_json);
+            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[5],$string_json);
+            $string_json = str_replace("ขออภัยหากท่านต่ออายุแล้ว",$data_topic[6],$string_json);
+            $string_json = str_replace("แก้ไขวันที่",$data_topic[7],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
@@ -1366,14 +1388,35 @@ class LineMessagingAPI extends Model
                     ->get();
 
         foreach ($insurance as $item) {
+
+            $data_Text_topic = [
+                    "ประกันภัย ของคุณใกล้หมดอายุ",
+                    "ประกัน",
+                    "ของคุณเหลือน้อยกว่า",
+                    "วัน",
+                    "จะหมดอายุวันที่",
+                    "หมายเลขทะเบียน",
+                    "ขออภัยหากท่านต่ออายุแล้ว",
+                    "แก้ไขวันที่",
+                ];
+
+            $data_topic = $this->language_for_user($data_Text_topic, $item->provider_id);
+
             $template_path = storage_path('../public/json/flex-act.json');   
             $string_json = file_get_contents($template_path);
-            $string_json = str_replace("ตัวอย่าง","ประกัน ของคุณใกล้หมดอายุ",$string_json);
+            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
             $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
             $string_json = str_replace("00/00/0000",$item->insurance,$string_json);
-            $string_json = str_replace("พรบ","ประกัน",$string_json);
+            $string_json = str_replace("พรบ",$data_topic[1],$string_json);
             $string_json = str_replace("car_id",$item->id,$string_json);
+
+            $string_json = str_replace("ของคุณเหลือน้อยกว่า",$data_topic[2],$string_json);
+            $string_json = str_replace("วัน",$data_topic[3],$string_json);
+            $string_json = str_replace("จะหมดอายุวันที่",$data_topic[4],$string_json);
+            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[5],$string_json);
+            $string_json = str_replace("ขออภัยหากท่านต่ออายุแล้ว",$data_topic[6],$string_json);
+            $string_json = str_replace("แก้ไขวันที่",$data_topic[7],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
