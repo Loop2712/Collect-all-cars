@@ -71,16 +71,7 @@ class LineMessagingAPI extends Model
         $registration_number = $license_plate[0];
         $province = $license_plate[1];
 
-        $data_users = DB::table('users')
-                    ->where('provider_id', $event["source"]['userId'])
-                    ->where('status', "active")
-                    ->get();
-
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-        }
-
-        $data_topic = [
+        $data_Text_topic = [
             "ขอบคุณ",
             "รอสักครู่",
             "ฉันไม่สะดวก",
@@ -88,18 +79,7 @@ class LineMessagingAPI extends Model
             "ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
         ];
 
-        for ($i=0; $i < count($data_topic); $i++) { 
-
-            $text_topic = DB::table('text_topics')
-                    ->select($user_language)
-                    ->where('th', $data_topic[$i])
-                    ->where('en', "!=", null)
-                    ->get();
-
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$i] = $item_of_text_topic->$user_language ;
-            }
-        }
+        $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
         $template_path = storage_path('../public/json/flex-reply-option.json');   
         $string_json = file_get_contents($template_path);
