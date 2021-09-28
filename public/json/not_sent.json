@@ -18,9 +18,15 @@
             "size": "full",
             "aspectRatio": "16:9",
             "align": "center",
-            "aspectMode": "fit"
+            "aspectMode": "fit",
+            "margin": "xxl",
+            "offsetBottom": "md"
           }
-        ]
+        ],
+        "borderColor": "#ff0101",
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl"
       },
       {
         "type": "box",
