@@ -57,7 +57,7 @@ class LineApiController extends Controller
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
-        
+
         switch($data_postback){
             case "wait" : 
                 $line->_pushguestLine(null, $event, "wait");
@@ -217,7 +217,7 @@ class LineApiController extends Controller
         }
 
         if (empty($user_language)) {
-            // ริชเมนู TH
+            // ริชเมนู EN
             $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
         }else {
             switch ($user_language) {

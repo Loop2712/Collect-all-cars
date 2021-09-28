@@ -179,7 +179,7 @@ class Not_comforController extends Controller
             $provider_id = $data['provider_id'];
 
             $data_Text_topic = [
-                "ไม่สามารถทำการตอบกลับได้ เนื่องจากคุณทำการตอบกลับไปก่อนหน้านี้แล้วค่ะ",
+                "คุณได้ตอบกลับเรียบร้อยแล้ว",
                 "ไม่สามารถทำการตอบกลับได้ค่ะ",
             ];
 
@@ -187,7 +187,7 @@ class Not_comforController extends Controller
 
             $template_path = storage_path('../public/json/not_sent.json');   
             $string_json = file_get_contents($template_path);
-            $string_json = str_replace("ไม่สามารถทำการตอบกลับได้ เนื่องจากคุณทำการตอบกลับไปก่อนหน้านี้แล้วค่ะ",$data_topic[0],$string_json);
+            $string_json = str_replace("คุณได้ตอบกลับเรียบร้อยแล้ว",$data_topic[0],$string_json);
             $string_json = str_replace("ไม่สามารถทำการตอบกลับได้ค่ะ",$data_topic[1],$string_json);
             $messages = [ json_decode($string_json, true) ];
 
