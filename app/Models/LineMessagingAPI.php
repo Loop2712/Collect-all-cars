@@ -1377,6 +1377,9 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
 
+                            $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
+                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
+
                             $messages = [ json_decode($string_json, true) ];
                             break;
 
