@@ -21,9 +21,36 @@ class LineMessagingAPI extends Model
 
     public function reply_success($event)
     {
+        $data_users = DB::table('users')
+                    ->where('provider_id', $event["source"]['userId'])
+                    ->where('status', "active")
+                    ->get();
+
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
+
+        $data_topic = [
+            "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
+        ];
+
+        for ($i=0; $i < count($data_topic); $i++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($user_language)
+                    ->where('th', $data_topic[$i])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$i] = $item_of_text_topic->$user_language ;
+            }
+        }
+
         $template_path = storage_path('../public/json/text_success.json');   
 
         $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",$data_topic[0],$string_json);
         $messages = [ json_decode($string_json, true) ];
 
 
@@ -1287,6 +1314,35 @@ class LineMessagingAPI extends Model
             $to_user = $item->reply_provider_id;
         }
 
+        $data_users = DB::table('users')
+                    ->where('provider_id', $to_user)
+                    ->where('status', "active")
+                    ->get();
+
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
+
+        $data_topic = [
+            "โปรดรอสักครู่",
+            "ขอบคุณค่ะ",
+            "เวลาที่ตอบกลับ",
+            "หมายเลขทะเบียน",
+        ];
+
+        for ($i=0; $i < count($data_topic); $i++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($user_language)
+                    ->where('th', $data_topic[$i])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$i] = $item_of_text_topic->$user_language ;
+            }
+        }
+
         foreach($type_login as $item){
             
             // TIME ZONE LINE
@@ -1302,10 +1358,12 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                             $string_json = str_replace("9กก9999",$registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                            $string_json = str_replace("ขอบคุณ","โปรดรอสักครู่",$string_json);
-                            $string_json = str_replace("Thankyou","Please wait a moment",$string_json);
+                            $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","8",$string_json);
+
+                            $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
+                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
 
                             $messages = [ json_decode($string_json, true) ];
                             break;
@@ -1315,8 +1373,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                             $string_json = str_replace("9กก9999",$registration_number,$string_json);
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                            $string_json = str_replace("ขอบคุณ","ขอบคุณค่ะ",$string_json);
-                            $string_json = str_replace("Thankyou","Thank you",$string_json);
+                            $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
 
