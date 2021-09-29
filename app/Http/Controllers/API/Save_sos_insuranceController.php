@@ -54,18 +54,18 @@ class Save_sos_insuranceController extends Controller
         if ($status_partner == "Yes") {
 
             // ส่งข้อมูลผ่านเมล
-            $data_cars = Register_car::where('id', $data['car_id'])->get();
-            $datetime =  date("d-m-Y  h:i:sa");
-            $data['lat_mail'] = "@".$data['lat'];
+            // $data_cars = Register_car::where('id', $data['car_id'])->get();
+            // $datetime =  date("d-m-Y  h:i:sa");
+            // $data['lat_mail'] = "@".$data['lat'];
 
-                foreach ($data_cars as $item ) {
-                    $data['registration_number'] = $item->registration_number;
-                    $data['province'] = $item->province;
-                    $data['datetime'] = $time_zone;
+            //     foreach ($data_cars as $item ) {
+            //         $data['registration_number'] = $item->registration_number;
+            //         $data['province'] = $item->province;
+            //         $data['datetime'] = $time_zone;
 
-                    $email = "thanakorn.tnk12@gmail.com";
-                    Mail::to($email)->send(new MailToInsurance($data));
-                }
+            //         $email = "thanakorn.tnk12@gmail.com";
+            //         Mail::to($email)->send(new MailToInsurance($data));
+            //     }
 
             // ส่งข้อมูลผ่านไลน์ 
             $this->_pushLine($data);
