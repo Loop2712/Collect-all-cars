@@ -22,17 +22,6 @@
           {
             "type": "text",
             "color": "#07375D",
-            "text": "เรียน",
-            "margin": "xxl",
-            "size": "lg",
-            "align": "center",
-            "weight": "bold",
-            "gravity": "bottom",
-            "wrap": true
-          },
-          {
-            "type": "text",
-            "color": "#07375D",
             "text": "TNK",
             "margin": "xl",
             "size": "xl",
@@ -143,7 +132,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "คุณ name",
+            "text": "name",
             "size": "lg",
             "margin": "lg",
             "color": "#FFFFFF"

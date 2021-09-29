@@ -86,7 +86,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "คุณ name",
+            "text": "name",
             "size": "lg",
             "margin": "lg",
             "color": "#FFFFFF"
