@@ -227,6 +227,7 @@ class Not_comforController extends Controller
                 "เนื่องจาก",
                 "หมายเลขทะเบียน",
                 "โทร",
+                $content,
             ];
 
             $data_topic = $line->language_for_user($data_Text_topic, $provider_id);
@@ -257,7 +258,7 @@ class Not_comforController extends Controller
                                 $string_json = str_replace("9กก9999",$registration_number,$string_json);
                                 $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                                 $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
-                                $string_json = str_replace("ประชุม",$content,$string_json);
+                                $string_json = str_replace("ประชุม",$data_topic[5],$string_json);
                                 if (!empty($phone)) {
                                     $string_json = str_replace("0999999999",$phone,$string_json);
                                 }
@@ -275,7 +276,7 @@ class Not_comforController extends Controller
                                 $string_json = str_replace("9กก9999",$registration_number,$string_json);
                                 $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                                 $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
-                                $string_json = str_replace("ประชุม",$content,$string_json);
+                                $string_json = str_replace("ประชุม",$data_topic[5],$string_json);
 
                                 $string_json = str_replace("เนื่องจาก",$data_topic[2],$string_json);
                                 $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
