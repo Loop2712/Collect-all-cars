@@ -182,6 +182,17 @@ class P_2bgreenController extends Controller
         return view('Partners_2bgreen.P_2begreen_sos', compact('view_map' , 'sos_all' , 'area','text_at'));
     }
 
+    public function service_area(Request $request)
+    {
+        $test = "" ;
+        $body = [
+            "replyToken" => "",
+            "messages" => "",
+        ];
+
+        return view('Partners_2bgreen.P_2begreen_service_area_adjustment', compact('test','body'));
+    }
+
     public function sos_detail_chart(Request $request)
     {
         $year = $request->get('year');
