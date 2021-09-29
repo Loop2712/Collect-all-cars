@@ -31,7 +31,7 @@ class Save_sos_insuranceController extends Controller
         foreach ($data_line_group as $key_line) {
             $groupId = $key_line->groupId ;
             $name_time_zone = $key_line->time_zone ;
-            $group_language = $key->language ;
+            $group_language = $key_line->language ;
         }
 
         // TIME ZONE
