@@ -54,18 +54,18 @@ class Save_sos_insuranceController extends Controller
         if ($status_partner == "Yes") {
 
             // ส่งข้อมูลผ่านเมล
-            // $data_cars = Register_car::where('id', $data['car_id'])->get();
-            // $datetime =  date("d-m-Y  h:i:sa");
-            // $data['lat_mail'] = "@".$data['lat'];
+            $data_cars = Register_car::where('id', $data['car_id'])->get();
+            $datetime =  date("d-m-Y  h:i:sa");
+            $data['lat_mail'] = "@".$data['lat'];
 
-            //     foreach ($data_cars as $item ) {
-            //         $data['registration_number'] = $item->registration_number;
-            //         $data['province'] = $item->province;
-            //         $data['datetime'] = $time_zone;
+                foreach ($data_cars as $item ) {
+                    $data['registration_number'] = $item->registration_number;
+                    $data['province'] = $item->province;
+                    $data['datetime'] = $time_zone;
 
-            //         $email = "thanakorn.tnk12@gmail.com";
-            //         Mail::to($email)->send(new MailToInsurance($data));
-            //     }
+                    $email = "thanakorn.tnk12@gmail.com";
+                    Mail::to($email)->send(new MailToInsurance($data));
+                }
 
             // ส่งข้อมูลผ่านไลน์ 
             $this->_pushLine($data);
@@ -87,32 +87,32 @@ class Save_sos_insuranceController extends Controller
 
         $datetime =  date("d-m-Y  h:i:sa");
 
-        $data_topic = [
-                    "ขอความช่วยเหลือด่วน",
-                    "หมายเลขทะเบียน",
-                    "เวลา",
-                    "จาก",
-                    "โทร",
-                ];
+        // $data_topic = [
+        //             "ขอความช่วยเหลือด่วน",
+        //             "หมายเลขทะเบียน",
+        //             "เวลา",
+        //             "จาก",
+        //             "โทร",
+        //         ];
 
-        for ($i=0; $i < count($data_topic); $i++) { 
+        // for ($i=0; $i < count($data_topic); $i++) { 
 
-            $text_topic = DB::table('text_topics')
-                    ->select($data['group_language'])
-                    ->where('th', $data_topic[$i])
-                    ->where('en', "!=", null)
-                    ->get();
+        //     $text_topic = DB::table('text_topics')
+        //             ->select($data['group_language'])
+        //             ->where('th', $data_topic[$i])
+        //             ->where('en', "!=", null)
+        //             ->get();
 
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$i] = $item_of_text_topic->$data['group_language'] ;
-            }
-        }
+        //     foreach ($text_topic as $item_of_text_topic) {
+        //         $data_topic[$i] = $item_of_text_topic->$data['group_language'] ;
+        //     }
+        // }
 
         foreach ($data_cars as $item ) {
 
             $template_path = storage_path('../public/json/ask_for_insurance.json');   
             $string_json = file_get_contents($template_path);
-            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+            // $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
             $string_json = str_replace("TNK",$data['insurance'],$string_json);
             $string_json = str_replace("กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กทม",$item->province,$string_json);
@@ -124,11 +124,11 @@ class Save_sos_insuranceController extends Controller
             $string_json = str_replace("lng",$data['lng'],$string_json);
             $string_json = str_replace("lat_mail",$data['lat_mail'],$string_json);
 
-            $string_json = str_replace("ขอความช่วยเหลือด่วน",$data_topic[0],$string_json);
-            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[1],$string_json);
-            $string_json = str_replace("เวลา",$data_topic[2],$string_json);
-            $string_json = str_replace("จาก",$data_topic[3],$string_json);
-            $string_json = str_replace("โทร",$data_topic[4],$string_json);
+            // $string_json = str_replace("ขอความช่วยเหลือด่วน",$data_topic[0],$string_json);
+            // $string_json = str_replace("หมายเลขทะเบียน",$data_topic[1],$string_json);
+            // $string_json = str_replace("เวลา",$data_topic[2],$string_json);
+            // $string_json = str_replace("จาก",$data_topic[3],$string_json);
+            // $string_json = str_replace("โทร",$data_topic[4],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
         }
