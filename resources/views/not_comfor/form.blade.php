@@ -47,7 +47,7 @@
 
 <input class="form-control" name="province" type="hidden" id="province" value="{{ isset($not_comfor->province) ? $not_comfor->province : $province}}" readonly>
     {!! $errors->first('province', '<p class="help-block">:message</p>') !!}
-<span style="font-size: 22px;" class="control-label">{{ 'เหตุผลของท่าน / Please give reasons'}}</span>
+<span style="font-size: 22px;" class="control-label">{{ 'เหตุผลของท่าน'}}</span>
 <br>
 <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
     <!-- <label for="provider_id" class="control-label">{{ 'Provider Id' }}</label> -->
@@ -60,14 +60,25 @@
     {!! $errors->first('reply_provider_id', '<p class="help-block">:message</p>') !!}
 </div>
 
-(<span class="text-secondary" id="str_title">0</span>/22)</span>
+<!-- (<span class="text-secondary" id="str_title">0</span>/22)</span> -->
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
-    <!-- <label for="content" class="control-label">{{ 'เหตุผล / Because' }}</label><span style="color: #FF0033;"> *</span> -->
-    <input class="form-control" name="content" type="text" id="content" value="{{ isset($not_comfor->content) ? $not_comfor->content : ''}}" required onkeydown="str_title();">
+    <label for="content" class="control-label">{{ 'เหตุผล' }}</label><span style="color: #FF0033;"> *</span>
+    <!-- <input class="form-control" name="content" type="text" id="content" value="{{ isset($not_comfor->content) ? $not_comfor->content : ''}}" required onkeydown="str_title();"> -->
+    <select name="content" class="form-control"  id="content" required >
+        <option value="" selected >- เลือกเหตุผล - </option>  
+        @foreach (json_decode('{
+            "ฉันอยู่นอกพื้นที่":"ฉันอยู่นอกพื้นที่",
+            "ฉันกำลังประชุมอยู่":"ฉันกำลังประชุมอยู่",
+            "ฉันยุ่งมากๆ":"ฉันยุ่งมากๆ"}',
+             true) as $optionKey => $optionValue)
+            <option value="{{ $optionKey }}"  {{ (isset($not_comfor->content) && $not_comfor->content == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+        @endforeach
+    </select>
     {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
 </div>
+
 <div class="form-group {{ $errors->has('want_phone') ? 'has-error' : ''}}">
-    <label for="want_phone" class="control-label">{{ 'เบอร์โทรศัพท์ของท่าน / Your contact number' }}</label><span style="color: #FF0033;"> *</span>
+    <label for="want_phone" class="control-label">{{ 'เบอร์โทรศัพท์ของท่าน' }}</label><span style="color: #FF0033;"> *</span>
     <br>
     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
         <!-- <label for="phone" class="control-label">{{ 'เบอร์ของคุณ / Your phone number' }}</label> -->
@@ -84,7 +95,7 @@
         check(); 
     }else{
         not_check();
-    }">&nbsp;&nbsp;&nbsp;ไม่แสดง / Do not show
+    }">&nbsp;&nbsp;&nbsp;ไม่แสดง
 </div>
 
 
