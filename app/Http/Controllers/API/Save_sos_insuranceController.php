@@ -87,13 +87,13 @@ class Save_sos_insuranceController extends Controller
 
         $datetime =  date("d-m-Y  h:i:sa");
 
-        // $data_topic = [
-        //             "ขอความช่วยเหลือด่วน",
-        //             "หมายเลขทะเบียน",
-        //             "เวลา",
-        //             "จาก",
-        //             "โทร",
-        //         ];
+        $data_topic = [
+                    "ขอความช่วยเหลือด่วน en",
+                    "หมายเลขทะเบียน en",
+                    "เวลา en",
+                    "จาก en",
+                    "โทร en",
+                ];
 
         // for ($i=0; $i < count($data_topic); $i++) { 
 
@@ -112,7 +112,7 @@ class Save_sos_insuranceController extends Controller
 
             $template_path = storage_path('../public/json/ask_for_insurance.json');   
             $string_json = file_get_contents($template_path);
-            // $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
             $string_json = str_replace("TNK",$data['insurance'],$string_json);
             $string_json = str_replace("กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กทม",$item->province,$string_json);
@@ -124,11 +124,11 @@ class Save_sos_insuranceController extends Controller
             $string_json = str_replace("lng",$data['lng'],$string_json);
             $string_json = str_replace("lat_mail",$data['lat_mail'],$string_json);
 
-            // $string_json = str_replace("ขอความช่วยเหลือด่วน",$data_topic[0],$string_json);
-            // $string_json = str_replace("หมายเลขทะเบียน",$data_topic[1],$string_json);
-            // $string_json = str_replace("เวลา",$data_topic[2],$string_json);
-            // $string_json = str_replace("จาก",$data_topic[3],$string_json);
-            // $string_json = str_replace("โทร",$data_topic[4],$string_json);
+            $string_json = str_replace("ขอความช่วยเหลือด่วน",$data_topic[0],$string_json);
+            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[1],$string_json);
+            $string_json = str_replace("เวลา",$data_topic[2],$string_json);
+            $string_json = str_replace("จาก",$data_topic[3],$string_json);
+            $string_json = str_replace("โทร",$data_topic[4],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
         }
