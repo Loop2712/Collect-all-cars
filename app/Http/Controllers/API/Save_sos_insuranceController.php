@@ -88,31 +88,30 @@ class Save_sos_insuranceController extends Controller
         $datetime =  date("d-m-Y  h:i:sa");
 
         $data_topic = [
-                    "ขอความช่วยเหลือด่วน en",
-                    "หมายเลขทะเบียน en",
-                    "เวลา en",
-                    "จาก en",
-                    "โทร en",
+                    "ขอความช่วยเหลือด่วน",
+                    "หมายเลขทะเบียน",
+                    "เวลา",
+                    "จาก",
+                    "โทร",
                 ];
 
-        // for ($i=0; $i < count($data_topic); $i++) { 
+        for ($i=0; $i < count($data_topic); $i++) { 
 
-        //     $text_topic = DB::table('text_topics')
-        //             ->select($data['group_language'])
-        //             ->where('th', $data_topic[$i])
-        //             ->where('en', "!=", null)
-        //             ->get();
+            $text_topic = DB::table('text_topics')
+                    ->select($data['group_language'])
+                    ->where('th', $data_topic[$i])
+                    ->where('en', "!=", null)
+                    ->get();
 
-        //     foreach ($text_topic as $item_of_text_topic) {
-        //         $data_topic[$i] = $item_of_text_topic->$data['group_language'] ;
-        //     }
-        // }
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$i] = $item_of_text_topic->$data['group_language'] ;
+            }
+        }
 
         foreach ($data_cars as $item ) {
 
             $template_path = storage_path('../public/json/ask_for_insurance.json');   
             $string_json = file_get_contents($template_path);
-            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
             $string_json = str_replace("TNK",$data['insurance'],$string_json);
             $string_json = str_replace("กก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กทม",$item->province,$string_json);
