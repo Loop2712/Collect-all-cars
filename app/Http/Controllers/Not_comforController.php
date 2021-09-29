@@ -221,17 +221,6 @@ class Not_comforController extends Controller
 
             $provider_id = $data['provider_id'];
 
-            $data_Text_topic = [
-                "ผู้ใช้แจ้งว่า",
-                "ฉันไม่สะดวก",
-                "เนื่องจาก",
-                "หมายเลขทะเบียน",
-                "โทร",
-                $content,
-            ];
-
-            $data_topic = $line->language_for_user($data_Text_topic, $provider_id);
-
             $reply_provider_id = $data['reply_provider_id'];
             $content = $data['content'];
             $phone = $data['phone'];
@@ -246,6 +235,17 @@ class Not_comforController extends Controller
                             
             $google_registration_number = $registration_number ;
             $google_province = $province ;
+
+            $data_Text_topic = [
+                "ผู้ใช้แจ้งว่า",
+                "ฉันไม่สะดวก",
+                "เนื่องจาก",
+                "หมายเลขทะเบียน",
+                "โทร",
+                $content,
+            ];
+
+            $data_topic = $line->language_for_user($data_Text_topic, $provider_id);
 
             foreach($type_login as $item){
                 switch ($item->type) {
