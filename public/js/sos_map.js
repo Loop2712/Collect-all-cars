@@ -104,11 +104,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let lng_text = document.querySelector("#lng");
         let area_help = document.querySelector("#area_help");
 
-            console.log(text_name.innerHTML);
-            console.log(area_help.innerHTML);
-            console.log(lat_text.value);
-            console.log(lng_text.value);
-            console.log(text_phone.value);
+            // console.log(text_name.innerHTML);
+            // console.log(area_help.innerHTML);
+            // console.log(lat_text.value);
+            // console.log(lng_text.value);
+            // console.log(text_phone.value);
 
         let content = document.querySelector("#content");
         let area = document.querySelector("#area");
