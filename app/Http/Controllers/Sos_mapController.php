@@ -12,6 +12,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
 use App\Http\Controllers\API\API_Time_zone;
+use App\Models\LineMessagingAPI;
 
 class Sos_mapController extends Controller
 {
@@ -215,20 +216,46 @@ class Sos_mapController extends Controller
         foreach ($data_line_group as $key) {
             $groupId = $key->groupId ;
             $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
         }
 
         // TIME ZONE
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
+        $data_topic = [
+                    "ขอความช่วยเหลือ",
+                    "เวลา",
+                    "จาก",
+                    "โทร",
+                ];
+
+        for ($i=0; $i < count($data_topic); $i++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$i])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$i] = $item_of_text_topic->$group_language ;
+            }
+        }
+
         $text_at = '@' ;
         // flex ask_for_help
         $template_path = storage_path('../public/json/ask_for_help.json');   
         $string_json = file_get_contents($template_path);
-        $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
         $string_json = str_replace("datetime",$time_zone,$string_json);
         $string_json = str_replace("name",$data['name'],$string_json);
         $string_json = str_replace("0999999999",$data['phone'],$string_json);
+
+        $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
+        $string_json = str_replace("เวลา",$data_topic[1],$string_json);
+        $string_json = str_replace("จาก",$data_topic[2],$string_json);
+        $string_json = str_replace("โทร",$data_topic[3],$string_json);
 
         $string_json = str_replace("lat",$data['lat'],$string_json);
         $string_json = str_replace("lng",$data['lng'],$string_json);

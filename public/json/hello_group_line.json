@@ -21,7 +21,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/PNG/1.png",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/42.png",
             "size": "xxl",
             "aspectRatio": "1:1",
             "aspectMode": "fit",
@@ -47,7 +47,7 @@
       },
       {
         "type": "text",
-        "text": "ขอบคุณมากนะคะ",
+        "text": "Thank you very much",
         "weight": "bold",
         "size": "xl",
         "margin": "xxl",
@@ -58,7 +58,7 @@
       },
       {
         "type": "text",
-        "text": "ที่ให้วีเป็นส่วนหนึ่งของการให้บริการ",
+        "text": "that let V be part of the service",
         "weight": "bold",
         "size": "md",
         "margin": "xl",
@@ -74,7 +74,7 @@
       },
       {
         "type": "text",
-        "text": "วีจะทำหน้าที่ให้ดีที่สุดนะคะ",
+        "text": "V will do my best.",
         "weight": "bold",
         "size": "md",
         "margin": "lg",
@@ -89,7 +89,7 @@
       },
       {
         "type": "text",
-        "text": "หากมีข้อสงสัยติดต่อ",
+        "text": "contact",
         "weight": "bold",
         "size": "md",
         "margin": "xxl",
