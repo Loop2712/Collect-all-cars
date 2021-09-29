@@ -95,16 +95,18 @@ class Save_sos_insuranceController extends Controller
                     "โทร",
                 ];
 
+        $group_language = $data['group_language'] ;
+
         for ($i=0; $i < count($data_topic); $i++) { 
 
             $text_topic = DB::table('text_topics')
-                    ->select($data['group_language'])
+                    ->select($group_language)
                     ->where('th', $data_topic[$i])
                     ->where('en', "!=", null)
                     ->get();
 
             foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$i] = $item_of_text_topic->$data['group_language'] ;
+                $data_topic[$i] = $item_of_text_topic->$group_language ;
             }
         }
 
