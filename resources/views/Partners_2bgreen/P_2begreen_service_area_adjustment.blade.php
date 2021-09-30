@@ -80,7 +80,7 @@
             );
             infoWindow.open(map);
           });
-         console.log(position)
+         console.log(myLatlng)
     }
 </script>
 @endsection
