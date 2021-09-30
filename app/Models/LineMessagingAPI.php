@@ -1515,7 +1515,7 @@ class LineMessagingAPI extends Model
             if (!empty($data_user->language)) {
                     $user_language = $data_user->language ;
                 }else{
-                    $user_language = 'th' ;
+                    $user_language = 'en' ;
                 }
         }
 

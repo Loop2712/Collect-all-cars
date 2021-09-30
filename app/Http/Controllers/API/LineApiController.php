@@ -91,7 +91,7 @@ class LineApiController extends Controller
                 if (!empty($data_user->language)) {
                     $user_language = $data_user->language ;
                 }else{
-                    $user_language = 'th' ;
+                    $user_language = 'en' ;
                 }
             }
             
@@ -224,8 +224,8 @@ class LineApiController extends Controller
         }
 
         if (empty($user_language)) {
-            // ริชเมนู EN
-            $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
+            // DF ริชเมนู EN 
+            $richMenuId = "richmenu-richmenu-9194867623e5cf6233a7d894fc3f6b1a" ;
         }else {
             switch ($user_language) {
                 case 'th':
