@@ -83,7 +83,7 @@
 
         infoWindow.open(map);
         // Configure the click listener.
-         map.addListener("click", (mapsMouseEvent) => {
+        map.addListener("click", (mapsMouseEvent) => {
             // Close the current InfoWindow.
             infoWindow.close();
             // Create a new InfoWindow.
@@ -101,7 +101,12 @@
             console.log(text_content)
 
             infoWindow.open(map);
-          });
+        });
+
+            var marker = new google.maps.Marker({
+                position: infoWindow.content, 
+                map: map,
+            });     
         
     }
 
