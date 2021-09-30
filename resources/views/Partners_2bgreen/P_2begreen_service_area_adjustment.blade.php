@@ -104,8 +104,10 @@
 
             const lat_Arr = contentArr[0].split(":");
 
+            let marker_lat = lat_Arr[1];
+
             console.log(contentArr)
-            console.log(lat_Arr)
+            console.log(marker_lat)
 
             var marker = new google.maps.Marker({
                 position: {lat: marker_lat , lng: marker_lng },
