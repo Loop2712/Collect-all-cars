@@ -77,7 +77,6 @@ class LineApiController extends Controller
     public function textHandler($event)
     {
         $line = new LineMessagingAPI();
-        $user_language = 'th' ;
 
         if ($event["message"]["text"] == "ติดต่อ ViiCHECK") {
             $line->replyToUser(null, $event, "contact_viiCHECK");
@@ -88,11 +87,7 @@ class LineApiController extends Controller
                 ->get();
 
             foreach ($data_users as $data_user) {
-
-                if (!empty($data_user->language)) {
-                    $user_language = $data_user->language ;
-                }
-                
+                $user_language = $data_user->language ;
             }
             
             $text_topic = DB::table('text_topics')
