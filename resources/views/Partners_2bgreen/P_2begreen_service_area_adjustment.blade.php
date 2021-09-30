@@ -182,8 +182,8 @@
 
         div_lat_lng.appendChild(div_form);
 
-        let count_position = document.querySelector('#count_position');
-            count_position.value = parseFloat(count_position.value) + 1 ;
+        let co_position = document.querySelector('#count_position');
+            co_position.value = parseFloat(co_position.value) + 1 ;
 
     }
 </script>
