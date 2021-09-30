@@ -55,13 +55,13 @@
     function initMap() {
         // 13.7248936,100.4930264 lat lng ประเทศไทย
         const myLatlng = { lat: 13.7248936, lng: 100.4930264 };
+
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
+            zoom: 6,
             center: myLatlng,
         });
         // Create the initial InfoWindow.
         let infoWindow = new google.maps.InfoWindow({
-            content: "Click the map to get Lat/Lng!",
             position: myLatlng,
         });
 
