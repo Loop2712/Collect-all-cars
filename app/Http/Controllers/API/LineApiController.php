@@ -76,6 +76,8 @@ class LineApiController extends Controller
 
     public function textHandler($event)
     {
+        $line = new LineMessagingAPI();
+        
         if ($event["message"]["text"] == "ติดต่อ") {
             $line->replyToUser(null, $event, "contact");
         }
@@ -98,8 +100,6 @@ class LineApiController extends Controller
             $text_th = $item->th ;
         }
         
-        
-        $line = new LineMessagingAPI();
 
         switch( strtolower($text_th) )
         {     
