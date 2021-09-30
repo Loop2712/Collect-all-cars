@@ -198,6 +198,15 @@ class Sos_mapController extends Controller
         }
     }
 
+    public function insurance_login()
+    {
+        if(Auth::check()){
+            return redirect('sos_map/create?text=insurance');
+        }else{
+            return redirect('login/line?redirectTo=sos_map/create&?text=insurance');
+        }
+    }
+
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
     protected function _pushLine($data)

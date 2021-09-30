@@ -197,7 +197,7 @@ class LineApiController extends Controller
 
     public function set_richmanu_start($provider_id)
     {
-        $richMenuId_start = "richmenu-ec43e96f5f12d586fa478fb8a5b88202" ;
+        $richMenuId_start = "richmenu-a3ef226ab3b1bf7b89b182060e70fc59" ;
 
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
