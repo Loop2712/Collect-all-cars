@@ -57,11 +57,22 @@
 <script>
 
     function initMap() {
+        
+        let text_zoom = document.getElementById("va_zoom").value;
+        let num_zoom = parseFloat(text_zoom);
+
+        let text_center_lat = document.getElementById("center_lat").value;
+        let num_center_lat = parseFloat(text_center_lat);
+
+        let text_center_lng = document.getElementById("center_lng").value;
+        let num_center_lng = parseFloat(text_center_lng);
+
         // 13.7248936,100.4930264 lat lng ประเทศไทย
-        const myLatlng = { lat: 13.7248936, lng: 100.4930264 };
+
+        const myLatlng = { lat: num_center_lat, lng: num_center_lng };
 
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 6,
+            zoom: num_zoom,
             center: myLatlng,
         });
         // Create the initial InfoWindow.
