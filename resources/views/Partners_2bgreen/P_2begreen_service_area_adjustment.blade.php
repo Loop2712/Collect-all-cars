@@ -62,6 +62,7 @@
         });
         // Create the initial InfoWindow.
         let infoWindow = new google.maps.InfoWindow({
+            content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
             position: myLatlng,
         });
 
@@ -79,6 +80,7 @@
             );
             infoWindow.open(map);
           });
+         console.log(infoWindow)
     }
 </script>
 @endsection
