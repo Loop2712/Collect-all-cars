@@ -6,19 +6,6 @@
 <!-- End Hero -->
 
   <main id="main">
-
-    <!-- ======= Why Us Section ======= -->
-    <div class="d-none d-lg-block">
-    <section id="hero" class="d-flex align-items-center">
-    <div class="container">
-    <div class="row">
-    <div class="col-sm-6">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
-    <div class="col-sm-6" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
-      <h2 style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-      <a style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
-    </div>
-
-  </section>
     @if(Auth::check())
       <!-- MODAL ยินดีต้อนรับกลับมา -->
       <button  id="btn_welcome_home" class="d-none" data-toggle="modal" data-target="#welcome_home">
@@ -44,6 +31,20 @@
       </div>
       <!-- สิ้นสุด MODAL ยินดีต้อนรับกลับมา -->
     @endif
+
+    <!-- ======= Why Us Section ======= -->
+    <div class="d-none d-lg-block">
+    <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-6">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
+    <div class="col-sm-6" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+      <h2 style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
+      <a style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+    </div>
+
+  </section>
+    
     <section id="why-us" class="why-us">
       <div class="container">
         <div class="row">
