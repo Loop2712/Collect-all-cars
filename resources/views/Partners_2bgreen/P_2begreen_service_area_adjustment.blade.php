@@ -98,6 +98,7 @@
             let text_content = infoWindow.content ;
             add_location(text_content)
 
+            console.log(infoWindow.content)
             console.log(text_content.lat)
 
             var marker = new google.maps.Marker({
