@@ -90,7 +90,7 @@ class LineApiController extends Controller
             $user_language = $data_user->language ;
         }
 
-        if (!empty($user_language)) {
+        if ($user_language != 'th') {
 
             $text_topic = DB::table('text_topics')
                 ->select('th')
