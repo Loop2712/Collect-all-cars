@@ -36,14 +36,6 @@
                                         <label class="control-label">จุดที่ 1</label>
                                         <input class="form-control" name="position_1" type="text" id="position_1" value="">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label">จุดที่ 2</label>
-                                        <input class="form-control" name="position_2" type="text" id="position_2" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">จุดที่3</label>
-                                        <input class="form-control" name="position_3" type="text" id="position_3" value="">
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -93,14 +85,20 @@
             );
 
             let text_content = infoWindow.content ;
-                text_content.replace("{", "");
-                text_content.replace("}", "");
+            add_location(text_content)
 
             console.log(text_content)
-            
+
             infoWindow.open(map);
           });
         
+    }
+
+    function add_location(text_content) {
+
+        let position_1 = document.querySelector('#position_1');
+            position_1.value = text_content ;
+
     }
 </script>
 @endsection
