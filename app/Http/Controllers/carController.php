@@ -25,9 +25,10 @@ class CarController extends Controller
     public function index(Request $request)
     {
         $line = new LineApiController();
-        
+
         $data_users = DB::table('users')
                 ->where('language', 'th')
+                ->where('type', 'line')
                 ->where('status', "active")
                 ->get();
 
