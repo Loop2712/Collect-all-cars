@@ -81,6 +81,7 @@
         infoWindow.open(map);
         // Configure the click listener.
          map.addListener("click", (mapsMouseEvent) => {
+            console.log(myLatlng)
             // Close the current InfoWindow.
             infoWindow.close();
             // Create a new InfoWindow.
@@ -92,7 +93,7 @@
             );
             infoWindow.open(map);
           });
-         console.log(myLatlng)
+        
     }
 </script>
 @endsection
