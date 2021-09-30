@@ -33,11 +33,19 @@
                             <div class="row">
                                 <div class="col-12" id="div_lat_lng">
                                     <div class="form-group">
-                                        <label class="control-label">จุดที่ 1</label>
-                                        <input class="form-control" name="position_1" type="text" id="position_1" value="">
+                                        <label class="control-label">จุดที่ {{ $count_position }}</label>
+                                        <input class="form-control" name="position_{{ $count_position }}" type="text" id="position_{{ $count_position }}" value="">
                                     </div>
                                 </div>
+
+                                <div class="col-6">
+                                    <input class="form-control" name="count_position" type="text" id="count_position" value="{{ $count_position }}">
+                                </div>
+                                <div class="col-6">
+                                    <input class="form-control" name="" type="text" id="" value="">
+                                </div>
                             </div>
+                            <br>
                         </div>
                         </div>
                     </div>
@@ -96,7 +104,8 @@
             );
 
             let text_content = infoWindow.content ;
-            add_location(text_content)
+            let count_position = document.querySelector('#count_position');
+            add_location(text_content, count_position.value)
 
             console.log(text_content)
 
@@ -123,12 +132,12 @@
         
     }
 
-    function add_location(text_content) {
+    function add_location(text_content , count_position) {
 
         let div_lat_lng = document.querySelector('#div_lat_lng');
 
-        let position_1 = document.querySelector('#position_1');
-            position_1.value = text_content ;
+        let position = document.querySelector('#position_' + count_position);
+            position.value = text_content ;
 
         // div_form
         let div_form = document.createElement("div");
@@ -151,13 +160,13 @@
             input_class.value = "form-control";
 
             let input_name = document.createAttribute("name");
-            input_name.value = "position_";
+            input_name.value = "position_" + count_position;
 
             let input_type = document.createAttribute("type");
             input_type.value = "text";
 
             let input_id = document.createAttribute("id");
-            input_id.value = "position";
+            input_id.value = "position_" + count_position;
 
             let input_value = document.createAttribute("value");
             input_value.value = "";
@@ -173,6 +182,8 @@
 
         div_lat_lng.appendChild(div_form);
 
+        let count_position = document.querySelector('#count_position');
+            count_position.value = parseFloat(count_position.value) + 1 ;
 
     }
 </script>

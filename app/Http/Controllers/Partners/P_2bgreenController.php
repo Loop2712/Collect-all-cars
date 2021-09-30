@@ -184,13 +184,9 @@ class P_2bgreenController extends Controller
 
     public function service_area(Request $request)
     {
-        $test = "" ;
-        $body = [
-            "replyToken" => "",
-            "messages" => "",
-        ];
+        $count_position = 1 ;
 
-        return view('Partners_2bgreen.P_2begreen_service_area_adjustment', compact('test','body'));
+        return view('Partners_2bgreen.P_2begreen_service_area_adjustment', compact('count_position'));
     }
 
     public function sos_detail_chart(Request $request)
