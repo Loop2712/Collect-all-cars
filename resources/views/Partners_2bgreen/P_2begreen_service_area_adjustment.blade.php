@@ -77,10 +77,10 @@
             });
             infoWindow.setContent(
                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-                console.log(JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2))
             );
             infoWindow.open(map);
           });
+         console.log(position)
     }
 </script>
 @endsection
