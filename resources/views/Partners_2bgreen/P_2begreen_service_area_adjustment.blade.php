@@ -100,13 +100,13 @@
 
             console.log(text_content)
 
-            infoWindow.open(map);
-        });
-
             var marker = new google.maps.Marker({
                 position: parseFloat(infoWindow.content), 
                 map: map,
-            });     
+            });   
+
+            infoWindow.open(map);
+        });
         
     }
 
