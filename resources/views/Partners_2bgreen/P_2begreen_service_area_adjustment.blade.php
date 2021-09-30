@@ -100,9 +100,6 @@
 
             console.log(text_content)
 
-            console.log(marker_lat)
-            console.log(marker_lng)
-
             var marker = new google.maps.Marker({
                 position: text_content,
                 map: map,
