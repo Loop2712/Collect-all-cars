@@ -104,11 +104,11 @@
 
             const lat_Arr = contentArr[0].split(":");
 
-            let marker_lat = lat_Arr[1];
+                let marker_lat = lat_Arr[1];
 
             const lng_Arr = contentArr[1].split(":");
 
-            let marker_lng = lng_Arr[1];
+                let marker_lng = lng_Arr[1].replace("\n}", "");
 
             console.log(marker_lat)
             console.log(marker_lng)
