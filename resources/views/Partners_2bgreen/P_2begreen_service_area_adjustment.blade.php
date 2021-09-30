@@ -92,7 +92,7 @@
                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
             );
 
-            console.log(infoWindow)
+            console.log(infoWindow.content)
             infoWindow.open(map);
           });
         
