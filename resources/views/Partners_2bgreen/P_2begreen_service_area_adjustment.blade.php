@@ -100,8 +100,13 @@
 
             console.log(text_content)
 
+            const myArr = text_content.split(",");
+
+            console.log(myArr)
+            // console.log(marker_lng)
+
             var marker = new google.maps.Marker({
-                position: text_content,
+                position: {lat: marker_lat , lng: marker_lng },
                 map: map,
             });   
 
