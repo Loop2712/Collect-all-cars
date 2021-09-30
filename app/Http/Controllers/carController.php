@@ -30,7 +30,11 @@ class CarController extends Controller
                 ->get();
 
             foreach ($data_users as $data_user) {
-                $user_language = $data_user->language ;
+                if (!empty($data_user->language)) {
+                    $user_language = $data_user->language ;
+                }else{
+                    $user_language = 'th' ;
+                }
                 echo $user_language ;
             }
             
