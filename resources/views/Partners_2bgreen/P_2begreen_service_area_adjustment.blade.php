@@ -171,6 +171,8 @@
         div_form.appendChild(label);
         div_form.appendChild(input);
 
+        div_lat_lng.appendChild(div_form);
+
 
     }
 </script>
