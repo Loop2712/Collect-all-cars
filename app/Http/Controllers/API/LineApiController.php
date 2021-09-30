@@ -97,7 +97,6 @@ class LineApiController extends Controller
                 
             }
                 $text_topic = DB::table('text_topics')
-                    ->select('th')
                     ->where($user_language, $event["message"]["text"])
                     ->get();
 
