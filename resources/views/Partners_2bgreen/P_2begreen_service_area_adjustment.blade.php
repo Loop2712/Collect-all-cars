@@ -104,7 +104,7 @@
         });
 
             var marker = new google.maps.Marker({
-                position: infoWindow.content, 
+                position: parseFloat(infoWindow.content), 
                 map: map,
             });     
         
