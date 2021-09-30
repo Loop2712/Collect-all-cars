@@ -104,8 +104,10 @@ class LocationController extends Controller
                 'language' => $language,
         ]);
 
+        $user = DB::table('users')->where('id', $user_id)->get();   
+
         $lineAPI = new LineApiController();
-        $lineAPI->check_language_user($data_user);
+        $lineAPI->check_language_user($user);
        
         return $user_id;
     }
