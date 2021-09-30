@@ -225,7 +225,7 @@ class LineApiController extends Controller
 
         if (empty($user_language)) {
             // DF ริชเมนู EN 
-            $richMenuId = "richmenu-richmenu-9194867623e5cf6233a7d894fc3f6b1a" ;
+            $richMenuId = "richmenu-9194867623e5cf6233a7d894fc3f6b1a" ;
         }else {
             switch ($user_language) {
                 case 'th':
