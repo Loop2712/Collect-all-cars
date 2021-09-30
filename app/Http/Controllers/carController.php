@@ -51,14 +51,15 @@ class CarController extends Controller
 
             echo $text_th ;
             echo "<br>";
-
+            echo strtolower($text_th);
+            echo "<br>";
             echo "<pre>";
             print_r($text_topic);
             echo "<pre>";
 
-            echo "<br>";
+            
 
-            echo strtolower($text_th);
+            
             exit();
 
         $brand     = $request->get('brand');
