@@ -31,7 +31,7 @@
                         </h3>
                         <div class="container">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12" id="div_lat_lng">
                                     <div class="form-group">
                                         <label class="control-label">จุดที่ 1</label>
                                         <input class="form-control" name="position_1" type="text" id="position_1" value="">
@@ -125,8 +125,57 @@
 
     function add_location(text_content) {
 
+        let div_lat_lng = document.querySelector('#div_lat_lng');
+
         let position_1 = document.querySelector('#position_1');
             position_1.value = text_content ;
+
+            <div class="form-group">
+                <label class="control-label">จุดที่ 1</label>
+                <input class="form-control" name="position_1" type="text" id="position_1" value="">
+            </div>""
+
+        // div_form
+        let div_form = document.createElement("div");
+
+        let div_class_form = document.createAttribute("class");
+            div_class_form.value = "form-group";
+            
+            div_form.setAttributeNode(div_class_form); 
+
+        // label
+        let label = document.createElement("label");
+            let label_class = document.createAttribute("class");
+            label_class.value = "control-label";
+            label.innerHTML = "จุดที่";
+            label.setAttributeNode(label_class);
+
+        // input
+        let input = document.createElement("input");
+            let input_class = document.createAttribute("class");
+            input_class.value = "form-control";
+
+            let input_name = document.createAttribute("name");
+            input_name.value = "position_";
+
+            let input_type = document.createAttribute("type");
+            input_type.value = "text";
+
+            let input_id = document.createAttribute("id");
+            input_id.value = "position";
+
+            let input_value = document.createAttribute("value");
+            input_value.value = "";
+
+            input.setAttributeNode(input_class); 
+            input.setAttributeNode(input_name); 
+            input.setAttributeNode(input_type); 
+            input.setAttributeNode(input_id); 
+            input.setAttributeNode(input_value); 
+
+        div_form.appendChild(label);
+        div_form.appendChild(input);
+
 
     }
 </script>
