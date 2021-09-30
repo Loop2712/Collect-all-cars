@@ -102,7 +102,6 @@
 
             var marker = new google.maps.Marker({
                 position: parseFloat(infoWindow.content),
-                // position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} },
                 map: map,
             });   
 
