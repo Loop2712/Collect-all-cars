@@ -223,7 +223,7 @@ class LineApiController extends Controller
         }else {
             switch ($user_language) {
                 case 'th':
-                    $richMenuId = "richmenu-c97702fad335082aad0b8a069d4a8e8f" ;
+                    $richMenuId = "richmenu-334265b3960f7d64096270c1e7e5bd46" ;
                     break;
                 case 'en':
                     $richMenuId = "richmenu-9194867623e5cf6233a7d894fc3f6b1a" ;
