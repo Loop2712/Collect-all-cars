@@ -77,68 +77,68 @@ class LineApiController extends Controller
     public function textHandler($event)
     {
         $line = new LineMessagingAPI();
-        
+
         if ($event["message"]["text"] == "ติดต่อ") {
             $line->replyToUser(null, $event, "contact");
-        }
-
-        $data_users = DB::table('users')
+        }else {
+            $data_users = DB::table('users')
                 ->where('provider_id', $event["source"]['userId'])
                 ->where('status', "active")
                 ->get();
 
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-        }
-        
-        $text_topic = DB::table('text_topics')
-                ->select('th')
-                ->where($user_language, $event["message"]["text"])
-                ->get();
-
-        foreach ($text_topic as $item) {
-            $text_th = $item->th ;
-        }
-        
-
-        switch( strtolower($text_th) )
-        {     
-            case "อื่นๆ" :  
-                $line->replyToUser(null, $event, "other");
-                break;
-            case "ข่าวสาร" :  
-                $line->replyToUser(null, $event, "vnews");
-                break;
-            // case "vmarket" :  
-            //     $line->replyToUser(null, $event, "vmarket");
-            //     break;
-            case "ข้อมูลของคุณ" :  
-                $line->replyToUser(null, $event, "profile");
-                break;
-            case "รถยนต์" : 
-                $line->replyToUser(null, $event, "mycar");
-                break;
-            case "จักรยานยนต์" : 
-                $line->replyToUser(null, $event, "mymotorcycles");
-                break;
-            case "ใบอนุญาตขับรถ" : 
-                $line->replyToUser(null, $event, "driver_license");
-                break;
-            case "ติดต่อ" :  
-                $line->replyToUser(null, $event, "contact");
-                break;
-            case "โปรโมชั่น" :  
-                $line->replyToUser(null, $event, "promotion");
-                break;
-            case "โปรโมชั่นรถยนต์" :  
-                $line->replyToUser(null, $event, "promotion_car");
-                break;
-            case "โปรโมชั่นรถจักรยานยนต์" :  
-                $line->replyToUser(null, $event, "promotion_motorcycle");
-                break;
+            foreach ($data_users as $data_user) {
+                $user_language = $data_user->language ;
+            }
             
+            $text_topic = DB::table('text_topics')
+                    ->select('th')
+                    ->where($user_language, $event["message"]["text"])
+                    ->get();
+
+            foreach ($text_topic as $item) {
+                $text_th = $item->th ;
+            }
             
-        }   
+
+            switch( strtolower($text_th) )
+            {     
+                case "อื่นๆ" :  
+                    $line->replyToUser(null, $event, "other");
+                    break;
+                case "ข่าวสาร" :  
+                    $line->replyToUser(null, $event, "vnews");
+                    break;
+                // case "vmarket" :  
+                //     $line->replyToUser(null, $event, "vmarket");
+                //     break;
+                case "ข้อมูลของคุณ" :  
+                    $line->replyToUser(null, $event, "profile");
+                    break;
+                case "รถยนต์" : 
+                    $line->replyToUser(null, $event, "mycar");
+                    break;
+                case "จักรยานยนต์" : 
+                    $line->replyToUser(null, $event, "mymotorcycles");
+                    break;
+                case "ใบอนุญาตขับรถ" : 
+                    $line->replyToUser(null, $event, "driver_license");
+                    break;
+                case "ติดต่อ" :  
+                    $line->replyToUser(null, $event, "contact");
+                    break;
+                case "โปรโมชั่น" :  
+                    $line->replyToUser(null, $event, "promotion");
+                    break;
+                case "โปรโมชั่นรถยนต์" :  
+                    $line->replyToUser(null, $event, "promotion_car");
+                    break;
+                case "โปรโมชั่นรถจักรยานยนต์" :  
+                    $line->replyToUser(null, $event, "promotion_motorcycle");
+                    break;
+            }   
+        }
+
+        
     }
 
     public function save_group_line($event)
