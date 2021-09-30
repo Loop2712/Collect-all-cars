@@ -81,13 +81,14 @@
         infoWindow.open(map);
         // Configure the click listener.
          map.addListener("click", (mapsMouseEvent) => {
-            console.log(myLatlng)
             // Close the current InfoWindow.
             infoWindow.close();
             // Create a new InfoWindow.
             infoWindow = new google.maps.InfoWindow({
                 position: mapsMouseEvent.latLng,
             });
+            console.log(mapsMouseEvent.latLng)
+            
             infoWindow.setContent(
                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
             );
