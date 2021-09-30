@@ -76,6 +76,10 @@ class LineApiController extends Controller
 
     public function textHandler($event)
     {
+        if ($event["message"]["text"] == "ติดต่อ") {
+            $line->replyToUser(null, $event, "contact");
+        }
+
         $data_users = DB::table('users')
                 ->where('provider_id', $event["source"]['userId'])
                 ->where('status', "active")
