@@ -130,11 +130,6 @@
         let position_1 = document.querySelector('#position_1');
             position_1.value = text_content ;
 
-            <div class="form-group">
-                <label class="control-label">จุดที่ 1</label>
-                <input class="form-control" name="position_1" type="text" id="position_1" value="">
-            </div>""
-
         // div_form
         let div_form = document.createElement("div");
 
