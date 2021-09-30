@@ -114,7 +114,7 @@
             console.log(marker_lng)
 
             var marker = new google.maps.Marker({
-                position: {lat: marker_lat , lng: marker_lng },
+                position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
                 map: map,
             });   
 
