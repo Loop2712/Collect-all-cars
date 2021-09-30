@@ -105,7 +105,8 @@ class LineApiController extends Controller
         //     foreach ($text_topic as $item) {
         //         $text_th = $item->th ;
         //     }
-        
+         
+         $text_th = $event["message"]["text"];
         
             
             switch( strtolower($text_th) )
