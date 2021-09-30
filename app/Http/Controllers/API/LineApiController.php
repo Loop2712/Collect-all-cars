@@ -89,8 +89,10 @@ class LineApiController extends Controller
         foreach ($data_users as $data_user) {
             $user_language = $data_user->language ;
         }
-        
-        $text_topic = DB::table('text_topics')
+
+        if (!empty($user_language)) {
+
+            $text_topic = DB::table('text_topics')
                 ->select('th')
                 ->where($user_language, $event["message"]["text"])
                 ->get();
@@ -98,6 +100,11 @@ class LineApiController extends Controller
             foreach ($text_topic as $item) {
                 $text_th = $item->th ;
             }
+        }else{
+            $text_th = $event["message"]["text"] ;
+        }
+        
+        
             
             switch( strtolower($text_th) )
             {     
