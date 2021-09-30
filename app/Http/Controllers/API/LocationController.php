@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\API\LineApiController;
 
 class LocationController extends Controller
 {
@@ -102,6 +103,9 @@ class LocationController extends Controller
             ->update([
                 'language' => $language,
         ]);
+
+        $lineAPI = new LineApiController();
+        $lineAPI->check_language_user($data_user);
        
         return $user_id;
     }
