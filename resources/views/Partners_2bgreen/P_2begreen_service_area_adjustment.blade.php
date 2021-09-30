@@ -155,7 +155,7 @@
         let label = document.createElement("label");
             let label_class = document.createAttribute("class");
             label_class.value = "control-label";
-            label.innerHTML = "จุดที่" + add_count;
+            label.innerHTML = "จุดที่ " + add_count;
             label.setAttributeNode(label_class);
 
         // input
