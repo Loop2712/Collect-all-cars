@@ -87,11 +87,12 @@
             infoWindow = new google.maps.InfoWindow({
                 position: mapsMouseEvent.latLng,
             });
-            console.log(mapsMouseEvent.latLng)
-            
+
             infoWindow.setContent(
                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
             );
+            
+            console.log(infoWindow.latLng)
             infoWindow.open(map);
           });
         
