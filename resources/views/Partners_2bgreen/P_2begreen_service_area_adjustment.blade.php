@@ -46,7 +46,7 @@
     
 </style>
 
-<!-- <script>
+<script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
@@ -80,12 +80,32 @@
         });
         // 13.7248936,100.4930264 lat lng ประเทศไทย
 
+        let infoWindow = new google.maps.InfoWindow({
+            content: "Click the map to get Lat/Lng!",
+            position: myLatlng,
+          });
+
+          infoWindow.open(map);
+          // Configure the click listener.
+          map.addListener("click", (mapsMouseEvent) => {
+            // Close the current InfoWindow.
+            infoWindow.close();
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+              position: mapsMouseEvent.latLng,
+            });
+            infoWindow.setContent(
+              JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+            );
+            infoWindow.open(map);
+          });
+
 
     }
 
-</script> -->
+</script>
 
-<script>
+<!-- <script>
     
     function initMap() {
           const myLatlng = { lat: -25.363, lng: 131.044 };
@@ -115,5 +135,5 @@
           });
     }
 
-</script>
+</script> -->
 @endsection
