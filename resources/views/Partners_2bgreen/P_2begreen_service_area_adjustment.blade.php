@@ -32,6 +32,18 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="control-label">จุดที่ 1</label>
+                                        <input class="form-control" name="position_1" type="text" id="position_1" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">จุดที่ 2</label>
+                                        <input class="form-control" name="position_2" type="text" id="position_2" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">จุดที่3</label>
+                                        <input class="form-control" name="position_3" type="text" id="position_3" value="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
