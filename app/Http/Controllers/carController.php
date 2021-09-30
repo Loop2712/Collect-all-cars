@@ -35,7 +35,6 @@ class CarController extends Controller
                 }else{
                     $user_language = 'th' ;
                 }
-                echo $user_language ;
             }
             
             $text_topic = DB::table('text_topics')
@@ -45,8 +44,13 @@ class CarController extends Controller
 
             foreach ($text_topic as $item) {
                 $text_th = $item->th ;
-                echo $text_th ;
             }
+
+            echo $user_language ;
+            echo "<br>";
+
+            echo $text_th ;
+            echo "<br>";
 
             echo "<pre>";
             print_r($text_topic);
