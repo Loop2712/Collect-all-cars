@@ -143,11 +143,6 @@
         let position = document.querySelector('#position_' + count_position);
             position.value = text_content ;
 
-        
-
-    }
-    
-    function add_input(text_content , count_position) {
         // div_form
         let div_form = document.createElement("div");
 
@@ -197,7 +192,7 @@
 
         
         co_position.value = add_count ;
-    }
 
+    }
 </script>
 @endsection
