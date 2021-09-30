@@ -91,8 +91,8 @@
             infoWindow.setContent(
                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
             );
-            
-            console.log(infoWindow.latLng)
+
+            console.log(infoWindow)
             infoWindow.open(map);
           });
         
