@@ -203,7 +203,7 @@ class Sos_mapController extends Controller
         if(Auth::check()){
             return redirect('sos_map/create?text=insurance');
         }else{
-            return redirect('login/line?redirectTo=sos_map/create&text=insurance');
+            return redirect('login/line?redirectTo=sos_map/create?text=insurance');
         }
     }
 
