@@ -34,7 +34,7 @@
                                 <div class="col-12" id="div_lat_lng">
                                     <div class="form-group">
                                         <label class="control-label">จุดที่ {{ $count_position }}</label>
-                                        <input class="form-control" name="position_{{ $count_position }}" type="text" id="position_{{ $count_position }}" value="">
+                                        <input class="form-control" name="position_{{ $count_position }}" type="text" id="position_{{ $count_position }}" value="" placeholder="คลิกที่แผนที่เพื่อรับโลเคชั่น">
                                     </div>
                                 </div>
 
@@ -107,7 +107,7 @@
             let count_position = document.querySelector('#count_position');
             add_location(text_content, count_position.value)
 
-            console.log(text_content)
+            // console.log(text_content)
 
             const contentArr = text_content.split(",");
 
@@ -119,8 +119,8 @@
 
                 let marker_lng = lng_Arr[1].replace("\n}", "");
 
-            console.log(marker_lat)
-            console.log(marker_lng)
+            // console.log(marker_lat)
+            // console.log(marker_lng)
 
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
@@ -175,11 +175,15 @@
             let input_value = document.createAttribute("value");
             input_value.value = "";
 
+            let input_placeholder = document.createAttribute("placeholder");
+            input_placeholder.value = "คลิกที่แผนที่เพื่อรับโลเคชั่น";
+
             input.setAttributeNode(input_class); 
             input.setAttributeNode(input_name); 
             input.setAttributeNode(input_type); 
             input.setAttributeNode(input_id); 
             input.setAttributeNode(input_value); 
+            input.setAttributeNode(input_placeholder); 
 
         div_form.appendChild(label);
         div_form.appendChild(input);
