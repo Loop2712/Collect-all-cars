@@ -76,29 +76,29 @@ class LineApiController extends Controller
 
     public function textHandler($event)
     {
-        $line = new LineMessagingAPI();
-
-        if ($event["message"]["text"] == "ติดต่อ") {
-            $line->replyToUser(null, $event, "contact");
+        if ($event["message"]["text"] == "ติดต่อ ViiCHECK") {
+            $line->replyToUser(null, $event, "contact_viiCHECK");
         }else {
             $data_users = DB::table('users')
                 ->where('provider_id', $event["source"]['userId'])
                 ->where('status', "active")
                 ->get();
 
-            foreach ($data_users as $data_user) {
-                $user_language = $data_user->language ;
-            }
-            
-            $text_topic = DB::table('text_topics')
-                    ->select('th')
-                    ->where($user_language, $event["message"]["text"])
-                    ->get();
+        foreach ($data_users as $data_user) {
+            $user_language = $data_user->language ;
+        }
+        
+        $text_topic = DB::table('text_topics')
+                ->select('th')
+                ->where($user_language, $event["message"]["text"])
+                ->get();
 
             foreach ($text_topic as $item) {
                 $text_th = $item->th ;
             }
             
+            
+            $line = new LineMessagingAPI();
 
             switch( strtolower($text_th) )
             {     
@@ -137,8 +137,6 @@ class LineApiController extends Controller
                     break;
             }   
         }
-
-        
     }
 
     public function save_group_line($event)
@@ -201,7 +199,7 @@ class LineApiController extends Controller
 
     public function set_richmanu_start($provider_id)
     {
-        $richMenuId_start = "richmenu-a3ef226ab3b1bf7b89b182060e70fc59" ;
+        $richMenuId_start = "richmenu-fcfe7e45ecac9c831a2ba9da47fab085" ;
 
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);

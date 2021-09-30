@@ -129,6 +129,16 @@ class LineMessagingAPI extends Model
     {   
     	switch($message_type)
         {
+            case "contact_viiCHECK": 
+
+                $template_path = storage_path('../public/json/flex-contact.json');   
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("โทร","โทร / Call",$string_json);
+                $string_json = str_replace("อีเมล","อีเมล / E-mail",$string_json);
+                $string_json = str_replace("Facebook","Facebook",$string_json);
+
+                $messages = [ json_decode($string_json, true) ]; 
+                break;
         	case "other": 
 
                 $data_Text_topic = [
