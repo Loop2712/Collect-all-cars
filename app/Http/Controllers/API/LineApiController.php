@@ -86,23 +86,30 @@ class LineApiController extends Controller
                 ->where('status', "active")
                 ->get();
 
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-        }
-
-        if ($user_language != 'th') {
-
-            $text_topic = DB::table('text_topics')
-                ->select('th')
-                ->where($user_language, $event["message"]["text"])
-                ->get();
-
-            foreach ($text_topic as $item) {
-                $text_th = $item->th ;
+            foreach ($data_users as $data_user) {
+                $user_language = $data_user->language ;
             }
-        }else{
-            $text_th = $event["message"]["text"] ;
-        }
+
+            $data = [
+            "title" => $user_language,
+            "content" => $user_language,
+        ];
+        MyLog::create($data);
+        exit();
+
+            if ($user_language != 'th') {
+
+                $text_topic = DB::table('text_topics')
+                    ->select('th')
+                    ->where($user_language, $event["message"]["text"])
+                    ->get();
+
+                foreach ($text_topic as $item) {
+                    $text_th = $item->th ;
+                }
+            }else{
+                $text_th = $event["message"]["text"] ;
+            }
         
         
             
