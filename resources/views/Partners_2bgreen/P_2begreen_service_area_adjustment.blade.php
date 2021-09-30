@@ -10,7 +10,7 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-4">
+        <div class="col-5">
             <div class="row">
                 <div class="col-12">
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-7">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
