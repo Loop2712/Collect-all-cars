@@ -134,6 +134,10 @@
 
     function add_location(text_content , count_position) {
 
+        let co_position = document.querySelector('#count_position');
+
+        let add_count = parseFloat(co_position.value) + 1 ;
+
         let div_lat_lng = document.querySelector('#div_lat_lng');
 
         let position = document.querySelector('#position_' + count_position);
@@ -151,7 +155,7 @@
         let label = document.createElement("label");
             let label_class = document.createAttribute("class");
             label_class.value = "control-label";
-            label.innerHTML = "จุดที่";
+            label.innerHTML = "จุดที่" + add_count;
             label.setAttributeNode(label_class);
 
         // input
@@ -160,13 +164,13 @@
             input_class.value = "form-control";
 
             let input_name = document.createAttribute("name");
-            input_name.value = "position_" + count_position;
+            input_name.value = "position_" + add_count;
 
             let input_type = document.createAttribute("type");
             input_type.value = "text";
 
             let input_id = document.createAttribute("id");
-            input_id.value = "position_" + count_position;
+            input_id.value = "position_" + add_count;
 
             let input_value = document.createAttribute("value");
             input_value.value = "";
@@ -182,8 +186,8 @@
 
         div_lat_lng.appendChild(div_form);
 
-        let co_position = document.querySelector('#count_position');
-            co_position.value = parseFloat(co_position.value) + 1 ;
+        
+        co_position.value = add_count ;
 
     }
 </script>
