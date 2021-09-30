@@ -24,24 +24,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $line = new LineApiController();
-
-        $data_users = DB::table('users')
-                ->where('language', 'th')
-                ->where('type', 'line')
-                ->where('status', "active")
-                ->get();
-
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-            $provider_id = $data_user->provider_id ;
-
-            $line->set_richmanu_language($provider_id , 'richmenu-d61b8f74d6233acd0759a87b2e91cef9' , $user_language);
-        }
-
-
-        exit();
-
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
