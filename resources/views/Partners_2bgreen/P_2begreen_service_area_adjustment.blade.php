@@ -162,10 +162,10 @@
 
             console.log(area);
 
-            for (let i = 3; i <= count_position; i++) {
+            // for (let i = 3; i <= count_position; i++) {
 
-                area.push(JSON.parse(document.querySelector('#position_' + count_position).value));
-            }
+            //     area.push(JSON.parse(document.querySelector('#position_' + count_position).value));
+            // }
 
               // Construct the polygon.
               let draw_area = new google.maps.Polygon({
