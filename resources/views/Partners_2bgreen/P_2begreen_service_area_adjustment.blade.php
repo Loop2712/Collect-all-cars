@@ -160,7 +160,7 @@
 
         for (let i = 0; i < parseFloat(count_position); i++) {
 
-            area.push( document.querySelector('#position_' + count_position).value ) ;
+            area.push( document.querySelector('#position_' + count_position).value.replace('"', '') ) ;
         }
 
         console.log(count_position);
