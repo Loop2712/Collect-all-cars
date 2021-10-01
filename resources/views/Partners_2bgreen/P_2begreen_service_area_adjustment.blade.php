@@ -143,7 +143,7 @@
 
         let position = document.querySelector('#position_' + count_position);
             // position.value = text_content ;
-            position.value = {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) } ;
+            position.value = '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ';
 
         if (count_position > 2) {
             console.log(count_position);
