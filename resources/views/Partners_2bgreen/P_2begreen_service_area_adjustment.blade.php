@@ -149,21 +149,25 @@
             // position.value = text_content ;
             position.value = '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ';
 
-        let input_text_areaArr = document.querySelector('#text_areaArr');
-            input_text_areaArr.value = input_text_areaArr.value.replace("[","");
-            input_text_areaArr.value = input_text_areaArr.value.replace("]","");
-            input_text_areaArr.value = '[' + input_text_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
+        // let input_text_areaArr = document.querySelector('#text_areaArr');
+        //     input_text_areaArr.value = input_text_areaArr.value.replace("[","");
+        //     input_text_areaArr.value = input_text_areaArr.value.replace("]","");
+        //     input_text_areaArr.value = '[' + input_text_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
 
             // console.log(input_text_areaArr.value);
 
-            console.log(count_position);
+        let area = [] ;
 
-            let area = [] ;
-                area.push(input_text_areaArr.value) ;
+        for (let i = 0; i < parseFloat(count_position); i++) {
 
-            console.log(area);
-            let input_areaArr = document.querySelector('#areaArr');
-                input_areaArr.value = area ;
+            area.push( document.querySelector('#position_' + count_position).value ) ;
+        }
+
+        console.log(count_position);
+        console.log(area);
+
+        let input_areaArr = document.querySelector('#areaArr');
+             input_areaArr.value = area ;
 
             // Construct the polygon.
             let draw_area = new google.maps.Polygon({
