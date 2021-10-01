@@ -144,7 +144,7 @@
             position.value = text_content ;
 
         if (count_position > 2) {
-
+            console.log(count_position);
             const area = [ 
                 document.querySelector('#position_1').value,
                 document.querySelector('#position_2').value,
