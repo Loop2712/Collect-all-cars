@@ -124,7 +124,7 @@
 
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
-                // label: {text: count_position.value, color: "white"},
+                label: {text: count_position.value, color: "white"},
                 map: map,
                 icon: image,
             });
