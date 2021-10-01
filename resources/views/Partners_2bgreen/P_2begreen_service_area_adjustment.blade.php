@@ -120,7 +120,7 @@
 
             // console.log(marker_lat)
             // console.log(marker_lng)
-            const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+            const image = "https://www.viicheck.com/img/icon/flag.png";
 
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
