@@ -159,9 +159,9 @@
 
             let text_area = input_areaArr.value ;
             let area = [];
-                area.push(text_area);
+                area.push(JSON.parse(text_area));
 
-            console.log(text_area);
+            console.log(area);
 
             // Construct the polygon.
             let draw_area = new google.maps.Polygon({
