@@ -140,7 +140,7 @@
 
         let input_areaArr = document.querySelector('#areaArr');
             input_areaArr.value = input_areaArr.value.replace("]","");
-            input_areaArr.value = input_areaArr.value + '[ {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
+            input_areaArr.value = '[' + input_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
 
             console.log(input_areaArr.value);
 
