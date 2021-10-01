@@ -10,7 +10,7 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-5">
+        <div class="col-7">
             <div class="row">
                 <div class="col-12">
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-7">
+        <div class="col-5">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -42,11 +42,7 @@
                                     <input class="form-control" name="count_position" type="text" id="count_position" value="{{ $count_position }}">
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" name="" type="text" id="" value="">
-                                </div>
-                                <div class="col-6">
-                                    <textarea class="form-control" name="text_areaArr" type="textarea" rows="4" id="text_areaArr" value=""></textarea>
-                                    <textarea class="form-control" name="areaArr" type="textarea" rows="4" id="areaArr" value=""></textarea>
+                                    <input class="form-control" name="area_arr" type="text" id="area_arr" value="">
                                 </div>
                             </div>
                             <br>
@@ -100,7 +96,7 @@
             infoWindow.close();
             // Create a new InfoWindow.
             infoWindow = new google.maps.InfoWindow({
-                position: mapsMouseEvent.latLng,
+                // position: mapsMouseEvent.latLng,
             });
 
             infoWindow.setContent(
@@ -124,15 +120,18 @@
 
             // console.log(marker_lat)
             // console.log(marker_lng)
-
-            add_location(text_content, count_position.value, map , marker_lat , marker_lng)
+            const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
+                label: {text: count_position.value, color: "white"},
                 map: map,
-            });   
+                icon: image,
+            });
 
             infoWindow.open(map);
+
+            add_location(text_content, count_position.value, map , marker_lat , marker_lng)
         });
         
     }
@@ -146,37 +145,14 @@
         let div_lat_lng = document.querySelector('#div_lat_lng');
 
         let position = document.querySelector('#position_' + count_position);
-            // position.value = text_content ;
-            position.value = '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ';
-
-        // let input_text_areaArr = document.querySelector('#text_areaArr');
-        //     input_text_areaArr.value = input_text_areaArr.value.replace("[","");
-        //     input_text_areaArr.value = input_text_areaArr.value.replace("]","");
-        //     input_text_areaArr.value = '[' + input_text_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
-
-            // console.log(input_text_areaArr.value);
+            position.value = '{"lat": ' + parseFloat(marker_lat) + ', "lng": ' + parseFloat(marker_lng)+ ' }';
 
         let area = [] ;
 
-        const area_test = [
-            { lat: 14.1150621, lng: 100.6013697 },
-            { lat: 14.1150621, lng: 100.6074465 },
-            { lat: 14.1127626, lng: 100.6074465 },
-            { lat: 14.1127626, lng: 100.6013697 },
-          ];
+        for (let i = 1; i <= parseFloat(count_position); i++) {
 
-        console.log(area_test);
-
-        for (let i = 0; i < parseFloat(count_position); i++) {
-
-            area.push( document.querySelector('#position_' + count_position).value.replace('"', '') ) ;
-        }
-
-        console.log(count_position);
-        console.log(area);
-
-        let input_areaArr = document.querySelector('#areaArr');
-             input_areaArr.value = area ;
+            let xxxx = document.querySelector('#position_' + i).value ;
+            area.push( JSON.parse(xxxx) ) ;
 
             // Construct the polygon.
             let draw_area = new google.maps.Polygon({
@@ -188,6 +164,10 @@
                 fillOpacity: 0.25,
             });
             draw_area.setMap(map);
+        }
+
+        let area_arr = document.querySelector('#area_arr');
+            area_arr.value = JSON.stringify(area) ;
 
         // add input position
         // div_form
