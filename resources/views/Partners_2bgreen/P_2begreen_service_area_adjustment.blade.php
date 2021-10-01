@@ -139,6 +139,7 @@
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
 
         let input_areaArr = document.querySelector('#areaArr');
+            input_areaArr.value = { lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) };
 
         let co_position = document.querySelector('#count_position');
 
@@ -153,10 +154,9 @@
             console.log(count_position);
 
             let area = [];
+                area.push({ lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) });
 
             console.log(area);
-
-            area.push({ lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) });
 
             // Construct the polygon.
             let draw_area = new google.maps.Polygon({
