@@ -155,8 +155,7 @@
 
             console.log(count_position);
 
-            let area = [];
-                area.push({ lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) });
+            let area = [ input_areaArr.value ];
 
             console.log(area);
 
