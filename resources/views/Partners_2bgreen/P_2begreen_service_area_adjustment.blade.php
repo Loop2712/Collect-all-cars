@@ -148,6 +148,7 @@
             const area = [ 
                 document.querySelector('#position_1').value,
                 document.querySelector('#position_2').value,
+                { lat: 14.1150621, lng: 100.6013697 },
             ];
 
             console.log(area);
