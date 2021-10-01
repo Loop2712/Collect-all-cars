@@ -158,6 +158,15 @@
 
         let area = [] ;
 
+        const area_test = [
+            { lat: 14.1150621, lng: 100.6013697 },
+            { lat: 14.1150621, lng: 100.6074465 },
+            { lat: 14.1127626, lng: 100.6074465 },
+            { lat: 14.1127626, lng: 100.6013697 },
+          ];
+
+        console.log(area_test);
+
         for (let i = 0; i < parseFloat(count_position); i++) {
 
             area.push( document.querySelector('#position_' + count_position).value.replace('"', '') ) ;
