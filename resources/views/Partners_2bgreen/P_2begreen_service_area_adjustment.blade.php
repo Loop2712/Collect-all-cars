@@ -146,7 +146,7 @@
         if (count_position > 2) {
             console.log(count_position);
             const area = [ 
-                document.querySelector('#position_1').value,
+                text_content,
                 document.querySelector('#position_2').value,
                 { lat: 14.1150621, lng: 100.6013697 },
             ];
