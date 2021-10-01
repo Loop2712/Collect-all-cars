@@ -149,27 +149,27 @@
             console.log(count_position);
 
             const area = [ 
-                JSON.parse(document.querySelector('#position_1').value),
-                JSON.parse(document.querySelector('#position_2').value),
+                document.querySelector('#position_1').value,
+                document.querySelector('#position_2').value,
             ];
 
             console.log(area);
 
-            for (let i = 3; i <= count_position; i++) {
+            // for (let i = 3; i <= count_position; i++) {
 
-                area.push(JSON.parse(document.querySelector('#position_' + count_position).value));
-            }
+            //     area.push(JSON.parse(document.querySelector('#position_' + count_position).value));
+            // }
 
-              // Construct the polygon.
-              const draw_area = new google.maps.Polygon({
-                paths: area,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-              });
-              draw_area.setMap(map);
+            //   // Construct the polygon.
+            //   const draw_area = new google.maps.Polygon({
+            //     paths: area,
+            //     strokeColor: "#008450",
+            //     strokeOpacity: 0.8,
+            //     strokeWeight: 1,
+            //     fillColor: "#008450",
+            //     fillOpacity: 0.25,
+            //   });
+            //   draw_area.setMap(map);
         }
 
         // add input position
