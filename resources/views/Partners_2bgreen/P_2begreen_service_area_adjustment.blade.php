@@ -139,6 +139,7 @@
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
 
         let input_areaArr = document.querySelector('#areaArr');
+            input_areaArr.value = input_areaArr.value.replace("[","");
             input_areaArr.value = input_areaArr.value.replace("]","");
             input_areaArr.value = '[' + input_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
 
