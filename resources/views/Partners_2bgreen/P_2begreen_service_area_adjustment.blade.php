@@ -143,6 +143,27 @@
         let position = document.querySelector('#position_' + count_position);
             position.value = text_content ;
 
+        if (count_position > 2) {
+
+            const area = [ document.querySelector('#position_1').value ];
+
+            for (let i = 0; i < count_position; i++) {
+              area.push(document.querySelector('#position_' + count_position ).value);
+            }
+
+              // Construct the polygon.
+              const draw_area = new google.maps.Polygon({
+                paths: area,
+                strokeColor: "#008450",
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillColor: "#008450",
+                fillOpacity: 0.25,
+              });
+              draw_area.setMap(map);
+        }
+
+        // add input position
         // div_form
         let div_form = document.createElement("div");
 
