@@ -145,22 +145,27 @@
 
         if (count_position > 2) {
 
-            const area = [ document.querySelector('#position_1').value ];
+            const area = [ 
+                document.querySelector('#position_1').value,
+                document.querySelector('#position_2').value,
+            ];
 
-            for (let i = 1; i < count_position; i++) {
-              area.push(document.querySelector('#position_' + count_position ).value);
-            }
+            console.log(area);
 
-              // Construct the polygon.
-              const draw_area = new google.maps.Polygon({
-                paths: area,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-              });
-              draw_area.setMap(map);
+            // for (let i = 1; i < count_position; i++) {
+            //   area.push(document.querySelector('#position_' + count_position ).value);
+            // }
+
+            //   // Construct the polygon.
+            //   const draw_area = new google.maps.Polygon({
+            //     paths: area,
+            //     strokeColor: "#008450",
+            //     strokeOpacity: 0.8,
+            //     strokeWeight: 1,
+            //     fillColor: "#008450",
+            //     fillOpacity: 0.25,
+            //   });
+            //   draw_area.setMap(map);
         }
 
         // add input position
