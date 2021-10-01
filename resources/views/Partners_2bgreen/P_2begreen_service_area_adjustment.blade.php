@@ -147,7 +147,7 @@
 
             const area = [ document.querySelector('#position_1').value ];
 
-            for (let i = 0; i < count_position; i++) {
+            for (let i = 1; i < count_position; i++) {
               area.push(document.querySelector('#position_' + count_position ).value);
             }
 
