@@ -157,9 +157,7 @@
 
             console.log(count_position);
 
-            let text_area = input_areaArr.value ;
-            let area = [];
-                area.push(JSON.parse(text_area));
+            let area = input_areaArr.value ;
 
             console.log(area);
 
