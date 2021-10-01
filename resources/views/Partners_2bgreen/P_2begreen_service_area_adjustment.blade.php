@@ -139,9 +139,6 @@
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
 
         let input_areaArr = document.querySelector('#areaArr');
-            input_areaArr.value = input_areaArr.value + '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ,';
-
-            console.log(input_areaArr.value);
 
         let co_position = document.querySelector('#count_position');
 
@@ -155,7 +152,12 @@
 
             console.log(count_position);
 
-            let area = [ input_areaArr.value ];
+            let area = [];
+                area.push({ lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) });
+
+            input_areaArr.value = area;
+
+            console.log(input_areaArr.value);
 
             console.log(area);
 
