@@ -45,8 +45,8 @@
                                     <input class="form-control" name="" type="text" id="" value="">
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" name="text_areaArr" type="textarea" id="text_areaArr" value="">
-                                    <input class="form-control" name="areaArr" type="textarea" id="areaArr" value="">
+                                    <input class="form-control" name="text_areaArr" type="textarea" row="5" id="text_areaArr" value="">
+                                    <input class="form-control" name="areaArr" type="textarea" row="5" id="areaArr" value="">
                                 </div>
                             </div>
                             <br>
@@ -164,7 +164,7 @@
             console.log(area);
             let input_areaArr = document.querySelector('#areaArr');
                 input_areaArr.value = area ;
-                
+
             // Construct the polygon.
             let draw_area = new google.maps.Polygon({
                 paths: area,
