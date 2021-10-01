@@ -141,6 +141,8 @@
         let input_areaArr = document.querySelector('#areaArr');
             input_areaArr.value = input_areaArr.value + '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ';
 
+            console.log(input_areaArr.value);
+
         let co_position = document.querySelector('#count_position');
 
         let add_count = parseFloat(co_position.value) + 1 ;
