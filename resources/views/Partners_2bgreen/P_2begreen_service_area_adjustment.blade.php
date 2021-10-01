@@ -149,14 +149,16 @@
             console.log(count_position);
 
             const area = [ 
-                document.querySelector('#position_1').value,
-                document.querySelector('#position_2').value,
+                JSON.parse(document.querySelector('#position_1').value),
+                JSON.parse(document.querySelector('#position_2').value),
             ];
 
-            console.log(area.replace('"', ''));
+            console.log(area);
 
             for (let i = 3; i <= count_position; i++) {
-              area.push(document.querySelector('#position_' + count_position).value);
+                let obj = JSON.parse(document.querySelector('#position_' + count_position).value);
+
+                area.push(obj);
             }
 
               // Construct the polygon.
