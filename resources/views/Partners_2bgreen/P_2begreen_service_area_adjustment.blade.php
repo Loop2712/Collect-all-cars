@@ -148,12 +148,9 @@
         if (count_position > 2) {
             console.log(count_position);
 
-            const area = [ 
-                document.querySelector('#position_1').value,
-                document.querySelector('#position_2').value,
-            ];
+            let text_area = '[ document.querySelector("#position_1").value, document.querySelector("#position_2").value,]';
 
-            console.log(JSON.parse(area));
+            console.log(JSON.parse(text_area));
 
             // for (let i = 3; i <= count_position; i++) {
 
