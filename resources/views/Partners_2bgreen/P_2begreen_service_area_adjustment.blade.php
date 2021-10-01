@@ -105,7 +105,7 @@
 
             let text_content = infoWindow.content ;
             let count_position = document.querySelector('#count_position');
-            add_location(text_content, count_position.value)
+            add_location(text_content, count_position.value, map)
 
             // console.log(text_content)
 
@@ -132,7 +132,7 @@
         
     }
 
-    function add_location(text_content , count_position) {
+    function add_location(text_content , count_position , map) {
 
         let co_position = document.querySelector('#count_position');
 
