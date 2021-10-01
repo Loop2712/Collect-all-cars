@@ -147,12 +147,13 @@
 
         if (count_position > 2) {
             console.log(count_position);
+
             const area = [ 
                 document.querySelector('#position_1').value,
                 document.querySelector('#position_2').value,
             ];
 
-            console.log(area);
+            console.log(area.replace('"', ''));
 
             for (let i = 3; i <= count_position; i++) {
               area.push(document.querySelector('#position_' + count_position).value);
