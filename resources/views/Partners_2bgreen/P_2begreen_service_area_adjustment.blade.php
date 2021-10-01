@@ -150,34 +150,24 @@
             // position.value = text_content ;
             position.value = '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ';
 
-        if (count_position > 2) {
             console.log(count_position);
 
-            let area = [ 
-                { lat: 14.1150621, lng: 100.6013697 },
-                { lat: 14.1150621, lng: 100.6074465 },
-                { lat: 14.1127626, lng: 100.6074465 },
-                { lat: 14.1127626, lng: 100.6013697 },
-            ];
+            let area = [];
 
             console.log(area);
 
-            // for (let i = 3; i <= count_position; i++) {
+            area.push({ lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) });
 
-            //     area.push(JSON.parse(document.querySelector('#position_' + count_position).value));
-            // }
-
-              // Construct the polygon.
-              let draw_area = new google.maps.Polygon({
+            // Construct the polygon.
+            let draw_area = new google.maps.Polygon({
                 paths: area,
                 strokeColor: "#008450",
                 strokeOpacity: 0.8,
                 strokeWeight: 1,
                 fillColor: "#008450",
                 fillOpacity: 0.25,
-              });
-              draw_area.setMap(map);
-        }
+            });
+            draw_area.setMap(map);
 
         // add input position
         // div_form
