@@ -138,12 +138,7 @@
 
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
 
-        let input_areaArr = document.querySelector('#areaArr');
-            input_areaArr.value = input_areaArr.value.replace("[","");
-            input_areaArr.value = input_areaArr.value.replace("]","");
-            input_areaArr.value = '[' + input_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
-
-            console.log(input_areaArr.value);
+        console.log(count_position);
 
         let co_position = document.querySelector('#count_position');
 
@@ -155,13 +150,19 @@
             // position.value = text_content ;
             position.value = '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ';
 
-            console.log(count_position);
+        let input_areaArr = document.querySelector('#areaArr');
+            input_areaArr.value = input_areaArr.value.replace("[","");
+            input_areaArr.value = input_areaArr.value.replace("]","");
+
+            input_areaArr.value = '[' + position.value + ', ]';
+
+            console.log(input_areaArr.value);
 
             let text_area = input_areaArr.value ;
-            // let text_area = [];
-            //     area.push({ lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) });
 
-            console.log(text_area);
+            let area_arr = JSON.parse(text_area);
+
+            console.log(area_arr);
 
             // Construct the polygon.
             let draw_area = new google.maps.Polygon({
