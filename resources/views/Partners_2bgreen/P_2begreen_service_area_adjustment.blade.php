@@ -45,7 +45,8 @@
                                     <input class="form-control" name="" type="text" id="" value="">
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" name="areaArr" type="text" id="areaArr" value="">
+                                    <input class="form-control" name="text_areaArr" type="textarea" id="text_areaArr" value="">
+                                    <input class="form-control" name="areaArr" type="textarea" id="areaArr" value="">
                                 </div>
                             </div>
                             <br>
@@ -148,20 +149,22 @@
             // position.value = text_content ;
             position.value = '{lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } ';
 
-             let input_areaArr = document.querySelector('#areaArr');
-            input_areaArr.value = input_areaArr.value.replace("[","");
-            input_areaArr.value = input_areaArr.value.replace("]","");
-            input_areaArr.value = '[' + input_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
+        let input_text_areaArr = document.querySelector('#text_areaArr');
+            input_text_areaArr.value = input_text_areaArr.value.replace("[","");
+            input_text_areaArr.value = input_text_areaArr.value.replace("]","");
+            input_text_areaArr.value = '[' + input_text_areaArr.value + ' {lat: ' + parseFloat(marker_lat) +  ', lng: ' + parseFloat(marker_lng)+ ' } , ]';
 
-            // console.log(input_areaArr.value);
+            // console.log(input_text_areaArr.value);
 
             console.log(count_position);
 
             let area = [] ;
-                area.push(input_areaArr.value) ;
+                area.push(input_text_areaArr.value) ;
 
             console.log(area);
-
+            let input_areaArr = document.querySelector('#areaArr');
+                input_areaArr.value = area ;
+                
             // Construct the polygon.
             let draw_area = new google.maps.Polygon({
                 paths: area,
