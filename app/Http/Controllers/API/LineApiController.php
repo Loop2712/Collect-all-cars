@@ -225,26 +225,26 @@ class LineApiController extends Controller
 
         if (empty($user_language)) {
             // DF ริชเมนู EN 
-            $richMenuId = "richmenu-9194867623e5cf6233a7d894fc3f6b1a" ;
+            $richMenuId = "richmenu-7f3294d42628b5bd03dc3220af61caa5" ;
         }else {
             switch ($user_language) {
                 case 'th':
                     $richMenuId = "richmenu-d61b8f74d6233acd0759a87b2e91cef9" ;
                     break;
                 case 'en':
-                    $richMenuId = "richmenu-9194867623e5cf6233a7d894fc3f6b1a" ;
+                    $richMenuId = "richmenu-7f3294d42628b5bd03dc3220af61caa5" ;
                     break;
                 case 'zh-TW':
-                    $richMenuId = "zh-TW" ;
+                    $richMenuId = "richmenu-8e2834b292e425cb46e4639d72e4829f" ;
                     break;
                 case 'ja':
-                    $richMenuId = "ja" ;
+                    $richMenuId = "richmenu-949e7f050000011fbbff5a0feed5fc3b" ;
                     break;
                 case 'ko':
-                    $richMenuId = "ko" ;
+                    $richMenuId = "richmenu-d0af21b1ecb4ce291d61ea57fbc049b3" ;
                     break;
                 case 'es':
-                    $richMenuId = "es" ;
+                    $richMenuId = "richmenu-b3b5e8f1fcc495eb6691badc29d9b06b" ;
                     break;
             }
         }
