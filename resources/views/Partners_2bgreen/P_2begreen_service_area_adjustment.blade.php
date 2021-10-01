@@ -158,7 +158,7 @@
             console.log(count_position);
 
             let area = [] ;
-            let area = input_areaArr.value ;
+                area.push(input_areaArr.value) ;
 
             console.log(area);
 
