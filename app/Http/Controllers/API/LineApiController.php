@@ -90,6 +90,9 @@ class LineApiController extends Controller
             foreach ($data_users as $data_user) {
                 if (!empty($data_user->language)) {
                     $user_language = $data_user->language ;
+                    if ($user_language == "zh-TW") {
+                        $user_language = "zh_TW";
+                    }
                 }else{
                     $user_language = 'en' ;
                 }
