@@ -105,7 +105,6 @@
 
             let text_content = infoWindow.content ;
             let count_position = document.querySelector('#count_position');
-            add_location(text_content, count_position.value, map)
 
             // console.log(text_content)
 
@@ -122,6 +121,8 @@
             // console.log(marker_lat)
             // console.log(marker_lng)
 
+            add_location(text_content, count_position.value, map , marker_lat , marker_lng)
+
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
                 map: map,
@@ -132,7 +133,7 @@
         
     }
 
-    function add_location(text_content , count_position , map) {
+    function add_location(text_content , count_position , map , marker_lat , marker_lng) {
 
         let co_position = document.querySelector('#count_position');
 
@@ -141,14 +142,14 @@
         let div_lat_lng = document.querySelector('#div_lat_lng');
 
         let position = document.querySelector('#position_' + count_position);
-            position.value = text_content ;
+            // position.value = text_content ;
+            position.value = {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) } ;
 
         if (count_position > 2) {
             console.log(count_position);
             const area = [ 
-                text_content,
+                document.querySelector('#position_1').value,
                 document.querySelector('#position_2').value,
-                { lat: 14.1150621, lng: 100.6013697 },
             ];
 
             console.log(area);
