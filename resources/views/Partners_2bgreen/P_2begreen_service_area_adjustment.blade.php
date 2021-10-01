@@ -44,6 +44,9 @@
                                 <div class="col-6">
                                     <input class="form-control" name="" type="text" id="" value="">
                                 </div>
+                                <div class="col-6">
+                                    <input class="form-control" name="areaArr" type="text" id="areaArr" value="">
+                                </div>
                             </div>
                             <br>
                         </div>
@@ -135,6 +138,8 @@
 
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
 
+        let input_areaArr = document.querySelector('#areaArr');
+
         let co_position = document.querySelector('#count_position');
 
         let add_count = parseFloat(co_position.value) + 1 ;
@@ -148,25 +153,30 @@
         if (count_position > 2) {
             console.log(count_position);
 
-            let text_area = '[ document.querySelector("#position_1").value, document.querySelector("#position_2").value,]';
+            let area = [ 
+                { lat: 14.1150621, lng: 100.6013697 },
+                { lat: 14.1150621, lng: 100.6074465 },
+                { lat: 14.1127626, lng: 100.6074465 },
+                { lat: 14.1127626, lng: 100.6013697 },
+            ];
 
-            console.log(JSON.parse(text_area));
+            console.log(area);
 
-            // for (let i = 3; i <= count_position; i++) {
+            for (let i = 3; i <= count_position; i++) {
 
-            //     area.push(JSON.parse(document.querySelector('#position_' + count_position).value));
-            // }
+                area.push(JSON.parse(document.querySelector('#position_' + count_position).value));
+            }
 
-            //   // Construct the polygon.
-            //   const draw_area = new google.maps.Polygon({
-            //     paths: area,
-            //     strokeColor: "#008450",
-            //     strokeOpacity: 0.8,
-            //     strokeWeight: 1,
-            //     fillColor: "#008450",
-            //     fillOpacity: 0.25,
-            //   });
-            //   draw_area.setMap(map);
+              // Construct the polygon.
+              let draw_area = new google.maps.Polygon({
+                paths: area,
+                strokeColor: "#008450",
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillColor: "#008450",
+                fillOpacity: 0.25,
+              });
+              draw_area.setMap(map);
         }
 
         // add input position
