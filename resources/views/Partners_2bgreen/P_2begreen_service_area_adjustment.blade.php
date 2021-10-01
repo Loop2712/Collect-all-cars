@@ -158,8 +158,8 @@
             console.log(count_position);
 
             let text_area = input_areaArr.value ;
-            // let text_area = [];
-            //     area.push({ lat: parseFloat(marker_lat), lng: parseFloat(marker_lng) });
+            let area = [];
+                area.push(text_area);
 
             console.log(text_area);
 
