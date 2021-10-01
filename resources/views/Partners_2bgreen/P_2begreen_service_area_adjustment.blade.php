@@ -45,8 +45,8 @@
                                     <input class="form-control" name="" type="text" id="" value="">
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" name="text_areaArr" type="textarea" row="5" id="text_areaArr" value="">
-                                    <input class="form-control" name="areaArr" type="textarea" row="5" id="areaArr" value="">
+                                    <textarea class="form-control" name="text_areaArr" type="textarea" rows="4" id="text_areaArr" value=""></textarea>
+                                    <textarea class="form-control" name="areaArr" type="textarea" rows="4" id="areaArr" value=""></textarea>
                                 </div>
                             </div>
                             <br>
