@@ -153,7 +153,7 @@
                 document.querySelector('#position_2').value,
             ];
 
-            console.log(area);
+            console.log(JSON.parse(area));
 
             // for (let i = 3; i <= count_position; i++) {
 
