@@ -64,6 +64,8 @@
 
 <script>
 
+    var draw_area ;
+
     function initMap() {
         
         let text_zoom = document.getElementById("va_zoom").value;
@@ -153,18 +155,23 @@
 
             let xxxx = document.querySelector('#position_' + i).value ;
             area.push( JSON.parse(xxxx) ) ;
-
-            // Construct the polygon.
-            let draw_area = new google.maps.Polygon({
-                paths: area,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
         }
+
+        // เคลีย Polygon map
+        if (draw_area) {
+            draw_area.setMap(null);
+        }
+
+        // Construct the polygon.
+        draw_area = new google.maps.Polygon({
+            paths: area,
+            strokeColor: "#008450",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
+        });
+        draw_area.setMap(map);
 
         let area_arr = document.querySelector('#area_arr');
             area_arr.value = JSON.stringify(area) ;
