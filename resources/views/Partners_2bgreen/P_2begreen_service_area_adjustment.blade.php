@@ -27,12 +27,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <h3 class="card-header">ปรับพื้นที่บริการ / <span style="font-size: 18px;"> service area adjustment </span>
+                        <h3 class="card-header">
+                            ปรับพื้นที่บริการ / <span style="font-size: 18px;"> service area adjustment </span>
+                            <a href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right">เริ่มใหม่</a>
                         </h3>
                         <div class="container">
                             <div class="row">
                                 <div class="col-12" id="div_lat_lng">
-                                    <div class="form-group">
+                                    <div id="div_form_{{ $count_position }}" class="form-group">
                                         <label class="control-label">จุดที่ {{ $count_position }}</label>
                                         <input class="form-control" name="position_{{ $count_position }}" type="text" id="position_{{ $count_position }}" value="" placeholder="คลิกที่แผนที่เพื่อรับโลเคชั่น">
                                     </div>
@@ -42,7 +44,19 @@
                                     <input class="form-control" name="count_position" type="text" id="count_position" value="{{ $count_position }}">
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" name="area_arr" type="text" id="area_arr" value="">
+                                    <textarea class="form-control" name="area_arr" type="text" id="area_arr" value="" rows="10"></textarea>
+                                </div>
+                                <div class="col-6">
+                                <br>
+                                    <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
+                                        แก้ไขจุดก่อนหน้า
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                <br>
+                                    <button class="btn btn-sm btn-primary float-right">
+                                        ส่งข้อมูล
+                                    </button>
                                 </div>
                             </div>
                             <br>
@@ -65,6 +79,9 @@
 <script>
 
     var draw_area ;
+    var marker = [] ;
+    var map ;
+    let area = [] ;
 
     function initMap() {
         
@@ -81,7 +98,7 @@
 
         const myLatlng = { lat: num_center_lat, lng: num_center_lng };
 
-        const map = new google.maps.Map(document.getElementById("map"), {
+        map = new google.maps.Map(document.getElementById("map"), {
             zoom: num_zoom,
             center: myLatlng,
         });
@@ -124,7 +141,7 @@
             // console.log(marker_lng)
             const image = "https://www.viicheck.com/img/icon/flag_2.png";
 
-            var marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
                 label: {text: count_position.value, color: "white"},
                 map: map,
@@ -149,12 +166,11 @@
         let position = document.querySelector('#position_' + count_position);
             position.value = '{"lat": ' + parseFloat(marker_lat) + ', "lng": ' + parseFloat(marker_lng)+ ' }';
 
-        let area = [] ;
-
+        area = [];
         for (let i = 1; i <= parseFloat(count_position); i++) {
 
-            let xxxx = document.querySelector('#position_' + i).value ;
-            area.push( JSON.parse(xxxx) ) ;
+            let all_position = document.querySelector('#position_' + i).value ;
+            area.push( JSON.parse(all_position) ) ;
         }
 
         // เคลีย Polygon map
@@ -182,8 +198,12 @@
 
         let div_class_form = document.createAttribute("class");
             div_class_form.value = "form-group";
+
+        let div_id_form = document.createAttribute("id");
+            div_id_form.value = "div_form_" + add_count;
             
             div_form.setAttributeNode(div_class_form); 
+            div_form.setAttributeNode(div_id_form); 
 
         // label
         let label = document.createElement("label");
@@ -224,9 +244,58 @@
 
         div_lat_lng.appendChild(div_form);
 
-        
+        document.querySelector('#btn_delete_form').classList.remove('d-none');
+
         co_position.value = add_count ;
 
     }
+
+    function delete_input() {
+
+        let count_position = document.querySelector('#count_position');
+            // console.log(count_position.value);
+
+        document.querySelector('#div_form_' + count_position.value).remove();
+
+        let count_delete = parseFloat(count_position.value) - 1 ;
+
+        document.querySelector('#position_' + count_delete).value = "";
+        document.querySelector('#count_position').value = count_delete;
+
+            console.log(area);
+
+        let last_arr_area = area.length - 1 ;
+
+        marker.setMap(null);
+
+        area.splice(last_arr_area);
+
+        let area_arr = document.querySelector('#area_arr');
+            area_arr.value = JSON.stringify(area) ;
+
+        // เคลีย Polygon map
+        if (draw_area) {
+            draw_area.setMap(null);
+        }
+
+        // Construct the polygon.
+        draw_area = new google.maps.Polygon({
+            paths: area,
+            strokeColor: "#008450",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#008450",
+            fillOpacity: 0.25,
+        });
+        draw_area.setMap(map);
+
+        console.log(area);
+
+        // document.querySelector('#btn_delete_form').classList.add('d-none');
+
+    }
+
+    
 </script>
+
 @endsection
