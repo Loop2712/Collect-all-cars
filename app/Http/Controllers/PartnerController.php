@@ -33,7 +33,7 @@ class PartnerController extends Controller
 
         $group_line = Group_line::where('owner', null)->get();
 
-        return view('partner_viicheck.index', compact('partner','group_line'));
+        return view('partner.index', compact('partner','group_line'));
     }
 
     /**
@@ -43,7 +43,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        return view('partner_viicheck.create');
+        return view('partner.create');
     }
 
     /**
@@ -60,7 +60,7 @@ class PartnerController extends Controller
         
         Partner::create($requestData);
 
-        return redirect('partner_viicheck')->with('flash_message', 'Partner added!');
+        return redirect('partner')->with('flash_message', 'Partner added!');
     }
 
     /**
@@ -74,7 +74,7 @@ class PartnerController extends Controller
     {
         $partner = Partner::findOrFail($id);
 
-        return view('partner_viicheck.show', compact('partner'));
+        return view('partner.show', compact('partner'));
     }
 
     /**
@@ -88,7 +88,7 @@ class PartnerController extends Controller
     {
         $partner = Partner::findOrFail($id);
 
-        return view('partner_viicheck.edit', compact('partner'));
+        return view('partner.edit', compact('partner'));
     }
 
     /**
@@ -107,7 +107,7 @@ class PartnerController extends Controller
         $partner = Partner::findOrFail($id);
         $partner->update($requestData);
 
-        return redirect('partner_viicheck')->with('flash_message', 'Partner updated!');
+        return redirect('partner')->with('flash_message', 'Partner updated!');
     }
 
     /**
@@ -121,6 +121,6 @@ class PartnerController extends Controller
     {
         Partner::destroy($id);
 
-        return redirect('partner_viicheck')->with('flash_message', 'Partner deleted!');
+        return redirect('partner')->with('flash_message', 'Partner deleted!');
     }
 }
