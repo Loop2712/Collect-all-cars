@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // พื้นที่ทดสอบ
             document.querySelector('#a_help').classList.remove('d-none');
             let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "ViiCHECK DEV TEST"
+                area_help.innerHTML = "ViiCHECK"
 
         } else if ( inside([ lat, lng ], area_luck) ) {
             // luck

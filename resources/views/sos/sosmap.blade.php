@@ -427,24 +427,24 @@
             .catch((e) => window.alert("Geocoder failed due to: " + e));
         }
 
-    function confirm_phone() {
-        let text_phone = document.querySelector("#text_phone");
-        let lat_text = document.querySelector("#lat");
-        let lng_text = document.querySelector("#lng");
-        let area_help = document.querySelector("#area_help");
+    // function confirm_phone() {
+    //     let text_phone = document.querySelector("#text_phone");
+    //     let lat_text = document.querySelector("#lat");
+    //     let lng_text = document.querySelector("#lng");
+    //     let area_help = document.querySelector("#area_help");
 
-            console.log(area_help.innerHTML);
-            console.log(lat_text.value);
-            console.log(lng_text.value);
-            console.log(text_phone.value);
+    //         console.log(area_help.innerHTML);
+    //         console.log(lat_text.value);
+    //         console.log(lng_text.value);
+    //         console.log(text_phone.value);
 
-        // fetch("{{ url('/') }}/api/send_sos/" + lat_text.value + "/" + lng_text.value + "/" + text_phone + "/" area_help)
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         console.log(result);
-        //     });
+    //     // fetch("{{ url('/') }}/api/send_sos/" + lat_text.value + "/" + lng_text.value + "/" + text_phone + "/" area_help)
+    //     //     .then(response => response.json())
+    //     //     .then(result => {
+    //     //         console.log(result);
+    //     //     });
 
-    }
+    // }
 
     function edit_phone() {
         let text_phone = document.querySelector("#text_phone");

@@ -390,7 +390,7 @@
 
         // console.log(area);
 
-        document.querySelector('#btn_delete_form').classList.add('d-none');
+        // document.querySelector('#btn_delete_form').classList.add('d-none');
 
         if (count_delete === 1) {
             document.querySelector('#btn_delete_form').classList.add('d-none');
