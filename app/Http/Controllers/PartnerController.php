@@ -60,7 +60,7 @@ class PartnerController extends Controller
         
         Partner::create($requestData);
 
-        return redirect('partner')->with('flash_message', 'Partner added!');
+        return redirect('partner_viicheck')->with('flash_message', 'Partner added!');
     }
 
     /**
