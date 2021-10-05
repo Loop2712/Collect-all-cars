@@ -24,7 +24,7 @@
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
                     <input class="d-none" type="text" id="search_area" name="" value="{{ url()->full() }}">
                     <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}">
-                    <div class="card">
+                    <div class="card" id="div_card">
                         <div id="map"></div>
                     </div>
                 </div>
@@ -51,17 +51,27 @@
         fetch("{{ url('/') }}/api/area_current/"+name_partner)
             .then(response => response.json())
             .then(result => {
-                // console.log(result.length);
-                let center_lat = document.querySelector('#center_lat');
-                let center_lng = document.querySelector('#center_lng');
+                console.log(result.length);
+                if (result.length) {
+                    let center_lat = document.querySelector('#center_lat');
+                    let center_lng = document.querySelector('#center_lng');
 
-                var bounds = new google.maps.LatLngBounds();
+                    var bounds = new google.maps.LatLngBounds();
 
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
+                    for (let ix = 0; ix < result.length; ix++) {
+                        bounds.extend(result[ix]);
+                    }
+
+                    initMap(result,bounds);
+                }else{
+                    let div_card = document.querySelector('#div_card');
+
+                        let para = document.createElement("h4");
+                            para.innerHTML = "คุณยังไม่มีพื้นที่บริการ" ;
+
+                        div_card.appendChild(para);
                 }
-
-                initMap(result,bounds);
+                
             });
     });
 

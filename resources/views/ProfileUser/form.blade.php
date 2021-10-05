@@ -46,7 +46,7 @@
                             <input class="form-control" name="brith" type="date" id="brith" value="{{ isset($data->brith) ? $data->brith : ''}}" >
                                     {!! $errors->first('brith', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label for="massengbox" class="control-label"><b>{{ 'เพศ' }}</b></label>
+                        <label for="massengbox" class="control-label"><b>{{ 'Gender' }}</b></label>
                         <div class="form-group {{ $errors->has('sex') ? 'has-error' : ''}}">
                             <select name="sex" class="form-control"  id="sex" onchange="if(this.value=='3'){ 
                                     document.querySelector('#masseng_label').classList.remove('d-none'),
