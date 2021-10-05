@@ -13,9 +13,9 @@
         <div class="col-7">
             <div class="row">
                 <div class="col-12">
-                    <a type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
-                    <a href="{{ url('/service_area/pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
-                    <a href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
+                    <a id="btn_service_current" href="{{ url('/service_current') }}" type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
+                    <a id="btn_service_pending" href="{{ url('/service_pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
+                    <a id="btn_service_area" href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
                     <br><br>
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
@@ -76,7 +76,7 @@
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_service_pending').click();">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
@@ -331,7 +331,10 @@
 
         let count_delete = parseFloat(count_position.value) - 1 ;
 
-        document.querySelector('#para_'+count_delete).remove();
+        if (count_delete >= 6) {
+
+            document.querySelector('#para_'+count_delete).remove();
+        }
 
         document.querySelector('#position_' + count_delete).value = "";
         document.querySelector('#count_position').value = count_delete;
@@ -405,6 +408,12 @@
         fetch("{{ url('/') }}/api/send_sos_area/"+area_arr+"/"+name_partner);
 
         document.querySelector('#btn_modal_send_area').click();
+
+        var delayInMilliseconds = 3500; //3.5 second
+
+        setTimeout(function() {
+                document.querySelector('#btn_service_pending').click();
+        }, delayInMilliseconds);
 
     }
     

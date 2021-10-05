@@ -87,6 +87,9 @@ Route::get('/change_language/{language}/{user_id}', 'API\API_language@change_lan
 Route::get('/add_text_topic/{text_th}', 'API\API_language@add_text_topic');
 
 Route::get('/send_sos_area/{area_arr}/{name_partner}', 'API\PartnersController@sos_area');
+Route::get('/area_pending/{name_partner}', 'API\PartnersController@area_pending');
+Route::get('/area_current/{name_partner}', 'API\PartnersController@area_current');
+
 
 
 

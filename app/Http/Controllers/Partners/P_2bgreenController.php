@@ -196,6 +196,13 @@ class P_2bgreenController extends Controller
         return view('Partners_2bgreen.service_area.P_2begreen_service_area_pending', compact('count_position'));
     }
 
+    public function service_area_current(Request $request)
+    {
+        $count_position = 1 ;
+
+        return view('Partners_2bgreen.service_area.P_2begreen_service_area_current', compact('count_position'));
+    }
+
     public function sos_detail_chart(Request $request)
     {
         $year = $request->get('year');

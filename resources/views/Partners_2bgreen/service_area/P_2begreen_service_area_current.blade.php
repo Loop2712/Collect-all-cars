@@ -17,7 +17,7 @@
                     <a id="btn_service_current" href="{{ url('/service_current') }}" type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
                     <a id="btn_service_pending" href="{{ url('/service_pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
                     <a id="btn_service_area" href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
-                    <h3 class="float-right">พื้นที่รอการตรวจสอบ</h3>
+                    <h3 class="float-right">พื้นที่บริการปัจจุบัน</h3>
                     <br><br>
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
@@ -48,7 +48,7 @@
 
         let name_partner = document.querySelector('#name_partner').value;
 
-        fetch("{{ url('/') }}/api/area_pending/"+name_partner)
+        fetch("{{ url('/') }}/api/area_current/"+name_partner)
             .then(response => response.json())
             .then(result => {
                 // console.log(result.length);

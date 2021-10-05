@@ -64,4 +64,33 @@ class PartnersController extends Controller
         return $name_partner ;
         
     }
+
+    public function area_pending($name_partner)
+    {
+        $data_partners = DB::table('partners')
+              ->where('name', $name_partner)
+              ->get();
+
+        foreach ($data_partners as $key) {
+            $area_pending = $key->new_sos_area ;
+        }
+
+        return $area_pending ;
+        
+    }
+
+    public function area_current($name_partner)
+    {
+        $data_partners = DB::table('partners')
+              ->where('name', $name_partner)
+              ->get();
+
+        foreach ($data_partners as $key) {
+            $area_current = $key->sos_area ;
+        }
+
+        return $area_current ;
+        
+    }
+
 }
