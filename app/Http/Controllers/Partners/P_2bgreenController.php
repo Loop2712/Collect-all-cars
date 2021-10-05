@@ -186,7 +186,7 @@ class P_2bgreenController extends Controller
     {
         $count_position = 1 ;
 
-        return view('Partners_2bgreen.P_2begreen_service_area_adjustment', compact('count_position'));
+        return view('Partners_2bgreen.service_area.P_2begreen_service_area_adjustment', compact('count_position'));
     }
 
     public function sos_detail_chart(Request $request)

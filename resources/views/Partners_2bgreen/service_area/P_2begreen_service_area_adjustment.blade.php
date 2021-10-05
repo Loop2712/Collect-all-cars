@@ -13,6 +13,10 @@
         <div class="col-7">
             <div class="row">
                 <div class="col-12">
+                    <button type="button" class="btn btn-primary">พื้นที่ปัจจุบัน</button>
+                    <button type="button" class="btn btn-warning">รอการตรวจสอบ</button>
+                    <button type="button" class="btn btn-secondary">ปรับพื้นที่บริการ</button>
+                    <br><br>
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
@@ -26,10 +30,10 @@
         <div class="col-5">
             <div class="row">
                 <div class="col-md-12">
+                    <br><br><br>
                     <div class="card">
                         <h3 class="card-header">
                             ปรับพื้นที่บริการ / <span style="font-size: 18px;"> service area adjustment </span>
-                            <a href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right">เริ่มใหม่</a>
                         </h3>
                         <div class="container">
                             <div class="row">
@@ -41,25 +45,51 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <input class="form-control" name="count_position" type="text" id="count_position" value="{{ $count_position }}">
+                                    <input class="form-control" name="count_position" type="hidden" id="count_position" value="{{ $count_position }}">
+                                    <br>
+                                    <input class="form-control" type="hidden" name="name_partner" id="name_partner" value="{{ Auth::user()->organization }}">
                                 </div>
                                 <div class="col-6">
-                                    <textarea class="form-control" name="area_arr" type="text" id="area_arr" value="" rows="10"></textarea>
+                                    <textarea class="form-control d-none" name="area_arr"  id="area_arr" value="" rows="10"></textarea>
                                 </div>
                                 <div class="col-6">
-                                <br>
                                     <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
                                         แก้ไขจุดก่อนหน้า
                                     </button>
+                                    <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info d-none">
+                                        เริ่มใหม่
+                                    </a>
                                 </div>
                                 <div class="col-6">
-                                <br>
-                                    <button class="btn btn-sm btn-primary float-right">
+                                    <button id="btn_send_sos_area" class="btn btn-sm btn-primary float-right d-none" onclick="send_sos_area();">
                                         ส่งข้อมูล
                                     </button>
                                 </div>
                             </div>
                             <br>
+                            <!-- Button trigger modal -->
+                            <button id="btn_modal_send_area" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_send_area"></button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal_send_area" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    ViiCheck ได้รับข้อมูลการเปลี่ยนแปลงพื้นที่ของคุณแล้ว กรุณารอ Admin ตรวจสอบ
+                                  </div>
+                                  <div class="modal-footer d-none">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                         </div>
                         </div>
                     </div>
@@ -79,9 +109,10 @@
 <script>
 
     var draw_area ;
-    var marker = [] ;
+    var markers = [] ;
     var map ;
-    let area = [] ;
+    var area = [] ;
+    var marker ; 
 
     function initMap() {
         
@@ -93,6 +124,8 @@
 
         let text_center_lng = document.getElementById("center_lng").value;
         let num_center_lng = parseFloat(text_center_lng);
+
+        let count_position = document.querySelector('#count_position');
 
         // 13.7248936,100.4930264 lat lng ประเทศไทย
 
@@ -123,7 +156,7 @@
             );
 
             let text_content = infoWindow.content ;
-            let count_position = document.querySelector('#count_position');
+            
 
             // console.log(text_content)
 
@@ -139,20 +172,29 @@
 
             // console.log(marker_lat)
             // console.log(marker_lng)
-            const image = "https://www.viicheck.com/img/icon/flag_2.png";
-
-            marker = new google.maps.Marker({
-                position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
-                label: {text: count_position.value, color: "white"},
-                map: map,
-                icon: image,
-            });
+            
+            addMarker(count_position , marker_lat , marker_lng);
 
             infoWindow.open(map);
 
             add_location(text_content, count_position.value, map , marker_lat , marker_lng)
         });
         
+    }
+
+    function addMarker(count_position , marker_lat , marker_lng) {
+        const image = "https://www.viicheck.com/img/icon/flag_2.png";
+
+        map_maeker = {
+            position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
+            label: {text: count_position.value, color: "white"},
+            map: map,
+            icon: image,
+        };
+
+        marker = new google.maps.Marker(map_maeker);
+
+        markers.push(map_maeker);
     }
 
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
@@ -245,6 +287,8 @@
         div_lat_lng.appendChild(div_form);
 
         document.querySelector('#btn_delete_form').classList.remove('d-none');
+        document.querySelector('#btn_send_sos_area').classList.remove('d-none');
+        document.querySelector('#btn_re').classList.remove('d-none');
 
         co_position.value = add_count ;
 
@@ -262,13 +306,35 @@
         document.querySelector('#position_' + count_delete).value = "";
         document.querySelector('#count_position').value = count_delete;
 
-            console.log(area);
+            // console.log(area);
+            // console.log(markers);
 
         let last_arr_area = area.length - 1 ;
+        let last_arr_markers = markers.length - 1 ;
+
+        area.splice(last_arr_area);
 
         marker.setMap(null);
 
-        area.splice(last_arr_area);
+        // console.log(marker);
+        // console.log(markers[0]);
+
+        // for (let ii = 0; ii < markers.length; ii++) {
+
+        //     let new_lat = markers[ii]['position']['lat'];
+        //     let new_lng = markers[ii]['position']['lng'];
+
+        //     console.log(new_lat);
+        //     console.log(new_lng);
+
+
+        //     // marker = new google.maps.Marker(markers);
+        // }
+        // console.log("-----------------");
+        // markers.splice(last_arr_markers);
+        // console.log(markers);
+
+        
 
         let area_arr = document.querySelector('#area_arr');
             area_arr.value = JSON.stringify(area) ;
@@ -289,12 +355,28 @@
         });
         draw_area.setMap(map);
 
-        console.log(area);
+        // console.log(area);
 
-        // document.querySelector('#btn_delete_form').classList.add('d-none');
+        document.querySelector('#btn_delete_form').classList.add('d-none');
+
+        if (count_delete === 1) {
+            document.querySelector('#btn_delete_form').classList.add('d-none');
+        }
 
     }
 
+    function send_sos_area() {
+
+        let area_arr = document.querySelector('#area_arr').value;
+
+        let name_partner = document.querySelector('#name_partner').value;
+
+
+        fetch("{{ url('/') }}/api/send_sos_area/"+area_arr+"/"+name_partner);
+
+        document.querySelector('#btn_modal_send_area').click();
+
+    }
     
 </script>
 

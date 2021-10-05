@@ -52,4 +52,16 @@ class PartnersController extends Controller
         }
         
     }
+
+    public function sos_area($area_arr,$name_partner)
+    {
+        DB::table('partners')
+              ->where('name', $name_partner)
+              ->update([
+                'new_sos_area' => $area_arr,
+        ]);
+
+        return $name_partner ;
+        
+    }
 }

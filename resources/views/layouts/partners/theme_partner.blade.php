@@ -75,7 +75,7 @@
                         <a href="{{ url('/sos_insurance') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-tools"></i></span><span class="pcoded-mtext">การเรียกประกัน</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/service_area') }}" class="nav-link "><span class="pcoded-micon"><i class="far fa-map"></i></span><span class="pcoded-mtext">ปรับพื้นที่บริการ</span></a>
+                        <a href="{{ url('/service_area') }}" class="nav-link "><span class="pcoded-micon"><i class="far fa-map"></i></span><span class="pcoded-mtext">พื้นที่บริการ</span></a>
                     </li>
                     <li class="nav-item pcoded-menu-caption">
                         <label style="font-size:13px">ติดต่อ ViiCHECK</label>
