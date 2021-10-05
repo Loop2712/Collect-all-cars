@@ -123,6 +123,7 @@ Route::middleware(['auth', 'role:2bgreen'])->group(function () {
 	Route::get('/sos_2bgreen', 'Partners\P_2bgreenController@view_sos');
 	Route::get('/sos_insurance', 'Partners\P_2bgreenController@sos_insurance');
 	Route::get('/service_area', 'Partners\P_2bgreenController@service_area');
+	Route::get('/service_area/pending', 'Partners\P_2bgreenController@service_area_pending');
 	
 
 });

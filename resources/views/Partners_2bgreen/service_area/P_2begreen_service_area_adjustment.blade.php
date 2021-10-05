@@ -13,9 +13,9 @@
         <div class="col-7">
             <div class="row">
                 <div class="col-12">
-                    <button type="button" class="btn btn-primary">พื้นที่ปัจจุบัน</button>
-                    <button type="button" class="btn btn-warning">รอการตรวจสอบ</button>
-                    <button type="button" class="btn btn-secondary">ปรับพื้นที่บริการ</button>
+                    <a type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
+                    <a href="{{ url('/service_area/pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
+                    <a href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
                     <br><br>
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
@@ -235,6 +235,33 @@
             area_arr.value = JSON.stringify(area) ;
 
         // add input position
+
+        if (parseFloat(add_count) > 6) {
+
+            document.querySelector('#div_form_'+co_position.value).classList.add('d-none');
+
+            let count_para = parseFloat(co_position.value) - 1;
+
+            if (count_para >= 6) {
+                document.querySelector('#para_'+count_para).classList.add('d-none');
+            }
+
+            let para = document.createElement("p");
+                para.innerHTML = " ... " ;
+
+            let para_id = document.createAttribute("id");
+                para_id.value = "para_" +co_position.value;
+
+            let para_class = document.createAttribute("class");
+                para_class.value = "";
+             
+            para.setAttributeNode(para_id); 
+            para.setAttributeNode(para_class); 
+
+            div_lat_lng.appendChild(para);
+
+        }
+
         // div_form
         let div_form = document.createElement("div");
 
@@ -299,9 +326,12 @@
         let count_position = document.querySelector('#count_position');
             // console.log(count_position.value);
 
+
         document.querySelector('#div_form_' + count_position.value).remove();
 
         let count_delete = parseFloat(count_position.value) - 1 ;
+
+        document.querySelector('#para_'+count_delete).remove();
 
         document.querySelector('#position_' + count_delete).value = "";
         document.querySelector('#count_position').value = count_delete;
