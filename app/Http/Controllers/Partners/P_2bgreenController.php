@@ -190,6 +190,7 @@ class P_2bgreenController extends Controller
         $location_array = DB::table('lat_longs')
                 ->selectRaw('changwat_th')
                 ->groupBy('changwat_th')
+                ->orderBy('changwat_th' , 'ASC')
                 ->get();
 
         return view('Partners_2bgreen.service_area.P_2begreen_service_area_adjustment', compact('count_position','location_array'));
