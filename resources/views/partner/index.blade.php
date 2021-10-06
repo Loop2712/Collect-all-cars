@@ -66,7 +66,7 @@
                                             <h6>Area current</h6>
                                             <div style="margin-top:20px;">
                                                 @if(!empty($item->sos_area))
-                                                    <i class="fas fa-check text-success"></i>
+                                                    <i style="font-size:25px;" class="fas fa-check text-success"></i>
                                                 @else
                                                     <i class="fas fa-times text-danger"></i>
                                                 @endif
@@ -105,11 +105,19 @@
                                     <br><br>
                                     <div class="row">
                                         <div class="col-12">
+                                            <button id="btn_view_current_{{ $item->id }}" class="btn btn-sm btn-info" onclick="view_area_current_partner('{{ $item->name }}' , '{{ $item->id }}');">
+                                                ดูพื้นที่ปัจจุบัน <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button id="btn_view_pending_{{ $item->id }}" class="btn btn-sm btn-warning text-white d-none" onclick="check_area_pending_partner('{{ $item->name }}' , '{{ $item->id }}');">
+                                                พื้นที่รอการตรวจสอบ <i class="fas fa-tasks"></i>
+                                            </button>
+                                            <span id="text_err_{{ $item->id }}" class="text-danger"></span>
+
                                             <div class="float-right">
-                                                <button type="button" class="btn btn-sm btn-success" onclick="confirm_change('approve','{{ $item->id }}');">
+                                                <button id="btn_approved_{{ $item->id }}" type="button" class="btn btn-sm btn-success" onclick="confirm_change('approve','{{ $item->id }}');">
                                                     &nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-danger" onclick="confirm_change('disapproved','{{ $item->id }}');">
+                                                <button id="btn_disapproved_{{ $item->id }}" type="button" class="btn btn-sm btn-danger" onclick="confirm_change('disapproved','{{ $item->id }}');">
                                                     ไม่อนุมัติ
                                                 </button>
                                             </div>
@@ -193,6 +201,11 @@
 
                     document.querySelector('#input_new_area_' + id).value = JSON.stringify(result) ;
 
+                    document.querySelector('#btn_disapproved_' + id).classList.remove('d-none');
+                    document.querySelector('#btn_approved_' + id).classList.remove('d-none');
+                    document.querySelector('#btn_view_current_' + id).classList.remove('d-none');
+                    document.querySelector('#btn_view_pending_' + id).classList.add('d-none');
+
                     var bounds = new google.maps.LatLngBounds();
 
                     for (let ix = 0; ix < result.length; ix++) {
@@ -201,7 +214,43 @@
 
                     initMap(result,bounds,id);
                 });
-            }
+
+            fetch("{{ url('/') }}/api/area_current/"+name_partner)
+                .then(response => response.text())
+                .then(result => {
+                    if (result) {
+                        // console.log(result);
+                    }else {
+                        document.querySelector('#text_err_' + id).innerText = "ไม่มีพื้นที่บริการปัจจุบัน";
+                        document.querySelector('#btn_view_current_' + id).classList.add('d-none');
+                    }
+                    
+                });
+        }
+
+        function view_area_current_partner(name_partner , id){
+
+            fetch("{{ url('/') }}/api/area_current/"+name_partner)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    document.querySelector('#input_new_area_' + id).value = JSON.stringify(result) ;
+                    document.querySelector('#btn_disapproved_' + id).classList.add('d-none');
+                    document.querySelector('#btn_approved_' + id).classList.add('d-none');
+                    document.querySelector('#btn_view_pending_' + id).classList.remove('d-none');
+                    document.querySelector('#btn_view_current_' + id).classList.add('d-none');
+
+                    var bounds = new google.maps.LatLngBounds();
+
+                    for (let ix = 0; ix < result.length; ix++) {
+                        bounds.extend(result[ix]);
+                    }
+
+                    initMap(result,bounds,id);
+
+                });
+        }
 
         var draw_area ;
         var map ;
@@ -211,7 +260,7 @@
 
             map = new google.maps.Map(document.getElementById("map_"+id), {
                 // zoom: num_zoom,
-                center: bounds.getCenter(),
+                // center: bounds.getCenter(),
             });
             map.fitBounds(bounds);
 
