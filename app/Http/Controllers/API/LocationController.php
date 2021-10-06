@@ -112,4 +112,28 @@ class LocationController extends Controller
         return $user_id;
     }
 
+    public function amphoe_search($province)
+    {
+        $amphoe = DB::table('lat_longs')
+                    // ->select('amphoe_th')
+                    ->where('changwat_th', $province)
+                    ->groupBy('amphoe_th')
+                    ->orderBy('amphoe_th', 'asc')
+                    ->get();
+
+        return $amphoe;
+    }
+
+    public function district_search($amphoe)
+    {
+        $district = DB::table('lat_longs')
+                    // ->select('tambon_th')
+                    ->where('amphoe_th', $amphoe)
+                    ->groupBy('tambon_th')
+                    ->orderBy('tambon_th', 'asc')
+                    ->get();
+
+        return $district;
+    }
+
 }

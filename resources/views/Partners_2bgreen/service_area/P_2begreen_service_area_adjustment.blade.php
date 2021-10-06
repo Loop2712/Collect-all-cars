@@ -10,12 +10,34 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-7">
+        <div class="col-8">
             <div class="row">
                 <div class="col-12">
                     <a id="btn_service_current" href="{{ url('/service_current') }}" type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
                     <a id="btn_service_pending" href="{{ url('/service_pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
                     <a id="btn_service_area" href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
+                    <div class="float-right" style="margin-left: 20px;">
+                        <select id="select_district" class="form-control">
+                            <option>- ตำบล -</option>
+                        </select>
+                    </div>
+                    <div class="float-right" style="margin-left: 20px;">
+                        <select id="select_amphoe" class="form-control" onchange="show_district();">
+                            <option>- อำเภอ -</option>
+                        </select>
+                    </div>
+                    <div class="float-right" style="margin-left: 20px;">
+                        <select id="select_province" class="form-control" onchange="show_amphoe();">
+                            <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                            @foreach($location_array as $lo)
+                            <option 
+                            value="{{ $lo->changwat_th }}" 
+                            {{ request('changwat_th') == $lo->changwat_th ? 'selected' : ''   }} >
+                            {{ $lo->changwat_th }} 
+                            </option>
+                            @endforeach    
+                        </select>
+                    </div>
                     <br><br>
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
@@ -27,13 +49,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-5">
+        <div class="col-4">
             <div class="row">
                 <div class="col-md-12">
                     <br><br><br>
                     <div class="card">
                         <h3 class="card-header">
-                            ปรับพื้นที่บริการ / <span style="font-size: 18px;"> service area adjustment </span>
+                            ปรับพื้นที่บริการ
+                            <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
+                                เริ่มใหม่
+                            </a>
                         </h3>
                         <div class="container">
                             <div class="row">
@@ -56,9 +81,6 @@
                                     <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
                                         แก้ไขจุดก่อนหน้า
                                     </button>
-                                    <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info d-none">
-                                        เริ่มใหม่
-                                    </a>
                                 </div>
                                 <div class="col-6">
                                     <button id="btn_send_sos_area" class="btn btn-sm btn-primary float-right d-none" onclick="send_sos_area();">
@@ -416,7 +438,48 @@
         }, delayInMilliseconds);
 
     }
-    
+
+    function show_amphoe(){
+        let select_province = document.querySelector('#select_province');
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/show_amphoe/"+select_province.value)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let select_amphoe = document.querySelector("#select_amphoe");
+                    select_amphoe.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.amphoe_th;
+                    option.value = item.amphoe_th;
+                    select_amphoe.add(option);
+                }
+                show_district();
+            });
+    }
+
+    function show_district(){
+        let select_amphoe = document.querySelector('#select_amphoe');
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/show_district/"+select_amphoe.value)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let select_district = document.querySelector("#select_district");
+                    select_district.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.tambon_th;
+                    option.value = item.tambon_th;
+                    select_district.add(option);
+                }
+
+            });
+    }
 </script>
 
 @endsection

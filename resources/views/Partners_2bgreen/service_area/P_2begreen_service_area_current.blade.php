@@ -10,8 +10,7 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
+        <div class="col-12">
             <div class="row">
                 <div class="col-12">
                     <a id="btn_service_current" href="{{ url('/service_current') }}" type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
@@ -30,7 +29,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-1"></div>
     </div>
 </div>
 

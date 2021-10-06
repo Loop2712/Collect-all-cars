@@ -15,6 +15,7 @@ use App\Models\Motercycle;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sos_map;
 use App\Models\Sos_insurance;
+use App\county;
 
 class P_2bgreenController extends Controller
 {
@@ -186,7 +187,16 @@ class P_2bgreenController extends Controller
     {
         $count_position = 1 ;
 
-        return view('Partners_2bgreen.service_area.P_2begreen_service_area_adjustment', compact('count_position'));
+        // $location_array = county::selectRaw('province')
+        //     ->groupBy('province')
+        //     ->get();
+
+        $location_array = DB::table('lat_longs')
+                ->selectRaw('changwat_th')
+                ->groupBy('changwat_th')
+                ->get();
+
+        return view('Partners_2bgreen.service_area.P_2begreen_service_area_adjustment', compact('count_position','location_array'));
     }
 
     public function service_area_pending(Request $request)

@@ -90,6 +90,10 @@ Route::get('/send_sos_area/{area_arr}/{name_partner}', 'API\PartnersController@s
 Route::get('/area_pending/{name_partner}', 'API\PartnersController@area_pending');
 Route::get('/area_current/{name_partner}', 'API\PartnersController@area_current');
 
+Route::get('/show_amphoe/{province}', 'API\LocationController@amphoe_search');
+Route::get('/show_district/{amphoe}', 'API\LocationController@district_search');
+
+
 
 
 
