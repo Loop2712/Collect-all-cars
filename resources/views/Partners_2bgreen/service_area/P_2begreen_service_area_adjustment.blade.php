@@ -45,7 +45,6 @@
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                    <input class="d-none" type="text" id="search_area" name="" value="{{ url()->full() }}">
                     <div class="card">
                         <div id="map"></div>
                     </div>

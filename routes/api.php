@@ -94,6 +94,9 @@ Route::get('/show_amphoe/{province}', 'API\LocationController@amphoe_search');
 Route::get('/show_district/{amphoe}', 'API\LocationController@district_search');
 Route::get('/zoom_district/{district}', 'API\LocationController@zoom_district');
 
+Route::get('/check_new_sos_area', 'API\PartnersController@check_new_sos_area');
+
+
 
 
 

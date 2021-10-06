@@ -31,9 +31,13 @@ class PartnerController extends Controller
             $partner = Partner::latest()->paginate($perPage);
         }
 
+        foreach ($partner as $key) {
+            $new_sos_area = $key->new_sos_area ;
+        }
+
         $group_line = Group_line::where('owner', null)->get();
 
-        return view('partner.index', compact('partner','group_line'));
+        return view('partner.index', compact('partner','group_line','new_sos_area'));
     }
 
     /**

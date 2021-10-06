@@ -36,6 +36,23 @@
         .main-radius{
             border-radius: 5px;
         }
+
+        .notify_alert{
+          animation-name: notify_alert;
+          color: red;
+          animation-duration: 4s;
+          animation-iteration-count: 99;
+        }
+
+        @keyframes notify_alert {
+          0%   {color: red;}
+          20%  {color: yellow;}
+          40%  {color: red;}
+          60% {color: yellow;}
+          80%   {color: red;}
+          100%  {color: yellow;}
+
+        }
   </style>
 </head>
 
@@ -129,9 +146,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/partner_viicheck') }}">
+              <a id="btn_Partner_url" class="nav-link" href="{{ url('/partner_viicheck') }}">
                 <i class="fas fa-hands-helping text-success"></i>
                 <span class="nav-link-text">Partner ViiCHECK</span>
+                &nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
@@ -262,6 +280,43 @@
   <script src="{{ asset('admin/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <!-- <script src="{{ asset('admin/js/argon.js?v=1.2.0')}}"></script> -->
+
+  <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        check_new_sos_area();
+    });
+
+    function check_new_sos_area() {
+
+      fetch("{{ url('/') }}/api/check_new_sos_area")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+              let check = "no" ;
+              for (var i = 0; i < result.length; i++) {
+
+                if (result[i]['new_sos_area']) {
+                    check = "yes";
+                }
+              }
+                
+              if (check === "yes") {
+                  let btn_Partner_url = document.querySelector('#btn_Partner_url');
+        
+                  let tag_i = document.createElement("i");
+                  let tag_i_class = document.createAttribute("class");
+                  tag_i_class.value = "fas fa-exclamation-circle notify_alert";
+
+                  tag_i.setAttributeNode(tag_i_class); 
+
+                  btn_Partner_url.appendChild(tag_i);
+              }
+        });
+    }
+
+  </script>
 
 
 </html>

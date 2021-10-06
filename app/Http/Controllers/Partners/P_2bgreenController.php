@@ -187,10 +187,6 @@ class P_2bgreenController extends Controller
     {
         $count_position = 1 ;
 
-        // $location_array = county::selectRaw('province')
-        //     ->groupBy('province')
-        //     ->get();
-
         $location_array = DB::table('lat_longs')
                 ->selectRaw('changwat_th')
                 ->groupBy('changwat_th')
@@ -201,16 +197,14 @@ class P_2bgreenController extends Controller
 
     public function service_area_pending(Request $request)
     {
-        $count_position = 1 ;
 
-        return view('Partners_2bgreen.service_area.P_2begreen_service_area_pending', compact('count_position'));
+        return view('Partners_2bgreen.service_area.P_2begreen_service_area_pending');
     }
 
     public function service_area_current(Request $request)
     {
-        $count_position = 1 ;
 
-        return view('Partners_2bgreen.service_area.P_2begreen_service_area_current', compact('count_position'));
+        return view('Partners_2bgreen.service_area.P_2begreen_service_area_current');
     }
 
     public function sos_detail_chart(Request $request)

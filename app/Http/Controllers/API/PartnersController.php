@@ -93,4 +93,11 @@ class PartnersController extends Controller
         
     }
 
+    public function check_new_sos_area()
+    {
+        $data_partners = DB::table('partners')->get();
+
+        return $data_partners ;
+    }
+
 }
