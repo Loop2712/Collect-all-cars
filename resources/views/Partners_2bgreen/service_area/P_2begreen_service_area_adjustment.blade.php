@@ -77,7 +77,7 @@
                                     <input class="form-control" type="hidden" name="name_partner" id="name_partner" value="{{ Auth::user()->organization }}">
                                 </div>
                                 <div class="col-6">
-                                    <textarea class="form-control " name="area_arr"  id="area_arr" value="" rows="10"></textarea>
+                                    <textarea class="form-control d-none" name="area_arr"  id="area_arr" value="" rows="10"></textarea>
                                 </div>
                                 <div class="col-6">
                                     <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
