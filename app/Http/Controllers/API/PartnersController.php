@@ -100,4 +100,26 @@ class PartnersController extends Controller
         return $data_partners ;
     }
 
+    public function approve_area($input_new_area, $id)
+    {
+        DB::table('partners')
+              ->where('id', $id)
+              ->update([
+                'sos_area' => $input_new_area,
+                'new_sos_area' => null,
+        ]);
+
+        return $id ;
+    }
+
+    public function disapproved_area($id)
+    {
+        DB::table('partners')
+              ->where('id', $id)
+              ->update([
+                'new_sos_area' => null,
+        ]);
+
+        return $id ;
+    }
 }

@@ -85,7 +85,7 @@
                                             </h6>
                                             <div style="margin-top:20px;">
                                                 @if(!empty($item->new_sos_area))
-                                                    <a href="" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}">
+                                                    <a href="" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="check_area_pending_partner('{{ $item->name }}' , '{{ $item->id }}');">
                                                         ตรวจสอบ 
                                                     </a>
                                                 @else
@@ -101,29 +101,56 @@
                                 </div>
                                 <hr>
                                 <div class="collapse container" id="collapseExample_{{ $item->id }}">
-                                    <i class="far fa-times-circle float-right" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}"></i>
+                                    <i class="far fa-times-circle float-right btn" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}"></i>
                                     <br><br>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="float-right">
-                                                <button type="button" class="btn btn-sm btn-success">
+                                                <button type="button" class="btn btn-sm btn-success" onclick="confirm_change('approve','{{ $item->id }}');">
                                                     &nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-danger">
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="confirm_change('disapproved','{{ $item->id }}');">
                                                     ไม่อนุมัติ
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <div id="map" style="background-color: red;"></div>
-                                            <input class="d-none" type="text" id="va_zoom" name="" value="6">
-                                            <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
-                                            <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+                                            <br>
+                                            <div id="map_{{ $item->id }}" style="height: calc(40vh);"></div>
+                                            <input class="d-none" type="text" id="input_new_area_{{ $item->id }}" name=""  value="">
                                         </div>
                                     </div>
                                     <hr>
                                 </div>
                                 @endforeach
+                            </div>
+                            <!-- Button trigger modal -->
+                            <button id="btn_confirm_change" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#confirm_change">
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirm_change" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">กรุณายืนยันการเปลี่ยนแปลง</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div>
+                                        <center id="div_content">
+                                            
+                                        </center>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                    <button id="btn_submit_change" type="button" class="btn btn-primary" >ตกลง</button>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -131,6 +158,7 @@
             </div>
         </div>
     </div>
+    <a id="btn_f5" href="{{ url('/partner_viicheck') }}" class="d-none"></a>
 
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -144,8 +172,8 @@
         
         function change_line_group(loop, name_partner){
             let select_line_group = document.querySelector("#select_line_group_" + loop).value;
-            console.log(select_line_group);
-            console.log(name_partner);
+            // console.log(select_line_group);
+            // console.log(name_partner);
 
             fetch("{{ url('/') }}/api/partner_viicheck_select_line_group/" + select_line_group + "/" + name_partner);
 
@@ -156,79 +184,144 @@
                 }, delayInMilliseconds);
         }
 
+        function check_area_pending_partner(name_partner , id){
+
+            fetch("{{ url('/') }}/api/area_pending/"+name_partner)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    document.querySelector('#input_new_area_' + id).value = JSON.stringify(result) ;
+
+                    var bounds = new google.maps.LatLngBounds();
+
+                    for (let ix = 0; ix < result.length; ix++) {
+                        bounds.extend(result[ix]);
+                    }
+
+                    initMap(result,bounds,id);
+                });
+            }
+
         var draw_area ;
-    var markers = [] ;
-    var map ;
-    var area = [] ;
-    var marker ; 
+        var map ;
+        var area  = [] ;
 
-    function initMap() {
-        
-        let text_zoom = document.getElementById("va_zoom").value;
-        let num_zoom = parseFloat(text_zoom);
+        function initMap(result,bounds,id) {
 
-        let text_center_lat = document.getElementById("center_lat").value;
-        let num_center_lat = parseFloat(text_center_lat);
-
-        let text_center_lng = document.getElementById("center_lng").value;
-        let num_center_lng = parseFloat(text_center_lng);
-
-        let count_position = document.querySelector('#count_position');
-
-        // 13.7248936,100.4930264 lat lng ประเทศไทย
-
-        const myLatlng = { lat: num_center_lat, lng: num_center_lng };
-
-        map = new google.maps.Map(document.getElementById("map"), {
-            zoom: num_zoom,
-            center: myLatlng,
-        });
-        // Create the initial InfoWindow.
-        let infoWindow = new google.maps.InfoWindow({
-            // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
-            // position: myLatlng,
-        });
-
-        infoWindow.open(map);
-        // Configure the click listener.
-        map.addListener("click", (mapsMouseEvent) => {
-            // Close the current InfoWindow.
-            infoWindow.close();
-            // Create a new InfoWindow.
-            infoWindow = new google.maps.InfoWindow({
-                // position: mapsMouseEvent.latLng,
+            map = new google.maps.Map(document.getElementById("map_"+id), {
+                // zoom: num_zoom,
+                center: bounds.getCenter(),
             });
+            map.fitBounds(bounds);
 
-            infoWindow.setContent(
-                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-            );
-
-            let text_content = infoWindow.content ;
+            // Construct the polygon.
+            draw_area = new google.maps.Polygon({
+                paths: result,
+                strokeColor: "#008450",
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillColor: "#008450",
+                fillOpacity: 0.25,
+            });
+            draw_area.setMap(map);
             
+        }
 
-            // console.log(text_content)
+        function approve(id) {
+            let input_new_area = document.querySelector('#input_new_area_' + id);
 
-            const contentArr = text_content.split(",");
+                fetch("{{ url('/') }}/api/approve_area/"+input_new_area.value+"/"+id);
+                document.querySelector('#btn_f5').click();
+        }
 
-            const lat_Arr = contentArr[0].split(":");
+        function disapproved(id) {
 
-                let marker_lat = lat_Arr[1];
+                fetch("{{ url('/') }}/api/disapproved_area/"+id);
+                document.querySelector('#btn_f5').click();
+        }
 
-            const lng_Arr = contentArr[1].split(":");
+        function confirm_change(text, id){
 
-                let marker_lng = lng_Arr[1].replace("\n}", "");
+            document.querySelector('#btn_confirm_change').click();
 
-            // console.log(marker_lat)
-            // console.log(marker_lng)
-            
-            addMarker(count_position , marker_lat , marker_lng);
+            let btn_submit_change =  document.querySelector('#btn_submit_change');
+            let div_content =  document.querySelector('#div_content');
+                div_content.innerHTML = "";
 
-            infoWindow.open(map);
+            if (text === "approve") {
 
-            add_location(text_content, count_position.value, map , marker_lat , marker_lng)
-        });
-        
-    }
+                let onclick = document.createAttribute("onclick");
+                    onclick.value = "approve("+id+");";
+
+                    btn_submit_change.setAttributeNode(onclick);
+
+                    // ---------------------------- //
+                    // img
+                    let img = document.createElement("img");
+
+                    let img_width = document.createAttribute("width");
+                        img_width.value = "50%";
+                    let img_src = document.createAttribute("src");
+                        img_src.value = "{{ asset('/img/stickerline/PNG/7.png') }}";
+
+                        img.setAttributeNode(img_width); 
+                        img.setAttributeNode(img_src); 
+
+                    //h5
+                    let h5 = document.createElement("h5");
+
+                    let h5_class = document.createAttribute("class");
+                        h5_class.value = "text-danger";
+                        h5.innerHTML = "คุณยืนยันการอนุมัติใช่หรือไม่";
+                        h5.setAttributeNode(h5_class); 
+
+                    let br = document.createElement("br");
+                    let br2 = document.createElement("br");
+
+                    div_content.appendChild(img);
+                    div_content.appendChild(br);
+                    div_content.appendChild(br2);
+                    div_content.appendChild(h5);
+            }
+
+            if (text === "disapproved") {
+
+                let onclick = document.createAttribute("onclick");
+                    onclick.value = "disapproved("+id+");";
+
+                    btn_submit_change.setAttributeNode(onclick);
+
+                    // ---------------------------- //
+                    // img
+                    let img = document.createElement("img");
+
+                    let img_width = document.createAttribute("width");
+                        img_width.value = "50%";
+                    let img_src = document.createAttribute("src");
+                        img_src.value = "{{ asset('/img/stickerline/PNG/7.png') }}";
+
+                        img.setAttributeNode(img_width); 
+                        img.setAttributeNode(img_src); 
+
+                    //h5
+                    let h5 = document.createElement("h5");
+
+                    let h5_class = document.createAttribute("class");
+                        h5_class.value = "text-danger";
+                        h5.innerHTML = "คุณยืนยันที่จะไม่อนุมัติใช่หรือไม่";
+                        h5.setAttributeNode(h5_class); 
+
+                    let br = document.createElement("br");
+                    let br2 = document.createElement("br");
+
+                    div_content.appendChild(img);
+                    div_content.appendChild(br);
+                    div_content.appendChild(br2);
+                    div_content.appendChild(h5);
+            }
+
+        }
 
 
     </script>
