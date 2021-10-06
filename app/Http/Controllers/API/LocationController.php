@@ -136,4 +136,13 @@ class LocationController extends Controller
         return $district;
     }
 
+    public function zoom_district($district)
+    {
+        $district = DB::table('lat_longs')
+                    ->where('tambon_th', $district)
+                    ->get();
+
+        return $district;
+    }
+
 }

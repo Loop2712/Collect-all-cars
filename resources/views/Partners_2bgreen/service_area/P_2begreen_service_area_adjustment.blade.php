@@ -17,7 +17,7 @@
                     <a id="btn_service_pending" href="{{ url('/service_pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
                     <a id="btn_service_area" href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
                     <div class="float-right" style="margin-left: 20px;">
-                        <select id="select_district" class="form-control">
+                        <select id="select_district" class="form-control" onchange="zoom_district();">
                             <option>- ตำบล -</option>
                         </select>
                     </div>
@@ -33,7 +33,10 @@
                             <option 
                             value="{{ $lo->changwat_th }}" 
                             {{ request('changwat_th') == $lo->changwat_th ? 'selected' : ''   }} >
-                            {{ $lo->changwat_th }} 
+                            @php
+                                $text_changwat_th = str_replace("จ.","","$lo->changwat_th");
+                            @endphp
+                            {{ $text_changwat_th }} 
                             </option>
                             @endforeach    
                         </select>
@@ -159,8 +162,8 @@
         });
         // Create the initial InfoWindow.
         let infoWindow = new google.maps.InfoWindow({
-            content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
-            position: myLatlng,
+            // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
+            // position: myLatlng,
         });
 
         infoWindow.open(map);
@@ -440,6 +443,14 @@
     }
 
     function show_amphoe(){
+        let select_district = document.querySelector("#select_district");
+            select_district.innerHTML = "";
+
+        let option_district = document.createElement("option");
+            option_district.text = "- ตำบล -";
+            option_district.value = "- ตำบล -";
+            select_district.add(option_district);
+
         let select_province = document.querySelector('#select_province');
         //PARAMETERS
         fetch("{{ url('/') }}/api/show_amphoe/"+select_province.value)
@@ -450,13 +461,33 @@
                 let select_amphoe = document.querySelector("#select_amphoe");
                     select_amphoe.innerHTML = "";
 
+                    for (let co_am = 0; co_am < result.length; co_am++) {
+
+                        let name_province = select_province.value.replace("จ.", "");
+
+                        if (result[co_am]['amphoe_th'] == "อ.เมือง"+name_province || result[co_am]['amphoe_th'] == "เขตราชเทวี" || result[co_am]['amphoe_th'] == "อ."+name_province) {
+
+                            document.getElementById("va_zoom").value = "11";
+
+                            document.getElementById("center_lat").value = result[co_am]['lat'];
+
+                            document.getElementById("center_lng").value = result[co_am]['lng'];
+                        }
+                    }
+
+                let option_1 = document.createElement("option");
+                    option_1.text = "- อำเภอ -";
+                    option_1.value = "- อำเภอ -";
+                    select_amphoe.add(option_1);
+
                 for(let item of result){
                     let option = document.createElement("option");
-                    option.text = item.amphoe_th;
+                    option.text = item.amphoe_th.replace("อ.", "");
                     option.value = item.amphoe_th;
                     select_amphoe.add(option);
                 }
-                show_district();
+
+                initMap();
             });
     }
 
@@ -470,15 +501,62 @@
                 //UPDATE SELECT OPTION
                 let select_district = document.querySelector("#select_district");
                     select_district.innerHTML = "";
+                    let total_lat_di = 0 ;
+                    let total_lng_di = 0 ;
+                    for (let co_di = 0; co_di < result.length; co_di++) {
+
+                        total_lat_di = total_lat_di + parseFloat(result[co_di]['lat'])
+                        total_lng_di = total_lng_di + parseFloat(result[co_di]['lng'])
+        
+                    }
+
+                    let center_am_lat = total_lat_di / result.length ;
+                    let center_am_lng = total_lng_di / result.length ;
+
+                    document.getElementById("va_zoom").value = "12";
+
+                    document.getElementById("center_lat").value = center_am_lat;
+
+                    document.getElementById("center_lng").value = center_am_lng;
+
+
+                let option_1 = document.createElement("option");
+                    option_1.text = "- ตำบล -";
+                    option_1.value = "- ตำบล -";
+                    select_district.add(option_1);
 
                 for(let item of result){
                     let option = document.createElement("option");
-                    option.text = item.tambon_th;
+                    option.text = item.tambon_th.replace("ต.", "");
                     option.value = item.tambon_th;
                     select_district.add(option);
                 }
 
+                initMap();
+
             });
+    }
+
+    function zoom_district() {
+        let select_district = document.querySelector('#select_district');
+            // console.log(select_district.value);
+
+        fetch("{{ url('/') }}/api/zoom_district/"+select_district.value)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+
+                document.getElementById("va_zoom").value = "13";
+
+                document.getElementById("center_lat").value = result[0]['lat'];
+
+                document.getElementById("center_lng").value = result[0]['lng'];
+
+                initMap();
+
+            });
+
     }
 </script>
 
