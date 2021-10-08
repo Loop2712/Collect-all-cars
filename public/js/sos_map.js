@@ -219,15 +219,19 @@
         for (var xii = 0; xii < result_area.length; xii++) {
             // console.log(result_area[xii]['sos_area']);
             // Construct the polygon.
-            let draw_area = new google.maps.Polygon({
-                paths: JSON.parse(result_area[xii]['sos_area']),
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
+            if (typeof result_area !== null) {
+
+                let draw_area = new google.maps.Polygon({
+                    paths: JSON.parse(result_area[xii]['sos_area']),
+                    strokeColor: "#008450",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: "#008450",
+                    fillOpacity: 0.25,
+                });
+                draw_area.setMap(map);
+
+            }
 
             // console.log(JSON.parse(result_area[xii]['sos_area']))
         }
@@ -384,132 +388,160 @@
 
     function check_area(lat,lng) { //lat,lng
 
-        for (var xii = 0; xii < result_area.length; xii++) {
-            console.log(result_area[xii]);
-            console.log(result_area[xii]['sos_area']);
+        for (let ii = 0; ii < result_area.length; ii++) {
 
-            // console.log(JSON.parse(result_area[xii]['sos_area']))
-        }
+            // console.log(result_area[ii]);
+            // console.log(result_area[ii]['name']);
+            // console.log(JSON.parse(result_area[ii]['sos_area']));
+            // console.log(JSON.parse(result_area[ii]['sos_area']).length);
 
-        // // พื้นที่ ทดสอบ
-        const area_test = [
-                [ 14.1150621, 100.6013697 ],
-                [ 14.1150621, 100.6074465 ],
-                [ 14.1127626, 100.6074465 ],
-                [ 14.1127626, 100.6013697 ],
-            ];
+            let name_partner = result_area[ii]['name'];
+            let arr_lat_lng = JSON.parse(result_area[ii]['sos_area']);
+            
+            if (arr_lat_lng !== null) {
+                let area_arr = [] ;
 
-        // // พื้นที่ VRU
-        const area_vru = [
-                [ 14.1357294, 100.6054468 ],
-                [ 14.1357294, 100.6179993 ],
-                [ 14.1319187, 100.6179993 ],
-                [ 14.1319187, 100.6054468 ],
+                let arr_length = JSON.parse(result_area[ii]['sos_area']).length;
+
+                for(z = 0; z < arr_length; z++){
+                    
+                    let text_latlng = parseFloat(arr_lat_lng[z]['lat']) + "," + parseFloat(arr_lat_lng[z]['lng']) ;
+                        text_latlng = JSON.parse("[" + text_latlng + "]");
+
+                    area_arr.push(text_latlng);
+                }
+
+
+                if ( inside([ lat, lng ], area_arr) ) {
+
+                    document.querySelector('#a_help').classList.remove('d-none');
+                    let area_help = document.querySelector("#area_help");
+                        area_help.innerHTML = name_partner ;
+                } 
                 
-              ];
+            }
 
-        // // พื้นที่ มธ
-            const area_tu = [
-                [ 14.077896, 100.593465 ],
-                [ 14.080425, 100.600798 ],
-                [ 14.076168, 100.600594 ],
-                [ 14.076193, 100.617410 ],
-                [ 14.066614, 100.616926 ],
-                [ 14.066762, 100.605290 ],
-                [ 14.065550, 100.605443 ],
-                [ 14.066020, 100.597200 ],
-                [ 14.075945, 100.596154 ],
-                [ 14.076391, 100.594189 ],
-            ];
-
-        // พื้นที่ บ้านลัค
-            const area_luck = [
-                [ 14.187077, 101.162882 ],
-                [ 14.187651, 101.162502 ],
-                [ 14.188048, 101.163155 ],
-                [ 14.188600, 101.163246 ],
-                [ 14.188644, 101.164103 ],
-                [ 14.187386, 101.164194 ],
-                [ 14.187077, 101.164133 ],
-            ];
-
-        // พื้นที่ พระจอมเกล้าพระนครเหนือ
-            const area_kmutnb = [
-                [ 13.819200, 100.512753 ],
-                [ 13.818744, 100.514181 ],
-                [ 13.819357, 100.514901 ],
-                [ 13.819157, 100.515523 ],
-                [ 13.819333, 100.515561 ],
-                [ 13.819222, 100.516228 ],
-                [ 13.821000, 100.517113 ],
-                [ 13.822192, 100.514845 ],
-                [ 13.824593, 100.512288 ],
-                [ 13.824234, 100.511526 ],
-                [ 13.823348, 100.512004 ],
-                [ 13.822952, 100.511392 ],
-                [ 13.821650, 100.512422 ],
-                [ 13.820254, 100.514284 ],
-            ];
-
-        // พื้นที่ หมู่บ้านซิเมนต์ไทย
-            const area_thai_cement = [
-                [ 13.833294, 100.539767 ],
-                [ 13.830202, 100.541761 ],
-                [ 13.830106, 100.549475 ],
-                [ 13.833513, 100.551297 ],
-                [ 13.831744, 100.546931 ],
-                [ 13.834021, 100.545848 ],
-                [ 13.833294, 100.544432 ],
-                [ 13.832725, 100.544441 ],
-                [ 13.832541, 100.543981 ],
-                [ 13.834477, 100.542781 ],
-                [ 13.836728, 100.540570 ],
-            ];
-
-        // let lat = 13.8334364;
-        // let lng = 100.5405355;
-
-        if ( inside([ lat, lng ], area_test) ) {
-            // พื้นที่ทดสอบ
-            document.querySelector('#a_help').classList.remove('d-none');
-            let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "ViiCHECK Volunteer"
-
-        } else if ( inside([ lat, lng ], area_luck) ) {
-            // luck
-            document.querySelector('#a_help').classList.remove('d-none');
-            let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "ViiCHECK"
-
-        } else if ( inside([ lat, lng ], area_thai_cement) ) {
-            // หมู่บ้านซิเมนต์ไทย
-            document.querySelector('#a_help').classList.remove('d-none');
-            let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "ViiCHECK"
-
-        } else if ( inside([ lat, lng ], area_vru) ) {
-            // VRU
-            document.querySelector('#a_help').classList.remove('d-none');
-            let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "VRU"
-
-        } else if ( inside([ lat, lng ], area_tu) ) {
-            // TU
-            document.querySelector('#a_help').classList.remove('d-none');
-            let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "TU"
-
-        } else if ( inside([ lat, lng ], area_kmutnb) ) {
-            // KMUTNB
-            document.querySelector('#a_help').classList.remove('d-none');
-            let area_help = document.querySelector("#area_help");
-                area_help.innerHTML = "KMUTNB"
-
-        } else{
-            document.querySelector('#btn_quick_help').classList.remove('d-none');
         }
-        
+
         document.querySelector('#div_goto').classList.remove('d-none');
+
+        // // // พื้นที่ ทดสอบ
+        // const area_test = [
+        //         [ 14.1150621, 100.6013697 ],
+        //         [ 14.1150621, 100.6074465 ],
+        //         [ 14.1127626, 100.6074465 ],
+        //         [ 14.1127626, 100.6013697 ],
+        //     ];
+
+        // // // พื้นที่ VRU
+        // const area_vru = [
+        //         [ 14.1357294, 100.6054468 ],
+        //         [ 14.1357294, 100.6179993 ],
+        //         [ 14.1319187, 100.6179993 ],
+        //         [ 14.1319187, 100.6054468 ],
+                
+        //       ];
+
+        // // // พื้นที่ มธ
+        //     const area_tu = [
+        //         [ 14.077896, 100.593465 ],
+        //         [ 14.080425, 100.600798 ],
+        //         [ 14.076168, 100.600594 ],
+        //         [ 14.076193, 100.617410 ],
+        //         [ 14.066614, 100.616926 ],
+        //         [ 14.066762, 100.605290 ],
+        //         [ 14.065550, 100.605443 ],
+        //         [ 14.066020, 100.597200 ],
+        //         [ 14.075945, 100.596154 ],
+        //         [ 14.076391, 100.594189 ],
+        //     ];
+
+        // // พื้นที่ บ้านลัค
+        //     const area_luck = [
+        //         [ 14.187077, 101.162882 ],
+        //         [ 14.187651, 101.162502 ],
+        //         [ 14.188048, 101.163155 ],
+        //         [ 14.188600, 101.163246 ],
+        //         [ 14.188644, 101.164103 ],
+        //         [ 14.187386, 101.164194 ],
+        //         [ 14.187077, 101.164133 ],
+        //     ];
+
+        // // พื้นที่ พระจอมเกล้าพระนครเหนือ
+        //     const area_kmutnb = [
+        //         [ 13.819200, 100.512753 ],
+        //         [ 13.818744, 100.514181 ],
+        //         [ 13.819357, 100.514901 ],
+        //         [ 13.819157, 100.515523 ],
+        //         [ 13.819333, 100.515561 ],
+        //         [ 13.819222, 100.516228 ],
+        //         [ 13.821000, 100.517113 ],
+        //         [ 13.822192, 100.514845 ],
+        //         [ 13.824593, 100.512288 ],
+        //         [ 13.824234, 100.511526 ],
+        //         [ 13.823348, 100.512004 ],
+        //         [ 13.822952, 100.511392 ],
+        //         [ 13.821650, 100.512422 ],
+        //         [ 13.820254, 100.514284 ],
+        //     ];
+
+        // // พื้นที่ หมู่บ้านซิเมนต์ไทย
+        //     const area_thai_cement = [
+        //         [ 13.833294, 100.539767 ],
+        //         [ 13.830202, 100.541761 ],
+        //         [ 13.830106, 100.549475 ],
+        //         [ 13.833513, 100.551297 ],
+        //         [ 13.831744, 100.546931 ],
+        //         [ 13.834021, 100.545848 ],
+        //         [ 13.833294, 100.544432 ],
+        //         [ 13.832725, 100.544441 ],
+        //         [ 13.832541, 100.543981 ],
+        //         [ 13.834477, 100.542781 ],
+        //         [ 13.836728, 100.540570 ],
+        //     ];
+
+        // // let lat = 13.8334364;
+        // // let lng = 100.5405355;
+
+        // if ( inside([ lat, lng ], area_test) ) {
+        //     // พื้นที่ทดสอบ
+        //     document.querySelector('#a_help').classList.remove('d-none');
+        //     let area_help = document.querySelector("#area_help");
+        //         area_help.innerHTML = "ViiCHECK Volunteer"
+
+        // } else if ( inside([ lat, lng ], area_luck) ) {
+        //     // luck
+        //     document.querySelector('#a_help').classList.remove('d-none');
+        //     let area_help = document.querySelector("#area_help");
+        //         area_help.innerHTML = "ViiCHECK"
+
+        // } else if ( inside([ lat, lng ], area_thai_cement) ) {
+        //     // หมู่บ้านซิเมนต์ไทย
+        //     document.querySelector('#a_help').classList.remove('d-none');
+        //     let area_help = document.querySelector("#area_help");
+        //         area_help.innerHTML = "ViiCHECK"
+
+        // } else if ( inside([ lat, lng ], area_vru) ) {
+        //     // VRU
+        //     document.querySelector('#a_help').classList.remove('d-none');
+        //     let area_help = document.querySelector("#area_help");
+        //         area_help.innerHTML = "VRU"
+
+        // } else if ( inside([ lat, lng ], area_tu) ) {
+        //     // TU
+        //     document.querySelector('#a_help').classList.remove('d-none');
+        //     let area_help = document.querySelector("#area_help");
+        //         area_help.innerHTML = "TU"
+
+        // } else if ( inside([ lat, lng ], area_kmutnb) ) {
+        //     // KMUTNB
+        //     document.querySelector('#a_help').classList.remove('d-none');
+        //     let area_help = document.querySelector("#area_help");
+        //         area_help.innerHTML = "KMUTNB"
+
+        // } else{
+        //     document.querySelector('#btn_quick_help').classList.remove('d-none');
+        // }
 
     }
 
