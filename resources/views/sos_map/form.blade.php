@@ -58,7 +58,7 @@
                         <a id="a_help" class="btn btn-warning btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ <span id="area_help"></span>
                         </a>
-                        <a id="btn_quick_help" class="btn btn-warning btn-block shadow-box text-white d-none" onclick="police();">
+                        <a id="btn_quick_help" class="btn btn-warning btn-block shadow-box text-white" onclick="police();">
                             <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือด่วน
                         </a>
                     </div> 
