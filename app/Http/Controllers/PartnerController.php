@@ -125,6 +125,6 @@ class PartnerController extends Controller
     {
         Partner::destroy($id);
 
-        return redirect('partner')->with('flash_message', 'Partner deleted!');
+        return redirect('partner_viicheck')->with('flash_message', 'Partner deleted!');
     }
 }

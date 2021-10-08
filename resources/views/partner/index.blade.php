@@ -96,7 +96,11 @@
                                     </div>
                                     <div class="col-1">
                                         <br>
-                                        ดูข้อมูล <i class="fas fa-eye text-info"></i>
+                                        <form method="POST" action="{{ url('/partner_viicheck' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Not_comfor" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fas fa-trash-alt"></i> Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                                 <hr>

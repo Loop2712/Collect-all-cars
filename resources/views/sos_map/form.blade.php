@@ -69,7 +69,7 @@
             <div class="row">
                 <div id="div_goto" class="col-12 d-none">
                     <br>
-                    <a class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
+                    <a id="btn_contact_insurance" class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
                         <i class="fas fa-hands-helping"></i> ติดต่อประกัน
                     </a>
                     <hr>
@@ -150,6 +150,7 @@
     </div>
 </div>
 <br><br>
+<input type="hidden" id="text_sos" name="" value="{{ $text_sos }}">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 <style type="text/css">
@@ -178,6 +179,17 @@
                     getLocation();
                 }
         });
+
+
+        let delay_insurance = 2000; //2 second
+
+        setTimeout(function() {
+            let text_sos = document.querySelector('#text_sos').value;
+
+            if (text_sos === "insurance") {
+                document.querySelector('#btn_contact_insurance').click();
+            }
+        }, delay_insurance);
 
     });
 

@@ -47,11 +47,13 @@ class Sos_mapController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        $text_sos = $request->get('text');
+
         $user = Auth::user();
 
-        return view('sos_map.create', compact('user'));
+        return view('sos_map.create', compact('user','text_sos'));
     }
 
     /**
