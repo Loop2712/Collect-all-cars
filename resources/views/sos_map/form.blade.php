@@ -180,17 +180,6 @@
                 }
         });
 
-
-        let delay_insurance = 2000; //2 second
-
-        setTimeout(function() {
-            let text_sos = document.querySelector('#text_sos').value;
-
-            if (text_sos === "insurance") {
-                document.querySelector('#btn_contact_insurance').click();
-            }
-        }, delay_insurance);
-
     });
 
     function contact_insurance(){
