@@ -172,11 +172,12 @@
             .then(result => {
                 // console.log(result);
                 result_area = result ;
+
+                if (typeof result_area !== "undefined") {
+                    // console.log(result_area)
+                    getLocation();
+                }
         });
-
-        console.log(result_area)
-
-        getLocation();
 
     });
 

@@ -186,7 +186,34 @@
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        
     });
+
+        var draw_area ;
+        var map ;
+        var area  = [] ;
+        var bounds ;
+
+        function initMap(result,bounds,id,name_map,color) {
+
+            map = new google.maps.Map(document.getElementById(name_map+id), {
+                // zoom: num_zoom,
+                // center: bounds.getCenter(),
+            });
+            map.fitBounds(bounds);
+
+            // Construct the polygon.
+            draw_area = new google.maps.Polygon({
+                paths: result,
+                strokeColor: color,
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillColor: color,
+                fillOpacity: 0.25,
+            });
+            draw_area.setMap(map);
+            
+        }
         
         function change_line_group(loop, name_partner){
             let select_line_group = document.querySelector("#select_line_group_" + loop).value;
@@ -214,7 +241,7 @@
                     document.querySelector('#btn_disapproved_' + id).classList.remove('d-none');
                     document.querySelector('#btn_approved_' + id).classList.remove('d-none');
 
-                    var bounds = new google.maps.LatLngBounds();
+                    bounds = new google.maps.LatLngBounds();
 
                     for (let ix = 0; ix < result.length; ix++) {
                         bounds.extend(result[ix]);
@@ -235,6 +262,7 @@
                 });
 
             view_area_current_partner(name_partner , id);
+
         }
 
         function view_area_current_partner(name_partner , id){
@@ -246,7 +274,7 @@
 
                     document.querySelector('#input_current_area_' + id).value = JSON.stringify(result) ;
 
-                    var bounds = new google.maps.LatLngBounds();
+                    bounds = new google.maps.LatLngBounds();
 
                     for (let ix = 0; ix < result.length; ix++) {
                         bounds.extend(result[ix]);
@@ -265,34 +293,10 @@
                         document.querySelector('#btn_disapproved_'+ id).classList.add('d-none');
                         document.querySelector('#btn_approved_'+ id).classList.add('d-none');
                         document.querySelector('#text_2_err_' + id).innerText = "ไม่มีพื้นที่รอการตรวจสอบ";
+                        document.querySelector('#span_explain_' + id).classList.add('d-none');
                     }
                     
                 });
-        }
-
-        var draw_area ;
-        var map ;
-        var area  = [] ;
-
-        function initMap(result,bounds,id,name_map,color) {
-
-            map = new google.maps.Map(document.getElementById(name_map+id), {
-                // zoom: num_zoom,
-                // center: bounds.getCenter(),
-            });
-            map.fitBounds(bounds);
-
-            // Construct the polygon.
-            draw_area = new google.maps.Polygon({
-                paths: result,
-                strokeColor: color,
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: color,
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
-            
         }
 
         function approve(id) {
