@@ -161,6 +161,25 @@
 <script src="{{ asset('js/sos_map.js')}}"></script>
 
 <script>
+
+    var result_area ;
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+
+        fetch("{{ url('/') }}/api/sos_map/all_area")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                result_area = result ;
+        });
+
+        console.log(result_area)
+
+        getLocation();
+
+    });
+
     function contact_insurance(){
 
         let latlng = document.querySelector("#latlng").value;

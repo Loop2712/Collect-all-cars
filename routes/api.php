@@ -99,7 +99,7 @@ Route::get('/check_new_sos_area', 'API\PartnersController@check_new_sos_area');
 Route::get('/approve_area/{input_new_area}/{id}', 'API\PartnersController@approve_area');
 Route::get('/disapproved_area/{id}', 'API\PartnersController@disapproved_area');
 
-
+Route::get('/sos_map/all_area','API\SosmapController@all_area');
 
 
 

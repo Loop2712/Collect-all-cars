@@ -1,7 +1,3 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        getLocation();
-    });
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -217,6 +213,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function draw_area(map) {
+
+        // console.log(result_area);
+
+        for (var xii = 0; xii < result_area.length; xii++) {
+            console.log(result_area[xii]['sos_area'])
+        }
+
         // พื้นที่ทดสอบ
         const area_test = [
             { lat: 14.1150621, lng: 100.6013697 },

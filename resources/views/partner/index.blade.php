@@ -32,7 +32,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <h4>
-                                            <b>Partner : </b>{{ $item->name }}
+                                            <b>Partner : </b><span class="text-success">{{ $item->name }}</span>
                                         </h4>
                                         <div style="margin-top:20px;">
                                             <b>Phone : </b>{{ $item->phone }} &nbsp;&nbsp;&nbsp;
@@ -66,7 +66,7 @@
                                             <h6>Area current</h6>
                                             <div style="margin-top:20px;">
                                                 @if(!empty($item->sos_area))
-                                                    <i style="font-size:25px;" class="fas fa-check text-success"></i>
+                                                    <i style="font-size:25px;" type="button" class="fas fa-check text-success" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="view_area_current_partner('{{ $item->name }}' , '{{ $item->id }}');"></i>
                                                 @else
                                                     <i class="fas fa-times text-danger"></i>
                                                 @endif
@@ -89,7 +89,7 @@
                                                         ตรวจสอบ 
                                                     </a>
                                                 @else
-                                                    -
+                                                    <i class="fas fa-times text-danger"></i>
                                                 @endif
                                             </div>
                                         </center>
@@ -100,35 +100,45 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="collapse container" id="collapseExample_{{ $item->id }}">
+                                <div class="collapse container-fluid" id="collapseExample_{{ $item->id }}">
                                     <i class="far fa-times-circle float-right btn" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}"></i>
                                     <br><br>
                                     <div class="row">
                                         <div class="col-12">
-                                            <button id="btn_view_current_{{ $item->id }}" class="btn btn-sm btn-info" onclick="view_area_current_partner('{{ $item->name }}' , '{{ $item->id }}');">
-                                                ดูพื้นที่ปัจจุบัน <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button id="btn_view_pending_{{ $item->id }}" class="btn btn-sm btn-warning text-white d-none" onclick="check_area_pending_partner('{{ $item->name }}' , '{{ $item->id }}');">
-                                                พื้นที่รอการตรวจสอบ <i class="fas fa-tasks"></i>
-                                            </button>
-                                            <span id="text_err_{{ $item->id }}" class="text-danger"></span>
-
-                                            <div class="float-right">
-                                                <button id="btn_approved_{{ $item->id }}" type="button" class="btn btn-sm btn-success" onclick="confirm_change('approve','{{ $item->id }}');">
-                                                    &nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;
-                                                </button>
-                                                <button id="btn_disapproved_{{ $item->id }}" type="button" class="btn btn-sm btn-danger" onclick="confirm_change('disapproved','{{ $item->id }}');">
-                                                    ไม่อนุมัติ
-                                                </button>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <b class="text-primary">พื้นที่บริการปัจจุบัน</b>
+                                                </div>
+                                                <div class="col-6">
+                                                    <b class="text-danger">พื้นที่รอการตรวจสอบ</b>
+                                                    <div class="float-right">
+                                                        <button id="btn_approved_{{ $item->id }}" type="button" class="btn btn-sm btn-success" onclick="confirm_change('approve','{{ $item->id }}');">
+                                                            &nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;
+                                                        </button>
+                                                        <button id="btn_disapproved_{{ $item->id }}" type="button" class="btn btn-sm btn-danger" onclick="confirm_change('disapproved','{{ $item->id }}');">
+                                                            ไม่อนุมัติ
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <br>
-                                            <div id="map_{{ $item->id }}" style="height: calc(40vh);"></div>
-                                            <input class="d-none" type="text" id="input_new_area_{{ $item->id }}" name=""  value="">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span class="text-secondary" id="text_err_{{ $item->id }}"></span>
+                                                    <div id="current_map_{{ $item->id }}" style="height: calc(40vh);"></div>
+                                                    <input class="d-none" type="text" id="input_current_area_{{ $item->id }}" name=""  value="">
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="text-secondary" id="text_2_err_{{ $item->id }}"></span>
+                                                    <div id="new_map_{{ $item->id }}" style="height: calc(40vh);"></div>
+                                                    <input class="d-none" type="text" id="input_new_area_{{ $item->id }}" name=""  value="">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <hr style="border-style: solid;border-color: red;">
                                 </div>
                                 @endforeach
                             </div>
@@ -203,8 +213,6 @@
 
                     document.querySelector('#btn_disapproved_' + id).classList.remove('d-none');
                     document.querySelector('#btn_approved_' + id).classList.remove('d-none');
-                    document.querySelector('#btn_view_current_' + id).classList.remove('d-none');
-                    document.querySelector('#btn_view_pending_' + id).classList.add('d-none');
 
                     var bounds = new google.maps.LatLngBounds();
 
@@ -212,7 +220,7 @@
                         bounds.extend(result[ix]);
                     }
 
-                    initMap(result,bounds,id);
+                    initMap(result,bounds,id , 'new_map_','#FF0000');
                 });
 
             fetch("{{ url('/') }}/api/area_current/"+name_partner)
@@ -222,10 +230,11 @@
                         // console.log(result);
                     }else {
                         document.querySelector('#text_err_' + id).innerText = "ไม่มีพื้นที่บริการปัจจุบัน";
-                        document.querySelector('#btn_view_current_' + id).classList.add('d-none');
                     }
                     
                 });
+
+            view_area_current_partner(name_partner , id);
         }
 
         function view_area_current_partner(name_partner , id){
@@ -235,11 +244,7 @@
                 .then(result => {
                     // console.log(result);
 
-                    document.querySelector('#input_new_area_' + id).value = JSON.stringify(result) ;
-                    document.querySelector('#btn_disapproved_' + id).classList.add('d-none');
-                    document.querySelector('#btn_approved_' + id).classList.add('d-none');
-                    document.querySelector('#btn_view_pending_' + id).classList.remove('d-none');
-                    document.querySelector('#btn_view_current_' + id).classList.add('d-none');
+                    document.querySelector('#input_current_area_' + id).value = JSON.stringify(result) ;
 
                     var bounds = new google.maps.LatLngBounds();
 
@@ -247,8 +252,21 @@
                         bounds.extend(result[ix]);
                     }
 
-                    initMap(result,bounds,id);
+                    initMap(result,bounds,id,'current_map_','#008450');
 
+                });
+
+            fetch("{{ url('/') }}/api/area_pending/"+name_partner)
+                .then(response => response.text())
+                .then(result => {
+                    if (result) {
+                        // console.log(result);
+                    }else {
+                        document.querySelector('#btn_disapproved_'+ id).classList.add('d-none');
+                        document.querySelector('#btn_approved_'+ id).classList.add('d-none');
+                        document.querySelector('#text_2_err_' + id).innerText = "ไม่มีพื้นที่รอการตรวจสอบ";
+                    }
+                    
                 });
         }
 
@@ -256,9 +274,9 @@
         var map ;
         var area  = [] ;
 
-        function initMap(result,bounds,id) {
+        function initMap(result,bounds,id,name_map,color) {
 
-            map = new google.maps.Map(document.getElementById("map_"+id), {
+            map = new google.maps.Map(document.getElementById(name_map+id), {
                 // zoom: num_zoom,
                 // center: bounds.getCenter(),
             });
@@ -267,10 +285,10 @@
             // Construct the polygon.
             draw_area = new google.maps.Polygon({
                 paths: result,
-                strokeColor: "#008450",
+                strokeColor: color,
                 strokeOpacity: 0.8,
                 strokeWeight: 1,
-                fillColor: "#008450",
+                fillColor: color,
                 fillOpacity: 0.25,
             });
             draw_area.setMap(map);

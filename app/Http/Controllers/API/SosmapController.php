@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Sos_map;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class SosmapController extends Controller
@@ -25,5 +26,12 @@ class SosmapController extends Controller
         Sos_map::create($requestData);
 
         return $requestData ;
+    }
+
+    public function all_area()
+    {
+        $data_partners = DB::table('partners')->get();
+
+        return $data_partners ;
     }
 }
