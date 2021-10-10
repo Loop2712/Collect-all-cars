@@ -86,6 +86,7 @@ class Manage_userController extends Controller
         $user->role = "admin-partner";
         $user->organization = $partners;
         $user->creator = $data_user->id;
+        $user->status = "active";
 
 
         $user->save();
@@ -97,7 +98,6 @@ class Manage_userController extends Controller
         foreach ($data_user as $item) {
 
             DB::table('partners')
-                ->where('name', $partners)
                 ->where('name', $partners)
                 ->update(['user_id_admin' => $item->id]);
 
