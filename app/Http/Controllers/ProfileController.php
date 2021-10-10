@@ -121,11 +121,7 @@ class ProfileController extends Controller
         $data = User::findOrFail($id);
 
         if (!empty($data['organization'])) {
-            switch ($data['organization']) {
-                case '2บี กรีน จำกัด':
-                    $user_organization = "2bgreen";
-                    break;
-            }
+            $user_organization = $data['organization'];
         }else{
             $user_organization = "0";
         }
