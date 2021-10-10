@@ -196,6 +196,7 @@
                 @foreach($view_maps as $view_map)
                     marker = new google.maps.Marker({
                         position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} }, 
+                        label: {text: {{ $loop->iteration }}, color: "white"},
                         map: map,
                         icon: image,
                     });     
