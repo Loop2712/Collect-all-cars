@@ -16,15 +16,7 @@ class Manage_userController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $all_user = User::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('username', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('role', 'LIKE', "%$keyword%")
-                ->orWhere('type', 'LIKE', "%$keyword%")
-                ->orWhere('phone', 'LIKE', "%$keyword%")
-                ->orWhere('brith', 'LIKE', "%$keyword%")
-                ->orWhere('sex', 'LIKE', "%$keyword%")
-                ->orWhere('ranking', 'LIKE', "%$keyword%")
+            $all_user = User::Where('role', 'LIKE', "$keyword")
                 ->latest()->paginate($perPage);
         } else {
             $all_user = User::latest()->paginate($perPage);
