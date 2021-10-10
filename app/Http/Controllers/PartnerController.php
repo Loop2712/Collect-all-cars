@@ -280,7 +280,7 @@ class PartnerController extends Controller
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
         // $keyword = $request->get('search');
-        $search_area = $data_user->organization;
+        $search_area = $data_partners->name;
         $perPage = 25;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
