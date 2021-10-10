@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>
-                            <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ count($view_map) }}</span>
+                            <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ count($view_maps) }}</span>
                         </h3>
                         <div class="container">
                             <div class="row">
@@ -64,7 +64,7 @@
                                                 Name / Phone
                                         </div>
                                     </div>
-                                    @foreach($view_map as $item)
+                                    @foreach($view_maps as $item)
                                         <div class="row text-center">
                                         <div class="col-1 ">
                                                 <h6>
