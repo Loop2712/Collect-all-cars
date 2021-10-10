@@ -157,6 +157,10 @@
 
     function initMap() {
 
+        var draw_area ;
+        var map ;
+        var marker ; 
+        
         let name_partner = document.querySelector('#name_partner').value;
 
         fetch("{{ url('/') }}/api/area_current/"+name_partner)
@@ -192,7 +196,7 @@
         let image = "https://www.viicheck.com/img/icon/flag_2.png";
         //ปักหมุด
         @foreach($view_maps as $view_map)
-            var marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} }, 
                 map: map,
                 icon: image,
