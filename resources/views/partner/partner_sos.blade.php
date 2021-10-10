@@ -195,8 +195,7 @@
                 let image = "https://www.viicheck.com/img/icon/flag_2.png";
                 @foreach($view_maps as $view_map)
                     marker = new google.maps.Marker({
-                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} }, 
-                        label: {text: {{ $loop->iteration }}, color: "white"},
+                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
                         map: map,
                         icon: image,
                     });     
