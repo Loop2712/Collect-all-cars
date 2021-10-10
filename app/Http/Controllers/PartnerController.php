@@ -282,8 +282,6 @@ class PartnerController extends Controller
         foreach ($data_partners as $data_partner) {
             $search_area = $data_partner->name ;
         }
-        echo $search_area ;
-        exit();
         $perPage = 25;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
@@ -298,7 +296,7 @@ class PartnerController extends Controller
 
         $view_map = DB::table('sos_maps')
             ->where('area', $search_area)
-            ->latest()->paginate($perPage);
+            ->get();
 
         $text_at = '@' ;
        

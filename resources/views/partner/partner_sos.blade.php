@@ -189,13 +189,13 @@
                 
             });
 
-        // const image = "https://www.viicheck.com/img/icon/flag_2.png";
+        const image = "https://www.viicheck.com/img/icon/flag_2.png";
         //ปักหมุด
-        @foreach($view_map as $item)
+        @foreach($view_map as $v_map)
             var marker = new google.maps.Marker({
-                position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 
+                position: {lat: {{ $v_map->lat }} , lng: {{ $v_map->lng }} }, 
                 map: map,
-                // icon: image,
+                icon: image,
             });     
         @endforeach
 
