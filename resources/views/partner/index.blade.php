@@ -30,16 +30,28 @@
                                 <hr>
                                 @foreach($partner as $item)
                                 <div class="row">
-                                    <div class="col-4">
-                                        <h4>
-                                            <b>Partner : </b><span class="text-success">{{ $item->name }}</span>
-                                        </h4>
-                                        <div style="margin-top:20px;">
-                                            <b>Phone : </b>{{ $item->phone }} &nbsp;&nbsp;&nbsp;
-                                            <b>Mail : </b>{{ $item->mail }}&nbsp;&nbsp;&nbsp;
+                                    <div class="col-5">
+                                        <div>
+                                            <h4>
+                                                <b>Partner : </b><span class="text-success">{{ $item->name }}</span>
+                                            </h4>
+                                            <div style="margin-top:20px;">
+                                                <b>Phone : </b>{{ $item->phone }} &nbsp;&nbsp;&nbsp;
+                                                <b>Mail : </b>{{ $item->mail }}&nbsp;&nbsp;&nbsp;
+                                                <i class="fas fa-angle-down" data-toggle="collapse" data-target="#form_delete_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" ></i>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="form_delete_{{ $item->id }}">
+                                            <br>
+                                            <form method="POST" action="{{ url('/partner_viicheck' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Not_comfor" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fas fa-trash-alt"></i> ลบ</button>
+                                            </form>
+                                            <!-- <a href="{{ url('/partner_viicheck/' . $item->id . '/edit') }}"><button class="btn btn-warning btn-sm text-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> แก้ไข</button></a> -->
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <center>
                                             <h6>Group line</h6>
                                             <div style="margin-top:20px;">
@@ -95,12 +107,12 @@
                                         </center>
                                     </div>
                                     <div class="col-1">
-                                        <br>
-                                        <form method="POST" action="{{ url('/partner_viicheck' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Not_comfor" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fas fa-trash-alt"></i> Delete</button>
-                                        </form>
+                                        <center>
+                                            <h6>Admin</h6>
+                                            <a href="{{ url('/profile/' . $item->user_id_admin) }}" target="bank">
+                                                <i class="far fa-eye text-primary"></i>
+                                            </a>
+                                        </center>
                                     </div>
                                 </div>
                                 <hr>

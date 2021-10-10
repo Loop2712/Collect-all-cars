@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Organization;
+use App\Models\partner;
 
 class JuristicController extends Controller
 {
@@ -43,6 +44,13 @@ class JuristicController extends Controller
     public function selest_organization($organization)
     {
         $data = Organization::where('juristicID', $organization)->get();
+
+        return $data ;
+    }
+
+     public function all_partners()
+    {
+        $data = partner::whereNull("user_id_admin")->get();
 
         return $data ;
     }

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/juristic', 'API\JuristicController@juristic');
 Route::get('/selest_organization/{selest_organization}', 'API\JuristicController@selest_organization');
+Route::get('/all_partners', 'API\JuristicController@all_partners');
 
 Route::post('/lineapi', 'API\LineApiController@store');
 

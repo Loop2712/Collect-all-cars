@@ -2,14 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>viicheck 2bgreen</title>
-    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 10]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-    <!-- Meta -->
+    <title>Partner Viicheck</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,7 +21,13 @@
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
 </head>
 
-<body>
+@foreach($data_partners as $data_partner)
+<style>
+    .navbar-brand  {
+    background: {{ $data_partner->color  }} ;
+    }
+</style>
+<body style="background-color: {{ $data_partner->color  }};">
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
         <div class="loader-track">
@@ -45,35 +44,37 @@
                    <div class="b-bg">
                       <div class="sidenav-header  align-items-center">
                             <a class="navbar-brand" href="#">
-                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
-                                <span style="color:#FFFFFF ;"> <b>x</b>  </span>
-                                <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="40%" style="margin-top:-5px">
+                                <!-- <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
+                                <span style="color:#FFFFFF ;"> <b>x</b>  </span> -->
+                                @if(!empty($data_partner->logo))
+                                    <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%" style="margin-top:-5px">
+                                @else
+                                    <span class="text-white"><b>{{ $data_partner->name }}</b></span>
+                                @endif
                             </a>
                         </div>
                    </div>
                </a>
                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
            </div>
-            <div class="navbar-content scroll-div">
+            <div style="background-color: {{ $data_partner->color_navbar  }};" class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
-                    <li class="nav-item pcoded-menu-caption">
-                        <label style="font-size:13px">ข้อมูลรถ</label>
+                    <br>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                        <a href="{{ url('/register_cars_partner') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car"></i></i></span><span class="pcoded-mtext" >รถลงทะเบียน</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/report_register_cars_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car"></i></i></span><span class="pcoded-mtext" >รถลงทะเบียน</span></a>
+                        <a href="{{ url('/guest_partner') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงาน</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/guest_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงาน</span></a>
+                        <a href="{{ url('/partner_guest_latest') }}" class="nav-link "><span class="pcoded-micon"><i class="fad fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงานล่าสุด</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/guest_latest_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fad fa-car-crash"></i></i></i></span><span class="pcoded-mtext">รถที่ถูกรายงานล่าสุด</span></a>
+                        <a href="{{ url('/sos_partner') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-hands-helping"></i></span><span class="pcoded-mtext">ให้ความช่วยเหลือ</span></a>
                     </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/sos_2bgreen') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-hands-helping"></i></span><span class="pcoded-mtext">ให้ความช่วยเหลือ</span></a>
-                    </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                    <!-- <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="{{ url('/sos_insurance') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-tools"></i></span><span class="pcoded-mtext">การเรียกประกัน</span></a>
-                    </li>
+                    </li> -->
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="{{ url('/service_area') }}" class="nav-link "><span class="pcoded-micon"><i class="far fa-map"></i></span><span class="pcoded-mtext">พื้นที่บริการ</span></a>
                     </li>
@@ -86,48 +87,7 @@
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="mailto:contact.viicheck@gmail.com" class="nav-link "><span class="pcoded-micon"><i class="far fa-envelope"></i></i></span><span class="pcoded-mtext">contact.viicheck@gmail.com</span></a>
                     </li>
-
-                    <!-- <li class="nav-item pcoded-menu-caption">
-                        <label>UI Element</label>
-                    </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Components</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="bc_button.html" class="">Button</a></li>
-                            <li class=""><a href="bc_badges.html" class="">Badges</a></li>
-                            <li class=""><a href="bc_breadcrumb-pagination.html" class="">Breadcrumb & paggination</a></li>
-                            <li class=""><a href="bc_collapse.html" class="">Collapse</a></li>
-                            <li class=""><a href="bc_tabs.html" class="">Tabs & pills</a></li>
-                            <li class=""><a href="bc_typography.html" class="">Typography</a></li>
-                            <li class=""><a href="icon-feather.html" class="">Feather<span class="pcoded-badge label label-danger">NEW</span></a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Forms & table</label>
-                    </li>
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item">
-                        <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Form elements</span></a>
-                    </li>
-                    <li data-username="Table bootstrap datatable footable" class="nav-item active">
-                        <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Table</span></a>
-                    </li>
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Chart & Maps</label>
-                    </li>
-                    <li data-username="Charts Morris" class="nav-item"><a href="chart-morris.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a></li>
-                    <li data-username="Maps Google" class="nav-item"><a href="map-google.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Maps</span></a></li>
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Pages</label>
-                    </li>
-                    <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="auth-signup.html" class="" target="_blank">Sign up</a></li>
-                            <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a></li>
-                        </ul>
-                    </li>
-                    <li data-username="Sample Page" class="nav-item"><a href="sample-page.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
-                    <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Disabled menu</span></a></li> -->
+                    
                 </ul>
             </div>
         </div>
@@ -167,81 +127,20 @@
                 <br>
             </ul>
             <ul class="navbar-nav ml-auto"></form>
-                <!-- <li>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right notification">
-                            <div class="noti-head">
-                                <h6 class="d-inline-block m-b-0">Notifications</h6>
-                                <div class="float-right">
-                                    <a href="javascript:" class="m-r-10">mark as read</a>
-                                    <a href="javascript:">clear all</a>
-                                </div>
-                            </div>
-                            <ul class="noti-body">
-                                <li class="n-title">
-                                    <p class="m-b-0">NEW</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="partner/images/user/avatar-1.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>New ticket Added</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="n-title">
-                                    <p class="m-b-0">EARLIER</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="partner/images/user/avatar-2.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>Prchace New Theme and make payment</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="partner/images/user/avatar-3.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>currently login</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="noti-footer">
-                                <a href="javascript:">show all</a>
-                            </div>
-                        </div>
-                    </div>
-                </li> -->
+                
                 <li>
                 <div class="profile-notification">
-                            <!-- <div class="pro-head">
-                                <img  src="{{ Auth::user()->avatar }}" class="img-radius" >
-                                <span>{{ Auth::user()->name }}</span>&nbsp;
-                                <a href="{{ route('logout') }}" class="dud-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    <i class="feather icon-log-out"></i>
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                                </form>
-                            </div> -->
                     <div class="dropdown drp-user">
                         <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon feather icon-settings"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-notification">
-                            <div class="pro-head">
+                        <div class="dropdown-menu dropdown-menu-right profile-notification ">
+                            <div style="background-color: {{ $data_partner->color  }} ;" class="pro-head">
                             @if(!empty($data->photo))
-                                                <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ $data->photo }}" data-original-title="Usuario"> 
-                                            @else
-                                                <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                                            @endif
+                                <img alt="" style="width:600px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ $data->photo }}" data-original-title="Usuario"> 
+                            @else
+                                <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                            @endif
                             <!-- <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> -->
                                 <span>{{ Auth::user()->name }}</span>
                                 <a href="{{ route('logout') }}" class="dud-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -253,9 +152,21 @@
                             </div>
                             <ul class="pro-body">
                                 <!-- <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li> -->
-                                <li><a href="{{URL::to('/')}}" class="dropdown-item"><i class="fal fa-home"></i></i> Home</a></li>
-                                <li><a href="{{ url('/profile') }}" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                                <li><a href="{{ url('/register_car') }}" class="dropdown-item"><i class="fal fa-car"></i></i> My Car</a></li>
+                                <li>
+                                    <a href="" class="dropdown-item">
+                                        <i class="fab fa-line text-success"></i> ตั้งค่า Group line
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item">
+                                        <i class="fas fa-palette text-danger"></i> เปลี่ยนสี Template
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item">
+                                        <i class="fas fa-boxes text-info"></i> เปลี่ยนโลโก้ Template
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -327,4 +238,5 @@
     <script src="partner/js/pcoded.min.js"></script>
 
 </body>
+@endforeach
 </html>

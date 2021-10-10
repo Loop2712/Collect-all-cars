@@ -25,7 +25,7 @@ class Partner extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone', 'line_group', 'mail','sos_area','new_sos_area'];
+    protected $fillable = ['name', 'phone', 'line_group', 'mail','sos_area','new_sos_area','user_id_admin','color','logo','color_navbar','color_body'];
 
     
 }

@@ -44,7 +44,7 @@
     </div>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-    console.log("START");
+    // console.log("START");
     copy();
 });
 function copy()
@@ -55,7 +55,7 @@ function copy()
     let password = pass.value ;
 
     let str = "Username : " + username + "\n" + "Password : " + password
-    console.log(str);
+    // console.log(str);
     let userpass = document.querySelector("#userpass");
         userpass.value = str;
 }

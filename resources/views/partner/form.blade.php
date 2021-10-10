@@ -106,7 +106,7 @@
         fetch("https://dataapi.moc.go.th/juristic?juristic_id="+juristicID.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 fetch("{{ url('/') }}/api/juristic", {
                     method: 'post',
@@ -135,6 +135,20 @@
                 }
                 else{ 
                     document.querySelector('#div_spinner').classList.add('d-none');
+                    document.querySelector('#btn_re_not_id').classList.add('d-none');
+
+                    document.querySelector('#div_name_partner').classList.remove('d-none');
+                    document.querySelector('#div_mail_phone').classList.remove('d-none');
+
+                    let name_partner = document.querySelector('#name');
+                        name_partner.value = result['juristicNameTH'] ;
+
+                    let name_readonly = document.createAttribute("readonly");
+                        name_readonly.value = "";
+                        name_partner.setAttributeNode(name_readonly); 
+
+                    document.querySelector('#btn_submit_new_partner').classList.remove('d-none');
+
                 }
 
             });

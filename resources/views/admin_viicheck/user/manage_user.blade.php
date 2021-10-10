@@ -14,13 +14,13 @@
                     </h3>
                     <div class="card-body">
                         <a href="{{ url('/manage_user') }}?search=admin" class="btn btn-outline-danger ">
-                            <img width="30" src="https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png"> Admin
+                            <img width="30" src="https://market.viicheck.com/img/logo/VII-check-LOGO-W-v1.png"> Admin ViiCHECK
                         </a>
-                        <a href="{{ url('/manage_user') }}?search=JS100" class="btn btn-outline-success ">
-                            <img width="22" src="https://m.thaiware.com/upload_misc/software/2017_07/thumbnails/13243_170703102646Yi.jpg"> JS100
+                        <a href="{{ url('/manage_user') }}?search=admin-partner" class="btn btn-outline-success ">
+                            Admin Partner
                         </a>
-                        <a href="{{ url('/manage_user') }}?search=2BGreen" class="btn btn-outline-success ">
-                            <!-- <img width="22" src="https://www.viicheck.com/img/logo/GreenLogo.png">  -->2BGreen
+                        <a href="{{ url('/manage_user') }}?search=partner" class="btn btn-outline-secondary ">
+                            Partner
                         </a>
                         <a href="{{ url('/manage_user') }}?search=" class="btn btn-outline-info ">
                             <i class="fas fa-users"></i> ทั้งหมด
@@ -44,7 +44,7 @@
                                     <!-- <div class="col-1">
                                         <center><b>Id</b></center>
                                     </div> -->
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <center>
                                             <b>ชื่อ</b><br>
                                             Name
@@ -80,13 +80,19 @@
                                             Status
                                         </center>
                                     </div>
+                                    <div class="col-1">
+                                        <center>
+                                            <b>ผู้สร้าง</b><br>
+                                            Creator
+                                        </center>
+                                    </div>
                                 </div>
                                 @foreach($all_user as $item)
                                     <div class="row">
                                         <!-- <div class="col-1">
                                             <center><b>{{ $item->id }}</b></center>
                                         </div> -->
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <h5 class="text-success"><span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;{{ $item->name }}
                                             </h5>
                                         </div>
@@ -143,6 +149,15 @@
                                                         </p>
                                                     @break
                                                 @endswitch
+                                            </center>
+                                        </div>
+                                        <div class="col-1">
+                                            <center>
+                                                @if(!empty($item->creator))
+                                                    <a href="{{ url('/profile/' . $item->creator) }}" target="bank">
+                                                        <i class="far fa-eye text-primary"></i>
+                                                    </a>
+                                                @endif
                                             </center>
                                         </div>
                                     </div>

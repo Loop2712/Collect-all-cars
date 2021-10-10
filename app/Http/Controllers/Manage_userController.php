@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class Manage_userController extends Controller
 {
@@ -66,6 +67,7 @@ class Manage_userController extends Controller
     public function create_user(Request $request)
     {
         $partners = $request->get('partners');
+        $data_user = Auth::user();
 
         $name = uniqid($partners.'-');
         $username = $name ;
@@ -89,11 +91,25 @@ class Manage_userController extends Controller
         $user->provider_id = $provider_id;
         $user->password = Hash::make($password);
         $user->email = $email;
-        $user->role = $partners;
-        // $user->organization = $organization;
+        $user->role = "admin-partner";
+        $user->organization = $partners;
+        $user->creator = $data_user->id;
 
 
         $user->save();
+
+        $data_user = User::where('role', "admin-partner")
+                    ->where('organization', $partners)
+                    ->get();
+
+        foreach ($data_user as $item) {
+
+            DB::table('partners')
+                ->where('name', $partners)
+                ->where('name', $partners)
+                ->update(['user_id_admin' => $item->id]);
+
+        }
 
         return view('admin_viicheck.user.create_user', compact('partners' , 'username' , 'password'));
     }

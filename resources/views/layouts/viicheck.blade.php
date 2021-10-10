@@ -283,8 +283,8 @@
                         @case("admin") 
                           <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
                         @break
-                        @case("2bgreen") 
-                          <a href="{{ url('/report_register_cars_2bgreen') }}" target="blank">📊 &nbsp; Partners 2bgreen</a>
+                        @case("admin-partner") 
+                          <a href="{{ url('/partner_theme') }}" target="blank">📊 &nbsp; admin-partner</a>
                         @break
                       @endswitch
                     @endif

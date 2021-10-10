@@ -1933,7 +1933,7 @@ p.text-muted {
   border-radius: 0.25rem 0.25rem 0 0;
   padding: 15px;
   position: relative;
-  background: #28A745;
+  background: #3f4d67;
 }
 .pcoded-header .dropdown .profile-notification .pro-head img {
   width: 40px;
@@ -1977,7 +1977,7 @@ p.text-muted {
   background: transparent;
 }
 .pcoded-header .dropdown.drp-user.show:before {
-  color: #28A745;
+  color: #3f4d67;
 }
 
 /* header css end */
