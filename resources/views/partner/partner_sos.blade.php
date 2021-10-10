@@ -160,7 +160,7 @@
         var draw_area ;
         var map ;
         var marker ; 
-        
+
         let name_partner = document.querySelector('#name_partner').value;
 
         fetch("{{ url('/') }}/api/area_current/"+name_partner)
@@ -190,18 +190,18 @@
                     fillOpacity: 0.25,
                 });
                 draw_area.setMap(map);
+
+                //ปักหมุด
+                let image = "https://www.viicheck.com/img/icon/flag_2.png";
+                @foreach($view_maps as $view_map)
+                    marker = new google.maps.Marker({
+                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} }, 
+                        map: map,
+                        icon: image,
+                    });     
+                @endforeach
                 
             });
-
-        let image = "https://www.viicheck.com/img/icon/flag_2.png";
-        //ปักหมุด
-        @foreach($view_maps as $view_map)
-            marker = new google.maps.Marker({
-                position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} }, 
-                map: map,
-                icon: image,
-            });     
-        @endforeach
 
     }
 
