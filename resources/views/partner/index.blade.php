@@ -109,9 +109,11 @@
                                     <div class="col-1">
                                         <center>
                                             <h6>Admin</h6>
+                                            @if(!empty($item->user_id_admin))
                                             <a href="{{ url('/profile/' . $item->user_id_admin) }}" target="bank">
                                                 <i class="far fa-eye text-primary"></i>
                                             </a>
+                                            @endif
                                         </center>
                                     </div>
                                 </div>
