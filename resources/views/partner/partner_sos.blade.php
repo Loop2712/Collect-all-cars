@@ -128,7 +128,7 @@
                                         </div>
                                         <br>
                                     @endforeach
-                                     <div class="pagination-wrapper"> {!! $view_map->appends(['search' => Request::get('search')])->render() !!} </div>
+                                     <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
                                 </div>
                             </div>
                         </div>
@@ -189,11 +189,11 @@
                 
             });
 
-        const image = "https://www.viicheck.com/img/icon/flag_2.png";
+        let image = "https://www.viicheck.com/img/icon/flag_2.png";
         //ปักหมุด
-        @foreach($view_map as $v_map)
+        @foreach($view_maps as $view_map)
             var marker = new google.maps.Marker({
-                position: {lat: {{ $v_map->lat }} , lng: {{ $v_map->lng }} }, 
+                position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} }, 
                 map: map,
                 icon: image,
             });     

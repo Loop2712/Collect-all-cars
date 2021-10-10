@@ -294,14 +294,14 @@ class PartnerController extends Controller
             ->groupBy('area')
             ->get();
 
-        $view_map = DB::table('sos_maps')
+        $view_maps = DB::table('sos_maps')
             ->where('area', $search_area)
-            ->get();
+            ->latest()->paginate($perPage);
 
         $text_at = '@' ;
        
 
-        return view('partner.partner_sos', compact('data_partners','view_map' , 'sos_all' , 'area','text_at'));
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'sos_all' , 'area','text_at'));
     }
 
     // public function sos_insurance(Request $request)
