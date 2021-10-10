@@ -279,8 +279,10 @@ class PartnerController extends Controller
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
-        // $keyword = $request->get('search');
-        $search_area = $data_partners->name;
+        foreach ($data_partners as $data_partner) {
+            $search_area = $data_partner->name ;
+        }
+
         $perPage = 25;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
