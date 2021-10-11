@@ -19,6 +19,7 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('/partner/css/style.css') }}">
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ asset('/partner/css/menu_color.css') }}"> -->
 </head>
 
 @foreach($data_partners as $data_partner)
@@ -26,6 +27,7 @@
     .navbar-brand  {
     background: {{ $data_partner->color  }} ;
     }
+
 </style>
 <body style="background-color: {{ $data_partner->color  }};">
     <!-- [ Pre-loader ] start -->
@@ -161,17 +163,17 @@
                                 <!-- <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li> -->
                                 <li>
                                     <a href="" class="dropdown-item">
-                                        <i class="fab fa-line text-success"></i> ตั้งค่า Group line
+                                        <i class="fab fa-line text-success"></i> ตั้งค่า Group line (soon)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item" >
+                                        <i class="fas fa-palette text-danger"></i> เปลี่ยนสี Template (soon)
                                     </a>
                                 </li>
                                 <li>
                                     <a href="" class="dropdown-item">
-                                        <i class="fas fa-palette text-danger"></i> เปลี่ยนสี Template
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="dropdown-item">
-                                        <i class="fas fa-boxes text-info"></i> เปลี่ยนโลโก้ Template
+                                        <i class="fas fa-boxes text-info"></i> เปลี่ยนโลโก้ Template (soon)
                                     </a>
                                 </li>
                             </ul>
@@ -186,7 +188,44 @@
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
         <div class="pcoded-wrapper">
-             @yield('content')
+
+            <!-- modal_change_color -->
+            <div class="modal fade" id="modal_change_color" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">เลือกสีที่คุณต้องการ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-6">
+                                
+                            </div>
+                            <div class="col-6">
+                                <i id="circle_color" class="fas fa-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            @yield('content')
+
         </div>
     </section>
     <!-- [ Main Content ] end -->
