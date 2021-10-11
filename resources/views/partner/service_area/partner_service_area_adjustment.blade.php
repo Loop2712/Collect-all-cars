@@ -3,59 +3,74 @@
 @section('content')
 <style type="text/css">
     #map {
-      height: calc(80vh);
+      height: calc(100vh);
     }
     
 </style>
 <br>
 <div class="container-fluid">
+    <input class="d-none" type="text" id="va_zoom" name="" value="6">
+    <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
+    <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
     <div class="row">
         <div class="col-8">
             <div class="row">
                 <div class="col-12">
-                    <a id="btn_service_current" href="{{ url('/service_current') }}" type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
-                    <a id="btn_service_pending" href="{{ url('/service_pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
-                    <a id="btn_service_area" href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
-                    <div class="float-right" style="margin-left: 20px;">
-                        <select id="select_district" class="form-control" onchange="zoom_district();">
-                            <option>- ตำบล -</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-12">
+                            <a id="btn_service_current" href="{{ url('/service_current') }}" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
+                            <a id="btn_service_pending" href="{{ url('/service_pending') }}" class="btn btn-warning text-white">รอการตรวจสอบ</a>
+                            <a id="btn_service_area" href="{{ url('/service_area') }}"class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
+
+                        <hr>
+                        </div>
+                        <div class="col-4">
+                            <select id="select_province" class="form-control" onchange="show_amphoe();">
+                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                                @foreach($location_array as $lo)
+                                <option 
+                                value="{{ $lo->changwat_th }}" 
+                                {{ request('changwat_th') == $lo->changwat_th ? 'selected' : ''   }} >
+                                @php
+                                    $text_changwat_th = str_replace("จ.","","$lo->changwat_th");
+                                @endphp
+                                {{ $text_changwat_th }} 
+                                </option>
+                                @endforeach    
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select id="select_amphoe" class="form-control" onchange="show_district();">
+                                <option>- อำเภอ -</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <select id="select_district" class="form-control" onchange="zoom_district();">
+                                <option>- ตำบล -</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="float-right" style="margin-left: 20px;">
-                        <select id="select_amphoe" class="form-control" onchange="show_district();">
-                            <option>- อำเภอ -</option>
-                        </select>
-                    </div>
-                    <div class="float-right" style="margin-left: 20px;">
-                        <select id="select_province" class="form-control" onchange="show_amphoe();">
-                            <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
-                            @foreach($location_array as $lo)
-                            <option 
-                            value="{{ $lo->changwat_th }}" 
-                            {{ request('changwat_th') == $lo->changwat_th ? 'selected' : ''   }} >
-                            @php
-                                $text_changwat_th = str_replace("จ.","","$lo->changwat_th");
-                            @endphp
-                            {{ $text_changwat_th }} 
-                            </option>
-                            @endforeach    
-                        </select>
-                    </div>
-                    <br><br>
-                    <input class="d-none" type="text" id="va_zoom" name="" value="6">
-                    <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
-                    <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                    <div class="card">
-                        <div id="map"></div>
-                    </div>
+                </div>
+                <div class="col-12">
+                    <br>
+                    <a href="#map"><div id="map"></div></a>
+                    <br>
                 </div>
             </div>
         </div>
         <div class="col-4">
             <div class="row">
                 <div class="col-md-12">
-                    <br><br><br>
-                    <div class="card">
+                    <br><br><br><br>
+                    <button class="btn btn-sm btn-info" data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" >
+                        ตัวอย่าง
+                    </button>
+                    <div class="collapse container-fluid" id="img_EX">
+                        <br>
+                        <img data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" width="500" height="250" src="{{ asset('/img/more/Hnet-image.gif') }}">
+                    </div>
+
+                    <div style="margin-top:12px;" class="card">
                         <h3 class="card-header">
                             ปรับพื้นที่บริการ
                             <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">

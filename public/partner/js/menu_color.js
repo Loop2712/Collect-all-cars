@@ -1,31 +1,7 @@
-var nbOptions = 8;
-var angleStart = -360;
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-// jquery rotate animation
-function rotate(li,d) {
-    $({d:angleStart}).animate({d:d}, {
-        step: function(now) {
-            $(li)
-               .css({ transform: 'rotate('+now+'deg)' })
-               .find('label')
-                  .css({ transform: 'rotate('+(-now)+'deg)' });
-        }, duration: 0
-    });
-}
-
-// show / hide the options
-function toggleOptions(s) {
-    $(s).toggleClass('open');
-    var li = $(s).find('li');
-    var deg = $(s).hasClass('half') ? 180/(li.length-1) : 360/li.length;
-    for(var i=0; i<li.length; i++) {
-        var d = $(s).hasClass('half') ? (i*deg)-90 : i*deg;
-        $(s).hasClass('open') ? rotate(li[i],d) : rotate(li[i],angleStart);
-    }
-}
-
-$('.selector button').click(function(e) {
-    toggleOptions($(this).parent());
-});
-
-setTimeout(function() { toggleOptions('.selector'); }, 100);
+  ga('create', 'UA-46156385-1', 'cssscript.com');
+  ga('send', 'pageview');

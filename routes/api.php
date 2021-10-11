@@ -22,6 +22,7 @@ Route::post('/juristic', 'API\JuristicController@juristic');
 Route::get('/selest_organization/{selest_organization}', 'API\JuristicController@selest_organization');
 Route::get('/all_partners', 'API\JuristicController@all_partners');
 
+
 Route::post('/lineapi', 'API\LineApiController@store');
 
 Route::get('/car_brand','API\CarbrandController@getBrand');
@@ -99,6 +100,8 @@ Route::get('/check_new_sos_area', 'API\PartnersController@check_new_sos_area');
 
 Route::get('/approve_area/{input_new_area}/{id}', 'API\PartnersController@approve_area');
 Route::get('/disapproved_area/{id}', 'API\PartnersController@disapproved_area');
+
+Route::get('/change_color_partner/{color}/{name_partner}', 'API\PartnersController@change_color_partner');
 
 Route::get('/sos_map/all_area','API\SosmapController@all_area');
 

@@ -122,4 +122,18 @@ class PartnersController extends Controller
 
         return $id ;
     }
+
+    public function change_color_partner($color , $partner)
+    {
+        $color = str_replace("_","#",$color);
+        $partner = str_replace("_"," ",$partner);
+
+        DB::table('partners')
+              ->where('name', $partner)
+              ->update([
+                'color' => $color,
+        ]);
+
+        return $color ;
+    }
 }

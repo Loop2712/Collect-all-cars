@@ -19,7 +19,8 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('/partner/css/style.css') }}">
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('/partner/css/menu_color.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('/partner/css/menu_color.css') }}">
+
 </head>
 
 @foreach($data_partners as $data_partner)
@@ -29,7 +30,7 @@
     }
 
 </style>
-<body style="background-color: {{ $data_partner->color  }};">
+<body style="background-color: {{ $data_partner->color_body  }};">
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
         <div class="loader-track">
@@ -111,9 +112,6 @@
                    <div class="b-bg">
                       <div class="sidenav-header  align-items-center">
                             <a class="navbar-brand" href="#">
-                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="20%" style="margin-top:-10px">
-                                <span> <b style="color:#888;"> x </b>  </span>
-                                <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="20%" style="margin-top:-2px">
                             </a>
                         </div>
                    </div>
@@ -159,24 +157,28 @@
                                 @csrf
                                 </form>
                             </div>
-                            <ul class="pro-body">
-                                <!-- <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li> -->
-                                <li>
-                                    <a href="" class="dropdown-item">
-                                        <i class="fab fa-line text-success"></i> ตั้งค่า Group line (soon)
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="dropdown-item" >
-                                        <i class="fas fa-palette text-danger"></i> เปลี่ยนสี Template (soon)
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="dropdown-item">
-                                        <i class="fas fa-boxes text-info"></i> เปลี่ยนโลโก้ Template (soon)
-                                    </a>
-                                </li>
-                            </ul>
+                            @if(Auth::check())
+                                @if(Auth::user()->role == "admin-partner")
+                                    <ul class="pro-body">
+                                        <!-- <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li> -->
+                                        <li>
+                                            <a href="" class="dropdown-item">
+                                                <i class="fab fa-line text-success"></i> ตั้งค่า Group line (soon)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="dropdown-item" data-toggle="modal" data-target="#modal_change_color" onclick="random_color();">
+                                                <i class="fas fa-palette text-danger"></i> เปลี่ยนสี Template
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="dropdown-item">
+                                                <i class="fas fa-boxes text-info"></i> เปลี่ยนโลโก้ Template (soon)
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </li>
@@ -203,22 +205,53 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12">
-                                
+                                <center>
+                                    <div class="menu">
+                                        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" checked="" />
+                                        <label class="menu-open-button" for="menu-open" onclick="change_color();"> 
+                                            <i class="fas fa-sync-alt text-info"></i>
+                                        </label>
+                                        <a id="fa_item_1" href="#" class="menu-item item-1"> 
+                                            <i class="fa fa"></i><span id="text_item_1"></span>
+                                        </a>
+                                        <a id="fa_item_2" href="#" class="menu-item item-2"> 
+                                            <i class="fa fa"></i> <span id="text_item_2"></span>
+                                        </a> 
+                                        <a id="fa_item_3" href="#" class="menu-item item-3"> 
+                                            <i class="fa fa"></i> <span id="text_item_3"></span>
+                                        </a> 
+                                        <a id="fa_item_4" href="#" class="menu-item item-4"> 
+                                            <i class="fa fa"></i> <span id="text_item_4"></span>
+                                        </a> 
+                                        <a id="fa_item_5" href="#" class="menu-item item-5"> 
+                                            <i class="fa fa"></i> <span id="text_item_5"></span>
+                                        </a> 
+                                        <a id="fa_item_6" href="#" class="menu-item item-6"> 
+                                            <i class="fa fa"></i> <span id="text_item_6"></span>
+                                        </a> 
+                                    </div>
+                                </center>
                             </div>
-                            <br>
-                            <br>
-                            <div class="col-6">
-                                
+                            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                            <div class="col-3"></div>
+                            <div class="col-2">
+                                <i id="circle_color" class="fas fa-circle" style="font-size:45px;"></i>
                             </div>
-                            <div class="col-6">
-                                <i id="circle_color" class="fas fa-circle"></i>
+                            <div class="col-4">
+                                <input class="form-control" type="text" name="" id="input_color" oninput="view_color();">
+                            </div>
+                            <div class="col-1">
+                                <!-- <button class="btn btn-sm btn-outline-success" onclick="view_color();">ดู</button> -->
+                            </div>
+                            <div class="col-2">
+                                <input id="color_of_partner" type="hidden" name="" value="{{ $data_partner->name }}">
                             </div>
                         </div>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <button id="bnt_sub_color" type="button" class="btn btn-primary d-none" onclick="submit_color();">ตกลง</button>
                   </div>
                 </div>
               </div>
@@ -279,9 +312,160 @@
 
     <!-- Required Js -->
 <script src="partner/js/vendor-all.min.js"></script>
-	<script src="partner/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="partner/plugins/bootstrap/js/bootstrap.min.js"></script>
     
-    <script src="partner/js/pcoded.min.js"></script>
+<script src="partner/js/pcoded.min.js"></script>
+<script src="partner/js/menu_color.js"></script>
+<script>
+    
+    function change_color()
+    {
+        let delayInMilliseconds = 500; //0.5 second
+
+        setTimeout(function() {
+            document.querySelector('#menu-open').click();
+            random_color();
+        }, delayInMilliseconds);
+
+        
+    }
+
+    function random_color()
+    {
+        let letters = '0123456789ABCDEF'.split('');
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        add_color_to_item(color)
+    }
+
+    function add_color_to_item(color)
+    {
+        let text_color = color.split('');
+
+        let color_1 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "FF" ;
+        let color_2 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "CC" ;
+        let color_3 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "99" ;
+        let color_4 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "66" ;
+        let color_5 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "33" ;
+        let color_6 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "00" ;
+
+        // 1
+        let text_item_1 = document.querySelector('#text_item_1');
+            text_item_1.innerHTML =  color_1 ;
+
+        let fa_item_1 = document.querySelector('#fa_item_1');
+            let style_fa_item_1 = document.createAttribute("style");
+                style_fa_item_1.value = "background-color:" + color_1 + " ;";
+                fa_item_1.setAttributeNode(style_fa_item_1); 
+            let click_fa_item_1 = document.createAttribute("onclick");
+                click_fa_item_1.value = "add_input_color('" + color_1 + "')";
+                 fa_item_1.setAttributeNode(click_fa_item_1); 
+
+        // 2
+        let text_item_2 = document.querySelector('#text_item_2');
+            text_item_2.innerHTML =  color_2 ;
+
+        let fa_item_2 = document.querySelector('#fa_item_2');
+            let style_fa_item_2 = document.createAttribute("style");
+                style_fa_item_2.value = "background-color:" + color_2 + " ;";
+                fa_item_2.setAttributeNode(style_fa_item_2); 
+            let click_fa_item_2 = document.createAttribute("onclick");
+                click_fa_item_2.value = "add_input_color('" + color_2 + "')";
+                 fa_item_2.setAttributeNode(click_fa_item_2); 
+
+        // 3
+        let text_item_3 = document.querySelector('#text_item_3');
+            text_item_3.innerHTML =  color_3 ;
+
+        let fa_item_3 = document.querySelector('#fa_item_3');
+            let style_fa_item_3 = document.createAttribute("style");
+                style_fa_item_3.value = "background-color:" + color_3 + " ;";
+                fa_item_3.setAttributeNode(style_fa_item_3); 
+            let click_fa_item_3 = document.createAttribute("onclick");
+                click_fa_item_3.value = "add_input_color('" + color_3 + "')";
+                 fa_item_3.setAttributeNode(click_fa_item_3); 
+
+        // 4
+        let text_item_4 = document.querySelector('#text_item_4');
+            text_item_4.innerHTML =  color_4 ;
+
+        let fa_item_4 = document.querySelector('#fa_item_4');
+            let style_fa_item_4 = document.createAttribute("style");
+                style_fa_item_4.value = "background-color:" + color_4 + " ;";
+                fa_item_4.setAttributeNode(style_fa_item_4); 
+            let click_fa_item_4 = document.createAttribute("onclick");
+                click_fa_item_4.value = "add_input_color('" + color_4 + "')";
+                 fa_item_4.setAttributeNode(click_fa_item_4); 
+
+        // 5
+        let text_item_5 = document.querySelector('#text_item_5');
+            text_item_5.innerHTML =  color_5 ;
+
+        let fa_item_5 = document.querySelector('#fa_item_5');
+            let style_fa_item_5 = document.createAttribute("style");
+                style_fa_item_5.value = "background-color:" + color_5 + " ;";
+                fa_item_5.setAttributeNode(style_fa_item_5); 
+            let click_fa_item_5 = document.createAttribute("onclick");
+                click_fa_item_5.value = "add_input_color('" + color_5 + "')";
+                 fa_item_5.setAttributeNode(click_fa_item_5); 
+
+        // 6
+        let text_item_6 = document.querySelector('#text_item_6');
+            text_item_6.innerHTML =  color_6 ;
+
+        let fa_item_6 = document.querySelector('#fa_item_6');
+            let style_fa_item_6 = document.createAttribute("style");
+                style_fa_item_6.value = "background-color:" + color_6 + " ;";
+                fa_item_6.setAttributeNode(style_fa_item_6); 
+            let click_fa_item_6 = document.createAttribute("onclick");
+                click_fa_item_6.value = "add_input_color('" + color_6 + "')";
+                 fa_item_6.setAttributeNode(click_fa_item_6); 
+    }
+
+    function add_input_color(color)
+    {
+        let input_color = document.querySelector('#input_color');
+         input_color.value = color ;
+
+         let circle_color = document.querySelector('#circle_color');
+            let circle_color_style = document.createAttribute("style");
+                circle_color_style.value = "font-size:45px;color:" + color + " ;";
+                 circle_color.setAttributeNode(circle_color_style);
+        document.querySelector('#bnt_sub_color').classList.remove('d-none');
+    }
+
+    function view_color()
+    {
+        let input_color = document.querySelector('#input_color');
+
+        let circle_color = document.querySelector('#circle_color');
+            let circle_color_style = document.createAttribute("style");
+                circle_color_style.value = "font-size:45px;color:" + input_color.value + " ;";
+                 circle_color.setAttributeNode(circle_color_style);
+
+        document.querySelector('#bnt_sub_color').classList.remove('d-none');
+    }
+
+    function submit_color()
+    {
+        let input_color = document.querySelector('#input_color');
+            input_color = input_color.value.replace("#","_");
+
+        let color_of_partner = document.querySelector('#color_of_partner');
+            color_of_partner = color_of_partner.value.replaceAll(" ","_");
+
+        fetch("{{ url('/') }}/api/change_color_partner/"+input_color + "/" + color_of_partner);
+
+        let delay = 800; 
+
+        setTimeout(function() {
+            window.location.reload(true);
+        }, delay);
+    }
+</script>
 
 </body>
 @endforeach
