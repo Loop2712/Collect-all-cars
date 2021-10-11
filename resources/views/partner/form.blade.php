@@ -40,7 +40,7 @@
         <div class="col-12">
             <div id="div_name_partner" class="d-none form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                 <label for="name" class="control-label">{{ 'ชื่อพาร์ทเนอร์' }}</label>
-                <input class="form-control col-4" name="name" type="text" id="name" value="{{ isset($partner->name) ? $partner->name : ''}}" >
+                <input class="form-control col-4" name="name" type="text" id="name" value="{{ isset($partner->name) ? $partner->name : ''}}" required>
                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -52,14 +52,14 @@
                 <div class="col-6">
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                         <label for="phone" class="control-label">{{ 'เบอร์' }}</label>
-                        <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($partner->phone) ? $partner->phone : ''}}" required>
+                        <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($partner->phone) ? $partner->phone : ''}}" required pattern="[0-9]{9-10}">
                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group {{ $errors->has('mail') ? 'has-error' : ''}}">
                         <label for="mail" class="control-label">{{ 'เมล' }}</label>
-                        <input class="form-control" name="mail" type="text" id="mail" value="{{ isset($partner->mail) ? $partner->mail : ''}}" required>
+                        <input class="form-control" name="mail" type="mail" id="mail" value="{{ isset($partner->mail) ? $partner->mail : ''}}" required>
                         {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>

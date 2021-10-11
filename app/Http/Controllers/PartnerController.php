@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Sos_map;
 use App\Models\Sos_insurance;
 use App\county;
+use Illuminate\Support\Facades\Hash;
 
 
 class PartnerController extends Controller
@@ -141,6 +142,63 @@ class PartnerController extends Controller
 
         return redirect('partner_viicheck')->with('flash_message', 'Partner deleted!');
     }
+
+    public function manage_user(Request $request)
+    {
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)->get();
+
+        foreach ($data_partners as $data_partner) {
+            $name_partner = $data_partner->name ;
+        }
+
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $all_user = User::Where('name', 'LIKE', "%$keyword%")
+                ->Where('organization', $name_partner)
+                ->latest()->paginate($perPage);
+        } else {
+            $all_user = User::Where('organization', $name_partner)
+                ->latest()->paginate($perPage);
+        }
+
+        return view('partner.user.manage_user', compact('data_partners','all_user'));
+    }
+
+    public function create_user_partner(Request $request)
+    {
+        $type_user = $request->get('type_user');
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)->get();
+
+        $partners = $data_user->organization ;
+
+        $name = uniqid($partners.'-');
+        $username = $name ;
+        $email = "กรุณาเพิ่มอีเมล" ;
+        $password = uniqid();
+        $provider_id = uniqid($partners.'-', true);
+
+        $user = new User();
+        $user->name = $name;
+        $user->username = $name;
+        $user->provider_id = $provider_id;
+        $user->password = Hash::make($password);
+        $user->email = $email;
+        $user->role = $type_user;
+        $user->organization = $partners;
+        $user->creator = $data_user->id;
+        $user->status = "active";
+
+        $user->save();
+
+        return view('partner.user.create_user_partner', compact('data_partners' , 'partners' , 'username' , 'password'));
+    }
+    
 
     public function partner_theme()
     {

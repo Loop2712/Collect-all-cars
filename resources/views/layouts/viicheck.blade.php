@@ -286,6 +286,9 @@
                         @case("admin-partner") 
                           <a href="{{ url('/partner_theme') }}" target="blank">📊 &nbsp; admin-partner</a>
                         @break
+                        @case("partner") 
+                          <a href="{{ url('/partner_theme') }}" target="blank">📊 &nbsp; partner</a>
+                        @break
                       @endswitch
                     @endif
                 </li>

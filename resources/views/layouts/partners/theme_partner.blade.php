@@ -75,9 +75,16 @@
                     <!-- <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="{{ url('/sos_insurance') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-tools"></i></span><span class="pcoded-mtext">การเรียกประกัน</span></a>
                     </li> -->
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="{{ url('/service_area') }}" class="nav-link "><span class="pcoded-micon"><i class="far fa-map"></i></span><span class="pcoded-mtext">พื้นที่บริการ</span></a>
-                    </li>
+                    @if(Auth::check())
+                        @if(Auth::user()->role == "admin-partner")
+                            <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                                <a href="{{ url('/service_area') }}" class="nav-link "><span class="pcoded-micon"><i class="far fa-map"></i></span><span class="pcoded-mtext">พื้นที่บริการ</span></a>
+                            </li>
+                            <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                                <a href="{{ url('/manage_user_partner') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-users-cog"></i></span><span class="pcoded-mtext" >จัดการผู้ใช้</span></a>
+                            </li>
+                        @endif
+                    @endif
                     <li class="nav-item pcoded-menu-caption">
                         <label style="font-size:13px">ติดต่อ ViiCHECK</label>
                     </li>

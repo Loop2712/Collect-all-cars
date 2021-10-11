@@ -112,43 +112,41 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 // END ADMIN VIICHECK
 
-// ADMIN 2bgreen
-// Route::middleware(['auth', 'role:2bgreen'])->group(function () {
-
-// 	Route::get('/report_register_cars_2bgreen', 'Partners\P_2bgreenController@report_register_cars');
-// 	Route::get('/guest_2bgreen', 'Partners\P_2bgreenController@guest_2bgreen');
-// 	// Route::get('/guest_2bgreen/select_month/{month_1}/{month_2}/{year}', 'Partners\P_2bgreenController@select_month');
-// 	Route::get('/guest_latest_2bgreen', 'Partners\P_2bgreenController@guest_latest_2bgreen');
-// 	Route::get('/sos_detail_2bgreen', 'Partners\P_2bgreenController@sos_detail_chart');
-// 	Route::get('/sos_2bgreen', 'Partners\P_2bgreenController@view_sos');
-// 	Route::get('/sos_insurance', 'Partners\P_2bgreenController@sos_insurance');
-// 	Route::get('/service_area', 'Partners\P_2bgreenController@service_area');
-// 	Route::get('/service_pending', 'Partners\P_2bgreenController@service_area_pending');
-// 	Route::get('/service_current', 'Partners\P_2bgreenController@service_area_current');
-
-// 	Route::get('/partner_theme', 'PartnerController@partner_theme');
-	
-
-// });
-// END ADMIN 2bgreen
-
 //admin-partner
-Route::middleware(['auth', 'role:admin-partner'])->group(function () {
+Route::middleware(['auth', 'role:admin-partner,partner'])->group(function () {
+
+	Route::get('/partner_theme', 'PartnerController@partner_theme');
 
 	Route::get('/register_cars_partner', 'PartnerController@register_cars');
 	Route::get('/guest_partner', 'PartnerController@guest_partner');
 	Route::get('/partner_guest_latest', 'PartnerController@partner_guest_latest');
 	Route::get('/sos_partner', 'PartnerController@view_sos');
-	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
-	Route::get('/service_area', 'PartnerController@service_area');
-	Route::get('/service_pending', 'PartnerController@service_area_pending');
-	Route::get('/service_current', 'PartnerController@service_area_current');
 	Route::get('/sos_detail_partner', 'PartnerController@sos_detail_chart');
-	Route::get('/partner_theme', 'PartnerController@partner_theme');
-	
+	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
+		Route::get('/service_area', 'PartnerController@service_area');
+		Route::get('/service_pending', 'PartnerController@service_area_pending');
+		Route::get('/service_current', 'PartnerController@service_area_current');
+		Route::get('/manage_user_partner', 'PartnerController@manage_user');
+		Route::get('/create_user_partner', 'PartnerController@create_user_partner');
 
 });
 // end admin-partner
+
+//partner
+// Route::middleware(['auth', 'role:partner'])->group(function () {
+
+// 	Route::get('/partner_theme', 'PartnerController@partner_theme');
+
+// 	Route::get('/register_cars_partner', 'PartnerController@register_cars');
+// 	Route::get('/guest_partner', 'PartnerController@guest_partner');
+// 	Route::get('/partner_guest_latest', 'PartnerController@partner_guest_latest');
+// 	Route::get('/sos_partner', 'PartnerController@view_sos');
+// 	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
+// 	Route::get('/sos_detail_partner', 'PartnerController@sos_detail_chart');
+	
+
+// });
+// end partner
 
 Route::middleware(['auth'])->group(function () {
 	Route::resource('register_car', 'Register_carController');
