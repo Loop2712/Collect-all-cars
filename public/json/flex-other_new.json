@@ -108,54 +108,6 @@
             "contents": [
               {
                 "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/money.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "xl"
-              },
-              {
-                "type": "text",
-                "text": "เช็คราคารถมือสอง",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/middle_price_car"
-                },
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/middle_price_car"
-                }
-              }
-            ],
-            "height": "50px",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/middle_price_car"
-            }
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
                 "url": "https://www.viicheck.com/img/icon/faq.png",
                 "size": "3xl",
                 "margin": "none",
