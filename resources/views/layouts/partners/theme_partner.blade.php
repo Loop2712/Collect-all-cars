@@ -257,6 +257,7 @@
               </div>
             </div>
 
+            @if(!empty($data_partner->group_line->language))
             <!-- set_group_line -->
             <div class="modal fade" id="set_group_line" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">
@@ -315,6 +316,7 @@
                 </div>
               </div>
             </div>
+            @endif
 
             @yield('content')
 
