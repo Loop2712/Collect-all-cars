@@ -22,6 +22,7 @@ use App\Models\Sos_map;
 use App\Models\Sos_insurance;
 use App\county;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Time_zone;
 
 
 class PartnerController extends Controller
@@ -165,7 +166,10 @@ class PartnerController extends Controller
                 ->latest()->paginate($perPage);
         }
 
-        return view('partner.user.manage_user', compact('data_partners','all_user'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+
+        return view('partner.user.manage_user', compact('data_partners','all_user','data_time_zone'));
     }
 
     public function create_user_partner(Request $request)
@@ -196,7 +200,9 @@ class PartnerController extends Controller
 
         $user->save();
 
-        return view('partner.user.create_user_partner', compact('data_partners' , 'partners' , 'username' , 'password'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.user.create_user_partner', compact('data_partners' , 'partners' , 'username' , 'password','data_time_zone'));
     }
     
 
@@ -206,7 +212,9 @@ class PartnerController extends Controller
 
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
-        return view('layouts.partners.theme_partner', compact('data_partners'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('layouts.partners.theme_partner', compact('data_partners','data_time_zone'));
     }
 
     public function register_cars(Request $request)
@@ -218,13 +226,17 @@ class PartnerController extends Controller
         $report_register_cars = Register_car::where('juristicNameTH', $data_user->organization)
                 ->latest()->paginate(25);
 
-        return view('partner.partner_register_cars', compact('data_partners', 'report_register_cars'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.partner_register_cars', compact('data_partners', 'report_register_cars','data_time_zone'));
     }
 
     public function guest_partner(Request $request)
     {
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
         $year = $request->get('year');
         $month_1 = $request->get('month_1');
@@ -319,7 +331,7 @@ class PartnerController extends Controller
             }
         }
 
-        return view('partner.guest_partner', compact('data_partners', 'guest','count_per_month','guest_year'));
+        return view('partner.guest_partner', compact('data_partners', 'guest','count_per_month','guest_year','data_time_zone'));
     }
 
     public function partner_guest_latest(Request $request)
@@ -327,9 +339,11 @@ class PartnerController extends Controller
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
         $guest_latest = Guest::where('organization', $data_user->organization)->latest()->paginate(25);
 
-        return view('partner.partner_guest_latest', compact('data_partners', 'guest_latest'));
+        return view('partner.partner_guest_latest', compact('data_partners', 'guest_latest','data_time_zone'));
     }
 
     public function view_sos(Request $request)
@@ -357,9 +371,10 @@ class PartnerController extends Controller
             ->latest()->paginate($perPage);
 
         $text_at = '@' ;
-       
 
-        return view('partner.partner_sos', compact('data_partners','view_maps' , 'sos_all' , 'area','text_at'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'sos_all' , 'area','text_at','data_time_zone'));
     }
 
     // public function sos_insurance(Request $request)
@@ -387,7 +402,9 @@ class PartnerController extends Controller
                 ->orderBy('changwat_th' , 'ASC')
                 ->get();
 
-        return view('partner.service_area.partner_service_area_adjustment', compact('data_partners','count_position','location_array'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.service_area.partner_service_area_adjustment', compact('data_partners','count_position','location_array','data_time_zone'));
     }
 
      public function service_area_pending(Request $request)
@@ -395,7 +412,9 @@ class PartnerController extends Controller
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
-        return view('partner.service_area.partner_service_area_pending', compact('data_partners'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.service_area.partner_service_area_pending', compact('data_partners','data_time_zone'));
     }
 
     public function service_area_current(Request $request)
@@ -403,13 +422,17 @@ class PartnerController extends Controller
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
-        return view('partner.service_area.partner_service_area_current', compact('data_partners'));
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.service_area.partner_service_area_current', compact('data_partners','data_time_zone'));
     }
 
     public function sos_detail_chart(Request $request)
     {
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
         $year = $request->get('year');
         $month = $request->get('month');
@@ -2196,7 +2219,7 @@ class PartnerController extends Controller
         } 
 
 
-        return view('partner.partner_sos_detail_chart', compact('data_partners','sos_all','area','sos_time_00','sos_time_01','sos_time_02','sos_time_03','sos_time_04','sos_time_05','sos_time_06','sos_time_07','sos_time_08','sos_time_09','sos_time_10','sos_time_11','sos_time_12','sos_time_13','sos_time_14','sos_time_15','sos_time_16','sos_time_17','sos_time_18','sos_time_19','sos_time_20','sos_time_21','sos_time_22','sos_time_23','total'));
+        return view('partner.partner_sos_detail_chart', compact('data_partners','data_time_zone','sos_all','area','sos_time_00','sos_time_01','sos_time_02','sos_time_03','sos_time_04','sos_time_05','sos_time_06','sos_time_07','sos_time_08','sos_time_09','sos_time_10','sos_time_11','sos_time_12','sos_time_13','sos_time_14','sos_time_15','sos_time_16','sos_time_17','sos_time_18','sos_time_19','sos_time_20','sos_time_21','sos_time_22','sos_time_23','total'));
     }
 
 

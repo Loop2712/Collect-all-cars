@@ -25,7 +25,10 @@ class Group_line extends Model
      *
      * @var array
      */
-    protected $fillable = ['groupId', 'groupName', 'pictureUrl','owner','time_zone','language'];
+    protected $fillable = ['groupId', 'groupName', 'pictureUrl','owner','time_zone','language','partner_id'];
 
+    public function partner(){
+        return $this->belongsTo('App\Models\Partner', 'partner_id' , 'id'); 
+    }
     
 }

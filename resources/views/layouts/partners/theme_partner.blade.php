@@ -162,8 +162,8 @@
                                     <ul class="pro-body">
                                         <!-- <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li> -->
                                         <li>
-                                            <a href="" class="dropdown-item">
-                                                <i class="fab fa-line text-success"></i> ตั้งค่า Group line (soon)
+                                            <a href="" class="dropdown-item" data-toggle="modal" data-target="#set_group_line">
+                                                <i class="fab fa-line text-success"></i> ตั้งค่า Group line
                                             </a>
                                         </li>
                                         <li>
@@ -252,6 +252,65 @@
                   <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                     <button id="bnt_sub_color" type="button" class="btn btn-primary d-none" onclick="submit_color();">ตกลง</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- set_group_line -->
+            <div class="modal fade" id="set_group_line" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">ตั้งค่ากลุ่มไลน์</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>ชื่อกลุ่มไลน์ : 
+                                    <b class="text-primary">
+                                        <span id="span_name_line">{{ $data_partner->line_group }}</span>
+                                    </b>
+                                </h3>
+                                <hr>
+                            </div>
+                            <div class="col-6">
+                                <label class="control-label">ภาษา  (เดิม {{ $data_partner->group_line->language }})</label>
+                                <select class="form-control" name="input_language" id="input_language" required>
+                                    <option value="{{ $data_partner->group_line->language }}" selected>- เลือกภาษา -</option>
+                                    <option value="th" >ไทย (th)</option>
+                                    <option value="en" >English (en)</option>
+                                    <option value="zh-TW" >中國人 (zh-TW)</option>
+                                    <option value="ja" >日本 (ja)</option>
+                                    <option value="ko" >한국인 (ko)</option>
+                                    <option value="es" >Español (es)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="control-label">Time zone (เดิม {{ $data_partner->group_line->time_zone }})</label>
+                                <select class="form-control" name="input_time_zone" id="input_time_zone" required>
+                                    <option value="{{ $data_partner->group_line->time_zone }}" selected>- เลือก Time zone -</option>
+                                    @foreach($data_time_zone as $time_zone)
+                                        <option value="{{ $time_zone->TimeZone }}" 
+                                        {{ request('TimeZone') == $time_zone->TimeZone ? 'selected' : ''   }} >
+                                        {{ $time_zone->CountryCode }} , {{ $time_zone->TimeZone }} , @if($time_zone->UTC > 0)UTC +{{ $time_zone->UTC }}@else UTC {{ $time_zone->UTC }}@endif
+                                        </option>
+                                    @endforeach   
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <input type="hidden" name="" id="input_id_partner" value="{{ $data_partner->id }}">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="set_group_line();">ตั้งค่า</button>
                   </div>
                 </div>
               </div>
@@ -463,6 +522,24 @@
 
         setTimeout(function() {
             window.location.reload(true);
+        }, delay);
+    }
+
+    function set_group_line()
+    {
+        let input_language = document.querySelector('#input_language').value;
+        let input_time_zone = document.querySelector('#input_time_zone').value;
+            input_time_zone = input_time_zone.replace("/","_");
+        let input_id_partner = document.querySelector('#input_id_partner').value;
+
+        let span_name_line = document.querySelector('#span_name_line').innerText;
+
+        fetch("{{ url('/') }}/api/set_group_line/"+ input_id_partner + "/" + input_language + "/" + input_time_zone);
+
+        let delay = 800; 
+
+        setTimeout(function() {
+            alert("ตั้งค่ากลุ่มไลน์ "+ span_name_line + " เรียบร้อยแล้ว");
         }, delay);
     }
 </script>
