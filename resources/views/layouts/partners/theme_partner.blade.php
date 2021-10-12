@@ -144,7 +144,7 @@
                         <div class="dropdown-menu dropdown-menu-right profile-notification ">
                             <div style="background-color: {{ $data_partner->color  }} ;" class="pro-head">
                             @if(!empty(Auth::user()->photo))
-                                <img alt="" style="width:60px; border-radius: 50%;" title="" class="img-circle img-radius isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
+                                <img alt="" style="width:60px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
                             @else
                                 <img src="partner/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
                             @endif
