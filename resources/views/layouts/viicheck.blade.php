@@ -260,10 +260,10 @@
           <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li class="dropdown">
-              <input class="notranslate" type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
+              <input type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
               <a href="#" style="font-size: 18px;">
                 <span class="btn btn-primary main-shadow main-radius">
-                  <b><span id="input_name"></span></b>
+                  <b><span class="notranslate" id="input_name"></span></b>
                   <i class="bi bi-chevron-down"></i>
                 </span> 
                 
