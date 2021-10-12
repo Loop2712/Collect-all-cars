@@ -31,7 +31,4 @@ class Partner extends Model
         return $this->hasOne('App\Models\Group_line', 'partner_id');
     }
 
-    public function user(){
-        return $this->belongsTo('App\Models\User' , 'id'); 
-    }
 }
