@@ -337,7 +337,7 @@ class ProfileController extends Controller
     public function explode_name($name_user)
     {
         $count = strlen($name_user);
-        if ($count > 10) {
+        if ($count > 12) {
             $name = explode(" ",$name_user);
         }else{
             $name_add = $name_user." "."str";
