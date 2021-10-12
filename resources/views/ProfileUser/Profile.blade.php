@@ -52,7 +52,7 @@
                                 <img alt="" style="width:65%; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('/img/icon/user.png') }}" data-original-title="Usuario">
                             @endif
                             <br><br>
-                            <h4 class="text-primary"><b>{{ $data->name }}</b></h4>
+                            <h4 class="text-primary notranslate"><b>{{ $data->name }}</b></h4>
                             <span class="text-dark">
                                 <i class="fas fa-map-marker-alt text-danger"></i> <b>{{ $data->location_A }} {{ $data->location_P }}</b>
                             </span>
