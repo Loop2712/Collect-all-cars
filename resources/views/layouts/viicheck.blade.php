@@ -261,9 +261,9 @@
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li class="dropdown">
               <input class="notranslate" type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
-              <a href="#" style="font-size: 18px;">
+              <a class="notranslate" href="#" style="font-size: 18px;">
                 <span class="btn btn-primary main-shadow main-radius">
-                  <b><span class="notranslate" id="input_name"></span></b>
+                  <b><span id="input_name"></span></b>
                   <i class="bi bi-chevron-down"></i>
                 </span> 
                 
@@ -274,7 +274,7 @@
                   <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/tab.png') }}">&nbsp;โปรไฟล์
                 </li>
                 </a>
-                <li>
+                <li class="notranslate">
                     @if(Auth::check())
                         <!-- @if(Auth::user()->role == "admin" )
                             <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
