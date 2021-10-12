@@ -30,4 +30,8 @@ class Partner extends Model
     public function group_line(){
         return $this->hasOne('App\Models\Group_line', 'partner_id');
     }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User' , 'id'); 
+    }
 }
