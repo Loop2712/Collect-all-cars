@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Mail;
+
 class PartnersController extends Controller
 {
     public function check_user($id_user)
@@ -108,6 +110,22 @@ class PartnersController extends Controller
                 'sos_area' => $input_new_area,
                 'new_sos_area' => null,
         ]);
+
+        $data_partners = DB::table('partners')
+            ->where('id', $id)
+            ->get();
+
+        foreach ($data_partners as $item) {
+
+            $email = $item->mail;
+            $mail_data = [
+                    "name" => $item->name,
+                    "sos_area" => $item->sos_area,
+                ];
+
+            Mail::to($email)->send(new MailToCompany($mail_data));
+
+        }
 
         return $id ;
     }

@@ -1330,11 +1330,11 @@ class LineMessagingAPI extends Model
                     "พรบ. ของคุณใกล้หมดอายุ",
                     "พรบ",
                     "ของคุณเหลือน้อยกว่า",
+                    "แก้ไขวันที่",
                     "วัน",
                     "จะหมดอายุวันที่",
                     "หมายเลขทะเบียน",
                     "ขออภัยหากท่านต่ออายุแล้ว",
-                    "แก้ไขวันที่",
                 ];
 
             $data_topic = $this->language_for_user($data_Text_topic, $item->provider_id);
@@ -1349,11 +1349,11 @@ class LineMessagingAPI extends Model
 
             $string_json = str_replace("พรบ",$data_topic[1],$string_json);
             $string_json = str_replace("ของคุณเหลือน้อยกว่า",$data_topic[2],$string_json);
-            $string_json = str_replace("วัน",$data_topic[3],$string_json);
-            $string_json = str_replace("จะหมดอายุวันที่",$data_topic[4],$string_json);
-            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[5],$string_json);
-            $string_json = str_replace("ขออภัยหากท่านต่ออายุแล้ว",$data_topic[6],$string_json);
-            $string_json = str_replace("แก้ไขวันที่",$data_topic[7],$string_json);
+            $string_json = str_replace("แก้ไขวันที่",$data_topic[3],$string_json);
+            $string_json = str_replace("วัน",$data_topic[4],$string_json);
+            $string_json = str_replace("จะหมดอายุวันที่",$data_topic[5],$string_json);
+            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[6],$string_json);
+            $string_json = str_replace("ขออภัยหากท่านต่ออายุแล้ว",$data_topic[7],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
@@ -1403,11 +1403,11 @@ class LineMessagingAPI extends Model
                     "ประกันภัย ของคุณใกล้หมดอายุ",
                     "ประกัน",
                     "ของคุณเหลือน้อยกว่า",
+                    "แก้ไขวันที่",
                     "วัน",
                     "จะหมดอายุวันที่",
                     "หมายเลขทะเบียน",
                     "ขออภัยหากท่านต่ออายุแล้ว",
-                    "แก้ไขวันที่",
                 ];
 
             $data_topic = $this->language_for_user($data_Text_topic, $item->provider_id);
@@ -1422,11 +1422,11 @@ class LineMessagingAPI extends Model
             $string_json = str_replace("car_id",$item->id,$string_json);
 
             $string_json = str_replace("ของคุณเหลือน้อยกว่า",$data_topic[2],$string_json);
-            $string_json = str_replace("วัน",$data_topic[3],$string_json);
-            $string_json = str_replace("จะหมดอายุวันที่",$data_topic[4],$string_json);
-            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[5],$string_json);
-            $string_json = str_replace("ขออภัยหากท่านต่ออายุแล้ว",$data_topic[6],$string_json);
-            $string_json = str_replace("แก้ไขวันที่",$data_topic[7],$string_json);
+            $string_json = str_replace("แก้ไขวันที่",$data_topic[3],$string_json);
+            $string_json = str_replace("วัน",$data_topic[4],$string_json);
+            $string_json = str_replace("จะหมดอายุวันที่",$data_topic[5],$string_json);
+            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[6],$string_json);
+            $string_json = str_replace("ขออภัยหากท่านต่ออายุแล้ว",$data_topic[7],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
