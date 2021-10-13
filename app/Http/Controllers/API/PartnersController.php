@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Mail;
+use App\Mail\MailToPartner_area;
 
 class PartnersController extends Controller
 {
@@ -115,6 +116,8 @@ class PartnersController extends Controller
             ->where('id', $id)
             ->get();
 
+
+
         foreach ($data_partners as $item) {
 
             $email = $item->mail;
@@ -123,7 +126,7 @@ class PartnersController extends Controller
                     "sos_area" => $item->sos_area,
                 ];
 
-            Mail::to($email)->send(new MailToCompany($mail_data));
+            Mail::to($email)->send(new MailToPartner_area($mail_data));
 
         }
 
