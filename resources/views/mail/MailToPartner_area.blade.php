@@ -8,6 +8,7 @@
 				<div class="row">
 					<div class="col-md-12" style="font-size:16px;">
 						<h4>เรียน <b>{{ $data["name"] }}</b></h4>
+						<!-- เนื้อหาในเมล -->
 					</div>
 				</div>
 			</div>
