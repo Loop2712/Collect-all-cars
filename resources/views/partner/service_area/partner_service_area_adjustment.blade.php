@@ -13,6 +13,8 @@
     <input class="d-none" name="lng" type="text" id="lng" value="">
     <input class="d-none" type="" id="latlng" name="latlng" readonly> 
 
+    <input class="d-none" type="" name="" id="id_user" value="{{ Auth::user()->id }}">
+
     <input class="d-none" type="text" id="va_zoom" name="" value="6">
     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
@@ -86,6 +88,30 @@
                         </h3>
                         <div class="container">
                             <div class="row">
+                                <div class="col-12">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <center>
+                                                <i style="color:#FD8433; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                พื้นที่บริการองค์กรอื่นๆ
+                                            </center>
+                                        </div>
+                                        <div class="col-4">
+                                            <center>
+                                                <i style="color:#008450; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                พื้นที่เก่าของท่าน
+                                            </center>
+                                        </div>
+                                        <div class="col-4">
+                                            <center>
+                                                <i style="color:#173066; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                พื้นที่ขอรับการอนุมัติ
+                                            </center>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                </div>
                                 <div class="col-12" id="div_lat_lng">
                                     <div id="div_form_{{ $count_position }}" class="form-group">
                                         <label class="control-label">จุดที่ {{ $count_position }}</label>
@@ -190,7 +216,9 @@
     var markers = [] ;
     var map ;
     var area = [] ;
-    var marker ; 
+    let marker ;
+    const image = "https://www.viicheck.com/img/icon/flag_2.png";
+
 
     function initMap() {
         
@@ -213,6 +241,10 @@
             zoom: num_zoom,
             center: myLatlng,
         });
+
+        func_draw_area(map);
+
+        
         // Create the initial InfoWindow.
         let infoWindow = new google.maps.InfoWindow({
             // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
@@ -260,19 +292,80 @@
         
     }
 
-    function addMarker(count_position , marker_lat , marker_lng) {
-        const image = "https://www.viicheck.com/img/icon/flag_2.png";
+    function func_draw_area(map) {
+        let id_user = document.querySelector('#id_user').value;
 
-        map_maeker = {
+        fetch("{{ url('/') }}/api/service_area/area_other/" + id_user)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+
+                    // console.log(JSON.parse(result[ii]['sos_area']));
+
+                    let draw_area_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#FD8433",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#FD8433",
+                        fillOpacity: 0.25,
+                    });
+                    draw_area_other.setMap(map);
+
+                }
+        });
+
+        fetch("{{ url('/') }}/api/service_area/your_old_area/" + id_user)
+            .then(response => response.json())
+            .then(result_2 => {
+                // console.log(result_2);
+
+                for (let ii = 0; ii < result_2.length; ii++) {
+
+                    // console.log(JSON.parse(result_2[ii]['sos_area']));
+
+                    let draw_your_old_area = new google.maps.Polygon({
+                        paths: JSON.parse(result_2[ii]['sos_area']),
+                        strokeColor: "#008450",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#008450",
+                        fillOpacity: 0.25,
+                    });
+                    draw_your_old_area.setMap(map);
+
+                }
+
+        });
+
+    }
+
+    function addMarker(count_position , marker_lat , marker_lng) {
+
+        marker = new google.maps.Marker({
             position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
             label: {text: count_position.value, color: "white"},
             map: map,
             icon: image,
-        };
+        });
 
-        marker = new google.maps.Marker(map_maeker);
+        markers.push(marker);
+    }
 
-        markers.push(map_maeker);
+    function setMapOnAll(map,last_arr_markers) {
+        for (let i = 0; i < markers.length; i++) {
+            markers[last_arr_markers].setMap(map);
+        }
+    }
+
+    function hideMarkers(last_arr_markers) {
+        setMapOnAll(null,last_arr_markers);
+    }
+
+    function deleteMarkers(last_arr_markers) {
+        hideMarkers(last_arr_markers);
     }
 
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
@@ -301,10 +394,10 @@
         // Construct the polygon.
         draw_area = new google.maps.Polygon({
             paths: area,
-            strokeColor: "#008450",
+            strokeColor: "#173066",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#008450",
+            fillColor: "#173066",
             fillOpacity: 0.25,
         });
         draw_area.setMap(map);
@@ -417,34 +510,14 @@
         document.querySelector('#position_' + count_delete).value = "";
         document.querySelector('#count_position').value = count_delete;
 
-            // console.log(area);
-            // console.log(markers);
 
         let last_arr_area = area.length - 1 ;
         let last_arr_markers = markers.length - 1 ;
 
+        deleteMarkers(last_arr_markers);
+
         area.splice(last_arr_area);
-
-        marker.setMap(null);
-
-        // console.log(marker);
-        // console.log(markers[0]);
-
-        // for (let ii = 0; ii < markers.length; ii++) {
-
-        //     let new_lat = markers[ii]['position']['lat'];
-        //     let new_lng = markers[ii]['position']['lng'];
-
-        //     console.log(new_lat);
-        //     console.log(new_lng);
-
-
-        //     // marker = new google.maps.Marker(markers);
-        // }
-        // console.log("-----------------");
-        // markers.splice(last_arr_markers);
-        // console.log(markers);
-
+        markers.splice(last_arr_markers);
         
 
         let area_arr = document.querySelector('#area_arr');
@@ -458,10 +531,10 @@
         // Construct the polygon.
         draw_area = new google.maps.Polygon({
             paths: area,
-            strokeColor: "#008450",
+            strokeColor: "#173066",
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: "#008450",
+            fillColor: "#173066",
             fillOpacity: 0.25,
         });
         draw_area.setMap(map);

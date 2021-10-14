@@ -188,4 +188,47 @@ class PartnersController extends Controller
 
         return $color ;
     }
+
+    public function area_other($id_user)
+    {
+        $data_user = DB::table('users')
+                ->where("id", $id_user)
+                ->get();
+
+        foreach ($data_user as $key ) {
+
+            $area_other = DB::table('partners')
+                ->where("name","!=", $key->organization)
+                ->get();
+
+        }
+
+        return $area_other ;
+    }
+
+    public function your_old_area($id_user)
+    {
+        $data_user = DB::table('users')
+                ->where("id", $id_user)
+                ->get();
+
+        foreach ($data_user as $key ) {
+
+            $area_other = DB::table('partners')
+                ->where("name", $key->organization)
+                ->get();
+
+        }
+
+        return $area_other ;
+    }
+
+    public function check_area_other($id_partnet)
+    {
+        $area_other = DB::table('partners')
+            ->where("id","!=", $id_partnet)
+            ->get();
+
+        return $area_other ;
+    }
 }

@@ -107,6 +107,11 @@ Route::get('/disapproved_area/{id}/{answer_reason}/{reason_other}', 'API\Partner
 Route::get('/change_color_partner/{color}/{name_partner}', 'API\PartnersController@change_color_partner');
 
 Route::get('/sos_map/all_area','API\SosmapController@all_area');
+Route::get('/service_area/area_other/{id_user}','API\PartnersController@area_other');
+Route::get('/service_area/check_area_other/{id_partnet}','API\PartnersController@check_area_other');
+Route::get('/service_area/your_old_area/{id_user}','API\PartnersController@your_old_area');
+
+
 
 
 

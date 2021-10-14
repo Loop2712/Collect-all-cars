@@ -119,8 +119,28 @@
                                 </div>
                                 <hr>
                                 <div class="collapse container-fluid" id="collapseExample_{{ $item->id }}">
-                                    <i class="far fa-times-circle float-right btn" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}"></i>
-                                    <br><br>
+                                    
+                                    <br>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <i style="color:#FD8433; font-size: 20px;" class="fas fa-circle"></i>
+                                                พื้นที่บริการองค์กรอื่นๆ
+                                            </div>
+                                            <div class="col-3">
+                                                <i style="color:#008450; font-size: 20px;" class="fas fa-circle"></i>
+                                                พื้นที่บริการปัจจุบัน
+                                            </div>
+                                            <div class="col-3">
+                                                <i style="color:#173066; font-size: 20px;" class="fas fa-circle"></i>
+                                                พื้นที่ขอรับการอนุมัติ
+                                            </div>
+                                            <div class="col-3">
+                                                <i class="far fa-times-circle float-right btn" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="row">
@@ -128,7 +148,7 @@
                                                     <b class="text-primary">พื้นที่บริการปัจจุบัน</b>
                                                 </div>
                                                 <div class="col-6">
-                                                    <b class="text-danger">พื้นที่รอการตรวจสอบ</b>
+                                                    <b class="text-danger">พื้นที่ขอรับการอนุมัติ</b>
                                                     <div class="float-right">
                                                         <button id="btn_approved_{{ $item->id }}" type="button" class="btn btn-sm btn-success" onclick="confirm_change('approve','{{ $item->id }}');">
                                                             &nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;
@@ -231,6 +251,8 @@
             });
             map.fitBounds(bounds);
 
+            func_draw_area(map,id);
+
             // Construct the polygon.
             draw_area = new google.maps.Polygon({
                 paths: result,
@@ -243,6 +265,33 @@
             draw_area.setMap(map);
             
         }
+
+        function func_draw_area(map,id) {
+
+
+        fetch("{{ url('/') }}/api/service_area/check_area_other/" + id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+
+                    // console.log(JSON.parse(result[ii]['sos_area']));
+
+                    let draw_area_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#FD8433",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#FD8433",
+                        fillOpacity: 0.25,
+                    });
+                    draw_area_other.setMap(map);
+
+                }
+        });
+
+    }
         
         function change_line_group(loop, name_partner){
             let select_line_group = document.querySelector("#select_line_group_" + loop).value;
@@ -276,7 +325,7 @@
                         bounds.extend(result[ix]);
                     }
 
-                    initMap(result,bounds,id , 'new_map_','#FF0000');
+                    initMap(result,bounds,id , 'new_map_','#173066');
                 });
 
             fetch("{{ url('/') }}/api/area_current/"+name_partner)

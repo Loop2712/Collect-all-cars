@@ -402,9 +402,6 @@ class PartnerController extends Controller
                 ->orderBy('changwat_th' , 'ASC')
                 ->get();
 
-        $area_other = DB::table('partners')
-                ->where("name","!=", $data_user->organization)
-                ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
