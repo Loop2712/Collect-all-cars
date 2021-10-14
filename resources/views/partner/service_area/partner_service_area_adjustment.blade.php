@@ -9,6 +9,10 @@
 </style>
 <br>
 <div class="container-fluid">
+    <input class="d-none" name="lat" type="text" id="lat" value="">
+    <input class="d-none" name="lng" type="text" id="lng" value="">
+    <input class="d-none" type="" id="latlng" name="latlng" readonly> 
+
     <input class="d-none" type="text" id="va_zoom" name="" value="6">
     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
@@ -52,6 +56,9 @@
                     </div>
                 </div>
                 <div class="col-12">
+                    <a style="position:absolute;z-index: 5;top: 20px; right:65px;margin-top:7px;" href="#map">
+                        <i style="margin-top: 4px; font-size: 20px;" class="far fa-search-location btn btn-danger float-right" onclick="getLocation();"></i>
+                    </a>
                     <br>
                     <a href="#map"><div id="map"></div></a>
                     <br>
@@ -146,6 +153,38 @@
     ></script>
 
 <script>
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(set_now_location);
+        // navigator.geolocation.getCurrentPosition(geocodeLatLng);
+      } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function set_now_location(position)
+    {
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+        let latlng = document.querySelector("#latlng");
+
+        lat_text.value = position.coords.latitude ;
+        lng_text.value = position.coords.longitude ;
+        latlng.value = position.coords.latitude+","+position.coords.longitude ;
+        let lat = parseFloat(lat_text.value) ;
+        let lng = parseFloat(lng_text.value) ;
+
+        // -----------------------------------------------------
+
+        let text_zoom = document.getElementById("va_zoom").value = 15;
+
+        let text_center_lat = document.getElementById("center_lat").value = lat;
+
+        let text_center_lng = document.getElementById("center_lng").value  = lng;
+
+        initMap();
+    }
 
     var draw_area ;
     var markers = [] ;
