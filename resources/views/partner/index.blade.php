@@ -181,13 +181,13 @@
                                         </center>
                                         <br>
                                         <div id="input_disapproved" class="d-none">
-                                            <input type="radio" name="reason" id="reason_1" value="1" onclick="document.querySelector('#reason_other').classList.add('d-none'),document.querySelector('#answer_reason').value = '1';"> มีพื้นที่บางส่วนทับซ้อนหรือมีผู้ให้บริการพื้นที่นี้อยู่แล้ว <br>
-                                            <input type="radio" name="reason" id="reason_2" value="2" onclick="document.querySelector('#reason_other').classList.add('d-none'),document.querySelector('#answer_reason').value = '2';"> 
+                                            <input type="radio" name="reason" id="reason_1" value="1" onclick="document.querySelector('#reason_other').classList.add('d-none'),document.querySelector('#answer_reason').value = '1',document.querySelector('#btn_submit_change').classList.remove('d-none')"> มีพื้นที่บางส่วนทับซ้อนหรือมีผู้ให้บริการพื้นที่นี้อยู่แล้ว <br>
+                                            <input type="radio" name="reason" id="reason_2" value="2" onclick="document.querySelector('#reason_other').classList.add('d-none'),document.querySelector('#answer_reason').value = '2',document.querySelector('#btn_submit_change').classList.remove('d-none')"> 
                                             พื้นที่บริการไม่สมเหตุสมผลกับองค์กรของท่าน <br>
-                                            <input type="radio" name="reason" id="reason_3" value="3" onclick="document.querySelector('#reason_other').classList.remove('d-none'),document.querySelector('#reason_other').focus(),document.querySelector('#answer_reason').value = '3';"> 
+                                            <input type="radio" name="reason" id="reason_3" value="3" onclick="document.querySelector('#reason_other').classList.remove('d-none'),document.querySelector('#reason_other').focus(),document.querySelector('#answer_reason').value = '3',document.querySelector('#btn_submit_change').classList.remove('d-none')"> 
                                             อื่นๆ
                                             <br><br>
-                                            <input class="form-control d-none" type="text" name="reason_other" id="reason_other">
+                                            <input class="form-control d-none" type="text" name="reason_other" id="reason_other" value="">
                                             <input type="hidden" id="answer_reason" value="">
                                         </div>
                                     </div>
@@ -340,6 +340,10 @@
             let answer_reason = document.querySelector('#answer_reason').value;
             let reason_other = document.querySelector('#reason_other').value;
 
+            if (reason_other === "") {
+                reason_other = "อื่นๆ";
+            }
+
                 fetch("{{ url('/') }}/api/disapproved_area/"+ id + "/"+ answer_reason +"/"+ reason_other);
                 document.querySelector('#btn_f5').click();
         }
@@ -424,6 +428,7 @@
                     div_content.appendChild(h5);
 
                     document.querySelector('#input_disapproved').classList.remove('d-none');
+                    document.querySelector('#btn_submit_change').classList.add('d-none');
             }
 
         }
