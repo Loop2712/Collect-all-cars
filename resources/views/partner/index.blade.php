@@ -330,9 +330,9 @@
 
         function approve(id) {
             let input_new_area = document.querySelector('#input_new_area_' + id);
-
-                fetch("{{ url('/') }}/api/approve_area/"+input_new_area.value+"/"+id);
+            
                 document.querySelector('#btn_f5').click();
+                fetch("{{ url('/') }}/api/approve_area/"+input_new_area.value+"/"+id);
         }
 
         function disapproved(id) {
