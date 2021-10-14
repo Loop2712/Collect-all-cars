@@ -116,7 +116,7 @@ class PartnersController extends Controller
             ->where('id', $id)
             ->get();
 
-        $approve = "ได้รับการอนุมัติ" ;
+        $approve = "ได้รับการอนุมัติ เป็นที่เรียบร้อยแล้ว" ;
 
         foreach ($data_partners as $item) {
 
@@ -146,7 +146,7 @@ class PartnersController extends Controller
             ->where('id', $id)
             ->get();
 
-        $approve = "ไม่ผ่านการอนุมัติ" ;
+        $approve = "ยังไม่ผ่านการอนุมัติ" ;
 
         switch ($answer_reason) {
             case '1':
