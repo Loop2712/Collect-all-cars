@@ -116,11 +116,13 @@ class PartnersController extends Controller
             ->where('id', $id)
             ->get();
 
+        $approve = "อนุมัติ" ;
+
         foreach ($data_partners as $item) {
 
             $email = $item->mail;
             $mail_data = [
-                    "approve" => "อนุมัติ",
+                    "approve" => $approve,
                     "name" => $item->name,
                     "sos_area" => $item->sos_area,
                 ];
@@ -143,12 +145,14 @@ class PartnersController extends Controller
         $data_partners = DB::table('partners')
             ->where('id', $id)
             ->get();
+            
+        $approve = "ไม่ผ่านการอนุมัติ" ;
 
         foreach ($data_partners as $item) {
 
             $email = $item->mail;
             $mail_data = [
-                    "approve" => "ไม่ผ่านการอนุมัติ",
+                    "approve" => $approve,
                     "name" => $item->name,
                     "answer_reason" => $answer_reason,
                     "reason_other" => $reason_other,
