@@ -116,7 +116,7 @@ class PartnersController extends Controller
             ->where('id', $id)
             ->get();
 
-        $approve = "อนุมัติ" ;
+        $approve = "ได้รับการอนุมัติ" ;
 
         foreach ($data_partners as $item) {
 
