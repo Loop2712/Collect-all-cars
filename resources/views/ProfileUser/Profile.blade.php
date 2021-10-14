@@ -27,13 +27,13 @@
                         @if(!empty($data->ranking))
                             @switch($data->ranking)
                                 @case('Gold')
-                                    <p class="btn btn-sm btn-light " href=""><img width="30" src="{{ url('/img/ranking/gold.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Gold</b></p>
+                                    <p class="btn btn-sm btn-light notranslate" href=""><img width="30" src="{{ url('/img/ranking/gold.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Gold</b></p>
                                 @break
                                 @case('Silver')
-                                    <p class="btn btn-sm btn-light " href=""><img width="30" src="{{ url('/img/ranking/silver.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Silver</b></p>
+                                    <p class="btn btn-sm btn-light notranslate" href=""><img width="30" src="{{ url('/img/ranking/silver.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Silver</b></p>
                                 @break
                                 @case('Bronze')
-                                    <p class="btn btn-sm btn-light " href=""><img width="30" src="{{ url('/img/ranking/bronze.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Bronze</b></p>
+                                    <p class="btn btn-sm btn-light notranslate" href=""><img width="30" src="{{ url('/img/ranking/bronze.png') }}"> &nbsp;&nbsp;<b style="font-size: 15px;">Bronze</b></p>
                                 @break
                             @endswitch
                         @endif
@@ -124,7 +124,7 @@
                             <div class="col-4">
                                 <center><i class="far fa-user"></i> <b>&nbsp;ชื่อผู้ใช้</b></center>
                             </div>
-                            <div class="col-8">
+                            <div class="col-8 notranslate">
                                 {{ $data->username }}
                             </div>
                             <hr style="margin-top: 20px;height:0.1px;width: 96%;">
@@ -148,7 +148,7 @@
                             <div class="col-4">
                                 <center><i class="far fa-envelope"></i></i> <b>&nbsp;อีเมล</b></center>
                             </div>
-                            <div class="col-8">
+                            <div class="col-8 notranslate">
                                 {{ $data->email }}
                             </div>
                             <hr style="margin-top: 20px;height:0.1px;width: 96%;">
@@ -297,7 +297,7 @@
                                             <div class="col-5">
                                                 <center><b>&nbsp;ชื่อนิติบุคคล(TH)</b></center>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-7 notranslate">
                                                 {{ $itemkey->juristicNameTH }}
                                             </div>
                                             <hr style="margin-top: 20px;height:0.1px;width: 90%;">
@@ -305,7 +305,7 @@
                                             <div class="col-5">
                                                 <center><b>&nbsp;ชื่อนิติบุคคล(EN)</b></center>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-7 notranslate">
                                                 {{ $itemkey->juristicNameEN }}
                                             </div>
                                             <hr style="margin-top: 20px;height:0.1px;width: 90%;">

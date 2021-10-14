@@ -1026,6 +1026,12 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
     check_user();
+
+    var delayInMilliseconds = 2500; //1 second
+
+    setTimeout(function() {
+      check_language();
+    }, delayInMilliseconds);
 });
 function check_language() {
     let language = document.querySelector(".goog-te-combo");

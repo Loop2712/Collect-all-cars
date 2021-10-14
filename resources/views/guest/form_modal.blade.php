@@ -20,8 +20,6 @@
             <br><br>
             <h5 class="text-danger">รถหมายเลขทะเบียนนี้ไม่มีในระบบค่ะ</h5>
             <p style="line-height: 2;">กรุณาตรวจสอบใหม่อีกครั้งค่ะ</p>
-            <h5 class="text-danger">This car registration number is not in the system.</h5>
-            <p style="line-height: 2;">Please check and try again.</p>
             <br>
         </center>
       </div>
@@ -55,8 +53,6 @@
             <br><br>
             <h5 class="text-danger">ท่านแจ้งเตือนไปยังเจ้าของรถคันนี้แล้ว</h5>
             <p style="line-height: 2;">โปรดรออย่างน้อย 5 นาทีค่ะ</p>
-            <h5 class="text-danger">You have already sent the message to the car owner.</h5>
-            <p style="line-height: 2;">Please wait at least 5 mins Thank you.</p>
         </center>
       </div>
       <div class="modal-footer d-none">
@@ -114,7 +110,7 @@
       <div class="modal-body">
         <div class="col-12 text-center" >
             <div class="row" class="d-flex align-items-center">
-                <div class="col-12"  id="div_content" class="d-flex align-items-center" style="margin-top:-70px;">
+                <div class="col-12 notranslate"  id="div_content" class="d-flex align-items-center" style="margin-top:-70px;">
               </div>
             </div>
         </div>

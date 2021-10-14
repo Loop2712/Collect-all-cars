@@ -323,8 +323,6 @@
   </header><!-- End Header -->
 
   <!-- --------------------------------------------- -->
-  @if(Auth::check())
-    @if(Auth::user()->role == "admin")
       <h1 class="d-none" id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}');">
       </h1>
       <div class="d-none">
@@ -411,8 +409,6 @@
             </div>
           </div>
         </div>
-    @endif
-  @endif
   <!-- --------------------------------------------- -->
 
 

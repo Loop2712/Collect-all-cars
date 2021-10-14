@@ -118,7 +118,7 @@
                         <div class="col-12 col-md-4">
                             <div id="div_car_brand" class=" form-group {{ $errors->has('brand') ? 'has-error' : ''}}">
                                 <!-- car -->
-                                <select name="brand" class=" form-control" id="input_car_brand"  onchange="showCar_model();
+                                <select name="brand" class="notranslate form-control" id="input_car_brand"  onchange="showCar_model();
                                     if(this.value=='อื่นๆ'){ 
                                         document.querySelector('#brand_input').classList.remove('d-none'),
                                         document.querySelector('#generation_input').classList.remove('d-none'),
@@ -127,9 +127,9 @@
                                         document.querySelector('#brand_input').classList.add('d-none'),
                                         document.querySelector('#generation_input').classList.add('d-none');}">
                                     @if(!empty($brand_old))
-                                        <option value="{{ $brand_old }}" selected>{{ $brand_old }}</option>
+                                        <option class="notranslate" value="{{ $brand_old }}" selected>{{ $brand_old }}</option>
                                     @else
-                                        <option value="" selected> - เลือกยี่ห้อ - </option> 
+                                        <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
                                     @endif
                                     <br>
                                     {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
@@ -137,7 +137,7 @@
                             </div>
                             <div id="div_motor_brand" class="d-none form-group {{ $errors->has('motor_brand') ? 'has-error' : ''}}">
                                 <!-- motorcycles -->
-                                <select name="motor_brand" class="d-none form-control" id="input_motor_brand"  onchange="showMotor_model();
+                                <select name="motor_brand" class="notranslate d-none form-control" id="input_motor_brand"  onchange="showMotor_model();
                                         if(this.value=='อื่นๆ'){ 
                                         document.querySelector('#brand_input').classList.remove('d-none'),
                                         document.querySelector('#generation_input').classList.remove('d-none'),
@@ -146,9 +146,9 @@
                                         document.querySelector('#brand_input').classList.add('d-none'),
                                         document.querySelector('#generation_input').classList.add('d-none');}">
                                     @if(!empty($brand_old))
-                                        <option value="{{ $brand_old }}" selected>{{ $brand_old }}</option>
+                                        <option class="notranslate" value="{{ $brand_old }}" selected>{{ $brand_old }}</option>
                                     @else
-                                        <option value="" selected> - เลือกยี่ห้อ - </option> 
+                                        <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
                                     @endif
                                     <br>
                                     {!! $errors->first('motor_brand', '<p class="help-block">:message</p>') !!}
@@ -202,8 +202,8 @@
                             <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ' }}<span style="color: #FF0033;"> *</span></label>
                         </div>
                         <div class="col-12 col-md-4">
-                            <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
-                                <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="เช่น กก9999 " required onchange="check_register_car();">
+                            <div class="notranslate form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
+                                <input class="form-control" name="registration_number" type="text" id="registration_number" value="{{ isset($register_car->registration_number) ? $register_car->registration_number : ''}}" placeholder="Ex. กก9999 " required onchange="check_register_car();">
                                 {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
@@ -214,9 +214,9 @@
                             <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
                                 <select name="province" id="province" class="form-control" required onchange="check_register_car();">
                                         @if(!empty($province_old))
-                                            <option value="{{ $province_old }}" selected>{{ $province_old }}</option>
+                                            <option class="notranslate" value="{{ $province_old }}" selected>{{ $province_old }}</option>
                                             @foreach($location_array as $lo)
-                                            <option 
+                                            <option  class="notranslate"
                                             value="{{ $lo->province }}" 
                                             {{ request('province') == $lo->province ? 'selected' : ''   }} >
                                             {{ $lo->province }} 
@@ -225,7 +225,7 @@
                                         @else
                                             <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
                                             @foreach($location_array as $lo)
-                                            <option 
+                                            <option  class="notranslate"
                                             value="{{ $lo->province }}" 
                                             {{ request('province') == $lo->province ? 'selected' : ''   }} >
                                             {{ $lo->province }} 
@@ -339,8 +339,6 @@
                             <br><br>
                             <h5 class="text-danger">รถหมายเลขทะเบียนนี้ท่านลงทะเบียนแล้วค่ะ</h5>
                             <p style="line-height: 2;">กรุณาตรวจสอบใหม่อีกครั้งค่ะ</p>
-                            <h5 class="text-danger">This car registration number has been registered.</h5>
-                            <p style="line-height: 2;">Please check and try again.</p>
                             <br>
                         </center>
                       </div>
@@ -373,12 +371,11 @@
                         <center>
                     
                             <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
-                            <p style="line-height: 2;">You confirm to register this registration number ?</p>
                             <br>
                             <div style="position: relative; z-index: 5">
                                 <div style="padding-top: 8px;">
                                     <h4 style="margin-top: 70px;"><b id="reg_num"></b></h4>
-                                    <p id="reg_province" style="font-size: 17px;" class="text-dark"></p>
+                                    <p class="notranslate" id="reg_province" style="font-size: 17px;" class="text-dark"></p>
                                 </div>
                             </div>
                             <img style="position: absolute;margin: -180px -50px;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
@@ -391,12 +388,11 @@
                       <div class="modal-body d-block d-md-none">
                         <center>
                             <h5 class="text-danger">คุณยืนยันที่จะลงทะเบียนหมายเลขทะเบียนนี้ใช่มั้ยค่ะ</h5>
-                            <p style="line-height: 1;">You confirm to register this registration number ?</p>
                             <br>
                             <div style="position: relative; z-index: 5">
                                 <div style="padding-top: 8px;">
                                     <h4 style="margin-top: 65px;"><b id="reg_num_mo"></b></h4>
-                                    <p id="reg_province_mo" style="font-size: 17px;" class="text-dark"></p>
+                                    <p class="notranslate" id="reg_province_mo" style="font-size: 17px;" class="text-dark"></p>
                                 </div>
                             </div>
                             <img style="position: absolute;margin: -180px -50px;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
@@ -448,8 +444,8 @@
                             </div>
                             <div class="col-12 col-md-9">
                                 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                                    <h3 class="text-info"><b>{{ Auth::user()->name }}</b></h3><p></p>
-                                    <h5><i class="fas fa-mail-bulk" style="color: #B22222"></i></i>&nbsp; {{ Auth::user()->email }}</h5>
+                                    <h3 class="text-info notranslate"><b>{{ Auth::user()->name }}</b></h3><p></p>
+                                    <h5 class="notranslate"><i class="fas fa-mail-bulk" style="color: #B22222"></i></i>&nbsp; {{ Auth::user()->email }}</h5>
                                     <p></p>
                                     <h5><i class="fas fa-phone text-success"></i>&nbsp; {{ Auth::user()->phone }}</h5>
                                     <p></p>
@@ -471,7 +467,7 @@
                                
                                 @foreach($car as $item)
                                 <!-- แสดงเฉพาะคอม -->
-                                <div class="row d-none d-lg-block">
+                                <div class="row d-none d-lg-block notranslate">
                                     <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                         <div class="row" style="margin-top: 8px; margin-bottom: 8px;">
                                             <div class="col-md-12 " style="margin: 5px 20px 15px 5px;"> 
@@ -508,7 +504,7 @@
                                     </div>
                                 </div>
                                 <!-- แสดงเฉพาะมือถือ -->
-                                <div class="row d-block d-md-none">
+                                <div class="row d-block d-md-none notranslate">
                                     <div class="col-11 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                         <div class="row">
                                             <div class="col-12">
@@ -549,7 +545,7 @@
                                 <h1><i class="fas fa-motorcycle text-success"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถจักรยานยนต์</span></h1>
                                 @foreach($motorcycle as $item)
                                 <!-- แสดงเฉพาะคอม -->
-                                <div class="row d-none d-lg-block">
+                                <div class="row d-none d-lg-block notranslate">
                                     <div class="col-10 col-md-10 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                         <div class="row" style="margin-top: 8px; margin-bottom: 8px;">
                                             <div class=" col-md-12 " style="margin: 5px 20px 15px 5px;"> 
@@ -586,7 +582,7 @@
                                      </div>
                                 </div>
                                 <!-- แสดงเฉพาะมือถือ -->
-                                <div class="row d-block d-md-none">
+                                <div class="row d-block d-md-none notranslate">
                                     <div class="col-11 border border-primary" style= "border-radius: 15px;padding: 8px;">
                                         <div class="row">
                                             <div class="col-12">
@@ -688,6 +684,11 @@
                     option.value = "อื่นๆ";
                     input_car_brand.add(option); 
 
+                    let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                     
+                    option.setAttributeNode(option_class); 
+
                 //QUERY model
                 showCar_model();
             });
@@ -718,6 +719,11 @@
                     option.text = "อื่นๆ";
                     option.value = "อื่นๆ";
                     input_car_model.add(option);  
+
+                    let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                     
+                    option.setAttributeNode(option_class);
             });
     }
 
@@ -742,6 +748,11 @@
                     option.text = "อื่นๆ";
                     option.value = "อื่นๆ";
                     input_motor_brand.add(option); 
+
+                    let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                     
+                    option.setAttributeNode(option_class);
 
                 //QUERY model
                 showMotor_model();
@@ -770,7 +781,12 @@
                 let option = document.createElement("option");
                     option.text = "อื่นๆ";
                     option.value = "อื่นๆ";
-                    input_motor_model.add(option);  
+                    input_motor_model.add(option); 
+
+                    let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                     
+                    option.setAttributeNode(option_class); 
             });
     }
     function check_register_car(){

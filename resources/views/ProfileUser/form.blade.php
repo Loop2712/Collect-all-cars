@@ -37,7 +37,7 @@
                     <div class="col-12 col-md-6">
                         <br class="d-block d-md-none">
                         <label for="massengbox" class="control-label"><b>{{ 'ชื่อ' }}</b></label><span style="color: #FF0033;"> *</span>
-                        <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+                        <div class="notranslate form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                             <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" >
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                         </div>
@@ -67,7 +67,7 @@
                             {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
                         </div>
                         <label for="massengbox" class="control-label"><b>{{ 'อีเมล' }}</b></label>
-                        <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+                        <div class="notranslate form-group {{ $errors->has('email') ? 'has-error' : ''}}">
                             <input class="form-control" name="email" type="text" id="email" value="{{ isset($data->email ) ? $data->email  : ''}}" >
                             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                         </div>

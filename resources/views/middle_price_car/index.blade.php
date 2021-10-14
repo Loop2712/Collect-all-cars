@@ -178,7 +178,7 @@
                                                 <div class="col-3 ">
                                                     <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                 </div>
-                                                <div class="col-9 ">
+                                                <div class="col-9 notranslate">
                                                     <h5 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h5>
                                                     <p style="margin-bottom:0px; margin-left:5px;">{{ $item->model }} , {{ $item->submodel }}</p>
                                                     <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>
@@ -233,10 +233,10 @@
                                         <tbody>
                                             @foreach($Middle_price_car as $item)
                                                 <tr>
-                                                    <td>{{ $item->brand }}</td>
-                                                    <td>{{ $item->model }}</td>
-                                                    <td>{{ $item->submodel }}</td>
-                                                    <td>{{ $item->year }}</td>
+                                                    <td class="notranslate">{{ $item->brand }}</td>
+                                                    <td class="notranslate">{{ $item->model }}</td>
+                                                    <td class="notranslate">{{ $item->submodel }}</td>
+                                                    <td class="notranslate">{{ $item->year }}</td>
                                                     
                                             @php
                                                 $price_2 = "";

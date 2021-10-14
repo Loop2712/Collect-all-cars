@@ -95,7 +95,7 @@
                                             <div class="d-none d-lg-block col-md-4" >
                                                 <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div> 
-                                            <div class="col-7 col-md-8">
+                                            <div class="col-7 col-md-8 notranslate">
                                                 <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
                                                 <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
                                             </div>
@@ -103,7 +103,7 @@
                                         <center>
                                             <hr style="margin-top: -20px; width: 90%; height:0.3px; color:#BEBEBE;">
                                         </center>
-                                        <div class="row"  style="font-family: K2D, sans-serif;">
+                                        <div class="row notranslate"  style="font-family: K2D, sans-serif;">
                                             <div class="col-12">
                                                 <center>
                                                     <br>
@@ -339,7 +339,7 @@
                                             <div class="col-4" >
                                                 <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div> 
-                                            <div class="col-8">
+                                            <div class="col-8 notranslate">
                                                 <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
                                                 <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
                                             </div>
@@ -347,7 +347,7 @@
                                         <center>
                                             <hr style="margin-top: -20px; width: 90%; height:0.3px; color:#BEBEBE;">
                                         </center>
-                                        <div class="row"  style="font-family: K2D, sans-serif;">
+                                        <div class="row notranslate"  style="font-family: K2D, sans-serif;">
                                             <div class="col-12">
                                                 <center>
                                                     <br>
