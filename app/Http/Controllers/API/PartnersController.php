@@ -132,7 +132,7 @@ class PartnersController extends Controller
         return $id ;
     }
 
-    public function disapproved_area($id, $answer_reason, $reason_other})
+    public function disapproved_area($id, $answer_reason, $reason_other)
     {
         DB::table('partners')
               ->where('id', $id)
