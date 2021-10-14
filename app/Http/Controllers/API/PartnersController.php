@@ -116,12 +116,11 @@ class PartnersController extends Controller
             ->where('id', $id)
             ->get();
 
-
-
         foreach ($data_partners as $item) {
 
             $email = $item->mail;
             $mail_data = [
+                    "approve" => "อนุมัติ",
                     "name" => $item->name,
                     "sos_area" => $item->sos_area,
                 ];
@@ -133,13 +132,31 @@ class PartnersController extends Controller
         return $id ;
     }
 
-    public function disapproved_area($id)
+    public function disapproved_area($id, $answer_reason, $reason_other})
     {
         DB::table('partners')
               ->where('id', $id)
               ->update([
                 'new_sos_area' => null,
         ]);
+
+        $data_partners = DB::table('partners')
+            ->where('id', $id)
+            ->get();
+
+        foreach ($data_partners as $item) {
+
+            $email = $item->mail;
+            $mail_data = [
+                    "approve" => "ไม่ผ่านการอนุมัติ",
+                    "name" => $item->name,
+                    "answer_reason" => $answer_reason,
+                    "reason_other" => $reason_other,
+                ];
+
+            Mail::to($email)->send(new MailToPartner_area($mail_data));
+
+        }
 
         return $id ;
     }

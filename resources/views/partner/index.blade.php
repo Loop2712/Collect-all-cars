@@ -179,6 +179,17 @@
                                         <center id="div_content">
                                             
                                         </center>
+                                        <br>
+                                        <div id="input_disapproved" class="d-none">
+                                            <input type="radio" name="reason" id="reason_1" value="1" onclick="document.querySelector('#reason_other').classList.add('d-none'),document.querySelector('#answer_reason').value = '1';"> มีพื้นที่บางส่วนทับซ้อนหรือมีผู้ให้บริการพื้นที่นี้อยู่แล้ว <br>
+                                            <input type="radio" name="reason" id="reason_2" value="2" onclick="document.querySelector('#reason_other').classList.add('d-none'),document.querySelector('#answer_reason').value = '2';"> 
+                                            พื้นที่บริการไม่สมเหตุสมผลกับองค์กรของท่าน <br>
+                                            <input type="radio" name="reason" id="reason_3" value="3" onclick="document.querySelector('#reason_other').classList.remove('d-none'),document.querySelector('#reason_other').focus(),document.querySelector('#answer_reason').value = '3';"> 
+                                            อื่นๆ
+                                            <br><br>
+                                            <input class="form-control d-none" type="text" name="reason_other" id="reason_other">
+                                            <input type="hidden" id="answer_reason" value="">
+                                        </div>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
@@ -326,7 +337,10 @@
 
         function disapproved(id) {
 
-                fetch("{{ url('/') }}/api/disapproved_area/"+id);
+            let answer_reason = document.querySelector('#answer_reason').value;
+            let reason_other = document.querySelector('#reason_other').value;
+
+                fetch("{{ url('/') }}/api/disapproved_area/"+ id + "/"+ answer_reason +"/"+ reason_other);
                 document.querySelector('#btn_f5').click();
         }
 
@@ -398,7 +412,7 @@
 
                     let h5_class = document.createAttribute("class");
                         h5_class.value = "text-danger";
-                        h5.innerHTML = "คุณยืนยันที่จะไม่อนุมัติใช่หรือไม่";
+                        h5.innerHTML = "เหตุผลที่พื้นที่บริการไม่ผ่านการอนุมัติ";
                         h5.setAttributeNode(h5_class); 
 
                     let br = document.createElement("br");
@@ -408,6 +422,8 @@
                     div_content.appendChild(br);
                     div_content.appendChild(br2);
                     div_content.appendChild(h5);
+
+                    document.querySelector('#input_disapproved').classList.remove('d-none');
             }
 
         }

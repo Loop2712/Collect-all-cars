@@ -102,7 +102,7 @@ Route::get('/zoom_district/{district}', 'API\LocationController@zoom_district');
 Route::get('/check_new_sos_area', 'API\PartnersController@check_new_sos_area');
 
 Route::get('/approve_area/{input_new_area}/{id}', 'API\PartnersController@approve_area');
-Route::get('/disapproved_area/{id}', 'API\PartnersController@disapproved_area');
+Route::get('/disapproved_area/{id}/{answer_reason}/{reason_other}', 'API\PartnersController@disapproved_area');
 
 Route::get('/change_color_partner/{color}/{name_partner}', 'API\PartnersController@change_color_partner');
 
