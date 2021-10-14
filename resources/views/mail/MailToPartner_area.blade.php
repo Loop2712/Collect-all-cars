@@ -12,7 +12,7 @@
 						<div class="col-12">
 							<span>
 									ผลการตรวจสอบพื้นที่บริการของคุณคือ <b>{{ $data["approve"] }}</b>
-
+									<br>
 									@if(!empty($data["answer_reason"]))
 
 										@if($data["answer_reason"] != '3')
