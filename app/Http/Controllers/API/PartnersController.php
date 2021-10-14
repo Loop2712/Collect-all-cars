@@ -145,8 +145,18 @@ class PartnersController extends Controller
         $data_partners = DB::table('partners')
             ->where('id', $id)
             ->get();
-            
+
         $approve = "ไม่ผ่านการอนุมัติ" ;
+
+        switch ($answer_reason) {
+            case '1':
+                $answer_reason = 'มีพื้นที่บางส่วนทับซ้อนหรือมีผู้ให้บริการพื้นที่นี้อยู่แล้ว' ;
+                break;
+            
+            case '2':
+                $answer_reason = 'พื้นที่บริการไม่สมเหตุสมผลกับองค์กรของท่าน' ;
+                break;
+        }
 
         foreach ($data_partners as $item) {
 

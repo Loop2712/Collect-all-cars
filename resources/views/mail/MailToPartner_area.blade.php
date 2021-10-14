@@ -13,15 +13,12 @@
 							<span>
 									ผลการตรวจสอบพื้นที่บริการของคุณคือ <b>{{ $data["approve"] }}</b>
 
-									@if($data["answer_reason"])
+									@if(!empty($data["answer_reason"]))
 
-										@if($data["answer_reason"] == "1")
-										 		เนื่องจาก มีพื้นที่บางส่วนทับซ้อนหรือมีผู้ให้บริการพื้นที่นี้อยู่แล้ว
-
-										@else if($data["answer_reason"] == "2")
-										 		เนื่องจาก พื้นที่บริการไม่สมเหตุสมผลกับองค์กรของท่าน
-										@else 
-												{{ $data["reason_other"] }}
+										@if($data["answer_reason"] != '3')
+										 		เนื่องจาก {{ $data["answer_reason"] }}
+										@else
+												เนื่องจาก {{ $data["reason_other"] }}
 										@endif
 
 									@endif
