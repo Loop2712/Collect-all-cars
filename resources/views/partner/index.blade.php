@@ -344,8 +344,8 @@
                 reason_other = "อื่นๆ";
             }
 
-                fetch("{{ url('/') }}/api/disapproved_area/"+ id + "/"+ answer_reason +"/"+ reason_other);
                 document.querySelector('#btn_f5').click();
+                fetch("{{ url('/') }}/api/disapproved_area/"+ id + "/"+ answer_reason +"/"+ reason_other);
         }
 
         function confirm_change(text, id){
