@@ -24,6 +24,16 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+
+        DB::table('users')
+              ->where('country', null)
+              ->where('time_zone', null)
+              ->update([
+                'country' => "TH",
+                'time_zone' => "Asia/Bangkok",
+        ]);
+
+        exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
