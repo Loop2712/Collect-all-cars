@@ -323,8 +323,8 @@
   </header><!-- End Header -->
 
   <!-- --------------------------------------------- -->
-      <h1 class="d-none" id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}');">
-      </h1>
+  @if(Auth::check())
+      <h1 class="d-none" id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}');"></h1> 
       <div class="d-none">
         <a id="btn_change_language_th" href="javascript:trocarIdioma('th')">th</a>
         <a id="btn_change_language_en" href="javascript:trocarIdioma('en')">en</a>
@@ -333,12 +333,10 @@
         <a id="btn_change_language_ko" href="javascript:trocarIdioma('ko')">ko</a>
         <a id="btn_change_language_es" href="javascript:trocarIdioma('es')">es</a>
       </div>
-      
         <!-- Button trigger modal -->
         <button id="btn_select_language" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal">
           BTN เลือกภาษา
         </button>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -353,6 +351,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
               <div class="modal-body">
                 <div class="col-12">
                   <div class="row text-center">
@@ -402,6 +401,7 @@
                   </div>
                 </div>
               </div>
+
               <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
@@ -409,6 +409,7 @@
             </div>
           </div>
         </div>
+      @endif
   <!-- --------------------------------------------- -->
 
 
