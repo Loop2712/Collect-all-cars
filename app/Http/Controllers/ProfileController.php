@@ -344,7 +344,7 @@ class ProfileController extends Controller
             $name = $name_exp[0];
         }else{
             $name = $name_user;
-        }
+        }        
         
         return $name;
     }
