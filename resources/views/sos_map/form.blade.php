@@ -125,13 +125,6 @@
                 <br><br>
                 โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
                 <br>
-                <b><span style="font-size:22px;" id="text_phone">@if(!empty($user->phone)){{ $user->phone }}@endif</span></b>
-                @if(!empty($user->phone))
-                    <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
-                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  onchange="edit_phone();">
-                @endif
-
-                @if(empty($user->phone))
                 @php
                     $phone_url_sp = explode('=', url()->full() );
                     if(!empty($phone_url_sp[1])){
@@ -140,7 +133,19 @@
                         $phone_url = "";
                     }
                 @endphp
-                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="{{ $phone_url }}" required placeholder="กรุณากรอกหมายเลขโทรศัพท์"  onchange="add_phone();">
+                <b>
+                    <span style="font-size:22px;" id="text_phone">
+                        @if(!empty($user->phone)){{ $user->phone }}@endif
+                        @if(empty($user->phone)){{ $phone_url }}@endif
+                    </span>
+                </b>
+                @if(!empty($user->phone))
+                    <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
+                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  onchange="edit_phone();">
+                @endif
+
+                @if(empty($user->phone))
+                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="{{ $phone_url }}" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
                 @endif
               </div>
               <div class="modal-footer">
