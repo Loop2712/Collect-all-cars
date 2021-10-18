@@ -216,6 +216,8 @@ class Sos_mapController extends Controller
         $datetime =  date("d-m-Y  h:i:sa");
         $name_user = $data['name'];
         $phone_user = $data['phone'];
+        $lat_user = $data['lat'];
+        $lng_user = $data['lng'];
 
         $data_name_sp = explode("/",$data['area']);
 
@@ -288,9 +290,9 @@ class Sos_mapController extends Controller
             $string_json = str_replace("จาก",$data_topic[2],$string_json);
             $string_json = str_replace("โทร",$data_topic[3],$string_json);
 
-            $string_json = str_replace("lat",$data['lat'],$string_json);
-            $string_json = str_replace("lng",$data['lng'],$string_json);
-            $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
+            $string_json = str_replace("lat",$lat_user,$string_json);
+            $string_json = str_replace("lng",$lng_user,$string_json);
+            $string_json = str_replace("lat_mail",$text_at.$lat_user,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
