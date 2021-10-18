@@ -267,6 +267,11 @@ Route::get('/test_ocr', function () {
     return view('test_ocr');
 });
 
+Route::get('/test_link_line', function () {
+    
+    return view('test_link_line');
+});
+
 Route::resource('cancel_-profile', 'Cancel_ProfileController');
 
 Route::resource('cancel_after_6_month', 'Cancel_after_6_monthController');

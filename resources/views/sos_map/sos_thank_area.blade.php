@@ -20,7 +20,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
-        <a href="https://lin.ee/xnFKMfc">
+        <a id="a_line" href="https://lin.ee/xnFKMfc">
             <button type="button" class="btn btn-success">เสร็จสิ้น</button>
         </a>
       </div>
@@ -31,6 +31,12 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START"); 
         document.getElementById("btn_modal").click();
+
+        var delayInMilliseconds = 3000; 
+
+        setTimeout(function() {
+          document.getElementById("a_line").click();
+        }, delayInMilliseconds);
 
     });
 </script>

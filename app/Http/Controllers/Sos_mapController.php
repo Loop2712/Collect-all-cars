@@ -81,6 +81,10 @@ class Sos_mapController extends Controller
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
 
                 $this->_pushLine($requestData);
+
+                // เช็ค type user แล้วเลือก redirect
+                    // type line เด้งกลับ line oa
+                    // อื่นๆ แนะนำให้ผูกบัญชีกับไลน์
                 
                 return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
                 break;
