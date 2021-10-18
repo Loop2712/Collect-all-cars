@@ -268,7 +268,7 @@ class Sos_mapController extends Controller
                         ->get();
 
                 foreach ($text_topic as $item_of_text_topic) {
-                    $data_topic[$i] = $item_of_text_topic->$group_language ;
+                    $data_topic[$xi] = $item_of_text_topic->$group_language ;
                 }
             }
 
