@@ -312,7 +312,7 @@ class Sos_mapController extends Controller
             $url = "https://api.line.me/v2/bot/message/push";
             $result = file_get_contents($url, false, $context);
 
-            SAVE LOG
+            // SAVE LOG
             $data = [
                 "title" => "ขอมูลขอความช่วยเหลือ" . $name_partner ,
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
