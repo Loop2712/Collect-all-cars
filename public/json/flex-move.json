@@ -63,7 +63,7 @@
       {
         "type": "text",
         "text": "datetime",
-        "size": "lg",
+        "size": "md",
         "margin": "xxl",
         "color": "#FFFFFF",
         "wrap": true
