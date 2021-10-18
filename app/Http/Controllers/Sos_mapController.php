@@ -272,52 +272,52 @@ class Sos_mapController extends Controller
                 }
             }
 
-            // $text_at = '@' ;
-            // // flex ask_for_help
-            // $template_path = storage_path('../public/json/ask_for_help.json');   
-            // $string_json = file_get_contents($template_path);
-            // $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-            // $string_json = str_replace("datetime",$time_zone,$string_json);
-            // $string_json = str_replace("name",$data['name'],$string_json);
-            // $string_json = str_replace("0999999999",$data['phone'],$string_json);
+            $text_at = '@' ;
+            // flex ask_for_help
+            $template_path = storage_path('../public/json/ask_for_help.json');   
+            $string_json = file_get_contents($template_path);
+            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+            $string_json = str_replace("datetime",$time_zone,$string_json);
+            $string_json = str_replace("name",$data['name'],$string_json);
+            $string_json = str_replace("0999999999",$data['phone'],$string_json);
 
-            // $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
-            // $string_json = str_replace("เวลา",$data_topic[1],$string_json);
-            // $string_json = str_replace("จาก",$data_topic[2],$string_json);
-            // $string_json = str_replace("โทร",$data_topic[3],$string_json);
+            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
+            $string_json = str_replace("เวลา",$data_topic[1],$string_json);
+            $string_json = str_replace("จาก",$data_topic[2],$string_json);
+            $string_json = str_replace("โทร",$data_topic[3],$string_json);
 
-            // $string_json = str_replace("lat",$data['lat'],$string_json);
-            // $string_json = str_replace("lng",$data['lng'],$string_json);
-            // $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
+            $string_json = str_replace("lat",$data['lat'],$string_json);
+            $string_json = str_replace("lng",$data['lng'],$string_json);
+            $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
 
-            // $messages = [ json_decode($string_json, true) ];
+            $messages = [ json_decode($string_json, true) ];
 
-            // $body = [
-            //     "to" => $groupId,
-            //     "messages" => $messages,
-            // ];
+            $body = [
+                "to" => $groupId,
+                "messages" => $messages,
+            ];
 
-            // // flex ask_for_help
-            // $opts = [
-            //     'http' =>[
-            //         'method'  => 'POST',
-            //         'header'  => "Content-Type: application/json \r\n".
-            //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-            //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-            //         //'timeout' => 60
-            //     ]
-            // ];
+            // flex ask_for_help
+            $opts = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
                                 
-            // $context  = stream_context_create($opts);
-            // $url = "https://api.line.me/v2/bot/message/push";
-            // $result = file_get_contents($url, false, $context);
+            $context  = stream_context_create($opts);
+            $url = "https://api.line.me/v2/bot/message/push";
+            $result = file_get_contents($url, false, $context);
 
-            //SAVE LOG
-            // $data = [
-            //     "title" => "ขอมูลขอความช่วยเหลือ" . $name_partner ,
-            //     "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
-            // ];
-            // MyLog::create($data);
+            SAVE LOG
+            $data = [
+                "title" => "ขอมูลขอความช่วยเหลือ" . $name_partner ,
+                "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+            ];
+            MyLog::create($data);
 
         }
 
