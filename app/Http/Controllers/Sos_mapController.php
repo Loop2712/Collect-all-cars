@@ -220,22 +220,29 @@ class Sos_mapController extends Controller
         for ($i=0; $i < count($data_name_sp); $i++) { 
             echo $data_name_sp[$i];
             echo "<br>";
-            // exit();
 
-            // $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
+            $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
 
-            // foreach ($data_partners as $data_partner) {
-            //     $name_partner = $data_partner->name ;
-            //     $name_line_group = $data_partner->line_group ;
-            // }
+            echo "<pre>";
+            print_r($data_partners);
+            echo "<pre>";
 
-            // $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+            foreach ($data_partners as $data_partner) {
+                $name_partner = $data_partner->name ;
+                $name_line_group = $data_partner->line_group ;
+            }
 
-            // foreach ($data_line_group as $key) {
-            //     $groupId = $key->groupId ;
-            //     $name_time_zone = $key->time_zone ;
-            //     $group_language = $key->language ;
-            // }
+            $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+
+            echo "<pre>";
+            print_r($data_line_group);
+            echo "<pre>";
+            
+            foreach ($data_line_group as $key) {
+                $groupId = $key->groupId ;
+                $name_time_zone = $key->time_zone ;
+                $group_language = $key->language ;
+            }
 
             // // TIME ZONE
             // $API_Time_zone = new API_Time_zone();
