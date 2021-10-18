@@ -310,6 +310,8 @@ class Sos_mapController extends Controller
 
         }
 
+        exit();
+
         // $data_partners = DB::table('partners')->where('name', $data['area'])->get();
 
         // foreach ($data_partners as $data_partner) {
