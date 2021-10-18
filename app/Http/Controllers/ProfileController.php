@@ -336,10 +336,11 @@ class ProfileController extends Controller
 
     public function explode_name($name_user)
     {
-        $count = strlen($name_user);
+        // $count = strlen($name_user);
+        $count = explode("",$name_user);
         // echo $name_user ;
-        echo $count ;
-        
+        print_r($count)  ;
+
         if ($count > 12) {
             $name = explode(" ",$name_user);
         }else{
