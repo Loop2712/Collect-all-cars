@@ -237,12 +237,16 @@ class Sos_mapController extends Controller
             echo "<pre>";
             print_r($data_line_group);
             echo "<pre>";
-            
+
             foreach ($data_line_group as $key) {
                 $groupId = $key->groupId ;
                 $name_time_zone = $key->time_zone ;
                 $group_language = $key->language ;
             }
+
+            echo "<br>";
+            echo $groupId ;
+            echo "<br>";
 
             // // TIME ZONE
             // $API_Time_zone = new API_Time_zone();
