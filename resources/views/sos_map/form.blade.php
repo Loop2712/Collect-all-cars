@@ -145,7 +145,7 @@
                 @endif
 
                 @if(empty($user->phone))
-                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="{{ $phone_url }}" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
+                    <input style="margin-top:15px;" class="form-control text-center d-none"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
                 @endif
               </div>
               <div class="modal-footer">
