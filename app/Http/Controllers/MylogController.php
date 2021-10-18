@@ -55,7 +55,8 @@ class MylogController extends Controller
         
         Mylog::create($requestData);
 
-        return redirect('mylog')->with('flash_message', 'Mylog added!');
+        // return redirect('mylog')->with('flash_message', 'Mylog added!');
+        return $requestData;
     }
 
     /**
