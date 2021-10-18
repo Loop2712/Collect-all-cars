@@ -81,7 +81,7 @@ class Sos_mapController extends Controller
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
 
                 $this->_pushLine($requestData);
-
+                exit();
                 return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
                 break;
             case 'police':
@@ -320,8 +320,6 @@ class Sos_mapController extends Controller
             // MyLog::create($data);
 
         }
-
-        exit();
 
         // $data_partners = DB::table('partners')->where('name', $data['area'])->get();
 
