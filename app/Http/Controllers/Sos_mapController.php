@@ -301,7 +301,7 @@ class Sos_mapController extends Controller
 
             //SAVE LOG
             $data = [
-                "title" => "ขอมูลขอความช่วยเหลือ",
+                "title" => "ขอมูลขอความช่วยเหลือ" . $name_partner ,
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
