@@ -248,29 +248,29 @@ class Sos_mapController extends Controller
             echo $groupId ;
             echo "<br>";
 
-            // // TIME ZONE
-            // $API_Time_zone = new API_Time_zone();
-            // $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+            // TIME ZONE
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-            // $data_topic = [
-            //             "ขอความช่วยเหลือ",
-            //             "เวลา",
-            //             "จาก",
-            //             "โทร",
-            //         ];
+            $data_topic = [
+                        "ขอความช่วยเหลือ",
+                        "เวลา",
+                        "จาก",
+                        "โทร",
+                    ];
 
-            // for ($i=0; $i < count($data_topic); $i++) { 
+            for ($xi=0; $xi < count($data_topic); $xi++) { 
 
-            //     $text_topic = DB::table('text_topics')
-            //             ->select($group_language)
-            //             ->where('th', $data_topic[$i])
-            //             ->where('en', "!=", null)
-            //             ->get();
+                $text_topic = DB::table('text_topics')
+                        ->select($group_language)
+                        ->where('th', $data_topic[$xi])
+                        ->where('en', "!=", null)
+                        ->get();
 
-            //     foreach ($text_topic as $item_of_text_topic) {
-            //         $data_topic[$i] = $item_of_text_topic->$group_language ;
-            //     }
-            // }
+                foreach ($text_topic as $item_of_text_topic) {
+                    $data_topic[$i] = $item_of_text_topic->$group_language ;
+                }
+            }
 
             // $text_at = '@' ;
             // // flex ask_for_help
