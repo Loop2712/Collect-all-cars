@@ -304,6 +304,8 @@ class Sos_mapController extends Controller
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
+
+            sleep(3);
         }
 
         // $data_partners = DB::table('partners')->where('name', $data['area'])->get();
