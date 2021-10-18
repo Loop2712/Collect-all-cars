@@ -81,7 +81,7 @@ class Sos_mapController extends Controller
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
 
                 $this->_pushLine($requestData);
-                exit();
+                
                 return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
                 break;
             case 'police':
@@ -222,14 +222,8 @@ class Sos_mapController extends Controller
         $data_name_sp = explode("/",$data['area']);
 
         for ($i=0; $i < count($data_name_sp); $i++) { 
-            echo $data_name_sp[$i];
-            echo "<br>";
 
             $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
-
-            echo "<pre>";
-            print_r($data_partners);
-            echo "<pre>";
 
             foreach ($data_partners as $data_partner) {
                 $name_partner = $data_partner->name ;
@@ -238,19 +232,11 @@ class Sos_mapController extends Controller
 
             $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
 
-            echo "<pre>";
-            print_r($data_line_group);
-            echo "<pre>";
-
             foreach ($data_line_group as $key) {
                 $groupId = $key->groupId ;
                 $name_time_zone = $key->time_zone ;
                 $group_language = $key->language ;
             }
-
-            echo "<br>";
-            echo $groupId ;
-            echo "<br>";
 
             // TIME ZONE
             $API_Time_zone = new API_Time_zone();
