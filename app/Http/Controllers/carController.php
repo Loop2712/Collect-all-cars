@@ -24,6 +24,23 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+        $data['area'] = "2บี กรีน จำกัด/ทดสอบ" ;
+
+        $data_name_sp = explode("/",$data['area']);
+
+        for ($i=0; $i < count($data_name_sp); $i++) { 
+            echo $data_name_sp[$i];
+            echo "<br>";
+
+            $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
+
+            echo "<pre>";
+            print_r($data_partners);
+            echo "<pre>";
+        }
+
+        exit();
+
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');

@@ -215,91 +215,183 @@ class Sos_mapController extends Controller
     {   
         $datetime =  date("d-m-Y  h:i:sa");
 
-        $data_partners = DB::table('partners')->where('name', $data['area'])->get();
+        $data_name_sp = explode("/",$data['area']);
 
-        foreach ($data_partners as $data_partner) {
-            $name_partner = $data_partner->name ;
-            $name_line_group = $data_partner->line_group ;
-        }
+        for ($i=0; $i < count($data_name_sp); $i++) { 
 
-        $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+            $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
 
-        foreach ($data_line_group as $key) {
-            $groupId = $key->groupId ;
-            $name_time_zone = $key->time_zone ;
-            $group_language = $key->language ;
-        }
 
-        // TIME ZONE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
-
-        $data_topic = [
-                    "ขอความช่วยเหลือ",
-                    "เวลา",
-                    "จาก",
-                    "โทร",
-                ];
-
-        for ($i=0; $i < count($data_topic); $i++) { 
-
-            $text_topic = DB::table('text_topics')
-                    ->select($group_language)
-                    ->where('th', $data_topic[$i])
-                    ->where('en', "!=", null)
-                    ->get();
-
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$i] = $item_of_text_topic->$group_language ;
+            foreach ($data_partners as $data_partner) {
+                $name_partner = $data_partner->name ;
+                $name_line_group = $data_partner->line_group ;
             }
+
+            $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+
+            foreach ($data_line_group as $key) {
+                $groupId = $key->groupId ;
+                $name_time_zone = $key->time_zone ;
+                $group_language = $key->language ;
+            }
+
+            // TIME ZONE
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+            $data_topic = [
+                        "ขอความช่วยเหลือ",
+                        "เวลา",
+                        "จาก",
+                        "โทร",
+                    ];
+
+            for ($i=0; $i < count($data_topic); $i++) { 
+
+                $text_topic = DB::table('text_topics')
+                        ->select($group_language)
+                        ->where('th', $data_topic[$i])
+                        ->where('en', "!=", null)
+                        ->get();
+
+                foreach ($text_topic as $item_of_text_topic) {
+                    $data_topic[$i] = $item_of_text_topic->$group_language ;
+                }
+            }
+
+            $text_at = '@' ;
+            // flex ask_for_help
+            $template_path = storage_path('../public/json/ask_for_help.json');   
+            $string_json = file_get_contents($template_path);
+            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+            $string_json = str_replace("datetime",$time_zone,$string_json);
+            $string_json = str_replace("name",$data['name'],$string_json);
+            $string_json = str_replace("0999999999",$data['phone'],$string_json);
+
+            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
+            $string_json = str_replace("เวลา",$data_topic[1],$string_json);
+            $string_json = str_replace("จาก",$data_topic[2],$string_json);
+            $string_json = str_replace("โทร",$data_topic[3],$string_json);
+
+            $string_json = str_replace("lat",$data['lat'],$string_json);
+            $string_json = str_replace("lng",$data['lng'],$string_json);
+            $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
+
+            $messages = [ json_decode($string_json, true) ];
+
+            $body = [
+                "to" => $groupId,
+                "messages" => $messages,
+            ];
+
+            // flex ask_for_help
+            $opts = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
+                                
+            $context  = stream_context_create($opts);
+            $url = "https://api.line.me/v2/bot/message/push";
+            $result = file_get_contents($url, false, $context);
+
+            //SAVE LOG
+            $data = [
+                "title" => "ขอมูลขอความช่วยเหลือ",
+                "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+            ];
+            MyLog::create($data);
         }
 
-        $text_at = '@' ;
-        // flex ask_for_help
-        $template_path = storage_path('../public/json/ask_for_help.json');   
-        $string_json = file_get_contents($template_path);
-        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-        $string_json = str_replace("datetime",$time_zone,$string_json);
-        $string_json = str_replace("name",$data['name'],$string_json);
-        $string_json = str_replace("0999999999",$data['phone'],$string_json);
+        // $data_partners = DB::table('partners')->where('name', $data['area'])->get();
 
-        $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
-        $string_json = str_replace("เวลา",$data_topic[1],$string_json);
-        $string_json = str_replace("จาก",$data_topic[2],$string_json);
-        $string_json = str_replace("โทร",$data_topic[3],$string_json);
+        // foreach ($data_partners as $data_partner) {
+        //     $name_partner = $data_partner->name ;
+        //     $name_line_group = $data_partner->line_group ;
+        // }
 
-        $string_json = str_replace("lat",$data['lat'],$string_json);
-        $string_json = str_replace("lng",$data['lng'],$string_json);
-        $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
+        // $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
 
-        $messages = [ json_decode($string_json, true) ];
+        // foreach ($data_line_group as $key) {
+        //     $groupId = $key->groupId ;
+        //     $name_time_zone = $key->time_zone ;
+        //     $group_language = $key->language ;
+        // }
 
-        $body = [
-            "to" => $groupId,
-            "messages" => $messages,
-        ];
+        // // TIME ZONE
+        // $API_Time_zone = new API_Time_zone();
+        // $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-        // flex ask_for_help
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
+        // $data_topic = [
+        //             "ขอความช่วยเหลือ",
+        //             "เวลา",
+        //             "จาก",
+        //             "โทร",
+        //         ];
+
+        // for ($i=0; $i < count($data_topic); $i++) { 
+
+        //     $text_topic = DB::table('text_topics')
+        //             ->select($group_language)
+        //             ->where('th', $data_topic[$i])
+        //             ->where('en', "!=", null)
+        //             ->get();
+
+        //     foreach ($text_topic as $item_of_text_topic) {
+        //         $data_topic[$i] = $item_of_text_topic->$group_language ;
+        //     }
+        // }
+
+        // $text_at = '@' ;
+        // // flex ask_for_help
+        // $template_path = storage_path('../public/json/ask_for_help.json');   
+        // $string_json = file_get_contents($template_path);
+        // $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+        // $string_json = str_replace("datetime",$time_zone,$string_json);
+        // $string_json = str_replace("name",$data['name'],$string_json);
+        // $string_json = str_replace("0999999999",$data['phone'],$string_json);
+
+        // $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
+        // $string_json = str_replace("เวลา",$data_topic[1],$string_json);
+        // $string_json = str_replace("จาก",$data_topic[2],$string_json);
+        // $string_json = str_replace("โทร",$data_topic[3],$string_json);
+
+        // $string_json = str_replace("lat",$data['lat'],$string_json);
+        // $string_json = str_replace("lng",$data['lng'],$string_json);
+        // $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
+
+        // $messages = [ json_decode($string_json, true) ];
+
+        // $body = [
+        //     "to" => $groupId,
+        //     "messages" => $messages,
+        // ];
+
+        // // flex ask_for_help
+        // $opts = [
+        //     'http' =>[
+        //         'method'  => 'POST',
+        //         'header'  => "Content-Type: application/json \r\n".
+        //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+        //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+        //         //'timeout' => 60
+        //     ]
+        // ];
                             
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
-        $result = file_get_contents($url, false, $context);
+        // $context  = stream_context_create($opts);
+        // $url = "https://api.line.me/v2/bot/message/push";
+        // $result = file_get_contents($url, false, $context);
 
-        //SAVE LOG
-        $data = [
-            "title" => "ขอมูลขอความช่วยเหลือ",
-            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
-        ];
-        MyLog::create($data);
+        // //SAVE LOG
+        // $data = [
+        //     "title" => "ขอมูลขอความช่วยเหลือ",
+        //     "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+        // ];
+        // MyLog::create($data);
         
     }
 
