@@ -422,11 +422,12 @@
 
                     document.querySelector('#a_help').classList.remove('d-none');
                     let area_help = document.querySelector("#area_help");
-                        if (area_help.innerHTML !== null) {
-                            area_help.innerHTML = area_help.innerHTML + "/" + name_partner ;
-                        }else{
-                            area_help.innerHTML = name_partner ;
-                        }
+                        console.log(area_help.innerHTML);
+                        // if (area_help.innerHTML !== null) {
+                        //     area_help.innerHTML = area_help.innerHTML + "/" + name_partner ;
+                        // }else{
+                        //     area_help.innerHTML = name_partner ;
+                        // }
                         
 
                     document.querySelector('#btn_quick_help').classList.add('d-none');
