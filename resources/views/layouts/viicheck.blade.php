@@ -604,11 +604,11 @@
         var name_user = document.querySelector("#name_user");
 
             fetch("{{ url('/') }}/api/explode_name/" + name_user.value)
-                .then(response => response.json())
+                .then(response => response.text())
                 .then(result => {
-                    console.log(result[0]);
+                    // console.log(result);
                     let input_name = document.querySelector("#input_name");
-                    input_name.innerHTML = result[0];
+                    input_name.innerHTML = result;
                     
                     
                 });
