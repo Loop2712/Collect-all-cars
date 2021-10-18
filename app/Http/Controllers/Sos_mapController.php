@@ -290,23 +290,23 @@ class Sos_mapController extends Controller
             $string_json = str_replace("lng",$data['lng'],$string_json);
             $string_json = str_replace("lat_mail",$text_at.$data['lat'],$string_json);
 
-            $messages = [ json_decode($string_json, true) ];
+            // $messages = [ json_decode($string_json, true) ];
 
-            $body = [
-                "to" => $groupId,
-                "messages" => $messages,
-            ];
+            // $body = [
+            //     "to" => $groupId,
+            //     "messages" => $messages,
+            // ];
 
-            // flex ask_for_help
-            $opts = [
-                'http' =>[
-                    'method'  => 'POST',
-                    'header'  => "Content-Type: application/json \r\n".
-                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                    //'timeout' => 60
-                ]
-            ];
+            // // flex ask_for_help
+            // $opts = [
+            //     'http' =>[
+            //         'method'  => 'POST',
+            //         'header'  => "Content-Type: application/json \r\n".
+            //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+            //         //'timeout' => 60
+            //     ]
+            // ];
                                 
             // $context  = stream_context_create($opts);
             // $url = "https://api.line.me/v2/bot/message/push";
