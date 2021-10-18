@@ -125,23 +125,15 @@
                 <br><br>
                 โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
                 <br>
-                @php
-                    $phone_url_sp = explode('=', url()->full() );
-                    if(!empty($phone_url_sp[1])){
-                        $phone_url = $phone_url_sp[1];
-                    } else {
-                        $phone_url = "";
-                    }
-                @endphp
+                <input type="hidden" name="" id="input_phone_url" value="{{ url()->full() }}">
                 <b>
                     <span style="font-size:22px;" id="text_phone">
                         @if(!empty($user->phone)){{ $user->phone }}@endif
-                        @if(empty($user->phone)){{ $phone_url }}@endif
                     </span>
                 </b>
                 @if(!empty($user->phone))
                     <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
-                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  onchange="edit_phone();">
+                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
                 @endif
 
                 @if(empty($user->phone))
@@ -149,10 +141,20 @@
                 @endif
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="
-                    document.querySelector('#input_phone').classList.remove('d-none');">
-                    แก้ไข
-                </button>
+                @if(!empty($user->phone))
+                    <button type="button" class="btn btn-secondary" onclick="
+                        document.querySelector('#input_phone').classList.remove('d-none');">
+                        แก้ไข
+                    </button>
+                @endif
+
+                 @if(empty($user->phone))
+                    <button type="button" class="btn btn-secondary" onclick="
+                        document.querySelector('#input_not_phone').classList.remove('d-none');">
+                        แก้ไข
+                    </button>
+                @endif
+                
 
                 <button type="button" class="btn btn-primary" onclick="confirm_phone();">ยืนยัน</button>
               </div>
@@ -192,6 +194,23 @@
                     getLocation();
                 }
         });
+
+        let phone = document.querySelector('#phone').value ;
+
+        if (phone === "") {
+
+            let input_phone_url = document.querySelector('#input_phone_url').value ;
+            let phone_url_sp = input_phone_url.split("=");
+
+                if (phone_url_sp[1]) {
+                    document.querySelector('#phone').value = phone_url_sp[1] ;
+                    document.querySelector('#text_phone').innerHTML = phone_url_sp[1] ;
+                    document.querySelector('#input_not_phone').value = phone_url_sp[1] ;
+                    document.querySelector('#input_not_phone').classList.add('d-none') ;
+                } 
+        }
+
+        
 
     });
 
