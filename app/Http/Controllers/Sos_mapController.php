@@ -313,11 +313,11 @@ class Sos_mapController extends Controller
             // $result = file_get_contents($url, false, $context);
 
             //SAVE LOG
-            $data = [
-                "title" => "ขอมูลขอความช่วยเหลือ" . $name_partner ,
-                "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
-            ];
-            MyLog::create($data);
+            // $data = [
+            //     "title" => "ขอมูลขอความช่วยเหลือ" . $name_partner ,
+            //     "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+            // ];
+            // MyLog::create($data);
 
         }
 
