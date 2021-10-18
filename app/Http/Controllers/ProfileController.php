@@ -338,7 +338,8 @@ class ProfileController extends Controller
     {
         $count = strlen($name_user);
         echo $name_user ;
-        exit();
+        echo $count ;
+        
         if ($count > 12) {
             $name = explode(" ",$name_user);
         }else{
