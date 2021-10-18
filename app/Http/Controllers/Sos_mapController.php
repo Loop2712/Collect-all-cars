@@ -214,6 +214,8 @@ class Sos_mapController extends Controller
     protected function _pushLine($data)
     {   
         $datetime =  date("d-m-Y  h:i:sa");
+        $name_user = $data['name'];
+        $phone_user = $data['phone'];
 
         $data_name_sp = explode("/",$data['area']);
 
@@ -278,8 +280,8 @@ class Sos_mapController extends Controller
             $string_json = file_get_contents($template_path);
             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
             $string_json = str_replace("datetime",$time_zone,$string_json);
-            $string_json = str_replace("name",$data['name'],$string_json);
-            $string_json = str_replace("0999999999",$data['phone'],$string_json);
+            $string_json = str_replace("name",$name_user,$string_json);
+            $string_json = str_replace("0999999999",$phone_user,$string_json);
 
             $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("เวลา",$data_topic[1],$string_json);
