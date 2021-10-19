@@ -21,7 +21,7 @@ class Home_pageController extends Controller
             foreach ($Cancel_Profile as $key) {
                 $created_last = $key->created_at;
             }
-
+            
         }
         
         
@@ -49,15 +49,9 @@ class Home_pageController extends Controller
         $register_car = Register_car::selectRaw('count(id) as count')
                         ->where('car_type', 'car')
                         ->get();
-                        
-        if (!empty($register_car)) {
-            foreach ($register_car as $key ) {
-                $count_car = $key->count;
-            }
-        }else{
-            $count_car = 0;
-        }
-        
+                        foreach ($register_car as $key ) {
+                            $count_car = $key->count;
+                        }
 
         $register_motorcycle = Register_car::selectRaw('count(id) as count')
                         ->where('car_type', 'motorcycle')
