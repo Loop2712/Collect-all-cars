@@ -175,9 +175,9 @@
             <!-- Partner -->
             <div class="dropdown">
               <li class="dropdown" id="partner_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <a class="nav-link" href="#">
+                <a id="partner_menu_url" class="nav-link" href="#">
                   <i class="fas fa-hands-helping text-success"></i>
-                  <span class="nav-link-text">Partner</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>
+                  <span class="nav-link-text">Partner</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>&nbsp;&nbsp;
                 </a>
               </li>
               <div class="dropdown-menu" aria-labelledby="partner_menu">
@@ -348,6 +348,7 @@
                 
               if (check === "yes") {
                   let btn_Partner_url = document.querySelector('#btn_Partner_url');
+                  let partner_menu_url = document.querySelector('#partner_menu_url');
         
                   let tag_i = document.createElement("i");
                   let tag_i_class = document.createAttribute("class");
@@ -355,7 +356,15 @@
 
                   tag_i.setAttributeNode(tag_i_class); 
 
-                  btn_Partner_url.appendChild(tag_i);
+                  partner_menu_url.appendChild(tag_i);
+
+                  let tag_i_2 = document.createElement("i");
+                  let tag_i_class_2 = document.createAttribute("class");
+                  tag_i_class_2.value = "fas fa-exclamation-circle notify_alert";
+
+                  tag_i_2.setAttributeNode(tag_i_class_2); 
+
+                  btn_Partner_url.appendChild(tag_i_2);
               }
         });
     }

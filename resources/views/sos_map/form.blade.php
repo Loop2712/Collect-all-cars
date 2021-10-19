@@ -52,21 +52,25 @@
             <div class="col-12 card shadow p-3 mb-5 bg-body rounded" >
                 <div class="row">
                     <div class="col-12" >
-                        <p style=" color:#B3B6B7" id="location_user"><span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span></p>
+                        <p style=" color:#B3B6B7" id="location_user">
+                            <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
+                        </p>
                     </div>
                     <div class="col-12">
-                        <a id="a_help" class="btn btn-warning btn-block shadow-box text-white d-none" data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือ <span id="area_help"></span>
+                        <a id="a_help" class="btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop">
+                            <i class="fas fa-bullhorn"></i> <b>ขอความช่วยเหลือ </b>
+                            <br>
+                            <b><span class="notranslate" id="area_help"></span></b>
                         </a>
-                        <a id="btn_quick_help" class="btn btn-warning btn-block shadow-box text-white" onclick="police();">
-                            <i class="fas fa-bullhorn"></i> ขอความช่วยเหลือด่วน
+                        <a id="btn_quick_help" class="btn btn-warning btn-block shadow-box " onclick="police();">
+                            <i class="fas fa-bullhorn"></i> <b>ขอความช่วยเหลือด่วน</b>
                         </a>
                     </div> 
                 </div>
             </div>
 
         <div class="col-12 card shadow" style="margin-top:-35px;">
-            <div class="row">
+            <div class="row d-none">
                 <div id="div_goto" class="col-12 d-none">
                     <br>
                     <a id="btn_contact_insurance" class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
