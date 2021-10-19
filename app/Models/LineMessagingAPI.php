@@ -1202,7 +1202,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                             $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
-                            $string_json = str_replace("สติกเกอร์ไลน์","8",$string_json);
+                            $string_json = str_replace("สติกเกอร์ไลน์","2",$string_json);
 
                             $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
                             $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
@@ -1217,7 +1217,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                             $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
-                            $string_json = str_replace("สติกเกอร์ไลน์","14",$string_json);
+                            $string_json = str_replace("สติกเกอร์ไลน์","3",$string_json);
 
                             $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
                             $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);

@@ -248,27 +248,27 @@ class GuestController extends Controller
         {
             case "1":  
                 $masseng = "กรุณาเลื่อนรถด้วยค่ะ";
-                $stg = "35.2";
+                $stg = "6";
                 break;
             case "2":  
                 $masseng = "รถคุณเปิดไฟค้างไว้ค่ะ";
-                $stg = "36";
+                $stg = "7";
                 break;
             case "3":  
                 $masseng = "มีเด็กอยู่ในรถค่ะ";
-                $stg = "5";
+                $stg = "8";
                 break;
             case "4":  
                 $masseng = "รถคุณเกิดอุบัติเหตุค่ะ";
-                $stg = "21";
+                $stg = "1";
                 break;
             case "5":  
                 $masseng = $report_drivingd_detail;
-                $stg = "37";
+                $stg = "9";
                 break;
             case "6": 
                 $masseng = $masseng_old;
-                $stg = "9";
+                $stg = "10";
                 break;
         }
 
