@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Edit Text_topic #{{ $text_topic->id }}</div>
+                    <div class="card-header">แก้ไขหัวข้อ {{ $text_topic->th }}</div>
                     <div class="card-body">
                         <a href="{{ url('/text_topic') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />

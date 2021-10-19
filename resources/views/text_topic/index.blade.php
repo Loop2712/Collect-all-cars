@@ -1,16 +1,50 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+            <div class="col-md-12" style="margin-bottom:10px;">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 text-center" >
+                        <h2><i class="fas fa-globe"></i> หัวข้อต่างประเทศ</h2>
+                    </div>
+                    <div class="col-md-3 col-sm-0"></div>
+                    
+                    <div class="col-md-3 col-sm-12 text-center d-flex justify-content-end" style="top:5px;">
+                        <form action="{{ url('/text_topic') }}">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="text_th" id="text_th" placeholder="เพิ่มหัวข้อใหม่">
+                                <span class="input-group-append">
+                                    <button class="btn btn-success" onclick="add_text_topic();">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3 col-sm-12 text-center d-flex justify-content-end">
+                        <form method="GET" action="{{ url('/text_topic') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="ค้นหา" value="{{ request('search') }}">
+                                <span class="input-group-append">
+                                    <button class="btn btn-secondary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
                 <div class="card">
-                    <div class="card-header">Text_topic</div>
-                    <div class="card-body">
-                        <!-- <a href="{{ url('/text_topic/create') }}" class="btn btn-success btn-sm" title="Add New Text_topic">
+                    <!-- <div class="card-header">Text_topic</div>
+                    <div class="card-body" style="padding:0px; ">
+                        <a href="{{ url('/text_topic/create') }}" class="btn btn-success btn-sm" title="Add New Text_topic">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a> -->
+                        </a>
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-4">
@@ -25,14 +59,14 @@
                                         </div>
                                     </form>
                                 </div>
-                                <!-- <div class="col-3">
+                                <div class="col-3">
                                     <input class="form-control" type="text" name="text_th" id="text_th" placeholder="เพิ่ม text topic">
                                 </div>
                                 <div class="col-1">
                                     <a class="btn btn-success text-white" onclick="add_text_topic();">
                                         <i class="fa fa-plus" aria-hidden="true"></i>เพิ่ม
                                     </a>
-                                </div> -->
+                                </div>
                                 <div class="col-8">
                                     <form method="GET" action="{{ url('/text_topic') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                         <div class="input-group">
@@ -48,31 +82,34 @@
                             </div>
                         </div>
 
-                        <br/>
+                        <br/> -->
+                        
                         <div class="table-responsive">
                             <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>ไทย</th>
-                                        <th>อังกฤษ</th>
-                                        <th>จีน</th>
-                                        <th>ญี่ปุ่น</th>
-                                        <th>เกาหลี</th>
-                                        <th>สเปน</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
+                                <div class="card" style="margin-top:-32px;">
+                                    <thead style="font-family: 'Prompt', sans-serif; background-color:#E3E5E8;">
+                                        <tr class="text-center" >
+                                            <th style="font-size:15px">ID</th>
+                                            <th style="font-size:15px">ไทย</th>
+                                            <th style="font-size:15px">อังกฤษ</th>
+                                            <th style="font-size:15px">จีน</th>
+                                            <th style="font-size:15px">ญี่ปุ่น</th>
+                                            <th style="font-size:15px">เกาหลี</th>
+                                            <th style="font-size:15px">สเปน</th>
+                                            <th style="font-size:15px"></th>
+                                        </tr>
+                                    </thead>
+                                </div>
                                 <tbody>
                                 @foreach($text_topic as $item)
-                                    <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->th }}</td>
-                                        <td>{{ $item->en }}</td>
-                                        <td>{{ $item->zh_TW }}</td>
-                                        <td>{{ $item->ja }}</td>
-                                        <td>{{ $item->ko }}</td>
-                                        <td>{{ $item->es }}</td>
+                                    <tr class="text-center">
+                                        <td style="vertical-align: middle;">{{ $item->id }}</td>
+                                        <td style="vertical-align: middle;">{{ $item->th }}</td>
+                                        <td style="vertical-align: middle;">{{ $item->en }}</td>
+                                        <td style="vertical-align: middle;">{{ $item->zh_TW }}</td>
+                                        <td style="vertical-align: middle;">{{ $item->ja }}</td>
+                                        <td style="vertical-align: middle;">{{ $item->ko }}</td>
+                                        <td style="vertical-align: middle;">{{ $item->es }}</td>
                                         <td>
                                             <!-- <a href="{{ url('/text_topic/' . $item->id) }}" title="View Text_topic"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a> -->
                                             <a href="{{ url('/text_topic/' . $item->id . '/edit') }}" title="Edit Text_topic"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

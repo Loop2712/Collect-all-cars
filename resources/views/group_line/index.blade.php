@@ -1,14 +1,115 @@
 @extends('layouts.admin')
 
 @section('content')
-    <br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <br> 
+            <div class="col-md-12" style="margin-bottom:10px;">
+                <div class="row">
+                    <div class="col-md-2 text-center" >
+                        <h2><i class="fab fa-line" style="color:#00c300;"></i> กลุ่มไลน์</h2>
+                    </div>
+                    <div class="col-md-7"></div>
+                    <div class="col-md-3 text-center d-flex justify-content-end">
+                        <form method="GET" action="{{ url('/group_line') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                <span class="input-group-append">
+                                    <button class="btn btn-secondary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="card">
+                <div class="content"style="border-radius: 50%">
+                    <table class="table">
+                        <thead  style="font-family: 'Prompt', sans-serif; background-color:#E3E5E8;">
+                            <tr class="text-center">
+                                <th class="col-md-3" style="font-size:15px" >ชื่อกลุ่มไลน์</th>
+                                <th class="col-md-3" style="font-size:15px">เจ้าของกลุ่ม</th>
+                                <th class="col-md-1" style="font-size:15px">เขตเวลา</th>
+                                <th class="col-md-1" style="font-size:15px">ภาษา</th>
+                                <th class="col-md-4" style="font-size:15px">GroupId</th>
+                            </tr>
+                        </thead>
+                        <tbody  style="font-family: 'Prompt', sans-serif;">
+                            @foreach($group_line as $item)
+                                    <tr class="text-center" >
+                                        <td class="col-md-3 text-left" style="font-size:15px;">
+                                            <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
+                                            <b>{{ $item->groupName }}</b> 
+                                        </td>
+                                        <td class="col-md-3" style="font-size:15px;top:15px"> {{ $item->owner }}</td>
+                                        <td class="col-md-1" style="font-size:15px;top:15px">{{ $item->time_zone }}</td>
+                                        <td class="col-md-1" style="font-size:15px;top:15px">{{ $item->language }}</td>
+                                        <td class="col-md-4" style="font-size:15px;top:15px">{{ $item->groupId }}</td>
+                                        <td>{{ $item->pictureUrl }}</td>
+                                        <td>
+                                            <a href="{{ url('/group_line/' . $item->id) }}" title="View Group_line"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/group_line/' . $item->id . '/edit') }}" title="Edit Group_line"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                            <form method="POST" action="{{ url('/group_line' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Group_line" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div> -->
+            <div class="card">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <div class="card" style="margin-top:-32px;">
+                                    <thead style="font-family: 'Prompt', sans-serif; background-color:#E3E5E8;">
+                                        <tr class="text-center" >
+                                            <th style="font-size:15px">ชื่อกลุ่มไลน์</th>
+                                            <th style="font-size:15px">เจ้าของกลุ่ม</th>
+                                            <th style="font-size:15px">เขตเวลา</th>
+                                            <th style="font-size:15px">ภาษา</th>
+                                            <th style="font-size:15px">GroupId</th>
+                                        </tr>
+                                    </thead>
+                                </div>
+                                <tbody>
+                                @foreach($group_line as $item)
+                                    <tr class="text-center">
+                                        <td class="text-left" style="font-size:15px;">
+                                            <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
+                                            <b style="vertical-align: middle;">{{ $item->groupName }}</b> 
+                                        </td>
+                                        <td style="font-size:15px;vertical-align: middle;"> {{ $item->owner }}</td>
+                                        <td style="font-size:15px;vertical-align: middle;">{{ $item->time_zone }}</td>
+                                        <td style="font-size:15px;vertical-align: middle;">{{ $item->language }}</td>
+                                        <td style="font-size:15px;vertical-align: middle;">{{ $item->groupId }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <div class="pagination-wrapper"> {!! $group_line->appends(['search' => Request::get('search')])->render() !!} </div>
+                        </div>
+
+                    </div>
+        </div>
+    </div>
+</div>
+
+    <!-- <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">Group_line</h3>
+                    <h3 class="card-header"><i class="fab fa-line" style="color:#00c300;"></i> กลุ่มไลน์</h3>
                     <div class="card-body">
-
                         <form method="GET" action="{{ url('/group_line') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
@@ -22,31 +123,34 @@
 
                         <br/>
                         <br/>
+                        
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th>#</th>
+                                    <tr class="text-center">
                                         <th>ชื่อกลุ่มไลน์</th>
                                         <th>เจ้าของกลุ่ม</th>
-                                        <th>Time zone</th>
+                                        <th>เขตเวลา</th>
                                         <th>ภาษา</th>
                                         <th>GroupId</th>
-                                        <!-- <th>PictureUrl</th> -->
-                                        <!-- <th>Actions</th> -->
+                                        <th>PictureUrl</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center ">
+                                        
                                 @foreach($group_line as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->groupName }}</td>
-                                        <td>{{ $item->owner }}</td>
-                                        <td>{{ $item->time_zone }}</td>
-                                        <td>{{ $item->language }}</td>
-                                        <td>{{ $item->groupId }}</td>
-                                        <!-- <td>{{ $item->pictureUrl }}</td> -->
-                                        <!-- <td>
+                                        <td>
+                                            <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
+                                            <b>{{ $item->groupName }}</b> 
+                                        </td>
+                                        <td> <br> {{ $item->owner }}</td>
+                                        <td><br>{{ $item->time_zone }}</td>
+                                        <td><br>{{ $item->language }}</td>
+                                        <td><br>{{ $item->groupId }}</td>
+                                        <td>{{ $item->pictureUrl }}</td>
+                                        <td>
                                             <a href="{{ url('/group_line/' . $item->id) }}" title="View Group_line"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/group_line/' . $item->id . '/edit') }}" title="Edit Group_line"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
@@ -55,7 +159,7 @@
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Group_line" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
-                                        </td> -->
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -67,5 +171,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
