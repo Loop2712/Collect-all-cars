@@ -224,6 +224,7 @@ class Sos_mapController extends Controller
         $lng_user = $data['lng'];
 
         $data_name_sp = explode(" & ",$data['area']);
+        print_r($data_name_sp);
 
         for ($i=0; $i < count($data_name_sp); $i++) { 
             echo "<br>";
