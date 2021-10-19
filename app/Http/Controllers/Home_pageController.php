@@ -14,17 +14,11 @@ class Home_pageController extends Controller
      public function home_page()
     {
         $user_id = Auth::id();
-
-        if (!empty($user_id)) {
-
-            $Cancel_Profile = Cancel_Profile::where('user_id', $user_id)->get();
+        
+        $Cancel_Profile = Cancel_Profile::where('user_id', $user_id)->get();
             foreach ($Cancel_Profile as $key) {
                 $created_last = $key->created_at;
             }
-            
-        }
-        
-        
         $cancel_ago = "";
         if (!empty($created_last)) {
             $cancel_ago = str_replace("ago","", $created_last->diffForHumans());
