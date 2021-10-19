@@ -226,7 +226,8 @@ class Sos_mapController extends Controller
         $data_name_sp = explode(" & ",$data['area']);
 
         for ($i=0; $i < count($data_name_sp); $i++) { 
-
+            echo "<br>";
+            echo $data_name_sp[$i];
             $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
 
             foreach ($data_partners as $data_partner) {
@@ -314,7 +315,7 @@ class Sos_mapController extends Controller
             MyLog::create($data);
 
         }
-
+        exit();
         // $data_partners = DB::table('partners')->where('name', $data['area'])->get();
 
         // foreach ($data_partners as $data_partner) {
