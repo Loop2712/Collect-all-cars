@@ -424,7 +424,7 @@
                     let area_help = document.querySelector("#area_help");
                         // console.log(area_help.innerHTML);
                         if (area_help.innerHTML !== "") {
-                            area_help.innerHTML = area_help.innerHTML + " & " + name_partner ;
+                            area_help.innerHTML = area_help.innerHTML + "/" + name_partner ;
                         }else{
                             area_help.innerHTML = name_partner ;
                         }
