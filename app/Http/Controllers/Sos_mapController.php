@@ -227,6 +227,9 @@ class Sos_mapController extends Controller
         print_r($data_name_sp);
 
         for ($i=0; $i < count($data_name_sp); $i++) { 
+            
+            $data_name_sp[$i] = str_replace("amp; ","",$data_name_sp[$i]);
+
             echo "<br>";
             echo $data_name_sp[$i];
 
