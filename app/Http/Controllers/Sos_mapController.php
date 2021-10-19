@@ -223,7 +223,7 @@ class Sos_mapController extends Controller
         $lat_user = $data['lat'];
         $lng_user = $data['lng'];
 
-        $data_name_sp = explode("amp;",$data['area']);
+        $data_name_sp = explode("amp;&amp;",$data['area']);
         print_r($data_name_sp);
 
         for ($i=0; $i < count($data_name_sp); $i++) { 
