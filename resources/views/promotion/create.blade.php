@@ -1,17 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <br>
+    <div class="container-fluid">
         <div class="row">
-            @include('admin.sidebar')
+            <div class="col-md-12">
 
-            <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Create New Promotion</div>
+                    <h3 class="card-header">เพิ่มโปรโมชั่นใหม่</h3>
                     <div class="card-body">
-                        <a href="{{ url('/promotion') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <!-- <a href="{{ url('/promotion') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
-                        <br />
+                        <br /> -->
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">

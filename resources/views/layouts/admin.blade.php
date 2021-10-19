@@ -77,68 +77,6 @@
                 <span class="nav-link-text"><b>ภาพรวมของระบบ</b></span>
               </a>
             </li>
-            <li class="nav-item" id="Vmarket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-              <a class="nav-link" href="#">
-                <i class="ni ni-cart text-warning"></i>
-                <span class="nav-link-text">V Market</span><span>&nbsp;&nbsp;<i class="fas fa-angle-down"></i></span>
-              </a>
-            </li>
-                <div class="dropdown-menu" aria-labelledby="Vmarket">
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-car"></i>
-                      <span class="nav-link-text">Buy Car</span>
-                    </a>
-                    </li>
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-hand-holding-usd"></i>
-                      <span class="nav-link-text">Sell Car</span>
-                    </a>
-                    </li>
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-motorcycle"></i>
-                      <span class="nav-link-text">Buy Motorcycle</span>
-                    </a>
-                    </li>
-                    <li class="nav-item dropdown-item">
-                    <a class="nav-link" href="#">
-                      <i class="fas fa-coins"></i>
-                      <span class="nav-link-text">Sell Motorcycle</span>
-                    </a>
-                    </li>
-                </div>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/report_register_cars') }}">
-                <i class="fas fa-car text-success"></i>
-                <span class="nav-link-text">V Move รถลงทะเบียน </span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/guest') }}">
-                <i class="fas fa-car-crash text-danger"></i>
-                <span class="nav-link-text">V Move แจ้งเตือนเจ้าของรถ</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/add_news') }}">
-                <i class="far fa-newspaper" style="color: #5F9EA0"></i>
-                <span class="nav-link-text">V News เพิ่มข่าว</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/report_news') }}">
-                <i class="fas fa-video-slash" style="color: #FA8072"></i>
-                <span class="nav-link-text">V News รายงานไม่เหมาะสม</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/sos') }}">
-              <i class="fas fa-question-circle text-warning"></i>
-                <span class="nav-link-text">ขอความช่วยเหลือ</span>
-              </a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/manage_user') }}">
                 <i class="fas fa-user-cog text-primary"></i>
@@ -146,36 +84,154 @@
               </a>
             </li>
             <li class="nav-item">
-              <a id="btn_Partner_url" class="nav-link" href="{{ url('/partner_viicheck') }}">
-                <i class="fas fa-hands-helping text-success"></i>
-                <span class="nav-link-text">Partner ViiCHECK</span>
-                &nbsp;&nbsp;
+              <a class="nav-link" href="{{ url('/sos') }}">
+              <i class="fas fa-question-circle text-warning"></i>
+                <span class="nav-link-text">การขอความช่วยเหลือ</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/insurance') }}">
-                <i class="fas fa-user-shield text-info"></i>
-                <span class="nav-link-text">บริษัทประกันภัย</span>
+
+            <!-- V Market -->
+            <li class="nav-item" id="Vmarket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              <a class="nav-link" href="#">
+                <i class="ni ni-cart" style="color:#9F5900;"></i>
+                <span class="nav-link-text">V Market</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/profanity') }}">
-                <i class="fas fa-ban text-orange"></i>
-                <span class="nav-link-text">แบนคำหยาบคาย</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/group_line') }}">
-                <i style="color: lightgreen" class="fab fa-line"></i>
-                <span class="nav-link-text">Group Line</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/text_topic') }}">
-                <i class="fas fa-font text-danger"></i>
-                <span class="nav-link-text">Text Topic</span>
-              </a>
-            </li>
+            <div class="dropdown-menu" aria-labelledby="Vmarket">
+                <li class="nav-item dropdown-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-car text-primary"></i>
+                  <span class="nav-link-text">การซื้อรถยนต์</span>
+                </a>
+                </li>
+                <li class="nav-item dropdown-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-hand-holding-usd text-orange"></i>
+                  <span class="nav-link-text">การขายรถยนต์</span>
+                </a>
+                </li>
+                <li class="nav-item dropdown-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-motorcycle text-warning"></i>
+                  <span class="nav-link-text">การซื้อรถจักรยานยนต์</span>
+                </a>
+                </li>
+                <li class="nav-item dropdown-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-coins text-success"></i>
+                  <span class="nav-link-text">การขายรถจักรยานยนต์</span>
+                </a>
+                </li>
+            </div>
+
+            <!-- V Move -->
+            <div class="dropdown">
+              <li class="dropdown" id="vmove_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#">
+                <i class="fas fa-car text-danger"></i>
+                  <span class="nav-link-text">V Move</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>
+                </a>
+              </li>
+              <div class="dropdown-menu" aria-labelledby="vmove_menu">
+                 <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/report_register_cars') }}">
+                    <i class="fas fa-car text-success"></i>
+                    <span class="nav-link-text">รถลงทะเบียน </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/guest') }}">
+                    <i class="fas fa-car-crash text-danger"></i>
+                    <span class="nav-link-text">แจ้งเตือนเจ้าของรถ</span>
+                  </a>
+                </li>
+              </div>
+            </div>
+
+            <!-- V new -->
+            <div class="dropdown">
+              <li class="dropdown" id="vnew_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#">
+                <i class="far fa-newspaper text-info"></i>
+                  <span class="nav-link-text">V New</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>
+                </a>
+              </li>
+              <div class="dropdown-menu" aria-labelledby="vnew_menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/add_news') }}">
+                    <i class="far fa-newspaper" style="color: #5F9EA0"></i>
+                    <span class="nav-link-text">การเพิ่มข่าว</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/report_news') }}">
+                    <i class="fas fa-video-slash" style="color: #FA8072"></i>
+                    <span class="nav-link-text">การรายงานไม่เหมาะสม</span>
+                  </a>
+                </li>
+              </div>
+            </div>
+
+            <!-- Partner -->
+            <div class="dropdown">
+              <li class="dropdown" id="partner_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-hands-helping text-success"></i>
+                  <span class="nav-link-text">Partner</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>
+                </a>
+              </li>
+              <div class="dropdown-menu" aria-labelledby="partner_menu">
+                <li class="nav-item">
+                  <a id="btn_Partner_url" class="nav-link" href="{{ url('/partner_viicheck') }}">
+                    <i class="fas fa-hands-helping text-success"></i>
+                    <span class="nav-link-text">Partner ViiCHECK</span>
+                    &nbsp;&nbsp;
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/insurance') }}">
+                    <i class="fas fa-user-shield text-info"></i>
+                    <span class="nav-link-text">บริษัทประกันภัย</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/group_line') }}">
+                    <i style="color: lightgreen" class="fab fa-line"></i>
+                    <span class="nav-link-text">Group Line</span>
+                  </a>
+                </li>
+              </div>
+            </div>
+            
+            <!-- more -->
+            <div class="dropdown">
+              <li class="dropdown" id="more_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-ellipsis-h text-danger"></i>
+                  <span class="nav-link-text">เพิ่มเติม</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>
+                </a>
+              </li>
+              <div class="dropdown-menu" aria-labelledby="more_menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/text_topic') }}">
+                    <i class="fas fa-font text-danger"></i>
+                    <span class="nav-link-text">Text Topic</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/profanity') }}">
+                    <i class="fas fa-ban text-orange"></i>
+                    <span class="nav-link-text">แบนคำหยาบคาย</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/promotion/create') }}">
+                    <i class="fas fa-ad text-success"></i>
+                    <span class="nav-link-text">ลงโปรโมชั่น</span>
+                  </a>
+                </li>
+              </div>
+            </div>
           </ul>
           <!-- Divider -->
           <hr class="my-3">
@@ -195,18 +251,6 @@
               <a class="nav-link" href="#" target="_blank">
                 <i style="color: lightblue" class="fab fa-facebook-square"></i>
                 <span class="nav-link-text">Facebook Page</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://market.viicheck.com/" target="_blank">
-                <i style="color: #FF9999" class="fas fa-car"></i>
-                <span class="nav-link-text">V Market</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://market.viicheck.com/news" target="_blank">
-                <i style="color: #94adf7  " class="far fa-newspaper"></i>
-                <span class="nav-link-text">V News</span>
               </a>
             </li>
           </ul>

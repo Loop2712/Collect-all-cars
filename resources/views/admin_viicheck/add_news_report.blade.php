@@ -2,13 +2,13 @@
 
 @section('content')
 <br>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <h3 class="card-header">เพิ่มข่าว Vnews / <span style="font-size: 18px;">Vnews add news</span> </h3>
                         <br>
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary">

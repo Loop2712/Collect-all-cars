@@ -219,11 +219,7 @@ Route::get('/near_news', 'NewsController@near_news');
 Route::get('/my_news/{user_id}', 'NewsController@my_news');
 Route::get('/report/{id}/{content}', 'NewsController@report');
 
-
-Route::resource('promotion', 'PromotionController')->except(['create','show','edit']);
-
-
-
+Route::resource('promotion', 'PromotionController');
 
 Route::get('/middle_price_motorcycle', 'Middle_price_carController@index_motor');
 Route::resource('middle_price_car', 'Middle_price_carController')->except(['create','show','edit']);
