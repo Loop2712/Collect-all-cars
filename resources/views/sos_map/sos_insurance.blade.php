@@ -14,17 +14,17 @@
                         <div id="map">
                             
                         </div>
-                        <br>
+                        <!-- <br>
                         <div class="col-12" >
                             <p style=" color:#B3B6B7" id="location_user">
                                 <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
                             </p>
-                        </div>
+                        </div> -->
                         @foreach($register_car as $item)
-                            <div class="col-12 card shadow" style="margin-top:10px;">
+                            <!-- แบบเก่า -->
+                            <!-- <div class="col-12 card shadow" style="margin-top:25px;">
                                 <div class="row">
                                     <div class="col-12">
-
                                         <div class="row">
                                             <div class="col-6">
                                                 <center>
@@ -103,6 +103,92 @@
                                     </div>
                                 </div> 
                                 <br>
+                            </div> -->
+                        @endforeach
+
+                        @foreach($register_car as $item)
+                        <!-- แบบใหม่ -->
+                            <div class="card shadow" style="margin-top:25px;padding: 10px;">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img style="margin-top:7px;overflow ;width: 100%;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                            </div>
+                                            <div class="col-6 notranslate" style="margin-top:8px;overflow ;">
+                                                <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
+                                                <h6><b>{{ $item->registration_number }}</b></h6>
+                                                <span>{{ $item->province }}</span>
+                                            </div>
+                                            <div class="col-3">
+                                                @if(!empty($item->name_insurance))
+                                                    <button style="margin-top:7px;overflow ;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-primary main-shadow main-radius collapse multi-collapse_{{ $loop->iteration }} show">
+                                                        <i class="fas fa-phone-alt"></i> 
+                                                    </button>
+                                                    <a class="d-none" id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
+                                                @endif
+                                                <button style="margin-top:7px;overflow ;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none collapse multi-collapse_{{ $loop->iteration }}">
+                                                    <i class="fas fa-phone-alt"></i>
+                                                </button>
+                                                <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
+
+                                                <button style="margin-top:7px;overflow ;" onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none">
+                                                    <i class="fas fa-phone-alt"></i> 
+                                                </button>
+                                                <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        @if(!empty($item->name_insurance))
+                                            <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
+                                                <div class="col-2">
+                                                    <img src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                                </div>
+                                                <div class="col-6">
+                                                    <p style="font-size:16px; padding-top: 13px;" id="name_insurance_{{ $item->id }}" class="text-success">
+                                                        <b>{{ $item->name_insurance }}</b>
+                                                    </p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:14px;padding-top: 13px;">
+                                                        บริษัทอื่นๆ <i class="fas fa-angle-down"></i>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
+                                                <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:14px;padding-top: 8px;">
+                                                    <i class="fas fa-chevron-circle-up"></i>
+                                                </p>
+
+                                                <div class="row" style="margin-top: 10px;">
+                                                    <div class="col-12">
+                                                        <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
+                                                            <option value="" selected>- เลือก -</option>
+                                                            @foreach($select_ins as $item_2)
+                                                                <option value="{{ $item_2->company }}" 
+                                                                {{ request('company') == $item_2->company ? 'selected' : ''   }} >
+                                                                {{ $item_2->company }} 
+                                                                </option>
+                                                            @endforeach  
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                        <div class="col-12" style="margin-top: 13px;">
+                                            <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
+                                                <option value="" selected>- เลือก -</option>
+                                                @foreach($name_insurance as $item)
+                                                    <option value="{{ $item->company }}" 
+                                                    {{ request('company') == $item->company ? 'selected' : ''   }} >
+                                                    {{ $item->company }} 
+                                                    </option>
+                                                @endforeach  
+                                            </select>
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -113,7 +199,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
     <style type="text/css">
         #map {
-          height: calc(20vh);
+          height: calc(40vh);
         }
         
     </style>
@@ -150,49 +236,49 @@
             const user = { lat: lat, lng: lng };
             const marker_user = new google.maps.Marker({ map, position: user });
 
-            const geocoder = new google.maps.Geocoder();
-            const infowindow = new google.maps.InfoWindow();
+            // const geocoder = new google.maps.Geocoder();
+            // const infowindow = new google.maps.InfoWindow();
 
-            let location_user = document.querySelector("#location_user");
-            location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
+            // let location_user = document.querySelector("#location_user");
+            // location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
 
-            document.getElementById("submit").addEventListener("click", () => {
-                geocodeLatLng(geocoder, map, infowindow);
-            });
+            // document.getElementById("submit").addEventListener("click", () => {
+            //     geocodeLatLng(geocoder, map, infowindow);
+            // });
 
             // marker_user.addListener("click", () => {
             //     geocodeLatLng(geocoder, map, infowindow);
             // });
         }
 
-        function geocodeLatLng(geocoder, map, infowindow) {
+        // function geocodeLatLng(geocoder, map, infowindow) {
 
-            const input = document.getElementById("latlng").value;
-            const latlngStr = input.split(",", 2);
-            const latlng = {
-                lat: parseFloat(latlngStr[0]),
-                lng: parseFloat(latlngStr[1]),
-            };
-            geocoder
-                .geocode({ location: latlng })
-                .then((response) => {
-                    if (response.results[0]) {
-                        map.setZoom(15);
-                        const marker = new google.maps.Marker({
-                          position: latlng,
-                          map: map,
-                        });
-                        // infowindow.setContent(response.results[0].formatted_address);
-                        // infowindow.open(map, marker);
+        //     const input = document.getElementById("latlng").value;
+        //     const latlngStr = input.split(",", 2);
+        //     const latlng = {
+        //         lat: parseFloat(latlngStr[0]),
+        //         lng: parseFloat(latlngStr[1]),
+        //     };
+        //     geocoder
+        //         .geocode({ location: latlng })
+        //         .then((response) => {
+        //             if (response.results[0]) {
+        //                 map.setZoom(15);
+        //                 const marker = new google.maps.Marker({
+        //                   position: latlng,
+        //                   map: map,
+        //                 });
+        //                 // infowindow.setContent(response.results[0].formatted_address);
+        //                 // infowindow.open(map, marker);
 
-                        let location_user = document.querySelector("#location_user");
-                            location_user.innerHTML = response.results[0].formatted_address;
-                    } else {
-                        window.alert("No results found");
-                    }
-                })
-                .catch((e) => window.alert("Geocoder failed due to: " + e));
-        }
+        //                 let location_user = document.querySelector("#location_user");
+        //                     location_user.innerHTML = response.results[0].formatted_address;
+        //             } else {
+        //                 window.alert("No results found");
+        //             }
+        //         })
+        //         .catch((e) => window.alert("Geocoder failed due to: " + e));
+        // }
             
         function call_insurance(name_insurance,loop){
 
@@ -354,9 +440,9 @@
                     'Content-Type': 'application/json'
                 }
                 }).then(function (response){
-                    return response.text();
+                    // return response.text();
                 }).then(function(text){
-                    // console.log(text);
+                    console.log(text);
                 }).catch(function(error){
                     // console.error(error);
                 });
