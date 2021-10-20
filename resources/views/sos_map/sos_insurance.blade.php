@@ -41,16 +41,18 @@
                                                 <div class="row">
                                                     @if(!empty($item->name_insurance))
                                                         <div class="collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
-                                                            <div class="col-12">
-                                                                <img style="margin-top:12px;width: 30%;" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
-                                                                <br>
-                                                                <h4 style="font-size:18px; padding-top: 8px;" id="name_insurance_{{ $item->id }}" class="text-success">
-                                                                    <b>{{ $item->name_insurance }}</b>
-                                                                </h4>
-                                                                <button style="margin-top:10px;width: 100%;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
-                                                                    <i class="fas fa-phone-alt"></i> ติดต่อ
-                                                                </button>
-                                                                <a id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <img style="margin-top:12px;width: 30%;" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                                                    <br>
+                                                                    <h4 style="font-size:18px; padding-top: 8px;" id="name_insurance_{{ $item->id }}" class="text-success">
+                                                                        <b>{{ $item->name_insurance }}</b>
+                                                                    </h4>
+                                                                    <button style="margin-top:10px;width: 100%;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
+                                                                        <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                                    </button>
+                                                                    <a id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -58,25 +60,27 @@
                                                               บริษัทประกันอื่นๆ <i class="fas fa-angle-down"></i>
                                                         </span>
                                                         <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
-                                                            <div class="col-12" style="margin-top: 10px;">
-                                                                <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
-                                                                    <option value="" selected>- เลือก -</option>
-                                                                    @foreach($select_ins as $item_2)
-                                                                        <option value="{{ $item_2->company }}" 
-                                                                        {{ request('company') == $item_2->company ? 'selected' : ''   }} >
-                                                                        {{ $item_2->company }} 
-                                                                        </option>
-                                                                    @endforeach  
-                                                                </select>
-                                                                <button style="margin-top:25px;width: 100%;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
-                                                                    <i class="fas fa-phone-alt"></i> ติดต่อ
-                                                                </button>
-                                                                <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
+                                                            <div class="row" style="margin-top: 10px;">
+                                                                <div class="col-12">
+                                                                    <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
+                                                                        <option value="" selected>- เลือก -</option>
+                                                                        @foreach($select_ins as $item_2)
+                                                                            <option value="{{ $item_2->company }}" 
+                                                                            {{ request('company') == $item_2->company ? 'selected' : ''   }} >
+                                                                            {{ $item_2->company }} 
+                                                                            </option>
+                                                                        @endforeach  
+                                                                    </select>
+                                                                    <button style="margin-top:25px;width: 100%;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
+                                                                        <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                                    </button>
+                                                                    <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     @else
                                                         <div class="row">
-                                                            <div class="col-12">
+                                                            <div class="col-8">
                                                                 <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
                                                                     <option value="" selected>- เลือกบริษัทประกัน -</option>
                                                                     @foreach($name_insurance as $item)
