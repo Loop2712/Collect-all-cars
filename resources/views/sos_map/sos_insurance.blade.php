@@ -29,7 +29,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <center>
-                                                    <img style="margin-top:8px;width: 60%;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                    <img style="margin-top:8px;width: 65%;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                     <div style="margin-top:8px;overflow ;">
                                                         <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
                                                         <h6><b>{{ $item->registration_number }}</b></h6>
@@ -48,7 +48,7 @@
                                                                     <h4 style="font-size:18px; padding-top: 8px;" id="name_insurance_{{ $item->id }}" class="text-success">
                                                                         <b>{{ $item->name_insurance }}</b>
                                                                     </h4>
-                                                                    <button style="margin-top:25px;width: 100%;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
+                                                                    <button style="margin-top:10px;width: 100%;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
                                                                         <i class="fas fa-phone-alt"></i> ติดต่อ
                                                                     </button>
                                                                     <a id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
