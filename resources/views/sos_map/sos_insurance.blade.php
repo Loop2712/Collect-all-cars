@@ -29,7 +29,7 @@
                                             <div class="col-6">
                                                 <center>
                                                     <img style="margin-top:15px;width: 65%;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                                    <div style="margin-top:8px;overflow ;">
+                                                    <div style="margin-top:8px;overflow ;" class="notranslate">
                                                         <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
                                                         <h6><b>{{ $item->registration_number }}</b></h6>
                                                         <span>{{ $item->province }}</span>
