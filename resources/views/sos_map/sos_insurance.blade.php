@@ -236,8 +236,8 @@
             const user = { lat: lat, lng: lng };
             const marker_user = new google.maps.Marker({ map, position: user });
 
-            // const geocoder = new google.maps.Geocoder();
-            // const infowindow = new google.maps.InfoWindow();
+            const geocoder = new google.maps.Geocoder();
+            const infowindow = new google.maps.InfoWindow();
 
             // let location_user = document.querySelector("#location_user");
             // location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
@@ -246,39 +246,39 @@
             //     geocodeLatLng(geocoder, map, infowindow);
             // });
 
-            // marker_user.addListener("click", () => {
-            //     geocodeLatLng(geocoder, map, infowindow);
-            // });
+            marker_user.addListener("click", () => {
+                geocodeLatLng(geocoder, map, infowindow);
+            });
         }
 
-        // function geocodeLatLng(geocoder, map, infowindow) {
+        function geocodeLatLng(geocoder, map, infowindow) {
 
-        //     const input = document.getElementById("latlng").value;
-        //     const latlngStr = input.split(",", 2);
-        //     const latlng = {
-        //         lat: parseFloat(latlngStr[0]),
-        //         lng: parseFloat(latlngStr[1]),
-        //     };
-        //     geocoder
-        //         .geocode({ location: latlng })
-        //         .then((response) => {
-        //             if (response.results[0]) {
-        //                 map.setZoom(15);
-        //                 const marker = new google.maps.Marker({
-        //                   position: latlng,
-        //                   map: map,
-        //                 });
-        //                 // infowindow.setContent(response.results[0].formatted_address);
-        //                 // infowindow.open(map, marker);
+            const input = document.getElementById("latlng").value;
+            const latlngStr = input.split(",", 2);
+            const latlng = {
+                lat: parseFloat(latlngStr[0]),
+                lng: parseFloat(latlngStr[1]),
+            };
+            geocoder
+                .geocode({ location: latlng })
+                .then((response) => {
+                    if (response.results[0]) {
+                        map.setZoom(15);
+                        const marker = new google.maps.Marker({
+                          position: latlng,
+                          map: map,
+                        });
+                        // infowindow.setContent(response.results[0].formatted_address);
+                        // infowindow.open(map, marker);
 
-        //                 let location_user = document.querySelector("#location_user");
-        //                     location_user.innerHTML = response.results[0].formatted_address;
-        //             } else {
-        //                 window.alert("No results found");
-        //             }
-        //         })
-        //         .catch((e) => window.alert("Geocoder failed due to: " + e));
-        // }
+                        let location_user = document.querySelector("#location_user");
+                            location_user.innerHTML = response.results[0].formatted_address;
+                    } else {
+                        window.alert("No results found");
+                    }
+                })
+                .catch((e) => window.alert("Geocoder failed due to: " + e));
+        }
             
         function call_insurance(name_insurance,loop){
 
