@@ -268,11 +268,11 @@
                           position: latlng,
                           map: map,
                         });
-                        // infowindow.setContent(response.results[0].formatted_address);
-                        // infowindow.open(map, marker);
+                        infowindow.setContent(response.results[0].formatted_address);
+                        infowindow.open(map, marker);
 
-                        let location_user = document.querySelector("#location_user");
-                            location_user.innerHTML = response.results[0].formatted_address;
+                        // let location_user = document.querySelector("#location_user");
+                        //     location_user.innerHTML = response.results[0].formatted_address;
                     } else {
                         window.alert("No results found");
                     }
