@@ -141,17 +141,17 @@
                                         <hr>
                                         @if(!empty($item->name_insurance))
                                             <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
-                                                <div class="col-2">
-                                                    <img src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                                <div class="col-3">
+                                                    <img style="margin-left: 7px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
                                                 </div>
                                                 <div class="col-6">
                                                     <p style="font-size:16px; padding-top: 13px;" id="name_insurance_{{ $item->id }}" class="text-success">
                                                         <b>{{ $item->name_insurance }}</b>
                                                     </p>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-3">
                                                     <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:12px;padding-top: 15px;">
-                                                        บริษัทอื่นๆ <i class="fas fa-angle-down"></i>
+                                                        อื่นๆ <i class="fas fa-angle-down"></i>
                                                     </p>
                                                 </div>
                                             </div>
