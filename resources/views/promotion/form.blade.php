@@ -50,6 +50,33 @@
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
             </div>
         </div>
+
+        <!-- ---------------------------------------- -->
+        <div class="col-6">
+            <div class="row">
+                @if(!empty($promotion))
+                @foreach($promotion as $item)
+                <div class="col-4">
+                    <div class="card" style="">
+                        <img src="https://e1.pngegg.com/pngimages/680/369/png-clipart-voiture-voiture-voiture-compacte-porte-de-voiture-vehicule-electrique-dessin-anime-dessin-jaune-transport.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div>
+                                <h4 class="card-title">company</h4>
+                                <p class="card-title"><b>titel</b></p>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="card-text"><i class="far fa-clock"></i>&nbsp;time_period</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 

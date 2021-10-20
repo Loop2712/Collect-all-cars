@@ -11,7 +11,16 @@
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" readonly>
                         <input type="hidden" id="name" name="name" value="{{ Auth::user()->name }}" readonly>
                         <input type="hidden" id="user_phone" name="user_phone" value="{{ Auth::user()->phone }}" readonly>
-
+                        <div id="map">
+                            
+                        </div>
+                        <br>
+                        <div class="col-12" >
+                            <p style=" color:#B3B6B7" id="location_user">
+                                <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
+                            </p>
+                        </div>
+                        <br>
                         @foreach($register_car as $item)
                             <div class="col-12 card shadow">
                                 <div class="row">
@@ -112,8 +121,89 @@
             </div>
         </div>
     </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
+    <style type="text/css">
+        #map {
+          height: calc(20vh);
+        }
+        
+    </style>
 
     <script>
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // console.log("START");
+            
+            const queryString = window.location.search;
+
+            const urlParams = new URLSearchParams(queryString);
+
+            const latlng_url = urlParams.get('latlng')
+                // console.log(latlng_url);
+                initMap(latlng_url);
+        });
+
+        function initMap(latlng_url) {
+
+            latlng_url_sp = latlng_url.split(",");
+
+            let lat = parseFloat(latlng_url_sp[0]) ;
+            let lng = parseFloat(latlng_url_sp[1]) ;
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: { lat: lat, lng: lng },
+                mapTypeId: "terrain",
+            });
+            // 40.7504479,-73.9936564,19
+
+            // ตำแหน่ง USER
+            const user = { lat: lat, lng: lng };
+            const marker_user = new google.maps.Marker({ map, position: user });
+
+            const geocoder = new google.maps.Geocoder();
+            const infowindow = new google.maps.InfoWindow();
+
+            let location_user = document.querySelector("#location_user");
+            location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
+
+            document.getElementById("submit").addEventListener("click", () => {
+                geocodeLatLng(geocoder, map, infowindow);
+            });
+
+            // marker_user.addListener("click", () => {
+            //     geocodeLatLng(geocoder, map, infowindow);
+            // });
+        }
+
+        function geocodeLatLng(geocoder, map, infowindow) {
+
+            const input = document.getElementById("latlng").value;
+            const latlngStr = input.split(",", 2);
+            const latlng = {
+                lat: parseFloat(latlngStr[0]),
+                lng: parseFloat(latlngStr[1]),
+            };
+            geocoder
+                .geocode({ location: latlng })
+                .then((response) => {
+                    if (response.results[0]) {
+                        map.setZoom(15);
+                        const marker = new google.maps.Marker({
+                          position: latlng,
+                          map: map,
+                        });
+                        // infowindow.setContent(response.results[0].formatted_address);
+                        // infowindow.open(map, marker);
+
+                        let location_user = document.querySelector("#location_user");
+                            location_user.innerHTML = response.results[0].formatted_address;
+                    } else {
+                        window.alert("No results found");
+                    }
+                })
+                .catch((e) => window.alert("Geocoder failed due to: " + e));
+        }
             
         function call_insurance(name_insurance,loop){
 
