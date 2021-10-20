@@ -79,24 +79,23 @@
                                                             </div>
                                                         </div>
                                                     @else
-                                                        <div class="row">
-                                                            <div class="col-8">
-                                                                <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
-                                                                    <option value="" selected>- เลือกบริษัทประกัน -</option>
-                                                                    @foreach($name_insurance as $item)
-                                                                        <option value="{{ $item->company }}" 
-                                                                        {{ request('company') == $item->company ? 'selected' : ''   }} >
-                                                                        {{ $item->company }} 
-                                                                        </option>
-                                                                    @endforeach  
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <button onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
-                                                                    <i class="fas fa-phone-alt"></i> ติดต่อ
-                                                                </button>
-                                                                <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
-                                                            </div>
+                                                        <div class="col-12" style="margin-top: 35px;">
+                                                            <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
+                                                                <option value="" selected>- เลือก -</option>
+                                                                @foreach($name_insurance as $item)
+                                                                    <option value="{{ $item->company }}" 
+                                                                    {{ request('company') == $item->company ? 'selected' : ''   }} >
+                                                                    {{ $item->company }} 
+                                                                    </option>
+                                                                @endforeach  
+                                                            </select>
+                                                            <button style="margin-top:25px;width: 100%;" onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
+                                                                <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                            </button>
+                                                            <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
+                                                        </div>
+                                                        <div class="col-4">
+
                                                         </div>
                                                     @endif
                                                 </div>
