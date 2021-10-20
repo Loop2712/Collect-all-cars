@@ -37,11 +37,14 @@
 
         let text_sos = document.querySelector('#text_sos').value;
 
-        if (latlng !== "") {
+        let delaytext_sos = 1000; 
+
+        setTimeout(function() {
             if (text_sos === "insurance") {
                 document.querySelector('#btn_contact_insurance').click();
             }
-        }
+        }, delayInMilliseconds);
+            
 
         lat_text.value = position.coords.latitude ;
         lng_text.value = position.coords.longitude ;
