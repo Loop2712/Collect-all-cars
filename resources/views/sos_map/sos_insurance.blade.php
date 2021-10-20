@@ -113,7 +113,7 @@
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-3">
-                                                <img style="margin-top:7px;overflow ;width: 100%;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                <img style="margin-top:7px;width: 100%;margin-left: 7px;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div>
                                             <div class="col-6 notranslate" style="margin-top:8px;overflow ;">
                                                 <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
