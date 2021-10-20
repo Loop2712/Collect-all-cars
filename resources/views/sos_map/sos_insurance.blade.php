@@ -150,8 +150,8 @@
                                                     </p>
                                                 </div>
                                                 <div class="col-3">
-                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:12px;padding-top: 15px;">
-                                                        อื่นๆ <i class="fas fa-angle-down"></i>
+                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;padding-top: 15px;">
+                                                        อื่นๆ <i class="fas fa-chevron-circle-down"></i>
                                                     </p>
                                                 </div>
                                             </div>
