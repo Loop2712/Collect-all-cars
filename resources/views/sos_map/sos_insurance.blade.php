@@ -57,7 +57,7 @@
                                                         </div>
                                                         <div class="col-4">
                                                             <button style="margin-top:25px;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
-                                                                <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                                ติดต่อ
                                                             </button>
                                                             <a id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
                                                         </div>
@@ -82,7 +82,7 @@
                                                         </div>
                                                         <div class="col-4">
                                                             <button onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
-                                                            <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                             ติดต่อ
                                                         </button>
                                                         <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
                                                         </div>
@@ -103,7 +103,7 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <button onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
-                                                            <i class="fas fa-phone-alt"></i> ติดต่อ
+                                                            ติดต่อ
                                                         </button>
                                                         <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
                                                     </div>
