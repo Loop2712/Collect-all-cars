@@ -20,9 +20,8 @@
                                 <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
                             </p>
                         </div>
-                        <br>
                         @foreach($register_car as $item)
-                            <div class="col-12 card shadow">
+                            <div class="col-12 card shadow" style="margin-top:10px;">
                                 <div class="row">
                                     <div class="col-12">
 
@@ -105,7 +104,6 @@
                                 </div> 
                                 <br>
                             </div>
-                            <br>
                         @endforeach
                     </div>
                 </div>
