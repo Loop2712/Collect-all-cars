@@ -43,7 +43,7 @@
             if (text_sos === "insurance") {
                 document.querySelector('#btn_contact_insurance').click();
             }
-        }, delayInMilliseconds);
+        }, delaytext_sos);
             
 
         lat_text.value = position.coords.latitude ;
