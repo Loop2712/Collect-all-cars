@@ -142,10 +142,10 @@
                                         @if(!empty($item->name_insurance))
                                             <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
                                                 <div class="col-3">
-                                                    <img style="margin-left: 7px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                                    <img style="margin-left: 7px;margin-top:7px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
                                                 </div>
                                                 <div class="col-6">
-                                                    <p style="font-size:16px; padding-top: 13px;" id="name_insurance_{{ $item->id }}" class="text-success">
+                                                    <p style="font-size:16px;" id="name_insurance_{{ $item->id }}" class="text-success">
                                                         <b>{{ $item->name_insurance }}</b>
                                                     </p>
                                                 </div>
