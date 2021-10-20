@@ -150,7 +150,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="col-4">
-                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:14px;padding-top: 13px;">
+                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:12px;padding-top: 15px;">
                                                         บริษัทอื่นๆ <i class="fas fa-angle-down"></i>
                                                     </p>
                                                 </div>
