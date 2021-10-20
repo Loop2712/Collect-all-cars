@@ -163,7 +163,7 @@
                                                 <div class="row" style="margin-top: 10px;">
                                                     <div class="col-12">
                                                         <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
-                                                            <option value="" selected>- เลือก -</option>
+                                                            <option value="" selected>- เลือกบริษัทประกันภัย -</option>
                                                             @foreach($select_ins as $item_2)
                                                                 <option value="{{ $item_2->company }}" 
                                                                 {{ request('company') == $item_2->company ? 'selected' : ''   }} >
@@ -177,7 +177,7 @@
                                         @else
                                         <div class="col-12" style="margin-top: 13px;">
                                             <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
-                                                <option value="" selected>- เลือก -</option>
+                                                <option value="" selected>- เลือกบริษัทประกันภัย -</option>
                                                 @foreach($name_insurance as $item)
                                                     <option value="{{ $item->company }}" 
                                                     {{ request('company') == $item->company ? 'selected' : ''   }} >
