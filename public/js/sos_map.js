@@ -35,17 +35,6 @@
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
 
-        let text_sos = document.querySelector('#text_sos').value;
-
-        let delaytext_sos = 1000; 
-
-        setTimeout(function() {
-            if (text_sos === "insurance") {
-                document.querySelector('#btn_contact_insurance').click();
-            }
-        }, delaytext_sos);
-            
-
         lat_text.value = position.coords.latitude ;
         lng_text.value = position.coords.longitude ;
         latlng.value = position.coords.latitude+","+position.coords.longitude ;
@@ -68,13 +57,21 @@
         const geocoder = new google.maps.Geocoder();
         const infowindow = new google.maps.InfoWindow();
 
-        document.getElementById("submit").addEventListener("click", () => {
+        document.getElementById("location_user").addEventListener("click", () => {
             geocodeLatLng(geocoder, map, infowindow);
         });
 
         marker_user.addListener("click", () => {
             geocodeLatLng(geocoder, map, infowindow);
         });
+
+        let text_sos = document.querySelector('#text_sos').value;
+
+        if (latlng.value !== "") {
+            if (text_sos === "insurance") {
+                document.querySelector('#btn_contact_insurance').click();
+            }
+        }
     }
 
     function geocodeLatLng(geocoder, map, infowindow) {

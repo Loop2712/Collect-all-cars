@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<input type="hidden" id="latlng" name="latlng" readonly> 
+<input class="d-none" type="text" id="latlng" name="latlng" readonly> 
 
 <div class="container d-block d-md-none"> <!-- d-block d-md-none -->
         <div class="row">
@@ -70,7 +70,7 @@
             </div>
 
         <div class="col-12 card shadow" style="margin-top:-35px;">
-            <div class="row d-">
+            <div class="row d-none">
                 <div id="div_goto" class="col-12 d-none">
                     <br>
                     <a id="btn_contact_insurance" class="btn btn-info btn-block shadow-box text-white" onclick="contact_insurance();">
