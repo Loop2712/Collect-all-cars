@@ -37,9 +37,11 @@
 
         let text_sos = document.querySelector('#text_sos').value;
 
+        if (latlng !== "") {
             if (text_sos === "insurance") {
                 document.querySelector('#btn_contact_insurance').click();
             }
+        }
 
         lat_text.value = position.coords.latitude ;
         lng_text.value = position.coords.longitude ;
