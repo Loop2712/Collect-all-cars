@@ -24,6 +24,17 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+
+        $data_users = DB::table('users')
+                ->where('type', 'line')
+                ->where('language', 'th')
+                ->get();
+
+        $lineAPI = new LineApiController();
+        $lineAPI->check_language_user($data_users);
+
+        exit();
+
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
