@@ -146,15 +146,15 @@
                                         @if(!empty($item->name_insurance))
                                             <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
                                                 <div class="col-3">
-                                                    <img style="margin-left: 7px;margin-top:5px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                                    <img style="margin-left: 7px;margin-top:-5px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
                                                 </div>
                                                 <div class="col-6">
-                                                    <p style="font-size:16px;" id="name_insurance_{{ $item->id }}" class="text-success">
-                                                        <b>{{ $item->name_insurance }}</b>
+                                                    <p style="width: 100%;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;" id="name_insurance_{{ $item->id }}" class="text-success">
+                                                        {{ $item->name_insurance }}
                                                     </p>
                                                 </div>
                                                 <div class="col-3">
-                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;padding-top: 15px;">
+                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;padding-top: 1px;">
                                                         อื่นๆ <i class="fas fa-chevron-circle-down"></i>
                                                     </p>
                                                 </div>
