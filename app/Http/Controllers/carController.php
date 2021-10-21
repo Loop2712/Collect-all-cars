@@ -30,8 +30,34 @@ class CarController extends Controller
                 ->where('language', 'th')
                 ->get();
 
-        $lineAPI = new LineApiController();
-        $lineAPI->check_language_user($data_users);
+
+        echo count($data_users);
+
+        foreach ($data_users as $key) {
+            echo $key->provider_id;
+            echo "<br>";
+            echo $key->language;
+            echo "<br>";
+            echo "<br>";
+
+            $richMenuId = "richmenu-454c598f6cc2cfa01d9e61dd08c90f1a" ;
+
+            $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
+            $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
+            $response = $bot->linkRichMenu($key->provider_id, $richMenuId);
+
+            $data = [
+                "title" => "set_richmanu_th",
+                "content" => $key->provider_id,
+            ];
+            MyLog::create($data);
+        }
+        // $lineAPI = new LineApiController();
+        // $lineAPI->check_language_user($data_users);
+
+        
+
+        
 
         exit();
 
