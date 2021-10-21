@@ -12,13 +12,11 @@
                         <input type="hidden" id="name" name="name" value="{{ Auth::user()->name }}" readonly>
                         <input type="hidden" id="user_phone" name="user_phone" value="{{ Auth::user()->phone }}" readonly>
                         <div id="map">
-                            <div class="col-12">
-                                <img style="width: 100%;height: 80%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;">
-                            </div>
-                            <div class="col-12" style="margin-top:10px;">
-                                <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
-                                <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
-                            </div>
+                            <img style="width: 100%;height: 100%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;">
+                        </div>
+                        <div id="text_open_location" style="margin-top:10px;" class="">
+                            <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
+                            <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
                         </div>
                         <!-- <br>
                         <div class="col-12" >
@@ -297,6 +295,8 @@
             marker_user.addListener("click", () => {
                 geocodeLatLng(geocoder, map, infowindow);
             });
+
+            document.querySelector('#text_open_location').classList.add('d-none');
         }
 
         function geocodeLatLng(geocoder, map, infowindow) {
