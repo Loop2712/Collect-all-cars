@@ -54,6 +54,7 @@
                     <div class="col-12" >
                         <p style=" color:#B3B6B7" id="location_user">
                             <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
+                            <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
                         </p>
                     </div>
                     <div class="col-12">
