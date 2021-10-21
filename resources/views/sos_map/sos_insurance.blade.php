@@ -12,7 +12,13 @@
                         <input type="hidden" id="name" name="name" value="{{ Auth::user()->name }}" readonly>
                         <input type="hidden" id="user_phone" name="user_phone" value="{{ Auth::user()->phone }}" readonly>
                         <div id="map">
-                            
+                            <div class="col-12">
+                                <img style="width: 100%;height: 80%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;">
+                            </div>
+                            <div class="col-12" style="margin-top:10px;">
+                                <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
+                                <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
+                            </div>
                         </div>
                         <!-- <br>
                         <div class="col-12" >
@@ -196,6 +202,10 @@
             </div>
         </div>
     </div>
+
+    <input class="d-none" type="text" id="latlng" name="latlng" readonly>
+    <input class="form-control" name="lat" type="text" id="lat" value="" >
+    <input class="form-control" name="lng" type="text" id="lng" value="" >
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
     <style type="text/css">
         #map {
@@ -209,21 +219,59 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             // console.log("START");
             
-            const queryString = window.location.search;
+            // const queryString = window.location.search;
 
-            const urlParams = new URLSearchParams(queryString);
+            // const urlParams = new URLSearchParams(queryString);
 
-            const latlng_url = urlParams.get('latlng')
-                // console.log(latlng_url);
-                initMap(latlng_url);
+            // const latlng_url = urlParams.get('latlng')
+            //     // console.log(latlng_url);
+            //     initMap(latlng_url);
+            getLocation();
         });
 
-        function initMap(latlng_url) {
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(initMap);
+            // navigator.geolocation.getCurrentPosition(geocodeLatLng);
+          } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
 
-            latlng_url_sp = latlng_url.split(",");
+        function showPosition(position) {
+            let lat_text = document.querySelector("#lat");
+            let lng_text = document.querySelector("#lng");
+            let latlng = document.querySelector("#latlng");
 
-            let lat = parseFloat(latlng_url_sp[0]) ;
-            let lng = parseFloat(latlng_url_sp[1]) ;
+            lat_text.value = position.coords.latitude ;
+            lng_text.value = position.coords.longitude ;
+            latlng.value = position.coords.latitude+","+position.coords.longitude ;
+
+            let lat = parseFloat(lat_text.value) ;
+            let lng = parseFloat(lng_text.value) ;
+
+            // console.log(lat);
+            // console.log(lng);
+
+        }
+
+        function initMap(position) {
+
+            // latlng_url_sp = latlng_url.split(",");
+
+            // let lat = parseFloat(latlng_url_sp[0]) ;
+            // let lng = parseFloat(latlng_url_sp[1]) ;
+
+            let lat_text = document.querySelector("#lat");
+            let lng_text = document.querySelector("#lng");
+            let latlng = document.querySelector("#latlng");
+
+            lat_text.value = position.coords.latitude ;
+            lng_text.value = position.coords.longitude ;
+            latlng.value = position.coords.latitude+","+position.coords.longitude ;
+            let lat = parseFloat(lat_text.value) ;
+            let lng = parseFloat(lng_text.value) ;
 
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 15,

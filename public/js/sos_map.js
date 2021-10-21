@@ -67,10 +67,8 @@
 
         let text_sos = document.querySelector('#text_sos').value;
 
-        if (latlng.value !== "") {
-            if (text_sos === "insurance") {
-                document.querySelector('#btn_contact_insurance').click();
-            }
+        if (text_sos === "insurance") {
+            document.querySelector('#btn_contact_insurance').click();
         }
     }
 
