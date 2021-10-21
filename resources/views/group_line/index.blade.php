@@ -85,7 +85,7 @@
                                     <tr class="text-center">
                                         <td class="text-left" style="font-size:15px;">
                                             <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
-                                            <b style="vertical-align: middle;">{{ $item->groupName }}</b> 
+                                            <b style="vertical-align: middle;">&nbsp;&nbsp;{{ $item->groupName }}</b> 
                                         </td>
                                         <td style="font-size:15px;vertical-align: middle;"> {{ $item->owner }}</td>
                                         <td style="font-size:15px;vertical-align: middle;">{{ $item->time_zone }}</td>

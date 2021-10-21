@@ -2,7 +2,7 @@
 
 @section('content')
     <br>
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -24,29 +24,81 @@
                         </form>
 
                         <br/>
-                        <br/>
+                        <br/> -->
+                    
+                        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12 text-center" >
+                                <h2><i class="fad fa-hands-helping" style="color:#21618C;"></i>บริษัทประกันภัย</h2>
+                            </div>
+                            <div class="col-md-3 col-sm-0 "></div>
+                            <div class="col-md-3 col-sm-4 text-center main" style="margin-left: auto;top:8px">
+                                <a href="{{ url('/insurance/create') }}" title="Add New Insurance" style="text-decoration: none;">
+                                    <button type="button" class="d-flex btn btn-secondary btn btn-success btn-sm" style="margin-left: auto;">
+                                        <i class="fa fa-plus" style="margin-top:5px" ></i>  เพิ่มบริษัท
+                                    </button>
+                                </a>
+                            </div>
+                            <br style="d-block d-md-none">
+                            <div class="col-md-3 col-sm-8 text-center d-flex justify-content-end">
+                                <form method="GET" action="{{ url('/insurance') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                        <span class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
                         <div class="table-responsive">
                             <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>ชื่อบริษัทประกันภัย</th>
-                                        <th>เบอร์โทรศัพท์</th>
-                                        <th>สถานะพาร์ทเนอร์</th>
-                                        <th>Line Group</th>
-                                        <th>Mail</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
+                                <div class="card" style="margin-top:-32px;">
+                                    <thead style="font-family: 'Prompt', sans-serif; background-color:#E3E5E8;">
+                                        <tr class="text-center">
+                                            <th style="font-size:15px">ชื่อบริษัทประกันภัย</th>
+                                            <th style="font-size:15px">เบอร์โทรศัพท์</th>
+                                            <th style="font-size:15px">สถานะพาร์ทเนอร์</th>
+                                            <th style="font-size:15px">Line Group</th>
+                                            <th style="font-size:15px">Mail</th>
+                                            <th style="font-size:15px">เครื่องมือ</th>
+                                        </tr>
+                                    </thead>
+                                </div>
                                 <tbody>
                                 @foreach($insurance as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->company }}</td>
-                                        <td>{{ $item->phone }}</td>
-                                        <td>{{ $item->status_partner }}</td>
+                                    <tr class="text-center" style="font-size:15px">
+                                        <!-- <td>{{ $loop->iteration }}</td> -->
+                                        <td style="vertical-align: middle;font-size:15px;"> <b>{{ $item->company }}</b> </td>
+                                        <td style="vertical-align: middle;font-size:15px;">{{ $item->phone }}</td>
+                                        <td style="vertical-align: middle;font-size:15px;">{{ $item->status_partner }}</td>
+                                        <td>
+                                            @if(!empty($item->line_group))
+                                                {{ $item->line_group }}
+                                            @elseif(empty($item->line_group) and $item->status_partner == "Yes")
+                                                <select id="select_line_group_{{ $loop->iteration }}" class="btn btn-sm btn-outline-success" onchange="change_line_group('{{ $loop->iteration }}','{{ $item->company }}');">
+                                                    <option value="" selected>- เลือกกลุ่มไลน์ -</option>
+                                                    @foreach($group_line as $item)
+                                                        <option value="{{ $item->groupName }}" 
+                                                        {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+                                                        {{ $item->groupName }} 
+                                                        </option>
+                                                    @endforeach 
+                                                </select>
+                                            @else
+                                            -
+                                            @endif
+                                        </td>
 
-                                        @if(!empty($item->line_group))
+
+                                        <!-- @if(!empty($item->line_group))
                                             <td>{{ $item->line_group }}</td>
                                         @elseif(empty($item->line_group) and $item->status_partner == "Yes")
                                             <td>
@@ -61,8 +113,8 @@
                                                 </select>
                                             </td>
                                         @else
-                                            <th> <!-- // --> </th>
-                                        @endif
+                                            <th> </th>
+                                        @endif -->
 
                                         <td>{{ $item->mail }}</td>
                                         <td>

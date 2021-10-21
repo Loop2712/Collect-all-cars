@@ -562,10 +562,11 @@
                                         </a>
                                     </p>
                                     <div class="collapse" id="collapseExample">
-                                        <a style="float:right;" class="text-danger" href="#">
+                                        <a style="float:right;" class="text-danger" data-toggle="modal" data-target="#cancel_Profile_mobile" href="#">
                                             <i class="fas fa-user-times"></i> ยกเลิกการเป็นสมาชิก
                                         </a>
                                     </div>
+                                    @include ('ProfileUser.Modal_cancel_Profile_mobile')
                                 </div>
                             </div>
                         </div>

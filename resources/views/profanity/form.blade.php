@@ -5,6 +5,6 @@
 </div>
 
 
-<div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'แก้ไข' : 'เพิ่ม' }}">
+<div class="form-group d-flex justify-content-end">
+    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Save' : 'Save' }}">
 </div>
