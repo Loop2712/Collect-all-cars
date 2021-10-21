@@ -202,8 +202,8 @@
     </div>
 
     <input class="d-none" type="text" id="latlng" name="latlng" readonly>
-    <input class="form-control" name="lat" type="text" id="lat" value="" >
-    <input class="form-control" name="lng" type="text" id="lng" value="" >
+    <input class="d-none form-control" name="lat" type="text" id="lat" value="" >
+    <input class="d-none form-control" name="lng" type="text" id="lng" value="" >
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
     <style type="text/css">
         #map {
