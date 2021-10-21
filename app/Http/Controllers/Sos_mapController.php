@@ -207,9 +207,9 @@ class Sos_mapController extends Controller
     public function insurance_login()
     {
         if(Auth::check()){
-            return redirect('sos_map/create?text=insurance');
+            return redirect('sos_insurance_blade');
         }else{
-            return redirect('login/line?redirectTo=sos_map/create?text=insurance');
+            return redirect('login/line?redirectTo=sos_insurance_blade');
         }
     }
 
