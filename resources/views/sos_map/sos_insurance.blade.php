@@ -118,7 +118,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
     <style type="text/css">
         #map {
-          height: calc(40vh);
+          height: calc(33vh);
         }
         
     </style>
