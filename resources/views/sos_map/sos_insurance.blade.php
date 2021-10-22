@@ -22,7 +22,7 @@
                         <div id="div_content_call" class="d-none">
                             @foreach($register_car as $item)
                             <!-- แบบใหม่ -->
-                                <div class="card shadow" style="margin-top:25px;padding: 10px;">
+                                <div class="card shadow" style="margin-top:25px;padding: 10px;border-radius: 15px;border-color: #f76565;">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="row">
@@ -52,7 +52,7 @@
                                                     <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
                                                 </div>
                                             </div>
-                                            <hr>
+                                            <hr class="text-danger">
                                             @if(!empty($item->name_insurance))
                                                 <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
                                                     <div class="col-3">
