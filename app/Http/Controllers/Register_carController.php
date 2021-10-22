@@ -444,7 +444,20 @@ class Register_carController extends Controller
     public function edit_act($id)
     {
         $register_car = Register_car::findOrFail($id);
-        return view('register_car.edit_act', compact('register_car'));
+
+        $name_insurance = Insurance::where('company', '!=',"" )
+            ->groupBy('company')
+            ->orderBy('company')
+            ->get();
+
+        $data_car_old = Register_car::where('id',$id )->get();
+
+            foreach ($data_car_old as $item) {
+                $name_insurance_old  =  $item->name_insurance;
+
+            }
+
+        return view('register_car.edit_act', compact('register_car', 'name_insurance','name_insurance_old'));
     }
 
     /**
