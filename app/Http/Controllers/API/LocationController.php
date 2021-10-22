@@ -87,6 +87,7 @@ class LocationController extends Controller
                     ->update([
                         'country' => $query['countryCode'],
                         'time_zone' => $query['timezone'],
+                        'ip_address' => $query,
                 ]);
             }
         }
