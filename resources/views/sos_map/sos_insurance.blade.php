@@ -112,7 +112,7 @@
 
                         @foreach($register_car as $item)
                         <!-- แบบใหม่ -->
-                            <div class="card shadow" style="margin-top:25px;padding: 10px;">
+                            <div id="div_content_call" class="card shadow d-none" style="margin-top:25px;padding: 10px;">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">
@@ -297,6 +297,8 @@
             });
 
             document.querySelector('#text_open_location').classList.add('d-none');
+            document.querySelector('#div_content_call').classList.remove('d-none');
+
         }
 
         function geocodeLatLng(geocoder, map, infowindow) {
