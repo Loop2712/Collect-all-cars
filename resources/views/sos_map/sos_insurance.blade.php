@@ -18,183 +18,94 @@
                             <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
                             <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
                         </div>
-                        <!-- <br>
-                        <div class="col-12" >
-                            <p style=" color:#B3B6B7" id="location_user">
-                                <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
-                            </p>
-                        </div> -->
-                        @foreach($register_car as $item)
-                            <!-- แบบเก่า -->
-                            <!-- <div class="col-12 card shadow" style="margin-top:25px;">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <center>
-                                                    <img style="margin-top:15px;width: 65%;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                                    <div style="margin-top:8px;overflow ;" class="notranslate">
-                                                        <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
-                                                        <h6><b>{{ $item->registration_number }}</b></h6>
-                                                        <span>{{ $item->province }}</span>
-                                                    </div>
-                                                </center>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    @if(!empty($item->name_insurance))
-                                                        <div class="collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <img style="margin-top:12px;width: 30%;" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
-                                                                    <br>
-                                                                    <h4 style="font-size:18px; padding-top: 8px;" id="name_insurance_{{ $item->id }}" class="text-success">
-                                                                        <b>{{ $item->name_insurance }}</b>
-                                                                    </h4>
-                                                                    <button style="margin-top:10px;width: 100%;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-sm btn-primary main-shadow main-radius">
-                                                                        <i class="fas fa-phone-alt"></i> ติดต่อ
-                                                                    </button>
-                                                                    <a id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <span data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary" style="font-size:14px;padding-top: 15px;">
-                                                              บริษัทประกันอื่นๆ <i class="fas fa-angle-down"></i>
-                                                        </span>
-                                                        <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
-                                                            <div class="row" style="margin-top: 10px;">
-                                                                <div class="col-12">
-                                                                    <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
-                                                                        <option value="" selected>- เลือก -</option>
-                                                                        @foreach($select_ins as $item_2)
-                                                                            <option value="{{ $item_2->company }}" 
-                                                                            {{ request('company') == $item_2->company ? 'selected' : ''   }} >
-                                                                            {{ $item_2->company }} 
-                                                                            </option>
-                                                                        @endforeach  
-                                                                    </select>
-                                                                    <button style="margin-top:25px;width: 100%;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
-                                                                        <i class="fas fa-phone-alt"></i> ติดต่อ
-                                                                    </button>
-                                                                    <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @else
-                                                        <div class="col-12" style="margin-top: 35px;">
-                                                            <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
-                                                                <option value="" selected>- เลือก -</option>
-                                                                @foreach($name_insurance as $item)
-                                                                    <option value="{{ $item->company }}" 
-                                                                    {{ request('company') == $item->company ? 'selected' : ''   }} >
-                                                                    {{ $item->company }} 
+                        <div id="div_content_call" class="d-none">
+                            @foreach($register_car as $item)
+                            <!-- แบบใหม่ -->
+                                <div class="card shadow" style="margin-top:25px;padding: 10px;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <img style="margin-top:7px;width: 100%;margin-left: 7px;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                </div>
+                                                <div class="col-6 notranslate" style="margin-top:8px;overflow ;">
+                                                    <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
+                                                    <h6><b>{{ $item->registration_number }}</b></h6>
+                                                    <span>{{ $item->province }}</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    @if(!empty($item->name_insurance))
+                                                        <button style="margin-top:7px;overflow ;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-primary main-shadow main-radius collapse multi-collapse_{{ $loop->iteration }} show">
+                                                            <i class="fas fa-phone-alt"></i> 
+                                                        </button>
+                                                        <a class="d-none" id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
+                                                    @endif
+                                                    <button style="margin-top:7px;overflow ;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none collapse multi-collapse_{{ $loop->iteration }}">
+                                                        <i class="fas fa-phone-alt"></i>
+                                                    </button>
+                                                    <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
+
+                                                    <button style="margin-top:7px;overflow ;" onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none">
+                                                        <i class="fas fa-phone-alt"></i> 
+                                                    </button>
+                                                    <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            @if(!empty($item->name_insurance))
+                                                <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
+                                                    <div class="col-3">
+                                                        <img style="margin-left: 7px;margin-top:-5px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p style="width: 100%;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;" id="name_insurance_{{ $item->id }}" class="text-success">
+                                                            {{ $item->name_insurance }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;padding-top: 1px;">
+                                                            อื่นๆ <i class="fas fa-chevron-circle-down"></i>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
+                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:14px;padding-top: 8px;">
+                                                        <i class="fas fa-chevron-circle-up"></i>
+                                                    </p>
+
+                                                    <div class="row" style="margin-top: 10px;">
+                                                        <div class="col-12">
+                                                            <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
+                                                                <option value="" selected>- เลือกบริษัทประกันภัย -</option>
+                                                                @foreach($select_ins as $item_2)
+                                                                    <option value="{{ $item_2->company }}" 
+                                                                    {{ request('company') == $item_2->company ? 'selected' : ''   }} >
+                                                                    {{ $item_2->company }} 
                                                                     </option>
                                                                 @endforeach  
                                                             </select>
-                                                            <button style="margin-top:25px;width: 100%;" onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-sm btn-primary main-shadow main-radius d-none">
-                                                                <i class="fas fa-phone-alt"></i> ติดต่อ
-                                                            </button>
-                                                            <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
                                                         </div>
-                                                        <div class="col-4">
-
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <br>
-                            </div> -->
-                        @endforeach
-
-                        @foreach($register_car as $item)
-                        <!-- แบบใหม่ -->
-                            <div id="div_content_call" class="card shadow d-none" style="margin-top:25px;padding: 10px;">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img style="margin-top:7px;width: 100%;margin-left: 7px;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                            </div>
-                                            <div class="col-6 notranslate" style="margin-top:8px;overflow ;">
-                                                <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
-                                                <h6><b>{{ $item->registration_number }}</b></h6>
-                                                <span>{{ $item->province }}</span>
-                                            </div>
-                                            <div class="col-3">
-                                                @if(!empty($item->name_insurance))
-                                                    <button style="margin-top:7px;overflow ;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-primary main-shadow main-radius collapse multi-collapse_{{ $loop->iteration }} show">
-                                                        <i class="fas fa-phone-alt"></i> 
-                                                    </button>
-                                                    <a class="d-none" id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
-                                                @endif
-                                                <button style="margin-top:7px;overflow ;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none collapse multi-collapse_{{ $loop->iteration }}">
-                                                    <i class="fas fa-phone-alt"></i>
-                                                </button>
-                                                <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
-
-                                                <button style="margin-top:7px;overflow ;" onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none">
-                                                    <i class="fas fa-phone-alt"></i> 
-                                                </button>
-                                                <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        @if(!empty($item->name_insurance))
-                                            <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
-                                                <div class="col-3">
-                                                    <img style="margin-left: 7px;margin-top:-5px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
-                                                </div>
-                                                <div class="col-6">
-                                                    <p style="width: 100%;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;" id="name_insurance_{{ $item->id }}" class="text-success">
-                                                        {{ $item->name_insurance }}
-                                                    </p>
-                                                </div>
-                                                <div class="col-3">
-                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;padding-top: 1px;">
-                                                        อื่นๆ <i class="fas fa-chevron-circle-down"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
-                                                <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:14px;padding-top: 8px;">
-                                                    <i class="fas fa-chevron-circle-up"></i>
-                                                </p>
-
-                                                <div class="row" style="margin-top: 10px;">
-                                                    <div class="col-12">
-                                                        <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
-                                                            <option value="" selected>- เลือกบริษัทประกันภัย -</option>
-                                                            @foreach($select_ins as $item_2)
-                                                                <option value="{{ $item_2->company }}" 
-                                                                {{ request('company') == $item_2->company ? 'selected' : ''   }} >
-                                                                {{ $item_2->company }} 
-                                                                </option>
-                                                            @endforeach  
-                                                        </select>
                                                     </div>
                                                 </div>
+                                            @else
+                                            <div class="col-12" style="margin-top: 13px;">
+                                                <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
+                                                    <option value="" selected>- เลือกบริษัทประกันภัย -</option>
+                                                    @foreach($name_insurance as $item)
+                                                        <option value="{{ $item->company }}" 
+                                                        {{ request('company') == $item->company ? 'selected' : ''   }} >
+                                                        {{ $item->company }} 
+                                                        </option>
+                                                    @endforeach  
+                                                </select>
                                             </div>
-                                        @else
-                                        <div class="col-12" style="margin-top: 13px;">
-                                            <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
-                                                <option value="" selected>- เลือกบริษัทประกันภัย -</option>
-                                                @foreach($name_insurance as $item)
-                                                    <option value="{{ $item->company }}" 
-                                                    {{ request('company') == $item->company ? 'selected' : ''   }} >
-                                                    {{ $item->company }} 
-                                                    </option>
-                                                @endforeach  
-                                            </select>
+                                            @endif
                                         </div>
-                                        @endif
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
