@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "last_name",
+            "type": "string"
+        },
+        {
+            "name": "faculty",
+            "type": "string"
+        },
+        {
+            "name": "department",
+            "type": "string"
+        },
+        {
+            "name": "student_id",
+            "type": "string"
+        },
+        {
+            "name": "status_line",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        }
+    ]
+}

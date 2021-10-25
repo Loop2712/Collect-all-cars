@@ -258,9 +258,9 @@ Route::get('/sos_thank_area', function () {
     return view('sos_map/sos_thank_area');
 });
 
-Route::get('/test_ocr', function () {
+Route::get('/test_test', function () {
     
-    return view('test_ocr');
+    return view('test_test');
 });
 
 Route::get('/test_link_line', function () {
@@ -277,3 +277,5 @@ Route::resource('cancel_after_6_month', 'Cancel_after_6_monthController');
 // CHECK IP
 Route::get('/check_ip', 'Home_pageController@check_ip');
 
+
+Route::resource('d-p_tu_student', 'DP_tu_studentController');

@@ -1,0 +1,47 @@
+@extends('layouts.viicheck')
+
+@section('content')
+<br><br><br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                  <a href="{{ route('login.line') }}?redirectTo=https://www.viicheck.com" class="btn btn-primary" onclick="test_api_tu();">
+                    test api tu
+                  </a>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+<script>
+  
+  function test_api_tu(){
+
+      let data = {
+          "name" : "ฐนกร ตุงคโสภา",
+          "faculty" : "วิทยาศาสตร์และเทคโนโลยี",
+          "department" : "วิทยาการคอมพิวเตอร์",
+          "student_id" : "60122420111",
+      };
+
+      fetch("{{ url('/') }}/api/api_tu_greats", {
+              method: 'post',
+              body: JSON.stringify(data),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          }).then(function (response){
+              return response.text();
+          }).then(function(text){
+              console.log(text);
+          }).catch(function(error){
+              console.error(error);
+          });
+
+
+  }
+
+</script>
