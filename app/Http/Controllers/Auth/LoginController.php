@@ -128,7 +128,7 @@ class LoginController extends Controller
     // Line callback
     public function handleLineCallback(Request $request)
     {
-        $request = $request->session()->get('redirectTo');
+        $request = $request->session()->get('student');
 
         echo $request;
 
