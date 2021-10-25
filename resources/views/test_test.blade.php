@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <a href="https://www.viicheck.com/login/line?redirectTo=https://www.viicheck.com/sos_map/create&student=tu" class="btn btn-primary" onclick="test_api_tu();">
+                  <a href="https://www.viicheck.com/login/line?student=tu" class="btn btn-primary" onclick="test_api_tu();">
                     test api tu
                   </a>
                 </div>

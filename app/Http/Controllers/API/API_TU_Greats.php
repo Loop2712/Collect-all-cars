@@ -24,8 +24,8 @@ class API_TU_Greats extends Controller
         DP_tu_student::firstOrCreate($data);
 
         // $this->redirectToLine($request);
-        $request->session()->put('redirectTo', "https://www.viicheck.com/sos_map/create");
-        $request_student->session()->put('student', "tu");
+        // $request->session()->put('redirectTo', "https://www.viicheck.com/sos_map/create");
+        $request->session()->put('student', "tu");
 
         return Socialite::driver('line')->redirect();
         
