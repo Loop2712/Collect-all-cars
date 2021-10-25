@@ -26,7 +26,7 @@ class Save_sos_insuranceController extends Controller
                 $name_line_group = $key->line_group ;
             }
 
-        if ($status_partner == "Yes") {
+        if (!empty($name_line_group)) {
 
             $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
 
