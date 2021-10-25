@@ -27,7 +27,7 @@ class API_TU_Greats extends Controller
         
     }
 
-    public function redirectToLine(Request $request)
+    public function redirectToLine()
     {
         // echo $_SERVER['HTTP_REFERER'];
         // exit();
