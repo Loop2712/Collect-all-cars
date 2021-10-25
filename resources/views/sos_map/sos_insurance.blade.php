@@ -262,9 +262,6 @@
                 "car_id" : car_id,
             };
 
-            // console.log(data_sos_insurance);
-
-
             fetch("{{ url('/') }}/api/save_sos_insurance", {
                     method: 'post',
                     body: JSON.stringify(data_sos_insurance),
