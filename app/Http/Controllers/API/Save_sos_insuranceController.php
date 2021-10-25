@@ -44,6 +44,8 @@ class Save_sos_insuranceController extends Controller
             $data['groupId'] = $groupId ;
             $data['time_zone'] = $time_zone ;
             $data['group_language'] = $group_language ;
+        }else{
+            $time_zone = "Asia/Bangkok";
         }
 
         
