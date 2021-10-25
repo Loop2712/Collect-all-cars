@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <a href="{{ route('login.line') }}?redirectTo=https://www.viicheck.com/sos_map/create" class="btn btn-primary" onclick="test_api_tu();">
+                  <a class="btn btn-primary" onclick="test_api_tu();">
                     test api tu
                   </a>
                 </div>

@@ -128,20 +128,19 @@ class LoginController extends Controller
     // Line callback
     public function handleLineCallback(Request $request)
     {
-
+        // $requestData = $request->all();
+        
+        
         $user = Socialite::driver('line')->user();
-        echo "<pre>";
-        print_r($user);
-        echo "<pre>";
+        // print_r($user);
         $this->_registerOrLoginUser($user,"line");
-        echo "-----------------------";
-        echo $_SERVER['HTTP_REFERER'];
-        exit();
+        // echo $_SERVER['HTTP_REFERER'];
+        // exit();
         // Return home after login
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
-        // echo $value;
-        // exit();
+        echo $value;
+        exit();
         //return redirect($value);
         return redirect()->intended($value);
 
