@@ -262,6 +262,9 @@
                 "car_id" : car_id,
             };
 
+            // console.log(data_sos_insurance);
+
+
             fetch("{{ url('/') }}/api/save_sos_insurance", {
                     method: 'post',
                     body: JSON.stringify(data_sos_insurance),
@@ -286,7 +289,7 @@
             let btn_call_select_insurance = document.querySelector("#btn_call_select_insurance_"+loop);
             let btn2_call_select_insurance = document.querySelector("#btn2_call_select_insurance_"+loop);
 
-            fetch("{{ url('/') }}/api/save_sos_insurance/"+select_insurance+"/select_insurance")
+            fetch("{{ url('/') }}/api/select_sos_insurance/"+select_insurance+"/select_insurance")
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
@@ -311,7 +314,7 @@
             let btn_other_ins = document.querySelector("#btn_other_ins_"+loop);
             let btn_call_other_ins = document.querySelector("#btn_call_other_ins_"+loop);
 
-            fetch("{{ url('/') }}/api/save_sos_insurance/"+tag_select_ins+"/select_insurance")
+            fetch("{{ url('/') }}/api/select_sos_insurance/"+tag_select_ins+"/select_insurance")
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
@@ -403,7 +406,7 @@
                 }).then(function (response){
                     // return response.text();
                 }).then(function(text){
-                    console.log(text);
+                    // console.log(text);
                 }).catch(function(error){
                     // console.error(error);
                 });

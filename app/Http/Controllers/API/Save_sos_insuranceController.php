@@ -26,21 +26,27 @@ class Save_sos_insuranceController extends Controller
                 $name_line_group = $key->line_group ;
             }
 
-        $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+        if ($status_partner == "Yes") {
+            
+            $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
 
-        foreach ($data_line_group as $key_line) {
-            $groupId = $key_line->groupId ;
-            $name_time_zone = $key_line->time_zone ;
-            $group_language = $key_line->language ;
+            foreach ($data_line_group as $key_line) {
+                $groupId = $key_line->groupId ;
+                $name_time_zone = $key_line->time_zone ;
+                $group_language = $key_line->language ;
+            }
+
+            // TIME ZONE
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+            
+
+            $data['groupId'] = $groupId ;
+            $data['time_zone'] = $time_zone ;
+            $data['group_language'] = $group_language ;
         }
 
-        // TIME ZONE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
-
-        $data['groupId'] = $groupId ;
-        $data['time_zone'] = $time_zone ;
-        $data['group_language'] = $group_language ;
+        
 
         Sos_insurance::create($data);
 
@@ -74,7 +80,7 @@ class Save_sos_insuranceController extends Controller
 
     }
 
-    public function Save_sos_2($name_insurance)
+    public function select_sos_insurance($name_insurance)
     {   
         $insurance = Insurance::where('company', $name_insurance )->get();
 
