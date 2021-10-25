@@ -27,7 +27,7 @@ class Save_sos_insuranceController extends Controller
             }
 
         if ($status_partner == "Yes") {
-            
+
             $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
 
             foreach ($data_line_group as $key_line) {
@@ -73,8 +73,10 @@ class Save_sos_insuranceController extends Controller
                     Mail::to($email)->send(new MailToInsurance($data));
                 }
 
-            // ส่งข้อมูลผ่านไลน์ 
-            $this->_pushLine($data);
+            if (!empty($name_line_group)) {
+                // ส่งข้อมูลผ่านไลน์ 
+                $this->_pushLine($data);
+            }
             
         }
 
