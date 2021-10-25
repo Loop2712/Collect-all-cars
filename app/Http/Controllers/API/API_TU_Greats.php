@@ -24,6 +24,18 @@ class API_TU_Greats extends Controller
         DP_tu_student::firstOrCreate($data);
 
         $message = "Completed";
+
+        $this->redirectToLine();
+
         return $message ;
+    }
+
+    public function redirectToLine()
+    {
+        echo "hello";
+        // exit();
+        // $request->session()->put('redirectTo', $request->get('redirectTo'));
+
+        // return Socialite::driver('line')->redirect();
     }
 }
