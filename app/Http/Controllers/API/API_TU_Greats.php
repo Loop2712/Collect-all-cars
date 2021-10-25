@@ -23,17 +23,21 @@ class API_TU_Greats extends Controller
 
         DP_tu_student::firstOrCreate($data);
 
-        $this->redirectToLine();
-        
-    }
-
-    public function redirectToLine()
-    {
-        // echo $_SERVER['HTTP_REFERER'];
-        // exit();
+        // $this->redirectToLine($request);
         $request->session()->put('redirectTo', "https://www.viicheck.com/sos_map/create");
         $request_student->session()->put('student', "tu");
 
         return Socialite::driver('line')->redirect();
+        
     }
+
+    // public function redirectToLine($request)
+    // {
+    //     // echo $_SERVER['HTTP_REFERER'];
+    //     // exit();
+    //     $request->session()->put('redirectTo', "https://www.viicheck.com/sos_map/create");
+    //     $request_student->session()->put('student', "tu");
+
+    //     return Socialite::driver('line')->redirect();
+    // }
 }
