@@ -130,10 +130,10 @@ class LoginController extends Controller
     {
 
         $user = Socialite::driver('line')->user();
-        // print_r($user);
+        print_r($user);
         $this->_registerOrLoginUser($user,"line");
-        // echo $_SERVER['HTTP_REFERER'];
-        // exit();
+        echo $_SERVER['HTTP_REFERER'];
+        exit();
         // Return home after login
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
