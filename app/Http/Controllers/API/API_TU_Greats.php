@@ -23,8 +23,8 @@ class API_TU_Greats extends Controller
 
         DP_tu_student::firstOrCreate($data);
 
-        $request->session()->put('redirectTo', $request->get('redirectTo'));
-        Socialite::driver('line')->redirect();
+        // $request->session()->put('redirectTo', $request->get('redirectTo'));
+        // Socialite::driver('line')->redirect();
 
         
         
