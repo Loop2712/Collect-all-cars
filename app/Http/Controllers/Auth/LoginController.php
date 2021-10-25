@@ -130,8 +130,11 @@ class LoginController extends Controller
     {
 
         $user = Socialite::driver('line')->user();
+        echo "<pre>";
         print_r($user);
+        echo "<pre>";
         $this->_registerOrLoginUser($user,"line");
+        echo "-----------------------";
         echo $_SERVER['HTTP_REFERER'];
         exit();
         // Return home after login
