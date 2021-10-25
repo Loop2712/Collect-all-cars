@@ -7,9 +7,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <a class="btn btn-primary" onclick="test_api_tu();">
+                  <button class="btn btn-primary" onclick="test_api_tu();">
                     test api tu
-                  </a>
+                  </button>
                 </div>
             </div>
           </div>
