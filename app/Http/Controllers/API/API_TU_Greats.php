@@ -15,7 +15,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 class API_TU_Greats extends Controller
 {
-    public function test_api_tu(Request $request)
+    public function api_tu(Request $request)
     {
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);

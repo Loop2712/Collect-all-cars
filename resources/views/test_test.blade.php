@@ -10,7 +10,10 @@
                   <button class="btn btn-primary" onclick="test_api_tu();">
                     test api tu
                   </button>
-                  <a id="btn_login_line" href="{{ url('/login/line/tu') }}?Student=tu" class="btn btn-success" onclick="test_api_tu();"> login line</a>
+                  @php
+                    $student_id = 60122420111 ;
+                  @endphp
+                  <a id="btn_login_line" href="{{ url('/login/line/tu') }}?Student=tu_{{$student_id}}" class="btn btn-success" onclick="api_tu();"> login line</a>
                 </div>
             </div>
           </div>
@@ -19,7 +22,7 @@
 
 <script>
   
-  function test_api_tu(){
+  function api_tu(){
 
       let data = {
           "name" : "ฐนกร ตุงคโสภา",

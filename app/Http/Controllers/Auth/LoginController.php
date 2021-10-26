@@ -120,7 +120,6 @@ class LoginController extends Controller
     public function redirectToLine(Request $request)
     {
         $request->session()->put('redirectTo', $request->get('redirectTo'));
-        $request->session()->put('Student', $request->get('Student'));
 
         return Socialite::driver('line')->redirect();
     }
@@ -196,10 +195,13 @@ class LoginController extends Controller
 
         $data_user = Auth::user();
 
-        if ($student == "tu") {
+        $student_split = explode("_",$student);
+        $student_name = $student_split[0];
+        $student_id = $student_split[1];
+
+        if ($student_name == "tu") {
             DB::table('d_p_tu_students')
-                ->where('status_line', null)
-                ->where('user_id', null)
+                ->where('student_id', $student_id)
                 ->update([
                     'status_line' => 'Yes',
                     'user_id' => $data_user->id,
