@@ -178,8 +178,10 @@ class LoginController extends Controller
             }
             $user->save();
         }
+        
         //LOGIN
         Auth::login($user);
+        $data_user = Auth::user();
 
         if ($type == "line") {
 
@@ -194,11 +196,11 @@ class LoginController extends Controller
 
         }
 
-        $data_user = Auth::user();
-
-        $student_split = explode("_",$student);
-        $student_name = $student_split[0];
-        $student_id = $student_split[1];
+        if (!empty($student)) {
+            $student_split = explode("_",$student);
+            $student_name = $student_split[0];
+            $student_id = $student_split[1];
+        }
 
         if ($student_name == "tu") {
             DB::table('d_p_tu_students')
