@@ -32,10 +32,6 @@ class API_TU_Greats extends Controller
 
     public function redirectToLine()
     {
-        // echo "hello";
-        // exit();
-        // $request->session()->put('redirectTo', $request->get('redirectTo'));
-
         return Socialite::driver('line')
               ->with(['student' => 'tu'])
               ->redirect();
