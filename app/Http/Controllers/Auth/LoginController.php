@@ -154,9 +154,6 @@ class LoginController extends Controller
         $user = User::where('provider_id', '=', $data->id)->first();
         // print_r($data) ;
 
-        echo $student ;
-        exit();
-
         if (!$user) {
             //CREATE NEW USER
             $user = new User();
@@ -195,6 +192,18 @@ class LoginController extends Controller
             $lineAPI = new LineApiController();
             $lineAPI->check_language_user($data_users);
 
+        }
+
+        $data_user = Auth::user();
+
+        if ($student == "tu") {
+            DB::table('d_p_tu_students')
+                ->where('status_line', null)
+                ->where('user_id', null)
+                ->update([
+                    'status_line' => 'Yes',
+                    'user_id' => $data_user->id,
+                ]);
         }
 
     }
