@@ -9,15 +9,8 @@
                 <div class="card-body">
                   @php
                     $student_id = 123456789 ;
-                    $data = {
-                        "name" : "ฐนกร",
-                        "last_name" : "ตุงคโสภา",
-                        "faculty" : "วิทยาศาสตร์และเทคโนโลยี",
-                        "department" : "วิทยาการคอมพิวเตอร์",
-                        "student_id" : "123456789",
-                    };
                   @endphp
-                  <a id="btn_login_line" href="https://www.viicheck.com/login/line/tu?Student=tu_{{ $data }}" class="btn btn-success" > login line TU</a> <!-- onclick="api_tu();" -->
+                  <a id="btn_login_line" href="https://www.viicheck.com/login/line/tu?Student=tu_{{ $student_id }}" class="btn btn-success" onclick="api_tu();"> login line TU</a> 
                 </div>
             </div>
           </div>
