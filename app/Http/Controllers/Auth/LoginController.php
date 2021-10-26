@@ -138,8 +138,9 @@ class LoginController extends Controller
     }
 
     // Line login TU
-    public function redirectToLine_TU()
+    public function redirectToLine_TU($data)
     {
+        // print_r($data) ;
         return Socialite::driver('line')->redirect();
     }
 
