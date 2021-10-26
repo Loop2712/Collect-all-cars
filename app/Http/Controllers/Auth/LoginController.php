@@ -90,7 +90,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
 
-        $this->_registerOrLoginUser($user, "google");
+        $this->_registerOrLoginUser($user, "google",null);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -110,7 +110,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
         // print_r($user);
-        $this->_registerOrLoginUser($user,"facebook");
+        $this->_registerOrLoginUser($user,"facebook",null);
 
         // Return home after login
         return redirect()->intended();
@@ -120,6 +120,7 @@ class LoginController extends Controller
     public function redirectToLine(Request $request)
     {
         $request->session()->put('redirectTo', $request->get('redirectTo'));
+        $request->session()->put('Student', $request->get('Student'));
 
         return Socialite::driver('line')->redirect();
     }
@@ -127,8 +128,9 @@ class LoginController extends Controller
     public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->user();
+        $student = $request->session()->get('Student');
 
-        $this->_registerOrLoginUser($user,"line");
+        $this->_registerOrLoginUser($user,"line",$student);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -137,19 +139,14 @@ class LoginController extends Controller
 
     }
 
-    // Line login TU
-    public function redirectToLine_TU($data)
-    {
-        print_r($data) ;
-        return Socialite::driver('line')->redirect();
-    }
-
-    protected function _registerOrLoginUser($data, $type)
+    protected function _registerOrLoginUser($data, $type , $student)
     {
         //GET USER 
         $user = User::where('provider_id', '=', $data->id)->first();
         // print_r($data) ;
-        // exit();
+
+        echo $student ;
+        exit();
 
         if (!$user) {
             //CREATE NEW USER

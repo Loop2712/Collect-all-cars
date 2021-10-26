@@ -28,9 +28,19 @@ class API_TU_Greats extends Controller
 
         $message = "Completed";
 
-        $line_login = new LoginController();
-        $line_login->redirectToLine_TU($data);
+        $this->redirectToLine_TU($data);
 
-        return $message ;
+        // $line_login = new LoginController();
+        // $line_login->redirectToLine_TU($data);
+
+        // return $message ;
+    }
+
+    // Line login TU
+    public function redirectToLine_TU($data)
+    {
+        print_r($data) ;
+
+        return Socialite::driver('line')->redirect();
     }
 }

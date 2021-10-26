@@ -10,6 +10,7 @@
                   <button class="btn btn-primary" onclick="test_api_tu();">
                     test api tu
                   </button>
+                  <a id="btn_login_line" href="{{ url('/login/line') }}?Student=tu" class="btn btn-success"> login line</a>
                 </div>
             </div>
           </div>
