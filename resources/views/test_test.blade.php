@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                   @php
-                    $student_id = 60122420111 ;
+                    $student_id = 123456789 ;
                   @endphp
                   <a id="btn_login_line" href="{{ url('/login/line/tu') }}?Student=tu_{{$student_id}}" class="btn btn-success" onclick="api_tu();"> login line TU</a>
                 </div>
@@ -25,7 +25,7 @@
           "name" : "ฐนกร ตุงคโสภา",
           "faculty" : "วิทยาศาสตร์และเทคโนโลยี",
           "department" : "วิทยาการคอมพิวเตอร์",
-          "student_id" : "60122420111",
+          "student_id" : "123456789",
       };
 
       fetch("{{ url('/') }}/api/api_tu_greats", {
