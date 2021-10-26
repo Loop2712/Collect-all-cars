@@ -601,6 +601,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
 
+      if (document.querySelector("#name_user")) {
+
         var name_user = document.querySelector("#name_user");
 
             fetch("{{ url('/') }}/api/explode_name/" + name_user.value)
@@ -610,11 +612,11 @@
                     let input_name = document.querySelector("#input_name");
                     input_name.innerHTML = result;
                     
-                    
                 });
 
-        var status_user = document.querySelector('#status_user').value;
-        var status_id = document.querySelector('#status_id').value;
+            var status_user = document.querySelector('#status_user').value;
+            var status_id = document.querySelector('#status_id').value;
+      }
 
         if (status_user === 'expired') {
           document.querySelector('#btn_welcome_home').click();
@@ -622,7 +624,10 @@
         }
     });
 
-    document.querySelector("#change_country").click();
+    if (document.querySelector("#change_country")) {
+
+        document.querySelector("#change_country").click();
+    }
 
 
 function change_country(user_id, country , language) {

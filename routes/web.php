@@ -31,6 +31,8 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('login/line', 'Auth\LoginController@redirectToLine')->name('login.line');
 Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
+Route::get('login/line/tu', 'Auth\LoginController@redirectToLine_TU');
+
 Route::get('/welcome_line', 'Register_carController@welcome_line');
 Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
 

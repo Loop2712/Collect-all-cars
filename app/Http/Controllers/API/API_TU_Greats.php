@@ -28,20 +28,10 @@ class API_TU_Greats extends Controller
 
         $message = "Completed";
 
-        // $this->redirectToLine();
-
         $line_login = new LoginController();
-        $line_login->redirectToLine();
+        $line_login->redirectToLine_TU();
 
         return $message ;
     }
 
-    // public function redirectToLine()
-    // {
-    //     // echo "hello";
-    //     // exit();
-    //     // $request->session()->put('redirectTo', $request->get('redirectTo'));
-
-    //     return Socialite::driver('line')->with(['student' => 'tu'])->redirect();
-    // }
 }

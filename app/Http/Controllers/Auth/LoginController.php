@@ -119,8 +119,6 @@ class LoginController extends Controller
     // Line login
     public function redirectToLine(Request $request)
     {
-        // echo $_SERVER['HTTP_REFERER'];
-        // exit();
         $request->session()->put('redirectTo', $request->get('redirectTo'));
 
         return Socialite::driver('line')->redirect();
@@ -129,19 +127,20 @@ class LoginController extends Controller
     public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->user();
-        // print_r($user);
-        // exit();
+
         $this->_registerOrLoginUser($user,"line");
-        // echo $_SERVER['HTTP_REFERER'];
-        // exit();
-        // Return home after login
+
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
-        // echo $value;
-        // exit();
-        //return redirect($value);
+
         return redirect()->intended($value);
 
+    }
+
+    // Line login TU
+    public function redirectToLine_TU()
+    {
+        return Socialite::driver('line')->redirect();
     }
 
     protected function _registerOrLoginUser($data, $type)
