@@ -128,6 +128,7 @@ class LoginController extends Controller
     public function redirectToLine_TU(Request $request)
     {
         $request->session()->put('Student', $request->get('Student'));
+        $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
 
         return Socialite::driver('line')->redirect();
     }
