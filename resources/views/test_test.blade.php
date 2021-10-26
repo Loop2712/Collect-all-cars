@@ -22,7 +22,8 @@
   function api_tu(){
 
       let data = {
-          "name" : "ฐนกร ตุงคโสภา",
+          "name" : "ฐนกร",
+          "last_name" : "ตุงคโสภา",
           "faculty" : "วิทยาศาสตร์และเทคโนโลยี",
           "department" : "วิทยาการคอมพิวเตอร์",
           "student_id" : "123456789",

@@ -20,10 +20,6 @@ class API_TU_Greats extends Controller
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
 
-        $name_split = explode(" ",$data['name']);
-        $data['name'] = $name_split[0];
-        $data['last_name'] = $name_split[1];
-
         DP_tu_student::firstOrCreate($data);
 
         $message = "Completed";
