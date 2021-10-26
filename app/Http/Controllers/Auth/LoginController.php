@@ -207,6 +207,12 @@ class LoginController extends Controller
                     'status_line' => 'Yes',
                     'user_id' => $data_user->id,
                 ]);
+
+            DB::table('users')
+                ->where('id', $data_user->id)
+                ->update([
+                    'role' => 'Student-TU',
+                ]);
         }
 
     }

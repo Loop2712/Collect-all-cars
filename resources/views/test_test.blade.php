@@ -7,13 +7,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <button class="btn btn-primary" onclick="test_api_tu();">
-                    test api tu
-                  </button>
                   @php
                     $student_id = 60122420111 ;
                   @endphp
-                  <a id="btn_login_line" href="{{ url('/login/line/tu') }}?Student=tu_{{$student_id}}" class="btn btn-success" onclick="api_tu();"> login line</a>
+                  <a id="btn_login_line" href="{{ url('/login/line/tu') }}?Student=tu_{{$student_id}}" class="btn btn-success" onclick="api_tu();"> login line TU</a>
                 </div>
             </div>
           </div>
