@@ -123,16 +123,14 @@ class LoginController extends Controller
         // exit();
         $request->session()->put('redirectTo', $request->get('redirectTo'));
 
-        return Socialite::driver('line')
-                ->with(['student' => 'tu'])
-                ->redirect();
+        return Socialite::driver('line')->redirect();
     }
     // Line callback
     public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->user();
-        print_r($user);
-        exit();
+        // print_r($user);
+        // exit();
         $this->_registerOrLoginUser($user,"line");
         // echo $_SERVER['HTTP_REFERER'];
         // exit();
