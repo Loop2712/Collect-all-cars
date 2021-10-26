@@ -327,7 +327,7 @@
   <script src="{{ asset('admin/vendor/chart.js/dist/Chart.min.js')}}"></script>
   <script src="{{ asset('admin/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
-  <!-- <script src="{{ asset('admin/js/argon.js?v=1.2.0')}}"></script> -->
+  <script src="{{ asset('admin/js/argon.js?v=1.2.0')}}"></script>
 
   <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -374,8 +374,6 @@
     }
 
   </script>
-
-
 </html>
   @endif
 @endif

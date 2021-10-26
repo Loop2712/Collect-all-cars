@@ -41,7 +41,7 @@
                                         <i class="fa fa-plus" style="margin-top:5px" ></i>  เพิ่มบริษัท
                                     </button>
                                 </a>
-                            </div>
+                            </div><br>
                             <br style="d-block d-md-none">
                             <div class="col-md-3 col-sm-8 text-center d-flex justify-content-end">
                                 <form method="GET" action="{{ url('/insurance') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -57,7 +57,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <!-------------------------------------------------------------- PC -------------------------------------------------------------->
+                    <div class="card d-none d-lg-block">
                         <div class="table-responsive">
                             <table class="table">
                                 <div class="card" style="margin-top:-32px;">
@@ -133,8 +134,73 @@
                             </table>
                             <div class="pagination-wrapper"> {!! $insurance->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
-
                     </div>
+                    <!--------------------------------------------------------------End PC -------------------------------------------------------------->
+                    <!-------------------------------------------------------------- Mobile -------------------------------------------------------------->
+                    @foreach($insurance as $item)
+                            <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:#21618C;border-bottom-width: 4px; margin-bottom: 10px;">
+                                <center>
+                                    <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                                        <div class="col-10" style="margin-bottom:0px">
+                                                <h6 style="margin-bottom:0px">
+                                                    <b> 
+                                                        @if(($item->status_partner == 'Yes' ))
+                                                            <span style="color:#00FF00">&#11044;</span> 
+                                                        @elseif(($item->status_partner == 'No' ))
+                                                            <span style="color:#FF0000">&#11044;</span>
+                                                        @endif
+                                                        {{ $item->company }}
+                                                    </b>
+                                                </h6>
+                                        </div> 
+                                        <div class="col-2 align-self-center" style="vertical-align: middle;">
+                                            <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Insurance_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" ></i>
+                                            </div>
+                                        <div class="col-12 collapse" id="Insurance_{{ $item->id }}"><br>
+                                            <p style="font-size:18px;padding:0px">เบอร์ : {{ $item->phone }} </p> 
+                                            <p style="font-size:18px;padding:0px"> 
+                                                @switch($item->status_partner)
+                                                    @case("Yes") 
+                                                        <p style="font-size:18px;padding:0px">สถานะ : เป็นพาร์ทเนอร์</p> 
+                                                    @break
+                                                    @case("No") 
+                                                        <p style="font-size:18px;padding:0px">สถานะ : ไม่เป็นพาร์ทเนอร์</p> 
+                                                    @break
+                                                @endswitch
+                                            </p> 
+                                            <p>
+                                                @if(!empty($item->line_group))
+                                                    {{ $item->line_group }}
+                                                @elseif(empty($item->line_group) and $item->status_partner == "Yes")
+                                                    <select style="padding:0px" id="select_line_group_{{ $loop->iteration }}" class="btn btn-sm btn-outline-success" onchange="change_line_group('{{ $loop->iteration }}','{{ $item->company }}');">
+                                                        <option value="" selected>- เลือกกลุ่มไลน์ -</option>
+                                                        @foreach($group_line as $item)
+                                                            <option value="{{ $item->groupName }}" 
+                                                            {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+                                                            {{ $item->groupName }} 
+                                                            </option>
+                                                        @endforeach 
+                                                    </select><br>  
+                                                @else
+                                            </p>
+                                            <p style="font-size:18px;padding:0px">ไม่มีกลุ่มไลน์</p>   
+                                            @endif
+                                            <p style="font-size:18px;padding:0px">อีเมล : {{ $item->mail }} </p> 
+                                            <hr>
+                                            <form method="POST" action="{{ url('/insurance' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" style="border-radius: 25px;" class="btn btn-danger btn-sm" title="Delete Insurance" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fas fa-trash-alt"></i> Delete</button>
+                                            </form>
+                                            <a href="{{ url('/insurance/' . $item->id . '/edit') }}" title="Edit Insurance"><button style="border-radius: 25px;" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        </div>
+                                    </div>
+                                </center>   
+                            </div>
+                        @endforeach
+                        <div class="pagination-wrapper"> {!! $insurance->appends(['search' => Request::get('search')])->render() !!} </div>
+                    <!--------------------------------------------------------------End Mobile -------------------------------------------------------------->
+
                 </div>
             </div>
         </div>

@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Home_pageController@home_page');
 Route::get('/home', 'Home_pageController@home_page');
 Route::get('/member', 'ProfileController@member');
-
+//วิธีใช้
+Route::get('/how_to_use', function () {
+    return view('how_to_use/how_to_use');
+});
 
 // Google login
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
