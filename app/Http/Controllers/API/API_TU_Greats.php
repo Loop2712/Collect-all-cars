@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\DP_tu_student;
 use Laravel\Socialite\Facades\Socialite;
 
+use App\Http\Controllers\Auth\LoginController;
+
+
 class API_TU_Greats extends Controller
 {
     public function test_api_tu(Request $request)
@@ -25,17 +28,20 @@ class API_TU_Greats extends Controller
 
         $message = "Completed";
 
-        $this->redirect();
+        // $this->redirectToLine();
+
+        $line_login = new LoginController();
+        $line_login->redirectToLine();
 
         return $message ;
     }
 
-    public function redirect()
-    {
-        // echo "hello";
-        // exit();
-        // $request->session()->put('redirectTo', $request->get('redirectTo'));
+    // public function redirectToLine()
+    // {
+    //     // echo "hello";
+    //     // exit();
+    //     // $request->session()->put('redirectTo', $request->get('redirectTo'));
 
-        return Socialite::driver('line')->redirect();
-    }
+    //     return Socialite::driver('line')->with(['student' => 'tu'])->redirect();
+    // }
 }
