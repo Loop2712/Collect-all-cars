@@ -178,7 +178,7 @@ class LoginController extends Controller
             }
             $user->save();
         }
-        
+
         //LOGIN
         Auth::login($user);
         $data_user = Auth::user();
@@ -200,21 +200,21 @@ class LoginController extends Controller
             $student_split = explode("_",$student);
             $student_name = $student_split[0];
             $student_id = $student_split[1];
-        }
 
-        if ($student_name == "tu") {
-            DB::table('d_p_tu_students')
-                ->where('student_id', $student_id)
-                ->update([
-                    'status_line' => 'Yes',
-                    'user_id' => $data_user->id,
-                ]);
+            if ($student_name == "tu") {
+                DB::table('d_p_tu_students')
+                    ->where('student_id', $student_id)
+                    ->update([
+                        'status_line' => 'Yes',
+                        'user_id' => $data_user->id,
+                    ]);
 
-            DB::table('users')
-                ->where('id', $data_user->id)
-                ->update([
-                    'role' => 'Student-TU',
-                ]);
+                DB::table('users')
+                    ->where('id', $data_user->id)
+                    ->update([
+                        'role' => 'Student-TU',
+                    ]);
+            }
         }
 
     }
