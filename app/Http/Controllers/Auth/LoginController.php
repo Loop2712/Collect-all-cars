@@ -124,6 +124,15 @@ class LoginController extends Controller
 
         return Socialite::driver('line')->redirect();
     }
+
+    // Line login TU
+    public function redirectToLine_TU(Request $request)
+    {
+        $request->session()->put('Student', $request->get('Student'));
+
+        return Socialite::driver('line')->redirect();
+    }
+
     // Line callback
     public function handleLineCallback(Request $request)
     {
