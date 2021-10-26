@@ -139,6 +139,9 @@ class LoginController extends Controller
         $user = Socialite::driver('line')->user();
         $student = $request->session()->get('Student');
 
+        echo $student ;
+        exit();
+
         $this->_registerOrLoginUser($user,"line",$student);
 
         $value = $request->session()->get('redirectTo');
