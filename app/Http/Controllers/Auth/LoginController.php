@@ -123,7 +123,9 @@ class LoginController extends Controller
         // exit();
         $request->session()->put('redirectTo', $request->get('redirectTo'));
 
-        return Socialite::driver('line')->redirect();
+        return Socialite::driver('line')
+                ->with(['student' => 'tu'])
+                ->redirect();
     }
     // Line callback
     public function handleLineCallback(Request $request)

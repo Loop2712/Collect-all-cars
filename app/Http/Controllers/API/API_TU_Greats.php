@@ -25,12 +25,12 @@ class API_TU_Greats extends Controller
 
         $message = "Completed";
 
-        $this->redirectToLine();
+        $this->redirect();
 
         return $message ;
     }
 
-    public function redirectToLine(Request $request)
+    public function redirect()
     {
         // echo "hello";
         // exit();
