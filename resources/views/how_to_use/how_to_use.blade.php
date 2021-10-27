@@ -39,7 +39,7 @@
             <div class="card-body">
             <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีใช้งาน SOS</h5>
             <p class="card-text">วิธีใช้งานระบบ ค้นหาตำแหน่งของฉัน ขอความช่วยเหลือด่วน</p>
-            <a href="#" class="card-link">รายละเอียดเพิ่มเติม »</a>
+            <a href="#" data-toggle="modal" data-target="#sos">รายละเอียดเพิ่มเติม »</a>
             </div>
         </div>
     </div>
@@ -235,4 +235,57 @@
   </div>
 </div>
 <!------------------------------------------- Modal VMove ------------------------------------------->
+<!------------------------------------------- Modal sos ------------------------------------------->
+<div class="modal fade"  id="sos" tabindex="-1" role="dialog" aria-labelledby="sosTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content" >
+      <div class="modal-header" >
+        <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="sosTitle">วิธีใช้งาน SOS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <!-- <br>
+        <section id="about2" class="about2" style="padding:0px;">
+            <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
+                <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
+            </div>
+        </section>
+        <br>
+        <hr>
+        <br> -->
+        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;"data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
+                <div class="col-10" style="margin-bottom:0px">
+                    <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ระบบ SOS</h5>
+                </div> 
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
+                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" ></i>
+                </div>
+                <div class="col-12 collapse" id="login">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/sos-1.png') }}" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ตำแหน่งของฉัน : สำหรับค้นหาตำแหน่งปัจจุบันของคุณ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ขอความช่วยเหลือด่วน : สำหรับโทรหาผู้ดูแลในพื้นที่ปัจจุบันที่คุณอยู่</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.เบอร์โทรฉุกเฉิน : เบอร์โทรสำหรับหน่วยงานเหตุฉุกเฉินด้านต่างๆ</h5>
+                    <div class="alert alert-danger" role="alert">
+                        <h6 style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;"><i class="fas fa-exclamation-circle"></i>
+                            หมายเหตุ <br><br>
+                            &nbsp;&nbsp;&nbsp;1.ต้องทำการเพิ่มเพื่อนในบัญชีไลน์เพื่อใช้งานระบบนี้ เพิ่มเพื่อน<a href="https://page.line.me/702ytkls?openQrModal=true" class="alert-link">คลิก</a><br>
+                            &nbsp;&nbsp;&nbsp;2.สำหรับบริการตำแหน่งของฉัน จำเป็นต้องเปิดตำแหน่งที่ตั้งเพื่อใช้บริการ
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------- Modal sos ------------------------------------------->
 @endsection
