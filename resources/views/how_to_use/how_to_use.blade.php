@@ -28,7 +28,7 @@
             <br>
             <center><img src="{{ asset('/img/stickerline/Flex/6.png') }}" style="background-color: #E59866 ;border-radius: 50%;" width="35%" alt="Card image cap"></center>
             <div class="card-body">
-            <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีใช้งาน VMove</h5>
+            <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีใช้งาน ViiMove</h5>
             <p class="card-text">วิธีใช้งานระบบ ลงทะเบียนรถ แจ้งเตือนเจ้าของรถ</p>
             <a href="#" data-toggle="modal" data-target="#Vmove">รายละเอียดเพิ่มเติม »</a>
             </div>
