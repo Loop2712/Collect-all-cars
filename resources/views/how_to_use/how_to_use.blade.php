@@ -68,12 +68,12 @@
         <br> -->
         <center><img src="{{ asset('/img/วิธีใช้งาน/2.jpg') }}" width="100%" alt="Card image cap"></center><br>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
-            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;"data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
-                <div class="col-10" style="margin-bottom:0px">
+            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
                     <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.เข้าสู่ระบบ</h5>
                 </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" ></i>
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;"  data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" >
+                    <i class="fas fa-angle-down"></i>
                 </div>
                 <div class="col-12 collapse" id="login">
                     <br>
@@ -86,12 +86,12 @@
             </div>
         </div>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
-            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                <div class="col-10" style="margin-bottom:0px">
+            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;" >
+                <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login">
                         <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.เข้าสู่ระบบด้วย Social</h5>
                 </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" ></i>
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" >
+                    <i class="fas fa-angle-down" ></i>
                     </div>
                 <div class="col-12 collapse" id="Social_login">
                     <br>
@@ -106,12 +106,12 @@
         </div>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
             <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                <div class="col-10" style="margin-bottom:0px">
+                <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register">
                         <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">3.สมัครสมาชิกด้วย Email</h5>
                 </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register" ></i>
-                    </div>
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register" >
+                    <i class="fas fa-angle-down" ></i>
+                </div>
                 <div class="col-12 collapse" id="register">
                     <br>
                     <center><img src="{{ asset('/img/วิธีใช้งาน/re-1.jpg') }}" width="100%" alt="Card image cap"></center>
@@ -155,14 +155,14 @@
         <hr>
         <br> -->
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
-            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;"data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
-                <div class="col-10" style="margin-bottom:0px">
+            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register">
                     <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ลงทะเบียนรถผ่านเว็บ</h5>
                 </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" ></i>
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register">
+                    <i class="fas fa-angle-down"></i>
                 </div>
-                <div class="col-12 collapse" id="login">
+                <div class="col-12 collapse" id="register">
                     <br>
                     <center><img src="{{ asset('/img/วิธีใช้งาน/movew-2.png') }}" width="100%" alt="Card image cap"></center>
                     <br>
@@ -176,13 +176,13 @@
         </div>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
             <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                <div class="col-10" style="margin-bottom:0px">
+                <div class="col-10" style="margin-bottom:0px"  data-toggle="collapse" data-target="#registerline" aria-expanded="false" aria-controls="registerline" >
                         <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.ลงทะเบียนรถผ่านไลน์</h5>
                 </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" ></i>
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#registerline" aria-expanded="false" aria-controls="registerline" >
+                    <i class="fas fa-angle-down" ></i>
                     </div>
-                <div class="col-12 collapse" id="Social_login">
+                <div class="col-12 collapse" id="registerline">
                     <br>
                     <center><img src="{{ asset('/img/วิธีใช้งาน/movel-2.jpg') }}" width="100%" alt="Card image cap"></center>
                     <br>
@@ -203,13 +203,13 @@
         </div>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
             <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                <div class="col-10" style="margin-bottom:0px">
+                <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#move" aria-expanded="false" aria-controls="move">
                         <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">3.แจ้งเตือนเจ้าของรถ</h5>
                 </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register" ></i>
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#move" aria-expanded="false" aria-controls="move">
+                    <i class="fas fa-angle-down"  ></i>
                     </div>
-                <div class="col-12 collapse" id="register">
+                <div class="col-12 collapse" id="move">
                     <br>
                     <center><img src="{{ asset('/img/วิธีใช้งาน/movel-3.jpg') }}" width="100%" alt="Card image cap"></center>
                     <br>
@@ -256,14 +256,14 @@
         <hr>
         <br> -->
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
-            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;"data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
-                <div class="col-10" style="margin-bottom:0px">
+            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
                     <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ระบบ SOS</h5>
                 </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" ></i>
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;"data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
+                    <i class="fas fa-angle-down"  ></i>
                 </div>
-                <div class="col-12 collapse" id="login">
+                <div class="col-12 collapse" id="sos1">
                     <br>
                     <center><img src="{{ asset('/img/วิธีใช้งาน/sos-1.png') }}" width="100%" alt="Card image cap"></center>
                     <br>
