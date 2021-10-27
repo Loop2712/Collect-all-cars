@@ -18,41 +18,28 @@
             <center><img src="{{ asset('/img/stickerline/Flex/9.png') }}" style="background-color: #F9E79F ;border-radius: 50%;" width="35%" alt="Card image cap"></center>
             <div class="card-body">
             <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">ขั้นตอนลงทะเบียน Viicheck</h5>
-            <p class="card-text">detail</p>
+            <p class="card-text">วิธีใช้งานระบบ สมัครสมาชิก เข้าสู่ระบบ เข้าสู่ระบบด้วย Social</p>
             <a href="#" data-toggle="modal" data-target="#Viicheck">
                 รายละเอียดเพิ่มเติม »
             </a>
             </div>
         </div>
-        <div class="card">
+        <div class="card" style="font-family: 'Prompt', sans-serif;">
             <br>
             <center><img src="{{ asset('/img/stickerline/Flex/6.png') }}" style="background-color: #E59866 ;border-radius: 50%;" width="35%" alt="Card image cap"></center>
             <div class="card-body">
             <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีใช้งาน VMove</h5>
-            <p class="card-text">detail</p>
-            <a href="#" class="card-link">รายละเอียดเพิ่มเติม »</a>
+            <p class="card-text">วิธีใช้งานระบบ ลงทะเบียนรถ แจ้งเตือนเจ้าของรถ</p>
+            <a href="#" data-toggle="modal" data-target="#Vmove">รายละเอียดเพิ่มเติม »</a>
             </div>
         </div>
-        <div class="card">
+        <div class="card" style="font-family: 'Prompt', sans-serif;">
             <br>
             <center><img src="{{ asset('/img/stickerline/Flex/1.png') }}" style="background-color: #76D7C4 ;border-radius: 50%;" width="35%" alt="Card image cap"></center>
             <div class="card-body">
             <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีใช้งาน SOS</h5>
-            <p class="card-text">detail</p>
+            <p class="card-text">วิธีใช้งานระบบ ค้นหาตำแหน่งของฉัน ขอความช่วยเหลือด่วน</p>
             <a href="#" class="card-link">รายละเอียดเพิ่มเติม »</a>
-            </div>
-        </div>
-    </div>
-    <div class="card col-11 d-block d-md-none" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;top:150px;">                 
-        <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-            <div class="col-10" style="margin-bottom:0px">
-                    <h5 style="margin-bottom:0px">ขั้นตอนลงทะเบียน Viicheck</h5>
-            </div> 
-            <div class="col-2 align-self-center" style="vertical-align: middle;">
-                <i class="fas fa-angle-down" data-toggle="collapse" data-target="#howtouse1" aria-expanded="false" aria-controls="howtouse1" ></i>
-                </div>
-            <div class="col-12 collapse" id="howtouse1">
-                <hr>asdad
             </div>
         </div>
     </div>
@@ -60,27 +47,59 @@
 
 
 <!------------------------------------------- Modal ลงทะเบียน Viicheck ------------------------------------------->
-<div class="modal fade" id="Viicheck" tabindex="-1" role="dialog" aria-labelledby="ViicheckTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ViicheckTitle">ขั้นตอนลงทะเบียน Viicheck</h5>
+<div class="modal fade"  id="Viicheck" tabindex="-1" role="dialog" aria-labelledby="ViicheckTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content" >
+      <div class="modal-header" >
+        <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="ViicheckTitle">ขั้นตอนลงทะเบียน Viicheck</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+          <!-- <br>
+        <section id="about2" class="about2" style="padding:0px;">
+            <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
+                <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
+            </div>
+        </section>
+        <br>
+        <hr>
+        <br> -->
         <center><img src="{{ asset('/img/วิธีใช้งาน/2.jpg') }}" width="100%" alt="Card image cap"></center><br>
-        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
-            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;"data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
                 <div class="col-10" style="margin-bottom:0px">
-                        <h5 style="margin-bottom:0px">1.เข้าสู่ระบบ</h5>
+                    <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.เข้าสู่ระบบ</h5>
                 </div> 
                 <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
                     <i class="fas fa-angle-down" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" ></i>
-                    </div>
+                </div>
                 <div class="col-12 collapse" id="login">
-                    <hr>
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/3.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อผู้ใช้ : สำหรับกรอกชื่อผู้ใช้ที่สมัครด้วยE-mail</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.รหัสผ่าน : สำหรับกรอกรหัสผ่านที่สมัครด้วยE-mail</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.เข้าสู่ระบบ : เมื่อกรอกชื่อผู้ใช้และรหัสผ่านแล้วให้คลิกที่ปุ่มเข้าสู่ระบบเพื่อทำการเข้าสู่ระบบ</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                <div class="col-10" style="margin-bottom:0px">
+                        <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.เข้าสู่ระบบด้วย Social</h5>
+                </div> 
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
+                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" ></i>
+                    </div>
+                <div class="col-12 collapse" id="Social_login">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/4.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.Login With LINE : ใช้สำหรับเข้าสู่ระบบด้วยบัญชีไลน์</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.Login FACEBOOK : ใช้สำหรับเข้าสู่ระบบด้วยบัญชีเฟสบุ๊ค</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.Login GOOGLE : ใช้สำหรับเข้าสู่ระบบด้วยบัญชีกูเกิ้ล</h5>
                     
                 </div>
             </div>
@@ -88,41 +107,132 @@
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
             <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
                 <div class="col-10" style="margin-bottom:0px">
-                        <h5 style="margin-bottom:0px">2.เข้าสู่ระบบด้วย Social</h5>
+                        <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">3.สมัครสมาชิกด้วย Email</h5>
                 </div> 
                 <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" ></i>
+                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register" ></i>
                     </div>
-                <div class="col-12 collapse" id="Social_login">
-                    <hr>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
-            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                <div class="col-10" style="margin-bottom:0px">
-                        <h5 style="margin-bottom:0px">3.เข้าสู่ระบบด้วย Social</h5>
-                </div> 
-                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
-                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" ></i>
-                    </div>
-                <div class="col-12 collapse" id="Social_login">
-                    <hr>
-                    
+                <div class="col-12 collapse" id="register">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/re-1.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อ : สำหรับกรอกชื่อที่ต้องการให้ระบบแสดง</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ชื่อผู้ใช้ : สำหรับกรอกชื่อผู้ใช้ที่ใช้ในการเข้าสู่ระบบ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.อีเมล : สำหรับกรอกอีเมลที่เชื่อมต่อกับบัญชีนี้</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.รหัสผ่าน : สำหรับกรอกรหัสผ่านที่ใช้ในการเข้าสู่ระบบ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ยืนยันรหัสผ่าน : สำหรับกรอกรหัสผ่านอีกครั้ง</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">6.ฉันยอมรับ : กดคลิกที่ช่องสี่เหลี่ยมเพื่อเป็นการยอมรับนโยบายเกี่ยวกับข้อมูลส่วนบุคคลและข้อกำหนดและเงื่อนไขการใช้บริการ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">7.สมัครสมาชิก : เมื่อกรอกข้อมูลครบถ้วนและถูกต้องให้คลิกที่ปุ่มสมัครสมาชิกเพื่อทำการสมัครสมาชิก</h5>
                 </div>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 <!------------------------------------------- Modal ลงทะเบียน Viicheck ------------------------------------------->
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<!------------------------------------------- Modal Vmove ------------------------------------------->
+<div class="modal fade"  id="Vmove" tabindex="-1" role="dialog" aria-labelledby="VmoveTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content" >
+      <div class="modal-header" >
+        <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="VmoveTitle">วิธีใช้งาน VMove</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <!-- <br>
+        <section id="about2" class="about2" style="padding:0px;">
+            <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
+                <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
+            </div>
+        </section>
+        <br>
+        <hr>
+        <br> -->
+        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+            <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;"data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
+                <div class="col-10" style="margin-bottom:0px">
+                    <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ลงทะเบียนรถผ่านเว็บ</h5>
+                </div> 
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
+                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" ></i>
+                </div>
+                <div class="col-12 collapse" id="login">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/movew-2.png') }}" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ยี่ห้อรถ : ต้องเลือกยี่ห้อรถใดยี่ห้อรถหนึ่งสำหรับรถคันนั้น</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.รุ่นรถ : ต้องเลือกรุ่นรถใดรุ่นรถหนึ่งสำหรับรถคันนั้น</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.ทะเบียนรถ : สำหรับกรอกหมายเลขของทะเบียนรถ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.จังหวัดของทะเบียนรถ : ต้องเลือกจังหวัดใดจังหวัดหนึ่งสำหรับป้ายทะเบียน</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.บันทึก : เมื่อกรอกข้อมูลครบถ้วนและถูกต้องให้คลิกที่ปุ่มบันทึกเพื่อลงทะเบียนรถ</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                <div class="col-10" style="margin-bottom:0px">
+                        <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.ลงทะเบียนรถผ่านไลน์</h5>
+                </div> 
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
+                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" ></i>
+                    </div>
+                <div class="col-12 collapse" id="Social_login">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/movel-2.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ข้อมูลรถ : สำหรับเลือกประเภทรถที่ต้องการลงทะเบียน</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ยี่ห้อรถ : ต้องเลือกยี่ห้อรถใดยี่ห้อรถหนึ่งสำหรับรถคันนั้น</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.รุ่นรถ : ต้องเลือกรุ่นรถใดรุ่นรถหนึ่งสำหรับรถคันนั้น</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.ทะเบียนรถ : สำหรับกรอกหมายเลขของทะเบียนรถ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.จังหวัดของทะเบียนรถ : ต้องเลือกจังหวัดใดจังหวัดหนึ่งสำหรับป้ายทะเบียน</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">6.บันทึก : เมื่อกรอกข้อมูลครบถ้วนและถูกต้องให้คลิกที่ปุ่มบันทึกเพื่อลงทะเบียนรถ</h5>
+                    <div class="alert alert-danger" role="alert">
+                        <h6 style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;"><i class="fas fa-exclamation-circle"></i>
+                            หมายเหตุ <br><br>
+                            &nbsp;&nbsp;&nbsp;ต้องทำการเพิ่มเพื่อนในบัญชีไลน์เพื่อใช้งานระบบนี้ เพิ่มเพื่อน<a href="https://page.line.me/702ytkls?openQrModal=true" class="alert-link">คลิก</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                <div class="col-10" style="margin-bottom:0px">
+                        <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">3.แจ้งเตือนเจ้าของรถ</h5>
+                </div> 
+                <div class="col-2 align-self-center text-center" style="vertical-align: middle;">
+                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register" ></i>
+                    </div>
+                <div class="col-12 collapse" id="register">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/movel-3.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ข้อความ : สำหรับเลือกข้อความที่ต้องการแจ้งไปยังเจ้าของรถ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ทะเบียนรถ : สำหรับกรอกหมายเลขของทะเบียนรถ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.จังหวัดของทะเบียนรถ : ต้องเลือกจังหวัดใดจังหวัดหนึ่ง</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.เบอร์โทร : สำหรับกรอกหมายเลขโทรศัพท์เพื่อให้เจ้าของรถติดต่อมา หากไม่ต้องการแสดงหมายเลขโทรศัพท์ให้เจ้าของรถเห็นให้กดคลิกที่ช่องสี่เหลี่ยมด้านล่าง</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ส่งข้อมูล : เมื่อกรอกข้อมูลครบถ้วนและถูกต้องให้คลิกที่ปุ่มส่งข้อมูล เพื่อทำการแจ้งเจ้าของรถ</h5>
+                    <div class="alert alert-danger" role="alert">
+                        <h6 style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;"><i class="fas fa-exclamation-circle"></i>
+                            หมายเหตุ <br><br>
+                            &nbsp;&nbsp;&nbsp;ต้องทำการเพิ่มเพื่อนในบัญชีไลน์เพื่อใช้งานระบบนี้ เพิ่มเพื่อน<a href="https://page.line.me/702ytkls?openQrModal=true" class="alert-link">คลิก</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------- Modal VMove ------------------------------------------->
 @endsection

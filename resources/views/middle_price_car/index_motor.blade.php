@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                <div class="colpagination-wrapper"> 
+                                <div class="pagination-wrapper"> 
                                         {!! $middleprice_motorcycles->appends([
                                         'motor_brand' => Request::get('motor_brand'),
                                         'motor_generation' => Request::get('motor_generation'),
@@ -270,7 +270,7 @@
                                             @endforeach
                                         </tbody>                             
                                     </table>
-                                    <div class="colpagination-wrapper"> 
+                                    <div class="pagination-wrapper"> 
                                         {!! $middleprice_motorcycles->appends([
                                         'motor_brand' => Request::get('motor_brand'),
                                         'motor_generation' => Request::get('motor_generation'),
