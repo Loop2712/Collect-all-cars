@@ -137,6 +137,10 @@ class LoginController extends Controller
     public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->user();
+        echo "<pre>";
+        print_r($user);
+        echo "<pre>";
+        exit();
         $student = $request->session()->get('Student');
 
         $this->_registerOrLoginUser($user,"line",$student);
