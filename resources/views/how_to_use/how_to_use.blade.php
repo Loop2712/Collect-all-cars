@@ -37,7 +37,7 @@
             <br>
             <center><img src="{{ asset('/img/stickerline/Flex/1.png') }}" style="background-color: #76D7C4 ;border-radius: 50%;" width="35%" alt="Card image cap"></center>
             <div class="card-body">
-            <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีใช้งาน SOS</h5>
+            <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีใช้งาน ViiSOS</h5>
             <p class="card-text">วิธีใช้งานระบบ ค้นหาตำแหน่งของฉัน ขอความช่วยเหลือด่วน</p>
             <a href="#" data-toggle="modal" data-target="#sos">รายละเอียดเพิ่มเติม »</a>
             </div>
@@ -238,7 +238,7 @@
   <div class="modal-dialog" role="document" >
     <div class="modal-content" >
       <div class="modal-header" >
-        <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="sosTitle">วิธีใช้งาน SOS</h5>
+        <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="sosTitle">วิธีใช้งาน ViiSOS</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -256,7 +256,7 @@
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
             <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
                 <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
-                    <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ระบบ SOS</h5>
+                    <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ระบบ ViiSOS</h5>
                 </div> 
                 <div class="col-2 align-self-center text-center" style="vertical-align: middle;"data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
                     <i class="fas fa-angle-down"  ></i>

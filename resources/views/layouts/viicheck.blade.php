@@ -256,9 +256,10 @@
         <ul>
         <li>
         </li>
-          <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
-          <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/how_to_use') }}"><b>วิธีใช้งาน</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
           <li class="dropdown">
               <input class="notranslate" type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
               <a class="notranslate" href="#" style="font-size: 18px;">
