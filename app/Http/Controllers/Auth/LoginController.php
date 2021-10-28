@@ -121,7 +121,9 @@ class LoginController extends Controller
     {
         $request->session()->put('redirectTo', $request->get('redirectTo'));
 
-        return Socialite::driver('line')->redirect();
+        return Socialite::driver('line')
+                ->scopes(['phone')
+                ->redirect();
     }
 
     // Line login TU
