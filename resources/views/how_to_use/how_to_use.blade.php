@@ -46,7 +46,7 @@
 </center> 
 <!------------------------------------------- Modal ลงทะเบียน Viicheck ------------------------------------------->
 <div class="modal fade"  id="Viicheck" tabindex="-1" role="dialog" aria-labelledby="ViicheckTitle" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document" >
+  <div class="modal-dialog modal-lg" role="document" >
     <div class="modal-content" >
       <div class="modal-header" >
         <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="ViicheckTitle">ขั้นตอนลงทะเบียน Viicheck</h5>
@@ -235,7 +235,7 @@
 <!------------------------------------------- Modal VMove ------------------------------------------->
 <!------------------------------------------- Modal sos ------------------------------------------->
 <div class="modal fade"  id="sos" tabindex="-1" role="dialog" aria-labelledby="sosTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-lg" role="document" >
     <div class="modal-content" >
       <div class="modal-header" >
         <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="sosTitle">วิธีใช้งาน ViiSOS</h5>
