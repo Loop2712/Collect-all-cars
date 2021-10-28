@@ -121,9 +121,7 @@ class LoginController extends Controller
     {
         $request->session()->put('redirectTo', $request->get('redirectTo'));
 
-        return Socialite::driver('line')
-                ->scopes(['phone'])
-                ->redirect();
+        return Socialite::driver('line')->redirect();
     }
 
     // Line login TU
@@ -142,7 +140,7 @@ class LoginController extends Controller
         echo "<pre>";
         print_r($user);
         echo "<pre>";
-        exit();
+        // exit();
         $student = $request->session()->get('Student');
 
         $this->_registerOrLoginUser($user,"line",$student);
