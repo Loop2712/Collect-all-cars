@@ -28,7 +28,9 @@ class InsuranceController extends Controller
                 ->orWhere('status_partner', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $insurance = Insurance::latest()->paginate($perPage);
+            $insurance = Insurance::orderBy('status_partner', 'desc')
+                ->orderBy('company', 'asc')
+                ->latest()->paginate($perPage);
         }
 
         $group_line = Group_line::where('owner', null)->get();

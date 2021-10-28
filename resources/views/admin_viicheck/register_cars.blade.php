@@ -162,7 +162,7 @@
                             @endif
                                 <center>
                                     <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                                        <div class="col-10" style="margin-bottom:0px">
+                                        <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#register_cars_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
                                                 <h5 style="margin-bottom:0px;margin-top:0px;">
                                                 @if( $item->car_type == "car")
                                                     <img width="15%" src="https://www.viicheck.com/img/icon/car.png">
@@ -174,8 +174,8 @@
                                                 <h6 style="margin-bottom:0px;margin-top:0px;">{{ $item->province }}</h6>
 
                                         </div> 
-                                        <div class="col-2 align-self-center" style="vertical-align: middle;">
-                                            <i class="fas fa-angle-down" data-toggle="collapse" data-target="#register_cars_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" ></i>
+                                        <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#register_cars_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                            <i class="fas fa-angle-down" ></i>
                                         </div>
                                         <div class="col-12 collapse" id="register_cars_{{ $item->id }}">
                                             <hr>

@@ -44,11 +44,9 @@
         </div>
     </div>
 </center> 
-
-
 <!------------------------------------------- Modal ลงทะเบียน Viicheck ------------------------------------------->
 <div class="modal fade"  id="Viicheck" tabindex="-1" role="dialog" aria-labelledby="ViicheckTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-xl" role="document" >
     <div class="modal-content" >
       <div class="modal-header" >
         <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="ViicheckTitle">ขั้นตอนลงทะเบียน Viicheck</h5>
@@ -66,7 +64,7 @@
         <br>
         <hr>
         <br> -->
-        <center><img src="{{ asset('/img/วิธีใช้งาน/2.jpg') }}" width="100%" alt="Card image cap"></center><br>
+        <center><img src="{{ asset('/img/วิธีใช้งาน/2.jpg') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
             <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
                 <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
@@ -77,7 +75,7 @@
                 </div>
                 <div class="col-12 collapse" id="login">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน/3.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/3.jpg') }}"  width="100%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อผู้ใช้ : สำหรับกรอกชื่อผู้ใช้ที่สมัครด้วยE-mail</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.รหัสผ่าน : สำหรับกรอกรหัสผ่านที่สมัครด้วยE-mail</h5>
@@ -95,7 +93,7 @@
                     </div>
                 <div class="col-12 collapse" id="Social_login">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน/4.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/4.jpg') }}"  width="100%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.Login With LINE : ใช้สำหรับเข้าสู่ระบบด้วยบัญชีไลน์</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.Login FACEBOOK : ใช้สำหรับเข้าสู่ระบบด้วยบัญชีเฟสบุ๊ค</h5>
@@ -114,7 +112,7 @@
                 </div>
                 <div class="col-12 collapse" id="register">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน/re-1.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/re-1.jpg') }}" style="border: 2px solid #555;"  width="100%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อ : สำหรับกรอกชื่อที่ต้องการให้ระบบแสดง</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ชื่อผู้ใช้ : สำหรับกรอกชื่อผู้ใช้ที่ใช้ในการเข้าสู่ระบบ</h5>
@@ -136,7 +134,7 @@
 <!------------------------------------------- Modal ลงทะเบียน Viicheck ------------------------------------------->
 <!------------------------------------------- Modal Vmove ------------------------------------------->
 <div class="modal fade"  id="Vmove" tabindex="-1" role="dialog" aria-labelledby="VmoveTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-lg" role="document" >
     <div class="modal-content" >
       <div class="modal-header" >
         <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="VmoveTitle">วิธีใช้งาน VMove</h5>
@@ -164,7 +162,7 @@
                 </div>
                 <div class="col-12 collapse" id="register">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน/movew-2.png') }}" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/movew-2.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ยี่ห้อรถ : ต้องเลือกยี่ห้อรถใดยี่ห้อรถหนึ่งสำหรับรถคันนั้น</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.รุ่นรถ : ต้องเลือกรุ่นรถใดรุ่นรถหนึ่งสำหรับรถคันนั้น</h5>
@@ -184,7 +182,7 @@
                     </div>
                 <div class="col-12 collapse" id="registerline">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน/movel-2.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/movel-2.jpg') }}" style="border: 2px solid #555;" width="60%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ข้อมูลรถ : สำหรับเลือกประเภทรถที่ต้องการลงทะเบียน</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ยี่ห้อรถ : ต้องเลือกยี่ห้อรถใดยี่ห้อรถหนึ่งสำหรับรถคันนั้น</h5>
@@ -211,7 +209,7 @@
                     </div>
                 <div class="col-12 collapse" id="move">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน/movel-3.jpg') }}" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/movel-3.jpg') }}" style="border: 2px solid #555;" width="60%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ข้อความ : สำหรับเลือกข้อความที่ต้องการแจ้งไปยังเจ้าของรถ</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ทะเบียนรถ : สำหรับกรอกหมายเลขของทะเบียนรถ</h5>
@@ -265,7 +263,7 @@
                 </div>
                 <div class="col-12 collapse" id="sos1">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน/sos-1.png') }}" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน/sos-1.png') }}" style="border: 2px solid #555;" width="60%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ตำแหน่งของฉัน : สำหรับค้นหาตำแหน่งปัจจุบันของคุณ</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ขอความช่วยเหลือด่วน : สำหรับโทรหาผู้ดูแลในพื้นที่ปัจจุบันที่คุณอยู่</h5>

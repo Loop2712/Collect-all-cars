@@ -140,11 +140,11 @@
                      <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:#89CFF0;border-bottom-width: 4px; margin-bottom: 10px;">
                         <center>
                             <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                                <div class="col-10" >
+                                <div class="col-10"  data-toggle="collapse" data-target="#language_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
                                         <h5>{{ $item->th }}</h5>
                                 </div> 
-                                <div class="col-2 align-self-center" style="vertical-align: middle;">
-                                    <i class="fas fa-angle-down" data-toggle="collapse" data-target="#language_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" ></i>
+                                <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#language_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                    <i class="fas fa-angle-down" ></i>
                                     </div>
                                 <div class="col-12 collapse" id="language_{{ $item->id }}">
                                     <p style="font-size:18px;padding:0px">อังกฤษ : {{ $item->en }} </p> 

@@ -76,7 +76,7 @@
                         
                     </div><br>
                     <div class="col-md-12">
-                        <button id="btn_car" class="btn btn-outline-danger" style=: 125px;">
+                        <button id="btn_car" class="btn btn-outline-danger" style=" 125px;">
                             <a id="btn_a_car" href="{{ url('/middle_price_car' ) }}">รถยนต์</a>
                         </button>
                         <button id="btn_motorcycle" class="btn btn-outline-danger" >
@@ -112,7 +112,7 @@
                                     </div>
                                     <div id="div_motor_brand" class=" form-group {{ $errors->has('motor_brand') ? 'has-error' : ''}}">
                                         
-                                        <select name="motor_brand" class=" form-control" id="input_motor_brand"  onchange="showMotor_model();
+                                        <select name="motor_brand" class=" form-control notranslate" id="input_motor_brand"  onchange="showMotor_model();
                                                 if(this.value=='อื่นๆ'){ 
                                                 document.querySelector('#brand_input').classList.remove('d-none'),
                                                 document.querySelector('#generation_input').classList.remove('d-none'),
@@ -144,7 +144,7 @@
                                                 {!! $errors->first('generation', '<p class="help-block">:message</p>') !!}             
                                         </select>
                                         
-                                        <select name="motor_generation" id="input_motor_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
+                                        <select name="motor_generation" id="input_motor_model" class=" form-control notranslate"  onchange="if(this.value=='อื่นๆ'){ 
                                                 document.querySelector('#generation_input').classList.remove('d-none'),
                                                 document.querySelector('#generation_input').focus();
                                             }else{ 
@@ -181,7 +181,7 @@
                                                 <div class="col-3 ">
                                                     <img style="margin-top:15px;" width="50"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                                 </div>
-                                                <div class="col-9 ">
+                                                <div class="col-9 notranslate">
                                                     <h4 style="margin-bottom:0px">&nbsp;<b>{{ $item->brand }}</b></h4>
                                                     <p style="margin-bottom:0px; margin-left:5px">{{ $item->model }} , {{ $item->submodel }}</p>
                                                     <p style="margin-bottom:0px">&nbsp;ปี {{ $item->year }} </p>

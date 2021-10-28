@@ -100,7 +100,7 @@
                     <div class="row" style="margin-left: 2px;">
                             <div class="col-sm-3 col-12" > 
                             <form action="{{URL::to('/middle_price_car')}}" method="get">
-                                <select name="brand" class=" form-control" id="input_car_brand"  onchange="showCar_model();
+                                <select name="brand" class=" form-control notranslate" id="input_car_brand"  onchange="showCar_model();
                                     if(this.value=='อื่นๆ'){ 
                                         document.querySelector('#brand_input').classList.remove('d-none'),
                                         document.querySelector('#generation_input').classList.remove('d-none'),
@@ -123,7 +123,7 @@
 
                             <div class="col-sm-3 col-12"> 
                             <br class="d-block d-md-none">
-                            <select name="model" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
+                            <select name="model" id="input_car_model" class=" form-control notranslate"  onchange="if(this.value=='อื่นๆ'){ 
                                         document.querySelector('#model_input').classList.remove('d-none'),
                                         document.querySelector('#model_input').focus();
                                     }else{ 

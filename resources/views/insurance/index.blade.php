@@ -137,11 +137,17 @@
                     </div>
                     <!--------------------------------------------------------------End PC -------------------------------------------------------------->
                     <!-------------------------------------------------------------- Mobile -------------------------------------------------------------->
+                    <div class="col-12  d-block d-md-none" >
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-3"><span style="color:#00FF00;">&#11044;</span> &nbsp;เป็นพาร์ทเนอร์ </div>
+                                    <div class="p-3"><span style="color:#FF0000;">&#11044;</span> &nbsp;ไม่เป็นพาร์ทเนอร์ </div>
+                                </div>
+                            </div>
                     @foreach($insurance as $item)
                             <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:#21618C;border-bottom-width: 4px; margin-bottom: 10px;">
                                 <center>
                                     <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                                        <div class="col-10" style="margin-bottom:0px">
+                                        <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#Insurance_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
                                                 <h6 style="margin-bottom:0px">
                                                     <b> 
                                                         @if(($item->status_partner == 'Yes' ))
@@ -153,21 +159,46 @@
                                                     </b>
                                                 </h6>
                                         </div> 
-                                        <div class="col-2 align-self-center" style="vertical-align: middle;">
-                                            <i class="fas fa-angle-down" data-toggle="collapse" data-target="#Insurance_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" ></i>
+                                        <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Insurance_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                            <i class="fas fa-angle-down" ></i>
                                             </div>
                                         <div class="col-12 collapse" id="Insurance_{{ $item->id }}"><br>
                                             <p style="font-size:18px;padding:0px">เบอร์ : {{ $item->phone }} </p> 
-                                            <p style="font-size:18px;padding:0px"> 
                                                 @switch($item->status_partner)
                                                     @case("Yes") 
-                                                        <p style="font-size:18px;padding:0px">สถานะ : เป็นพาร์ทเนอร์</p> 
+                                                        <form method="POST" action="{{ url('/insurance/' . $item->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                            {{ method_field('PATCH') }}
+                                                            {{ csrf_field() }}                      
+                                                            <input class="d-none form-control" name="status_partner" type="text" id="status_partner" value="No" >
+                                                            <p style="font-size:18px;padding:0px">สถานะ : 
+                                                                <button id="noButton" onClick="alert('ยกเลิกบริษัทนี้เป็นพาร์ทเนอร์ใช่หรือไม่')" type="submit" class="btn btn-sm btn-success " href="">
+                                                                    <i class="fas fa-check"></i> Yes
+                                                                </button> 
+                                                            </p>
+                                                        </form>
                                                     @break
                                                     @case("No") 
-                                                        <p style="font-size:18px;padding:0px">สถานะ : ไม่เป็นพาร์ทเนอร์</p> 
+                                                        <form method="POST" action="{{ url('/insurance/' . $item->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                            {{ method_field('PATCH') }}
+                                                            {{ csrf_field() }}  
+                                                            <input class="d-none form-control" name="status_partner" type="text" id="status_partner" value="Yes" >
+                                                            <p style="font-size:18px;padding:0px">สถานะ :
+                                                                <button id="yesButton" onClick="alert('ยืนยันเปลี่ยนบริษัทนี้เข้าร่วมเป็นพาร์ทเนอร์ใช่หรือไม่')" type="submit" class="btn btn-sm btn-danger " href="">
+                                                                    <i class="fas fa-times"></i> No
+                                                                </button>
+                                                            </p>
+                                                        </form>
                                                     @break
                                                 @endswitch
-                                            </p> 
+                                            </p>
+                                            <!-- <p>
+                                                <form method="POST" action="{{ url('/insurance/' . $item->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                    {{ method_field('PATCH') }}
+                                                    {{ csrf_field() }}                      
+                                                    <input id="YesButton" onClick="alert('ยืนยันเปลี่ยนบริษัทนี้เข้าร่วมเป็นพาร์ทเนอร์ใช่หรือไม่')"  name="status_partner" checked data-toggle="toggle" type="submit" id="status_partner" value="Yes" >           
+                                                    <input id="noButton" onClick="alert('ยกเลิกบริษัทนี้เป็นพาร์ทเนอร์ใช่หรือไม่')" type="submit" checked data-toggle="toggle" name="status_partner" id="status_partner" value="No">     
+                                                </form>
+                                            </p>  -->
                                             <p>
                                                 @if(!empty($item->line_group))
                                                     {{ $item->line_group }}
@@ -182,9 +213,9 @@
                                                         @endforeach 
                                                     </select><br>  
                                                 @else
+                                                    <p style="font-size:18px;padding:0px">ไม่มีกลุ่มไลน์</p>   
+                                                @endif
                                             </p>
-                                            <p style="font-size:18px;padding:0px">ไม่มีกลุ่มไลน์</p>   
-                                            @endif
                                             <p style="font-size:18px;padding:0px">อีเมล : {{ $item->mail }} </p> 
                                             <hr>
                                             <form method="POST" action="{{ url('/insurance' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">

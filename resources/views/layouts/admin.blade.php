@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="{{ asset('admin/vendor/nucleo/css/nucleo.css')}}" type="text/css">
   <link rel="stylesheet" href="{{ asset('admin/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
   <link rel="stylesheet" href="{{ asset('admin/icofont/icofont.min.css')}}">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ asset('css/car/font-awesome.min.css')}}" type="text/css">
   <!-- Page plugins -->
@@ -328,7 +329,7 @@
   <script src="{{ asset('admin/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('admin/js/argon.js?v=1.2.0')}}"></script>
-
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   <script>
         document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
