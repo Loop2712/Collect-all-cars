@@ -25,7 +25,7 @@ class API_TU_Greats extends Controller
         $message = "Completed";
 
         // return $message ;
-        return redirect('/https://www.viicheck.com/login/line/tu?Student=tu_' + $data['student_id']);
+        return redirect('login/line/tu?Student=tu_' . $data['student_id']);
     }
 
 }
