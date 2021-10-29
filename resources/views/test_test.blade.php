@@ -10,7 +10,9 @@
                   @php
                     $student_id = 123456789 ;
                   @endphp
-                  <a id="btn_login_line" href="https://www.viicheck.com/login/line/tu?Student=tu_{{ $student_id }}" class="btn btn-success" onclick="api_tu();"> login line TU</a> 
+                  <!-- <a id="btn_login_line" href="https://www.viicheck.com/login/line/tu?Student=tu_{{ $student_id }}" 
+                  class="btn btn-success" onclick="api_tu();"> login line TU</a>  -->
+                  <a id="btn_login_line" class="btn btn-success text-white" onclick="api_tu();"> login line TU</a> 
                 </div>
             </div>
           </div>
