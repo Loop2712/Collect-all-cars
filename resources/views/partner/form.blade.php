@@ -63,6 +63,23 @@
                         {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
+                        <label for="line_group" class="control-label">{{ 'เลือกกลุ่มไลน์' }}</label>
+                        <br>
+                        <select id="line_group" name="line_group" class="btn btn-sm btn-outline-success">
+                            <option value="" selected>- เลือกกลุ่มไลน์ -</option>
+                            @foreach($group_line as $item)
+                                <option value="{{ $item->groupName }}" 
+                                {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+                                {{ $item->groupName }} 
+                                </option>
+                                {!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
+                            @endforeach 
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6"></div>
             </div>
         </div>
 
@@ -73,11 +90,11 @@
     </div>
 </div>
 
-<div class="d-none form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
+<!-- <div class="d-none form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
     <label for="line_group" class="control-label">{{ 'Line Group' }}</label>
     <input class="form-control" name="line_group" type="text" id="line_group" value="{{ isset($partner->line_group) ? $partner->line_group : ''}}" readonly>
     {!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
-</div>
+</div> -->
 
 <script>
     

@@ -63,7 +63,9 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        return view('partner.create');
+        $group_line = Group_line::where('owner', null)->get();
+
+        return view('partner.create', compact('group_line'));
     }
 
     /**
@@ -79,6 +81,28 @@ class PartnerController extends Controller
         $requestData = $request->all();
         
         Partner::create($requestData);
+
+        $data_partners = Partner::where("name", $requestData['name'])->get();
+        foreach ($data_partners as $key_1) {
+
+            DB::table('group_lines')
+                    ->where('groupName', $requestData['line_group'])
+                    ->update([
+                        'owner' => $requestData['name']." (Partner)",
+                        'partner_id' => $key_1->id,
+                ]);
+        }
+
+        $group_line = Group_line::where('groupName', $requestData['line_group'])->get();
+        foreach ($group_line as $key_2) {
+
+            DB::table('partners')
+                ->where('name', $requestData['name'])
+                ->update([
+                    'group_line_id' => $key_2->id,
+            ]);
+
+        }
 
         return redirect('partner_viicheck')->with('flash_message', 'Partner added!');
     }
