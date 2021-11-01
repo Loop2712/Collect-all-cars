@@ -34,7 +34,7 @@ class API_language extends Controller
         // return $language;
     }
 
-    public function change_language_fromline($language , $user_id , $replyToken)
+    public function change_language_fromline($language , $user_id)
     {
         DB::table('users')
               ->where('id', $user_id)
@@ -67,7 +67,7 @@ class API_language extends Controller
         $messages = [ json_decode($string_json, true) ]; 
 
         $body = [
-            "replyToken" => $replyToken,
+            "to" => $provider_id,
             "messages" => $messages,
         ];
 
@@ -82,15 +82,15 @@ class API_language extends Controller
         ];
                             
         $context  = stream_context_create($opts);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url = "https://api.line.me/v2/bot/message/reply";
+        $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
-            "title" => "reply Success",
-            "content" => "reply Success",
+            "title" => "https://api.line.me/v2/bot/message/push",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
+
         MyLog::create($data);
         return $result;
 

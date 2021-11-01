@@ -149,7 +149,6 @@ class LineMessagingAPI extends Model
                 $template_path = storage_path('../public/json/flex-language.json');   
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("user_id",$user_id,$string_json);
-                $string_json = str_replace("replyToken",$event["replyToken"],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
