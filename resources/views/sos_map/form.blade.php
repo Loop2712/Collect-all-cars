@@ -283,7 +283,6 @@
     }    
 
     function capture_registration(){
-        document.querySelector('#div_photo_registration').classList.remove('d-none');
 
         var video = document.querySelector("#videoElement");
         var photo2 = document.querySelector("#photo2");
