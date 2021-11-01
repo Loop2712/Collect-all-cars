@@ -123,7 +123,7 @@
               <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">สวัสดีคุณ <b style="color:blue;" id="text_name">{{ $user->name }}</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                  <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
                 </button>
               </div>
               <div class="modal-body text-center">
