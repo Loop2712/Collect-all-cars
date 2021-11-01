@@ -276,9 +276,9 @@ class Sos_mapController extends Controller
             $data_send_mail['time_zone'] = $time_zone ;
             $data_send_mail['name_user'] = $name_user ;
             $data_send_mail['phone_user'] = $phone_user ;
-            $data_send_mail['lat'] = $lat ;
-            $data_send_mail['lng'] = $lng ;
-            $data_send_mail['lat_mail'] = $lat_mail;
+            $data_send_mail['lat'] = $lat_user ;
+            $data_send_mail['lng'] = $lng_user ;
+            $data_send_mail['lat_mail'] = $text_at.$lat_user;
 
             $email = $mail_partner ;
             Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
