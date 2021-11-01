@@ -14,6 +14,8 @@ use App\Models\Mylog;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\LineMessagingAPI;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\MailTo_sos_partner;
+
 
 class Sos_mapController extends Controller
 {
