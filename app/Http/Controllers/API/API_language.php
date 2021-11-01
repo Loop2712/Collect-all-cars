@@ -51,49 +51,49 @@ class API_language extends Controller
         $lineAPI = new LineApiController();
         $lineAPI->check_language_user($data_users);
 
-        foreach ($data_users as $key ) {
-          $provider_id = $key->provider_id ;
-        }
+        // foreach ($data_users as $key ) {
+        //   $provider_id = $key->provider_id ;
+        // }
 
-        $data_Text_topic = [
-            "เปลี่ยนภาษาเรียบร้อยแล้ว",
-        ];
+        // $data_Text_topic = [
+        //     "เปลี่ยนภาษาเรียบร้อยแล้ว",
+        // ];
 
-        $data_topic = $this->language_for_user($data_Text_topic, $provider_id);
+        // $data_topic = $this->language_for_user($data_Text_topic, $provider_id);
 
-        $template_path = storage_path('../public/json/change_language_success.json');   
-        $string_json = file_get_contents($template_path);
-        $string_json = str_replace("เปลี่ยนภาษาเรียบร้อยแล้ว",$data_topic[0],$string_json);
+        // $template_path = storage_path('../public/json/change_language_success.json');   
+        // $string_json = file_get_contents($template_path);
+        // $string_json = str_replace("เปลี่ยนภาษาเรียบร้อยแล้ว",$data_topic[0],$string_json);
 
-        $messages = [ json_decode($string_json, true) ]; 
+        // $messages = [ json_decode($string_json, true) ]; 
 
-        $body = [
-            "replyToken" => $replyToken,
-            "messages" => $messages,
-        ];
+        // $body = [
+        //     "replyToken" => $replyToken,
+        //     "messages" => $messages,
+        // ];
 
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
+        // $opts = [
+        //     'http' =>[
+        //         'method'  => 'POST',
+        //         'header'  => "Content-Type: application/json \r\n".
+        //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+        //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+        //         //'timeout' => 60
+        //     ]
+        // ];
                             
-        $context  = stream_context_create($opts);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url = "https://api.line.me/v2/bot/message/reply";
-        $result = file_get_contents($url, false, $context);
+        // $context  = stream_context_create($opts);
+        // //https://api-data.line.me/v2/bot/message/11914912908139/content
+        // $url = "https://api.line.me/v2/bot/message/reply";
+        // $result = file_get_contents($url, false, $context);
 
-        //SAVE LOG
-        $data = [
-            "title" => "reply Success",
-            "content" => "reply Success",
-        ];
-        MyLog::create($data);
-        return $result;
+        // //SAVE LOG
+        // $data = [
+        //     "title" => "reply Success",
+        //     "content" => "reply Success",
+        // ];
+        // MyLog::create($data);
+        // return $result;
 
         // $line = new LineMessagingAPI();
         // $line->replyToUser(null, $event, "change_language_fromline");
