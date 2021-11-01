@@ -93,7 +93,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://www.viicheck.com/api/change_language_fromline/en/user_id"
+              "uri": "https://www.viicheck.com/api/change_language_fromline/en/user_id/replyToken"
             }
           }
         ],
