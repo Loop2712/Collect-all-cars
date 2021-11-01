@@ -166,6 +166,20 @@
                                 <i class="fas fa-info-circle text-danger"></i> 
                                 <b>ตัวอย่างการถ่ายภาพ</b>
                             </p>
+                            <br>
+                            <div class="col-12" id="div_cam">
+                                <div class="d-flex justify-content-center bg-light"> 
+                                   
+                                    <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+
+                                    <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
+                                </div>
+                            </div>
+                            <input type="hidden" name="" id="text_img">
+                            <div id="show_img" class="d-none">
+                                <canvas class=""  id="canvas" width="250" height="100"></canvas>
+                                <img class="" src="" width="250" height="100" id="photo2">
+                            </div>
                         </div>
                         <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                             <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" >
@@ -267,4 +281,35 @@
 
         document.querySelector("#goto_sos_insurance").click();
     }    
+
+    function capture_registration(){
+        document.querySelector('#div_photo_registration').classList.remove('d-none');
+
+        var video = document.querySelector("#videoElement");
+        var photo2 = document.querySelector("#photo2");
+        var canvas = document.querySelector("#canvas");
+        var text_img = document.querySelector("#text_img");
+        var context = canvas.getContext('2d');
+        var div_cam = document.querySelector("#div_cam");
+            div_cam.classList.remove('d-none');
+            
+            photo2.classList.add('d-none');
+
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+          // { video: { facingMode: { exact: "environment" } } }
+            .then(function (stream) {
+              if (typeof video.srcObject == "object") {
+                  video.srcObject = stream;
+                } else {
+                  video.src = URL.createObjectURL(stream);
+                }
+            })
+            .catch(function (err0r) {
+              console.log("Something went wrong!");
+            });
+        }
+
+    }
+
 </script>
