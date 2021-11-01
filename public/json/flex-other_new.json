@@ -199,6 +199,55 @@
             "type": "separator",
             "color": "#ff0101",
             "margin": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/icon/translate.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "Language",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "language",
+                  "text": "language"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "language",
+                  "text": "language"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "language",
+              "text": "ติดต่อ"
+            },
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "color": "#ff0101",
+            "margin": "xl"
           }
         ],
         "offsetBottom": "sm"
