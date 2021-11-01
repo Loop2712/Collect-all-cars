@@ -129,20 +129,6 @@ class LineMessagingAPI extends Model
     {   
     	switch($message_type)
         {
-            case "change_language_fromline": 
-
-                $data_Text_topic = [
-                    "เปลี่ยนภาษาเรียบร้อยแล้ว",
-                ];
-
-                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
-
-                $template_path = storage_path('../public/json/change_language_success.json');   
-                $string_json = file_get_contents($template_path);
-                $string_json = str_replace("เปลี่ยนภาษาเรียบร้อยแล้ว",$data_topic[0],$string_json);
-
-                $messages = [ json_decode($string_json, true) ]; 
-                break;
             case "contact_viiCHECK": 
 
                 $template_path = storage_path('../public/json/flex-contact.json');   
