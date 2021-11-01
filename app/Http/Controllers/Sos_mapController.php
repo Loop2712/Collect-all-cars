@@ -269,6 +269,8 @@ class Sos_mapController extends Controller
                     $data_topic[$xi] = $item_of_text_topic->$group_language ;
                 }
             }
+            
+            $text_at = '@' ;
 
             //ส่งเมล
             $data_send_mail = array();
@@ -283,7 +285,6 @@ class Sos_mapController extends Controller
             $email = $mail_partner ;
             Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
 
-            $text_at = '@' ;
             // flex ask_for_help
             $template_path = storage_path('../public/json/ask_for_help.json');   
             $string_json = file_get_contents($template_path);
