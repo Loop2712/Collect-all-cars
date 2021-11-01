@@ -155,7 +155,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-12">
-                        <h6 style="margin-top:8px;" class="control-label float-left" data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" >
+                        <h6 style="margin-top:8px;" class="control-label float-left" data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" onclick="capture_registration();">
                             ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;&nbsp;
                             <i style="font-size: 20px" class="fas fa-arrow-alt-circle-down  text-info"></i>
                         </h6>
@@ -166,7 +166,7 @@
                                 <i class="fas fa-info-circle text-danger"></i> 
                                 <b>ตัวอย่างการถ่ายภาพ</b>
                             </p>
-                            <br>
+                            <br><br>
                             <div class="col-12" id="div_cam">
                                 <div class="d-flex justify-content-center bg-light"> 
                                    
