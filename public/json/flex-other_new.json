@@ -240,7 +240,7 @@
             "action": {
               "type": "message",
               "label": "language",
-              "text": "ติดต่อ"
+              "text": "language"
             },
             "margin": "md"
           },
