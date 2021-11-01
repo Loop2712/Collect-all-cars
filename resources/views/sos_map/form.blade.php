@@ -132,11 +132,17 @@
                 โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
                 <br>
                 <input type="hidden" name="" id="input_phone_url" value="{{ url()->full() }}">
-                <b>
-                    <span style="font-size:22px;" id="text_phone">
-                        @if(!empty($user->phone)){{ $user->phone }}@endif
-                    </span>
-                </b>
+                <div style="margin-top:10px;">
+                    <b>
+                        <span style="font-size:22px;color: blue;" id="text_phone">
+                            @if(!empty($user->phone)){{ $user->phone }}@endif
+                        </span>
+                        @if(!empty($user->phone))
+                            <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#input_phone').classList.remove('d-none');"></i>
+                        @endif
+                    </b>
+                </div>
+                
                 @if(!empty($user->phone))
                     <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
                     <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
@@ -149,29 +155,39 @@
                 <hr>
                 <div class="row">
                     <div class="col-12">
-                        <h6 class="control-label float-left">{{ 'ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน' }}</h6>
-                        <br><br>
-                        <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                            <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" accept="image/*" multiple="multiple">
+                        <h6 style="margin-top:8px;" class="control-label float-left" data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" >
+                            ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;&nbsp;
+                            <i style="font-size: 20px" class="fas fa-arrow-alt-circle-down  text-info"></i>
+                        </h6>
+                        <div class="collapse" id="div_photo">
+                            <br><br>
+                            <img style="filter: backscale(50%);" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}">
+                            <p style="position:absolute;top: 220px;right: 85px;color: #ffffff;">
+                                <i class="fas fa-info-circle text-danger"></i> 
+                                <b>ตัวอย่างการถ่ายภาพ</b>
+                            </p>
+                        </div>
+                        <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                            <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" >
                             {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                 </div>
               </div>
               <div class="modal-footer">
-                @if(!empty($user->phone))
+                <!-- @if(!empty($user->phone))
                     <button type="button" class="btn btn-secondary" onclick="
                         document.querySelector('#input_phone').classList.remove('d-none');">
                         แก้ไข
                     </button>
                 @endif
 
-                 @if(empty($user->phone))
+                @if(empty($user->phone))
                     <button type="button" class="btn btn-secondary" onclick="
                         document.querySelector('#input_not_phone').classList.remove('d-none');">
                         แก้ไข
                     </button>
-                @endif
+                @endif -->
                 
 
                 <button type="button" class="btn btn-primary" onclick="confirm_phone();">ยืนยัน</button>
