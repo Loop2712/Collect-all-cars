@@ -34,6 +34,7 @@
         <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
+    
 
 
     <div class="form-group"> 
@@ -144,6 +145,18 @@
                 @if(empty($user->phone))
                     <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
                 @endif
+
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="control-label float-left">{{ 'ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน' }}</h6>
+                        <br><br>
+                        <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                            <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" accept="image/*" multiple="multiple">
+                            {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                </div>
               </div>
               <div class="modal-footer">
                 @if(!empty($user->phone))
