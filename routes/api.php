@@ -88,6 +88,7 @@ Route::get('/set_group_line/{partner_id}/{language}/{time_zone}', 'API\API_line_
 
 
 Route::get('/change_language/{language}/{user_id}', 'API\API_language@change_language');
+Route::get('/change_language_fromline/{language}/{user_id}', 'API\API_language@change_language_fromline');
 
 Route::get('/add_text_topic/{text_th}', 'API\API_language@add_text_topic');
 

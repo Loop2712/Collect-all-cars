@@ -8,6 +8,7 @@ use App\Models\Text_topic;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\API\LineApiController;
+use App\Models\LineMessagingAPI;
 
 class API_language extends Controller
 {
@@ -27,6 +28,27 @@ class API_language extends Controller
         $lineAPI = new LineApiController();
         $lineAPI->check_language_user($data_users);
 
+        // return $language;
+    }
+
+    public function change_language_fromline($language , $user_id)
+    {
+        DB::table('users')
+              ->where('id', $user_id)
+              ->update([
+                'language' => $language,
+        ]);
+
+        $data_users = DB::table('users')
+                ->where('id', $user_id)
+                ->where('status', "active")
+                ->get();
+
+        $lineAPI = new LineApiController();
+        $lineAPI->check_language_user($data_users);
+
+        $line = new LineMessagingAPI();
+        $line->replyToUser(null, $event, "change_language_fromline");
         // return $language;
     }
 

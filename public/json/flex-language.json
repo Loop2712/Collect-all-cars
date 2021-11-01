@@ -89,7 +89,12 @@
                 "offsetBottom": "md",
                 "offsetStart": "md"
               }
-            ]
+            ],
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/img/change_language_fromline/en/user_id"
+            }
           }
         ],
         "offsetBottom": "sm",
