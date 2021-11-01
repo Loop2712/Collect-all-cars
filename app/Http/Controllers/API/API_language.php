@@ -92,11 +92,8 @@ class API_language extends Controller
         ];
 
         MyLog::create($data);
-        return $result;
-
-        // $line = new LineMessagingAPI();
-        // $line->replyToUser(null, $event, "change_language_fromline");
-        // return $language;
+        // return $result;
+        return view('return_line');
     }
 
     public function add_text_topic($text_th)
