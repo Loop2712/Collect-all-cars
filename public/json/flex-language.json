@@ -1,0 +1,229 @@
+{
+    "type": "flex",
+    "altText": "select language",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
+            "size": "4xl",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/"
+            }
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/Flex/5.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/"
+            },
+            "offsetBottom": "md"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/national-flag/th.png",
+                "margin": "sm",
+                "size": "3xl"
+              },
+              {
+                "type": "text",
+                "margin": "md",
+                "text": "ไทย",
+                "size": "md",
+                "weight": "bold",
+                "gravity": "center",
+                "offsetBottom": "md",
+                "offsetStart": "md"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/national-flag/en.png",
+                "margin": "sm",
+                "size": "3xl"
+              },
+              {
+                "type": "text",
+                "margin": "md",
+                "text": "English",
+                "size": "md",
+                "weight": "bold",
+                "gravity": "center",
+                "offsetBottom": "md",
+                "offsetStart": "md"
+              }
+            ]
+          }
+        ],
+        "offsetBottom": "sm",
+        "offsetTop": "lg"
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101",
+        "margin": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/national-flag/zh-TW.png",
+                "margin": "sm",
+                "size": "3xl"
+              },
+              {
+                "type": "text",
+                "margin": "md",
+                "text": "中國人",
+                "size": "md",
+                "weight": "bold",
+                "gravity": "center",
+                "offsetBottom": "md",
+                "offsetStart": "md"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/national-flag/ja.png",
+                "margin": "sm",
+                "size": "48px",
+                "offsetBottom": "sm",
+                "offsetEnd": "md"
+              },
+              {
+                "type": "text",
+                "margin": "md",
+                "text": "日本",
+                "size": "md",
+                "weight": "bold",
+                "gravity": "center",
+                "offsetBottom": "xxl",
+                "offsetEnd": "sm"
+              }
+            ]
+          }
+        ],
+        "offsetTop": "xl"
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/national-flag/ko.png",
+                "margin": "sm",
+                "size": "3xl"
+              },
+              {
+                "type": "text",
+                "margin": "md",
+                "text": "한국인",
+                "size": "md",
+                "weight": "bold",
+                "gravity": "center",
+                "offsetBottom": "md",
+                "offsetStart": "md"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/national-flag/es.png",
+                "margin": "sm",
+                "size": "3xl"
+              },
+              {
+                "type": "text",
+                "margin": "md",
+                "text": "Español",
+                "size": "md",
+                "weight": "bold",
+                "gravity": "center",
+                "offsetBottom": "md",
+                "offsetStart": "md"
+              }
+            ]
+          }
+        ],
+        "offsetBottom": "sm",
+        "offsetTop": "lg"
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101",
+        "margin": "xxl"
+      }
+    ],
+    "borderWidth": "bold",
+    "cornerRadius": "xl",
+    "borderColor": "#ff0101"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#ff0101"
+    }
+  }
+}
+    
+}
