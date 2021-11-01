@@ -45,179 +45,117 @@
       },
       {
         "type": "box",
-        "layout": "horizontal",
+        "layout": "vertical",
         "contents": [
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "horizontal",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/national-flag/th.png",
-                "margin": "sm",
-                "size": "3xl"
+                "type": "image",
+                "url": "https://www.viicheck.com/img/national-flag/flex-th.png",
+                "size": "60px",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/th/user_id"
+                }
               },
               {
-                "type": "text",
-                "margin": "md",
-                "text": "ไทย",
-                "size": "md",
-                "weight": "bold",
-                "gravity": "center",
-                "offsetBottom": "md",
-                "offsetStart": "md"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/national-flag/en.png",
-                "margin": "sm",
-                "size": "3xl"
-              },
-              {
-                "type": "text",
-                "margin": "md",
-                "text": "English",
-                "size": "md",
-                "weight": "bold",
-                "gravity": "center",
-                "offsetBottom": "md",
-                "offsetStart": "md"
+                "type": "image",
+                "url": "https://www.viicheck.com/img/national-flag/flex-en.png",
+                "size": "60px",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/en/user_id"
+                }
               }
             ],
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/api/change_language_fromline/en/user_id"
-            }
+            "margin": "md"
           }
-        ],
-        "offsetBottom": "sm",
-        "offsetTop": "lg"
+        ]
       },
       {
         "type": "separator",
         "color": "#ff0101",
-        "margin": "xxl"
+        "margin": "xl"
       },
       {
         "type": "box",
-        "layout": "horizontal",
+        "layout": "vertical",
         "contents": [
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "horizontal",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/national-flag/zh-TW.png",
-                "margin": "sm",
-                "size": "3xl"
+                "type": "image",
+                "url": "https://www.viicheck.com/img/national-flag/flex-zh-TW.png",
+                "size": "60px",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/zh-TW/user_id"
+                }
               },
               {
-                "type": "text",
-                "margin": "md",
-                "text": "中國人",
-                "size": "md",
-                "weight": "bold",
-                "gravity": "center",
-                "offsetBottom": "md",
-                "offsetStart": "md"
+                "type": "image",
+                "url": "https://www.viicheck.com/img/national-flag/flex-ja.png",
+                "size": "60px",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/ja/user_id"
+                }
               }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/national-flag/ja.png",
-                "margin": "sm",
-                "size": "48px",
-                "offsetBottom": "sm",
-                "offsetEnd": "md"
-              },
-              {
-                "type": "text",
-                "margin": "md",
-                "text": "日本",
-                "size": "md",
-                "weight": "bold",
-                "gravity": "center",
-                "offsetBottom": "xxl",
-                "offsetEnd": "sm"
-              }
-            ]
+            ],
+            "margin": "md"
           }
-        ],
-        "offsetTop": "xl"
-      },
-      {
-        "type": "separator",
-        "color": "#ff0101"
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/national-flag/ko.png",
-                "margin": "sm",
-                "size": "3xl"
-              },
-              {
-                "type": "text",
-                "margin": "md",
-                "text": "한국인",
-                "size": "md",
-                "weight": "bold",
-                "gravity": "center",
-                "offsetBottom": "md",
-                "offsetStart": "md"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/national-flag/es.png",
-                "margin": "sm",
-                "size": "3xl"
-              },
-              {
-                "type": "text",
-                "margin": "md",
-                "text": "Español",
-                "size": "md",
-                "weight": "bold",
-                "gravity": "center",
-                "offsetBottom": "md",
-                "offsetStart": "md"
-              }
-            ]
-          }
-        ],
-        "offsetBottom": "sm",
-        "offsetTop": "lg"
+        ]
       },
       {
         "type": "separator",
         "color": "#ff0101",
-        "margin": "xxl"
+        "margin": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://www.viicheck.com/img/national-flag/flex-ko.png",
+                "size": "60px",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/ko/user_id"
+                }
+              },
+              {
+                "type": "image",
+                "url": "https://www.viicheck.com/img/national-flag/flex-es.png",
+                "size": "60px",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/es/user_id"
+                }
+              }
+            ],
+            "margin": "md"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "color": "#ff0101",
+        "margin": "lg"
       }
     ],
     "borderWidth": "bold",
