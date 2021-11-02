@@ -181,13 +181,15 @@
                                 <div class="d-flex justify-content-center bg-light"> 
                                    
                                     <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
-                                    <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
+                                    <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();">
+                                        <i class="fas fa-camera"></i>
+                                    </a>
                                 </div>
                             </div>
                             <input type="hidden" name="" id="text_img">
-                            <div id="show_img" class="d-none">
-                                <canvas class=""  id="canvas" width="250" height="100"></canvas>
-                                <img class="" src="" width="250" height="100" id="photo2">
+                            <div style="margin-top:15px;" id="show_img" class="">
+                                <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
+                                <img class="d-none" src="" width="266" height="400"  id="photo2">
                             </div>
                         </div>
                         <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
@@ -305,6 +307,7 @@
 
         if (navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+          // { video: true }
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
@@ -336,6 +339,27 @@
           }
 
           video.srcObject = null;
+    }
+
+    function capture() {
+
+        var video = document.querySelector("#videoElement");
+        var text_img = document.querySelector("#text_img");
+
+        var photo2 = document.querySelector("#photo2");
+        var canvas = document.querySelector("#canvas");
+
+        var div_cam = document.querySelector("#div_cam");
+            div_cam.classList.add('d-none');
+
+            photo2.classList.remove('d-none');
+
+            let context = canvas.getContext('2d');
+                context.drawImage(video, 0, 0,266,400);
+
+            photo2.setAttribute('src',canvas.toDataURL('image/png'));
+            text_img.value = canvas.toDataURL('image/png');
+        
     }
 
 </script>
