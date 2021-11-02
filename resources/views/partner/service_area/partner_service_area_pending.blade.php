@@ -22,8 +22,21 @@
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
                     <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}">
-                    <div class="card">
-                        <div id="map"></div>
+                    <div class="card" style="font-family: 'Prompt', sans-serif;border-radius: 25px;">
+                        <div id="map">
+                        <center>
+                            <div class="row">
+                                <div class="card-body col-md-6 d-flex align-items-center" >
+                                    <img src="img/stickerline/PNG/7.png" width="90%" alt="viicheck">
+                                </div>
+                                <div class="card-body col-md-6 d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <h1 style="font-family: 'Prompt', sans-serif;"> <b>ตอนนี้คุณยังไม่มี <br> พื้นที่รอตรวจสอบ <br> กรุณาเพิ่มพื้นที่บริการ </b> </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                        </div>
                     </div>
                 </div>
             </div>

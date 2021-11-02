@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="{{ asset('/partner/css/style.css') }}">
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/partner/css/menu_color.css') }}">
+    <!-- google font -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
 
 </head>
 
@@ -46,15 +51,18 @@
                <a href="#" class="b-brand">
                    <div class="b-bg">
                       <div class="sidenav-header  align-items-center">
-                            <a class="navbar-brand" href="#">
-                                <!-- <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
-                                <span style="color:#FFFFFF ;"> <b>x</b>  </span> -->
-                                @if(!empty($data_partner->logo))
-                                    <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%" style="margin-top:-5px">
-                                @else
-                                    <span class="text-white"><b>{{ $data_partner->name }}</b></span>
-                                @endif
-                            </a>
+                            <!-- <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
+                            <span style="color:#FFFFFF ;"> <b>x</b>  </span> -->
+                            @if(!empty($data_partner->logo))
+                                <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%" style="margin-top:-5px">
+                            @else
+                                <!-- <span class=" pcoded-mtext text-white"><b>{{ $data_partner->name }}</b></span> -->
+                                <ul class="nav pcoded-inner-navbar">
+                                    <li  class="nav-item">
+                                        <a href="{{ url('/partner_index') }}" class="nav-link " style="margin-top:-20px;"><span class="pcoded-mtext text-white" > <b>{{ $data_partner->name }}</b> </span></a>
+                                    </li>
+                                </ul>
+                            @endif
                         </div>
                    </div>
                </a>
@@ -190,7 +198,20 @@
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
         <div class="pcoded-wrapper">
-
+            <!-- <center>
+                <div class="card col-md-11" style="font-family: 'Prompt', sans-serif;border-radius: 25px;">
+                    <div class="row">
+                        <div class="card-body col-md-6" style="hight: 500px">
+                            <img src="img/stickerline/PNG/1.png" width="100%" alt="viicheck">
+                        </div>
+                        <div class="card-body col-md-6 d-flex align-items-center">
+                            <div class="col-md-12">
+                                <h1 style="font-family: 'Prompt', sans-serif;"> <b>ยินดีต้อนรับ <br>เข้าสู่<br>ViiCheck-Partner</b> </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </center> -->
             <!-- modal_change_color -->
             <div class="modal fade" id="modal_change_color" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">

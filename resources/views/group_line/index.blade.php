@@ -82,18 +82,18 @@
                             </thead>
                         </div>
                         <tbody>
-                        @foreach($group_line as $item)
-                            <tr class="text-center">
-                                <td class="text-left" style="font-size:15px;">
-                                    <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
-                                    <b style="vertical-align: middle;">&nbsp;&nbsp;{{ $item->groupName }}</b> 
-                                </td>
-                                <td style="font-size:15px;vertical-align: middle;"> {{ $item->owner }}</td>
-                                <td style="font-size:15px;vertical-align: middle;">{{ $item->time_zone }}</td>
-                                <td style="font-size:15px;vertical-align: middle;">{{ $item->language }}</td>
-                                <td style="font-size:15px;vertical-align: middle;">{{ $item->groupId }}</td>
-                            </tr>
-                        @endforeach
+                            @foreach($group_line as $item)
+                                <tr class="text-center">
+                                    <td class="text-left" style="font-size:15px;">
+                                        <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
+                                        <b style="vertical-align: middle;">&nbsp;&nbsp;{{ $item->groupName }}</b> 
+                                    </td>
+                                    <td style="font-size:15px;vertical-align: middle;"> {{ $item->owner }}</td>
+                                    <td style="font-size:15px;vertical-align: middle;">{{ $item->time_zone }}</td>
+                                    <td style="font-size:15px;vertical-align: middle;">{{ $item->language }}</td>
+                                    <td style="font-size:15px;vertical-align: middle;">{{ $item->groupId }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="pagination-wrapper"> {!! $group_line->appends(['search' => Request::get('search')])->render() !!} </div>
@@ -102,30 +102,30 @@
             <!--------------------------------------------------------------End PC -------------------------------------------------------------->
             <!--------------------------------------------------------------Mobile -------------------------------------------------------------->
             @foreach($group_line as $item)
-                            <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:#00c300;border-bottom-width: 4px; margin-bottom: 10px;">
-                                <center>
-                                    <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                                        <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
-                                                <h5 style="margin-bottom:0px; margin-top:10px; ">{{ $item->groupName }}</h5>
-                                        </div> 
-                                        <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                            <i class="fas fa-angle-down" ></i>
-                                            </div>
-                                        <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
-                                            <hr>
-                                            <p style="font-size:18px;padding:0px"> เจ้าของกลุ่ม <br>  {{ $item->owner }}  </p> <hr>
-                                            <p style="font-size:18px;padding:0px">เขตเวลา : {{ $item->time_zone }} </p> 
-                                            <p style="font-size:18px;padding:0px">ภาษา : {{ $item->language }} </p> 
-                                            <hr>
-                                                <p style="font-size:18px;padding:0px">Group Id </p> 
-                                                <p style="font-size:13px;padding:0px">{{ $item->groupId }} </p> 
-                                        </div>
-                                    </div>
-                                </center>   
+                <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:#00c300;border-bottom-width: 4px; margin-bottom: 10px;">
+                    <center>
+                        <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                            <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                    <img style="width:50px; hight: 50px;border-radius: 50% 50%;" src="{{ $item->pictureUrl }}" alt="image of client" title="client" class="img-fluid customer">
+                                    <h5 style="margin-bottom:0px; margin-top:10px; ">{{ $item->groupName }}</h5>
+                            </div> 
+                            <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                <i class="fas fa-angle-down" ></i>
+                                </div>
+                            <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
+                                <hr>
+                                <p style="font-size:18px;padding:0px"> เจ้าของกลุ่ม <br>  {{ $item->owner }}  </p> <hr>
+                                <p style="font-size:18px;padding:0px">เขตเวลา : {{ $item->time_zone }} </p> 
+                                <p style="font-size:18px;padding:0px">ภาษา : {{ $item->language }} </p> 
+                                <hr>
+                                    <p style="font-size:18px;padding:0px">Group Id </p> 
+                                    <p style="font-size:13px;padding:0px">{{ $item->groupId }} </p> 
                             </div>
-                        @endforeach
-                     <div class="pagination-wrapper"> {!! $group_line->appends(['search' => Request::get('search')])->render() !!} </div>
+                        </div>
+                    </center>   
+                </div>
+            @endforeach
+            <div class="pagination-wrapper"> {!! $group_line->appends(['search' => Request::get('search')])->render() !!} </div>
             <!--------------------------------------------------------------End Mobile -------------------------------------------------------------->
 
         </div>

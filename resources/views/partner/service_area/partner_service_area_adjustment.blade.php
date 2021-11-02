@@ -139,21 +139,35 @@
                                 </div>
                             </div>
                             <br>
+                            
                             <!-- Button trigger modal -->
                             <button id="btn_modal_send_area" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_send_area"></button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="modal_send_area" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                            <div class="modal fade"  id="modal_send_area" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" id="modal-center">
+                                <div class="modal-content" id="modal-center">
+                                  <!-- <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">รอตรวจสอบ</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_service_pending').click();">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    ViiCheck ได้รับข้อมูลการเปลี่ยนแปลงพื้นที่ของคุณแล้ว กรุณารอ Admin ตรวจสอบ
+                                  </div> -->
+                                  
+                                  <div class="modal-body" style="border-radius: 25px;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_service_pending').click();">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                      <div class="row">
+                                        <div class="col-md-6"><img src="img/stickerline/PNG/4.png" width="100%" alt="viicheck"></div>
+                                        <div class="col-md-6 d-flex align-items-center" style="font-family: 'Prompt', sans-serif;border-radius: 25px;">
+                                           <h4 class="text-center">
+                                              <b>ViiCheck ได้รับข้อมูลการเปลี่ยนแปลงพื้นที่ของคุณแล้ว กรุณารอ Admin ตรวจสอบ</b> 
+                                           </h4>  
+                                        </div>
+                                      </div>
+                                    
+                                    
                                   </div>
                                   <div class="modal-footer d-none">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

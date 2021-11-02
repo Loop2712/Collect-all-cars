@@ -285,10 +285,10 @@
                           <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
                         @break
                         @case("admin-partner") 
-                          <a href="{{ url('/partner_theme') }}" target="blank">📊 &nbsp; admin-partner</a>
+                          <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; admin-partner</a>
                         @break
                         @case("partner") 
-                          <a href="{{ url('/partner_theme') }}" target="blank">📊 &nbsp; partner</a>
+                          <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; partner</a>
                         @break
                       @endswitch
                     @endif

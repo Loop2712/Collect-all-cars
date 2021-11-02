@@ -161,8 +161,12 @@
                                         </div> 
                                         <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Insurance_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
                                             <i class="fas fa-angle-down" ></i>
-                                            </div>
-                                        <div class="col-12 collapse" id="Insurance_{{ $item->id }}"><br>
+                                        </div>
+                                        <div class="col-4 collapse" id="Insurance_{{ $item->id }}">
+                                            
+                                            <img style="margin-left: 7px;margin-top:70px;overflow" width="100%" src="{{ url('/img/logo_insuraance/') }}/{{ $item->company }}.png">
+                                        </div>
+                                        <div class="col-8 collapse" id="Insurance_{{ $item->id }}"><br>
                                             <p style="font-size:18px;padding:0px">เบอร์ : {{ $item->phone }} </p> 
                                                 @switch($item->status_partner)
                                                     @case("Yes") 
@@ -217,6 +221,8 @@
                                                 @endif
                                             </p>
                                             <p style="font-size:18px;padding:0px">อีเมล : {{ $item->mail }} </p> 
+                                        </div>
+                                        <div class="col-12 collapse" id="Insurance_{{ $item->id }}">
                                             <hr>
                                             <form method="POST" action="{{ url('/insurance' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

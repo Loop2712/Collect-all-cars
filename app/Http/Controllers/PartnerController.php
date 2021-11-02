@@ -241,6 +241,17 @@ class PartnerController extends Controller
         return view('layouts.partners.theme_partner', compact('data_partners','data_time_zone'));
     }
 
+    public function partner_index()
+    {
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)->get();
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.partner_index', compact('data_partners','data_time_zone'));
+    }
+
     public function register_cars(Request $request)
     {
         $data_user = Auth::user();

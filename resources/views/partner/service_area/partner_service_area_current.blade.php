@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-12">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" >
                     <a id="btn_service_current" href="{{ url('/service_current') }}" type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
                     <a id="btn_service_pending" href="{{ url('/service_pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
                     <a id="btn_service_area" href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
@@ -22,8 +22,21 @@
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
                     <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}">
-                    <div class="card" id="div_card">
-                        <div id="map"></div>
+                    <div class="card" style="font-family: 'Prompt', sans-serif;border-radius: 25px;" id="div_card">
+                        <div id="map">
+                        <center>
+                            <div class="row">
+                                <div class="card-body col-md-6" style="hight: 500px">
+                                    <img src="img/stickerline/PNG/17.png" width="100%" alt="viicheck">
+                                </div>
+                                <div class="card-body col-md-6 d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <h1 style="font-family: 'Prompt', sans-serif;"> <b>ตอนนี้คุณยังไม่มี <br> พื้นที่บริการ <br> กรุณาเพิ่มพื้นที่บริการ</b> </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                        </div>
                     </div>
                 </div>
             </div>
