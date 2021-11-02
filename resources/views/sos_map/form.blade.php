@@ -172,13 +172,13 @@
                                 stop();
                             }">
 
-                            ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;&nbsp;
-                            <i id="i_down" style="font-size: 20px" class="fas fa-arrow-alt-circle-down text-info"></i>
+                            ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;
+                            <i id="i_down" style="font-size: 20px;" class="fas fa-camera text-info"></i>
                             <i id="i_up" style="font-size: 20px" class="fas fa-arrow-alt-circle-up text-info d-none"></i>
                         </h6>
                         <div class="collapse" id="div_photo">
                             <div style="margin-top:15px;" class="control-label" data-toggle="collapse" data-target="#img_ex" aria-expanded="false" aria-controls="img_ex" >
-                                <i class="fas fa-info-circle text-danger"></i> ตัวอย่างการถ่ายภาพ 
+                                <!-- <i class="fas fa-info-circle text-danger"></i> --> ตัวอย่างการถ่ายภาพ <i class="fas fa-angle-down"></i>
                             </div>
                             <img id="img_ex" class="collapse" style="filter: backscale(50%);margin-top:15px;" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}">
                             <div class="col-12" id="div_cam" style="display:none;margin-top:17px;">
