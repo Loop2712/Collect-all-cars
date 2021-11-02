@@ -294,6 +294,7 @@ class Sos_mapController extends Controller
 
             //ส่งเมล
             $data_send_mail = array();
+            $data_send_mail['photo'] = $photo ;
             $data_send_mail['name_partner'] = $name_partner ;
             $data_send_mail['time_zone'] = $time_zone ;
             $data_send_mail['name_user'] = $name_user ;
