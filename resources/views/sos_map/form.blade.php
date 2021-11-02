@@ -190,7 +190,9 @@
                                     </a>
                                 </div>
                             </div>
-                            <input type="hidden" name="" id="text_img">
+
+                            <input class="d-none" type="text" name="text_img" id="text_img" value="">
+
                             <div style="margin-top:15px;" id="show_img" class="">
                                 <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
                                 <img class="d-none" src="" width="266" height="400"  id="photo2">

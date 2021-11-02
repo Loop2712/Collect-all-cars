@@ -70,6 +70,23 @@ class Sos_mapController extends Controller
     {
         
         $requestData = $request->all();
+
+        if (!empty($requestData['text_img'])) {
+
+            $name_file_img = uniqid('photo_sos-', true);
+            $output_file_img = "./storage/uploads/".$name_file_img.".png";
+
+            $data_64_img = explode( ',', $requestData['text_img'] );
+
+            $fp_img = fopen($output_file_img, "w+");
+     
+            fwrite($fp_img, base64_decode( $data_64_img[ 1 ] ) );
+             
+            fclose($fp_img);
+
+            $url_img_sos = str_replace("./storage/","",$output_file_img);
+            $requestData['photo'] = $url_img_sos ;
+        }
         
         Sos_map::create($requestData);
 
