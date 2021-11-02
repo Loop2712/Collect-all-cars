@@ -155,24 +155,32 @@
                 <hr>
                 <div class="row">
                     <div class="col-12">
-                        <h6 style="margin-top:8px;" class="control-label float-left" data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo">
+                        <h6 style="margin-top:8px;" class="control-label " data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" 
+                            onclick="if(document.getElementById('div_cam').style.display=='none'){
+                                document.getElementById('div_cam').style.display='',
+                                document.querySelector('#i_down').classList.add('d-none'),
+                                document.querySelector('#i_up').classList.remove('d-none'),
+                                capture_registration();
+                            }else{
+                                document.getElementById('div_cam') .style.display='none',
+                                document.querySelector('#i_down').classList.remove('d-none'),
+                                document.querySelector('#i_up').classList.add('d-none'),
+                                stop();
+                            }">
+
                             ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;&nbsp;
-                            <i style="font-size: 20px" class="fas fa-arrow-alt-circle-down  text-info" onclick="if(document.getElementById('div_cam') .style.display=='none') 
-                            {document.getElementById('div_cam') .style.display='',capture_registration();}else{document.getElementById('div_cam') .style.display='none',stop();}"></i>
+                            <i id="i_down" style="font-size: 20px" class="fas fa-arrow-alt-circle-down text-info"></i>
+                            <i id="i_up" style="font-size: 20px" class="fas fa-arrow-alt-circle-up text-info d-none"></i>
                         </h6>
                         <div class="collapse" id="div_photo">
-                            <br><br>
-                            <img style="filter: backscale(50%);" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}">
-                            <p style="position:absolute;top: 220px;right: 85px;color: #ffffff;">
-                                <i class="fas fa-info-circle text-danger"></i> 
-                                <b>ตัวอย่างการถ่ายภาพ</b>
-                            </p>
-                            <br><br>
-                            <div class="col-12" id="div_cam" style="display:none;">
+                            <div style="margin-top:15px;" class="control-label" data-toggle="collapse" data-target="#img_ex" aria-expanded="false" aria-controls="img_ex" >
+                                <i class="fas fa-info-circle text-danger"></i> ตัวอย่างการถ่ายภาพ 
+                            </div>
+                            <img id="img_ex" class="collapse" style="filter: backscale(50%);margin-top:15px;" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}">
+                            <div class="col-12" id="div_cam" style="display:none;margin-top:17px;">
                                 <div class="d-flex justify-content-center bg-light"> 
                                    
                                     <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
-                                    <i style="position:absolute;right: 25px;top: 5px;" class="far fa-times-circle" onclick="document.querySelector('#div_photo').click(),stop();"></i>
                                     <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
                                 </div>
                             </div>
