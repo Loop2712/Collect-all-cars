@@ -122,7 +122,7 @@
             @if(!empty($user))
               <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">สวัสดีคุณ <b style="color:blue;" id="text_name">{{ $user->name }}</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="stop();">
                   <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
                 </button>
               </div>
@@ -190,6 +190,14 @@
                             <div style="margin-top:15px;" id="show_img" class="">
                                 <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
                                 <img class="d-none" src="" width="266" height="400"  id="photo2">
+
+                                <div id="btn_check_time" class="row d-none" style="margin-top:15px;">
+                                    <div class="col-12">
+                                        <p class="btn btn-sm btn-danger" onclick="document.querySelector('#btn_check_time').classList.add('d-none'),capture_registration();">
+                                            <i class="fas fa-undo"></i> ถ่ายใหม่
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
@@ -359,6 +367,8 @@
 
             photo2.setAttribute('src',canvas.toDataURL('image/png'));
             text_img.value = canvas.toDataURL('image/png');
+
+        document.querySelector('#btn_check_time').classList.remove('d-none');
         
     }
 
