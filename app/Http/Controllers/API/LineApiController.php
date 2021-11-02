@@ -231,26 +231,26 @@ class LineApiController extends Controller
 
         if (empty($user_language)) {
             // DF ริชเมนู EN 
-            $richMenuId = "richmenu-7f3294d42628b5bd03dc3220af61caa5" ;
+            $richMenuId = "richmenu-abf409dee26385d885a3fee64572bca5" ;
         }else {
             switch ($user_language) {
                 case 'th':
                     $richMenuId = "richmenu-454c598f6cc2cfa01d9e61dd08c90f1a" ;
                     break;
                 case 'en':
-                    $richMenuId = "richmenu-7f3294d42628b5bd03dc3220af61caa5" ;
+                    $richMenuId = "richmenu-abf409dee26385d885a3fee64572bca5" ;
                     break;
                 case 'zh-TW':
-                    $richMenuId = "richmenu-8e2834b292e425cb46e4639d72e4829f" ;
+                    $richMenuId = "richmenu-1cc742d1060a55b416efd8c0f5405355" ;
                     break;
                 case 'ja':
-                    $richMenuId = "richmenu-949e7f050000011fbbff5a0feed5fc3b" ;
+                    $richMenuId = "richmenu-790398060879ccc8d5e35ddc085f1536" ;
                     break;
                 case 'ko':
-                    $richMenuId = "richmenu-d0af21b1ecb4ce291d61ea57fbc049b3" ;
+                    $richMenuId = "richmenu-4fadb1df378f383eb469cc33947cc3e8" ;
                     break;
                 case 'es':
-                    $richMenuId = "richmenu-b3b5e8f1fcc495eb6691badc29d9b06b" ;
+                    $richMenuId = "richmenu-bdba6cee86b6931d6995e2f4f7f2d9ad" ;
                     break;
             }
         }
