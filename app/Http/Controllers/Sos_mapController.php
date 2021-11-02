@@ -242,6 +242,7 @@ class Sos_mapController extends Controller
         $phone_user = $data['phone'];
         $lat_user = $data['lat'];
         $lng_user = $data['lng'];
+        $photo = $data['photo'];
 
         $data_name_sp = explode("&",$data['area']);
 
@@ -308,7 +309,7 @@ class Sos_mapController extends Controller
             if (!empty($data['photo'])) {
                 $template_path = storage_path('../public/json/ask_for_help_photo.json');
                 $string_json = file_get_contents($template_path);
-                $string_json = str_replace("photo_sos.png",$data['photo'],$string_json);
+                $string_json = str_replace("photo_sos.png",$photo,$string_json);
             }else{
                 $template_path = storage_path('../public/json/ask_for_help.json');
                 $string_json = file_get_contents($template_path);
