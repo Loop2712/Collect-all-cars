@@ -1,0 +1,210 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "ขอความช่วยเหลือ",
+            "margin": "xxl",
+            "size": "xl",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/Flex/1.png",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "margin": "xs",
+            "animated": true,
+            "align": "center",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "color": "#07375D",
+            "text": "รูปภาพสถานที่",
+            "margin": "xl",
+            "size": "md",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true,
+            "offsetBottom": "md"
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/storage/uploads/photo_sos.png",
+            "aspectMode": "fit",
+            "aspectRatio": "4:3",
+            "size": "full",
+            "align": "center",
+            "gravity": "center"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/icon/zoom-in.png",
+                "size": "xxl"
+              }
+            ],
+            "position": "absolute",
+            "offsetBottom": "xs",
+            "offsetEnd": "20px",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/storage/uploads/photo_sos.png"
+            }
+          }
+        ],
+        "backgroundColor": "#FAEBD7",
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl",
+        "margin": "md"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เวลา",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#FFFFFF",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "จาก",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "name",
+            "size": "lg",
+            "margin": "lg",
+            "color": "#FFFFFF"
+          }
+        ],
+        "spacing": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "lg",
+        "color": "#07375D"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "height": "sm",
+                "action": {
+                  "type": "uri",
+                  "label": "โทร 0999999999",
+                  "uri": "tel:0999999999"
+                },
+                "color": "#76d128",
+                "style": "primary"
+              },
+              {
+                "type": "button",
+                "height": "sm",
+                "action": {
+                  "type": "uri",
+                  "label": "Google Map",
+                  "uri": "https://www.google.co.th/maps/search/lat,lng/lat_mail,lng,16z"
+                },
+                "color": "#3AC0CE",
+                "style": "primary",
+                "margin": "md"
+              }
+            ],
+            "cornerRadius": "lg",
+            "borderColor": "#FF0000"
+          }
+        ],
+        "flex": 0,
+        "borderColor": "#000000",
+        "backgroundColor": "#07375D"
+      }
+    ],
+    "backgroundColor": "#07375D",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}
+}

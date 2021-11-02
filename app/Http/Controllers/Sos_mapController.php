@@ -305,8 +305,15 @@ class Sos_mapController extends Controller
             Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
 
             // flex ask_for_help
-            $template_path = storage_path('../public/json/ask_for_help.json');   
-            $string_json = file_get_contents($template_path);
+            if (!empty($data['photo'])) {
+                $template_path = storage_path('../public/json/ask_for_help_photo.json');
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("photo_sos.png",$data['photo'],$string_json);
+            }else{
+                $template_path = storage_path('../public/json/ask_for_help.json');
+                $string_json = file_get_contents($template_path);
+            }
+               
             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
             $string_json = str_replace("datetime",$time_zone,$string_json);
             $string_json = str_replace("name",$name_user,$string_json);
