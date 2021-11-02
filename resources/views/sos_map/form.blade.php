@@ -172,7 +172,7 @@
                                 <div class="d-flex justify-content-center bg-light"> 
                                    
                                     <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
-                                    <i style="position:absolute;right: 25px;top: 5px;" class="far fa-times-circle" onclick="stop();"></i>
+                                    <i style="position:absolute;right: 25px;top: 5px;" class="far fa-times-circle" onclick="document.querySelector('#div_photo').click(),stop();"></i>
                                     <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();"><i class="fas fa-camera"></i></a>
                                 </div>
                             </div>
