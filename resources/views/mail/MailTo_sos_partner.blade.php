@@ -19,7 +19,8 @@
 							📞
 							<a href="tel:{{ $data['phone_user'] }}">{{ $data["phone_user"] }}</a>
 							<br><br>
-							<b>ภาพสถานที่เกิดเหตุ</b>
+							ภาพสถานที่เกิดเหตุ
+							<br><br>
 							<img src="https://www.viicheck.com/storage/{{ $data['photo'] }}">
 							<br><br>
 							<a href="https://www.google.co.th/maps/search/{{ $data['lat'] }},{{ $data['lng'] }}/{{ $data['lat_mail'] }},{{ $data['lng'] }},16z">ดูสถานที่เกิดเหตุ</a>
