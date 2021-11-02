@@ -129,6 +129,13 @@ class LineMessagingAPI extends Model
     {   
     	switch($message_type)
         {
+            case "test_stk": 
+
+                $template_path = storage_path('../public/json/test_sticker.json');   
+                $string_json = file_get_contents($template_path);
+
+                $messages = [ json_decode($string_json, true) ]; 
+                break;
             case "contact_viiCHECK": 
 
                 $template_path = storage_path('../public/json/flex-contact.json');   
