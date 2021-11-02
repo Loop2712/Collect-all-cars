@@ -127,32 +127,34 @@
                 </button>
               </div>
               <div class="modal-body text-center">
-                <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}">
-                <br><br>
-                โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
-                <br>
-                <input type="hidden" name="" id="input_phone_url" value="{{ url()->full() }}">
-                <div style="margin-top:10px;">
-                    <b>
-                        <span style="font-size:22px;color: blue;" id="text_phone">
-                            @if(!empty($user->phone)){{ $user->phone }}@endif
-                        </span>
-                        @if(!empty($user->phone))
-                            <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#input_phone').classList.remove('d-none');"></i>
-                        @endif
-                    </b>
+                <div id="div_data_phone">
+                    <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}">
+                    <br><br>
+                    โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
+                    <br>
+                    <input type="hidden" name="" id="input_phone_url" value="{{ url()->full() }}">
+                    <div style="margin-top:10px;">
+                        <b>
+                            <span style="font-size:22px;color: blue;" id="text_phone">
+                                @if(!empty($user->phone)){{ $user->phone }}@endif
+                            </span>
+                            @if(!empty($user->phone))
+                                <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#input_phone').classList.remove('d-none');"></i>
+                            @endif
+                        </b>
+                    </div>
+                    
+                    @if(!empty($user->phone))
+                        <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
+                        <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
+                    @endif
+
+                    @if(empty($user->phone))
+                        <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
+                    @endif
+                    <hr>
                 </div>
-                
-                @if(!empty($user->phone))
-                    <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
-                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
-                @endif
 
-                @if(empty($user->phone))
-                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
-                @endif
-
-                <hr>
                 <div class="row">
                     <div class="col-12">
                         <h6 style="margin-top:8px;" class="control-label " data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" 
@@ -160,11 +162,13 @@
                                 document.getElementById('div_cam').style.display='',
                                 document.querySelector('#i_down').classList.add('d-none'),
                                 document.querySelector('#i_up').classList.remove('d-none'),
+                                document.querySelector('#div_data_phone').classList.add('d-none'),
                                 capture_registration();
                             }else{
                                 document.getElementById('div_cam') .style.display='none',
                                 document.querySelector('#i_down').classList.remove('d-none'),
                                 document.querySelector('#i_up').classList.add('d-none'),
+                                document.querySelector('#div_data_phone').classList.remove('d-none'),
                                 stop();
                             }">
 
