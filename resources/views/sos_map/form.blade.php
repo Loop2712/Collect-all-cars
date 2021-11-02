@@ -157,7 +157,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h6 style="margin-top:8px;" class="control-label " data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" 
+                        <h6 style="margin-top:4px;" class="control-label " data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" 
                             onclick="if(document.getElementById('div_cam').style.display=='none'){
                                 document.getElementById('div_cam').style.display='',
                                 document.querySelector('#i_down').classList.add('d-none'),
