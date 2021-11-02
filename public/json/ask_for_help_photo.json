@@ -69,7 +69,7 @@
           },
           {
             "type": "image",
-            "url": "https://www.viicheck.com/storage/uploads/photo_sos.png",
+            "url": "https://www.viicheck.com/storage/photo_sos.png",
             "aspectMode": "fit",
             "aspectRatio": "4:3",
             "size": "full",
@@ -92,7 +92,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://www.viicheck.com/storage/uploads/photo_sos.png"
+              "uri": "https://www.viicheck.com/storage/photo_sos.png"
             }
           }
         ],
