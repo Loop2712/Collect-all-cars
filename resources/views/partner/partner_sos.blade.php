@@ -42,7 +42,7 @@
                                         <div class="col-1">
                                             <br>
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-3">
                                             <b>ชื่อ</b><br>
                                             Name
                                         </div>
@@ -58,7 +58,7 @@
                                             <b>รูปภาพ</b><br>
                                             Photo
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <b>ตำแหน่ง</b><br>
                                             Location
                                         </div>
@@ -70,7 +70,7 @@
                                                     {{ $loop->iteration }}
                                                 </h6>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <h5 class="text-success float-left">
                                                     <span style="font-size: 15px;">
                                                         <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
@@ -103,7 +103,7 @@
                                                     -
                                                 @endif
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <a class="link text-danger" href="#">
