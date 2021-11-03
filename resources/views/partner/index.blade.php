@@ -274,145 +274,10 @@
                 </div>
                     <!----------------------------------------------- end pc ----------------------------------------------->
                     <!----------------------------------------------- mobile ----------------------------------------------->
-                    @foreach($partner as $item)
-                        <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:#00c300;border-bottom-width: 4px; margin-bottom: 10px;">
-                            <center>
-                                <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                                    <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                    <h4 class="text-success" style="margin-bottom:0px; margin-top:10px; ">{{ $item->name }} 
-                                        @if(!empty($item->new_sos_area))
-                                            <span class="notify_alert" style="position: absolute; font-size:12px;color: red;">
-                                                <b>new</b>
-                                            </span>
-                                        @endif
-                                    </h4>
-                                    <h5  style="margin-bottom:0px; margin-top:10px; ">Phone : {{ $item->phone }}</h5>
-                                    <h5  style="margin-bottom:0px; margin-top:10px; ">Mail : {{ $item->mail }}</h5>
-                                            
-                                    </div> 
-                                    <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                        <i class="fas fa-angle-down" ></i>
-                                        </div>
-                                    <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
-                                        <hr>
-                                        <p style="font-size:18px;padding:0px"> Grop  Line <br>   
-                                            @if(!empty($item->line_group))
-                                                {{ $item->line_group }}
-                                            @elseif(empty($item->line_group))
-                                                <select id="select_line_group_{{ $loop->iteration }}" class="btn btn-sm btn-outline-success" onchange="change_line_group('{{ $loop->iteration }}','{{ $item->name }}');">
-                                                    <option value="" selected>- เลือกกลุ่มไลน์ -</option>
-                                                    @foreach($group_line as $item)
-                                                        <option value="{{ $item->groupName }}" 
-                                                        {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
-                                                        {{ $item->groupName }} 
-                                                        </option>
-                                                    @endforeach 
-                                                </select>
-                                            @else
-                                                <!-- // -->
-                                            @endif
-                                        </p> <hr>
-                                        <p style="font-size:18px;padding:0px">Area Current <br>   
-                                            @if(!empty($item->sos_area))
-                                                <button id="noButton" type="submit" class="btn btn-sm btn-success " href="" data-toggle="collapse" data-target="#collapseMobile_{{ $item->id }}" aria-expanded="false" aria-controls="collapseMobile_{{ $item->id }}" onclick="view_area_current_partner('{{ $item->name }}' , '{{ $item->id }}');">
-                                                    <i class="fas fa-check"></i> Yes
-                                                </button> 
-                                                <!-- <i style="font-size:25px;" type="button" class="fas fa-check text-success" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="view_area_current_partner('{{ $item->name }}' , '{{ $item->id }}');"></i> -->
-                                            @else
-                                                <!-- <i class="fas fa-times text-danger"></i> -->
-                                                <button  type="submit" class="btn btn-sm btn-danger " href="">
-                                                    <i class="fas fa-times"></i> No
-                                                </button>
-                                            @endif
-                                        </p> <hr>
-                                        <p style="font-size:18px;padding:0px">Area Padding   
-                                            @if(!empty($item->new_sos_area))
-                                                <span class="notify_alert" style="position: absolute; font-size:12px;color: red;">
-                                                    <b>new</b>
-                                                </span>
-                                            @endif
-                                           <br>
-                                            @if(!empty($item->new_sos_area))
-                                                <a href="" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseMobile_{{ $item->id }}" aria-expanded="false" aria-controls="collapseMobile_{{ $item->id }}" onclick="check_area_pending_partner('{{ $item->name }}' , '{{ $item->id }}');">
-                                                    ตรวจสอบ 
-                                                </a>
-                                            @else
-                                                <!-- <i class="fas fa-times text-danger"></i> -->
-                                                <button  type="submit" class="btn btn-sm btn-danger " href="">
-                                                    <i class="fas fa-times"></i> No
-                                                </button>
-                                            @endif
-                                          </p> <hr>
-                                        <p style="font-size:18px;padding:0px">Admin 
-
-                                             @if(!empty($item->user_id_admin))
-                                                <a href="{{ url('/profile/' . $item->user_id_admin) }}" target="bank">
-                                                    <i class="far fa-eye text-primary"></i>
-                                                </a>
-                                            @endif
-                                        </p>
-                                    </div>
-                                     <!----------------- modal mobile ----------------->
-                        <div class="collapse container-fluid" id="collapseMobile_{{ $item->id }}">
-                                    <hr>
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="p-3"><span style="color:#FD8433;">&#11044;</span> &nbsp;พื้นที่บริการองค์กรอื่นๆ </div>
-                                                <div class="p-3"><span style="color:#008450;">&#11044;</span> &nbsp;พื้นที่บริการปัจจุบัน </div>
-                                                <div class="p-3"><span style="color:#173066;">&#11044;</span> &nbsp;พื้นที่ขอรับการอนุมัติ </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <b class="text-primary">พื้นที่บริการปัจจุบัน</b><br>
-                                                    <span class="text-secondary" id="text_errm_{{ $item->id }}"></span>
-                                                    <div id="current_mapm_{{ $item->id }}" style="height: calc(40vh);"></div>
-                                                    <input class="d-none" type="text" id="input_current_aream_{{ $item->id }}" name=""  value="">
-                                                </div>
-                                                <div class="col-12">
-                                                    <b class="text-danger">พื้นที่ขอรับการอนุมัติ</b>
-                                                    <div class="float-right">
-                                                        <button id="btn_approved_{{ $item->id }}" type="button" class="btn btn-sm btn-success text-center" onclick="confirm_change('approve','{{ $item->id }}');">
-                                                            อนุมัติ
-                                                        </button>
-                                                        <button id="btn_disapproved_{{ $item->id }}" type="button" class="btn btn-sm btn-danger" onclick="confirm_change('disapproved','{{ $item->id }}');">
-                                                            ไม่อนุมัติ
-                                                        </button>
-                                                    </div>
-                                                    <span class="text-secondary" id="text_2_err_{{ $item->id }}"></span>
-                                                    <div id="new_map_{{ $item->id }}" style="height: calc(40vh);"></div>
-                                                    <input class="d-none" type="text" id="input_new_aream_{{ $item->id }}" name=""  value="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-12">
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <span class="text-secondary" id="text_err_{{ $item->id }}"></span>
-                                                    <div id="current_map_{{ $item->id }}" style="height: calc(40vh);"></div>
-                                                    <input class="d-none" type="text" id="input_current_area_{{ $item->id }}" name=""  value="">
-                                                </div>
-                                                <div class="col-6">
-                                                    <span class="text-secondary" id="text_2_err_{{ $item->id }}"></span>
-                                                    <div id="new_map_{{ $item->id }}" style="height: calc(40vh);"></div>
-                                                    <input class="d-none" type="text" id="input_new_area_{{ $item->id }}" name=""  value="">
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </div>
-                                    <hr style="border-style: solid;border-color: red;">
-                                </div>
-                                </div>
-                            </center>   
-                        </div>
-                               
-                    @endforeach
+                    <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:#00c300;border-bottom-width: 4px; margin-bottom: 10px;">
+                        <h1>ฟังก์ชั่นนี้ใช้ได้เฉพาะ PC เท่านั้น</h1>
+                    </div>
+                    
                     
                     <!-----------------------------------------------end mobile ----------------------------------------------->
 
@@ -509,12 +374,9 @@
                     // console.log(result);
 
                     document.querySelector('#input_new_area_' + id).value = JSON.stringify(result) ;
-                    document.querySelector('#input_new_aream_' + id).value = JSON.stringify(result) ;
 
                     document.querySelector('#btn_disapproved_' + id).classList.remove('d-none');
                     document.querySelector('#btn_approved_' + id).classList.remove('d-none');
-                    document.querySelector('#btn_disapprovedm_' + id).classList.remove('d-none');
-                    document.querySelector('#btn_approvedm_' + id).classList.remove('d-none');
                     bounds = new google.maps.LatLngBounds();
 
                     for (let ix = 0; ix < result.length; ix++) {
@@ -531,7 +393,6 @@
                         // console.log(result);
                     }else {
                         document.querySelector('#text_err_' + id).innerText = "ไม่มีพื้นที่บริการปัจจุบัน";
-                        document.querySelector('#text_errm_' + id).innerText = "ไม่มีพื้นที่บริการปัจจุบัน";
                     }
                     
                 });
@@ -548,7 +409,6 @@
                     // console.log(result);
 
                     document.querySelector('#input_current_area_' + id).value = JSON.stringify(result) ;
-                    document.querySelector('#input_current_aream_' + id).value = JSON.stringify(result) ;
                     bounds = new google.maps.LatLngBounds();
 
                     for (let ix = 0; ix < result.length; ix++) {
@@ -556,7 +416,6 @@
                     }
 
                     initMap(result,bounds,id,'current_map_','#008450');
-                    initMap(result,bounds,id,'current_mapm_','#008450');
                 });
 
             fetch("{{ url('/') }}/api/area_pending/"+name_partner)
@@ -568,7 +427,6 @@
                         document.querySelector('#btn_disapproved_'+ id).classList.add('d-none');
                         document.querySelector('#btn_approved_'+ id).classList.add('d-none');
                         document.querySelector('#text_2_err_' + id).innerText = "ไม่มีพื้นที่รอการตรวจสอบ";
-                        document.querySelector('#text_2_err_' + id).image.src = "https://www.google.co.uk/images/srpr/logo11w.png";
                         document.querySelector('#span_explain_' + id).classList.add('d-none');
                     }
                     
