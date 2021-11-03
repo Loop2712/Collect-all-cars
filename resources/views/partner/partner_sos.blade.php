@@ -95,7 +95,9 @@
                                                     </a>
                                                     <div class="collapse container-fluid" id="img_photo_{{ $loop->iteration }}">
                                                         <br>
-                                                        <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
+                                                        <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                                            <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
+                                                        </a>
                                                     </div>
                                                 @else
                                                     -
