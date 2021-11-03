@@ -40,91 +40,81 @@
                                             <center><b>Id</b></center>
                                         </div> -->
                                         <div class="col-1">
-                                                <br>
-                                                
-                                        </div>
-                                        <div class="col-2">
-                                                <b>เวลา</b><br>
-                                                Time
-                                        </div>
-                                        <div class="col-2">
-                                                <b>ประเภท</b><br>
-                                                Type
-                                        </div>
-                                        <div class="col-2">
-                                                <b>ตำแหน่ง</b><br>
-                                                Location
-                                        </div>
-                                        <div class="col-2">
-                                                <b>พื้นที่รับผิดชอบ</b><br>
-                                                Area
+                                            <br>
                                         </div>
                                         <div class="col-3">
-                                                <b>ชื่อ / เบอร์</b><br>
-                                                Name / Phone
+                                            <b>ชื่อ</b><br>
+                                            Name
+                                        </div>
+                                        <div class="col-2">
+                                            <b>เบอร์</b><br>
+                                            Phone
+                                        </div>
+                                        <div class="col-2">
+                                            <b>เวลา</b><br>
+                                            Time
+                                        </div>
+                                        <div class="col-2">
+                                            <b>รูปภาพ</b><br>
+                                            Photo
+                                        </div>
+                                        <div class="col-2">
+                                            <b>ตำแหน่ง</b><br>
+                                            Location
                                         </div>
                                     </div>
                                     @foreach($view_maps as $item)
                                         <div class="row text-center">
-                                        <div class="col-1 ">
+                                            <div class="col-1 ">
                                                 <h6>
                                                     {{ $loop->iteration }}
                                                 </h6>
                                             </div>
-                                            <div class="col-2 ">
+                                            <div class="col-3">
+                                                <h5 class="text-success float-left">
+                                                    <span style="font-size: 15px;">
+                                                        <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
+                                                        <i class="far fa-eye text-primary"></i>
+                                                        </a>
+                                                    </span>&nbsp;{{ $item->name }}
+                                                </h5>
+                                            </div>
+                                            <div class="col-2">
+                                                {{ $item->phone }}
+                                            </div>
+                                            <div class="col-2">
                                                 <h6>
                                                     {{ $item->created_at }}
                                                 </h6>
                                             </div>
                                             <div class="col-2">
-                                                    @switch($item->content)
-                                                    @case('police')
-                                                        <h6>ตำรวจ</h6>
-                                                    @break
-                                                    @case('js100')
-                                                        <h6>จส.100</h6>
-                                                    @break
-                                                    @case('life_saving')
-                                                        <h6>หน่วยแพทย์กู้ชีวิต</h6>
-                                                    @break
-                                                    @case('pok_tek_tung')
-                                                        <h6>ป่อเต็กตึ๊ง</h6>
-                                                    @break
-                                                    @case('highway')
-                                                        <h6>สายด่วนทางหลวง</h6>
-                                                    @break
-                                                    @case('lawyers')
-                                                        <h6>ทนายอาสา</h6>
-                                                    @break
-                                                    @case('help_area')
-                                                        <h6>ขอความช่วยเหลือ</h6>
-                                                    @break
-                                                @endswitch
-                                            </div>
-                                            <div class="col-2">
-                                                <h6 class="text-info">
-                                                    <a href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
-                                                        <i class="fas fa-search-location"></i> ดูแผนที่
+                                                @if(!empty($item->photo))
+                                                    <a href="#" class="link text-success" data-toggle="collapse" data-target="#img_photo" aria-expanded="false" aria-controls="img_photo">
+                                                        <i class="fas fa-search"></i>
+                                                        ดูรูปภาพ
                                                     </a>
-                                                </h6>
+                                                    <div class="collapse container-fluid" id="img_photo">
+                                                        <br>
+                                                        <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
+                                                    </div>
+                                                @else
+                                                    -
+                                                @endif
                                             </div>
                                             <div class="col-2">
-                                                <h6>
-                                                    {{ $item->area }}
-                                                </h6>
-                                            </div>
-                                            <div class="col-3">
-                                                <h5 class="text-success">
-                                                    <span style="font-size: 15px;">
-                                                        <a target="break" href="{{ url('/').'/profile/'.$item->id }}">
-                                                        <i class="far fa-eye text-primary"></i>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <a class="link text-danger" href="#">
+                                                            <i class="fas fa-map-marker-alt"></i> ดูมุด
                                                         </a>
-                                                    </span>&nbsp;{{ $item->name }}
-                                                </h5>
-                                                {{ $item->phone }}
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                                            <i class="fas fa-location-arrow"></i> นำทาง
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            
-                                            
                                         </div>
                                         <br>
                                     @endforeach

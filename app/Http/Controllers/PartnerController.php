@@ -397,12 +397,12 @@ class PartnerController extends Controller
                         }
         
         $area = Sos_map::selectRaw('area')
-            ->where('area', $search_area)
+            ->where('area','LIKE', "%$search_area%")
             ->groupBy('area')
             ->get();
 
         $view_maps = DB::table('sos_maps')
-            ->where('area', $search_area)
+            ->where('area','LIKE', "%$search_area%")
             ->latest()->paginate($perPage);
 
         $text_at = '@' ;
