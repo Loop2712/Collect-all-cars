@@ -208,7 +208,7 @@ class LineApiController extends Controller
         //SAVE LOG
         $data = [
             "title" => "ตรวจสอบภาษาเครื่องผู้ใช้",
-            "content" => $result['userId'] . "/" . $result['language'],
+            "content" => $result['language'],
         ];
         MyLog::create($data);
 
