@@ -7,7 +7,11 @@
         <div class="col-4">
             <div class="row">
                 <div class="col-12">
-                    <br><br>
+                    <a style="float: left; background-color: green;" type="button" class="btn text-white" onclick="initMap();">
+                        <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
+                    </a>
+                </div>
+                <div class="col-12">
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
@@ -23,7 +27,7 @@
         <div class="col-8">
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูกราฟ <i class="fas fa-chart-line"></i></a>
+                    <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
                 </div>
                 <br>
                 <br>
@@ -106,7 +110,7 @@
                                             <div class="col-2">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <a class="link text-danger" href="#">
+                                                        <a class="link text-danger" href="#" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
                                                             <i class="fas fa-map-marker-alt"></i> ดูมุด
                                                         </a>
                                                     </div>
@@ -147,11 +151,11 @@
 
     });
 
-    function initMap() {
+    var draw_area ;
+    var map ;
+    var marker ;
 
-        var draw_area ;
-        var map ;
-        var marker ; 
+    function initMap() {
 
         let name_partner = document.querySelector('#name_partner').value;
 
@@ -194,6 +198,47 @@
                 @endforeach
                 
             });
+
+    }
+
+    function view_marker(lat , lng){
+
+        let name_partner = document.querySelector('#name_partner').value;
+
+        fetch("{{ url('/') }}/api/area_current/"+name_partner)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                var bounds = new google.maps.LatLngBounds();
+
+                for (let ix = 0; ix < result.length; ix++) {
+                    bounds.extend(result[ix]);
+                }
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+                center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+            });
+
+            // Construct the polygon.
+            draw_area = new google.maps.Polygon({
+                paths: result,
+                strokeColor: "#008450",
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillColor: "#008450",
+                fillOpacity: 0.25,
+            });
+            draw_area.setMap(map);
+
+            let image = "https://www.viicheck.com/img/icon/flag_2.png";
+            marker = new google.maps.Marker({
+                position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
+                map: map,
+                icon: image,
+            });  
+        });
 
     }
 
