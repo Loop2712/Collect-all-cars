@@ -226,11 +226,20 @@
             draw_area.setMap(map);
 
             let image = "https://www.viicheck.com/img/icon/flag_2.png";
+            let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
             marker = new google.maps.Marker({
                 position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
                 map: map,
                 icon: image,
             });  
+
+            @foreach($view_maps as $view_map)
+                marker = new google.maps.Marker({
+                    position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                    map: map,
+                    icon: image2,
+                });     
+            @endforeach
         });
 
     }
