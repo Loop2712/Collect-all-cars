@@ -99,7 +99,7 @@
                                             <div class="col-3">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <a class="link text-danger" href="#" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
+                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
                                                             <i class="fas fa-map-marker-alt"></i> 
                                                             <br>
                                                             ดูหมุด
