@@ -89,11 +89,11 @@
                                             </div>
                                             <div class="col-2">
                                                 @if(!empty($item->photo))
-                                                    <a href="#" class="link text-success" data-toggle="collapse" data-target="#img_photo" aria-expanded="false" aria-controls="img_photo">
+                                                    <a href="#" class="link text-success" data-toggle="collapse" data-target="#img_photo_{{ $loop->iteration }}" aria-expanded="false" aria-controls="img_photo_{{ $loop->iteration }}">
                                                         <i class="fas fa-search"></i>
                                                         ดูรูปภาพ
                                                     </a>
-                                                    <div class="collapse container-fluid" id="img_photo">
+                                                    <div class="collapse container-fluid" id="img_photo_{{ $loop->iteration }}">
                                                         <br>
                                                         <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
                                                     </div>
