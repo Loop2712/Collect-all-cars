@@ -205,10 +205,12 @@ class LineApiController extends Controller
         $url = "https://api.line.me/v2/bot/profile/".$provider_id;
         $result = file_get_contents($url, false, $context);
 
+        $data_result = json_decode($result);
+
         //SAVE LOG
         $data = [
             "title" => "ตรวจสอบภาษาเครื่องผู้ใช้",
-            "content" => $result,
+            "content" => $data_result->language,
         ];
         MyLog::create($data);
 
