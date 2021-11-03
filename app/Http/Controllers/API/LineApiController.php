@@ -192,6 +192,26 @@ class LineApiController extends Controller
     {
         $provider_id = $event['source']['userId'];
 
+        $opts = [
+            'http' =>[
+                'method'  => 'GET',
+                'header'  => 'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+
+        $url = "https://api.line.me/v2/bot/profile/".$provider_id;
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "ตรวจสอบภาษาเครื่องผู้ใช้",
+            "content" => $result,
+        ];
+        MyLog::create($data);
+
         $data_users = DB::table('users')
                 ->where('provider_id', $provider_id)
                 ->where('status', "active")
