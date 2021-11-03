@@ -233,10 +233,10 @@ class LineApiController extends Controller
     {
         switch ($device_language) {
             case 'th':
-                // $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-70dd2d7880f2efce64befb8182a4261e" ;
                 break;
             case 'en':
-                // $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-fcfe7e45ecac9c831a2ba9da47fab085" ;
                 break;
             case 'zh-TW':
                 // $richMenuId_start = "" ;
@@ -257,7 +257,7 @@ class LineApiController extends Controller
                 break;
         }
         // เก่า
-        $richMenuId_start = "richmenu-fcfe7e45ecac9c831a2ba9da47fab085" ;
+        // $richMenuId_start = "richmenu-fcfe7e45ecac9c831a2ba9da47fab085" ;
 
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
