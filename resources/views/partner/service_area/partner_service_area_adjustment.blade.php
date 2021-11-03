@@ -159,11 +159,16 @@
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                       <div class="row">
-                                        <div class="col-md-6"><img src="img/stickerline/PNG/4.png" width="100%" alt="viicheck"></div>
-                                        <div class="col-md-6 d-flex align-items-center" style="font-family: 'Prompt', sans-serif;border-radius: 25px;">
-                                           <h4 class="text-center">
-                                              <b>ViiCheck ได้รับข้อมูลการเปลี่ยนแปลงพื้นที่ของคุณแล้ว กรุณารอ Admin ตรวจสอบ</b> 
-                                           </h4>  
+                                        <div class="card-body col-md-6 d-flex align-items-center" >
+                                            <img src="img/stickerline/PNG/4.png" width="100%" alt="viicheck">
+                                        </div>
+                                        <div class="card-body col-md-6 d-flex align-items-center" style="padding:0px;">
+                                            <div class="col-md-12 text-center">
+                                                <h4 style="font-family: 'Prompt', sans-serif;"> <b>ViiCheck ได้รับข้อมูล </h4>
+                                                <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>การเปลี่ยนแปลงพื้นที่</b></h4>
+                                                <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>ของคุณแล้วกรุณารอ</b></h4>
+                                                <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>Admin ตรวจสอบ</b></h4>
+                                            </div>
                                         </div>
                                       </div>
                                     
@@ -574,7 +579,7 @@
 
         document.querySelector('#btn_modal_send_area').click();
 
-        var delayInMilliseconds = 3500; //3.5 second
+        var delayInMilliseconds = 5000; //5 second
 
         setTimeout(function() {
                 document.querySelector('#btn_service_pending').click();

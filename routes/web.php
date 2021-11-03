@@ -120,8 +120,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 //admin-partner
 Route::middleware(['auth', 'role:admin-partner,partner'])->group(function () {
 	
-	Route::get('/partner_theme', 'PartnerController@partner_theme');
-	Route::get('/partner_index', 'PartnerController@partner_index');
+	// Route::get('/partner_theme', 'PartnerController@partner_theme');
+	Route::get('/partner_index', 'PartnerController@partner_theme');
 	
 	Route::get('/register_cars_partner', 'PartnerController@register_cars');
 	Route::get('/guest_partner', 'PartnerController@guest_partner');

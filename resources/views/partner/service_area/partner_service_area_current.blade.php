@@ -31,7 +31,9 @@
                                 </div>
                                 <div class="card-body col-md-6 d-flex align-items-center">
                                     <div class="col-md-12">
-                                        <h1 style="font-family: 'Prompt', sans-serif;"> <b>ตอนนี้คุณยังไม่มี <br> พื้นที่บริการ <br> กรุณาเพิ่มพื้นที่บริการ</b> </h1>
+                                        <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);"> <b>ตอนนี้คุณยังไม่มี </h1>
+                                        <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>พื้นที่บริการ</b></h1>
+                                        <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>กรุณาเพิ่มพื้นที่บริการ</b></h1>
                                     </div>
                                 </div>
                             </div>

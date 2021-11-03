@@ -9,7 +9,12 @@
                     </div>
                     <div class="card-body col-md-6 d-flex align-items-center">
                         <div class="col-md-12">
-                            <h1 style="font-family: 'Prompt', sans-serif;"> <b>ยินดีต้อนรับ <br>เข้าสู่<br>ViiCheck-Partner</b> </h1>
+                        @foreach($data_partners as $data_partner)
+                        <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>ยินดีต้อนรับ </b> </h1>
+                        <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>{{ $data_partner->name }}</b> </h1>
+                        <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>เข้าสู่</b> </h1>
+                        <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>ViiCheck Partner</b> </h1>
+                        @endforeach
                         </div>
                     </div>
                 </div>
