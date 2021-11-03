@@ -210,7 +210,7 @@ class LineApiController extends Controller
         //SAVE LOG
         $data = [
             "title" => "ตรวจสอบภาษาเครื่องผู้ใช้",
-            "content" => $data_result->language,
+            "content" => $data_result->displayName . "-" . $data_result->language,
         ];
         MyLog::create($data);
 
@@ -224,13 +224,39 @@ class LineApiController extends Controller
             $this->check_language_user($data_users);
         }else {
             // ตั้งค่าริชเมนูเริ่มต้น
-            $this->set_richmanu_start($provider_id);
+            $this->set_richmanu_start($provider_id , $data_result->language);
         }
 
     }
 
-    public function set_richmanu_start($provider_id)
+    public function set_richmanu_start($provider_id , $device_language)
     {
+        switch ($device_language) {
+            case 'th':
+                // $richMenuId_start = "" ;
+                break;
+            case 'en':
+                // $richMenuId_start = "" ;
+                break;
+            case 'zh-TW':
+                // $richMenuId_start = "" ;
+                break;
+            case 'ja':
+                // $richMenuId_start = "" ;
+                break;
+            case 'ko':
+                // $richMenuId_start = "" ;
+                break;
+            case 'es-ES':
+                // $richMenuId_start = "" ;
+                break;
+            
+            default:
+                // en
+                // $richMenuId_start = "" ;
+                break;
+        }
+        // เก่า
         $richMenuId_start = "richmenu-fcfe7e45ecac9c831a2ba9da47fab085" ;
 
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
