@@ -37,6 +37,13 @@ class LineApiController extends Controller
                 break;
             case "follow" :
                 $this->user_follow_line($event);
+                DB::table('users')
+                    ->where([ 
+                            ['type', 'line'],
+                            ['provider_id', $event['source']['userId']],
+                            ['status', "active"] 
+                        ])
+                    ->update(['add_line' => 'Yes']);
                 break;
         }
 	}
@@ -268,6 +275,7 @@ class LineApiController extends Controller
             "content" => $provider_id,
         ];
         MyLog::create($data);
+
     }
 
     public function check_language_user($data_users)

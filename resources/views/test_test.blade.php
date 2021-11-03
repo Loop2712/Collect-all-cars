@@ -11,7 +11,10 @@
                     $student_id = 123456789 ;
                   @endphp
                   <a id="btn_login_line" href="https://www.viicheck.com/login/line/tu_sos?Student=tu_{{ $student_id }}" 
-                  class="btn btn-success" onclick="api_sos_tu();"> login line TU</a> 
+                  class="btn btn-success" onclick="api_data_tu();"> SOS TU & ViiCHECK</a> 
+
+                  <a href="https://www.viicheck.com/login/line/?Student=tu_{{ $student_id }}" 
+                  class="btn btn-info" onclick="api_data_tu();"> REGISTER</a> 
                 </div>
             </div>
           </div>
@@ -20,7 +23,7 @@
 
 <script>
   
-  function api_sos_tu(){
+  function api_data_tu(){
 
       let data = {
           "name" : "ฐนกร",
@@ -31,7 +34,7 @@
           "phone" : "0999999999",
       };
 
-      fetch("https://www.viicheck.com/api/api_sos_tu_greats", {
+      fetch("https://www.viicheck.com/api/api_data_tu_greats", {
               method: 'post',
               body: JSON.stringify(data),
               headers: {
