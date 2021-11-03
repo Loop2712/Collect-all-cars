@@ -389,17 +389,20 @@ class PartnerController extends Controller
         foreach ($data_partners as $data_partner) {
             $search_area = $data_partner->name ;
         }
-        $perPage = 20;
+        $perPage = 8;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
                     foreach ($sos_all_request as $key) {
                             $sos_all = $key->count ;
                         }
-        
-        $area = Sos_map::selectRaw('area')
+
+        // นับจำนวนทั้งหมด
+        $view_maps_all = DB::table('sos_maps')
             ->where('area','LIKE', "%$search_area%")
-            ->groupBy('area')
             ->get();
+
+        $count_data = count($view_maps_all);
+        ////////
 
         $view_maps = DB::table('sos_maps')
             ->where('area','LIKE', "%$search_area%")
@@ -409,7 +412,7 @@ class PartnerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.partner_sos', compact('data_partners','view_maps' , 'sos_all' , 'area','text_at','data_time_zone'));
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'sos_all' ,'text_at','data_time_zone','count_data'));
     }
 
     // public function sos_insurance(Request $request)

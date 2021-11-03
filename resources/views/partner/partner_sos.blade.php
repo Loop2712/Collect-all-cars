@@ -34,18 +34,12 @@
                 <div class="col-md-12">
                     <div class="card">
                         <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>
-                            <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ count($view_maps) }}</span>
+                            <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ $count_data }}</span>
                         </h3>
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row alert alert-secondary text-center">
-                                        <!-- <div class="col-1">
-                                            <center><b>Id</b></center>
-                                        </div> -->
-                                        <div class="col-1">
-                                            <br>
-                                        </div>
                                         <div class="col-3">
                                             <b>ชื่อ</b><br>
                                             Name
@@ -62,18 +56,13 @@
                                             <b>รูปภาพ</b><br>
                                             Photo
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-3">
                                             <b>ตำแหน่ง</b><br>
                                             Location
                                         </div>
                                     </div>
                                     @foreach($view_maps as $item)
                                         <div class="row text-center">
-                                            <div class="col-1 ">
-                                                <h6>
-                                                    {{ $loop->iteration }}
-                                                </h6>
-                                            </div>
                                             <div class="col-3">
                                                 <h5 class="text-success float-left">
                                                     <span style="font-size: 15px;">
@@ -107,16 +96,20 @@
                                                     -
                                                 @endif
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <a class="link text-danger" href="#" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
-                                                            <i class="fas fa-map-marker-alt"></i> ดูมุด
+                                                            <i class="fas fa-map-marker-alt"></i> 
+                                                            <br>
+                                                            ดูหมุด
                                                         </a>
                                                     </div>
                                                     <div class="col-6">
                                                         <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
-                                                            <i class="fas fa-location-arrow"></i> นำทาง
+                                                            <i class="fas fa-location-arrow"></i> 
+                                                            <br>
+                                                            นำทาง
                                                         </a>
                                                     </div>
                                                 </div>
@@ -140,7 +133,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>
 <style type="text/css">
     #map {
-      height: calc(80vh);
+      height: calc(95vh);
     }
     
 </style>
