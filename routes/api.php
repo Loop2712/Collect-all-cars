@@ -117,7 +117,7 @@ Route::get('/service_area/your_old_area/{id_user}','API\PartnersController@your_
 
 // API TU
 
-Route::post('/api_tu_greats', 'API\API_TU_Greats@api_tu');
+Route::post('/api_sos_tu_greats', 'API\API_TU_Greats@api_sos_tu');
 
 
 

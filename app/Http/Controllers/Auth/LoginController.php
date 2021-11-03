@@ -119,13 +119,14 @@ class LoginController extends Controller
     // Line login
     public function redirectToLine(Request $request)
     {
+        $request->session()->put('Student', $request->get('Student'));
         $request->session()->put('redirectTo', $request->get('redirectTo'));
 
         return Socialite::driver('line')->redirect();
     }
 
     // Line login TU
-    public function redirectToLine_TU(Request $request)
+    public function redirectToLine_TU_SOS(Request $request)
     {
         $request->session()->put('Student', $request->get('Student'));
         $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
@@ -137,9 +138,9 @@ class LoginController extends Controller
     public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->user();
-        echo "<pre>";
-        print_r($user);
-        echo "<pre>";
+        // echo "<pre>";
+        // print_r($user);
+        // echo "<pre>";
         // exit();
         $student = $request->session()->get('Student');
 

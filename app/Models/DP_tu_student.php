@@ -25,7 +25,7 @@ class DP_tu_student extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'last_name', 'faculty', 'department', 'student_id', 'status_line', 'user_id'];
+    protected $fillable = ['name', 'last_name', 'faculty', 'department', 'student_id', 'status_line', 'user_id','phone'];
 
     
 }
