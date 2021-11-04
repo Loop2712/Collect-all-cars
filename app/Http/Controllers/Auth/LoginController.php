@@ -121,6 +121,7 @@ class LoginController extends Controller
     {
         $request->session()->put('Student', $request->get('Student'));
         $request->session()->put('redirectTo', $request->get('redirectTo'));
+        $request->session()->put('from', $request->get('from'));
 
         return Socialite::driver('line')->redirect();
     }
@@ -143,8 +144,9 @@ class LoginController extends Controller
         // echo "<pre>";
         // exit();
         $student = $request->session()->get('Student');
+        $from = $request->session()->get('from');
 
-        $this->_registerOrLoginUser($user,"line",$student);
+        $this->_registerOrLoginUser($user,"line",$student , $from);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -153,7 +155,7 @@ class LoginController extends Controller
 
     }
 
-    protected function _registerOrLoginUser($data, $type , $student)
+    protected function _registerOrLoginUser($data, $type , $student , $from)
     {
         //GET USER 
         $user = User::where('provider_id', '=', $data->id)->first();
@@ -219,6 +221,19 @@ class LoginController extends Controller
                     ->update([
                         'role' => 'Student-TU',
                     ]);
+            }
+        }
+
+        if (!empty($from)) {
+
+            if ($from == "line_oa") {
+
+                DB::table('users')
+                    ->where([ 
+                            ['type', 'line'],
+                            ['provider_id', $user->provider_id],
+                        ])
+                    ->update(['add_line' => 'Yes']);
             }
         }
 

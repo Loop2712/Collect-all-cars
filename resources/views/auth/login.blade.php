@@ -49,11 +49,9 @@
                                         <div class="form-group row">
                                             <div class="col-md-12">
                                                 <center>
-                                                    <div class="col-12 main-shadow main-radius" style="background-color: #db2d2e;">
-                                                        <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="submit" class="btn">
-                                                            {{ __('เข้าสู่ระบบ') }}
-                                                        </button>
-                                                    </div>
+                                                    <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="submit" class="col-12 btn btn-danger main-shadow main-radius" >
+                                                        {{ __('เข้าสู่ระบบ') }}
+                                                    </button>
                                                 </center>
                                                 @if (Route::has('password.request'))
                                                     <a class="btn btn-link text-muted float-right" href="{{ route('password.request') }}">
