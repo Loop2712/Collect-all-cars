@@ -243,24 +243,24 @@ class LineApiController extends Controller
                 $richMenuId_start = "richmenu-70dd2d7880f2efce64befb8182a4261e" ;
                 break;
             case 'en':
-                $richMenuId_start = "richmenu-fcfe7e45ecac9c831a2ba9da47fab085" ;
+                $richMenuId_start = "richmenu-08a338eb26f0be320d95359896969453" ;
                 break;
             case 'zh-TW':
-                // $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-dfeb9f9adf2304df57b5235a6541b288" ;
                 break;
             case 'ja':
-                // $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-15731d7116751bb03014e238c1bb0846" ;
                 break;
             case 'ko':
-                // $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-a62f048aa41817b5d8366523f5bbb68e" ;
                 break;
             case 'es-ES':
-                // $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-e00be422e432817ef5b092f8fac5ec1f" ;
                 break;
             
             default:
                 // en
-                // $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-08a338eb26f0be320d95359896969453" ;
                 break;
         }
         // เก่า
