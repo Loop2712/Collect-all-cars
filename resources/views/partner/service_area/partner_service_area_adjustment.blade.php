@@ -8,7 +8,9 @@
     
 </style>
 <br>
-<div class="container-fluid">
+
+<!-- คอม -->
+<div class="container-fluid d-none d-lg-block">
     <input class="d-none" name="lat" type="text" id="lat" value="">
     <input class="d-none" name="lng" type="text" id="lng" value="">
     <input class="d-none" type="" id="latlng" name="latlng" readonly> 
@@ -189,6 +191,12 @@
         </div>
     </div>
 </div>
+
+<!-- มือถือ -->
+<div class="container-fluid d-block d-md-none">
+    <h2>ขณะนี้ระบบปรับพื้นที่บริการรองรับเฉพาะบน PC เท่านั้น</h2>
+</div>
+
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script> -->
