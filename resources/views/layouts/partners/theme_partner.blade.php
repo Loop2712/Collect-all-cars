@@ -48,32 +48,34 @@
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-               <a href="#" class="b-brand">
-                   <div class="b-bg">
-                      <div class="sidenav-header  align-items-center">
-                            <!-- <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
-                            <span style="color:#FFFFFF ;"> <b>x</b>  </span> -->
-                            @if(!empty($data_partner->logo))
-                                <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%" style="margin-top:-5px">
-                            @else
-                                <!-- <span class=" pcoded-mtext text-white"><b>{{ $data_partner->name }}</b></span> -->
-                                <ul class="nav pcoded-inner-navbar">
-                                    <li class="nav-item">
-                                        <div style="overflow: visible;">
-                                            <a href="{{ url('/partner_index') }}" class="nav-link " style="margin-top:-20px;">
-                                                <span class="pcoded-mtext text-white" > 
-                                                    <b>{{ $data_partner->name }}</b> 
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            @endif
-                        </div>
-                   </div>
-               </a>
-               <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
-           </div>
+                <div style="display: -webkit-box;overflow: hidden;width: 88%;text-overflow: ellipsis;">
+                    <a href="#" class="b-brand">
+                        <div class="b-bg">
+                          <div class="sidenav-header  align-items-center">
+                                <!-- <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
+                                <span style="color:#FFFFFF ;"> <b>x</b>  </span> -->
+                                <div style="margin-left: -15px;">
+                                    @if(!empty($data_partner->logo))
+                                        <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%" style="margin-top:-5px">
+                                    @else
+                                        <!-- <span class=" pcoded-mtext text-white"><b>{{ $data_partner->name }}</b></span> -->
+                                        <ul class="nav pcoded-inner-navbar">
+                                            <li class="nav-item">
+                                                <a href="{{ url('/partner_index') }}" class="nav-link " style="margin-top:-20px;font-size: 0.8em;">
+                                                    <span class="pcoded-mtext text-white" > 
+                                                        <b>{{ $data_partner->name }}</b> 
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    @endif
+                                </div>
+                            </div>
+                       </div>
+                    </a>
+                    <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+                </div>
+            </div>
             <div style="background-color: {{ $data_partner->color_navbar  }};" class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
                     <br>
