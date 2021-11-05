@@ -78,7 +78,7 @@
                     document.querySelector('#sos_th').classList.remove('d-none');
                 }
 
-                if (result['countryCode'] === 'LO') {
+                if (result['countryCode'] === 'LA') {
                     document.querySelector('#sos_lo').classList.remove('d-none');
                 }
 
