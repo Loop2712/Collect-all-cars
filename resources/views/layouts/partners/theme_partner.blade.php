@@ -58,8 +58,14 @@
                             @else
                                 <!-- <span class=" pcoded-mtext text-white"><b>{{ $data_partner->name }}</b></span> -->
                                 <ul class="nav pcoded-inner-navbar">
-                                    <li style="overflow: visible;"  class="nav-item">
-                                        <a href="{{ url('/partner_index') }}" class="nav-link " style="margin-top:-20px;"><span class="pcoded-mtext text-white" > <b>{{ $data_partner->name }}</b> </span></a>
+                                    <li class="nav-item">
+                                        <div style="overflow: visible;">
+                                            <a href="{{ url('/partner_index') }}" class="nav-link " style="margin-top:-20px;">
+                                                <span class="pcoded-mtext text-white" > 
+                                                    <b>{{ $data_partner->name }}</b> 
+                                                </span>
+                                            </a>
+                                        </div>
                                     </li>
                                 </ul>
                             @endif
