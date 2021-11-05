@@ -154,9 +154,11 @@
                                             </div>
                                             <div class="col-2">
                                                 <h6 class="text-info">
-                                                    <a href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
-                                                        <i class="fas fa-search-location"></i> ดูแผนที่
-                                                    </a>
+                                                    @if(!empty($item->lat))
+                                                        <a href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                                            <i class="fas fa-search-location"></i> ดูแผนที่
+                                                        </a>
+                                                    @endif
                                                 </h6>
                                             </div>
                                             <div class="col-2">
