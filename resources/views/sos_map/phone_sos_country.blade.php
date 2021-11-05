@@ -1,5 +1,5 @@
 <!-- SOS ไทย -->
-<div id="sos_th" class="row">
+<div id="sos_th" class="row d-none">
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="police();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
@@ -63,11 +63,21 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         let user_id = document.querySelector('#user_id').value;
-        
+
         fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+
+                if (result['countryCode'] === 'TH') {
+                    document.querySelector('#sos_th').classList.remove('d-none');
+                }
+
+                if (result['countryCode'] === 'LO') {
+                    document.querySelector('#sos_lo').classList.remove('d-none');
+                }
+
+
             });
 
     });
