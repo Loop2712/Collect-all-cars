@@ -67,7 +67,7 @@
         fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result['countryCode'] === 'TH') {
                     document.querySelector('#sos_th').classList.remove('d-none');
