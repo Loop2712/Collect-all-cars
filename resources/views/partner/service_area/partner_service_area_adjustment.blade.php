@@ -512,8 +512,12 @@
         div_lat_lng.appendChild(div_form);
 
         document.querySelector('#btn_delete_form').classList.remove('d-none');
-        document.querySelector('#btn_send_sos_area').classList.remove('d-none');
+        // document.querySelector('#btn_send_sos_area').classList.remove('d-none');
         document.querySelector('#btn_re').classList.remove('d-none');
+
+        if (parseFloat(add_count) > 3) {
+            document.querySelector('#btn_send_sos_area').classList.remove('d-none');
+        }
 
         co_position.value = add_count ;
 
@@ -529,9 +533,8 @@
 
         let count_delete = parseFloat(count_position.value) - 1 ;
 
-        if (count_delete >= 6) {
-
-            document.querySelector('#para_'+count_delete).remove();
+        if (parseFloat(count_position.value) < 2) {
+            document.querySelector('#btn_send_sos_area').classList.add('d-none');
         }
 
         document.querySelector('#position_' + count_delete).value = "";
