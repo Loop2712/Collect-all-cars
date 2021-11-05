@@ -1,4 +1,4 @@
-<input type="text" id="text_CountryCode" name="" value="">
+<input class="d-none" type="text" id="text_CountryCode" name="" value="">
 
 <!-- SOS ไทย -->
 <div id="sos_th" class="row d-none">
