@@ -240,27 +240,27 @@ class LineApiController extends Controller
     {
         switch ($device_language) {
             case 'th':
-                $richMenuId_start = "richmenu-70dd2d7880f2efce64befb8182a4261e" ;
+                $richMenuId_start = "richmenu-7db63f1962320163f3e733a48b9d44bc" ;
                 break;
             case 'en':
-                $richMenuId_start = "richmenu-08a338eb26f0be320d95359896969453" ;
+                $richMenuId_start = "richmenu-889d55423c76bfc75ae480d3578399ba" ;
                 break;
             case 'zh-TW':
-                $richMenuId_start = "richmenu-dfeb9f9adf2304df57b5235a6541b288" ;
+                $richMenuId_start = "richmenu-8ba442ac4a4eabdebaad19b9b05d3107" ;
                 break;
             case 'ja':
-                $richMenuId_start = "richmenu-15731d7116751bb03014e238c1bb0846" ;
+                $richMenuId_start = "richmenu-e7a742ab609b020b5d01fbb0d22478a9" ;
                 break;
             case 'ko':
-                $richMenuId_start = "richmenu-a62f048aa41817b5d8366523f5bbb68e" ;
+                $richMenuId_start = "richmenu-fff52c7ecd56a44ea0a00b091e5d20bb" ;
                 break;
             case 'es-ES':
-                $richMenuId_start = "richmenu-e00be422e432817ef5b092f8fac5ec1f" ;
+                $richMenuId_start = "richmenu-40d7c52250182ab24ce39a0f0f392cdd" ;
                 break;
             
             default:
                 // en
-                $richMenuId_start = "richmenu-08a338eb26f0be320d95359896969453" ;
+                $richMenuId_start = "richmenu-889d55423c76bfc75ae480d3578399ba" ;
                 break;
         }
         // เก่า
