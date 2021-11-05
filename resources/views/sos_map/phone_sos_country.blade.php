@@ -1,3 +1,5 @@
+<input type="text" id="text_CountryCode" name="" value="">
+
 <!-- SOS ไทย -->
 <div id="sos_th" class="row d-none">
     <div class="col-6">
@@ -68,6 +70,9 @@
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+
+                let countryCode = document.querySelector('#CountryCode');
+                    countryCode.value = result['countryCode'];
 
                 if (result['countryCode'] === 'TH') {
                     document.querySelector('#sos_th').classList.remove('d-none');
