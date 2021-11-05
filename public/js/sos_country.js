@@ -1,4 +1,3 @@
-
 // SOS ไทย
 function police_th() {
     let text_phone = document.querySelector("#text_phone");
@@ -71,11 +70,9 @@ function lawyers_th() {
     document.querySelector("#btn_submit").click();
 
 }
-
 // จบ SOS ไทย
 
 // SOS ลาว
-
 function police_la() {
     let text_phone = document.querySelector("#text_phone");
     let lat_text = document.querySelector("#lat");
@@ -88,4 +85,63 @@ function police_la() {
 
 }
 
+function ambulance_la() {
+    let text_phone = document.querySelector("#text_phone");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
+
+    let content = document.querySelector("#content");
+        content.value = "ambulance" ;
+
+    document.querySelector("#btn_submit").click();
+
+}
+
+function fire_la() {
+    let text_phone = document.querySelector("#text_phone");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
+
+    let content = document.querySelector("#content");
+        content.value = "fire" ;
+
+    document.querySelector("#btn_submit").click();
+
+}
+
+function tourist_police_la() {
+    let text_phone = document.querySelector("#text_phone");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
+
+    let content = document.querySelector("#content");
+        content.value = "tourist_police" ;
+
+    document.querySelector("#btn_submit").click();
+
+}
+
+function electricity_la() {
+    let text_phone = document.querySelector("#text_phone");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
+
+    let content = document.querySelector("#content");
+        content.value = "electricity" ;
+
+    document.querySelector("#btn_submit").click();
+
+}
+
+function water_la() {
+    let text_phone = document.querySelector("#text_phone");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
+
+    let content = document.querySelector("#content");
+        content.value = "water" ;
+
+    document.querySelector("#btn_submit").click();
+
+}
 // จบ SOS ลาว

@@ -1,7 +1,7 @@
 <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
 
 <!-- SOS ไทย -->
-<div id="sos_th" class="row d-none">
+<div id="sos_TH" class="row d-none">
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="police_th();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
@@ -30,30 +30,30 @@
 <!-- จบ SOS ไทย -->
 
 <!-- SOS ลาว -->
-<div id="sos_lo" class="row d-none">
+<div id="sos_LA" class="row d-none">
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจ</p>
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="police_la();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">รถพยาบาล</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 195</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="ambulance_la();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 195</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">เพลิงไหม้</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 190</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="fire_la();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 190</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจท่องเที่ยว</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="tourist_police_la();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Electricity</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1199</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="electricity_la();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1199</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Water</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1169</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="water_la();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1169</a>
     </div>
 </div> 
 <!-- จบ SOS ลาว -->
@@ -74,14 +74,9 @@
                 let countryCode = document.querySelector('#CountryCode');
                     countryCode.value = result['countryCode'];
 
-                if (result['countryCode'] === 'TH') {
-                    document.querySelector('#sos_th').classList.remove('d-none');
+                if (result['countryCode']) {
+                    document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
                 }
-
-                if (result['countryCode'] === 'LA') {
-                    document.querySelector('#sos_lo').classList.remove('d-none');
-                }
-
 
             });
 
