@@ -238,10 +238,12 @@
 
         //ปักหมุด
         @foreach($view_map as $item)
+        @if(!empty($item->lat))
             var marker = new google.maps.Marker({
                 position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 
                 map: map,
-            });     
+            }); 
+        @endif    
         @endforeach
 
     }
