@@ -1,7 +1,7 @@
 <input class="d-none" type="text" id="text_CountryCode" name="" value="">
 
 <!-- SOS ไทย -->
-<div id="sos_th" class="row d-none">
+<div id="sos_th" class="row d-none notranslate">
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="police();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
@@ -30,7 +30,7 @@
 <!-- จบ SOS ไทย -->
 
 <!-- SOS ลาว -->
-<div id="sos_lo" class="row d-none">
+<div id="sos_lo" class="row d-none notranslate">
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
