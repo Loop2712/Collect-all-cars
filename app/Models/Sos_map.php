@@ -25,7 +25,7 @@ class Sos_map extends Model
      *
      * @var array
      */
-    protected $fillable = ['content', 'name', 'phone', 'lat', 'lng', 'area', 'user_id','photo'];
+    protected $fillable = ['content', 'name', 'phone', 'lat', 'lng', 'area', 'user_id','photo','CountryCode'];
 
     
 }
