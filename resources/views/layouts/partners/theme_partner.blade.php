@@ -47,37 +47,50 @@
     <!-- [ navigation menu ] start -->
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
-            <div class="navbar-brand header-logo">
-                <div style="display: -webkit-box;overflow: hidden;width: 88%;text-overflow: ellipsis;">
-                    <a href="#" class="b-brand">
-                        <div class="b-bg">
-                          <div class="sidenav-header  align-items-center">
-                                <!-- <img src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" class="navbar-brand-img"  width="40%" style="margin-top:-10px">
-                                <span style="color:#FFFFFF ;"> <b>x</b>  </span> -->
-                                <div style="margin-left: -15px;">
-                                    @if(!empty($data_partner->logo))
-                                        <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%" style="margin-top:-5px">
-                                    @else
-                                        <!-- <span class=" pcoded-mtext text-white"><b>{{ $data_partner->name }}</b></span> -->
-                                        <ul class="nav pcoded-inner-navbar">
-                                            <li class="nav-item">
-                                                <a href="{{ url('/partner_index') }}" class="nav-link " style="margin-top:-20px;font-size: 0.8em;">
-                                                    <span class="pcoded-mtext text-white" > 
-                                                        <b>{{ $data_partner->name }}</b> 
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    @endif
-                                </div>
-                            </div>
-                       </div>
-                    </a>
+            <!-- <div class="navbar-brand header-logo">
+                <div style="display: -webkit-box;overflow: hidden;width: 88%;text-overflow: '...';">
+                    <div style="margin-left: -15px;">
+                        @if(!empty($data_partner->logo))
+                            <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%" style="margin-top:-5px">
+                        @else
+                            <ul class="nav pcoded-inner-navbar">
+                                <li class="nav-item">
+                                    <a href="{{ url('/partner_index') }}" class="nav-link " style="font-size: 0.8em;">
+                                        <span class="pcoded-mtext text-white" > 
+                                            <b>การท่าเรือแห่งประเทศไทยประเทศไทย</b> 
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
+                    </div>
                     <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
                 </div>
-            </div>
+            </div> -->
             <div style="background-color: {{ $data_partner->color_navbar  }};" class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
+                    <li style="background: {{ $data_partner->color  }} ;">
+                        <div style="width: 84%;font-size: 16px;">
+                            <div style="margin-left: -5px;margin-top: 12px;">
+                                @if(!empty($data_partner->logo))
+                                    <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%">
+                                @else
+                                    <!-- <span class=" pcoded-mtext text-white"><b>{{ $data_partner->name }}</b></span> -->
+                                    <ul class="nav pcoded-inner-navbar">
+                                        <li class="nav-item">
+                                            <a href="{{ url('/partner_index') }}" class="nav-link">
+                                                <span class="pcoded-mtext text-white" > 
+                                                    <b>{{ $data_partner->name }}</b> 
+                                                    <!-- <b>การท่าเรือแห่งประเทศไทย</b>  -->
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endif
+                            </div>
+                            <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+                        </div>
+                    </li>
                     <br>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="{{ url('/register_cars_partner') }}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-car"></i></i></span><span class="pcoded-mtext" >รถลงทะเบียน</span></a>
