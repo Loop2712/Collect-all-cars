@@ -71,7 +71,7 @@
             .then(result => {
                 console.log(result);
 
-                let countryCode = document.querySelector('#CountryCode');
+                let countryCode = document.querySelector('#text_CountryCode');
                     countryCode.value = result['countryCode'];
 
                 if (result['countryCode'] === 'TH') {
