@@ -53,7 +53,7 @@ Route::get('/location/{location_P}/show_location_A','API\LocationController@show
 Route::get('/change_country/{user_id}','API\LocationController@change_country');
 Route::get('/user_language/{language}/{user_id}','API\LocationController@user_language');
 
-Route::get('/check_sos_country/{user_id}','Sos_mapController@check_sos_country');
+Route::get('/check_sos_country/{user_id}','API\LocationController@check_sos_country');
 
 Route::get('/check_user/{id_user}','API\PartnersController@check_user');
 Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersController@put_email');
