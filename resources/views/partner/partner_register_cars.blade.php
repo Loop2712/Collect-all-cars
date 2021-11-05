@@ -36,7 +36,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 style="margin-top:10px;">
-                                                รถลงทะเบียน <b>2บี กรีน จำกัด</b>
+                                                รถลงทะเบียน <b>{{ $neme_partner }}</b>
                                                 <form method="GET" action="{{ url('/report_register_cars_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">

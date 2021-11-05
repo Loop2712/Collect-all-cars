@@ -256,14 +256,16 @@ class PartnerController extends Controller
     {
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
-
+        foreach ($data_partners as $key) {
+            $neme_partner = $key->name;
+        }
         $perPage = 25;
         $report_register_cars = Register_car::where('juristicNameTH', $data_user->organization)
                 ->latest()->paginate(25);
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.partner_register_cars', compact('data_partners', 'report_register_cars','data_time_zone'));
+        return view('partner.partner_register_cars', compact('data_partners', 'report_register_cars','data_time_zone','neme_partner'));
     }
 
     public function guest_partner(Request $request)

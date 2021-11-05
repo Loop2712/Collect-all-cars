@@ -81,34 +81,9 @@
                     <hr>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
-                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="police();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
-                </div>
-                <div class="col-6">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">จ.ส.100</p>
-                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="js100();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
-                </div>
-                <div class="col-6">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">หน่วยแพทย์กู้ชีวิต</p>
-                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="life_saving();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
-                </div>
-                <div class="col-6 ">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">ป่อเต็กตึ๊ง</p>
-                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="pok_tek_tung();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
-                </div>
-                <div class="col-6">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">สายด่วนทางหลวง</p>
-                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="highway();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
-                </div>
-                <div class="col-6">
-                    <p style="font-size:15px; text-align: center; margin-top:10px; ">ทนายอาสา</p>
-                    <a class="btn btn-danger btn-block shadow-box text-white" onclick="lawyers();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1167</a>
-                </div>
-
-               
-            </div> <br>
+            <!-- เบอร์ SOS ประเทศต่างๆ -->
+            @include ('sos_map.phone_sos_country')
+            <br>
         </div>
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
