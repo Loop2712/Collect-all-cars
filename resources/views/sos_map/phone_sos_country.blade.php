@@ -1,30 +1,32 @@
 <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
 
+<div id="btn_tel"></div>
+
 <!-- SOS ไทย -->
 <div id="sos_TH" class="row d-none">
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
-        <a href="tel:191" class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">จ.ส.100</p>
-        <a href="tel:1137" class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('js100');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('js100','1137');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">หน่วยแพทย์กู้ชีวิต</p>
-        <a href="tel:1669" class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('life_saving');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('life_saving','1669');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
     </div>
     <div class="col-6 ">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">ป่อเต็กตึ๊ง</p>
-        <a href="tel:1418" class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pok_tek_tung');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pok_tek_tung','1418');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">สายด่วนทางหลวง</p>
-        <a href="tel:1193" class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway','1193');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">ทนายอาสา</p>
-        <a href="tel:1167" class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('lawyers');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1167</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('lawyers','1167');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1167</a>
     </div>
 </div> 
 <!-- จบ SOS ไทย -->
@@ -100,7 +102,7 @@
 
     });
 
-    function save_sos_content(type_content) {
+    function save_sos_content(type_content,phone) {
         let text_phone = document.querySelector("#text_phone");
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
@@ -109,6 +111,15 @@
             content.value = type_content ;
 
         document.querySelector("#btn_submit").click();
+
+        let btn_tel = document.querySelector('#btn_tel');
+
+        let tag_a = document.createElement("tag_a");
+            let tag_a_href = document.createAttribute("href");
+            tag_a_href.value = 'tel:' + phone;
+            tag_a.setAttributeNode(tag_a_href);
+
+            btn_tel.appendChild(tag_a);
 
     }
 
