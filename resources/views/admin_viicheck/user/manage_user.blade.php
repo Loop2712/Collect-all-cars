@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">จัดการผู้ใช้ / <span style="font-size: 18px;"> Manage users </span>
+                    <h3 class="card-header">จัดการผู้ใช้
                         <a href="{{ url('/view_new_user') }}" class="btn btn-outline-primary float-right">
                             <i class="fas fa-user-plus"></i> สร้างบัญชีผู้ใช้
                         </a>
