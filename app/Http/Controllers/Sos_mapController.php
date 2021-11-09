@@ -15,6 +15,7 @@ use App\Http\Controllers\API\API_Time_zone;
 use App\Models\LineMessagingAPI;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailTo_sos_partner;
+use App\User;
 
 
 class Sos_mapController extends Controller
@@ -101,33 +102,22 @@ class Sos_mapController extends Controller
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
 
                 $this->_pushLine($requestData);
-
-                // เช็ค type user แล้วเลือก redirect
-                    // type line เด้งกลับ line oa
-                    // อื่นๆ แนะนำให้ผูกบัญชีกับไลน์
                 
-                return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
-                break;
-            case 'police':
-                return redirect('/disaster2')->with('flash_message', 'Sos_map added!');
-                break;
-            case 'js100':
-                return redirect('/js_100')->with('flash_message', 'Sos_map added!');
-                break;
-            case 'life_saving':
-                return redirect('/life_saving')->with('flash_message', 'Sos_map added!');
-                break;
-            case 'pok_tek_tung':
-                return redirect('/pok_tek_tung')->with('flash_message', 'Sos_map added!');
-                break;
-            case 'highway':
-                return redirect('/highway')->with('flash_message', 'Sos_map added!');
-                break;
-            case 'lawyers':
-                return redirect('/lawyers')->with('flash_message', 'Sos_map added!');
                 break;
         }
         
+        $data_user = User::where('id', $requestData['user_id'] )->get();
+
+        foreach ($data_user as $key_itme) {
+
+            if ($key_itme->type == 'line') {
+                return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
+            }else{
+                return redirect('/sos_thank')->with('flash_message', 'Sos_map added!');
+            }
+
+        }
+
     }
 
     /**

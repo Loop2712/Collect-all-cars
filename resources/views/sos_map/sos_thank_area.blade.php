@@ -1,6 +1,5 @@
 @extends('layouts.viicheck')
 @section('content')
-<a id="tel1137" class="d-none" href="tel:1137"></a>
 
 <!-- Button trigger modal -->
 <button id="btn_modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal">
@@ -35,7 +34,7 @@
         var delayInMilliseconds = 3000; 
 
         setTimeout(function() {
-          document.getElementById("a_line").click();
+          // document.getElementById("a_line").click();
         }, delayInMilliseconds);
 
     });

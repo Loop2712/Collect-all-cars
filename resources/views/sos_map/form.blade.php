@@ -64,7 +64,7 @@
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
                         </a>
-                        <a id="btn_quick_help" class="btn btn-warning btn-block shadow-box " onclick="police();">
+                        <a href="tel:191" id="btn_quick_help" class="btn btn-warning btn-block shadow-box " onclick="save_sos_content('police');">
                             <i class="fas fa-bullhorn"></i> <b>ขอความช่วยเหลือด่วน</b>
                         </a>
                     </div> 

@@ -145,3 +145,29 @@ function water_la() {
 
 }
 // จบ SOS ลาว
+
+// SOS อินโดนีเซีย
+function police_id() {
+    let text_phone = document.querySelector("#text_phone");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
+
+    let content = document.querySelector("#content");
+        content.value = "police" ;
+
+    document.querySelector("#btn_submit").click();
+
+}
+
+function ambulance_id() {
+    let text_phone = document.querySelector("#text_phone");
+    let lat_text = document.querySelector("#lat");
+    let lng_text = document.querySelector("#lng");
+
+    let content = document.querySelector("#content");
+        content.value = "ambulance" ;
+
+    document.querySelector("#btn_submit").click();
+
+}
+// จบ SOS อินโดนีเซีย
