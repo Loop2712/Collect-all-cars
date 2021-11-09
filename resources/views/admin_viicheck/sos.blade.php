@@ -32,8 +32,20 @@
                         </h3>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-9">
-                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=police" class="btn btn-outline-dark ">
+                                <div class="col-4">
+                                    <select class="form-control">
+                                        @if(!empty($type_sos))
+                                            <option value="">ประเภทขอความช่วยเหลือ</option>   
+                                            @foreach($type_sos as $item)
+                                                <option value="{{ url('/sos') }}?search={{ $item->content }}">
+                                                    {{ $item->content }}
+                                                </option>
+                                            @endforeach
+                                        @else
+                                            <option value="" selected></option> 
+                                        @endif
+                                    </select>
+                                    <!-- <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=police" class="btn btn-outline-dark ">
                                          ตำรวจ
                                     </a>
                                     <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=JS100" class="btn btn-outline-success ">
@@ -53,9 +65,24 @@
                                     </a>
                                     <a style="margin-top: 5px;" href="{{ url('/sos') }}" class="btn btn-outline-info ">
                                         <i class="fas fa-users"></i> ทั้งหมด
-                                    </a>
+                                    </a> -->
                                 </div>
-                                <div class="col-3">
+                                <div class="col-4">
+                                    <select class="form-control" >
+                                        @if(!empty($area))
+                                            <option value="">เลือกประเทศ</option>   
+                                            @foreach($area as $item)
+                                                <option value="{{ url('/sos') }}?search_area={{ $item->area }}">
+                                                        {{ $item->area }}
+                                                </option>   
+
+                                            @endforeach
+                                        @else
+                                            <option value="" selected></option> 
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="col-4">
                                     <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
                                         @if(!empty($area))
                                             <option value="">เลือกพื้นที่รับผิดชอบ</option>   
@@ -128,29 +155,11 @@
                                                 </h6>
                                             </div>
                                             <div class="col-2">
-                                                    @switch($item->content)
-                                                    @case('police')
-                                                        <h6>ตำรวจ</h6>
-                                                    @break
-                                                    @case('js100')
-                                                        <h6>จส.100</h6>
-                                                    @break
-                                                    @case('life_saving')
-                                                        <h6>หน่วยแพทย์กู้ชีวิต</h6>
-                                                    @break
-                                                    @case('pok_tek_tung')
-                                                        <h6>ป่อเต็กตึ๊ง</h6>
-                                                    @break
-                                                    @case('highway')
-                                                        <h6>สายด่วนทางหลวง</h6>
-                                                    @break
-                                                    @case('lawyers')
-                                                        <h6>ทนายอาสา</h6>
-                                                    @break
-                                                    @case('help_area')
-                                                        <h6>ขอความช่วยเหลือ</h6>
-                                                    @break
-                                                @endswitch
+                                                @if($item->content == 'help_area')
+                                                    <h6>ขอความช่วยเหลือ</h6>
+                                                @else
+                                                    <h6>{{ $item->content }}</h6>
+                                                @endif
                                             </div>
                                             <div class="col-2">
                                                 <h6 class="text-info">

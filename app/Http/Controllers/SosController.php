@@ -126,158 +126,6 @@ class SosController extends Controller
         return redirect('sos')->with('flash_message', 'So deleted!');
     }
 
-    public function disaster2()
-    {
-        $disaster = DB::table('sos')
-                ->select('disaster', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($disaster as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'disaster' => $key->disaster + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.disaster2');
-    }
-
-    public function car_fire()
-    {
-        $car_fire = DB::table('sos')
-                ->select('car_fire', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($car_fire as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'car_fire' => $key->car_fire + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.car_fire');
-    }
-
-    public function life_saving()
-    {
-        $life_saving = DB::table('sos')
-                ->select('life_saving', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($life_saving as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'life_saving' => $key->life_saving + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.life_saving');
-    }
-
-    public function js_100()
-    {
-        $js_100 = DB::table('sos')
-                ->select('js_100', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($js_100 as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'js_100' => $key->js_100 + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.js_100');
-    }
-
-    public function highway()
-    {
-        $highway = DB::table('sos')
-                ->select('highway', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($highway as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'highway' => $key->highway + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.highway');
-    }
-
-    public function tourist_police()
-    {
-        $tourist_police = DB::table('sos')
-                ->select('tourist_police', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($tourist_police as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'tourist_police' => $key->tourist_police + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.tourist_police');
-    }
-
-    public function lawyers()
-    {
-        $lawyers = DB::table('sos')
-                ->select('lawyers', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($lawyers as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'lawyers' => $key->lawyers + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.lawyers');
-    }
-
-    public function pok_tek_tung()
-    {
-        $pok_tek_tung = DB::table('sos')
-                ->select('pok_tek_tung', 'total')
-                ->where('id', 1)
-                ->get();
-
-        foreach ($pok_tek_tung as $key) {
-            DB::table('sos')
-              ->where('id', 1)
-              ->update([
-                'pok_tek_tung' => $key->pok_tek_tung + 1,
-                'total' => $key->total + 1,
-            ]);
-        }
-
-        return view('sos.pok_tek_tung');
-    }
-
     public function view_sos(Request $request)
     {
         $keyword = $request->get('search');
@@ -292,6 +140,11 @@ class SosController extends Controller
         $area = Sos_map::selectRaw('area')
             ->where('area', '!=', null)
             ->groupBy('area')
+            ->get();
+
+        $type_sos = Sos_map::selectRaw('content')
+            ->where('content', '!=', null)
+            ->groupBy('content')
             ->get();
 
         if (!empty($keyword)) {
@@ -318,7 +171,7 @@ class SosController extends Controller
 
        $text_at = '@' ;
 
-        return view('admin_viicheck.sos', compact('view_map' , 'sos_all' , 'area','text_at'));
+        return view('admin_viicheck.sos', compact('view_map' , 'sos_all' , 'area' , 'type_sos' , 'text_at'));
     }
 
     public function sos_detail_chart(Request $request)
