@@ -33,11 +33,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <select class="form-control">
+                                    <select class="form-control"  onchange="location = this.options[this.selectedIndex].value;" >
                                         @if(!empty($type_sos))
                                             <option value="">ประเภทขอความช่วยเหลือ</option>   
                                             @foreach($type_sos as $item)
-                                                <option value="{{ url('/sos') }}?search={{ $item->content }}">
+                                                <option value="{{ url('/sos') }}?search_type={{ $item->content }}">
                                                     {{ $item->content }}
                                                 </option>
                                             @endforeach
