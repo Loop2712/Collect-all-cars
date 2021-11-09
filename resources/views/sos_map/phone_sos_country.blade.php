@@ -1,6 +1,6 @@
 <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
 
-<div id="btn_tel"></div>
+<div class="d-none" id="btn_tel"></div>
 
 <!-- SOS ไทย -->
 <div id="sos_TH" class="row d-none">
@@ -61,16 +61,6 @@
 <!-- จบ SOS ลาว -->
 
 <!-- SOS อินโดนีเซีย -->
-<div id="sos_ID" class="row d-none">
-    <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="police_id();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
-    </div>
-    <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="ambulance_id();" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
-    </div>
-</div> 
 <!-- จบ SOS อินโดนีเซีย -->
 
 
@@ -110,17 +100,25 @@
         let content = document.querySelector("#content");
             content.value = type_content ;
 
-        document.querySelector("#btn_submit").click();
 
         let btn_tel = document.querySelector('#btn_tel');
 
-        let tag_a = document.createElement("tag_a");
+        let tag_a = document.createElement("a");
             let tag_a_href = document.createAttribute("href");
             tag_a_href.value = 'tel:' + phone;
             tag_a.setAttributeNode(tag_a_href);
 
+            let tag_a_id = document.createAttribute("id");
+            tag_a_id.value = 'btn_' + phone;
+            tag_a.setAttributeNode(tag_a_id);
+
             btn_tel.appendChild(tag_a);
 
+        document.querySelector("#btn_" + phone).click();
+        document.querySelector("#btn_submit").click();
+
+
     }
+
 
 </script>
