@@ -14,18 +14,15 @@
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
 
-        // lat_text.value = position.coords.latitude ;
-        // lng_text.value = position.coords.longitude ;
-        // latlng.value = position.coords.latitude+","+position.coords.longitude ;
+        lat_text.value = position.coords.latitude ;
+        lng_text.value = position.coords.longitude ;
+        latlng.value = position.coords.latitude+","+position.coords.longitude ;
 
-        // let lat = parseFloat(lat_text.value) ;
-        // let lng = parseFloat(lng_text.value) ;
+        let lat = parseFloat(lat_text.value) ;
+        let lng = parseFloat(lng_text.value) ;
 
-        let lat = 13.705384 ;
-        let lng = 100.585926 ;
-
-        // console.log(lat);
-        // console.log(lng);
+        console.log(lat);
+        console.log(lng);
 
         let location_user = document.querySelector("#location_user");
             location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
@@ -38,15 +35,12 @@
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
 
-        // lat_text.value = position.coords.latitude ;
-        // lng_text.value = position.coords.longitude ;
-        // latlng.value = position.coords.latitude+","+position.coords.longitude ;
+        lat_text.value = position.coords.latitude ;
+        lng_text.value = position.coords.longitude ;
+        latlng.value = position.coords.latitude+","+position.coords.longitude ;
         
-        // let lat = parseFloat(lat_text.value) ;
-        // let lng = parseFloat(lng_text.value) ;
-
-        let lat = 13.705384 ;
-        let lng = 100.585926 ;
+        let lat = parseFloat(lat_text.value) ;
+        let lng = parseFloat(lng_text.value) ;
 
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 15,
