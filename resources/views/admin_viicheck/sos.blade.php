@@ -7,12 +7,16 @@
         <div class="col-4">
             <div class="row">
                 <div class="col-12">
-                    <br><br>
+                    <a style="float: left; background-color: green;" type="button" class="btn text-white" onclick="initMap();">
+                        <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
+                    </a>
+                </div>
+                <div class="col-12">
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
                     <input class="d-none" type="text" id="search_area" name="" value="{{ url()->full() }}">
-                    <div class="card">
+                    <div class="card" style="margin-top:10px;">
                         <div id="map"></div>
                     </div>
                 </div>
@@ -27,7 +31,7 @@
                 <br>
                 <div class="col-md-12">
                     <div class="card">
-                        <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>
+                        <h3 class="card-header">ขอความช่วยเหลือ
                             <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ count($view_map) }}</span>
                         </h3>
                         <div class="card-body">
@@ -38,7 +42,11 @@
                                             <option value="">ประเภทขอความช่วยเหลือ</option>   
                                             @foreach($type_sos as $item)
                                                 <option value="{{ url('/sos') }}?search_type={{ $item->content }}">
-                                                    {{ $item->content }}
+                                                    @if($item->content == 'help_area')
+                                                        ขอความช่วยเหลือ
+                                                    @else
+                                                        {{ $item->content }}
+                                                    @endif
                                                 </option>
                                             @endforeach
                                         @else
@@ -52,7 +60,38 @@
                                             <option value="">เลือกประเทศ</option>   
                                             @foreach($country as $item)
                                                 <option value="{{ url('/sos') }}?search_CountryCode={{ $item->CountryCode }}">
-                                                        {{ $item->CountryCode }}
+                                                        @switch($item->CountryCode)
+                                                            @case('TH')
+                                                                <h6>ไทย</h6>
+                                                            @break
+                                                            @case('LA')
+                                                                <h6>ลาว</h6>
+                                                            @break
+                                                            @case('BN')
+                                                                <h6>บรูไน</h6>
+                                                            @break
+                                                            @case('KH')
+                                                                <h6>กัมพูชา</h6>
+                                                            @break
+                                                            @case('ID')
+                                                                <h6>อินโดนีเซีย</h6>
+                                                            @break
+                                                            @case('MY')
+                                                                <h6>มาเลเซีย</h6>
+                                                            @break
+                                                            @case('MM')
+                                                                <h6>เมียนมา</h6>
+                                                            @break
+                                                            @case('PH')
+                                                                <h6>ฟิลิปปินส์</h6>
+                                                            @break
+                                                            @case('SG')
+                                                                <h6>สิงคโปร์</h6>
+                                                            @break
+                                                            @case('VN')
+                                                                <h6>เวียดนาม</h6>
+                                                            @break
+                                                        @endswitch
                                                 </option>   
 
                                             @endforeach
@@ -64,7 +103,7 @@
                                 <div class="col-3">
                                     <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
                                         @if(!empty($area))
-                                            <option value="">เลือกพื้นที่รับผิดชอบ</option>   
+                                            <option value="">เลือกพื้นที่</option>   
                                             @foreach($area as $item)
                                                 <option value="{{ url('/sos') }}?search_area={{ $item->area }}">
                                                         {{ $item->area }}
@@ -78,7 +117,7 @@
                                 </div>
                                 <div class="col-2">
                                     <a href="{{ url('/sos') }}" class="btn btn-outline-info ">
-                                        <i class="fas fa-users"></i> ดูทั้งหมด
+                                        ทั้งหมด
                                     </a>
                                 </div>
                             </div>
@@ -101,42 +140,43 @@
                                         <!-- <div class="col-1">
                                             <center><b>Id</b></center>
                                         </div> -->
-                                        <div class="col-1">
-                                                <br>
-                                                
+                                        <div class="col-3">
+                                            <b>ชื่อ / เบอร์</b><br>
+                                            Name / Phone
                                         </div>
                                         <div class="col-2">
-                                                <b>เวลา</b><br>
-                                                Time
+                                            <b>ประเภท</b><br>
+                                            Type
                                         </div>
                                         <div class="col-2">
-                                                <b>ประเภท</b><br>
-                                                Type
+                                            <b>พื้นที่</b><br>
+                                            Area
                                         </div>
                                         <div class="col-2">
-                                                <b>ตำแหน่ง</b><br>
-                                                Location
-                                        </div>
-                                        <div class="col-2">
-                                                <b>พื้นที่รับผิดชอบ</b><br>
-                                                Area
+                                            <b>ประเทศ</b><br>
+                                            Country
                                         </div>
                                         <div class="col-3">
-                                                <b>ชื่อ / เบอร์</b><br>
-                                                Name / Phone
+                                            <b>ตำแหน่ง</b><br>
+                                            Location
                                         </div>
                                     </div>
                                     @foreach($view_map as $item)
                                         <div class="row text-center">
-                                        <div class="col-1 ">
-                                                <h6>
-                                                    {{ $loop->iteration }}
-                                                </h6>
-                                            </div>
-                                            <div class="col-2 ">
-                                                <h6>
-                                                    {{ $item->created_at }}
-                                                </h6>
+                                            <div class="col-3">
+                                                <div class="float-left">
+                                                    <h5 class="text-success ">
+                                                        <span style="font-size: 15px;">
+                                                            <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
+                                                            <i class="far fa-eye text-primary"></i>
+                                                            </a>
+                                                        </span>
+                                                        &nbsp;{{ $item->name }}
+                                                    </h5>
+                                                    <span>
+                                                        {{ $item->phone }}
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div class="col-2">
                                                 @if($item->content == 'help_area')
@@ -146,30 +186,69 @@
                                                 @endif
                                             </div>
                                             <div class="col-2">
-                                                <h6 class="text-info">
+                                                <h6>
+                                                    {{ $item->area }}
+                                                </h6>
+                                            </div>
+                                            <div class="col-2">
+                                                @switch($item->CountryCode)
+                                                    @case('TH')
+                                                        <h6>ไทย</h6>
+                                                    @break
+                                                    @case('LA')
+                                                        <h6>ลาว</h6>
+                                                    @break
+                                                    @case('BN')
+                                                        <h6>บรูไน</h6>
+                                                    @break
+                                                    @case('KH')
+                                                        <h6>กัมพูชา</h6>
+                                                    @break
+                                                    @case('ID')
+                                                        <h6>อินโดนีเซีย</h6>
+                                                    @break
+                                                    @case('MY')
+                                                        <h6>มาเลเซีย</h6>
+                                                    @break
+                                                    @case('MM')
+                                                        <h6>เมียนมา</h6>
+                                                    @break
+                                                    @case('PH')
+                                                        <h6>ฟิลิปปินส์</h6>
+                                                    @break
+                                                    @case('SG')
+                                                        <h6>สิงคโปร์</h6>
+                                                    @break
+                                                    @case('VN')
+                                                        <h6>เวียดนาม</h6>
+                                                    @break
+                                                @endswitch
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
+                                                            <i class="fas fa-map-marker-alt"></i> 
+                                                            <br>
+                                                            ดูหมุด
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                                            <i class="fas fa-location-arrow"></i> 
+                                                            <br>
+                                                            นำทาง
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- <h6 class="text-info">
                                                     @if(!empty($item->lat))
                                                         <a href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
                                                             <i class="fas fa-search-location"></i> ดูแผนที่
                                                         </a>
                                                     @endif
-                                                </h6>
+                                                </h6> -->
                                             </div>
-                                            <div class="col-2">
-                                                <h6>
-                                                    {{ $item->area }}
-                                                </h6>
-                                            </div>
-                                            <div class="col-3">
-                                                <h5 class="text-success">
-                                                    <span style="font-size: 15px;">
-                                                        <a target="break" href="{{ url('/').'/profile/'.$item->id }}">
-                                                        <i class="far fa-eye text-primary"></i>
-                                                        </a>
-                                                    </span>&nbsp;{{ $item->name }}
-                                                </h5>
-                                                {{ $item->phone }}
-                                            </div>
-                                            
                                             
                                         </div>
                                         <br>
@@ -190,7 +269,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>
 <style type="text/css">
     #map {
-      height: calc(80vh);
+      height: calc(95vh);
     }
     
 </style>
@@ -232,7 +311,7 @@
         draw_area(map);
 
         //ปักหมุด
-        @foreach($view_map as $item)
+        @foreach($view_maps_all as $item)
         @if(!empty($item->lat))
             var marker = new google.maps.Marker({
                 position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 

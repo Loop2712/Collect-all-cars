@@ -410,11 +410,13 @@ class PartnerController extends Controller
             ->where('area','LIKE', "%$search_area%")
             ->latest()->paginate($perPage);
 
+        $view_maps_all = DB::table('sos_maps')->get();
+
         $text_at = '@' ;
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.partner_sos', compact('data_partners','view_maps' , 'sos_all' ,'text_at','data_time_zone','count_data'));
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data'));
     }
 
     // public function sos_insurance(Request $request)

@@ -132,12 +132,12 @@ class SosController extends Controller
         $search_area = $request->get('search_area');
         $search_type = $request->get('search_type');
         $search_CountryCode = $request->get('search_CountryCode');
-        $perPage = 25;
+        $perPage = 6;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->get();
-                    foreach ($sos_all_request as $key) {
-                            $sos_all = $key->count ;
-                        }
+            foreach ($sos_all_request as $key) {
+                    $sos_all = $key->count ;
+                }
         
         $area = Sos_map::selectRaw('area')
             ->where('area', '!=', null)
@@ -190,7 +190,9 @@ class SosController extends Controller
 
        $text_at = '@' ;
 
-        return view('admin_viicheck.sos', compact('view_map' , 'sos_all' , 'area' , 'type_sos' , 'country' , 'text_at'));
+       $view_maps_all = DB::table('sos_maps')->get();
+
+        return view('admin_viicheck.sos', compact('view_map' , 'view_maps_all' , 'sos_all' , 'area' , 'type_sos' , 'country' , 'text_at'));
     }
 
     public function sos_detail_chart(Request $request)
