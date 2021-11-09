@@ -45,35 +45,14 @@
                                             <option value="" selected></option> 
                                         @endif
                                     </select>
-                                    <!-- <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=police" class="btn btn-outline-dark ">
-                                         ตำรวจ
-                                    </a>
-                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=JS100" class="btn btn-outline-success ">
-                                         JS100
-                                    </a>
-                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=life_saving" class="btn btn-outline-warning ">
-                                        แพทย์
-                                    </a>
-                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=pok_tek_tung" class="btn btn-outline-info ">
-                                        <i class="fas fa-users"></i> ป่อเต็กตึ๊ง
-                                    </a>
-                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=highway" class="btn btn-outline-danger ">
-                                         ทางหลวง
-                                    </a>
-                                    <a style="margin-top: 7px;" href="{{ url('/sos') }}?search=lawyers" class="btn btn-outline-secondary ">
-                                         ทนายอาสา
-                                    </a>
-                                    <a style="margin-top: 5px;" href="{{ url('/sos') }}" class="btn btn-outline-info ">
-                                        <i class="fas fa-users"></i> ทั้งหมด
-                                    </a> -->
                                 </div>
-                                <div class="col-4">
-                                    <select class="form-control" >
-                                        @if(!empty($area))
+                                <div class="col-3">
+                                    <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
+                                        @if(!empty($country))
                                             <option value="">เลือกประเทศ</option>   
-                                            @foreach($area as $item)
-                                                <option value="{{ url('/sos') }}?search_area={{ $item->area }}">
-                                                        {{ $item->area }}
+                                            @foreach($country as $item)
+                                                <option value="{{ url('/sos') }}?search_CountryCode={{ $item->CountryCode }}">
+                                                        {{ $item->CountryCode }}
                                                 </option>   
 
                                             @endforeach
@@ -82,7 +61,7 @@
                                         @endif
                                     </select>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
                                         @if(!empty($area))
                                             <option value="">เลือกพื้นที่รับผิดชอบ</option>   
@@ -96,6 +75,11 @@
                                             <option value="" selected></option> 
                                         @endif
                                     </select>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{{ url('/sos') }}" class="btn btn-outline-info ">
+                                        <i class="fas fa-users"></i> ดูทั้งหมด
+                                    </a>
                                 </div>
                             </div>
                             <!-- <form method="GET" action="{{ url('/sos') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
