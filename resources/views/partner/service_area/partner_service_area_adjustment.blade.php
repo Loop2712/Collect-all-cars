@@ -32,9 +32,9 @@
 
                         <hr>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 d-none d-lg-block">
                             <select id="select_province" class="form-control" onchange="show_amphoe();">
-                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                                <option value="" selected > - จังหวัด - </option> 
                                 @foreach($location_array as $lo)
                                 <option 
                                 value="{{ $lo->changwat_th }}" 
@@ -47,12 +47,12 @@
                                 @endforeach    
                             </select>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 d-none d-lg-block">
                             <select id="select_amphoe" class="form-control" onchange="show_district();">
                                 <option>- อำเภอ -</option>
                             </select>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-md-4 d-none d-lg-block">
                             <select id="select_district" class="form-control" onchange="zoom_district();">
                                 <option>- ตำบล -</option>
                             </select>
@@ -84,7 +84,7 @@
                         </button>
                         <div class="collapse container-fluid" id="img_EX">
                             <br>
-                            <img data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" width="500" height="250" src="{{ asset('/img/more/Hnet-image.gif') }}">
+                            <img data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" width="100%"  src="{{ asset('/img/more/Hnet-image.gif') }}">
                         </div>
 
                         <div style="margin-top:12px;" class="card">
