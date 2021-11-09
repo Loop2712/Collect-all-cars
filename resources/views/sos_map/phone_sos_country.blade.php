@@ -92,7 +92,7 @@
 
     });
 
-    function save_sos_content(type_content,phone) {
+    function save_sos_content(type_content,phone_sos) {
         let text_phone = document.querySelector("#text_phone");
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
@@ -105,16 +105,16 @@
 
         let tag_a = document.createElement("a");
             let tag_a_href = document.createAttribute("href");
-            tag_a_href.value = 'tel:' + phone;
+            tag_a_href.value = 'tel:' + phone_sos;
             tag_a.setAttributeNode(tag_a_href);
 
             let tag_a_id = document.createAttribute("id");
-            tag_a_id.value = 'btn_' + phone;
+            tag_a_id.value = 'btn_' + phone_sos;
             tag_a.setAttributeNode(tag_a_id);
 
             btn_tel.appendChild(tag_a);
 
-        document.querySelector("#btn_" + phone).click();
+        document.querySelector("#btn_" + phone_sos).click();
         document.querySelector("#btn_submit").click();
 
 

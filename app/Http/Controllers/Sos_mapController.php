@@ -100,12 +100,13 @@ class Sos_mapController extends Controller
         switch ($requestData['content']) {
             case 'help_area':
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
-
                 $this->_pushLine($requestData);
-                
                 break;
         }
         
+        // เช็ค type user แล้วเลือก redirect
+        // type line เด้งกลับ line oa
+        // อื่นๆ แนะนำให้ผูกบัญชีกับไลน์
         $data_user = User::where('id', $requestData['user_id'] )->get();
 
         foreach ($data_user as $key_itme) {
@@ -117,7 +118,7 @@ class Sos_mapController extends Controller
             }
 
         }
-
+        
     }
 
     /**
