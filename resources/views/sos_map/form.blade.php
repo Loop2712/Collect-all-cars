@@ -223,7 +223,6 @@
     
 </style>
 <script src="{{ asset('js/sos_map.js')}}"></script>
-<script src="{{ asset('js/sos_country.js')}}"></script>
 
 <script>
 
