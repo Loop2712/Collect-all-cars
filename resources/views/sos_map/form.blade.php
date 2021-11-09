@@ -225,7 +225,6 @@
 <script src="{{ asset('js/sos_map.js')}}"></script>
 
 <script>
-    initMap();
     var result_area ;
 
     document.addEventListener('DOMContentLoaded', (event) => {
