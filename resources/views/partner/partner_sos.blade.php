@@ -183,11 +183,13 @@
                 //ปักหมุด
                 let image = "https://www.viicheck.com/img/icon/flag_2.png";
                 @foreach($view_maps_all as $view_map)
+                @if(!empty($item->lat))
                     marker = new google.maps.Marker({
                         position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
                         map: map,
                         icon: image,
-                    });     
+                    });  
+                @endif   
                 @endforeach
                 
             });
