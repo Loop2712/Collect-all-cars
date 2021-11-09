@@ -18,7 +18,7 @@
   }
 </style>
 <br>
-<div class="col-md-12">
+<div class="col-md-12 d-none d-lg-block">
   <div class="card">
     <div class="card-header bg-transparent">
       <div class="row align-items-center">
@@ -215,6 +215,9 @@
         </div>
     </div>
   </div>
+</div>
+<div class="col-12 text-center">
+  <h1>ระบบนี้ใช้ได้เฉพาะ pc เท่านั้น</h1>
 </div>
 <script>
   function select_year(){

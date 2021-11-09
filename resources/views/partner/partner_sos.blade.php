@@ -4,7 +4,7 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-4 col-12">
             <div class="row">
                 <div class="col-12">
                     <a style="float: left; background-color: green;" type="button" class="btn text-white" onclick="initMap();">
@@ -24,7 +24,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <!-------------------------------------------------- pc -------------------------------------------------->
+        <div class="col-8 d-none d-lg-block" >
             <div class="row">
                 <div class="col-12">
                     <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
@@ -126,8 +127,82 @@
                 </div>
             </div>
         </div>
+        <!----------------------------------------------------- end pc ----------------------------------------------------->
     </div>
 </div>
+<!------------------------------------------------ mobile---------------------------------------------------------------------- -->
+<div class="col-12 d-block d-md-none">
+            <div class="row">
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="col-12" style="padding: 0px">
+                            <div class="card" >
+                                <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>
+                                <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ $count_data }}</span>
+                                </h3>
+                                <div class="col-12 ">
+                                    <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
+                                </div>
+                                <div class="card-body" style="padding: 0px 10px 0px 10px">
+                                    @foreach($view_maps as $item)
+                                        @foreach($data_partners as $data_partner)
+                                            <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                                        @endforeach
+                                            <center>
+                                                <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                                                    <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
+                                                            <i class="fas fa-map-marker-alt"></i> 
+                                                            <br>
+                                                            ดูหมุด
+                                                        </a> 
+                                                        <br>
+                                                        <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                                            <i class="fas fa-location-arrow"></i> 
+                                                            <br>
+                                                            นำทาง
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-8 d-flex align-items-center" style="margin-bottom:0px;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                                        <center class="col-12">
+                                                            <h5 style="margin-bottom:0px; margin-top:0px; ">
+                                                            <a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>
+                                                                {{ $item->name }}
+                                                            </h5>
+                                                        </center>
+                                                    </div> 
+                                                    <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#sos_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                                        <i class="fas fa-angle-down" ></i>
+                                                    </div>
+                                                    <div class="col-12 collapse" id="sos_{{ $item->id }}"> 
+                                                        <hr>
+                                                        <p style="font-size:18px;padding:0px"> เบอร์ :  {{ $item->phone }}  </p> <hr>
+                                                        <p style="font-size:18px;padding:0px">วันที่แจ้ง <br> 
+                                                            
+                                                            {{ date("l d F Y" , strtotime($item->created_at)) }}
+                                                            <br>
+                                                        </p>  <hr>
+                                                        <p style="font-size:18px;padding:0px"> เวลา:  {{ date("H:i" , strtotime($item->created_at)) }}
+                                                            
+                                                        </p>
+                                                         <hr>
+                                                        <p style="font-size:18px;padding:0px">รูปภาพ <br> 
+                                                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                                                <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
+                                                            </a>
+                                                        </p>  
+                                                    </div>
+                                                </div>
+                                            </center>   
+                                        </div>  
+                                    @endforeach
+                                    <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <!------------------------------------------------ end mobile---------------------------------------------------------------------- -->
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>

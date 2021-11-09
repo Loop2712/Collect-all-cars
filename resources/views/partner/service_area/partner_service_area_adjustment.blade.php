@@ -10,7 +10,7 @@
 <br>
 
 <!-- คอม -->
-<div class="container-fluid d-none d-lg-block">
+<div class="container-fluid">
     <input class="d-none" name="lat" type="text" id="lat" value="">
     <input class="d-none" name="lng" type="text" id="lng" value="">
     <input class="d-none" type="" id="latlng" name="latlng" readonly> 
@@ -21,7 +21,7 @@
     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
     <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8 col-12 order-sm-10 order-md-1">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
@@ -52,13 +52,18 @@
                                 <option>- อำเภอ -</option>
                             </select>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
                             <select id="select_district" class="form-control" onchange="zoom_district();">
                                 <option>- ตำบล -</option>
                             </select>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+                
+        <div class="col-lg-8 col-12 order-2">
+            <div class="row">
                 <div class="col-12">
                     <a style="position:absolute;z-index: 5;top: 20px; right:65px;margin-top:7px;" href="#map">
                         <i style="margin-top: 4px; font-size: 20px;" class="far fa-search-location btn btn-danger float-right" onclick="getLocation();"></i>
@@ -69,59 +74,218 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <br><br><br><br>
-                    <button class="btn btn-sm btn-info" data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" >
-                        ตัวอย่าง
-                    </button>
-                    <div class="collapse container-fluid" id="img_EX">
+        <div class="col-lg-4 order-sm-9" style="padding:0px">
+            <div class="col-lg-12 col-12">
+                <div class="row">
+                    <div class="col-md-12">
                         <br>
-                        <img data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" width="500" height="250" src="{{ asset('/img/more/Hnet-image.gif') }}">
-                    </div>
+                        <button class="btn btn-sm btn-info" data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" >
+                            ตัวอย่าง
+                        </button>
+                        <div class="collapse container-fluid" id="img_EX">
+                            <br>
+                            <img data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" width="500" height="250" src="{{ asset('/img/more/Hnet-image.gif') }}">
+                        </div>
 
-                    <div style="margin-top:12px;" class="card">
-                        <h3 class="card-header">
-                            ปรับพื้นที่บริการ
+                        <div style="margin-top:12px;" class="card">
+                            <h3 class="card-header">
+                                ปรับพื้นที่บริการ
+                                <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
+                                    เริ่มใหม่
+                                </a>
+                            </h3>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <center>
+                                                    <i style="color:#FD8433; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่บริการองค์กรอื่นๆ
+                                                </center>
+                                            </div>
+                                            <div class="col-4">
+                                                <center>
+                                                    <i style="color:#008450; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่เก่าของท่าน
+                                                </center>
+                                            </div>
+                                            <div class="col-4">
+                                                <center>
+                                                    <i style="color:#173066; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่ขอรับการอนุมัติ
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-12" id="div_lat_lng">
+                                        <div id="div_form_{{ $count_position }}" class="form-group">
+                                            <label class="control-label">จุดที่ {{ $count_position }}</label>
+                                            <input class="form-control" name="position_{{ $count_position }}" type="text" id="position_{{ $count_position }}" value="" placeholder="คลิกที่แผนที่เพื่อรับโลเคชั่น">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <input class="form-control" name="count_position" type="hidden" id="count_position" value="{{ $count_position }}">
+                                        <br>
+                                        <input class="form-control" type="hidden" name="name_partner" id="name_partner" value="{{ Auth::user()->organization }}">
+                                    </div>
+                                    <div class="col-6">
+                                        <textarea class="form-control d-none" name="area_arr"  id="area_arr" value="" rows="10"></textarea>
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
+                                            แก้ไขจุดก่อนหน้า
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="btn_send_sos_area" class="btn btn-sm btn-primary float-right d-none" onclick="send_sos_area();">
+                                            ส่งข้อมูล
+                                        </button>
+                                    </div>
+                                </div>
+                                <br>
+                                
+                                <!-- Button trigger modal -->
+                                <button id="btn_modal_send_area" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_send_area"></button>
+
+                                <!-- Modal -->
+                                <div class="modal fade"  id="modal_send_area" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" id="modal-center">
+                                    <div class="modal-content" id="modal-center">
+                                        <!-- <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">รอตรวจสอบ</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_service_pending').click();">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div> -->
+                                        
+                                        <div class="modal-body" style="border-radius: 25px;">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_service_pending').click();">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                            <div class="row">
+                                            <div class="card-body col-md-6 d-flex align-items-center" >
+                                                <img src="img/stickerline/PNG/4.png" width="100%" alt="viicheck">
+                                            </div>
+                                            <div class="card-body col-md-6 d-flex align-items-center" style="padding:0px;">
+                                                <div class="col-md-12 text-center">
+                                                    <h4 style="font-family: 'Prompt', sans-serif;"> <b>ViiCheck ได้รับข้อมูล </h4>
+                                                    <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>การเปลี่ยนแปลงพื้นที่</b></h4>
+                                                    <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>ของคุณแล้วกรุณารอ</b></h4>
+                                                    <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>Admin ตรวจสอบ</b></h4>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        
+                                        
+                                        </div>
+                                        <div class="modal-footer d-none">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------------------- มือถือ ------------------------------------------------------------->
+<!-- <div class="container-fluid d-block d-md-none">
+    <input class="d-none" name="lat" type="text" id="lat" value="">
+    <input class="d-none" name="lng" type="text" id="lng" value="">
+    <input class="d-none" type="" id="latlng" name="latlng" readonly> 
+
+    <input class="d-none" type="" name="" id="id_user" value="{{ Auth::user()->id }}">
+
+    <input class="d-none" type="text" id="va_zoom" name="" value="6">
+    <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
+    <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <a id="btn_service_current" href="{{ url('/service_current') }}" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
+                            <a id="btn_service_pending" href="{{ url('/service_pending') }}" class="btn btn-warning text-white">รอการตรวจสอบ</a>
+                            <a id="btn_service_area" href="{{ url('/service_area') }}"class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
+
+                        <hr>
+                        </div>
+                        <div class="col-4 " style="padding:0px">
+                            <select id="select_province" class="form-control text-center" onchange="show_amphoe();">
+                                <option value="" selected > - จังหวัด - </option> 
+                                @foreach($location_array as $lo)
+                                <option 
+                                value="{{ $lo->changwat_th }}" 
+                                {{ request('changwat_th') == $lo->changwat_th ? 'selected' : ''   }} >
+                                @php
+                                    $text_changwat_th = str_replace("จ.","","$lo->changwat_th");
+                                @endphp
+                                {{ $text_changwat_th }} 
+                                </option>
+                                @endforeach    
+                            </select>
+                        </div>
+                        <div class="col-4" style="padding:0px">
+                            <select id="select_amphoe" class="form-control text-center" onchange="show_district();">
+                                <option>- อำเภอ -</option>
+                            </select>
+                        </div>
+                        <div class="col-4" style="padding:0px">
+                            <select id="select_district" class="form-control text-center" onchange="zoom_district();">
+                                <option>- ตำบล -</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card">
+                        <div class="card-body">
+                            <button class="btn btn-sm btn-info" data-toggle="collapse" data-target="#img_EX_m" aria-expanded="false" aria-controls="img_EX_m" >
+                                วิธีใช้
+                            </button>
+                            <div class="collapse container-fluid" id="img_EX_m">
+                                <br>
+                                <img data-toggle="collapse" data-target="#img_EX_m" aria-expanded="false" aria-controls="img_EX_m" width="100%" height="250" src="{{ asset('/img/more/Hnet-image.gif') }}">
+                            </div>
+                            <h3 class="card-header" style="padding:0px;top:10px"> 
+                                ปรับพื้นที่บริการ
                             <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
                                 เริ่มใหม่
                             </a>
-                        </h3>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <center>
-                                                <i style="color:#FD8433; font-size: 20px;" class="fas fa-circle"></i> <br>
-                                                พื้นที่บริการองค์กรอื่นๆ
-                                            </center>
-                                        </div>
-                                        <div class="col-4">
-                                            <center>
-                                                <i style="color:#008450; font-size: 20px;" class="fas fa-circle"></i> <br>
-                                                พื้นที่เก่าของท่าน
-                                            </center>
-                                        </div>
-                                        <div class="col-4">
-                                            <center>
-                                                <i style="color:#173066; font-size: 20px;" class="fas fa-circle"></i> <br>
-                                                พื้นที่ขอรับการอนุมัติ
-                                            </center>
-                                        </div>
-                                    </div>
-                                    <br><br>
+                            <div class="row text-center">
+                                <div class="col-4 text-center">
+                                    <i style="color:#FD8433; font-size: 15px;" class="fas fa-circle"></i> <br>
+                                    <p style="font-size:15px;"> พื้นที่บริการองค์กรอื่นๆ</p>
                                 </div>
-                                <div class="col-12" id="div_lat_lng">
-                                    <div id="div_form_{{ $count_position }}" class="form-group">
-                                        <label class="control-label">จุดที่ {{ $count_position }}</label>
-                                        <input class="form-control" name="position_{{ $count_position }}" type="text" id="position_{{ $count_position }}" value="" placeholder="คลิกที่แผนที่เพื่อรับโลเคชั่น">
-                                    </div>
+                                <div class="col-4">
+                                    <i style="color:#008450; font-size: 15px;" class="fas fa-circle"></i> <br>
+                                    <p style="font-size:15px;">พื้นที่เก่าของท่าน</p> 
                                 </div>
+                                <div class="col-4">
+                                    <i style="color:#173066; font-size: 15px;" class="fas fa-circle"></i> <br>
+                                    <p style="font-size:15px;">พื้นที่ขอรับการอนุมัติ</p> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-header" style="padding:0px;top:10px"> 
+                                พื้นที่บริการ
+                            </h3>
+                            <div class="col-6">
                                     <input class="form-control" name="count_position" type="hidden" id="count_position" value="{{ $count_position }}">
                                     <br>
                                     <input class="form-control" type="hidden" name="name_partner" id="name_partner" value="{{ Auth::user()->organization }}">
@@ -139,64 +303,12 @@
                                         ส่งข้อมูล
                                     </button>
                                 </div>
-                            </div>
-                            <br>
-                            
-                            <!-- Button trigger modal -->
-                            <button id="btn_modal_send_area" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_send_area"></button>
-
-                            <!-- Modal -->
-                            <div class="modal fade"  id="modal_send_area" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" id="modal-center">
-                                <div class="modal-content" id="modal-center">
-                                  <!-- <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">รอตรวจสอบ</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_service_pending').click();">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div> -->
-                                  
-                                  <div class="modal-body" style="border-radius: 25px;">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_service_pending').click();">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                      <div class="row">
-                                        <div class="card-body col-md-6 d-flex align-items-center" >
-                                            <img src="img/stickerline/PNG/4.png" width="100%" alt="viicheck">
-                                        </div>
-                                        <div class="card-body col-md-6 d-flex align-items-center" style="padding:0px;">
-                                            <div class="col-md-12 text-center">
-                                                <h4 style="font-family: 'Prompt', sans-serif;"> <b>ViiCheck ได้รับข้อมูล </h4>
-                                                <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>การเปลี่ยนแปลงพื้นที่</b></h4>
-                                                <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>ของคุณแล้วกรุณารอ</b></h4>
-                                                <h4 style="font-family: 'Prompt', sans-serif;margin-top:15px;"><b>Admin ตรวจสอบ</b></h4>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    
-                                    
-                                  </div>
-                                  <div class="modal-footer d-none">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- มือถือ -->
-<div class="container-fluid d-block d-md-none">
-    <h2>ขณะนี้ระบบปรับพื้นที่บริการรองรับเฉพาะบน PC เท่านั้น</h2>
-</div>
-
+</div> -->
+<!------------------------------------------------------------- End มือถือ ------------------------------------------------------------->
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script> -->

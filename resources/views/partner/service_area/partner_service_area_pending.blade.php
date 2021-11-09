@@ -21,10 +21,10 @@
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                    <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}">
+                    <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}"><br class="d-block d-md-none">
                     <div class="card" style="font-family: 'Prompt', sans-serif;border-radius: 25px;">
                         <div id="map">
-                        <center>
+                        <center class="d-none d-lg-block">
                             <div class="row">
                                 <div class="card-body col-md-6 d-flex align-items-center" >
                                     <img src="img/stickerline/PNG/7.png" width="90%" alt="viicheck">
@@ -34,6 +34,20 @@
                                         <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);"> <b>ตอนนี้คุณยังไม่มี </h1>
                                         <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>พื้นที่รอตรวจสอบ</b></h1>
                                         <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>กรุณาเพิ่มพื้นที่บริการ</b></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                        <center class="d-block d-md-none">
+                            <div class="row">
+                                <div class="card-body col-md-6 d-block d-md-none" style="hight: 500px">
+                                    <img src="img/stickerline/PNG/7.png" width="70%" alt="viicheck">
+                                </div>
+                                <div class="card-body col-md-6 d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);"> <b>ตอนนี้คุณยังไม่มี </h3>
+                                        <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>พื้นที่รอตรวจสอบ</b></h3>
+                                        <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>กรุณาเพิ่มพื้นที่บริการ</b></h3>
                                     </div>
                                 </div>
                             </div>

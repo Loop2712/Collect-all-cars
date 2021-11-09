@@ -8,11 +8,17 @@
                 <div class="card">
                     <h4 class="card-header">
                         รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)
+                        <a style="float:right;" class="btn btn-sm btn-outline-success text-success d-none d-lg-block" href="{{ url('/partner_guest_latest') }}">
+                            <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
+                        </a>
+                    </h4>
+                    <h4 class="d-block d-md-none">
                         <a style="float:right;" class="btn btn-sm btn-outline-success text-success" href="{{ url('/partner_guest_latest') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
                     </h4>
-                    <div class="card-body">
+                    <!------------------------------------------------- pc ------------------------------------------------->
+                    <div class="card-body d-none d-lg-block">
                         <!-- <a class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_2bgreen') }}">
                             <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
                         </a> -->
@@ -99,58 +105,57 @@
                             </div>
                         </div>
                     </div>
-                        <!-- มากสุด -->
-                        <div class="card-block table-border-style" style="margin-top:-30px">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr class="text-center">
-                                                            <th>ยี่ห้อ / รุ่น</th>
-                                                            <th>หมายเลขทะเบียน</th>
-                                                            <th>รายงานทั้งหมด</th>
-                                                            <th>
-                                                                <b>รายงานต่อเดือน</b> (<span id="month_th_1"></span> - <span id="month_th_2"></span>)
-                                                               
-                                                            </th>
-                                                            <th>ผู้ลงทะเบียน</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($guest as $item)
-                                                           <tr class="text-center">
-                                                                <td scope="row">
-                                                                    <b>{{ $item->register_cars->brand }}</b><br>
-                                                                    {{ $item->register_cars->generation }}
-                                                                </td>
-                                                                <td>
-                                                                    <b>{{ $item->registration }}</b><br>
-                                                                        {{ $item->county }}
-                                                                </td>
-                                                                <td><b>{{ $item->count }}</b></td>
-                                                                
-                                                                <td >
-                                                                    <b>{{ $count_per_month[$item->register_car_id] }}</b>
-                                                                    <br>
-                                                                    @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
-                                                                        <span class="text-secondary" style="font-size:14px;">คิดเป็น <b class="text-warning">{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    <b>{{ $item->register_cars->name }}</b>
-                                                                    <br>
-                                                                    <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
-                                                                    <br>
-                                                                </td>
-                                                            </tr>  
-                                                        @endforeach
-                                                    </tbody>
-                                                    <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
-                                                </table>
-                                            </div>
-                                        </div>
-
-
-
+                    <!-- มากสุด -->
+                    <div class="card-block table-border-style d-none d-lg-block" style="margin-top:-30px">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>ยี่ห้อ / รุ่น</th>
+                                        <th>หมายเลขทะเบียน</th>
+                                        <th>รายงานทั้งหมด</th>
+                                        <th>
+                                            <b>รายงานต่อเดือน</b> (<span id="month_th_1"></span> - <span id="month_th_2"></span>)
+                                            
+                                        </th>
+                                        <th>ผู้ลงทะเบียน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($guest as $item)
+                                        <tr class="text-center">
+                                            <td scope="row">
+                                                <b>{{ $item->register_cars->brand }}</b><br>
+                                                {{ $item->register_cars->generation }}
+                                            </td>
+                                            <td>
+                                                <b>{{ $item->registration }}</b><br>
+                                                    {{ $item->county }}
+                                            </td>
+                                            <td><b>{{ $item->count }}</b></td>
+                                            
+                                            <td >
+                                                <b>{{ $count_per_month[$item->register_car_id] }}</b>
+                                                <br>
+                                                @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
+                                                    <span class="text-secondary" style="font-size:14px;">คิดเป็น <b class="text-warning">{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <b>{{ $item->register_cars->name }}</b>
+                                                <br>
+                                                <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i> ดูข้อมูลโปรไฟล์</a>
+                                                <br>
+                                            </td>
+                                        </tr>  
+                                    @endforeach
+                                </tbody>
+                                <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
+                            </table>
+                        </div>
+                    </div>
+                    <!--------------------------------------------- End pc --------------------------------------------->
+                    
                         <!-- <div id="the_most" class="container">
                             <div class="row">
                                 <div class="col-12">
@@ -241,6 +246,142 @@
                         </div> -->
                     </div>
                 </div>
+                <!---------------------------------------------- Mobile ---------------------------------------------->
+                <div class="col-12 d-block d-md-none">
+                    <div class="card">
+                        <div class="card-harder">
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-10">
+                                    <label  class="control-label">{{ '' }}</label>
+                                    <select class="form-control" id="select_year_m" onchange="select_year_m();">
+                                        <option value="">เลือกปี</option>
+                                            @if(!empty($guest_year))
+                                                @foreach($guest_year as $item)
+                                                    <option value="{{ $item->date }}">
+                                                            {{ $item->date + 543 }}
+                                                    </option>   
+
+                                                @endforeach
+                                            @else
+                                                <option value="" selected></option> 
+                                            @endif
+                                    </select>
+                                </div>
+                                <div class="col-1"></div>                                
+                                <div class="col-1"></div>
+                                <div class="col-4 align-self-center" >
+                                    <label  class="control-label">{{ '' }}</label>
+                                    <select class="form-control" id="select_month_1_m" onchange="select_month_1_m();">
+                                        <option value="">เลือกเดือน</option>
+                                        <option value="01">มกราคม</option>
+                                        <option value="02">กุมภาพันธ์</option>
+                                        <option value="03">มีนาคม</option>
+                                        <option value="04">เมษายน</option>
+                                        <option value="05">พฤษภาคม</option>
+                                        <option value="06">มิถุนายน</option>
+                                        <option value="07">กรกฎาคม</option>
+                                        <option value="08">สิงหาคม</option>
+                                        <option value="09">กันยายน</option>
+                                        <option value="10">ตุลาคม</option>
+                                        <option value="11">พฤศจิกายน</option>
+                                        <option value="12">ธันวาคม</option>
+                                    </select>
+                                </div>
+                                <div class="col-2 align-self-center" style="vertical-align: middle;" >
+                                    <center> <br> ถึง</center>
+                                </div>
+                                <div class="col-4" >
+                                    <label  class="control-label">{{ '' }}</label>
+                                    <select class="form-control" id="select_month_2_m" onchange="select_month_2_m();">
+                                        <option value="">เลือกเดือน</option>
+                                        <option value="01">มกราคม</option>
+                                        <option value="02">กุมภาพันธ์</option>
+                                        <option value="03">มีนาคม</option>
+                                        <option value="04">เมษายน</option>
+                                        <option value="05">พฤษภาคม</option>
+                                        <option value="06">มิถุนายน</option>
+                                        <option value="07">กรกฎาคม</option>
+                                        <option value="08">สิงหาคม</option>
+                                        <option value="09">กันยายน</option>
+                                        <option value="10">ตุลาคม</option>
+                                        <option value="11">พฤศจิกายน</option>
+                                        <option value="12">ธันวาคม</option>
+                                    </select>
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-6">
+                                    <br>
+                                    <form style="float: right;" method="GET" action="{{ url('/guest_partner') }}" accept-charset="UTF-8"  role="search">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control d-none" id="input_year_m" name="year"value="{{ request('year') }}">
+                                            <input type="number" class="form-control d-none" id="input_month_1_m" name="month_1" value="{{ request('month_1') }}">
+                                            <input type="number" class="form-control d-none" id="input_month_2_m" name="month_2" value="{{ request('month_2') }}">
+
+                                            <button class="btn btn-primary" type="submit">
+                                                ค้นหา
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <br>
+                                    <a href="{{URL::to('/guest_partner')}}" >
+                                        <button class="btn btn-danger">
+                                            ล้างการค้นหา
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" style="padding:10px 10px;">
+                            @foreach($guest as $item)
+                                @foreach($data_partners as $data_partner)
+                                    <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                                @endforeach
+                                    <center>
+                                        <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                                            <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                            <span> รายงาน</span>
+                                                <br>
+                                                {{ $item->count }}
+                                            </div>
+                                            <div class="col-8" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                                    <h5 style="margin-bottom:0px; margin-top:10px; ">{{ $item->registration }} <br> {{ $item->county }}</h5>
+
+
+                                            </div> 
+                                            <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                                <i class="fas fa-angle-down" ></i>
+                                            </div>
+                                            <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
+                                                <hr>
+                                                <p style="font-size:18px;padding:0px"> ยี่ห้อ <br>  {{ $item->register_cars->brand }}  </p> <hr>
+                                                <p style="font-size:18px;padding:0px">รุ่น <br> {{ $item->register_cars->generation }}  </p> <hr>
+                                                <p style="font-size:18px;padding:0px"> 
+                                                    รายงานต่อเดือน <br>  
+                                                    {{ $count_per_month[$item->register_car_id] }}
+                                                    @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
+                                                        <span class="text-secondary" style="font-size:14px;">คิดเป็น <b style="color:#F1C40F">{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
+                                                    @endif
+                                                </p> <hr>
+                                                <p style="font-size:18px;padding:0px">ผู้ลงทะเบียน <br> 
+                                                    <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i> {{ $item->register_cars->name }}</a>
+                                                    <br>
+                                                    @if(!empty($item->user->branch))
+                                                        <b>สาขา</b> {{ $item->user->branch }}
+                                                    @endif
+                                                </p> 
+                                            </div>
+                                        </div>
+                                    </center>   
+                                </div>  
+                            @endforeach
+                            <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------------------------------------- End Mobile ---------------------------------------------->
             </div>
         </div>
     </div>
@@ -250,6 +391,12 @@
           // console.log(select_year);
         let input_year = document.getElementById('input_year');
           input_year.value = select_year;
+    }
+    function select_year_m(){
+        let select_year_m = document.getElementById('select_year_m').value;
+          // console.log(select_year);
+        let input_year_m = document.getElementById('input_year_m');
+          input_year_m.value = select_year_m;
     }
     function select_month_1(){
         let select_month_1 = document.getElementById('select_month_1').value;
@@ -261,6 +408,37 @@
           select_month_2.value = select_month_1 ;
         let input_month_2 = document.getElementById('input_month_2');
           input_month_2.value = select_month_2.value;
+    }
+    function select_month_1_m(){
+        let select_month_1_m = document.getElementById('select_month_1_m').value;
+          // console.log(select_month_1);
+        let input_month_1_m = document.getElementById('input_month_1_m');
+          input_month_1_m.value = select_month_1_m;
+
+        let select_month_2_m = document.getElementById('select_month_2_m');
+          select_month_2_m.value = select_month_1_m ;
+        let input_month_2_m = document.getElementById('input_month_2_m');
+          input_month_2_m.value = select_month_2_m.value;
+    }
+    function select_month_2_m(){
+        let select_month_2_m = document.getElementById('select_month_2_m').value;
+        let select__m = document.getElementById('select_month_1').value;
+            int_month_1_m = parseInt(select_month_1_m);
+            int_month_2_m = parseInt(select_month_2_m);
+
+            if (int_month_2_m < int_month_1_m) {
+                let va_1 = select_month_1_m ;
+                    select_month_1_m = select_month_2_m;
+                    select_month_2_m = va_1;
+
+                let input_month_1_m = document.getElementById('input_month_1_m');
+                    input_month_1_m.value = select_month_1_m;
+                let input_month_2_m = document.getElementById('input_month_2_m');
+                    input_month_2_m.value = select_month_2_m;
+            }else{
+                let input_month_2_m = document.getElementById('input_month_2_m');
+                    input_month_2_m.value = select_month_2_m;
+            }
     }
     function select_month_2(){
         let select_month_2 = document.getElementById('select_month_2').value;
@@ -284,16 +462,25 @@
     }
     document.addEventListener('DOMContentLoaded', (event) => {
         let input_year = document.getElementById('input_year').value;
+        let input_year_m = document.getElementById('input_year_m').value;
         let input_month_1 = document.getElementById('input_month_1').value;
         let input_month_2 = document.getElementById('input_month_2').value;
+        let input_month_1_m = document.getElementById('input_month_1_m').value;
+        let input_month_2_m = document.getElementById('input_month_2_m').value;
 
         let select_year = document.getElementById('select_year');
+        let select_year_m = document.getElementById('select_year_m');
         let select_month_1 = document.getElementById('select_month_1');
         let select_month_2 = document.getElementById('select_month_2');
+        let select_month_1_m = document.getElementById('select_month_1_m');
+        let select_month_2_m = document.getElementById('select_month_2_m');
 
         select_year.value = input_year ;
+        select_year_m.value = input_year_m ;
         select_month_1.value = input_month_1 ;
         select_month_2.value = input_month_2 ;
+        select_month_1_m.value = input_month_1_m ;
+        select_month_2_m.value = input_month_2_m ;
 
         let month_th_1 = document.getElementById('month_th_1');
             month_th_1.innerHTML = select_month_1.value;

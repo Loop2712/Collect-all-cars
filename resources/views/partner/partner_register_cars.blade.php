@@ -2,108 +2,154 @@
 
 @section('content')
 <br>
-
-<div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Dropdown</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="javascript:">Action</a></li>
-                        <li><a class="dropdown-item" href="javascript:">Another action</a></li>
-                        <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
-                    </ul>
-                </li> -->
-                <li class="nav-item">
-                    <div class="main-search">
-                        <div class="input-group">
-                            <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
-                            <a href="javascript:" class="input-group-append search-close">
-                                <i class="feather icon-x input-group-text"></i>
-                            </a>
-                            <span class="input-group-append search-btn btn btn-primary">
-                                <i class="feather icon-search input-group-text"></i>
-                            </span>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
+            <!-- <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown">Dropdown</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:">Action</a></li>
+                    <li><a class="dropdown-item" href="javascript:">Another action</a></li>
+                    <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
+                </ul>
+            </li> -->
+            <li class="nav-item">
+                <div class="main-search">
+                    <div class="input-group">
+                        <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
+                        <a href="javascript:" class="input-group-append search-close">
+                            <i class="feather icon-x input-group-text"></i>
+                        </a>
+                        <span class="input-group-append search-btn btn btn-primary">
+                            <i class="feather icon-search input-group-text"></i>
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-------------------------------------------------- pc --------------------------------------------------->
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 ">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 style="margin-top:10px;">
+                                รถลงทะเบียน <b>{{ $neme_partner }}</b>
+                                <form method="GET" action="{{ url('/register_cars_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                        <span class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </h3>
+                        </div>
+                        <div class="card-block table-border-style d-none d-lg-block" style="margin-top:-30px;font-size: 16px;">
+                            <div class="table-responsive" >
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>คันที่</th>
+                                            <th>ยี่ห้อ</th>
+                                            <th>รุ่น</th>
+                                            <th>หมายเลขทะเบียน</th>
+                                            <th>ประเภท</th>
+                                            <th>ผู้ลงทะเบียน</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($report_register_cars as $item)
+                                            <center>  
+                                                <tr class="text-center">
+                                                    <td scope="row">  {{ $item->id }}</th>
+                                                    <td>{{ $item->brand }}</td>
+                                                    <td>{{ $item->generation }}</td>
+                                                    <td>
+                                                        <span> {{ $item->registration_number }}</span><br>
+                                                        <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        @if( $item->car_type == "car")
+                                                            <img width="25%" src="https://www.viicheck.com/img/icon/car.png">
+                                                        @endif
+                                                        @if( $item->car_type == "motorcycle")
+                                                            <img width="25%" src="https://www.viicheck.com/img/icon/motorcycle.png">
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                    <center>
+                                                        <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}"><i class="far fa-eye text-info"></i>{{ $item->name }}</a>
+                                                        <br>
+                                                        @if(!empty($item->user->branch))
+                                                            <b>สาขา</b> {{ $item->user->branch }}
+                                                        @endif
+                                                    </center>
+                                                    </td>
+                                                </tr>  
+                                            </center>
+                                        @endforeach
+                                        
+                                        <div class="pagination-wrapper"> {!! $report_register_cars->appends(['search' => Request::get('search')])->render() !!} </div>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </li>
-            </ul>
-</div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h3 style="margin-top:10px;">
-                                                รถลงทะเบียน <b>{{ $neme_partner }}</b>
-                                                <form method="GET" action="{{ url('/report_register_cars_2bgreen') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                                        <span class="input-group-append">
-                                                            <button class="btn btn-secondary" type="submit">
-                                                                <i class="fa fa-search"></i>
-                                                            </button>
-                                                        </span>
-                                                    </div>
-                                                </form>
-                                            </h3>
-                                        </div>
-                                        <div class="card-block table-border-style" style="margin-top:-30px;font-size: 16px;">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr class="text-center">
-                                                            <th>คันที่</th>
-                                                            <th>ยี่ห้อ</th>
-                                                            <th>รุ่น</th>
-                                                            <th>หมายเลขทะเบียน</th>
-                                                            <th>ประเภท</th>
-                                                            <th>ผู้ลงทะเบียน</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($report_register_cars as $item)
-                                                            <center>  
-                                                                <tr class="text-center">
-                                                                    <td scope="row">  {{ $item->id }}</th>
-                                                                    <td>{{ $item->brand }}</td>
-                                                                    <td>{{ $item->generation }}</td>
-                                                                    <td>
-                                                                        <span> {{ $item->registration_number }}</span><br>
-                                                                        <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>
-                                                                    </td>
-                                                                    <td class="col-md-2">
-                                                                        @if( $item->car_type == "car")
-                                                                            <img width="25%" src="https://www.viicheck.com/img/icon/car.png">
-                                                                        @endif
-                                                                        @if( $item->car_type == "motorcycle")
-                                                                            <img width="25%" src="https://www.viicheck.com/img/icon/motorcycle.png">
-                                                                        @endif
-                                                                    </td>
-                                                                    <td>
-                                                                    <center>
-                                                                        <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}"><i class="far fa-eye text-info"></i>{{ $item->name }}</a>
-                                                                        <br>
-                                                                        @if(!empty($item->user->branch))
-                                                                            <b>สาขา</b> {{ $item->user->branch }}
-                                                                        @endif
-                                                                    </center>
-                                                                    </td>
-                                                                </tr>  
-                                                            </center>
-                                                        @endforeach
-                                                        
-                                                        <div class="pagination-wrapper"> {!! $report_register_cars->appends(['search' => Request::get('search')])->render() !!} </div>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                    </div>
+                </div>
+               <!--------------------------------------------- end pc --------------------------------------------->
+
+               <!-- ----------------------------------------------mobile ------------------------------------------------>
+           
+                @foreach($report_register_cars as $item)
+                    @foreach($data_partners as $data_partner)
+                        <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                    @endforeach
+                        <center>
+                            <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                                <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                <span> No.{{ $item->id }}</span>
+                                    <br>
+                                    @if( $item->car_type == "car")
+                                        <img width="80%" src="https://www.viicheck.com/img/icon/car.png">
+                                    @endif
+                                    @if( $item->car_type == "motorcycle")
+                                        <img width="80%" src="https://www.viicheck.com/img/icon/motorcycle.png">
+                                    @endif
                                 </div>
-                                
+                                <div class="col-8" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                        <h5 style="margin-bottom:0px; margin-top:10px; ">{{ $item->registration_number }} <br> {{ $item->province }}</h5>
+
+                                </div> 
+                                <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                    <i class="fas fa-angle-down" ></i>
+                                </div>
+                                <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
+                                    <hr>
+                                    <p style="font-size:18px;padding:0px"> ยี่ห้อ <br>  {{ $item->brand }}  </p> <hr>
+                                    <p style="font-size:18px;padding:0px">รุ่น <br> {{ $item->generation }}  </p> <hr>
+                                    <p style="font-size:18px;padding:0px">ผู้ลงทะเบียน <br> 
+                                        <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}">
+                                            <i class="far fa-eye text-info"></i><span style="font-size:18px;padding:0px"> {{ $item->name }}  </span>
+                                        </a>
+                                        <br>
+                                        @if(!empty($item->user->branch))
+                                            <b>สาขา</b> {{ $item->user->branch }}
+                                        @endif
+                                    </p> 
+                                </div>
+                            </div>
+                        </center>   
+                    </div>  
+                @endforeach
+            <div class="pagination-wrapper"> {!! $report_register_cars->appends(['search' => Request::get('search')])->render() !!} </div>
+               
+               <!-- ----------------------------------------------end mobile---------------------------------------------- -->
+
+
                 <!-- <div class="card">
                     <h3 class="card-header">
                         รถลงทะเบียน องค์กร <b>2บี กรีน จำกัด</b></span> 
