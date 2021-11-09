@@ -14,12 +14,15 @@
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
 
-        lat_text.value = position.coords.latitude ;
-        lng_text.value = position.coords.longitude ;
-        latlng.value = position.coords.latitude+","+position.coords.longitude ;
+        // lat_text.value = position.coords.latitude ;
+        // lng_text.value = position.coords.longitude ;
+        // latlng.value = position.coords.latitude+","+position.coords.longitude ;
 
-        let lat = parseFloat(lat_text.value) ;
-        let lng = parseFloat(lng_text.value) ;
+        // let lat = parseFloat(lat_text.value) ;
+        // let lng = parseFloat(lng_text.value) ;
+
+        let lat = 13.705384 ;
+        let lng = 100.585926 ;
 
         // console.log(lat);
         // console.log(lng);
