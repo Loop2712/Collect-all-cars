@@ -539,8 +539,33 @@
                         });
                     }
                 @endforeach
-            });
-        }
+                });
+
+            }else{
+
+                map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 18,
+                    center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+                });
+
+                let image = "https://www.viicheck.com/img/icon/flag_2.png";
+                let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
+                marker = new google.maps.Marker({
+                    position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
+                    map: map,
+                    icon: image,
+                });  
+
+                @foreach($view_map as $view)
+                    if ( {{ $view->id }} !== parseFloat(sos_id) ) {
+                        marker = new google.maps.Marker({
+                            position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
+                            map: map,
+                            icon: image2,
+                        });
+                    }
+                @endforeach
+            }
 
     }
 
