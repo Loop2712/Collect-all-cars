@@ -100,7 +100,7 @@
                                             <div class="col-3">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
+                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}');">
                                                             <i class="fas fa-map-marker-alt"></i> 
                                                             <br>
                                                             ดูหมุด
@@ -151,7 +151,7 @@
                                             <center>
                                                 <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
                                                     <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
+                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}' , '{{ $item->id }}');">
                                                             <i class="fas fa-map-marker-alt"></i> 
                                                             <br>
                                                             ดูหมุด
@@ -271,7 +271,7 @@
 
     }
 
-    function view_marker(lat , lng){
+    function view_marker(lat , lng , sos_id){
 
         let name_partner = document.querySelector('#name_partner').value;
 
@@ -311,11 +311,13 @@
             });  
 
             @foreach($view_maps as $view_map)
-                marker = new google.maps.Marker({
-                    position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                    map: map,
-                    icon: image2,
-                });     
+                if ( {{ $view_map->id }} !== parseFloat(sos_id) ) {
+                    marker = new google.maps.Marker({
+                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                        map: map,
+                        icon: image2,
+                    });
+                }
             @endforeach
         });
 

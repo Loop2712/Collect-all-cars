@@ -188,4 +188,17 @@ class LocationController extends Controller
         return $area;
     }
 
+    public function view_marker($name_partner)
+    {
+        $data_partners = DB::table('partners')
+              ->where('name', $name_partner)
+              ->get();
+
+        foreach ($data_partners as $key) {
+            $area = $key->sos_area ;
+        }
+
+        return $area ;
+    }
+
 }

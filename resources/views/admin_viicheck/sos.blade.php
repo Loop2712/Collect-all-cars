@@ -232,7 +232,7 @@
                                             <div class="col-3">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}');">
+                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}' , '{{ $item->id }}');">
                                                             <i class="fas fa-map-marker-alt"></i> 
                                                             <br>
                                                             ดูหมุด
@@ -390,7 +390,7 @@
         fetch("{{ url('/') }}/api/area_current/"+text_area)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 var bounds = new google.maps.LatLngBounds();
 
@@ -490,6 +490,58 @@
                     select_area.add(option);                
                 } 
             });
+    }
+
+    function view_marker(lat , lng , sos_id){
+
+        let input_area = document.getElementById('input_area').value;
+
+        fetch("{{ url('/') }}/api/view_marker/"+ input_area)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                var bounds = new google.maps.LatLngBounds();
+
+                for (let ix = 0; ix < result.length; ix++) {
+                    bounds.extend(result[ix]);
+                }
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+                center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+            });
+
+            // Construct the polygon.
+            draw_area = new google.maps.Polygon({
+                paths: result,
+                strokeColor: "#008450",
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillColor: "#008450",
+                fillOpacity: 0.25,
+            });
+            draw_area.setMap(map);
+
+            let image = "https://www.viicheck.com/img/icon/flag_2.png";
+            let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
+            marker = new google.maps.Marker({
+                position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
+                map: map,
+                icon: image,
+            });  
+
+            @foreach($view_map as $view)
+                if ( {{ $view->id }} !== parseFloat(sos_id) ) {
+                    marker = new google.maps.Marker({
+                        position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
+                        map: map,
+                        icon: image2,
+                    });
+                }
+            @endforeach
+        });
+
     }
 
 </script>
