@@ -128,31 +128,8 @@ class SosController extends Controller
 
     public function view_sos(Request $request)
     {
-        $keyword = $request->get('search');
-        $search_area = $request->get('search_area');
-        $search_type = $request->get('search_type');
-        $search_CountryCode = $request->get('search_CountryCode');
         $perPage = 6;
-
-        $sos_all_request = Sos_map::selectRaw('count(id) as count')->get();
-            foreach ($sos_all_request as $key) {
-                    $sos_all = $key->count ;
-                }
-        
-        $area = Sos_map::selectRaw('area')
-            ->where('area', '!=', null)
-            ->groupBy('area')
-            ->get();
-
-        $type_sos = Sos_map::selectRaw('content')
-            ->where('content', '!=', null)
-            ->groupBy('content')
-            ->get();
-
-        $country = Sos_map::selectRaw('CountryCode')
-            ->where('CountryCode', '!=', null)
-            ->groupBy('CountryCode')
-            ->get();
+        $keyword = $request->get('search');
 
         if (!empty($keyword)) {
             $view_map = DB::table('sos_maps')
@@ -170,19 +147,64 @@ class SosController extends Controller
             ->latest()->paginate($perPage);
         }
 
-        if (!empty($search_area)) {
+        $sos_all_request = Sos_map::selectRaw('count(id) as count')->get();
+            foreach ($sos_all_request as $key) {
+                    $sos_all = $key->count ;
+                }
+
+        $type_sos = Sos_map::selectRaw('content')
+            ->where('content', '!=', null)
+            ->groupBy('content')
+            ->orderBy('content')
+            ->get();
+
+        $country = Sos_map::selectRaw('CountryCode')
+            ->where('CountryCode', '!=', null)
+            ->groupBy('CountryCode')
+            ->orderBy('CountryCode')
+            ->get();
+
+        $search_type = $request->get('search_type');
+        $search_CountryCode = $request->get('search_CountryCode');
+        $search_area = $request->get('search_area');
+
+        if ($search_type != "" and $search_CountryCode != "" and $search_area != "") {
+
+            $view_map = DB::table('sos_maps')
+                ->where('content', 'LIKE', "$search_type")
+                ->where('CountryCode', 'LIKE', "$search_CountryCode")
+                ->where('area', 'LIKE', "$search_area")
+                ->latest()->paginate($perPage);
+
+        }else if ($search_type != "" and $search_CountryCode != "" ) {
+            $view_map = DB::table('sos_maps')
+                ->where('content', 'LIKE', "$search_type")
+                ->where('CountryCode', 'LIKE', "$search_CountryCode")
+                ->latest()->paginate($perPage);
+
+        }else if ($search_type != "" and $search_area != "" ) {
+            $view_map = DB::table('sos_maps')
+                ->where('content', 'LIKE', "$search_type")
+                ->where('area', 'LIKE', "$search_area")
+                ->latest()->paginate($perPage);
+
+        }else if ($search_CountryCode != "" and $search_area != "" ) {
+            $view_map = DB::table('sos_maps')
+                ->where('content', 'LIKE', "$search_CountryCode")
+                ->where('area', 'LIKE', "$search_area")
+                ->latest()->paginate($perPage);
+
+        }else if (!empty($search_area)) {
             $view_map = DB::table('sos_maps')
                 ->where('area', 'LIKE', "$search_area")
                 ->latest()->paginate($perPage);
-        }
 
-        if (!empty($search_type)) {
+        }else if (!empty($search_type)) {
             $view_map = DB::table('sos_maps')
                 ->where('content', 'LIKE', "$search_type")
                 ->latest()->paginate($perPage);
-        }
 
-        if (!empty($search_CountryCode)) {
+        }else if (!empty($search_CountryCode)) {
             $view_map = DB::table('sos_maps')
                 ->where('CountryCode', 'LIKE', "$search_CountryCode")
                 ->latest()->paginate($perPage);
@@ -192,7 +214,7 @@ class SosController extends Controller
 
        $view_maps_all = DB::table('sos_maps')->get();
 
-        return view('admin_viicheck.sos', compact('view_map' , 'view_maps_all' , 'sos_all' , 'area' , 'type_sos' , 'country' , 'text_at'));
+        return view('admin_viicheck.sos', compact('view_map' , 'view_maps_all' , 'sos_all' , 'type_sos' , 'country' , 'text_at'));
     }
 
     public function sos_detail_chart(Request $request)

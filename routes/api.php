@@ -55,6 +55,8 @@ Route::get('/user_language/{language}/{user_id}','API\LocationController@user_la
 
 Route::get('/check_sos_country/{user_id}','API\LocationController@check_sos_country');
 
+Route::get('/show_sos_area/{countryCode}','API\LocationController@show_sos_area');
+
 Route::get('/check_user/{id_user}','API\PartnersController@check_user');
 Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersController@put_email');
 Route::get('/check_username/{put_username}/{id_user}','API\PartnersController@check_username');

@@ -32,16 +32,17 @@
                 <div class="col-md-12">
                     <div class="card">
                         <h3 class="card-header">ขอความช่วยเหลือ
-                            <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ count($view_map) }}</span>
+                            <span style="font-size: 18px; float: right; margin-top:6px;">ทั้งหมด {{ count($view_maps_all) }}</span>
                         </h3>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <select class="form-control"  onchange="location = this.options[this.selectedIndex].value;" >
+                                    <label  class="control-label">{{ 'ประเภทขอความช่วยเหลือ' }}</label>
+                                    <select class="form-control" id="select_type" onchange="select_type();">
                                         @if(!empty($type_sos))
-                                            <option value="">ประเภทขอความช่วยเหลือ</option>   
+                                            <option value="">ทั้งหมด</option> 
                                             @foreach($type_sos as $item)
-                                                <option value="{{ url('/sos') }}?search_type={{ $item->content }}">
+                                                <option value="{{ $item->content }}">
                                                     @if($item->content == 'help_area')
                                                         ขอความช่วยเหลือ
                                                     @else
@@ -55,11 +56,12 @@
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
+                                    <label  class="control-label">{{ 'เลือกประเทศ' }}</label>
+                                    <select class="form-control" id="select_country" onchange="select_country();">
                                         @if(!empty($country))
-                                            <option value="">เลือกประเทศ</option>   
+                                            <option value="">ทั้งหมด</option>  
                                             @foreach($country as $item)
-                                                <option value="{{ url('/sos') }}?search_CountryCode={{ $item->CountryCode }}">
+                                                <option value="{{ $item->CountryCode }}">
                                                         @switch($item->CountryCode)
                                                             @case('TH')
                                                                 <h6>ไทย</h6>
@@ -101,24 +103,27 @@
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <select class="form-control" onchange="location = this.options[this.selectedIndex].value;" >
-                                        @if(!empty($area))
-                                            <option value="">เลือกพื้นที่</option>   
-                                            @foreach($area as $item)
-                                                <option value="{{ url('/sos') }}?search_area={{ $item->area }}">
-                                                        {{ $item->area }}
-                                                </option>   
-
-                                            @endforeach
-                                        @else
-                                            <option value="" selected></option> 
-                                        @endif
+                                    <label  class="control-label">{{ 'เลือกพื้นที่' }}</label>
+                                    <select class="form-control" id="select_area" onchange="select_area();">
+                                        <option value="" selected>กรุณาเลือกประเทศ</option> 
                                     </select>
                                 </div>
-                                <div class="col-2">
-                                    <a href="{{ url('/sos') }}" class="btn btn-outline-info ">
-                                        ทั้งหมด
-                                    </a>
+                                <div class="col-12">
+                                    <label style="float: right;" class="control-label">จำนวน {{ count($view_map) }}</label>
+                                    <form style="float: right;" method="GET" action="{{ url('/sos') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="input_type" name="search_type"value="{{ request('search_type') }}">
+                                            <input type="text" class="form-control" id="input_CountryCode" name="search_CountryCode" value="{{ request('search_CountryCode') }}">
+                                            <input type="text" class="form-control" id="input_area" name="search_area" value="{{ request('search_area') }}">
+
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button class="btn btn-primary" type="submit" onclick="change_area();">
+                                                    ค้นหา
+                                                </button>
+                                              <a href="{{ url('/sos') }}" type="button" class="btn btn-danger">ล้าง</a>
+                                            </div>
+                                        </div>
+                                      </form>
                                 </div>
                             </div>
                             <!-- <form method="GET" action="{{ url('/sos') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -278,16 +283,47 @@
         // console.log("START");
         initMap();
 
-        let search_area = document.getElementById("search_area").value;
-        let split_1 = search_area.split("?")[1];
-        let split_2 = split_1.split("=")[0];
-            // console.log(split_1.split("=")[1]);
-            if (split_2 === "search_area") {
-                change_area();
-            }
-        // let select_area_help = document.getElementById("select_area_help");
-        //     select_area_help.innerHTML = split_1.split("=")[1];
-            // console.log(select_area_help.innerHTML);
+        var input_type = document.getElementById('input_type').value;
+        var input_CountryCode = document.getElementById('input_CountryCode').value;
+        var input_area = document.getElementById('input_area').value;
+
+        var select_type = document.getElementById('select_type');
+        var select_country = document.getElementById('select_country');
+        var select_area = document.getElementById('select_area');
+
+            select_type.value = input_type ;
+            select_country.value = input_CountryCode ;
+            select_area.value = input_area ;
+
+        if (input_area !== "") {
+            change_area(input_area);
+
+            select_area.innerHTML = "";
+            let option = document.createElement("option");
+                option.text = input_area;
+                option.value = input_area;
+                select_area.add(option); 
+
+        }
+
+        if (input_CountryCode) {
+            fetch("{{ url('/') }}/api/show_sos_area/"+input_CountryCode)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    // //UPDATE SELECT OPTION
+
+                    for(let item of result){
+                        if (item.area !== input_area) {
+                            let option = document.createElement("option");
+                            option.text = item.area;
+                            option.value = item.area;
+                            select_area.add(option); 
+                        }
+                                       
+                    }
+            });
+        }
 
     });
 
@@ -325,11 +361,11 @@
 
     }
 
-    function change_area() {
+    function change_area(text_area) {
 
-        let search_area = document.getElementById("search_area").value;
-        let text_area = search_area.split("=")[1];
-            // console.log(text_area);
+        // let search_area = document.getElementById("search_area").value;
+        // let text_area = search_area.split("=")[1];
+        //     console.log(text_area);
 
         let text_zoom = document.getElementById("va_zoom");
         let text_center_lat = document.getElementById("center_lat");
@@ -367,6 +403,69 @@
 
         //ปักหมุดภายในพื้นที่รับผิดชอบ
 
+    }
+
+    function select_type(){
+        var select_type = document.getElementById('select_type').value;
+
+        var input_type = document.getElementById('input_type');
+            input_type.value = select_type;
+    }
+
+    function select_country(){
+        var select_country = document.getElementById('select_country').value;
+
+        var input_CountryCode = document.getElementById('input_CountryCode');
+            input_CountryCode.value = select_country;
+
+        var select_area = document.getElementById('select_area');
+        var input_area = document.getElementById('input_area');
+
+        if (input_CountryCode.value !== "") {
+            select_area.innerHTML = "";
+            input_area.value = "";
+            show_area(input_CountryCode.value);
+        }
+        if (input_CountryCode.value === ""){
+            select_area.innerHTML = "";
+            input_area.value = "";
+            let option = document.createElement("option");
+                option.text = "กรุณาเลือกประเทศ";
+                option.value = "";
+                select_area.add(option); 
+        }
+    }
+
+    function select_area(){
+        var select_area = document.getElementById('select_area').value;
+
+        var input_area = document.getElementById('input_area');
+            input_area.value = select_area;
+
+    }
+
+    function show_area(countryCode){
+
+        fetch("{{ url('/') }}/api/show_sos_area/"+countryCode)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                // //UPDATE SELECT OPTION
+                let select_area = document.querySelector("#select_area");
+                    select_area.innerHTML = "";
+
+                let option = document.createElement("option");
+                    option.text = "เลือกพื้นที่";
+                    option.value = "";
+                    select_area.add(option); 
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.area;
+                    option.value = item.area;
+                    select_area.add(option);                
+                } 
+            });
     }
 
 </script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\API\LineApiController;
+use App\Models\Sos_map;
 
 class LocationController extends Controller
 {
@@ -173,6 +174,18 @@ class LocationController extends Controller
         }
 
         return $query;
+    }
+
+    public function show_sos_area($countryCode)
+    {
+        $area = Sos_map::selectRaw('area')
+            ->where('area', '!=', null)
+            ->where('CountryCode', $countryCode)
+            ->groupBy('area')
+            ->orderBy('area')
+            ->get();
+
+        return $area;
     }
 
 }
