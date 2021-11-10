@@ -281,8 +281,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        initMap();
-
         var input_type = document.getElementById('input_type').value;
         var input_CountryCode = document.getElementById('input_CountryCode').value;
         var input_area = document.getElementById('input_area').value;
@@ -291,9 +289,15 @@
         var select_country = document.getElementById('select_country');
         var select_area = document.getElementById('select_area');
 
-            select_type.value = input_type ;
-            select_country.value = input_CountryCode ;
-            select_area.value = input_area ;
+        if (input_area === "") {
+            initMap();
+        }else{
+            change_area(input_area);
+        }
+
+        select_type.value = input_type ;
+        select_country.value = input_CountryCode ;
+        select_area.value = input_area ;
 
         if (input_area !== "") {
             change_area(input_area);
@@ -349,10 +353,10 @@
 
         //วาดพื้นที่รับผิดชอบ
 
-        //ปักหมุด
+        //ปักหมุดทั้งหมด
         @foreach($view_maps_all as $item)
         @if(!empty($item->lat))
-            var marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 
                 map: map,
             }); 
@@ -362,10 +366,6 @@
     }
 
     function change_area(text_area) {
-
-        // let search_area = document.getElementById("search_area").value;
-        // let text_area = search_area.split("=")[1];
-        //     console.log(text_area);
 
         let text_zoom = document.getElementById("va_zoom");
         let text_center_lat = document.getElementById("center_lat");
@@ -398,10 +398,18 @@
                     fillOpacity: 0.25,
                 });
                 draw_area.setMap(map);
+
+                //ปักหมุดภายในพื้นที่รับผิดชอบ
+                @foreach($view_map as $item)
+                @if(!empty($item->lat))
+                    marker = new google.maps.Marker({
+                        position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 
+                        map: map,
+                    }); 
+                @endif    
+                @endforeach
                 
             });
-
-        //ปักหมุดภายในพื้นที่รับผิดชอบ
 
     }
 
