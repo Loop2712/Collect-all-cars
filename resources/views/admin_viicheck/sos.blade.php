@@ -494,51 +494,53 @@
 
     function view_marker(lat , lng , sos_id , name_area){
 
-        fetch("{{ url('/') }}/api/view_marker/"+ name_area)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
+        if (name_area) {
+            fetch("{{ url('/') }}/api/view_marker/"+ name_area)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
 
-                var bounds = new google.maps.LatLngBounds();
+                    var bounds = new google.maps.LatLngBounds();
 
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
-                }
+                    for (let ix = 0; ix < result.length; ix++) {
+                        bounds.extend(result[ix]);
+                    }
 
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 18,
-                center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+                map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 18,
+                    center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+                });
+
+                // Construct the polygon.
+                draw_area = new google.maps.Polygon({
+                    paths: result,
+                    strokeColor: "#008450",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: "#008450",
+                    fillOpacity: 0.25,
+                });
+                draw_area.setMap(map);
+
+                let image = "https://www.viicheck.com/img/icon/flag_2.png";
+                let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
+                marker = new google.maps.Marker({
+                    position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
+                    map: map,
+                    icon: image,
+                });  
+
+                @foreach($view_map as $view)
+                    if ( {{ $view->id }} !== parseFloat(sos_id) ) {
+                        marker = new google.maps.Marker({
+                            position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
+                            map: map,
+                            icon: image2,
+                        });
+                    }
+                @endforeach
             });
-
-            // Construct the polygon.
-            draw_area = new google.maps.Polygon({
-                paths: result,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
-
-            let image = "https://www.viicheck.com/img/icon/flag_2.png";
-            let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
-            marker = new google.maps.Marker({
-                position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
-                map: map,
-                icon: image,
-            });  
-
-            @foreach($view_map as $view)
-                if ( {{ $view->id }} !== parseFloat(sos_id) ) {
-                    marker = new google.maps.Marker({
-                        position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
-                        map: map,
-                        icon: image2,
-                    });
-                }
-            @endforeach
-        });
+        }
 
     }
 
