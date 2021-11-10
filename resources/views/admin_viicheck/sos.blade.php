@@ -289,12 +289,6 @@
         var select_country = document.getElementById('select_country');
         var select_area = document.getElementById('select_area');
 
-        if (input_area === "") {
-            initMap();
-        }else{
-            change_area(input_area);
-        }
-
         select_type.value = input_type ;
         select_country.value = input_CountryCode ;
         select_area.value = input_area ;
@@ -307,7 +301,8 @@
                 option.text = input_area;
                 option.value = input_area;
                 select_area.add(option); 
-
+        }else{
+            initMap();
         }
 
         if (input_CountryCode) {
@@ -351,16 +346,37 @@
         });
         // 13.7248936,100.4930264 lat lng ประเทศไทย
 
-        //วาดพื้นที่รับผิดชอบ
+        //วาดพื้นที่รับผิดชอบทั้งหมด
+        fetch("{{ url('/') }}/api/all_sos_area")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+
+                    // console.log(JSON.parse(result[ii]['sos_area']));
+
+                    let draw_area_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#008450",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#008450",
+                        fillOpacity: 0.25,
+                    });
+                    draw_area_other.setMap(map);
+
+                }
+        });
 
         //ปักหมุดทั้งหมด
         @foreach($view_maps_all as $item)
-        @if(!empty($item->lat))
-            marker = new google.maps.Marker({
-                position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 
-                map: map,
-            }); 
-        @endif    
+            @if(!empty($item->lat))
+                marker = new google.maps.Marker({
+                    position: {lat: {{ $item->lat }} , lng: {{ $item->lng }} }, 
+                    map: map,
+                }); 
+            @endif    
         @endforeach
 
     }
@@ -374,7 +390,7 @@
         fetch("{{ url('/') }}/api/area_current/"+text_area)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 var bounds = new google.maps.LatLngBounds();
 
@@ -388,7 +404,7 @@
                 });
                 map.fitBounds(bounds);
 
-                // Construct the polygon.
+                //วาดพื้นที่รับผิดชอบ
                 draw_area = new google.maps.Polygon({
                     paths: result,
                     strokeColor: "#008450",

@@ -213,8 +213,9 @@ class SosController extends Controller
        $text_at = '@' ;
 
        $view_maps_all = DB::table('sos_maps')->get();
+       $map_partners = DB::table('partners')->get();
 
-        return view('admin_viicheck.sos', compact('view_map' , 'view_maps_all' , 'sos_all' , 'type_sos' , 'country' , 'text_at'));
+        return view('admin_viicheck.sos', compact('view_map' , 'view_maps_all' , 'sos_all' , 'type_sos' , 'country' , 'text_at','map_partners'));
     }
 
     public function sos_detail_chart(Request $request)

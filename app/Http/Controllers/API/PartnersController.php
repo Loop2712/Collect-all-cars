@@ -231,4 +231,11 @@ class PartnersController extends Controller
 
         return $area_other ;
     }
+
+    public function all_sos_area()
+    {
+        $area = DB::table('partners')->get();
+
+        return $area ;
+    }
 }
