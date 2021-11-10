@@ -108,13 +108,13 @@
                                         <option value="" selected>กรุณาเลือกประเทศ</option> 
                                     </select>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-2">
                                     <label style="float: right;" class="control-label">จำนวน {{ count($view_map) }}</label>
                                     <form style="float: right;" method="GET" action="{{ url('/sos') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="input_type" name="search_type"value="{{ request('search_type') }}">
-                                            <input type="text" class="form-control" id="input_CountryCode" name="search_CountryCode" value="{{ request('search_CountryCode') }}">
-                                            <input type="text" class="form-control" id="input_area" name="search_area" value="{{ request('search_area') }}">
+                                            <input type="hidden" class="form-control" id="input_type" name="search_type"value="{{ request('search_type') }}">
+                                            <input type="hidden" class="form-control" id="input_CountryCode" name="search_CountryCode" value="{{ request('search_CountryCode') }}">
+                                            <input type="hidden" class="form-control" id="input_area" name="search_area" value="{{ request('search_area') }}">
 
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <button class="btn btn-primary" type="submit" onclick="change_area();">

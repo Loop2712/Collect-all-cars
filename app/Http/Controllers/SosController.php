@@ -190,7 +190,7 @@ class SosController extends Controller
 
         }else if ($search_CountryCode != "" and $search_area != "" ) {
             $view_map = DB::table('sos_maps')
-                ->where('content', 'LIKE', "$search_CountryCode")
+                ->where('CountryCode', 'LIKE', "$search_CountryCode")
                 ->where('area', 'LIKE', "$search_area")
                 ->latest()->paginate($perPage);
 
