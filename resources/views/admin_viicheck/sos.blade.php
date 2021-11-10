@@ -559,15 +559,15 @@
                 });  
 
                 @foreach($view_map as $view)
-                @if(!empty($view->lat))
                     if ( {{ $view->id }} !== parseFloat(sos_id) ) {
-                        marker = new google.maps.Marker({
-                            position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
-                            map: map,
-                            icon: image2,
-                        });
+                        @if(!empty($view->lat))
+                            marker = new google.maps.Marker({
+                                position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
+                                map: map,
+                                icon: image2,
+                            });
+                        @endif
                     }
-                @endif
                 @endforeach
             }
 
