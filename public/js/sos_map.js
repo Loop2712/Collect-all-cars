@@ -21,8 +21,8 @@
         let lat = parseFloat(lat_text.value) ;
         let lng = parseFloat(lng_text.value) ;
 
-        console.log(lat);
-        console.log(lng);
+        // console.log(lat);
+        // console.log(lng);
 
         let location_user = document.querySelector("#location_user");
             location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
