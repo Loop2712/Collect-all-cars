@@ -62,13 +62,13 @@
               }
             ],
             "position": "absolute",
-            "offsetBottom": "xs",
+            "offsetBottom": "md",
             "action": {
               "type": "uri",
               "label": "action",
               "uri": "https://www.viicheck.com/storage/photo_sos.png"
             },
-            "offsetStart": "200px"
+            "offsetStart": "210px"
           }
         ],
         "backgroundColor": "#FAEBD7",

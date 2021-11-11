@@ -60,8 +60,38 @@
 </div> 
 <!-- จบ SOS ลาว -->
 
-<!-- SOS อินโดนีเซีย -->
-<!-- จบ SOS อินโดนีเซีย -->
+<!-- SOS พม่า -->
+<div id="sos_MM" class="row d-none">
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','199');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 199</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','192');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Fire</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','191');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Highway police</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway_police','1880');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1880</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Covid-19 call center</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','2019');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 2019</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">International hotline</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('international_hotline','122');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 122</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Emergency hotline</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('emergency_hotline','999');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
+    </div>
+</div> 
+<!-- จบ SOS พม่า -->
 
 
 
