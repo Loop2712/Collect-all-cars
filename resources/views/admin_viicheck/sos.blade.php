@@ -530,14 +530,16 @@
                     icon: image,
                 });  
 
-                @foreach($view_map as $view)
-                    if ( {{ $view->id }} !== parseFloat(sos_id) ) {
+                @foreach($view_map as $view_1)
+                @if(!empty($view_1->lng))
+                    if ( {{ $view_1->id }} !== parseFloat(sos_id) ) {
                         marker = new google.maps.Marker({
-                            position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
+                            position: {lat: {{ $view_1->lat }} , lng: {{ $view_1->lng }} },
                             map: map,
                             icon: image2,
                         });
                     }
+                @endif
                 @endforeach
                 });
 
@@ -556,14 +558,16 @@
                     icon: image,
                 });  
 
-                @foreach($view_map as $view)
-                    if ( {{ $view->id }} !== parseFloat(sos_id) ) {
-                        marker = new google.maps.Marker({
-                            position: {lat: {{ $view->lat }} , lng: {{ $view->lng }} },
-                            map: map,
-                            icon: image2,
-                        });
-                    }
+                @foreach($view_map as $view_2)
+                    @if(!empty($view_2->lat))
+                        if ( {{ $view_2->id }} !== parseFloat(sos_id) ) {
+                            marker = new google.maps.Marker({
+                                position: {lat: {{ $view_2->lat }} , lng: {{ $view_2->lng }} },
+                                map: map,
+                                icon: image2,
+                            });
+                        }
+                    @endif
                 @endforeach
             }
 
