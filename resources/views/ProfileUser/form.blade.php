@@ -99,6 +99,17 @@
                                         <div style="margin-left: 0px;" class="col-4 col-md-2">
                                             <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
                                         </div>
+                                        <div class="col-2 text-center">
+                                        <button class="btn btn-primary" style="border-radius: 50%;box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);width:50px;height:50px;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                           ↓
+                                        </button></div>
+                                        </p>
+                                        <div class="collapse" id="collapseExample">
+                                            <div class="card card-body">
+                                               <div class="row"></div>
+                                            
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

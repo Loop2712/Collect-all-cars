@@ -215,8 +215,8 @@
         </div>
     </div>
   </div>
-</div>
-<div class="col-12 text-center">
+</div> 
+<div class="col-12 text-center d-block d-md-none">
   <h1>ระบบนี้ใช้ได้เฉพาะ pc เท่านั้น</h1>
 </div>
 <script>

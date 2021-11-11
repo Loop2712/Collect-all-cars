@@ -118,6 +118,12 @@
                         @endif
                     @endif
                     <li class="nav-item pcoded-menu-caption">
+                        <label style="font-size:13px">การใช้งาน</label>
+                    </li>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
+                        <a href="{{ url('/how_to_use_partner') }}" class="nav-link "><span class="pcoded-micon"><i class="fad fa-book"></i></span><span class="pcoded-mtext">วิธีใช้งาน</span></a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
                         <label style="font-size:13px">ติดต่อ ViiCHECK</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">

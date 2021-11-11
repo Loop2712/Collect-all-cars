@@ -34,7 +34,7 @@
                 <br>
                 <div class="col-md-12">
                     <div class="card">
-                        <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>
+                        <h3 class="card-header">ขอความช่วยเหลือ 
                             <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ $count_data }}</span>
                         </h3>
                         <div class="container">
@@ -137,7 +137,7 @@
                     <div class="row">
                         <div class="col-12" style="padding: 0px">
                             <div class="card" >
-                                <h3 class="card-header">ขอความช่วยเหลือ / <span style="font-size: 18px;"> SOS </span>
+                                <h3 class="card-header">ขอความช่วยเหลือ
                                 <span style="font-size: 18px; float: right; margin-top:6px;">จำนวนทั้งหมด {{ $count_data }}</span>
                                 </h3>
                                 <div class="col-12 ">

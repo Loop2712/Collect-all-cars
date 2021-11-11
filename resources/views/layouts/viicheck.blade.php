@@ -239,6 +239,7 @@
       @guest
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
+          <li><a class="nav-link scrollto" href="{{ url('/how_to_use') }}"><b>วิธีใช้งาน</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
@@ -257,6 +258,13 @@
         <li>
         </li>
           <li><a class="nav-link scrollto" href="{{ url('/how_to_use') }}"><b>วิธีใช้งาน</b></a></li>
+          @if(Auth::check())
+            @switch (Auth::user()->role)
+              @case("admin-partner") 
+                <li><a class="nav-link scrollto" href="{{ url('/how_to_use_partner') }}"><b>วิธีใช้งาน Partner</b></a></li>
+              @break
+            @endswitch
+          @endif
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
@@ -285,7 +293,8 @@
                           <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
                         @break
                         @case("admin-partner") 
-                          <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; admin-partner</a>
+                          <a href="{{ url('/partner_index') }}" >📊 &nbsp; admin-partner</a>
+                          <li><a href="{{ url('/how_to_use_partner') }}">📕 &nbsp; วิธีใช้งาน Partner</a></li>
                         @break
                         @case("partner") 
                           <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; partner</a>

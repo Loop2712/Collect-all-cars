@@ -258,7 +258,13 @@
                                         </div>
                                         <br>
                                     @endforeach
-                                     <div class="pagination-wrapper"> {!! $view_map->appends(['search' => Request::get('search')])->render() !!} </div>
+                                    <div class="pagination-wrapper"> 
+                                        {!! $view_map->appends([
+                                        'search_type' => Request::get('search_type'),
+                                        'search_CountryCode' => Request::get('search_CountryCode'),
+                                        'search_area' => Request::get('search_area'),
+                                        ])->render() !!} 
+                                    </div>
                                 </div>
                             </div>
                         </div>

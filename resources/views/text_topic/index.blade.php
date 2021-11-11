@@ -167,7 +167,7 @@
                         
                     </div>
                     @endforeach
-                    <div class="pagination-wrapper"> {!! $text_topic->appends(['search' => Request::get('search')])->render() !!} </div>
+                    <div class="pagination-wrapper d-block d-md-none"> {!! $text_topic->appends(['search' => Request::get('search')])->render() !!} </div>
                     <!------------------------------------------------------------------ end mobile ------------------------------------------------------------------>
                 </div>
             </div>
