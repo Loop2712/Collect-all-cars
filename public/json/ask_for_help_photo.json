@@ -58,17 +58,17 @@
               {
                 "type": "icon",
                 "url": "https://www.viicheck.com/img/icon/zoom-in.png",
-                "size": "xxl"
+                "size": "xl"
               }
             ],
             "position": "absolute",
             "offsetBottom": "xs",
-            "offsetEnd": "20px",
             "action": {
               "type": "uri",
               "label": "action",
               "uri": "https://www.viicheck.com/storage/photo_sos.png"
-            }
+            },
+            "offsetStart": "200px"
           }
         ],
         "backgroundColor": "#FAEBD7",
