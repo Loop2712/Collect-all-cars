@@ -291,8 +291,6 @@
                 center: { lat: parseFloat(lat), lng: parseFloat(lng) },
             });
 
-            const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-
             // Construct the polygon.
             draw_area = new google.maps.Polygon({
                 paths: result,
@@ -321,6 +319,8 @@
                     });
                 }
             @endforeach
+
+            const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
 
             let infoWindow = new google.maps.InfoWindow({
                 content: "Lat :" + lat + "<br>" + "Lat :" + lng,

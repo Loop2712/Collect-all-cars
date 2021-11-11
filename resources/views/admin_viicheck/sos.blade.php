@@ -547,6 +547,14 @@
                     }
                 @endif
                 @endforeach
+
+                const myLatlng_1 = { lat: parseFloat(lat), lng: parseFloat(lng) };
+                let infoWindow_1 = new google.maps.InfoWindow({
+                        content: "Lat :" + lat + "<br>" + "Lat :" + lng,
+                        position: myLatlng_1,
+                });
+
+                infoWindow_1.open(map);
                 });
 
             }else{
@@ -575,6 +583,14 @@
                         }
                     @endif
                 @endforeach
+
+                const myLatlng_2 = { lat: parseFloat(lat), lng: parseFloat(lng) };
+                let infoWindow_2 = new google.maps.InfoWindow({
+                    content: "Lat :" + lat + "<br>" + "Lat :" + lng,
+                    position: myLatlng_2,
+                });
+
+                infoWindow_2.open(map);
             }
 
     }
