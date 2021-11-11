@@ -100,7 +100,7 @@
                                             <div class="col-3">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}');">
+                                                        <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}');">
                                                             <i class="fas fa-map-marker-alt"></i> 
                                                             <br>
                                                             ดูหมุด
@@ -291,6 +291,8 @@
                 center: { lat: parseFloat(lat), lng: parseFloat(lng) },
             });
 
+            const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
             // Construct the polygon.
             draw_area = new google.maps.Polygon({
                 paths: result,
@@ -319,6 +321,13 @@
                     });
                 }
             @endforeach
+
+            let infoWindow = new google.maps.InfoWindow({
+                content: "Lat :" + lat + "<br>" + "Lat :" + lng,
+                position: myLatlng,
+            });
+
+            infoWindow.open(map);
         });
 
     }
