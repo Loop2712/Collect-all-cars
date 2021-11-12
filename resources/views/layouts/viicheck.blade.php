@@ -342,6 +342,8 @@
         <a id="btn_change_language_ja" href="javascript:trocarIdioma('ja')">ja</a>
         <a id="btn_change_language_ko" href="javascript:trocarIdioma('ko')">ko</a>
         <a id="btn_change_language_es" href="javascript:trocarIdioma('es')">es</a>
+        <a id="btn_change_language_lo" href="javascript:trocarIdioma('lo')">lo</a>
+        <a id="btn_change_language_my" href="javascript:trocarIdioma('my')">my</a>
       </div>
         <!-- Button trigger modal -->
         <button id="btn_select_language" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal">
@@ -658,26 +660,34 @@ function change_country(user_id, country , language) {
 
         setTimeout(function() {
 
-          switch(language) {
-            case 'th':
-                document.querySelector('#btn_change_language_th').click();
-              break;
-            case 'en':
-                document.querySelector('#btn_change_language_en').click();
-              break;
-            case 'zh-TW':
-                document.querySelector('#btn_change_language_zh-TW').click();
-              break;
-            case 'ja':
-                document.querySelector('#btn_change_language_ja').click();
-              break;
-            case 'ko':
-                document.querySelector('#btn_change_language_ko').click();
-              break;
-            case 'es':
-                document.querySelector('#btn_change_language_es').click();
-              break;
-          }
+          document.querySelector('#btn_change_language_' + language).click();
+
+          // switch(language) {
+          //   case 'th':
+          //       document.querySelector('#btn_change_language_th').click();
+          //     break;
+          //   case 'en':
+          //       document.querySelector('#btn_change_language_en').click();
+          //     break;
+          //   case 'zh-TW':
+          //       document.querySelector('#btn_change_language_zh-TW').click();
+          //     break;
+          //   case 'ja':
+          //       document.querySelector('#btn_change_language_ja').click();
+          //     break;
+          //   case 'ko':
+          //       document.querySelector('#btn_change_language_ko').click();
+          //     break;
+          //   case 'es':
+          //       document.querySelector('#btn_change_language_es').click();
+          //     break;
+          //   case 'lo':
+          //       document.querySelector('#btn_change_language_lo').click();
+          //     break;
+          //   case 'my':
+          //       document.querySelector('#btn_change_language_my').click();
+          //     break;
+          // }
 
       }, delayInMilliseconds);
     }
@@ -695,26 +705,34 @@ function user_language(language, user_id) {
 
       setTimeout(function() {
 
-        switch(language) {
-          case 'th':
-              document.querySelector('#btn_change_language_th').click();
-            break;
-          case 'en':
-              document.querySelector('#btn_change_language_en').click();
-            break;
-          case 'zh-TW':
-              document.querySelector('#btn_change_language_zh-TW').click();
-            break;
-          case 'ja':
-              document.querySelector('#btn_change_language_ja').click();
-            break;
-          case 'ko':
-              document.querySelector('#btn_change_language_ko').click();
-            break;
-          case 'es':
-              document.querySelector('#btn_change_language_es').click();
-            break;
-        }
+        document.querySelector('#btn_change_language_' + language).click();
+
+        // switch(language) {
+        //   case 'th':
+        //       document.querySelector('#btn_change_language_th').click();
+        //     break;
+        //   case 'en':
+        //       document.querySelector('#btn_change_language_en').click();
+        //     break;
+        //   case 'zh-TW':
+        //       document.querySelector('#btn_change_language_zh-TW').click();
+        //     break;
+        //   case 'ja':
+        //       document.querySelector('#btn_change_language_ja').click();
+        //     break;
+        //   case 'ko':
+        //       document.querySelector('#btn_change_language_ko').click();
+        //     break;
+        //   case 'es':
+        //       document.querySelector('#btn_change_language_es').click();
+        //     break;
+        //   case 'lo':
+        //       document.querySelector('#btn_change_language_lo').click();
+        //     break;
+        //   case 'my':
+        //       document.querySelector('#btn_change_language_my').click();
+        //     break;
+        // }
 
     }, delayInMilliseconds);
       
