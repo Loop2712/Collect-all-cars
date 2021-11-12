@@ -76,45 +76,47 @@
                             <input class="form-control" name="phone" type="number" id="phone" value="{{ isset($data->phone) ? $data->phone : ''}}" >
                             {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label for="massengbox" class="control-label"><b>{{ 'ภาษา' }}</b></label>
-                        <div id="div_change_language" class="form-group {{ $errors->has('language') ? 'has-error' : ''}}">
-                            <div style="margin-top: 10px;" class="row">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-4 col-md-2">
-                                            <img class="btn" id="img_flag_th" style="filter: grayscale(100%);" width="80" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th' , '{{ $data->id }}');">
-                                        </div>
-                                        <div style="margin-left: -10px;" class="col-4 col-md-2">
-                                            <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/en.png') }}" onclick="change_language('en' , '{{ $data->id }}');">
-                                        </div>
-                                        <div style="margin-top: 1px;" class="col-4 col-md-2">
-                                            <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
-                                        </div>
-                                        <div style="margin-left: -10px;" class="col-4 col-md-2">
-                                            <img class="btn" id="img_flag_ja" style="filter: grayscale(100%);"  width="103" src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja' , '{{ $data->id }}');">
-                                        </div>
-                                        <div class="col-4 col-md-2">
-                                            <img class="btn" id="img_flag_ko" style="filter: grayscale(100%);"  width="83" src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko' , '{{ $data->id }}');">
-                                        </div>
-                                        <div style="margin-left: 0px;" class="col-4 col-md-2">
-                                            <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
-                                        </div>
-                                        <div class="col-2 text-center">
-                                        <button class="btn btn-primary" style="border-radius: 50%;box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);width:50px;height:50px;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                           ↓
-                                        </button></div>
-                                        </p>
-                                        <div class="collapse" id="collapseExample">
-                                            <div class="card card-body">
-                                               <div class="row"></div>
-                                            
+                        <div id="div_change_language">
+                            <label for="massengbox" class="control-label"><b>{{ 'ภาษา' }}</b></label>
+                            <div class="form-group {{ $errors->has('language') ? 'has-error' : ''}}">
+                                <div style="margin-top: 10px;" class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-4 col-md-2">
+                                                <img class="btn" id="img_flag_th" style="filter: grayscale(100%);" width="80" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th' , '{{ $data->id }}');">
+                                            </div>
+                                            <div style="margin-left: -10px;" class="col-4 col-md-2">
+                                                <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/en.png') }}" onclick="change_language('en' , '{{ $data->id }}');">
+                                            </div>
+                                            <div style="margin-top: 1px;" class="col-4 col-md-2">
+                                                <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
+                                            </div>
+                                            <div style="margin-left: -10px;" class="col-4 col-md-2">
+                                                <img class="btn" id="img_flag_ja" style="filter: grayscale(100%);"  width="103" src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja' , '{{ $data->id }}');">
+                                            </div>
+                                            <div class="col-4 col-md-2">
+                                                <img class="btn" id="img_flag_ko" style="filter: grayscale(100%);"  width="83" src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko' , '{{ $data->id }}');">
+                                            </div>
+                                            <div style="margin-left: 0px;" class="col-4 col-md-2">
+                                                <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
+                                            </div>
+                                            <div class="col-2 text-center">
+                                            <button class="btn btn-primary" style="border-radius: 50%;box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);width:50px;height:50px;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                               ↓
+                                            </button></div>
+                                            </p>
+                                            <div class="collapse" id="collapseExample">
+                                                <div class="card card-body">
+                                                   <div class="row"></div>
+                                                
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <input class="form-control" name="language" type="hidden" id="language" value="{{ isset($data->language) ? $data->language : ''}}">
+                                {!! $errors->first('language', '<p class="help-block">:message</p>') !!}
                             </div>
-                            <input class="form-control" name="language" type="hidden" id="language" value="{{ isset($data->language) ? $data->language : ''}}">
-                            {!! $errors->first('language', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                 </div>
