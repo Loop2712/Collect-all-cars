@@ -23,19 +23,6 @@
               "label": "action",
               "uri": "https://www.viicheck.com/"
             }
-          },
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/Flex/5.png",
-            "size": "full",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/"
-            },
-            "offsetBottom": "md"
           }
         ]
       },
@@ -228,6 +215,63 @@
         "type": "separator",
         "color": "#ff0101",
         "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/national-flag/flex-la.png",
+                    "size": "60px"
+                  },
+                  {
+                    "type": "text",
+                    "text": "ລາວ",
+                    "align": "center",
+                    "margin": "md"
+                  }
+                ],
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/lo/user_id"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/national-flag/flex-mm.png",
+                    "size": "60px"
+                  },
+                  {
+                    "type": "text",
+                    "text": "မြန်မာ",
+                    "align": "center",
+                    "margin": "md"
+                  }
+                ],
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/my/user_id"
+                }
+              }
+            ],
+            "margin": "md"
+          }
+        ]
       }
     ],
     "borderWidth": "bold",
