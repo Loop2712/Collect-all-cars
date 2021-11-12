@@ -76,8 +76,8 @@
                             <input class="form-control" name="phone" type="number" id="phone" value="{{ isset($data->phone) ? $data->phone : ''}}" >
                             {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label id="label_change_language" for="massengbox" class="control-label"><b>{{ 'ภาษา' }}</b></label>
-                        <div class="form-group {{ $errors->has('language') ? 'has-error' : ''}}">
+                        <label for="massengbox" class="control-label"><b>{{ 'ภาษา' }}</b></label>
+                        <div id="div_change_language" class="form-group {{ $errors->has('language') ? 'has-error' : ''}}">
                             <div style="margin-top: 10px;" class="row">
                                 <div class="col-12">
                                     <div class="row">

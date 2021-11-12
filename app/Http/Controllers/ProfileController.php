@@ -535,10 +535,10 @@ class ProfileController extends Controller
         $id = $user_id;
 
         if(Auth::check()){
-            return redirect('profile/'. $id .'/edit#label_change_language');
+            return redirect('profile/'. $id .'/edit#div_change_language');
             // echo Auth::User()->name;
         }else{
-            return redirect('login/line?redirectTo=profile/'. $id .'/edit#label_change_language');
+            return redirect('login/line?redirectTo=profile/'. $id .'/edit#div_change_language');
         }
     }
 
