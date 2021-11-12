@@ -44,28 +44,6 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://www.viicheck.com/img/national-flag/flex-th.png",
-                    "size": "60px"
-                  },
-                  {
-                    "type": "text",
-                    "text": "ไทย",
-                    "align": "center",
-                    "margin": "md"
-                  }
-                ],
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/api/change_language_fromline/th/user_id"
-                }
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "image",
                     "url": "https://www.viicheck.com/img/national-flag/flex-en.png",
                     "size": "60px"
                   },
@@ -81,25 +59,7 @@
                   "label": "action",
                   "uri": "https://www.viicheck.com/api/change_language_fromline/en/user_id"
                 }
-              }
-            ],
-            "margin": "md"
-          }
-        ]
-      },
-      {
-        "type": "separator",
-        "color": "#ff0101",
-        "margin": "xl"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
+              },
               {
                 "type": "box",
                 "layout": "vertical",
@@ -128,12 +88,12 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://www.viicheck.com/img/national-flag/flex-ja.png",
+                    "url": "https://www.viicheck.com/img/national-flag/flex-es.png",
                     "size": "60px"
                   },
                   {
                     "type": "text",
-                    "text": "日本",
+                    "text": "Español",
                     "align": "center",
                     "margin": "md"
                   }
@@ -141,7 +101,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/api/change_language_fromline/ja/user_id"
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/es/user_id"
                 }
               }
             ],
@@ -162,6 +122,28 @@
             "type": "box",
             "layout": "horizontal",
             "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/national-flag/flex-ja.png",
+                    "size": "60px"
+                  },
+                  {
+                    "type": "text",
+                    "text": "日本",
+                    "align": "center",
+                    "margin": "md"
+                  }
+                ],
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/ja/user_id"
+                }
+              },
               {
                 "type": "box",
                 "layout": "vertical",
@@ -190,12 +172,12 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://www.viicheck.com/img/national-flag/flex-es.png",
+                    "url": "https://www.viicheck.com/img/national-flag/flex-th.png",
                     "size": "60px"
                   },
                   {
                     "type": "text",
-                    "text": "Español",
+                    "text": "ไทย",
                     "align": "center",
                     "margin": "md"
                   }
@@ -203,7 +185,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/api/change_language_fromline/es/user_id"
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/th/user_id"
                 }
               }
             ],
@@ -266,6 +248,28 @@
                   "type": "uri",
                   "label": "action",
                   "uri": "https://www.viicheck.com/api/change_language_fromline/my/user_id"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/national-flag/flex-other.png",
+                    "size": "60px"
+                  },
+                  {
+                    "type": "text",
+                    "text": "other",
+                    "align": "center",
+                    "margin": "md"
+                  }
+                ],
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/profile/user_id/edit#label_change_language"
                 }
               }
             ],
