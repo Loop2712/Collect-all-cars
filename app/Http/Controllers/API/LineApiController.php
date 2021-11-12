@@ -257,6 +257,12 @@ class LineApiController extends Controller
             case 'es-ES':
                 $richMenuId_start = "richmenu-40d7c52250182ab24ce39a0f0f392cdd" ;
                 break;
+            case 'lo':
+                $richMenuId_start = "" ;
+                break;
+            case 'my':
+                $richMenuId_start = "" ;
+                break;
             
             default:
                 // en
@@ -307,6 +313,12 @@ class LineApiController extends Controller
                     break;
                 case 'es':
                     $richMenuId = "richmenu-bdba6cee86b6931d6995e2f4f7f2d9ad" ;
+                    break;
+                case 'lo':
+                    $richMenuId = "" ;
+                    break;
+                case 'my':
+                    $richMenuId = "" ;
                     break;
             }
         }
