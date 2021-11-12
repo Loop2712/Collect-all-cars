@@ -530,4 +530,16 @@ class ProfileController extends Controller
         return $id;
     }
 
+    public function change_language_from_line($user_id)
+    {
+        $id = $user_id;
+
+        if(Auth::check()){
+            return redirect('profile/'. $id .'/edit#label_change_language');
+            // echo Auth::User()->name;
+        }else{
+            return redirect('login/line?redirectTo=profile/'. $id .'/edit#label_change_language');
+        }
+    }
+
 }
