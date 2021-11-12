@@ -269,7 +269,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/change_language_from_line/user_id"
+                  "uri": "https://www.viicheck.com/change_language_from_line/user_id?openExternalBrowser=1"
                 }
               }
             ],
