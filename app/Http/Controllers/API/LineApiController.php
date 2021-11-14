@@ -258,10 +258,10 @@ class LineApiController extends Controller
                 $richMenuId_start = "richmenu-40d7c52250182ab24ce39a0f0f392cdd" ;
                 break;
             case 'lo':
-                $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-9afdd88c68cfe4bb5a5fbaae402e3727" ;
                 break;
             case 'my':
-                $richMenuId_start = "" ;
+                $richMenuId_start = "richmenu-78aefd7ea6f5548e3a6c37e1d8ad8d3c" ;
                 break;
             
             default:
