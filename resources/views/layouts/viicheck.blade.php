@@ -11,7 +11,8 @@
 
 
   <!-- Favicons -->
-
+ <!-- icon -->
+ <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -258,13 +259,13 @@
         <li>
         </li>
           <li><a class="nav-link scrollto" href="{{ url('/how_to_use') }}"><b>วิธีใช้งาน</b></a></li>
-          @if(Auth::check())
+          <!-- @if(Auth::check())
             @switch (Auth::user()->role)
               @case("admin-partner") 
                 <li><a class="nav-link scrollto" href="{{ url('/how_to_use_partner') }}"><b>วิธีใช้งาน Partner</b></a></li>
               @break
             @endswitch
-          @endif
+          @endif -->
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
@@ -294,7 +295,7 @@
                         @break
                         @case("admin-partner") 
                           <a href="{{ url('/partner_index') }}" >📊 &nbsp; admin-partner</a>
-                          <li><a href="{{ url('/how_to_use_partner') }}">📕 &nbsp; วิธีใช้งาน Partner</a></li>
+                          <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
                         @break
                         @case("partner") 
                           <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; partner</a>
@@ -375,21 +376,68 @@
                       </div>
                     </div>
                     <div class="col-4">
+                      <div class="btn" onclick="user_language('lo', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="50" src="{{ url('/img/national-flag/lo.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">ລາວ</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('mr', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="50" src="{{ url('/img/national-flag/my.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">မြန်မာပြည်</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
                       <div class="btn" onclick="user_language('en', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="60" src="{{ url('/img/national-flag/en.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">English</h5>
                       </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-4 ">
                       <div class="btn" onclick="user_language('zh-TW', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">中國人</h5>
                       </div>
                     </div>
-                    <br><br><br><br><br>
-                    <div class="col-4">
+                    <div class="col-4 ">
+                      <div class="btn" data-toggle="collapse" data-target="#language_popup" aria-expanded="false" aria-controls="language_popup">
+                        <img width="55" src="{{ url('/img/national-flag/flex-other.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">More</h5>
+                      </div>
+                    </div>
+                    <div class="collapse " id="language_popup">
+                        <div class="card col-md-12 card-body no-radius border-0 " style="padding:0px;">
+                            <div class="row text-center">
+                              <div class="col-4">
+                                <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                                  <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
+                                  <br>
+                                  <h5 style="margin-top:10px;">日本</h5>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="btn" onclick="user_language('ko', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                                  <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
+                                  <br>
+                                  <h5 style="margin-top:10px;">한국인</h5>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="btn" style="padding:0px" onclick="user_language('es', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                                  <img width="55" src="{{ url('/img/national-flag/es.png') }}">
+                                  <br>
+                                  <h5 style="margin-top:10px;">Español</h5>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-4">
                       <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
                         <br>
@@ -409,7 +457,7 @@
                         <br>
                         <h5 style="margin-top:10px;">Español</h5>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>

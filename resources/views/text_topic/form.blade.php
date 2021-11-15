@@ -85,6 +85,24 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body" >
+                    <h5 class="card-title">ภาษาลาว</h5>
+                    <input class="form-control" name="lo" type="text" id="lo" value="{{ isset($text_topic->lo) ? $text_topic->lo : ''}}" >
+    {!! $errors->first('lo', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body" >
+                    <h5 class="card-title">ภาษาพม่า</h5>
+                    <input class="form-control" name="my" type="text" id="my" value="{{ isset($text_topic->my) ? $text_topic->my : ''}}" >
+    {!! $errors->first('my', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
     </div>
 </div>  
 <div class="d-flex justify-content-end">

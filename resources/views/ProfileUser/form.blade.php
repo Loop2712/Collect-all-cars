@@ -82,36 +82,46 @@
                                 <div style="margin-top: 10px;" class="row">
                                     <div class="col-12">
                                         <div class="row">
-                                            <div class="col-4 col-md-2">
-                                                <img class="btn" id="img_flag_th" style="filter: grayscale(100%);" width="80" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th' , '{{ $data->id }}');">
+                                            <div class="col-4 col-md-2" style="top:1px;">
+                                                <img class="btn" id="img_flag_th" style="filter: grayscale(100%); " width="85" src="{{ url('/img/national-flag/th.png') }}" onclick="change_language('th' , '{{ $data->id }}');">
                                             </div>
-                                            <div style="margin-left: -10px;" class="col-4 col-md-2">
+                                            <div style="margin-top: 5px;" class="col-4 col-md-2">
+                                                <img class="btn" id="img_flag_lo" style="filter: grayscale(100%);"  width="78" src="{{ url('/img/national-flag/lo.png') }}" onclick="change_language('lo' , '{{ $data->id }}');">
+                                            </div>
+                                            <div class="col-4 col-md-2 " style="top:4px">
+                                                <img class="btn" id="img_flag_my" style="filter: grayscale(100%);"  width="78" src="{{ url('/img/national-flag/my.png') }}" onclick="change_language('my' , '{{ $data->id }}');">
+                                            </div>
+                                            <div style="ml-lg: -10px;" class="col-4 col-md-2">
                                                 <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/en.png') }}" onclick="change_language('en' , '{{ $data->id }}');">
                                             </div>
-                                            <div style="margin-top: 1px;" class="col-4 col-md-2">
+                                            <div style="mt-lg: 1px;" class="col-4 col-md-2">
                                                 <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
                                             </div>
-                                            <div style="margin-left: -10px;" class="col-4 col-md-2">
-                                                <img class="btn" id="img_flag_ja" style="filter: grayscale(100%);"  width="103" src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja' , '{{ $data->id }}');">
-                                            </div>
-                                            <div class="col-4 col-md-2">
-                                                <img class="btn" id="img_flag_ko" style="filter: grayscale(100%);"  width="83" src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko' , '{{ $data->id }}');">
-                                            </div>
-                                            <div style="margin-left: 0px;" class="col-4 col-md-2">
+                                            <!-- <div style="margin-left: 0px;" class="col-4 col-md-2">
                                                 <img class="btn" id="img_flag_es" style="filter: grayscale(100%);"  width="80" src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
+                                            </div> -->
+                                            <div style="margin-left: -5px;" class="col-4 col-md-2">
+                                                <img class="btn"  width="83" src="{{ url('/img/national-flag/flex-other.png') }}" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                             </div>
-                                            <div class="col-2 text-center">
-                                            <button class="btn btn-primary" style="border-radius: 50%;box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);width:50px;height:50px;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                               ↓
-                                            </button></div>
-                                            </p>
-                                            <div class="collapse" id="collapseExample">
-                                                <div class="card card-body">
-                                                   <div class="row"></div>
-                                                
+                                                <div class="collapse " id="collapseExample">
+                                                    <div class="card col-md-12 card-body no-radius border-0 " style="p-sm:0px;">
+                                                        <div class="row text-center">
+                                                            <div class="col-4 col-md-2" style="padding:0px;margin-left:-10px;">
+                                                                <img class="btn" id="img_flag_ja" style="filter: grayscale(100%); " width="105"  src="{{ url('/img/national-flag/ja.png') }}" onclick="change_language('ja' , '{{ $data->id }}');">
+                                                            </div>
+                                                            <div class="col-4 col-md-2">
+                                                                <img class="btn" id="img_flag_ko" style="filter: grayscale(100%); " width="84"  src="{{ url('/img/national-flag/ko.png') }}" onclick="change_language('ko' , '{{ $data->id }}');">
+                                                            </div>
+                                                            <div class="col-4 col-md-2" >
+                                                                <img class="btn" id="img_flag_es" style="filter: grayscale(100%); " width="85"  src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
+                                                            </div>
+                                                            <!-- <div class="col-4 col-md-2" style="padding:0px;">
+                                                                <img class="btn" id="img_flag_es" style="filter: grayscale(100%); padding:0px;" width="55"  src="{{ url('/img/national-flag/es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <input class="form-control" name="language" type="hidden" id="language" value="{{ isset($data->language) ? $data->language : ''}}">
@@ -365,6 +375,14 @@
                 alert("El idioma se ha cambiado correctamente.");
                 document.querySelector('#btn_change_language_es').click();
               break;
+            case 'lo':
+                alert("ພາສາໄດ້ຖືກປ່ຽນແປງຢ່າງສໍາເລັດຜົນ.");
+                document.querySelector('#btn_change_language_lo').click();
+              break;
+            case 'my':
+                alert("ဘာသာစကားကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ။.");
+                document.querySelector('#btn_change_language_my').click();
+              break;
           }
 
     }
@@ -377,6 +395,8 @@
         let img_ja = document.querySelector('#img_flag_ja');
         let img_ko = document.querySelector('#img_flag_ko');
         let img_es = document.querySelector('#img_flag_es');
+        let img_lo = document.querySelector('#img_flag_lo');
+        let img_my = document.querySelector('#img_flag_my');
 
         let style_gray_th= document.createAttribute("style");
             style_gray_th.value = "filter: grayscale(100%);";
@@ -396,6 +416,12 @@
         let style_gray_es= document.createAttribute("style");
             style_gray_es.value = "filter: grayscale(100%);";
 
+        let style_gray_lo= document.createAttribute("style");
+            style_gray_lo.value = "filter: grayscale(100%);";
+
+        let style_gray_my= document.createAttribute("style");
+            style_gray_my.value = "filter: grayscale(100%);";
+
         switch(language) {
             case 'th':
                 let attr_th = img_th.getAttributeNode("style");   
@@ -406,6 +432,8 @@
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_es.setAttributeNode(style_gray_es);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_my.setAttributeNode(style_gray_my);
               break;
             case 'en':
                 let attr_en = img_en.getAttributeNode("style");   
@@ -416,6 +444,8 @@
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_es.setAttributeNode(style_gray_es);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_my.setAttributeNode(style_gray_my);
               break;
             case 'zh-TW':
                 let attr_zh_TW = img_zh_TW.getAttributeNode("style");   
@@ -426,6 +456,8 @@
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_es.setAttributeNode(style_gray_es);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_my.setAttributeNode(style_gray_my);
               break;
             case 'ja':
                 let attr_ja = img_ja.getAttributeNode("style");   
@@ -436,6 +468,8 @@
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_es.setAttributeNode(style_gray_es);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_my.setAttributeNode(style_gray_my);
               break;
             case 'ko':
                 let attr_ko = img_ko.getAttributeNode("style");   
@@ -446,6 +480,8 @@
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_es.setAttributeNode(style_gray_es);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_my.setAttributeNode(style_gray_my);
               break;
             case 'es':
                 let attr_es = img_es.getAttributeNode("style");   
@@ -456,6 +492,32 @@
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_my.setAttributeNode(style_gray_my);
+              break;
+            case 'lo':
+                let attr_lo = img_lo.getAttributeNode("style");   
+                img_lo.removeAttributeNode(attr_lo);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_es.setAttributeNode(style_gray_es);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_my.setAttributeNode(style_gray_my);
+              break;
+            case 'my':
+                let attr_my = img_my.getAttributeNode("style");   
+                img_my.removeAttributeNode(attr_my);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_es.setAttributeNode(style_gray_es);
               break;
           }
 
