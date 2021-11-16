@@ -16,7 +16,7 @@
                   <a href="https://www.viicheck.com/login/line/?Student=tu_{{ $student_id }}" 
                   class="btn btn-info" onclick="api_data_tu();"> REGISTER</a>
 
-                  <a href="https://api.whatsapp.com/send?phone=998823219&text=hello" class="btn btn-danger"> WhatsApp</a> 
+                  <a href="https://api.whatsapp.com/send?phone=0998823219&text=hello" class="btn btn-danger"> WhatsApp</a> 
                 </div>
             </div>
           </div>
