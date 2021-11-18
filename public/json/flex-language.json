@@ -256,12 +256,12 @@
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://www.viicheck.com/img/national-flag/flex-other.png",
+                    "url": "https://www.viicheck.com/img/national-flag/flex-de.png",
                     "size": "60px"
                   },
                   {
                     "type": "text",
-                    "text": "other",
+                    "text": "Deutsch",
                     "align": "center",
                     "margin": "md"
                   }
@@ -269,7 +269,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/change_language_from_line/user_id?openExternalBrowser=1"
+                  "uri": "https://www.viicheck.com/api/change_language_fromline/de/user_id"
                 }
               }
             ],
