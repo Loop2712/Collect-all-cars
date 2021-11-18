@@ -12,7 +12,7 @@
                             <a style="float:right;" class="btn btn-sm btn-outline-danger text-danger d-none d-lg-block" href="{{ url('/guest_partner') }}">
                                 <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
                             </a>
-                        <h4 style="float:right;" class="d-block d-md-none">
+                        <h4 style="float:right;" class="d-block d-lg-none">
                             <br>
                             <a style="float:right;" class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_partner') }}">
                                 <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
@@ -86,7 +86,7 @@
                     <!--------------------------------------------- Mobile --------------------------------------------->
                     @foreach($guest_latest as $item)
                         @foreach($data_partners as $data_partner)
-                            <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                            <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
                         @endforeach
                         <center>
                             <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">

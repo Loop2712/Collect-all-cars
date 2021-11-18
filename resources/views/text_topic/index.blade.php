@@ -88,16 +88,17 @@
                             @foreach($text_topic as $item)
                                 <div class="card d-none d-lg-block" >
                                     <div class="card-header text-center " > 
-                                        {{ $item->th }}
-                                        <div style="float: right;">
-                                            <form style="float: right;" method="POST" action="{{ url('/text_topic' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Text_topic" onclick="return confirm(&quot;Confirm delete?&quot;)">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </form>
-                                            <a style="float: right;" href="{{ url('/text_topic/' . $item->id . '/edit') }}" title="Edit Text_topic"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                        </div>
+                                        <h5 style="vertical-align: middle"> <b>{{ $item->th }}</b> 
+                                            <div style="float: right;">
+                                                    <form style="float: right;" method="POST" action="{{ url('/text_topic' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete Text_topic" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                            <i class="fas fa-trash-alt"></i></button>
+                                                    </form>
+                                                    <a style="float: right;" href="{{ url('/text_topic/' . $item->id . '/edit') }}" title="Edit Text_topic"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                </div>
+                                        </h5>                                       
                                     </div>
                                     <div class="col-md-12 d-none d-lg-block">
                                         <div class="row" style="padding:0px">

@@ -62,7 +62,7 @@
             </div>
         </div>
                 
-        <div class="col-lg-8 col-12 order-2">
+        <div class="col-lg-8 col-12 order-3  ">
             <div class="row">
                 <div class="col-12">
                     <a style="position:absolute;z-index: 5;top: 20px; right:65px;margin-top:7px;" href="#map">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 order-sm-9" style="padding:0px">
+        <div class="col-lg-4 order-sm-9 order-2" style="padding:0px">
             <div class="col-lg-12 col-12">
                 <div class="row">
                     <div class="col-md-12">

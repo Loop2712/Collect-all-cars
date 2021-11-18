@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card main-shadow">
                 <!-- แสดงเฉพาะคอม -->
-                <img class="d-none d-lg-block" style="position: absolute; width: 100%; height: 100%;"  src="{{ asset('/img/more/bg_login.png') }}">
+                <img class="d-none d-md-block" style="position: absolute; width: 100%; height: 100%;"  src="{{ asset('/img/more/bg_login.png') }}">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-6">

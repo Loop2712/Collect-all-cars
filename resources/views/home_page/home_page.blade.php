@@ -583,7 +583,7 @@
 
 <!-------------------------------------------------มือถือ-------------------------------------------------->
 
-<div class="d-block d-md-none">
+<div class="d-block d-lg-none">
 <section id="hero2" class="d-flex align-items-center">
     <div class="container">
       <h1>ยินดีต้อนรับสู่ ViiCHECK</h1>

@@ -490,7 +490,7 @@
 
 
 <!-- ------------------------------------------------- แสดงเฉพาะมือถือ ----------------------------------- -->
-<div class="container d-block d-md-none">
+<div class="container d-block d-lg-none">
     @if(Auth::user()->id == $data->id )
     <div class="row">
         <div class="col-12">

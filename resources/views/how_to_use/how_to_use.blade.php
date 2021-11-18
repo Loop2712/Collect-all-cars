@@ -737,10 +737,11 @@
                       <center><img src="{{ asset('/img/วิธีใช้งาน_p/13.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
                       <br>
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.สถานะสมาชิก
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.1.Admin : สามารถใช้ระบบ ViiCHECK PARTNER ของหน่วยงานท่านได้</h5> 
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:62px;"> Member : สามารถเพิ่มรถที่สังกัดกับหน่วยงานของท่านได้</h5>
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.2.ปิด : หากไม่ต้องการเพิ่มสมาชิกให้คลิกที่ปุ่มปิด</h5> 
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.3.ยืนยัน : เมื่อกำหนดสถานะสมาชิกแล้วให้คลิกที่ปุ่มยืนยัน</h5> 
+                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.1 Admin : สามารถใช้ระบบ ViiCHECK PARTNER และมีสิทธิ์จัดการข้อมูลภายในองค์กรได้</h5> 
+                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.2 Member : สามารถใช้ระบบ ViiCHECK PARTNER แต่ไม่มีสิทธิ์ในการจัดการข้อมูลภายในองค์กร</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  2.ปิด : หากไม่ต้องการเพิ่มสมาชิกให้คลิกที่ปุ่มปิด</h5> 
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  3.ยืนยัน : เมื่อกำหนดสถานะสมาชิกแล้วให้คลิกที่ปุ่มยืนยัน</h5> 
+                      
                   </div>
               </div>
           </div>

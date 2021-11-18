@@ -12,7 +12,7 @@
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
                     </h4>
-                    <h4 class="d-block d-md-none">
+                    <h4 class="d-block d-lg-none">
                         <a style="float:right;" class="btn btn-sm btn-outline-success text-success" href="{{ url('/partner_guest_latest') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <!---------------------------------------------- Mobile ---------------------------------------------->
-                <div class="col-12 d-block d-md-none">
+                <div class="col-12 d-block d-lg-none">
                     <div class="card">
                         <div class="card-harder">
                             <div class="row">
@@ -337,7 +337,7 @@
                         <div class="card-body" style="padding:10px 10px;">
                             @foreach($guest as $item)
                                 @foreach($data_partners as $data_partner)
-                                    <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                                    <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
                                 @endforeach
                                     <center>
                                         <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">

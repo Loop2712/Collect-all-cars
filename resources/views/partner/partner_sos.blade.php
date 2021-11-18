@@ -4,7 +4,7 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 col-12">
+        <div class="col-md-12 col-12 col-lg-4">
             <div class="row">
                 <div class="col-12">
                     <a style="float: left; background-color: green;" type="button" class="btn text-white" onclick="initMap();">
@@ -131,7 +131,7 @@
     </div>
 </div>
 <!------------------------------------------------ mobile---------------------------------------------------------------------- -->
-<div class="col-12 d-block d-md-none">
+<div class="col-12 d-block d-lg-none">
             <div class="row">
                 <div class="container-fluid ">
                     <div class="row">
@@ -146,7 +146,7 @@
                                 <div class="card-body" style="padding: 0px 10px 0px 10px">
                                     @foreach($view_maps as $item)
                                         @foreach($data_partners as $data_partner)
-                                            <div class="card col-12 d-block d-md-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                                            <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
                                         @endforeach
                                             <center>
                                                 <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">

@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta name="facebook-domain-verification" content="ivluv6fl8xu5z5g667pjv05ohohrv1" />
-
   <title>ViiCHECK ประเทศไทย</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -213,7 +212,7 @@
         </div>
 
         <!-- มือถือ -->
-        <div class="d-block d-md-none">
+        <div class="d-block d-lg-none">
             <div>
               <i class="bi bi-envelope"></i> <a href="mailto:contact.viicheck@gmail.com">contact.viicheck@gmail.com</a>
               <i class="bi bi-phone"></i> <a href="tel:020277856">02-0277856</a> 
@@ -232,7 +231,7 @@
         <div class="col-3 d-none d-lg-block">
             <a href="{{URL::to('/')}}"><img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
-        <div class="col-6 d-block d-md-none">
+        <div class="col-6 d-block d-lg-none">
             <a href="{{URL::to('/')}}"><img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
       </div>
@@ -346,6 +345,7 @@
         <a id="btn_change_language_es" href="javascript:trocarIdioma('es')">es</a>
         <a id="btn_change_language_lo" href="javascript:trocarIdioma('lo')">lo</a>
         <a id="btn_change_language_my" href="javascript:trocarIdioma('my')">my</a>
+        <a id="btn_change_language_de" href="javascript:trocarIdioma('de')">de</a>
       </div>
         <!-- Button trigger modal -->
         <button id="btn_select_language" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal">
@@ -370,6 +370,48 @@
                 <div class="col-12">
                   <div class="row text-center">
                     <div class="col-4">
+                      <div class="btn" onclick="user_language('en', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="60" src="{{ url('/img/national-flag/en.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">English</h5>
+                      </div>
+                    </div>
+                    <div class="col-4 ">
+                      <div class="btn" onclick="user_language('zh-TW', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">中國人</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn"  onclick="user_language('es', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/es.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Español</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-15px">
+                      <div class="btn" onclick="user_language('de', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="60" src="{{ url('/img/national-flag/flex-de.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Deutschland</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">日本</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('ko', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">한국인</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
                       <div class="btn" onclick="user_language('th', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/th.png') }}">
                         <br>
@@ -390,21 +432,7 @@
                         <h5 style="margin-top:10px;">မြန်မာပြည်</h5>
                       </div>
                     </div>
-                    <div class="col-4">
-                      <div class="btn" onclick="user_language('en', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                        <img width="60" src="{{ url('/img/national-flag/en.png') }}">
-                        <br>
-                        <h5 style="margin-top:10px;">English</h5>
-                      </div>
-                    </div>
-                    <div class="col-4 ">
-                      <div class="btn" onclick="user_language('zh-TW', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                        <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
-                        <br>
-                        <h5 style="margin-top:10px;">中國人</h5>
-                      </div>
-                    </div>
-                    <div class="col-4 ">
+                    <!-- <div class="col-4 ">
                       <div class="btn" data-toggle="collapse" data-target="#language_popup" aria-expanded="false" aria-controls="language_popup">
                         <img width="55" src="{{ url('/img/national-flag/flex-other.png') }}">
                         <br>
@@ -414,30 +442,11 @@
                     <div class="collapse " id="language_popup">
                         <div class="card col-md-12 card-body no-radius border-0 " style="padding:0px;">
                             <div class="row text-center">
-                              <div class="col-4">
-                                <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                                  <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
-                                  <br>
-                                  <h5 style="margin-top:10px;">日本</h5>
-                                </div>
-                              </div>
-                              <div class="col-4">
-                                <div class="btn" onclick="user_language('ko', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                                  <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
-                                  <br>
-                                  <h5 style="margin-top:10px;">한국인</h5>
-                                </div>
-                              </div>
-                              <div class="col-4">
-                                <div class="btn" style="padding:0px" onclick="user_language('es', '{{ Auth::user()->id }}');" data-dismiss="modal">
-                                  <img width="55" src="{{ url('/img/national-flag/es.png') }}">
-                                  <br>
-                                  <h5 style="margin-top:10px;">Español</h5>
-                                </div>
-                              </div>
+                              
+                              
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="col-4">
                       <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
@@ -533,7 +542,7 @@
   <!-- End Footer -->
 
   <!-- ======= Footer mobile  ======= -->
-  <footer class="d-block d-md-none" id="footer">
+  <footer class="d-block d-lg-none" id="footer">
     <div class="container d-md-flex py-4">
       <div class="me-md-auto text-center text-md-start">
         <div class="credits">
