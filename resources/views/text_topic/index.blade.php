@@ -123,6 +123,9 @@
                                             <div class="col-md-4 card-body text-center "style="padding:5px">
                                                 พม่า : {{ $item->my }} 
                                             </div>
+                                            <div class="col-md-4 card-body text-center "style="padding:5px">
+                                                เยอรมัน : {{ $item->de }} 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
