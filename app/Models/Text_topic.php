@@ -25,7 +25,7 @@ class Text_topic extends Model
      *
      * @var array
      */
-    protected $fillable = ['th', 'en', 'zh_TW', 'ja', 'ko', 'es','lo','my'];
+    protected $fillable = ['th', 'en', 'zh_TW', 'ja', 'ko', 'es','lo','my','de'];
 
     
 }
