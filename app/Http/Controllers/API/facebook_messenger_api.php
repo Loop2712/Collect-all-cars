@@ -12,6 +12,14 @@ class facebook_messenger_api extends Controller
 {
     public function store(Request $request)
 	{
+        // //SAVE LOG
+        // $requestData = $request->all();
+        // $data = [
+        //     "title" => "facebook_messenger_api",
+        //     "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+        // ];
+        // Mylog_fb::create($data);  
+        
         $verify_token = env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
         $access_token = env('PAGE_ACCESS_TOKEN');
 
@@ -24,22 +32,15 @@ class facebook_messenger_api extends Controller
          echo $challenge;
         }
 
-        $input = json_decode(file_get_contents('php://input'), true);
 
-        //SAVE LOG
-        $requestData = $request->all();
-        $data = [
-            "title" => "facebook_messenger_api",
-            "content" => json_encode($input, JSON_UNESCAPED_UNICODE),
-        ];
-        Mylog_fb::create($data);
+        $input = json_decode(file_get_contents('php://input'), true);
 
         // $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
         // $message = $input['entry'][0]['messaging'][0]['message']['text'];
         // $message_to_reply = 'Hello' . $sender;
-        // /**
-        //  * Some Basic rules to validate incoming messages
-        //  */
+        /**
+         * Some Basic rules to validate incoming messages
+         */
 
         // //API Url
         // $url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$access_token;
