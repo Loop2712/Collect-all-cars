@@ -15,7 +15,7 @@ class facebook_messenger_api extends Controller
         //SAVE LOG
         $requestData = $request->all();
         $data = [
-            "title" => "Line",
+            "title" => "facebook_messenger_api",
             "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
         ];
         Mylog_fb::create($data);  

@@ -24,7 +24,6 @@ Route::get('/all_partners', 'API\JuristicController@all_partners');
 
 
 Route::post('/lineapi', 'API\LineApiController@store');
-// Route::post('/facebook_messenger_api', 'API\facebook_messenger_api@store');
 
 Route::get('/car_brand','API\CarbrandController@getBrand');
 Route::get('/car_brand/{car_brand}/car_model','API\CarbrandController@getModel');
