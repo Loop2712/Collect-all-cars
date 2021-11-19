@@ -13,7 +13,9 @@ class facebook_messenger_api extends Controller
     public function store(Request $request)
 	{
         // //SAVE LOG
-        // $requestData = $request->all();
+        $requestData = $request->all();
+        echo $requestData;
+
         // $data = [
         //     "title" => "facebook_messenger_api",
         //     "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
