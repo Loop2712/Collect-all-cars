@@ -21,11 +21,11 @@ class facebook_messenger_api extends Controller
         // ];
         // Mylog_fb::create($data);  
 
-        $access_token = .env('PAGE_ACCESS_TOKEN');
-        $verify_token = .env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
+        $access_token = env('PAGE_ACCESS_TOKEN');
+        $verify_token = env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
 
         echo $verify_token ;
-        
+
 
         // $input = json_decode(file_get_contents('php://input'), true);
         // $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
