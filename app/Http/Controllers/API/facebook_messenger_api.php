@@ -14,7 +14,7 @@ class facebook_messenger_api extends Controller
 	{
         // //SAVE LOG
         $requestData = $request->all();
-        echo $requestData;
+        print_r($requestData);
 
         // $data = [
         //     "title" => "facebook_messenger_api",
