@@ -12,15 +12,7 @@ class facebook_messenger_api extends Controller
 {
     public function store(Request $request)
 	{
-        // //SAVE LOG
         $requestData = $request->all();
-        print_r($requestData);
-
-        // $data = [
-        //     "title" => "facebook_messenger_api",
-        //     "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
-        // ];
-        // Mylog_fb::create($data);  
         
         $verify_token = env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
         $access_token = env('PAGE_ACCESS_TOKEN');
@@ -36,6 +28,13 @@ class facebook_messenger_api extends Controller
 
 
         $input = json_decode(file_get_contents('php://input'), true);
+
+        // //SAVE LOG
+        $data = [
+            "title" => "facebook_messenger_api",
+            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+        ];
+        Mylog_fb::create($data);  
 
         // $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
         // $message = $input['entry'][0]['messaging'][0]['message']['text'];
