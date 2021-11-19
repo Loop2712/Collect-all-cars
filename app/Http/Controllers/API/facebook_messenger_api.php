@@ -24,6 +24,9 @@ class facebook_messenger_api extends Controller
         $access_token = "EAAojZC2Ixh2sBAHkkmWmmWJdFjHmpmD1ZB8ywbMo8nC9bwnHZB35QBHMrKtb4i7YcZCMuQwBvIvgI0x7eXhnIc22qXiWvZBWGmajIlVDFgv65VdqTVoyoV7XZAOHtXCApjUZAoRnZBv8Mv83LPmayJFPzskfzhfj9sZB3TiCmEUsmMFCW9EX0BQab";
         $verify_token = "fb_viicheck_api";
 
+        echo $verify_token ;
+        
+
         // $input = json_decode(file_get_contents('php://input'), true);
         // $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
         // $message = $input['entry'][0]['messaging'][0]['message']['text'];
@@ -31,7 +34,7 @@ class facebook_messenger_api extends Controller
         // /**
         //  * Some Basic rules to validate incoming messages
         //  */
-        
+
         // //API Url
         // $url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$access_token;
         // //Initiate cURL.
