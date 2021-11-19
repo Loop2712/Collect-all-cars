@@ -21,8 +21,8 @@ class facebook_messenger_api extends Controller
         // ];
         // Mylog_fb::create($data);  
 
-        $access_token = "EAAojZC2Ixh2sBAHkkmWmmWJdFjHmpmD1ZB8ywbMo8nC9bwnHZB35QBHMrKtb4i7YcZCMuQwBvIvgI0x7eXhnIc22qXiWvZBWGmajIlVDFgv65VdqTVoyoV7XZAOHtXCApjUZAoRnZBv8Mv83LPmayJFPzskfzhfj9sZB3TiCmEUsmMFCW9EX0BQab";
-        $verify_token = "fb_viicheck_api";
+        $access_token = .env('PAGE_ACCESS_TOKEN');
+        $verify_token = .env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
 
         echo $verify_token ;
         
