@@ -26,13 +26,13 @@ class facebook_messenger_api extends Controller
 
         $input = json_decode(file_get_contents('php://input'), true);
 
-        //SAVE LOG
-        $requestData = $request->all();
-        $data = [
-            "title" => "facebook_messenger_api",
-            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
-        ];
-        Mylog_fb::create($data);
+        // //SAVE LOG
+        // $requestData = $request->all();
+        // $data = [
+        //     "title" => "facebook_messenger_api",
+        //     "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+        // ];
+        // Mylog_fb::create($data);
 
         $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
         $message = $input['entry'][0]['messaging'][0]['message']['text'];
