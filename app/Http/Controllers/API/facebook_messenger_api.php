@@ -12,7 +12,6 @@ class facebook_messenger_api extends Controller
 {
     public function store(Request $request)
 	{
-        // echo "Hello facebook_messenger_api" ;
         // //SAVE LOG
         // $requestData = $request->all();
         // $data = [
