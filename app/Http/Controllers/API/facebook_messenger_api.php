@@ -58,7 +58,7 @@ class facebook_messenger_api extends Controller
         //Execute the request
         if(!empty($input['entry'][0]['messaging'][0]['message'])){
             $result = curl_exec($ch);
-        // }
+        }
 
 	}
 
