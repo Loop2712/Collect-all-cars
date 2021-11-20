@@ -74,13 +74,13 @@ class facebook_messenger_api extends Controller
 
     public function whatsapp(Request $request)
     {
-        // //SAVE LOG
-        // $requestData = $request->all();
-        // $data = [
-        //     "title" => "facebook_messenger_api",
-        //     "content" => 'hello',
-        // ];
-        // Mylog_fb::create($data);  
+        //SAVE LOG
+        $requestData = $request->all();
+        $data = [
+            "title" => "facebook_messenger_api",
+            "content" => 'hello',
+        ];
+        Mylog_fb::create($data);  
         
         $verify_token = env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
         $access_token = env('PAGE_ACCESS_TOKEN');
