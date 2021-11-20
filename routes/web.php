@@ -41,9 +41,9 @@ Route::get('/welcome_line', 'Register_carController@welcome_line');
 Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
 
 // facebook_messenger_api
-Route::get('/facebook_messenger_api', 'API\facebook_messenger_api@store');
-// Route::get('facebook_messenger_api', 'MessengerController@index');
-// Route::post('facebook_messenger_api', 'MessengerController@index');
+Route::get('/facebook_messenger_api', 'API\facebook_messenger_api@facebook');
+// WhatsApp_messenger_api
+Route::get('/whatsapp_messenger_api', 'API\facebook_messenger_api@whatsapp');
 
 Route::get('facebook_callback_guest', 'MessengerController@facebook_callback_guest');
 
