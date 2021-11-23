@@ -78,7 +78,7 @@ class facebook_messenger_api extends Controller
         $requestData = $request->all();
         $data = [
             "title" => "whatsapp",
-            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+            "content" => 'hello',
         ];
         Mylog_fb::create($data);  
         
