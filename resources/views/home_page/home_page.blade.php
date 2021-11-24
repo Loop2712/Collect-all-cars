@@ -716,12 +716,12 @@
     </section><!-- End About Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts d-block d-md-none">
+    <section id="counts" class="counts d-block d-lg-none">
       <div class="container">
 
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-3 col-md-6 ">
             <div class="count-box">
               <i class="fas fa-car-alt"></i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_car * 2 }}" data-purecounter-duration="1" class="purecounter"></span>
@@ -729,7 +729,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="col-lg-3 col-md-6 d-block d-md-none mt-5" >
             <div class="count-box">
               <i class="fas fa-motorcycle"></i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 2 }}" data-purecounter-duration="1" class="purecounter"></span>
@@ -737,7 +737,17 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+        
+
+          <div class="col-lg-3 col-md-6 d-sm-block d-none" >
+            <div class="count-box">
+              <i class="fas fa-motorcycle"></i>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 2 }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>ลงทะเบียนแล้ว</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6  mt-5">
             <div class="count-box">
               <i class="fas fa-car-crash"></i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_guest }}" data-purecounter-duration="1" class="purecounter"></span>
@@ -745,7 +755,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="col-lg-3 col-md-6  mt-5">
             <div class="count-box">
               <i class="fas fa-map-marked-alt"></i>
               <span data-purecounter-start="0" data-purecounter-end="77" data-purecounter-duration="1" class="purecounter"></span>
@@ -785,7 +795,7 @@
 
 
     <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery d-block d-md-none">
+    <section id="gallery" class="gallery d-block d-lg-none">
       <div class="container">
 
         <div class="section-title">
@@ -845,7 +855,7 @@
     </section><!-- End Gallery Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services d-block d-md-none">
+    <section id="services" class="services d-block d-lg-none">
       <div class="container">
 
         <div class="section-title">

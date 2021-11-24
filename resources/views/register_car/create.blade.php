@@ -20,11 +20,11 @@
                             </div>
                             <div id="row_organization" class="row d-none">
                                 <!-- มือถือ -->
-                                <div class="col-12 d-block d-md-none">
+                                <div class="col-12 d-block d-lg-none">
                                     <span style="font-size: 22px;" class="control-label">ลงทะเบียนสำหรับองค์กร</span><br>
                                     <span style="font-size: 18px;" class="control-label">Register for company</span>
                                 </div>
-                                <div class="col-12 d-block d-md-none">
+                                <div class="col-12 d-block d-lg-none">
                                     <br>
                                     <a id="btn_back" class="btn btn-outline-success d-none" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
                                 </div>

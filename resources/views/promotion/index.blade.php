@@ -90,6 +90,7 @@
                             @endforeach
                         </div>
                     </div>
+                    
                     <!------------------------------------------------mobile--------------------------------------------------->
                     
 
@@ -142,7 +143,93 @@
 
                     </div> -->
                 </div>
-                
+                <!--------------------------------------------------- แท็บเล็ท --------------------------------------------------->
+                <div class="d-none d-sm-block">
+                    <div class="card d-block d-lg-none" >
+                        <div class="card-header">
+                            <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
+                        </div>
+                        <br>
+                        <div class="col-12 col-md-11" style="margin-top:20px;">
+                            <ul class="nav nav-pills nav-pills-danger mt-4"   role="tablist" >
+                                <li class="nav-item" >
+                                <a id="pomo_car_t" class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
+                                        document.querySelector('#show_car_t').classList.remove('d-none'),
+                                        document.querySelector('#show_mortor_t').classList.add('d-none');">
+                                        <b style="font-size: 15px; text-center;">รถยนต์</b>
+                                    </a>
+                                </li>
+                            &nbsp;
+                                <li class="nav-item d-none d-sm-block" >
+                                <a id="pomo_mortor_t" class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="
+                                            document.querySelector('#show_car_t').classList.add('d-none'),
+                                            document.querySelector('#show_mortor_t').classList.remove('d-none');">
+                                    <b style="font-size: 15px;">รถจักรยานยนต์</b>
+                                    </a>
+                                </li>
+                            
+                            </ul>
+                    </div>
+
+                        <div  id="show_car_t" class="card-body">
+                            <div class="row">
+                                @foreach($promotion as $item)
+                                    <div class="col-12 col-md-4" style="padding: 15px;">
+                                        <a href="{{ $item->link }}" class="text-dark" target="_blank" rel="noopener noreferrer">
+                                            <div class="card main-shadow">
+                                                <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
+                                                <div class="card-body">
+                                                    <div>
+                                                        <h4 class="card-title">{{ $item->company }}</h4>
+                                                        <p style="font-size: 15px;white-space: nowrap;width: 150px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p class="card-text"><i class="far fa-clock"></i>&nbsp;{{ $item->time_period }}</p>
+                                                        </div>
+                                                        <!-- <div class="col-6">
+                                                            <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </a>
+                                    </div>
+                            
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div  id="show_mortor_t" class="card-body d-none">
+                            <div class="row">
+                                @foreach($promotion_motor as $item)
+                                    <div class="col-12 col-md-4" style="padding: 15px;">
+                                        <a href="{{ $item->link }}" class="text-dark" target="_blank" rel="noopener noreferrer">
+                                            <div class="card main-shadow">
+                                                <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
+                                                <div class="card-body">
+                                                    <div>
+                                                        <h4 class="card-title">{{ $item->company }}</h4>
+                                                        <p style="font-size: 15px;white-space: nowrap;width: 150px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p class="card-text"><i class="far fa-clock"></i>&nbsp;{{ $item->time_period }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </a>
+                                    </div>
+                            
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <!---------------------------------------------------END แท็บเล็ท --------------------------------------------------->
                 <!------------------------------------------------mobile--------------------------------------------------->
                 <div class="card d-block d-md-none" style="margin-top:-50px">
                     <div class="card-header">

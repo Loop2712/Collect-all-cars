@@ -4,7 +4,7 @@
 <br><br><br><br><br>
 <input type="hidden" name="type_cer" id="type_car" value="{{ $type_car }}">
 <!-- ----------------------------------- แสดงผลเฉพาะคอม --------------------------------- -->
-<div class="container d-none d-lg-block">
+<div class="container d-none d-sm-block">
     <div class="row">
         <div class="col-12">
             <br><br>
@@ -38,7 +38,7 @@
                         </button>
                     </a>
                 </div>
-                <div class="col-2">
+                <div class="col-lg-2 col-md-3">
                     <a href="{{ url('/register_car') }}?type=motorcycle">
                         <button id="btn_type_motorcycle" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถจักรยานยนต์
@@ -72,7 +72,7 @@
         <div class="col-12">
             <div class="row">
                 @foreach($register_car as $item)
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6">
                     <div class="main-shadow" style="padding:15px;">
                         <div class="card  order-card">
                             <div class="card-block">
@@ -104,7 +104,10 @@
                                                     <br>
                                                     <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
                                                     <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                    <img style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                    <!-- แท็บเล็ต -->
+                                                    <img class="d-block d-lg-none" style="position: absolute;right: 42px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                    <!-- pc -->
+                                                    <img class="d-none d-lg-block" style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                 </center>
                                             </div>
                                         </div>

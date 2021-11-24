@@ -63,7 +63,7 @@
 <br><br><br><br><br><br><br>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 ">
                 <div class="card">
                     <div class="card-header">
                         <h3 style="margin-top:5px;">ราคากลางกรมขนส่งทางบก 
@@ -163,7 +163,7 @@
                                 <div class="col-md-3 col-12"> 
                                     <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="รุ่นย่อย" value="{{ request('sub_model') }}">
                                 </div>
-                            <div class="col-sm-3 col-12" > <br class="d-block d-md-none">
+                            <div class="col-sm-3 col-12 p-md-0" > <br class="d-block d-md-none">
                                 <button type="submit" style="font-size: 1em; color:#fff" class="btn btn-danger btn-sm "> ค้นหา  </button>
                                 <a class="btn btn-danger btn-sm"  style="font-size: 1em; color:#fff" href="{{URL::to('/middle_price_car')}}" >ล้างการค้นหา  </a>
                             </div>
@@ -220,7 +220,7 @@
                                 
                                 <!---------------------------------------------pc--------------------------------------------------------->
                                 
-                                <div class="table-responsive d-none d-lg-block " style="margin-top:9px;">
+                                <div class="table-responsive d-none d-sm-block " style="margin-top:9px;">
                                     <table class="fl-table">
                                         <thead>
                                             <tr>

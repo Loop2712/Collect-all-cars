@@ -411,7 +411,7 @@
                         <h5 style="margin-top:10px;">한국인</h5>
                       </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-4" style="left:-5px">
                       <div class="btn" onclick="user_language('th', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/th.png') }}">
                         <br>

@@ -76,7 +76,7 @@
                     &nbsp;<i class="fas fa-car-side text-danger"></i>&nbsp; รถยนต์ &nbsp;&nbsp;&nbsp;
                   
                     <!-- แสดงเฉพาะมือถือ -->
-                    <div class="d-block d-md-none">
+                    <div class="d-block d-lg-none">
                         <input id="btn_type_motor_mobile" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
                             document.querySelector('#div_data').classList.remove('d-none'),
 
@@ -89,7 +89,7 @@
                             document.querySelector('#div_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_model').classList.remove('d-none');">
-                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ / &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Motorcycle
+                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ 
                     </div>
                     <!-- แสดงเฉพาะคอม -->
                     <div class="d-none d-lg-block">
@@ -413,7 +413,7 @@
                 <hr>
                 <div id="div_information" class="col-12">
                     <div class="row">
-                        <div class="col-9 col-md-2">
+                        <div class="col-9 col-md-4 col-lg-2">
                             <p style="font-size: 22px;" class="control-label"><b>ข้อมูลของท่าน</b></p>
                         </div>
                         <div class="col-3" style="margin-top:-20px">
@@ -433,7 +433,7 @@
                 <br><br>
                 <div id="information" class="row" style="display:none;">
                     <!-- ซ้าย -->
-                    <div class="col-12 col-md-5">
+                    <div class="col-12 col-md-12 col-lg-5">
                         <div class="row">
                             <div class="col-12 col-md-3">
                                 <center>
@@ -458,11 +458,11 @@
                         </div>
                     </div>
                     <!-- ขวา -->
-                    <div class="col-12 col-md-7">
+                    <div class="col-12 col-md-12 col-lg-7">
                         <div class="row">
                             <h5 style="padding-top: 7px;" class="text-info">รถที่คุณลงทะเบียนแล้ว</h5>
                             <br><br>
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 col-lg-6">
                                 <h1><i class="fas fa-car-side text-danger"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถยนต์</span></h1>
                                
                                 @foreach($car as $item)
@@ -538,10 +538,47 @@
                                         </div>
                                      </div>
                                 </div>
+                                <!-- แสดงเฉพาะแท็บเล็ต -->
+                                <div class="d-none d-sm-block">
+                                    <div class="row d-none d-lg-none notranslate d-flex justify-content-center">
+                                        <div class="col-md-11 border border-primary" style= "border-radius: 15px;padding: 8px;">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <br>
+                                                        <div class="col-md-5">
+                                                            <img class="float-right" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                        </div>
+                                                        <div class="col-md-7" style="padding-top: 5px;">
+                                                            <h5><b>{{ $item->brand }}</b></h5>
+                                                            <span style="font-size: 14px;">{{ $item->generation }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <hr style="margin-top: 8px; margin-bottom: 15px;">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <center>
+                                                                <div style="position: relative; z-index: 5">
+                                                                    <div style="padding-top: 8px;">
+                                                                        <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                                        <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="z-index: 2">
+                                                                    <img style="position: absolute;right: 20%;bottom: 10%;" width="200" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                                </div>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <br>
                                 @endforeach
                             </div>
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 col-lg-6">
                                 <h1><i class="fas fa-motorcycle text-success"></i><span style="font-size: 25px;">&nbsp;&nbsp;รถจักรยานยนต์</span></h1>
                                 @foreach($motorcycle as $item)
                                 <!-- แสดงเฉพาะคอม -->
@@ -615,7 +652,45 @@
                                             </div>
                                         </div>
                                      </div>
-                                </div><br>
+                                </div>
+                                <!-- แสดงเฉพาะแท็บเล็ต -->
+                                <div class="d-none d-sm-block">
+                                    <div class="row d-block d-lg-none notranslate d-flex justify-content-center">
+                                        <div class="col-md-11 border border-primary" style= "border-radius: 15px;padding: 8px;">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <br>
+                                                        <div class="col-md-5">
+                                                            <img class="float-right" width="60"src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                                        </div>
+                                                        <div class="col-md-7" style="padding-top: 5px;">
+                                                            <h5><b>{{ $item->brand }}</b></h5>
+                                                            <span style="font-size: 14px;">{{ $item->generation }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <hr style="margin-top: 8px; margin-bottom: 15px;">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <center>
+                                                                <div style="position: relative; z-index: 5">
+                                                                    <div style="padding-top: 8px;">
+                                                                        <span style="font-size: 16px;" class="text-dark"><b>{{ $item->registration_number }}</b> </span>
+                                                                        <p style="font-size: 12px;" class="text-secondary">{{ $item->province }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="z-index: 2">
+                                                                    <img style="position: absolute;right: 20%;bottom: 10%;" width="200" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                                </div>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
                                 @endforeach
                             </div>
                         </div>
