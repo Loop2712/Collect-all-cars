@@ -151,7 +151,7 @@
             <div class="row">
               <div class="col-5" style="padding:20px;">
                 <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-4"></a>
+                  <a href="{{ asset('Medilab/video/V Check SOS EP1.mp4') }}" class="glightbox play-btn mb-4"></a>
                 </div>
               </div>
               <div class="col-6" style="padding:20px;">
@@ -668,7 +668,7 @@
             <div class="row">
               <div class="col-12" style="padding:0px 20px 20px 20px;margin-top:-50px ">
                 <div style="border: 1px solid red; border-radius: 10px; min-height: 317px;" class=" video-box d-flex justify-content-center align-items-stretch position-relative">
-                <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-4"></a>
+                <a href="{{ asset('Medilab/video/V Check SOS EP1.mp4') }}" class="glightbox play-btn mb-4"></a>
                 </div>
               </div> <h5  class="text-center"><b>Top4 ปัญหาเกี่ยวกับการใช้รถใช้ถนนที่ทุกคนมักเจอ</b></h5>
                   <p style="text-indent: 50px; ">ใครที่เดินทางไปไหนมาไหนบ่อยๆ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน เชื่อว่าต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
