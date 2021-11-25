@@ -64,6 +64,8 @@ Route::get('/check_email/{put_email}','API\PartnersController@check_email');
 
 Route::get('/explode_name/{name_user}', 'ProfileController@explode_name');
 
+Route::get('/check_add_line/{id_user}','API\LineApiController@check_add_line');
+
 // ยี่ห้อจากราคากลาง
 Route::get('/brand_middle_price','API\Brand_middle_price_carsController@getBrand');
 Route::get('/brand_middle_price/{car_brand}/model','API\Brand_middle_price_carsController@getModel');

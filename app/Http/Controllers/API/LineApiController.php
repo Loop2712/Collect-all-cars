@@ -346,4 +346,13 @@ class LineApiController extends Controller
         MyLog::create($data);
     }
 
+    public function check_add_line($id_user)
+    {
+        $data_user = DB::table('users')
+            ->where('id', $id_user)
+            ->get();
+
+        return $data_user;
+    }
+
 }

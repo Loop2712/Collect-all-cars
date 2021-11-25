@@ -1036,6 +1036,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
     check_user();
+    check_add_line();
 
     var delayInMilliseconds = 2500; //1 second
 
@@ -1043,6 +1044,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       check_language();
     }, delayInMilliseconds);
 });
+
 function check_language() {
     let language = document.querySelector(".goog-te-combo");
       // console.log(language.value);
@@ -1080,6 +1082,18 @@ function check_user() {
                     }
                 }
                 
+                
+            });
+}
+
+function check_add_line() {
+    let id_user = document.querySelector("#id_user");
+    // console.log(id_user.value);
+
+        fetch("{{ url('/') }}/api/check_add_line/" + id_user.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
                 
             });
 }
