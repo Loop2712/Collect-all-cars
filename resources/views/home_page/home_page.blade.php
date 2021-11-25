@@ -32,6 +32,35 @@
       <!-- สิ้นสุด MODAL ยินดีต้อนรับกลับมา -->
     @endif
 
+    <!-- Button trigger modal -->
+      <button id="btn_modal_addline" type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal_addline">
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modal_addline" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="close btn" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </p>
+            </div>
+            <div class="modal-body">
+              <center>
+                <a href="https://lin.ee/xnFKMfc">
+                  <img width="100%" src="{{ asset('/img/more/poster add line 2.png') }}">
+                </a>
+              </center>
+            </div>
+            <div class="modal-footer">
+              <a href="https://lin.ee/xnFKMfc">
+                <button type="button" class="btn btn-success" >เพิ่มเพื่อน</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <!-- ======= Why Us Section ======= -->
     <div class="d-none d-lg-block">
     <section id="hero" class="d-flex align-items-center">
@@ -1023,31 +1052,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Button trigger modal -->
-      <button id="btn_modal_addline" type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal_addline">
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="modal_addline" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-body">
-              <center>
-                <a href="https://lin.ee/xnFKMfc">
-                  <img width="100%" src="{{ asset('/img/more/poster add line 2.png') }}">
-                </a>
-              </center>
-            </div>
-            <div class="modal-footer">
-              <a href="https://lin.ee/xnFKMfc">
-                <button type="button" class="btn btn-success" >เพิ่มเพื่อน</button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
       @if (Route::has('password.request'))
           <a id="reset" class="text-dark d-none" href="{{ route('password.request') }}">
