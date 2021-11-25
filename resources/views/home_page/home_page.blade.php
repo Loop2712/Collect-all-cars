@@ -1093,7 +1093,7 @@ function check_add_line() {
         fetch("{{ url('/') }}/api/check_add_line/" + id_user.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                console.log(result['add_line']);
                 
             });
 }
