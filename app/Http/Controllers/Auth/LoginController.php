@@ -233,7 +233,10 @@ class LoginController extends Controller
                             ['type', 'line'],
                             ['provider_id', $user->provider_id],
                         ])
-                    ->update(['add_line' => 'Yes']);
+                    ->update([
+                        'add_line' => 'Yes'
+                        'status' => 'active'
+                    ]);
             }
         }
 
