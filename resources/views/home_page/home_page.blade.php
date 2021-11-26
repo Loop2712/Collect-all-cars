@@ -1123,7 +1123,7 @@ function check_add_line() {
             .then(result => {
                 // console.log(result[0]['add_line']);
 
-                if (result[0]['add_line'] !== 'Yes') {
+                if (result[0]['type'] === 'line' && result[0]['add_line'] !== 'Yes') {
                   document.getElementById("btn_modal_addline").click();
                 }
                 
