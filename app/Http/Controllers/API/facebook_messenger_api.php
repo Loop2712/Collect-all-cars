@@ -16,21 +16,22 @@ class facebook_messenger_api extends Controller
         $requestData = $request->all();
         $data = [
             "title" => "facebook",
-            "content" => 'hello',
+            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
         ];
         Mylog_fb::create($data);  
-        
 
         $verify_token = env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
         $access_token = env('PAGE_ACCESS_TOKEN');
 
         $hub_verify_token = null;
+
         if(isset($_REQUEST['hub_challenge'])) {
-         $challenge = $_REQUEST['hub_challenge'];
-         $hub_verify_token = $_REQUEST['hub_verify_token'];
+            $challenge = $_REQUEST['hub_challenge'];
+            $hub_verify_token = $_REQUEST['hub_verify_token'];
         }
         if ($hub_verify_token === $verify_token) {
-         echo $challenge;
+            // echo $challenge;
+            return $challenge ;
         }
 
 
