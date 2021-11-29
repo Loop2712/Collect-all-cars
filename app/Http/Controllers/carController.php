@@ -40,10 +40,13 @@ class CarController extends Controller
         // }
 
 
-        $input = json_decode(file_get_contents('php://input'), true);
+        // $input = json_decode(file_get_contents('php://input'), true);
 
-        $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
-        $message = $input['entry'][0]['messaging'][0]['message']['text'];
+        $sender = '3775260135893768';
+
+
+        // $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
+        // $message = $input['entry'][0]['messaging'][0]['message']['text'];
         $message_to_reply = 'Hello' . $sender;
         /**
          * Some Basic rules to validate incoming messages
