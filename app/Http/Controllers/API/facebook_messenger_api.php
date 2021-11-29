@@ -75,13 +75,11 @@ class facebook_messenger_api extends Controller
     public function whatsapp(Request $request)
     {
 
-        $input = json_decode(file_get_contents('php://input'), true);
-
         //SAVE LOG
         $requestData = $request->all();
         $data = [
             "title" => "whatsapp",
-            "content" => $input,
+            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
         ];
         Mylog_fb::create($data);  
         
