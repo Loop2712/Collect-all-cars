@@ -23,16 +23,16 @@ class facebook_messenger_api extends Controller
         $verify_token = env('FACEBOOK_MESSENGER_WEBHOOK_TOKEN');
         $access_token = env('PAGE_ACCESS_TOKEN');
 
-        // $hub_verify_token = null;
+        $hub_verify_token = null;
 
-        // if(isset($_REQUEST['hub_challenge'])) {
-        //     $challenge = $_REQUEST['hub_challenge'];
-        //     $hub_verify_token = $_REQUEST['hub_verify_token'];
-        // }
-        // if ($hub_verify_token === $verify_token) {
-        //     // echo $challenge;
-        //     return $challenge ;
-        // }
+        if(isset($_REQUEST['hub_challenge'])) {
+            $challenge = $_REQUEST['hub_challenge'];
+            $hub_verify_token = $_REQUEST['hub_verify_token'];
+        }
+        if ($hub_verify_token === $verify_token) {
+            // echo $challenge;
+            return $challenge ;
+        }
 
 
         // $input = json_decode(file_get_contents('php://input'), true);
