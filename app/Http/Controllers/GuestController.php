@@ -138,6 +138,7 @@ class GuestController extends Controller
                 'now' => "Yes",
           ]);
 
+        // ส่งทางไลน์
         $this->_pushLine($requestData);
 
         // หา type ของ user ที่ register 
