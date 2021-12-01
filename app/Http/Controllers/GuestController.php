@@ -546,4 +546,14 @@ class GuestController extends Controller
         }
     }
 
+    public function welcome_facebook_guest()
+    {
+        if(Auth::check()){
+            return redirect('guest/create');
+            // echo Auth::User()->name;
+        }else{
+            return redirect('/login/facebook?redirectTo=guest/create');
+        }
+    }
+
 }

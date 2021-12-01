@@ -361,6 +361,18 @@ class ProfileController extends Controller
         }
     }
 
+    public function edit_profile_facebook(Request $request)
+    {
+        $id = Auth::id();
+
+        if(Auth::check()){
+            return redirect('profile/'.$id.'/edit');
+            // echo Auth::User()->name;
+        }else{
+            return redirect('login/facebook?redirectTo=edit_profile2');
+        }
+    }
+
     public function edit_profile2(Request $request)
     {
         $id = Auth::id();

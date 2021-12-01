@@ -215,12 +215,30 @@ class Sos_mapController extends Controller
         }
     }
 
+    public function sos_login_facebook()
+    {
+        if(Auth::check()){
+            return redirect('sos_map/create');
+        }else{
+            return redirect('login/facebook?redirectTo=sos_map/create');
+        }
+    }
+
     public function insurance_login()
     {
         if(Auth::check()){
             return redirect('sos_insurance_blade');
         }else{
             return redirect('login/line?redirectTo=sos_insurance_blade');
+        }
+    }
+
+    public function insurance_login_facebook()
+    {
+        if(Auth::check()){
+            return redirect('sos_insurance_blade');
+        }else{
+            return redirect('login/facebook?redirectTo=sos_insurance_blade');
         }
     }
 

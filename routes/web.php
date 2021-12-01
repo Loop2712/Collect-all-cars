@@ -37,15 +37,21 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 // TU
 Route::get('login/line/tu_sos', 'Auth\LoginController@redirectToLine_TU_SOS');
 
-Route::get('/welcome_line', 'Register_carController@welcome_line');
-Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
-
 // facebook_messenger_api
 Route::get('/facebook_messenger_api', 'API\facebook_messenger_api@facebook');
 // WhatsApp_messenger_api
 Route::get('/whatsapp_messenger_api', 'API\facebook_messenger_api@whatsapp');
 
 Route::get('facebook_callback_guest', 'MessengerController@facebook_callback_guest');
+
+// ติดต่อเจ้าของรถ
+Route::get('/welcome_line', 'Register_carController@welcome_line');
+Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
+
+Route::get('/welcome_facebook', 'Register_carController@welcome_facebook');
+Route::get('/welcome_facebook_guest', 'GuestController@welcome_facebook_guest');
+
+
 
 Route::get('/mail', function () {
     return view('mail/MailToCompany');
@@ -180,6 +186,10 @@ Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
 Route::get('/sos_login', 'Sos_mapController@sos_login');
 Route::get('/insurance_login', 'Sos_mapController@insurance_login');
 
+Route::get('/insurance_login_facebook', 'Sos_mapController@insurance_login_facebook');
+Route::get('/sos_login_facebook', 'Sos_mapController@sos_login_facebook');
+
+
 Route::get('/market', 'CarController@main');
 Route::get('/market/car', 'CarController@index');
 Route::get('/image/{id}','CarController@image');
@@ -198,6 +208,8 @@ Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 	Route::get('/not_comfor_login/{license_plate}', 'Not_comforController@not_comfor_login');
 // END AUTO LOHIN FROM FLEX LINE
 
+	Route::get('/edit_profile_facebook', 'ProfileController@edit_profile_facebook');
+	
 //Route::resource('car','CarController');
 
 Route::resource('detail', 'DetailController');

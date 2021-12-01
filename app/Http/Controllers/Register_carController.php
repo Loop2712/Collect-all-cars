@@ -514,6 +514,15 @@ class Register_carController extends Controller
         }
     }
 
+    public function welcome_facebook()
+    {
+        if(Auth::check()){
+            return redirect('register_car/create');
+        }else{
+            return redirect('/login/facebook?redirectTo=register_car/create');
+        }
+    }
+
     public function edit_act_login(Request $request , $car_id)
     {
         if(Auth::check()){
