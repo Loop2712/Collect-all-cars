@@ -112,8 +112,10 @@ class LoginController extends Controller
         // print_r($user);
         $this->_registerOrLoginUser($user,"facebook",null,null);
 
-        // Return home after login
-        return redirect()->intended();
+        $value = $request->session()->get('redirectTo');
+        $request->session()->forget('redirectTo');
+
+        return redirect()->intended($value);
     }
 
     // Line login
