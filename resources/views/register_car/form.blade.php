@@ -57,7 +57,93 @@
                 </div>
 
                 <input class="form-control" name="location" type="hidden" id="location" value="{{ isset($register_car->location) ? $register_car->location :  Auth::user()->location_P }}" readonly>
+                <!-------------------------------------------------------------------- เลือกประเทศรถ -------------------------------------------------------------------->
+                <span style="font-size: 22px;" class="control-label">ขณะนี้ท่านลงทะเบียนรถประเทศ
+                    <!-- <img width="3%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;"> ไทย -->
+                </span>
+                    <select name="CountryCode" id="CountryCode">
+                        <option value="TH">ไทย</option>
+                        <option value="ID">อินโด</option>
+                    </select>
+                    <div class="form-group {{ $errors->has('CountryCode') ? 'has-error' : ''}}">
+                                        <select name="CountryCode" id="CountryCode" class="form-control" required >
+                                                <option value="asd" selected > - กรุณาเลือกจังหวัด - </option> 
+                                        </select>
+                                        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
+                                    </div>
+                    <!-- Button trigger modal -->
+                    <button type="button"  class="btn" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                        <span style="font-size: 18px;" class="control-label">
+                            <i class="fad fa-globe-asia"></i> เลือกประเทศ <i class="fas fa-angle-double-down"></i>
+                        </span> 
+                    </button>
 
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">เลือกประเทศ</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row text-center">
+                                <div class="col-3">
+                                    <!-- ไทย<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
+                                </div>
+                                <div class="col-3">
+                                    <!-- อิโดนีเซีย<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
+                                </div>
+                                <div class="col-3">
+                                    <!-- ลาว<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
+                                </div>
+                                <div class="col-3">
+                                    <!-- ฟิลิปปินส์<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
+                                </div>
+                               
+                                <div class="col-12">&nbsp;</div>
+                                <div class="col-3">
+                                    <!-- พม่า<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
+                                </div> 
+                                <div class="col-3">
+                                    <!-- สิงคโปร์<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
+                                </div>
+                                <div class="col-3">
+                                    <!-- กัมพูชา<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
+                                </div>
+                                <div class="col-3">
+                                    <!-- บรูไน<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
+                                </div>
+                                <div class="col-12">&nbsp;</div>
+                                <div class="col-3">
+                                    <!-- เวียดนาม<br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
+                                </div>
+                                <div class="col-3">
+                                    <!-- <br>  -->
+                                    <img width="50%" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
+                                </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                <br>
+                <!-------------------------------------------------------------------- จบเลือกประเทศรถ -------------------------------------------------------------------->
                 <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ' }}</span><span style="color: #FF0033;"> *</span>
                 <br><br>
                 <h4>

@@ -64,7 +64,7 @@
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
                         </a>
-                        <a href="tel:191" id="btn_quick_help" class="btn btn-warning btn-block shadow-box " onclick="save_sos_content('police');">
+                        <a href="tel:112" id="btn_quick_help" class="btn btn-warning btn-block shadow-box " onclick="save_sos_content('police');">
                             <i class="fas fa-bullhorn"></i> <b>ขอความช่วยเหลือด่วน</b>
                         </a>
                     </div> 
@@ -148,8 +148,13 @@
                             }">
 
                             ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;
-                            <i id="i_down" style="font-size: 20px;" class="fas fa-camera text-info"></i>
-                            <i id="i_up" style="font-size: 20px" class="fas fa-arrow-alt-circle-up text-info d-none"></i>
+                            <br><br>
+                            <a class="align-self-end text-white btn-primary btn-circle">
+                                        <i id="i_down" class="fas fa-camera"></i>
+                                        <i id="i_up" class="fas fa-chevron-up d-none"></i>
+                                    </a>
+                            <!-- <i id="i_down" style="font-size: 20px;" class="fas fa-camera text-info"></i>
+                            <i id="i_up" style="font-size: 20px" class="fas fa-arrow-alt-circle-up text-info d-none"></i> -->
                         </h6>
                         <div class="collapse" id="div_photo">
                             <div style="margin-top:15px;" class="control-label" data-toggle="collapse" data-target="#img_ex" aria-expanded="false" aria-controls="img_ex" >

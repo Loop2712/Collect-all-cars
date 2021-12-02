@@ -288,6 +288,31 @@
 
 
 <script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        let user_id = document.querySelector('#user_id').value;
+
+        fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let countryCode = document.querySelector('#CountryCode');
+                    countryCode.value = result['countryCode'];
+
+                if (result['countryCode']) {
+
+                    if (result['countryCode'] !== 'EN') {
+                    document.querySelector('#div_cam').classList.add('d-none');
+                    }
+
+                    document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
+                }
+
+            });
+
+    });
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         // capture_registration();
