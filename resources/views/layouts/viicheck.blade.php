@@ -365,8 +365,8 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-
-              <div class="modal-body">
+                  <!----------------------------------------------- pc ----------------------------------------------->
+              <div class="modal-body d-none d-lg-block">
                 <div class="col-12">
                   <div class="row text-center">
                     <div class="col-4">
@@ -471,7 +471,78 @@
                   </div>
                 </div>
               </div>
-
+                  <!----------------------------------------------- end pc ----------------------------------------------->
+              <!--------------------------------------------------- mobile --------------------------------------------------->
+               <div class="modal-body d-block d-md-none">
+                <div class="col-12">
+                  <div class="row text-center">
+                    <div class="col-4" style="top:2px;left:-10px">
+                      <div class="btn" onclick="user_language('en', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="60" src="{{ url('/img/national-flag/en.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">English</h5>
+                      </div>
+                    </div>
+                    <div class="col-4 " style="top:5px;">
+                      <div class="btn" onclick="user_language('zh-TW', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">中國人</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-10px; top:3px;">
+                      <div class="btn"  onclick="user_language('es', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="58" src="{{ url('/img/national-flag/es.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Español</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-35px">
+                      <div class="btn" onclick="user_language('de', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="60" src="{{ url('/img/national-flag/flex-de.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Deutschland</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-10px">
+                      <div class="btn" onclick="user_language('ja', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">日本</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('ko', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">한국인</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-5px ; top:-2px">
+                      <div class="btn" onclick="user_language('th', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/th.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">ไทย</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('lo', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="50" src="{{ url('/img/national-flag/lo.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">ລາວ</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="user_language('mr', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                        <img width="50" src="{{ url('/img/national-flag/my.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">မြန်မာပြည်</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-------------------------------------------------- End Mobile -------------------------------------------------->
               <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
