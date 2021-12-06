@@ -1,0 +1,111 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://www.viicheck.com/img/stickerline/PNG/37.2.png",
+                "aspectMode": "cover",
+                "size": "full"
+              }
+            ],
+            "cornerRadius": "100px",
+            "width": "72px",
+            "height": "72px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "เจ้าหน้าที่",
+                    "weight": "bold",
+                    "color": "#000000"
+                  },
+                  {
+                    "type": "span",
+                    "text": "     "
+                  },
+                  {
+                    "type": "span",
+                    "text": "name_helper"
+                  }
+                ],
+                "size": "sm",
+                "wrap": true
+              },
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "จาก",
+                    "weight": "bold",
+                    "color": "#000000"
+                  },
+                  {
+                    "type": "span",
+                    "text": "     "
+                  },
+                  {
+                    "type": "span",
+                    "text": "2B-Green"
+                  }
+                ],
+                "size": "sm",
+                "wrap": true
+              },
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "กำลังเดินทางไปยังพิกัดแล้ว"
+                  }
+                ],
+                "size": "sm",
+                "wrap": true,
+                "margin": "md"
+              },
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "data_time",
+                    "weight": "bold",
+                    "color": "#bcbcbc"
+                  }
+                ],
+                "size": "sm",
+                "wrap": true,
+                "margin": "md"
+              }
+            ]
+          }
+        ],
+        "spacing": "xl",
+        "paddingAll": "20px"
+      }
+    ],
+    "paddingAll": "0px"
+  }
+}
+}
