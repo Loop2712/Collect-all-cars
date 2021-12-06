@@ -64,7 +64,7 @@ class SosmapController extends Controller
 
                 // $this->_send_helper_to_groupline($area);
 
-                return $user ;
+                return view('return_line');
 
             }else{
                 return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map);
@@ -86,7 +86,7 @@ class SosmapController extends Controller
 
         // $this->_send_helper_to_groupline($area);
 
-        return $user ;
+        return view('return_line');
     }
 
     protected function _send_notempty_helper($area , $data_helper_old)
@@ -176,7 +176,7 @@ class SosmapController extends Controller
 
             // SAVE LOG
             $data = [
-                "title" => "ขอมูลขอความช่วยเหลือ" . $name_partner ,
+                "title" => "ข้อมูลขอความช่วยเหลือ" . $name_partner ,
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
