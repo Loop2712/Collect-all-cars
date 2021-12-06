@@ -106,7 +106,6 @@ class Sos_mapController extends Controller
         switch ($requestData['content']) {
             case 'help_area':
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
-                exit();
                 $this->_pushLine($requestData , $id_sos_map);
                 break;
         }
