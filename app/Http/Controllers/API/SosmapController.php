@@ -34,4 +34,28 @@ class SosmapController extends Controller
 
         return $data_partners ;
     }
+
+    public function sos_helper($id_sos_map)
+    {
+        // เช็คว่ามีคนกดรับหรือยัง
+        // มีแล้ว ส่งข้อความว่ามีแล้ว
+        // ยังไม่มี ทำข้างล่างนี้
+
+        if(Auth::check()){
+
+            $user = Auth::user();
+
+
+        }else{
+            return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map);
+        }
+
+        // return $data_partners ;
+    }
+
+    public function sos_helper_after_login($id_sos_map)
+    {
+        
+        // return $data_partners ;
+    }
 }

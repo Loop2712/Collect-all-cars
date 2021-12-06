@@ -100,6 +100,10 @@ class Sos_mapController extends Controller
         switch ($requestData['content']) {
             case 'help_area':
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
+                echo "<pre>";
+                print_r($requestData);
+                echo "<pre>";
+                exit();
                 $this->_pushLine($requestData);
                 break;
         }
