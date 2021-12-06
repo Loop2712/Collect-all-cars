@@ -113,11 +113,33 @@
                 "height": "sm",
                 "action": {
                   "type": "uri",
+                  "label": "กำลังไป",
+                  "uri": "https://www.google.co.th/maps/search/lat,lng/lat_mail,lng,16z"
+                },
+                "color": "#FFFFFF",
+                "style": "secondary"
+              }
+            ],
+            "cornerRadius": "lg",
+            "borderColor": "#0B9CFF",
+            "backgroundColor": "#ffffff",
+            "borderWidth": "semi-bold"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "height": "sm",
+                "action": {
+                  "type": "uri",
                   "label": "โทร 0999999999",
                   "uri": "tel:0999999999"
                 },
                 "color": "#76d128",
-                "style": "primary"
+                "style": "primary",
+                "margin": "md"
               },
               {
                 "type": "button",
