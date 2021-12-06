@@ -140,6 +140,27 @@
             "contents": [
               {
                 "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "กำลังไป",
+                  "uri": "https://www.viicheck.com/api/sos_map/helper/id_sos_map"
+                },
+                "height": "sm",
+                "style": "secondary",
+                "color": "#FFFFFF"
+              }
+            ],
+            "backgroundColor": "#ffffff",
+            "borderWidth": "semi-bold",
+            "borderColor": "#0B9CFF",
+            "cornerRadius": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
                 "height": "sm",
                 "action": {
                   "type": "uri",
@@ -147,7 +168,8 @@
                   "uri": "tel:0999999999"
                 },
                 "color": "#76d128",
-                "style": "primary"
+                "style": "primary",
+                "margin": "md"
               },
               {
                 "type": "button",
