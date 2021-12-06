@@ -64,7 +64,7 @@ class SosmapController extends Controller
 
                 // $this->_send_helper_to_groupline($area);
 
-                return $data_sos_map ;
+                return $user ;
 
             }else{
                 return redirect('/login/line?redirectTo=api/sos_map/helper_after_login' . '/' . $id_sos_map);
@@ -75,8 +75,18 @@ class SosmapController extends Controller
 
     public function sos_helper_after_login($id_sos_map)
     {
-        
-        // return $data_partners ;
+        $user = Auth::user();
+
+        DB::table('sos_maps')
+              ->where('id', $id_sos_map)
+              ->update([
+                'helper' => $user->name,
+                'helper_id' => $user->id,
+        ]);
+
+        // $this->_send_helper_to_groupline($area);
+
+        return $user ;
     }
 
     protected function _send_notempty_helper($area , $data_helper_old)
