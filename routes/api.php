@@ -114,7 +114,6 @@ Route::get('/disapproved_area/{id}/{answer_reason}/{reason_other}', 'API\Partner
 
 Route::get('/change_color_partner/{color}/{name_partner}', 'API\PartnersController@change_color_partner');
 
-
 Route::get('/sos_map/helper/{id_sos_map}','API\SosmapController@sos_helper');
 Route::get('/sos_map/helper_after_login/{id_sos_map}','API\SosmapController@sos_helper_after_login');
 
