@@ -91,6 +91,12 @@ class Sos_mapController extends Controller
         
         Sos_map::create($requestData);
 
+        // หา $id_sos_map
+        $sos_map_latests = Sos_map::get();
+        foreach ($sos_map_latests as $latest) {
+            $id_sos_map = $latest->id;
+        }
+
         DB::table('users')
               ->where('id', $requestData['user_id'])
               ->update([
@@ -100,11 +106,8 @@ class Sos_mapController extends Controller
         switch ($requestData['content']) {
             case 'help_area':
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
-                echo "<pre>";
-                print_r($requestData);
-                echo "<pre>";
                 exit();
-                $this->_pushLine($requestData);
+                $this->_pushLine($requestData , $id_sos_map);
                 break;
         }
         
@@ -248,7 +251,7 @@ class Sos_mapController extends Controller
 
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
-    protected function _pushLine($data)
+    protected function _pushLine($data , $id_sos_map)
     {   
         $datetime =  date("d-m-Y  h:i:sa");
         $name_user = $data['name'];
@@ -334,6 +337,7 @@ class Sos_mapController extends Controller
             $string_json = str_replace("datetime",$time_zone,$string_json);
             $string_json = str_replace("name",$name_user,$string_json);
             $string_json = str_replace("0999999999",$phone_user,$string_json);
+            $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
 
             $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("เวลา",$data_topic[1],$string_json);
