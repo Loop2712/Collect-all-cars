@@ -100,6 +100,10 @@ class Sos_mapController extends Controller
         switch ($requestData['content']) {
             case 'help_area':
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
+                echo "<pre>";
+                print_r($requestData);
+                echo "<pre>";
+                exit();
                 $this->_pushLine($requestData);
                 break;
         }
@@ -331,8 +335,7 @@ class Sos_mapController extends Controller
             $string_json = str_replace("name",$name_user,$string_json);
             $string_json = str_replace("0999999999",$phone_user,$string_json);
 
-            $string_json = str_replace("ขอความช่วยเหลือ",$data['id'],$string_json);
-            // $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
+            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("เวลา",$data_topic[1],$string_json);
             $string_json = str_replace("จาก",$data_topic[2],$string_json);
             $string_json = str_replace("โทร",$data_topic[3],$string_json);
