@@ -156,7 +156,7 @@ class SosmapController extends Controller
             $messages = [ json_decode($string_json, true) ];
 
             $body = [
-                "to" => $groupId,
+                "to" => 'C2a91e25b955f856b09454a7e8a7ec52b',
                 "messages" => $messages,
             ];
 
