@@ -148,16 +148,15 @@ class SosmapController extends Controller
 
             $string_json = str_replace("date_time",$time_zone,$string_json);
             
-            foreach ($data_helper_old as $item_of_helper) {
-                $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
-                $string_json = str_replace("2B-Green",$item_of_helper->organization,$string_json);
-            }
+            // foreach ($data_helper_old as $item_of_helper) {
+            //     $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
+            //     $string_json = str_replace("2B-Green",$item_of_helper->organization,$string_json);
+            // }
             
             $messages = [ json_decode($string_json, true) ];
 
             $body = [
-                // "to" => $groupId,
-                "to" => 'C2a91e25b955f856b09454a7e8a7ec52b',
+                "to" => $groupId,
                 "messages" => $messages,
             ];
 
