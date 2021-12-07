@@ -39,6 +39,8 @@ class SosmapController extends Controller
 
     public function sos_helper($id_sos_map , $organization_helper)
     {
+        $name_partner = str_replace("_"," ",$organization_helper);
+
         $data_sos_map = DB::table('sos_maps')->where('id' , $id_sos_map)->get();
         foreach ($data_sos_map as $item) {
             $helper_old = $item->helper;
@@ -50,7 +52,7 @@ class SosmapController extends Controller
         if (!empty($helper_old)) {
             // มีแล้ว
             $data_helper_old = DB::table('users')->where('id' , $helper_id_old)->get();
-            $this->_send_notempty_helper($area , $data_helper_old , $organization_helper);
+            $this->_send_notempty_helper($area , $data_helper_old , $name_partner);
         }else {
             // ยังไม่มี
             if(Auth::check()){
@@ -62,7 +64,7 @@ class SosmapController extends Controller
                       ->update([
                         'helper' => $user->name,
                         'helper_id' => $user->id,
-                        'organization_helper' => $organization_helper,
+                        'organization_helper' => $name_partner,
                 ]);
 
                 // $this->_send_helper_to_groupline($area);
@@ -78,6 +80,8 @@ class SosmapController extends Controller
 
     public function sos_helper_after_login($id_sos_map , $organization_helper)
     {
+        $name_partner = str_replace("_"," ",$organization_helper);
+        
         $user = Auth::user();
 
         DB::table('sos_maps')
@@ -85,7 +89,7 @@ class SosmapController extends Controller
               ->update([
                 'helper' => $user->name,
                 'helper_id' => $user->id,
-                'organization_helper' => $organization_helper,
+                'organization_helper' => $name_partner,
         ]);
 
         // $this->_send_helper_to_groupline($area);
@@ -155,7 +159,7 @@ class SosmapController extends Controller
             $string_json = str_replace("date_time",$time_zone,$string_json);
             
             $string_json = str_replace("name_helper",$name_helper,$string_json);
-            $string_json = str_replace("2B-Green",$organization_helper,$string_json);
+            $string_json = str_replace("2B-Green",$name_partner,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
