@@ -42,6 +42,7 @@ class SosmapController extends Controller
     {
         if(Auth::check()){
             $this->sos_helper_after_login($id_sos_map , $id_organization_helper);
+            return view('close_browser');
         }else{
             return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map . '/' . $id_organization_helper);
         }
