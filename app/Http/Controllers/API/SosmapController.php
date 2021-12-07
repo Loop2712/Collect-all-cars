@@ -85,6 +85,7 @@ class SosmapController extends Controller
               ->update([
                 'helper' => $user->name,
                 'helper_id' => $user->id,
+                'organization_helper' => $organization_helper,
         ]);
 
         // $this->_send_helper_to_groupline($area);
