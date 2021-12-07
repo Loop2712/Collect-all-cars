@@ -186,8 +186,8 @@ Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
 Route::get('/sos_login', 'Sos_mapController@sos_login');
 Route::get('/insurance_login', 'Sos_mapController@insurance_login');
 
-Route::get('/sos_map/helper/{id_sos_map}/{organization}','API\SosmapController@sos_helper');
-Route::get('/sos_map/helper_after_login/{id_sos_map}/{organization}','API\SosmapController@sos_helper_after_login');
+// Route::get('/sos_map/helper/{id_sos_map}/{organization}','API\SosmapController@sos_helper');
+// Route::get('/sos_map/helper_after_login/{id_sos_map}/{organization}','API\SosmapController@sos_helper_after_login');
 
 Route::get('/insurance_login_facebook', 'Sos_mapController@insurance_login_facebook');
 Route::get('/sos_login_facebook', 'Sos_mapController@sos_login_facebook');

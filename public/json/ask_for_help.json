@@ -114,7 +114,7 @@
                 "action": {
                   "type": "postback",
                   "label": "กำลังไป",
-                  "data": "id_sos_map/organization",
+                  "data": "data?id_sos_map/organization",
                   "displayText": "กำลังไป"
                 },
                 "color": "#FFFFFF",
