@@ -49,12 +49,17 @@ class SosmapController extends Controller
 
     // }
 
-    public function sos_helper($event)
+    public function sos_helper($data_postback_explode)
     {
-        $data_postback_explode = explode("?",$event["postback"]["data"]);
-        $data_postback = $data_postback_explode[1] ;
+        //SAVE LOG
+        $requestData = $request->all();
+        $data = [
+            "title" => "data_postback_explode",
+            "content" => $data_postback_explode,
+        ];
+        MyLog::create($data);  
 
-        $data_data = explode("/",$data_postback);
+        $data_data = explode("/",$data_postback_explode);
 
         $id_sos_map = $data_data[0] ;
         $id_organization_helper = $data_data[1] ;
