@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\SosmapController;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -62,7 +63,7 @@ class LineApiController extends Controller
     public function postbackHandler($event)
     {
         $line = new LineMessagingAPI();
-        $sos_helper = new SosmapController();
+        // $sos_helper = new SosmapController();
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
@@ -87,7 +88,8 @@ class LineApiController extends Controller
                     "content" => $data_postback_explode[1],
                 ];
                 MyLog::create($data);  
-                $sos_helper->sos_helper($data_postback_explode[1]);
+                
+                // $sos_helper->sos_helper($data_postback_explode[1]);
                 break;
         }   
 
