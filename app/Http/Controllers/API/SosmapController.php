@@ -56,6 +56,8 @@ class SosmapController extends Controller
             // มีแล้ว
             $data_helper_old = DB::table('users')->where('id' , $helper_id_old)->get();
             $this->_send_notempty_helper($area , $data_helper_old , $name_partner_helper);
+
+            return view('close_browser');
         }else {
             // ยังไม่มี
             if(Auth::check()){
@@ -109,13 +111,7 @@ class SosmapController extends Controller
                 $name_helper = $ss->name ;
             }
 
-        $data_name_sp = explode("&",$area);
-
-        for ($i=0; $i < count($data_name_sp); $i++) { 
-            
-            $data_name_sp[$i] = str_replace("amp; ","",$data_name_sp[$i]);
-
-            $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
+            $data_partners = DB::table('partners')->where('name', $name_partner_helper)->get();
 
             foreach ($data_partners as $data_partner) {
                 $name_partner = $data_partner->name ;
@@ -194,10 +190,6 @@ class SosmapController extends Controller
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
-
-            return view('close_browser');
-
-        }
         
     }
 
