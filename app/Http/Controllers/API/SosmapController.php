@@ -93,6 +93,10 @@ class SosmapController extends Controller
 
     protected function _send_notempty_helper($area , $data_helper_old)
     {   
+        echo "<pre>";
+        print_r($data_helper_old);
+        echo "<pre>";
+        exit();
         $data_name_sp = explode("&",$area);
 
         for ($i=0; $i < count($data_name_sp); $i++) { 
@@ -148,10 +152,8 @@ class SosmapController extends Controller
 
             $string_json = str_replace("date_time",$time_zone,$string_json);
             
-            // foreach ($data_helper_old as $item_of_helper) {
-            //     $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
-            //     $string_json = str_replace("2B-Green",$item_of_helper->organization,$string_json);
-            // }
+            // $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
+            // $string_json = str_replace("2B-Green",$item_of_helper->organization,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
