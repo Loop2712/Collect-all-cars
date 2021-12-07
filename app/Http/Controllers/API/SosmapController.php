@@ -40,34 +40,8 @@ class SosmapController extends Controller
 
     public function sos_helper($id_sos_map , $id_organization_helper)
     {
-        $data_sos_map = Sos_map::findOrFail($id_sos_map);
-        $data_partner_helpers = Partner::findOrFail($id_organization_helper);
-
         if(Auth::check()){
-
-            $user = Auth::user();
-
-            if (!empty($data_sos_map->helper)) {
-                DB::table('sos_maps')
-                    ->where('id', $id_sos_map)
-                    ->update([
-                        'helper' => $data_sos_map->helper . ',' . $user->name,
-                        'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
-                        'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
-                ]);
-            }else {
-                DB::table('sos_maps')
-                    ->where('id', $id_sos_map)
-                    ->update([
-                        'helper' => $user->name,
-                        'helper_id' => $user->id,
-                        'organization_helper' => $data_partner_helpers->name,
-                ]);
-            }
-
-            $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
-            return view('close_browser');
-
+            $this->sos_helper_after_login($id_sos_map , $id_organization_helper);
         }else{
             return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map . '/' . $id_organization_helper);
         }
@@ -76,24 +50,35 @@ class SosmapController extends Controller
 
     public function sos_helper_after_login($id_sos_map , $id_organization_helper)
     {
-        $data_partner_helpers = DB::table('partners')->where('id', $id_organization_helper)->get();
-        foreach ($data_partner_helpers as $data_partner) {
-                $name_partner_helper = $data_partner->name ;
-            }
+        $data_sos_map = Sos_map::findOrFail($id_sos_map);
+        $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
         $user = Auth::user();
 
-        DB::table('sos_maps')
-              ->where('id', $id_sos_map)
-              ->update([
-                'helper' => $user->name,
-                'helper_id' => $user->id,
-                'organization_helper' => $name_partner_helper,
-        ]);
+        if (!empty($data_sos_map->helper)) {
 
-        $this->_send_helper_to_groupline($area);
+            if ($data_sos_map->helper != $user->name) {
+                DB::table('sos_maps')
+                    ->where('id', $id_sos_map)
+                    ->update([
+                        'helper' => $data_sos_map->helper . ',' . $user->name,
+                        'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
+                        'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                ]);
+            }
+        }else {
+            DB::table('sos_maps')
+                ->where('id', $id_sos_map)
+                ->update([
+                    'helper' => $user->name,
+                    'helper_id' => $user->id,
+                    'organization_helper' => $data_partner_helpers->name,
+            ]);
+        }
 
+        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
         return view('close_browser');
+
     }
 
     
@@ -116,7 +101,6 @@ class SosmapController extends Controller
 
         $data_topic = [
                     "การขอความช่วยเหลือ",
-                    "คุณ",
                     "ผู้ให้การช่วยเหลือ",
                     "การช่วยเหลือเสร็จสิ้น",
                 ];
@@ -139,6 +123,10 @@ class SosmapController extends Controller
            
         $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
         $string_json = str_replace("date_time",$time_zone,$string_json);
+
+        $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
+        $string_json = str_replace("ผู้ให้การช่วยเหลือ",$data_topic[1],$string_json);
+        $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
 
         $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
         $string_json = str_replace("name_helper",$name_helper,$string_json);
@@ -170,6 +158,8 @@ class SosmapController extends Controller
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data);
+
+        return $data;
         
     }
 

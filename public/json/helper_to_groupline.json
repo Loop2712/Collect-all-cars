@@ -21,7 +21,7 @@
       },
       {
         "type": "text",
-        "text": "คุณ name_user",
+        "text": "name_user",
         "size": "md",
         "weight": "bold"
       },
