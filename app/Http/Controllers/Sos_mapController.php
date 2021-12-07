@@ -379,12 +379,6 @@ class Sos_mapController extends Controller
             ];
             MyLog::create($data);
 
-            DB::table('sos_maps')
-                ->where('id', $id_sos_map)
-                ->update([
-                    'organization_helper' => $$name_partner,
-            ]);
-
         }
         
     }
