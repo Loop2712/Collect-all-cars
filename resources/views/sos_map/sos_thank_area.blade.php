@@ -15,7 +15,7 @@
           <br>
             <h5 class="modal-title text-danger text-center" id="staticBackdropLabel"> <b>เจ้าหน้าที่กำลังเดินทางไปหาคุณ</b> <br><span style="font-size:18px;"> <b>โปรดรอสักครู่</b> </span></h5>
             <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
-            <div id="sos_TH" class="d-none">
+            <div id="sos_TH" class="">
               <img width="100%" src="{{ asset('/img/more/sos_thx/th.png') }}">
             </div>
             <div id="sos_JP" class="d-none">
