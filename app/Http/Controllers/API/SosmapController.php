@@ -75,7 +75,7 @@ class SosmapController extends Controller
                 return view('close_browser');
 
             }else{
-                return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map);
+                return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map . '/' . $id_organization_helper);
             }
         }
         
