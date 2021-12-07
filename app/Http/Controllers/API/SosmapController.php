@@ -56,6 +56,8 @@ class SosmapController extends Controller
             // มีแล้ว
             $data_helper_old = DB::table('users')->where('id' , $helper_id_old)->get();
             $this->_send_notempty_helper($area , $data_helper_old , $name_partner_helper);
+            
+            return view('close_browser');
         }else {
             // ยังไม่มี
             if(Auth::check()){
