@@ -37,7 +37,7 @@ class SosmapController extends Controller
         return $data_partners ;
     }
 
-    public function sos_helper($id_sos_map , $organization_helper)
+    public function sos_helper($id_sos_map)
     {
         $name_partner = str_replace("_"," ",$organization_helper);
 
@@ -78,10 +78,10 @@ class SosmapController extends Controller
         
     }
 
-    public function sos_helper_after_login($id_sos_map , $organization_helper)
+    public function sos_helper_after_login($id_sos_map)
     {
         $name_partner = str_replace("_"," ",$organization_helper);
-        
+
         $user = Auth::user();
 
         DB::table('sos_maps')
