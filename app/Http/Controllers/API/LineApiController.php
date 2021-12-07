@@ -77,6 +77,9 @@ class LineApiController extends Controller
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
                 break;
+            case "sos_helper" : 
+                $line->select_reply(null, $event, "sos_helper");
+                break;
         }   
 
     }
