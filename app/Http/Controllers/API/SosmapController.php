@@ -180,7 +180,7 @@ class SosmapController extends Controller
             ];
             MyLog::create($data);
 
-        }
+        // }
         
     }
 
