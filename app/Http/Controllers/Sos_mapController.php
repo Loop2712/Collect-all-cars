@@ -261,7 +261,7 @@ class Sos_mapController extends Controller
 
         $data_name_sp = explode("&",$data['area']);
 
-        for ($i=0; $i < count($data_name_sp); $i++) { 
+        for ($i=0; $i < count($data_name_sp); $i++) {
             
             $data_name_sp[$i] = str_replace("amp; ","",$data_name_sp[$i]);
 
@@ -337,7 +337,7 @@ class Sos_mapController extends Controller
             $string_json = str_replace("name",$name_user,$string_json);
             $string_json = str_replace("0999999999",$phone_user,$string_json);
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
-            $string_json = str_replace("organization",$name_partner,$string_json);
+            $string_json = str_replace("organization",$data_name_sp[$i],$string_json);
 
             $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("เวลา",$data_topic[1],$string_json);
