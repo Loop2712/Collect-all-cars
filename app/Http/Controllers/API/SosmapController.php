@@ -50,7 +50,7 @@ class SosmapController extends Controller
         if (!empty($helper_old)) {
             // มีแล้ว
             $data_helper_old = DB::table('users')->where('id' , $helper_id_old)->get();
-            $this->_send_notempty_helper($area , $data_helper_old);
+            $this->_send_notempty_helper($area , $data_helper_old , $organization_helper);
         }else {
             // ยังไม่มี
             if(Auth::check()){
@@ -62,6 +62,7 @@ class SosmapController extends Controller
                       ->update([
                         'helper' => $user->name,
                         'helper_id' => $user->id,
+                        'organization_helper' => $organization_helper,
                 ]);
 
                 // $this->_send_helper_to_groupline($area);
@@ -91,7 +92,7 @@ class SosmapController extends Controller
         return view('close_browser');
     }
 
-    protected function _send_notempty_helper($area , $data_helper_old)
+    protected function _send_notempty_helper($area , $data_helper_old , $organization_helper)
     {   
         foreach ($data_helper_old as $ss) {
                 $name_helper = $ss->name ;
