@@ -41,7 +41,7 @@ class SosmapController extends Controller
     {
         $data_partner_helpers = DB::table('partners')->where('id', $id_organization_helper)->get();
         foreach ($data_partner_helpers as $data_partner) {
-                $name_partner_helpers = $data_partner->name ;
+                $name_partner_helper = $data_partner->name ;
             }
 
         $data_sos_map = DB::table('sos_maps')->where('id' , $id_sos_map)->get();
@@ -55,7 +55,7 @@ class SosmapController extends Controller
         if (!empty($helper_old)) {
             // มีแล้ว
             $data_helper_old = DB::table('users')->where('id' , $helper_id_old)->get();
-            $this->_send_notempty_helper($area , $data_helper_old , $name_partner_helpers);
+            $this->_send_notempty_helper($area , $data_helper_old , $name_partner_helper);
         }else {
             // ยังไม่มี
             if(Auth::check()){
@@ -67,7 +67,7 @@ class SosmapController extends Controller
                       ->update([
                         'helper' => $user->name,
                         'helper_id' => $user->id,
-                        'organization_helper' => $name_partner_helpers,
+                        'organization_helper' => $name_partner_helper,
                 ]);
 
                 // $this->_send_helper_to_groupline($area);
@@ -85,7 +85,7 @@ class SosmapController extends Controller
     {
         $data_partner_helpers = DB::table('partners')->where('id', $id_organization_helper)->get();
         foreach ($data_partner_helpers as $data_partner) {
-                $name_partner_helpers = $data_partner->name ;
+                $name_partner_helper = $data_partner->name ;
             }
 
         $user = Auth::user();
@@ -95,7 +95,7 @@ class SosmapController extends Controller
               ->update([
                 'helper' => $user->name,
                 'helper_id' => $user->id,
-                'organization_helper' => $name_partner_helpers,
+                'organization_helper' => $name_partner_helper,
         ]);
 
         // $this->_send_helper_to_groupline($area);
@@ -103,7 +103,7 @@ class SosmapController extends Controller
         return view('close_browser');
     }
 
-    protected function _send_notempty_helper($area , $data_helper_old , $name_partner_helpers)
+    protected function _send_notempty_helper($area , $data_helper_old , $name_partner_helper)
     {   
         foreach ($data_helper_old as $ss) {
                 $name_helper = $ss->name ;
@@ -165,7 +165,7 @@ class SosmapController extends Controller
             $string_json = str_replace("date_time",$time_zone,$string_json);
             
             $string_json = str_replace("name_helper",$name_helper,$string_json);
-            $string_json = str_replace("2B-Green",$name_partner_helpers,$string_json);
+            $string_json = str_replace("2B-Green",$name_partner_helper,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
@@ -190,7 +190,7 @@ class SosmapController extends Controller
 
             // SAVE LOG
             $data = [
-                "title" => "ข้อมูลขอความช่วยเหลือ" . $name_partner_helpers ,
+                "title" => "ข้อมูลขอความช่วยเหลือ" . $name_partner_helper ,
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
