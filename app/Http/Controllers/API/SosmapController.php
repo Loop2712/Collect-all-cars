@@ -56,8 +56,8 @@ class SosmapController extends Controller
 
         $data_data = explode("/",$data_postback);
 
-        $id_sos_map = $data_postback_explode[0] ;
-        $id_organization_helper = $data_postback_explode[1] ;
+        $id_sos_map = $data_data[0] ;
+        $id_organization_helper = $data_data[1] ;
 
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
