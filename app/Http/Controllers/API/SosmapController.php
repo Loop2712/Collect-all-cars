@@ -57,7 +57,19 @@ class SosmapController extends Controller
 
         if (!empty($data_sos_map->helper)) {
 
-            if ($data_sos_map->helper != $user->name) {
+            $explode_name_helper = explode(",",$data_sos_map->helper);
+            for ($i=0; $i < count($explode_name_helper); $i++) {
+
+                if ($explode_name_helper[$i] != $user->name) {
+                    $helper_double = "No";
+                }else{
+                    $helper_double = "Yes";
+                    break;
+                }
+
+            }
+            
+            if ($helper_double != "Yes") {
                 DB::table('sos_maps')
                     ->where('id', $id_sos_map)
                     ->update([
