@@ -79,9 +79,9 @@ class SosmapController extends Controller
                 ]);
 
                 $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
-                return view('close_browser');
+
             }else{
-                return view('close_browser');
+                //
             }
 
         }else {
@@ -94,8 +94,10 @@ class SosmapController extends Controller
             ]);
 
             $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
-            return view('close_browser');
+            
         }
+
+        return view('close_browser');
 
     }
 
@@ -175,8 +177,8 @@ class SosmapController extends Controller
         ];
         MyLog::create($data);
 
-        return $data;
-        
+        return view('close_browser');
+
     }
 
 }
