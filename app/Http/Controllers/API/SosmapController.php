@@ -96,6 +96,7 @@ class SosmapController extends Controller
         echo "<pre>";
         print_r($data_helper_old);
         echo "<pre>";
+        echo $data_helper_old[0]['name'];
         exit();
         $data_name_sp = explode("&",$area);
 
@@ -152,8 +153,8 @@ class SosmapController extends Controller
 
             $string_json = str_replace("date_time",$time_zone,$string_json);
             
-            // $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
-            // $string_json = str_replace("2B-Green",$item_of_helper->organization,$string_json);
+            // $string_json = str_replace("name_helper",$data_helper_old[0]['name'],$string_json);
+            // $string_json = str_replace("2B-Green",$data_helper_old[0]['organization'],$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
