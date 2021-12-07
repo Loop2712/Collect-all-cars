@@ -61,16 +61,7 @@ class LineApiController extends Controller
 
     public function postbackHandler($event)
     {
-        //SAVE LOG
-        $requestData = $request->all();
-        $data = [
-            "title" => "postbackHandler",
-            "content" => $event,
-        ];
-        MyLog::create($data);  
-
         $line = new LineMessagingAPI();
-        // $sos_helper = new SosmapController();
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
@@ -87,16 +78,8 @@ class LineApiController extends Controller
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
                 break;
-            case "sos_helper" : 
-                //SAVE LOG
-                $requestData = $request->all();
-                $data_2 = [
-                    "title" => "sos_helper",
-                    "content" => $data_postback_explode[1],
-                ];
-                MyLog::create($data_2);  
-
-                // $sos_helper->sos_helper($data_postback_explode[1]);
+            case "sos_helper" :
+                $line->sos_helper($data_postback_explode[1]);
                 break;
         }   
 
