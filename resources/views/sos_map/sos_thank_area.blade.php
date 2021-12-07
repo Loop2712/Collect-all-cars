@@ -13,8 +13,10 @@
       <div class="modal-body" style="margin:-16.5px;">
         <center>
           <br>
-            <h5 class="modal-title text-danger text-center" id="staticBackdropLabel">เจ้าหน้าที่กำลังเดินทางไปหาคุณ<br><span style="font-size:16px;">โปรดรอสักครู่</span></h5>
-            <img width="100%" src="{{ asset('/img/more/ขอบคุณที่ไว้ใจให้เราดูแล-02.jpg') }}">
+            <h5 class="modal-title text-danger text-center" id="staticBackdropLabel"> <b>เจ้าหน้าที่กำลังเดินทางไปหาคุณ</b> <br><span style="font-size:18px;"> <b>โปรดรอสักครู่</b> </span></h5>
+            <div id="sos_TH" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/th.png') }}">
+            </div>
         </center>
       </div>
       <div class="modal-footer">
@@ -27,6 +29,30 @@
   </div>
 </div>
 <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        let user_id = document.querySelector('#user_id').value;
+
+        fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let countryCode = document.querySelector('#CountryCode');
+                    countryCode.value = result['countryCode'];
+
+                if (result['countryCode']) {
+
+                    if (result['countryCode'] !== 'TH') {
+                    document.querySelector('#btn_quick_help').classList.add('d-none');
+                    }
+
+                    document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
+                }
+
+            });
+
+    });
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START"); 
         document.getElementById("btn_modal").click();

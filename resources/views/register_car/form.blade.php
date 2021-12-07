@@ -60,17 +60,19 @@
                 <!-------------------------------------------------------------------- เลือกประเทศรถ -------------------------------------------------------------------->
                 <span style="font-size: 22px;" class="control-label">ขณะนี้ท่านลงทะเบียนรถประเทศ
                     <!-- <img width="3%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;"> ไทย -->
-                </span>
-                    <select name="CountryCode" id="CountryCode">
-                        <option value="TH">ไทย</option>
-                        <option value="ID">อินโด</option>
-                    </select>
-                    <div class="form-group {{ $errors->has('CountryCode') ? 'has-error' : ''}}">
-                                        <select name="CountryCode" id="CountryCode" class="form-control" required >
-                                                <option value="asd" selected > - กรุณาเลือกจังหวัด - </option> 
-                                        </select>
-                                        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
-                                    </div>
+                <!-- </span>
+                    <div class="col-4 form-group {{ $errors->has('CountryCode') ? 'has-error' : ''}}">
+                        <select name="CountryCode" id="CountryCode" class="form-control" required >
+                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                                <option value="TH">ไทย</option>
+                                <option value="ID">อินโด</option>
+                        </select>
+                        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
+                    </div> -->
+
+        <input class="d-none" type="text" name="CountryCode" id="CountryCode" required>
+        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
+
                     <!-- Button trigger modal -->
                     <button type="button"  class="btn" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
                         <span style="font-size: 18px;" class="control-label">
@@ -90,48 +92,76 @@
                         </div>
                         <div class="modal-body">
                            <div class="row text-center">
+                           <!-- <div class="col-4 form-group {{ $errors->has('CountryCode') ? 'has-error' : ''}}">
+                        <select name="CountryCode" id="CountryCode" class="form-control" required >
+                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                                <option value="TH">ไทย</option>
+                                <option value="ID">อินโด</option>
+                        </select>
+                        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
+                    </div> -->
                                 <div class="col-3">
                                     <!-- ไทย<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
+                                     <a href="#"  class="select-btn" data-value="TH" data-dismiss="modal">
+                                         <img width="50%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
+                                     </a>
                                 </div>
                                 <div class="col-3">
                                     <!-- อิโดนีเซีย<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="ID" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                                 <div class="col-3">
                                     <!-- ลาว<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="LA" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                                 <div class="col-3">
+                                    <a href="#"  class="select-btn" data-value="PH" data-dismiss="modal">
                                     <!-- ฟิลิปปินส์<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
+                                        <img width="50%" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                                
                                 <div class="col-12">&nbsp;</div>
                                 <div class="col-3">
                                     <!-- พม่า<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div> 
                                 <div class="col-3">
                                     <!-- สิงคโปร์<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="SG" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                                 <div class="col-3">
                                     <!-- กัมพูชา<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="KR" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                                 <div class="col-3">
                                     <!-- บรูไน<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="BN" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                                 <div class="col-12">&nbsp;</div>
                                 <div class="col-3">
                                     <!-- เวียดนาม<br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="VN" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                                 <div class="col-3">
                                     <!-- <br>  -->
-                                    <img width="50%" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
+                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal">
+                                        <img width="50%" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
+                                    </a>
                                 </div>
                            </div>
                         </div>
@@ -488,8 +518,8 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">แก้ไข</button>
-                        <div class="form-group">
-                            <input id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
+                        <div style="margin-top:15px;" class="form-group">
+                            <input  id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
                         </div>
                       </div>
                     </div>
@@ -814,7 +844,14 @@
     </div>
 </div>
 
-
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(function () {
+        $('body').on('click', '.select-btn', function () {
+            $('#CountryCode').val($(this).data('value'));
+        })
+    })
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
