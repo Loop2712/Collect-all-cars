@@ -139,12 +139,12 @@ class SosmapController extends Controller
             $template_path = storage_path('../public/json/helper_old.json');
             $string_json = file_get_contents($template_path);
                
-            $string_json = str_replace("ตัวอย่าง","...",$string_json);
-            $string_json = str_replace("เจ้าหน้าที่",$data_topic[0],$string_json);
-            $string_json = str_replace("จาก",$data_topic[1],$string_json);
-            $string_json = str_replace("กำลังเดินทางไปยังพิกัดแล้ว",$data_topic[2],$string_json);
+            // $string_json = str_replace("ตัวอย่าง","...",$string_json);
+            // $string_json = str_replace("เจ้าหน้าที่",$data_topic[0],$string_json);
+            // $string_json = str_replace("จาก",$data_topic[1],$string_json);
+            // $string_json = str_replace("กำลังเดินทางไปยังพิกัดแล้ว",$data_topic[2],$string_json);
 
-            $string_json = str_replace("date_time",$time_zone,$string_json);
+            // $string_json = str_replace("date_time",$time_zone,$string_json);
             
             // foreach ($data_helper_old as $item_of_helper) {
             //     $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
