@@ -9,6 +9,7 @@ use App\Models\Sos_map;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\Mylog;
+use App\Models\Partner;
 use App\Http\Controllers\API\API_Time_zone;
 
 class SosmapController extends Controller
@@ -39,20 +40,37 @@ class SosmapController extends Controller
     public function sos_helper($id_sos_map , $id_organization_helper)
     {
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
-        $data_partner_helpers = Sos_map::findOrFail($id_organization_helper);
+        $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
-        // echo "<pre>";
-        // print_r($data_sos_map);
-        // echo "<pre>";
+        if(Auth::check()){
 
-        echo $data_sos_map->name;
+            $user = Auth::user();
 
-        echo "--------------------------------" ;
+            if (!empty($data_sos_map->helper)) {
+                DB::table('sos_maps')
+                    ->where('id', $id_sos_map)
+                    ->update([
+                        'helper' => $data_sos_map->helper . ',' . $user->name,
+                        'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
+                        'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                ]);
+            }else {
+                DB::table('sos_maps')
+                    ->where('id', $id_sos_map)
+                    ->update([
+                        'helper' => $user->name,
+                        'helper_id' => $user->id,
+                        'organization_helper' => $data_partner_helpers->name,
+                ]);
+            }
 
-        echo "<pre>";
-        print_r($data_partner_helpers);
-        echo "<pre>";
-        exit();
+            // $this->_send_helper_to_groupline($area);
+            return view('close_browser');
+
+        }else{
+            return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map . '/' . $id_organization_helper);
+        }
+
     }
 
     public function sos_helper_old($id_sos_map , $id_organization_helper)

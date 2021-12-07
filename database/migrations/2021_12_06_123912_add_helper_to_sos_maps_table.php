@@ -15,7 +15,7 @@ class AddHelperToSosMapsTable extends Migration
     {
         Schema::table('sos_maps', function (Blueprint $table) {
             $table->string('helper')->nullable();
-            $table->integer('helper_id')->nullable();
+            $table->string('helper_id')->nullable();
         });
     }
 
