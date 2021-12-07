@@ -96,7 +96,7 @@ class SosmapController extends Controller
         echo "<pre>";
         print_r($data_helper_old);
         echo "<pre>";
-        echo $data_helper_old['name'];
+        echo $data_helper_old[0];
         exit();
         $data_name_sp = explode("&",$area);
 
