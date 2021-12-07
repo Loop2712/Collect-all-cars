@@ -143,7 +143,7 @@
                 "action": {
                   "type": "uri",
                   "label": "กำลังไป",
-                  "uri": "https://www.viicheck.com/sos_map/helper/id_sos_map?openExternalBrowser=1"
+                  "uri": "https://www.viicheck.com/sos_map/helper/id_sos_map/organization?openExternalBrowser=1"
                 },
                 "height": "sm",
                 "style": "secondary",
