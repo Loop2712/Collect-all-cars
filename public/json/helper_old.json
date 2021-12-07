@@ -89,7 +89,7 @@
                 "contents": [
                   {
                     "type": "span",
-                    "text": "data_time",
+                    "text": "date_time",
                     "weight": "bold",
                     "color": "#bcbcbc"
                   }
