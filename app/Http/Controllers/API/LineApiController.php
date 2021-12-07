@@ -62,6 +62,14 @@ class LineApiController extends Controller
 
     public function postbackHandler($event)
     {
+        //SAVE LOG
+        $requestData = $request->all();
+        $data = [
+            "title" => "postbackHandler",
+            "content" => $event,
+        ];
+        MyLog::create($data);  
+        
         $line = new LineMessagingAPI();
         // $sos_helper = new SosmapController();
     	
@@ -83,12 +91,12 @@ class LineApiController extends Controller
             case "sos_helper" : 
                 //SAVE LOG
                 $requestData = $request->all();
-                $data = [
+                $data_2 = [
                     "title" => "sos_helper",
                     "content" => $data_postback_explode[1],
                 ];
-                MyLog::create($data);  
-                
+                MyLog::create($data_2);  
+
                 // $sos_helper->sos_helper($data_postback_explode[1]);
                 break;
         }   
