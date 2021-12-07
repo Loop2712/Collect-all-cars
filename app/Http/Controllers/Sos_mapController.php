@@ -283,9 +283,6 @@ class Sos_mapController extends Controller
                 $group_owner_full = $key->owner ;
                 $arr_group_owner_full = explode(" (",$group_owner_full);
                 $organization_helper = $arr_group_owner_full[0];
-
-                echo $organization_helper ;
-                exit();
             }
 
             // TIME ZONE
