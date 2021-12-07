@@ -38,19 +38,27 @@ class SosmapController extends Controller
         return $data_partners ;
     }
 
-    public function sos_helper($id_sos_map , $id_organization_helper)
-    {
-        if(Auth::check()){
-            $this->sos_helper_after_login($id_sos_map , $id_organization_helper);
-            return view('close_browser');
-        }else{
-            return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map . '/' . $id_organization_helper);
-        }
+    // public function sos_helper($id_sos_map , $id_organization_helper)
+    // {
+    //     if(Auth::check()){
+    //         $this->sos_helper_after_login($id_sos_map , $id_organization_helper);
+    //         return view('close_browser');
+    //     }else{
+    //         return redirect('/login/line?redirectTo=/sos_map/helper_after_login' . '/' . $id_sos_map . '/' . $id_organization_helper);
+    //     }
 
-    }
+    // }
 
-    public function sos_helper_after_login($id_sos_map , $id_organization_helper)
+    public function sos_helper($event)
     {
+        $data_postback_explode = explode("?",$event["postback"]["data"]);
+        $data_postback = $data_postback_explode[1] ;
+
+        $data_data = explode("/",$data_postback);
+
+        $id_sos_map = $data_postback_explode[0] ;
+        $id_organization_helper = $data_postback_explode[1] ;
+
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
