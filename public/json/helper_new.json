@@ -1,0 +1,79 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "action": {
+      "type": "uri",
+      "uri": "https://linecorp.com"
+    },
+    "contents": [
+      {
+        "type": "text",
+        "text": "การขอความช่วยเหลือ",
+        "size": "md",
+        "weight": "bold",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "คุณ name_user",
+        "size": "md",
+        "weight": "bold"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "text",
+        "text": "ผู้ให้การช่วยเหลือ",
+        "size": "md",
+        "weight": "bold",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "name_helper",
+        "size": "md",
+        "weight": "regular"
+      },
+      {
+        "type": "text",
+        "text": "hello, world",
+        "contents": [
+          {
+            "type": "span",
+            "text": "date_time",
+            "color": "#bcbcbc",
+            "weight": "bold"
+          }
+        ],
+        "margin": "lg",
+        "size": "sm",
+        "wrap": true
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#76d128",
+        "action": {
+          "type": "uri",
+          "label": "การช่วยเหลือเสร็จสิ้น",
+          "uri": "https://linecorp.com"
+        },
+        "height": "sm"
+      }
+    ]
+  }
+}
+}

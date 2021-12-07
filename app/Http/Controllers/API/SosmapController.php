@@ -36,8 +36,24 @@ class SosmapController extends Controller
 
         return $data_partners ;
     }
-
     public function sos_helper($id_sos_map , $id_organization_helper)
+    {
+        $data_sos_map = Sos_map::findOrFail($id_sos_map);
+        $data_partner_helpers = Sos_map::findOrFail($id_organization_helper);
+
+        echo "<pre>";
+        print_r($data_sos_map);
+        echo "<pre>";
+
+        echo "--------------------------------" ;
+
+        echo "<pre>";
+        print_r($data_partner_helpers);
+        echo "<pre>";
+        exit();
+    }
+
+    public function sos_helper_old($id_sos_map , $id_organization_helper)
     {
         $data_partner_helpers = DB::table('partners')->where('id', $id_organization_helper)->get();
         foreach ($data_partner_helpers as $data_partner) {
@@ -72,7 +88,7 @@ class SosmapController extends Controller
                         'organization_helper' => $name_partner_helper,
                 ]);
 
-                // $this->_send_helper_to_groupline($area);
+                $this->_send_helper_to_groupline($area);
 
                 return view('close_browser');
 
@@ -100,7 +116,7 @@ class SosmapController extends Controller
                 'organization_helper' => $name_partner_helper,
         ]);
 
-        // $this->_send_helper_to_groupline($area);
+        $this->_send_helper_to_groupline($area);
 
         return view('close_browser');
     }
