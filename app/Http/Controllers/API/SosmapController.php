@@ -57,10 +57,10 @@ class SosmapController extends Controller
 
         if (!empty($data_sos_map->helper)) {
 
-            $explode_name_helper = explode(",",$data_sos_map->helper);
-            for ($i=0; $i < count($explode_name_helper); $i++) {
+            $explode_helper_id = explode(",",$data_sos_map->helper_id);
+            for ($i=0; $i < count($explode_helper_id); $i++) {
 
-                if ($explode_name_helper[$i] != $user->name) {
+                if ($explode_helper_id[$i] != $user->id) {
                     $helper_double = "No";
                 }else{
                     $helper_double = "Yes";
