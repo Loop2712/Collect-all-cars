@@ -271,10 +271,6 @@ class Sos_mapController extends Controller
                 $name_partner = $data_partner->name ;
                 $name_line_group = $data_partner->line_group ;
                 $mail_partner = $data_partner->mail ;
-
-                $link_name_partner = str_replace(" ","_",$name_partner);
-                echo $link_name_partner;
-                exit();
             }
 
             $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
@@ -341,7 +337,6 @@ class Sos_mapController extends Controller
             $string_json = str_replace("name",$name_user,$string_json);
             $string_json = str_replace("0999999999",$phone_user,$string_json);
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
-            $string_json = str_replace("organization",$link_name_partner,$string_json);
 
             $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("เวลา",$data_topic[1],$string_json);
@@ -381,6 +376,12 @@ class Sos_mapController extends Controller
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
+
+            DB::table('sos_maps')
+                ->where('id', $id_sos_map)
+                ->update([
+                    'organization_helper' => $$name_partner,
+            ]);
 
         }
         
