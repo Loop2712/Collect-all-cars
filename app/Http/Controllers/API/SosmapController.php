@@ -37,7 +37,7 @@ class SosmapController extends Controller
 
         return $data_partners ;
     }
-    
+
     public function sos_helper($id_sos_map , $id_organization_helper)
     {
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
@@ -98,80 +98,78 @@ class SosmapController extends Controller
 
     
 
-    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user_name)
+    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper)
     {   
+        $data_line_group = DB::table('group_lines')
+                    ->where('groupName', $data_partner_helpers->line_group)
+                    ->get();
 
-        echo "<pre>";
-        print_r($data_partner_helpers);
-        echo "<pre>";
-        exit();
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
 
-        // $data_line_group = DB::table('group_lines')->where('groupName', )->get();
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-        // foreach ($data_line_group as $key) {
-        //     $groupId = $key->groupId ;
-        //     $name_time_zone = $key->time_zone ;
-        //     $group_language = $key->language ;
-        // }
+        $data_topic = [
+                    "การขอความช่วยเหลือ",
+                    "คุณ",
+                    "ผู้ให้การช่วยเหลือ",
+                    "การช่วยเหลือเสร็จสิ้น",
+                ];
 
-        // // TIME ZONE
-        // $API_Time_zone = new API_Time_zone();
-        // $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
 
-        // $data_topic = [
-        //             "ขอความช่วยเหลือ",
-        //             "เวลา",
-        //             "จาก",
-        //             "โทร",
-        //             "รูปภาพสถานที่",
-        //         ];
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
 
-        // for ($xi=0; $xi < count($data_topic); $xi++) { 
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
 
-        //     $text_topic = DB::table('text_topics')
-        //             ->select($group_language)
-        //             ->where('th', $data_topic[$xi])
-        //             ->where('en', "!=", null)
-        //             ->get();
-
-        //     foreach ($text_topic as $item_of_text_topic) {
-        //         $data_topic[$xi] = $item_of_text_topic->$group_language ;
-        //     }
-        // }
-
-        // $template_path = storage_path('../public/json/ask_for_help.json');
-        // $string_json = file_get_contents($template_path);
+        $template_path = storage_path('../public/json/helper_to_groupline.json');
+        $string_json = file_get_contents($template_path);
            
-        // $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-        // $string_json = str_replace("datetime",$time_zone,$string_json);
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+        $string_json = str_replace("date_time",$time_zone,$string_json);
 
-        // $messages = [ json_decode($string_json, true) ];
+        $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+        $string_json = str_replace("name_helper",$name_helper,$string_json);
 
-        // $body = [
-        //     "to" => $groupId,
-        //     "messages" => $messages,
-        // ];
+        $messages = [ json_decode($string_json, true) ];
 
-        // $opts = [
-        //     'http' =>[
-        //         'method'  => 'POST',
-        //         'header'  => "Content-Type: application/json \r\n".
-        //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-        //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-        //         //'timeout' => 60
-        //     ]
-        // ];
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
                             
-        // $context  = stream_context_create($opts);
-        // $url = "https://api.line.me/v2/bot/message/push";
-        // $result = file_get_contents($url, false, $context);
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
 
-        // // SAVE LOG
-        // $data = [
-        //     "title" => "send_helper_to_groupline",
-        //     "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
-        // ];
-        // MyLog::create($data);
+        // SAVE LOG
+        $data = [
+            "title" => "send_helper_to_groupline",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+        ];
+        MyLog::create($data);
         
     }
 

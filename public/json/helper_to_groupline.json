@@ -67,9 +67,9 @@
         "style": "primary",
         "color": "#76d128",
         "action": {
-          "type": "uri",
+          "type": "postback",
           "label": "การช่วยเหลือเสร็จสิ้น",
-          "uri": "https://linecorp.com"
+          "data": "การช่วยเหลือเสร็จสิ้น"
         },
         "height": "sm"
       }
