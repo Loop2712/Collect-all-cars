@@ -41,9 +41,11 @@ class SosmapController extends Controller
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_partner_helpers = Sos_map::findOrFail($id_organization_helper);
 
-        echo "<pre>";
-        print_r($data_sos_map);
-        echo "<pre>";
+        // echo "<pre>";
+        // print_r($data_sos_map);
+        // echo "<pre>";
+
+        echo $data_sos_map->name;
 
         echo "--------------------------------" ;
 
