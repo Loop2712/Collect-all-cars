@@ -175,7 +175,8 @@ class SosmapController extends Controller
 
             // SAVE LOG
             $data = [
-                "title" => "ข้อมูลขอความช่วยเหลือ" . $name_partner ,
+                // "title" => "ข้อมูลขอความช่วยเหลือ" . $name_partner ,
+                "title" => "ข้อมูลขอความช่วยเหลือ" ,
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
