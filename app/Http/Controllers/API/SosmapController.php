@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Sos_map;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Models\Mylog;
+use App\Http\Controllers\API\API_Time_zone;
 
 class SosmapController extends Controller
 {
@@ -91,65 +93,65 @@ class SosmapController extends Controller
 
     protected function _send_notempty_helper($area , $data_helper_old)
     {   
-        // $data_name_sp = explode("&",$area);
+        $data_name_sp = explode("&",$area);
 
-        // for ($i=0; $i < count($data_name_sp); $i++) { 
+        for ($i=0; $i < count($data_name_sp); $i++) { 
             
-        //     $data_name_sp[$i] = str_replace("amp; ","",$data_name_sp[$i]);
+            $data_name_sp[$i] = str_replace("amp; ","",$data_name_sp[$i]);
 
-        //     $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
+            $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
 
-        //     foreach ($data_partners as $data_partner) {
-        //         $name_partner = $data_partner->name ;
-        //         $name_line_group = $data_partner->line_group ;
-        //         $mail_partner = $data_partner->mail ;
-        //     }
+            foreach ($data_partners as $data_partner) {
+                $name_partner = $data_partner->name ;
+                $name_line_group = $data_partner->line_group ;
+                $mail_partner = $data_partner->mail ;
+            }
 
-        //     $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+            $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
 
-        //     foreach ($data_line_group as $key) {
-        //         $groupId = $key->groupId ;
-        //         $name_time_zone = $key->time_zone ;
-        //         $group_language = $key->language ;
-        //     }
+            foreach ($data_line_group as $key) {
+                $groupId = $key->groupId ;
+                $name_time_zone = $key->time_zone ;
+                $group_language = $key->language ;
+            }
 
-        //     // TIME ZONE
-        //     $API_Time_zone = new API_Time_zone();
-        //     $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+            // TIME ZONE
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-        //     $data_topic = [
-        //                 "เจ้าหน้าที่",
-        //                 "จาก",
-        //                 "กำลังเดินทางไปยังพิกัดแล้ว ท่านสามารถตามไปสบทบเพื่อให้การช่วยเหลือได้เลยครับ",
-        //             ];
+            $data_topic = [
+                        "เจ้าหน้าที่",
+                        "จาก",
+                        "กำลังเดินทางไปยังพิกัดแล้ว ท่านสามารถตามไปสบทบเพื่อให้การช่วยเหลือได้เลยครับ",
+                    ];
 
-        //     for ($xi=0; $xi < count($data_topic); $xi++) { 
+            for ($xi=0; $xi < count($data_topic); $xi++) { 
 
-        //         $text_topic = DB::table('text_topics')
-        //                 ->select($group_language)
-        //                 ->where('th', $data_topic[$xi])
-        //                 ->where('en', "!=", null)
-        //                 ->get();
+                $text_topic = DB::table('text_topics')
+                        ->select($group_language)
+                        ->where('th', $data_topic[$xi])
+                        ->where('en', "!=", null)
+                        ->get();
 
-        //         foreach ($text_topic as $item_of_text_topic) {
-        //             $data_topic[$xi] = $item_of_text_topic->$group_language ;
-        //         }
-        //     }
+                foreach ($text_topic as $item_of_text_topic) {
+                    $data_topic[$xi] = $item_of_text_topic->$group_language ;
+                }
+            }
 
             $template_path = storage_path('../public/json/helper_old.json');
             $string_json = file_get_contents($template_path);
                
-            // $string_json = str_replace("ตัวอย่าง","...",$string_json);
-            // $string_json = str_replace("เจ้าหน้าที่",$data_topic[0],$string_json);
-            // $string_json = str_replace("จาก",$data_topic[1],$string_json);
-            // $string_json = str_replace("กำลังเดินทางไปยังพิกัดแล้ว",$data_topic[2],$string_json);
+            $string_json = str_replace("ตัวอย่าง","...",$string_json);
+            $string_json = str_replace("เจ้าหน้าที่",$data_topic[0],$string_json);
+            $string_json = str_replace("จาก",$data_topic[1],$string_json);
+            $string_json = str_replace("กำลังเดินทางไปยังพิกัดแล้ว",$data_topic[2],$string_json);
 
-            // $string_json = str_replace("date_time",$time_zone,$string_json);
+            $string_json = str_replace("date_time",$time_zone,$string_json);
             
-            // foreach ($data_helper_old as $item_of_helper) {
-            //     $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
-            //     $string_json = str_replace("2B-Green",$item_of_helper->organization,$string_json);
-            // }
+            foreach ($data_helper_old as $item_of_helper) {
+                $string_json = str_replace("name_helper",$item_of_helper->name,$string_json);
+                $string_json = str_replace("2B-Green",$item_of_helper->organization,$string_json);
+            }
             
             $messages = [ json_decode($string_json, true) ];
 
@@ -175,13 +177,12 @@ class SosmapController extends Controller
 
             // SAVE LOG
             $data = [
-                // "title" => "ข้อมูลขอความช่วยเหลือ" . $name_partner ,
-                "title" => "ข้อมูลขอความช่วยเหลือ" ,
+                "title" => "ข้อมูลขอความช่วยเหลือ" . $name_partner ,
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data);
 
-        // }
+        }
         
     }
 
