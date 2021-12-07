@@ -279,10 +279,6 @@ class Sos_mapController extends Controller
                 $groupId = $key->groupId ;
                 $name_time_zone = $key->time_zone ;
                 $group_language = $key->language ;
-
-                $group_owner_full = $key->owner ;
-                $arr_group_owner_full = explode(" (",$group_owner_full);
-                $organization_helper = $arr_group_owner_full[0];
             }
 
             // TIME ZONE
@@ -341,7 +337,7 @@ class Sos_mapController extends Controller
             $string_json = str_replace("name",$name_user,$string_json);
             $string_json = str_replace("0999999999",$phone_user,$string_json);
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
-            $string_json = str_replace("organization",$organization_helper,$string_json);
+            $string_json = str_replace("organization",$name_partner,$string_json);
 
             $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("เวลา",$data_topic[1],$string_json);
