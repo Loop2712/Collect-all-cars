@@ -37,7 +37,7 @@ class SosmapController extends Controller
         return $data_partners ;
     }
 
-    public function sos_helper($id_sos_map)
+    public function sos_helper($id_sos_map , $organization_helper)
     {
         $data_sos_map = DB::table('sos_maps')->where('id' , $id_sos_map)->get();
         foreach ($data_sos_map as $item) {
@@ -75,7 +75,7 @@ class SosmapController extends Controller
         
     }
 
-    public function sos_helper_after_login($id_sos_map)
+    public function sos_helper_after_login($id_sos_map , $organization_helper)
     {
         $user = Auth::user();
 
@@ -95,12 +95,7 @@ class SosmapController extends Controller
     {   
         foreach ($data_helper_old as $ss) {
                 $name_helper = $ss->name ;
-                $organization_helper = $ss->organization ;
-
-                echo $name_helper;
-                echo $organization_helper;
             }
-            exit();
 
         $data_name_sp = explode("&",$area);
 
