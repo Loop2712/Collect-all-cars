@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\API\SosmapController;
 
 use Illuminate\Http\Request;
 
@@ -69,7 +68,7 @@ class LineApiController extends Controller
             "content" => $event,
         ];
         MyLog::create($data);  
-        
+
         $line = new LineMessagingAPI();
         // $sos_helper = new SosmapController();
     	
