@@ -37,7 +37,7 @@ class SosmapController extends Controller
         return $data_partners ;
     }
 
-    public function sos_helper($id_sos_map , $id_organization_data_partner_helpers)
+    public function sos_helper($id_sos_map , $id_organization_helper)
     {
         $data_partner_helpers = DB::table('partners')->where('id', $id_organization_helper)->get();
         foreach ($data_partner_helpers as $data_partner) {
