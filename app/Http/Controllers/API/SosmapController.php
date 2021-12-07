@@ -178,8 +178,6 @@ class SosmapController extends Controller
         ];
         MyLog::create($data);
 
-        return view('close_browser');
-
     }
 
 }

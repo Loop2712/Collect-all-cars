@@ -112,9 +112,10 @@
                 "type": "button",
                 "height": "sm",
                 "action": {
-                  "type": "uri",
+                  "type": "postback",
                   "label": "กำลังไป",
-                  "uri": "https://www.viicheck.com/sos_map/helper/id_sos_map/organization?openExternalBrowser=1"
+                  "data": "id_sos_map/organization",
+                  "displayText": "กำลังไป"
                 },
                 "color": "#FFFFFF",
                 "style": "secondary"
