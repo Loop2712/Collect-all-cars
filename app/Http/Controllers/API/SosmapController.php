@@ -65,7 +65,13 @@ class SosmapController extends Controller
                         'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
                         'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
                 ]);
+
+                $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+                return view('close_browser');
+            }else{
+                return view('close_browser');
             }
+
         }else {
             DB::table('sos_maps')
                 ->where('id', $id_sos_map)
@@ -74,14 +80,12 @@ class SosmapController extends Controller
                     'helper_id' => $user->id,
                     'organization_helper' => $data_partner_helpers->name,
             ]);
+
+            $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+            return view('close_browser');
         }
 
-        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
-        return view('close_browser');
-
     }
-
-    
 
     protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper)
     {   
