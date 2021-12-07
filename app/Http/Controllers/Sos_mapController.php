@@ -273,6 +273,8 @@ class Sos_mapController extends Controller
                 $mail_partner = $data_partner->mail ;
 
                 $link_name_partner = str_replace(" ","_",$name_partner);
+                echo $link_name_partner;
+                exit();
             }
 
             $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
