@@ -31,6 +31,11 @@ class LineApiController extends Controller
                 $this->messageHandler($event);
                 break;
             case "postback" :
+                $data2 = [
+                    "title" => "postback",
+                    "content" => "postback",
+                ];
+                MyLog::create($data2);  
                 $this->postbackHandler($event);
                 break;
             case "join" :
@@ -61,6 +66,11 @@ class LineApiController extends Controller
 
     public function postbackHandler($event)
     {
+        $data2 = [
+            "title" => "postbackHandler",
+            "content" => "postbackHandler",
+        ];
+        MyLog::create($data2); 
         $line = new LineMessagingAPI();
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
@@ -77,6 +87,13 @@ class LineApiController extends Controller
                 break;
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
+                break;
+            case "sos" : 
+                    $data3 = [
+                    "title" => "sos",
+                    "content" => "sos",
+                ];
+                MyLog::create($data3); 
                 break;
         }   
 
