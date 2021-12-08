@@ -81,7 +81,7 @@ class LineApiController extends Controller
                 $line->select_reply(null, $event, "reply");
                 break;
             case "sos" : 
-                $this->sos_helper($data_postback_explode);
+                $this->sos_helper($data_postback_explode[1]);
                 break;
         }   
 
@@ -366,7 +366,7 @@ class LineApiController extends Controller
     {
         $data3 = [
             "title" => "data_postback_explode",
-            "content" => json_encode($data_postback_explode, JSON_UNESCAPED_UNICODE),
+            "content" => $data_postback_explode,
         ];
         MyLog::create($data3);  
 
