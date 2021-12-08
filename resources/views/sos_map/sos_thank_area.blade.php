@@ -16,13 +16,43 @@
             <h5 class="modal-title text-danger text-center" id="staticBackdropLabel"> <b>เจ้าหน้าที่กำลังเดินทางไปหาคุณ</b> <br><span style="font-size:18px;"> <b>โปรดรอสักครู่</b> </span></h5>
             <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
             <div id="sos_TH" class="">
-              <img width="100%" src="{{ asset('/img/more/sos_thx/th.png') }}">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_th.png') }}">
             </div>
             <div id="sos_JP" class="d-none">
-              <img width="100%" src="{{ asset('/img/more/sos_thx/jp.png') }}">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_jp.png') }}">
             </div>
             <div id="sos_MM" class="d-none">
-              <img width="100%" src="{{ asset('/img/more/sos_thx/mr.png') }}">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_mr.png') }}">
+            </div>
+            <div id="sos_BN" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_bn.png') }}">
+            </div>
+            <div id="sos_CN" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_cn.png') }}">
+            </div>
+            <div id="sos_ID" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_id.png') }}">
+            </div>
+            <div id="sos_KH" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_kh.png') }}">
+            </div>
+            <div id="sos_KR" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_kr.png') }}">
+            </div>
+            <div id="sos_LA" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_la.png') }}">
+            </div>
+            <div id="sos_MY" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_MY.png') }}">
+            </div>
+            <div id="sos_PH" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_ph.png') }}">
+            </div>
+            <div id="sos_SG" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_sg.png') }}">
+            </div>
+            <div id="sos_VN" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
             </div>
         </center>
       </div>
@@ -37,6 +67,14 @@
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
+
+        document.getElementById("btn_modal").click();
+
+        var delayInMilliseconds = 3000; 
+
+        setTimeout(function() {
+          // document.getElementById("a_line").click();
+        }, delayInMilliseconds);
         // console.log("START");
         let user_id = document.querySelector('#user_id').value;
 
@@ -49,26 +87,10 @@
                     countryCode.value = result['countryCode'];
 
                 if (result['countryCode']) {
-
-                    if (result['countryCode'] !== 'TH') {
-                    document.querySelector('#btn_quick_help').classList.add('d-none');
-                    }
-
                     document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
                 }
 
             });
-
-    });
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START"); 
-        document.getElementById("btn_modal").click();
-
-        var delayInMilliseconds = 3000; 
-
-        setTimeout(function() {
-          // document.getElementById("a_line").click();
-        }, delayInMilliseconds);
 
     });
 </script>
