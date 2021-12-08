@@ -375,6 +375,13 @@ class LineApiController extends Controller
 
         $user = Auth::user();
 
+        $data3 = [
+            "title" => "data_sos_map",
+            "content" => $data_sos_map,
+        ];
+        MyLog::create($data3);  
+
+
         if (!empty($data_sos_map->helper)) {
 
             $explode_helper_id = explode(",",$data_sos_map->helper_id);
