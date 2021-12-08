@@ -78,8 +78,8 @@ class LineApiController extends Controller
             case "การตอบกลับ" : 
                 //SAVE LOG
                 $data2 = [
-                    "title" => "postbackHandler",
-                    "content" => "postbackHandler",
+                    "title" => "การตอบกลับ",
+                    "content" => "การตอบกลับ",
                 ];
                 MyLog::create($data2); 
                 $line->select_reply(null, $event, "reply");
