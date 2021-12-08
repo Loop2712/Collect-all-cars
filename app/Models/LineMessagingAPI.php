@@ -81,12 +81,6 @@ class LineMessagingAPI extends Model
 
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
-        $data3 = [
-            "title" => "select_reply",
-            "content" => $data_topic[0],
-        ];
-        MyLog::create($data3);
-
         $template_path = storage_path('../public/json/flex-reply-option.json');   
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
@@ -99,6 +93,12 @@ class LineMessagingAPI extends Model
         $string_json = str_replace("ตอบกลับได้เพียง 1 ข้อ เท่านั้น",$data_topic[4],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
+
+        $data3 = [
+            "title" => "select_reply",
+            "content" => $messages,
+        ];
+        MyLog::create($data3);
 
 
         $body = [
