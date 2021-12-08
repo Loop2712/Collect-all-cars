@@ -71,21 +71,12 @@ class LineApiController extends Controller
                 $line->_pushguestLine(null, $event, "wait");
                 $line->reply_success($event);
                 break;
-             case "thx" : 
+            case "thx" : 
                 $line->_pushguestLine(null, $event, "thx");
                 $line->reply_success($event);
                 break;
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
-                break;
-            case "sos" : 
-                //SAVE LOG
-                $data2 = [
-                    "title" => "sos_helper",
-                    "content" => $data_postback_explode,
-                ];
-                MyLog::create($data2);
-                $line->sos_helper(null, $event, "sos_helper");
                 break;
         }   
 
