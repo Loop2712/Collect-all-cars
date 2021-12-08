@@ -376,8 +376,8 @@ class LineApiController extends Controller
         $user = Auth::user();
 
         $data3 = [
-            "title" => "data_sos_map",
-            "content" => $data_sos_map,
+            "title" => "data_partner_helpers",
+            "content" => $data_partner_helpers,
         ];
         MyLog::create($data3);  
 
