@@ -67,7 +67,7 @@ class LineMessagingAPI extends Model
     { 
         $data3 = [
             "title" => "select_reply",
-            "content" => "select_reply",
+            "content" => $event["postback"]["data"],
         ];
         MyLog::create($data3); 
         // ป้ายทะเบียนรถที่ถูกเรียก
