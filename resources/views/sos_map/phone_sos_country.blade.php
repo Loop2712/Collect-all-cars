@@ -3,7 +3,7 @@
 <div class="d-none" id="btn_tel"></div>
 
 <!-- SOS ไทย -->
-<div id="sos_TH" class="row ">
+<div id="sos_TH" class="row d-none">
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>

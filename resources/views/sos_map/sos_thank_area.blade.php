@@ -1,6 +1,13 @@
 @extends('layouts.viicheck')
 @section('content')
-
+<div class="d-none">
+  <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+        <label for="user_id" class="control-label">{{ 'User Id' }}</label>
+        <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
+        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+    </div>
+  </div>
+<input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
 <!-- Button trigger modal -->
 <button id="btn_modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal">
   Launch static backdrop modal
@@ -14,8 +21,8 @@
         <center>
           <br>
             <h5 class="modal-title text-danger text-center" id="staticBackdropLabel"> <b>เจ้าหน้าที่กำลังเดินทางไปหาคุณ</b> <br><span style="font-size:18px;"> <b>โปรดรอสักครู่</b> </span></h5>
-            <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
-            <div id="sos_TH" class="">
+            
+            <div id="sos_TH" class="d-none">
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_th.png') }}">
             </div>
             <div id="sos_JP" class="d-none">
@@ -78,13 +85,13 @@
     });
 
     document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
+        console.log("START");
         let user_id = document.querySelector('#user_id').value;
 
         fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 let countryCode = document.querySelector('#CountryCode');
                     countryCode.value = result['countryCode'];
