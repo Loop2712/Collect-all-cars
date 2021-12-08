@@ -433,8 +433,8 @@ class GuestController extends Controller
 
                 //SAVE LOG
                 $data = [
-                    "title" => "https://api.line.me/v2/bot/message/push",
-                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+                    "title" => $masseng,
+                    "content" => $item->registration_number . '/' . $item->province,
                 ];
                 MyLog::create($data);
                 return $result;
