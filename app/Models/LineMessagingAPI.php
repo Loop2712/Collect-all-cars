@@ -93,9 +93,9 @@ class LineMessagingAPI extends Model
         $string_json = str_replace("ตอบกลับได้เพียง 1 ข้อ เท่านั้น",$data_topic[4],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
-
+        
         $body = [
-            "to" => $event["source"]["userId"],
+            "replyToken" => $event["replyToken"],
             "messages" => $messages,
         ];
 
@@ -111,7 +111,7 @@ class LineMessagingAPI extends Model
                             
         $context  = stream_context_create($opts);
         //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url = "https://api.line.me/v2/bot/message/push";
+        $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
