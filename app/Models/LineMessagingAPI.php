@@ -83,8 +83,7 @@ class LineMessagingAPI extends Model
 
         $data3 = [
             "title" => "select_reply",
-            "content" => $data_topic,
-            // json_encode($requestData, JSON_UNESCAPED_UNICODE)
+            "content" => json_encode($data_topic, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data3);
 
