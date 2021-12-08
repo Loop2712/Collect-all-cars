@@ -12,6 +12,7 @@ use App\Models\LineMessagingAPI;
 use App\Models\Group_line;
 use App\Models\Sos_map;
 use App\Models\Partner;
+use Auth;
 
 class LineApiController extends Controller
 {
@@ -368,12 +369,6 @@ class LineApiController extends Controller
 
         $id_sos_map = $data_data[0] ;
         $id_organization_helper = $data_data[1] ;
-
-        $data3 = [
-            "title" => "data_postback_explode",
-            "content" => $id_sos_map . ',' . $id_organization_helper,
-        ];
-        MyLog::create($data3);  
 
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
