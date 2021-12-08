@@ -376,8 +376,8 @@ class LineApiController extends Controller
         $user = Auth::user();
 
         $data3 = [
-            "title" => "data_partner_helpers",
-            "content" => $data_partner_helpers,
+            "title" => "user",
+            "content" => $user,
         ];
         MyLog::create($data3);  
 
