@@ -93,14 +93,7 @@ class LineMessagingAPI extends Model
         $string_json = str_replace("ตอบกลับได้เพียง 1 ข้อ เท่านั้น",$data_topic[4],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
-
-        $data3 = [
-            "title" => "select_reply",
-            "content" => $event["replyToken"],
-        ];
-        MyLog::create($data3);
-
-
+        
         $body = [
             "replyToken" => $event["replyToken"],
             "messages" => $messages,
@@ -122,11 +115,11 @@ class LineMessagingAPI extends Model
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
-        $data_2 = [
-            "title" => "reply Success",
-            "content" => "reply Success",
+        $data = [
+            "title" => "ตอบกลับ " . $registration_number . '/' . $province,
+            "content" => $data_topic[0],
         ];
-        MyLog::create($data_2);
+        MyLog::create($data);
         return $result;
 
     }
