@@ -31,6 +31,13 @@ class LineApiController extends Controller
                 $this->messageHandler($event);
                 break;
             case "postback" :
+                    //SAVE LOG
+                    $requestData = $request->all();
+                    $data2 = [
+                        "title" => "postback",
+                        "content" => "postback",
+                    ];
+                    MyLog::create($data2);  
                 $this->postbackHandler($event);
                 break;
             case "join" :
