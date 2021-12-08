@@ -68,13 +68,7 @@ class LineMessagingAPI extends Model
 
     }
     public function select_reply($data, $event, $postback_data)
-    {
-        //SAVE LOG
-        $data2 = [
-            "title" => "select_reply",
-            "content" => $event["postback"]["data"],
-        ];
-        MyLog::create($data2); 
+    { 
         // ป้ายทะเบียนรถที่ถูกเรียก
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $license_plate = explode("/",$data_postback_explode[1]);  ;
@@ -1565,12 +1559,11 @@ class LineMessagingAPI extends Model
     public function sos_helper($data_postback_explode)
     {
         //SAVE LOG
-        $requestData = $request->all();
-        $data = [
-            "title" => "data_postback_explode",
+        $data2 = [
+            "title" => "sos_helper",
             "content" => $data_postback_explode,
         ];
-        MyLog::create($data);  
+        MyLog::create($data2);
 
         $data_data = explode("/",$data_postback_explode);
 
