@@ -73,7 +73,7 @@ class LineMessagingAPI extends Model
 
         $data3 = [
             "title" => "select_reply",
-            "content" => $registration_number . '/' . $province,
+            "content" => $event["source"]['userId'],
         ];
         MyLog::create($data3); 
 
