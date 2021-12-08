@@ -67,7 +67,7 @@ class LineMessagingAPI extends Model
     { 
         // ป้ายทะเบียนรถที่ถูกเรียก
         $data_postback_explode = explode("?",$event["postback"]["data"]);
-        $license_plate = explode("/",$data_postback_explode[1]);  ;
+        $license_plate = explode("_",$data_postback_explode[1]);  ;
         $registration_number = $license_plate[0];
         $province = $license_plate[1];
 
