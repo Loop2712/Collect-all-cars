@@ -12,7 +12,6 @@ use App\Models\LineMessagingAPI;
 use App\Models\Group_line;
 use App\Models\Sos_map;
 use App\Models\Partner;
-use Auth;
 
 class LineApiController extends Controller
 {
@@ -82,7 +81,7 @@ class LineApiController extends Controller
                 $line->select_reply(null, $event, "reply");
                 break;
             case "sos" : 
-                $this->sos_helper($data_postback_explode[1]);
+                $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
                 break;
         }   
 
@@ -363,7 +362,7 @@ class LineApiController extends Controller
     }
 
 
-    public function sos_helper($data_postback_explode)
+    public function sos_helper($data_postback_explode , $provider_id)
     {
         $data_data = explode("/",$data_postback_explode);
 
@@ -373,7 +372,7 @@ class LineApiController extends Controller
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
-        $user = Auth::user();
+        $user = DB::table('users')->where('provider_id', $provider_id)->get();
 
         $data3 = [
             "title" => "user",
