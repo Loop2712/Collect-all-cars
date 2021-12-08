@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
 use App\Models\LineMessagingAPI;
 use App\Models\Group_line;
+use App\Models\Sos_map;
+use App\Models\Partner;
 
 class LineApiController extends Controller
 {
@@ -30,12 +32,7 @@ class LineApiController extends Controller
             case "message" : 
                 $this->messageHandler($event);
                 break;
-            case "postback" :
-                $data2 = [
-                    "title" => "postback",
-                    "content" => "postback",
-                ];
-                MyLog::create($data2);  
+            case "postback" : 
                 $this->postbackHandler($event);
                 break;
             case "join" :
@@ -66,11 +63,6 @@ class LineApiController extends Controller
 
     public function postbackHandler($event)
     {
-        $data2 = [
-            "title" => "postbackHandler",
-            "content" => "postbackHandler",
-        ];
-        MyLog::create($data2); 
         $line = new LineMessagingAPI();
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
@@ -86,19 +78,10 @@ class LineApiController extends Controller
                 $line->reply_success($event);
                 break;
             case "การตอบกลับ" : 
-                $data3 = [
-                        "title" => "การตอบกลับ",
-                        "content" => "การตอบกลับ",
-                    ];
-                    MyLog::create($data3); 
                 $line->select_reply(null, $event, "reply");
                 break;
             case "sos" : 
-                    $data3 = [
-                    "title" => "sos",
-                    "content" => "sos",
-                ];
-                MyLog::create($data3); 
+
                 break;
         }   
 
@@ -376,6 +359,151 @@ class LineApiController extends Controller
             ->get();
 
         return $data_user;
+    }
+
+
+    public function sos_helper($data_postback_explode)
+    {
+        //SAVE LOG
+        $requestData = $request->all();
+        $data = [
+            "title" => "data_postback_explode",
+            "content" => $data_postback_explode,
+        ];
+        MyLog::create($data);  
+
+        $data_data = explode("/",$data_postback_explode);
+
+        $id_sos_map = $data_data[0] ;
+        $id_organization_helper = $data_data[1] ;
+
+        $data_sos_map = Sos_map::findOrFail($id_sos_map);
+        $data_partner_helpers = Partner::findOrFail($id_organization_helper);
+
+        $user = Auth::user();
+
+        if (!empty($data_sos_map->helper)) {
+
+            $explode_helper_id = explode(",",$data_sos_map->helper_id);
+            for ($i=0; $i < count($explode_helper_id); $i++) {
+
+                if ($explode_helper_id[$i] != $user->id) {
+                    $helper_double = "No";
+                }else{
+                    $helper_double = "Yes";
+                    break;
+                }
+
+            }
+            
+            if ($helper_double != "Yes") {
+                DB::table('sos_maps')
+                    ->where('id', $id_sos_map)
+                    ->update([
+                        'helper' => $data_sos_map->helper . ',' . $user->name,
+                        'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
+                        'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                ]);
+
+                $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+
+            }else{
+                //
+            }
+
+        }else {
+            DB::table('sos_maps')
+                ->where('id', $id_sos_map)
+                ->update([
+                    'helper' => $user->name,
+                    'helper_id' => $user->id,
+                    'organization_helper' => $data_partner_helpers->name,
+            ]);
+
+            $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+            
+        }
+
+        return view('close_browser');
+
+    }
+
+    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper)
+    {   
+        $data_line_group = DB::table('group_lines')
+                    ->where('groupName', $data_partner_helpers->line_group)
+                    ->get();
+
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        $data_topic = [
+                    "การขอความช่วยเหลือ",
+                    "ผู้ให้การช่วยเหลือ",
+                    "การช่วยเหลือเสร็จสิ้น",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
+
+        $template_path = storage_path('../public/json/helper_to_groupline.json');
+        $string_json = file_get_contents($template_path);
+           
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+        $string_json = str_replace("date_time",$time_zone,$string_json);
+
+        $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
+        $string_json = str_replace("ผู้ให้การช่วยเหลือ",$data_topic[1],$string_json);
+        $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
+
+        $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+        $string_json = str_replace("name_helper",$name_helper,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "send_helper_to_groupline",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+        ];
+        MyLog::create($data);
+
     }
 
 }
