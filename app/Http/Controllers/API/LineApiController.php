@@ -81,7 +81,7 @@ class LineApiController extends Controller
                 $line->select_reply(null, $event, "reply");
                 break;
             case "sos" : 
-                $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
+                $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"] , $event["replyToken"]);
                 break;
         }   
 
@@ -362,7 +362,7 @@ class LineApiController extends Controller
     }
 
 
-    public function sos_helper($data_postback_explode , $provider_id)
+    public function sos_helper($data_postback_explode , $provider_id , $replyToken)
     {
         $data_data = explode("/",$data_postback_explode);
 
@@ -421,7 +421,7 @@ class LineApiController extends Controller
                         'organization_helper' => $data_partner_helpers->name,
                 ]);
 
-                $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+                $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $replyToken);
                 
             }
         }
@@ -430,7 +430,7 @@ class LineApiController extends Controller
 
     }
 
-    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper)
+    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper , $replyToken)
     {   
         $data_line_group = DB::table('group_lines')
                     ->where('groupName', $data_partner_helpers->line_group)
@@ -481,7 +481,7 @@ class LineApiController extends Controller
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
-            "to" => $groupId,
+            "to" => $replyToken,
             "messages" => $messages,
         ];
 
@@ -496,7 +496,8 @@ class LineApiController extends Controller
         ];
                             
         $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
+        // $url = "https://api.line.me/v2/bot/message/push";
+        $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
 
         // SAVE LOG
