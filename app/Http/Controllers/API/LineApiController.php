@@ -364,17 +364,16 @@ class LineApiController extends Controller
 
     public function sos_helper($data_postback_explode)
     {
-        //SAVE LOG
-        $data3 = [
-            "title" => "data_postback_explode",
-            "content" => "data_postback_explode",
-        ];
-        MyLog::create($data3);  
-
         $data_data = explode("/",$data_postback_explode);
 
         $id_sos_map = $data_data[0] ;
         $id_organization_helper = $data_data[1] ;
+
+        $data3 = [
+            "title" => "sos_helper",
+            "content" => $id_sos_map . '/' . $id_organization_helper,
+        ];
+        MyLog::create($data3);  
 
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
