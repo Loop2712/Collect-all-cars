@@ -78,14 +78,14 @@ class LineApiController extends Controller
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
                 break;
-            case "sos_helper" : 
+            case "sos" : 
                 //SAVE LOG
                 $data2 = [
                     "title" => "sos_helper",
                     "content" => $data_postback_explode,
                 ];
                 MyLog::create($data2);
-                $line->sos_helper($data_postback_explode);
+                $line->sos_helper(null, $event, "sos_helper");
                 break;
         }   
 
