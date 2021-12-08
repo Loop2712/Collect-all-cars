@@ -367,7 +367,7 @@ class LineApiController extends Controller
         //SAVE LOG
         $data3 = [
             "title" => "data_postback_explode",
-            "content" => $data_postback_explode,
+            "content" => "data_postback_explode",
         ];
         MyLog::create($data3);  
 
