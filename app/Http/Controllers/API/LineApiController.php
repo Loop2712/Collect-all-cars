@@ -400,7 +400,7 @@ class LineApiController extends Controller
                                 'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
                         ]);
 
-                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id);
 
                     }else{
                         //
@@ -415,7 +415,7 @@ class LineApiController extends Controller
                             'organization_helper' => $data_partner_helpers->name,
                     ]);
 
-                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id);
                     
                 }
             }
@@ -425,7 +425,7 @@ class LineApiController extends Controller
 
     }
 
-    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper)
+    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper , $helper_id)
     {   
         $data_line_group = DB::table('group_lines')
                     ->where('groupName', $data_partner_helpers->line_group)
@@ -502,6 +502,96 @@ class LineApiController extends Controller
         MyLog::create($data);
 
         // ส่งไลน์หา user ที่ขอความช่วยเหลือ
+        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id);
+
+    }
+
+    protected function _send_helper_to_user($helper_id , $user_id)
+    {
+        $users = DB::table('users')->where('id', $user_id)->get();
+
+        foreach ($users as $user) {
+            // TIME ZONE
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
+
+            $data_topic = [
+                        "เรียนคุณ",
+                        "เจ้าหน้าที่กำลังเดินทางไปหาคุณ",
+                        "ข้อมูลเจ้าหน้าที่",
+                        "เจ้าหน้าที่",
+                        "จาก",
+                    ];
+
+            for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+                $text_topic = DB::table('text_topics')
+                        ->select($user->language)
+                        ->where('th', $data_topic[$xi])
+                        ->where('en', "!=", null)
+                        ->get();
+
+                foreach ($text_topic as $item_of_text_topic) {
+                    $data_topic[$xi] = $item_of_text_topic->$user->language ;
+                }
+            }
+
+            $template_path = storage_path('../public/json/helper_to_user.json');
+            $string_json = file_get_contents($template_path);
+               
+            $string_json = str_replace("ตัวอย่าง",$data_topic[1],$string_json);
+            $string_json = str_replace("date_time",$time_zone,$string_json);
+            $string_json = str_replace("ข้อมูลเจ้าหน้าที่",$data_topic[2],$string_json);
+
+            // user
+            $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
+            $string_json = str_replace("user_name",$user->name,$string_json);
+            $string_json = str_replace("เจ้าหน้าที่กำลังเดินทางไปหาคุณ",$data_topic[1],$string_json);
+
+            //helper
+            $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
+            $string_json = str_replace("จาก",$data_topic[4],$string_json);
+
+            $data_helpers = DB::table('users')->where('id', $helper_id)->get();
+
+            foreach ($data_helpers as $data_helper) {
+
+                $string_json = str_replace("name_helper",$data_helper->name,$string_json);
+
+                if (!empty($data_helper->organization)) {
+                    $string_json = str_replace("..",$data_helper->organization,$string_json);
+                }
+
+            }
+
+            $messages = [ json_decode($string_json, true) ];
+
+            $body = [
+                "to" => $user->provider_id,
+                "messages" => $messages,
+            ];
+
+            $opts = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
+                                
+            $context  = stream_context_create($opts);
+            $url = "https://api.line.me/v2/bot/message/push";
+            $result = file_get_contents($url, false, $context);
+
+            // SAVE LOG
+            $data = [
+                "title" => "send_helper_to_user",
+                "content" => $user->name . 'รอรับการช่วยเหลือจากเจ้าหน้าที่',
+            ];
+            MyLog::create($data);
+        }
 
     }
 
