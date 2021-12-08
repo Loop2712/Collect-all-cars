@@ -32,7 +32,6 @@ class LineApiController extends Controller
                 break;
             case "postback" :
                     //SAVE LOG
-                    $requestData = $request->all();
                     $data2 = [
                         "title" => "postback",
                         "content" => "postback",
