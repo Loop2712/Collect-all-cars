@@ -365,12 +365,11 @@ class LineApiController extends Controller
     public function sos_helper($data_postback_explode)
     {
         //SAVE LOG
-        $requestData = $request->all();
-        $data = [
+        $data3 = [
             "title" => "data_postback_explode",
             "content" => $data_postback_explode,
         ];
-        MyLog::create($data);  
+        MyLog::create($data3);  
 
         $data_data = explode("/",$data_postback_explode);
 
