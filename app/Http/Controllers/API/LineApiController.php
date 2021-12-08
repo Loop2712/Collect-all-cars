@@ -376,13 +376,6 @@ class LineApiController extends Controller
 
         foreach ($users as $user) {
 
-            $data3 = [
-                "title" => "user",
-                "content" => $user->id,
-            ];
-            MyLog::create($data3);  
-
-
             if (!empty($data_sos_map->helper)) {
 
                 $explode_helper_id = explode(",",$data_sos_map->helper_id);
@@ -502,7 +495,7 @@ class LineApiController extends Controller
         // SAVE LOG
         $data = [
             "title" => "send_helper_to_groupline",
-            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+            "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
         ];
         MyLog::create($data);
 
