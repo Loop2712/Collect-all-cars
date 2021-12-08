@@ -79,6 +79,12 @@ class LineApiController extends Controller
                 $line->select_reply(null, $event, "reply");
                 break;
             case "sos_helper" : 
+                //SAVE LOG
+                $data2 = [
+                    "title" => "sos_helper",
+                    "content" => $data_postback_explode,
+                ];
+                MyLog::create($data2);
                 $line->sos_helper($data_postback_explode);
                 break;
         }   
