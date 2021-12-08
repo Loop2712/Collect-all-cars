@@ -86,6 +86,11 @@ class LineApiController extends Controller
                 $line->reply_success($event);
                 break;
             case "การตอบกลับ" : 
+                $data3 = [
+                        "title" => "การตอบกลับ",
+                        "content" => "การตอบกลับ",
+                    ];
+                    MyLog::create($data3); 
                 $line->select_reply(null, $event, "reply");
                 break;
             case "sos" : 

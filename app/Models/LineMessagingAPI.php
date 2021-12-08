@@ -65,6 +65,11 @@ class LineMessagingAPI extends Model
     }
     public function select_reply($data, $event, $postback_data)
     { 
+        $data3 = [
+            "title" => "select_reply",
+            "content" => $event,
+        ];
+        MyLog::create($data3); 
         // ป้ายทะเบียนรถที่ถูกเรียก
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $license_plate = explode("_",$data_postback_explode[1]);  ;
