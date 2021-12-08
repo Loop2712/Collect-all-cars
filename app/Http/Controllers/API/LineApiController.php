@@ -372,55 +372,58 @@ class LineApiController extends Controller
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
-        $user = DB::table('users')->where('provider_id', $provider_id)->get();
+        $users = DB::table('users')->where('provider_id', $provider_id)->get();
 
-        $data3 = [
-            "title" => "user",
-            "content" => $user->id,
-        ];
-        MyLog::create($data3);  
+        foreach ($users as $user) {
+
+            $data3 = [
+                "title" => "user",
+                "content" => $user->id,
+            ];
+            MyLog::create($data3);  
 
 
-        if (!empty($data_sos_map->helper)) {
+            if (!empty($data_sos_map->helper)) {
 
-            $explode_helper_id = explode(",",$data_sos_map->helper_id);
-            for ($i=0; $i < count($explode_helper_id); $i++) {
+                $explode_helper_id = explode(",",$data_sos_map->helper_id);
+                for ($i=0; $i < count($explode_helper_id); $i++) {
 
-                if ($explode_helper_id[$i] != $user->id) {
-                    $helper_double = "No";
+                    if ($explode_helper_id[$i] != $user->id) {
+                        $helper_double = "No";
+                    }else{
+                        $helper_double = "Yes";
+                        break;
+                    }
+
+                }
+                
+                if ($helper_double != "Yes") {
+                    DB::table('sos_maps')
+                        ->where('id', $id_sos_map)
+                        ->update([
+                            'helper' => $data_sos_map->helper . ',' . $user->name,
+                            'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
+                            'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                    ]);
+
+                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
+
                 }else{
-                    $helper_double = "Yes";
-                    break;
+                    //
                 }
 
-            }
-            
-            if ($helper_double != "Yes") {
+            }else {
                 DB::table('sos_maps')
                     ->where('id', $id_sos_map)
                     ->update([
-                        'helper' => $data_sos_map->helper . ',' . $user->name,
-                        'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
-                        'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                        'helper' => $user->name,
+                        'helper_id' => $user->id,
+                        'organization_helper' => $data_partner_helpers->name,
                 ]);
 
                 $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
-
-            }else{
-                //
+                
             }
-
-        }else {
-            DB::table('sos_maps')
-                ->where('id', $id_sos_map)
-                ->update([
-                    'helper' => $user->name,
-                    'helper_id' => $user->id,
-                    'organization_helper' => $data_partner_helpers->name,
-            ]);
-
-            $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name);
-            
         }
 
         return view('close_browser');
