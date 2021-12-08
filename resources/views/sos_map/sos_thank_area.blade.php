@@ -75,23 +75,6 @@
         setTimeout(function() {
           // document.getElementById("a_line").click();
         }, delayInMilliseconds);
-        // console.log("START");
-        let user_id = document.querySelector('#user_id').value;
-
-        fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-
-                let countryCode = document.querySelector('#CountryCode');
-                    countryCode.value = result['countryCode'];
-
-                if (result['countryCode']) {
-                    document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
-                }
-
-            });
-
     });
 </script>
 @endsection
