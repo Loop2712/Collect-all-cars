@@ -72,7 +72,7 @@ class LineMessagingAPI extends Model
         //SAVE LOG
         $data2 = [
             "title" => "select_reply",
-            "content" => "select_reply",
+            "content" => json_encode($event, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data2); 
         // ป้ายทะเบียนรถที่ถูกเรียก
