@@ -75,6 +75,9 @@
         setTimeout(function() {
           // document.getElementById("a_line").click();
         }, delayInMilliseconds);
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         let user_id = document.querySelector('#user_id').value;
 
