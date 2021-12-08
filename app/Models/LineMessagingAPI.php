@@ -69,13 +69,7 @@ class LineMessagingAPI extends Model
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $license_plate = explode("_",$data_postback_explode[1]);  ;
         $registration_number = $license_plate[0];
-        $province = $license_plate[1];
-
-        $data3 = [
-            "title" => "select_reply",
-            "content" => $event["source"]['userId'],
-        ];
-        MyLog::create($data3); 
+        $province = $license_plate[1]; 
 
         $data_Text_topic = [
             "ขอบคุณ",
@@ -86,6 +80,13 @@ class LineMessagingAPI extends Model
         ];
 
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
+
+        $data3 = [
+            "title" => "select_reply",
+            "content" => $data_topic,
+            // json_encode($requestData, JSON_UNESCAPED_UNICODE)
+        ];
+        MyLog::create($data3);
 
         $template_path = storage_path('../public/json/flex-reply-option.json');   
         $string_json = file_get_contents($template_path);
