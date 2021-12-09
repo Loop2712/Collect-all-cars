@@ -559,6 +559,13 @@ class LineApiController extends Controller
                 }
             }
 
+            // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => $time_zone,
+            ];
+            MyLog::create($data_3);
+
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);
                
@@ -577,13 +584,6 @@ class LineApiController extends Controller
             $string_json = str_replace("name_helper",$name_helper,$string_json);
             $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_helper,$string_json);
             $string_json = str_replace("..",$organization_helper,$string_json);
-
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $time_zone,
-            ];
-            MyLog::create($data_3);
             
             $messages = [ json_decode($string_json, true) ];
 
