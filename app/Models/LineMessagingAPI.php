@@ -97,7 +97,7 @@ class LineMessagingAPI extends Model
         // SAVE LOG
         $data_3 = [
             "title" => "select_reply",
-            "content" => $data_topic[0],
+            "content" => $event,
         ];
         MyLog::create($data_3);
         
