@@ -512,13 +512,6 @@ class LineApiController extends Controller
         $users = DB::table('users')->where('id', $user_id)->get();
         $data_helpers = DB::table('users')->where('id', $helper_id)->get();
 
-        // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $data_helpers,
-            ];
-            MyLog::create($data_3);
-
         foreach ($users as $user) {
 
             // TIME ZONE
@@ -563,6 +556,13 @@ class LineApiController extends Controller
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
 
             foreach ($data_helpers as $data_helper) {
+
+                // SAVE LOG
+                $data_3 = [
+                    "title" => "_send_helper_to_user",
+                    "content" => $data_helper->name.'/'.$data_helper->organization,
+                ];
+                MyLog::create($data_3);
 
                 if (!empty($data_helper->photo)) {
                     $photo_helper = "https://www.viicheck.com/storage/".$data_helper->photo ;
