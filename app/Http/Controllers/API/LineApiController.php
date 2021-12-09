@@ -510,14 +510,15 @@ class LineApiController extends Controller
     {
         $users = DB::table('users')->where('id', $user_id)->get();
 
-        // SAVE LOG
-        $data_3 = [
-            "title" => "_send_helper_to_user",
-            "content" => $users,
-        ];
-        MyLog::create($data_3);
-
         foreach ($users as $user) {
+
+            // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => $user->time_zone.'/'.$user->language.'/'.$user->provider_id,
+            ];
+            MyLog::create($data_3);
+
             // TIME ZONE
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
