@@ -12,7 +12,6 @@ use App\Models\LineMessagingAPI;
 use App\Models\Group_line;
 use App\Models\Sos_map;
 use App\Models\Partner;
-use App\Http\Controllers\API\API_Time_zone;
 
 class LineApiController extends Controller
 {
@@ -535,8 +534,15 @@ class LineApiController extends Controller
         foreach ($users as $user) {
 
             // TIME ZONE
-            // $API_Time_zone = new API_Time_zone();
-            // $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
+
+            // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => $user->time_zone,
+            ];
+            MyLog::create($data_3);
 
             $data_topic = [
                         "เรียนคุณ",
@@ -559,18 +565,11 @@ class LineApiController extends Controller
                 }
             }
 
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $user->language,
-            ];
-            MyLog::create($data_3);
-
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);
                
             $string_json = str_replace("ตัวอย่าง",$data_topic[1],$string_json);
-            // $string_json = str_replace("date_time",$time_zone,$string_json);
+            $string_json = str_replace("date_time",$time_zone,$string_json);
             $string_json = str_replace("ข้อมูลเจ้าหน้าที่",$data_topic[2],$string_json);
 
             // user
