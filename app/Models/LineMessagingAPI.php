@@ -103,11 +103,7 @@ class LineMessagingAPI extends Model
         
         $body = [
             "replyToken" => $event["replyToken"],
-            // "messages" => $messages,
-            "messages" => {
-                           "type": "text",
-                           "text": "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ"
-                        },
+            "messages" => $messages,
         ];
 
         $opts = [
