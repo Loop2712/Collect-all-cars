@@ -523,7 +523,12 @@ class LineApiController extends Controller
             }
 
             $name_helper = $data_helper->name ;
-            $organization_helper = $data_helper->organization ;
+
+            if (!empty($data_helper->organization)) {
+                $organization_helper = $data_helper->organization ;
+            }else{
+                $organization_helper = ".." ;
+            }
 
             // SAVE LOG
             $data_3 = [
