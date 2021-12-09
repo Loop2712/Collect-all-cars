@@ -102,7 +102,7 @@ class LineMessagingAPI extends Model
         MyLog::create($data_3);
         
         $body = [
-            "to" => $event["source"]['userId'],
+            "replyToken" => $event["replyToken"],
             "messages" => $messages,
         ];
 
@@ -117,16 +117,18 @@ class LineMessagingAPI extends Model
         ];
                             
         $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
 
-        //SAVE LOG
-        $data = [
-            "title" => "ตอบกลับ " . $registration_number . '/' . $province,
-            "content" => $data_topic[0],
-        ];
-        MyLog::create($data);
-        return $result;
+        // //SAVE LOG
+        // $data = [
+        //     "title" => "ตอบกลับ " . $registration_number . '/' . $province,
+        //     "content" => $data_topic[0],
+        // ];
+        // MyLog::create($data);
+        
+        // return $result;
 
     }
 
