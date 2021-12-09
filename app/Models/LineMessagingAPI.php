@@ -79,12 +79,12 @@ class LineMessagingAPI extends Model
             "ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
         ];
 
-        // SAVE LOG
-        $data_3 = [
-            "title" => "select_reply",
-            "content" => json_encode($data_Text_topic, JSON_UNESCAPED_UNICODE),
-        ];
-        MyLog::create($data_3);
+        // // SAVE LOG
+        // $data_3 = [
+        //     "title" => "select_reply",
+        //     "content" => json_encode($data_Text_topic, JSON_UNESCAPED_UNICODE),
+        // ];
+        // MyLog::create($data_3);
 
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
@@ -1553,6 +1553,13 @@ class LineMessagingAPI extends Model
                 $data_topic[$i] = $item_of_text_topic->$user_language ;
             }
         }
+
+        // SAVE LOG
+        $data_3 = [
+            "title" => "language_for_user",
+            "content" => $data_topic,
+        ];
+        MyLog::create($data_3);
 
         return $data_topic ;
 
