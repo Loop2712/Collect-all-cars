@@ -72,7 +72,7 @@
             "contents": [
               {
                 "type": "image",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
+                "url": "https://scdn.line-apps.com/clip13.jpg",
                 "aspectMode": "cover",
                 "size": "full"
               }
@@ -121,7 +121,7 @@
                   },
                   {
                     "type": "span",
-                    "text": ".."
+                    "text": "zzz"
                   }
                 ],
                 "size": "sm",
