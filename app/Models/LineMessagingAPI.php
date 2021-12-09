@@ -79,14 +79,14 @@ class LineMessagingAPI extends Model
             "ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
         ];
 
-        $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
-
         // SAVE LOG
         $data_3 = [
             "title" => "select_reply",
-            "content" => $data_topic,
+            "content" => $data_Text_topic,
         ];
         MyLog::create($data_3);
+
+        $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
         $template_path = storage_path('../public/json/flex-reply-option.json');   
         $string_json = file_get_contents($template_path);
