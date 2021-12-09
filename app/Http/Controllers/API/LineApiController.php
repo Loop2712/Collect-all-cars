@@ -577,15 +577,15 @@ class LineApiController extends Controller
             $string_json = str_replace("name_helper",$name_helper,$string_json);
             $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_helper,$string_json);
             $string_json = str_replace("..",$organization_helper,$string_json);
-            
-            $messages = [ json_decode($string_json, true) ];
 
             // SAVE LOG
             $data_3 = [
                 "title" => "_send_helper_to_user",
-                "content" => json_encode($messages, JSON_UNESCAPED_UNICODE),
+                "content" => $time_zone,
             ];
             MyLog::create($data_3);
+            
+            $messages = [ json_decode($string_json, true) ];
 
             $body = [
                 "to" => $user->provider_id,
