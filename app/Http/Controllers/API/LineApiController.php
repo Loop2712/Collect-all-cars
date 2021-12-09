@@ -583,10 +583,10 @@ class LineApiController extends Controller
             // SAVE LOG
             $data_3 = [
                 "title" => "_send_helper_to_user",
-                "content" => $messages,
+                "content" => json_encode($messages, JSON_UNESCAPED_UNICODE),
             ];
             MyLog::create($data_3);
-            
+
             $body = [
                 "to" => $user->provider_id,
                 "messages" => $messages,
