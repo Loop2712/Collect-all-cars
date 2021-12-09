@@ -545,6 +545,13 @@ class LineApiController extends Controller
                         "จาก",
                     ];
 
+            // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => $user->provider_id,
+            ];
+            MyLog::create($data_3);
+
             for ($xi=0; $xi < count($data_topic); $xi++) { 
 
                 $text_topic = DB::table('text_topics')
@@ -558,12 +565,7 @@ class LineApiController extends Controller
                 }
             }
 
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $user->provider_id,
-            ];
-            MyLog::create($data_3);
+
 
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);
