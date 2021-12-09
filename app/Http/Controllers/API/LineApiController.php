@@ -502,34 +502,15 @@ class LineApiController extends Controller
         MyLog::create($data);
 
         // ส่งไลน์หา user ที่ขอความช่วยเหลือ
-        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id);
+        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name);
 
     }
 
-    protected function _send_helper_to_user($helper_id , $user_id)
+    protected function _send_helper_to_user($helper_id , $user_id , $name_partner_helpers)
     {
 
         $users = DB::table('users')->where('id', $user_id)->get();
         $data_helpers = DB::table('users')->where('id', $helper_id)->get();
-
-        foreach ($data_helpers as $data_helper) {
-
-            if (!empty($data_helper->photo)) {
-                $photo_helper = "https://www.viicheck.com/storage/".$data_helper->photo ;
-            }
-            if (empty($data_helper->photo)) {
-                $photo_helper = $data_helper->avatar ;
-            }
-
-            $name_helper = $data_helper->name ;
-
-            if (!empty($data_helper->organization)) {
-                $organization_helper = $data_helper->organization ;
-            }else{
-                $organization_helper = ".." ;
-            }
-
-        }
 
         foreach ($users as $user) {
 
@@ -573,11 +554,24 @@ class LineApiController extends Controller
             $string_json = str_replace("เจ้าหน้าที่กำลังเดินทางไปหาคุณ",$data_topic[1],$string_json);
 
             //helper
+            foreach ($data_helpers as $data_helper) {
+
+                if (!empty($data_helper->photo)) {
+                    $photo_helper = "https://www.viicheck.com/storage/".$data_helper->photo ;
+                }
+                if (empty($data_helper->photo)) {
+                    $photo_helper = $data_helper->avatar ;
+                }
+                
+                $name_helper = $data_helper->name ;
+
+            }
+            
             $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
             $string_json = str_replace("name_helper",$name_helper,$string_json);
             $string_json = str_replace("https://scdn.line-apps.com/clip13.jpg",$photo_helper,$string_json);
-            $string_json = str_replace("zzz",$organization_helper,$string_json);
+            $string_json = str_replace("zzz",$name_partner_helpers,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
