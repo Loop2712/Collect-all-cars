@@ -540,7 +540,7 @@ class LineApiController extends Controller
             // SAVE LOG
             $data_3 = [
                 "title" => "_send_helper_to_user",
-                "content" => $user->time_zone,
+                "content" => $time_zone,
             ];
             MyLog::create($data_3);
 
