@@ -545,44 +545,44 @@ class LineApiController extends Controller
                         "จาก",
                     ];
 
-            for ($xi=0; $xi < count($data_topic); $xi++) { 
+            // for ($xi=0; $xi < count($data_topic); $xi++) { 
 
-                $text_topic = DB::table('text_topics')
-                        ->select($user->language)
-                        ->where('th', $data_topic[$xi])
-                        ->where('en', "!=", null)
-                        ->get();
+            //     $text_topic = DB::table('text_topics')
+            //             ->select($user->language)
+            //             ->where('th', $data_topic[$xi])
+            //             ->where('en', "!=", null)
+            //             ->get();
 
-                foreach ($text_topic as $item_of_text_topic) {
-                    $data_topic[$xi] = $item_of_text_topic->$user->language ;
-                }
-            }
+            //     foreach ($text_topic as $item_of_text_topic) {
+            //         $data_topic[$xi] = $item_of_text_topic->$user->language ;
+            //     }
+            // }
 
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $text_topic,
-            ];
-            MyLog::create($data_3);
+            // // SAVE LOG
+            // $data_3 = [
+            //     "title" => "_send_helper_to_user",
+            //     "content" => $text_topic,
+            // ];
+            // MyLog::create($data_3);
 
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);
                
-            $string_json = str_replace("ตัวอย่าง",$data_topic[1],$string_json);
-            $string_json = str_replace("date_time",$time_zone,$string_json);
-            $string_json = str_replace("ข้อมูลเจ้าหน้าที่",$data_topic[2],$string_json);
+            // $string_json = str_replace("ตัวอย่าง",$data_topic[1],$string_json);
+            // $string_json = str_replace("date_time",$time_zone,$string_json);
+            // $string_json = str_replace("ข้อมูลเจ้าหน้าที่",$data_topic[2],$string_json);
 
-            // user
-            $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
-            $string_json = str_replace("user_name",$user->name,$string_json);
-            $string_json = str_replace("เจ้าหน้าที่กำลังเดินทางไปหาคุณ",$data_topic[1],$string_json);
+            // // user
+            // $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
+            // $string_json = str_replace("user_name",$user->name,$string_json);
+            // $string_json = str_replace("เจ้าหน้าที่กำลังเดินทางไปหาคุณ",$data_topic[1],$string_json);
 
-            //helper
-            $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
-            $string_json = str_replace("จาก",$data_topic[4],$string_json);
-            $string_json = str_replace("name_helper",$name_helper,$string_json);
-            $string_json = str_replace("https://scdn.line-apps.com/clip13.jpg",$photo_helper,$string_json);
-            $string_json = str_replace("zzz",$organization_helper,$string_json);
+            // //helper
+            // $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
+            // $string_json = str_replace("จาก",$data_topic[4],$string_json);
+            // $string_json = str_replace("name_helper",$name_helper,$string_json);
+            // $string_json = str_replace("https://scdn.line-apps.com/clip13.jpg",$photo_helper,$string_json);
+            // $string_json = str_replace("zzz",$organization_helper,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
