@@ -508,14 +508,14 @@ class LineApiController extends Controller
 
     protected function _send_helper_to_user($helper_id , $user_id)
     {
+        $users = DB::table('users')->where('id', $user_id)->get();
+
         // SAVE LOG
         $data_3 = [
             "title" => "_send_helper_to_user",
-            "content" => '_send_helper_to_user',
+            "content" => $users,
         ];
         MyLog::create($data_3);
-
-        $users = DB::table('users')->where('id', $user_id)->get();
 
         foreach ($users as $user) {
             // TIME ZONE
