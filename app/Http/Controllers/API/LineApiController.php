@@ -587,7 +587,7 @@ class LineApiController extends Controller
             $messages = [ json_decode($string_json, true) ];
 
             $body = [
-                "to" => $user->provider_id,
+                "to" => 'U912994894c449f2237f73f18b5703e89',
                 "messages" => $messages,
             ];
 
