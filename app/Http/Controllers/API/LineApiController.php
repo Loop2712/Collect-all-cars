@@ -548,7 +548,7 @@ class LineApiController extends Controller
             // SAVE LOG
             $data_3 = [
                 "title" => "_send_helper_to_user",
-                "content" => $user->provider_id,
+                "content" => $user->language,
             ];
             MyLog::create($data_3);
 
@@ -564,6 +564,19 @@ class LineApiController extends Controller
                     $data_topic[$xi] = $item_of_text_topic->$user->language ;
                 }
             }
+
+            // for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            //     $text_topic = DB::table('text_topics')
+            //             ->select($group_language)
+            //             ->where('th', $data_topic[$xi])
+            //             ->where('en', "!=", null)
+            //             ->get();
+
+            //     foreach ($text_topic as $item_of_text_topic) {
+            //         $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            //     }
+            // }
 
 
 
