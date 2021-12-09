@@ -86,13 +86,6 @@ class LineMessagingAPI extends Model
         $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
         $string_json = str_replace("กรุงเทพ",$province,$string_json);
 
-        // SAVE LOG
-        $data_3 = [
-            "title" => "select_reply",
-            "content" => $data_topic[0],
-        ];
-        MyLog::create($data_3);
-
         $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
         $string_json = str_replace("รอสักครู่",$data_topic[1],$string_json);
         $string_json = str_replace("ฉันไม่สะดวก",$data_topic[2],$string_json);
@@ -100,6 +93,13 @@ class LineMessagingAPI extends Model
         $string_json = str_replace("ตอบกลับได้เพียง 1 ข้อ เท่านั้น",$data_topic[4],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
+
+        // SAVE LOG
+        $data_3 = [
+            "title" => "select_reply",
+            "content" => $data_topic[0],
+        ];
+        MyLog::create($data_3);
         
         $body = [
             "replyToken" => $event["replyToken"],
