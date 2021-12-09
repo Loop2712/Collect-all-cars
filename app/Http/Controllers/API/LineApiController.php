@@ -515,7 +515,7 @@ class LineApiController extends Controller
         // SAVE LOG
         $data_3 = [
             "title" => "_send_helper_to_user",
-            "content" => $data_helpers,
+            "content" => $data_helpers['name'],
         ];
         MyLog::create($data_3);
 
