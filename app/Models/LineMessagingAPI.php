@@ -1556,11 +1556,11 @@ class LineMessagingAPI extends Model
 
         // SAVE LOG
         $data_3 = [
-            "title" => "language_for_user",
-            "content" => $data_topic,
+            "title" => "select_reply",
+            "content" => json_encode($data_topic, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data_3);
-
+        
         return $data_topic ;
 
     }
