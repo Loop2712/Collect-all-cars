@@ -531,40 +531,34 @@ class LineApiController extends Controller
 
         }
 
-        $data_topic = [
-                    "เรียนคุณ",
-                    "เจ้าหน้าที่กำลังเดินทางไปหาคุณ",
-                    "ข้อมูลเจ้าหน้าที่",
-                    "เจ้าหน้าที่",
-                    "จาก",
-                ];
-
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
-
-            $text_topic = DB::table('text_topics')
-                    ->select('th')
-                    ->where('th', $data_topic[$xi])
-                    ->where('en', "!=", null)
-                    ->get();
-
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$xi] = $item_of_text_topic->th ;
-            }
-        }
-
-
         foreach ($users as $user) {
+
+            $user_language = $user->language ;
 
             // TIME ZONE
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
 
-            // // SAVE LOG
-            // $data_3 = [
-            //     "title" => "_send_helper_to_user",
-            //     "content" => $text_topic,
-            // ];
-            // MyLog::create($data_3);
+            $data_topic = [
+                        "เรียนคุณ",
+                        "เจ้าหน้าที่กำลังเดินทางไปหาคุณ",
+                        "ข้อมูลเจ้าหน้าที่",
+                        "เจ้าหน้าที่",
+                        "จาก",
+                    ];
+
+            for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+                $text_topic = DB::table('text_topics')
+                        ->select($user_language)
+                        ->where('th', $data_topic[$xi])
+                        ->where('en', "!=", null)
+                        ->get();
+
+                foreach ($text_topic as $item_of_text_topic) {
+                    $data_topic[$xi] = $item_of_text_topic->$user_language ;
+                }
+            }
 
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);

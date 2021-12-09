@@ -109,11 +109,6 @@ class Sos_mapController extends Controller
                 $this->_pushLine($requestData , $id_sos_map);
                 break;
         }
-
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
         
         // เช็ค type user แล้วเลือก redirect
         // type line เด้งกลับ line oa
