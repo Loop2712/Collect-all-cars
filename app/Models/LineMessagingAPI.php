@@ -108,10 +108,6 @@ class LineMessagingAPI extends Model
                 //'timeout' => 60
             ]
         ];
-     
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/reply";
-        $result = file_get_contents($url, false, $context);
 
         // SAVE LOG
         $data_3 = [
@@ -119,6 +115,11 @@ class LineMessagingAPI extends Model
             "content" => json_encode($body, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data_3);
+     
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
