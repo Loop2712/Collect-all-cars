@@ -79,14 +79,14 @@ class LineMessagingAPI extends Model
             "ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
         ];
 
-        // // SAVE LOG
-        // $data_3 = [
-        //     "title" => "select_reply",
-        //     "content" => json_encode($data_Text_topic, JSON_UNESCAPED_UNICODE),
-        // ];
-        // MyLog::create($data_3);
-
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
+
+        // SAVE LOG
+        $data_3 = [
+            "title" => "select_reply",
+            "content" => $data_topic[0],
+        ];
+        MyLog::create($data_3);
 
         $template_path = storage_path('../public/json/flex-reply-option.json');   
         $string_json = file_get_contents($template_path);
@@ -1554,13 +1554,6 @@ class LineMessagingAPI extends Model
             }
         }
 
-        // SAVE LOG
-        $data_3 = [
-            "title" => "select_reply",
-            "content" => json_encode($data_topic, JSON_UNESCAPED_UNICODE),
-        ];
-        MyLog::create($data_3);
-        
         return $data_topic ;
 
     }
