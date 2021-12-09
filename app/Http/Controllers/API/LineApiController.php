@@ -511,11 +511,11 @@ class LineApiController extends Controller
 
         $users = DB::table('users')->where('id', $user_id)->get();
         $data_helpers = DB::table('users')->where('id', $helper_id)->get();
-
+        $data_helpers = json_encode($data_helpers, JSON_UNESCAPED_UNICODE);
         // SAVE LOG
         $data_3 = [
             "title" => "_send_helper_to_user",
-            "content" => $data_helper['name'].'/'.$data_helper['organization'],
+            "content" => $data_helpers,
         ];
         MyLog::create($data_3);
 
