@@ -99,13 +99,6 @@ class LineMessagingAPI extends Model
             "messages" => $messages,
         ];
 
-        // SAVE LOG
-        $data_3 = [
-            "title" => "select_reply",
-            "content" => $data_topic[4],
-        ];
-        MyLog::create($data_3);
-
         $opts = [
             'http' =>[
                 'method'  => 'POST',
@@ -115,6 +108,13 @@ class LineMessagingAPI extends Model
                 //'timeout' => 60
             ]
         ];
+
+        // SAVE LOG
+        $data_3 = [
+            "title" => "select_reply",
+            "content" => json_encode($body, JSON_UNESCAPED_UNICODE),
+        ];
+        MyLog::create($data_3);
                             
         $context  = stream_context_create($opts);
         //https://api-data.line.me/v2/bot/message/11914912908139/content
