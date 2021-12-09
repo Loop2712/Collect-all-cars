@@ -512,6 +512,13 @@ class LineApiController extends Controller
         $users = DB::table('users')->where('id', $user_id)->get();
         $data_helpers = DB::table('users')->where('id', $helper_id)->get();
 
+        // SAVE LOG
+        $data_3 = [
+            "title" => "_send_helper_to_user",
+            "content" => $data_helper['name'].'/'.$data_helper['organization'],
+        ];
+        MyLog::create($data_3);
+
         foreach ($users as $user) {
 
             // TIME ZONE
@@ -555,30 +562,23 @@ class LineApiController extends Controller
             $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
 
-            foreach ($data_helpers as $data_helper) {
+            // foreach ($data_helpers as $data_helper) {
 
-                // SAVE LOG
-                $data_3 = [
-                    "title" => "_send_helper_to_user",
-                    "content" => $data_helper->name.'/'.$data_helper->organization,
-                ];
-                MyLog::create($data_3);
+            //     if (!empty($data_helper->photo)) {
+            //         $photo_helper = "https://www.viicheck.com/storage/".$data_helper->photo ;
+            //     }
+            //     if (empty($data_helper->photo)) {
+            //         $photo_helper = $data_helper->avatar ;
+            //     }
 
-                if (!empty($data_helper->photo)) {
-                    $photo_helper = "https://www.viicheck.com/storage/".$data_helper->photo ;
-                }
-                if (empty($data_helper->photo)) {
-                    $photo_helper = $data_helper->avatar ;
-                }
+            //     $string_json = str_replace("name_helper",$data_helper->name,$string_json);
+            //     $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_helper,$string_json);
 
-                $string_json = str_replace("name_helper",$data_helper->name,$string_json);
-                $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_helper,$string_json);
+            //     if (!empty($data_helper->organization)) {
+            //         $string_json = str_replace("..",$data_helper->organization,$string_json);
+            //     }
 
-                if (!empty($data_helper->organization)) {
-                    $string_json = str_replace("..",$data_helper->organization,$string_json);
-                }
-
-            }
+            // }
 
             $messages = [ json_decode($string_json, true) ];
 
