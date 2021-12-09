@@ -78,6 +78,13 @@ class LineApiController extends Controller
                 $line->reply_success($event);
                 break;
             case "การตอบกลับ" : 
+                // SAVE LOG
+                $data_3 = [
+                    "title" => "การตอบกลับ",
+                    "content" => "การตอบกลับ",
+                ];
+                MyLog::create($data_3);
+                
                 $line->select_reply(null, $event, "reply");
                 break;
             case "sos" : 
@@ -566,7 +573,7 @@ class LineApiController extends Controller
                 $name_helper = $data_helper->name ;
 
             }
-            
+
             $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
             $string_json = str_replace("name_helper",$name_helper,$string_json);
