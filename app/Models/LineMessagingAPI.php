@@ -71,13 +71,6 @@ class LineMessagingAPI extends Model
         $registration_number = $license_plate[0];
         $province = $license_plate[1]; 
 
-        // SAVE LOG
-        $data_3 = [
-            "title" => "select_reply",
-            "content" => $registration_number."/".$province,
-        ];
-        MyLog::create($data_3);
-
         $data_Text_topic = [
             "ขอบคุณ",
             "รอสักครู่",
@@ -87,6 +80,13 @@ class LineMessagingAPI extends Model
         ];
 
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
+
+        // SAVE LOG
+        $data_3 = [
+            "title" => "select_reply",
+            "content" => $data_topic,
+        ];
+        MyLog::create($data_3);
 
         $template_path = storage_path('../public/json/flex-reply-option.json');   
         $string_json = file_get_contents($template_path);
