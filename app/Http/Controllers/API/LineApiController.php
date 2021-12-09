@@ -537,13 +537,6 @@ class LineApiController extends Controller
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
 
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $time_zone,
-            ];
-            MyLog::create($data_3);
-
             $data_topic = [
                         "เรียนคุณ",
                         "เจ้าหน้าที่กำลังเดินทางไปหาคุณ",
@@ -565,6 +558,13 @@ class LineApiController extends Controller
                 }
             }
 
+            // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => $user->provider_id,
+            ];
+            MyLog::create($data_3);
+
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);
                
@@ -581,8 +581,8 @@ class LineApiController extends Controller
             $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
             $string_json = str_replace("name_helper",$name_helper,$string_json);
-            $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_helper,$string_json);
-            $string_json = str_replace("..",$organization_helper,$string_json);
+            $string_json = str_replace("https://scdn.line-apps.com/clip13.jpg",$photo_helper,$string_json);
+            $string_json = str_replace("zzz",$organization_helper,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
