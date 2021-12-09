@@ -97,13 +97,17 @@ class LineMessagingAPI extends Model
         // SAVE LOG
         $data_3 = [
             "title" => "select_reply",
-            "content" => $event["replyToken"],
+            "content" => $messages,
         ];
         MyLog::create($data_3);
         
         $body = [
             "replyToken" => $event["replyToken"],
-            "messages" => $messages,
+            // "messages" => $messages,
+            "messages" => {
+                           "type": "text",
+                           "text": "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ"
+                        },
         ];
 
         $opts = [
@@ -121,14 +125,13 @@ class LineMessagingAPI extends Model
         $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
 
-        // //SAVE LOG
-        // $data = [
-        //     "title" => "ตอบกลับ " . $registration_number . '/' . $province,
-        //     "content" => $data_topic[0],
-        // ];
-        // MyLog::create($data);
-        
-        // return $result;
+        //SAVE LOG
+        $data = [
+            "title" => "ตอบกลับ " . $registration_number . '/' . $province,
+            "content" => $data_topic[0],
+        ];
+        MyLog::create($data);
+        return $result;
 
     }
 
