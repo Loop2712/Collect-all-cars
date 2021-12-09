@@ -508,6 +508,15 @@ class LineApiController extends Controller
 
     protected function _send_helper_to_user($helper_id , $user_id)
     {
+
+        // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => 'helper_id==> '.$helper_id.'/'.'user_id==> '.$user_id,
+            ];
+            MyLog::create($data_3);
+
+
         $users = DB::table('users')->where('id', $user_id)->get();
 
         foreach ($users as $user) {
@@ -554,13 +563,6 @@ class LineApiController extends Controller
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
 
             $data_helpers = DB::table('users')->where('id', $helper_id)->get();
-
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $data_helpers,
-            ];
-            MyLog::create($data_3);
 
             foreach ($data_helpers as $data_helper) {
 
