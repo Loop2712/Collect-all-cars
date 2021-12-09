@@ -512,13 +512,6 @@ class LineApiController extends Controller
 
         foreach ($users as $user) {
 
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $user->time_zone.'/'.$user->language.'/'.$user->provider_id,
-            ];
-            MyLog::create($data_3);
-
             // TIME ZONE
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
@@ -561,6 +554,13 @@ class LineApiController extends Controller
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
 
             $data_helpers = DB::table('users')->where('id', $helper_id)->get();
+
+            // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => $data_helpers,
+            ];
+            MyLog::create($data_3);
 
             foreach ($data_helpers as $data_helper) {
 
