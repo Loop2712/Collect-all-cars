@@ -545,13 +545,6 @@ class LineApiController extends Controller
                         "จาก",
                     ];
 
-            // SAVE LOG
-            $data_3 = [
-                "title" => "_send_helper_to_user",
-                "content" => $user->language,
-            ];
-            MyLog::create($data_3);
-
             for ($xi=0; $xi < count($data_topic); $xi++) { 
 
                 $text_topic = DB::table('text_topics')
@@ -565,20 +558,12 @@ class LineApiController extends Controller
                 }
             }
 
-            // for ($xi=0; $xi < count($data_topic); $xi++) { 
-
-            //     $text_topic = DB::table('text_topics')
-            //             ->select($group_language)
-            //             ->where('th', $data_topic[$xi])
-            //             ->where('en', "!=", null)
-            //             ->get();
-
-            //     foreach ($text_topic as $item_of_text_topic) {
-            //         $data_topic[$xi] = $item_of_text_topic->$group_language ;
-            //     }
-            // }
-
-
+            // SAVE LOG
+            $data_3 = [
+                "title" => "_send_helper_to_user",
+                "content" => $text_topic,
+            ];
+            MyLog::create($data_3);
 
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);
