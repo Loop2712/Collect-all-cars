@@ -582,7 +582,7 @@ class LineApiController extends Controller
             $string_json = str_replace("เจ้าหน้าที่",$data_topic[3],$string_json);
             $string_json = str_replace("จาก",$data_topic[4],$string_json);
             $string_json = str_replace("name_helper",$name_helper,$string_json);
-            $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_helper,$string_json);
+            // $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_helper,$string_json);
             $string_json = str_replace("..",$organization_helper,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
