@@ -535,8 +535,8 @@ class LineApiController extends Controller
         foreach ($users as $user) {
 
             // TIME ZONE
-            $API_Time_zone = new API_Time_zone();
-            $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
+            // $API_Time_zone = new API_Time_zone();
+            // $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
 
             $data_topic = [
                         "เรียนคุณ",
@@ -562,7 +562,7 @@ class LineApiController extends Controller
             // SAVE LOG
             $data_3 = [
                 "title" => "_send_helper_to_user",
-                "content" => $time_zone,
+                "content" => $user->language,
             ];
             MyLog::create($data_3);
 
@@ -570,7 +570,7 @@ class LineApiController extends Controller
             $string_json = file_get_contents($template_path);
                
             $string_json = str_replace("ตัวอย่าง",$data_topic[1],$string_json);
-            $string_json = str_replace("date_time",$time_zone,$string_json);
+            // $string_json = str_replace("date_time",$time_zone,$string_json);
             $string_json = str_replace("ข้อมูลเจ้าหน้าที่",$data_topic[2],$string_json);
 
             // user
