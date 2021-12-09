@@ -102,7 +102,7 @@ class LineMessagingAPI extends Model
         MyLog::create($data_3);
         
         $body = [
-            "replyToken" => $event["replyToken"],
+            "to" => $event["source"]['userId'],
             "messages" => $messages,
         ];
 
@@ -117,8 +117,7 @@ class LineMessagingAPI extends Model
         ];
                             
         $context  = stream_context_create($opts);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
-        $url = "https://api.line.me/v2/bot/message/reply";
+        $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
