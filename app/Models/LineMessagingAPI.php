@@ -113,13 +113,6 @@ class LineMessagingAPI extends Model
         $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
 
-        // SAVE LOG
-        $data_3 = [
-            "title" => "select_reply",
-            "content" => $result,
-        ];
-        MyLog::create($data_3);
-
         //SAVE LOG
         $data = [
             "title" => "ตอบกลับ " . $registration_number . '/' . $province,

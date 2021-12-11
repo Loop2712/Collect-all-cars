@@ -113,9 +113,9 @@
                 "height": "sm",
                 "action": {
                   "type": "postback",
-                  "label": "กำลังไป",
+                  "label": "กำลังไปช่วยเหลือ",
                   "data": "sos?id_sos_map/organization",
-                  "displayText": "กำลังไป"
+                  "displayText": "กำลังไปช่วยเหลือ"
                 },
                 "color": "#FFFFFF",
                 "style": "secondary"

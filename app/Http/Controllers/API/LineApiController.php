@@ -78,87 +78,12 @@ class LineApiController extends Controller
                 $line->reply_success($event);
                 break;
             case "การตอบกลับ" : 
-                // SAVE LOG
-                $data_3 = [
-                    "title" => "การตอบกลับ",
-                    "content" => "การตอบกลับ",
-                ];
-                MyLog::create($data_3);
-                
-                // $line->select_reply(null, $event, "reply");
-                $this->select_reply(null, $event, "reply");
+                $line->select_reply(null, $event, "reply");
                 break;
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
                 break;
         }   
-
-    }
-
-    public function select_reply($data, $event, $postback_data)
-    { 
-        // ป้ายทะเบียนรถที่ถูกเรียก
-        $data_postback_explode = explode("?",$event["postback"]["data"]);
-        $license_plate = explode("/",$data_postback_explode[1]);  ;
-        $registration_number = $license_plate[0];
-        $province = $license_plate[1]; 
-
-        $data_Text_topic = [
-            "ขอบคุณ",
-            "รอสักครู่",
-            "ฉันไม่สะดวก",
-            "เลือกการตอบกลับ",
-            "ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
-        ];
-
-        $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
-
-        $template_path = storage_path('../public/json/flex-reply-option.json');   
-        $string_json = file_get_contents($template_path);
-        $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
-        $string_json = str_replace("กรุงเทพ",$province,$string_json);
-
-        $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
-        $string_json = str_replace("รอสักครู่",$data_topic[1],$string_json);
-        $string_json = str_replace("ฉันไม่สะดวก",$data_topic[2],$string_json);
-        $string_json = str_replace("เลือกการตอบกลับ",$data_topic[3],$string_json);
-        $string_json = str_replace("ตอบกลับได้เพียง 1 ข้อ เท่านั้น",$data_topic[4],$string_json);
-
-        $messages = [ json_decode($string_json, true) ];
-        
-        $body = [
-            "replyToken" => $event["replyToken"],
-            "messages" => $messages,
-        ];
-
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-     
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/reply";
-        $result = file_get_contents($url, false, $context);
-
-        // SAVE LOG
-        $data_3 = [
-            "title" => "select_reply",
-            "content" => $result,
-        ];
-        MyLog::create($data_3);
-
-        //SAVE LOG
-        $data = [
-            "title" => "ตอบกลับ " . $registration_number . '/' . $province,
-            "content" => $data_topic[0],
-        ];
-        MyLog::create($data);
-        return $result;
 
     }
 
