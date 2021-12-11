@@ -38,7 +38,8 @@
                 "weight": "bold",
                 "size": "xl",
                 "align": "center",
-                "gravity": "center"
+                "gravity": "center",
+                "offsetBottom": "sm"
               }
             ],
             "position": "absolute",
@@ -56,7 +57,8 @@
                 "weight": "bold",
                 "size": "lg",
                 "align": "center",
-                "gravity": "center"
+                "gravity": "center",
+                "offsetBottom": "sm"
               }
             ],
             "position": "absolute",
