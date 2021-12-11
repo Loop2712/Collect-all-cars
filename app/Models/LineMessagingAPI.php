@@ -111,13 +111,14 @@ class LineMessagingAPI extends Model
      
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
         // SAVE LOG
         $data_3 = [
             "title" => "select_reply",
-            "content" => $url,
+            "content" => $result,
         ];
         MyLog::create($data_3);
-        $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
         $data = [
