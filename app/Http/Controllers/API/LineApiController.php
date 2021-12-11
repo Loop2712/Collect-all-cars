@@ -611,7 +611,13 @@ class LineApiController extends Controller
     protected function help_complete($id_sos_map)
     {   
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
-        
+
+        DB::table('sos_maps')
+            ->where('id', $id_sos_map)
+            ->update([
+                'help_complete' => 'Yes',
+        ]);
+
     }
 
 }
