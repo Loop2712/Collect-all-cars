@@ -51,9 +51,17 @@ class Not_comforController extends Controller
     {
         $requestData = $request->all();
 
-        $license_plate = explode(".",$requestData['license_plate']);  ;
-        $registration_number = $license_plate[0];
-        $province = $license_plate[1];
+        $license_plate_id = $requestData['license_plate_id'] ;
+
+        $data_cars = DB::table('register_cars')
+                ->where('id', $license_plate_id)
+                ->get();
+
+        foreach ($data_cars as $data_car) {
+            $registration_number = $data_car->registration_number;
+            $province = $data_car->province;
+        }
+
 
         return view('not_comfor.create', compact('registration_number' , 'province'));
     }
@@ -353,15 +361,15 @@ class Not_comforController extends Controller
 
     }
 
-    public function not_comfor_login(Request $request , $license_plate)
+    public function not_comfor_login(Request $request , $license_plate_id)
     {
         $id = Auth::id();
 
         if(Auth::check()){
-            return redirect('not_comfor/create?license_plate='.$license_plate);
+            return redirect('not_comfor/create?license_plate_id='.$license_plate_id);
             // echo Auth::User()->name;
         }else{
-            return redirect('login/line?redirectTo=not_comfor/create?license_plate='.$license_plate);
+            return redirect('login/line?redirectTo=not_comfor/create?license_plate_id='.$license_plate_id);
         }
     }
 
