@@ -1,0 +1,78 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "action": {
+      "type": "uri",
+      "uri": "https://linecorp.com"
+    },
+    "contents": [
+      {
+        "type": "text",
+        "text": "บอกให้เรารู้",
+        "weight": "bold"
+      },
+      {
+        "type": "text",
+        "text": "การช่วยเหลือเป็นอย่างไรบ้าง",
+        "size": "lg",
+        "weight": "bold",
+        "wrap": true,
+        "color": "#228B22"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "text",
+        "text": "พื้นที่",
+        "size": "md",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "area",
+        "size": "md",
+        "weight": "regular"
+      },
+      {
+        "type": "text",
+        "text": "hello, world",
+        "contents": [
+          {
+            "type": "span",
+            "text": "date_time",
+            "color": "#bcbcbc",
+            "weight": "bold"
+          }
+        ],
+        "margin": "lg",
+        "size": "sm",
+        "wrap": true
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#76d128",
+        "action": {
+          "type": "uri",
+          "label": "ให้คะแนน",
+          "uri": "https://www.viicheck.com/"
+        },
+        "height": "sm"
+      }
+    ]
+  }
+}
+}
