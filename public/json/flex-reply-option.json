@@ -144,14 +144,15 @@
             "contents": [
               {
                 "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "ฉันไม่สะดวก",
-                  "uri": "https://www.viicheck.com/not_comfor_login/7ยษ2944.กรุงเทพ"
-                },
                 "style": "secondary",
                 "height": "sm",
-                "color": "#FFFFFF"
+                "color": "#FFFFFF",
+                "action": {
+                  "type": "postback",
+                  "label": "ฉันไม่สะดวก",
+                  "data": "not_comfor?7ยษ2944/กรุงเทพ",
+                  "displayText": "ฉันไม่สะดวก"
+                }
               }
             ],
             "borderColor": "#0B9CFF",
