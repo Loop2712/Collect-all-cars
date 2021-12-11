@@ -108,16 +108,15 @@ class LineMessagingAPI extends Model
                 //'timeout' => 60
             ]
         ];
-     
-        $context  = stream_context_create($opts);
 
         // SAVE LOG
         $data_3 = [
             "title" => "select_reply",
-            "content" => $context,
+            "content" => json_encode($body, JSON_UNESCAPED_UNICODE),
         ];
         MyLog::create($data_3);
-
+     
+        $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
 
