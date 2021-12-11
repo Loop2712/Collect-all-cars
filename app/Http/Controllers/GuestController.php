@@ -141,11 +141,6 @@ class GuestController extends Controller
         // ส่งทางไลน์
         $this->_pushLine($requestData);
 
-        echo "<pre>";
-        // print_r($requestData);
-        echo "<pre>";
-        exit();
-
         // หา type ของ user ที่ register 
         $type_user = DB::table('users')
                     ->where('id', $requestData['user_id'])
