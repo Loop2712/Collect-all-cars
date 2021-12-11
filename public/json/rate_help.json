@@ -68,7 +68,7 @@
         "action": {
           "type": "uri",
           "label": "ให้คะแนน",
-          "uri": "https://www.viicheck.com/"
+          "uri": "https://www.viicheck.com/sos_map/rate_help/id_sos_map"
         },
         "height": "sm"
       }

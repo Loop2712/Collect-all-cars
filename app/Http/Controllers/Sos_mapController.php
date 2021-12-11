@@ -248,6 +248,16 @@ class Sos_mapController extends Controller
         }
     }
 
+    public function rate_help($id_sos_map)
+    {
+        $data_sos_map = Sos_map::findOrFail($id_sos_map);
+
+        echo "<pre>";
+        print_r($data_sos_map);
+        echo "<pre>";
+        exit();
+    }
+
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
     protected function _pushLine($data , $id_sos_map)
