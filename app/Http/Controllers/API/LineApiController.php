@@ -80,14 +80,6 @@ class LineApiController extends Controller
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
                 break;
-            case "not_comfor" : 
-                    $data_3 = [
-                    "title" => "Line",
-                    "content" =>  $data_postback_explode,
-                ];
-                MyLog::create($data_3); 
-                // $line->select_reply(null, $event, "not_comfor");
-                break;
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
                 break;

@@ -150,10 +150,9 @@
                 "height": "sm",
                 "color": "#FFFFFF",
                 "action": {
-                  "type": "postback",
+                  "type": "uri",
                   "label": "ฉันไม่สะดวก",
-                  "data": "not_comfor?7ยษ2944/กรุงเทพ",
-                  "displayText": "ฉันไม่สะดวก"
+                  "uri": "https://viicheck.com/not_comfor_login/license_plate"
                 }
               }
             ],

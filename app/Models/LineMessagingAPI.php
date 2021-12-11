@@ -71,6 +71,8 @@ class LineMessagingAPI extends Model
         $registration_number = $license_plate[0];
         $province = $license_plate[1]; 
 
+        $not_comfor = $registration_number . '.' . $province ;
+
         $data_Text_topic = [
             "ขอบคุณ",
             "รอสักครู่",
@@ -85,6 +87,7 @@ class LineMessagingAPI extends Model
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
         $string_json = str_replace("กรุงเทพ",$province,$string_json);
+        $string_json = str_replace("license_plate",$not_comfor,$string_json);
 
         $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
         $string_json = str_replace("รอสักครู่",$data_topic[1],$string_json);
