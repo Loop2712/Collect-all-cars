@@ -251,11 +251,9 @@ class Sos_mapController extends Controller
     public function rate_help($id_sos_map)
     {
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
+        $data_users = User::findOrFail($data_sos_map->user_id);
 
-        echo "<pre>";
-        print_r($data_sos_map);
-        echo "<pre>";
-        exit();
+        return view('sos_map.rate_help', compact('data_sos_map','data_users'));
     }
 
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
