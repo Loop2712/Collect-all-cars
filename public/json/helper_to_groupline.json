@@ -69,7 +69,7 @@
         "action": {
           "type": "postback",
           "label": "การช่วยเหลือเสร็จสิ้น",
-          "data": "การช่วยเหลือเสร็จสิ้น"
+          "data": "help_complete?id_sos_map"
         },
         "height": "sm"
       }

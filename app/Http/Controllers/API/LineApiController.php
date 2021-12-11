@@ -80,6 +80,9 @@ class LineApiController extends Controller
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
                 break;
+            case "help_complete" : 
+                $this->help_complete($data_postback_explode[1]);
+                break;
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
                 break;
@@ -472,6 +475,7 @@ class LineApiController extends Controller
 
         $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
         $string_json = str_replace("name_helper",$name_helper,$string_json);
+        $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
@@ -602,6 +606,12 @@ class LineApiController extends Controller
             MyLog::create($data);
         }
 
+    }
+
+    protected function help_complete($id_sos_map)
+    {   
+        $data_sos_map = Sos_map::findOrFail($id_sos_map);
+        
     }
 
 }
