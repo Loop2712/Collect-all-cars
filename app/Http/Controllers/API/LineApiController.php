@@ -377,12 +377,7 @@ class LineApiController extends Controller
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
         $users = DB::table('users')->where('provider_id', $provider_id)->get();
-        // SAVE LOG
-        $data_3 = [
-            "title" => "ดู USER",
-            "content" => $users,
-        ];
-        MyLog::create($data_3);
+        
         if ($users != '[]') {
             foreach ($users as $user) {
 
