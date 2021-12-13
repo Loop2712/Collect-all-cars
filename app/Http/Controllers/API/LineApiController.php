@@ -435,8 +435,8 @@ class LineApiController extends Controller
                 }
             }
         }else{
-            // return redirect('login/line');
-            $this->_send_register_to_groupline($data_partner_helpers);
+            return redirect('login/line');
+            // $this->_send_register_to_groupline($data_partner_helpers);
         }
 
     }
