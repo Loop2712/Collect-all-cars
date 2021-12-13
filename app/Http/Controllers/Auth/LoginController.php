@@ -124,7 +124,6 @@ class LoginController extends Controller
         $request->session()->put('Student', $request->get('Student'));
         $request->session()->put('redirectTo', $request->get('redirectTo'));
         $request->session()->put('from', $request->get('from'));
-        // $request->session()->put('organization', $request->get('organization'));
 
         return Socialite::driver('line')->redirect();
     }
@@ -237,20 +236,6 @@ class LoginController extends Controller
                             ['provider_id', $user->provider_id],
                         ])
                     ->update(['add_line' => 'Yes']);
-            }
-
-            if ($from == "group_line_partner") {
-
-                DB::table('users')
-                    ->where([ 
-                            ['type', 'line'],
-                            ['provider_id', $user->provider_id],
-                        ])
-                    ->update([
-                        'add_line' => 'Yes',
-                        // 'organization' => $organization,
-                        'creator' => 'Group line sos',
-                    ]);
             }
         }
 

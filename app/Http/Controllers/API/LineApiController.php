@@ -381,6 +381,16 @@ class LineApiController extends Controller
         if (!empty($users)) {
             foreach ($users as $user) {
 
+                DB::table('users')
+                    ->where([ 
+                            ['type', 'line'],
+                            ['provider_id', $users->provider_id],
+                        ])
+                    ->update([
+                        'add_line' => 'Yes',
+                        'organization' => $data_partner_helpers->name,
+                    ]);
+
                 if (!empty($data_sos_map->helper)) {
 
                     $explode_helper_id = explode(",",$data_sos_map->helper_id);
@@ -424,7 +434,7 @@ class LineApiController extends Controller
                 }
             }
         }else{
-            return redirect('login/line?from=group_line_partner');
+            return redirect('login/line');
         }
 
     }
