@@ -475,14 +475,27 @@ class PartnerController extends Controller
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
         $user_of_partners = User::where('organization', $data_user->organization)->get();
-        echo "<pre>";
-        print_r($user_of_partners);
-        echo "<pre>";
-        // foreach ($user_of_partners as $user_of_partner) {
-        //     echo $user_of_partners->name ;
-        // }
 
-        exit();
+        $count_user_partner = count($user_of_partners);
+        
+            $name_helper = [];
+            for ($i=0; $i < $count_user_partner; $i++) { 
+
+                foreach ($user_of_partners as $user_of_partner) {
+
+                    $name_partner = $user_of_partner->name;
+
+                }
+
+                $name_helper[$i] = $name_partner;
+
+                // echo 'คนที่' . $i . '>>>>' . $name_helper[$i] ;
+                // echo '<br>';
+            }
+
+            echo $name_helper[0];
+
+        // exit();
 
         $data_sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")->get();
 
