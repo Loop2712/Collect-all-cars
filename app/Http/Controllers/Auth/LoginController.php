@@ -90,7 +90,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
 
-        $this->_registerOrLoginUser($user, "google",null,null);
+        $this->_registerOrLoginUser($user, "google",null,null,null);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -110,7 +110,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
         // print_r($user);
-        $this->_registerOrLoginUser($user,"facebook",null,null);
+        $this->_registerOrLoginUser($user,"facebook",null,null,null);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -124,6 +124,7 @@ class LoginController extends Controller
         $request->session()->put('Student', $request->get('Student'));
         $request->session()->put('redirectTo', $request->get('redirectTo'));
         $request->session()->put('from', $request->get('from'));
+        $request->session()->put('organization', $request->get('organization'));
 
         return Socialite::driver('line')->redirect();
     }
@@ -147,8 +148,9 @@ class LoginController extends Controller
         // exit();
         $student = $request->session()->get('Student');
         $from = $request->session()->get('from');
+        $organization = $request->session()->get('organization');
 
-        $this->_registerOrLoginUser($user,"line",$student , $from);
+        $this->_registerOrLoginUser($user,"line",$student , $from , $organization);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -157,7 +159,7 @@ class LoginController extends Controller
 
     }
 
-    protected function _registerOrLoginUser($data, $type , $student , $from)
+    protected function _registerOrLoginUser($data, $type , $student , $from , $organization)
     {
         //GET USER 
         $user = User::where('provider_id', '=', $data->id)->first();
@@ -236,6 +238,20 @@ class LoginController extends Controller
                             ['provider_id', $user->provider_id],
                         ])
                     ->update(['add_line' => 'Yes']);
+            }
+
+            if ($from == "group_line_partner") {
+
+                DB::table('users')
+                    ->where([ 
+                            ['type', 'line'],
+                            ['provider_id', $user->provider_id],
+                        ])
+                    ->update([
+                        'add_line' => 'Yes',
+                        'organization' => $organization,
+                        'creator' => 'Group line sos',
+                    ]);
             }
         }
 
