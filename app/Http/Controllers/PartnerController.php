@@ -475,6 +475,8 @@ class PartnerController extends Controller
 
         $data_sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")->get();
 
+        echo count($data_sos_maps);
+        echo "<br>";
         echo "<pre>";
         print_r($data_sos_maps);
         echo "<pre>";
