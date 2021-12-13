@@ -468,6 +468,21 @@ class PartnerController extends Controller
         return view('partner.service_area.partner_service_area_current', compact('data_partners','data_time_zone'));
     }
 
+    public function sos_score_helper(Request $request)
+    {
+        $data_user = Auth::user();
+        $data_partners = Partner::where("name", $data_user->organization)->get();
+
+        $data_sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")->get();
+
+        echo "<pre>";
+        print_r($data_sos_maps);
+        echo "<pre>";
+        exit();
+
+        return view('partner.sos_score_helper', compact('data_sos_maps'));
+    }
+
     public function sos_detail_chart(Request $request)
     {
         $data_user = Auth::user();
