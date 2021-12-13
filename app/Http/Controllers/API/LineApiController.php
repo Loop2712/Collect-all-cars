@@ -383,7 +383,7 @@ class LineApiController extends Controller
             "content" => $users,
         ];
         MyLog::create($data_3);
-        if (!empty($users)) {
+        if ($users != '[]') {
             foreach ($users as $user) {
 
                 DB::table('users')
