@@ -1,0 +1,42 @@
+{
+    "type": "flex",
+    "altText": "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
+        "weight": "bold",
+        "size": "md"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "Login line",
+          "uri": "https://www.viicheck.com/login/line"
+        },
+        "color": "#76d128"
+      },
+      {
+        "type": "spacer",
+        "size": "sm"
+      }
+    ],
+    "flex": 0
+  }
+}
+}

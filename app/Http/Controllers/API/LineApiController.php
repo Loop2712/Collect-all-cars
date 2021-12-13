@@ -430,9 +430,55 @@ class LineApiController extends Controller
                 }
             }
         }else{
-            return redirect('login/line');
+            // return redirect('login/line');
+            $this->_send_register_to_groupline($data_partner_helpers);
         }
 
+    }
+
+    protected function _send_register_to_groupline($data_partner_helpers)
+    {
+        //กรุณาลงทะเบียนเพื่อเริ่มใช้งาน
+        $data_line_group = DB::table('group_lines')
+                ->where('groupName', $data_partner_helpers->line_group)
+                ->get();
+
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
+
+        $template_path = storage_path('../public/json/register_line.json');
+        $string_json = file_get_contents($template_path);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
+            "content" => "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
+        ];
+        MyLog::create($data);
     }
 
     protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper , $helper_id)
