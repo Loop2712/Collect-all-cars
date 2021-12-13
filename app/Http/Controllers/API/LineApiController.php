@@ -382,14 +382,10 @@ class LineApiController extends Controller
             foreach ($users as $user) {
 
                 DB::table('users')
-                    ->where([ 
-                            ['type', 'line'],
-                            ['provider_id', $users->provider_id],
-                        ])
+                    ->where('provider_id', $provider_id)
                     ->update([
-                        'add_line' => 'Yes',
                         'organization' => $data_partner_helpers->name,
-                    ]);
+                ]);
 
                 if (!empty($data_sos_map->helper)) {
 
