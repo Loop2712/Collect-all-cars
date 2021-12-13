@@ -473,16 +473,11 @@ class PartnerController extends Controller
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
         $data_sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")->get();
 
-        echo count($data_sos_maps);
-        echo "<br>";
-        echo "<pre>";
-        print_r($data_sos_maps);
-        echo "<pre>";
-        exit();
-
-        return view('partner.sos_score_helper', compact('data_sos_maps'));
+        return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_sos_maps'));
     }
 
     public function sos_detail_chart(Request $request)
