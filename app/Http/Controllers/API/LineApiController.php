@@ -424,7 +424,7 @@ class LineApiController extends Controller
                 }
             }
         }else{
-            return redirect('login/line?from=group_line_partner&organization='. $data_partner_helpers->name);
+            return redirect('login/line?from=group_line_partner');
         }
 
     }
