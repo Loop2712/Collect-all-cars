@@ -69,7 +69,7 @@
                     <input class="form-control d-none" type="number" name="score_2" id="score_2" value="">
                 </div>
                 <br>
-                <div class="card d-none" style="background-color:#00b4d8;border-radius: 25px;padding: 8px;">
+                <div class="card d-none" style="background-color:#00b4d8;border-radius: 25px;padding: 4px;">
                     <div class="card-body" style="color: white;">
                         <p class="text-center" style="font-size:18px;">ภาพรวมการช่วยเหลือ</p>
                         <div class="row">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary float-right" style="border-radius: 30px;" onclick="submit_score('{{ $data_sos_map->id }}');">
+                <button type="button" class="btn btn-primary float-right" style="border-radius: 50px;" onclick="submit_score('{{ $data_sos_map->id }}');">
                     ให้คะแนน
                 </button>
             </div>
