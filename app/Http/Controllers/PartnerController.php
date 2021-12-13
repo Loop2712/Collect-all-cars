@@ -474,8 +474,10 @@ class PartnerController extends Controller
         $data_partners = Partner::where("name", $data_user->organization)->get();
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        foreach ($data_partners as $data_partner) {
-            echo $data_partner->name ;
+        $user_of_partners = User::where('organization', $data_user->organization)->get();
+
+        foreach ($user_of_partners as $user_of_partner) {
+            echo $user_of_partners->name ;
         }
 
         exit();
