@@ -186,13 +186,13 @@ Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
 Route::get('/sos_login', 'Sos_mapController@sos_login');
 Route::get('/insurance_login', 'Sos_mapController@insurance_login');
 Route::get('/sos_map/rate_help/{id_sos_map}', 'Sos_mapController@rate_help');
+Route::get('/sos_thank_submit_score/{user_id}', 'Sos_mapController@sos_thank_submit_score');
 
 // Route::get('/sos_map/helper/{id_sos_map}/{organization}','API\SosmapController@sos_helper');
 // Route::get('/sos_map/helper_after_login/{id_sos_map}/{organization}','API\SosmapController@sos_helper_after_login');
 
 Route::get('/insurance_login_facebook', 'Sos_mapController@insurance_login_facebook');
 Route::get('/sos_login_facebook', 'Sos_mapController@sos_login_facebook');
-
 
 Route::get('/market', 'CarController@main');
 Route::get('/market/car', 'CarController@index');
@@ -283,11 +283,6 @@ Route::get('/sos_thank', function () {
 Route::get('/sos_thank_area', function () {
     
     return view('sos_map/sos_thank_area');
-});
-
-Route::get('/sos_thank_submit_score', function () {
-    
-    return view('sos_map/sos_thank_submit_score');
 });
 
 Route::get('/test_test', function () {

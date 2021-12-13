@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    <a class="d-none" id="btn_sos_thank_submit_score" href="{{ url('/sos_thank_submit_score') }}"></a>
+    <a class="" id="btn_sos_thank_submit_score" href="{{ url('/sos_thank_submit_score') . '/' . $data_sos_map->user_id }}"> fdsggs</a>
     <script>
         
         function change_heart_color(article_no , score){

@@ -256,6 +256,11 @@ class Sos_mapController extends Controller
         return view('sos_map.rate_help', compact('data_sos_map','data_users'));
     }
 
+    public function sos_thank_submit_score($user_id)
+    {
+        return view('sos_map.sos_thank_submit_score', compact('user_id'));
+    }
+
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
     protected function _pushLine($data , $id_sos_map)

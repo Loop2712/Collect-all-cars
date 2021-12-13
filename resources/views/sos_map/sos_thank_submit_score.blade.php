@@ -1,5 +1,12 @@
 @extends('layouts.viicheck')
 @section('content')
+<div class="d-none">
+  <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+        <label for="user_id" class="control-label">{{ 'User Id' }}</label>
+        <input class="form-control" name="user_id" type="number" id="user_id" value="{{ $user_id }}" >
+        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+    </div>
+  </div>
 <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
 <!-- Button trigger modal -->
 <button id="btn_modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal">
@@ -70,7 +77,7 @@
         var delayInMilliseconds = 3000; 
 
         setTimeout(function() {
-          // document.getElementById("a_line").click();
+          document.getElementById("a_line").click();
         }, delayInMilliseconds);
     });
 
