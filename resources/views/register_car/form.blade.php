@@ -58,6 +58,13 @@
 
                 <input class="form-control" name="location" type="hidden" id="location" value="{{ isset($register_car->location) ? $register_car->location :  Auth::user()->location_P }}" readonly>
                 <!-------------------------------------------------------------------- เลือกประเทศรถ -------------------------------------------------------------------->
+                <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}} d-none">
+                        <label for="user_id" class="control-label">{{ 'User Id' }}</label>
+                        <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
+                        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
                 <span style="font-size: 22px;" class="control-label">ขณะนี้ท่านลงทะเบียนรถประเทศ
                     <!-- <img width="3%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;"> ไทย -->
                 <!-- </span>
@@ -74,12 +81,61 @@
         {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
 
                     <!-- Button trigger modal -->
-                    <button type="button"  class="btn" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                    <!-- <button type="button"  class="btn" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
                         <span style="font-size: 18px;" class="control-label">
                             <i class="fad fa-globe-asia"></i> เลือกประเทศ <i class="fas fa-angle-double-down"></i>
                         </span> 
-                    </button>
-
+                    </button> -->
+                    <span>
+                        <a id="car_TH" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_ID" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_LA" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_PH" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_MM" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_SG" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_KR" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_BN" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_VN" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_MY" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="25px" src="{{ asset('/img/national-flag/ml1.png') }}" style= "border-radius: 5px;">
+                        </a>
+                    </span>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -100,69 +156,72 @@
                         </select>
                         {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
                     </div> -->
-                                <div class="col-3">
+                                <div class="col-lg-3 col-4">
                                     <!-- ไทย<br>  -->
                                      <a href="#"  class="select-btn" data-value="TH" data-dismiss="modal">
                                          <img width="50%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
                                      </a>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-lg-3 col-4">
                                     <!-- อิโดนีเซีย<br>  -->
                                     <a href="#"  class="select-btn" data-value="ID" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-lg-3 col-4 ">
                                     <!-- ลาว<br>  -->
                                     <a href="#"  class="select-btn" data-value="LA" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12 d-block d-md-none">&nbsp;</div>
+                                <div class="col-lg-3 col-4">
                                     <a href="#"  class="select-btn" data-value="PH" data-dismiss="modal">
                                     <!-- ฟิลิปปินส์<br>  -->
                                         <img width="50%" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
-                               
-                                <div class="col-12">&nbsp;</div>
-                                <div class="col-3">
+                                <div class="col-12 d-none d-lg-block">&nbsp;</div>
+                                <div class="col-lg-3 col-4">
                                     <!-- พม่า<br>  -->
                                     <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div> 
-                                <div class="col-3">
+                                <div class="col-lg-3 col-4">
                                     <!-- สิงคโปร์<br>  -->
                                     <a href="#"  class="select-btn" data-value="SG" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12 d-block d-md-none">&nbsp;</div>
+                                <div class="col-lg-3 col-4">
                                     <!-- กัมพูชา<br>  -->
                                     <a href="#"  class="select-btn" data-value="KR" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-lg-3 col-4">
                                     <!-- บรูไน<br>  -->
                                     <a href="#"  class="select-btn" data-value="BN" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
-                                <div class="col-12">&nbsp;</div>
-                                <div class="col-3">
+                                <div class="col-12 d-none d-lg-block">&nbsp;</div>
+                                <div class="col-lg-3 col-4">
                                     <!-- เวียดนาม<br>  -->
                                     <a href="#"  class="select-btn" data-value="VN" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12 d-block d-md-none">&nbsp;</div>
+                                <div class="col-lg-3 col-4">
                                     <!-- <br>  -->
                                     <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal">
                                         <img width="50%" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
+                                <div class="col-12 d-none d-lg-block">&nbsp;</div>
                            </div>
                         </div>
                         <div class="modal-footer">
@@ -846,11 +905,31 @@
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
+    
     $(function () {
         $('body').on('click', '.select-btn', function () {
             $('#CountryCode').val($(this).data('value'));
         })
     })
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        let user_id = document.querySelector('#user_id').value;
+
+        fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let countryCode = document.querySelector('#CountryCode');
+                    countryCode.value = result['countryCode'];
+
+                if (result['countryCode']) {
+                    document.querySelector('#car_'+result['countryCode']).classList.remove('d-none');
+                }
+
+            });
+
+    });
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
