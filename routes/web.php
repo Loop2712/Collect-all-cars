@@ -285,6 +285,11 @@ Route::get('/sos_thank_area', function () {
     return view('sos_map/sos_thank_area');
 });
 
+Route::get('/sos_thank_submit_score', function () {
+    
+    return view('sos_map/sos_thank_submit_score');
+});
+
 Route::get('/test_test', function () {
     
     return view('test_test');
