@@ -611,81 +611,84 @@ class LineApiController extends Controller
 
     protected function help_complete($id_sos_map)
     {   
-        DB::table('sos_maps')
-            ->where('id', $id_sos_map)
-            ->update([
-                'help_complete' => 'Yes',
-        ]);
-
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_users = User::findOrFail($data_sos_map->user_id);
 
-        $user_language = $data_users->language ;
+        if ($data_sos_map->help_complete != 'Yes') {
+            
+            DB::table('sos_maps')
+                ->where('id', $id_sos_map)
+                ->update([
+                    'help_complete' => 'Yes',
+            ]);
 
-        // TIME ZONE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone($data_users->time_zone);
+            $user_language = $data_users->language ;
 
-        $data_topic = [
-                    "บอกให้เรารู้",
-                    "การช่วยเหลือเป็นอย่างไรบ้าง",
-                    "พื้นที่",
-                    "ให้คะแนน",
-                ];
+            // TIME ZONE
+            $API_Time_zone = new API_Time_zone();
+            $time_zone = $API_Time_zone->change_Time_zone($data_users->time_zone);
 
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
+            $data_topic = [
+                        "บอกให้เรารู้",
+                        "การช่วยเหลือเป็นอย่างไรบ้าง",
+                        "พื้นที่",
+                        "ให้คะแนน",
+                    ];
 
-            $text_topic = DB::table('text_topics')
-                    ->select($user_language)
-                    ->where('th', $data_topic[$xi])
-                    ->where('en', "!=", null)
-                    ->get();
+            for ($xi=0; $xi < count($data_topic); $xi++) { 
 
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$xi] = $item_of_text_topic->$user_language ;
+                $text_topic = DB::table('text_topics')
+                        ->select($user_language)
+                        ->where('th', $data_topic[$xi])
+                        ->where('en', "!=", null)
+                        ->get();
+
+                foreach ($text_topic as $item_of_text_topic) {
+                    $data_topic[$xi] = $item_of_text_topic->$user_language ;
+                }
             }
+
+            $template_path = storage_path('../public/json/rate_help.json');
+            $string_json = file_get_contents($template_path);
+               
+            $string_json = str_replace("ตัวอย่าง",$data_topic[3],$string_json);
+            $string_json = str_replace("date_time",$time_zone,$string_json);
+            $string_json = str_replace("area",$data_sos_map->organization_helper,$string_json);
+            $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
+
+            $string_json = str_replace("บอกให้เรารู้",$data_topic[0],$string_json);
+            $string_json = str_replace("การช่วยเหลือเป็นอย่างไรบ้าง",$data_topic[1],$string_json);
+            $string_json = str_replace("พื้นที่",$data_topic[2],$string_json);
+            $string_json = str_replace("ให้คะแนน",$data_topic[3],$string_json);
+
+            $messages = [ json_decode($string_json, true) ];
+
+            $body = [
+                "to" => $data_users->provider_id,
+                "messages" => $messages,
+            ];
+
+            $opts = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
+                                
+            $context  = stream_context_create($opts);
+            $url = "https://api.line.me/v2/bot/message/push";
+            $result = file_get_contents($url, false, $context);
+
+            // SAVE LOG
+            $data = [
+                "title" => "แบบฟอร์มให้คะแนนการช่วยเหลือ",
+                "content" => $data_users->name,
+            ];
+            MyLog::create($data);
         }
-
-        $template_path = storage_path('../public/json/rate_help.json');
-        $string_json = file_get_contents($template_path);
-           
-        $string_json = str_replace("ตัวอย่าง",$data_topic[3],$string_json);
-        $string_json = str_replace("date_time",$time_zone,$string_json);
-        $string_json = str_replace("area",$data_sos_map->organization_helper,$string_json);
-        $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
-
-        $string_json = str_replace("บอกให้เรารู้",$data_topic[0],$string_json);
-        $string_json = str_replace("การช่วยเหลือเป็นอย่างไรบ้าง",$data_topic[1],$string_json);
-        $string_json = str_replace("พื้นที่",$data_topic[2],$string_json);
-        $string_json = str_replace("ให้คะแนน",$data_topic[3],$string_json);
-
-        $messages = [ json_decode($string_json, true) ];
-
-        $body = [
-            "to" => $data_users->provider_id,
-            "messages" => $messages,
-        ];
-
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
-        $result = file_get_contents($url, false, $context);
-
-        // SAVE LOG
-        $data = [
-            "title" => "แบบฟอร์มให้คะแนนการช่วยเหลือ",
-            "content" => $data_users->name,
-        ];
-        MyLog::create($data);
 
     }
 
