@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                 if (result['countryCode']) {
 
-                    if (result['countryCode'] !== 'EN') {
+                    if (result['countryCode'] !== 'TH') {
                     document.querySelector('#orc_camera').classList.add('d-none');
                     }
                 }
