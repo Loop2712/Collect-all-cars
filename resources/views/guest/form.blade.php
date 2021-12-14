@@ -176,7 +176,7 @@
                     <input class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
-                    <div class="input-group-prepend" onclick="capture_registration();">
+                    <div id="orc_camera" class="input-group-prepend" onclick="capture_registration();">
                       <div class="input-group-text d-block d-md-none"><a href="#div_rgc"><i class="fas fa-camera"></i></a></div>
                     </div>
                   </div>
@@ -254,7 +254,14 @@
             }">&nbsp;&nbsp;&nbsp;ไม่แสดง
 
             <br>
-
+            <div class="d-none">
+                <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+                    <label for="user_id" class="control-label">{{ 'User Id' }}</label>
+                    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
+                    {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+                </div>
+                <input class="d-none" type="text" id="CountryCode" name="CountryCode" value="">
+            </div>
             <div class="form-group {{ $errors->has('provider_id') ? 'has-error' : ''}}">
                 <input class="form-control" name="provider_id" type="hidden" id="provider_id" value="{{ isset($guest->provider_id) ? $guest->provider_id : Auth::user()->provider_id}}" readonly>
                 {!! $errors->first('provider_id', '<p class="help-block">:message</p>') !!}
@@ -304,10 +311,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 if (result['countryCode']) {
 
                     if (result['countryCode'] !== 'EN') {
-                    document.querySelector('#div_cam').classList.add('d-none');
+                    document.querySelector('#orc_camera').classList.add('d-none');
                     }
-
-                    document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
                 }
 
             });
