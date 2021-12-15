@@ -13,20 +13,20 @@
                         <div class="row">
                             <div class="col-12">
                                 @for ($i=0; $i < count($name_of_partner); $i++)
-                                    <h1>{{ $name_of_partner[$i] }}</h1>
-                                @endfor
-                                
-                                @foreach($data_sos_maps as $item)
-                                    <div class="row">
-                                        <!-- <div class="col-1">
-                                            <center><b>{{ $item->id }}</b></center>
-                                        </div> -->
-                                        <div class="col-3">
-                                            {{ $item->name }}
+                                    <h4>{{ $name_of_partner[$i] }}</h4>
+                            
+                                    @foreach($data_sos_maps[$i] as $item)
+                                        <div class="row">
+                                            <div class="col-2">
+                                                ให้คะแนน : <b>{{ count($data_sos_maps[$i]) }}</b>
+                                            </div>
+                                            <div class="col-3">
+                                                ความประทับใจ : <b>{{ $item->score_impression }}</b>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <br>
-                                @endforeach
+                                        <br>
+                                    @endforeach
+                                @endfor
                             </div>
                         </div>
                     </div>

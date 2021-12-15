@@ -504,14 +504,14 @@ class PartnerController extends Controller
                     ->where('helper', 'LIKE', "%$name_of_partner[$i]%")
                     ->get();
             array_push($data_sos_maps,$sos_maps);
-            echo $name_of_partner[$i];
-            echo "<br>";
+            // echo $name_of_partner[$i];
+            // echo "<br>";
 
         }
-        echo "<pre>";
-        print_r($data_sos_maps);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($data_sos_maps);
+        // echo "<pre>";
+        // exit();
 
         return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_sos_maps','name_of_partner'));
     }
