@@ -19,11 +19,22 @@ class LineMessagingAPI extends Model
 {
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
-    public function reply_success($event)
+    public function reply_success($event , $data_postback)
     {
-        $data_Text_topic = [
-            "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
-        ];
+        switch ($data_postback) {
+            case 'help_complete':
+                $data_Text_topic = [
+                    "ViiCHECK ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+                ];
+                break;
+            
+            default:
+                $data_Text_topic = [
+                    "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
+                ];
+                break;
+        }
+        
 
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 

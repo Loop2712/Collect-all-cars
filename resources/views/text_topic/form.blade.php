@@ -103,6 +103,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body" >
+                    <h5 class="card-title">ภาษาเยอรมัน</h5>
+                    <input class="form-control" name="de" type="text" id="de" value="{{ isset($text_topic->de) ? $text_topic->de : ''}}" >
+    {!! $errors->first('de', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
     </div>
 </div>  
 <div class="d-flex justify-content-end">
