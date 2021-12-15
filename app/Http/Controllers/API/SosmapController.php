@@ -42,6 +42,10 @@ class SosmapController extends Controller
     {
         $data_sos_map = Sos_map::findOrFail($sos_map_id);
 
+        if ($comment_help == 'null') {
+            $comment_help = null ;
+        }
+
         if (empty($data_sos_map->score_impression)) {
             DB::table('sos_maps')
                 ->where('id', $sos_map_id)

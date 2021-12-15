@@ -179,6 +179,13 @@
             let total_score = document.querySelector('#total_score').value ;
             let comment_help = document.querySelector('#comment_help').value ;
 
+            
+            if (comment_help) {
+                comment_help = comment_help ;
+            }else{
+                comment_help = 'null';
+            }
+            
             fetch("{{ url('/') }}/api/submit_score/" + sos_map_id + '/' + score_1 + '/' + score_2 + '/' + total_score + '/' + comment_help);
 
             document.querySelector('#btn_sos_thank_submit_score').click();
