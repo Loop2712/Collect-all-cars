@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card" style="border-radius: 25px;padding: 8px;background-image: linear-gradient(to left top, #48cae4, #009ace, #006ab3, #003b8e, #03045e);">
                     <div class="card-body" style="color: white;" >
-                        <h4>สวัสดี <b><span class="text-success">{{ $data_users->name }}</span></b> </h4>
+                        <h4>สวัสดี <b>{{ $data_users->name }}</b> </h4>
                         บอกให้เรารู้ การช่วยเหลือเป็นอย่างไรบ้าง
                         <hr >
                         <b>เจ้าหน้าที่ :</b> {{ $data_sos_map->helper }}
