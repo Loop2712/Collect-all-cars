@@ -12,16 +12,26 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
+                                <br>
                                 @for ($i=0; $i < count($name_of_partner); $i++)
-                                    <h4>{{ $name_of_partner[$i] }}</h4>
+                                    <h3>{{ $name_of_partner[$i] }}</h3>
                             
                                     @foreach($data_sos_maps[$i] as $item)
                                         <div class="row">
-                                            <div class="col-1">
-                                                ให้คะแนน : <b>{{ count($data_sos_maps[$i]) }}</b>
+                                            <div class="col-2">
+                                                ช่วยเหลือ : <b>{{ count($data_sos_maps[$i]) }}</b> ครั้ง
+                                            </div>
+                                            <div class="col-2">
+                                                ให้คะแนน : <b>{{ count($data_sos_maps[$i]) }}</b> ครั้ง
                                             </div>
                                             <div class="col-3">
                                                 คะแนนความประทับใจเฉลี่ย : <b>{{ $item->score_impression }}</b>
+                                            </div>
+                                            <div class="col-3">
+                                                คะแนนระยะเวลาเฉลี่ย : <b>{{ $item->score_impression }}</b>
+                                            </div>
+                                            <div class="col-2">
+                                                คะแนนภาพรวมเฉลี่ย : <b>{{ $item->score_impression }}</b>
                                             </div>
                                         </div>
                                         <br>
