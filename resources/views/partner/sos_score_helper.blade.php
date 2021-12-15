@@ -26,7 +26,7 @@
                                         </div>
                                         <br>
                                     @endforeach
-                                    <br>
+                                    <hr>
                                 @endfor
                             </div>
                         </div>
