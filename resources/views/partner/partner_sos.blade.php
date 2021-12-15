@@ -126,29 +126,29 @@
                                                         <h4>คะแนนการช่วยเหลือ</h4>
                                                         <div class="row">
                                                             <div class="col-2">
-                                                                <b>ผู้ใช้การช่วย : </b>{{$item->helper}}
+                                                                <b>ผู้ใช้การช่วย : </b><br>{{$item->helper}}
                                                             </div>
                                                             <div class="col-2">
                                                                 @if($item->score_impression < 3)
-                                                                    <b>ความประทับใจ : </b>
+                                                                    <b>ความประทับใจ : </b><br>
                                                                     <span class="text-danger">{{$item->score_impression}}</span>
                                                                 @elseif($item->score_impression == 3)
-                                                                    <b>ความประทับใจ : </b>
+                                                                    <b>ความประทับใจ : </b><br>
                                                                     <span class="text-warning">{{$item->score_impression}}</span>
                                                                 @elseif($item->score_impression > 3)
-                                                                    <b>ความประทับใจ : </b>
+                                                                    <b>ความประทับใจ : </b><br>
                                                                     <span class="text-success">{{$item->score_impression}}</span>
                                                                 @endif
                                                             </div>
                                                             <div class="col-2">
                                                                 @if($item->score_period < 3)
-                                                                    <b>ระยะเวลา : </b>
+                                                                    <b>ระยะเวลา : </b><br>
                                                                     <span class="text-danger">{{$item->score_period}}</span>
                                                                 @elseif($item->score_period == 3)
-                                                                    <b>ระยะเวลา : </b>
+                                                                    <b>ระยะเวลา : </b><br>
                                                                     <span class="text-warning">{{$item->score_period}}</span>
                                                                 @elseif($item->score_period > 3)
-                                                                    <b>ระยะเวลา : </b>
+                                                                    <b>ระยะเวลา : </b><br>
                                                                     <span class="text-success">{{$item->score_period}}</span>
                                                                 @endif
                                                             </div>
@@ -165,7 +165,7 @@
                                                                 @endif
                                                             </div>
                                                             <div class="col-4">
-                                                                <b>คำแนะนำ/ติชม : </b>{{$item->comment_help}}
+                                                                <b>คำแนะนำ/ติชม : </b><br>{{$item->comment_help}}
                                                             </div>
                                                         </div>
                                                     </div>
