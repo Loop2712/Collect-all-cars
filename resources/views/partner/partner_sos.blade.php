@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                     @foreach($view_maps as $item)
-                                        <div class="row text-center">
+                                        <div class="row text-center" style="margin-top:20px;">
                                             <div class="col-3">
                                                 <h5 class="text-success float-left">
                                                     <span style="font-size: 15px;">
@@ -115,8 +115,32 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if(Auth::check())
+                                                @if(Auth::user()->role == 'admin-partner')
+                                                    <div class="col-12 text-left" style="margin-top:5px;">
+                                                        <h4>คะแนนการช่วยเหลือ</h4>
+                                                        <div class="row">
+                                                            <div class="col-2">
+                                                                <b>ผู้ใช้การช่วย : </b>{{$item->helper}}
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <b>ความประทับใจ : </b>{{$item->score_impression}}
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <b>ระยะเวลา : </b>{{$item->score_period}}
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <b>ภาพรวม : </b>{{$item->score_total}}
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <b>คำแนะนำ/ติชม : </b>{{$item->comment_help}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endif
                                         </div>
-                                        <br>
+                                        <hr style="margin-top:25px;">
                                     @endforeach
                                      <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
                                 </div>
