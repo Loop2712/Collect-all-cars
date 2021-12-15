@@ -7,8 +7,7 @@
             <div class="col-md-12">
                 <div class="card" style="border-radius: 25px;padding: 8px;background-image: linear-gradient(to left top, #48cae4, #009ace, #006ab3, #003b8e, #03045e);">
                     <div class="card-body" style="color: white;" >
-                        สวัสดี {{ $data_users->name }}
-                        <br>
+                        <h4>สวัสดี <b><span class="text-success">{{ $data_users->name }}</span></b> </h4>
                         บอกให้เรารู้ การช่วยเหลือเป็นอย่างไรบ้าง
                         <hr >
                         <b>เจ้าหน้าที่ :</b> {{ $data_sos_map->helper }}
@@ -67,6 +66,16 @@
                         </div>
                     </div>
                     <input class="form-control d-none" type="number" name="score_2" id="score_2" value="">
+                </div>
+                <br>
+                <div class="card" style="background-color:#00b4d8;border-radius: 25px;padding: 4px;">
+                    <div class="card-body" style="color: white;">
+                        <p class="text-center" style="font-size:18px;">คำแนะนำ/ติชม</p>
+                        <div class="row">
+                            <textarea class="form-control" rows="4" name="comment_help" id="comment_help" value="">
+                            </textarea>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <div class="card d-none" style="background-color:#00b4d8;border-radius: 25px;padding: 4px;">
@@ -144,8 +153,9 @@
             let score_1 = document.querySelector('#score_1').value ;
             let score_2 = document.querySelector('#score_2').value ;
             let total_score = document.querySelector('#total_score').value ;
+            let comment_help = document.querySelector('#comment_help').value ;
 
-            fetch("{{ url('/') }}/api/submit_score/" + sos_map_id + '/' + score_1 + '/' + score_2 + '/' + total_score);
+            fetch("{{ url('/') }}/api/submit_score/" + sos_map_id + '/' + score_1 + '/' + score_2 + '/' + total_score + '/' + comment_help);
 
             document.querySelector('#btn_sos_thank_submit_score').click();
         }

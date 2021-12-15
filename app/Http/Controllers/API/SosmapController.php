@@ -38,7 +38,7 @@ class SosmapController extends Controller
         return $data_partners ;
     }
 
-    public function submit_score($sos_map_id , $score_1 , $score_2 , $total_score)
+    public function submit_score($sos_map_id , $score_1 , $score_2 , $total_score , $comment_help)
     {
         $data_sos_map = Sos_map::findOrFail($sos_map_id);
 
@@ -49,6 +49,7 @@ class SosmapController extends Controller
                     'score_impression' => $score_1,
                     'score_period' => $score_2,
                     'score_total' => number_format($total_score,2),
+                    'comment_help' => $comment_help,
             ]);
         }
     }
