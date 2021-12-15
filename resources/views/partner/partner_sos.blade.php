@@ -54,7 +54,7 @@
                                             <b>เบอร์</b><br>
                                             Phone
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-3">
                                             <b>เวลา</b><br>
                                             Time
                                         </div>
@@ -62,7 +62,7 @@
                                             <b>รูปภาพ</b><br>
                                             Photo
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <b>ตำแหน่ง</b><br>
                                             Location
                                         </div>
@@ -81,7 +81,7 @@
                                             <div class="col-2">
                                                 {{ $item->phone }}
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <h6>
                                                     {{ $item->created_at }}
                                                 </h6>
@@ -102,16 +102,16 @@
                                                     -
                                                 @endif
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-12">
                                                         <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}');">
                                                             <i class="fas fa-map-marker-alt"></i> 
                                                             <br>
                                                             ดูหมุด
                                                         </a>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-12 d-none">
                                                         <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
                                                             <i class="fas fa-location-arrow"></i> 
                                                             <br>
