@@ -17,15 +17,16 @@
                             
                                     @foreach($data_sos_maps[$i] as $item)
                                         <div class="row">
-                                            <div class="col-2">
+                                            <div class="col-1">
                                                 ให้คะแนน : <b>{{ count($data_sos_maps[$i]) }}</b>
                                             </div>
                                             <div class="col-3">
-                                                ความประทับใจ : <b>{{ $item->score_impression }}</b>
+                                                คะแนนความประทับใจเฉลี่ย : <b>{{ $item->score_impression }}</b>
                                             </div>
                                         </div>
                                         <br>
                                     @endforeach
+                                    <br>
                                 @endfor
                             </div>
                         </div>
