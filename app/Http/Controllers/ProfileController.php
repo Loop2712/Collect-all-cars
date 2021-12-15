@@ -126,7 +126,7 @@ class ProfileController extends Controller
             $user_organization = "0";
         }
         
-        if (Auth::id() == $id or Auth::user()->role == "admin" or Auth::user()->organization == $user_organization)
+        if (Auth::id() == $id or Auth::user()->role == "admin" or Auth::user()->role == 'admin-partner')
         {
             $organization = "";
             if (!empty($data['organization'])) {
