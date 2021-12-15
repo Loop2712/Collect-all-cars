@@ -479,17 +479,41 @@ class PartnerController extends Controller
         $count_user_partner = count($user_of_partners);
 
         // echo $count_user_partner;
-
+        $name_of_partner = [];
+        $id_of_partner = [];
         foreach ($user_of_partners as $user_of_partner ) {
-            echo $user_of_partner->name;
-            echo "<br>";
+            array_push($name_of_partner,$user_of_partner->name);
+            array_push($id_of_partner,$user_of_partner->id);
         }
 
-        $data_sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")
-                    ->where('help_complete', "Yes")
+        // echo count($name_of_partner);
+        // echo $name_of_partner[0];
+        // echo "<br>";
+        // echo "<pre>";
+        // print_r($name_of_partner);
+        // echo "<pre>";
+        // echo "<br>";
+        // echo "<pre>";
+        // print_r($id_of_partner);
+        // echo "<pre>";
+        // exit();
+        $data_sos_maps = [];
+        for ($i=0; $i < count($name_of_partner); $i++) { 
+            $sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")
+                    ->where('score_impression', '!=' ,  null)
+                    ->where('helper', 'LIKE', "%$name_of_partner[$i]%")
                     ->get();
+            array_push($data_sos_maps,$sos_maps);
+            echo $name_of_partner[$i];
+            echo "<br>";
 
-        return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_sos_maps'));
+        }
+        echo "<pre>";
+        print_r($data_sos_maps);
+        echo "<pre>";
+        exit();
+
+        return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_sos_maps','name_of_partner'));
     }
 
     public function sos_detail_chart(Request $request)

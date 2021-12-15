@@ -12,7 +12,10 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
-                                <br>
+                                @for ($i=0; $i < count($name_of_partner); $i++)
+                                    <h1>{{ $name_of_partner[$i] }}</h1>
+                                @endfor
+                                
                                 @foreach($data_sos_maps as $item)
                                     <div class="row">
                                         <!-- <div class="col-1">
