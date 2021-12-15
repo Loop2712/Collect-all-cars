@@ -2,6 +2,7 @@
 
 @section('content')
 <br><br><br><br><br>
+<input type="hidden" name="score_old" id="score_old" value="{{ $score }}">
     <div class="container" style="font-family: 'Mitr', sans-serif;">
         <div class="row">
             <div class="col-md-12">
@@ -16,6 +17,15 @@
                     </div>
                 </div>
                 <br>
+            </div>
+            <div id="score_yes" class="col-md-12 d-none">
+                <div class="card" style="background-color:#00b4d8;border-radius: 25px;padding: 4px;">
+                    <div class="card-body" style="color: white;">
+                        <p class="text-center" style="font-size:18px;">คุณได้ให้คะแนนเจ้าหน้าที่แล้ว</p>
+                    </div>
+                </div>
+            </div>
+            <div id="score_no" class="col-md-12 d-none">
                 <div class="card" style="background-color:#00b4d8;border-radius: 25px;padding: 4px;">
                     <div class="card-body" style="color: white;">
                         <p class="text-center" style="font-size:18px;">ความประทับใจในการช่วยเหลือ</p>
@@ -72,8 +82,7 @@
                     <div class="card-body" style="color: white;">
                         <p class="text-center" style="font-size:18px;">คำแนะนำ/ติชม</p>
                         <div class="row">
-                            <textarea class="form-control" rows="4" name="comment_help" id="comment_help" value="">
-                            </textarea>
+                            <textarea class="form-control" rows="4" name="comment_help" id="comment_help" value="" cols="50"></textarea>
                         </div>
                     </div>
                 </div>
@@ -111,8 +120,23 @@
         </div>
     </div>
     <a class="d-none" id="btn_sos_thank_submit_score" href="{{ url('/sos_thank_submit_score') . '/' . $data_sos_map->user_id }}"></a>
+    
     <script>
         
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // console.log("START");
+            let score_old = document.querySelector('#score_old').value;
+
+            if (score_old === 'Yes') {
+                document.querySelector('#score_yes').classList.remove('d-none');
+                document.querySelector('#score_no').classList.add('d-none');
+            }else{
+                document.querySelector('#score_yes').classList.add('d-none');
+                document.querySelector('#score_no').classList.remove('d-none');
+            }
+
+        });
+
         function change_heart_color(article_no , score){
 
             let score_1 = document.querySelector('#score_1');

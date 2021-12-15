@@ -253,7 +253,13 @@ class Sos_mapController extends Controller
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_users = User::findOrFail($data_sos_map->user_id);
 
-        return view('sos_map.rate_help', compact('data_sos_map','data_users'));
+        if (!empty($data_sos_map->score_impression)) {
+            $score = "Yes" ; 
+        }else{
+            $score = "No" ;
+        }
+
+        return view('sos_map.rate_help', compact('data_sos_map','data_users','score'));
     }
 
     public function sos_thank_submit_score($user_id)
