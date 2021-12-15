@@ -154,13 +154,13 @@
                                                             </div>
                                                             <div class="col-2">
                                                                 @if($item->score_total < 3)
-                                                                    <b>ภาพรวม : </b>
+                                                                    <b>ภาพรวม : </b><br>
                                                                     <span class="text-danger">{{$item->score_total}}</span>
                                                                 @elseif($item->score_total == 3)
-                                                                    <b>ภาพรวม : </b>
+                                                                    <b>ภาพรวม : </b><br>
                                                                     <span class="text-warning">{{$item->score_total}}</span>
                                                                 @elseif($item->score_total > 3)
-                                                                    <b>ภาพรวม : </b>
+                                                                    <b>ภาพรวม : </b><br>
                                                                     <span class="text-success">{{$item->score_total}}</span>
                                                                 @endif
                                                             </div>
