@@ -40,13 +40,17 @@ class SosmapController extends Controller
 
     public function submit_score($sos_map_id , $score_1 , $score_2 , $total_score)
     {
-        DB::table('sos_maps')
-            ->where('id', $sos_map_id)
-            ->update([
-                'score_impression' => $score_1,
-                'score_period' => $score_2,
-                'score_total' => number_format($total_score,2),
-        ]);
+        $data_sos_map = Sos_map::findOrFail($sos_map_id);
+
+        if (empty($data_sos_map->score_impression)) {
+            DB::table('sos_maps')
+                ->where('id', $sos_map_id)
+                ->update([
+                    'score_impression' => $score_1,
+                    'score_period' => $score_2,
+                    'score_total' => number_format($total_score,2),
+            ]);
+        }
     }
 
 

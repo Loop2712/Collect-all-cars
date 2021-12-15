@@ -44,12 +44,12 @@
                                             Type
                                         </center>
                                     </div>
-                                    <div class="col-2">
+                                    <!-- <div class="col-2">
                                         <center>
                                             <b>การจัดอันดับ</b><br>
                                             Ranking
                                         </center>
-                                    </div>
+                                    </div> -->
                                     <div class="col-2">
                                         <center>
                                             <b>เบอร์</b><br>
@@ -66,6 +66,12 @@
                                         <center>
                                             <b>สถานะ</b><br>
                                             Status
+                                        </center>
+                                    </div>
+                                    <div class="col-2">
+                                        <center>
+                                            <b>คะแนนการช่วยเหลือ</b><br>
+                                            Help Points
                                         </center>
                                     </div>
                                     <div class="col-1">
@@ -102,7 +108,7 @@
                                             @endswitch
                                             </center>
                                         </div>
-                                        <div class="col-2">
+                                        <!-- <div class="col-2">
                                             <center>
                                             @switch($item->ranking)
                                                 @case('Gold')
@@ -116,7 +122,7 @@
                                                 @break
                                             @endswitch
                                             </center>
-                                        </div>
+                                        </div> -->
                                         <div class="col-2">
                                             <center>{{ $item->phone }}</center>
                                         </div>
@@ -133,6 +139,11 @@
                                                         <i class="fas fa-times"></i> Expired
                                                     @break
                                                 @endswitch
+                                            </center>
+                                        </div>
+                                        <div class="col-2">
+                                            <center>
+                                                <a type="button" class="btn btn-primary text-white">คะแนนการช่วยเหลือ </a>
                                             </center>
                                         </div>
                                         <div class="col-1">

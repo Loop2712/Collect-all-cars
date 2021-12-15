@@ -477,27 +477,17 @@ class PartnerController extends Controller
         $user_of_partners = User::where('organization', $data_user->organization)->get();
 
         $count_user_partner = count($user_of_partners);
-        
-            $name_helper = [];
-            for ($i=0; $i < $count_user_partner; $i++) { 
 
-                foreach ($user_of_partners as $user_of_partner) {
+        // echo $count_user_partner;
 
-                    $name_partner = $user_of_partner->name;
+        foreach ($user_of_partners as $user_of_partner ) {
+            echo $user_of_partner->name;
+            echo "<br>";
+        }
 
-                }
-
-                $name_helper[$i] = $name_partner;
-
-                // echo 'คนที่' . $i . '>>>>' . $name_helper[$i] ;
-                // echo '<br>';
-            }
-
-            echo $name_helper[0];
-
-        // exit();
-
-        $data_sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")->get();
+        $data_sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")
+                    ->where('help_complete', "Yes")
+                    ->get();
 
         return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_sos_maps'));
     }

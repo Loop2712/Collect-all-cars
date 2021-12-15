@@ -28,7 +28,6 @@
         <div class="col-8 d-none d-lg-block" >
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ url('/sos_score_helper') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูคะแนนการช่วยเหลือ <i class="fas fa-heart"></i></a>
                     <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
                 </div>
                 <br>
