@@ -121,7 +121,7 @@
                                                 </div>
                                             </div>
                                             @if(Auth::check())
-                                                @if(Auth::user()->role == 'admin-partner' or Auth::user()->role == $item->helper_id)
+                                                @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
                                                     <div class="col-12 text-left" style="margin-top:5px;">
                                                         <h4>คะแนนการช่วยเหลือ</h4>
                                                         <div class="row">
