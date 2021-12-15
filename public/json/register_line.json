@@ -27,7 +27,7 @@
         "action": {
           "type": "uri",
           "label": "Login line",
-          "uri": "https://www.viicheck.com/login/line"
+          "uri": "https://www.viicheck.com/login/line?from=line_oa"
         },
         "color": "#76d128"
       },

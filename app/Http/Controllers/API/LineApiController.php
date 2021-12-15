@@ -381,12 +381,21 @@ class LineApiController extends Controller
         
         if ($users != '[]') {
             foreach ($users as $user) {
-
-                DB::table('users')
-                    ->where('provider_id', $provider_id)
-                    ->update([
-                        'organization' => $data_partner_helpers->name,
-                ]);
+                if (!empty($user->role)) {
+                    DB::table('users')
+                        ->where('provider_id', $provider_id)
+                        ->update([
+                            'organization' => $data_partner_helpers->name,
+                    ]);
+                }else{
+                    DB::table('users')
+                        ->where('provider_id', $provider_id)
+                        ->update([
+                            'organization' => $data_partner_helpers->name,
+                            'role' => 'partner',
+                    ]);
+                }
+                
 
                 if (!empty($data_sos_map->helper)) {
 
