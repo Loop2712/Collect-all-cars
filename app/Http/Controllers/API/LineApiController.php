@@ -83,7 +83,7 @@ class LineApiController extends Controller
                 break;
             case "help_complete" : 
                 $this->help_complete($data_postback_explode[1]);
-                $line->reply_success($event , $data_postback);
+                $this->reply_success_groupline($event , $data_postback);
                 break;
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
@@ -774,6 +774,75 @@ class LineApiController extends Controller
             ];
             MyLog::create($data);
         }
+
+    }
+
+    public function reply_success_groupline($event , $data_postback)
+    {
+        $data_line_group = DB::table('group_lines')
+                    ->where('groupId', $event['source']['groupId'])
+                    ->get();
+
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
+
+        $data_topic = [
+                    "ViiCHECK ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
+        
+
+        $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
+
+        $template_path = storage_path('../public/json/text_success.json');   
+
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",$data_topic[0],$string_json);
+        $messages = [ json_decode($string_json, true) ];
+
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "ViiCHECK ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+            "content" => "reply Success",
+        ];
+        MyLog::create($data);
+        return $result;
 
     }
 

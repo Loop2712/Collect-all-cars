@@ -21,21 +21,10 @@ class LineMessagingAPI extends Model
 
     public function reply_success($event , $data_postback)
     {
-        switch ($data_postback) {
-            case 'help_complete':
-                $data_Text_topic = [
-                    "ViiCHECK ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
-                ];
-                break;
-            
-            default:
-                $data_Text_topic = [
-                    "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
-                ];
-                break;
-        }
+        $data_Text_topic = [
+            "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
+        ];
         
-
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
         $template_path = storage_path('../public/json/text_success.json');   
