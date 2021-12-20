@@ -133,7 +133,7 @@
                     </span>
                     <span>
                         <a id="car_MY" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/ml1.png') }}" style= "border-radius: 5px;">
+                            <img width="25px" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
                         </a>
                     </span>
                     <!-- Modal -->
@@ -224,7 +224,7 @@
                                 <div class="col-12 d-none d-lg-block">&nbsp;</div>
                                 <div class="col-lg-3 col-4">
                                     <!-- พม่า<br>  -->
-                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal" onclick="
+                                    <a href="#"  class="select-btn" data-value="MM" data-dismiss="modal" onclick="
                                     document.querySelector('#car_TH').classList.add('d-none'),
                                     document.querySelector('#car_ID').classList.add('d-none');
                                     document.querySelector('#car_LA').classList.add('d-none');
