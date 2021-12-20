@@ -311,7 +311,7 @@ class Sos_mapController extends Controller
                         "จาก",
                         "โทร",
                         "รูปภาพสถานที่",
-                        "กำลังไป",
+                        "กำลังไปช่วยเหลือ",
                     ];
 
             for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -365,7 +365,7 @@ class Sos_mapController extends Controller
             $string_json = str_replace("จาก",$data_topic[2],$string_json);
             $string_json = str_replace("โทร",$data_topic[3],$string_json);
             $string_json = str_replace("รูปภาพสถานที่",$data_topic[4],$string_json);
-            $string_json = str_replace("กำลังไป",$data_topic[5],$string_json);
+            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[5],$string_json);
 
             $string_json = str_replace("lat",$lat_user,$string_json);
             $string_json = str_replace("lng",$lng_user,$string_json);
