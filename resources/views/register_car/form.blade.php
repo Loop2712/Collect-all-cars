@@ -158,25 +158,65 @@
                     </div> -->
                                 <div class="col-lg-3 col-4">
                                     <!-- ไทย<br>  -->
-                                     <a href="#"  class="select-btn" data-value="TH" data-dismiss="modal">
+                                     <a href="#"  class="select-btn" data-value="TH" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.remove('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                          <img width="50%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
                                      </a>
                                 </div>
                                 <div class="col-lg-3 col-4">
                                     <!-- อิโดนีเซีย<br>  -->
-                                    <a href="#"  class="select-btn" data-value="ID" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="ID" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.remove('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-4 ">
                                     <!-- ลาว<br>  -->
-                                    <a href="#"  class="select-btn" data-value="LA" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="LA" data-dismiss="modal"onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.remove('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
                                 <div class="col-12 d-block d-md-none">&nbsp;</div>
                                 <div class="col-lg-3 col-4">
-                                    <a href="#"  class="select-btn" data-value="PH" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="PH" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.remove('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                     <!-- ฟิลิปปินส์<br>  -->
                                         <img width="50%" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
                                     </a>
@@ -184,40 +224,100 @@
                                 <div class="col-12 d-none d-lg-block">&nbsp;</div>
                                 <div class="col-lg-3 col-4">
                                     <!-- พม่า<br>  -->
-                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.remove('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div> 
                                 <div class="col-lg-3 col-4">
                                     <!-- สิงคโปร์<br>  -->
-                                    <a href="#"  class="select-btn" data-value="SG" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="SG" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.remove('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
                                 <div class="col-12 d-block d-md-none">&nbsp;</div>
                                 <div class="col-lg-3 col-4">
                                     <!-- กัมพูชา<br>  -->
-                                    <a href="#"  class="select-btn" data-value="KR" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="KR" data-dismiss="modal"onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.remove('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-4">
                                     <!-- บรูไน<br>  -->
-                                    <a href="#"  class="select-btn" data-value="BN" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="BN" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.remove('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
                                 <div class="col-12 d-none d-lg-block">&nbsp;</div>
                                 <div class="col-lg-3 col-4">
                                     <!-- เวียดนาม<br>  -->
-                                    <a href="#"  class="select-btn" data-value="VN" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="VN" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.remove('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
                                 <div class="col-12 d-block d-md-none">&nbsp;</div>
                                 <div class="col-lg-3 col-4">
                                     <!-- <br>  -->
-                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal">
+                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.remove('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
@@ -905,12 +1005,7 @@
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-    
-    $(function () {
-        $('body').on('click', '.select-btn', function () {
-            $('#CountryCode').val($(this).data('value'));
-        })
-    })
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         let user_id = document.querySelector('#user_id').value;
@@ -928,7 +1023,13 @@
                 }
 
             });
+            
+    $(function () {
+            $('body').on('click', '.select-btn', function () {
+                $('#CountryCode').val($(this).data('value'));
 
+            })
+        })
     });
 </script>
 <script>
