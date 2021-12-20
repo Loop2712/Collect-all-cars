@@ -805,9 +805,6 @@ class LineApiController extends Controller
                 $data_topic[$xi] = $item_of_text_topic->$group_language ;
             }
         }
-        
-
-        $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
         $template_path = storage_path('../public/json/text_success.json');   
 
