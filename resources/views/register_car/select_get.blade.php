@@ -108,9 +108,9 @@
                             <center>
                                 <div>
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                                    <img width="120%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
+                                    <img id="sticker_v2_show_m" width="120%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
                                 </div>
-                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2').click(); "> ดาวน์โหลด
+                                <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2_download').click(); "> ดาวน์โหลด
                                 </button>
                                 <br><br>
                             </center>
@@ -146,16 +146,20 @@
         let link_url = ("{{ url('/') }}/img/sticker_qr/sticker_qr_" + language.value +".png");
           // console.log(link_url);
 
-          var sticker_v2_download = document.getElementById("sticker_v2_download");
-          var sticker_v2_show = document.getElementById("sticker_v2_show");
+            var sticker_v2_download = document.getElementById("sticker_v2_download");
+            var sticker_v2_show = document.getElementById("sticker_v2_show");
+            var sticker_v2_show_m = document.getElementById("sticker_v2_show_m");
 
-          var att_1 = document.createAttribute("href");
-            att_1.value = link_url;
-          var att_2 = document.createAttribute("src");
-            att_2.value = link_url;
+            var att_1 = document.createAttribute("href");
+                att_1.value = link_url;
+            var att_2 = document.createAttribute("src");
+                att_2.value = link_url;
+            var att_3 = document.createAttribute("src");
+                att_3.value = link_url;
 
             sticker_v2_download.setAttributeNode(att_1); 
             sticker_v2_show.setAttributeNode(att_2); 
+            sticker_v2_show_m.setAttributeNode(att_3); 
       }
 </script>
 @endsection
