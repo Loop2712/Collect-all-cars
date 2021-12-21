@@ -41,7 +41,7 @@
                             <center>
                                 <div>
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                                    <img id="sticker_v2_show" width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
+                                    <img id="sticker_v2_show" width="100%" src="{{ asset('/img/sticker_qr/sticker_qr_th.png') }}"/>
                                 </div>
                                 <button style="padding-left: 95px;padding-right: 95px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2_download').click(); "> ดาวน์โหลด
                                 </button>
@@ -109,7 +109,7 @@
                             <center>
                                 <div>
                                     <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=https://market.viicheck.com/guest/create/&choe=UTF-8"  /> -->
-                                    <img id="sticker_v2_show_m" width="117%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}"/>
+                                    <img id="sticker_v2_show_m" width="117%" src="{{ asset('/img/sticker_qr/sticker_qr_th.png') }}"/>
                                 </div>
                                 <button style="padding-left: 40px;padding-right: 40px; border-radius: 20px; padding-top: 10px; padding-bottom: 10px; font-size: 14px; background-color: #db2d2e; border: none;"  class="btn btn-danger main-shadow" onclick="document.getElementById('sticker_v2_download').click(); "> ดาวน์โหลด
                                 </button>
