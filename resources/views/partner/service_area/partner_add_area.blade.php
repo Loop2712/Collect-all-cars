@@ -163,9 +163,6 @@
 				</div>
 			</div>
 		</div>
-
-
-		<a href="{{ url('/service_area') }}" class="nav-link "><span class="pcoded-micon"><i class="far fa-map"></i></span><span class="pcoded-mtext">พื้นที่บริการ</span></a>
 	</div>
 
 	<script>
