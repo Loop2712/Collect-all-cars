@@ -110,7 +110,7 @@
 		<br>
 		<!-- AREA CURRENT -->
 		<div class="card">
-			<h3 class="card-header">พื้นที่บริการปัจจุบัน</h3>
+			<h3 class="card-header">รายชื่อพื้นที่บริการปัจจุบัน</h3>
 			<div class="card-body">
 				<div class="col-12">
 					<div class="row alert alert-secondary text-center">
