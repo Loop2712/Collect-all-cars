@@ -5,7 +5,7 @@
 		<!-- ADD NEW AREA -->
 		<div class="row">
 			@if(Auth::check())
-			@if(Auth::user()->id == 1 )
+			@if(Auth::user()->id == 21 )
 			<div class="col-12">
 				<a id="btn_add_area" class="btn text-white float-right" style="background-color: #008450;" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner">
 					เพิ่มพื้นที่บริการใหม่
