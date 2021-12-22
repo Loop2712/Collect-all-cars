@@ -13,15 +13,17 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12">
-                    <a id="btn_service_current" href="{{ url('/service_current') }}" type="button" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
-                    <a id="btn_service_pending" href="{{ url('/service_pending') }}" type="button" class="btn btn-warning text-white">รอการตรวจสอบ</a>
-                    <a id="btn_service_area" href="{{ url('/service_area') }}" type="button" class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
-                    <h3 class="float-right">พื้นที่รอการตรวจสอบ</h3>
-                    <br><br>
+                    @include ('partner.service_area.btn_menu')
+                    <div class="col-12">
+                        <h3>พื้นที่บริการปัจจุบัน</h3><br class="d-block d-md-none">
+                    </div>
+                    <br>
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                    <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}"><br class="d-block d-md-none">
+                    <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}">
+                    <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
+                    <br class="d-block d-md-none">
                     <div class="card" style="font-family: 'Prompt', sans-serif;border-radius: 25px;">
                         <div id="map">
                         <center class="d-none d-lg-block">
@@ -73,8 +75,9 @@
         // console.log("START");
 
         let name_partner = document.querySelector('#name_partner').value;
+        let name_area = document.querySelector('#name_area').value;
 
-        fetch("{{ url('/') }}/api/area_pending/"+name_partner)
+        fetch("{{ url('/') }}/api/area_pending/"+name_partner+'/'+name_area)
             .then(response => response.json())
             .then(result => {
                 // console.log(result.length);

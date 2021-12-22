@@ -79,6 +79,9 @@ class PartnerController extends Controller
     {
         
         $requestData = $request->all();
+
+        $requestData['phone'] = str_replace("-", "", $requestData['phone']);
+        $requestData['phone'] = str_replace(" ", "", $requestData['phone']);
         
         Partner::create($requestData);
 
@@ -429,8 +432,29 @@ class PartnerController extends Controller
     //     return view('Partners_2bgreen.P_2begreen_sos_insurance', compact('datdata_partnersa_user','sos_insurance'));
     // }
 
+    public function add_area(Request $request)
+    {
+        $count_position = 1 ;
+
+        $data_user = Auth::user();
+        $data_partners = Partner::where("name", $data_user->organization)
+                            ->where("name_area", null)
+                            ->get();
+
+        $all_area_partners = Partner::where("name", $data_user->organization)
+                            ->where("name_area", "!=" , null)
+                            ->get();
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        $group_line = Group_line::where('owner', null)->get();
+
+        return view('partner.service_area.partner_add_area', compact('data_partners' , 'data_time_zone' ,'group_line' ,'all_area_partners'));
+    }
+
     public function service_area(Request $request)
     {
+        $name_area = $request->get('name_area');
         $count_position = 1 ;
 
         $data_user = Auth::user();
@@ -445,27 +469,40 @@ class PartnerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.service_area.partner_service_area_adjustment', compact('data_partners','count_position','location_array','data_time_zone'));
+        if (!empty($name_area)) {
+            return view('partner.service_area.partner_service_area_adjustment', compact('data_partners','count_position','location_array','data_time_zone','name_area'));
+        }else{
+            $group_line = Group_line::where('owner', null)->get();
+            $all_area_partners = Partner::where("name", $data_user->organization)
+                            ->where("name_area", "!=" , null)
+                            ->get();
+                            
+            return view('partner.service_area.partner_add_area', compact('data_partners' , 'data_time_zone' ,'group_line' ,'all_area_partners'));
+        }
+
+        
     }
 
      public function service_area_pending(Request $request)
     {
+        $name_area = $request->get('name_area');
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.service_area.partner_service_area_pending', compact('data_partners','data_time_zone'));
+        return view('partner.service_area.partner_service_area_pending', compact('data_partners','data_time_zone','name_area'));
     }
 
     public function service_area_current(Request $request)
     {
+        $name_area = $request->get('name_area');
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.service_area.partner_service_area_current', compact('data_partners','data_time_zone'));
+        return view('partner.service_area.partner_service_area_current', compact('data_partners','data_time_zone','name_area'));
     }
 
     public function sos_score_helper(Request $request)
@@ -476,44 +513,61 @@ class PartnerController extends Controller
 
         $user_of_partners = User::where('organization', $data_user->organization)->get();
 
-        $count_user_partner = count($user_of_partners);
-
-        // echo $count_user_partner;
         $name_of_partner = [];
-        $id_of_partner = [];
         foreach ($user_of_partners as $user_of_partner ) {
-            array_push($name_of_partner,$user_of_partner->name);
-            array_push($id_of_partner,$user_of_partner->id);
+            array_push($name_of_partner , $user_of_partner->name);
         }
 
         // echo count($name_of_partner);
-        // echo $name_of_partner[0];
         // echo "<br>";
         // echo "<pre>";
         // print_r($name_of_partner);
         // echo "<pre>";
-        // echo "<br>";
-        // echo "<pre>";
-        // print_r($id_of_partner);
-        // echo "<pre>";
-        // exit();
-        $data_sos_maps = [];
+
+        $data_score = [];
         for ($i=0; $i < count($name_of_partner); $i++) { 
+
             $sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")
-                    ->where('score_impression', '!=' ,  null)
-                    ->where('helper', 'LIKE', "%$name_of_partner[$i]%")
-                    ->get();
-            array_push($data_sos_maps,$sos_maps);
-            // echo $name_of_partner[$i];
-            // echo "<br>";
+                ->where('score_impression', '!=' ,  null)
+                ->where('helper', 'LIKE', "%$name_of_partner[$i]%")
+                ->get();
+
+            array_push($data_score , $sos_maps);
 
         }
+        // echo count($data_score);
+        // echo "<br>";
         // echo "<pre>";
-        // print_r($data_sos_maps);
+        // print_r($data_score);
+        // echo "<pre>";
+
+        // for ($c=0; $c < count($data_score); $c++) { 
+            $sum_impression = 0 ;
+            $sum_period = 0 ;
+            $sum_total = 0 ;
+            $count_sum = 0 ;
+            foreach ($data_score[0] as $key) {
+                $count_sum = $count_sum + 1 ;
+                $sum_impression = ($sum_impression + $key->score_impression) /  $count_sum;
+                $sum_period = ($sum_period + $key->score_period) /  $count_sum;
+                $sum_total = ($sum_total + $key->score_total) /  $count_sum;
+            }
+        // }
+            // echo $name_of_partner[0];
+            // echo "<br>";
+            // echo $sum_impression;
+            // echo "<br>";
+            // echo $sum_period;
+            // echo "<br>";
+            // echo $sum_total;
+            // echo "<br>";
+
+        // echo "<pre>";
+        // print_r($data_score[0]);
         // echo "<pre>";
         // exit();
 
-        return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_sos_maps','name_of_partner'));
+        return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_score'));
     }
 
     public function sos_detail_chart(Request $request)

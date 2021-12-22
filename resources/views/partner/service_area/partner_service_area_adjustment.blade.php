@@ -25,13 +25,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-12">
-                            <a id="btn_service_current" href="{{ url('/service_current') }}" class="btn btn-primary text-white">พื้นที่ปัจจุบัน</a>
-                            <a id="btn_service_pending" href="{{ url('/service_pending') }}" class="btn btn-warning text-white">รอการตรวจสอบ</a>
-                            <a id="btn_service_area" href="{{ url('/service_area') }}"class="btn btn-secondary text-white">ปรับพื้นที่บริการ</a>
-
-                        <hr>
-                        </div>
+                        @include ('partner.service_area.btn_menu')
                         <div class="col-12 col-md-4 d-none d-lg-block">
                             <select id="select_province" class="form-control" onchange="show_amphoe();">
                                 <option value="" selected > - จังหวัด - </option> 
@@ -89,7 +83,7 @@
 
                         <div style="margin-top:12px;" class="card">
                             <h3 class="card-header">
-                                ปรับพื้นที่บริการ
+                                ปรับพื้นที่บริการ <b class="text-info">{{ $name_area }}</b>
                                 <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
                                     เริ่มใหม่
                                 </a>
@@ -131,6 +125,7 @@
                                         <input class="form-control" name="count_position" type="hidden" id="count_position" value="{{ $count_position }}">
                                         <br>
                                         <input class="form-control" type="hidden" name="name_partner" id="name_partner" value="{{ Auth::user()->organization }}">
+                                        <input class="form-control" type="hidden" name="name_area" id="name_area" value="{{ $name_area }}">
                                     </div>
                                     <div class="col-6">
                                         <textarea class="form-control d-none" name="area_arr"  id="area_arr" value="" rows="10"></textarea>
@@ -697,8 +692,10 @@
 
         let name_partner = document.querySelector('#name_partner').value;
 
+        let name_area = document.querySelector('#name_area').value;
 
-        fetch("{{ url('/') }}/api/send_sos_area/"+area_arr+"/"+name_partner);
+
+        fetch("{{ url('/') }}/api/send_sos_area/"+area_arr+"/"+name_partner+"/"+name_area);
 
         document.querySelector('#btn_modal_send_area').click();
 

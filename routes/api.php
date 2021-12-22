@@ -97,9 +97,9 @@ Route::get('/change_language_fromline/{language}/{user_id}', 'API\API_language@c
 
 Route::get('/add_text_topic/{text_th}', 'API\API_language@add_text_topic');
 
-Route::get('/send_sos_area/{area_arr}/{name_partner}', 'API\PartnersController@sos_area');
-Route::get('/area_pending/{name_partner}', 'API\PartnersController@area_pending');
-Route::get('/area_current/{name_partner}', 'API\PartnersController@area_current');
+Route::get('/send_sos_area/{area_arr}/{name_partner}/{name_area}', 'API\PartnersController@sos_area');
+Route::get('/area_pending/{name_partner}/{name_area}', 'API\PartnersController@area_pending');
+Route::get('/area_current/{name_partner}/{name_area}', 'API\PartnersController@area_current');
 
 Route::get('/show_amphoe/{province}', 'API\LocationController@amphoe_search');
 Route::get('/show_district/{amphoe}', 'API\LocationController@district_search');

@@ -56,10 +56,11 @@ class PartnersController extends Controller
         
     }
 
-    public function sos_area($area_arr,$name_partner)
+    public function sos_area($area_arr,$name_partner,$name_area)
     {
         DB::table('partners')
               ->where('name', $name_partner)
+              ->where('name_area', $name_area)
               ->update([
                 'new_sos_area' => $area_arr,
         ]);
@@ -68,10 +69,11 @@ class PartnersController extends Controller
         
     }
 
-    public function area_pending($name_partner)
+    public function area_pending($name_partner,$name_area)
     {
         $data_partners = DB::table('partners')
               ->where('name', $name_partner)
+              ->where('name_area', $name_area)
               ->get();
 
         foreach ($data_partners as $key) {
@@ -82,10 +84,11 @@ class PartnersController extends Controller
         
     }
 
-    public function area_current($name_partner)
+    public function area_current($name_partner,$name_area)
     {
         $data_partners = DB::table('partners')
               ->where('name', $name_partner)
+              ->where('name_area', $name_area)
               ->get();
 
         foreach ($data_partners as $key) {
