@@ -296,6 +296,34 @@
     </div>
 </div> 
 <!-- จบ SOS เวียดนาม -->
+<!-- SOS ไต้หวัน -->
+<div id="sos_TW" class="row d-none">
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','110');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Scam Watch</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Scam_Watch','165');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 165</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Emergency</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Emergency','112');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance And Fire</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Ambulance_And_Fire','119');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Overseas Operator</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Overseas_Operator','100');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 100</a>
+    </div>
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Taiwan Information Center</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Taiwan_Information_Center','0800-024-111');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>0800-024-111</a>
+    </div>
+</div> 
+<!-- จบ SOS ไต้หวัน -->
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {

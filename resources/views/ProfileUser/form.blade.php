@@ -89,6 +89,15 @@
                                             <div class="col-md-4 col-lg-2 col-4" style="top:2px">
                                                 <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
                                             </div>
+                                            <div class="col-4 col-md-4 col-lg-2" style="top:4px">
+                                                <img class="btn" id="img_flag_in" style="filter: grayscale(100%); " width="82" src="{{ url('/img/national-flag/flex-in.png') }}" onclick="change_language('in' , '{{ $data->id }}');">
+                                            </div>
+                                            <div class="col-4 col-md-4 col-lg-2" style="top:5px;right:-2px;">
+                                                <img class="btn" id="img_flag_ae" style="filter: grayscale(100%);"  width="79" src="{{ url('/img/national-flag/flex-ar.png') }}" onclick="change_language('ae' , '{{ $data->id }}');">
+                                            </div>
+                                            <div class="col-4 col-md-4 col-lg-2" style="top:5px;right:-2px;">
+                                                <img class="btn" id="img_flag_ru" style="filter: grayscale(100%); " width="79"  src="{{ url('/img/national-flag/flex-ru.png') }}" onclick="change_language('ru' , '{{ $data->id }}');">
+                                            </div>
                                             <div class="col-md-4 col-lg-2 col-4" style="top:2px">
                                                 <img class="btn" id="img_flag_es" style="filter: grayscale(100%); " width="85"  src="{{ url('/img/national-flag/flex-es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
                                             </div>
@@ -107,10 +116,10 @@
                                             <div class="col-4 col-md-4 col-lg-2">
                                                 <img class="btn" id="img_flag_lo" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-la.png') }}" onclick="change_language('lo' , '{{ $data->id }}');">
                                             </div>
-                                            <div class="col-4 col-md-4 col-lg-2" >
+                                            <div class="col-4 col-md-4 col-lg-2 " >
                                                 <img class="btn" id="img_flag_my" style="filter: grayscale(100%); " width="85"  src="{{ url('/img/national-flag/flex-mm.png') }}" onclick="change_language('my' , '{{ $data->id }}');">
                                             </div>
-                                            <div class="col-md-4 col-lg-2 col-4 d-none d-lg-block">
+                                            <div class="col-md-4 col-lg-2 col-4 d-none">
                                                 <img class="btn"  width="85" src="{{ url('/img/national-flag/flex-other.png') }}" type="button" data-toggle="collapse" data-target="#modal_language" aria-expanded="false" aria-controls="modal_language">
                                             </div>
                                             <div class="col-lg-1"></div>
@@ -436,6 +445,18 @@
                 alert("Die Sprache wurde erfolgreich geändert.");
                 document.querySelector('#btn_change_language_de').click();
             break;
+            case 'in':
+                alert("सफलतापूर्वक भाषा बदलें");
+                document.querySelector('#btn_change_language_in').click();
+            break;
+            case 'ae':
+                alert("تغيير اللغة بنجاح");
+                document.querySelector('#btn_change_language_ae').click();
+            break;
+            case 'ru':
+                alert("Изменить язык успешно");
+                document.querySelector('#btn_change_language_ru').click();
+            break;
           }
 
     }
@@ -451,6 +472,9 @@
         let img_lo = document.querySelector('#img_flag_lo');
         let img_my = document.querySelector('#img_flag_my');
         let img_de = document.querySelector('#img_flag_de');
+        let img_in = document.querySelector('#img_flag_in');
+        let img_ae = document.querySelector('#img_flag_ae');
+        let img_ru = document.querySelector('#img_flag_ru');
 
         let style_gray_th= document.createAttribute("style");
             style_gray_th.value = "filter: grayscale(100%);";
@@ -479,6 +503,15 @@
         let style_gray_de= document.createAttribute("style");
             style_gray_de.value = "filter: grayscale(100%);";
 
+        let style_gray_in= document.createAttribute("style");
+            style_gray_in.value = "filter: grayscale(100%);";
+
+        let style_gray_ae= document.createAttribute("style");
+            style_gray_ae.value = "filter: grayscale(100%);";
+
+        let style_gray_ru= document.createAttribute("style");
+            style_gray_ru.value = "filter: grayscale(100%);";
+
         switch(language) {
             case 'th':
                 let attr_th = img_th.getAttributeNode("style");   
@@ -492,6 +525,9 @@
                 img_lo.setAttributeNode(style_gray_lo);
                 img_my.setAttributeNode(style_gray_my);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'en':
                 let attr_en = img_en.getAttributeNode("style");   
@@ -505,6 +541,9 @@
                 img_lo.setAttributeNode(style_gray_lo);
                 img_my.setAttributeNode(style_gray_my);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'zh-TW':
                 let attr_zh_TW = img_zh_TW.getAttributeNode("style");   
@@ -518,6 +557,9 @@
                 img_lo.setAttributeNode(style_gray_lo);
                 img_my.setAttributeNode(style_gray_my);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'ja':
                 let attr_ja = img_ja.getAttributeNode("style");   
@@ -531,6 +573,9 @@
                 img_lo.setAttributeNode(style_gray_lo);
                 img_my.setAttributeNode(style_gray_my);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'ko':
                 let attr_ko = img_ko.getAttributeNode("style");   
@@ -544,6 +589,9 @@
                 img_lo.setAttributeNode(style_gray_lo);
                 img_my.setAttributeNode(style_gray_my);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'es':
                 let attr_es = img_es.getAttributeNode("style");   
@@ -557,6 +605,9 @@
                 img_lo.setAttributeNode(style_gray_lo);
                 img_my.setAttributeNode(style_gray_my);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'lo':
                 let attr_lo = img_lo.getAttributeNode("style");   
@@ -570,6 +621,9 @@
                 img_ko.setAttributeNode(style_gray_ko);
                 img_my.setAttributeNode(style_gray_my);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'my':
                 let attr_my = img_my.getAttributeNode("style");   
@@ -583,6 +637,9 @@
                 img_lo.setAttributeNode(style_gray_lo);
                 img_es.setAttributeNode(style_gray_es);
                 img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'de':
                 let attr_de = img_de.getAttributeNode("style");   
@@ -596,6 +653,61 @@
                 img_ko.setAttributeNode(style_gray_ko);
                 img_lo.setAttributeNode(style_gray_lo);
                 img_es.setAttributeNode(style_gray_es);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
+              break;
+              
+            case 'in':
+                let attr_in = img_in.getAttributeNode("style");   
+                img_in.removeAttributeNode(attr_in);
+
+                img_my.setAttributeNode(style_gray_my);
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_es.setAttributeNode(style_gray_es);
+                img_de.setAttributeNode(style_gray_de);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
+              break;
+          
+          case 'ae':
+                let attr_ae = img_ae.getAttributeNode("style");   
+                img_ae.removeAttributeNode(attr_ae);
+
+                img_my.setAttributeNode(style_gray_my);
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_es.setAttributeNode(style_gray_es);
+                img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ru.setAttributeNode(style_gray_ru);
+              break;
+        
+
+          case 'ru':
+                let attr_ru = img_ru.getAttributeNode("style");   
+                img_ru.removeAttributeNode(attr_ru);
+
+                img_my.setAttributeNode(style_gray_my);
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_es.setAttributeNode(style_gray_es);
+                img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
               break;
           }
 

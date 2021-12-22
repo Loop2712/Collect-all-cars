@@ -88,52 +88,67 @@
                     </button> -->
                     <span>
                         <a id="car_TH" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_ID" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px; border: 1px solid; color:#8C8C8C;""> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_LA" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_PH" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_MM" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_SG" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_KR" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_BN" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_VN" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>
                         <a id="car_MY" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="25px" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
+                            <img width="40px" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_JP" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="40px" src="{{ asset('/img/national-flag/jp.png') }}" style= "border-radius: 5px; border: 1px solid; color:#8C8C8C;"> <i class="fal fa-angle-down"></i>
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_KO" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="40px" src="{{ asset('/img/national-flag/ko1.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;"> <i class="fal fa-angle-down"></i>
+                        </a>
+                    </span>
+                    <span>
+                        <a id="car_CN" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
+                            <img width="40px" src="{{ asset('/img/national-flag/cn.png') }}" style= "border-radius: 5px;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <!-- Modal -->
@@ -168,7 +183,10 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                          <img width="50%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;">
                                      </a>
                                 </div>
@@ -184,8 +202,11 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
-                                        <img width="50%" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
+                                        <img width="50%" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;">
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-4 ">
@@ -200,7 +221,10 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
@@ -216,7 +240,10 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                     <!-- ฟิลิปปินส์<br>  -->
                                         <img width="50%" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;">
                                     </a>
@@ -234,7 +261,10 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div> 
@@ -250,8 +280,11 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
-                                        <img width="50%" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
+                                        <img width="50%" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;">
                                     </a>
                                 </div>
                                 <div class="col-12 d-block d-md-none">&nbsp;</div>
@@ -267,7 +300,10 @@
                                     document.querySelector('#car_KR').classList.remove('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
@@ -283,7 +319,10 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.remove('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
@@ -300,7 +339,10 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.remove('d-none');
-                                    document.querySelector('#car_MY').classList.add('d-none');">
+                                   document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
@@ -317,22 +359,85 @@
                                     document.querySelector('#car_KR').classList.add('d-none');
                                     document.querySelector('#car_BN').classList.add('d-none');
                                     document.querySelector('#car_VN').classList.add('d-none');
-                                    document.querySelector('#car_MY').classList.remove('d-none');">
+                                    document.querySelector('#car_MY').classList.remove('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
                                         <img width="50%" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;">
                                     </a>
                                 </div>
+                                <div class="col-lg-3 col-4">
+                                    <!-- <br>  -->
+                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.remove('d-none');">
+                                        <img width="50%" src="{{ asset('/img/national-flag/cn.png') }}" style= "border-radius: 5px;">
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-4">
+                                    <!-- <br>  -->
+                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.add('d-none');
+                                    document.querySelector('#car_KO').classList.remove('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
+                                        <img width="50%" src="{{ asset('/img/national-flag/ko1.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;">
+                                    </a>
+                                </div>
+                                <div class="col-12 d-block d-md-none">&nbsp;</div>
+                                <div class="col-12 d-none d-lg-block">&nbsp;</div>
+                                <div class="col-lg-3 col-4">
+                                    <!-- <br>  -->
+                                    <a href="#"  class="select-btn" data-value="MY" data-dismiss="modal" onclick="
+                                    document.querySelector('#car_TH').classList.add('d-none'),
+                                    document.querySelector('#car_ID').classList.add('d-none');
+                                    document.querySelector('#car_LA').classList.add('d-none');
+                                    document.querySelector('#car_PH').classList.add('d-none');
+                                    document.querySelector('#car_MM').classList.add('d-none');
+                                    document.querySelector('#car_SG').classList.add('d-none');
+                                    document.querySelector('#car_KR').classList.add('d-none');
+                                    document.querySelector('#car_BN').classList.add('d-none');
+                                    document.querySelector('#car_VN').classList.add('d-none');
+                                    document.querySelector('#car_MY').classList.add('d-none');
+                                    document.querySelector('#car_JP').classList.remove('d-none');
+                                    document.querySelector('#car_KO').classList.add('d-none');
+                                    document.querySelector('#car_CN').classList.add('d-none');">
+                                        <img width="50%" src="{{ asset('/img/national-flag/jp.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;">
+                                    </a>
+                                </div>
+                                <div class="col-12 d-block d-md-none">&nbsp;</div>
                                 <div class="col-12 d-none d-lg-block">&nbsp;</div>
                            </div>
                         </div>
-                        <div class="modal-footer">
+                        <!-- <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        </div> -->
                         </div>
                     </div>
                     </div>
                 <br>
                 <!-------------------------------------------------------------------- จบเลือกประเทศรถ -------------------------------------------------------------------->
+                <hr>
                 <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ' }}</span><span style="color: #FF0033;"> *</span>
                 <br><br>
                 <h4>
