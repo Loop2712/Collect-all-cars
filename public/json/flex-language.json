@@ -101,7 +101,7 @@
                     "action": {
                       "type": "uri",
                       "label": "action",
-                      "uri": "https://www.viicheck.com/api/change_language_fromline/es/user_id"
+                      "uri": "https://www.viicheck.com/api/change_language_fromline/th/user_id"
                     }
                   }
                 ],
@@ -141,7 +141,7 @@
                     "action": {
                       "type": "uri",
                       "label": "action",
-                      "uri": "https://www.viicheck.com/api/change_language_fromline/en/user_id"
+                      "uri": "https://www.viicheck.com/api/change_language_fromline/ar/user_id"
                     }
                   },
                   {
@@ -163,7 +163,7 @@
                     "action": {
                       "type": "uri",
                       "label": "action",
-                      "uri": "https://www.viicheck.com/api/change_language_fromline/zh-TW/user_id"
+                      "uri": "https://www.viicheck.com/api/change_language_fromline/ru/user_id"
                     }
                   },
                   {
@@ -308,7 +308,7 @@
                     "action": {
                       "type": "uri",
                       "label": "action",
-                      "uri": "https://www.viicheck.com/api/change_language_fromline/th/user_id"
+                      "uri": "https://www.viicheck.com/api/change_language_fromline/hi/user_id"
                     }
                   },
                   {
