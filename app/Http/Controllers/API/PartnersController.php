@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToPartner_area;
+use App\Models\LineMessagingAPI;
 
 class PartnersController extends Controller
 {
@@ -240,5 +241,14 @@ class PartnersController extends Controller
         $area = DB::table('partners')->get();
 
         return $area ;
+    }
+
+    public function send_pass_area($line_group , $num_pass_area)
+    {
+        $data_line_group = DB::table('group_lines')
+                            ->where("groupName", $line_group)
+                            ->get();
+
+        return $data_line_group ;
     }
 }

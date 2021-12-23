@@ -1,0 +1,47 @@
+{
+    "type": "flex",
+    "altText": "รหัสยืนยัน",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "รหัสยืนยัน",
+            "color": "#ffffff",
+            "size": "lg",
+            "flex": 4
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "1234",
+            "color": "#ffffff",
+            "size": "4xl",
+            "weight": "bold",
+            "align": "center"
+          }
+        ],
+        "offsetTop": "md"
+      }
+    ],
+    "paddingAll": "20px",
+    "backgroundColor": "#28a745",
+    "spacing": "md",
+    "height": "154px",
+    "paddingTop": "22px"
+  }
+}
+}

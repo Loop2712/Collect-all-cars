@@ -100,6 +100,7 @@ Route::get('/add_text_topic/{text_th}', 'API\API_language@add_text_topic');
 Route::get('/send_sos_area/{area_arr}/{name_partner}/{name_area}', 'API\PartnersController@sos_area');
 Route::get('/area_pending/{name_partner}/{name_area}', 'API\PartnersController@area_pending');
 Route::get('/area_current/{name_partner}/{name_area}', 'API\PartnersController@area_current');
+Route::get('/send_pass_area/{line_group}/{num_pass_area}', 'API\PartnersController@send_pass_area');
 
 Route::get('/show_amphoe/{province}', 'API\LocationController@amphoe_search');
 Route::get('/show_district/{amphoe}', 'API\LocationController@district_search');

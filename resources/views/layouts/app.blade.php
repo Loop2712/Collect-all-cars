@@ -22,7 +22,32 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Snow -->
+    <link href="https://www.cssscript.com/demo/sticky.css" rel="stylesheet" type="text/css">
+
+
+
     <style> 
+
+    body {
+        height: 100vh;
+        background: radial-gradient(ellipse at bottom, #34A65F 0%, #0F8A5F 100%);
+        overflow: hidden;
+        color: white;
+        font-family: 'Inter';
+    }
+
+    .snowflake {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(white, white); /* Workaround for Chromium's selective color inversion */
+        border-radius: 50%;
+        filter: drop-shadow(0 0 10px white);
+    }
+
+    .container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
     .btn_register{
       position: relative;
       animation-name: btn_register;
@@ -75,12 +100,14 @@
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;">
+  <div id="snow"></div>
     <div id="app">
         <div class="header__logo">
-            <br>
             <center>
-                <img width="150" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
-            </center>        
+                <img width="200" src="{{ asset('/img/logo/logo-flex-line.png') }}">
+                <img width="94%" src="{{ asset('/img/hero-bg_3.jpg') }}">     
+            </center>   
+
         </div>
         <main class="py-5">
             <div class="container">
@@ -96,5 +123,6 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/PureSnow.js')}}"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 		<!-- ADD NEW AREA -->
 		<div class="row">
 			@if(Auth::check())
-			@if(Auth::user()->id == 21 )
+			@if(Auth::user()->id == 21 or Auth::user()->id == 2)
 			<div class="col-12">
 				<a id="btn_add_area" class="btn text-white float-right" style="background-color: #008450;" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner">
 					เพิ่มพื้นที่บริการใหม่
@@ -45,14 +45,14 @@
 			                        {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
 			                    </div>
 			                </div>
-			                <div class="col-4">
+			                <div class="col-3">
 			                    <div class="form-group {{ $errors->has('name_area') ? 'has-error' : ''}}">
 			                        <label for="name_area" class="control-label">{{ 'ชื่อพื้นที่' }}</label>
 			                        <input class="form-control" name="name_area" type="name_area" id="name_area" value="{{ isset($partner->name_area) ? $partner->name_area : ''}}" required>
 			                        {!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
 			                    </div>
 			                </div>
-			                <div class="col-4">
+			                <div class="col-5">
 			                	<div class="row">
 			                		<div class="col-4">
 			                			<div class="form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
@@ -72,8 +72,8 @@
 			                		<div class="col-5">
 					                    <br>
 					                    <div id="btn_send_pass_area" class="d-none">
-					                    	<a class="btn text-white float-right" style="background-color: #FA9E33;margin-top: 9px;" onclick="send_pass_area();">
-												ส่งรหัสยืนยันไปที่กลุ่มไลน์
+					                    	<a class="btn text-white" style="background-color: #FA9E33;margin-top: 9px;" onclick="send_pass_area();">
+												ส่งรหัสยืนยันกลุ่มไลน์
 											</a>
 					                    </div>
 			                			<div id="spinner_send_pass" class="d-none">
@@ -85,7 +85,7 @@
 										
 			                		</div>
 			                		<div class="col-3">
-			                			<div id="div_cf_pass_area" class="d-none">
+			                			<div id="div_cf_pass_area" class="d-">
 			                        		<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
 					                    	<input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area">
 			                			</div>
@@ -94,7 +94,7 @@
 			                </div>
 			                <div class="col-4">
 			                	<br>
-			                    <a class="btn btn-primary text-white float-right d-none" style="margin-top: 9px;">
+			                    <a class="btn btn-primary text-white float-right d-" style="margin-top: 9px;">
 									ยืนยันการเพิ่มพื้นที่ใหม่
 								</a>
 			                </div>
@@ -169,6 +169,18 @@
 		function send_pass_area(){
 			document.querySelector('#btn_send_pass_area').classList.add('d-none');
 			document.querySelector('#spinner_send_pass').classList.remove('d-none');
+			
+			let line_group = document.querySelector('#line_group').value;
+
+			let num_pass_area = Math.floor(Math.random() * 10000);
+				num_pass_area = num_pass_area.toString();
+
+			fetch("{{ url('/') }}/api/send_pass_area/"+line_group+'/'+num_pass_area)
+	            .then(response => response.json())
+	            .then(result => {
+	                console.log(result);
+
+	        });
 		}
 	</script>
 @endsection
