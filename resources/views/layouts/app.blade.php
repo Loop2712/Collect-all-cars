@@ -105,7 +105,7 @@
         <div class="header__logo">
             <center>
                 <img width="200" src="{{ asset('/img/logo/logo-flex-line.png') }}">
-                <img width="94%" src="{{ asset('/img/hero-bg_3.jpg') }}">     
+                <img style="margin-top:-30px;" width="94%" src="{{ asset('/img/hero-bg_3.jpg') }}">     
             </center>   
 
         </div>
