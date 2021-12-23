@@ -50,7 +50,7 @@
         console.log("START"); 
         setTimeout(function(){ 
           document.getElementById("btn_add_line").click(); 
-        }, 2000);
+        }, 3500);
     });
 </script>
 @endsection
