@@ -249,6 +249,8 @@ class PartnersController extends Controller
                             ->where("groupName", $line_group)
                             ->get();
 
+        $line = new LineMessagingAPI();
+
         return $data_line_group ;
     }
 }
