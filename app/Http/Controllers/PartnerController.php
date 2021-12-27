@@ -110,6 +110,44 @@ class PartnerController extends Controller
         return redirect('partner_viicheck')->with('flash_message', 'Partner added!');
     }
 
+    public function partner_add_area(Request $request)
+    {
+        $requestData = $request->all();
+
+        $requestData['phone'] = str_replace("-", "", $requestData['phone']);
+        $requestData['phone'] = str_replace(" ", "", $requestData['phone']);
+        
+        Partner::create($requestData);
+
+        $data_partners = Partner::where("name", $requestData['name'])
+                                ->where("name_area", $requestData['name_area'])
+                                ->get();
+        foreach ($data_partners as $key_1) {
+
+            DB::table('group_lines')
+                    ->where('groupName', $requestData['line_group'])
+                    ->update([
+                        'owner' => $requestData['name']." (Partner)",
+                        'partner_id' => $key_1->id,
+                ]);
+        }
+
+        $group_line = Group_line::where('groupName', $requestData['line_group'])->get();
+        foreach ($group_line as $key_2) {
+
+            DB::table('partners')
+                ->where('name', $requestData['name'])
+                ->where("name_area", $requestData['name_area'])
+                ->update([
+                    'group_line_id' => $key_2->id,
+            ]);
+
+        }
+
+        return redirect('add_area')->with('flash_message', 'Partner added!');
+        
+    }
+
     /**
      * Display the specified resource.
      *

@@ -63,23 +63,23 @@
                         {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6 d-none">
                     <div class="form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
                         <label for="line_group" class="control-label">{{ 'เลือกกลุ่มไลน์' }}</label>
                         <br>
                         <select id="line_group" name="line_group" class="btn btn-sm btn-outline-success">
                             <option value="" selected>- เลือกกลุ่มไลน์ -</option>
-                            @foreach($group_line as $item)
+                           <!--  @foreach($group_line as $item)
                                 <option value="{{ $item->groupName }}" 
                                 {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
                                 {{ $item->groupName }} 
                                 </option>
                                 {!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
-                            @endforeach 
+                            @endforeach  -->
                         </select>
                     </div>
                 </div>
-                <div class="col-6"></div>
+                <div class="col-6 d-none"></div>
             </div>
         </div>
 

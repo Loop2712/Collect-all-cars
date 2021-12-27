@@ -86,94 +86,104 @@
 						<i class="fas fa-times float-right btn" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner"></i>
 					</h3>
 					<div class="card-body">
-						@foreach($data_partners as $data_partner)
-						<div class="row">
-							<div class="col-4">
-					            <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-					                <label for="name" class="control-label">{{ 'ชื่อพาร์ทเนอร์' }}</label>
-					                <input class="form-control" name="name" type="text" id="name" value="{{ $data_partner->name }}" required readonly>
-					                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-					            </div>
-					        </div>
-							<div class="col-4">
-			                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-			                        <label for="phone" class="control-label">{{ 'เบอร์' }}</label>
-			                        <input class="form-control" name="phone" type="phone" id="phone" value="{{ $data_partner->phone }}" required pattern="[0-9]{9-10}" readonly>
-			                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-			                    </div>
-			                </div>
-			                <div class="col-4">
-			                    <div class="form-group {{ $errors->has('mail') ? 'has-error' : ''}}">
-			                        <label for="mail" class="control-label">{{ 'เมล' }}</label>
-			                        <input class="form-control" name="mail" type="mail" id="mail" value="{{ $data_partner->mail }}" required readonly>
-			                        {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
-			                    </div>
-			                </div>
-			                <div class="col-3">
-			                    <div class="form-group {{ $errors->has('name_area') ? 'has-error' : ''}}">
-			                        <label for="name_area" class="control-label">{{ 'ชื่อพื้นที่' }}</label>
-			                        <input class="form-control" name="name_area" type="name_area" id="name_area" value="{{ isset($partner->name_area) ? $partner->name_area : ''}}" required>
-			                        {!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
-			                    </div>
-			                </div>
-			                <div class="col-5">
-			                	<div class="row">
-			                		<div class="col-4">
-			                			<div class="form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
-					                        <br>
-					                        <select id="line_group" name="line_group" class="btn btn-sm text-white" style="background-color: #27CF00;margin-top: 9px;" onchange="document.querySelector('#btn_send_pass_area').classList.remove('d-none');">
-					                            <option value="" selected>- เลือกกลุ่มไลน์ -</option>
-					                            @foreach($group_line as $item)
-					                                <option value="{{ $item->groupName }}" 
-					                                {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
-					                                {{ $item->groupName }} 
-					                                </option>
-					                                {!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
-					                            @endforeach 
-					                        </select>
-					                    </div>
-			                		</div>
-			                		<div class="col-5">
-					                    <br>
-					                    <div id="btn_send_pass_area" class="d-none text-center">
-					                    	<a class="btn text-white" style="background-color: #FA9E33;margin-top: 9px;" onclick="send_pass_area();">
-												ส่งรหัสยืนยันกลุ่มไลน์
-											</a>
-					                    </div>
-			                			<div id="spinner_send_pass" class="d-none text-center">
-			                				<div style="margin-top: 9px;" class="spinner-border text-success"></div> &nbsp;&nbsp;กำลังส่งรหัส..
-			                			</div>
-										<div id="text_send_pass_done" class="d-none text-center">
-											<div class="row">
-												<div class="col-3">
-													<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-												        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-												        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-												    </svg>
-												</div>
-												<div class="col-9">
-													<p style="margin-top: 23px;margin-left: 10px;float: left;">ส่งรหัสแล้ว</p>
+						<form method="POST" action="{{ url('/partner_add_area') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+
+							@foreach($data_partners as $data_partner)
+							<div class="row">
+								<div class="col-4">
+						            <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+						                <label for="name" class="control-label">{{ 'ชื่อพาร์ทเนอร์' }}</label>
+						                <input class="form-control" name="name" type="text" id="name" value="{{ $data_partner->name }}" required readonly>
+						                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+						            </div>
+						        </div>
+								<div class="col-4">
+				                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+				                        <label for="phone" class="control-label">{{ 'เบอร์' }}</label>
+				                        <input class="form-control" name="phone" type="phone" id="phone" value="{{ $data_partner->phone }}" required  readonly>
+				                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+				                    </div>
+				                </div>
+				                <div class="col-4">
+				                    <div class="form-group {{ $errors->has('mail') ? 'has-error' : ''}}">
+				                        <label for="mail" class="control-label">{{ 'เมล' }}</label>
+				                        <input class="form-control" name="mail" type="mail" id="mail" value="{{ $data_partner->mail }}" required readonly>
+				                        {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
+				                    </div>
+				                </div>
+				                <div class="col-3">
+				                    <div class="form-group {{ $errors->has('name_area') ? 'has-error' : ''}}">
+				                        <label for="name_area" class="control-label">{{ 'ชื่อพื้นที่' }}</label>
+				                        <input class="form-control" name="name_area" type="name_area" id="name_area" value="{{ isset($partner->name_area) ? $partner->name_area : ''}}" required>
+				                        {!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
+				                    </div>
+				                </div>
+				                <div class="col-5">
+				                	<div class="row">
+				                		<div class="col-4">
+				                			<div class="form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
+						                        <br>
+						                        <select id="line_group" name="line_group" class="btn btn-sm text-white" style="background-color: #27CF00;margin-top: 9px;" onchange="document.querySelector('#btn_send_pass_area').classList.remove('d-none');" required>
+						                            <option value="" selected>- เลือกกลุ่มไลน์ -</option>
+						                            @foreach($group_line as $item)
+						                                <option value="{{ $item->groupName }}" 
+						                                {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+						                                {{ $item->groupName }} 
+						                                </option>
+						                                {!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
+						                            @endforeach 
+						                        </select>
+						                    </div>
+						                    <input class="form-control d-none" name="group_line_id" type="group_line_id" id="group_line_id" value="" required>
+				                        	{!! $errors->first('group_line_id', '<p class="help-block">:message</p>') !!}
+
+				                        	<input class="form-control d-none" name="user_id_admin" type="user_id_admin" id="user_id_admin" value="{{ Auth::user()->id }}" required>
+				                        	{!! $errors->first('user_id_admin', '<p class="help-block">:message</p>') !!}
+				                		</div>
+				                		<div class="col-5">
+						                    <br>
+						                    <div id="btn_send_pass_area" class="d-none text-center">
+						                    	<a class="btn text-white" style="background-color: #FA9E33;margin-top: 9px;" onclick="send_pass_area();">
+													ส่งรหัสยืนยันกลุ่มไลน์
+												</a>
+						                    </div>
+				                			<div id="spinner_send_pass" class="d-none text-center">
+				                				<div style="margin-top: 9px;" class="spinner-border text-success"></div> &nbsp;&nbsp;กำลังส่งรหัส..
+				                			</div>
+											<div id="text_send_pass_done" class="d-none text-center">
+												<div class="row">
+													<div class="col-3">
+														<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+													        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+													        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+													    </svg>
+													</div>
+													<div class="col-9">
+														<p style="margin-top: 23px;margin-left: 10px;float: left;">ส่งรหัสแล้ว</p>
+													</div>
 												</div>
 											</div>
-										</div>
-										
-			                		</div>
-			                		<div class="col-3">
-			                			<div id="div_cf_pass_area" class="d-none">
-			                        		<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
-					                    	<input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area" oninput="check_pass_area();">
-			                			</div>
-			                		</div>
-			                	</div>
-			                </div>
-			                <div class="col-4">
-			                	<br>
-			                    <a id="btn_cf_add_area" class="btn btn-primary text-white float-right d-none" style="margin-top: 9px;">
-									ยืนยันการเพิ่มพื้นที่ใหม่
-								</a>
-			                </div>
-						</div>
-						@endforeach
+											
+				                		</div>
+				                		<div class="col-3">
+				                			<div id="div_cf_pass_area" class="d-none">
+				                        		<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
+						                    	<input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area" oninput="check_pass_area();">
+				                			</div>
+				                		</div>
+				                	</div>
+				                </div>
+				                <div class="col-4">
+				                	<br>
+				                    <a id="btn_cf_add_area" class="btn btn-primary text-white float-right d-none" style="margin-top: 9px;" onclick="document.querySelector('#submit_add_area').click;">
+										ยืนยันการเพิ่มพื้นที่ใหม่
+									</a>
+									<input id="submit_add_area" class="btn btn-primary float-right d-" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
+				                </div>
+							</div>
+							@endforeach
+						</form>
 					</div>
 				</div>
 			</div>
@@ -256,6 +266,8 @@
 	            .then(response => response.json())
 	            .then(result => {
 	                // console.log(result);
+	                let group_line_id = document.querySelector('#group_line_id');
+	                	group_line_id.value = result[0]['id'];
 	                document.querySelector('#spinner_send_pass').classList.add('d-none');
 					document.querySelector('#text_send_pass_done').classList.remove('d-none');
 					document.querySelector('#div_cf_pass_area').classList.remove('d-none');

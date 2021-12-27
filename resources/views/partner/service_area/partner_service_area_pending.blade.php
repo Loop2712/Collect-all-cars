@@ -15,7 +15,7 @@
                 <div class="col-12">
                     @include ('partner.service_area.btn_menu')
                     <div class="col-12">
-                        <h3>พื้นที่บริการปัจจุบัน</h3><br class="d-block d-md-none">
+                        <h3>พื้นที่รอการตรวจสอบ</h3><br class="d-block d-md-none">
                     </div>
                     <br>
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
