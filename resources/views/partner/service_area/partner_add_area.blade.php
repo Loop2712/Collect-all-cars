@@ -176,7 +176,7 @@
 				                </div>
 				                <div class="col-4">
 				                	<br>
-									<input style="margin-top: 9px;" id="submit_add_area" class="btn btn-primary float-right d-" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
+									<input style="margin-top: 9px;" id="submit_add_area" class="btn btn-primary float-right d-none" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
 				                </div>
 							</div>
 							@endforeach
@@ -263,6 +263,7 @@
 	            .then(response => response.json())
 	            .then(result => {
 	                // console.log(result);
+	                console.log(num_pass_area);
 	                let group_line_id = document.querySelector('#group_line_id');
 	                	group_line_id.value = result[0]['id'];
 	                document.querySelector('#spinner_send_pass').classList.add('d-none');
