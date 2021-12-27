@@ -145,7 +145,7 @@ class PartnerController extends Controller
         }
 
         return redirect('add_area')->with('flash_message', 'Partner added!');
-        
+
     }
 
     /**
@@ -496,7 +496,9 @@ class PartnerController extends Controller
         $count_position = 1 ;
 
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+                    where("name_area", $name_area)
+                    ->get();
 
         $location_array = DB::table('lat_longs')
                 ->selectRaw('changwat_th')

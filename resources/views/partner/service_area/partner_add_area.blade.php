@@ -94,21 +94,21 @@
 								<div class="col-4">
 						            <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
 						                <label for="name" class="control-label">{{ 'ชื่อพาร์ทเนอร์' }}</label>
-						                <input class="form-control" name="name" type="text" id="name" value="{{ $data_partner->name }}" required readonly>
+						                <input class="form-control" name="name" type="text" id="name" value="{{ $data_partner->name }}"  readonly>
 						                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 						            </div>
 						        </div>
 								<div class="col-4">
 				                    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
 				                        <label for="phone" class="control-label">{{ 'เบอร์' }}</label>
-				                        <input class="form-control" name="phone" type="phone" id="phone" value="{{ $data_partner->phone }}" required  readonly>
+				                        <input class="form-control" name="phone" type="phone" id="phone" value="{{ $data_partner->phone }}"   readonly>
 				                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
 				                    </div>
 				                </div>
 				                <div class="col-4">
 				                    <div class="form-group {{ $errors->has('mail') ? 'has-error' : ''}}">
 				                        <label for="mail" class="control-label">{{ 'เมล' }}</label>
-				                        <input class="form-control" name="mail" type="mail" id="mail" value="{{ $data_partner->mail }}" required readonly>
+				                        <input class="form-control" name="mail" type="mail" id="mail" value="{{ $data_partner->mail }}"  readonly>
 				                        {!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
 				                    </div>
 				                </div>
@@ -135,10 +135,10 @@
 						                            @endforeach 
 						                        </select>
 						                    </div>
-						                    <input class="form-control d-none" name="group_line_id" type="group_line_id" id="group_line_id" value="" required>
+						                    <input class="form-control d-none" name="group_line_id" type="group_line_id" id="group_line_id" value="" >
 				                        	{!! $errors->first('group_line_id', '<p class="help-block">:message</p>') !!}
 
-				                        	<input class="form-control d-none" name="user_id_admin" type="user_id_admin" id="user_id_admin" value="{{ Auth::user()->id }}" required>
+				                        	<input class="form-control d-none" name="user_id_admin" type="user_id_admin" id="user_id_admin" value="{{ Auth::user()->id }}" >
 				                        	{!! $errors->first('user_id_admin', '<p class="help-block">:message</p>') !!}
 				                		</div>
 				                		<div class="col-5">
