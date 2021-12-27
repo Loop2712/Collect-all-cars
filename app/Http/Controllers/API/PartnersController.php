@@ -250,12 +250,12 @@ class PartnersController extends Controller
                             ->where("groupName", $line_group)
                             ->get();
 
-        $this->send_pass_area($data_line_group , $num_pass_area);
+        $this->send_pass_area_togroupline($data_line_group , $num_pass_area);
 
         return $data_line_group ;
     }
 
-    public function send_pass_area($data_line_group , $num_pass_area)
+    public function send_pass_area_togroupline($data_line_group , $num_pass_area)
     {
         foreach ($data_line_group as $key) {
             $groupId = $key->groupId ;
