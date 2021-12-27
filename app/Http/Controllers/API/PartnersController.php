@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToPartner_area;
 use App\Models\LineMessagingAPI;
+use App\Http\Controllers\API\API_Time_zone;
 
 class PartnersController extends Controller
 {
@@ -249,8 +250,74 @@ class PartnersController extends Controller
                             ->where("groupName", $line_group)
                             ->get();
 
-        $line = new LineMessagingAPI();
+        $this->send_pass_area($data_line_group , $num_pass_area);
 
         return $data_line_group ;
+    }
+
+    public function send_pass_area($data_line_group , $num_pass_area)
+    {
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        $data_topic = [
+                    "รหัสยืนยัน",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
+
+        $template_path = storage_path('../public/json/flex-pass_area.json');   
+
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("รหัสยืนยัน",$data_topic[0],$string_json);
+        $string_json = str_replace("1234",$num_pass_area,$string_json);
+        $messages = [ json_decode($string_json, true) ];
+
+
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "ส่งรหัสยืนยัน",
+            "content" => "ส่งรหัสยืนยัน",
+        ];
+        MyLog::create($data);
+        return $result;
+
     }
 }
