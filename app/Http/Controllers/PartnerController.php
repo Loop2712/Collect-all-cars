@@ -527,7 +527,9 @@ class PartnerController extends Controller
     {
         $name_area = $request->get('name_area');
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+                        ->where("name_area", $name_area)
+                        ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
@@ -538,7 +540,9 @@ class PartnerController extends Controller
     {
         $name_area = $request->get('name_area');
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+                        ->where("name_area", $name_area)
+                        ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
