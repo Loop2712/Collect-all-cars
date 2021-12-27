@@ -96,7 +96,7 @@
                                             <div class="col-4">
                                                 <center>
                                                     <i style="color:#FD8433; font-size: 20px;" class="fas fa-circle"></i> <br>
-                                                    พื้นที่บริการองค์กรอื่นๆ
+                                                    พื้นที่บริการอื่นๆ
                                                 </center>
                                             </div>
                                             <div class="col-4">
