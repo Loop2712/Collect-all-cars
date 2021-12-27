@@ -85,7 +85,7 @@
 										
 			                		</div>
 			                		<div class="col-3">
-			                			<div id="div_cf_pass_area" class="d-">
+			                			<div id="div_cf_pass_area" class="d-none">
 			                        		<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
 					                    	<input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area">
 			                			</div>
@@ -179,6 +179,9 @@
 	            .then(response => response.json())
 	            .then(result => {
 	                console.log(result);
+	                document.querySelector('#spinner_send_pass').classList.add('d-none');
+					document.querySelector('#text_send_pass_done').classList.remove('d-none');
+					document.querySelector('#div_cf_pass_area').classList.remove('d-none');
 
 	        });
 		}
