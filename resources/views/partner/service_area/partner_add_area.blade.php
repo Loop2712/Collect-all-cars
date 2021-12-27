@@ -71,23 +71,23 @@
 			                		</div>
 			                		<div class="col-5">
 					                    <br>
-					                    <div id="btn_send_pass_area" class="d-none">
+					                    <div id="btn_send_pass_area" class="d-none text-center">
 					                    	<a class="btn text-white" style="background-color: #FA9E33;margin-top: 9px;" onclick="send_pass_area();">
 												ส่งรหัสยืนยันกลุ่มไลน์
 											</a>
 					                    </div>
-			                			<div id="spinner_send_pass" class="d-none">
+			                			<div id="spinner_send_pass" class="d-none text-center">
 			                				<div style="margin-top: 9px;" class="spinner-border text-success"></div> &nbsp;&nbsp;กำลังส่งรหัส..
 			                			</div>
-										<div id="text_send_pass_done" class="d-none">
-											<p style="margin-top: 9px;">ส่งรหัสแล้ว</p>
+										<div id="text_send_pass_done" class="d-none text-center">
+											<p style="margin-top: 20px;">ส่งรหัสแล้ว</p>
 										</div>
 										
 			                		</div>
 			                		<div class="col-3">
 			                			<div id="div_cf_pass_area" class="d-none">
 			                        		<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
-					                    	<input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area">
+					                    	<input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area" oninput="check_pass_area();">
 			                			</div>
 			                		</div>
 			                	</div>
@@ -166,14 +166,17 @@
 	</div>
 
 	<script>
+
+		var num_pass_area ;
+
 		function send_pass_area(){
 			document.querySelector('#btn_send_pass_area').classList.add('d-none');
 			document.querySelector('#spinner_send_pass').classList.remove('d-none');
 			
 			let line_group = document.querySelector('#line_group').value;
 
-			let num_pass_area = Math.floor(Math.random() * 10000);
-				num_pass_area = num_pass_area.toString();
+			num_pass_area = Math.floor(Math.random() * 10000);
+			num_pass_area = num_pass_area.toString();
 
 			fetch("{{ url('/') }}/api/send_pass_area/"+line_group+'/'+num_pass_area)
 	            .then(response => response.json())
@@ -184,6 +187,18 @@
 					document.querySelector('#div_cf_pass_area').classList.remove('d-none');
 
 	        });
+		}
+
+		function check_pass_area(){
+			let cf_pass_area = document.querySelector('#cf_pass_area').value ;
+				cf_pass_area = cf_pass_area.toString();
+
+				console.log(cf_pass_area);
+				console.log(num_pass_area);
+
+			if (cf_pass_area === num_pass_area) {
+				console.log('YES');
+			}
 		}
 	</script>
 @endsection
