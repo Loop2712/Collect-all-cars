@@ -497,7 +497,7 @@ class PartnerController extends Controller
 
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)
-                    where("name_area", $name_area)
+                    ->where("name_area", $name_area)
                     ->get();
 
         $location_array = DB::table('lat_longs')
