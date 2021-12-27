@@ -195,6 +195,8 @@
 
 			if (cf_pass_area === num_pass_area) {
 				document.querySelector('#btn_cf_add_area').classList.remove('d-none');
+			}else{
+				document.querySelector('#btn_cf_add_area').classList.add('d-none');
 			}
 		}
 	</script>
