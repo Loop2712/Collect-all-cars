@@ -88,12 +88,12 @@
                     "contents": [
                       {
                         "type": "image",
-                        "url": "https://www.viicheck.com/img/national-flag/flex-th.png",
+                        "url": "https://www.viicheck.com/img/national-flag/flex-in.png",
                         "size": "60px"
                       },
                       {
                         "type": "text",
-                        "text": "ไทย",
+                        "text": "इंडिया",
                         "align": "center",
                         "margin": "md"
                       }
@@ -101,7 +101,7 @@
                     "action": {
                       "type": "uri",
                       "label": "action",
-                      "uri": "https://www.viicheck.com/api/change_language_fromline/th/user_id"
+                      "uri": "https://www.viicheck.com/api/change_language_fromline/hi/user_id"
                     }
                   }
                 ],
@@ -129,7 +129,7 @@
                       {
                         "type": "image",
                         "url": "https://www.viicheck.com/img/national-flag/flex-ar.png",
-                        "size": "55px"
+                        "size": "60px"
                       },
                       {
                         "type": "text",
@@ -151,7 +151,7 @@
                       {
                         "type": "image",
                         "url": "https://www.viicheck.com/img/national-flag/flex-ru.png",
-                        "size": "55px"
+                        "size": "60px"
                       },
                       {
                         "type": "text",
@@ -295,12 +295,12 @@
                     "contents": [
                       {
                         "type": "image",
-                        "url": "https://www.viicheck.com/img/national-flag/flex-in.png",
+                        "url": "https://www.viicheck.com/img/national-flag/flex-th.png",
                         "size": "60px"
                       },
                       {
                         "type": "text",
-                        "text": "इंडिया",
+                        "text": "ไทย",
                         "align": "center",
                         "margin": "md"
                       }
@@ -308,7 +308,7 @@
                     "action": {
                       "type": "uri",
                       "label": "action",
-                      "uri": "https://www.viicheck.com/api/change_language_fromline/hi/user_id"
+                      "uri": "https://www.viicheck.com/api/change_language_fromline/th/user_id"
                     }
                   },
                   {
