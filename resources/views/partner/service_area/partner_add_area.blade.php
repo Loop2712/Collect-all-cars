@@ -176,10 +176,7 @@
 				                </div>
 				                <div class="col-4">
 				                	<br>
-				                    <a id="btn_cf_add_area" class="btn btn-primary text-white float-right d-none" style="margin-top: 9px;" onclick="document.querySelector('#submit_add_area').click;">
-										ยืนยันการเพิ่มพื้นที่ใหม่
-									</a>
-									<input id="submit_add_area" class="btn btn-primary float-right d-" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
+									<input style="margin-top: 9px;" id="submit_add_area" class="btn btn-primary float-right d-" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
 				                </div>
 							</div>
 							@endforeach
