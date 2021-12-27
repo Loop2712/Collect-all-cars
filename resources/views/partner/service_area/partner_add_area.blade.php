@@ -94,7 +94,7 @@
 			                </div>
 			                <div class="col-4">
 			                	<br>
-			                    <a class="btn btn-primary text-white float-right d-" style="margin-top: 9px;">
+			                    <a id="btn_cf_add_area" class="btn btn-primary text-white float-right d-none" style="margin-top: 9px;">
 									ยืนยันการเพิ่มพื้นที่ใหม่
 								</a>
 			                </div>
@@ -193,11 +193,8 @@
 			let cf_pass_area = document.querySelector('#cf_pass_area').value ;
 				cf_pass_area = cf_pass_area.toString();
 
-				console.log(cf_pass_area);
-				console.log(num_pass_area);
-
 			if (cf_pass_area === num_pass_area) {
-				console.log('YES');
+				document.querySelector('#btn_cf_add_area').classList.remove('d-none');
 			}
 		}
 	</script>
