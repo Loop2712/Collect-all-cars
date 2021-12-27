@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToPartner_area;
 use App\Models\LineMessagingAPI;
 use App\Http\Controllers\API\API_Time_zone;
+use App\Models\Mylog;
 
 class PartnersController extends Controller
 {
