@@ -112,6 +112,33 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body" >
+                    <h5 class="card-title">ภาษาฮินดี</h5>
+                    <input class="form-control" name="hi" type="text" id="hi" value="{{ isset($text_topic->hi) ? $text_topic->hi : ''}}" >
+    {!! $errors->first('hi', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body" >
+                    <h5 class="card-title">ภาษาอาหรับ</h5>
+                    <input class="form-control" name="ar" type="text" id="ar" value="{{ isset($text_topic->ar) ? $text_topic->ar : ''}}" >
+    {!! $errors->first('ar', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body" >
+                    <h5 class="card-title">ภาษารัสเซีย</h5>
+                    <input class="form-control" name="ru" type="text" id="ru" value="{{ isset($text_topic->ru) ? $text_topic->ru : ''}}" >
+    {!! $errors->first('ru', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+        </div>
     </div>
 </div>  
 <div class="d-flex justify-content-end">

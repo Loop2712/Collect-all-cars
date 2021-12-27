@@ -29,6 +29,9 @@ class Text_topicController extends Controller
                 ->orWhere('es', 'LIKE', "%$keyword%")
                 ->orWhere('lo', 'LIKE', "%$keyword%")
                 ->orWhere('my', 'LIKE', "%$keyword%")
+                ->orWhere('hi', 'LIKE', "%$keyword%")
+                ->orWhere('ar', 'LIKE', "%$keyword%")
+                ->orWhere('ru', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $text_topic = Text_topic::latest()->paginate($perPage);

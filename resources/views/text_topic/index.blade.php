@@ -126,6 +126,15 @@
                                             <div class="col-md-4 card-body text-center "style="padding:5px">
                                                 เยอรมัน : {{ $item->de }} 
                                             </div>
+                                            <div class="col-md-4 card-body text-center "style="padding:5px">
+                                                ฮินดี : {{ $item->hi }} 
+                                            </div>
+                                            <div class="col-md-4 card-body text-center "style="padding:5px">
+                                                อาหรับ : {{ $item->ar }} 
+                                            </div>
+                                            <div class="col-md-4 card-body text-center "style="padding:5px">
+                                                รัสเซีย : {{ $item->ru }} 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

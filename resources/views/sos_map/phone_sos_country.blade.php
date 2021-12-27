@@ -3,327 +3,806 @@
 <div class="d-none" id="btn_tel"></div>
 
 <!-- SOS ไทย -->
-<div id="sos_TH" class="row d-none">
-    <div class="col-6">
+<div id="sos_TH" class="row d-none" style="margin-top:10px">
+    <div class="col-7">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
     </div>
-    <div class="col-6">
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+    </div>
+    <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;"><hr></div>
+    <div class="col-7">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">จ.ส.100</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('js100','1137');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
     </div>
-    <div class="col-6">
+    <div class="col-5">
+    <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('js100','1137');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
+    </div>
+    <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;"><hr></div>
+    <div class="col-7">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">หน่วยแพทย์กู้ชีวิต</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('life_saving','1669');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('life_saving','1669');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
+    </div>
+    <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;"><hr></div>
+    <div class="col-7">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจท่องเที่ยว</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police','1155');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1155</a>
+    </div>
+    <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;"><hr></div>
+    <div class="col-7">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">สายด่วนทางหลวง</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway','1193');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
+    </div>
+    <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;"><hr></div>
+    <div class="col-7">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">ป่อเต็กตึ๊ง</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pok_tek_tung','1418');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
+    </div>
+    
+    <!-- <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">เหตุด่วนเหตุร้าย</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+    </div> -->
+    <!-- <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">จ.ส.100</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('js100','1137');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1137</a>
+    </div> -->
+    <!-- <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">หน่วยแพทย์กู้ชีวิต</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('life_saving','1669');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1669</a>
+    </div> -->
+    <!-- <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจท่องเที่ยว</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police','1155');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1155</a>
+    </div>
+    
+    <div class="col-6">
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">สายด่วนทางหลวง</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway','1193');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
     </div>
     <div class="col-6 ">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">ป่อเต็กตึ๊ง</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pok_tek_tung','1418');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
-    </div>
-    <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">สายด่วนทางหลวง</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway','1193');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1193</a>
-    </div>
-    <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">ทนายอาสา</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('lawyers','1167');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1167</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pok_tek_tung','1418');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1418</a>
+    </div> -->
+
 </div> 
 <!-- จบ SOS ไทย -->
 
 <!-- SOS ลาว -->
-<div id="sos_LA" class="row d-none">
+<div id="sos_LA" class="row d-none align-items-center" style="margin-top:10px">
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','195');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 195</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">fire</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','190');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 190</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Touris police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police','192');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Electricity</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity','1199');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1199</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Water</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('water','1169');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1169</a>
+    </div>
+
+
+<!--     
     <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจ</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">police</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','191');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
     </div>
     <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">รถพยาบาล</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','195');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 195</a>
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">ambulance</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','195');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 195</a>
     </div>
     <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">เพลิงไหม้</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','190');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 190</a>
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">fire</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','190');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 190</a>
     </div>
     <div class="col-6">
-        <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจท่องเที่ยว</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police','192');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
+        <p style="font-size:15px; text-align: center; margin-top:10px; ">Touris police</p>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police','192');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Electricity</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity','1199');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1199</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity','1199');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1199</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Water</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('water','1169');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1169</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('water','1169');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1169</a>
+    </div> -->
 </div> 
 <!-- จบ SOS ลาว -->
 
 <!-- SOS พม่า -->
-<div id="sos_MM" class="row d-none">
-    <div class="col-6">
+<div id="sos_MM" class="row  d-none align-items-center " style="margin-top:10px;">
+   
+        <div class="col-7 text-center">
+            <p style="font-size:15px; vertical-align: middle;margin:0px ">police</p>
+        </div>
+        <div class="col-5">
+            <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','199');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 199</a>
+        </div>
+            <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+        <div class="col-7 text-center">
+            <p style="font-size:15px; vertical-align: middle;margin:0px ">ambulance</p>
+        </div>
+        <div class="col-5">
+            <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','192');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
+        </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+        <div class="col-7 text-center">
+            <p style="font-size:15px; vertical-align: middle;margin:0px">fire</p>
+        </div>
+        <div class="col-5">
+            <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','191');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+        </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+        <div class="col-7 text-center" >
+            <p style="font-size:15px; vertical-align: middle;margin:0px">Highway police</p>
+        </div>
+        <div class="col-5">
+            <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway_police','1880');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1880</a>
+        </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+        <div class="col-7 text-center">
+            <p style="font-size:15px;  vertical-align: middle;margin:0px ">Emergency hotline</p>
+        </div>
+        <div class="col-5">
+            <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('emergency_hotline','999');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
+        </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+        <div class="col-7 text-center ">
+            <p style="font-size:15px;  vertical-align: middle;margin:0px">International hotline</p>
+        </div>
+        <div class="col-5 d-flex">
+            <a class="btn btn-danger btn-block shadow-box text-white " onclick="save_sos_content('international_hotline','122');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 122</a>
+        </div>
+    
+
+
+    <!-- <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','199');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 199</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','199');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 199</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','192');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','192');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 192</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Fire</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','191');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','191');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 191</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Highway police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway_police','1880');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1880</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('highway_police','1880');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1880</a>
+    </div> -->
     <!-- <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Covid-19 call center</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','2019');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 2019</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','2019');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 2019</a>
     </div> -->
     
-    <div class="col-6">
+    <!-- <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Emergency hotline</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('emergency_hotline','999');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('emergency_hotline','999');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">International hotline</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('international_hotline','122');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 122</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('international_hotline','122');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 122</a>
+    </div> -->
 </div> 
 <!-- จบ SOS พม่า -->
 
 <!-- SOS บรูไน -->
-<div id="sos_BN" class="row d-none">
+<div id="sos_BN" class="row d-none align-items-center " style="margin-top:10px;">
+
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','993');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 993</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','991');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 991</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">FIRE Services</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','995');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">SEARCH & RESCUE</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','998');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 998</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Water</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Water','140');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>140</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Covid-19 call center</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','123');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 123</a>
+    </div>
+
+
+<!-- 
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','993');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 993</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','993');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 993</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','991');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 991</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','991');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 991</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">FIRE Services</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','995');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','995');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">SEARCH & RESCUE</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','998');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 998</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','998');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 998</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Water</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Water','140');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>140</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Water','140');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>140</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Covid-19 call center</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','123');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 123</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','123');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 123</a>
+    </div> -->
 </div> 
 <!-- จบ SOS บรูไน -->
 
 <!-- SOS กัมพูชา -->
-<div id="sos_KH" class="row d-none">
+<div id="sos_KH" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','117');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 117</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','119');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">FIRE Services</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','666');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 666</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Electricity</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity','023-723-871');" style=" background-color: #DB2D2E; font-size:10px;"><i class="fas fa-phone-alt"></i> <br> 023-723-871</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Traffic Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('traffic_police','012-896-628');" style=" background-color: #DB2D2E; font-size:10px;"><i class="fas fa-phone-alt"></i> <br> 012-896-628</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Covid-19 call center</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+    </div>
+<!-- 
+
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','117');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 117</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','117');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 117</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','119');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','119');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">FIRE Services</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','666');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 666</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','666');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 666</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Covid-19 call center</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','115');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('covid-19_call_center','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Traffic Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('traffic_police','012-896-628');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 012-896-628</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('traffic_police','012-896-628');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 012-896-628</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Electricity</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity','023-723-871');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 023-723-871</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity','023-723-871');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 023-723-871</a>
+    </div> -->
 </div> 
 <!-- จบ SOS กัมพูชา -->
 
 
 <!-- SOS อินโดนีเซีย -->
-<div id="sos_ID" class="row d-none">
+<div id="sos_ID" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','118');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 118</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">FIRE Services</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','113');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">SEARCH & RESCUE</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Electricity emergency</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity_emergency ','123');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 123</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Natural disasters</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('natural_disasters ','129');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 129</a>
+    </div>
+
+<!-- 
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','110');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','118');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 118</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','118');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 118</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">FIRE Services</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','113');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire_services','113');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">SEARCH & RESCUE</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','115');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Electricity emergency </p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity_emergency ','123');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 123</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('electricity_emergency ','123');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 123</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Natural disasters </p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('natural_disasters ','129');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 129</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('natural_disasters ','129');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 129</a>
+    </div> -->
 </div> 
 <!-- จบ SOS อินโดนีเซีย -->
 
 <!-- SOS มาเลเซีย -->
-<div id="sos_MY" class="row d-none">
+<div id="sos_MY" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police/Ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police_ambulance','999');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Fire/Rescue</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Fire_Rescue','994');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 994</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">Civil Defence</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('civil_defence','991');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 991</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Gas emergency</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('gas_emergency  ','995');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Power failure</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('power_failure','15454');" style=" background-color: #DB2D2E;font-size:15px"><i class="fas fa-phone-alt"></i> 15454</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Tourist Police Hotline</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police_hotline','03-2149-6590');" style=" background-color: #DB2D2E;font-size:12px"><i class="fas fa-phone-alt"></i> 03-2149-6590</a>
+    </div>
+
+<!-- 
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police/Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police_ambulance','999');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police_ambulance','999');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Fire/Rescue</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Fire_Rescue','994');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 994</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Fire_Rescue','994');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 994</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Civil Defence</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('civil_defence','991');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 991</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('civil_defence','991');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 991</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Gas emergency</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('gas_emergency  ','995');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('gas_emergency  ','995');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Power failure</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('power_failure','15454');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 15454</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('power_failure','15454');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 15454</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Tourist Police Hotline</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police_hotline','03-2149-6590');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 03-2149-6590</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('tourist_police_hotline','03-2149-6590');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 03-2149-6590</a>
+    </div> -->
 </div> 
 <!-- จบ SOS มาเลเซีย -->
 
 
 <!-- SOS ฟิลิปปินส์ -->
-<div id="sos_PH" class="row d-none">
-    <div class="col-6">
+<div id="sos_PH" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','113');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">FIRE Services</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','114');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 114</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">SEARCH & RESCUE</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','112');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Directory Assistance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('directory_assistance ','116');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">International Operator</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('international_operator','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+    </div>
+
+
+
+    <!-- <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','113');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','113');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','115');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">FIRE Services</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','114');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 114</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','114');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 114</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">SEARCH & RESCUE</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','112');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_&_rescue','112');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Directory Assistance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('directory_assistance ','116');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('directory_assistance ','116');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">International Operator</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('international_operator','110');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('international_operator','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+    </div> -->
 </div> 
 <!-- จบ SOS ฟิลิปปินส์ -->
 <!-- SOS สิงคโปร์ -->
-<div id="sos_SG" class="row d-none">
+<div id="sos_SG" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','999');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">emergencies</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('emergencies','995');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">Non-emergency Ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Non_emergency','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Pet Ambulance And Transport</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pet_ambulance','116');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Traffic Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('traffic_police','6547-0000');" style=" background-color: #DB2D2E;font-size:12px;"><i class="fas fa-phone-alt" style="font-size:15px;"></i> <br> 6547-0000</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Emergency Road Service</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('road_service','6748-9911');" style=" background-color: #DB2D2E;font-size:12px;"><i class="fas fa-phone-alt" style="font-size:15px;"></i> <br> 6748-9911</a>
+    </div>
+
+<!-- 
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','999');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','999');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 999</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">emergencies</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('emergencies','995');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('emergencies','995');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 995</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Non-emergency Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Non_emergency','110');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Non_emergency','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Pet Ambulance And Transport</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pet_ambulance','116');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('pet_ambulance','116');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Traffic Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('traffic_police','6547-0000');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 6547-0000</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('traffic_police','6547-0000');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 6547-0000</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Emergency Road Service</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('road_service','6748-9911');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 6748-9911</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('road_service','6748-9911');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 6748-9911</a>
+    </div> -->
 </div> 
 <!-- จบ SOS สิงคโปร์ -->
 <!-- SOS เวียดนาม -->
-<div id="sos_VN" class="row d-none">
-    <div class="col-6">
+<div id="sos_VN" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('directory_assistance','116');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Ambulance</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_and_rescue ','112');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">Fire</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('general','1080');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1080</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">General Information Service</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','114');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 114</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Search and Rescue</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Directory Assistance</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','113');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
+    </div>
+
+    <!-- <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','113');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','113');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 113</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','115');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('ambulance','115');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 115</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Fire</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','114');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 114</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('fire','114');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 114</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">General Information Service</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('general','1080');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1080</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('general','1080');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 1080</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Search and Rescue</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_and_rescue ','112');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('search_and_rescue ','112');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Directory Assistance</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('directory_assistance','116');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('directory_assistance','116');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 116</a>
+    </div> -->
 </div> 
 <!-- จบ SOS เวียดนาม -->
 <!-- SOS ไต้หวัน -->
-<div id="sos_TW" class="row d-none">
-    <div class="col-6">
+<div id="sos_TW" class="row d-none align-items-center" style="margin-top:10px;">
+<div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Police</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+    </div>
+        <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Scam Watch</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Scam_Watch','165');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 165</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px">Emergency</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Emergency','112');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center" >
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Ambulance And Fire</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Ambulance_And_Fire','119');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Overseas Operator</p>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Overseas_Operator','100');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 100</a>
+    </div>
+    <div class="col-12" style="margin-top:-8px;margin-bottom:-8px;"><hr class="align-items-center"></div>
+    <div class="col-7 text-center ">
+        <p style="font-size:15px; vertical-align: middle;margin:0px ">Taiwan Information Center</p>
+    </div>
+    <div class="col-5 d-flex">
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Taiwan_Information_Center','0800-024-111');" style=" background-color: #DB2D2E;font-size:15px;"><i class="fas fa-phone-alt"></i> 0800-024-111</a>
+    </div>
+    <!-- <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Police</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','110');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('police','110');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 110</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Scam Watch</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Scam_Watch','165');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 165</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Scam_Watch','165');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 165</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Emergency</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Emergency','112');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Emergency','112');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 112</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Ambulance And Fire</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Ambulance_And_Fire','119');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Ambulance_And_Fire','119');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 119</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Overseas Operator</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Overseas_Operator','100');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 100</a>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Overseas_Operator','100');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i> 100</a>
     </div>
     <div class="col-6">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">Taiwan Information Center</p>
-        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Taiwan_Information_Center','0800-024-111');" style="margin-top:-10px; background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>0800-024-111</a>
-    </div>
+        <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('Taiwan_Information_Center','0800-024-111');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>0800-024-111</a>
+    </div> -->
+
+    
 </div> 
-<!-- จบ SOS ไต้หวัน -->
+<!----- จบ SOS ไต้หวัน -->
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
