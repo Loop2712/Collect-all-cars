@@ -282,49 +282,49 @@
     function initMap() {
 
         let name_partner = document.querySelector('#name_partner').value;
-        let name_area = null ;
+        let name_area = "" ;
 
         fetch("{{ url('/') }}/api/area_current/"+name_partner + '/' + name_area)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
-                var bounds = new google.maps.LatLngBounds();
+            //     var bounds = new google.maps.LatLngBounds();
 
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
-                }
+            //     for (let ix = 0; ix < result.length; ix++) {
+            //         bounds.extend(result[ix]);
+            //     }
 
-                map = new google.maps.Map(document.getElementById("map"), {
-                    // zoom: num_zoom,
-                    center: bounds.getCenter(),
-                });
-                map.fitBounds(bounds);
+            //     map = new google.maps.Map(document.getElementById("map"), {
+            //         // zoom: num_zoom,
+            //         center: bounds.getCenter(),
+            //     });
+            //     map.fitBounds(bounds);
 
-                // Construct the polygon.
-                draw_area = new google.maps.Polygon({
-                    paths: result,
-                    strokeColor: "#008450",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 1,
-                    fillColor: "#008450",
-                    fillOpacity: 0.25,
-                });
-                draw_area.setMap(map);
+            //     // Construct the polygon.
+            //     draw_area = new google.maps.Polygon({
+            //         paths: result,
+            //         strokeColor: "#008450",
+            //         strokeOpacity: 0.8,
+            //         strokeWeight: 1,
+            //         fillColor: "#008450",
+            //         fillOpacity: 0.25,
+            //     });
+            //     draw_area.setMap(map);
 
-                //ปักหมุด
-                let image = "https://www.viicheck.com/img/icon/flag_2.png";
-                @foreach($view_maps_all as $view_map)
-                @if(!empty($item->lat))
-                    marker = new google.maps.Marker({
-                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                        map: map,
-                        icon: image,
-                    });  
-                @endif   
-                @endforeach
+            //     //ปักหมุด
+            //     let image = "https://www.viicheck.com/img/icon/flag_2.png";
+            //     @foreach($view_maps_all as $view_map)
+            //     @if(!empty($item->lat))
+            //         marker = new google.maps.Marker({
+            //             position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+            //             map: map,
+            //             icon: image,
+            //         });  
+            //     @endif   
+            //     @endforeach
                 
-            });
+            // });
 
     }
 
@@ -338,55 +338,55 @@
             .then(result => {
                 // console.log(result);
 
-                var bounds = new google.maps.LatLngBounds();
+        //         var bounds = new google.maps.LatLngBounds();
 
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
-                }
+        //         for (let ix = 0; ix < result.length; ix++) {
+        //             bounds.extend(result[ix]);
+        //         }
 
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 18,
-                center: { lat: parseFloat(lat), lng: parseFloat(lng) },
-            });
+        //     map = new google.maps.Map(document.getElementById("map"), {
+        //         zoom: 18,
+        //         center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+        //     });
 
-            // Construct the polygon.
-            draw_area = new google.maps.Polygon({
-                paths: result,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
+        //     // Construct the polygon.
+        //     draw_area = new google.maps.Polygon({
+        //         paths: result,
+        //         strokeColor: "#008450",
+        //         strokeOpacity: 0.8,
+        //         strokeWeight: 1,
+        //         fillColor: "#008450",
+        //         fillOpacity: 0.25,
+        //     });
+        //     draw_area.setMap(map);
 
-            let image = "https://www.viicheck.com/img/icon/flag_2.png";
-            let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
-            marker = new google.maps.Marker({
-                position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
-                map: map,
-                icon: image,
-            });  
+        //     let image = "https://www.viicheck.com/img/icon/flag_2.png";
+        //     let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
+        //     marker = new google.maps.Marker({
+        //         position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
+        //         map: map,
+        //         icon: image,
+        //     });  
 
-            @foreach($view_maps as $view_map)
-                if ( {{ $view_map->id }} !== parseFloat(sos_id) ) {
-                    marker = new google.maps.Marker({
-                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                        map: map,
-                        icon: image2,
-                    });
-                }
-            @endforeach
+        //     @foreach($view_maps as $view_map)
+        //         if ( {{ $view_map->id }} !== parseFloat(sos_id) ) {
+        //             marker = new google.maps.Marker({
+        //                 position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+        //                 map: map,
+        //                 icon: image2,
+        //             });
+        //         }
+        //     @endforeach
 
-            const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+        //     const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
 
-            let infoWindow = new google.maps.InfoWindow({
-                content: "Lat :" + lat + "<br>" + "Lat :" + lng,
-                position: myLatlng,
-            });
+        //     let infoWindow = new google.maps.InfoWindow({
+        //         content: "Lat :" + lat + "<br>" + "Lat :" + lng,
+        //         position: myLatlng,
+        //     });
 
-            infoWindow.open(map);
-        });
+        //     infoWindow.open(map);
+        // });
 
     }
 
