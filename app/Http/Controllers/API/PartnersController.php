@@ -89,10 +89,16 @@ class PartnersController extends Controller
 
     public function area_current($name_partner,$name_area)
     {
-        $data_partners = DB::table('partners')
+        if (!empty($name_area)) {
+            $data_partners = DB::table('partners')
               ->where('name', $name_partner)
               ->where('name_area', $name_area)
               ->get();
+        }else{
+            $data_partners = DB::table('partners')
+              ->where('name', $name_partner)
+              ->get();
+        }
 
         foreach ($data_partners as $key) {
             $area_current = $key->sos_area ;

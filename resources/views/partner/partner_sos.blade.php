@@ -282,8 +282,9 @@
     function initMap() {
 
         let name_partner = document.querySelector('#name_partner').value;
+        let name_area = null ;
 
-        fetch("{{ url('/') }}/api/area_current/"+name_partner)
+        fetch("{{ url('/') }}/api/area_current/"+name_partner + '/' + name_area)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -330,8 +331,9 @@
     function view_marker(lat , lng , sos_id){
 
         let name_partner = document.querySelector('#name_partner').value;
+        let name_area = null ;
 
-        fetch("{{ url('/') }}/api/area_current/"+name_partner)
+        fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
