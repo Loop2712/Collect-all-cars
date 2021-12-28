@@ -428,8 +428,9 @@
 
     function func_draw_area(map) {
         let id_user = document.querySelector('#id_user').value;
+        let name_area = document.querySelector('#name_area').value;
 
-        fetch("{{ url('/') }}/api/service_area/area_other/" + id_user)
+        fetch("{{ url('/') }}/api/service_area/area_other/" + id_user + '/' + name_area)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -451,7 +452,7 @@
                 }
         });
 
-        fetch("{{ url('/') }}/api/service_area/your_old_area/" + id_user)
+        fetch("{{ url('/') }}/api/service_area/your_old_area/" + id_user + '/' + name_area)
             .then(response => response.json())
             .then(result_2 => {
                 // console.log(result_2);

@@ -117,9 +117,9 @@ Route::get('/change_color_partner/{color}/{name_partner}', 'API\PartnersControll
 
 Route::get('/sos_map/all_area','API\SosmapController@all_area');
 Route::get('/submit_score/{sos_map_id}/{score_1}/{score_2}/{total_score}/{comment_help}', 'API\SosmapController@submit_score');
-Route::get('/service_area/area_other/{id_user}','API\PartnersController@area_other');
+Route::get('/service_area/area_other/{id_user}/{name_area}','API\PartnersController@area_other');
 Route::get('/service_area/check_area_other/{id_partnet}','API\PartnersController@check_area_other');
-Route::get('/service_area/your_old_area/{id_user}','API\PartnersController@your_old_area');
+Route::get('/service_area/your_old_area/{id_user}/{name_area}','API\PartnersController@your_old_area');
 
 Route::get('/all_sos_area','API\PartnersController@all_sos_area');
 

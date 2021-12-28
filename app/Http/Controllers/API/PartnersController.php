@@ -195,7 +195,7 @@ class PartnersController extends Controller
         return $color ;
     }
 
-    public function area_other($id_user)
+    public function area_other($id_user , $name_area)
     {
         $data_user = DB::table('users')
                 ->where("id", $id_user)
@@ -204,7 +204,7 @@ class PartnersController extends Controller
         foreach ($data_user as $key ) {
 
             $area_other = DB::table('partners')
-                ->where("name","!=", $key->organization)
+                ->where("name_area","!=", $name_area)
                 ->get();
 
         }
@@ -212,7 +212,7 @@ class PartnersController extends Controller
         return $area_other ;
     }
 
-    public function your_old_area($id_user)
+    public function your_old_area($id_user , $name_area)
     {
         $data_user = DB::table('users')
                 ->where("id", $id_user)
@@ -220,13 +220,14 @@ class PartnersController extends Controller
 
         foreach ($data_user as $key ) {
 
-            $area_other = DB::table('partners')
+            $your_old_area = DB::table('partners')
                 ->where("name", $key->organization)
+                ->where("name_area", $name_area)
                 ->get();
 
         }
 
-        return $area_other ;
+        return $your_old_area ;
     }
 
     public function check_area_other($id_partnet)
