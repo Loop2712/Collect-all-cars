@@ -263,7 +263,7 @@
 	            .then(response => response.json())
 	            .then(result => {
 	                // console.log(result);
-	                console.log(num_pass_area);
+	                // console.log(num_pass_area);
 	                
 	                let group_line_id = document.querySelector('#group_line_id');
 	                	group_line_id.value = result[0]['id'];

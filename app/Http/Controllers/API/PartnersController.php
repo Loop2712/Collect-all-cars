@@ -95,6 +95,7 @@ class PartnersController extends Controller
               ->where('name_area', $name_area)
               ->get();
         }else{
+
             $data_partners = DB::table('partners')
               ->where('name', $name_partner)
               ->get();
@@ -103,7 +104,7 @@ class PartnersController extends Controller
         foreach ($data_partners as $key) {
             $area_current = $key->sos_area ;
         }
-
+        
         return $area_current ;
         
     }
@@ -258,7 +259,7 @@ class PartnersController extends Controller
                             ->where("groupName", $line_group)
                             ->get();
 
-        // $this->send_pass_area_togroupline($data_line_group , $num_pass_area);
+        $this->send_pass_area_togroupline($data_line_group , $num_pass_area);
 
         return $data_line_group ;
     }
