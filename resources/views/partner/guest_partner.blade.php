@@ -1,8 +1,158 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<br>
-    <div class="container">
+    <div class="row d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-bottom-0 bg-transparent">
+                    <div class="d-flex align-items-center" style="margin-top:10px;">
+                        <div>
+                            <h5 class="font-weight-bold mb-0">เลือกช่วงเวลา</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" >
+                    <div class="row align-items-center">
+                    <div class="row justify-content-center" style="margin-top:-30px">
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_year" onchange="select_year();">
+                                    <option value="">เลือกปี</option>
+                                        @if(!empty($guest_year))
+                                            @foreach($guest_year as $item)
+                                                <option value="{{ $item->date }}">
+                                                        {{ $item->date + 543 }}
+                                                </option>   
+
+                                            @endforeach
+                                        @else
+                                            <option value="" selected></option> 
+                                        @endif
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_month_1" onchange="select_month_1();">
+                                    <option value="">เลือกเดือน</option>
+                                    <option value="01">มกราคม</option>
+                                    <option value="02">กุมภาพันธ์</option>
+                                    <option value="03">มีนาคม</option>
+                                    <option value="04">เมษายน</option>
+                                    <option value="05">พฤษภาคม</option>
+                                    <option value="06">มิถุนายน</option>
+                                    <option value="07">กรกฎาคม</option>
+                                    <option value="08">สิงหาคม</option>
+                                    <option value="09">กันยายน</option>
+                                    <option value="10">ตุลาคม</option>
+                                    <option value="11">พฤศจิกายน</option>
+                                    <option value="12">ธันวาคม</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <center>
+                                    <br>
+                                    <label style="margin-top:7px;" class="control-label">{{ 'ถึง' }}</label>
+                                </center>
+                            </div>
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_month_2" onchange="select_month_2();">
+                                    <option value="">เลือกเดือน</option>
+                                    <option value="01">มกราคม</option>
+                                    <option value="02">กุมภาพันธ์</option>
+                                    <option value="03">มีนาคม</option>
+                                    <option value="04">เมษายน</option>
+                                    <option value="05">พฤษภาคม</option>
+                                    <option value="06">มิถุนายน</option>
+                                    <option value="07">กรกฎาคม</option>
+                                    <option value="08">สิงหาคม</option>
+                                    <option value="09">กันยายน</option>
+                                    <option value="10">ตุลาคม</option>
+                                    <option value="11">พฤศจิกายน</option>
+                                    <option value="12">ธันวาคม</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <br>
+                                <form style="float: right;" method="GET" action="{{ url('/guest_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control d-none" id="input_year" name="year"value="{{ request('year') }}">
+                                        <input type="number" class="form-control d-none" id="input_month_1" name="month_1" value="{{ request('month_1') }}">
+                                        <input type="number" class="form-control d-none" id="input_month_2" name="month_2" value="{{ request('month_2') }}">
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">
+                                        ค้นหา
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <br>
+                                <a href="{{URL::to('/guest_partner')}}" >
+                                    <button class="btn btn-danger">
+                                        ล้างการค้นหา
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="d-flex align-items-center" style="margin-top:10px;">
+                <div>
+                    <h5 class="font-weight-bold mb-0"> รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)  </h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ยี่ห้อ / รุ่น</th>
+                            <th>หมายเลขทะเบียน</th>
+                            <th>รายงานทั้งหมด</th>
+                            <th><b>รายงานต่อเดือน</b> (<span id="month_th_1"></span> - <span id="month_th_2"></span>)</th>
+                            <th>ผู้ลงทะเบียน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($guest as $item)
+                            <tr class="text-center">
+                                <td>
+                                    <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
+                                    <span style="font-size: 15px;color: #708090"> {{ $item->register_cars->generation }}</span>
+                                </td>
+                                <td>
+                                    <span> <b>{{ $item->registration }}</b> </span><br>
+                                    <span style="font-size: 15px;color: #708090"> {{ $item->county }}</span>
+                                </td>
+                                <td><b>{{ $item->count }}</b></td>
+                                <td>
+                                    <b>{{ $count_per_month[$item->register_car_id] }}</b>
+                                    <br>
+                                    @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
+                                        <span class="text-secondary" style="font-size:14px;">คิดเป็น <b class="text-warning">{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <b>{{ $item->register_cars->name }}</b>
+                                    <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i></a>
+                                    <br>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="pagination round-pagination " style="margin-top:10px;"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-block d-lg-none">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -12,16 +162,16 @@
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
                     </h4>
-                    <h4 class="d-block d-lg-none">
+                    <!-- <h4 class="d-block d-lg-none">
                         <a style="float:right;" class="btn btn-sm btn-outline-success text-success" href="{{ url('/partner_guest_latest') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
                         </a>
-                    </h4>
+                    </h4> -->
                     <!------------------------------------------------- pc ------------------------------------------------->
+    
+<!--                     
                     <div class="card-body d-none d-lg-block">
-                        <!-- <a class="btn btn-sm btn-outline-danger text-danger" href="{{ url('/guest_2bgreen') }}">
-                            <i class="fas fa-angle-double-up"></i> รายการรถที่ถูกแจ้งปัญหาการขับขี่
-                        </a> -->
+                        
                         <div class="row justify-content-center" style="margin-top:-15px">
                             <div class="col-md-2">
                                 <label  class="control-label">{{ '' }}</label>
@@ -105,7 +255,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- มากสุด -->
                     <div class="card-block table-border-style d-none d-lg-block" style="margin-top:-30px">
                         <div class="table-responsive">
                             <table class="table">
@@ -153,7 +302,7 @@
                                 <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                     <!--------------------------------------------- End pc --------------------------------------------->
                     
                         <!-- <div id="the_most" class="container">

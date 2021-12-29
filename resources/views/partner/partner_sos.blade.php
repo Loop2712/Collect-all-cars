@@ -1,4 +1,4 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
 <br>
@@ -26,6 +26,221 @@
         </div>
         <!-------------------------------------------------- pc -------------------------------------------------->
         <div class="col-8 d-none d-lg-block" >
+            <div class="row">
+                <div class="col-12">
+                    <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
+                    @if(Auth::check())
+                        @if(Auth::user()->role == 'admin-partner')
+                    <a href="{{ url('/sos_score_helper') }}" type="button" style="float: right;" class="btn btn-primary text-white">คะแนนการช่วยเหลือ </a>
+                        @endif
+                    @endif
+                </div>
+                <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+                    <div class="card-header border-bottom-0 bg-transparent">
+                        <div class="d-flex align-items-center">
+                            <div class="col-12">
+                                <h5 class="font-weight-bold mb-0" style="margin-top:10px;">ขอความช่วยเหลือ
+                                    <span style="font-size: 15px; float: right; margin-top:-5px;">จำนวนทั้งหมด {{ $count_data }}</span>
+                                </h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table mb-0 align-middle">
+                                <thead>
+                                    <tr class="text-center">
+                                    <div class="row  text-center">
+                                        <div class="col-3">
+                                            <b>ชื่อ</b><br>
+                                            Name
+                                        </div>
+                                        <div class="col-2">
+                                            <b>เบอร์</b><br>
+                                            Phone
+                                        </div>
+                                        <div class="col-3">
+                                            <b>เวลา</b><br>
+                                            Time
+                                        </div>
+                                        <div class="col-2">
+                                            <b>รูปภาพ</b><br>
+                                            Photo
+                                        </div>
+                                        <div class="col-2">
+                                            <b>ตำแหน่ง</b><br>
+                                            Location
+                                        </div>
+                                    </div>
+                                    </tr>
+                                </thead>
+                                <hr style="color:black;background-color:black;height:2px">
+                                <tbody>
+                                    @foreach($view_maps as $item)
+                                    <div class="row text-center" style="margin-top:0px;">
+                                            <div class="col-3" style="padding:0px;">
+                                                <h5 class="text-success float-left">
+                                                    <span style="font-size: 15px;">
+                                                        <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
+                                                        <i class="far fa-eye text-primary"></i>
+                                                        </a>
+                                                    </span>&nbsp;{{ $item->name }}
+                                                </h5>
+                                            </div>
+                                            <div class="col-2 " style="padding:0px;font-size:13px">
+                                                {{ $item->phone }}
+                                            </div>
+                                            <div class="col-3" style="padding:0px;font-size:13px">
+                                                    {{ date("d/m/Y" , strtotime($item->created_at)) }} <br>
+                                                    {{ date("H:i" , strtotime($item->created_at)) }}
+                                            </div>
+                                            <div class="col-2" style="padding:0px;">
+                                                @if(!empty($item->photo))
+                                                    <a href="#" class="link text-success" data-toggle="collapse" data-target="#img_photo_{{ $loop->iteration }}" aria-expanded="false" aria-controls="img_photo_{{ $loop->iteration }}">
+                                                        <i class="fas fa-search"></i>
+                                                        ดูรูปภาพ
+                                                    </a>
+                                                    <div class="collapse container-fluid" id="img_photo_{{ $loop->iteration }}">
+                                                        <br>
+                                                        <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                                            <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
+                                                        </a>
+                                                    </div>
+                                                @else
+                                                    -
+                                                @endif
+                                            </div>
+                                            <div class="col-2" style="padding:0px;">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}');">
+                                                            <i class="fas fa-map-marker-alt"></i> 
+                                                            <br>
+                                                            ดูหมุด
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-12 d-none">
+                                                        <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                                            <i class="fas fa-location-arrow"></i> 
+                                                            <br>
+                                                            นำทาง
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @if(Auth::check())
+                                                @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
+                                                    <div class="col-12 text-left" style="margin-top:5px;">
+                                                        <h5>คะแนนการช่วยเหลือ</h5>
+                                                        <div class="row">
+                                                            <div class="col-2" style="padding:0px">
+                                                                ผู้ใช้การช่วย : <br>{{$item->helper}}
+                                                            </div>
+                                                            <div class="col-2" style="padding:0px">
+                                                                @if($item->score_impression < 3)
+                                                                    ความประทับใจ : <br>
+                                                                    <span class="text-danger">{{$item->score_impression}}</span>
+                                                                @elseif($item->score_impression == 3)
+                                                                    ความประทับใจ : <br>
+                                                                    <span class="text-warning">{{$item->score_impression}}</span>
+                                                                @elseif($item->score_impression > 3)
+                                                                    ความประทับใจ : <br>
+                                                                    <span class="text-success">{{$item->score_impression}}</span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-2" style="padding:0px">
+                                                                @if($item->score_period < 3)
+                                                                    ระยะเวลา : <br>
+                                                                    <span class="text-danger">{{$item->score_period}}</span>
+                                                                @elseif($item->score_period == 3)
+                                                                    ระยะเวลา : <br>
+                                                                    <span class="text-warning">{{$item->score_period}}</span>
+                                                                @elseif($item->score_period > 3)
+                                                                    ระยะเวลา : <br>
+                                                                    <span class="text-success">{{$item->score_period}}</span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-2" style="padding:0px">
+                                                                @if($item->score_total < 3)
+                                                                    ภาพรวม : <br>
+                                                                    <span class="text-danger">{{$item->score_total}}</span>
+                                                                @elseif($item->score_total == 3)
+                                                                    ภาพรวม : <br>
+                                                                    <span class="text-warning">{{$item->score_total}}</span>
+                                                                @elseif($item->score_total > 3)
+                                                                    ภาพรวม : <br>
+                                                                    <span class="text-success">{{$item->score_total}}</span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-4" style="padding:0px">
+                                                                คำแนะนำ/ติชม : <br>{{$item->comment_help}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        </div>
+                                        <hr style="margin-top:25px;">
+                                    <!-- asda -->
+                                        <!-- <tr class="text-center">
+                                            <td>
+                                                <h6 class="text-success float-left">
+                                                    <span style="font-size: 15px;">
+                                                        <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
+                                                        <i class="far fa-eye text-primary"></i>
+                                                        </a>
+                                                    </span>&nbsp;{{ $item->name }}
+                                                </h6>
+                                            </td>
+                                            <td> {{ $item->phone }}</td>
+                                            <td>
+                                                {{ date("d F Y" , strtotime($item->created_at)) }} <br>
+                                                {{ date("H:i" , strtotime($item->created_at)) }}
+                                            </td>
+                                            <td>
+                                                @if(!empty($item->photo))
+                                                    <a href="#" class="link text-success" data-toggle="collapse" data-target="#img_photo_{{ $loop->iteration }}" aria-expanded="false" aria-controls="img_photo_{{ $loop->iteration }}">
+                                                        <i class="fas fa-search"></i>
+                                                        ดูรูปภาพ
+                                                    </a>
+                                                    <div class="collapse container-fluid" id="img_photo_{{ $loop->iteration }}">
+                                                        <br>
+                                                        <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                                            <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
+                                                        </a>
+                                                    </div>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="col-12">
+                                                    <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}');">
+                                                        <i class="fas fa-map-marker-alt"></i> 
+                                                        <br>
+                                                        ดูหมุด
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 d-none">
+                                                    <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                                        <i class="fas fa-location-arrow"></i> 
+                                                        <br>
+                                                        นำทาง
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr> -->
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- <div class="col-8 d-none d-lg-block" >
             <div class="row">
                 <div class="col-12">
                     <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
@@ -182,7 +397,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!----------------------------------------------------- end pc ----------------------------------------------------->
     </div>
 </div>

@@ -1,14 +1,14 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
 	<style>
-		.wrapper {
+		/* .wrapper {
 		    height: 100vh;
 		    display: flex;
 		    justify-content: center;
 		    align-items: center;
 		    background-color: #eee
-		}
+		} */
 
 		.checkmark__circle {
 		    stroke-dasharray: 166;
@@ -65,21 +65,179 @@
 		    }
 		}
 	</style>
-	<div class="container-fluid">
-		<!-- ADD NEW AREA -->
-		<div class="row">
-			@if(Auth::check())
-			@if(Auth::user()->id == 21 or Auth::user()->id == 2)
-			<div class="col-12">
-				<a id="btn_add_area" class="btn text-white float-right" style="background-color: #008450;" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner">
-					เพิ่มพื้นที่บริการใหม่
-				</a>
+<!-- div_name_partner -->
+	<div id="div_name_partner" class="collapse col-12">
+		<div class="col" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+			<div class="card  border-0 border-4 border-primary">
+				<div class="card-body p-5">
+					<div class="card-title d-flex align-items-center">
+						<h5 class="mb-0 " style="color:#008450;"><i class="fadeIn animated bx bx-map-alt"></i> เพิ่มพื้นที่บริการใหม่ </h5>
+						<i class="fas fa-times float-right btn ms-auto" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner"></i>
+					</div>
+					<hr>
+					<form method="POST" action="{{ url('/partner_add_area') }}" accept-charset="UTF-8" class="row g-3 form-horizontal" enctype="multipart/form-data">
+						{{ csrf_field() }}
+						@foreach($data_partners as $data_partner)
+							<div class="col-md-4">
+								<label for="inputFirstName" class="form-label">ชื่อพาร์ทเนอร์</label>
+								<input class="form-control" name="name" type="text" id="name" value="{{ $data_partner->name }}"  readonly>
+								{!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+							</div>
+							<div class="col-md-4">
+								<label for="inputLastName" class="form-label">เบอร์</label>
+								<input class="form-control" name="phone" type="phone" id="phone" value="{{ $data_partner->phone }}"   readonly>
+								{!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+							</div>
+							<div class="col-md-4">
+								<label for="inputEmail" class="form-label">เมล</label>
+								<input class="form-control" name="mail" type="mail" id="mail" value="{{ $data_partner->mail }}"  readonly>
+								{!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
+							</div>
+							<div class="col-md-4">
+								<label for="inputPassword" class="form-label">ชื่อพื้นที่</label>
+								<input class="form-control" name="name_area" type="name_area" id="name_area" value="{{ isset($partner->name_area) ? $partner->name_area : ''}}" required>
+								{!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
+							</div>
+							<div class="col-5">
+						<div class="row">
+							<div class="col-4">
+								<div class="form-group {{ $errors->has('line_group') ? 'has-error' : ''}}">
+									<br>
+									<select id="line_group" name="line_group" class="btn btn-md text-white" style="background-color: #27CF00;margin-top: 9px;" onchange="document.querySelector('#btn_send_pass_area').classList.remove('d-none');" required>
+										<option value="" selected>- เลือกกลุ่มไลน์ -</option>
+										@foreach($group_line as $item)
+											<option value="{{ $item->groupName }}" 
+											{{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+											{{ $item->groupName }} 
+											</option>
+											{!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
+										@endforeach 
+									</select>
+								</div>
+								<input class="form-control d-none" name="group_line_id" type="group_line_id" id="group_line_id" value="" >
+								{!! $errors->first('group_line_id', '<p class="help-block">:message</p>') !!}
+
+								<input class="form-control d-none" name="user_id_admin" type="user_id_admin" id="user_id_admin" value="{{ Auth::user()->id }}" >
+								{!! $errors->first('user_id_admin', '<p class="help-block">:message</p>') !!}
+							</div>
+							<div class="col-5">
+								<br>
+								<div id="btn_send_pass_area" class="d-none text-center">
+									<a class="btn text-white" style="background-color: #FA9E33;margin-top: 9px;" onclick="send_pass_area();">
+										ส่งรหัสยืนยันกลุ่มไลน์
+									</a>
+								</div>
+								<div id="spinner_send_pass" class="d-none text-center">
+									<div style="margin-top: 9px;" class="spinner-border text-success"></div> &nbsp;&nbsp;กำลังส่งรหัส..
+								</div>
+								<div id="text_send_pass_done" class="d-none text-center">
+									<div class="row">
+										<div class="col-3">
+											<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+												<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+												<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+											</svg>
+										</div>
+										<div class="col-9">
+											<p style="margin-top: 23px;margin-left: 10px;float: left;">ส่งรหัสแล้ว</p>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="col-3">
+								<div id="div_cf_pass_area" class="d-none">
+									<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
+									<input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area" oninput="check_pass_area();">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<br>
+						<input style="margin-top: 9px;" id="submit_add_area" class="btn btn-primary float-right d-none" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
+					</div>
+						@endforeach
+					</form>
+				</div>
 			</div>
-			@endif
-			@endif
+		</div>
+	</div>
+	<div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="d-flex align-items-center" style="margin-top:10px;">
+                <div>
+                    <h5 class="font-weight-bold mb-0" > รายชื่อพื้นที่บริการปัจจุบัน</h5>
+                </div>
+				<div class="ms-auto">
+					@if(Auth::check())
+						@if(Auth::user()->id == 21 or Auth::user()->id == 2 or Auth::user()->id == 1)
+							<a id="btn_add_area" class="btn text-white float-right" style="background-color: #008450;" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner">
+								<i class="fadeIn animated bx bx-add-to-queue"></i>เพิ่มพื้นที่บริการใหม่
+							</a>
+						@endif
+					@endif
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ชื่อพื้นที่บริการ</th>
+                            <th>ชื่อกลุ่มไลน์</th>
+                            <th>พื้นที่ปัจจุบัน</th>
+                            <th>พื้นที่รอการตรวจสอบ</th>
+							<th>เครื่องมือ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+					@foreach($all_area_partners as $area)
+                            <tr class="text-center">
+                                <td>{{ $area->name_area }}</td>
+                                <td>{{ $area->line_group }}</td>
+                                <td>
+									@if(!empty($area->sos_area))
+										<a href="javaScript:;" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>Yes</a>
+									@else
+										<a href="javaScript:;" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>No</a>
+									@endif
+								</td>
+                                <td>
+									@if(!empty($area->new_sos_area))
+										<a href="javaScript:;" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>Yes</a>
+									@else
+										<a href="javaScript:;" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>No</a>
+									@endif
+                                </td>
+								<td>
+									<a  type="submit" class="btn btn-warning " href="{{ url('/service_area?name_area=' . $area->name_area) }}">
+										<i class="far fa-edit"></i> ดูข้อมูล / แก้ไข
+									</a>
+								</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+	<!-- <div class="container-fluid"> -->
+		<!-- ADD NEW AREA -->
+		<!-- <div class="row">
+			@if(Auth::check())
+				@if(Auth::user()->id == 21 or Auth::user()->id == 2)
+				<div class="col-12">
+					<a id="btn_add_area" class="btn text-white float-right" style="background-color: #008450;" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner">
+					<i class="fadeIn animated bx bx-add-to-queue"></i>เพิ่มพื้นที่บริการใหม่
+					</a>
+				</div>
+				@endif
+			@endif -->
 
 			<!-- div_name_partner -->
-			<div id="div_name_partner" class="collapse col-12">
+			<!-- <div id="div_name_partner" class="collapse col-12">
 				<div class="card">
 					<h3 class="card-header">
 						เพิ่มพื้นที่บริการใหม่ 
@@ -185,12 +343,12 @@
 				</div>
 			</div>
 		</div>
-		<hr>
+		<hr> -->
 		<!-- END ADD NEW AREA -->
 		
-		<br>
+		<!-- <br> -->
 		<!-- AREA CURRENT -->
-		<div class="card">
+		<!-- <div class="card">
 			<h3 class="card-header">รายชื่อพื้นที่บริการปัจจุบัน</h3>
 			<div class="card-body">
 				<div class="col-12">
@@ -244,7 +402,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<script>
 

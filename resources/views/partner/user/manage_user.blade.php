@@ -1,10 +1,108 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 
 @section('content')
-<br>
+ 
+        <div class="card radius-10 d-none d-lg-block" >
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="d-flex align-items-center">
+                <div>
+                    <h5 class="font-weight-bold mb-0">จัดการผู้ใช้ / Manage users</h5>
+                </div>
+                <form method="GET" action="{{ url('/manage_user_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right ms-auto" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control ps-5 radius-30" name="search" placeholder="ค้นหา..." value="{{ request('search') }}">
+                        <span class="input-group-append">
+                            <button class="btn " type="submit" style="border-color:#D2D7DC;border-style: solid;border-width: 1px 1px 1px 1px;border-radius: 0px 30px 30px 0px">
+                                <i class="bx bx-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-white radius-10" data-toggle="modal" data-target="#exampleModal"><i class='bx bx-user-plus'></i>สร้างบัญชีผู่ใช้ใหม่</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ชื่อ</th>
+                            <th>ประเภท</th>
+                            <th>การจัดอันดับ</th>
+                            <th>เบอร์</th>
+                            <th>สถานะ</th>
+                            <th>การใช้งาน</th>
+                            <th>ผู้สร้าง</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($all_user as $item)
+                            <tr>
+                                <td>
+                                <span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;{{ $item->name }}
+                                </td>
+                                <td class="text-center">
+                                    @switch($item->type)
+                                        @case('line')
+                                            <i class="bx bx-line text-success"></i>
+                                        @break
+                                        @case('facebook')
+                                            <i class="bx bx-facebook-oval text-primary"></i>
+                                        @break
+                                        @case('google')
+                                            <i class="lni lni-google text-danger"></i>
+                                        @break
+                                        @case(null)
+                                            <i class="bx bx-globe" style="color: #5F9EA0"></i>
+                                        @break
+                                    @endswitch
+                                </td>
+                                <td class="text-center"> 
+                                    @switch($item->ranking)
+                                        @case('Gold')
+                                            <img width="20" src="{{ url('/img/ranking/gold.png') }}"> Gold
+                                        @break
+                                        @case('Silver')
+                                            <img width="20" src="{{ url('/img/ranking/silver.png') }}"> Silver
+                                        @break
+                                        @case('Bronze')
+                                            <img width="20" src="{{ url('/img/ranking/bronze.png') }}"> Bronze
+                                        @break
+                                    @endswitch
+                                </td>
+                                <td class="text-center">{{ $item->phone }}</td>
+                                <td class="text-center">{{ $item->role }}</td>
+                                <td class="text-center">
+                                    @switch($item->status)
+                                        @case('active')
+                                            <a href="javaScript:;" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>Active</a>
+                                        @break
+                                        @case('expired')
+                                            <a href="javaScript:;" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>Expired</a>
+                                        @break
+                                    @endswitch
+                                </td>
+                                <td>
+                                    @if(!empty($item->creator))
+                                        <a href="{{ url('/profile/' . $item->creator) }}" target="bank">
+                                            <i class="far fa-eye text-primary"></i>
+                                        </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="pagination round-pagination " style="margin-top:10px;"> {!! $all_user->appends(['search' => Request::get('search')])->render() !!} </div>
+            </div>
+        </div>
+    </div>
+    
 <!-- --------------------------------- แสดงเฉพาะคอม ------------------------------- -->
-    <div class="container-fluid d-none d-lg-block">
+    <!-- <div class="container-fluid d-none d-lg-block">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -29,9 +127,6 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row alert alert-secondary">
-                                    <!-- <div class="col-1">
-                                        <center><b>Id</b></center>
-                                    </div> -->
                                     <div class="col-3">
                                         <center>
                                             <b>ชื่อ</b><br>
@@ -77,9 +172,6 @@
                                 </div>
                                 @foreach($all_user as $item)
                                     <div class="row">
-                                        <!-- <div class="col-1">
-                                            <center><b>{{ $item->id }}</b></center>
-                                        </div> -->
                                         <div class="col-3">
                                             <h5 class="text-success"><span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;{{ $item->name }}
                                             </h5>
@@ -150,7 +242,7 @@
                                 <div class="pagination-wrapper"> {!! $all_user->appends(['search' => Request::get('search')])->render() !!} </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Button trigger modal -->
                         <button id="btn_modal_confirm_create" class="btn d-none" data-toggle="modal" data-target="#exampleModal">
                         </button>

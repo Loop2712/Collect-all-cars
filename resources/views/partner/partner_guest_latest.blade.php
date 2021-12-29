@@ -1,9 +1,81 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 
 @section('content')
+<div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="d-flex align-items-center">
+                <div>
+                    <h5 class="font-weight-bold mb-0">รถที่ถูกรายงานล่าสุด</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>คันที่</th>
+                            <th>ยี่ห้อ/รุ่น</th>
+                            <th>หมายเลขทะเบียน</th>
+                            <th>เหตุผล</th>
+                            <th>วันที่</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($guest_latest as $item)
+                            <tr class="text-center">
+                                <td>{{ $item->id }}</td>
+                                <td> 
+                                    <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
+                                    <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation }} </span>
+                                </td>
+                                <td>
+                                    <span> <b>{{ $item->registration }}</b> </span><br>
+                                    <span style="font-size: 15px;color: #708090">{{ $item->county }}</span>
+                                </td>
+                                <td>
+                                    @switch($item->massengbox)
+                                        @case('1')
+                                            กรุณาเลื่อนรถด้วยค่ะ
+                                        @break
+                                        @case('2')
+                                            รถคุณเปิดไฟค้างไว้ค่ะ
+                                        @break
+                                        @case('3')
+                                            มีเด็กอยู่ในรถค่ะ
+                                        @break
+                                        @case('4')
+                                            รถคุณเกิดอุบัติเหตุค่ะ
+                                        @break
+                                        @case('5')
+                                            แจ้งปัญหาการขับขี่
+                                        @break
+                                        @case('6')
+                                            {{ $item->masseng }}
+                                        @break
+                                    @endswitch
+                                    <br>
+                                    @if(!empty($item->report_drivingd_detail))
+                                        <span class="text-danger">{{ $item->report_drivingd_detail }}</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <b>
+                                        {{ $item->created_at->format('l d F Y') }} <br>
+                                        {{ $item->created_at->format('H:i') }}
+                                    </b>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="pagination round-pagination " style="margin-top:10px;"> {!! $guest_latest->appends(['search' => Request::get('search')])->render() !!} </div>
+            </div>
+        </div>
+    </div>
 <br>
-    <div class="container">
+    <div class="container d-block d-lg-none">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -20,7 +92,7 @@
                         </h4>
                     </div>
                     <!----------------------------------------------- pc ----------------------------------------------->
-                    <div class="card-block table-border-style d-none d-lg-block" style="margin-top:-30px">
+                    <!-- <div class="card-block table-border-style d-none d-lg-block" style="margin-top:-30px">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -81,7 +153,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                     <!--------------------------------------------- end pc --------------------------------------------->
                     <!--------------------------------------------- Mobile --------------------------------------------->
                     @foreach($guest_latest as $item)

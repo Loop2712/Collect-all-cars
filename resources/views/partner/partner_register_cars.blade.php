@@ -1,8 +1,7 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<br>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" >
         <ul class="navbar-nav mr-auto">
             <li><a href="javascript:" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
             <!-- <li class="nav-item dropdown">
@@ -28,8 +27,73 @@
             </li>
         </ul>
     </div>
+    
     <!-------------------------------------------------- pc --------------------------------------------------->
-        <div class="container">
+    <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="d-flex align-items-center" style="margin-top:10px;">
+                <div>
+                    <h5 class="font-weight-bold mb-0" > รถลงทะเบียน <b>{{ $neme_partner }}</b> </h5>
+                </div>
+                <form method="GET" action="{{ url('/register_cars_partner') }}" accept-charset="UTF-8" class="ms-auto form-inline my-2 my-lg-0 float-right ms-auto" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control ps-5 radius-30" name="search" placeholder="ค้นหา..." value="{{ request('search') }}">
+                        <span class="input-group-append">
+                            <button class="btn radius-30" type="submit" style="border-color:#D2D7DC;border-style: solid;border-width: 1px 1px 1px 1px;border-radius: 0px 30px 30px 0px">
+                                <i class="bx bx-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>คันที่</th>
+                            <th>ยี่ห้อ</th>
+                            <th>รุ่น</th>
+                            <th>หมายเลขทะเบียน</th>
+                            <th>ประเภท</th>
+                            <th>ผู้ลงทะเบียน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($report_register_cars as $item)
+                            <tr class="text-center">
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->brand }}</td>
+                                <td>{{ $item->generation }}</td>
+                                <td>
+                                    <span> {{ $item->registration_number }}</span><br>
+                                    <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>
+                                </td>
+                                <td>
+                                    @if( $item->car_type == "car")
+                                        <img width="35px" src="https://www.viicheck.com/img/icon/car.png">
+                                    @endif
+                                    @if( $item->car_type == "motorcycle")
+                                        <img width="35px" src="https://www.viicheck.com/img/icon/motorcycle.png">
+                                    @endif
+                                </td>
+                                <td>
+                                    <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}"><i class="far fa-eye text-info"></i>{{ $item->name }}</a>
+                                    <br>
+                                    @if(!empty($item->user->branch))
+                                        <b>สาขา</b> {{ $item->user->branch }}
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="pagination round-pagination " style="margin-top:10px;"> {!! $report_register_cars->appends(['search' => Request::get('search')])->render() !!} </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-block d-lg-none">
             <div class="row">
                 <div class="col-xl-12 ">
                     <div class="card">
