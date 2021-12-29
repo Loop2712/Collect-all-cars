@@ -122,6 +122,7 @@ Route::get('/service_area/check_area_other/{id_partnet}','API\PartnersController
 Route::get('/service_area/your_old_area/{id_user}/{name_area}','API\PartnersController@your_old_area');
 
 Route::get('/all_sos_area','API\PartnersController@all_sos_area');
+Route::get('/all_area_partner/{name_partner}','API\PartnersController@all_area_partner');
 
 
 

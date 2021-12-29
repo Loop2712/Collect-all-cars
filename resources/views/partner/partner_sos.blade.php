@@ -281,48 +281,45 @@
 
     function initMap() {
 
-        let name_partner = document.querySelector('#name_partner').value;
-        let name_area = "" ;
+        let name_partner = document.querySelector('#name_partner');
 
-        fetch("{{ url('/') }}/api/area_current/"+name_partner + '/' + name_area)
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 13.7248936, lng: 100.4930264 },
+            zoom: 10,
+        });
+
+        fetch("{{ url('/') }}/api/all_area_partner/" + name_partner.value)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
-                // var bounds = new google.maps.LatLngBounds();
+                for (let ii = 0; ii < result.length; ii++) {
 
-                // for (let ix = 0; ix < result.length; ix++) {
-                //     bounds.extend(result[ix]);
-                // }
+                    // console.log(JSON.parse(result[ii]['sos_area']));
 
-                // map = new google.maps.Map(document.getElementById("map"), {
-                //     // zoom: num_zoom,
-                //     center: bounds.getCenter(),
-                // });
-                // map.fitBounds(bounds);
+                    let draw_area_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#008450",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#008450",
+                        fillOpacity: 0.25,
+                    });
+                    draw_area_other.setMap(map);
 
-                // // Construct the polygon.
-                // draw_area = new google.maps.Polygon({
-                //     paths: result,
-                //     strokeColor: "#008450",
-                //     strokeOpacity: 0.8,
-                //     strokeWeight: 1,
-                //     fillColor: "#008450",
-                //     fillOpacity: 0.25,
-                // });
-                // draw_area.setMap(map);
+                }
 
-                // //ปักหมุด
-                // let image = "https://www.viicheck.com/img/icon/flag_2.png";
-                // @foreach($view_maps_all as $view_map)
-                // @if(!empty($item->lat))
-                //     marker = new google.maps.Marker({
-                //         position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                //         map: map,
-                //         icon: image,
-                //     });  
-                // @endif   
-                // @endforeach
+                //ปักหมุด
+                let image = "https://www.viicheck.com/img/icon/flag_2.png";
+                @foreach($view_maps_all as $view_map)
+                @if(!empty($item->lat))
+                    marker = new google.maps.Marker({
+                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                        map: map,
+                        icon: image,
+                    });  
+                @endif   
+                @endforeach
                 
             });
 

@@ -89,24 +89,17 @@ class PartnersController extends Controller
 
     public function area_current($name_partner,$name_area)
     {
-        if (!empty($name_area)) {
-            $data_partners = DB::table('partners')
-              ->where('name', $name_partner)
-              ->where('name_area', $name_area)
-              ->get();
-        }else{
-
-            $data_partners = DB::table('partners')
-              ->where('name', $name_partner)
-              ->get();
-        }
+        $data_partners = DB::table('partners')
+          ->where('name', $name_partner)
+          ->where('name_area', $name_area)
+          ->get();
 
         foreach ($data_partners as $key) {
             $area_current = $key->sos_area ;
         }
-        
+            
         return $area_current ;
-        
+
     }
 
     public function check_new_sos_area()
@@ -251,6 +244,16 @@ class PartnersController extends Controller
         $area = DB::table('partners')->get();
 
         return $area ;
+    }
+
+    public function all_area_partner($name_partner)
+    {
+        $data_partners = DB::table('partners')
+            ->where('name', $name_partner)
+            ->where('name_area', '!=' , null)
+            ->get();
+
+        return $data_partners ;
     }
 
     public function send_pass_area($line_group , $num_pass_area)

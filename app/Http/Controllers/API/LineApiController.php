@@ -277,6 +277,16 @@ class LineApiController extends Controller
             case 'de':
                 $richMenuId_start = "richmenu-37950bfed6a8c615573d040990921a63" ;
                 break;
+            case 'hi':
+                $richMenuId_start = "" ;
+                break;
+            case 'ar':
+                $richMenuId_start = "" ;
+                break;
+            case 'ru':
+                $richMenuId_start = "" ;
+                break;
+
             
             default:
                 // en
@@ -336,6 +346,15 @@ class LineApiController extends Controller
                     break;
                 case 'de':
                     $richMenuId = "richmenu-df18eecf91b93c5e78d4e9aee5e7f299" ;
+                    break;
+                case 'hi':
+                    $richMenuId = "richmenu-c08eb065d01402a4534ca25f82fc9b16" ;
+                    break;
+                case 'ar':
+                    $richMenuId = "richmenu-905e46e96a4548be41d3108af77701c8" ;
+                    break;
+                case 'ru':
+                    $richMenuId = "richmenu-bba8c83af254e2ad6ab1e4bd8739caee" ;
                     break;
             }
         }
