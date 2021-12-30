@@ -93,22 +93,28 @@
                                     <div class="col-12">
                                         <br>
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <center>
                                                     <i style="color:#FD8433; font-size: 20px;" class="fas fa-circle"></i> <br>
-                                                    พื้นที่บริการอื่นๆ
+                                                    พื้นที่ของท่านปัจจุบัน
                                                 </center>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <center>
                                                     <i style="color:#008450; font-size: 20px;" class="fas fa-circle"></i> <br>
-                                                    พื้นที่เก่าของท่าน
+                                                    พื้นที่องค์กรทั้งหมด
                                                 </center>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 <center>
                                                     <i style="color:#173066; font-size: 20px;" class="fas fa-circle"></i> <br>
                                                     พื้นที่ขอรับการอนุมัติ
+                                                </center>
+                                            </div>
+                                            <div class="col-3">
+                                                <center>
+                                                    <i style="color:#8f887b; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่บริการอื่นๆ
                                                 </center>
                                             </div>
                                         </div>
@@ -441,13 +447,49 @@
 
                     let draw_area_other = new google.maps.Polygon({
                         paths: JSON.parse(result[ii]['sos_area']),
-                        strokeColor: "#FD8433",
+                        strokeColor: "#8f887b",
                         strokeOpacity: 0.8,
                         strokeWeight: 1,
-                        fillColor: "#FD8433",
+                        fillColor: "#8f887b",
                         fillOpacity: 0.25,
+                        zIndex: 0,
                     });
                     draw_area_other.setMap(map);
+
+                    var bounds = new google.maps.LatLngBounds();
+                    var centerLatLng = bounds.getCenter();
+                    console.log(centerLatLng);
+
+                    marker = new google.maps.Marker({
+                        position: centerLatLng,
+                        label: {text: "TEST", color: "white"},
+                        map: map,
+                    });
+
+                    markers.push(marker);
+
+                }
+        });
+
+        fetch("{{ url('/') }}/api/service_area/area_partner_other/" + id_user + '/' + name_area)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+
+                    // console.log(JSON.parse(result[ii]['sos_area']));
+
+                    let draw_area_partner_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#008450",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#008450",
+                        fillOpacity: 0.25,
+                        zIndex: 0,
+                    });
+                    draw_area_partner_other.setMap(map);
 
                 }
         });
@@ -463,11 +505,12 @@
 
                     let draw_your_old_area = new google.maps.Polygon({
                         paths: JSON.parse(result_2[ii]['sos_area']),
-                        strokeColor: "#008450",
+                        strokeColor: "#FD8433",
                         strokeOpacity: 0.8,
                         strokeWeight: 1,
-                        fillColor: "#008450",
+                        fillColor: "#FD8433",
                         fillOpacity: 0.25,
+                        zIndex: 0,
                     });
                     draw_your_old_area.setMap(map);
 
@@ -534,6 +577,7 @@
             strokeWeight: 1,
             fillColor: "#173066",
             fillOpacity: 0.25,
+            zIndex: 1,
         });
         draw_area.setMap(map);
 
@@ -674,6 +718,7 @@
             strokeWeight: 1,
             fillColor: "#173066",
             fillOpacity: 0.25,
+            zIndex: 1,
         });
         draw_area.setMap(map);
 

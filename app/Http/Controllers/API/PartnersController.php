@@ -204,12 +204,31 @@ class PartnersController extends Controller
         foreach ($data_user as $key ) {
 
             $area_other = DB::table('partners')
-                ->where("name_area","!=", $name_area)
+                ->where("name","!=", $key->organization)
+                ->where("name_area","!=", null)
                 ->get();
 
         }
 
         return $area_other ;
+    }
+
+    public function area_partner_other($id_user , $name_area)
+    {
+        $data_user = DB::table('users')
+                ->where("id", $id_user)
+                ->get();
+
+        foreach ($data_user as $key ) {
+
+            $area_partner_other = DB::table('partners')
+                ->where("name", $key->organization)
+                ->where("name_area","!=", $name_area)
+                ->get();
+
+        }
+
+        return $area_partner_other ;
     }
 
     public function your_old_area($id_user , $name_area)
