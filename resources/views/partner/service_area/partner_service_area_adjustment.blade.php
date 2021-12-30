@@ -456,18 +456,6 @@
                     });
                     draw_area_other.setMap(map);
 
-                    var bounds = new google.maps.LatLngBounds();
-                    var centerLatLng = bounds.getCenter();
-                    console.log(centerLatLng);
-
-                    marker = new google.maps.Marker({
-                        position: centerLatLng,
-                        label: {text: "TEST", color: "white"},
-                        map: map,
-                    });
-
-                    markers.push(marker);
-
                 }
         });
 
@@ -490,6 +478,18 @@
                         zIndex: 0,
                     });
                     draw_area_partner_other.setMap(map);
+
+                    var bounds = new google.maps.LatLngBounds();
+                    var centerLatLng = bounds.getCenter();
+                    console.log(centerLatLng);
+
+                    marker = new google.maps.Marker({
+                        position: centerLatLng,
+                        label: {text: "TEST", color: "white"},
+                        map: map,
+                    });
+
+                    markers.push(marker);
 
                 }
         });
