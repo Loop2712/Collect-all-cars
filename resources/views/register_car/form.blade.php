@@ -623,7 +623,7 @@
 
                     <div class="row">
                         <div class="col-12 col-md-2">
-                            <label for="province" class="control-label">{{ 'บริษัทประกันภัย' }}</span></label>
+                            <label for="province" class="control-label">{{ 'Insurance company (Optional)' }}</span></label>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group {{ $errors->has('name_insurance') ? 'has-error' : ''}}">

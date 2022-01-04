@@ -241,16 +241,16 @@
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="fas fa-car-alt"></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_car * 2 }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>ลงทะเบียนแล้ว</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_car * 5 }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>รถยนต์ลงทะเบียนแล้ว</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="fas fa-motorcycle"></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 2 }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>ลงทะเบียนแล้ว</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 5 }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>รถจักรยานยนต์ลงทะเบียนแล้ว</p>
             </div>
           </div>
 
@@ -761,8 +761,8 @@
           <div class="col-lg-3 col-md-6 d-block d-md-none mt-5" >
             <div class="count-box">
               <i class="fas fa-motorcycle"></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 2 }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>ลงทะเบียนแล้ว</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 5 }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>รถยนต์ลงทะเบียนแล้ว</p>
             </div>
           </div>
 
@@ -771,8 +771,8 @@
           <div class="col-lg-3 col-md-6 d-sm-block d-none" >
             <div class="count-box">
               <i class="fas fa-motorcycle"></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 2 }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>ลงทะเบียนแล้ว</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_motorcycle * 5 }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>รถจักรยานยนต์ลงทะเบียนแล้ว</p>
             </div>
           </div>
 

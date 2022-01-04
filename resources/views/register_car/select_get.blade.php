@@ -12,7 +12,7 @@
                             <div class="col-8 offset-2">
                                 <br><br>
                                 <center>
-                                    <img  width="75%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                                    <img  width="75%" src="{{ asset('/img/stickerline/PNG/43.png') }}">
                                 </center>
                             </div>
                             <div class="col-12">
@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="col-8 offset-2">
                                     <center>
-                                        <img  width="90%" src="{{ asset('/img/stickerline/PNG/25.png') }}">
+                                        <img  width="90%" src="{{ asset('/img/stickerline/PNG/43.png') }}">
                                     </center>
                                 </div>
                                 <div class="col-12">
