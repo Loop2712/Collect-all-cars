@@ -31,7 +31,7 @@
                     <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
                     @if(Auth::check())
                         @if(Auth::user()->role == 'admin-partner')
-                    <a href="{{ url('/sos_score_helper') }}" type="button" style="float: right;" class="btn btn-primary text-white">คะแนนการช่วยเหลือ </a>
+                    <a href="{{ url('/sos_score_helper') }}" type="button" style="float: right;" class="btn btn-primary text-white d-none">คะแนนการช่วยเหลือ </a>
                         @endif
                     @endif
                 </div>
