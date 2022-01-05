@@ -479,17 +479,17 @@
                     });
                     draw_area_partner_other.setMap(map);
 
-                    var bounds = new google.maps.LatLngBounds();
-                    var centerLatLng = bounds.getCenter();
-                    console.log(centerLatLng);
+                    // var bounds = new google.maps.LatLngBounds();
+                    // var centerLatLng = bounds.getCenter();
+                    // console.log(centerLatLng);
 
-                    marker = new google.maps.Marker({
-                        position: {lat: 14.114768764087957,lng:100.60674985492608},
-                        label: {text: "TEST" , color: "white"},
-                        map: map,
-                    });
+                    // marker = new google.maps.Marker({
+                    //     position: {lat: 14.114768764087957,lng:100.60674985492608},
+                    //     label: {text: "TEST" , color: "white"},
+                    //     map: map,
+                    // });
 
-                    markers.push(marker);
+                    // markers.push(marker);
 
                 }
         });
