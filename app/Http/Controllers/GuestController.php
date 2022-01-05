@@ -62,13 +62,15 @@ class GuestController extends Controller
      */
     public function create()
     {
+        $text_reg = "Ex. กก9999";
+
         $location_array = county::selectRaw('province')
             ->groupBy('province')
             ->get();
 
         $gg_key = env('GOOGLE_KEY_API');
 
-        return view('guest.create', compact('location_array','gg_key'));
+        return view('guest.create', compact('location_array','gg_key' , 'text_reg'));
     }
 
     /**

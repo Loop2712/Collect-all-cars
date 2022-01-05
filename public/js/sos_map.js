@@ -25,7 +25,7 @@
         // console.log(lng);
 
         let location_user = document.querySelector("#location_user");
-            location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
+            location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> My Position</a>';
 
         check_area(lat,lng);
     }

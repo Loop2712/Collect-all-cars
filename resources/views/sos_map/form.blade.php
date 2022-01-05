@@ -60,12 +60,12 @@
                     </div>
                     <div class="col-12">
                         <a id="a_help" class="btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="fas fa-bullhorn"></i> <b>ขอความช่วยเหลือ </b>
+                            <i class="fas fa-bullhorn"></i> <b>Ask for HELP </b>
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
                         </a>
                         <a href="tel:112" id="btn_quick_help" class="btn btn-warning btn-block shadow-box " onclick="save_sos_content('police');">
-                            <i class="fas fa-bullhorn"></i> <b>ขอความช่วยเหลือด่วน</b>
+                            <i class="fas fa-bullhorn"></i> <b>Ask for HELP</b>
                         </a>
                     </div> 
                 </div>

@@ -100,14 +100,12 @@
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;">
-  <div id="snow"></div>
     <div id="app">
         <div class="header__logo">
             <center>
-                <img width="200" src="{{ asset('/img/logo/logo-flex-line.png') }}">
-                <img style="margin-top:-30px;" width="94%" src="{{ asset('/img/hero-bg_3.jpg') }}">     
+                <img width="200" src="{{ asset('/img/logo/logo-flex-line.png') }}">  
+                @include ('festival') 
             </center>   
-
         </div>
         <main class="py-5">
             <div class="container">
@@ -123,6 +121,5 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/PureSnow.js')}}"></script>
 </body>
 </html>

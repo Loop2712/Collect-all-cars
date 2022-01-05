@@ -95,25 +95,25 @@
                                         <div class="row">
                                             <div class="col-3">
                                                 <center>
-                                                    <i style="color:#FD8433; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    <i style="color:#FD8433; font-size: 30px;" class="fas fa-circle"></i> <br>
                                                     พื้นที่ของท่านปัจจุบัน
                                                 </center>
                                             </div>
                                             <div class="col-3">
                                                 <center>
-                                                    <i style="color:#008450; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    <i style="color:#008450; font-size: 30px;" class="fas fa-circle"></i> <br>
                                                     พื้นที่องค์กรทั้งหมด
                                                 </center>
                                             </div>
                                             <div class="col-3">
                                                 <center>
-                                                    <i style="color:#173066; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    <i style="color:#173066; font-size: 30px;" class="fas fa-circle"></i> <br>
                                                     พื้นที่ขอรับการอนุมัติ
                                                 </center>
                                             </div>
                                             <div class="col-3">
                                                 <center>
-                                                    <i style="color:#8f887b; font-size: 20px;" class="fas fa-circle"></i> <br>
+                                                    <i style="color:#8f887b; font-size: 30px;" class="fas fa-circle"></i> <br>
                                                     พื้นที่บริการอื่นๆ
                                                 </center>
                                             </div>
@@ -484,8 +484,8 @@
                     console.log(centerLatLng);
 
                     marker = new google.maps.Marker({
-                        position: centerLatLng,
-                        label: {text: "TEST", color: "white"},
+                        position: {lat: 14.114768764087957,lng:100.60674985492608},
+                        label: {text: "TEST" , color: "white"},
                         map: map,
                     });
 

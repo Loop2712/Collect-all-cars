@@ -173,7 +173,7 @@
                 <div class="col-12 col-md-4">
                   <label class="sr-only" for="inlineFormInputGroupUsername">Ex. กก9999</label>
                   <div class="input-group">
-                    <input class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
+                    <input class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="{{ $text_reg }}" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
                     <div id="orc_camera" class="input-group-prepend" onclick="capture_registration();">
