@@ -88,9 +88,6 @@ class LineApiController extends Controller
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
                 break;
-            case "test_ped" : 
-                $line->test_ped($event);
-                break;
         }   
 
     }
