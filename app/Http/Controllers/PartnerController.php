@@ -444,7 +444,9 @@ class PartnerController extends Controller
     public function view_sos(Request $request)
     {
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
 
         foreach ($data_partners as $data_partner) {
             $search_area = $data_partner->name ;

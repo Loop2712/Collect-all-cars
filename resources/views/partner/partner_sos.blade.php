@@ -568,12 +568,11 @@
 
     function initMap() {
 
-        let name_partner = document.querySelector('#name_partner');
+        let all_map = [];
+        let all_lat = [];
+        let all_lng = [];
 
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 13.7248936, lng: 100.4930264 },
-            zoom: 10,
-        });
+        let name_partner = document.querySelector('#name_partner');
 
         fetch("{{ url('/') }}/api/all_area_partner/" + name_partner.value)
             .then(response => response.json())
@@ -583,6 +582,10 @@
                 for (let ii = 0; ii < result.length; ii++) {
 
                     // console.log(JSON.parse(result[ii]['sos_area']));
+
+                    all_map.push(JSON.parse(result[ii]['sos_area']));
+
+                    console.log(all_map);
 
                     let draw_area_other = new google.maps.Polygon({
                         paths: JSON.parse(result[ii]['sos_area']),
@@ -608,6 +611,11 @@
                 @endif   
                 @endforeach
                 
+            });
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: 14.114614321772672, lng: 100.60547489306975 },
+                zoom: 15,
             });
 
     }
