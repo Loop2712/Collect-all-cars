@@ -270,6 +270,7 @@ class PartnersController extends Controller
         $data_partners = DB::table('partners')
             ->where('name', $name_partner)
             ->where('name_area', '!=' , null)
+            ->where('sos_area', '!=' , null)
             ->get();
 
         return $data_partners ;
