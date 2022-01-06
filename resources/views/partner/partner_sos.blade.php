@@ -1,7 +1,6 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<br>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 col-12 col-lg-4">
@@ -551,7 +550,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>
 <style type="text/css">
     #map {
-      height: calc(95vh);
+      height: calc(80vh);
     }
     
 </style>
