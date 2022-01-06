@@ -1,4 +1,4 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
 <style type="text/css">
@@ -8,12 +8,87 @@
     
 </style>
 <br>
-<div class="container-fluid">
+    <div class="row d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-bottom-0 bg-transparent">
+                    <div class="d-flex align-items-center" style="margin-top:10px;">
+                        <div>
+                        @include ('partner.service_area.btn_menu')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-bottom-0 bg-transparent">
+                    <div class="col-12" style="margin-top:10px;">
+                        <div>
+                            <div class="col-12">
+                                <h3>พื้นที่บริการปัจจุบัน</h3><br class="d-block d-md-none">
+                            </div>
+                            <br>
+                            <input class="d-none" type="text" id="va_zoom" name="" value="6">
+                            <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
+                            <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+                            <input class="d-none" type="text" id="name_partner" name="" value="{{ Auth::user()->organization }}">
+                            <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
+                            <div class="card" style="font-family: 'Prompt', sans-serif;border-radius: 25px;" id="div_card">
+                                <div id="map">
+                                <center class="d-none d-lg-block">
+                                    <div class="row">
+                                        <div class="card-body col-md-6 d-none d-lg-block" style="hight: 500px">
+                                            <img src="img/stickerline/PNG/17.png" width="100%" alt="viicheck">
+                                        </div>
+                                        <div class="card-body col-md-6 d-block d-md-none" style="hight: 500px">
+                                            <img src="img/stickerline/PNG/17.png" width="70%" alt="viicheck">
+                                        </div>
+                                        <div class="card-body col-md-6 d-flex align-items-center ">
+                                            <div class="col-md-12 d-none d-lg-block">
+                                                <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);"> <b>ตอนนี้คุณยังไม่มี </h1>
+                                                <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>พื้นที่บริการ</b></h1>
+                                                <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>กรุณาเพิ่มพื้นที่บริการ</b></h1>
+                                            </div>
+                                        </div>
+                                        <div class="card-body col-12 d-flex align-items-center">
+                                        <div class="col-12 d-block d-md-none">
+                                                <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);"> <b>ตอนนี้คุณยังไม่มี </h3>
+                                                <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>พื้นที่บริการ</b></h3>
+                                                <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>กรุณาเพิ่มพื้นที่บริการ</b></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                                <center class="d-block d-md-none">
+                                    <div class="row">
+                                        <div class="card-body col-md-6 d-block d-md-none" style="hight: 500px">
+                                            <img src="img/stickerline/PNG/17.png" width="70%" alt="viicheck">
+                                        </div>
+                                        <div class="card-body col-12 d-flex align-items-center">
+                                        <div class="col-12 ">
+                                                <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);"> <b>ตอนนี้คุณยังไม่มี </h3>
+                                                <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>พื้นที่บริการ</b></h3>
+                                                <h3 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"><b>กรุณาเพิ่มพื้นที่บริการ</b></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="row">
                 <div class="col-12" >
-                    @include ('partner.service_area.btn_menu')
                     <div class="col-12">
                         <h3>พื้นที่บริการปัจจุบัน</h3><br class="d-block d-md-none">
                     </div>
@@ -69,7 +144,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script> -->
