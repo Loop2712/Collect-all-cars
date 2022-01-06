@@ -1,4 +1,4 @@
-@extends('layouts.partners.theme_partner_new')
+@extends('layouts.partners.theme_partner')
 
 @section('content')
 <style>
