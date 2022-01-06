@@ -114,7 +114,7 @@
                                         <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                         @endforeach
                                     @else
-                                        <option value="" selected>ยี่ห้อทั้งหมด</option> 
+                                        <option class="translate" value="" selected>ยี่ห้อทั้งหมด</option> 
                                     @endif
                                    
                                     {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
@@ -128,14 +128,14 @@
                                         document.querySelector('#model_input').focus();
                                     }else{ 
                                         document.querySelector('#model_input').classList.add('d-none');}">
-                                    <option value="" selected>รุ่นรถทั้งหมด</option>     
+                                    <option class="translate" value="" selected>รุ่นรถทั้งหมด</option>     
                                         
                                         {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
                                 </select>
                             </div>
                            
                             <div class="col-sm-3 col-12"> 
-                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="รุ่นย่อย" value="{{ request('sub_model') }}">
+                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="sub models" value="{{ request('sub_model') }}">
                             </div>
                             <div class="col-sm-3 col-12 p-md-0" > <br class="d-block d-md-none">
                             <button type="submit" style="font-size: 1em; color:#fff" class="btn btn-danger btn-sm "> ค้นหา  </button>
@@ -312,6 +312,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     option.value = "อื่นๆ";
                     input_car_brand.add(option); 
 
+                    let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                     
+                    option.setAttributeNode(option_class); 
+
                 //QUERY model
                 showCar_model();
             });
@@ -337,8 +342,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     input_car_model.add(option);                
                 } 
                 let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
+                    option.text = "other";
+                    option.value = "other";
                     input_car_model.add(option);  
             });
     }

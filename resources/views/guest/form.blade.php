@@ -171,9 +171,9 @@
                 </div>
                 <br>
                 <div class="col-12 col-md-4">
-                  <label class="sr-only" for="inlineFormInputGroupUsername">Ex. กก9999</label>
+                  <label class="sr-only translate" for="inlineFormInputGroupUsername">Ex. กก9999</label>
                   <div class="input-group">
-                    <input class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="{{ $text_reg }}" required onchange="check_registration()">
+                    <input class="form-control translate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
                     <div id="orc_camera" class="input-group-prepend" onclick="capture_registration();">
@@ -188,7 +188,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('county') ? 'has-error' : ''}}">
                         <select name="county" id="county" class="form-control notranslate" required onchange="add_reg_id();">
-                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
+                                <option class="translate" value="" selected > - กรุณาเลือกจังหวัด - </option> 
                                 <!-- @foreach($location_array as $lo)
                                 <option 
                                 value="{{ $lo->province }}" 

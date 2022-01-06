@@ -1199,14 +1199,9 @@
                     input_car_model.add(option);             
                 } 
                 let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
+                    option.text = "other";
+                    option.value = "other";
                     input_car_model.add(option);  
-
-                    let option_class = document.createAttribute("class");
-                        option_class.value = "translate";
-                     
-                    option.setAttributeNode(option_class);
             });
     }
 
@@ -1262,14 +1257,9 @@
                     input_motor_model.add(option);                
                 } 
                 let option = document.createElement("option");
-                    option.text = "อื่นๆ";
-                    option.value = "อื่นๆ";
+                    option.text = "other";
+                    option.value = "other";
                     input_motor_model.add(option); 
-
-                    let option_class = document.createAttribute("class");
-                        option_class.value = "translate";
-                     
-                    option.setAttributeNode(option_class); 
             });
     }
     function check_register_car(){
