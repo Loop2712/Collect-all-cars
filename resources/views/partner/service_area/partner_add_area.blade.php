@@ -69,7 +69,7 @@
 	<div id="div_name_partner" class="collapse col-12">
 		<div class="col" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
 			<div class="card  border-0 border-4 border-primary">
-				<div class="card-body p-5">
+				<div class="card-body p-md-5 p-sm-2" >
 					<div class="card-title d-flex align-items-center">
 						<h5 class="mb-0 " style="color:#008450;"><i class="fadeIn animated bx bx-map-alt"></i> เพิ่มพื้นที่บริการใหม่ </h5>
 						<i class="fas fa-times float-right btn ms-auto" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner"></i>
@@ -223,6 +223,63 @@
             </div>
         </div>
     </div>
+	<!------------------------------------------------------- mobile ------------------------------------------------------->
+	<div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="row">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="col-12"  style="margin-top:10px">
+                    <div>
+                        <h5 class="font-weight-bold mb-0">รายชื่อพื้นที่บริการปัจจุบัน</h5>
+                    </div>
+					<div class="d-flex justify-content-end" style="margin-top:10px;">
+						<button type="button" class="btn btn-white radius-10" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner"><i class="fadeIn animated bx bx-add-to-queue"></i>เพิ่มพื้นที่บริการใหม่</button>
+					</div><br>
+				</div>
+                <div class="card-body" style="padding: 0px 10px 0px 10px;">
+				@foreach($all_area_partners as $area)
+                    @foreach($data_partners as $data_partner)
+                    @endforeach
+                    <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+					<center>
+                            <div class="row col-12 card-body border border-bottom-0" style="padding:15px 0px 15px 0px ;border-radius: 25px;margin-bottom: -2px;">
+                                <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $area->id }}" aria-expanded="false" aria-controls="form_delete_{{ $area->id }}" >
+                                <a  type="submit" class="btn-sm btn-white " style="color:#0275d8;" href="{{ url('/service_area?name_area=' . $area->name_area) }}">
+										<i class="far fa-edit"></i>
+									</a>
+                                </div>
+                                <div class="col-8" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $area->id }}" aria-expanded="false" aria-controls="form_delete_{{ $area->id }}" >
+									<h5 style="margin-bottom:0px;  ">{{ $area->name_area }}</h5>
+                                </div> 
+                                <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $area->id }}" aria-expanded="false" aria-controls="form_delete_{{ $area->id }}" >
+                                    <i class="fas fa-angle-down" ></i>
+                                </div>
+                                <div class="col-12 collapse" id="Line_{{ $area->id }}"> 
+                                    <hr>
+                                    <p style="font-size:18px;padding:0px"> กลุ่มไลน์ <br> {{ $area->line_group }} </p> <hr>
+                                    <p style="font-size:18px;padding:0px">พื้นที่ปัจจุบัน <br>
+										@if(!empty($area->sos_area))
+											<a href="javaScript:;" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>Yes</a>
+										@else
+											<a href="javaScript:;" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>No</a>
+										@endif
+									</p> 
+									<hr>
+                                    <p style="font-size:18px;padding:0px">พื้นที่รอตรวจสอบ <br> 
+										@if(!empty($area->new_sos_area))
+											<a href="javaScript:;" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>Yes</a>
+										@else
+											<a href="javaScript:;" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>No</a>
+										@endif
+                                    </p> 
+                                </div>
+                            </div>
+                        </center>   
+                    </div>  
+                @endforeach
+            </div>
+        </div>
+    </div>
+	<!------------------------------------------------------- end mobile ------------------------------------------------------->
 	<!-- <div class="container-fluid"> -->
 		<!-- ADD NEW AREA -->
 		<!-- <div class="row">

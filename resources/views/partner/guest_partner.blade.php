@@ -156,12 +156,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h4 class="card-header">
-                        รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)
-                        <a style="float:right;" class="btn btn-sm btn-outline-success text-success d-none d-lg-block" href="{{ url('/partner_guest_latest') }}">
-                            <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
-                        </a>
-                    </h4>
+                   
                     <!-- <h4 class="d-block d-lg-none">
                         <a style="float:right;" class="btn btn-sm btn-outline-success text-success" href="{{ url('/partner_guest_latest') }}">
                             <i class="fas fa-clock"></i> วันที่รายงานล่าสุด
@@ -396,12 +391,16 @@
                     </div>
                 </div>
                 <!---------------------------------------------- Mobile ---------------------------------------------->
-                <div class="col-12 d-block d-lg-none">
-                    <div class="card">
+    <div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="row">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="col-12"  style="margin-top:10px">
+                    <div>
+                        <h5 class="font-weight-bold mb-0">รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)</h5>
+                    </div>
                         <div class="card-harder">
                             <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-10">
+                                <div class="col-12">
                                     <label  class="control-label">{{ '' }}</label>
                                     <select class="form-control" id="select_year_m" onchange="select_year_m();">
                                         <option value="">เลือกปี</option>
@@ -416,10 +415,8 @@
                                                 <option value="" selected></option> 
                                             @endif
                                     </select>
-                                </div>
-                                <div class="col-1"></div>                                
-                                <div class="col-1"></div>
-                                <div class="col-4 align-self-center" >
+                                </div>                          
+                                <div class="col-5 align-self-center" >
                                     <label  class="control-label">{{ '' }}</label>
                                     <select class="form-control" id="select_month_1_m" onchange="select_month_1_m();">
                                         <option value="">เลือกเดือน</option>
@@ -440,7 +437,7 @@
                                 <div class="col-2 align-self-center" style="vertical-align: middle;" >
                                     <center> <br> ถึง</center>
                                 </div>
-                                <div class="col-4" >
+                                <div class="col-5" >
                                     <label  class="control-label">{{ '' }}</label>
                                     <select class="form-control" id="select_month_2_m" onchange="select_month_2_m();">
                                         <option value="">เลือกเดือน</option>
@@ -458,7 +455,6 @@
                                         <option value="12">ธันวาคม</option>
                                     </select>
                                 </div>
-                                <div class="col-1"></div>
                                 <div class="col-6">
                                     <br>
                                     <form style="float: right;" method="GET" action="{{ url('/guest_partner') }}" accept-charset="UTF-8"  role="search">
@@ -483,53 +479,56 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" style="padding:10px 10px;">
-                            @foreach($guest as $item)
-                                @foreach($data_partners as $data_partner)
-                                    <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
-                                @endforeach
-                                    <center>
-                                        <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
-                                            <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                            <span> รายงาน</span>
-                                                <br>
-                                                {{ $item->count }}
-                                            </div>
-                                            <div class="col-8" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                    <h5 style="margin-bottom:0px; margin-top:10px; ">{{ $item->registration }} <br> {{ $item->county }}</h5>
-
-
-                                            </div> 
-                                            <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                <i class="fas fa-angle-down" ></i>
-                                            </div>
-                                            <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
-                                                <hr>
-                                                <p style="font-size:18px;padding:0px"> ยี่ห้อ <br>  {{ $item->register_cars->brand }}  </p> <hr>
-                                                <p style="font-size:18px;padding:0px">รุ่น <br> {{ $item->register_cars->generation }}  </p> <hr>
-                                                <p style="font-size:18px;padding:0px"> 
-                                                    รายงานต่อเดือน <br>  
-                                                    {{ $count_per_month[$item->register_car_id] }}
-                                                    @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
-                                                        <span class="text-secondary" style="font-size:14px;">คิดเป็น <b style="color:#F1C40F">{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
-                                                    @endif
-                                                </p> <hr>
-                                                <p style="font-size:18px;padding:0px">ผู้ลงทะเบียน <br> 
-                                                    <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i> {{ $item->register_cars->name }}</a>
-                                                    <br>
-                                                    @if(!empty($item->user->branch))
-                                                        <b>สาขา</b> {{ $item->user->branch }}
-                                                    @endif
-                                                </p> 
-                                            </div>
-                                        </div>
-                                    </center>   
-                                </div>  
-                            @endforeach
-                            <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
-                        </div>
                     </div>
                 </div>
+                <div class="card-body" style="padding: 0px 10px 0px 10px;">
+                @foreach($guest as $item)
+                    @foreach($data_partners as $data_partner)
+                    @endforeach
+                    <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                        <center>
+                            <div class="row col-12 card-body border border-bottom-0" style="padding:15px 0px 15px 0px ;border-radius: 25px;margin-bottom: -2px;">
+                                <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                <span> รายงาน</span>
+                                    <br>
+                                    {{ $item->count }}
+                                </div>
+                                <div class="col-8" style="margin-bottom:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                        <h5 style="margin-bottom:0px; margin-top:10px; ">{{ $item->registration }} <br> {{ $item->county }}</h5>
+
+
+                                </div> 
+                                <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                    <i class="fas fa-angle-down" ></i>
+                                </div>
+                                <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
+                                    <hr>
+                                    <p style="font-size:18px;padding:0px"> ยี่ห้อ <br>  {{ $item->register_cars->brand }}  </p> <hr>
+                                    <p style="font-size:18px;padding:0px">รุ่น <br> {{ $item->register_cars->generation }}  </p> <hr>
+                                    <p style="font-size:18px;padding:0px"> 
+                                        รายงานต่อเดือน <br>  
+                                        {{ $count_per_month[$item->register_car_id] }}
+                                        @if(gettype($count_per_month[$item->register_car_id]) == 'integer')
+                                            <span class="text-secondary" style="font-size:14px;">คิดเป็น <b style="color:#F1C40F">{{ number_format(($count_per_month[$item->register_car_id] / $item->count) * 100,2) }} %</b> จากทั้งหมด <b>{{ $item->count }}</b> ครั้ง</span>
+                                        @endif
+                                    </p> <hr>
+                                    <p style="font-size:18px;padding:0px">ผู้ลงทะเบียน <br> 
+                                        <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i> {{ $item->register_cars->name }}</a>
+                                        <br>
+                                        @if(!empty($item->user->branch))
+                                            <b>สาขา</b> {{ $item->user->branch }}
+                                        @endif
+                                    </p> 
+                                </div>
+                            </div>
+                        </center>   
+                    </div>  
+                @endforeach
+                <div class="pagination-wrapper"> {!! $guest->appends(['search' => Request::get('search')])->render() !!} </div>
+            </div>
+        </div>
+    </div>
+                
                 <!---------------------------------------------- End Mobile ---------------------------------------------->
             </div>
         </div>
