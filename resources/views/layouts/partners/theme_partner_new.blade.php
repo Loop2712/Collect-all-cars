@@ -115,7 +115,7 @@
                     การใช้งาน
                 </li>
                 <li>
-					<a href="{{ url('/how_to_use') }}">
+					<a href="{{ url('/how_to_use') }}" target="blank">
 						<div class="parent-icon"><i class='fad fa-book'></i>
 						</div>
 						<div class="menu-title">วิธีใช้งาน</div>

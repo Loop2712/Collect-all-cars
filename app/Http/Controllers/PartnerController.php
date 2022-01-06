@@ -213,7 +213,9 @@ class PartnerController extends Controller
     {
         $data_user = Auth::user();
 
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
 
         foreach ($data_partners as $data_partner) {
             $name_partner = $data_partner->name ;
@@ -275,7 +277,9 @@ class PartnerController extends Controller
     {
         $data_user = Auth::user();
 
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
@@ -287,7 +291,7 @@ class PartnerController extends Controller
         $data_user = Auth::user();
 
         $data_partners = Partner::where("name", $data_user->organization)
-                    ->groupBy("name")
+                    ->where("name_area", null)
                     ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
@@ -298,7 +302,9 @@ class PartnerController extends Controller
     public function register_cars(Request $request)
     {
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
         foreach ($data_partners as $key) {
             $neme_partner = $key->name;
         }
@@ -319,7 +325,9 @@ class PartnerController extends Controller
     public function guest_partner(Request $request)
     {
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
@@ -422,7 +430,9 @@ class PartnerController extends Controller
     public function partner_guest_latest(Request $request)
     {
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
@@ -624,7 +634,9 @@ class PartnerController extends Controller
     public function sos_detail_chart(Request $request)
     {
         $data_user = Auth::user();
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 

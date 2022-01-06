@@ -94,6 +94,62 @@
         </div>
     </div>
     
+    <div class="container d-block d-lg-none">
+            <div class="row">
+                <div class="col-xl-12 ">
+                    <div class="card">
+                        <div class="card-block table-border-style d-none d-lg-block" style="margin-top:-30px;font-size: 16px;">
+                            <div class="table-responsive" >
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>คันที่</th>
+                                            <th>ยี่ห้อ</th>
+                                            <th>รุ่น</th>
+                                            <th>หมายเลขทะเบียน</th>
+                                            <th>ประเภท</th>
+                                            <th>ผู้ลงทะเบียน</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($report_register_cars as $item)
+                                            <center>  
+                                                <tr class="text-center">
+                                                    <td scope="row">  {{ $item->id }}</th>
+                                                    <td>{{ $item->brand }}</td>
+                                                    <td>{{ $item->generation }}</td>
+                                                    <td>
+                                                        <span> {{ $item->registration_number }}</span><br>
+                                                        <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        @if( $item->car_type == "car")
+                                                            <img width="25%" src="https://www.viicheck.com/img/icon/car.png">
+                                                        @endif
+                                                        @if( $item->car_type == "motorcycle")
+                                                            <img width="25%" src="https://www.viicheck.com/img/icon/motorcycle.png">
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                    <center>
+                                                        <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}"><i class="far fa-eye text-info"></i>{{ $item->name }}</a>
+                                                        <br>
+                                                        @if(!empty($item->user->branch))
+                                                            <b>สาขา</b> {{ $item->user->branch }}
+                                                        @endif
+                                                    </center>
+                                                    </td>
+                                                </tr>  
+                                            </center>
+                                        @endforeach
+                                        
+                                        <div class="pagination-wrapper"> {!! $report_register_cars->appends(['search' => Request::get('search')])->render() !!} </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                <!--------------------------------------------- end pc --------------------------------------------->
 
                <!-- ----------------------------------------------mobile ------------------------------------------------>
