@@ -286,7 +286,9 @@ class PartnerController extends Controller
     {
         $data_user = Auth::user();
 
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+                    ->groupBy("name")
+                    ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
@@ -303,6 +305,11 @@ class PartnerController extends Controller
         $perPage = 25;
         $report_register_cars = Register_car::where('juristicNameTH', $data_user->organization)
                 ->latest()->paginate(25);
+
+                // echo "<pre>";
+                // print_r($report_register_cars);
+                // echo "<pre>";
+                // exit();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 

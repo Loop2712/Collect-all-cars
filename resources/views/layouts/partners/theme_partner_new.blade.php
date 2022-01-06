@@ -38,6 +38,7 @@
 
 <<body>
 	<!--wrapper-->
+	@foreach($data_partners as $data_partner)
 	<div class="wrapper">
 		<!--sidebar wrapper -->
 		<div class="sidebar-wrapper" data-simplebar="true">
@@ -126,9 +127,7 @@
 		<!--end sidebar wrapper -->
 		<!--start header -->
 		<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                @foreach($data_partners as $data_partner)
-                    <div class="topbar d-flex align-items-center" style="background-color:{{ $data_partner->color }}">
-                @endforeach
+                <div class="topbar d-flex align-items-center" style="background-color:{{ $data_partner->color }}">
 				<nav class="navbar navbar-expand" >
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
 					</div>
@@ -214,6 +213,7 @@
 			<p class="mb-0">Copyright © 2021. All right reserved.</p>
 		</footer>
 	</div>
+	@endforeach
 	<!--end wrapper-->
 	<!--start switcher-->
 	<!-- <div class="switcher-wrapper">
