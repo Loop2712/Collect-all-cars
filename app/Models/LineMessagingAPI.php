@@ -19,8 +19,46 @@ class LineMessagingAPI extends Model
 {
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
+    public function test_ped($event)
+    {
+        $template_path = storage_path('../public/json/test_ped.json');   
+
+        $string_json = file_get_contents($template_path);
+        $messages = [ json_decode($string_json, true) ];
+
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "test_ped",
+            "content" => "test_ped",
+        ];
+        MyLog::create($data);
+        return $result;
+
+    }
     public function reply_success($event , $data_postback)
     {
+
         $data_Text_topic = [
             "ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",
         ];
