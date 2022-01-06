@@ -597,16 +597,6 @@
                         
                     }
 
-                    let draw_area_other = new google.maps.Polygon({
-                        paths: JSON.parse(result[ii]['sos_area']),
-                        strokeColor: "#008450",
-                        strokeOpacity: 0.8,
-                        strokeWeight: 1,
-                        fillColor: "#008450",
-                        fillOpacity: 0.25,
-                    });
-                    draw_area_other.setMap(map);
-
                 }
 
                 for (let zz = 0; zz < all_lat.length; zz++) {
