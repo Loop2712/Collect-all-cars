@@ -568,9 +568,14 @@
 
     function initMap() {
 
-        let all_map = [];
         let all_lat = [];
         let all_lng = [];
+
+        let lat_average ;
+        let lng_average ;
+
+        let lat_sum = 0 ;
+        let lng_sum = 0 ;
 
         let name_partner = document.querySelector('#name_partner');
 
@@ -582,13 +587,48 @@
                 for (let ii = 0; ii < result.length; ii++) {
 
                     // console.log(JSON.parse(result[ii]['sos_area']));
+                    // console.log(JSON.parse(result[ii]['sos_area']).length);
 
-                    all_map.push(JSON.parse(result[ii]['sos_area']));
 
-                    console.log(all_map);
+                    for (let xx = 0; xx < JSON.parse(result[ii]['sos_area']).length; xx++) {
+
+                        // console.log(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
+                        all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
+                        all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
+                        
+                    }
 
                     let draw_area_other = new google.maps.Polygon({
                         paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#008450",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#008450",
+                        fillOpacity: 0.25,
+                    });
+                    draw_area_other.setMap(map);
+
+                }
+
+                for (let zz = 0; zz < all_lat.length; zz++) {
+
+                    lat_sum = lat_sum + all_lat[zz] ; 
+                    lng_sum = lng_sum + all_lng[zz] ; 
+
+                    lat_average = lat_sum / all_lat.length ;
+                    lng_average = lng_sum / all_lng.length ;
+                    
+                }
+
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: {lat: lat_average, lng: lng_average },
+                    zoom: 14,
+                });
+
+                for (let xi = 0; xi < result.length; xi++) {
+
+                    let draw_area_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[xi]['sos_area']),
                         strokeColor: "#008450",
                         strokeOpacity: 0.8,
                         strokeWeight: 1,
@@ -610,12 +650,8 @@
                     });  
                 @endif   
                 @endforeach
-                
-            });
 
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: {lat: 14.114614321772672, lng: 100.60547489306975 },
-                zoom: 15,
+
             });
 
     }
