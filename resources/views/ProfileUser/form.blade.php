@@ -90,10 +90,10 @@
                                                 <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
                                             </div>
                                             <div class="col-4 col-md-4 col-lg-2" style="top:4px">
-                                                <img class="btn" id="img_flag_in" style="filter: grayscale(100%); " width="82" src="{{ url('/img/national-flag/flex-in.png') }}" onclick="change_language('in' , '{{ $data->id }}');">
+                                                <img class="btn" id="img_flag_in" style="filter: grayscale(100%); " width="82" src="{{ url('/img/national-flag/flex-in.png') }}" onclick="change_language('hi' , '{{ $data->id }}');">
                                             </div>
                                             <div class="col-4 col-md-4 col-lg-2" style="top:5px;right:-2px;">
-                                                <img class="btn" id="img_flag_ae" style="filter: grayscale(100%);"  width="79" src="{{ url('/img/national-flag/flex-ar.png') }}" onclick="change_language('ae' , '{{ $data->id }}');">
+                                                <img class="btn" id="img_flag_ae" style="filter: grayscale(100%);"  width="79" src="{{ url('/img/national-flag/flex-ar.png') }}" onclick="change_language('ar' , '{{ $data->id }}');">
                                             </div>
                                             <div class="col-4 col-md-4 col-lg-2" style="top:5px;right:-2px;">
                                                 <img class="btn" id="img_flag_ru" style="filter: grayscale(100%); " width="79"  src="{{ url('/img/national-flag/flex-ru.png') }}" onclick="change_language('ru' , '{{ $data->id }}');">
@@ -445,13 +445,13 @@
                 alert("Die Sprache wurde erfolgreich geändert.");
                 document.querySelector('#btn_change_language_de').click();
             break;
-            case 'in':
+            case 'hi':
                 alert("सफलतापूर्वक भाषा बदलें");
-                document.querySelector('#btn_change_language_in').click();
+                document.querySelector('#btn_change_language_hi').click();
             break;
-            case 'ae':
+            case 'ar':
                 alert("تغيير اللغة بنجاح");
-                document.querySelector('#btn_change_language_ae').click();
+                document.querySelector('#btn_change_language_ar').click();
             break;
             case 'ru':
                 alert("Изменить язык успешно");
@@ -658,7 +658,7 @@
                 img_ru.setAttributeNode(style_gray_ru);
               break;
               
-            case 'in':
+            case 'hi':
                 let attr_in = img_in.getAttributeNode("style");   
                 img_in.removeAttributeNode(attr_in);
 
@@ -675,7 +675,7 @@
                 img_ru.setAttributeNode(style_gray_ru);
               break;
           
-          case 'ae':
+          case 'ar':
                 let attr_ae = img_ae.getAttributeNode("style");   
                 img_ae.removeAttributeNode(attr_ae);
 
