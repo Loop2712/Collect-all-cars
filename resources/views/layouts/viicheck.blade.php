@@ -387,14 +387,14 @@
                       </div>
                     </div>
                     <div class="col-4 ">
-                      <div class="btn" onclick="user_language('in', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                      <div class="btn" onclick="user_language('hi', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/flex-in.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">इंडिया</h5>
                       </div>
                     </div>
                     <div class="col-4 ">
-                      <div class="btn"style="margin-left:-10px;" onclick="user_language('ae', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                      <div class="btn"style="margin-left:-10px;" onclick="user_language('ar', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/flex-ar.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">عرب</h5>
@@ -515,14 +515,14 @@
                       </div>
                     </div>
                     <div class="col-4" >
-                      <div class="btn"style="margin-top:5px;" onclick="user_language('in', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                      <div class="btn"style="margin-top:5px;" onclick="user_language('hi', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/flex-in.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">इंडिया</h5>
                       </div>
                     </div>
                     <div class="col-4">
-                      <div class="btn" onclick="user_language('ae', '{{ Auth::user()->id }}');" data-dismiss="modal">
+                      <div class="btn" onclick="user_language('ar', '{{ Auth::user()->id }}');" data-dismiss="modal">
                         <img width="55" src="{{ url('/img/national-flag/flex-ar.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">عرب</h5>
@@ -836,33 +836,6 @@ function change_country(user_id, country , language) {
 
           document.querySelector('#btn_change_language_' + language).click();
 
-          // switch(language) {
-          //   case 'th':
-          //       document.querySelector('#btn_change_language_th').click();
-          //     break;
-          //   case 'en':
-          //       document.querySelector('#btn_change_language_en').click();
-          //     break;
-          //   case 'zh-TW':
-          //       document.querySelector('#btn_change_language_zh-TW').click();
-          //     break;
-          //   case 'ja':
-          //       document.querySelector('#btn_change_language_ja').click();
-          //     break;
-          //   case 'ko':
-          //       document.querySelector('#btn_change_language_ko').click();
-          //     break;
-          //   case 'es':
-          //       document.querySelector('#btn_change_language_es').click();
-          //     break;
-          //   case 'lo':
-          //       document.querySelector('#btn_change_language_lo').click();
-          //     break;
-          //   case 'my':
-          //       document.querySelector('#btn_change_language_my').click();
-          //     break;
-          // }
-
       }, delayInMilliseconds);
     }
 
@@ -880,33 +853,6 @@ function user_language(language, user_id) {
       setTimeout(function() {
 
         document.querySelector('#btn_change_language_' + language).click();
-
-        // switch(language) {
-        //   case 'th':
-        //       document.querySelector('#btn_change_language_th').click();
-        //     break;
-        //   case 'en':
-        //       document.querySelector('#btn_change_language_en').click();
-        //     break;
-        //   case 'zh-TW':
-        //       document.querySelector('#btn_change_language_zh-TW').click();
-        //     break;
-        //   case 'ja':
-        //       document.querySelector('#btn_change_language_ja').click();
-        //     break;
-        //   case 'ko':
-        //       document.querySelector('#btn_change_language_ko').click();
-        //     break;
-        //   case 'es':
-        //       document.querySelector('#btn_change_language_es').click();
-        //     break;
-        //   case 'lo':
-        //       document.querySelector('#btn_change_language_lo').click();
-        //     break;
-        //   case 'my':
-        //       document.querySelector('#btn_change_language_my').click();
-        //     break;
-        // }
 
     }, delayInMilliseconds);
       
