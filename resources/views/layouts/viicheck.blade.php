@@ -346,8 +346,8 @@
         <a id="btn_change_language_lo" href="javascript:trocarIdioma('lo')">lo</a>
         <a id="btn_change_language_my" href="javascript:trocarIdioma('my')">my</a>
         <a id="btn_change_language_de" href="javascript:trocarIdioma('de')">de</a>
-        <a id="btn_change_language_ae" href="javascript:trocarIdioma('ar')">ae</a>
-        <a id="btn_change_language_in" href="javascript:trocarIdioma('hi')">in</a>
+        <a id="btn_change_language_ar" href="javascript:trocarIdioma('ar')">ar</a>
+        <a id="btn_change_language_hi" href="javascript:trocarIdioma('hi')">hi</a>
         <a id="btn_change_language_ru" href="javascript:trocarIdioma('ru')">ru</a>
       </div>
         <!-- Button trigger modal -->
