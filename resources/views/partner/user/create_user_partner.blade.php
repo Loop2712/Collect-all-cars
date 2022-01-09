@@ -1,4 +1,4 @@
-@extends('layouts.partners.theme_partner_new')
+@extends('layouts.partners.theme_partner')
 
 
 @section('content')
@@ -7,7 +7,7 @@
         <div class="card-header border-bottom-0 bg-transparent">
             <div class="d-flex align-items-center">
                 <div>
-                    <h5 class="font-weight-bold mb-0">บัญชีผู้ใช้</h5>
+                    <h5 class="font-weight-bold mb-0">บัญชีผู้ใช้ {{ $partners }}</h5>
                 </div>
             </div>
         </div>

@@ -46,10 +46,19 @@
 
 <div class="container d-block d-lg-none"> <!-- d-block d-md-none -->
         <div class="row">
-            <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map">
-                    <img style="  width: 100%;height: 100%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;">
+            <center>
+            <div class="col-12 main-shadow main-radius" style="margin-top:15px; margin-bottom:10px" id="map" >
+                    <!-- <img style="  width: 100%;height: 100%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;"> -->
+                    <img style=" object-fit: contain; " width="280 px" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
+                    <!-- <img style="" width="230" src="{{ asset('/img/more/sorry-no-text.png') }}"> -->
+                    <div style="position: relative; z-index: 5">
+                        <div style="padding-top: 8px;"class="translate">
+                            <h4 style="top:-250px;left:70px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
+                            <h6 style="top:-200px;left:20px;width: 200px;position: absolute;font-family: 'Sarabun', sans-serif;">ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ</h6>
+                        </div>
+                    </div>
                 <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4989368.068715823!2d100.32470292487557!3d14.23861745451566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1625474458473!5m2!1sth!2sth" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
-            </div>
+            </div></center>
             <div class="col-12 card shadow p-3 mb-5 bg-body rounded" >
                 <div class="row">
                     <div class="col-12" >
