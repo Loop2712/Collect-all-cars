@@ -14,12 +14,12 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-md-4">
-                    <input class="form-control" type="hidden" name="username" id="username" value="{{username}}" readonly="">
+                    <input class="form-control" type="hidden" name="username" id="username" value="{{ $username }}" readonly="">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-4">
-                    <input class="form-control" type="hidden" name="password" id="password" value="{{password}}" readonly="">
+                    <input class="form-control" type="hidden" name="password" id="password" value="{{ $password }}" readonly="">
                 </div>
             </div>
             <br>
