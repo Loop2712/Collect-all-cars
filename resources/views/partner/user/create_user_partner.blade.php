@@ -1,44 +1,37 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 
 @section('content')
 <br>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <h3 class="card-header">บัญชีผู้ใช้ {{ $partners }}</h3>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 col-md-4">
-                                            <input class="form-control" type="hidden" name="username" id="username" value="{{ $username }}" readonly="">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-md-4">
-                                            <input class="form-control" type="hidden" name="password" id="password" value="{{ $password }}" readonly="">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <textarea class="form-control" name="userpass" id="userpass" cols="20" rows="3" readonly></textarea>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-12 col-md-3">
-                                            <button class="btn btn-sm btn-outline-secondary" onclick="CopyToClipboard('userpass')"><i class="fas fa-copy"></i> copy</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
+    <div class="card radius-10 d-none d-lg-block" >
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="d-flex align-items-center">
+                <div>
+                    <h5 class="font-weight-bold mb-0">บัญชีผู้ใช้</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <input class="form-control" type="hidden" name="username" id="username" value="" readonly="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <input class="form-control" type="hidden" name="password" id="password" value="" readonly="">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <textarea class="form-control" name="userpass" id="userpass" cols="20" rows="3" readonly></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="CopyToClipboard('userpass')"><i class="fas fa-copy"></i> copy</button>
                 </div>
             </div>
         </div>
