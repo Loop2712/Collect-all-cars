@@ -104,13 +104,13 @@
         <div class="header__logo">
             <center>
                 <img width="200" src="{{ asset('/img/logo/logo-flex-line.png') }}">  
-                @include ('festival') 
+                
             </center>   
         </div>
         <main class="py-5">
             <div class="container">
                 <div class="row">
-
+                    @include ('festival') 
                     @yield('content')
                     
                 </div>

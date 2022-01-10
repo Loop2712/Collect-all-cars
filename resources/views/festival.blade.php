@@ -4,43 +4,43 @@
     $day_now = date("d");
     $month_now = date("m");
 @endphp
-<div class="col-12">
-	<!-- Happy New Year -->
-	@if( $month_now == "01" and $day_now >= "01" and $day_now <= 14)
-		<div>
-			<img style="width:100%;position:absolute;top:50px;" src="{{ url('/') }}/img/more/giphy.gif">
-		    <img style="width:80%;position:absolute;right: 30px;top:50px;" src="{{ url('/') }}/img/more/1360.gif">
-		    <img style="position: relative;" width="94%" src="{{ asset('/img/festival/hero-bg_1.jpg') }}">
-		</div>
-	@endif
 
-	<!-- Valentine -->
-	@if( $month_now == "02" and $day_now >= "01" and $day_now <= 14)
+<!-- Happy New Year -->
+@if( $month_now == "01" and $day_now >= "01" and $day_now <= 14)
+	<div>
+		<img style="width:100%;position:absolute;top:50px;" src="{{ url('/') }}/img/more/giphy.gif">
+	    <img style="width:80%;position:absolute;right: 30px;top:50px;" src="{{ url('/') }}/img/more/1360.gif">
+	    <img style="position: relative;" width="100%" src="{{ asset('/img/festival/hero-bg_1.jpg') }}">
+	</div>
+@endif
 
-	@endif
+<!-- Valentine -->
+@if( $month_now == "02" and $day_now >= "01" and $day_now <= 14)
 
-	<!-- Halloween -->
-	@if( $month_now == "10" and $day_now >= "15" and $day_now <= 31)
+@endif
 
-	@endif
+<!-- Halloween -->
+@if( $month_now == "10" and $day_now >= "15" and $day_now <= 31)
 
-	<!-- Christmas -->
-	@if( $month_now == "12" and $day_now >= "10" and $day_now <= 24)
-		<style>
-			.snowflake {
-		        position: absolute;
-		        width: 10px;
-		        height: 10px;
-		        background: linear-gradient(white, white); /* Workaround for Chromium's selective color inversion */
-		        border-radius: 50%;
-		        filter: drop-shadow(0 0 10px white);
-		    }
+@endif
 
-		    .container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-		</style>
+<!-- Christmas -->
+@if( $month_now == "12" and $day_now >= "10" and $day_now <= 24)
+	<style>
+		.snowflake {
+	        position: absolute;
+	        width: 10px;
+	        height: 10px;
+	        background: linear-gradient(white, white); /* Workaround for Chromium's selective color inversion */
+	        border-radius: 50%;
+	        filter: drop-shadow(0 0 10px white);
+	    }
 
-		<div id="snow"></div>
-		<img style="margin-top:-30px;" width="94%" src="{{ asset('/img/festival/hero-bg_12.jpg') }}">  
-		<script src="{{ asset('js/PureSnow.js')}}"></script>
-	@endif
-</div>
+	    .container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+	</style>
+
+	<div id="snow"></div>
+	<img style="margin-top:-30px;" width="94%" src="{{ asset('/img/festival/hero-bg_12.jpg') }}">  
+	<script src="{{ asset('js/PureSnow.js')}}"></script>
+@endif
+
