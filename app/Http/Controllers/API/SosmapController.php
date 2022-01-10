@@ -33,7 +33,9 @@ class SosmapController extends Controller
 
     public function all_area()
     {
-        $data_partners = DB::table('partners')->get();
+        $data_partners = DB::table('partners')
+            ->where('name_area' , '!=' , null)
+            ->get();
 
         return $data_partners ;
     }
