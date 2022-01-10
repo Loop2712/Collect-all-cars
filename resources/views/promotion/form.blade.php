@@ -26,6 +26,11 @@
                 <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($promotion->photo) ? $promotion->photo : ''}}" required>
                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
             </div>
+            <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}}">
+                <label for="link" class="control-label"><b>{{ 'ลิงค์' }}</b></label>
+                <input class="form-control" name="link" type="text" id="link" value="{{ isset($promotion->link) ? $promotion->link : ''}}" required>
+                {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
+            </div>
             <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
                 <label for="detail" class="control-label"><b>{{ 'รายละเอียด' }}</b></label>
                 <textarea class="form-control" name="detail" type="text" id="detail" value="{{ isset($promotion->detail) ? $promotion->detail : ''}}" rows="5">

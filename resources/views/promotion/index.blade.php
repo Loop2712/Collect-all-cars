@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-12"> 
             <!------------------------------------------------pc--------------------------------------------------->
-                <div class="card d-none d-lg-block" >
+                <div class="card d-none d-lg-block" style="margin-bottom:50px;">
                     <div class="card-header">
                         <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
                     </div>
@@ -55,7 +55,7 @@
                                                         @elseif(($item->time_period == NULL ))
                                                             ไม่ได้กำหนดวันหมดเขต
                                                         @else
-                                                            {{ date("F Y", strtotime("$item->time_period")) }}
+                                                            {{ date("d F Y", strtotime("$item->time_period")) }}
                                                         @endif
                                                     </p>
                                                     </div>
@@ -93,7 +93,7 @@
                                                             @elseif(($item->time_period == NULL ))
                                                                 ไม่ได้กำหนดวันหมดเขต
                                                             @else
-                                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                                                {{ date("d F Y", strtotime("$item->time_period")) }}
                                                             @endif
                                                         </p>
                                                     </div>
@@ -160,7 +160,7 @@
                     </div> -->
                 </div>
                 <!--------------------------------------------------- แท็บเล็ท --------------------------------------------------->
-                <div class="d-none d-sm-block">
+                <div class="d-none d-sm-block" style="margin-bottom:50px;">
                     <div class="card d-block d-lg-none" >
                         <div class="card-header">
                             <span style="font-size: 25px;" class="text-dark"><b>โปรโมชั่น</b></span>
@@ -208,7 +208,7 @@
                                                             @elseif(($item->time_period == NULL ))
                                                                 ไม่ได้กำหนดวันหมดเขต
                                                             @else
-                                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                                                {{ date("d F Y", strtotime("$item->time_period")) }}
                                                             @endif
                                                             </p>
                                                         </div>
@@ -246,7 +246,7 @@
                                                             @elseif(($item->time_period == NULL ))
                                                                 ไม่ได้กำหนดวันหมดเขต
                                                             @else
-                                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                                                {{ date("d F Y", strtotime("$item->time_period")) }}
                                                             @endif
                                                             </p>
                                                         </div>
@@ -305,7 +305,7 @@
                                             @elseif(($item->time_period == NULL ))
                                                 ไม่ได้กำหนดวันหมดเขต
                                             @else
-                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                                {{ date("d F Y", strtotime("$item->time_period")) }}
                                             @endif
 </p>
                                         </div>
@@ -319,7 +319,7 @@
                                         <div class="col-8" style="font-family: K2D, sans-serif;">  
                                             <h5 class="card-title" style=" margin:10px 0px;"><b>{{ $item->company }}</b></h5>
                                             <p style="font-size: 15px;white-space: nowrap;width: 190px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
-                                            <p class="card-text"><i class="far fa-clock"></i> {{ date("F Y", strtotime("$item->time_period")) }}</p>
+                                            <p class="card-text"><i class="far fa-clock"></i> {{ date("d F Y", strtotime("$item->time_period")) }}</p>
                                             <a href="{{ $item->link }}" class="btn btn-sm btn-primary main-shadow main-radius" >ดูเพิ่มเติม</a>
                                         </div>
                                     </div>                           
@@ -347,7 +347,7 @@
                                                 @elseif(($item->time_period == NULL ))
                                                     ไม่ได้กำหนดวันหมดเขต
                                                 @else
-                                                    {{ date("F Y", strtotime("$item->time_period")) }}
+                                                    {{ date("d F Y", strtotime("$item->time_period")) }}
                                                 @endif
                                             </p>
                                         </div>
