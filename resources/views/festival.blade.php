@@ -8,9 +8,11 @@
 <!-- Happy New Year -->
 @if( $month_now == "01" and $day_now >= "01" and $day_now <= 14)
 	<div>
-		<img style="width:100%;position:absolute;top:50px;" src="{{ url('/') }}/img/more/giphy.gif">
-	    <img style="width:80%;position:absolute;right: 30px;top:50px;" src="{{ url('/') }}/img/more/1360.gif">
-	    <img style="position: relative;" width="100%" src="{{ asset('/img/festival/hero-bg_1.jpg') }}">
+		<img style="position:absolute;" src="{{ url('/') }}/img/more/giphy.gif">
+		<img style="position:absolute;" src="{{ url('/') }}/img/more/1360.gif">
+		<img style="position:absolute;right: 20px;" src="{{ url('/') }}/img/more/1360.gif">
+	    <img width="100%" src="{{ asset('/img/festival/hero-bg_1.jpg') }}">
+	    <br><br><br>
 	</div>
 @endif
 
