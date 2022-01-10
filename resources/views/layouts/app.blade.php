@@ -33,8 +33,6 @@
         height: 100vh;
         background: radial-gradient(ellipse at bottom, #34A65F 0%, #0F8A5F 100%);
         overflow: hidden;
-        color: white;
-        font-family: 'Inter';
     }
 
     .snowflake {
@@ -45,8 +43,6 @@
         border-radius: 50%;
         filter: drop-shadow(0 0 10px white);
     }
-
-    .container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
     .btn_register{
       position: relative;
@@ -113,6 +109,7 @@
                         @include ('festival') 
                     </div>
                     <div class="col-12">
+                        <br>
                         @yield('content')
                     </div>
                     
@@ -124,5 +121,6 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/PureSnow.js')}}"></script>
 </body>
 </html>

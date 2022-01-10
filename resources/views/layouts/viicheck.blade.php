@@ -36,6 +36,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="{{ asset('Medilab/css/style.css') }}" rel="stylesheet">
+
+  <!-- snow -->
+  <link href="https://www.cssscript.com/demo/sticky.css" rel="stylesheet" type="text/css">
   
 
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -61,6 +64,15 @@
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
             } 
+
+        .snowflake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(white, white); /* Workaround for Chromium's selective color inversion */
+            border-radius: 50%;
+            filter: drop-shadow(0 0 10px white);
+        }
 
         .btn_register{
           position: relative;
@@ -750,6 +762,9 @@
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script> -->
 
+    <!-- snow -->
+    <script src="{{ asset('js/PureSnow.js')}}"></script>
+
     <script type="text/javascript">
     var comboGoogleTradutor = 'null'; //Varialvel global
 
@@ -782,6 +797,7 @@
     }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 </body>
 

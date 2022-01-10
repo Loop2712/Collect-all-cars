@@ -1,9 +1,9 @@
 
- <div class="modal-body d-block d-md-none">
+<div class="modal-body d-block d-md-none">
     <center>
         <div style="position: relative; z-index: 5">
             <div style="padding-top: 8px;">
-                <span style="font-size: 20px;" class="text-dark"><b style=" margin: top -10px;0px;">{{ $registration_number }}</b> </span>
+                <span style="font-size: 20px;" class="text-dark"><b style=" margin: top -10px;">{{ $registration_number }}</b> </span>
                 <p style="font-size: 14px;" class="text-dark">{{ $province }}</p>
             </div>
         </div>
