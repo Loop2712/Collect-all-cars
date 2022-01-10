@@ -50,18 +50,39 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="card-text"><i class="far fa-clock"></i>&nbsp;
-                                                        @if(($item->time_period == "วันนี้เป็นต้นไป" ))
-                                                            {{ $item->time_period }}
-                                                        @elseif(($item->time_period == NULL ))
-                                                            ไม่ได้กำหนดวันหมดเขต
-                                                        @else
-                                                            {{ date("d F Y", strtotime("$item->time_period")) }}
-                                                        @endif
-                                                    </p>
+                                                            @if(($item->time_period == "วันนี้เป็นต้นไป" ))
+                                                                {{ $item->time_period }}
+                                                            @elseif(($item->time_period == NULL ))
+                                                                ไม่ได้กำหนดวันหมดเขต
+                                                            @else
+                                                                {{ date("d F Y", strtotime("$item->time_period")) }}
+                                                            @endif
+                                                            @if (Auth::user()->role === "admin" )
+                                                                <a style="float:right;margin-right: 10px;margin-bottom: 10px;" data-toggle="collapse" data-target="#collapseExample{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample{{ $item->id }}">
+                                                                    <i class="fas fa-sort-down"></i>
+                                                                </a>
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                     <!-- <div class="col-6">
                                                         <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
                                                     </div> -->
+                                                    <div style="float:right;">
+                                                        <div style="margin-top:10px;" class="collapse" id="collapseExample{{ $item->id }}">
+                                                            <a href="{{ url('/promotion/' . $item->id . '/edit') }}">
+                                                                <button type="button" class="btn btn-warning main-shadow main-radius" style=" width: 90px; font-size: 14px; padding: 4px 12px ">
+                                                                    <b><i class="far fa-edit"></i> &nbsp;แก้ไข</b>
+                                                                </button>
+                                                            </a>
+                                                            <form method="POST" action="{{ url('promotion' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                                {{ method_field('DELETE') }}
+                                                                {{ csrf_field() }}
+                                                                <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                                    <i class="fa fa-trash"  aria-hidden="true"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div> 
@@ -95,7 +116,28 @@
                                                             @else
                                                                 {{ date("d F Y", strtotime("$item->time_period")) }}
                                                             @endif
+                                                            @if (Auth::user()->role === "admin" )
+                                                                <a style="float:right;margin-right: 10px;margin-bottom: 10px;" data-toggle="collapse" data-target="#collapseExample{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample{{ $item->id }}">
+                                                                    <i class="fas fa-sort-down"></i>
+                                                                </a>
+                                                            @endif
                                                         </p>
+                                                    </div>
+                                                    <div style="float:right;">
+                                                        <div style="margin-top:10px;" class="collapse" id="collapseExample{{ $item->id }}">
+                                                            <a href="{{ url('/promotion/' . $item->id . '/edit') }}">
+                                                                <button type="button" class="btn btn-warning main-shadow main-radius" style=" width: 90px; font-size: 14px; padding: 4px 12px ">
+                                                                    <b><i class="far fa-edit"></i> &nbsp;แก้ไข</b>
+                                                                </button>
+                                                            </a>
+                                                            <form method="POST" action="{{ url('promotion' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                                {{ method_field('DELETE') }}
+                                                                {{ csrf_field() }}
+                                                                <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                                    <i class="fa fa-trash"  aria-hidden="true"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
