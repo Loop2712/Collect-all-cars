@@ -626,6 +626,32 @@
                     });
                     draw_area_other.setMap(map);
 
+                    google.maps.event.addListener(draw_area_other, 'mouseover', function (event) {
+                        // Within the event listener, "this" refers to the polygon which
+                        // received the event.
+                        this.setOptions({
+                            strokeColor: '#00ff00',
+                            fillColor: '#00ff00'
+                        });
+
+                        let image_empty = "https://www.viicheck.com/img/icon/flag_empty.png";
+                        marker_mouseover = new google.maps.Marker({
+                            position: JSON.parse(result[xi]['sos_area'])[0],
+                            map: map,
+                            icon: image_empty,
+                            label: {text: result[xi]['name_area'], color: "black"},
+                            zIndex:10,
+                        });  
+                    });
+
+                    google.maps.event.addListener(draw_area_other, 'mouseout', function (event) {
+                        this.setOptions({
+                            strokeColor: '#008450',
+                            fillColor: '#008450'
+                        });
+                        marker_mouseover.setMap(null);
+                    });
+
                 }
 
                 //ปักหมุด
