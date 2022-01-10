@@ -49,7 +49,15 @@
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <p class="card-text"><i class="far fa-clock"></i>&nbsp;{{ date("F Y", strtotime("$item->time_period")) }}</p>
+                                                        <p class="card-text"><i class="far fa-clock"></i>&nbsp;
+                                                        @if(($item->time_period == "วันนี้เป็นต้นไป" ))
+                                                            {{ $item->time_period }}
+                                                        @elseif(($item->time_period == NULL ))
+                                                            ไม่ได้กำหนดวันหมดเขต
+                                                        @else
+                                                            {{ date("F Y", strtotime("$item->time_period")) }}
+                                                        @endif
+                                                    </p>
                                                     </div>
                                                     <!-- <div class="col-6">
                                                         <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
@@ -80,7 +88,14 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="card-text"><i class="far fa-clock"></i>&nbsp;
-                                                       {{ date("F Y", strtotime("$item->time_period")) }}</p>
+                                                            @if(($item->time_period == "วันนี้เป็นต้นไป" ))
+                                                                {{ $item->time_period }}
+                                                            @elseif(($item->time_period == NULL ))
+                                                                ไม่ได้กำหนดวันหมดเขต
+                                                            @else
+                                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -187,7 +202,15 @@
                                                     <hr>
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <p class="card-text"><i class="far fa-clock"></i>&nbsp;{{ date("F Y", strtotime("$item->time_period")) }}</p>
+                                                            <p class="card-text"><i class="far fa-clock"></i>&nbsp;
+                                                            @if(($item->time_period == "วันนี้เป็นต้นไป" ))
+                                                                {{ $item->time_period }}
+                                                            @elseif(($item->time_period == NULL ))
+                                                                ไม่ได้กำหนดวันหมดเขต
+                                                            @else
+                                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                                            @endif
+                                                            </p>
                                                         </div>
                                                         <!-- <div class="col-6">
                                                             <a href="{{ $item->link }}" class="btn btn-sm btn-primary float-right main-shadow main-radius">ดูเพิ่มเติม</a>
@@ -217,7 +240,15 @@
                                                     <hr>
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <p class="card-text"><i class="far fa-clock"></i>&nbsp;{{ $item->time_period }}</p>
+                                                            <p class="card-text"><i class="far fa-clock"></i>&nbsp;
+                                                            @if(($item->time_period == "วันนี้เป็นต้นไป" ))
+                                                                {{ $item->time_period }}
+                                                            @elseif(($item->time_period == NULL ))
+                                                                ไม่ได้กำหนดวันหมดเขต
+                                                            @else
+                                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                                            @endif
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -268,7 +299,15 @@
                                         <div class="col-7" style="color:black;padding:7px;">
                                             <h5 class="card-title" style=" margin:0px 0px; font-family: K2D, sans-serif;"><strong>{{ $item->company }}</strong></h5>
                                             <p style="font-size: 15px; font-family: K2D, sans-serif;"class="card-title">{{ $item->titel }}</p>
-                                            <p class="card-text" style=" margin-top:-10px; font-size: 13px; font-family: K2D, sans-serif;"><i class="far fa-clock"></i> {{ date("F Y", strtotime("$item->time_period")) }}</p>
+                                            <p class="card-text" style=" margin-top:-10px; font-size: 13px; font-family: K2D, sans-serif;"><i class="far fa-clock"></i> 
+                                            @if(($item->time_period == "วันนี้เป็นต้นไป" ))
+                                                {{ $item->time_period }}
+                                            @elseif(($item->time_period == NULL ))
+                                                ไม่ได้กำหนดวันหมดเขต
+                                            @else
+                                                {{ date("F Y", strtotime("$item->time_period")) }}
+                                            @endif
+</p>
                                         </div>
                                     </div> 
                                 </div>
@@ -302,7 +341,15 @@
                                         <div class="col-7" style="color:black;padding:7px;">
                                             <h5 class="card-title" style=" margin:0px 0px; font-family: K2D, sans-serif;"><strong>{{ $item->company }}</strong></h5>
                                             <p style="font-size: 15px; font-family: K2D, sans-serif;"class="card-title">{{ $item->titel }}</p>
-                                            <p class="card-text" style=" margin-top:-10px; font-size: 13px; font-family: K2D, sans-serif;"><i class="far fa-clock"></i> {{ date("F Y", strtotime("$item->time_period")) }}</p>
+                                            <p class="card-text" style=" margin-top:-10px; font-size: 13px; font-family: K2D, sans-serif;"><i class="far fa-clock"></i> 
+                                                @if(($item->time_period == "วันนี้เป็นต้นไป" ))
+                                                    {{ $item->time_period }}
+                                                @elseif(($item->time_period == NULL ))
+                                                    ไม่ได้กำหนดวันหมดเขต
+                                                @else
+                                                    {{ date("F Y", strtotime("$item->time_period")) }}
+                                                @endif
+                                            </p>
                                         </div>
                                     </div> 
                                 </div>
