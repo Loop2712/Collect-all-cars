@@ -7,9 +7,11 @@
 
 <!-- Happy New Year -->
 @if( $month_now == "01" and $day_now >= "01" and $day_now <= 14)
-	<div id="snow"></div>
-	<img style="margin-top:-30px;" width="94%" src="{{ asset('/img/festival/hero-bg_1.jpg') }}">  
-	<script src="{{ asset('js/PureSnow.js')}}"></script>
+	<div>
+		<img style="width:100%;position:absolute;top:50px;" src="{{ url('/') }}/img/more/giphy.gif">
+	    <img style="width:80%;position:absolute;right: 30px;top:50px;" src="{{ url('/') }}/img/more/1360.gif">
+	    <img style="position: relative;" width="94%" src="{{ asset('/img/festival/hero-bg_1.jpg') }}">
+	</div>
 @endif
 
 <!-- Valentine -->
