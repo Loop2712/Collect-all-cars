@@ -25,7 +25,7 @@ class Promotion extends Model
      *
      * @var array
      */
-    protected $fillable = ['company', 'titel', 'detail', 'photo', 'time_period' , 'link'];
+    protected $fillable = ['company', 'titel', 'detail', 'photo', 'time_period' , 'link' ,'type'];
 
     
 }

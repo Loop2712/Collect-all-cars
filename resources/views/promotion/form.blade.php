@@ -23,7 +23,7 @@
             <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                 <label for="photo" class="control-label"><b>{{ 'รูปภาพ' }}</b></label>
                 <span style="color: #FF0033;"> *</span>                
-                <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($promotion->photo) ? $promotion->photo : ''}}" required>
+                <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($promotion->photo) ? $promotion->photo : ''}}" required>
                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
@@ -44,7 +44,7 @@
                     <br>
                     <p style="margin-top:8px;" type="button" class="btn btn-success">วันนี้เป็นต้นไป</p>
                 </div>
-            </div>
+                </div>
             
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}">
