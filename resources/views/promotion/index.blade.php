@@ -43,7 +43,7 @@
                                             <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                             <div class="card-body">
                                                 <div>
-                                                    <h4 class="card-title">{{ $item->company }}</h4>
+                                                    <h4 class="card-title notranslate">{{ $item->company }}</h4>
                                                     <p style="font-size: 15px;white-space: nowrap;width: 210px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
                                                 </div>
                                                 <hr>
@@ -81,7 +81,7 @@
                                             <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                             <div class="card-body">
                                                 <div>
-                                                    <h4 class="card-title">{{ $item->company }}</h4>
+                                                    <h4 class="card-title notranslate">{{ $item->company }}</h4>
                                                     <p style="font-size: 15px;white-space: nowrap;width: 210px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
                                                 </div>
                                                 <hr>
@@ -196,7 +196,7 @@
                                                 <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                                 <div class="card-body">
                                                     <div>
-                                                        <h4 class="card-title">{{ $item->company }}</h4>
+                                                        <h4 class="card-title notranslate">{{ $item->company }}</h4>
                                                         <p style="font-size: 15px;white-space: nowrap;width: 150px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
                                                     </div>
                                                     <hr>
@@ -234,7 +234,7 @@
                                                 <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                                 <div class="card-body">
                                                     <div>
-                                                        <h4 class="card-title">{{ $item->company }}</h4>
+                                                        <h4 class="card-title notranslate">{{ $item->company }}</h4>
                                                         <p style="font-size: 15px;white-space: nowrap;width: 150px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
                                                     </div>
                                                     <hr>
