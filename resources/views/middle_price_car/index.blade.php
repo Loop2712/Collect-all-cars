@@ -114,7 +114,7 @@
                                         <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                         @endforeach
                                     @else
-                                        <option class="translate" value="" selected>All car brand</option> 
+                                        <option class="translate" value="" selected>All car brands</option> 
                                     @endif
                                    
                                     {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
@@ -128,14 +128,14 @@
                                         document.querySelector('#model_input').focus();
                                     }else{ 
                                         document.querySelector('#model_input').classList.add('d-none');}">
-                                    <option class="translate" value="" selected>All car model</option>     
+                                    <option class="translate" value="" selected>All car models</option>     
                                         
                                         {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
                                 </select>
                             </div>
                            
                             <div class="col-sm-3 col-12"> 
-                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="Sub model" value="{{ request('sub_model') }}">
+                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="Submodel" value="{{ request('sub_model') }}">
                             </div>
                             <div class="col-sm-3 col-12 p-md-0" > <br class="d-block d-md-none">
                             <button type="submit" style="font-size: 1em; color:#fff" class="btn btn-danger btn-sm "> ค้นหา  </button>
