@@ -981,9 +981,9 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("ccaarr",$item->driver_license,$string_json);
                 $string_json = str_replace("mmotorcycle",$item->driver_license2,$string_json);
 
-                $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
-                $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
-                $string_json = str_replace("เพิ่มใบอนุญาตขับรถ",$data_topic[3],$string_json);
+                // $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
+                // $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
+                // $string_json = str_replace("เพิ่มใบอนุญาตขับรถ",$data_topic[3],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
