@@ -945,15 +945,15 @@ class LineMessagingAPI extends Model
 
             case "driver_license":
 
+                $provider_id = $event["source"]['userId'];
+                
                 $data_Text_topic = [
                     "รถยนต์",
                     "จักรยานยนต์",
                     "เพิ่มใบอนุญาตขับรถ",
                 ];
 
-                $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
-
-                $provider_id = $event["source"]['userId'];
+                $data_topic = $this->language_for_user($data_Text_topic, $provider_id);
 
                 $user = DB::table('users')
                     ->where('provider_id' , $provider_id)
@@ -963,9 +963,9 @@ class LineMessagingAPI extends Model
                     if ( !empty($item->driver_license) && !empty($item->driver_license2) ) {
                         $template_path = storage_path('../public/json/flex-driver_license.json');   
                         $string_json = file_get_contents($template_path);
-                        // $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
-                        // $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
-                        // $string_json = str_replace("เพิ่มใบอนุญาตขับรถ",$data_topic[3],$string_json);
+                        $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
+                        $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
+                        $string_json = str_replace("เพิ่มใบอนุญาตขับรถ",$data_topic[3],$string_json);
                         $string_json = str_replace("ccaarr",$item->driver_license,$string_json);
                         $string_json = str_replace("mmotorcycle",$item->driver_license2,$string_json);
                     }
