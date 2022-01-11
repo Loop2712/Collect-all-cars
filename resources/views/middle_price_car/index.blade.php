@@ -135,7 +135,7 @@
                             </div>
                            
                             <div class="col-sm-3 col-12"> 
-                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="sub models" value="{{ request('sub_model') }}">
+                               <br class="d-block d-md-none">  <input class="form-control" type="text" name="submodel" id="submodel" placeholder="Sub model" value="{{ request('sub_model') }}">
                             </div>
                             <div class="col-sm-3 col-12 p-md-0" > <br class="d-block d-md-none">
                             <button type="submit" style="font-size: 1em; color:#fff" class="btn btn-danger btn-sm "> ค้นหา  </button>
