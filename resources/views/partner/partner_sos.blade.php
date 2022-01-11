@@ -626,9 +626,8 @@
                     });
                     draw_area_other.setMap(map);
 
+                    // mouseover on polygon
                     google.maps.event.addListener(draw_area_other, 'mouseover', function (event) {
-                        // Within the event listener, "this" refers to the polygon which
-                        // received the event.
                         this.setOptions({
                             strokeColor: '#00ff00',
                             fillColor: '#00ff00'
@@ -644,6 +643,7 @@
                         });  
                     });
 
+                    // mouseout polygon
                     google.maps.event.addListener(draw_area_other, 'mouseout', function (event) {
                         this.setOptions({
                             strokeColor: '#008450',
@@ -670,6 +670,11 @@
             });
 
     }
+
+    function select_name_area(){
+
+    }
+
 
     // function view_marker(lat , lng , sos_id){
 

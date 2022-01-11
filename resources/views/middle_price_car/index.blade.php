@@ -114,7 +114,7 @@
                                         <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                         @endforeach
                                     @else
-                                        <option class="translate" value="" selected>ยี่ห้อทั้งหมด</option> 
+                                        <option class="translate" value="" selected>ยี่ห้อ</option> 
                                     @endif
                                    
                                     {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
