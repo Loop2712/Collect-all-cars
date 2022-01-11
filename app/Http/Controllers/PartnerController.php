@@ -244,7 +244,9 @@ class PartnerController extends Controller
         $type_user = $request->get('type_user');
         $data_user = Auth::user();
 
-        $data_partners = Partner::where("name", $data_user->organization)->get();
+        $data_partners = Partner::where("name", $data_user->organization)
+        ->where("name_area", null)
+        ->get();
 
         $partners = $data_user->organization ;
 
