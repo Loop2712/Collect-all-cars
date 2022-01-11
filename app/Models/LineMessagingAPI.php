@@ -953,59 +953,37 @@ class LineMessagingAPI extends Model
                     "เพิ่มใบอนุญาตขับรถ",
                 ];
 
-                // $data_topic = $this->language_for_user($data_Text_topic, $provider_id);
+                $data_topic = $this->language_for_user($data_Text_topic, $provider_id);
 
                 $user = DB::table('users')
                     ->where('provider_id' , $provider_id)
                     ->get();
 
-                foreach ($user as $data_user) {
-                    if (!empty($data_user->language)) {
-                            $user_language = $data_user->language ;
-                            if ($user_language == "zh-TW") {
-                                $user_language = "zh_TW";
-                            }
-                        }else{
-                            $user_language = 'en' ;
-                        }
-                }
-
-                for ($i=0; $i < count($data_Text_topic); $i++) { 
-
-                    $text_topic = DB::table('text_topics')
-                            ->select($user_language)
-                            ->where('th', $data_Text_topic[$i])
-                            ->where('en', "!=", null)
-                            ->get();
-
-                    foreach ($text_topic as $item_of_text_topic) {
-                        $data_Text_topic[$i] = $item_of_text_topic->$user_language ;
-                    }
-                }
-
                 foreach($user as $item){
                     if ( !empty($item->driver_license) && !empty($item->driver_license2) ) {
-                        $template_path = storage_path('../public/json/flex-driver_license.json');  
+                        $template_path = storage_path('../public/json/flex-driver_license.json');   
+                        $string_json = file_get_contents($template_path);
                     }
                     if ( !empty($item->driver_license) && empty($item->driver_license2) ) {
-                        $template_path = storage_path('../public/json/flex-driver_car_license.json'); 
+                        $template_path = storage_path('../public/json/flex-driver_car_license.json');   
+                        $string_json = file_get_contents($template_path);
                     }
                     if ( empty($item->driver_license) && !empty($item->driver_license2) ) {
-                        $template_path = storage_path('../public/json/flex-driver_moto_license.json');
+                        $template_path = storage_path('../public/json/flex-driver_moto_license.json');   
+                        $string_json = file_get_contents($template_path);
                     }
                     if ( empty($item->driver_license) && empty($item->driver_license2) ) {
                         $template_path = storage_path('../public/json/flex-driver_not_license.json');
+                        $string_json = file_get_contents($template_path);
                     }
                 }
-
-                $string_json = file_get_contents($template_path);
 
                 $string_json = str_replace("ccaarr",$item->driver_license,$string_json);
                 $string_json = str_replace("mmotorcycle",$item->driver_license2,$string_json);
 
-                $string_json = str_replace("รถยนต์",$data_Text_topic[0],$string_json);
-                $string_json = str_replace("จักรยานยนต์",$data_Text_topic[1],$string_json);
-                $string_json = str_replace("เพิ่มใบอนุญาตขับรถ",$data_Text_topic[3],$string_json);
+                $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
+                $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
+                $string_json = str_replace("เพิ่มใบอนุญาตขับรถ",$data_topic[3],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
