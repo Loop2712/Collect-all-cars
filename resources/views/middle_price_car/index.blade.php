@@ -114,7 +114,7 @@
                                         <option value="{{ $item->brand }}" selected>{{ $item->brand }}</option>
                                         @endforeach
                                     @else
-                                        <option class="translate" value="" selected>ยี่ห้อ</option> 
+                                        <option class="translate" value="" selected>All brand</option> 
                                     @endif
                                    
                                     {!! $errors->first('brand', '<p class="help-block">:message</p>') !!}
@@ -128,7 +128,7 @@
                                         document.querySelector('#model_input').focus();
                                     }else{ 
                                         document.querySelector('#model_input').classList.add('d-none');}">
-                                    <option class="translate" value="" selected>รุ่นรถทั้งหมด</option>     
+                                    <option class="translate" value="" selected>All car model</option>     
                                         
                                         {!! $errors->first('model', '<p class="help-block">:message</p>') !!}             
                                 </select>
