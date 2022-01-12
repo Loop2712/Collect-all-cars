@@ -631,8 +631,6 @@
 
                 for (let xi = 0; xi < result.length; xi++) {
 
-                    console.log(JSON.parse(result[xi]['sos_area']));
-
                     // วาดพื้นที่รวมทั้งหมด
                     let draw_sum_area = new google.maps.Polygon({
                         paths: all_lat_lng,
@@ -652,6 +650,7 @@
                         strokeWeight: 1,
                         fillColor: "#008450",
                         fillOpacity: 0.25,
+                        zIndex:10,
                     });
                     draw_area_other.setMap(map);
 
