@@ -566,9 +566,15 @@
     var marker ;
 
     function initMap() {
+        // 13.7248936,100.4930264 lat lng ประเทศไทย
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: {lat: 13.7248936, lng: 100.4930264 },
+            zoom: 14,
+        });
 
         let all_lat = [];
         let all_lng = [];
+        let all_lat_lng = [];
 
         let lat_average ;
         let lng_average ;
@@ -585,15 +591,9 @@
 
                 for (let ii = 0; ii < result.length; ii++) {
 
-                    // console.log(JSON.parse(result[ii]['sos_area']));
-                    // console.log(JSON.parse(result[ii]['sos_area']).length);
-
-
                     for (let xx = 0; xx < JSON.parse(result[ii]['sos_area']).length; xx++) {
 
-                        // console.log(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
-                        // console.log(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
-                        // console.log("----------");
+                        all_lat_lng.push(JSON.parse(result[ii]['sos_area'])[xx]);
 
                         all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
                         all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
@@ -603,22 +603,48 @@
                 }
 
                 // หาจุดกลาง polygons ทั้งหมด
-                for (let zz = 0; zz < all_lat.length; zz++) {
+                // for (let zz = 0; zz < all_lat.length; zz++) {
 
-                    lat_sum = lat_sum + all_lat[zz] ; 
-                    lng_sum = lng_sum + all_lng[zz] ; 
+                //     lat_sum = lat_sum + all_lat[zz] ; 
+                //     lng_sum = lng_sum + all_lng[zz] ; 
 
-                    lat_average = lat_sum / all_lat.length ;
-                    lng_average = lng_sum / all_lng.length ;
-                }
+                //     lat_average = lat_sum / all_lat.length ;
+                //     lng_average = lng_sum / all_lng.length ;
+                // }
 
-                map = new google.maps.Map(document.getElementById("map"), {
-                    center: {lat: lat_average, lng: lng_average },
-                    zoom: 14,
-                });
+                // map = new google.maps.Map(document.getElementById("map"), {
+                //     center: {lat: lat_average, lng: lng_average },
+                //     zoom: 14,
+                // });
+
+                let bounds = new google.maps.LatLngBounds();
+
+                    for (let vc = 0; vc < all_lat_lng.length; vc++) {
+                        bounds.extend(all_lat_lng[vc]);
+                    }
+
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        // zoom: num_zoom,
+                        // center: bounds.getCenter(),
+                    });
+                    map.fitBounds(bounds);
 
                 for (let xi = 0; xi < result.length; xi++) {
 
+                    console.log(JSON.parse(result[xi]['sos_area']));
+
+                    // วาดพื้นที่รวมทั้งหมด
+                    let draw_sum_area = new google.maps.Polygon({
+                        paths: all_lat_lng,
+                        strokeColor: "red",
+                        strokeOpacity: 0,
+                        strokeWeight: 0,
+                        fillColor: "red",
+                        fillOpacity: 0,
+                    });
+                    draw_sum_area.setMap(map);
+
+                    // วาดแยกแต่ละพื้นที่
                     let draw_area_other = new google.maps.Polygon({
                         paths: JSON.parse(result[xi]['sos_area']),
                         strokeColor: "#008450",
