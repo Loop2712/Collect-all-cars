@@ -691,6 +691,7 @@
                         position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
                         map: map,
                         icon: image,
+                        zIndex:5,
                     });  
                 @endif   
                 @endforeach
