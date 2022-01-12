@@ -18,67 +18,67 @@
                     <div class="card-header">ข้อมูลรถที่ต้องการติดต่อ
                         
                         <span class="float-right">
-                            <a id="car_TH" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_TH" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_ID" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_ID" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px; border: 1px solid; color:#8C8C8C;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_LA" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_LA" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/la1.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_PH" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_PH" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/ph1.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_MM" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_MM" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/my1.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_SG" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_SG" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/sg1.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_KR" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_KR" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/kr1.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_BN" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_BN" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/bn1.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_VN" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_VN" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/vn1.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_MY" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_MY" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/ml1.jpg') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_JP" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_JP" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/jp.png') }}" style= "border-radius: 5px; border: 1px solid; color:#8C8C8C;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_KO" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_KO" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/ko1.png') }}" style= "border-radius: 5px;border: 1px solid; color:#8C8C8C;"> 
                             </a>
                         </span>
                         <span>
-                            <a id="car_CN" href="#" class="d-none"  style="padding:0px">
+                            <a id="guest_CN" href="#" class="d-none"  style="padding:0px">
                                 <img width="40px" src="{{ asset('/img/national-flag/cn.png') }}" style= "border-radius: 5px;"> 
                             </a>
                         </span>
@@ -106,6 +106,27 @@
             </div>
         </div>
     </div>
+    <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("START");
+        let user_id = document.querySelector('#user_id').value;
+
+        fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let countryCode = document.querySelector('#CountryCode');
+                    countryCode.value = result['countryCode'];
+
+                if (result['countryCode']) {
+                    document.querySelector('#guest_'+result['countryCode']).classList.remove('d-none');
+                }
+
+            });
+    });
+</script>
     <!-- <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             console.log("START"); 
