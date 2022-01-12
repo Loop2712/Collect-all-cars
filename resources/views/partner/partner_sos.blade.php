@@ -595,8 +595,8 @@
 
                         all_lat_lng.push(JSON.parse(result[ii]['sos_area'])[xx]);
 
-                        all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
-                        all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
+                        // all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
+                        // all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
                         
                     }
 
@@ -663,13 +663,36 @@
 
                         let image_empty = "https://www.viicheck.com/img/icon/flag_empty.png";
 
+                        for (let mm = 0; mm < JSON.parse(result[xi]['sos_area']).length; mm++) {
+
+                            all_lat.push(JSON.parse(result[xi]['sos_area'])[mm]['lat']);
+                            all_lng.push(JSON.parse(result[xi]['sos_area'])[mm]['lng']);
+                            
+                        }
+
+                        for (let zz = 0; zz < all_lat.length; zz++) {
+
+                            lat_sum = lat_sum + all_lat[zz] ; 
+                            lng_sum = lng_sum + all_lng[zz] ; 
+
+                            lat_average = lat_sum / all_lat.length ;
+                            lng_average = lng_sum / all_lng.length ;
+                        }
+
                         marker_mouseover = new google.maps.Marker({
-                            position: JSON.parse(result[xi]['sos_area'])[0],
+                            // position: JSON.parse(result[xi]['sos_area'])[0],
+                            position: {lat: lat_average, lng: lng_average },
                             map: map,
                             icon: image_empty,
-                            label: {text: result[xi]['name_area'], color: "black"},
+                            label: {
+                                text: result[xi]['name_area'],
+                                color: 'black',
+                                fontSize: "18px",
+                                fontWeight: 'bold',
+                            },
                             zIndex:10,
-                        });  
+                        }); 
+
                     });
 
                     // mouseout polygon
@@ -679,6 +702,13 @@
                             fillColor: '#008450'
                         });
                         marker_mouseover.setMap(null);
+
+                        lat_sum = 0 ;
+                        lng_sum = 0 ;
+                        lat_average = 0 ;
+                        lng_average = 0 ;
+                        all_lat = [] ;
+                        all_lng = [] ;
                     });
 
                 }
