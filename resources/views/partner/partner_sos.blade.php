@@ -592,6 +592,9 @@
                     for (let xx = 0; xx < JSON.parse(result[ii]['sos_area']).length; xx++) {
 
                         // console.log(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
+                        // console.log(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
+                        // console.log("----------");
+
                         all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
                         all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
                         
@@ -599,6 +602,7 @@
 
                 }
 
+                // หาจุดกลาง polygons ทั้งหมด
                 for (let zz = 0; zz < all_lat.length; zz++) {
 
                     lat_sum = lat_sum + all_lat[zz] ; 
@@ -606,7 +610,6 @@
 
                     lat_average = lat_sum / all_lat.length ;
                     lng_average = lng_sum / all_lng.length ;
-                    
                 }
 
                 map = new google.maps.Map(document.getElementById("map"), {
@@ -634,6 +637,7 @@
                         });
 
                         let image_empty = "https://www.viicheck.com/img/icon/flag_empty.png";
+
                         marker_mouseover = new google.maps.Marker({
                             position: JSON.parse(result[xi]['sos_area'])[0],
                             map: map,
