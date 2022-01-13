@@ -173,7 +173,9 @@
                 <div class="col-12 col-md-4">
                   <label class="sr-only translate" for="inlineFormInputGroupUsername">Ex. กก9999</label>
                   <div class="input-group">
-                    <input class="form-control translate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
+                    <input id="pagenumber_th" class="form-control translate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ไทย" required onchange="check_registration()">
+                    <input id="pagenumber_sg" class="form-control translate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. sg" required onchange="check_registration()">
+                        
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
                     <div id="orc_camera" class="input-group-prepend" onclick="capture_registration();">
@@ -312,6 +314,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                     if (result['countryCode'] !== 'TH') {
                     document.querySelector('#orc_camera').classList.add('d-none');
+                    }
+
+                    if (result['countryCode'] == 'TH') {
+                    document.querySelector('#pagenumber_th').classList.remove('d-none');
+                    }
+
+                    if (result['countryCode'] == 'SG') {
+                    document.querySelector('#pagenumber_sg').classList.remove('d-none');
                     }
                 }
 
