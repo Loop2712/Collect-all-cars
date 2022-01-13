@@ -88,7 +88,7 @@
                     "gravity": "center",
                     "size": "full",
                     "aspectMode": "cover",
-                    "aspectRatio": "1:1",
+                    "aspectRatio": "16:10",
                     "action": {
                       "type": "uri",
                       "label": "action",
