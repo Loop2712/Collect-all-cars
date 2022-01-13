@@ -77,7 +77,8 @@
                 "wrap": true,
                 "align": "center"
               }
-            ]
+            ],
+            "margin": "xl"
           },
           {
             "type": "image",
