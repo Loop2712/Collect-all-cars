@@ -332,10 +332,13 @@
           </li>
         </ul>
         @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-            <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
+              <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
         @endif
         @if(!empty(Auth::user()->photo))
-            <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+            <span class="mobile-nav-toggle">
+              <img class=" main-shadow main-radius" width="35" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+              <i class="bi bi-chevron-down"></i>
+            </span>
         @endif
         @if(empty(Auth::user()->avatar) and empty(Auth::user()->photo))
             <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ url('/img/icon/user.png') }}">
