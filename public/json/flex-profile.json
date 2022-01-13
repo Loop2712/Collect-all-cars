@@ -10,7 +10,7 @@
     "contents": [
       {
         "type": "box",
-        "layout": "horizontal",
+        "layout": "vertical",
         "contents": [
           {
             "type": "box",
@@ -25,122 +25,72 @@
               }
             ],
             "cornerRadius": "80px",
-            "width": "72px",
-            "height": "72px",
-            "offsetTop": "xxl",
+            "width": "150px",
+            "height": "150px",
             "borderColor": "#ff0101",
-            "borderWidth": "medium",
-            "backgroundColor": "#ff0101"
+            "borderWidth": "5px",
+            "backgroundColor": "#ff0101",
+            "justifyContent": "center"
           },
           {
             "type": "box",
-            "layout": "vertical",
+            "layout": "baseline",
             "contents": [
               {
-                "type": "box",
-                "layout": "baseline",
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/ranking/gold.png",
+                "margin": "md",
+                "size": "3xl",
+                "offsetTop": "8px",
+                "offsetStart": "55px"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
                 "contents": [
                   {
-                    "type": "filler"
+                    "type": "span",
+                    "text": "E Benze",
+                    "color": "#000000",
+                    "size": "xl",
+                    "weight": "bold"
                   },
                   {
-                    "type": "text",
-                    "contents": [
-                      {
-                        "type": "span",
-                        "text": " ",
-                        "weight": "regular",
-                        "color": "#0066FF",
-                        "size": "xxs"
-                      }
-                    ],
-                    "size": "sm",
-                    "wrap": true
+                    "type": "span",
+                    "text": " "
                   },
                   {
-                    "type": "text",
-                    "text": "อันดับ",
+                    "type": "span",
+                    "text": "แก้ไข",
                     "size": "xxs",
-                    "margin": "xxl",
-                    "offsetEnd": "sm",
-                    "wrap": true,
-                    "align": "end"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "text",
-                    "contents": [
-                      {
-                        "type": "span",
-                        "text": "ข้อมูลของคุณ",
-                        "color": "#ff0101",
-                        "size": "lg",
-                        "weight": "bold"
-                      }
-                    ],
-                    "size": "sm",
-                    "wrap": true
-                  },
-                  {
-                    "type": "icon",
-                    "url": "https://www.viicheck.com/img/ranking/gold.png",
-                    "margin": "md",
-                    "size": "3xl",
-                    "offsetTop": "sm",
-                    "offsetEnd": "sm"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "hello, world",
-                    "contents": [
-                      {
-                        "type": "span",
-                        "text": "E Benze",
-                        "color": "#000000",
-                        "size": "xl",
-                        "weight": "bold"
-                      },
-                      {
-                        "type": "span",
-                        "text": " "
-                      },
-                      {
-                        "type": "span",
-                        "text": "แก้ไข",
-                        "size": "xxs",
-                        "weight": "regular",
-                        "style": "italic",
-                        "decoration": "underline",
-                        "color": "#FF3300"
-                      }
-                    ],
-                    "action": {
-                      "type": "uri",
-                      "label": "แก้ไขโปรไฟล์",
-                      "uri": "https://www.viicheck.com/edit_profile?openExternalBrowser=1"
-                    },
-                    "wrap": true
+                    "weight": "regular",
+                    "style": "italic",
+                    "decoration": "underline",
+                    "color": "#FF3300"
                   }
                 ],
-                "spacing": "lg",
-                "margin": "xl"
+                "action": {
+                  "type": "uri",
+                  "label": "แก้ไขโปรไฟล์",
+                  "uri": "https://www.viicheck.com/edit_profile?openExternalBrowser=1"
+                },
+                "wrap": true,
+                "align": "center"
               }
             ]
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/38.1.png",
+            "position": "absolute",
+            "offsetTop": "110px",
+            "size": "sm"
           }
         ],
-        "spacing": "xl",
-        "paddingAll": "20px"
+        "justifyContent": "center",
+        "alignItems": "center",
+        "paddingBottom": "10px",
+        "paddingTop": "20px"
       },
       {
         "type": "box",
