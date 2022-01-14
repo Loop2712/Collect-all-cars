@@ -173,8 +173,8 @@
                 <div class="col-12 col-md-4">
                   <label class="sr-only translate" for="inlineFormInputGroupUsername">Ex. กก9999</label>
                   <div class="input-group">
-                    <input id="pagenumber" class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ABC 1234" required onchange="check_registration()">
-                    <input id="pagenumber_th" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
+                    <input id="licenseplate" class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ABC 1234" required onchange="check_registration()">
+                    <!-- <input id="pagenumber_th" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
                     <input id="pagenumber_vn" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 12A-345.67" required onchange="check_registration()">
                     <input id="pagenumber_mm" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 9E-9999" required onchange="check_registration()">
                     <input id="pagenumber_my" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. AAA 9999" required onchange="check_registration()">
@@ -182,7 +182,7 @@
                     <input id="pagenumber_kh" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 2A-9999" required onchange="check_registration()">
                     <input id="pagenumber_la" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ກກ9999" required onchange="check_registration()">
                     <input id="pagenumber_sg" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. SBA 1234A" required onchange="check_registration()">
-                    <input id="pagenumber_bn" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. BZZ 9999" required onchange="check_registration()">
+                    <input id="pagenumber_bn" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. BZZ 9999" required onchange="check_registration()"> -->
                         
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
@@ -306,7 +306,7 @@
 
 <script>
 
-document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         let user_id = document.querySelector('#user_id').value;
 
@@ -324,55 +324,51 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     document.querySelector('#orc_camera').classList.add('d-none');
                     }
 
-                    if (result['countryCode'] == 'TH') {
-                    document.querySelector('#pagenumber_th').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'VN') {
-                    document.querySelector('#pagenumber_vn').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'MM') {
-                    document.querySelector('#pagenumber_mm').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'MY') {
-                    document.querySelector('#pagenumber_my').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'PH') {
-                    document.querySelector('#pagenumber_ph').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'KH') {
-                    document.querySelector('#pagenumber_kh').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'LA') {
-                    document.querySelector('#pagenumber_la').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'SG') {
-                    document.querySelector('#pagenumber_sg').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
-
-                    if (result['countryCode'] == 'BN') {
-                    document.querySelector('#pagenumber_bn').classList.remove('d-none');
-                    document.querySelector('#pagenumber').classList.add('d-none');
-                    }
                 }
 
+                let ex_license_plate ;
+
+                if (result['countryCode'] === 'TH') {
+                    let ex_license_plate = "กก9999";
+                }
+
+                if (result['countryCode'] === 'VN') {
+                    let ex_license_plate = "12A-345.67";
+                }
+
+                if (result['countryCode'] === 'MM') {
+                    let ex_license_plate = "9E-9999";
+                }
+                if (result['countryCode'] === 'MY') {
+                    let ex_license_plate = "AAA 9999";
+                }
+                if (result['countryCode'] === 'PH') {
+                    let ex_license_plate = "ABC 1234";
+                }
+                if (result['countryCode'] === 'KH') {
+                    let ex_license_plate = "2A-9999";
+                }
+                if (result['countryCode'] === 'LA') {
+                    let ex_license_plate = "ກກ9999";
+                }
+                if (result['countryCode'] === 'SG') {
+                    let ex_license_plate = "SBA 1234A";
+                }
+
+                if (result['countryCode'] === 'BN') {
+                    let ph_license_plate = "BZZ 9999";
+                }
+                
+                let input_licenseplate = document.querySelector('#licenseplate');
+
+                let ph_licenseplate = document.createElement('#placeholder');
+                    ph_licenseplate.value = ex_license_plate;
+                
+                input_licenseplate.setAttributeNode(ph_licenseplate);
             });
 
     });
+    
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         // capture_registration();
