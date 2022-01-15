@@ -345,7 +345,10 @@
 
                     document.querySelector('#a_help').classList.remove('d-none');
                     let area_help = document.querySelector("#area_help");
+                    let name_area = document.querySelector("#name_area");
+                        name_area.value = result_area[ii]['name_area'];
                         // console.log(area_help.innerHTML);
+
                         if (area_help.innerHTML !== "") {
                             area_help.innerHTML = area_help.innerHTML + " & " + name_partner ;
                         }else{

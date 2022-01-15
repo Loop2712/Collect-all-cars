@@ -29,6 +29,11 @@
         <input class="form-control" name="area" type="text" id="area" value="{{ isset($sos_map->area) ? $sos_map->area : ''}}" >
         {!! $errors->first('area', '<p class="help-block">:message</p>') !!}
     </div>
+    <div class="form-group {{ $errors->has('name_area') ? 'has-error' : ''}}">
+        <label for="name_area" class="control-label">{{ 'Area' }}</label>
+        <input class="form-control" name="name_area" type="text" id="name_area" value="{{ isset($sos_map->name_area) ? $sos_map->name_area : ''}}" >
+        {!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
+    </div>
     <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
         <label for="user_id" class="control-label">{{ 'User Id' }}</label>
         <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
