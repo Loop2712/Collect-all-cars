@@ -740,7 +740,13 @@
 
                     draw_area_other.addListener("click", () => {
                         // select_name_area(result[xi]['name_area']);
-                        document.querySelector('#select_name_area_' + result[xi]['name_area']).click();
+                        try {
+                            document.querySelector('#select_name_area_' + result[xi]['name_area']).click();
+                        }
+                        catch(err) {
+                            alert('ไม่มีข้อมูลการขอความช่วยเหลือ');
+                        }
+                        
                     });
                 }
 
