@@ -356,10 +356,11 @@
                 }
                 let input_licenseplate = document.querySelector("#registration");
 
-                let ph_licenseplate = document.createAttribute("#placeholder");
+                let ph_licenseplate = document.createAttribute("placeholder");
                     ph_licenseplate.value = ex_license_plate;
                 
                 input_licenseplate.setAttributeNode(ph_licenseplate);
+                
             });
 
     });
