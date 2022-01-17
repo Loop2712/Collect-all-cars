@@ -788,8 +788,20 @@
 
             const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
 
+            const contentString =
+                '<div id="content">' +
+                '<div id="siteNotice">' +
+                "</div>" +
+                '<h4 id="firstHeading" class="firstHeading">'+name_area +'</h4>' +
+                '<div id="bodyContent">' +
+                "<p>lat : "+ lat + "<br>" +
+                "lng : "+ lng + "</p>" +
+                "</div>" +
+                "</div>";
+
             let infoWindow = new google.maps.InfoWindow({
-                content: "Lat :" + lat + "<br>" + "Lat :" + lng,
+                // content: "<p>ชื่อพื้นที่ : <b>" + name_area  + "</b></p>" + "Lat :" + lat + "<br>" + "Lat :" + lng,
+                content: contentString,
                 position: myLatlng,
             });
 
