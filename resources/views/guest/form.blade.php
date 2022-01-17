@@ -173,7 +173,7 @@
                 <div class="col-12 col-md-4">
                   <label class="sr-only translate" for="inlineFormInputGroupUsername">Ex. กก9999</label>
                   <div class="input-group">
-                    <input id="licenseplate" class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ABC 1234" required onchange="check_registration()">
+                    <input class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ABC 1234" required onchange="check_registration()">
                     <!-- <input id="pagenumber_th" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
                     <input id="pagenumber_vn" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 12A-345.67" required onchange="check_registration()">
                     <input id="pagenumber_mm" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 9E-9999" required onchange="check_registration()">
@@ -354,7 +354,7 @@
                         let ex_license_plate = "BZZ 9999";
                     }
                 }
-                let input_licenseplate = document.querySelector("#licenseplate");
+                let input_licenseplate = document.querySelector("#registration");
 
                 let ph_licenseplate = document.createAttribute("#placeholder");
                     ph_licenseplate.value = ex_license_plate;
