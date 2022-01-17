@@ -6,7 +6,7 @@
         <div class="col-md-12 col-12 col-lg-4">
             <div class="row">
                 <div class="col-6">
-                    <a style="float: left; background-color: green;" type="button" class="btn text-white" onclick="initMap();">
+                    <a href="{{ url('/sos_partner') }}" style="float: left; background-color: green;" type="button" class="btn text-white" > <!-- onclick="initMap();" -->
                         <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
                     </a>
                     <br><br>
@@ -39,7 +39,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
                             @foreach($select_name_areas as $select_name_area)
-                                <a class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
+                                <a id="select_name_area_{{ $select_name_area->name_area }}" class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
                                     {{ $select_name_area->name_area }}
                                 </a>
                             @endforeach
@@ -738,11 +738,12 @@
                         all_lng = [] ;
                     });
 
+                    draw_area_other.addListener("click", () => {
+                        // select_name_area(result[xi]['name_area']);
+                        document.querySelector('#select_name_area_' + result[xi]['name_area']).click();
+                    });
                 }
 
-                // draw_area_other.addListener("click", () => {
-                //     select_name_area(result[xi]['name_area'])
-                // });
 
                 //ปักหมุด
                 let image = "https://www.viicheck.com/img/icon/flag_2.png";
@@ -765,7 +766,6 @@
     function select_name_area(name_area){
 
         let name_partner = document.querySelector('#name_partner').value;
-        // let name_area = 'คอนโด' ;
 
         fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
             .then(response => response.json())
