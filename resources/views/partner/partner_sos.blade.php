@@ -5,15 +5,20 @@
     <div class="row">
         <div class="col-md-12 col-12 col-lg-4">
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <a style="float: left; background-color: green;" type="button" class="btn text-white" onclick="initMap();">
                         <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
                     </a>
+                    <br><br>
+                </div>
+                <div class="col-6">
+                    <h4 style="float: right;color: #007bff;"><b>{{ $name_area }}</b></h4>
                 </div>
                 <div class="col-12">
                     <input class="d-none" type="text" id="va_zoom" name="" value="6">
                     <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                     <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+                    <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
                     @foreach($data_partners as $data_partner)
                         <input class="d-none" type="text" id="name_partner" name="" value="{{ $data_partner->name }}">
                     @endforeach
@@ -26,7 +31,22 @@
         <!-------------------------------------------------- pc -------------------------------------------------->
         <div class="col-8 d-none d-lg-block" >
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            เลือกพื้นที่
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
+                            @foreach($select_name_areas as $select_name_area)
+                                <a class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
+                                    {{ $select_name_area->name_area }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
                     <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
                     @if(Auth::check())
                         @if(Auth::user()->role == 'admin-partner')
@@ -34,6 +54,7 @@
                         @endif
                     @endif
                 </div>
+                <br><br>
                 <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
                     <div class="card-header border-bottom-0 bg-transparent">
                         <div class="d-flex align-items-center">
@@ -557,7 +578,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        initMap();
+        let name_area = document.querySelector('#name_area').value;
+
+        if (name_area) {
+            select_name_area(name_area);
+        }else{
+            initMap();
+        }
 
     });
 
@@ -713,6 +740,10 @@
 
                 }
 
+                // draw_area_other.addListener("click", () => {
+                //     select_name_area(result[xi]['name_area'])
+                // });
+
                 //ปักหมุด
                 let image = "https://www.viicheck.com/img/icon/flag_2.png";
                 @foreach($view_maps_all as $view_map)
@@ -731,8 +762,52 @@
 
     }
 
-    function select_name_area(){
+    function select_name_area(name_area){
 
+        let name_partner = document.querySelector('#name_partner').value;
+        // let name_area = 'คอนโด' ;
+
+        fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                var bounds = new google.maps.LatLngBounds();
+
+                for (let ix = 0; ix < result.length; ix++) {
+                    bounds.extend(result[ix]);
+                }
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                // zoom: 18,
+            });
+            map.fitBounds(bounds);
+
+            // Construct the polygon.
+            draw_area = new google.maps.Polygon({
+                paths: result,
+                strokeColor: "#008450",
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillColor: "#008450",
+                fillOpacity: 0.25,
+            });
+            draw_area.setMap(map);
+
+            //ปักหมุด
+            let image = "https://www.viicheck.com/img/icon/flag_2.png";
+            @foreach($view_maps_all as $view_map)
+            @if(!empty($item->lat))
+                marker = new google.maps.Marker({
+                    position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                    map: map,
+                    icon: image,
+                    zIndex:5,
+                });  
+            @endif   
+            @endforeach
+        });
+        
     }
 
 

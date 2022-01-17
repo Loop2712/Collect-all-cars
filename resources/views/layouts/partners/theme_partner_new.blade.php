@@ -197,7 +197,7 @@
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">
+			<div class="page-content" style="margin-top:-25px;">
 			
 			  @yield('content')
 			

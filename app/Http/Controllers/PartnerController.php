@@ -445,6 +445,8 @@ class PartnerController extends Controller
 
     public function view_sos(Request $request)
     {
+        $name_area = $request->get('name_area');
+
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)
             ->where("name_area", null)
@@ -470,13 +472,18 @@ class PartnerController extends Controller
 
         $view_maps = DB::table('sos_maps')
             ->where('area','LIKE', "%$search_area%")
+            ->where('name_area','LIKE', "%$name_area%")
             ->latest()->paginate($perPage);
+
+        $select_name_areas = DB::table('sos_maps')
+            ->where('area','LIKE', "%$search_area%")
+            ->get();
 
         $text_at = '@' ;
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data'));
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area'));
     }
 
     // public function sos_insurance(Request $request)
