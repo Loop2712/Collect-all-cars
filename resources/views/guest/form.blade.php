@@ -315,42 +315,34 @@
                     document.querySelector('#orc_camera').classList.add('d-none');
                     }
 
-                    let ex_license_plate ;
-
                     if (result['countryCode'] === 'TH') {
                         document.querySelector("#registration").placeholder = "กก9999";
                     }
                     if (result['countryCode'] === 'VN') {
-                        let ex_license_plate = "12A-345.67";
+                        document.querySelector("#registration").placeholder = "12A-345.67";
                     }
                     if (result['countryCode'] === 'MM') {
-                        let ex_license_plate = "9E-9999";
+                        document.querySelector("#registration").placeholder = "9E-9999";
                     }
                     if (result['countryCode'] === 'MY') {
-                        let ex_license_plate = "AAA 9999";
+                        document.querySelector("#registration").placeholder = "AAA 9999";
                     }
                     if (result['countryCode'] === 'PH') {
-                        let ex_license_plate = "ABC 1234";
+                        document.querySelector("#registration").placeholder = "ABC 1234";
                     }
                     if (result['countryCode'] === 'KH') {
-                        let ex_license_plate = "2A-9999";
+                        document.querySelector("#registration").placeholder = "2A-9999";
                     }
                     if (result['countryCode'] === 'LA') {
-                        let ex_license_plate = "ກກ9999";
+                        document.querySelector("#registration").placeholder = "ກກ9999";
                     }
                     if (result['countryCode'] === 'SG') {
-                        let ex_license_plate = "SBA 1234A";
+                        document.querySelector("#registration").placeholder = "SBA 1234A";
                     }
                     if (result['countryCode'] === 'BN') {
-                        let ex_license_plate = "BZZ 9999";
+                        document.querySelector("#registration").placeholder = "BZZ 9999";
                     }
                 }
-                let input_licenseplate = document.querySelector("#registration");
-
-                let ph_licenseplate = document.createAttribute("placeholder");
-                    ph_licenseplate.value = ex_license_plate;
-                
-                input_licenseplate.setAttributeNode(ph_licenseplate);
                 
             });
 
