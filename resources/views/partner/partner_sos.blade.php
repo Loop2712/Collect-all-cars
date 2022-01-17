@@ -113,7 +113,7 @@
                                             <div class="col-2" style="padding:0px;">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}');">
+                                                        <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
                                                             <i class="fas fa-map-marker-alt"></i> 
                                                             <br>
                                                             ดูหมุด
@@ -736,10 +736,10 @@
     }
 
 
-    function view_marker(lat , lng , sos_id){
+    function view_marker(lat , lng , sos_id , name_area){
 
         let name_partner = document.querySelector('#name_partner').value;
-        let name_area = 'คอนโด' ;
+        // let name_area = 'คอนโด' ;
 
         fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
             .then(response => response.json())
