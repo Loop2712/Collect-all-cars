@@ -323,7 +323,7 @@
                     if (result['countryCode'] !== 'TH') {
                     document.querySelector('#orc_camera').classList.add('d-none');
                     }
-                    
+
                     let ex_license_plate ;
 
                     if (result['countryCode'] === 'TH') {
@@ -356,7 +356,7 @@
                 }
                 let input_licenseplate = document.querySelector("#licenseplate");
 
-                let ph_licenseplate = document.createElement("#placeholder");
+                let ph_licenseplate = document.createAttribute("#placeholder");
                     ph_licenseplate.value = ex_license_plate;
                 
                 input_licenseplate.setAttributeNode(ph_licenseplate);
