@@ -174,15 +174,6 @@
                   <label class="sr-only translate" for="inlineFormInputGroupUsername">Ex. กก9999</label>
                   <div class="input-group">
                     <input class="form-control notranslate" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ABC 1234" required onchange="check_registration()">
-                    <!-- <input id="pagenumber_th" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. กก9999" required onchange="check_registration()">
-                    <input id="pagenumber_vn" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 12A-345.67" required onchange="check_registration()">
-                    <input id="pagenumber_mm" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 9E-9999" required onchange="check_registration()">
-                    <input id="pagenumber_my" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. AAA 9999" required onchange="check_registration()">
-                    <input id="pagenumber_ph" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ABC 1234" required onchange="check_registration()">
-                    <input id="pagenumber_kh" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. 2A-9999" required onchange="check_registration()">
-                    <input id="pagenumber_la" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. ກກ9999" required onchange="check_registration()">
-                    <input id="pagenumber_sg" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. SBA 1234A" required onchange="check_registration()">
-                    <input id="pagenumber_bn" class="form-control notranslate d-none" name="registration" type="text" id="registration" value="{{ isset($guest->registration) ? $guest->registration : ''}}" placeholder="Ex. BZZ 9999" required onchange="check_registration()"> -->
                         
                         {!! $errors->first('registration', '<p class="help-block">:message</p>') !!}
                     
@@ -327,7 +318,7 @@
                     let ex_license_plate ;
 
                     if (result['countryCode'] === 'TH') {
-                        let ex_license_plate = "กก9999";
+                        document.querySelector("#registration").placeholder = "กก9999";
                     }
                     if (result['countryCode'] === 'VN') {
                         let ex_license_plate = "12A-345.67";
