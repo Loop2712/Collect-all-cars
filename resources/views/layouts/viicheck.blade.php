@@ -623,7 +623,7 @@
     <div class="container d-md-flex py-3">
       <div class="me-md-auto text-center text-md-start">
         <div class="credits">
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <!-- <div class="col-1">
                 <p id="Certificate-banners"></p>
             </div> -->
@@ -640,6 +640,9 @@
             </div>
             <div class="col-1">
                 <img width="100%" src="{{ asset('/img/logo/js100.png') }}">
+            </div>
+            <div class="col-1">
+                <img width="55%" src="{{ asset('/img/logo/SouthernCoffee2.png') }}">
             </div>
           </div>
         </div>
@@ -679,16 +682,22 @@
       <div class="me-md-auto text-center text-md-start">
         <div class="credits">
           <div class="row">
-              <div class="col-4">
+              <div class="col-6">
                 <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                  <img width="100%" src="{{ asset('/img/logo/bns_registered.png') }}">
+                  <img width="50%" src="{{ asset('/img/logo/bns_registered.png') }}">
                 </a>
               </div>
-            <div class="col-4">
-                <img width="100%" src="{{ asset('/img/logo/GreenLogo.png') }}">
+            <div class="col-6">
+                <img width="50%" src="{{ asset('/img/logo/GreenLogo.png') }}">
             </div>
-            <div class="col-4">
-                <img width="100%" src="{{ asset('/img/logo/js100.png') }}">
+            <div class="col-6">
+              <br>
+                <img width="50%" src="{{ asset('/img/logo/js100.png') }}">
+            </div>
+            <br>
+            <div class="col-6">
+              <br>
+                <img width="20%" src="{{ asset('/img/logo/SouthernCoffee2.png') }}">
             </div>
           </div>
         </div>
