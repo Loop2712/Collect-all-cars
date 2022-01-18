@@ -94,6 +94,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/sos', 'SosController@view_sos');
 	Route::get('/sos_detail_chart', 'SosController@sos_detail_chart');
 
+	Route::get('/detail_area/{name_partner}', 'PartnerController@detail_area');
+
 	Route::get('/guest', function () {
 	    return view('guest');
 	});

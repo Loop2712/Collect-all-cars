@@ -7,10 +7,10 @@
             <div class="col-md-12">
                 <div class="col-md-12 " style="margin-bottom:10px;">
                         <div class="row">
-                            <div class="col-md-2 text-center" >
+                            <div class="col-md-12" >
                                 <h2><i class="fad fa-handshake"></i> Partner</h2>
                             </div>
-                            <div class="col-md-3 col-sm-4 text-center main" style="margin-left: auto;top:8px">
+                            <!-- <div class="col-md-3 col-sm-4 text-center main" style="margin-left: auto;top:8px">
                                 <a href="{{ url('/partner_viicheck/create') }}" title="Add New Insurance" style="text-decoration: none;">
                                     <button type="button" class="d-flex btn btn-secondary btn btn-success btn-sm" style="margin-left: auto;">
                                         <i class="fa fa-plus" style="margin-top:5px" ></i>  เพิ่ม Partner
@@ -29,7 +29,7 @@
                                         </span>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- <h3 class="card-header"> <i class="fad fa-handshake"></i> Partner</h3> -->
@@ -38,10 +38,11 @@
                     <table class="table" style="margin-bottom:0px">
                             <thead style="font-family: 'Prompt', sans-serif; background-color:#E3E5E8;">
                                 <tr class="text-center" >
-                                    <th class="col-md-5" style="font-size:15px">ชื่อพาร์ทเนอร์</th>
-                                    <th class="col-md-2" style="font-size:15px">พื้นที่ดูแลทั้งหมด</th>
-                                    <th class="col-md-3" style="font-size:15px">Admin</th>
-                                    <th class="col-md-2" style="font-size:15px"></th>
+                                    <th class="col-md-5" style="font-size:15px">Name area</th>
+                                    <th class="col-md-2" style="font-size:15px">Grop Line</th>
+                                    <th class="col-md-2" style="font-size:15px">Area current</th>
+                                    <th class="col-md-2" style="font-size:15px">Area pending</th>
+                                    <th class="col-md-1" style="font-size:15px">Admin</th>
                                 </tr>
                             </thead>
                     </table>  
@@ -72,23 +73,76 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div>
-                                            <h4 class="text-center">
-                                                <a href="{{ url('/detail_area/'.$item->name) }}">
-                                                    <span class="text-success ">{{ $item->name }}</span>
-                                                </a>
+                                            <h4 class="text-center" style="margin-top:20px;">
+                                                <span class="text-success ">{{ $item->name_area }}</span>
                                             </h4>
-                                        </div>
-                                        <div style="margin-top:20px;" class="text-center">
-                                            <b>Phone : </b>{{ $item->phone }} &nbsp;&nbsp;&nbsp;
-                                            <b>Mail : </b>{{ $item->mail }}&nbsp;&nbsp;&nbsp;
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <center>
-                                            <!-- พื้นที่ดูแลทั้งหมด -->
+                                            <!-- <h6>Group line</h6> -->
+                                            <div style="margin-top:20px;">
+                                                @if(!empty($item->line_group))
+                                                    {{ $item->line_group }}
+                                                @elseif(empty($item->line_group))
+                                                    <select id="select_line_group_{{ $loop->iteration }}" class="btn btn-sm btn-outline-success" onchange="change_line_group('{{ $loop->iteration }}','{{ $item->name }}');">
+                                                        <option value="" selected>- เลือกกลุ่มไลน์ -</option>
+                                                        @foreach($group_line as $item)
+                                                            <option value="{{ $item->groupName }}" 
+                                                            {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+                                                            {{ $item->groupName }} 
+                                                            </option>
+                                                        @endforeach 
+                                                    </select>
+                                                @else
+                                                    <!-- // -->
+                                                @endif
+                                            </div>
                                         </center>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
+                                        <center>
+                                            <!-- <h6>Area current</h6> -->
+                                            <div style="margin-top:20px;">
+                                                @if(!empty($item->sos_area))
+                                                        <button id="noButton" type="submit" class="btn btn-sm btn-success " href="" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="view_area_current_partner('{{ $item->name }}' , '{{ $item->id }}');">
+                                                            <i class="fas fa-check"></i> Yes
+                                                        </button> 
+                                                    <!-- <i style="font-size:25px;" type="button" class="fas fa-check text-success" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="view_area_current_partner('{{ $item->name }}' , '{{ $item->id }}');"></i> -->
+                                                @else
+                                                    <!-- <i class="fas fa-times text-danger"></i> -->
+                                                    <button  type="submit" class="btn btn-sm btn-danger " href="">
+                                                        <i class="fas fa-times"></i> No
+                                                    </button>
+                                                @endif
+                                            </div>
+                                        </center>
+                                    </div>
+                                    <div class="col-2">
+                                        <center>
+                                            <h6>
+                                                <!-- Area pending -->
+                                                @if(!empty($item->new_sos_area))
+                                                    <span class="notify_alert" style="position: absolute; font-size:12px;color: red;top: -8px;left: 190px;">
+                                                        <b>new</b>
+                                                    </span>
+                                                @endif
+                                            </h6>
+                                            <div style="margin-top:20px;">
+                                                @if(!empty($item->new_sos_area))
+                                                    <a href="" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="check_area_pending_partner('{{ $item->name }}' , '{{ $item->id }}');">
+                                                        ตรวจสอบ 
+                                                    </a>
+                                                @else
+                                                    <!-- <i class="fas fa-times text-danger"></i> -->
+                                                    <button  type="submit" class="btn btn-sm btn-danger " href="">
+                                                        <i class="fas fa-times"></i> No
+                                                    </button>
+                                                @endif
+                                            </div>
+                                        </center>
+                                    </div>
+                                    <div class="col-1">
                                         <center>
                                             <h6>Admin</h6>
                                             @if(!empty($item->user_id_admin))
@@ -98,20 +152,68 @@
                                             @endif
                                         </center>
                                     </div>
-                                    <div class="col-2">
-                                        <div style="float: right;">
-                                            <a href="{{ url('/detail_area/'.$item->name) }}" class="btn btn-sm btn-primary">
-                                                ดูข้อมูล
-                                            </a>
-                                            <form method="POST" action="{{ url('/partner_viicheck' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Not_comfor" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fas fa-trash-alt"></i> ลบ</button>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
                                 <hr>
+                                <div class="collapse container-fluid" id="collapseExample_{{ $item->id }}">
+                                    
+                                    <br>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <i style="color:#FD8433; font-size: 18px;" class="fas fa-circle"></i>
+                                                พื้นที่บริการองค์กรอื่นๆ
+                                            </div>
+                                            <div class="col-3">
+                                                <i style="color:#008450; font-size: 18px;" class="fas fa-circle"></i>
+                                                พื้นที่บริการปัจจุบัน
+                                            </div>
+                                            <div class="col-3">
+                                                <i style="color:#173066; font-size: 18px;" class="fas fa-circle"></i>
+                                                พื้นที่ขอรับการอนุมัติ
+                                            </div>
+                                            <div class="col-3">
+                                                <i class="far fa-times-circle float-right btn" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <b class="text-primary">พื้นที่บริการปัจจุบัน</b>
+                                                </div>
+                                                <div class="col-6">
+                                                    <b class="text-danger">พื้นที่ขอรับการอนุมัติ</b>
+                                                    <div class="float-right">
+                                                        <button id="btn_approved_{{ $item->id }}" type="button" class="btn btn-sm btn-success" onclick="confirm_change('approve','{{ $item->id }}');">
+                                                            &nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;
+                                                        </button>
+                                                        <button id="btn_disapproved_{{ $item->id }}" type="button" class="btn btn-sm btn-danger" onclick="confirm_change('disapproved','{{ $item->id }}');">
+                                                            ไม่อนุมัติ
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span class="text-secondary" id="text_err_{{ $item->id }}"></span>
+                                                    <div id="current_map_{{ $item->id }}" style="height: calc(40vh);"></div>
+                                                    <input class="d-none" type="text" id="input_current_area_{{ $item->id }}" name=""  value="">
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="text-secondary" id="text_2_err_{{ $item->id }}"></span>
+                                                    <div id="new_map_{{ $item->id }}" style="height: calc(40vh);"></div>
+                                                    <input class="d-none" type="text" id="input_new_area_{{ $item->id }}" name=""  value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="border-style: solid;border-color: red;">
+                                </div>
                                 @endforeach
                             </div>
                             <!-- Button trigger modal -->

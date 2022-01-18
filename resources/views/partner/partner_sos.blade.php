@@ -47,12 +47,14 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <a href="{{ url('/sos_detail_partner') }}" style="float: right;" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
-                    @if(Auth::check())
-                        @if(Auth::user()->role == 'admin-partner')
-                    <a href="{{ url('/sos_score_helper') }}" type="button" style="float: right;" class="btn btn-primary text-white d-none">คะแนนการช่วยเหลือ </a>
+                    <div style="float: right;">
+                        <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
+                        @if(Auth::check())
+                            @if(Auth::user()->role == 'admin-partner')
+                        <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-primary text-white d-">คะแนนการช่วยเหลือ </a>
+                            @endif
                         @endif
-                    @endif
+                    </div>
                 </div>
                 <br><br>
                 <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">

@@ -39,12 +39,13 @@ class PartnerController extends Controller
 
         if (!empty($keyword)) {
             $partner = Partner::where('name', 'LIKE', "%$keyword%")
+                ->where('name_area', null)
                 ->orWhere('phone', 'LIKE', "%$keyword%")
                 ->orWhere('line_group', 'LIKE', "%$keyword%")
                 ->orWhere('mail', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $partner = Partner::latest()->paginate($perPage);
+            $partner = Partner::where('name_area', null)->latest()->paginate($perPage);
         }
 
         foreach ($partner as $key) {
@@ -54,6 +55,21 @@ class PartnerController extends Controller
         $group_line = Group_line::where('owner', null)->get();
 
         return view('partner.index', compact('partner','group_line','new_sos_area'));
+    }
+
+    public function detail_area($name_partner)
+    {
+        // $name_partner = $request->get('name_partner');
+        $perPage = 25;
+        
+        $partner = Partner::where('name', $name_partner)
+                ->where('name_area', "!=" , null)
+                ->latest()
+                ->paginate($perPage);
+
+        $group_line = Group_line::where('owner', null)->get();
+
+        return view('partner.detail_name_area', compact('partner','group_line'));
     }
 
     /**
