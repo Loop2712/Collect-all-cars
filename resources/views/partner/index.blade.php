@@ -72,7 +72,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div>
-                                            <h4 class="text-center">
+                                            <h4 id="tag_h_name_{{ $item->id }}" class="text-center">
                                                 <a href="{{ url('/detail_area/'.$item->name) }}">
                                                     <span class="text-success ">{{ $item->name }}</span>
                                                 </a>
@@ -177,9 +177,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        
-    });
+            // console.log("START");
+            check_new_sos_area_2();
+        });
 
         var draw_area ;
         var map ;
@@ -420,6 +420,42 @@
                     document.querySelector('#btn_submit_change').classList.add('d-none');
             }
 
+        }
+
+        function check_new_sos_area_2() {
+
+            fetch("{{ url('/') }}/api/check_new_sos_area")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    let check = "no" ;
+                    let id_partner = null ;
+                    for (var i = 0; i < result.length; i++) {
+
+                        if (result[i]['name_area'] === null) {
+                            id_partner = result[i]['id'];
+                        }
+
+                        if (result[i]['new_sos_area']) {
+                            check = "yes";
+                        }
+
+                    }
+
+                    if (id_partner) {
+
+                        let tag_h_name = document.querySelector('#tag_h_name_' + id_partner);
+
+                        let tag_i = document.createElement("i");
+                        let tag_i_class = document.createAttribute("class");
+                            tag_i_class.value = "fas fa-exclamation-circle notify_alert";
+
+                        tag_i.setAttributeNode(tag_i_class); 
+
+                        tag_h_name.appendChild(tag_i);
+                    }
+            });
         }
 
 
