@@ -1,4 +1,4 @@
-@extends('layouts.partners.theme_partner')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
 <style>
@@ -18,85 +18,88 @@
   }
 </style>
 <br>
-<div class="col-md-12 d-none d-lg-block">
-  <div class="card">
-    <div class="card-header bg-transparent">
-      <div class="row align-items-center">
-        <div class="col">
-          <div class="row">
-              <div class="col-md-12">
-                  <h6 class=" text-muted ls-1 mb-1">
-                    SOS
-                    <a style="float: right">ขอความช่วยเหลือทั้งหมด : <span id="sos_all">{{ $sos_all }}</span> ครั้ง</a>
-                  </h6>
-              </div>
-          </div>
-          <h5 class="h3 mb-0">
-            ขอความช่วยเหลือ
-          </h5>
-          <br>
-          <div class="row">
-            <div class="col-md-2">
-              <label  class="control-label">{{ 'เลือกปี' }}</label>
-              <select class="form-control" id="select_year" onchange="select_year();">
-                <option value="">ทั้งหมด</option>
-                <option value="2020">2563</option>
-                <option value="2021">2564</option>
-                <option value="2022">2565</option>
-              </select>
-            </div>
-            <div class="col-md-2">
-              <label  class="control-label">{{ 'เลือกเดือน' }}</label>
-              <select class="form-control" id="select_month" onchange="select_month();">
-                <option value="">ทั้งหมด</option>
-                <option value="01">มกราคม</option>
-                <option value="02">กุมภาพันธ์</option>
-                <option value="03">มีนาคม</option>
-                <option value="04">เมษายน</option>
-                <option value="05">พฤษภาคม</option>
-                <option value="06">มิถุนายน</option>
-                <option value="07">กรกฎาคม</option>
-                <option value="08">สิงหาคม</option>
-                <option value="09">กันยายน</option>
-                <option value="10">ตุลาคม</option>
-                <option value="11">พฤศจิกายน</option>
-                <option value="12">ธันวาคม</option>
-              </select>
-            </div>
-            <div class="col-md-1">
-              <br>
-              <form style="float:right;" method="GET" action="{{ url('/sos_detail_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
-                <div class="input-group">
-                    <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
-                    <input type="hidden" class="form-control" id="input_month" name="month" value="{{ request('month') }}">
-
-                    <button style="margin-top: 7px;" class="btn btn-primary" type="submit">
-                        ค้นหา
-                    </button>
+<div class="row d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-bottom-0 bg-transparent ">
+                    <div class="d-flex align-items-center col-12" style="margin-top:10px;">
+                          <div class="col-6">
+                            <h5 class="font-weight-bold mb-0">เลือกช่วงเวลา</h5>
+                          </div>
+                          <div class="col-6">
+                              <a style="float: right;">ขอความช่วยเหลือทั้งหมด : <span id="sos_all">{{ $sos_all }}</span> ครั้ง</a>
+                          </div>
+                    </div>
                 </div>
-              </form>
+                <div class="card-body" >
+                    <div class="row align-items-center">
+                    <div class="row justify-content-center" style="margin-top:-30px">
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_year" onchange="select_year();">
+                                  <option value="">เลือกปี</option>
+                                  <option value="2020">2563</option>
+                                  <option value="2021">2564</option>
+                                  <option value="2022">2565</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_month" onchange="select_month();">
+                                  <option value="">เลือกเดือน</option>
+                                  <option value="01">มกราคม</option>
+                                  <option value="02">กุมภาพันธ์</option>
+                                  <option value="03">มีนาคม</option>
+                                  <option value="04">เมษายน</option>
+                                  <option value="05">พฤษภาคม</option>
+                                  <option value="06">มิถุนายน</option>
+                                  <option value="07">กรกฎาคม</option>
+                                  <option value="08">สิงหาคม</option>
+                                  <option value="09">กันยายน</option>
+                                  <option value="10">ตุลาคม</option>
+                                  <option value="11">พฤศจิกายน</option>
+                                  <option value="12">ธันวาคม</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <br>
+                                <form style="float: right;" method="GET" action="{{ url('/sos_detail_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+                                    <div class="input-group">
+                                      <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
+                                      <input type="hidden" class="form-control" id="input_month" name="month" value="{{ request('month') }}">
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">
+                                        ค้นหา
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <br>
+                                <a href="{{ url('/sos_detail_partner') }}" >
+                                    <button class="btn btn-danger">
+                                        ล้างการค้นหา
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-              <br>
-              <a href="{{URL::to('/sos_detail_partner')}}" >
-                <button style="margin-top: 7px;" class="btn btn-danger">
-                        ล้างการค้นหา
-                </button>
-              </a>
-            </div>
-            <div class="col-md-3">
-              <br><br>
-              <div style="float: right;">ทั้งหมด : <b>{{ $total }}</b> ครั้ง</div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-    <div class="card-body">
-      <div class="card-header bg-transparent">
-        <div class="row align-items-center">
-          <div class="col">
-            <div class="row main-shadow main-radius" id="img_bg_3">
+    <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="d-flex align-items-center" style="margin-top:10px;">
+                <div class="col-6">
+                    <h5 class="font-weight-bold mb-0">ขอความช่วยเหลือ</h5>
+                </div>
+                <div class="col-6">
+                    <div style="float: right;">ขอความช่วยเหลือในเดือนที่ค้นหา : <b>{{ $total }}</b> ครั้ง</div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+          <div class="row main-shadow main-radius" id="img_bg_3">
               <!-- <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 17%;">
                 <canvas id="canvas_1" width="250" height="250"></canvas>
               </div>
@@ -105,13 +108,13 @@
               </div> -->
               <div class="col-md-6" style="z-index: 10; ">
                 <center>
-                  <canvas id="canvas_1" width="185px" height="185" style="margin-top:180px"></canvas>
+                  <canvas id="canvas_1" width="185px" height="185" style="margin-top:140px"></canvas>
                   
                 </center>
               </div>
               <div class="col-md-6" style="z-index: 10;">
                 <center>
-                  <canvas id="canvas_2"  width="185px" height="185" style="margin-top:180px"></canvas>
+                  <canvas id="canvas_2"  width="185px" height="185" style="margin-top:140px"></canvas>
                 </center>
               </div>
               <!-- <div class="col-md-12" >
@@ -124,98 +127,96 @@
                   <b> {{ $sos_time_01 }} </b>
                 </h2>
               </div> -->
-              <div id="" class="col-md-6" style="margin-top:-320px;">
-                <img style="position:absolute;right: 50px; margin-top:-50px;"  width="80px" src="{{ asset('/img/more/sun.png') }}" >
+              <div id="" class="col-md-6" style="margin-top:-360px;">
+                <img style="position:absolute;right: 50px; margin-top:-20px;"  width="80px" src="{{ asset('/img/more/sun.png') }}" >
                 <center>
-                  <img width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
-                  <h2 class="text-danger" style="margin-top: -335px;margin-left: 60px;">
+                  <img  width="400px" src="{{ asset('/img/more/clock-am.png') }}" >
+                  <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
                     <b> {{ $sos_time_00 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
                     <b> {{ $sos_time_11 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -30px;margin-left: -160px;">
+                  <h2 class="text-danger" style="margin-top: -15px;margin-left: -160px;">
                     <b> {{ $sos_time_10 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 155px;">
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 155px;">
                     <b> {{ $sos_time_01 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -7px;margin-left: 210px;">
+                  <h2 class="text-danger" style="margin-top: 12px;margin-left: 220px;">
                     <b> {{ $sos_time_02 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -210px;">
+                  <h2 class="text-danger" style="margin-top: -42px;margin-left: -220px;">
                     <b> {{ $sos_time_09 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: 5px;margin-left: -210px;">
-                    <b> {{ $sos_time_08 }} </b>
+                  <h2 class="text-danger" style="margin-top:20px;margin-left: -210px;">
+                    <b> {{ $sos_time_08 }}</b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 215px;">
+                  <h2 class="text-danger" style="margin-top: -55px;margin-left: 225px;">
                     <b> {{ $sos_time_03 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -10px;margin-left: 155px;">
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
                     <b> {{ $sos_time_04 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -55px;margin-left: -165px;">
+                  <h2 class="text-danger" style="margin-top: -40px;margin-left: -155px;">
                     <b> {{ $sos_time_07 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -35px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -15px;margin-left: -50px;">
                     <b> {{ $sos_time_06 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -60px;margin-left: 60px;">
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 70px;">
                     <b> {{ $sos_time_05 }} </b>
                   </h2>
                 </center>
               </div>
-              <div id="" class="col-md-6" style="margin-top:-320px;">
-                <img style="position:absolute;left: 20px; margin-top:-45px;" width="70px" src="{{ asset('/img/more/moon.png') }}" >
+              <div id="" class="col-md-6" style="margin-top:-360px;">
+                <img style="position:absolute;left: 20px; margin-top:-20px;" width="70px" src="{{ asset('/img/more/moon.png') }}" >
                 <center>
                   <img width="400px" src="{{ asset('/img/more/clock-pm.png') }} ">
-                  <h2 class="text-danger" style="margin-top: -335px;margin-left: 60px;">
+                  <h2 class="text-danger" style="margin-top: -330px;margin-left: 60px;">
                     <b> {{ $sos_time_12 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -45px;margin-left: -60px;">
                     <b> {{ $sos_time_23 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -30px;margin-left: -160px;">
+                  <h2 class="text-danger" style="margin-top: -15px;margin-left: -160px;">
                     <b> {{ $sos_time_22 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 155px;">
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 155px;">
                     <b> {{ $sos_time_13 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -7px;margin-left: 210px;">
+                  <h2 class="text-danger" style="margin-top: 12px;margin-left: 220px;">
                     <b> {{ $sos_time_14 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -60px;margin-left: -210px;">
+                  <h2 class="text-danger" style="margin-top: -42px;margin-left: -220px;">
                     <b> {{ $sos_time_21 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: 5px;margin-left: -210px;">
+                  <h2 class="text-danger" style="margin-top:20px;margin-left: -210px;">
                     <b> {{ $sos_time_20 }}</b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -65px;margin-left: 215px;">
+                  <h2 class="text-danger" style="margin-top: -55px;margin-left: 225px;">
                     <b> {{ $sos_time_15 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -10px;margin-left: 155px;">
+                  <h2 class="text-danger" style="margin-top: 15px;margin-left: 165px;">
                     <b> {{ $sos_time_16 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -55px;margin-left: -165px;">
+                  <h2 class="text-danger" style="margin-top: -40px;margin-left: -155px;">
                     <b> {{ $sos_time_19 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -35px;margin-left: -60px;">
+                  <h2 class="text-danger" style="margin-top: -15px;margin-left: -50px;">
                     <b> {{ $sos_time_18 }} </b>
                   </h2>
-                  <h2 class="text-danger" style="margin-top: -60px;margin-left: 60px;">
+                  <h2 class="text-danger" style="margin-top: -50px;margin-left: 70px;">
                     <b> {{ $sos_time_17 }} </b>
                   </h2>
                   <h2 style="margin-bottom:70px"></h2>
                 </center>
               </div>
-              </div>
             </div>
           </div>
         </div>
     </div>
-  </div>
-</div> 
+
 <div class="col-12 text-center d-block d-md-none">
   <h1>ระบบนี้ใช้ได้เฉพาะ pc เท่านั้น</h1>
 </div>
