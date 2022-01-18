@@ -444,7 +444,7 @@
                     }
 
                     if (id_partner) {
-
+                        console.log(id_partner);
                         let tag_h_name = document.querySelector('#tag_h_name_' + id_partner);
 
                         let tag_i = document.createElement("i");
