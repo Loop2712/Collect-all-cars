@@ -105,10 +105,10 @@
                                             <!-- <h6>Area current</h6> -->
                                             <div style="margin-top:20px;">
                                                 @if(!empty($item->sos_area))
-                                                        <button id="noButton" type="submit" class="btn btn-sm btn-success " href="" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="view_area_current_partner('{{ $item->name }}' ,'{{ $item->name_area }}' , '{{ $item->id }}');">
+                                                        <button id="noButton" type="submit" class="btn btn-sm btn-success " href="" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="check_area('{{ $item->name }}' ,'{{ $item->name_area }}' , '{{ $item->id }}');">
                                                             <i class="fas fa-check"></i> Yes
                                                         </button> 
-                                                    <!-- <i style="font-size:25px;" type="button" class="fas fa-check text-success" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="view_area_current_partner('{{ $item->name_area }}' , '{{ $item->id }}');"></i> -->
+                                                    <!-- <i style="font-size:25px;" type="button" class="fas fa-check text-success" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="check_area('{{ $item->name_area }}' , '{{ $item->id }}');"></i> -->
                                                 @else
                                                     <!-- <i class="fas fa-times text-danger"></i> -->
                                                     <button  type="submit" class="btn btn-sm btn-danger " href="">
@@ -130,7 +130,7 @@
                                             </h6>
                                             <div style="margin-top:20px;">
                                                 @if(!empty($item->new_sos_area))
-                                                    <a href="" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="check_area_pending_partner('{{ $item->name }}' ,'{{ $item->name_area }}' , '{{ $item->id }}');">
+                                                    <a href="" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseExample_{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample_{{ $item->id }}" onclick="check_area('{{ $item->name }}' ,'{{ $item->name_area }}' , '{{ $item->id }}');">
                                                         ตรวจสอบ 
                                                     </a>
                                                 @else
@@ -352,6 +352,11 @@
                 }, delayInMilliseconds);
         }
 
+        function check_area(name , name_area , id){
+            view_area_current_partner(name , name_area , id);
+            check_area_pending_partner(name , name_area , id);
+        }
+
         function check_area_pending_partner(name , name_area , id){
 
             fetch("{{ url('/') }}/api/area_pending/" + name + "/" + name_area)
@@ -383,7 +388,7 @@
                     
                 });
 
-            view_area_current_partner(name , name_area , id);
+            // view_area_current_partner(name , name_area , id);
 
         }
 
@@ -417,6 +422,7 @@
                     }
                     
                 });
+
         }
 
         function approve(id) {
