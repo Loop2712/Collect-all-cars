@@ -154,10 +154,12 @@ class LoginController extends Controller
         print_r($user);
         echo "<pre>";
         echo "<br>";
-        echo $student;
+        
         
         $student = $request->session()->get('Student');
         $from = $request->session()->get('from');
+
+        echo $student;
         exit();
         $this->_registerOrLoginUser($user,"line",$student , $from );
 
