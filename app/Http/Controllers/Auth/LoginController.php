@@ -234,7 +234,16 @@ class LoginController extends Controller
                 DB::table('users')
                     ->where('id', $data_user->id)
                     ->update([
-                        'std_of' => 'Student-TU',
+                        'std_of' => 'TU',
+                    ]);
+            }
+
+            if ($student_name == "kmutnbs") {
+
+                DB::table('users')
+                    ->where('id', $data_user->id)
+                    ->update([
+                        'std_of' => 'kmutnbs',
                     ]);
             }
         }
