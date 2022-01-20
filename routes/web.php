@@ -36,6 +36,7 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 
 // TU
 Route::get('login/line/tu_sos', 'Auth\LoginController@redirectToLine_TU_SOS');
+Route::get('login/line/check_in_kmutnbs', 'Auth\LoginController@redirectToLine_check_in_kmutnbs');
 
 // facebook_messenger_api
 Route::get('/facebook_messenger_api', 'API\facebook_messenger_api@facebook');
@@ -312,3 +313,4 @@ Route::get('/check_ip', 'Home_pageController@check_ip');
 
 Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
+Route::resource('check_in_kmutnbs', 'Check_in_kmutnbsController');

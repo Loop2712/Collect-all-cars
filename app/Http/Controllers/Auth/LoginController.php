@@ -137,17 +137,28 @@ class LoginController extends Controller
         return Socialite::driver('line')->redirect();
     }
 
+    // Line login kmutnbs
+    public function redirectToLine_check_in_kmutnbs(Request $request)
+    {
+        $request->session()->put('Student', 'kmutnbs');
+        $request->session()->put('redirectTo', 'https://lin.ee/xnFKMfc');
+
+        return Socialite::driver('line')->redirect();
+    }
+
     // Line callback
     public function handleLineCallback(Request $request)
     {
         $user = Socialite::driver('line')->user();
-        // echo "<pre>";
-        // print_r($user);
-        // echo "<pre>";
-        // exit();
+        echo "<pre>";
+        print_r($user);
+        echo "<pre>";
+        echo "<br>";
+        echo $student;
+        
         $student = $request->session()->get('Student');
         $from = $request->session()->get('from');
-
+        exit();
         $this->_registerOrLoginUser($user,"line",$student , $from );
 
         $value = $request->session()->get('redirectTo');
@@ -221,7 +232,7 @@ class LoginController extends Controller
                 DB::table('users')
                     ->where('id', $data_user->id)
                     ->update([
-                        'role' => 'Student-TU',
+                        'std_of' => 'Student-TU',
                     ]);
             }
         }

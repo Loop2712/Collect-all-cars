@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "time_in",
+            "type": "datetime"
+        },
+        {
+            "name": "time_out",
+            "type": "datetime"
+        }
+    ]
+}
