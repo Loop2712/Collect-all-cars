@@ -141,6 +141,7 @@ class LoginController extends Controller
     public function redirectToLine_check_in_kmutnbs(Request $request)
     {
         $request->session()->put('Student', 'kmutnbs');
+        $request->session()->put('bot_prompt', 'normal');
         $request->session()->put('redirectTo', 'https://lin.ee/xnFKMfc');
 
         return Socialite::driver('line')->redirect();
@@ -235,14 +236,14 @@ class LoginController extends Controller
                     ]);
             }
 
-            if ($student_name == "kmutnbs") {
+            // if ($student_name == "kmutnbs") {
 
-                DB::table('users')
-                    ->where('id', $data_user->id)
-                    ->update([
-                        'std_of' => 'kmutnbs',
-                    ]);
-            }
+            //     DB::table('users')
+            //         ->where('id', $data_user->id)
+            //         ->update([
+            //             'std_of' => 'kmutnbs',
+            //         ]);
+            // }
         }
 
         if (!empty($from)) {
