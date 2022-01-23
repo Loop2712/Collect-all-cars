@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Check_in;
 use Illuminate\Http\Request;
 
@@ -41,8 +42,7 @@ class Check_inController extends Controller
      */
     public function create()
     {
-        $date_time = date("Y-m-d");
-        return view('check_in.create', compact('date_time'));
+        return view('check_in.create');
     }
 
     /**
@@ -56,8 +56,32 @@ class Check_inController extends Controller
     {
         
         $requestData = $request->all();
-        
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
+
         Check_in::create($requestData);
+
+        if (!empty($requestData['select_University'])) {
+            DB::table('users')
+              ->where('id', $requestData['user_id'])
+              ->where('std_of' , null)
+              ->update([
+                'std_of' => $requestData['select_University'],
+                'student_id' => $requestData['student_id'],
+          ]);
+        }
+
+        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on") {
+            DB::table('users')
+              ->where('id', $requestData['user_id'])
+              ->where('std_of' , null)
+              ->update([
+                'std_of' => 'guest',
+          ]);
+        }
 
         return redirect('check_in')->with('flash_message', 'Check_in added!');
     }
