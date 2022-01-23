@@ -188,6 +188,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
 	Route::get('sos_insurance_blade', 'Sos_mapController@sos_insurance_blade');
 	// Route::get('/sosmap', 'SosController@sosmap');
+	Route::resource('check_in', 'Check_inController')->except(['show','edit']);
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
@@ -316,4 +317,3 @@ Route::get('/check_ip', 'Home_pageController@check_ip');
 Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
 
-Route::resource('check_in', 'Check_inController')->except(['show','edit']);
