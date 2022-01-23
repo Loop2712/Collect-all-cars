@@ -41,7 +41,8 @@ class Check_inController extends Controller
      */
     public function create()
     {
-        return view('check_in.create');
+        $date_time = date("Y-m-d");
+        return view('check_in.create', compact('date_time'));
     }
 
     /**
