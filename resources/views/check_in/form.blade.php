@@ -34,81 +34,75 @@
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
 
+
+<script src="{{ asset('js/jsQR.js')}}"></script>
+
 <script>
+    // var video = document.querySelector('#videoElement');
 
-    requestAnimationFrame(tick);  // เริ่มตั้นทำงาน
-    function tick(){
-        // กำหนดคำสั่งตามต้องการ
-        // คำสั่งส่วนนี้จะทำซ้ำ 60 ครั้งใน 1 วินาที
-      requestAnimationFrame(tick);   // วนลูปเข้าไปทำคำสั่งซ้ำเรื่อยๆ 
+    // if (navigator.mediaDevices.getUserMedia) {
+    //     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }) 
+    //     // { video: true}
+    //     // { video: { facingMode: { exact: "environment" } } }
+    //     .then(function (stream) {
+    //         if (typeof video.srcObject == "object") {
+    //             video.srcObject = stream;
+    //         } else {
+    //             video.src = URL.createObjectURL(stream);
+    //         }
+    //     })
+    //     .catch(function (err0r) {
+    //         console.log("Something went wrong!");
+    //     });
+    // }
+
+    var dwVDO, dwCanvasTag, dwVDOCanvas, QRhandle;
+    
+    function DWTQR(c){ //by DwThai.Com
+        dwVDO = document.createElement("video");
+        dwCanvasTag=  document.getElementById(c);
+        dwVDOCanvas = dwCanvasTag.getContext("2d");
     }
 
-    var video = document.querySelector('#videoElement');
-
-    if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }) 
-        // { video: true}
-        // { video: { facingMode: { exact: "environment" } } }
-        .then(function (stream) {
-            if (typeof video.srcObject == "object") {
-                video.srcObject = stream;
-            } else {
-                video.src = URL.createObjectURL(stream);
-            }
-        })
-        .catch(function (err0r) {
-            console.log("Something went wrong!");
-        });
-    }
-
-    function tick() {
-        loadingMessage.innerText = "⏳ Loading video..." // กำลังโหลดวิดีโอ
-
-        if (video.readyState === video.HAVE_ENOUGH_DATA) { // ถ้าวิดีโอพร้อม
-            // ซ่อนแสดง element ต่างๆ
-            loadingMessage.hidden = true;
-            canvasElement.hidden = false;
-            outputContainer.hidden = false;
-     
-            // สร้าง canvas สำหรับวาดภาพหรือสร้างรูปภาพ กำหนดความกว้างความสูงเท่ากับ video
-            canvasElement.height = video.videoHeight;
-            canvasElement.width = video.videoWidth;
-            // เอาภาพใน video เขียนลองใน canvas นั่นคือ รูปภาพจากวิดีโอถุูกวาดลง canvs ทุกๆ 60 ครั้งใน 1 วินาที
-            // เป็นเหมือนการเกิด animation ขึ้นใน frame rate เท่ากับ 60
-            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-            // ดึงข้อมูลรูปภาพของ video ที่เขียนลง canvas มาใช้
-            var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-            // แล้วเอาเข้าไปตรวจสอบหาค่า จาก qrcode ในรูปถ้ามี นั่นคือ ในขณะที่วิดีโอกำลังอยู่ภาพจะถูกส่งไปตรวจสอบ qrcode ตลอด
-            // แล้วคืนค่ามาในตัวแปร code
-            var code = jsQR(imageData.data, imageData.width, imageData.height, {
-              inversionAttempts: "dontInvert",
+    function dwStartScan(){
+            navigator.mediaDevices.getUserMedia({video: { facingMode: "environment" } }).then(function(stream){
+              dwVDO.srcObject = stream;
+              dwVDO.play();
+              QRhandle= requestAnimationFrame(dwQRScan);
             });
-
-            if (code) {// ถ้ามีข้อมุล qrcode
-                // ทำการวดรูปกรอบสี่เหลียม ตามตำแหน่ง qrcode ที่พบในรูปลงไปในรูปใน canvas ใช้ฟังก์ชั่น drawLine()
-                drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
-                drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
-                drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
-                drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-                // ซ่อน แสดงส่วน element ข้อมูล qrcode
-                outputMessage.hidden = true;
-                outputData.parentElement.hidden = false;
-                 outputData.innerText = code.data;
-            } else {
-                // ถ้าไม่พบ qrcode หรือเอา qrcode ออกจาหน้ากล้อง กำหนดซ่อนแสดง ข้อความแจ้ง
-                outputMessage.hidden = false;
-                outputData.parentElement.hidden = true;
-            }
-        }
-        requestAnimationFrame(tick); // วนลูปทำซ้ำ
     }
 
-    function drawLine(begin, end, color) {
-        canvas.beginPath();
-        canvas.moveTo(begin.x, begin.y);
-        canvas.lineTo(end.x, end.y);
-        canvas.lineWidth = 4;
-        canvas.strokeStyle = color;
-        canvas.stroke();
+    function dwQRScan() {
+          if(dwVDO.readyState === dwVDO.HAVE_ENOUGH_DATA) {
+            dwVDOCanvas.drawImage(dwVDO, 0, 0, dwCanvasTag.width, dwCanvasTag.height);
+           var imgData = dwVDOCanvas.getImageData(0, 0, dwCanvasTag.width, dwCanvasTag.height);
+           var qrcode = jsQR(imgData.data, imgData.width, imgData.height);//Using jsQR
+                    if(qrcode) {
+                      var setBorder=qrcode.location;
+                      borderCapture(setBorder.topLeftCorner, setBorder.topRightCorner);
+                      borderCapture(setBorder.topRightCorner, setBorder.bottomRightCorner);
+                      borderCapture(setBorder.bottomRightCorner, setBorder.bottomLeftCorner);
+                      borderCapture(setBorder.bottomLeftCorner, setBorder.topLeftCorner);
+                      var qrdata = qrcode.data;
+                          if(qrdata!=""){
+                              dwVDO.src=null;
+                              dwQRReader(qrdata);
+                              cancelAnimationFrame(QRhandle);
+                              return;
+                          }
+                    }
+          }
+           QRhandle=requestAnimationFrame(dwQRScan);
     }
+
+    function borderCapture(begin, end) {
+          dwVDOCanvas.beginPath();
+          dwVDOCanvas.moveTo(begin.x, begin.y);
+          dwVDOCanvas.lineTo(end.x, end.y);
+          dwVDOCanvas.lineWidth = 3;
+          dwVDOCanvas.strokeStyle = "#0E0";
+          dwVDOCanvas.stroke();
+    }
+
+    
 </script>
