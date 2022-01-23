@@ -317,3 +317,8 @@ Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
 
 Route::resource('check_in', 'Check_inController')->except(['show','edit']);
+
+Route::get('/test_qr', function () {
+    
+    return view('check_in/test_qr_code');
+});
