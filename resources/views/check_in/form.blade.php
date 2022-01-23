@@ -46,7 +46,7 @@
     var video = document.querySelector('#videoElement');
 
     if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true}) 
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }) 
         // { video: true}
         // { video: { facingMode: { exact: "environment" } } }
         .then(function (stream) {
