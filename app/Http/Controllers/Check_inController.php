@@ -83,7 +83,28 @@ class Check_inController extends Controller
           ]);
         }
 
-        return redirect('check_in')->with('flash_message', 'Check_in added!');
+        if (!empty($requestData['time_in'])) {
+            $time = $requestData['time_in'] ;
+            $type = "CHECK IN" ;
+        }
+
+        if (!empty($requestData['time_out'])) {
+            $time = $requestData['time_out'] ;
+            $type = "CHECK OUT" ;
+        }
+
+        $data_in_out = check_in::where('user_id', $requestData['user_id'])
+            ->where('check_in_at', $requestData['check_in_at'])
+            ->latest()
+            ->take(5)
+            ->get();   
+
+        $check_in_at = $requestData['check_in_at'] ;
+
+        $time = str_replace("T"," ",$time);
+
+        // return redirect('/check_in_finish')->with('flash_message', 'Check_in added!');
+        return view('check_in.check_in_finish', compact('time','type','data_in_out','check_in_at'));
     }
 
     /**
@@ -146,4 +167,5 @@ class Check_inController extends Controller
 
         return redirect('check_in')->with('flash_message', 'Check_in deleted!');
     }
+
 }

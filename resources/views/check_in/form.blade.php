@@ -35,7 +35,7 @@
     <div id="for_std" class="d-none">
         <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
             <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
-            <select name="select_University" id="select_University" class="form-control notranslate" onchange="">
+            <select name="select_University" id="select_University" class="form-control notranslate" required>
                 <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
                 <option class="notranslate" value="KMUTNB" >มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</option>
             </select>
@@ -43,7 +43,7 @@
 
         <div id="div_student_id" class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
             <label for="student_id" class="control-label">{{ 'Student Id' }}</label>
-            <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id}}" >
+            <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id }}" >
             {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
         </div>
 
@@ -91,12 +91,20 @@
 
                 if (std_of.value) {
                     document.querySelector("#for_std").classList.add("d-none");
+                    // เอา required ออกจาก student_id และ select_University
+                    document.querySelector("#select_University").required = "";
+                    document.querySelector("#student_id").required = "";
                 }else{
                     document.querySelector("#for_std").classList.remove("d-none");
                     // ใส่ required ใน student_id และ select_University
+                    document.querySelector("#select_University").required = "true";
+                    document.querySelector("#student_id").required = "true";
                 }
             }else{
                 document.querySelector("#for_std").classList.add("d-none");
+                // เอา required ออกจาก student_id และ select_University
+                document.querySelector("#select_University").required = "";
+                document.querySelector("#student_id").required = "";
             }
 
             if (location) {
@@ -130,10 +138,11 @@
     };
 
     function fu_guest_check_in(){
-        // document.querySelector("#for_std").classList.add("d-none");
         document.querySelector("#div_select_University").classList.add("d-none");
         document.querySelector("#div_student_id").classList.add("d-none");
         // เอา required ออกจาก student_id และ select_University
+        document.querySelector("#select_University").required = "";
+        document.querySelector("#student_id").required = "";
     };
     
     

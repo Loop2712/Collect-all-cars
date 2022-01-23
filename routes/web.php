@@ -188,7 +188,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
 	Route::get('sos_insurance_blade', 'Sos_mapController@sos_insurance_blade');
 	// Route::get('/sosmap', 'SosController@sosmap');
-	Route::resource('check_in', 'Check_inController')->except(['show','edit']);
+	Route::resource('check_in', 'Check_inController')->except(['index','show','edit']);
+	Route::get('/check_in_finish', function () {
+	    return view('check_in/check_in_finish');
+	});
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
