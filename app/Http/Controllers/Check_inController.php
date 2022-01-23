@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Models\Check_in;
 use Illuminate\Http\Request;
+use Auth;
 
 class Check_inController extends Controller
 {
