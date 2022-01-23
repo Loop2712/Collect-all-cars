@@ -1,9 +1,8 @@
 <div class="col-12" id="">
-    <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+    <canvas width="100%" height="100%" id="mycanvas"></canvas>
+    <!-- <video width="100%" height="100%" autoplay="true" id="videoElement"></video> -->
 </div>
 
-<canvas class="d-none" id="canvas"></canvas>
-<p class="btn btn-warning" id="btnScan">Scan</p>
 
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
@@ -38,75 +37,18 @@
 
 
 <script src="{{ asset('js/jsQR.js')}}"></script>
+<script src="{{ asset('js/dw-qrscan.js')}}"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        DWTQR("mycanvas");
         dwStartScan();
     });
 
     function dwQRReader(data){
         alert(data);
     };
-
-    var video = document.querySelector('#videoElement');
-    var canvas = document.querySelector("#canvas");
-    var context = canvas.getContext('2d');
-
-
-    function dwStartScan(){
-
-        if (navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }) 
-            // { video: true}
-            // { video: { facingMode: { exact: "environment" } } }
-            .then(function (stream) {
-                if (typeof video.srcObject == "object") {
-                    video.srcObject = stream;
-                    video.play();
-                    var QRhandle= requestAnimationFrame(dwQRScan);
-                } else {
-                    video.src = URL.createObjectURL(stream);
-                }
-            })
-            .catch(function (err0r) {
-                console.log("Something went wrong!");
-            });
-        }
-
-    }
-
-    function dwQRScan() {
-          if(video.readyState === video.HAVE_ENOUGH_DATA) {
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-           var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
-           var qrcode = jsQR(imgData.data, imgData.width, imgData.height);//Using jsQR
-                    if(qrcode) {
-                      var setBorder=qrcode.location;
-                      borderCapture(setBorder.topLeftCorner, setBorder.topRightCorner);
-                      borderCapture(setBorder.topRightCorner, setBorder.bottomRightCorner);
-                      borderCapture(setBorder.bottomRightCorner, setBorder.bottomLeftCorner);
-                      borderCapture(setBorder.bottomLeftCorner, setBorder.topLeftCorner);
-                      var qrdata = qrcode.data;
-                          if(qrdata!=""){
-                              video.src=null;
-                              dwQRReader(qrdata);
-                              cancelAnimationFrame(QRhandle);
-                              return;
-                          }
-                    }
-          }
-           QRhandle=requestAnimationFrame(dwQRScan);
-    }
-
-    function borderCapture(begin, end) {
-          context.beginPath();
-          context.moveTo(begin.x, begin.y);
-          context.lineTo(end.x, end.y);
-          context.lineWidth = 3;
-          context.strokeStyle = "#0E0";
-          context.stroke();
-    }
-
+    
     
 </script>
