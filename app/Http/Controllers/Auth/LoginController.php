@@ -90,7 +90,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
 
-        $this->_registerOrLoginUser($user, "google",null,null);
+        $this->_registerOrLoginUser($user, "google",null,null, $check_in_at);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -110,7 +110,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
         // print_r($user);
-        $this->_registerOrLoginUser($user,"facebook",null,null);
+        $this->_registerOrLoginUser($user,"facebook",null,null, $check_in_at);
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -138,11 +138,9 @@ class LoginController extends Controller
     }
 
     // Line login kmutnbs
-    public function redirectToLine_check_in_kmutnbs(Request $request)
+    public function redirectToLine_check_in(Request $request)
     {
-        $request->session()->put('Student', 'kmutnbs');
-        $request->session()->put('bot_prompt', 'normal');
-        $request->session()->put('redirectTo', 'https://lin.ee/xnFKMfc');
+        $request->session()->put('check_in_at', $request->get('check_in_at'));
 
         return Socialite::driver('line')->redirect();
     }
@@ -158,8 +156,9 @@ class LoginController extends Controller
         
         $student = $request->session()->get('Student');
         $from = $request->session()->get('from');
+        $check_in_at = $request->session()->get('check_in_at');
 
-        $this->_registerOrLoginUser($user,"line",$student , $from );
+        $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -168,7 +167,7 @@ class LoginController extends Controller
 
     }
 
-    protected function _registerOrLoginUser($data, $type , $student , $from )
+    protected function _registerOrLoginUser($data, $type , $student , $from , $check_in_at)
     {
         //GET USER 
         $user = User::where('provider_id', '=', $data->id)->first();

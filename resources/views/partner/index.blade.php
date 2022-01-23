@@ -431,6 +431,7 @@
 
                     let check = "no" ;
                     let id_partner = null ;
+                    let name_partner = "" ;
                     for (var i = 0; i < result.length; i++) {
 
                         if (result[i]['name_area'] === null ) {
@@ -439,22 +440,25 @@
 
                         if (result[i]['new_sos_area']) {
                             check = "yes";
+                            name_partner = result[i]['name'] ;
                         }
 
+                        console.log(name_partner);
+
                     }
 
-                    if (id_partner) {
-                        console.log(id_partner);
-                        let tag_h_name = document.querySelector('#tag_h_name_' + id_partner);
+                    // if (id_partner) {
+                    //     console.log(id_partner);
+                    //     let tag_h_name = document.querySelector('#tag_h_name_' + id_partner);
 
-                        let tag_i = document.createElement("i");
-                        let tag_i_class = document.createAttribute("class");
-                            tag_i_class.value = "fas fa-exclamation-circle notify_alert";
+                    //     let tag_i = document.createElement("i");
+                    //     let tag_i_class = document.createAttribute("class");
+                    //         tag_i_class.value = "fas fa-exclamation-circle notify_alert";
 
-                        tag_i.setAttributeNode(tag_i_class); 
+                    //     tag_i.setAttributeNode(tag_i_class); 
 
-                        tag_h_name.appendChild(tag_i);
-                    }
+                    //     tag_h_name.appendChild(tag_i);
+                    // }
             });
         }
 
