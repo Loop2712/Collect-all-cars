@@ -1,3 +1,8 @@
+<div class="col-12" id="">
+    <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
+</div>
+
+
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
     <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : ''}}" >
@@ -28,3 +33,22 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
+
+<script>
+    var video = document.querySelector('#videoElement');
+
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+        // { video: { facingMode: { exact: "environment" } } }
+        .then(function (stream) {
+            if (typeof video.srcObject == "object") {
+                video.srcObject = stream;
+            } else {
+                video.src = URL.createObjectURL(stream);
+            }
+        })
+        .catch(function (err0r) {
+            console.log("Something went wrong!");
+        });
+    }
+</script>
