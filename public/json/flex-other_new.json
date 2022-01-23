@@ -266,9 +266,9 @@
                 "weight": "bold",
                 "margin": "xl",
                 "action": {
-                  "type": "message",
-                  "label": "check in",
-                  "text": "check in"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/check_in/create"
                 },
                 "flex": 4
               },
@@ -279,17 +279,17 @@
                 "align": "end",
                 "color": "#ff0101",
                 "action": {
-                  "type": "message",
-                  "label": "check in",
-                  "text": "check in"
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/check_in/create"
                 }
               }
             ],
             "height": "50px",
             "action": {
-              "type": "message",
-              "label": "check in",
-              "text": "check in"
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/check_in/create"
             },
             "margin": "md"
           }
