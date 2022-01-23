@@ -2,6 +2,8 @@
     <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
 </div>
 
+<!-- <canvas id="mycanvas"></canvas> -->
+<p class="btn btn-warning" id="btnScan">Scan</p>
 
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
@@ -38,38 +40,48 @@
 <script src="{{ asset('js/jsQR.js')}}"></script>
 
 <script>
-    // var video = document.querySelector('#videoElement');
-
-    // if (navigator.mediaDevices.getUserMedia) {
-    //     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }) 
-    //     // { video: true}
-    //     // { video: { facingMode: { exact: "environment" } } }
-    //     .then(function (stream) {
-    //         if (typeof video.srcObject == "object") {
-    //             video.srcObject = stream;
-    //         } else {
-    //             video.src = URL.createObjectURL(stream);
-    //         }
-    //     })
-    //     .catch(function (err0r) {
-    //         console.log("Something went wrong!");
-    //     });
-    // }
+    DWTQR("videoElement");
+    $("#btnScan").click(function(){
+        dwStartScan();
+    });
+    function dwQRReader(data){
+        alert(data);
+    }
 
     var dwVDO, dwCanvasTag, dwVDOCanvas, QRhandle;
-    
+
     function DWTQR(c){ //by DwThai.Com
-        dwVDO = document.createElement("video");
+        dwVDO = document.querySelector('#videoElement');
         dwCanvasTag=  document.getElementById(c);
         dwVDOCanvas = dwCanvasTag.getContext("2d");
     }
 
     function dwStartScan(){
-            navigator.mediaDevices.getUserMedia({video: { facingMode: "environment" } }).then(function(stream){
-              dwVDO.srcObject = stream;
-              dwVDO.play();
-              QRhandle= requestAnimationFrame(dwQRScan);
+
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }) 
+            // { video: true}
+            // { video: { facingMode: { exact: "environment" } } }
+            .then(function (stream) {
+                if (typeof video.srcObject == "object") {
+                    video.srcObject = stream;
+                    dwVDO.srcObject = stream;
+                    dwVDO.play();
+                    QRhandle= requestAnimationFrame(dwQRScan);
+                } else {
+                    video.src = URL.createObjectURL(stream);
+                }
+            })
+            .catch(function (err0r) {
+                console.log("Something went wrong!");
             });
+        }
+
+            // navigator.mediaDevices.getUserMedia({video: { facingMode: "environment" } }).then(function(stream){
+            //   dwVDO.srcObject = stream;
+            //   dwVDO.play();
+            //   QRhandle= requestAnimationFrame(dwQRScan);
+            // });
     }
 
     function dwQRScan() {
