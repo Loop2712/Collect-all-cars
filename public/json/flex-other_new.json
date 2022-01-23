@@ -268,7 +268,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/welcome_check_in_line"
+                  "uri": "https://www.viicheck.com/welcome_check_in_line?openExternalBrowser=1"
                 },
                 "flex": 4
               },
@@ -281,7 +281,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/welcome_check_in_line"
+                  "uri": "https://www.viicheck.com/welcome_check_in_line?openExternalBrowser=1"
                 }
               }
             ],
@@ -289,7 +289,7 @@
             "action": {
               "type": "uri",
               "label": "action",
-              "uri": "https://www.viicheck.com/welcome_check_in_line"
+              "uri": "https://www.viicheck.com/welcome_check_in_line?openExternalBrowser=1"
             },
             "margin": "md"
           }
