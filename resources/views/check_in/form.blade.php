@@ -6,7 +6,7 @@
 
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : ''}}" >
+    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : Auth::user()->id }}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
@@ -26,7 +26,7 @@
 </div>
 <div class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
     <label for="student_id" class="control-label">{{ 'Student Id' }}</label>
-    <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : ''}}" >
+    <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id}}" >
     {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
 </div>
 

@@ -49,3 +49,9 @@ function borderCapture(begin, end) {
       dwVDOCanvas.strokeStyle = "#0E0";
       dwVDOCanvas.stroke();
 }
+
+function stop(e) {
+	    
+	navigator.mediaDevices.getUserMedia({video: false }).then(function(stream){
+		});
+    }
