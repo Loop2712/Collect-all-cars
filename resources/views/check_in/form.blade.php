@@ -2,7 +2,7 @@
     <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
 </div>
 
-<canvas id="canvas"></canvas>
+<canvas class="d-none" id="canvas"></canvas>
 <p class="btn btn-warning" id="btnScan">Scan</p>
 
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
@@ -43,13 +43,12 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         dwStartScan();
-    }
-    
+    });
+
     function dwQRReader(data){
         alert(data);
-    }
+    };
 
-    var QRhandle;
     var video = document.querySelector('#videoElement');
     var canvas = document.querySelector("#canvas");
     var context = canvas.getContext('2d');
@@ -65,7 +64,7 @@
                 if (typeof video.srcObject == "object") {
                     video.srcObject = stream;
                     video.play();
-                    QRhandle= requestAnimationFrame(dwQRScan);
+                    var QRhandle= requestAnimationFrame(dwQRScan);
                 } else {
                     video.src = URL.createObjectURL(stream);
                 }
