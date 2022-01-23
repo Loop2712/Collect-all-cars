@@ -2,7 +2,7 @@
     <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
 </div>
 
-<!-- <canvas id="mycanvas"></canvas> -->
+<canvas id="canvas"></canvas>
 <p class="btn btn-warning" id="btnScan">Scan</p>
 
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
@@ -40,21 +40,20 @@
 <script src="{{ asset('js/jsQR.js')}}"></script>
 
 <script>
-    DWTQR("videoElement");
-    $("#btnScan").click(function(){
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
         dwStartScan();
-    });
+    }
+    
     function dwQRReader(data){
         alert(data);
     }
 
-    var dwVDO, dwCanvasTag, dwVDOCanvas, QRhandle;
+    var QRhandle;
+    var video = document.querySelector('#videoElement');
+    var canvas = document.querySelector("#canvas");
+    var context = canvas.getContext('2d');
 
-    function DWTQR(c){ //by DwThai.Com
-        dwVDO = document.querySelector('#videoElement');
-        dwCanvasTag=  document.getElementById(c);
-        dwVDOCanvas = dwCanvasTag.getContext("2d");
-    }
 
     function dwStartScan(){
 
@@ -65,8 +64,7 @@
             .then(function (stream) {
                 if (typeof video.srcObject == "object") {
                     video.srcObject = stream;
-                    dwVDO.srcObject = stream;
-                    dwVDO.play();
+                    video.play();
                     QRhandle= requestAnimationFrame(dwQRScan);
                 } else {
                     video.src = URL.createObjectURL(stream);
@@ -77,17 +75,12 @@
             });
         }
 
-            // navigator.mediaDevices.getUserMedia({video: { facingMode: "environment" } }).then(function(stream){
-            //   dwVDO.srcObject = stream;
-            //   dwVDO.play();
-            //   QRhandle= requestAnimationFrame(dwQRScan);
-            // });
     }
 
     function dwQRScan() {
-          if(dwVDO.readyState === dwVDO.HAVE_ENOUGH_DATA) {
-            dwVDOCanvas.drawImage(dwVDO, 0, 0, dwCanvasTag.width, dwCanvasTag.height);
-           var imgData = dwVDOCanvas.getImageData(0, 0, dwCanvasTag.width, dwCanvasTag.height);
+          if(video.readyState === video.HAVE_ENOUGH_DATA) {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+           var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
            var qrcode = jsQR(imgData.data, imgData.width, imgData.height);//Using jsQR
                     if(qrcode) {
                       var setBorder=qrcode.location;
@@ -97,7 +90,7 @@
                       borderCapture(setBorder.bottomLeftCorner, setBorder.topLeftCorner);
                       var qrdata = qrcode.data;
                           if(qrdata!=""){
-                              dwVDO.src=null;
+                              video.src=null;
                               dwQRReader(qrdata);
                               cancelAnimationFrame(QRhandle);
                               return;
@@ -108,12 +101,12 @@
     }
 
     function borderCapture(begin, end) {
-          dwVDOCanvas.beginPath();
-          dwVDOCanvas.moveTo(begin.x, begin.y);
-          dwVDOCanvas.lineTo(end.x, end.y);
-          dwVDOCanvas.lineWidth = 3;
-          dwVDOCanvas.strokeStyle = "#0E0";
-          dwVDOCanvas.stroke();
+          context.beginPath();
+          context.moveTo(begin.x, begin.y);
+          context.lineTo(end.x, end.y);
+          context.lineWidth = 3;
+          context.strokeStyle = "#0E0";
+          context.stroke();
     }
 
     
