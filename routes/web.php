@@ -315,5 +315,5 @@ Route::get('/check_ip', 'Home_pageController@check_ip');
 
 Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
-Route::resource('check_in_kmutnbs', 'Check_in_kmutnbsController');
-Route::resource('check_in', 'Check_inController');
+
+Route::resource('check_in', 'Check_inController')->except(['show','edit']);
