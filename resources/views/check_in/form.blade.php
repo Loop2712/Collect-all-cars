@@ -1,5 +1,5 @@
-<div class="col-12" id="">
-    <canvas width="100%" height="100%" id="mycanvas"></canvas>
+<div class="form-group" >
+    <canvas height="350" id="mycanvas"></canvas>
     <!-- <video width="100%" height="100%" autoplay="true" id="videoElement"></video> -->
 </div>
 
