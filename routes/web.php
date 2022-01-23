@@ -54,6 +54,9 @@ Route::get('/welcome_line_guest', 'GuestController@welcome_line_guest');
 Route::get('/welcome_facebook', 'Register_carController@welcome_facebook');
 Route::get('/welcome_facebook_guest', 'GuestController@welcome_facebook_guest');
 
+// CHECK IN
+Route::get('/welcome_check_in_line', 'Check_inController@welcome_check_in_line');
+
 
 
 Route::get('/mail', function () {
