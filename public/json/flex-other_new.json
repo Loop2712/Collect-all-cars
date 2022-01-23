@@ -248,6 +248,50 @@
             "type": "separator",
             "color": "#ff0101",
             "margin": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/icon/tick.png",
+                "size": "3xl",
+                "margin": "none",
+                "offsetTop": "md"
+              },
+              {
+                "type": "text",
+                "text": "Check in",
+                "weight": "bold",
+                "margin": "xl",
+                "action": {
+                  "type": "message",
+                  "label": "check in",
+                  "text": "check in"
+                },
+                "flex": 4
+              },
+              {
+                "type": "text",
+                "text": ">>>",
+                "size": "sm",
+                "align": "end",
+                "color": "#ff0101",
+                "action": {
+                  "type": "message",
+                  "label": "check in",
+                  "text": "check in"
+                }
+              }
+            ],
+            "height": "50px",
+            "action": {
+              "type": "message",
+              "label": "check in",
+              "text": "check in"
+            },
+            "margin": "md"
           }
         ],
         "offsetBottom": "sm"
