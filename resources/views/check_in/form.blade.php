@@ -18,12 +18,12 @@
     </div>
     <div id="div_time_in" class="d-none form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
         <label for="time_in" class="control-label">{{ 'Time In' }}</label>
-        <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ date('d-m-Y\TH:i:s') }}" >
+        <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ date('Y-m-d\TH:i:s') }}" >
         {!! $errors->first('time_in', '<p class="help-block">:message</p>') !!}
     </div>
     <div id="div_time_out" class="d-none form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
         <label for="time_out" class="control-label">{{ 'Time Out' }}</label>
-        <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ date('d-m-Y\TH:i:s') }}" >
+        <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ date('Y-m-d\TH:i:s') }}" >
         {!! $errors->first('time_out', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="d-none form-group {{ $errors->has('check_in_at') ? 'has-error' : ''}}">
