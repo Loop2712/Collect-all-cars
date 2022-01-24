@@ -18,7 +18,7 @@
 
             <h4 class="text-info">{{ $time }}</h4>
             <h4>คุณ : <b>{{ Auth::user()->name }}</b></h4>
-            <p>ประวัติการเข้าออก {{ $check_in_at }} 5 ครั้งหลังสุด</p>
+            <p>ประวัติการเข้าออก {{ $check_in_at }}</p>
             @foreach($data_in_out as $item)
               @if(!empty($item->time_in))
                 <b class="text-success">เข้า :</b> {{ $item->time_in }}
