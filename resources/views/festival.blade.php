@@ -16,8 +16,8 @@
 	</div>
 
 	<!-- <div>
-		<img style="position:absolute;width: 90%;" src="{{ url('/') }}/img/festival/2.gif">
-		<img style="margin-top:-30px;" width="100%" src="{{ asset('/img/festival/hero-bg_2.jpg') }}">
+		<img style="position:absolute;width: 90%;" src="{{ url('/') }}/img/festival/22.webp">
+		<img style="margin-top:-30px;" class="main-shadow main-radius" width="100%" src="{{ asset('/img/festival/hero-bg_22.jpg') }}">
 		<br><br><br>
 	</div> -->
 
@@ -37,8 +37,8 @@
 <!-- Valentine -->
 @if( $month_now == "02" and $day_now >= "01" and $day_now <= 14)
 	<div>
-		<img style="position:absolute;width: 90%;" src="{{ url('/') }}/img/festival/2.gif">
-		<img style="margin-top:-30px;" width="100%" src="{{ asset('/img/festival/hero-bg_2.jpg') }}">
+		<img style="position:absolute;width: 90%;" src="{{ url('/') }}/img/festival/22.webp">
+		<img style="margin-top:-30px;" class="main-shadow main-radius" width="100%" src="{{ asset('/img/festival/hero-bg_22.jpg') }}">
 		<br><br><br>
 	</div>
 @endif
