@@ -33,11 +33,12 @@
             <br>
         </div>
     </div>
+
+    <a id="btn_add_line" class="btn btn-success" href="https://lin.ee/xnFKMfc">
+      เสร็จสิ้น
+    </a>
   </div>
 </center>
-<a id="btn_add_line" class="d-none" href="https://lin.ee/xnFKMfc">
-  <img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน" width="100%" border="0">
-</a>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
