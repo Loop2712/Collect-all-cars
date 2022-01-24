@@ -102,7 +102,7 @@ class Check_inController extends Controller
 
         $check_in_at = $requestData['check_in_at'] ;
 
-        $time = str_replace("T"," ",$time);
+        // $time = str_replace("T"," ",$time);
 
         // return redirect('/check_in_finish')->with('flash_message', 'Check_in added!');
         return view('check_in.check_in_finish', compact('time','type','data_in_out','check_in_at'));
