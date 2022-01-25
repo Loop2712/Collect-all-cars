@@ -180,12 +180,14 @@ class Check_inController extends Controller
         return redirect('check_in')->with('flash_message', 'Check_in deleted!');
     }
 
-    public function welcome_check_in_line()
+    public function welcome_check_in_line(Request $request)
     {
+        $location = $request->get('location');
+
         if(Auth::check()){
-            return redirect('check_in/create');
+            return redirect('check_in/create?location=' . $location);
         }else{
-            return redirect('/login/line?redirectTo=check_in/create');
+            return redirect('/login/line?redirectTo=check_in/create?location=' . $location);
         }
     }
 
