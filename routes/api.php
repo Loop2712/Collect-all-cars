@@ -91,7 +91,6 @@ Route::get('/partner_viicheck_select_line_group/{name_line_group}/{name_partner}
 
 Route::get('/set_group_line/{partner_id}/{language}/{time_zone}', 'API\API_line_group@set_group_line');
 
-
 Route::get('/change_language/{language}/{user_id}', 'API\API_language@change_language');
 Route::get('/change_language_fromline/{language}/{user_id}', 'API\API_language@change_language_fromline');
 

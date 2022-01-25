@@ -1,21 +1,19 @@
 <input class="d-none" type="text" name="std_of" id="std_of" value="{{ Auth::user()->std_of }}">
+<div class="form-group" >
+    <canvas class="" height="350" id="mycanvas"></canvas>
+    <!-- <video width="100%" height="100%" autoplay="true" id="videoElement"></video> -->
+</div>
 
-<div id="div_information" class="">
+<div id="div_information" class="d-none">
     <center>
-        <img width="60%" src="{{ asset('/img/stickerline/PNG/1.png') }}">
-        <br><br>
-        <h3 class="notranslate"><b>คุณ : {{ Auth::user()->name }}</b></h3>
-        @if(!empty(Auth::user()->std_of and Auth::user()->std_of != ""))
-            <p class="notranslate">{{ Auth::user()->std_of }}</p>
-        @endif
-        <br>
+        <img width="65%" src="{{ asset('/img/stickerline/PNG/1.png') }}">
     </center>
     
 </div>
 
-<div id="main_content" class="">
-    <div class="d-none form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-        <input class="form-control " name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : Auth::user()->id }}" >
+<div id="main_content" class="d-none">
+    <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+        <input class="form-control d-none" name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : Auth::user()->id }}" >
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
     <div id="div_time_in" class="d-none form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
@@ -30,14 +28,14 @@
     </div>
     <div class="d-none form-group {{ $errors->has('check_in_at') ? 'has-error' : ''}}">
         <label for="check_in_at" class="control-label">{{ 'Check In At' }}</label>
-        <input class="form-control" name="check_in_at" type="text" id="check_in_at" value="{{ isset($check_in->check_in_at) ? $check_in->check_in_at : $location}}" >
+        <input class="form-control" name="check_in_at" type="text" id="check_in_at" value="{{ isset($check_in->check_in_at) ? $check_in->check_in_at : ''}}" >
         {!! $errors->first('check_in_at', '<p class="help-block">:message</p>') !!}
     </div>
 
     <div id="for_std" class="d-none">
         <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
             <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
-            <select name="select_University" id="select_University" class="form-control notranslate">
+            <select name="select_University" id="select_University" class="form-control notranslate" required>
                 <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
                 <option class="notranslate" value="KMUTNB" >มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</option>
             </select>
@@ -49,13 +47,7 @@
             {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <input type="checkbox" name="guest_check_in" id="guest_check_in" 
-            onclick="if(this.checked){
-                fu_guest_check_in();
-            }else{
-                fu_std_check_in();
-            }"> 
-        <span class="text-danger">บุคคลทั่วไป</span>
+        <input type="checkbox" name="guest_check_in" id="guest_check_in" onclick="fu_guest_check_in();"> <span class="text-danger">บุคคลทั่วไป</span>
         <br><br>
 
     </div>
@@ -76,20 +68,60 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        if ( {{ $Uni === "Yes" }} ) {
-            document.querySelector("#for_std").classList.remove('d-none');
-            // ใส่ required ใน student_id และ select_University
-            document.querySelector("#select_University").required = "true";
-            document.querySelector("#student_id").required = "true";
-        }else{
-            document.querySelector("#for_std").classList.add('d-none');
-            // เอา required ออกจาก student_id และ select_University
-            document.querySelector("#select_University").required = "";
-            document.querySelector("#student_id").required = "";
-        }
+        DWTQR("mycanvas");
+        dwStartScan();
 
         let std_of = document.querySelector("#std_of");
     });
+
+    function dwQRReader(data){
+        // alert(data);
+        // console.log(std_of);
+
+        // ปิดกล้อง
+
+        try{
+            const myArray = data.split("Location:");
+            let location = myArray[1];
+
+            let result = location.includes("University");
+            if (result) {
+                const myArray_2 = myArray[1].split("=");
+                location = myArray_2[1];
+
+                if (std_of.value) {
+                    document.querySelector("#for_std").classList.add("d-none");
+                    // เอา required ออกจาก student_id และ select_University
+                    document.querySelector("#select_University").required = "";
+                    document.querySelector("#student_id").required = "";
+                }else{
+                    document.querySelector("#for_std").classList.remove("d-none");
+                    // ใส่ required ใน student_id และ select_University
+                    document.querySelector("#select_University").required = "true";
+                    document.querySelector("#student_id").required = "true";
+                }
+            }else{
+                document.querySelector("#for_std").classList.add("d-none");
+                // เอา required ออกจาก student_id และ select_University
+                document.querySelector("#select_University").required = "";
+                document.querySelector("#student_id").required = "";
+            }
+
+            if (location) {
+                document.querySelector("#main_content").classList.remove('d-none');
+                document.querySelector("#mycanvas").classList.add('d-none');
+
+                document.querySelector("#div_information").classList.remove('d-none');
+
+                let check_in_at = document.querySelector("#check_in_at");
+                    check_in_at.value = location ;
+
+            }
+        }catch{
+            dwStartScan();
+        }
+
+    };
 
     function check_in_or_out(data){
 
@@ -111,14 +143,6 @@
         // เอา required ออกจาก student_id และ select_University
         document.querySelector("#select_University").required = "";
         document.querySelector("#student_id").required = "";
-    };
-
-    function fu_std_check_in(){
-        document.querySelector("#div_select_University").classList.remove("d-none");
-        document.querySelector("#div_student_id").classList.remove("d-none");
-        // ใส่ required ใน student_id และ select_University
-        document.querySelector("#select_University").required = "true";
-        document.querySelector("#student_id").required = "true";
     };
     
     
