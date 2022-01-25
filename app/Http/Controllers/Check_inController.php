@@ -69,10 +69,10 @@ class Check_inController extends Controller
         
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         Check_in::create($requestData);
 
