@@ -76,6 +76,15 @@ class Check_inController extends Controller
 
         Check_in::create($requestData);
 
+        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on") {
+            DB::table('users')
+              ->where('id', $requestData['user_id'])
+              ->where('std_of' , null)
+              ->update([
+                'std_of' => 'guest',
+          ]);
+        }
+
         if (!empty($requestData['select_University'])) {
             DB::table('users')
               ->where('id', $requestData['user_id'])
@@ -83,15 +92,6 @@ class Check_inController extends Controller
               ->update([
                 'std_of' => $requestData['select_University'],
                 'student_id' => $requestData['student_id'],
-          ]);
-        }
-
-        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on") {
-            DB::table('users')
-              ->where('id', $requestData['user_id'])
-              ->where('std_of' , null)
-              ->update([
-                'std_of' => 'guest',
           ]);
         }
 

@@ -1,4 +1,5 @@
 <input class="d-none" type="text" name="std_of" id="std_of" value="{{ Auth::user()->std_of }}">
+<input class="d-none" type="text" name="Uni" id="Uni" value="{{ $Uni }}">
 
 <div id="div_information" class="">
     <center>
@@ -6,7 +7,10 @@
         <br><br>
         <h3 class="notranslate"><b>คุณ : {{ Auth::user()->name }}</b></h3>
         @if(!empty(Auth::user()->std_of and Auth::user()->std_of != "guest"))
-            <p class="notranslate">{{ Auth::user()->std_of }}</p>
+            <p class="notranslate">
+                {{ Auth::user()->std_of }} <br>
+                {{ Auth::user()->student_id }}
+            </p>
         @endif
         <br>
     </center>
@@ -76,11 +80,22 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        if ( {{ $Uni === "Yes" }} ) {
-            document.querySelector("#for_std").classList.remove('d-none');
-            // ใส่ required ใน student_id และ select_University
-            document.querySelector("#select_University").required = "true";
-            document.querySelector("#student_id").required = "true";
+
+        let std_of = document.querySelector("#std_of");
+        let uni = document.querySelector("#Uni");
+
+        if (uni.value === "Yes") {
+            if (std_of.value) {
+                document.querySelector("#for_std").classList.add("d-none");
+                // เอา required ออกจาก student_id และ select_University
+                document.querySelector("#select_University").required = "";
+                document.querySelector("#student_id").required = "";
+            }else{
+                document.querySelector("#for_std").classList.remove("d-none");
+                // ใส่ required ใน student_id และ select_University
+                document.querySelector("#select_University").required = "true";
+                document.querySelector("#student_id").required = "true";
+            }
         }else{
             document.querySelector("#for_std").classList.add('d-none');
             // เอา required ออกจาก student_id และ select_University
@@ -88,7 +103,6 @@
             document.querySelector("#student_id").required = "";
         }
 
-        let std_of = document.querySelector("#std_of");
     });
 
     function check_in_or_out(data){
@@ -111,6 +125,8 @@
         // เอา required ออกจาก student_id และ select_University
         document.querySelector("#select_University").required = "";
         document.querySelector("#student_id").required = "";
+        document.querySelector("#select_University").value = "";
+        document.querySelector("#student_id").value = "";
     };
 
     function fu_std_check_in(){

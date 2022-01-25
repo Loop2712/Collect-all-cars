@@ -39,13 +39,40 @@
     </a>
   </div>
 </center>
+<input type="text" name="uesr_add_line" id="uesr_add_line" value="{{ Auth::user()->add_line }}">
+
+<!-- Button trigger modal -->
+<button id="btn_modal_addline" type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal_addline">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_addline" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <center>
+          <a href="https://lin.ee/xnFKMfc">
+            <img width="100%" src="{{ asset('/img/check_in/KMUTNB/add_line_KMUTNB.jpg') }}">
+          </a>
+        </center>
+        <br>
+        <a href="https://lin.ee/xnFKMfc">
+          <button  style="width:100%" type="button" class="btn btn-success" >เพิ่มเพื่อน</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START"); 
-        setTimeout(function(){ 
-          // document.getElementById("btn_add_line").click(); 
-        }, 3500);
+        // console.log("START"); 
+        let uesr_add_line = document.querySelector("#uesr_add_line");
+
+        if (uesr_add_line.value != "Yes") {
+          document.querySelector("#btn_modal_addline").click();
+        }
+
     });
 </script>
 @endsection
