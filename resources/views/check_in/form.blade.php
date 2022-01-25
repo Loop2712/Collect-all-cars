@@ -24,12 +24,12 @@
     </div>
     <div id="div_time_in" class="d-none form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
         <label for="time_in" class="control-label">{{ 'Time In' }}</label>
-        <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ date('Y-m-d\TH:i:s') }}" >
+        <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ $date_now }}" >
         {!! $errors->first('time_in', '<p class="help-block">:message</p>') !!}
     </div>
     <div id="div_time_out" class="d-none form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
         <label for="time_out" class="control-label">{{ 'Time Out' }}</label>
-        <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ date('Y-m-d\TH:i:s') }}" >
+        <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ $date_now }}" >
         {!! $errors->first('time_out', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="d-none form-group {{ $errors->has('check_in_at') ? 'has-error' : ''}}">
@@ -63,6 +63,8 @@
         <br><br>
 
     </div>
+
+    <input class="form-control d-none" name="check_in_out" type="text" id="check_in_out" value="" >
 
     <div class="text-center">
         <p class="btn btn-success notranslate" onclick="check_in_or_out('check_in');">Check in</p>
@@ -108,11 +110,17 @@
     function check_in_or_out(data){
 
         if (data === "check_in") {
-            let time_out = document.querySelector("#time_out");
-                time_out.value = "";
+            let check_in_out = document.querySelector("#check_in_out");
+                check_in_out.value = "check_in";
+
+            // let time_out = document.querySelector("#time_out");
+            //     time_out.value = "";
         }else if(data === "check_out"){
-            let time_in = document.querySelector("#time_in");
-                time_in.value = "";
+            let check_in_out = document.querySelector("#check_in_out");
+                check_in_out.value = "check_out";
+
+            // let time_in = document.querySelector("#time_in");
+            //     time_in.value = "";
         }
 
         document.querySelector("#btn_submit_form").click();

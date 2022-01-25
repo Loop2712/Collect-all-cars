@@ -46,6 +46,8 @@ class Check_inController extends Controller
         $location = $request->get('location');
         $Uni = "No";
 
+        $date_now = date('Y-m-d\TH:i:s');
+
         if (!empty($location)) {
             if (strpos($location, 'University') !== false) {
                 $location_sp = explode(":",$location);
@@ -54,7 +56,7 @@ class Check_inController extends Controller
             }
         }
 
-        return view('check_in.create', compact('location','Uni'));
+        return view('check_in.create', compact('location','Uni','date_now'));
     }
 
     /**
@@ -74,6 +76,12 @@ class Check_inController extends Controller
         // echo "<pre>";
         // exit();
 
+        if ($requestData['check_in_out'] == "check_in") {
+            $requestData['time_out'] = null ;
+        }else if($requestData['check_in_out'] == "check_out"){
+            $requestData['time_in'] = null ;
+        }
+        
         Check_in::create($requestData);
 
         if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on") {
