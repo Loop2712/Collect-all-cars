@@ -39,7 +39,7 @@
     </a>
   </div>
 </center>
-<input type="text" name="uesr_add_line" id="uesr_add_line" value="{{ Auth::user()->add_line }}">
+<input class="d-none" type="text" name="uesr_add_line" id="uesr_add_line" value="{{ Auth::user()->add_line }}">
 
 <!-- Button trigger modal -->
 <button id="btn_modal_addline" type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal_addline">
