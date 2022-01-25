@@ -5,7 +5,7 @@
         <img width="60%" src="{{ asset('/img/stickerline/PNG/1.png') }}">
         <br><br>
         <h3 class="notranslate"><b>คุณ : {{ Auth::user()->name }}</b></h3>
-        @if(!empty(Auth::user()->std_of and Auth::user()->std_of != ""))
+        @if(!empty(Auth::user()->std_of and Auth::user()->std_of != "guest"))
             <p class="notranslate">{{ Auth::user()->std_of }}</p>
         @endif
         <br>
