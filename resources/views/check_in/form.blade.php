@@ -67,8 +67,8 @@
     <input class="form-control d-none" name="check_in_out" type="text" id="check_in_out" value="" >
 
     <div class="text-center">
-        <p class="btn btn-success notranslate" onclick="check_in_or_out('check_in');">Check in</p>
-        <p class="btn btn-danger notranslate" onclick="check_in_or_out('check_out');">Check out</p>
+        <input class="btn btn-success notranslate" onclick="check_in_or_out('check_in');" type="submit" value="{{ $formMode === 'edit' ? 'Check in' : 'Check in' }}">
+        <input class="btn btn-danger notranslate" onclick="check_in_or_out('check_out');" type="submit" value="{{ $formMode === 'edit' ? 'Check out' : 'Check out' }}">
     </div>
     
     <div class="form-group d-none">
@@ -82,7 +82,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-
         let std_of = document.querySelector("#std_of");
         let uni = document.querySelector("#Uni");
 
@@ -123,7 +122,7 @@
             //     time_in.value = "";
         }
 
-        document.querySelector("#btn_submit_form").click();
+        // document.querySelector("#btn_submit_form").click();
 
     };
 
