@@ -1,5 +1,5 @@
-<input class="d-none" type="text" name="std_of" id="std_of" value="{{ Auth::user()->std_of }}">
-<input class="d-none" type="text" name="Uni" id="Uni" value="{{ $Uni }}">
+<input class="" type="text" name="std_of" id="std_of" value="{{ Auth::user()->std_of }}">
+<input class="" type="text" name="Uni" id="Uni" value="{{ $Uni }}">
 
 <div id="div_information" class="">
     <center>
@@ -18,27 +18,27 @@
 </div>
 
 <div id="main_content" class="">
-    <div class="d-none form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+    <div class=" form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
         <input class="form-control " name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : Auth::user()->id }}" >
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
-    <div id="div_time_in" class="d-none form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
+    <div id="div_time_in" class=" form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
         <label for="time_in" class="control-label">{{ 'Time In' }}</label>
         <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ $date_now }}" >
         {!! $errors->first('time_in', '<p class="help-block">:message</p>') !!}
     </div>
-    <div id="div_time_out" class="d-none form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
+    <div id="div_time_out" class=" form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
         <label for="time_out" class="control-label">{{ 'Time Out' }}</label>
         <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ $date_now }}" >
         {!! $errors->first('time_out', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="d-none form-group {{ $errors->has('check_in_at') ? 'has-error' : ''}}">
+    <div class=" form-group {{ $errors->has('check_in_at') ? 'has-error' : ''}}">
         <label for="check_in_at" class="control-label">{{ 'Check In At' }}</label>
         <input class="form-control" name="check_in_at" type="text" id="check_in_at" value="{{ isset($check_in->check_in_at) ? $check_in->check_in_at : $location}}" >
         {!! $errors->first('check_in_at', '<p class="help-block">:message</p>') !!}
     </div>
 
-    <div id="for_std" class="d-none">
+    <div id="for_std" class="">
         <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
             <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
             <select name="select_University" id="select_University" class="form-control notranslate">
@@ -64,14 +64,14 @@
 
     </div>
 
-    <input class="form-control d-none" name="check_in_out" type="text" id="check_in_out" value="" >
+    <input class="form-control " name="check_in_out" type="text" id="check_in_out" value="" >
 
     <div class="text-center">
         <p class="btn btn-success notranslate" onclick="check_in_or_out('check_in');">Check in</p>
         <p class="btn btn-danger notranslate" onclick="check_in_or_out('check_out');">Check out</p>
     </div>
     
-    <div class="form-group d-none">
+    <div class="form-group ">
         <input id="btn_submit_form" class="btn btn-primary float-right" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
     </div>
 </div>
@@ -88,18 +88,18 @@
 
         if (uni.value === "Yes") {
             if (std_of.value) {
-                document.querySelector("#for_std").classList.add("d-none");
+                document.querySelector("#for_std").classList.add("");
                 // เอา required ออกจาก student_id และ select_University
                 document.querySelector("#select_University").required = "";
                 document.querySelector("#student_id").required = "";
             }else{
-                document.querySelector("#for_std").classList.remove("d-none");
+                document.querySelector("#for_std").classList.remove("");
                 // ใส่ required ใน student_id และ select_University
                 document.querySelector("#select_University").required = "true";
                 document.querySelector("#student_id").required = "true";
             }
         }else{
-            document.querySelector("#for_std").classList.add('d-none');
+            document.querySelector("#for_std").classList.add('');
             // เอา required ออกจาก student_id และ select_University
             document.querySelector("#select_University").required = "";
             document.querySelector("#student_id").required = "";
@@ -128,8 +128,8 @@
     };
 
     function fu_guest_check_in(){
-        document.querySelector("#div_select_University").classList.add("d-none");
-        document.querySelector("#div_student_id").classList.add("d-none");
+        document.querySelector("#div_select_University").classList.add("");
+        document.querySelector("#div_student_id").classList.add("");
         // เอา required ออกจาก student_id และ select_University
         document.querySelector("#select_University").required = "";
         document.querySelector("#student_id").required = "";
@@ -138,8 +138,8 @@
     };
 
     function fu_std_check_in(){
-        document.querySelector("#div_select_University").classList.remove("d-none");
-        document.querySelector("#div_student_id").classList.remove("d-none");
+        document.querySelector("#div_select_University").classList.remove("");
+        document.querySelector("#div_student_id").classList.remove("");
         // ใส่ required ใน student_id และ select_University
         document.querySelector("#select_University").required = "true";
         document.querySelector("#student_id").required = "true";
