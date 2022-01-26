@@ -193,9 +193,9 @@ class Check_inController extends Controller
         $location = $request->get('location');
 
         if(Auth::check()){
-            return redirect('check_in/create?location=' . $location);
+            return redirect('check_in/create?location=' . $location . "?openExternalBrowser=1");
         }else{
-            return redirect('/login/line?redirectTo=check_in/create?location=' . $location);
+            return redirect('/login/line?redirectTo=check_in/create?location=' . $location . "?openExternalBrowser=1");
         }
     }
 
