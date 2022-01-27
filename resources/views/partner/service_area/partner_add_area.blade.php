@@ -171,7 +171,7 @@
                 </div>
 				<div class="ms-auto">
 					@if(Auth::check())
-						@if(Auth::user()->id == 21 or Auth::user()->id == 2 or Auth::user()->id == 1)
+						@if(Auth::user()->id == "admin-partner" or Auth::user()->id == 2 or Auth::user()->id == 1)
 							<a id="btn_add_area" class="btn text-white float-right" style="background-color: #008450;" data-toggle="collapse" data-target="#div_name_partner" aria-expanded="false" aria-controls="div_name_partner">
 								<i class="fadeIn animated bx bx-add-to-queue"></i>เพิ่มพื้นที่บริการใหม่
 							</a>
