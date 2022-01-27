@@ -116,7 +116,7 @@ class Check_inController extends Controller
         $data_in_out = check_in::where('user_id', $requestData['user_id'])
             ->where('check_in_at', $requestData['check_in_at'])
             ->latest()
-            ->take(5)
+            ->take(3)
             ->get();   
 
         $check_in_at = $requestData['check_in_at'] ;

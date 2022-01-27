@@ -16,7 +16,7 @@
               <h1 class="text-danger notranslate"><b>{{ $type }}</b></h1>
             @endif
 
-            <h4 class="text-primary"><b><u>{{ date("d/m/Y H:i" , strtotime($time)) }}</u></b></h4>
+            <h4 style="color:blue;"><b><u>{{ date("d/m/Y H:i" , strtotime($time)) }}</u></b></h4>
 
             <h4>คุณ : <b>{{ Auth::user()->name }}</b></h4>
             <p>ประวัติการเข้าออก {{ $check_in_at }}</p>
@@ -34,9 +34,9 @@
         </div>
     </div>
 
-    <a class="btn btn-success" onclick="check_add_line();">
+    <h3 class="btn btn-success" onclick="check_add_line();">
       เสร็จสิ้น
-    </a>
+    </h3>
   </div>
 </center>
 <input class="d-none" type="text" name="uesr_add_line" id="uesr_add_line" value="{{ Auth::user()->add_line }}">
