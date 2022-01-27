@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <a style="height: 300px;" class="btn btn-success" onclick="check_add_line();">
+    <a class="btn btn-success" onclick="check_add_line();">
       เสร็จสิ้น
     </a>
   </div>
