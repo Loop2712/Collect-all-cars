@@ -18,7 +18,8 @@
   }
 </style>
 <br>
-<div class="row d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+
+<div class="row " style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
         <div class="col-12">
             <div class="card">
                 <div class="card-header border-bottom-0 bg-transparent ">
@@ -26,7 +27,7 @@
                           <div class="col-6">
                             <h5 class="font-weight-bold mb-0">เลือกช่วงเวลา</h5>
                           </div>
-                          <div class="col-6">
+                          <div class="col-6 ">
                               <a style="float: right;">ขอความช่วยเหลือทั้งหมด : <span id="sos_all">{{ $sos_all }}</span> ครั้ง</a>
                           </div>
                     </div>
@@ -61,10 +62,10 @@
                                   <option value="12">ธันวาคม</option>
                                 </select>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-1 col-6">
                                 <br>
                                 <form style="float: right;" method="GET" action="{{ url('/sos_detail_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
-                                    <div class="input-group">
+                                    <div class="input-group ">
                                       <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
                                       <input type="hidden" class="form-control" id="input_month" name="month" value="{{ request('month') }}">
                                     </div>
@@ -73,7 +74,15 @@
                                     </button>
                                 </form>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-6 d-none d-lg-block ">
+                                <br>
+                                <a href="{{ url('/sos_detail_partner') }}" >
+                                    <button class="btn btn-danger">
+                                        ล้างการค้นหา
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-md-2 col-6 d-block d-md-none " style="margin-top:8px;">
                                 <br>
                                 <a href="{{ url('/sos_detail_partner') }}" >
                                     <button class="btn btn-danger">
@@ -87,7 +96,7 @@
             </div>
         </div>
     </div>
-    <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+      <div class="card radius-10 " style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
         <div class="card-header border-bottom-0 bg-transparent">
             <div class="d-flex align-items-center" style="margin-top:10px;">
                 <div class="col-6">
@@ -97,15 +106,34 @@
                     <div style="float: right;">ขอความช่วยเหลือในเดือนที่ค้นหา : <b>{{ $total }}</b> ครั้ง</div>
                 </div>
             </div>
+            <div class="col-12 col-md-11 text-center d-block d-md-none" style="margin-top:20px;">
+              <ul class="nav nav-pills nav-pills-danger mt-4 d-flex justify-content-center"   role="tablist" >
+                  <li class="nav-item" >
+                  <a id="chartam" class="active btn btn-outline-danger" href="#" role="tab" data-toggle="tab" style=" width: 115px;" onclick="
+                          document.querySelector('#chart2222').classList.remove('d-none'),
+                          document.querySelector('#chart1111').classList.add('d-none');">
+                          <b style="font-size: 15px;">AM</b>
+                      </a>
+                  </li>
+              &nbsp;
+                  <li class="nav-item" >
+                  <a id="chartpm" class="btn btn-outline-danger" href="#" role="tab" data-toggle="tab" onclick="
+                              document.querySelector('#chart2222').classList.add('d-none'),
+                              document.querySelector('#chart1111').classList.remove('d-none');">
+                      <b style="font-size: 15px;">PM</b>
+                      </a>
+                  </li>
+              
+              </ul>
+            </div>
         </div>
-        <div class="card-body">
+        <div class="d-none d-lg-block " id="chartpc"></div>
+        <div class="d-block d-md-none"id="chart1111"><div  id="chartmobileam"></div></div>
+        <div class="d-block d-md-none" id="chart2222"><div id="chartmobilepm"></div></div>
+        
+        
+        <!-- <div class="card-body">
           <div class="row main-shadow main-radius" id="img_bg_3">
-              <!-- <div style="z-index: 10;position: absolute;margin-top: 9%;margin-left: 17%;">
-                <canvas id="canvas_1" width="250" height="250"></canvas>
-              </div>
-              <div style="z-index: 10;position: absolute;margin-top: 120px;margin-left: 65%;">
-                <canvas id="canvas_2" width="250" height="250"></canvas>
-              </div> -->
               <div class="col-md-6" style="z-index: 10; ">
                 <center>
                   <canvas id="canvas_1" width="185px" height="185" style="margin-top:140px"></canvas>
@@ -117,16 +145,6 @@
                   <canvas id="canvas_2"  width="185px" height="185" style="margin-top:140px"></canvas>
                 </center>
               </div>
-              <!-- <div class="col-md-12" >
-                00.00
-                <h2 class="text-danger" style="margin-top: -230px;margin-left: 400px;">
-                  <b> {{ $sos_time_00 }} </b>
-                </h2>
-                01.00
-                <h2 class="text-danger" style="margin-top: 9px;margin-left: 31px;">
-                  <b> {{ $sos_time_01 }} </b>
-                </h2>
-              </div> -->
               <div id="" class="col-md-6" style="margin-top:-360px;">
                 <img style="position:absolute;right: 50px; margin-top:-20px;"  width="80px" src="{{ asset('/img/more/sun.png') }}" >
                 <center>
@@ -214,12 +232,112 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
     </div>
-
-<div class="col-12 text-center d-block d-md-none">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- <div class="col-12 text-center d-block d-md-none">
   <h1>ระบบนี้ใช้ได้เฉพาะ pc เท่านั้น</h1>
-</div>
+</div> -->
+<script>
+          var options = {
+          series: [{
+          name: 'AM',
+          data: [  <?php echo $sos_time_00 ?>, <?php echo $sos_time_01 ?> , <?php echo $sos_time_02 ?>, <?php echo $sos_time_03 ?>, <?php echo $sos_time_04 ?>, <?php echo $sos_time_05 ?>, <?php echo $sos_time_06 ?>, <?php echo $sos_time_07 ?>, <?php echo $sos_time_08 ?>, <?php echo $sos_time_09 ?>, <?php echo $sos_time_10 ?>, <?php echo $sos_time_11 ?>,null , null , null , null , null , null , null , null , null , null , null , null ,]
+          },
+          {
+          name: 'PM',
+          data: [ null , null , null , null , null , null , null , null , null , null , null , null , <?php echo $sos_time_12 ?>,  <?php echo $sos_time_13 ?>, <?php echo $sos_time_14 ?>, <?php echo $sos_time_15 ?>, <?php echo $sos_time_16 ?>, <?php echo $sos_time_17 ?>, <?php echo $sos_time_18 ?>, <?php echo $sos_time_19 ?>, <?php echo $sos_time_20 ?>, <?php echo $sos_time_21 ?>, <?php echo $sos_time_22 ?>, <?php echo $sos_time_23 ?>, ]
+          },
+        ],
+          chart: {
+          height: 400,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'time',
+          categories: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "010:00", "011:00", "12:00" ,"13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00",]
+        },
+        tooltip: {
+          x: {
+            format: 'HH:mm'
+          },
+          
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartpc"), options);
+        chart.render();
+</script>
+<script>
+          var options = {
+          series: [{
+          name: 'AM',
+          data: [  <?php echo $sos_time_00 ?>, <?php echo $sos_time_01 ?> , <?php echo $sos_time_02 ?>, <?php echo $sos_time_03 ?>, <?php echo $sos_time_04 ?>, <?php echo $sos_time_05 ?>, <?php echo $sos_time_06 ?>, <?php echo $sos_time_07 ?>, <?php echo $sos_time_08 ?>, <?php echo $sos_time_09 ?>, <?php echo $sos_time_10 ?>, <?php echo $sos_time_11 ?>]
+          },],
+          chart: {
+          height: 400,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'time',
+          categories: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "010:00", "011:00" ]
+        },
+        tooltip: {
+          x: {
+            format: 'HH:mm'
+          },
+          
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartmobilepm"), options);
+        chart.render();
+        var options = {
+          series: [{
+          name: 'PM',
+          data: [<?php echo $sos_time_12 ?>,  <?php echo $sos_time_13 ?>, <?php echo $sos_time_14 ?>, <?php echo $sos_time_15 ?>, <?php echo $sos_time_16 ?>, <?php echo $sos_time_17 ?>, <?php echo $sos_time_18 ?>, <?php echo $sos_time_19 ?>, <?php echo $sos_time_20 ?>, <?php echo $sos_time_21 ?>, <?php echo $sos_time_22 ?>, <?php echo $sos_time_23 ?>, ]
+          },
+        ],
+          chart: {
+          height: 400,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'time',
+          categories: ["12:00" ,"13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00",]
+        },
+        tooltip: {
+          x: {
+            format: 'HH:mm'
+          },
+          
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartmobileam"), options);
+        chart.render();
+</script>
+<script>
+          
+</script>
 <script>
   function select_year(){
     var select_year = document.getElementById('select_year').value;

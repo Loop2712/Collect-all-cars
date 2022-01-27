@@ -93,7 +93,7 @@
                     </span>
                     <span>
                         <a id="car_ID" href="#" class="d-none" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
-                            <img width="40px" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px; border: 1px solid; color:#8C8C8C;""> <i class="fal fa-angle-down"></i>
+                            <img width="40px" src="{{ asset('/img/national-flag/ID.png') }}" style= "border-radius: 5px; border: 1px solid; color:#8C8C8C;"> <i class="fal fa-angle-down"></i>
                         </a>
                     </span>
                     <span>

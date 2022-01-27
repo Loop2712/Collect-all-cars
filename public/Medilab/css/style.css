@@ -19,7 +19,7 @@ a {
 }
 
 a:hover {
-  color: ;
+  /* color: ; */
   text-decoration: none;
 }
 
@@ -493,7 +493,7 @@ p.rtl {
 }
 
 #hero .btn-get-started:hover {
-  background: ;
+  /* background: ; */
 }
 
 @media (min-width: 1024px) {

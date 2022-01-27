@@ -43,7 +43,7 @@
                                             <img style="  width: 100%;height: 300px;object-fit: contain; " src="{{ $item->photo }}" class="card-img-top center" style="padding: 10px;">
                                             <div class="card-body">
                                                 <div>
-                                                    <h4 class="card-title notranslate">{{ $item->company }}</h4>
+                                                    <h4 class="card-title notranslate">{{ $item->company }}<i class="fal fa-comments-alt"></i></h4>
                                                     <p style="font-size: 15px;white-space: nowrap;width: 210px;overflow: hidden;text-overflow: ellipsis;"class="card-title"><b>{{ $item->titel }}</b></p>
                                                 </div>
                                                 <hr>
@@ -57,10 +57,12 @@
                                                             @else
                                                                 {{ date("d F Y", strtotime("$item->time_period")) }}
                                                             @endif
-                                                            @if (Auth::user()->role === "admin" )
-                                                                <a style="float:right;margin-right: 10px;margin-bottom: 10px;" data-toggle="collapse" data-target="#collapseExample{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample{{ $item->id }}">
-                                                                    <i class="fas fa-sort-down"></i>
-                                                                </a>
+                                                            @if(Auth::check())
+                                                                @if (Auth::user()->role === "admin" )
+                                                                    <a style="float:right;margin-right: 10px;margin-bottom: 10px;" data-toggle="collapse" data-target="#collapseExample{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample{{ $item->id }}">
+                                                                        <i class="fas fa-sort-down"></i>
+                                                                    </a>
+                                                                @endif
                                                             @endif
                                                         </p>
                                                     </div>
@@ -116,10 +118,12 @@
                                                             @else
                                                                 {{ date("d F Y", strtotime("$item->time_period")) }}
                                                             @endif
-                                                            @if (Auth::user()->role === "admin" )
-                                                                <a style="float:right;margin-right: 10px;margin-bottom: 10px;" data-toggle="collapse" data-target="#collapseExample{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample{{ $item->id }}">
-                                                                    <i class="fas fa-sort-down"></i>
-                                                                </a>
+                                                            @if(Auth::check())
+                                                                @if (Auth::user()->role === "admin" )
+                                                                    <a style="float:right;margin-right: 10px;margin-bottom: 10px;" data-toggle="collapse" data-target="#collapseExample{{ $item->id }}" aria-expanded="false" aria-controls="collapseExample{{ $item->id }}">
+                                                                        <i class="fas fa-sort-down"></i>
+                                                                    </a>
+                                                                @endif
                                                             @endif
                                                         </p>
                                                     </div>
