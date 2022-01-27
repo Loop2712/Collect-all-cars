@@ -16,7 +16,7 @@
               <h1 class="text-danger notranslate"><b>{{ $type }}</b></h1>
             @endif
 
-            <h4 class="text-info">{{ date("d/m/Y H:i" , strtotime($time)) }}</h4>
+            <h4 class="text-primary"><b><u>{{ date("d/m/Y H:i" , strtotime($time)) }}</u></b></h4>
 
             <h4>คุณ : <b>{{ Auth::user()->name }}</b></h4>
             <p>ประวัติการเข้าออก {{ $check_in_at }}</p>
@@ -78,7 +78,7 @@
           document.querySelector("#btn_modal_addline").click();
         }else{
           document.querySelector("#btn_add_line").click();
-          
+
         }
     }
 </script>
