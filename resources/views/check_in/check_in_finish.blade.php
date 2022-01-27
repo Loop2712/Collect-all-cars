@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <a id="btn_add_line" class="btn btn-success" href="https://lin.ee/xnFKMfc">
+    <a class="btn btn-success" onclick="check_add_line();">
       เสร็จสิ้น
     </a>
   </div>
@@ -56,7 +56,7 @@
           </a>
         </center>
         <br>
-        <a href="https://lin.ee/xnFKMfc">
+        <a id="btn_add_line" href="https://lin.ee/xnFKMfc">
           <button  style="width:100%" type="button" class="btn btn-success" >เพิ่มเพื่อน</button>
         </a>
       </div>
@@ -67,12 +67,19 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START"); 
-        let uesr_add_line = document.querySelector("#uesr_add_line");
+
+    });
+
+    function check_add_line(){
+
+      let uesr_add_line = document.querySelector("#uesr_add_line");
 
         if (uesr_add_line.value != "Yes") {
           document.querySelector("#btn_modal_addline").click();
+        }else{
+          document.querySelector("#btn_add_line").click();
+          
         }
-
-    });
+    }
 </script>
 @endsection
