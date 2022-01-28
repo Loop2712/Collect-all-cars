@@ -160,51 +160,55 @@
                                             </div>
                                             @if(Auth::check())
                                                 @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
-                                                    <div class="col-12 text-left" style="margin-top:5px;">
-                                                        <h5>คะแนนการช่วยเหลือ</h5>
-                                                        <div class="row">
-                                                            <div class="col-2" style="padding:0px">
-                                                                ผู้ใช้การช่วย : <br>{{$item->helper}}
-                                                            </div>
-                                                            <div class="col-2" style="padding:0px">
-                                                                @if($item->score_impression < 3)
-                                                                    ความประทับใจ : <br>
-                                                                    <span class="text-danger">{{$item->score_impression}}</span>
-                                                                @elseif($item->score_impression == 3)
-                                                                    ความประทับใจ : <br>
-                                                                    <span class="text-warning">{{$item->score_impression}}</span>
-                                                                @elseif($item->score_impression > 3)
-                                                                    ความประทับใจ : <br>
-                                                                    <span class="text-success">{{$item->score_impression}}</span>
-                                                                @endif
-                                                            </div>
-                                                            <div class="col-2" style="padding:0px">
-                                                                @if($item->score_period < 3)
-                                                                    ระยะเวลา : <br>
-                                                                    <span class="text-danger">{{$item->score_period}}</span>
-                                                                @elseif($item->score_period == 3)
-                                                                    ระยะเวลา : <br>
-                                                                    <span class="text-warning">{{$item->score_period}}</span>
-                                                                @elseif($item->score_period > 3)
-                                                                    ระยะเวลา : <br>
-                                                                    <span class="text-success">{{$item->score_period}}</span>
-                                                                @endif
-                                                            </div>
-                                                            <div class="col-2" style="padding:0px">
-                                                                @if($item->score_total < 3)
-                                                                    ภาพรวม : <br>
-                                                                    <span class="text-danger">{{$item->score_total}}</span>
-                                                                @elseif($item->score_total == 3)
-                                                                    ภาพรวม : <br>
-                                                                    <span class="text-warning">{{$item->score_total}}</span>
-                                                                @elseif($item->score_total > 3)
-                                                                    ภาพรวม : <br>
-                                                                    <span class="text-success">{{$item->score_total}}</span>
-                                                                @endif
-                                                            </div>
-                                                            <div class="col-4" style="padding:0px">
-                                                                คำแนะนำ/ติชม : <br>{{$item->comment_help}}
-                                                            </div>
+                                                    @if($item->score_total != null)
+                                                        <div class="col-12 text-left" style="margin-top:5px;">
+                                                                <h5>คะแนนการช่วยเหลือ</h5>
+                                                                <div class="row">
+                                                                    <div class="col-2" style="padding:0px">
+                                                                        ผู้ใช้การช่วย : <br>{{$item->helper}}
+                                                                    </div> 
+                                                                <div class="col-2" style="padding:0px">
+                                                                    @if($item->score_impression < 3)
+                                                                        ความประทับใจ : <br>
+                                                                        <span class="text-danger">{{$item->score_impression}}</span>
+                                                                    @elseif($item->score_impression == 3)
+                                                                        ความประทับใจ : <br>
+                                                                        <span class="text-warning">{{$item->score_impression}}</span>
+                                                                    @elseif($item->score_impression > 3)
+                                                                        ความประทับใจ : <br>
+                                                                        <span class="text-success">{{$item->score_impression}}</span>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="col-2" style="padding:0px">
+                                                                    @if($item->score_period < 3)
+                                                                        ระยะเวลา : <br>
+                                                                        <span class="text-danger">{{$item->score_period}}</span>
+                                                                    @elseif($item->score_period == 3)
+                                                                        ระยะเวลา : <br>
+                                                                        <span class="text-warning">{{$item->score_period}}</span>
+                                                                    @elseif($item->score_period > 3)
+                                                                        ระยะเวลา : <br>
+                                                                        <span class="text-success">{{$item->score_period}}</span>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="col-2" style="padding:0px">
+                                                                    @if($item->score_total < 3)
+                                                                        ภาพรวม : <br>
+                                                                        <span class="text-danger">{{$item->score_total}}</span>
+                                                                    @elseif($item->score_total == 3)
+                                                                        ภาพรวม : <br>
+                                                                        <span class="text-warning">{{$item->score_total}}</span>
+                                                                    @elseif($item->score_total > 3)
+                                                                        ภาพรวม : <br>
+                                                                        <span class="text-success">{{$item->score_total}}</span>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="col-4" style="padding:0px">
+                                                                    คำแนะนำ/ติชม : <br>{{$item->comment_help}}
+                                                                </div> 
+                                                            @else
+                                                            ไม่ทำแบบประเมิน 
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 @endif
