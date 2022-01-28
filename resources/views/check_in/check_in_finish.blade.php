@@ -57,7 +57,7 @@
         </center>
         <br>
         <a id="btn_add_line" href="https://lin.ee/xnFKMfc">
-          <button  style="width:100%" type="button" class="btn btn-success" >เพิ่มเพื่อน</button>
+          <button  style="width:100%" type="button" class="btn btn-lg btn-success text-dark" ><b>เพิ่มเพื่อน</b></button>
         </a>
       </div>
     </div>

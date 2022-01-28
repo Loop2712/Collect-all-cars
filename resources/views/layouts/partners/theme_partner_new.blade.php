@@ -164,7 +164,7 @@
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         @if(!empty(Auth::user()->photo))
-                                <img alt="" style="width:60px; border-radius: 50%;" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
+                                <img alt="" style="width:50px;"class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
                             @else
                                 <img src="partner/images/user/avatar-1.jpg" width="25%" class="img-radius" alt="User-Profile-Image">
                             @endif
@@ -174,15 +174,17 @@
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-                            <li><a href="" class="dropdown-item"><i class="lni lni-line"></i><span>ตั้งค่ากลุ่มไลน์</span></a>
-							</li>
-							<li><a href="" class="dropdown-item" data-toggle="modal" data-target="#modal_change_color" onclick="random_color();"><i class="bx bx-paint"></i><span>เปลี่ยนสี Template</span></a>
-							</li>
-                            <li><a href="" class="dropdown-item"><i class="bx bx-edit-alt"></i><span>เปลี่ยนโลโก้ Template(soon)</span></a>
-							</li>
-							<li>
-								<div class="dropdown-divider mb-0"></div>
-							</li>
+							@if(Auth::user()->id == "0")
+	                            <li><a href="" class="dropdown-item"><i class="lni lni-line"></i><span>ตั้งค่ากลุ่มไลน์</span></a>
+								</li>
+								<li><a href="" class="dropdown-item" data-toggle="modal" data-target="#modal_change_color" onclick="random_color();"><i class="bx bx-paint"></i><span>เปลี่ยนสี Template</span></a>
+								</li>
+	                            <li><a href="" class="dropdown-item"><i class="bx bx-edit-alt"></i><span>เปลี่ยนโลโก้ Template(soon)</span></a>
+								</li>
+								<li>
+									<div class="dropdown-divider mb-0"></div>
+								</li>
+							@endif
 							<li>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

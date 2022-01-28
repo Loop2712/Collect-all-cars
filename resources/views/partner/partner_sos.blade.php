@@ -51,7 +51,8 @@
                         <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
                         @if(Auth::check())
                             @if(Auth::user()->role == 'admin-partner')
-                        <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-primary text-white d-">คะแนนการช่วยเหลือ </a>
+                        <a href="#" type="button" class="btn btn-primary text-white d-">คะแนนการช่วยเหลือ (soon) </a>
+                        <!--  href="{{ url('/sos_score_helper') }}" -->
                             @endif
                         @endif
                     </div>

@@ -717,6 +717,7 @@ class LineApiController extends Controller
     {   
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
         $data_users = User::findOrFail($data_sos_map->user_id);
+        $date_now = date('Y-m-d\TH:i:s');
 
         if ($data_sos_map->help_complete != 'Yes') {
             
@@ -724,6 +725,7 @@ class LineApiController extends Controller
                 ->where('id', $id_sos_map)
                 ->update([
                     'help_complete' => 'Yes',
+                    'help_complete_time' => $date_now,
             ]);
 
             $user_language = $data_users->language ;
