@@ -115,13 +115,12 @@
                                                     {{ date("H:i" , strtotime($item->created_at)) }}
                                             </div>
                                             <div class="col-3 text-center" style="padding:0px;font-size:13px">
-                                                @if($item->helper != null)
+                                                @if( !empty($item->helper) and empty($item->help_complete) )
                                                     <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>กำลังดำเนินการ</a>
                                                 @elseif($item->helper == null)
                                                     <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ดำเนินการ</a>
                                                 @elseif($item->help_complete == "Yes" && $item->helper != null)
                                                     <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ดำเนินการเสร็จสิ้น</a>
-
                                                 @endif
                                                 
                                             </div>
