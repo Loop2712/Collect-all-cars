@@ -121,7 +121,9 @@
                                                     <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ช่วยเหลือ</a>
                                                 @elseif($item->help_complete == "Yes" && $item->helper != null)
                                                     <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
-                                                    <p>{{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}</p>   
+                                                    @if(!empty($item->help_complete_time))
+                                                        <p>{{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}</p>  
+                                                    @endif 
                                                 @endif
                                                 
                                             </div>
