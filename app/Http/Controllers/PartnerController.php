@@ -471,7 +471,7 @@ class PartnerController extends Controller
         foreach ($data_partners as $data_partner) {
             $search_area = $data_partner->name ;
         }
-        $perPage = 5;
+        $perPage = 4;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
                     foreach ($sos_all_request as $key) {
