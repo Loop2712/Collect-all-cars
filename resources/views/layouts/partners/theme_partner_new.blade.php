@@ -170,7 +170,16 @@
                             @endif
 							<div class="user-info ps-3">
 								<p class="user-name mb-0">{{ Auth::user()->name }}</p>
-								<p class="designattion mb-0">{{ Auth::user()->role }}</p>
+								<p class="designattion mb-0">
+									@switch(Auth::user()->role)
+                                        @case('partner')
+                                            เจ้าหน้าที่
+                                        @break
+                                        @case('admin-partner')
+                                            แอดมิน
+                                        @break
+                                    @endswitch
+								</p>
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
