@@ -66,7 +66,7 @@
                                             เจ้าหน้าที่
                                         @break
                                         @case('admin-partner')
-                                            แอดมิน
+                                            <b>แอดมิน</b>
                                         @break
                                     @endswitch
                                 </td>
