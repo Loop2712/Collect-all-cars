@@ -44,6 +44,7 @@
                                 <span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;{{ $item->name }}
                                 </td>
                                 <td class="text-center">
+                                    <i class="bx bx-line text-success"></i>
                                     @switch($item->type)
                                         @case('line')
                                             <i class="bx bx-line text-success"></i>
