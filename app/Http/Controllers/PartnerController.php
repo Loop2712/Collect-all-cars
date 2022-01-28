@@ -493,6 +493,7 @@ class PartnerController extends Controller
 
         $select_name_areas = DB::table('sos_maps')
             ->where('area','LIKE', "%$search_area%")
+            ->groupBy('name_area')
             ->get();
 
         $text_at = '@' ;
