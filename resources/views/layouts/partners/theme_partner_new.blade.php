@@ -174,15 +174,17 @@
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-                            <li><a href="" class="dropdown-item"><i class="lni lni-line"></i><span>ตั้งค่ากลุ่มไลน์</span></a>
-							</li>
-							<li><a href="" class="dropdown-item" data-toggle="modal" data-target="#modal_change_color" onclick="random_color();"><i class="bx bx-paint"></i><span>เปลี่ยนสี Template</span></a>
-							</li>
-                            <li><a href="" class="dropdown-item"><i class="bx bx-edit-alt"></i><span>เปลี่ยนโลโก้ Template(soon)</span></a>
-							</li>
-							<li>
-								<div class="dropdown-divider mb-0"></div>
-							</li>
+							@if(Auth::user()->id == "0")
+	                            <li><a href="" class="dropdown-item"><i class="lni lni-line"></i><span>ตั้งค่ากลุ่มไลน์</span></a>
+								</li>
+								<li><a href="" class="dropdown-item" data-toggle="modal" data-target="#modal_change_color" onclick="random_color();"><i class="bx bx-paint"></i><span>เปลี่ยนสี Template</span></a>
+								</li>
+	                            <li><a href="" class="dropdown-item"><i class="bx bx-edit-alt"></i><span>เปลี่ยนโลโก้ Template(soon)</span></a>
+								</li>
+								<li>
+									<div class="dropdown-divider mb-0"></div>
+								</li>
+							@endif
 							<li>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
