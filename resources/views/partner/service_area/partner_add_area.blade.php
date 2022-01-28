@@ -89,7 +89,7 @@
 								{!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
 							</div>
 							<div class="col-md-4">
-								<label for="inputEmail" class="form-label">อีเมล์</label>
+								<label for="inputEmail" class="form-label">อีเมล</label>
 								<input class="form-control" name="mail" type="mail" id="mail" value="{{ $data_partner->mail }}"  readonly>
 								{!! $errors->first('mail', '<p class="help-block">:message</p>') !!}
 							</div>

@@ -169,7 +169,7 @@
                                                                 <h5>คะแนนการช่วยเหลือ</h5>
                                                                 <div class="row">
                                                                     <div class="col-2" style="padding:0px">
-                                                                        ผู้ใช้การช่วย : <br>{{$item->helper}}
+                                                                        ผู้ให้การช่วย : <br>{{$item->helper}}
                                                                     </div> 
                                                                 <div class="col-2" style="padding:0px">
                                                                     @if($item->score_impression < 3)
