@@ -75,24 +75,19 @@
                                     <tr class="text-center">
                                     <div class="row  text-center">
                                         <div class="col-3">
-                                            <b>ชื่อ</b><br>
-                                            Name
+                                            <b>ผู้ขอความช่วยเหลือ</b>
                                         </div>
                                         <div class="col-2">
-                                            <b>เบอร์</b><br>
-                                            Phone
+                                            <b>เวลาขอความช่วยเหลือ</b>
                                         </div>
                                         <div class="col-3">
-                                            <b>เวลา</b><br>
-                                            Time
+                                            <b>สถานะ</b>
                                         </div>
                                         <div class="col-2">
-                                            <b>รูปภาพ</b><br>
-                                            Photo
+                                            <b>รูปภาพ</b>
                                         </div>
                                         <div class="col-2">
-                                            <b>ตำแหน่ง</b><br>
-                                            Location
+                                            <b>ตำแหน่ง</b>
                                         </div>
                                     </div>
                                     </tr>
@@ -107,15 +102,27 @@
                                                         <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
                                                         <i class="far fa-eye text-primary"></i>
                                                         </a>
-                                                    </span>&nbsp;{{ $item->name }}
+                                                    </span>&nbsp;{{ $item->name }} <br> 
                                                 </h5>
-                                            </div>
-                                            <div class="col-2 " style="padding:0px;font-size:13px">
                                                 {{ $item->phone }}
                                             </div>
-                                            <div class="col-3" style="padding:0px;font-size:13px">
+                                            <!-- <div class="col-2 " style="padding:0px;font-size:13px">
+                                                {{ $item->phone }}
+                                            </div> -->
+                                            <div class="col-2" style="padding:0px;font-size:13px">
                                                     {{ date("d/m/Y" , strtotime($item->created_at)) }} <br>
                                                     {{ date("H:i" , strtotime($item->created_at)) }}
+                                            </div>
+                                            <div class="col-3 text-center" style="padding:0px;font-size:13px">
+                                                @if($item->helper != null)
+                                                    <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>กำลังดำเนินการ</a>
+                                                @elseif($item->helper == null)
+                                                    <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ดำเนินการ</a>
+                                                @elseif($item->help_complete == "Yes" && $item->helper != null)
+                                                    <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ดำเนินการเสร็จสิ้น</a>
+
+                                                @endif
+                                                
                                             </div>
                                             <div class="col-2" style="padding:0px;">
                                                 @if(!empty($item->photo))
