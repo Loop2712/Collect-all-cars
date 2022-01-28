@@ -63,10 +63,10 @@
                                 <td class="text-center">
                                     @switch($item->role)
                                         @case('partner')
-                                            <p>เจ้าหน้าที่</p>
+                                            เจ้าหน้าที่
                                         @break
                                         @case('admin-partner')
-                                            <p>แอดมิน</p>
+                                            แอดมิน
                                         @break
                                     @endswitch
                                 </td>
