@@ -31,7 +31,6 @@
                         <tr class="text-center">
                             <th>ชื่อ</th>
                             <th>ประเภท</th>
-                            <th>การจัดอันดับ</th>
                             <th>เบอร์</th>
                             <th>สถานะ</th>
                             <th>การใช้งาน</th>
@@ -57,19 +56,6 @@
                                         @break
                                         @case(null)
                                             <i class="bx bx-globe" style="color: #5F9EA0"></i>
-                                        @break
-                                    @endswitch
-                                </td>
-                                <td class="text-center"> 
-                                    @switch($item->ranking)
-                                        @case('Gold')
-                                            <img width="20" src="{{ url('/img/ranking/gold.png') }}"> Gold
-                                        @break
-                                        @case('Silver')
-                                            <img width="20" src="{{ url('/img/ranking/silver.png') }}"> Silver
-                                        @break
-                                        @case('Bronze')
-                                            <img width="20" src="{{ url('/img/ranking/bronze.png') }}"> Bronze
                                         @break
                                     @endswitch
                                 </td>
