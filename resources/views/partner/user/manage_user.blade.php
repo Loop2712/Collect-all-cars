@@ -60,7 +60,16 @@
                                     @endswitch
                                 </td>
                                 <td class="text-center">{{ $item->phone }}</td>
-                                <td class="text-center">{{ $item->role }}</td>
+                                <td class="text-center">
+                                    @switch($item->role)
+                                        @case('partner')
+                                            <p>เจ้าหน้าที่</p>
+                                        @break
+                                        @case('admin-partner')
+                                            <p>แอดมิน</p>
+                                        @break
+                                    @endswitch
+                                </td>
                                 <td class="text-center">
                                     @switch($item->status)
                                         @case('active')
