@@ -258,8 +258,8 @@
                                     <br><br>
                                     <h5 class="text-danger">ยืนยันการสร้างสมาชิก</h5>
                                     <br>
-                                    <input type="radio" name="type" onclick="document.querySelector('#type_user_partner').value = 'admin-partner'; type_user_partner('admin-partner');"> Admin &nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="type" onclick="document.querySelector('#type_user_partner').value = 'partner'; type_user_partner('partner');"> Member
+                                    <input type="radio" name="type" onclick="document.querySelector('#type_user_partner').value = 'admin-partner'; type_user_partner('admin-partner');"> แอดมิน &nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="type" onclick="document.querySelector('#type_user_partner').value = 'partner'; type_user_partner('partner');"> เจ้าหน้าที่
                                     <input type="hidden" name="type_user_partner" id="type_user_partner" value="">
                                 </center>
                               </div>
