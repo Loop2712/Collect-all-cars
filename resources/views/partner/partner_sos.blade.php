@@ -96,7 +96,7 @@
                                 <hr style="color:black;background-color:black;height:2px">
                                 <tbody>
                                     @foreach($view_maps as $item)
-                                    <div class="row text-center" style="margin-top:0px;">
+                                        <div class="row text-center" style="margin-top:0px;">
                                             <div class="col-3" style="padding:0px;">
                                                 <h5 class="text-success float-left">
                                                     <span style="font-size: 15px;">
@@ -116,11 +116,12 @@
                                             </div>
                                             <div class="col-3 text-center" style="padding:0px;font-size:13px">
                                                 @if( !empty($item->helper) and empty($item->help_complete) )
-                                                    <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>กำลังดำเนินการ</a>
+                                                    <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>กำลังช่วยเหลือ</a>
                                                 @elseif($item->helper == null)
-                                                    <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ดำเนินการ</a>
+                                                    <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ช่วยเหลือ</a>
                                                 @elseif($item->help_complete == "Yes" && $item->helper != null)
-                                                    <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ดำเนินการเสร็จสิ้น</a>
+                                                    <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
+                                                    <p>{{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}</p>   
                                                 @endif
                                                 
                                             </div>
@@ -160,7 +161,8 @@
                                             </div>
                                             @if(Auth::check())
                                                 @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
-                                                    @if($item->score_total != null)
+                                                    
+                                                    @if($item->help_complete == "Yes" and $item->score_total != null)
                                                         <div class="col-12 text-left" style="margin-top:5px;">
                                                                 <h5>คะแนนการช่วยเหลือ</h5>
                                                                 <div class="row">
@@ -206,11 +208,26 @@
                                                                 <div class="col-4" style="padding:0px">
                                                                     คำแนะนำ/ติชม : <br>{{$item->comment_help}}
                                                                 </div> 
-                                                            @else
-                                                            ไม่ทำแบบประเมิน 
-                                                            @endif
+                                                        
                                                         </div>
-                                                    </div>
+                                                    @elseif($item->help_complete == "Yes" and $item->score_total == null)
+                                                        <h5>คะแนนการช่วยเหลือ</h5>
+                                                        <div class="row">
+                                                            <div class="col-6" style="padding:0px">
+                                                                ผู้ใช้การช่วย : {{$item->helper}}
+                                                            </div> 
+                                                            <div class="col-6" style="padding:0px">
+                                                                ไม่ได้ทำแบบประเมิน
+                                                            </div> 
+                                                        </div>
+                                                    @elseif(!empty($item->helper) and empty($item->help_complete))
+                                                        <h5>คะแนนการช่วยเหลือ</h5>
+                                                        <div class="row">
+                                                            <div class="col-12" style="padding:0px">
+                                                                ผู้ใช้การช่วย : {{$item->helper}}
+                                                            </div> 
+                                                        </div>
+                                                    @endif      
                                                 @endif
                                             @endif
                                         </div>
