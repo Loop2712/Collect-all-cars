@@ -46,13 +46,13 @@
                                 <td class="text-center">
                                     @switch($item->type)
                                         @case('line')
-                                            <i class="bx bx-line text-success"></i>
+                                            <i class="fab fa-line text-success"></i>
                                         @break
                                         @case('facebook')
-                                            <i class="bx bx-facebook-oval text-primary"></i>
+                                            <i class="fab fa-facebook-square text-primary"></i>
                                         @break
                                         @case('google')
-                                            <i class="lni lni-google text-danger"></i>
+                                            <i class="fab fa-google text-danger"></i>
                                         @break
                                         @case(null)
                                             <i class="bx bx-globe" style="color: #5F9EA0"></i>
