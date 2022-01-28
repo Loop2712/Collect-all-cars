@@ -164,7 +164,7 @@
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         @if(!empty(Auth::user()->photo))
-                                <img alt="" style="width:60px; border-radius: 50%;" width="25%" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
+                                <img alt="" width="25%" title="" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
                             @else
                                 <img src="partner/images/user/avatar-1.jpg" width="25%" class="img-radius" alt="User-Profile-Image">
                             @endif
