@@ -410,7 +410,9 @@
                 </div>
               </div>
             </div>
-            
+
+    <input id="check_name_partner" type="hidden" name="" value="{{ $data_partner->name }}">
+
     <!-- Button trigger modal -->
 	<button id="btn_modal_notify" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_notify">
 	</button>
@@ -479,9 +481,10 @@
 
     function check_sos_alarm()
     {
+    	let check_name_partner = document.querySelector('#check_name_partner').value;
     	var audio = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
 
-    	fetch("{{ url('/') }}/api/check_sos_alarm")
+    	fetch("{{ url('/') }}/api/check_sos_alarm/" + check_name_partner)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -490,7 +493,7 @@
 
                 	document.querySelector('#div_menu_help').classList.remove('d-none');
 
-                	fetch("{{ url('/') }}/api/check_sos_alarm/notify")
+                	fetch("{{ url('/') }}/api/check_sos_alarm/notify/" + check_name_partner)
 			            .then(response => response.json())
 			            .then(result => {
 			                console.log(result);
