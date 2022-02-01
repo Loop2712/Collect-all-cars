@@ -475,7 +475,7 @@
 
 	    setInterval(function() {
 	       	check_sos_alarm();
-	    }, 3000);
+	    }, 6000);
         
     });
 
@@ -489,21 +489,21 @@
             .then(result => {
                 // console.log(result);
                 if (result.length != 0) {
-                	console.log(result.length);
+                	// console.log(result.length);
 
                 	document.querySelector('#div_menu_help').classList.remove('d-none');
 
                 	fetch("{{ url('/') }}/api/check_sos_alarm/notify/" + check_name_partner)
 			            .then(response => response.json())
 			            .then(result => {
-			                console.log(result);
+			                // console.log(result);
 			                if (result.length != 0) {
 								audio.play();
 
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
-								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
-								document.querySelector('#modal_notify_name_area').innerHTML = result[0]['name_area'];
+								document.querySelector('#modal_notify_time').innerHTML = "{{ date('d/m/Y H:i' , strtotime(" + result[0]['created_at'] + ")) }}";
+								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
 
 								document.querySelector('#btn_modal_notify').click();
 			                }
