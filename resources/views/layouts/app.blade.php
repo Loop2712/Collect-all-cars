@@ -103,7 +103,7 @@
             </center>   
         </div>
         <main class="">
-            <div class="container">
+            <div class="">
                 <div class="row">
                     <div class="col-12">
                         @include ('festival') 
