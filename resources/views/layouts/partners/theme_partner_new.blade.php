@@ -438,9 +438,7 @@
 	      	</div>
 	     	<div class="modal-footer">
 	        <button type="button" class="btn btn-success" onclick="document.querySelector('#div_menu_help_1').click();">ดูข้อมูล</button>
-	        <button type="button" class="btn btn-info text-white">
-	        	<a id="tag_a_link_ggmap" target="bank" class="text-white">ดูแผนที่</a>
-	        </button>
+	        <a id="tag_a_link_ggmap" target="bank" class="btn btn-info text-white">ดูแผนที่</a>
 	      </div>
 	    </div>
 	  </div>
