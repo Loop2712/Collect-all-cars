@@ -438,7 +438,9 @@
 	      	</div>
 	     	<div class="modal-footer">
 	        <button type="button" class="btn btn-success" onclick="document.querySelector('#div_menu_help_1').click();">ดูข้อมูล</button>
-	        <button type="button" class="btn btn-info text-white">ดูแผนที่</button>
+	        <button type="button" class="btn btn-info text-white">
+	        	<a id="tag_a_link_ggmap">ดูแผนที่</a>
+	        </button>
 	      </div>
 	    </div>
 	  </div>
@@ -504,6 +506,13 @@
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
 								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
+
+								let tag_a_link_ggmap = document.querySelector('#tag_a_link_ggmap');
+
+				                let tag_a_class = document.createAttribute("href");
+				                  	tag_a_class.value = "https://www.google.co.th/maps/search/"+ result[0]['lat'] +","+ result[0]['lng'] +"/@"+ result[0]['lat'] +","+ result[0]['lng'] +",16z";
+
+				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class); 
 
 								document.querySelector('#btn_modal_notify').click();
 			                }
