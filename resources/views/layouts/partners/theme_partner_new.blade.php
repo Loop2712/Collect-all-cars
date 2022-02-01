@@ -473,9 +473,9 @@
         // console.log("START");
 		check_sos_alarm();
 
-	    // setInterval(function() {
-	    //    	check_sos_alarm();
-	    // }, 3000);
+	    setInterval(function() {
+	       	check_sos_alarm();
+	    }, 3000);
         
     });
 
