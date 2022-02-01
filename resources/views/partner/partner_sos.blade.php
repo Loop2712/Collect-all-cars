@@ -216,7 +216,7 @@
                                                         <h5>คะแนนการช่วยเหลือ</h5>
                                                         <div class="row">
                                                             <div class="col-6" style="padding:0px">
-                                                                ผู้ใช้การช่วย : {{$item->helper}}
+                                                                ผู้ให้การช่วยเหลือ : {{$item->helper}}
                                                             </div> 
                                                             <div class="col-6" style="padding:0px">
                                                                 ไม่ได้ทำแบบประเมิน
@@ -226,7 +226,7 @@
                                                         <h5>คะแนนการช่วยเหลือ</h5>
                                                         <div class="row">
                                                             <div class="col-12" style="padding:0px">
-                                                                ผู้ใช้การช่วย : {{$item->helper}}
+                                                                ผู้ให้การช่วยเหลือ : {{$item->helper}}
                                                             </div> 
                                                         </div>
                                                     @endif      
@@ -393,7 +393,7 @@
                                                         <h4>คะแนนการช่วยเหลือ</h4>
                                                         <div class="row">
                                                             <div class="col-2">
-                                                                <b>ผู้ใช้การช่วย : </b><br>{{$item->helper}}
+                                                                <b>ผู้ให้การช่วยเหลือ : </b><br>{{$item->helper}}
                                                             </div>
                                                             <div class="col-2">
                                                                 @if($item->score_impression < 3)
@@ -526,7 +526,7 @@
                             </div>
                         </div>
                     </div>
-<div class="col-12 d-block d-lg-none">
+        <!-- <div class="col-12 d-block d-lg-none">
             <div class="row">
                 <div class="container-fluid ">
                     <div class="row">
@@ -596,7 +596,7 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>   -->
                 <!------------------------------------------------ end mobile---------------------------------------------------------------------- -->
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
