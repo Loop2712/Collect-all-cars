@@ -431,7 +431,7 @@
                     <h2 class="text-info"><b id="modal_notify_name"></b></h2>
                     <p style="line-height: 2;" id="modal_notify_phone"></p>
 
-                    <h3 class="text-dark"><b id="modal_notify_time"></b></h3>
+                    <h4 class="text-dark"><b id="modal_notify_time"></b></h4>
                     <p style="line-height: 2;" id="modal_notify_name_area"></p>
                     <br>
                 </center>
