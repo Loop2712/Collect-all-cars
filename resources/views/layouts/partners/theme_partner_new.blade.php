@@ -489,7 +489,7 @@
             .then(result => {
                 // console.log(result);
                 if (result.length != 0) {
-                	// console.log(result.length);
+                	console.log(result.length);
 
                 	document.querySelector('#div_menu_help').classList.remove('d-none');
 
