@@ -110,7 +110,7 @@
 					<a href="{{ url('/sos_partner') }}">
 						<div class="parent-icon"><i class='fas fa-hands-helping'></i>
 						</div>
-						<div class="menu-title">ให้ความช่วยเหลือ</div>
+						<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
 						<div id="div_menu_help" class="d-none">
 							&nbsp;
 							<i class="fas fa-exclamation-circle notify_alert"></i>
@@ -437,7 +437,7 @@
                 </center>
 	      	</div>
 	     	<div class="modal-footer">
-	        <button type="button" class="btn btn-success" onclick="window.location.reload(true);">ดูข้อมูล</button>
+	        <button type="button" class="btn btn-success" onclick="document.querySelector('#div_menu_help_1').click();">ดูข้อมูล</button>
 	        <button type="button" class="btn btn-info text-white">ดูแผนที่</button>
 	      </div>
 	    </div>
