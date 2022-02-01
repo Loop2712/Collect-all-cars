@@ -420,13 +420,22 @@
 	<div class="modal fade" id="modal_notify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนการขอความช่วยเหลือ</h5>
-	      </div>
-	      <div class="modal-body">
-	        ...
-	      </div>
-	      <div class="modal-footer">
+	      	<div class="modal-header">
+	        	<h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนการขอความช่วยเหลือ</h5>
+	      	</div>
+	      	<div class="modal-body">
+	       		<center>
+                    <img width="50%" src="{{ asset('/img/stickerline/PNG/21.png') }}">
+                    <br><br>
+                    <h2 class="text-info"><b id="modal_notify_name"></b></h2>
+                    <p style="line-height: 2;" id="modal_notify_phone"></p>
+
+                    <h3 class="text-dark"><b id="modal_notify_time"></b></h3>
+                    <p style="line-height: 2;" id="modal_notify_name_area"></p>
+                    <br>
+                </center>
+	      	</div>
+	     	<div class="modal-footer">
 	        <button type="button" class="btn btn-success" onclick="window.location.reload(true);">ดูข้อมูล</button>
 	        <button type="button" class="btn btn-info text-white">ดูแผนที่</button>
 	      </div>
@@ -490,7 +499,7 @@
                 	fetch("{{ url('/') }}/api/check_sos_alarm/notify")
 			            .then(response => response.json())
 			            .then(result => {
-			                // console.log(result);
+			                console.log(result);
 			                if (result.length != 0) {
 								audio.play();
 								document.querySelector('#btn_modal_notify').click();
