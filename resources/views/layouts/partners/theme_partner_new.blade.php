@@ -461,11 +461,17 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        check_sos_alarm();
 
-        setInterval(function() {
+        let input_organization = document.querySelector('#input_organization');
+
+        if (input_organization.value === "2บี กรีน จำกัด") {
         	check_sos_alarm();
-        }, 3000);
+
+	        setInterval(function() {
+	        	check_sos_alarm();
+	        }, 3000);
+        }
+        
     });
 
     function check_sos_alarm()
