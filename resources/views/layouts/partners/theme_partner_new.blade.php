@@ -502,7 +502,7 @@
 
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
-								document.querySelector('#modal_notify_time').innerHTML = "{{ date('d/m/Y H:i' , strtotime(" + result[0]['created_at'] + ")) }}" ;
+								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
 
 								document.querySelector('#btn_modal_notify').click();
