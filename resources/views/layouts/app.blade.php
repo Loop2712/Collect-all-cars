@@ -32,7 +32,7 @@
     body {
         height: 100vh;
         background: radial-gradient(ellipse at bottom, #34A65F 0%, #0F8A5F 100%);
-        overflow: hidden;
+        
     }
 
     .snowflake {
