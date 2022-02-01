@@ -410,8 +410,7 @@
                 </div>
               </div>
             </div>
-
-    <input class="d-none" type="text" name="input_organization" id="input_organization" value="{{ Auth::user()->organization }}">
+            
     <!-- Button trigger modal -->
 	<button id="btn_modal_notify" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_notify">
 	</button>
@@ -470,16 +469,11 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+		check_sos_alarm();
 
-        let input_organization = document.querySelector('#input_organization');
-
-        if (input_organization.value === "2บี กรีน จำกัด") {
-        	check_sos_alarm();
-
-	        setInterval(function() {
-	        	check_sos_alarm();
-	        }, 3000);
-        }
+	    setInterval(function() {
+	       	check_sos_alarm();
+	    }, 3000);
         
     });
 
