@@ -39,7 +39,7 @@
 	<div>
 		<img style="position:absolute;width: 90%;" src="{{ url('/') }}/img/festival/22.webp">
 		<img style="margin-top:-30px;" class="main-shadow main-radius" width="100%" src="{{ asset('/img/festival/hero-bg_22.jpg') }}">
-		<br><br><br>
+		<br><br>
 	</div>
 @endif
 

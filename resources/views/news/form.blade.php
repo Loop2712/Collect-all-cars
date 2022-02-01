@@ -3,7 +3,7 @@
         <div class="col-12 col-md-6">
             <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
                 <label for="title" class="control-label">{{ 'หัวข้อข่าว / Title' }}</label><span style="color: #FF0033;"> *</span> <span class="text-secondary"> (<span class="text-secondary" id="str_title">0</span>/30)</span> 
-                <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" required  onkeydown="str_title();">
+                <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" required  oninput="str_title();">
                 {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
             </div>
             <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">

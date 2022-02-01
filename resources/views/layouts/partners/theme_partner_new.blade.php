@@ -110,7 +110,7 @@
 					<a href="{{ url('/sos_partner') }}">
 						<div class="parent-icon"><i class='fas fa-hands-helping'></i>
 						</div>
-						<div class="menu-title">ให้ความช่วยเหลือ</div>
+						<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
 						<div id="div_menu_help" class="d-none">
 							&nbsp;
 							<i class="fas fa-exclamation-circle notify_alert"></i>
@@ -411,7 +411,8 @@
               </div>
             </div>
 
-    <input class="d-none" type="text" name="input_organization" id="input_organization" value="{{ Auth::user()->organization }}">
+    <input id="check_name_partner" type="hidden" name="" value="{{ $data_partner->name }}">
+
     <!-- Button trigger modal -->
 	<button id="btn_modal_notify" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_notify">
 	</button>
@@ -430,14 +431,14 @@
                     <h2 class="text-info"><b id="modal_notify_name"></b></h2>
                     <p style="line-height: 2;" id="modal_notify_phone"></p>
 
-                    <h3 class="text-dark"><b id="modal_notify_time"></b></h3>
+                    <h4 class="text-dark"><b id="modal_notify_time"></b></h4>
                     <p style="line-height: 2;" id="modal_notify_name_area"></p>
                     <br>
                 </center>
 	      	</div>
 	     	<div class="modal-footer">
-	        <button type="button" class="btn btn-success" onclick="window.location.reload(true);">ดูข้อมูล</button>
-	        <button type="button" class="btn btn-info text-white">ดูแผนที่</button>
+	        <button type="button" class="btn btn-success" onclick="document.querySelector('#div_menu_help_1').click();">ดูข้อมูล</button>
+	        <a id="tag_a_link_ggmap" target="bank" class="btn btn-info text-white">ดูแผนที่</a>
 	      </div>
 	    </div>
 	  </div>
@@ -470,24 +471,20 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+		check_sos_alarm();
 
-        let input_organization = document.querySelector('#input_organization');
-
-        if (input_organization.value === "2บี กรีน จำกัด") {
-        	check_sos_alarm();
-
-	        setInterval(function() {
-	        	check_sos_alarm();
-	        }, 3000);
-        }
+	    setInterval(function() {
+	       	check_sos_alarm();
+	    }, 5000);
         
     });
 
     function check_sos_alarm()
     {
+    	let check_name_partner = document.querySelector('#check_name_partner').value;
     	var audio = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
 
-    	fetch("{{ url('/') }}/api/check_sos_alarm")
+    	fetch("{{ url('/') }}/api/check_sos_alarm/" + check_name_partner)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -496,13 +493,27 @@
 
                 	document.querySelector('#div_menu_help').classList.remove('d-none');
 
-                	fetch("{{ url('/') }}/api/check_sos_alarm/notify")
+                	fetch("{{ url('/') }}/api/check_sos_alarm/notify/" + check_name_partner)
 			            .then(response => response.json())
 			            .then(result => {
-			                console.log(result);
+			                // console.log(result);
 			                if (result.length != 0) {
-								audio.play();
+
+								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
+								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
+								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
+								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
+
+								let tag_a_link_ggmap = document.querySelector('#tag_a_link_ggmap');
+
+				                let tag_a_class = document.createAttribute("href");
+				                  	tag_a_class.value = "https://www.google.co.th/maps/search/"+ result[0]['lat'] +","+ result[0]['lng'] +"/@"+ result[0]['lat'] +","+ result[0]['lng'] +",16z";
+
+				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class); 
+
 								document.querySelector('#btn_modal_notify').click();
+								
+								audio.play();
 			                }
 			        });
                 }else{
