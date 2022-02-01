@@ -102,7 +102,6 @@
                 <img width="200" src="{{ asset('/img/logo/logo-flex-line.png') }}">  
             </center>   
         </div>
-        <main class="">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -115,7 +114,6 @@
                     
                 </div>
             </div>
-        </main>
 
     </div>
 
