@@ -352,4 +352,31 @@ class PartnersController extends Controller
         return $result;
 
     }
+
+    public function check_sos_alarm()
+    {
+        $data_sos_map = DB::table('sos_maps')
+                        ->where("helper", null)
+                        ->get();
+
+        return $data_sos_map ;
+    }
+
+    public function check_sos_alarm_notify()
+    {
+        $notify = DB::table('sos_maps')
+                        ->where("helper", null)
+                        ->where("notify", null)
+                        ->get();
+
+        foreach ($notify as $item) {
+            DB::table('sos_maps')
+                ->where('id', $item->id)
+                ->update([
+                    'notify' => "Yes",
+            ]);
+        }
+
+        return $notify ;
+    }
 }

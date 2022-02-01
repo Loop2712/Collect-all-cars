@@ -34,6 +34,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=Prompt:wght@500&display=swap" rel="stylesheet">
 	<title>Partner Viicheck</title>
+
+	<style>
+		.notify_alert{
+          animation-name: notify_alert;
+          color: red;
+          animation-duration: 4s;
+          animation-iteration-count: 99;
+        }
+
+        @keyframes notify_alert {
+          0%   {color: red;}
+          20%  {color: yellow;}
+          40%  {color: red;}
+          60% {color: yellow;}
+          80%   {color: red;}
+          100%  {color: yellow;}
+
+        }
+	</style>
 </head>
 
 <<body>
@@ -92,6 +111,10 @@
 						<div class="parent-icon"><i class='fas fa-hands-helping'></i>
 						</div>
 						<div class="menu-title">ให้ความช่วยเหลือ</div>
+						<div id="div_menu_help" class="d-none">
+							&nbsp;
+							<i class="fas fa-exclamation-circle notify_alert"></i>
+						</div>
 					</a>
 				</li>
                 <li>
@@ -387,6 +410,29 @@
                 </div>
               </div>
             </div>
+
+    <input class="d-none" type="text" name="input_organization" id="input_organization" value="{{ Auth::user()->organization }}">
+    <!-- Button trigger modal -->
+	<button id="btn_modal_notify" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_notify">
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modal_notify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนการขอความช่วยเหลือ</h5>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" onclick="window.location.reload(true);">ดูข้อมูล</button>
+	        <button type="button" class="btn btn-info text-white">ดูแผนที่</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
@@ -412,6 +458,43 @@
 	<!--app JS-->
 	<script src="{{ asset('partner_new/js/app.js') }}"></script>
     <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        check_sos_alarm();
+
+        setInterval(function() {
+        	check_sos_alarm();
+        }, 3000);
+    });
+
+    function check_sos_alarm()
+    {
+    	var audio = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
+
+    	fetch("{{ url('/') }}/api/check_sos_alarm")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                if (result.length != 0) {
+                	// console.log(result.length);
+
+                	document.querySelector('#div_menu_help').classList.remove('d-none');
+
+                	fetch("{{ url('/') }}/api/check_sos_alarm/notify")
+			            .then(response => response.json())
+			            .then(result => {
+			                // console.log(result);
+			                if (result.length != 0) {
+								audio.play();
+								document.querySelector('#btn_modal_notify').click();
+			                }
+			        });
+                }else{
+                	document.querySelector('#div_menu_help').classList.add('d-none');
+                }
+        });
+    }
     
     function change_color()
     {
