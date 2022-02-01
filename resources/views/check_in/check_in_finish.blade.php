@@ -37,6 +37,7 @@
     <a class="btn btn-lg btn-success" onclick="check_add_line();">
       เสร็จสิ้น
     </a>
+    <br><br><br><br><br>
   </div>
 </center>
 <input class="d-none" type="text" name="uesr_add_line" id="uesr_add_line" value="{{ Auth::user()->add_line }}">
