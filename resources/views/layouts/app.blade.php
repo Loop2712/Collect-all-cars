@@ -96,7 +96,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;">
-    <div id="app">
+    <div>
         <div class="header__logo">
             <center>
                 <img width="200" src="{{ asset('/img/logo/logo-flex-line.png') }}">  
