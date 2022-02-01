@@ -498,7 +498,6 @@
 			            .then(result => {
 			                // console.log(result);
 			                if (result.length != 0) {
-								audio.play();
 
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
@@ -513,6 +512,8 @@
 				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class); 
 
 								document.querySelector('#btn_modal_notify').click();
+								
+								audio.play();
 			                }
 			        });
                 }else{
