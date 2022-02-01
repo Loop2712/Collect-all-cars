@@ -499,6 +499,12 @@
 			                console.log(result);
 			                if (result.length != 0) {
 								audio.play();
+
+								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
+								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
+								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
+								document.querySelector('#modal_notify_name_area').innerHTML = result[0]['name_area'];
+
 								document.querySelector('#btn_modal_notify').click();
 			                }
 			        });
