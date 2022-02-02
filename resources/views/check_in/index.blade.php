@@ -5,8 +5,24 @@
 <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="d-flex align-items-center">
-            <div>
-                <h5 class="font-weight-bold mb-0">รายชื่อ Check in / out</h5>
+            <div class="row col-12">
+                <div class="col-6">
+                    <h5 class="font-weight-bold mb-0">
+                        รายชื่อ Check in / out
+                    </h5>
+                </div>
+                <div class="col-6">
+                    <form style="float: right;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                            <span class="input-group-append">
+                                <button class="btn btn-secondary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -15,21 +31,62 @@
             <table class="table mb-0 align-middle">
                 <thead>
                     <tr class="text-center">
-                        <th>คันที่</th>
-                        <th>ยี่ห้อ/รุ่น</th>
-                        <th>หมายเลขทะเบียน</th>
-                        <th>เหตุผล</th>
-                        <th>วันที่</th>
+                        <th>ชื่อ</th>
+                        <th>เวลาเข้า - ออก</th>
+                        <th>เบอร์</th>
+                        <th>สถานที่</th>
+                        <th>รหัสนักศึกษา</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @foreach($check_in as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->user->name }}</td>
-                            <td>{{ $item->time_in }}</td>
-                            <td>{{ $item->time_out }}</td>
+
                             <td>
+                                @if(!empty($item->time_in))
+                                    <b class="text-success">เข้า : {{ date("d/m/Y H:i" , strtotime($item->time_in)) }}</b>
+                                @endif
+
+
+                                @if(!empty($item->time_out))
+                                    <b class="text-danger">ออก : {{ date("d/m/Y H:i" , strtotime($item->time_out)) }}</b>
+                                @endif
+
+                            </td>
+
+                            <td>
+                                @if(!empty($item->user->phone))
+                                    <b>{{ $item->user->phone}}</b>
+                                @endif
+                            </td>
+
+                            <td>
+                                @if(!empty($item->check_in_at))
+                                    <b>{{ $item->check_in_at}}</b>
+                                @else
+                                    -
+                                @endif
+                            </td>
+
+                            <td>
+                                @if(!empty($item->student_id))
+                                    <b>{{ $item->student_id}}</b>
+                                @else
+                                    -
+                                @endif
+                            </td>
+
+                            <td>
+                                <a href="#" title="View Check_in">
+                                    <button class="btn btn-info btn-sm">
+                                        <i class="fa fa-eye" aria-hidden="true"></i> ติดโควิด!
+                                    </button>
+                                </a>
+                            </td>
+
+                            <!-- <td class="d-none">
                                 <a href="{{ url('/check_in/' . $item->id) }}" title="View Check_in"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                 <a href="{{ url('/check_in/' . $item->id . '/edit') }}" title="Edit Check_in"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
@@ -38,7 +95,7 @@
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-danger btn-sm" title="Delete Check_in" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                 </form>
-                            </td>
+                            </td> -->
                         </tr>
                     @endforeach
                 </tbody>

@@ -670,16 +670,11 @@ class PartnerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        $check_in = Check_in::where('check_in_at', $data_user->organization)
-            ->get();
-
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
             $check_in = Check_in::where('check_in_at', $data_user->organization)
-                ->orWhere('time_in', 'LIKE', "%$keyword%")
-                ->orWhere('time_out', 'LIKE', "%$keyword%")
                 ->orWhere('student_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
