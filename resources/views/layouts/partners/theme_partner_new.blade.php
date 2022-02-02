@@ -510,17 +510,17 @@
                 	fetch("{{ url('/') }}/api/check_sos_alarm/notify/" + check_name_partner)
 			            .then(response => response.json())
 			            .then(result => {
-			                // console.log(result);
+			                console.log(result);
 			                if (result.length != 0) {
 
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
 
-								
+								dateFormat(result[0]['created_at'], "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
-			                	console.log(dateFormat(result[0]['created_at'], "dddd, mmmm dS, yyyy, h:MM:ss TT"));
+			                	console.log(result[0]['created_at']);
 
-								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
+								document.querySelector('#modal_notify_time').innerHTML = "{{ date('d/m/Y H:i' , strtotime(" + result[0]['created_at'] + ")) }}";
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
 
 								if (result[0]['photo']) {
