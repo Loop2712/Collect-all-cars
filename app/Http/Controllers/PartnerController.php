@@ -660,7 +660,7 @@ class PartnerController extends Controller
         return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_score'));
     }
 
-    public function view_check_in()
+    public function view_check_in(Request $request)
     {
         $data_user = Auth::user();
 
@@ -672,6 +672,19 @@ class PartnerController extends Controller
 
         $check_in = Check_in::where('check_in_at', $data_user->organization)
             ->get();
+
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $check_in = Check_in::where('check_in_at', $data_user->organization)
+                ->orWhere('time_in', 'LIKE', "%$keyword%")
+                ->orWhere('time_out', 'LIKE', "%$keyword%")
+                ->orWhere('student_id', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $check_in = Check_in::where('check_in_at', $data_user->organization)->latest()->paginate($perPage);
+        }
 
         return view('check_in.index', compact('data_partners','data_time_zone','check_in'));
     }

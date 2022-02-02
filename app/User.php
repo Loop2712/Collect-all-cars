@@ -49,6 +49,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Wishlist', 'user_id','id'); 
     }  
 
+    public function check_ins(){
+        return $this->hasMany('App\Models\Check_in', 'user_id');
+    }
+
 
     // public function sell(){
     //     return $this->hasMany('App\Sell', 'user_id'); 

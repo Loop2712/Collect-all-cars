@@ -232,8 +232,8 @@
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content" style="margin-top:-25px;">
-			
-			  @yield('content')
+				<br>
+			  	@yield('content')
 			  
 			</div>
 		</div>
