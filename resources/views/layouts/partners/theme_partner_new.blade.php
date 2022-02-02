@@ -189,7 +189,7 @@
                         @if(!empty(Auth::user()->photo))
                                 <img alt="" style="width:50px;"class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
                             @else
-                                <img src="partner/images/user/avatar-1.jpg" width="25%" class="img-radius" alt="User-Profile-Image">
+                                <img src="{{ asset('/partner/images/user/avatar-1.jpg') }}" width="25%" class="img-radius" alt="User-Profile-Image">
                             @endif
 							<div class="user-info ps-3">
 								<p class="user-name mb-0">{{ Auth::user()->name }}</p>
