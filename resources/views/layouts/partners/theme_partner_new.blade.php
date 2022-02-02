@@ -524,7 +524,14 @@
 
 								if (result[0]['photo']) {
 									document.querySelector('#btn_modal_notify_img').classList.remove('d-none');
-									document.querySelector('#modal_notify_img').innerHTML = result[0]['photo'];
+
+									let modal_notify_img = document.querySelector('#modal_notify_img');
+
+				                	let modal_notify_img_src = document.createAttribute("src");
+									modal_notify_img_src.value = "{{ url('storage/' )}}"+ result[0]['photo'];
+
+									modal_notify_img.setAttributeNode(modal_notify_img_src);
+									
 								}else {
 									document.querySelector('#btn_modal_notify_img').classList.add('d-none');
 								}
