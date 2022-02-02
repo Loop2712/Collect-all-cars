@@ -516,7 +516,7 @@
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
 
-			                	console.log('{{ date("d/m/Y" , strtotime(' + result[0]["created_at"] + ')) }}';
+			                	console.log('{{ date("d/m/Y" , strtotime(' + result[0]["created_at"] + ')) }}');
 
 								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
