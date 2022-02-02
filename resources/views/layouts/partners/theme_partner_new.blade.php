@@ -516,13 +516,10 @@
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
 
+			                	console.log(result[0]['created_at']);
+
 								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
-
-								var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-								var today  = result[0]['created_at'];
-
-								console.log(today.toLocaleDateString("en-US", options)); // 9/17/2016
 
 								if (result[0]['photo']) {
 									document.querySelector('#btn_modal_notify_img').classList.remove('d-none');
