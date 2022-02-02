@@ -430,16 +430,16 @@
 	      	</div>
 	      	<div class="modal-body text-center" style="padding:0px;">
 			  <br>
-                    <h2 class="text-info"><b id="modal_notify_name">lucky</b></h2>
-                    <p style="line-height: 2;" id="modal_notify_phone">0812345678</p>
+                    <h2 class="text-info"><b id="modal_notify_name"></b></h2>
+                    <p style="line-height: 2;" id="modal_notify_phone"></p>
 
-                    <h4 class="text-dark"><b id="modal_notify_time"></b>1/2/2565 10:15</h4>
+                    <h4 class="text-dark"><b id="modal_notify_time"></b></h4>
 
 					<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
 						<i class="fad fa-images"></i>
 					</button>
 
-                    <p style="line-height: 2;" id="modal_notify_name_area">สถานที่:STM</p>
+                    <p style="line-height: 2;" id="modal_notify_name_area"></p>
 	      	</div>
 	     	<div class="modal-footer">
 	        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();"><i class="fal fa-eye"></i>ดูข้อมูล</button>
