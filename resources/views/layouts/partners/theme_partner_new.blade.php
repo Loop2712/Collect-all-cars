@@ -55,7 +55,7 @@
 	</style>
 </head>
 
-<<body>
+<body>
 	<!--wrapper-->
 	@foreach($data_partners as $data_partner)
 	<div class="wrapper">
@@ -234,7 +234,9 @@
 			<div class="page-content" style="margin-top:-25px;">
 			
 			  @yield('content')
-			
+			  
+	
+	
 			</div>
 		</div>
 		<!--end page wrapper -->
@@ -344,6 +346,7 @@
 			</div>
 		</div>
 	</div> -->
+	
 	<!--end switcher-->
     <!-- modal_change_color -->
     <div class="modal fade" id="modal_change_color" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -418,31 +421,46 @@
 	</button>
 
 	<!-- Modal -->
-	<div class="modal fade" id="modal_notify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal fade " id="modal_notify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
 	    <div class="modal-content">
-	      	<div class="modal-header">
-	        	<h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนการขอความช่วยเหลือ</h5>
+	      	<div class="modal-header " style="background-color:#D85261;">
+	        	<h4 class="modal-title text-white text-center"  id="exampleModalLabel"> <b>แจ้งเตือน<br>การขอความช่วยเหลือ</b> </h4>
+				<img width="45%" src="{{ asset('/img/stickerline/PNG/21.png') }}">
 	      	</div>
-	      	<div class="modal-body">
-	       		<center>
-                    <img width="50%" src="{{ asset('/img/stickerline/PNG/21.png') }}">
-                    <br><br>
-                    <h2 class="text-info"><b id="modal_notify_name"></b></h2>
-                    <p style="line-height: 2;" id="modal_notify_phone"></p>
+	      	<div class="modal-body text-center" style="padding:0px;">
+			  <br>
+                    <h2 class="text-info"><b id="modal_notify_name">lucky</b></h2>
+                    <p style="line-height: 2;" id="modal_notify_phone">0812345678</p>
 
-                    <h4 class="text-dark"><b id="modal_notify_time"></b></h4>
-                    <p style="line-height: 2;" id="modal_notify_name_area"></p>
-                    <br>
-                </center>
+                    <h4 class="text-dark"><b id="modal_notify_time"></b>1/2/2565 10:15</h4>
+
+					<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
+						<i class="fad fa-images"></i>
+					</button>
+
+                    <p style="line-height: 2;" id="modal_notify_name_area">สถานที่:STM</p>
 	      	</div>
 	     	<div class="modal-footer">
-	        <button type="button" class="btn btn-success" onclick="document.querySelector('#div_menu_help_1').click();">ดูข้อมูล</button>
-	        <a id="tag_a_link_ggmap" target="bank" class="btn btn-info text-white">ดูแผนที่</a>
+	        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();"><i class="fal fa-eye"></i>ดูข้อมูล</button>
+	        <a id="tag_a_link_ggmap" target="bank" class="btn text-white" style="border-radius: 25px; background-color:#26A664"><i class="far fa-map-marker-alt"></i>ดูแผนที่</a>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+
+	<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="" alt="" id="modal_notify_img">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
@@ -503,6 +521,13 @@
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
 								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
+
+								if (result[0]['photo']) {
+									document.querySelector('#btn_modal_notify_img').classList.remove('d-none');
+									document.querySelector('#modal_notify_img').innerHTML = result[0]['photo'];
+								}else {
+									document.querySelector('#btn_modal_notify_img').classList.add('d-none');
+								}
 
 								let tag_a_link_ggmap = document.querySelector('#tag_a_link_ggmap');
 
