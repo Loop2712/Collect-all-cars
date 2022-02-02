@@ -430,7 +430,7 @@
 			  <br>
 			  <div class="row">
 				  <div class="col-12">
-                    <h2 class="text-info"><b id="modal_notify_name"></b>lucky
+                    <h2 class="text-info"><b id="modal_notify_name"></b>
 						<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
 							<i class="fad fa-images"></i>
 						</button>
@@ -530,7 +530,7 @@
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
 
 								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
-								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
+								document.querySelector('#modal_notify_name_area').innerHTML = result[0]['name_area'];
 
 								if (result[0]['photo']) {
 									document.querySelector('#btn_modal_notify_img').classList.remove('d-none');
