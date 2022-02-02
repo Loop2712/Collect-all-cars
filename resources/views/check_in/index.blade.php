@@ -25,7 +25,7 @@
                     </form>
                 </div>
                 <div class="col-12">
-                    <a style="float: right;" href="#" title="View Check_in">
+                    <a style="float: right;" type="button" data-toggle="modal" data-target="#covid">
                         <button class="btn btn-warning btn-sm">
                             <i class="fas fa-head-side-virus"></i> แจ้งติดโควิด!
                         </button>
@@ -103,8 +103,25 @@
             </table>
             <div class="pagination round-pagination " style="margin-top:10px;"> {!! $check_in->appends(['search' => Request::get('search')])->render() !!} </div>
         </div>
-    </div>
-</div>
+        <!-- Modal -->
+        <div class="modal fade" id="covid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนกลุ่มเสี่ยง</h5>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+        </div>
 
 
     <!-- <div class="container-fluid">
