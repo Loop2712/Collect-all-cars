@@ -17,24 +17,24 @@ class Check_inController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
-    {
-        $keyword = $request->get('search');
-        $perPage = 25;
+    // public function index(Request $request)
+    // {
+    //     $keyword = $request->get('search');
+    //     $perPage = 25;
 
-        if (!empty($keyword)) {
-            $check_in = Check_in::where('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('time_in', 'LIKE', "%$keyword%")
-                ->orWhere('time_out', 'LIKE', "%$keyword%")
-                ->orWhere('check_in_at', 'LIKE', "%$keyword%")
-                ->orWhere('student_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $check_in = Check_in::latest()->paginate($perPage);
-        }
+    //     if (!empty($keyword)) {
+    //         $check_in = Check_in::where('user_id', 'LIKE', "%$keyword%")
+    //             ->orWhere('time_in', 'LIKE', "%$keyword%")
+    //             ->orWhere('time_out', 'LIKE', "%$keyword%")
+    //             ->orWhere('check_in_at', 'LIKE', "%$keyword%")
+    //             ->orWhere('student_id', 'LIKE', "%$keyword%")
+    //             ->latest()->paginate($perPage);
+    //     } else {
+    //         $check_in = Check_in::latest()->paginate($perPage);
+    //     }
 
-        return view('check_in.index', compact('check_in'));
-    }
+    //     return view('check_in.index', compact('check_in'));
+    // }
 
     /**
      * Show the form for creating a new resource.
