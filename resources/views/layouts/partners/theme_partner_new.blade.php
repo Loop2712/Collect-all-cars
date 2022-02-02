@@ -430,15 +430,12 @@
 	      	<div class="modal-body text-center" style="padding:0px;">
 			  <br>
                     <h2 class="text-info"><b id="modal_notify_name"></b></h2>
-                    <p style="line-height: 2;" id="modal_notify_phone"></p>
-
+                    <h3 style="line-height: 2;" id="modal_notify_phone"></h3>
                     <h4 class="text-dark"><b id="modal_notify_time"></b></h4>
-
+                    <h4 style="line-height: 2;" id="modal_notify_name_area"></h4>
 					<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
 						<i class="fad fa-images"></i>
 					</button>
-
-                    <p style="line-height: 2;" id="modal_notify_name_area"></p>
 	      	</div>
 	     	<div class="modal-footer">
 	        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();"><i class="fal fa-eye"></i>ดูข้อมูล</button>
@@ -451,7 +448,7 @@
 	<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
     <div class="modal-content">
-      <div class="modal-body" style="padding:0px;">
+      <div class="modal-body text-center" style="padding:0px;">
         <img src="" alt="" id="modal_notify_img">
       </div>
     </div>
