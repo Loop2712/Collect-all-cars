@@ -234,8 +234,7 @@
 			<div class="page-content" style="margin-top:-25px;">
 			
 			  @yield('content')
-			  
-	
+			 
 	
 			</div>
 		</div>
@@ -452,11 +451,11 @@
 	<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
     <div class="modal-content">
-      <div class="modal-body">
+      <div class="modal-body" style="padding:0px;">
+	  	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <img src="" alt="" id="modal_notify_img">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -528,7 +527,7 @@
 									let modal_notify_img = document.querySelector('#modal_notify_img');
 
 				                	let modal_notify_img_src = document.createAttribute("src");
-									modal_notify_img_src.value = "{{ url('storage/' )}}"+ result[0]['photo'];
+									modal_notify_img_src.value = "{{ url('storage' )}}"+"/"+ result[0]['photo'];
 
 									modal_notify_img.setAttributeNode(modal_notify_img_src);
 									
