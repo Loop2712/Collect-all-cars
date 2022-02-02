@@ -234,9 +234,7 @@
 			<div class="page-content" style="margin-top:-25px;">
 			
 			  @yield('content')
-			  <button id="btn_modal_notify" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_notify">
-	</button>
-	
+			  
 			</div>
 		</div>
 		<!--end page wrapper -->
@@ -430,15 +428,30 @@
 	      	</div>
 	      	<div class="modal-body text-center" style="padding:0px;">
 			  <br>
-                    <h2 class="text-info"><b id="modal_notify_name"></b>lucky</h2>
-                    <h3 style="line-height: 2;" id="modal_notify_phone">0812345678</h3>
-                    <h4 class="text-dark" id="modal_notify_time"></h4>
-                    <h4 style="line-height: 2;" id="modal_notify_name_area">TU</h4>
-					<button type="button" class="btn btn-primary text-center " id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
-						<i class="fad fa-images"></i>
-					</button>
-					<br>
-					<br>
+			  <div class="row">
+				  <div class="col-12">
+                    <h2 class="text-info"><b id="modal_notify_name"></b>lucky
+						<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
+							<i class="fad fa-images"></i>
+						</button>
+					</h2>
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+							<h4 class="mb-0">เวลา</h4>
+							<span class="text-secondary" style="font-size:25px;" id="modal_notify_time"></span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+							<h4 class="mb-0">เบอร์</h4>
+							<span class="text-secondary" style="font-size:25px;" id="modal_notify_phone"></span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+							<h4 class="mb-0">สถานที่</h4>
+							<span class="text-secondary" style="font-size:25px;" id="modal_notify_name_area"></span>
+						</li>
+					</ul>
+				</div>
 	      	</div>
 	     	<div class="modal-footer">
 	        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();"><i class="fal fa-eye"></i>ดูข้อมูล</button>
