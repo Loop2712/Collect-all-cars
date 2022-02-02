@@ -1,9 +1,9 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 col-12 col-lg-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Check_in</div>
                     <div class="card-body">
