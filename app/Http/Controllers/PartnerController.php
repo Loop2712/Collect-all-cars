@@ -675,7 +675,7 @@ class PartnerController extends Controller
 
         if (!empty($keyword)) {
             $check_in = Check_in::where('check_in_at', $data_user->organization)
-                ->orWhere('student_id', 'LIKE', "%$keyword%")
+                ->Where('student_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $check_in = Check_in::where('check_in_at', $data_user->organization)->latest()->paginate($perPage);

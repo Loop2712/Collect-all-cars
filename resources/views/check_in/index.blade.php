@@ -7,14 +7,15 @@
         <div class="d-flex align-items-center">
             <div class="row col-12">
                 <div class="col-6">
-                    <h5 class="font-weight-bold mb-0">
+                    <br>
+                    <h3 class="font-weight-bold mb-0">
                         รายชื่อ Check in / out
-                    </h5>
+                    </h3>
                 </div>
-                <div class="col-6">
+                <div  class="col-6">
                     <form style="float: right;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
+                            <input type="text" class="form-control" name="search" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('search') }}">
                             <span class="input-group-append">
                                 <button class="btn btn-secondary" type="submit">
                                     <i class="fa fa-search"></i>
@@ -22,6 +23,13 @@
                             </span>
                         </div>
                     </form>
+                </div>
+                <div class="col-12">
+                    <a style="float: right;" href="#" title="View Check_in">
+                        <button class="btn btn-warning btn-sm">
+                            <i class="fas fa-head-side-virus"></i> แจ้งติดโควิด!
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -70,20 +78,13 @@
                                 @endif
                             </td>
 
+
                             <td>
                                 @if(!empty($item->student_id))
                                     <b>{{ $item->student_id}}</b>
                                 @else
-                                    -
+                                    บุคคลทั่วไป
                                 @endif
-                            </td>
-
-                            <td>
-                                <a href="#" title="View Check_in">
-                                    <button class="btn btn-info btn-sm">
-                                        <i class="fa fa-eye" aria-hidden="true"></i> ติดโควิด!
-                                    </button>
-                                </a>
                             </td>
 
                             <!-- <td class="d-none">
