@@ -452,9 +452,6 @@
   <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
     <div class="modal-content">
       <div class="modal-body" style="padding:0px;">
-	  	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
         <img src="" alt="" id="modal_notify_img">
       </div>
     </div>
