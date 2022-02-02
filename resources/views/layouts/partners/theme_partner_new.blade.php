@@ -432,7 +432,7 @@
 			  <br>
                     <h2 class="text-info"><b id="modal_notify_name"></b>lucky</h2>
                     <h3 style="line-height: 2;" id="modal_notify_phone">0812345678</h3>
-                    <h4 class="text-dark"><b id="modal_notify_time"></b>2/2/2565 12:25</h4>
+                    <h4 class="text-dark" >{{ date('d/m/Y H:i' , strtotime(<span id="modal_notify_time"></span>)) }}</h4>
                     <h4 style="line-height: 2;" id="modal_notify_name_area">TU</h4>
 					<button type="button" class="btn btn-primary text-center " id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
 						<i class="fad fa-images"></i>
@@ -516,8 +516,8 @@
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
 
-			                	console.log("{{ date('d/m/Y H:i' , strtotime(" + result[0]['created_at'] + ")) }}");
-			                	console.log(typeof result[0]['created_at']);
+			                	// console.log("{{ date('d/m/Y H:i' , strtotime(" + result[0]['created_at'] + ")) }}");
+			                	// console.log(typeof result[0]['created_at']);
 
 								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
