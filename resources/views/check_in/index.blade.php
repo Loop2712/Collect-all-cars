@@ -1,10 +1,9 @@
-@extends('layouts.viicheck')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<br><br><br><br><br><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-12 col-lg-4">
                 <div class="card">
                     <div class="card-header">Check_in</div>
                     <div class="card-body">
@@ -51,7 +50,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $check_in->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>

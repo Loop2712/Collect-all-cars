@@ -23,6 +23,7 @@ use App\Models\Sos_insurance;
 use App\county;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Time_zone;
+use App\Models\Check_in;
 
 
 class PartnerController extends Controller
@@ -657,6 +658,22 @@ class PartnerController extends Controller
         // exit();
 
         return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_score'));
+    }
+
+    public function view_check_in()
+    {
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)
+                    ->where("name_area", null)
+                    ->get();
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        $check_in = Check_in::where('check_in_at', $data_user->organization)
+            ->get();
+
+        return view('check_in.index', compact('data_partners','data_time_zone','check_in'));
     }
 
     public function sos_detail_chart(Request $request)
