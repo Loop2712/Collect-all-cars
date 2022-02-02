@@ -234,7 +234,8 @@
 			<div class="page-content" style="margin-top:-25px;">
 			
 			  @yield('content')
-			 
+			  <button id="btn_modal_notify" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_notify">
+	</button>
 	
 			</div>
 		</div>
@@ -429,13 +430,15 @@
 	      	</div>
 	      	<div class="modal-body text-center" style="padding:0px;">
 			  <br>
-                    <h2 class="text-info"><b id="modal_notify_name"></b></h2>
-                    <h3 style="line-height: 2;" id="modal_notify_phone"></h3>
-                    <h4 class="text-dark"><b id="modal_notify_time"></b></h4>
-                    <h4 style="line-height: 2;" id="modal_notify_name_area"></h4>
-					<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
+                    <h2 class="text-info"><b id="modal_notify_name"></b>lucky</h2>
+                    <h3 style="line-height: 2;" id="modal_notify_phone">0812345678</h3>
+                    <h4 class="text-dark"><b id="modal_notify_time"></b>2/2/2565 12:25</h4>
+                    <h4 style="line-height: 2;" id="modal_notify_name_area">TU</h4>
+					<button type="button" class="btn btn-primary text-center " id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
 						<i class="fad fa-images"></i>
 					</button>
+					<br>
+					<br>
 	      	</div>
 	     	<div class="modal-footer">
 	        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();"><i class="fal fa-eye"></i>ดูข้อมูล</button>
@@ -512,7 +515,7 @@
 
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
 								document.querySelector('#modal_notify_phone').innerHTML = result[0]['phone'];
-								document.querySelector('#modal_notify_time').innerHTML = result[0]['created_at'];
+								document.querySelector('#modal_notify_time').innerHTML = date("d/m/Y" , (result[0]['created_at']));
 								document.querySelector('#modal_notify_name_area').innerHTML = "สถานที่ : " + result[0]['name_area'];
 
 								if (result[0]['photo']) {
