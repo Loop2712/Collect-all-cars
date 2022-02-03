@@ -22,12 +22,12 @@
         <input class="form-control " name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : Auth::user()->id }}" >
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
-    <div id="div_time_in" class="d- form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
+    <div id="div_time_in" class="d-none form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
         <label for="time_in" class="control-label">{{ 'Time In' }}</label>
         <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ $date_now }}" >
         {!! $errors->first('time_in', '<p class="help-block">:message</p>') !!}
     </div>
-    <div id="div_time_out" class="d- form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
+    <div id="div_time_out" class="d-none form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
         <label for="time_out" class="control-label">{{ 'Time Out' }}</label>
         <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ $date_now }}" >
         {!! $errors->first('time_out', '<p class="help-block">:message</p>') !!}
