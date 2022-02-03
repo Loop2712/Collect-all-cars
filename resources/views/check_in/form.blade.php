@@ -68,19 +68,21 @@
 
     <div class="text-center">
         <a id="btn_click_check_in" class="btn btn-success notranslate text-white" onclick="check_in_or_out('check_in');">Check in</a>
-        <h3 id="text_check_in" class="text-success d-none"><b>Check in</b></h3>
+        <h3 id="text_check_in" class="text-success d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;"><b>Check in</b></h3>
 
         <a id="btn_click_check_out" class="btn btn-danger notranslate text-white" onclick="check_in_or_out('check_out');">Check out</a>
-        <h3 id="text_check_out" class="text-success d-none"><b>Check out</b></h3>
+        <h3 id="text_check_out" class="text-danger d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;"><b>Check out</b></h3>
 
-        <h5 id="text_time" class="d-none">{{ $date_now }}</h5>
+        <h5 id="text_time" class="d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">{{ $date_now }}</h5>
+    </div>
+    <br>
+      <div id="div_submit_form" class="form-group d-none btn-block">
+        <input id="btn_submit_form" style="border-radius: 25px;"class="btn btn-primary btn-lg btn-block" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
     </div>
     
-    <div id="div_submit_form" class="form-group d-none">
-        <input id="btn_submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
-    </div>
 </div>
-
+      
+</div>
 <script src="{{ asset('js/jsQR.js')}}"></script>
 <script src="{{ asset('js/dw-qrscan.js')}}"></script>
 
