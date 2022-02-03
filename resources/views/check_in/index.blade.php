@@ -28,11 +28,11 @@
                                 <div class="row col-12">
                                     <div class="col-md-3">
                                         <label  class="control-label">{{ 'วันที่' }}</label>
-                                        <input class="form-control" type="date" name="select_date" id="select_date">
+                                        <input class="form-control" type="date" name="select_date" id="select_date" value="{{ request('select_date') }}">
                                     </div>
                                     <div class="col-md-2">
                                         <label  class="control-label">{{ 'เวลา' }}</label>
-                                        <input class="form-control" type="time" name="select_time_1" id="select_time_1">
+                                        <input class="form-control" type="time" name="select_time_1" id="select_time_1" value="{{ request('select_time_1') }}" onchange="document.querySelector('#select_time_2').required = true,document.querySelector('#select_date').required = true;">
                                     </div>
                                     <div class="col-1">
                                         <center>
@@ -42,12 +42,12 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label  class="control-label">{{ 'เวลา' }}</label>
-                                        <input class="form-control" type="time" name="select_time_2" id="select_time_2">
+                                        <input class="form-control" type="time" name="select_time_2" id="select_time_2" value="{{ request('select_time_2') }}">
                                     </div>
                                     <div class="col-md-2">
                                         <label  class="control-label">{{ 'รหัสนักศึกษา' }}</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="search" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('search') }}">
+                                            <input type="text" class="form-control" name="select_student_id" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('select_student_id') }}">
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -57,6 +57,9 @@
                                                 <i class="fa fa-search"></i>ค้นหา
                                             </button>
                                         </span>
+                                        <a class="btn btn-danger "href="{{ url('/check_in/view') }}" >
+                                            ล้างการค้นหา
+                                        </a>
                                     </div>
                                 </div>
                             </form>

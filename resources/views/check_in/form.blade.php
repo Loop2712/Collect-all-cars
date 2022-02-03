@@ -67,8 +67,8 @@
     <input class="form-control d-none" name="check_in_out" type="text" id="check_in_out" value="" >
 
     <div class="text-center">
-        <input class="btn btn-success notranslate" onclick="check_in_or_out('check_in');" type="submit" value="{{ $formMode === 'edit' ? 'Check in' : 'Check in' }}">
-        <input class="btn btn-danger notranslate" onclick="check_in_or_out('check_out');" type="submit" value="{{ $formMode === 'edit' ? 'Check out' : 'Check out' }}">
+        <a class="btn btn-success notranslate text-white" onclick="check_in_or_out('check_in');">Check in</a>
+        <a class="btn btn-danger notranslate text-white" onclick="check_in_or_out('check_out');">Check out</a>
     </div>
     
     <div class="form-group d-none">
@@ -122,7 +122,7 @@
             //     time_in.value = "";
         }
 
-        // document.querySelector("#btn_submit_form").click();
+        document.querySelector("#btn_submit_form").click();
 
     };
 

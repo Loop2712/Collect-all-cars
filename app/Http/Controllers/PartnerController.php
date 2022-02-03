@@ -662,6 +662,12 @@ class PartnerController extends Controller
 
     public function view_check_in(Request $request)
     {
+        // $requestData = $request->all();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
+
         $data_user = Auth::user();
 
         $data_partners = Partner::where("name", $data_user->organization)
@@ -670,14 +676,28 @@ class PartnerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        $keyword = $request->get('search');
+        $select_date = $request->get('select_date');
+        $select_time_1 = $request->get('select_time_1');
+        $select_time_2 = $request->get('select_time_2');
+        $select_student_id = $request->get('select_student_id');
+
         $perPage = 25;
 
-        if (!empty($keyword)) {
+        if ( !empty($select_date) and empty($select_time_1) and empty($select_student_id) ){
             $check_in = Check_in::where('check_in_at', $data_user->organization)
-                ->Where('student_id', 'LIKE', "%$keyword%")
+                ->where('time_in', 'LIKE', "%$select_date%")
+                ->orWhere('time_out', 'LIKE', "%$select_date%")
                 ->latest()->paginate($perPage);
-        } else {
+        }
+        elseif ( empty($select_date) and !empty($select_time_1) and empty($select_student_id) ){
+            $check_in = Check_in::where('check_in_at', $data_user->organization)
+                ->whereTime('time_in', '>=', $select_time_1)
+                ->orWhereTime('time_out', '>=', $select_time_1)
+                ->latest()->paginate($perPage);
+        }
+
+
+        else {
             $check_in = Check_in::where('check_in_at', $data_user->organization)->latest()->paginate($perPage);
         }
 
