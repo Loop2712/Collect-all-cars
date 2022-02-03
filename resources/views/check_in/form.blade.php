@@ -22,12 +22,12 @@
         <input class="form-control " name="user_id" type="number" id="user_id" value="{{ isset($check_in->user_id) ? $check_in->user_id : Auth::user()->id }}" >
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
-    <div id="div_time_in" class="d-none form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
+    <div id="div_time_in" class="d- form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
         <label for="time_in" class="control-label">{{ 'Time In' }}</label>
         <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ $date_now }}" >
         {!! $errors->first('time_in', '<p class="help-block">:message</p>') !!}
     </div>
-    <div id="div_time_out" class="d-none form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
+    <div id="div_time_out" class="d- form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
         <label for="time_out" class="control-label">{{ 'Time Out' }}</label>
         <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ $date_now }}" >
         {!! $errors->first('time_out', '<p class="help-block">:message</p>') !!}
@@ -67,12 +67,17 @@
     <input class="form-control d-none" name="check_in_out" type="text" id="check_in_out" value="" >
 
     <div class="text-center">
-        <a class="btn btn-success notranslate text-white" onclick="check_in_or_out('check_in');">Check in</a>
-        <a class="btn btn-danger notranslate text-white" onclick="check_in_or_out('check_out');">Check out</a>
+        <a id="btn_click_check_in" class="btn btn-success notranslate text-white" onclick="check_in_or_out('check_in');">Check in</a>
+        <h3 id="text_check_in" class="text-success d-none"><b>Check in</b></h3>
+
+        <a id="btn_click_check_out" class="btn btn-danger notranslate text-white" onclick="check_in_or_out('check_out');">Check out</a>
+        <h3 id="text_check_out" class="text-success d-none"><b>Check out</b></h3>
+
+        <h5 id="text_time" class="d-none">{{ $date_now }}</h5>
     </div>
     
-    <div class="form-group d-none">
-        <input id="btn_submit_form" class="btn btn-primary float-right" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
+    <div class="form-group ">
+        <input id="btn_submit_form" class="btn btn-primary d-none" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
     </div>
 </div>
 
@@ -109,12 +114,24 @@
     function check_in_or_out(data){
 
         if (data === "check_in") {
+            document.querySelector("#btn_click_check_out").classList.add('d-none');
+            document.querySelector("#btn_click_check_in").classList.add('d-none');
+
+            document.querySelector("#text_check_in").classList.remove('d-none');
+            document.querySelector("#text_time").classList.remove('d-none');
+
             let check_in_out = document.querySelector("#check_in_out");
                 check_in_out.value = "check_in";
 
             // let time_out = document.querySelector("#time_out");
             //     time_out.value = "";
         }else if(data === "check_out"){
+            document.querySelector("#btn_click_check_out").classList.add('d-none');
+            document.querySelector("#btn_click_check_in").classList.add('d-none');
+
+            document.querySelector("#text_check_out").classList.remove('d-none');
+            document.querySelector("#text_time").classList.remove('d-none');
+
             let check_in_out = document.querySelector("#check_in_out");
                 check_in_out.value = "check_out";
 
@@ -122,7 +139,8 @@
             //     time_in.value = "";
         }
 
-        document.querySelector("#btn_submit_form").click();
+        // document.querySelector("#btn_submit_form").click();
+        document.querySelector("#btn_submit_form").classList.remove('d-none');
 
     };
 
