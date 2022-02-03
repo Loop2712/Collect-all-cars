@@ -73,8 +73,10 @@ class Check_inController extends Controller
 
         if ($requestData['check_in_out'] == "check_in") {
             $requestData['time_out'] = null ;
+            $requestData['time_in'] = $requestData['created_at'] ;
         }else if($requestData['check_in_out'] == "check_out"){
             $requestData['time_in'] = null ;
+            $requestData['time_out'] = $requestData['created_at'] ;
         }
         
         Check_in::create($requestData);
