@@ -6,34 +6,70 @@
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="d-flex align-items-center">
             <div class="row col-12">
-                <div class="col-6">
-                    <br>
-                    <h3 class="font-weight-bold mb-0">
-                        รายชื่อ Check in / out
-                    </h3>
-                </div>
-                <div  class="col-6">
-                    <form style="float: right;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('search') }}">
-                            <span class="input-group-append">
-                                <button class="btn btn-secondary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
                 <div class="col-12">
-                    <a style="float: right;" type="button" data-toggle="modal" data-target="#covid">
-                        <button class="btn btn-warning btn-sm">
-                            <i class="fas fa-head-side-virus"></i> แจ้งติดโควิด!
-                        </button>
-                    </a>
+                    <div class="row col-12">
+                        <div class="col-9">
+                            <h3 style="margin-top: 8px;" class="font-weight-bold mb-0">
+                                รายชื่อ Check in / out
+                            </h3>
+                        </div>
+                        <div class="col-3">
+                            <a style="float: right;margin-top: 15px;" type="button" data-toggle="modal" data-target="#covid">
+                                <button class="btn btn-warning btn-sm">
+                                    <i class="fas fa-head-side-virus"></i> แจ้งติดโควิด!
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row col-12">
+                        <center>
+                            <form style="float: left;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="col-12 form-inline float-right" role="search">
+                                <div class="row col-12">
+                                    <div class="col-md-3">
+                                        <label  class="control-label">{{ 'วันที่' }}</label>
+                                        <input class="form-control" type="date" name="select_date" id="select_date">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label  class="control-label">{{ 'เวลา' }}</label>
+                                        <input class="form-control" type="time" name="select_time_1" id="select_time_1">
+                                    </div>
+                                    <div class="col-1">
+                                        <center>
+                                            <br>
+                                            <label style="margin-top:7px;" class="control-label">{{ 'ถึง' }}</label>
+                                        </center>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label  class="control-label">{{ 'เวลา' }}</label>
+                                        <input class="form-control" type="time" name="select_time_2" id="select_time_2">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label  class="control-label">{{ 'รหัสนักศึกษา' }}</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="search" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('search') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <br>
+                                        <span class="input-group-append">
+                                            <button class="btn btn-info text-white" type="submit">
+                                                <i class="fa fa-search"></i>ค้นหา
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+</div>
+<br>
+<div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="card-body">
         <div class="table-responsive">
             <table class="table mb-0 align-middle">
@@ -105,7 +141,7 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="covid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนกลุ่มเสี่ยง</h5>
