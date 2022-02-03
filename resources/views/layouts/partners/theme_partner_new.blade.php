@@ -415,7 +415,7 @@
     <input id="check_name_partner" type="hidden" name="" value="{{ $data_partner->name }}">
 
     <!-- Button trigger modal -->
-	<button id="btn_modal_notify" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_notify">
+	<button id="btn_modal_notify" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_notify">
 	</button>
 
 	<!-- Modal -->
