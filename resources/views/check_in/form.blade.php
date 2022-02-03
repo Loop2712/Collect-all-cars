@@ -24,12 +24,12 @@
     </div>
     <div id="div_time_in" class="d-none form-group {{ $errors->has('time_in') ? 'has-error' : ''}}">
         <label for="time_in" class="control-label">{{ 'Time In' }}</label>
-        <input class="form-control" name="time_in" type="datetime-local" id="time_in" value="{{ $date_now }}" >
+        <input class="form-control" name="time_in" type="datetime" id="time_in" value="{{ $date_now }}" >
         {!! $errors->first('time_in', '<p class="help-block">:message</p>') !!}
     </div>
     <div id="div_time_out" class="d-none form-group {{ $errors->has('time_out') ? 'has-error' : ''}}">
         <label for="time_out" class="control-label">{{ 'Time Out' }}</label>
-        <input class="form-control" name="time_out" type="datetime-local" id="time_out" value="{{ $date_now }}" >
+        <input class="form-control" name="time_out" type="datetime" id="time_out" value="{{ $date_now }}" >
         {!! $errors->first('time_out', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="d-none form-group {{ $errors->has('check_in_at') ? 'has-error' : ''}}">
@@ -76,8 +76,8 @@
         <h5 id="text_time" class="d-none">{{ $date_now }}</h5>
     </div>
     
-    <div class="form-group ">
-        <input id="btn_submit_form" class="btn btn-primary d-none" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
+    <div id="div_submit_form" class="form-group d-none">
+        <input id="btn_submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
     </div>
 </div>
 
@@ -140,7 +140,7 @@
         }
 
         // document.querySelector("#btn_submit_form").click();
-        document.querySelector("#btn_submit_form").classList.remove('d-none');
+        document.querySelector("#div_submit_form").classList.remove('d-none');
 
     };
 

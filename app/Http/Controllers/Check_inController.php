@@ -46,7 +46,7 @@ class Check_inController extends Controller
         $location = $request->get('location');
         $Uni = "No";
 
-        $date_now = date('d-m-Y H:i');
+        $date_now = date("d/m/Y H:i");
 
         if (!empty($location)) {
             if (strpos($location, 'University') !== false) {
@@ -70,11 +70,6 @@ class Check_inController extends Controller
     {
         
         $requestData = $request->all();
-
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
 
         if ($requestData['check_in_out'] == "check_in") {
             $requestData['time_out'] = null ;
