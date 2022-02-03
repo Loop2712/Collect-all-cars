@@ -73,7 +73,7 @@
         <a id="btn_click_check_out" class="btn btn-danger notranslate text-white" onclick="check_in_or_out('check_out');">Check out</a>
         <h3 id="text_check_out" class="text-danger d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;"><b>Check out</b></h3>
 
-        <h5 id="text_time" class="d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">{{ $date_now }}</h5>
+        <h5 id="text_time" class="d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">{{ date("d/m/Y H:i" , strtotime($date_now)) }}</h5>
     </div>
     <br>
       <div id="div_submit_form" class="form-group d-none btn-block">
