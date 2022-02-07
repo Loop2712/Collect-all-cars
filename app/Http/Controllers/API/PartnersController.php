@@ -403,7 +403,7 @@ class PartnersController extends Controller
             ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
             ->select('users.*')
             ->where("check_ins.student_id" , 'LIKE', "%$student_id%")
-            ->orWhere("users.name" , "%$student_id%")
+            ->orWhere("users.name" , 'LIKE', "%$student_id%")
             ->where("check_ins.check_in_at", $check_in_at)
             ->groupBy('check_ins.student_id')
             ->get();
@@ -414,7 +414,7 @@ class PartnersController extends Controller
     public function show_group_risk($user_id , $check_in_at)
     {
         $data_time = array();
-
+        
         $data = check_in::where("user_id" , $user_id)
             ->where("check_in_at", $check_in_at)
             ->get();
