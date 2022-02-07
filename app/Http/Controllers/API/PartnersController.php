@@ -402,8 +402,8 @@ class PartnersController extends Controller
         $data = DB::table('users')
             ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
             ->select('users.*')
-            ->where("users.name" , 'LIKE', "%$student_id%")
-            ->orWhere("check_ins.student_id" , 'LIKE', "%$student_id%")
+            ->where("check_ins.student_id" , 'LIKE', "%$student_id%")
+            ->orWhere("users.name" , "%$student_id%")
             ->where("check_ins.check_in_at", $check_in_at)
             ->groupBy('check_ins.student_id')
             ->get();
