@@ -664,9 +664,32 @@ class PartnerController extends Controller
     {
         $requestData = $request->all();
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
+        $data_time = array();
+        $data_data = array();
+        
+        $data_date = check_in::where("user_id" , 1)
+            ->where("check_in_at", "km")
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+            ->get();
+
+        foreach ($data_date as $key) {
+
+            $data_data = [
+                "date" => date("Y/m/d" , strtotime($key->created_at )),
+                "time_in" => $key->time_in,
+                "time_out" => $key->time_out,
+            ];
+
+
+            array_push($data_time , $data_data);
+
+            // echo "<pre>";
+            // print_r($data_time);
+            // echo "<pre>";
+        }
+
+
+
         // exit();
 
         $data_user = Auth::user();

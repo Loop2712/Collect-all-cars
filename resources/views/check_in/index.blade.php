@@ -360,7 +360,7 @@
                                 btn_data.setAttributeNode(style_btn_data);
 
                             let btn_data_onclick = document.createAttribute("onclick");
-                                btn_data_onclick.value = "show_group_risk("+ item.id +");";
+                                btn_data_onclick.value = "show_group_risk("+ item.id +",'" + check_in_at + "');";
                                 btn_data.setAttributeNode(btn_data_onclick);  
                                 
                                 div_data_btn.appendChild(btn_data);
@@ -375,9 +375,21 @@
             });
         }
 
-        function show_group_risk(id){
+        function show_group_risk(id , check_in_at){
             let div_content_search_std = document.querySelector('#div_content_search_std');
-                    div_content_search_std.textContent = "" ;
+                div_content_search_std.textContent = "" ;
+
+                fetch("{{ url('/') }}/api/show_group_risk/"+id+"/"+check_in_at)
+                    .then(response => response.json())
+                    .then(result => {
+                    console.log(result);
+
+                    for(let item of result){
+                        console.log("In >>>" + item.time_in);
+                        console.log("Out >>>" + item.time_out);
+                    }
+
+                });
         }
 
     </script>
