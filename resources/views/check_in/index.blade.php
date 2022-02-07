@@ -144,20 +144,36 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="covid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนกลุ่มเสี่ยง</h5>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนกลุ่มเสี่ยง</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="row col-12">
+                                        <div class="col-9"></div>
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" id="student_id_covid" name="student_id_covid" placeholder="ค้นหารหัสนักศึกษา..." oninput="search_std('{{ $check_in_at }}');">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-12">
+                                <div id="div_content_search_std">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                        <button type="button" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
             </div>
         </div>
@@ -216,4 +232,37 @@
             </div>
         </div>
     </div> -->
+
+    <script>
+        
+        function search_std(check_in_at){
+
+            let student_id_covid = document.querySelector('#student_id_covid');
+
+            fetch("{{ url('/') }}/api/search_std/"+student_id_covid.value+"/"+check_in_at)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let div_content_search_std = document.querySelector('#div_content_search_std');
+                    div_content_search_std.textContent = "" ;
+
+                for(let item of result){
+                    // <div>
+                    let div = document.createElement("div");
+                    // <p>
+                    let para = document.createElement("P");
+                    let style_para = document.createAttribute("style");
+                        style_para.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
+                        para.setAttributeNode(style_para); 
+                        para.innerHTML = item.student_id;
+
+                        div.appendChild(para);
+                        div_content_search_std.appendChild(div);
+                }
+
+            });
+        }
+
+    </script>
 @endsection

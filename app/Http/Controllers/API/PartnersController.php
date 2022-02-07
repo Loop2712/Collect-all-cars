@@ -11,6 +11,7 @@ use App\Mail\MailToPartner_area;
 use App\Models\LineMessagingAPI;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Mylog;
+use App\Models\Check_in;
 
 class PartnersController extends Controller
 {
@@ -381,4 +382,15 @@ class PartnersController extends Controller
 
         return $notify ;
     }
+
+    public function search_std($student_id , $check_in_at)
+    {
+        $data = check_in::where("student_id" , 'LIKE', "%$student_id%")
+            ->where("check_in_at", $check_in_at)
+            ->groupBy('student_id')
+            ->get();
+
+        return $data ;
+    }
+
 }

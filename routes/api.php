@@ -127,6 +127,8 @@ Route::get('/all_area_partner/{name_partner}','API\PartnersController@all_area_p
 Route::get('/check_sos_alarm/{check_name_partner}','API\PartnersController@check_sos_alarm');
 Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersController@check_sos_alarm_notify');
 
+Route::get('/search_std/{student_id_covid}/{check_in_at}','API\PartnersController@search_std');
+
 
 
 

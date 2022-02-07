@@ -662,7 +662,8 @@ class PartnerController extends Controller
 
     public function view_check_in(Request $request)
     {
-        // $requestData = $request->all();
+        $requestData = $request->all();
+
         // echo "<pre>";
         // print_r($requestData);
         // echo "<pre>";
@@ -674,6 +675,8 @@ class PartnerController extends Controller
                     ->where("name_area", null)
                     ->get();
 
+        $check_in_at = $data_user->organization;
+
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
         $select_date = $request->get('select_date');
@@ -681,27 +684,65 @@ class PartnerController extends Controller
         $select_time_2 = $request->get('select_time_2');
         $select_student_id = $request->get('select_student_id');
 
+        // echo "select_date >>>" . $select_date;
+        // echo "<br>";
+        // echo "select_time_1 >>>" . $select_time_1;
+        // echo "<br>";
+        // echo "select_time_2 >>>" . $select_time_2;
+        // echo "<br>";
+
         $perPage = 25;
 
-        if ( !empty($select_date) and empty($select_time_1) and empty($select_student_id) ){
+        // รหัส นศ. อย่างเดียว
+        if ( !empty($select_student_id) and empty($select_time_1) and empty($select_date) ) {
             $check_in = Check_in::where('check_in_at', $data_user->organization)
-                ->where('time_in', 'LIKE', "%$select_date%")
-                ->orWhere('time_out', 'LIKE', "%$select_date%")
+                ->where('student_id','LIKE', "%$select_student_id%")
                 ->latest()->paginate($perPage);
         }
-        elseif ( empty($select_date) and !empty($select_time_1) and empty($select_student_id) ){
+        // วันที่ อย่างเดียว
+        else if ( !empty($select_date) and empty($select_time_1) and empty($select_student_id) ) {
             $check_in = Check_in::where('check_in_at', $data_user->organization)
-                ->whereTime('time_in', '>=', $select_time_1)
-                ->orWhereTime('time_out', '>=', $select_time_1)
+                ->whereDate('created_at', $select_date)
                 ->latest()->paginate($perPage);
         }
+        // วันที่ และ รหัส นศ.
+        else if ( !empty($select_date) and !empty($select_student_id) and empty($select_time_1) ) {
+            $check_in = Check_in::where('check_in_at', $data_user->organization)
+                ->where('student_id','LIKE', "%$select_student_id%")
+                ->whereDate('created_at', $select_date)
+                ->latest()->paginate($perPage);
+        }
+        // วันที่ และ เวลา
+        else if ( !empty($select_date) and !empty($select_time_1) and empty($select_student_id) ) {
+            $date_and_time_1 =  $select_date . " " . $select_time_1 ;
+            $date_and_time_1 = date("Y/m/d H:i" , strtotime($date_and_time_1));
 
+            $date_and_time_2 =  $select_date . " " . $select_time_2 ;
+            $date_and_time_2 = date("Y/m/d H:i" , strtotime($date_and_time_2));
 
+            $check_in = Check_in::where('check_in_at', $data_user->organization)
+                ->whereBetween('created_at', [$date_and_time_1, $date_and_time_2])
+                ->latest()->paginate($perPage);
+        }
+        // วันที่ และ เวลา และ รหัส นศ.
+        else if ( !empty($select_date) and !empty($select_time_1) and !empty($select_student_id) ) {
+            $date_and_time_1 =  $select_date . " " . $select_time_1 ;
+            $date_and_time_1 = date("Y/m/d H:i" , strtotime($date_and_time_1));
+
+            $date_and_time_2 =  $select_date . " " . $select_time_2 ;
+            $date_and_time_2 = date("Y/m/d H:i" , strtotime($date_and_time_2));
+
+            $check_in = Check_in::where('check_in_at', $data_user->organization)
+                ->whereBetween('created_at', [$date_and_time_1, $date_and_time_2])
+                ->where('student_id','LIKE', "%$select_student_id%")
+                ->latest()->paginate($perPage);
+        }
+        // ว่าง
         else {
             $check_in = Check_in::where('check_in_at', $data_user->organization)->latest()->paginate($perPage);
         }
 
-        return view('check_in.index', compact('data_partners','data_time_zone','check_in'));
+        return view('check_in.index', compact('data_partners','data_time_zone','check_in','check_in_at'));
     }
 
     public function sos_detail_chart(Request $request)
