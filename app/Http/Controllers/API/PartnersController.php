@@ -402,9 +402,9 @@ class PartnersController extends Controller
         $data = DB::table('users')
             ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
             ->select('users.*')
+            ->where("check_ins.check_in_at", $check_in_at)
             ->where("check_ins.student_id" , 'LIKE', "%$student_id%")
             ->orWhere("users.name" , 'LIKE', "%$student_id%")
-            ->where("check_ins.check_in_at", $check_in_at)
             ->groupBy('users.id')
             ->get();
 
@@ -414,20 +414,24 @@ class PartnersController extends Controller
     public function show_group_risk($user_id , $check_in_at)
     {
         $data_all_date = array();
+        $uesr_risk_groups = array();
+        $data_user_risk_groups = array();
         
-        $groupBy_date = check_in::where("user_id" , 1)
-            ->where("check_in_at", "km")
+        $groupBy_date = check_in::where("user_id" , $user_id)
+            ->where("check_in_at", $check_in_at)
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
             ->get();
 
+        $i = 0 ;
+
         foreach ($groupBy_date as $key) {
 
-            echo "<br>";
-            echo date("Y/m/d" , strtotime($key->created_at ));
+            // echo "<br>";
+            // echo date("Y/m/d" , strtotime($key->created_at ));
 
-            $time_in_of_date = check_in::where("user_id" , 1)
+            $time_in_of_date = check_in::where("user_id" , $user_id)
                 ->select('time_in')
-                ->where("check_in_at", "km")
+                ->where("check_in_at", $check_in_at)
                 ->where("time_in", "!=" , null)
                 ->whereDate('created_at', date("Y/m/d" , strtotime($key->created_at )))
                 ->orderBy('time_in', 'desc')
@@ -438,9 +442,9 @@ class PartnersController extends Controller
                 $time_in = $item->time_in;
             }
 
-            $time_out_of_date = check_in::where("user_id" , 1)
+            $time_out_of_date = check_in::where("user_id" , $user_id)
                 ->select('time_out')
-                ->where("check_in_at", "km")
+                ->where("check_in_at", $check_in_at)
                 ->where("time_out", "!=" , null)
                 ->whereDate('created_at', date("Y/m/d" , strtotime($key->created_at )))
                 ->orderBy('time_out', 'desc')
@@ -451,24 +455,83 @@ class PartnersController extends Controller
                 $time_out = $item->time_out;
             }
 
-            echo "<br>";
-            echo "IN >>>> " . $time_in;
-            echo "<br>";
-            echo "OUT >>>> " . $time_out;
-            echo "<br>";
+            // echo "<br>";
+            // echo "IN >>>> " . $time_in;
+            // echo "<br>";
+            // echo "OUT >>>> " . $time_out;
+            // echo "<br>";
 
-            $data_all_date[date("Y/m/d" , strtotime($key->created_at ))] = [
-                    "date" => date("Y/m/d" , strtotime($key->created_at )),
-                    "time_in" => date("H:i" , strtotime($time_in)),
-                    "time_out" => date("H:i" , strtotime($time_out)),
-                ];
+            $data_all_date[$i] = [
+                "date" => date("Y/m/d" , strtotime($key->created_at )),
+                "time_in" => date("H:i" , strtotime($time_in)),
+                "time_out" => date("H:i" , strtotime($time_out)),
+            ];
+
+            $i++ ;
         }
 
-        echo "<pre>";
-        print_r($data_all_date);
-        echo "<pre>";
+        // echo "<pre>";
+        // print_r($data_all_date);
+        // echo "<pre>";
 
-        return $data ;
+        for ($ii=0; $ii < count($data_all_date); $ii++) {
+            
+            $date_time_in =  $data_all_date[$ii]['date'] . " " . $data_all_date[$ii]['time_in'] ;
+            $date_time_in = date("Y/m/d H:i" , strtotime($date_time_in) - 60*60 );
+
+            $date_time_out =  $data_all_date[$ii]['date'] . " " . $data_all_date[$ii]['time_out'] ;
+            $date_time_out = date("Y/m/d H:i" , strtotime($date_time_out) + 60*60 );
+
+            // echo "<br>";
+            // echo $date_time_in;
+            // echo "<br>";
+            // echo $date_time_out;
+            
+
+            $risk_groups = check_in::where("user_id" ,"!=" , $user_id)
+                ->where("check_in_at", $check_in_at)
+                ->whereBetween('created_at', [$date_time_in, $date_time_out])
+                ->groupBy('user_id')
+                ->get();
+
+            // echo "<pre>";
+            // print_r($risk_groups);
+            // echo "<pre>";
+
+            foreach ($risk_groups as $risk_group) {
+
+                array_push($uesr_risk_groups , $risk_group->user_id);
+
+            }
+
+        }
+
+        // echo "<pre>";
+        // print_r($uesr_risk_groups);
+        // echo "<pre>";
+
+        for ($y=0; $y < count($uesr_risk_groups); $y++) { 
+
+            $data_users = DB::table('users')
+                ->where("users.id" , $uesr_risk_groups[$y])
+                ->get();
+
+                foreach ($data_users as $data_user) {
+                    $data_user_risk_groups[$y] = [
+                        "id" => $data_user->id,
+                        "name" => $data_user->name,
+                        "phone" => $data_user->phone,
+                        "student_id" => $data_user->student_id,
+                    ];
+                }
+            
+        }
+
+        // echo "<pre>";
+        // print_r($data_user_risk_groups);
+        // echo "<pre>";
+
+        return $data_user_risk_groups ;
     }
 
 }

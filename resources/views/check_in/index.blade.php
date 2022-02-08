@@ -150,17 +150,16 @@
                         <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนกลุ่มเสี่ยง</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                            <div class="card-header">
-                                <div class="d-flex align-items-center">
-                                    <div class="row col-12">
+                        <div class=" radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+                                <div class="d-flex align-items-center" >
+                                    <div class="row col-12" style="background:none;">
+                                        <input type="text" name="text_array"  id="text_array" class="form-control d-none">
                                         <div class="col-9"></div>
                                         <div class="col-3">
                                             <input type="text" class="form-control" id="student_id_covid" name="student_id_covid" placeholder="ค้นหาชื่อหรือรหัสนักศึกษา..." oninput="search_std('{{ $check_in_at }}');">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                         <div class="row col-12">
                                 <div id="div_content_search_std">
@@ -366,6 +365,9 @@
                                 div_data_btn.appendChild(btn_data);
                                 div_data.appendChild(div_data_btn);
 
+                    let div_data_hr = document.createElement("hr");
+                        div_data.appendChild(div_data_hr);
+
 
 
                     div_content_search_std.appendChild(div_data);
@@ -382,11 +384,127 @@
                 fetch("{{ url('/') }}/api/show_group_risk/"+id+"/"+check_in_at)
                     .then(response => response.json())
                     .then(result => {
-                    console.log(result);
+                    // console.log(result);
+
+                    let text_array = document.querySelector('#text_array');
+                        text_array.value = JSON.stringify(result);
+
+                        let div_header = document.createElement("div");
+                        let class_div_header = document.createAttribute("class");
+                            class_div_header.value = "row col-12";
+                            div_header.setAttributeNode(class_div_header); 
+
+                            // titel name
+                            let div_header_name = document.createElement("div");
+                            let class_div_header_name = document.createAttribute("class");
+                                class_div_header_name.value = "col-3 text-center";
+                                div_header_name.setAttributeNode(class_div_header_name);
+                                let para_name = document.createElement("P");
+                                    para_name.innerHTML = "ชื่อ";
+                                    div_header_name.appendChild(para_name);
+                            div_header.appendChild(div_header_name);
+
+                            // titel phone
+                            let div_header_phone = document.createElement("div");
+                            let class_div_header_phone = document.createAttribute("class");
+                                class_div_header_phone.value = "col-3 text-center";
+                                div_header_phone.setAttributeNode(class_div_header_phone);
+                                let para_phone = document.createElement("P");
+                                    para_phone.innerHTML = "เบอร์โทร";
+                                    div_header_phone.appendChild(para_phone);
+                            div_header.appendChild(div_header_phone);
+
+                            // titel std_id
+                            let div_header_std_id = document.createElement("div");
+                            let class_div_header_std_id = document.createAttribute("class");
+                                class_div_header_std_id.value = "col-3 text-center";
+                                div_header_std_id.setAttributeNode(class_div_header_std_id);
+                                let para_std_id = document.createElement("P");
+                                    para_std_id.innerHTML = "รหัสนักศึกษา";
+                                    div_header_std_id.appendChild(para_std_id);
+                            div_header.appendChild(div_header_std_id);
+
+                            // titel btn
+                            let div_header_btn = document.createElement("div");
+                            let class_div_header_btn = document.createAttribute("class");
+                                class_div_header_btn.value = "col-3 text-center";
+                                div_header_btn.setAttributeNode(class_div_header_btn);
+                            div_header.appendChild(div_header_btn);
+
+                        let hr = document.createElement("hr");
+                            div_header.appendChild(hr);
+
+                        div_content_search_std.appendChild(div_header);
+
+                        // div_data
+                        let show_div_data = document.createElement("div");
+                        let class_div_data = document.createAttribute("class");
+                            class_div_data.value = "row col-12";
+                            show_div_data.setAttributeNode(class_div_data);
 
                     for(let item of result){
-                        console.log("In >>>" + item.time_in);
-                        console.log("Out >>>" + item.time_out);
+                        // data name
+                            let show_div_data_name = document.createElement("div");
+                            let show_class_div_data_name = document.createAttribute("class");
+                                show_class_div_data_name.value = "col-3";
+                                show_div_data_name.setAttributeNode(show_class_div_data_name);
+                                let show_para_data_name = document.createElement("P");
+                                let show_style_para_name = document.createAttribute("style");
+                                    show_style_para_name.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
+                                    show_para_data_name.setAttributeNode(show_style_para_name); 
+                                    show_para_data_name.innerHTML = item.name
+
+                                    show_div_data_name.appendChild(show_para_data_name);
+                                    show_div_data.appendChild(show_div_data_name);
+
+                        // data phone
+                            let show_div_data_phone = document.createElement("div");
+                            let show_class_div_data_phone = document.createAttribute("class");
+                                show_class_div_data_phone.value = "col-3 text-center";
+                                show_div_data_phone.setAttributeNode(show_class_div_data_phone);
+                                let show_para_data_phone = document.createElement("P");
+                                let show_style_para_phone = document.createAttribute("style");
+                                    show_style_para_phone.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
+                                    show_para_data_phone.setAttributeNode(show_style_para_phone); 
+                                    show_para_data_phone.innerHTML = item.phone
+
+                                    show_div_data_phone.appendChild(show_para_data_phone);
+                                    show_div_data.appendChild(show_div_data_phone);
+
+                        // data std_id
+                            let show_div_data_std_id = document.createElement("div");
+                            let show_class_div_data_std_id = document.createAttribute("class");
+                                show_class_div_data_std_id.value = "col-3 text-center";
+                                show_div_data_std_id.setAttributeNode(show_class_div_data_std_id);
+                                let show_para_data_std_id = document.createElement("P");
+                                let show_style_para_std_id = document.createAttribute("style");
+                                    show_style_para_std_id.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
+                                    show_para_data_std_id.setAttributeNode(show_style_para_std_id); 
+                                    show_para_data_std_id.innerHTML = item.student_id
+
+                                    show_div_data_std_id.appendChild(show_para_data_std_id);
+                                    show_div_data.appendChild(show_div_data_std_id);
+
+                        // data text
+                            let show_div_data_text = document.createElement("div");
+                            let show_class_div_data_text = document.createAttribute("class");
+                                show_class_div_data_text.value = "col-3 text-center";
+                                show_div_data_text.setAttributeNode(show_class_div_data_text);
+                                let show_para_data_text = document.createElement("P");
+                                let show_style_para_text = document.createAttribute("style");
+                                    show_style_para_text.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;color:red;";
+                                    show_para_data_text.setAttributeNode(show_style_para_text); 
+                                    show_para_data_text.innerHTML = "กลุ่มเสี่ยง"
+
+                                    show_div_data_text.appendChild(show_para_data_text);
+                                    show_div_data.appendChild(show_div_data_text);
+
+                        let show_hr = document.createElement("hr");
+                            show_div_data.appendChild(show_hr);
+
+
+
+                        div_content_search_std.appendChild(show_div_data);
                     }
 
                 });
