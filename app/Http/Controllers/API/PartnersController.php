@@ -405,7 +405,7 @@ class PartnersController extends Controller
             ->where("check_ins.student_id" , 'LIKE', "%$student_id%")
             ->orWhere("users.name" , 'LIKE', "%$student_id%")
             ->where("check_ins.check_in_at", $check_in_at)
-            // ->groupBy('check_ins.student_id')
+            ->groupBy('users.id')
             ->get();
 
         return $data ;
