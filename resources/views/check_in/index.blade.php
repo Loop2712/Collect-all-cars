@@ -389,6 +389,46 @@
                     let text_array = document.querySelector('#text_array');
                         text_array.value = JSON.stringify(result);
 
+                    let div_btn_send = document.createElement("div");
+
+                    let class_div_btn_send = document.createAttribute("class");
+                            class_div_btn_send.value = "row col-12";
+                            div_btn_send.setAttributeNode(class_div_btn_send);
+
+                    // data col-9
+                        let div_btn_col_9 = document.createElement("div");
+                        let class_div_btn_col_9 = document.createAttribute("class");
+                            class_div_btn_col_9.value = "col-9 text-center";
+                            div_btn_col_9.setAttributeNode(class_div_btn_col_9);
+
+                            div_btn_send.appendChild(div_btn_col_9);
+
+                    // data col-3 btn
+                        let div_btn_col_3 = document.createElement("div");
+                        let class_div_btn_col_3 = document.createAttribute("class");
+                            class_div_btn_col_3.value = "col-3 text-center";
+                            div_btn_col_3.setAttributeNode(class_div_btn_col_3);
+
+                            let btn_send = document.createElement("button");
+                                btn_send.innerHTML = '<i class="fas fa-share-square"></i> ส่งข้อความเตือน !'
+                            let class_btn_send = document.createAttribute("class");
+                                class_btn_send.value = "btn btn-info text-white";
+                                btn_send.setAttributeNode(class_btn_send); 
+                            let style_btn_send = document.createAttribute("style");
+                                style_btn_send.value = "margin-top: 15px;";
+                                btn_send.setAttributeNode(style_btn_send);
+
+                            let btn_send_onclick = document.createAttribute("onclick");
+                                btn_send_onclick.value = "send_risk_group();";
+                                btn_send.setAttributeNode(btn_send_onclick);  
+                                
+                                div_btn_col_3.appendChild(btn_send);
+                                div_btn_send.appendChild(div_btn_col_3);
+
+                        div_content_search_std.appendChild(div_btn_send);
+
+                    // ----------------------------------------
+
                         let div_header = document.createElement("div");
                         let class_div_header = document.createAttribute("class");
                             class_div_header.value = "row col-12";
@@ -502,12 +542,18 @@
                         let show_hr = document.createElement("hr");
                             show_div_data.appendChild(show_hr);
 
-
-
                         div_content_search_std.appendChild(show_div_data);
+
                     }
 
                 });
+        }
+
+
+        function send_risk_group(){
+            let text_array = document.querySelector('#text_array');
+
+            console.log(text_array.value);
         }
 
     </script>
