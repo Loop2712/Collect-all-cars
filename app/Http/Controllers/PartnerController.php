@@ -664,33 +664,66 @@ class PartnerController extends Controller
     {
         $requestData = $request->all();
 
-        $data_time = array();
-        $data_data = array();
+        $data_all_date = array();
         
-        $data_date = check_in::where("user_id" , 1)
+        $groupBy_date = check_in::where("user_id" , 1)
             ->where("check_in_at", "km")
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
             ->get();
 
-        foreach ($data_date as $key) {
+        foreach ($groupBy_date as $key) {
 
-            $data_data = [
-                "date" => date("Y/m/d" , strtotime($key->created_at )),
-                "time_in" => $key->time_in,
-                "time_out" => $key->time_out,
-            ];
+            echo "<br>";
+            echo date("Y/m/d" , strtotime($key->created_at ));
 
+            $time_in_of_date = check_in::where("user_id" , 1)
+                ->select('time_in')
+                ->where("check_in_at", "km")
+                ->where("time_in", "!=" , null)
+                ->whereDate('created_at', date("Y/m/d" , strtotime($key->created_at )))
+                ->orderBy('time_in', 'desc')
+                ->get();
 
-            array_push($data_time , $data_data);
+            foreach ($time_in_of_date as $item) {
 
-            // echo "<pre>";
-            // print_r($data_time);
-            // echo "<pre>";
+                $time_in = $item->time_in;
+            }
+
+            $time_out_of_date = check_in::where("user_id" , 1)
+                ->select('time_out')
+                ->where("check_in_at", "km")
+                ->where("time_out", "!=" , null)
+                ->whereDate('created_at', date("Y/m/d" , strtotime($key->created_at )))
+                ->orderBy('time_out', 'desc')
+                ->get();
+
+            foreach ($time_out_of_date as $item) {
+
+                $time_out = $item->time_out;
+            }
+
+            echo "<br>";
+            echo "IN >>>> " . $time_in;
+            echo "<br>";
+            echo "OUT >>>> " . $time_out;
+            echo "<br>";
+
+            $data_all_date[date("Y/m/d" , strtotime($key->created_at ))] = [
+                    "date" => date("Y/m/d" , strtotime($key->created_at )),
+                    "time_in" => date("H:i" , strtotime($time_in)),
+                    "time_out" => date("H:i" , strtotime($time_out)),
+                ];
         }
 
+        echo "<pre>";
+        print_r($data_all_date);
+        echo "<pre>";
 
 
-        // exit();
+
+
+
+        exit();
 
         $data_user = Auth::user();
 
