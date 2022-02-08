@@ -690,17 +690,8 @@ class PartnerController extends Controller
 
         // รหัส นศ. อย่างเดียว
         if ( !empty($select_student_id) and empty($select_time_1) and empty($select_date) ) {
-            // $check_in = Check_in::where('check_in_at', $data_user->organization)
-            //     ->where('student_id','LIKE', "%$select_student_id%")
-            //     ->latest()->paginate($perPage);
-
-            $check_in = DB::table('users')
-                ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
-                ->where('check_in_at', $data_user->organization)
-                ->where("check_ins.check_in_at", $check_in_at)
-                ->where("check_ins.student_id" , 'LIKE', "%$student_id%")
-                ->orWhere("users.name" , 'LIKE', "%$student_id%")
-                ->groupBy('users.id')
+            $check_in = Check_in::where('check_in_at', $data_user->organization)
+                ->where('student_id','LIKE', "%$select_student_id%")
                 ->latest()->paginate($perPage);
         }
         // วันที่ อย่างเดียว
