@@ -209,7 +209,9 @@
                                 <div class="d-flex align-items-center" >
                                     <div class="row col-12" style="background:none;">
                                         <input type="text" name="text_array"  id="text_array" class="form-control d-none">
-                                        <div class="col-9"></div>
+                                        <div class="col-9">
+                                            <h5>ค้นหาชื่อหรือรหัสนักศึกษา</h5>
+                                        </div>
                                         <div class="col-3">
                                             <input type="text" class="form-control" id="student_id_covid" name="student_id_covid" placeholder="ค้นหาชื่อหรือรหัสนักศึกษา..." oninput="search_std('{{ $check_in_at }}');">
                                         </div>
