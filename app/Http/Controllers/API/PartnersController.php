@@ -442,7 +442,7 @@ class PartnersController extends Controller
                 if (!empty($item->time_in)) {
                     $time_in = $item->time_in;
                 }else{
-                    $time_in = "07:00:00";
+                    $time_in = $key->created_at . "07:00:00";
                 }
             }
 
@@ -459,7 +459,7 @@ class PartnersController extends Controller
                 if (!empty($item->time_out)) {
                     $time_out = $item->time_out;
                 }else{
-                    $time_out = "19:00:00";
+                    $time_out = $key->created_at . "19:00:00";
                 }
             }
 
