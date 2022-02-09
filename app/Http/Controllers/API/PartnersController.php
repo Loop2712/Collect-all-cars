@@ -425,7 +425,9 @@ class PartnersController extends Controller
         $i = 0 ;
 
         foreach ($groupBy_date as $key) {
-
+            
+            $time_in = "07:00:00";
+            $time_out = "19:00:00";
             // echo "<br>";
             // echo date("Y/m/d" , strtotime($key->created_at ));
 
@@ -468,6 +470,8 @@ class PartnersController extends Controller
             ];
 
             $i++ ;
+            $time_in = "";
+            $time_out = "";
         }
 
         // echo "<pre>";
