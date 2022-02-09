@@ -603,12 +603,13 @@ class PartnersController extends Controller
                 $result = file_get_contents($url, false, $context);
 
                 // SAVE LOG
-                $data = [
+                $data_2 = [
                     "title" => "คุณคือกลุ่มเสี่ยง",
                     "content" => $user->name . 'คือกลุ่มเสี่ยง',
                 ];
-                MyLog::create($data);
+                MyLog::create($data_2);
             }
+
 
         }
 
