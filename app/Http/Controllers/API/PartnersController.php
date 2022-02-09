@@ -456,7 +456,7 @@ class PartnersController extends Controller
 
             foreach ($time_out_of_date as $item) {
 
-                if (!empty($item->time_out)) {
+                if ($item->time_out != "") {
                     $time_out = $item->time_out;
                 }else{
                     $time_out = $key->created_at . "19:00:00";
