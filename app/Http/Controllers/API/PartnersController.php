@@ -439,11 +439,7 @@ class PartnersController extends Controller
 
             foreach ($time_in_of_date as $item) {
 
-                if (!empty($item->time_in)) {
-                    $time_in = $item->time_in;
-                }else{
-                    $time_in = "07:00:00";
-                }
+                $time_in = $item->time_in;
             }
 
             $time_out_of_date = check_in::where("user_id" , $user_id)
@@ -456,11 +452,7 @@ class PartnersController extends Controller
 
             foreach ($time_out_of_date as $item) {
 
-                if (!empty($item->time_out)) {
-                    $time_out = $item->time_out;
-                }else{
-                    $time_out = "2022-02-09 19:00:00";
-                }
+                $time_out = $item->time_out;
             }
 
             // echo "<br>";
