@@ -553,7 +553,21 @@
         function send_risk_group(){
             let text_array = document.querySelector('#text_array');
 
-            console.log(text_array.value);
+            // console.log(text_array.value);
+
+            fetch("{{ url('/') }}/api/send_risk_group", {
+                method: 'post',
+                body: text_array.value,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response){
+                return response.text();
+            }).then(function(text){
+                console.log(text);
+            }).catch(function(error){
+                // console.error(error);
+            });
         }
 
     </script>

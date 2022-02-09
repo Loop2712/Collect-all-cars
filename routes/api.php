@@ -129,6 +129,8 @@ Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersControlle
 
 Route::get('/search_std/{student_id_covid}/{check_in_at}','API\PartnersController@search_std');
 Route::get('/show_group_risk/{id}/{check_in_at}','API\PartnersController@show_group_risk');
+Route::post('/send_risk_group', 'API\PartnersController@send_risk_group');
+
 
 
 

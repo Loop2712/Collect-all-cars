@@ -402,9 +402,9 @@ class PartnersController extends Controller
         $data = DB::table('users')
             ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
             ->select('users.*')
-            ->where("check_ins.check_in_at", $check_in_at)
             ->where("check_ins.student_id" , 'LIKE', "%$student_id%")
             ->orWhere("users.name" , 'LIKE', "%$student_id%")
+            ->where("check_ins.check_in_at", $check_in_at)
             ->groupBy('users.id')
             ->get();
 
@@ -532,6 +532,87 @@ class PartnersController extends Controller
         // echo "<pre>";
 
         return $data_user_risk_groups ;
+    }
+
+    public function send_risk_group()
+    {
+        
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+
+        $count_user = count($data);
+
+        for ($i=0; $i < $count_user ; $i++) { 
+
+            $user_id = $data[$i]['id'] ;
+
+            $users = DB::table('users')->where('id', $user_id)->where('type' , 'line')->get();
+
+            foreach ($users as $user) {
+
+                $user_language = $user->language ;
+
+                // TIME ZONE
+                $API_Time_zone = new API_Time_zone();
+                $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
+
+                $data_topic = [
+                            "เรียนคุณ",
+                            "คุณคือกลุ่มเสี่ยง",
+                        ];
+
+                for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$xi])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$xi] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
+                $template_path = storage_path('../public/json/risk_group.json');
+                $string_json = file_get_contents($template_path);
+                // users 
+                $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
+                $string_json = str_replace("xxx",$user->name,$string_json);
+                $string_json = str_replace("คุณคือกลุ่มเสี่ยง",$data_topic[1],$string_json);
+                
+                $messages = [ json_decode($string_json, true) ];
+
+                $body = [
+                    "to" => $user->provider_id,
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                // SAVE LOG
+                $data = [
+                    "title" => "คุณคือกลุ่มเสี่ยง",
+                    "content" => $user->name . 'คือกลุ่มเสี่ยง',
+                ];
+                MyLog::create($data);
+            }
+
+        }
+
+        return $count_user;
     }
 
 }
