@@ -5,7 +5,14 @@
     <center>
         <img width="60%" src="{{ asset('/img/stickerline/PNG/1.png') }}">
         <br><br>
-        <h3 class="notranslate"><b>คุณ : {{ Auth::user()->name }}</b></h3>
+        <h3 class="notranslate">
+            @if(!empty(Auth::user()->name_staff))
+                <b>คุณ : {{ Auth::user()->name_staff }}</b>
+            @else
+                <b>คุณ : {{ Auth::user()->name }}</b>
+            @endif
+        </h3>
+
         @if(!empty(Auth::user()->std_of and Auth::user()->std_of != "guest"))
             <p class="notranslate">
                 {{ Auth::user()->std_of }} <br>
@@ -53,13 +60,31 @@
             {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <input type="checkbox" name="guest_check_in" id="guest_check_in" 
+        <div class="d-none" id="div_staff_kmutnb">
+
+            <div id="div_name_staff_kmutnb" class="d-none form-group {{ $errors->has('name_staff_kmutnb') ? 'has-error' : ''}}">
+                <label for="name_staff_kmutnb" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
+                <input class="form-control" name="name_staff_kmutnb" type="text" id="name_staff_kmutnb" value="" >
+                {!! $errors->first('name_staff_kmutnb', '<p class="help-block">:message</p>') !!}
+            </div>
+
+            <input type="radio" name="guest_check_in" id="staff_kmutnb" 
+                onclick="if(this.checked){
+                    fu_staff_kmutnb_check_in();
+                }else{
+                    fu_std_check_in();
+                }"> 
+            <span class="text-danger">&nbsp;&nbsp;บุคลากร มจพ.</span>
+            <br>
+        </div>
+
+        <input type="radio" name="guest_check_in" id="guest_check_in" 
             onclick="if(this.checked){
                 fu_guest_check_in();
             }else{
                 fu_std_check_in();
             }"> 
-        <span class="text-danger">บุคคลทั่วไป</span>
+        <span class="text-danger">&nbsp;&nbsp;บุคคลทั่วไป</span>
         <br><br>
 
     </div>
@@ -89,6 +114,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        let check_in_at = document.querySelector('#check_in_at').value;
+        if (check_in_at === "KMUTNB") {
+            document.querySelector('#div_staff_kmutnb').classList.remove('d-none');
+        }else{
+            document.querySelector('#div_staff_kmutnb').classList.add('d-none');
+        }
+
         let std_of = document.querySelector("#std_of");
         let uni = document.querySelector("#Uni");
 
@@ -154,6 +186,10 @@
         document.querySelector("#student_id").required = "";
         document.querySelector("#select_University").value = "";
         document.querySelector("#student_id").value = "";
+
+        document.querySelector("#div_name_staff_kmutnb").classList.add("d-none");
+        document.querySelector("#name_staff_kmutnb").required = "";
+
     };
 
     function fu_std_check_in(){
@@ -162,6 +198,24 @@
         // ใส่ required ใน student_id และ select_University
         document.querySelector("#select_University").required = "true";
         document.querySelector("#student_id").required = "true";
+
+        document.querySelector("#div_name_staff_kmutnb").classList.add("d-none");
+        document.querySelector("#name_staff_kmutnb").required = "";
+
+    };
+
+    function fu_staff_kmutnb_check_in(){
+        document.querySelector("#div_select_University").classList.add("d-none");
+        document.querySelector("#div_student_id").classList.add("d-none");
+        // เอา required ออกจาก student_id และ select_University
+        document.querySelector("#select_University").required = "";
+        document.querySelector("#student_id").required = "";
+        document.querySelector("#select_University").value = "";
+        document.querySelector("#student_id").value = "";
+
+        document.querySelector("#div_name_staff_kmutnb").classList.remove("d-none");
+        document.querySelector("#name_staff_kmutnb").required = "true";
+        
     };
     
     

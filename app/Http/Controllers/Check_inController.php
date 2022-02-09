@@ -81,17 +81,30 @@ class Check_inController extends Controller
         }else if($requestData['check_in_out'] == "check_out"){
             $requestData['time_in'] = null ;
         }
-        
-        Check_in::create($requestData);
 
-        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on") {
+        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and empty($requestData['name_staff_kmutnb'])) {
             DB::table('users')
-              ->where('id', $requestData['user_id'])
-              ->where('std_of' , null)
-              ->update([
-                'std_of' => 'guest',
-          ]);
+                ->where('id', $requestData['user_id'])
+                ->where('std_of' , null)
+                ->update([
+                    'std_of' => 'guest',
+            ]);
         }
+
+        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and !empty($requestData['name_staff_kmutnb'])) {
+            DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->where('std_of' , null)
+                ->update([
+                    'std_of' => $requestData['check_in_at'],
+                    'name_staff' => $requestData['name_staff_kmutnb'],
+                    'student_id' => 'บุคลากร',
+            ]);
+
+            $requestData['student_id'] = 'บุคลากร' ;
+        }
+
+        Check_in::create($requestData);
 
         if (!empty($requestData['select_University'])) {
             DB::table('users')

@@ -144,7 +144,13 @@
                 <tbody class="text-center">
                     @foreach($check_in as $item)
                         <tr>
-                            <td>{{ $item->user->name }}</td>
+                            <td>
+                                @if(!empty($item->user->name_staff))
+                                    {{ $item->user->name_staff }}
+                                @else
+                                    {{ $item->user->name }}
+                                @endif
+                            </td>
 
                             <td>
                                 @if(!empty($item->time_in))
@@ -174,7 +180,7 @@
 
 
                             <td>
-                                @if(!empty($item->student_id))
+                                @if(!empty($item->student_id) )
                                     <b>{{ $item->student_id}}</b>
                                 @else
                                     บุคคลทั่วไป
@@ -391,7 +397,12 @@
                             let style_para_name = document.createAttribute("style");
                                 style_para_name.value = "position: relative;margin-top: 20px; z-index: 5; font-size:18px;";
                                 para_data_name.setAttributeNode(style_para_name); 
-                                para_data_name.innerHTML = item.name
+
+                                if (item.name_staff) {
+                                    para_data_name.innerHTML = item.name_staff
+                                }else{
+                                    para_data_name.innerHTML = item.name
+                                }
 
                                 div_data_name.appendChild(para_data_name);
                                 div_data.appendChild(div_data_name);
