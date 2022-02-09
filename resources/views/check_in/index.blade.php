@@ -1,6 +1,61 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
+<style>
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #7ac142;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+}
+
+.checkmark {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin: 10% auto;
+    box-shadow: inset 0px 0px 0px #7ac142;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes scale {
+
+    0%,
+    100% {
+        transform: none
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1)
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 60px #7ac142
+    }
+}
+</style>
 
 <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="card-header border-bottom-0 bg-transparent">
@@ -168,14 +223,38 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                        <button id="close_madal_main" type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                         <!-- <button type="button" class="btn btn-primary">ยืนยัน</button> -->
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Modal send_finish -->
+        <!-- Button trigger modal -->
+        <button id="btn_modal_send_finish" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#madal_send_finish">
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="madal_send_finish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="wrapper">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                        <h3 style="color: #7ac142;">แจ้งเตือนกลุ่มเสี่ยงเรียบร้อยแล้ว</h3>
+                    </div>
+                </div>
+                <div class="modal-footer d-none">
+                    <button id="close_madal_send_finish" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
+          </div>
         </div>
+    </div>
+</div>
 
 
     <!-- <div class="container-fluid">
@@ -564,7 +643,18 @@
             }).then(function (response){
                 return response.text();
             }).then(function(text){
-                console.log(text);
+                // console.log(text);
+                document.querySelector('#close_madal_main').click();
+                let div_content_search_std = document.querySelector('#div_content_search_std');
+                    div_content_search_std.textContent = "" ;
+
+                document.querySelector('#btn_modal_send_finish').click();
+                
+                    var delayInMilliseconds = 3000; 
+                        setTimeout(function() {
+                          document.querySelector('#close_madal_send_finish').click();
+                        }, delayInMilliseconds);
+
             }).catch(function(error){
                 // console.error(error);
             });
