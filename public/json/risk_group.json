@@ -1,4 +1,88 @@
 {
-   "type": "text",
-   "text": "เรียนคุณ xxx คุณคือกลุ่มเสี่ยง Covid-19"
+    "type": "flex",
+    "altText": "ViiCHECK ยินดีให้บริการค่ะ",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v3.png",
+            "size": "4xl",
+            "aspectRatio": "16:9",
+            "aspectMode": "fit",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/"
+            }
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/26.1.png",
+            "size": "full",
+            "aspectRatio": "16:9",
+            "align": "center",
+            "aspectMode": "fit",
+            "offsetBottom": "md"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "xl",
+        "contents": [
+          {
+            "type": "separator",
+            "margin": "xl",
+            "color": "#ff0101"
+          },
+          {
+            "type": "text",
+            "text": "เรียนคุณ xxx",
+            "size": "lg"
+          },
+          {
+            "type": "text",
+            "text": "text_01",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "text_02",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "check_in_area",
+            "wrap": true,
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "text_03",
+            "wrap": true
+          }
+        ],
+        "offsetBottom": "md"
+      }
+    ],
+    "borderWidth": "bold",
+    "cornerRadius": "xl",
+    "borderColor": "#ff0101"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#ff0101"
+    }
+  }
+}
 }

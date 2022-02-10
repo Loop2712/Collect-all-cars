@@ -563,7 +563,9 @@ class PartnersController extends Controller
 
                 $data_topic = [
                             "เรียนคุณ",
-                            "คุณคือกลุ่มเสี่ยง",
+                            "ด้วยสถานการณ์การระบาดของ Coronavirus Disease 2019 (COVID -19) ขณะนี้ท่านอยู่ในกลุ่มเสี่ยง",
+                            "เนื่องจาก ท่านได้ Scan เข้าพื้นที่",
+                            "จึงขอความร่วมมือในการปฏิบัติตามมาตราการเร่งด่วนในการป้องกันและควบคุมโรคติดต่อไวรัสโคโรนา กรุณาทำการตรวจเช็คและเฝ้าระวังตามพระราชบัญญัติโรคติดต่อ พ.ศ.2558",
                         ];
 
                 for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -584,7 +586,9 @@ class PartnersController extends Controller
                 // users 
                 $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
                 $string_json = str_replace("xxx",$user->name,$string_json);
-                $string_json = str_replace("คุณคือกลุ่มเสี่ยง",$data_topic[1],$string_json);
+                $string_json = str_replace("text_01",$data_topic[1],$string_json);
+                $string_json = str_replace("text_02",$data_topic[2],$string_json);
+                $string_json = str_replace("text_03",$data_topic[3],$string_json);
                 
                 $messages = [ json_decode($string_json, true) ];
 
