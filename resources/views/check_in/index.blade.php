@@ -65,7 +65,7 @@
                     <div class="row col-12">
                         <div class="col-9">
                             <h3 style="margin-top: 8px;" class="font-weight-bold mb-0">
-                                รายชื่อ Check in / out
+                                ค้นหา
                             </h3>
                         </div>
                         <div class="col-3">
@@ -130,6 +130,9 @@
 <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="card-body">
         <div class="table-responsive">
+            <h3 style="margin-top: 8px;" class="font-weight-bold mb-0">
+                รายชื่อ Check in / out
+            </h3>
             <table class="table mb-0 align-middle">
                 <thead>
                     <tr class="text-center">
