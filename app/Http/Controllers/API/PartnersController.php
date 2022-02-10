@@ -584,6 +584,7 @@ class PartnersController extends Controller
                 $template_path = storage_path('../public/json/risk_group.json');
                 $string_json = file_get_contents($template_path);
                 // users 
+                $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                 $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
                 $string_json = str_replace("xxx",$user->name,$string_json);
                 $string_json = str_replace("text_01",$data_topic[1],$string_json);
