@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\AlertAct::class,
         Commands\Cancel_after::class,
+        Commands\Delete_check_in::class,
     ];
 
     /**
@@ -27,6 +28,7 @@ class Kernel extends ConsoleKernel
     { 
         $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
         $schedule->command('cron:cancel_after_6_month')->everyMinute()->withoutOverlapping(5);
+        $schedule->command('cron:delete_check_in_after_15_day')->everyMinute()->withoutOverlapping(5);
     }
 
     /**
