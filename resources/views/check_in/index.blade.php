@@ -81,7 +81,7 @@
                         <center>
                             <form style="float: left;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="col-12 form-inline float-right" role="search">
                                 <div class="row col-12">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label  class="control-label">{{ 'วันที่' }}</label>
                                         <input class="form-control" type="date" name="select_date" id="select_date" value="{{ request('select_date') }}">
                                     </div>
@@ -105,7 +105,7 @@
                                             <input type="text" class="form-control" name="select_student_id" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('select_student_id') }}">
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <br>
                                         <span class="input-group-append">
                                             <button class="btn btn-info text-white" type="submit">
