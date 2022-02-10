@@ -22,7 +22,8 @@
               "type": "uri",
               "label": "action",
               "uri": "https://www.viicheck.com/"
-            }
+            },
+            "offsetBottom": "xxl"
           },
           {
             "type": "image",
@@ -31,7 +32,7 @@
             "aspectRatio": "16:9",
             "align": "center",
             "aspectMode": "fit",
-            "offsetBottom": "md"
+            "offsetBottom": "xl"
           }
         ]
       },
