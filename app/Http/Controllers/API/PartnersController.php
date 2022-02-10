@@ -11,6 +11,7 @@ use App\Mail\MailToPartner_area;
 use App\Models\LineMessagingAPI;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Mylog;
+use App\Models\Check_in;
 
 class PartnersController extends Controller
 {
@@ -381,4 +382,243 @@ class PartnersController extends Controller
 
         return $notify ;
     }
+
+    public function search_std($student_id , $check_in_at)
+    {
+        // $data = check_in::where("student_id" , 'LIKE', "%$student_id%")
+        //     ->where("check_in_at", $check_in_at)
+        //     ->groupBy('student_id')
+        //     ->get();
+
+        // $data  = DB::table('users')
+        //             ->join('check_ins', function ($join) {
+        //                 $join->on('users.id', '=', 'check_ins.user_id')
+        //                     ->where('check_ins.student_id', 'LIKE', "%$student_id%");
+        //                     ->where("check_ins.check_in_at", $check_in_at)
+        //                     ->groupBy('student_id')
+        //             })
+        //             ->get();
+
+        $data = DB::table('users')
+            ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
+            ->select('users.*')
+            ->where("check_ins.student_id" , 'LIKE', "%$student_id%")
+            ->orWhere("users.name" , 'LIKE', "%$student_id%")
+            ->orWhere("users.name_staff" , 'LIKE', "%$student_id%")
+            ->where("check_ins.check_in_at", $check_in_at)
+            ->groupBy('users.id')
+            ->get();
+
+        return $data ;
+    }
+
+    public function show_group_risk($user_id , $check_in_at)
+    {
+        $data_all_date = array();
+        $uesr_risk_groups = array();
+        $data_user_risk_groups = array();
+        
+        $groupBy_date = check_in::where("user_id" , $user_id)
+            ->where("check_in_at", $check_in_at)
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+            ->get();
+
+        $i = 0 ;
+
+        foreach ($groupBy_date as $key) {
+            
+            $time_in = "07:00:00";
+            $time_out = "19:00:00";
+            // echo "<br>";
+            // echo date("Y/m/d" , strtotime($key->created_at ));
+
+            $time_in_of_date = check_in::where("user_id" , $user_id)
+                ->select('time_in')
+                ->where("check_in_at", $check_in_at)
+                ->where("time_in", "!=" , null)
+                ->whereDate('created_at', date("Y/m/d" , strtotime($key->created_at )))
+                ->orderBy('time_in', 'desc')
+                ->get();
+
+            foreach ($time_in_of_date as $item) {
+
+                $time_in = $item->time_in;
+            }
+
+            $time_out_of_date = check_in::where("user_id" , $user_id)
+                ->select('time_out')
+                ->where("check_in_at", $check_in_at)
+                ->where("time_out", "!=" , null)
+                ->whereDate('created_at', date("Y/m/d" , strtotime($key->created_at )))
+                ->orderBy('time_out', 'desc')
+                ->get();
+
+            foreach ($time_out_of_date as $item) {
+
+                $time_out = $item->time_out;
+            }
+
+            // echo "<br>";
+            // echo "IN >>>> " . $time_in;
+            // echo "<br>";
+            // echo "OUT >>>> " . $time_out;
+            // echo "<br>";
+
+            $data_all_date[$i] = [
+                "date" => date("Y/m/d" , strtotime($key->created_at )),
+                "time_in" => date("H:i" , strtotime($time_in)),
+                "time_out" => date("H:i" , strtotime($time_out)),
+            ];
+
+            $i++ ;
+            $time_in = "";
+            $time_out = "";
+        }
+
+        // echo "<pre>";
+        // print_r($data_all_date);
+        // echo "<pre>";
+
+        for ($ii=0; $ii < count($data_all_date); $ii++) {
+            
+            $date_time_in =  $data_all_date[$ii]['date'] . " " . $data_all_date[$ii]['time_in'] ;
+            $date_time_in = date("Y/m/d H:i" , strtotime($date_time_in) - 60*60 );
+
+            $date_time_out =  $data_all_date[$ii]['date'] . " " . $data_all_date[$ii]['time_out'] ;
+            $date_time_out = date("Y/m/d H:i" , strtotime($date_time_out) + 60*60 );
+
+            // echo "<br>";
+            // echo $date_time_in;
+            // echo "<br>";
+            // echo $date_time_out;
+            
+
+            $risk_groups = check_in::where("user_id" ,"!=" , $user_id)
+                ->where("check_in_at", $check_in_at)
+                ->whereBetween('created_at', [$date_time_in, $date_time_out])
+                ->groupBy('user_id')
+                ->get();
+
+            // echo "<pre>";
+            // print_r($risk_groups);
+            // echo "<pre>";
+
+            foreach ($risk_groups as $risk_group) {
+
+                array_push($uesr_risk_groups , $risk_group->user_id);
+
+            }
+
+        }
+
+        // echo "<pre>";
+        // print_r($uesr_risk_groups);
+        // echo "<pre>";
+
+        for ($y=0; $y < count($uesr_risk_groups); $y++) { 
+
+            $data_users = DB::table('users')
+                ->where("users.id" , $uesr_risk_groups[$y])
+                ->get();
+
+                foreach ($data_users as $data_user) {
+                    $data_user_risk_groups[$y] = [
+                        "id" => $data_user->id,
+                        "name" => $data_user->name,
+                        "phone" => $data_user->phone,
+                        "student_id" => $data_user->student_id,
+                    ];
+                }
+            
+        }
+
+        // echo "<pre>";
+        // print_r($data_user_risk_groups);
+        // echo "<pre>";
+
+        return $data_user_risk_groups ;
+    }
+
+    public function send_risk_group()
+    {
+        
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+
+        $count_user = count($data);
+
+        for ($i=0; $i < $count_user ; $i++) { 
+
+            $user_id = $data[$i]['id'] ;
+
+            $users = DB::table('users')->where('id', $user_id)->where('type' , 'line')->get();
+
+            foreach ($users as $user) {
+
+                $user_language = $user->language ;
+
+                // TIME ZONE
+                $API_Time_zone = new API_Time_zone();
+                $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
+
+                $data_topic = [
+                            "เรียนคุณ",
+                            "คุณคือกลุ่มเสี่ยง",
+                        ];
+
+                for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+                    $text_topic = DB::table('text_topics')
+                            ->select($user_language)
+                            ->where('th', $data_topic[$xi])
+                            ->where('en', "!=", null)
+                            ->get();
+
+                    foreach ($text_topic as $item_of_text_topic) {
+                        $data_topic[$xi] = $item_of_text_topic->$user_language ;
+                    }
+                }
+
+                $template_path = storage_path('../public/json/risk_group.json');
+                $string_json = file_get_contents($template_path);
+                // users 
+                $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
+                $string_json = str_replace("xxx",$user->name,$string_json);
+                $string_json = str_replace("คุณคือกลุ่มเสี่ยง",$data_topic[1],$string_json);
+                
+                $messages = [ json_decode($string_json, true) ];
+
+                $body = [
+                    "to" => $user->provider_id,
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                // SAVE LOG
+                $data_2 = [
+                    "title" => "คุณคือกลุ่มเสี่ยง",
+                    "content" => $user->name . 'คือกลุ่มเสี่ยง',
+                ];
+                MyLog::create($data_2);
+            }
+
+
+        }
+
+        return $count_user;
+    }
+
 }

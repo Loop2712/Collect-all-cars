@@ -79,6 +79,16 @@
 			</div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+				<li class="menu-label" style="font-size:15px;">
+                    Check in / out
+                </li>
+                <li>
+					<a href="{{ url('/check_in/view') }}">
+						<div class="parent-icon"><i class="fas fa-map-marker-check"></i>
+						</div>
+						<div class="menu-title">ข้อมูลการเข้าออก</div>
+					</a>
+				</li>
                 <li class="menu-label" style="font-size:15px;">
                     จัดการรถ
                 </li>
