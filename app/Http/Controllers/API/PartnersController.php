@@ -527,6 +527,7 @@ class PartnersController extends Controller
                         "name" => $data_user->name,
                         "phone" => $data_user->phone,
                         "student_id" => $data_user->student_id,
+                        "check_in_at" => $check_in_at,
                     ];
                 }
             
@@ -546,6 +547,7 @@ class PartnersController extends Controller
         $data = json_decode($json, true);
 
         $count_user = count($data);
+        $check_in_at = $data[0]['check_in_at'] ;
 
         for ($i=0; $i < $count_user ; $i++) { 
 
@@ -586,6 +588,7 @@ class PartnersController extends Controller
                 // users 
                 $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                 $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
+                $string_json = str_replace("check_in_area",$check_in_at,$string_json);
                 $string_json = str_replace("xxx",$user->name,$string_json);
                 $string_json = str_replace("text_01",$data_topic[1],$string_json);
                 $string_json = str_replace("text_02",$data_topic[2],$string_json);
