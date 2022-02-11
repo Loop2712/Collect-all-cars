@@ -363,6 +363,17 @@
             <a href="#" data-toggle="modal" data-target="#Partner_user">รายละเอียดเพิ่มเติม »</a>
             </div>
         </div><br>
+        <div class="card" style="font-family: 'Prompt', sans-serif;">
+            <br>
+            <center>
+              <i class="fad fa-search-location" style="background-color: #C1A3A3;border-radius: 50%;font-size:550%;padding:25px" width="35%" alt="Card image cap"></i>
+            </center>
+            <div class="card-body">
+            <h5 class="card-title notranslate" style="font-family: 'Prompt', sans-serif;">Chack In/Out</h5>
+            <p class="card-text">วิธีใช้งานระบบ ข้อมูลการเข้าออก</p>
+            <a href="#" data-toggle="modal" data-target="#Partner_checkin">รายละเอียดเพิ่มเติม »</a>
+            </div>
+        </div><br>
     </div>
   </center> <br><br><br>
   <!------------------------------------------- Modal ลงทะเบียน ------------------------------------------->
@@ -798,6 +809,85 @@
     </div>
   </div>
   <!------------------------------------------- Modal พื้นที่บริการ------------------------------------------->
+  <!------------------------------------------- Modal Check in ------------------------------------------->
+  <div class="modal fade"  id="Partner_checkin" tabindex="-1" role="dialog" aria-labelledby="Partner_userTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="Partner_userTitle">ข้อมูลการเข้าออก</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin1.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ค้นหา</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;"  data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" >
+                      <i class="fas fa-angle-down"></i>
+                  </div>
+                  <div class="col-12 collapse" id="login">
+                      <br>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin2.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.เลือกวัน : เลือกวันที่ต้องการค้นหารายการบุคคลเข้าออก
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  2.เลือกช่วงเวลา : สามารถระบุช่วงเวลาที่บุคคลเข้าออกได้ โดยระบุในช่องค้นหา เพื่อเลือกเวลาที่ที่ต้องการค้นหา</h5> 
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  3.รหัสนักศึกษา : ค้นหารายการจากรหัสนักศึกษาตามคำที่กำหนด</h5> 
+                      
+                  </div>
+              </div>
+          </div>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+              <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;" >
+                  <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login">
+                          <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.รายชื่อ Check In/Out</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" >
+                      <i class="fas fa-angle-down" ></i>
+                      </div>
+                  <div class="col-12 collapse" id="Social_login">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin3.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อ :  แสดงชื่อผู้ใช้</h5>
+                    <h5 style="font-family: 'Prompt', sans-serif;text-indent:20px;"> 2.เวลาเข้าออก : แสดงวันที่และเวลาที่เข้าออก </h5>
+                    <h5 style="font-family: 'Prompt', sans-serif;text-indent:20px;"> 3.เบอร์ : แสดงเบอร์ผุู้ใช้บริการ</h5>
+                    <h5 style="font-family: 'Prompt', sans-serif;text-indent:20px;"> 4.สถานที่ : แสดงแสดงสถานที่ ที่ผู้ใช้ทำการ Check in/out</h5> 
+                    <h5 style="font-family: 'Prompt', sans-serif;text-indent:20px;"> 5.รหัสนักศึกษา : แสดงรหัสนักศึกษา </h5> 
+                  </div>
+              </div>
+          </div>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+              <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;" >
+                  <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#sos_detail" aria-expanded="false" aria-controls="sos_detail">
+                          <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">3.แจ้งติดโควิด</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#sos_detail" aria-expanded="false" aria-controls="sos_detail" >
+                      <i class="fas fa-angle-down" ></i>
+                      </div>
+                  <div class="col-12 collapse" id="sos_detail">
+                    <br>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin4.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                    <br>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ค้นหาผู้ใช้ติดโควิด :  พิมพ์ชื่อหรือรหัสนักศึกษาเพื่อค้นหา</h5>
+                    <h5 style="font-family: 'Prompt', sans-serif;text-indent:20px;"> 2.ติดโควิด : เมื่อเจอนักศึกษาที่ติดโควิดแล้วให้กดปุ่มติดโควิด </h5>
+                    <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 2.1 รายชื่อกลุ่มเสี่ยง : ระบบจะแสดงรายชื่อกลุ่มเสี่ยงขึ้นมา ให้ทำการกดปุ่ม ส่งข้อความเตือน เพื่อแจ้งไปยังกลุ่มเสี่ยงทั้งหมด</h5> 
+                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin5.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------- Modal Checkin------------------------------------------->
   @endif
 @endif
 <!-- ---------------------------------------------End partner ----------------------------------------------->
