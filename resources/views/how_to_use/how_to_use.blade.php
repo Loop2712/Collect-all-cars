@@ -820,7 +820,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin1.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
+          <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin1.PNG') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
           <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
               <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
                   <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
@@ -831,7 +831,7 @@
                   </div>
                   <div class="col-12 collapse" id="login">
                       <br>
-                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin2.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin2.PNG') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
                       <br>
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.เลือกวัน : เลือกวันที่ต้องการค้นหารายการบุคคลเข้าออก
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  2.เลือกช่วงเวลา : สามารถระบุช่วงเวลาที่บุคคลเข้าออกได้ โดยระบุในช่องค้นหา เพื่อเลือกเวลาที่ที่ต้องการค้นหา</h5> 
@@ -850,7 +850,7 @@
                       </div>
                   <div class="col-12 collapse" id="Social_login">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin3.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin3.PNG') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อ :  แสดงชื่อผู้ใช้</h5>
                     <h5 style="font-family: 'Prompt', sans-serif;text-indent:20px;"> 2.เวลาเข้าออก : แสดงวันที่และเวลาที่เข้าออก </h5>
@@ -870,12 +870,12 @@
                       </div>
                   <div class="col-12 collapse" id="sos_detail">
                     <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin4.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin4.PNG') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
                     <br>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ค้นหาผู้ใช้ติดโควิด :  พิมพ์ชื่อหรือรหัสนักศึกษาเพื่อค้นหา</h5>
                     <h5 style="font-family: 'Prompt', sans-serif;text-indent:20px;"> 2.ติดโควิด : เมื่อเจอนักศึกษาที่ติดโควิดแล้วให้กดปุ่มติดโควิด </h5>
                     <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 2.1 รายชื่อกลุ่มเสี่ยง : ระบบจะแสดงรายชื่อกลุ่มเสี่ยงขึ้นมา ให้ทำการกดปุ่ม ส่งข้อความเตือน เพื่อแจ้งไปยังกลุ่มเสี่ยงทั้งหมด</h5> 
-                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin5.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/checkin5.PNG') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
 
                   </div>
               </div>
