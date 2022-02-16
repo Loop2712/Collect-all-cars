@@ -836,7 +836,8 @@
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.เลือกวัน : เลือกวันที่ต้องการค้นหารายการบุคคลเข้าออก
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  2.เลือกช่วงเวลา : สามารถระบุช่วงเวลาที่บุคคลเข้าออกได้ โดยระบุในช่องค้นหา เพื่อเลือกเวลาที่ที่ต้องการค้นหา</h5> 
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  3.รหัสนักศึกษา : ค้นหารายการจากรหัสนักศึกษาตามคำที่กำหนด</h5> 
-                      
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  4.ค้นหา : เมื่อกรอกข้อมูลครบถ้วนแล้วให้คลิกที่ปุ่มค้นหาเพื่อทำการค้นหาข้อมูล</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif;">  5.ล้างการค้นหา : หากต้องการยกเลิกการค้นหาให้คลิกที่ปุ่มล้างการค้นหา เพื่อยกเลิกการค้นหา</h5>
                   </div>
               </div>
           </div>
