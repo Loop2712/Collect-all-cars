@@ -17,6 +17,9 @@ class Manage_userController extends Controller
 
         if (!empty($keyword)) {
             $all_user = User::Where('role', 'LIKE', "$keyword")
+                ->Where('name', 'LIKE', "$keyword")
+                ->Where('username', 'LIKE', "$keyword")
+                ->Where('email', 'LIKE', "$keyword")
                 ->latest()->paginate($perPage);
         } else {
             $all_user = User::latest()->paginate($perPage);
