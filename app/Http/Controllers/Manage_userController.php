@@ -16,10 +16,11 @@ class Manage_userController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $all_user = User::Where('role', 'LIKE', "$keyword")
-                ->Where('name', 'LIKE', "$keyword")
-                ->Where('username', 'LIKE', "$keyword")
-                ->Where('email', 'LIKE', "$keyword")
+            $all_user = User::where('role', 'LIKE', "$keyword")
+                ->orWhere('name', 'LIKE', "$keyword")
+                ->orWhere('username', 'LIKE', "$keyword")
+                ->orWhere('email', 'LIKE', "$keyword")
+                ->orWhere('phone', 'LIKE', "$keyword")
                 ->latest()->paginate($perPage);
         } else {
             $all_user = User::latest()->paginate($perPage);
