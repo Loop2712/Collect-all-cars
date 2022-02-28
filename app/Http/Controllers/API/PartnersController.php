@@ -553,7 +553,11 @@ class PartnersController extends Controller
 
             $user_id = $data[$i]['id'] ;
 
-            $users = DB::table('users')->where('id', $user_id)->where('type' , 'line')->get();
+            $users = DB::table('users')
+                ->where('id', $user_id)
+                ->where('type' , 'line')
+                ->where('send_covid' , null)
+                ->get();
 
             foreach ($users as $user) {
 
@@ -621,6 +625,15 @@ class PartnersController extends Controller
                     "content" => $user->name . 'คือกลุ่มเสี่ยง',
                 ];
                 MyLog::create($data_2);
+
+                $date_now = date("Y-m-d");
+
+                DB::table('users')
+                    ->where('id', $user->id)
+                    ->where('type' , 'line')
+                      ->update([
+                        'send_covid' => $date_now,
+                ]);
             }
 
 

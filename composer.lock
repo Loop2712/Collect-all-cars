@@ -6409,22 +6409,22 @@
     "packages-dev": [
         {
             "name": "appzcoder/crud-generator",
-            "version": "v3.2.1",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/appzcoder/crud-generator.git",
-                "reference": "96e03ca8c711a96aca9199d6c90b94ddffa49869"
+                "reference": "662840d2e69d1523bd19fafb8402d3dc52293e9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/96e03ca8c711a96aca9199d6c90b94ddffa49869",
-                "reference": "96e03ca8c711a96aca9199d6c90b94ddffa49869",
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/662840d2e69d1523bd19fafb8402d3dc52293e9d",
+                "reference": "662840d2e69d1523bd19fafb8402d3dc52293e9d",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^5.3|^6.0|^7.0|^8.0",
                 "laravelcollective/html": "^5.3|^6.0",
-                "php": ">=5.6.4|>=7.0"
+                "php": ">=5.6.4|>=7.0|>=8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
@@ -6468,9 +6468,9 @@
             ],
             "support": {
                 "issues": "https://github.com/appzcoder/crud-generator/issues",
-                "source": "https://github.com/appzcoder/crud-generator/tree/v3.2.1"
+                "source": "https://github.com/appzcoder/crud-generator/tree/v3.2.2"
             },
-            "time": "2020-09-17T18:46:25+00:00"
+            "time": "2021-05-25T16:27:56+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -8674,5 +8674,5 @@
         "php": "^7.2.5"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.2.0"
 }
