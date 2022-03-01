@@ -196,6 +196,12 @@ class LoginController extends Controller
                 $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
             }
             $user->save();
+        }else{
+            DB::table('users')
+                ->where('provider_id', $data->id)
+                ->update([
+                    'name' => $data->name,
+                ]);
         }
 
         //LOGIN
