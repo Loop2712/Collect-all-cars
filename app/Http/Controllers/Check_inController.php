@@ -82,16 +82,17 @@ class Check_inController extends Controller
             $requestData['time_in'] = null ;
         }
 
-        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and empty($requestData['name_staff_kmutnb'])) {
+        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and $requestData['type'] == "guest") {
             DB::table('users')
                 ->where('id', $requestData['user_id'])
                 ->where('std_of' , null)
                 ->update([
+                    'name_staff' => $requestData['name_staff_kmutnb'],
                     'std_of' => 'guest',
             ]);
         }
 
-        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and !empty($requestData['name_staff_kmutnb'])) {
+        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and $requestData['type'] == "บุคลากร") {
             DB::table('users')
                 ->where('id', $requestData['user_id'])
                 ->where('std_of' , null)
