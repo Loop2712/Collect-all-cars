@@ -65,7 +65,35 @@
             "type": "text",
             "text": "check_in_area",
             "wrap": true,
-            "weight": "bold"
+            "weight": "bold",
+            "size": "lg"
+          },
+          {
+            "type": "text",
+            "text": "ตามวัน / เวลาด้านล่าง",
+            "wrap": true,
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "text_time_1",
+            "wrap": true,
+            "margin": "lg",
+            "color": "#FF9900"
+          },
+          {
+            "type": "text",
+            "text": "text_time_2",
+            "wrap": true,
+            "margin": "xs",
+            "color": "#FF9900"
+          },
+          {
+            "type": "text",
+            "text": "text_time_3",
+            "wrap": true,
+            "margin": "xs",
+            "color": "#FF9900"
           },
           {
             "type": "text",

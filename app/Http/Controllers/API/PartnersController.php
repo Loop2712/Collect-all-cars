@@ -563,6 +563,38 @@ class PartnersController extends Controller
 
                 $user_language = $user->language ;
 
+                $data_in_outs = check_in::where('user_id', 2)
+                    ->where('check_in_at', 'km')
+                    ->latest()
+                    ->take(3)
+                    ->get();
+
+                $zx=0;
+                foreach ($data_in_outs as $data_in_out ) {
+                    $text_time[$zx] = date("d/m/Y H:i" , strtotime($data_in_out->created_at)) ;
+                    $zx = $zx + 1 ;    
+                }
+
+                if (!empty($text_time[0])) {
+                   $text_time_1 = $text_time[0] ;
+                }else{
+                    $text_time_1 = "" ;
+                }
+
+                if (!empty($text_time[1])) {
+                   $text_time_2 = $text_time[1] ;
+                }else{
+                    $text_time_2 = "" ;
+                }
+
+                if (!empty($text_time[2])) {
+                   $text_time_3 = $text_time[2] ;
+                }else{
+                    $text_time_3 = "" ;
+                }
+
+                
+
                 // TIME ZONE
                 $API_Time_zone = new API_Time_zone();
                 $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
@@ -572,6 +604,7 @@ class PartnersController extends Controller
                             "ด้วยสถานการณ์การระบาดของ Coronavirus Disease 2019 (COVID -19) ขณะนี้ท่านอยู่ในกลุ่มเสี่ยง",
                             "เนื่องจาก ท่านได้ Scan เข้าพื้นที่",
                             "จึงขอความร่วมมือในการปฏิบัติตามมาตราการเร่งด่วนในการป้องกันและควบคุมโรคติดต่อไวรัสโคโรนา กรุณาทำการตรวจเช็คและเฝ้าระวังตามพระราชบัญญัติโรคติดต่อ พ.ศ.2558",
+                            "วัน / เวลา",
                         ];
 
                 for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -594,10 +627,17 @@ class PartnersController extends Controller
                 $string_json = str_replace("เรียนคุณ",$data_topic[0],$string_json);
                 $string_json = str_replace("check_in_area",$check_in_at,$string_json);
                 $string_json = str_replace("xxx",$user->name,$string_json);
+
                 $string_json = str_replace("text_01",$data_topic[1],$string_json);
                 $string_json = str_replace("text_02",$data_topic[2],$string_json);
                 $string_json = str_replace("text_03",$data_topic[3],$string_json);
+                $string_json = str_replace("ตามวัน / เวลาด้านล่าง",$data_topic[4],$string_json);
+
+                $string_json = str_replace("text_time_1",$text_time[0],$string_json);
+                $string_json = str_replace("text_time_2",$text_time[1],$string_json);
+                $string_json = str_replace("text_time_3",$text_time[2],$string_json);
                 
+
                 $messages = [ json_decode($string_json, true) ];
 
                 $body = [
