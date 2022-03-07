@@ -563,8 +563,8 @@ class PartnersController extends Controller
 
                 $user_language = $user->language ;
 
-                $data_in_outs = check_in::where('user_id', 2)
-                    ->where('check_in_at', 'km')
+                $data_in_outs = check_in::where('user_id', $user->id)
+                    ->where('check_in_at', $check_in_at)
                     ->latest()
                     ->take(3)
                     ->get();
