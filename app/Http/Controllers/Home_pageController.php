@@ -8,6 +8,8 @@ use App\Models\Register_car;
 use App\Models\Guest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cancel_Profile;
+use App\User;
+use App\Models\Sos_map;
 
 class Home_pageController extends Controller
 {
@@ -40,27 +42,22 @@ class Home_pageController extends Controller
             $cancel_ago = $str_14;
         }
 
-        $register_car = Register_car::selectRaw('count(id) as count')
-                        ->where('car_type', 'car')
-                        ->get();
-                        foreach ($register_car as $key ) {
-                            $count_car = $key->count;
-                        }
+        // ช่อง 1 นับ users
+        $data_users = User::get();
+        $count_user = count($data_users);
 
-        $register_motorcycle = Register_car::selectRaw('count(id) as count')
-                        ->where('car_type', 'motorcycle')
-                        ->get();
-                        foreach ($register_motorcycle as $key ) {
-                            $count_motorcycle = $key->count;
-                        }
+        // ช่อง 2 ยานพาหนะ
+        $data_vehicles = Register_car::get();
+        $count_vehicle = count($data_vehicles);
 
-        $guest = Guest::selectRaw('count(id) as count')
-                        ->get();
-                        foreach ($guest as $key ) {
-                            $count_guest = $key->count;
-                        }
+        // ช่อง 3 ให้การช่วยเหลือ
+        $data_guests = Guest::get();
+        $count_guest = count($data_guests);
+        $data_sos_maps = Sos_map::get();
+        $count_sos_map = count($data_sos_maps);
+        $count_help = $count_guest + $count_sos_map ;
 
-        return view('home_page.home_page', compact('count_car','count_motorcycle','count_guest','user_id' ,'cancel_ago'));
+        return view('home_page.home_page', compact('count_user','count_vehicle','count_help','user_id' ,'cancel_ago'));
     }
 
     public function check_ip()
