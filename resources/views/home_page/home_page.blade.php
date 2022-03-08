@@ -240,7 +240,9 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
-              <i class="fas fa-car-alt"></i>
+              <i style="margin-top:-10px;">
+                <img width="200%" src="{{ asset('/img/stickerline/PNG/tab.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_user }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>สมาชิก</p>
             </div>
@@ -248,7 +250,9 @@
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
-              <i class="fas fa-motorcycle"></i>
+              <i style="margin-top:-10px;">
+                <img width="200%" src="{{ asset('/img/stickerline/PNG/12.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_vehicle * 3 }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ยานพาหนะ</p>
             </div>
@@ -256,7 +260,9 @@
 
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
-              <i class="fas fa-car-crash"></i>
+              <i style="margin-top:-10px;">
+                <img width="200%" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_help }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ให้การช่วยเหลือ</p>
             </div>
@@ -264,7 +270,9 @@
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
-              <i class="fas fa-map-marked-alt"></i>
+              <i style="margin-top:-10px;">
+                <img width="200%" src="{{ asset('/img/stickerline/PNG/18.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="77" data-purecounter-duration="1" class="purecounter"></span>
               <p>จังหวัดที่ครอบคลุม</p>
             </div>
@@ -752,7 +760,9 @@
 
           <div class="col-lg-3 col-md-6 ">
             <div class="count-box">
-              <i class="fas fa-car-alt"></i>
+              <i>
+                <img width="150%" src="{{ asset('/img/stickerline/PNG/tab.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_user }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>สมาชิก</p>
             </div>
@@ -760,17 +770,19 @@
 
           <div class="col-lg-3 col-md-6 d-block d-md-none mt-5" >
             <div class="count-box">
-              <i class="fas fa-motorcycle"></i>
+              <i>
+                <img width="150%" src="{{ asset('/img/stickerline/PNG/12.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_vehicle * 3 }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ยานพาหนะ</p>
             </div>
           </div>
 
-        
-
-          <div class="col-lg-3 col-md-6 d-sm-block " >
+          <div class="col-lg-3 col-md-6 d-sm-block mt-5" >
             <div class="count-box">
-              <i class="fas fa-motorcycle"></i>
+              <i>
+                <img width="150%" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_help }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ให้การช่วยเหลือ</p>
             </div>
@@ -778,7 +790,9 @@
 
           <div class="col-lg-3 col-md-6  mt-5">
             <div class="count-box">
-              <i class="fas fa-map-marked-alt"></i>
+              <i>
+                <img width="150%" src="{{ asset('/img/stickerline/PNG/18.png') }}" alt="">
+              </i>
               <span data-purecounter-start="0" data-purecounter-end="77" data-purecounter-duration="1" class="purecounter"></span>
               <p>จังหวัดที่ครอบคลุม</p>
             </div>
