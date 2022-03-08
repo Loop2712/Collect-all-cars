@@ -251,7 +251,7 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i style="margin-top:-10px;">
-                <img width="200%" src="{{ asset('/img/stickerline/PNG/12.png') }}" alt="">
+                <img width="200%" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
               </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_vehicle * 3 }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ยานพาหนะ</p>
@@ -771,7 +771,7 @@
           <div class="col-lg-3 col-md-6 d-block d-md-none mt-5" >
             <div class="count-box">
               <i>
-                <img width="150%" src="{{ asset('/img/stickerline/PNG/12.png') }}" alt="">
+                <img width="150%" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
               </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_vehicle * 3 }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>ยานพาหนะ</p>
