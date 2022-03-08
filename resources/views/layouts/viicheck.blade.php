@@ -9,7 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-
+<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
   <!-- Favicons -->
  <!-- icon -->
  <link href="https://kit-pro.fontawesome.com/releases/v6.0.0/css/pro.min.css" rel="stylesheet">
