@@ -67,7 +67,7 @@
             {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <div id="div_name_staff_kmutnb" class="d-none form-group {{ $errors->has('name_staff_kmutnb') ? 'has-error' : ''}}">
+        <div id="div_name_staff_kmutnb" class=" form-group {{ $errors->has('name_staff_kmutnb') ? 'has-error' : ''}}">
             <label for="name_staff_kmutnb" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
             <input class="form-control" name="name_staff_kmutnb" type="text" id="name_staff_kmutnb" value="" >
             {!! $errors->first('name_staff_kmutnb', '<p class="help-block">:message</p>') !!}
