@@ -74,7 +74,7 @@
 
         document.getElementById("btn_modal").click();
 
-        var delayInMilliseconds = 3000; 
+        var delayInMilliseconds = 5000; 
 
         setTimeout(function() {
           document.getElementById("a_line").click();
