@@ -88,6 +88,9 @@ class LineApiController extends Controller
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
                 break;
+            case "Chinese" : 
+                $line->replyToUser(null, $event, "Chinese");
+                break;
         }   
 
     }
@@ -110,6 +113,9 @@ class LineApiController extends Controller
                     $user_language = $data_user->language ;
                     if ($user_language == "zh-TW") {
                         $user_language = "zh_TW";
+                    }
+                    if ($user_language == "zh-CN") {
+                        $user_language = "zh_CN";
                     }
                 }else{
                     $user_language = 'en' ;
