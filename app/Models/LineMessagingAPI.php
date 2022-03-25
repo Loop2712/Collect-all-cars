@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToGuest;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Text_topic;
+use App\User;
 
 class LineMessagingAPI extends Model
 {
@@ -136,7 +137,7 @@ class LineMessagingAPI extends Model
     public function replyToUser($data, $event, $message_type)
     {   
     	switch($message_type)
-        {
+        {   
             case 'Chinese':
                 $provider_id = $event["source"]['userId'];
                 $user = User::where('provider_id', $provider_id)->get();
