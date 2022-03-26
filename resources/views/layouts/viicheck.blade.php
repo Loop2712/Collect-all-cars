@@ -406,7 +406,7 @@
                       <div class="btn" style="margin-left:-10px;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Chinese</h5>
+                        <h5 style="margin-top:10px;" class="notranslate">Chinese</h5>
                       </div>
                     </div>
                     <div class="col-4 ">
@@ -426,7 +426,7 @@
                             <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                             <br>
                             <h5 style="margin-top:10px;">中國人</h5>
-                            <span>Traditional Chinese</span>
+                            <span class="notranslate">Traditional Chinese</span>
                           </div>
                         </div>
                         <div class="col-6">
@@ -434,7 +434,7 @@
                             <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                             <br>
                             <h5 style="margin-top:10px;">中国人</h5>
-                            <span>Simplified Chinese</span>
+                            <span class="notranslate">Simplified Chinese</span>
                           </div>
                         </div>
                         <hr>
@@ -561,7 +561,7 @@
                       <div class="btn" style="margin-left:-10px;" data-toggle="collapse" data-target="#collapseExample_2" aria-expanded="false" aria-controls="collapseExample_2">
                         <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Chinese</h5>
+                        <h5 style="margin-top:10px;" class="notranslate">Chinese</h5>
                       </div>
                     </div>
                     <div class="col-4" >
@@ -581,7 +581,7 @@
                             <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                             <br>
                             <h5 style="margin-top:10px;">中國人</h5>
-                            <span>Traditional Chinese</span>
+                            <span class="notranslate">Traditional Chinese</span>
                           </div>
                         </div>
                         <div class="col-6">
@@ -589,7 +589,7 @@
                             <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                             <br>
                             <h5 style="margin-top:10px;">中国人</h5>
-                            <span>Simplified Chinese</span>
+                            <span class="notranslate">Simplified Chinese</span>
                           </div>
                         </div>
                         <hr>
