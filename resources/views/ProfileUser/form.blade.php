@@ -86,14 +86,14 @@
                                             <div class="col-md-4 col-lg-2 col-4">
                                                 <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-en.png') }}" onclick="change_language('en' , '{{ $data->id }}');">
                                             </div>
-                                            <div class="col-md-4 col-lg-2 col-4" style="top:2px" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                <img class="btn" id="img_flag_zh" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}">
-                                            </div>
                                             <div class="col-4 col-md-4 col-lg-2" style="top:4px">
                                                 <img class="btn" id="img_flag_in" style="filter: grayscale(100%); " width="82" src="{{ url('/img/national-flag/flex-in.png') }}" onclick="change_language('hi' , '{{ $data->id }}');">
                                             </div>
                                             <div class="col-4 col-md-4 col-lg-2" style="top:5px;right:-2px;">
                                                 <img class="btn" id="img_flag_ae" style="filter: grayscale(100%);"  width="79" src="{{ url('/img/national-flag/flex-ar.png') }}" onclick="change_language('ar' , '{{ $data->id }}');">
+                                            </div>
+                                            <div class="col-md-4 col-lg-2 col-4" style="top:2px" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                <img class="btn" id="img_flag_zh" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}">
                                             </div>
                                             <div class="col-4 col-md-4 col-lg-2" style="top:5px;right:-2px;">
                                                 <img class="btn" id="img_flag_ru" style="filter: grayscale(100%); " width="79"  src="{{ url('/img/national-flag/flex-ru.png') }}" onclick="change_language('ru' , '{{ $data->id }}');">
@@ -101,7 +101,6 @@
                                             <div class="col-md-4 col-lg-2 col-4" style="top:2px">
                                                 <img class="btn" id="img_flag_es" style="filter: grayscale(100%); " width="85"  src="{{ url('/img/national-flag/flex-es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
                                             </div>
-
                                             <!-- จีนเสริม -->
                                             <div class="col-md-12 col-lg-12 col-12 collapse text-center" id="collapseExample">
                                                 <div class="row">
@@ -116,7 +115,6 @@
                                                 </div>
                                             </div>
                                             <!-- จบจีนเสริม -->
-
                                             <div class="col-md-4 col-lg-2 col-4" style="top:2px">
                                                 <img class="btn" id="img_flag_de" style="filter: grayscale(100%); " width="85"  src="{{ url('/img/national-flag/flex-de.png') }}" onclick="change_language('de' , '{{ $data->id }}');">
                                             </div>
@@ -542,6 +540,14 @@
         let style_gray_ru= document.createAttribute("style");
             style_gray_ru.value = "filter: grayscale(100%);";
 
+        if (language === "zh-TW" || language === "zh-CN") {
+
+            img_zh.setAttributeNode(style_gray_zh);
+
+            let attr_zh = img_zh.getAttributeNode("style"); 
+                img_zh.removeAttributeNode(attr_zh);
+        }
+
         switch(language) {
             case 'th':
                 let attr_th = img_th.getAttributeNode("style");   
@@ -580,11 +586,13 @@
                 img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'zh-TW':
-                let attr_zh = img_zh.getAttributeNode("style");   
-                img_zh.removeAttributeNode(attr_zh);
+                // let attr_zh = img_zh.getAttributeNode("style"); 
+                // img_zh.removeAttributeNode(attr_zh);
 
                 let attr_zh_TW = img_zh_TW.getAttributeNode("style");   
                 img_zh_TW.removeAttributeNode(attr_zh_TW);
+
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
 
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
@@ -598,25 +606,27 @@
                 img_ae.setAttributeNode(style_gray_ae);
                 img_ru.setAttributeNode(style_gray_ru);
               break;
-            // case 'zh-CN':
-            //     let attr_zh = img_zh.getAttributeNode("style");   
-            //     img_zh.removeAttributeNode(attr_zh);
+            case 'zh-CN':
+                // let attr_zh = img_zh.getAttributeNode("style");  
+                //     img_zh.removeAttributeNode(attr_zh_2);
 
-            //     let attr_zh_CN = img_zh_CN.getAttributeNode("style");   
-            //     img_zh_CN.removeAttributeNode(attr_zh_CN);
+                let attr_zh_CN = img_zh_CN.getAttributeNode("style");   
+                img_zh_CN.removeAttributeNode(attr_zh_CN);
 
-            //     img_th.setAttributeNode(style_gray_th);
-            //     img_en.setAttributeNode(style_gray_en);
-            //     img_ja.setAttributeNode(style_gray_ja);
-            //     img_ko.setAttributeNode(style_gray_ko);
-            //     img_es.setAttributeNode(style_gray_es);
-            //     img_lo.setAttributeNode(style_gray_lo);
-            //     img_my.setAttributeNode(style_gray_my);
-            //     img_de.setAttributeNode(style_gray_de);
-            //     img_in.setAttributeNode(style_gray_in);
-            //     img_ae.setAttributeNode(style_gray_ae);
-            //     img_ru.setAttributeNode(style_gray_ru);
-            //   break;
+                img_zh_TW.setAttributeNode(style_gray_zh_TW);
+
+                img_th.setAttributeNode(style_gray_th);
+                img_en.setAttributeNode(style_gray_en);
+                img_ja.setAttributeNode(style_gray_ja);
+                img_ko.setAttributeNode(style_gray_ko);
+                img_es.setAttributeNode(style_gray_es);
+                img_lo.setAttributeNode(style_gray_lo);
+                img_my.setAttributeNode(style_gray_my);
+                img_de.setAttributeNode(style_gray_de);
+                img_in.setAttributeNode(style_gray_in);
+                img_ae.setAttributeNode(style_gray_ae);
+                img_ru.setAttributeNode(style_gray_ru);
+              break;
             case 'ja':
                 let attr_ja = img_ja.getAttributeNode("style");   
                 img_ja.removeAttributeNode(attr_ja);
