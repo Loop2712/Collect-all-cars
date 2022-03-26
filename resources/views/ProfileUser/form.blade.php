@@ -86,8 +86,8 @@
                                             <div class="col-md-4 col-lg-2 col-4">
                                                 <img class="btn" id="img_flag_en" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-en.png') }}" onclick="change_language('en' , '{{ $data->id }}');">
                                             </div>
-                                            <div class="col-md-4 col-lg-2 col-4" style="top:2px">
-                                                <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
+                                            <div class="col-md-4 col-lg-2 col-4" style="top:2px" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                <img class="btn" id="img_flag_zh" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}">
                                             </div>
                                             <div class="col-4 col-md-4 col-lg-2" style="top:4px">
                                                 <img class="btn" id="img_flag_in" style="filter: grayscale(100%); " width="82" src="{{ url('/img/national-flag/flex-in.png') }}" onclick="change_language('hi' , '{{ $data->id }}');">
@@ -101,6 +101,22 @@
                                             <div class="col-md-4 col-lg-2 col-4" style="top:2px">
                                                 <img class="btn" id="img_flag_es" style="filter: grayscale(100%); " width="85"  src="{{ url('/img/national-flag/flex-es.png') }}" onclick="change_language('es' , '{{ $data->id }}');">
                                             </div>
+
+                                            <!-- จีนเสริม -->
+                                            <div class="col-md-12 col-lg-12 col-12 collapse text-center" id="collapseExample">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-lg-6 col-6" style="top:2px">
+                                                        <img class="btn" id="img_flag_zh_TW" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}" onclick="change_language('zh-TW' , '{{ $data->id }}');">
+                                                        <span class="notranslate">Traditional Chinese</span>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6 col-6" style="top:2px">
+                                                        <img class="btn" id="img_flag_zh_CN" style="filter: grayscale(100%);"  width="85" src="{{ url('/img/national-flag/flex-zh-TW.png') }}" onclick="change_language('zh-CN' , '{{ $data->id }}');">
+                                                        <span class="notranslate">Simplified Chinese</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- จบจีนเสริม -->
+
                                             <div class="col-md-4 col-lg-2 col-4" style="top:2px">
                                                 <img class="btn" id="img_flag_de" style="filter: grayscale(100%); " width="85"  src="{{ url('/img/national-flag/flex-de.png') }}" onclick="change_language('de' , '{{ $data->id }}');">
                                             </div>
@@ -418,8 +434,12 @@
                 document.querySelector('#btn_change_language_en').click();
               break;
             case 'zh-TW':
-                alert("語言已成功更改。");
+                alert("更改語言成功");
                 document.querySelector('#btn_change_language_zh-TW').click();
+              break;
+            case 'zh-CN':
+                alert("更改语言成功");
+                document.querySelector('#btn_change_language_zh-CN').click();
               break;
             case 'ja':
                 alert("言語は正常に変更されました。");
@@ -465,7 +485,11 @@
     {
         let img_th = document.querySelector('#img_flag_th');
         let img_en = document.querySelector('#img_flag_en');
+
+        let img_zh = document.querySelector('#img_flag_zh');
         let img_zh_TW = document.querySelector('#img_flag_zh_TW');
+        let img_zh_CN = document.querySelector('#img_flag_zh_CN');
+
         let img_ja = document.querySelector('#img_flag_ja');
         let img_ko = document.querySelector('#img_flag_ko');
         let img_es = document.querySelector('#img_flag_es');
@@ -482,8 +506,14 @@
         let style_gray_en= document.createAttribute("style");
             style_gray_en.value = "filter: grayscale(100%);";
 
+        let style_gray_zh= document.createAttribute("style");
+            style_gray_zh.value = "filter: grayscale(100%);";
+
         let style_gray_zh_TW= document.createAttribute("style");
             style_gray_zh_TW.value = "filter: grayscale(100%);";
+
+        let style_gray_zh_CN= document.createAttribute("style");
+            style_gray_zh_CN.value = "filter: grayscale(100%);";
 
         let style_gray_ja= document.createAttribute("style");
             style_gray_ja.value = "filter: grayscale(100%);";
@@ -518,7 +548,9 @@
                 img_th.removeAttributeNode(attr_th);
 
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_es.setAttributeNode(style_gray_es);
@@ -534,7 +566,9 @@
                 img_en.removeAttributeNode(attr_en);
 
                 img_th.setAttributeNode(style_gray_th);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_es.setAttributeNode(style_gray_es);
@@ -546,6 +580,9 @@
                 img_ru.setAttributeNode(style_gray_ru);
               break;
             case 'zh-TW':
+                let attr_zh = img_zh.getAttributeNode("style");   
+                img_zh.removeAttributeNode(attr_zh);
+
                 let attr_zh_TW = img_zh_TW.getAttributeNode("style");   
                 img_zh_TW.removeAttributeNode(attr_zh_TW);
 
@@ -561,13 +598,34 @@
                 img_ae.setAttributeNode(style_gray_ae);
                 img_ru.setAttributeNode(style_gray_ru);
               break;
+            // case 'zh-CN':
+            //     let attr_zh = img_zh.getAttributeNode("style");   
+            //     img_zh.removeAttributeNode(attr_zh);
+
+            //     let attr_zh_CN = img_zh_CN.getAttributeNode("style");   
+            //     img_zh_CN.removeAttributeNode(attr_zh_CN);
+
+            //     img_th.setAttributeNode(style_gray_th);
+            //     img_en.setAttributeNode(style_gray_en);
+            //     img_ja.setAttributeNode(style_gray_ja);
+            //     img_ko.setAttributeNode(style_gray_ko);
+            //     img_es.setAttributeNode(style_gray_es);
+            //     img_lo.setAttributeNode(style_gray_lo);
+            //     img_my.setAttributeNode(style_gray_my);
+            //     img_de.setAttributeNode(style_gray_de);
+            //     img_in.setAttributeNode(style_gray_in);
+            //     img_ae.setAttributeNode(style_gray_ae);
+            //     img_ru.setAttributeNode(style_gray_ru);
+            //   break;
             case 'ja':
                 let attr_ja = img_ja.getAttributeNode("style");   
                 img_ja.removeAttributeNode(attr_ja);
 
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_es.setAttributeNode(style_gray_es);
                 img_lo.setAttributeNode(style_gray_lo);
@@ -583,7 +641,9 @@
 
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_es.setAttributeNode(style_gray_es);
                 img_lo.setAttributeNode(style_gray_lo);
@@ -599,7 +659,9 @@
 
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_lo.setAttributeNode(style_gray_lo);
@@ -615,7 +677,9 @@
 
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_es.setAttributeNode(style_gray_es);
                 img_ko.setAttributeNode(style_gray_ko);
@@ -631,7 +695,9 @@
 
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_lo.setAttributeNode(style_gray_lo);
@@ -648,7 +714,9 @@
                 img_my.setAttributeNode(style_gray_my);
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_lo.setAttributeNode(style_gray_lo);
@@ -665,7 +733,9 @@
                 img_my.setAttributeNode(style_gray_my);
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_lo.setAttributeNode(style_gray_lo);
@@ -682,7 +752,9 @@
                 img_my.setAttributeNode(style_gray_my);
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_lo.setAttributeNode(style_gray_lo);
@@ -700,7 +772,9 @@
                 img_my.setAttributeNode(style_gray_my);
                 img_th.setAttributeNode(style_gray_th);
                 img_en.setAttributeNode(style_gray_en);
+                img_zh.setAttributeNode(style_gray_zh);
                 img_zh_TW.setAttributeNode(style_gray_zh_TW);
+                img_zh_CN.setAttributeNode(style_gray_zh_CN);
                 img_ja.setAttributeNode(style_gray_ja);
                 img_ko.setAttributeNode(style_gray_ko);
                 img_lo.setAttributeNode(style_gray_lo);
