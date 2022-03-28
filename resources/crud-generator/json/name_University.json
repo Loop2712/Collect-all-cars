@@ -14,7 +14,7 @@
         },
         {
             "name": "initials_en",
-            "type": "integer"
+            "type": "string"
         }
     ]
 }
