@@ -52,6 +52,14 @@
         {!! $errors->first('check_in_at', '<p class="help-block">:message</p>') !!}
     </div>
 
+    @if(empty($real_name))
+        <div id="div_name_guest" class="form-group {{ $errors->has('name_guest') ? 'has-error' : ''}}">
+            <label for="name_guest" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
+            <input class="form-control" name="name_guest" type="text" id="name_guest" value="" >
+            {!! $errors->first('name_guest', '<p class="help-block">:message</p>') !!}
+        </div>
+    @endif
+
     <div id="for_std" class="d-none">
         <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
             <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
@@ -67,7 +75,7 @@
             {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <div id="div_name_staff_kmutnb" class="d-none form-group {{ $errors->has('name_staff_kmutnb') ? 'has-error' : ''}}">
+        <div id="div_name_staff_kmutnb" class="form-group {{ $errors->has('name_staff_kmutnb') ? 'has-error' : ''}}">
             <label for="name_staff_kmutnb" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
             <input class="form-control" name="name_staff_kmutnb" type="text" id="name_staff_kmutnb" value="" >
             {!! $errors->first('name_staff_kmutnb', '<p class="help-block">:message</p>') !!}
@@ -91,7 +99,7 @@
                 }else{
                     fu_std_check_in();
                 }"> 
-            <span class="text-danger">&nbsp;&nbsp;บุคลากร มจพ.</span>
+            <span class="text-danger">&nbsp;&nbsp;บุคลากร</span>
             <br>
         </div>
 
@@ -147,17 +155,25 @@
             if (std_of.value) {
                 document.querySelector("#for_std").classList.add("d-none");
                 document.querySelector("#div_std_check_in").classList.remove("d-none");
+                document.querySelector("#div_name_guest").classList.add("d-none");
 
                 // เอา required ออกจาก student_id และ select_University
                 document.querySelector("#select_University").required = "";
                 document.querySelector("#student_id").required = "";
+                document.querySelector("#name_guest").required = "";
+
             }else{
                 document.querySelector("#for_std").classList.remove("d-none");
                 document.querySelector("#div_std_check_in").classList.remove("d-none");
+                document.querySelector("#div_name_guest").classList.add("d-none");
+
 
                 // ใส่ required ใน student_id และ select_University
                 document.querySelector("#select_University").required = "true";
                 document.querySelector("#student_id").required = "true";
+                document.querySelector("#name_guest").required = "";
+
+
             }
             document.querySelector("#type").value = "std";
         }else{
@@ -167,6 +183,11 @@
             document.querySelector("#student_id").required = "";
 
             document.querySelector("#type").value = "guest";
+
+            document.querySelector("#name_guest").required = "true";
+            document.querySelector("#div_name_guest").classList.remove("d-none");
+
+
         }
 
     });

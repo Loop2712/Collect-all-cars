@@ -44,7 +44,7 @@ class Check_inController extends Controller
     public function create(Request $request)
     {
         $location = $request->get('location');
-        
+
         if(Auth::check()){
             return redirect('check_in_to_cretae?location=' . $location);
         }else{
@@ -228,7 +228,12 @@ class Check_inController extends Controller
             }
         }
 
-        return view('check_in.create', compact('location','Uni','date_now'));
+        $user = Auth::user();
+
+        $real_name = $user->name_staff ;
+
+
+        return view('check_in.create', compact('location','Uni','date_now','real_name'));
     }
 
 }
