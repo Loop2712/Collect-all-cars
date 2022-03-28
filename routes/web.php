@@ -56,6 +56,7 @@ Route::get('/welcome_facebook_guest', 'GuestController@welcome_facebook_guest');
 
 // CHECK IN
 Route::get('/welcome_check_in_line', 'Check_inController@welcome_check_in_line');
+Route::get('/check_in_to_cretae', 'Check_inController@check_in_to_cretae');
 
 
 
