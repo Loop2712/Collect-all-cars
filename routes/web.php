@@ -328,3 +328,5 @@ Route::get('/check_ip', 'Home_pageController@check_ip');
 Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
 
+
+Route::resource('name_-university', 'Name_UniversityController');

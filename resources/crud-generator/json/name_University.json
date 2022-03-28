@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "full_name_th",
+            "type": "string"
+        },
+        {
+            "name": "full_name_en",
+            "type": "string"
+        },
+        {
+            "name": "initials_th",
+            "type": "string"
+        },
+        {
+            "name": "initials_en",
+            "type": "integer"
+        }
+    ]
+}
