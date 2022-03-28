@@ -662,6 +662,19 @@ class PartnerController extends Controller
 
     public function view_check_in(Request $request)
     {
+
+        $data_check = User::where("std_of" , "guest")
+            ->get();
+
+        foreach ($data_check as $item) {
+            DB::table('users')
+                ->where('id', $item->id)
+                ->update([
+                    'std_of' => null,
+            ]);
+        }
+
+        exit();
         $requestData = $request->all();
 
         $data_user = Auth::user();
