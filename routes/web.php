@@ -58,6 +58,8 @@ Route::get('/welcome_facebook_guest', 'GuestController@welcome_facebook_guest');
 Route::get('/welcome_check_in_line', 'Check_inController@welcome_check_in_line');
 Route::get('/check_in_to_cretae', 'Check_inController@check_in_to_cretae');
 
+Route::resource('check_in', 'Check_inController')->except(['index','show','edit','view']);
+
 
 
 Route::get('/mail', function () {
@@ -194,7 +196,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
 	Route::get('sos_insurance_blade', 'Sos_mapController@sos_insurance_blade');
 	// Route::get('/sosmap', 'SosController@sosmap');
-	Route::resource('check_in', 'Check_inController')->except(['index','show','edit']);
+	
 	Route::get('/check_in_finish', function () {
 	    return view('check_in/check_in_finish');
 	});
