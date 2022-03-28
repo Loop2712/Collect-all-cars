@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Models\Check_in;
 use Illuminate\Http\Request;
+use App\Models\Name_University;
 use Auth;
 
 class Check_inController extends Controller
@@ -222,8 +223,10 @@ class Check_inController extends Controller
 
         $real_name = $user->name_staff ;
 
+        $name_university = Name_University::get();
 
-        return view('check_in.create', compact('location','Uni','date_now','real_name'));
+
+        return view('check_in.create', compact('location','Uni','date_now','real_name','name_university'));
     }
 
 }

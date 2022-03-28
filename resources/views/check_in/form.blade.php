@@ -66,7 +66,11 @@
                 <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
                 <select name="select_University" id="select_University" class="form-control notranslate">
                     <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
-                    <option class="notranslate" value="KMUTNB" >มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</option>
+                    @foreach($name_university as $item)
+                        <option class="notranslate" value="{{ $item->initials_en }}" >
+                            <b>{{ $item->initials_th }} : </b>{{ $item->full_name_th }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
@@ -147,7 +151,7 @@
         if (uni.value === "Yes") {
 
             document.querySelector("#div_for_Uni").classList.remove("d-none");
-            
+
             if (std_of.value) {
                 document.querySelector("#div_std_check_in").classList.remove("d-none");
 
