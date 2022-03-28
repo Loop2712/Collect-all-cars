@@ -132,6 +132,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('time_zone', 'Time_zoneController');
 	Route::get('/create_time_zone', 'Time_zoneController@create_time_zone');
 	Route::resource('text_topic', 'Text_topicController');
+	Route::resource('name_-university', 'Name_UniversityController');
+
 
 });
 // END ADMIN VIICHECK
@@ -327,6 +329,3 @@ Route::get('/check_ip', 'Home_pageController@check_ip');
 
 Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
-
-
-Route::resource('name_-university', 'Name_UniversityController');
