@@ -75,47 +75,37 @@ class Check_inController extends Controller
             $requestData['time_in'] = null ;
         }
 
-        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and $requestData['type'] == "guest") {
-            DB::table('users')
-                ->where('id', $requestData['user_id'])
-                ->where('std_of' , null)
-                ->update([
-                    'name_staff' => $requestData['name_staff_kmutnb'],
-                    'std_of' => 'guest',
-            ]);
-        }
+        if(!empty($requestData['select_University'])) {
+             
+            if (!empty($requestData['student_id'])) {
+                $requestData['student_id'] = $requestData['student_id'];
+            }else{
+                $requestData['student_id'] = "บุคลากร" ;
+            }
 
-        if (!empty($requestData['guest_check_in']) and $requestData['guest_check_in'] == "on" and $requestData['type'] == "บุคลากร") {
-            DB::table('users')
-                ->where('id', $requestData['user_id'])
-                ->where('std_of' , null)
-                ->update([
-                    'std_of' => $requestData['check_in_at'],
-                    'name_staff' => $requestData['name_staff_kmutnb'],
-                    'student_id' => 'บุคลากร',
-            ]);
-
-            $requestData['student_id'] = 'บุคลากร' ;
-        }
-        if (!empty($requestData['name_guest'])) {
-            DB::table('users')
-                ->where('id', $requestData['user_id'])
-                ->update([
-                    'name_staff' => $requestData['name_guest'],
-            ]);
-        }
-
-        Check_in::create($requestData);
-
-        if (!empty($requestData['select_University'])) {
             DB::table('users')
               ->where('id', $requestData['user_id'])
               ->where('std_of' , null)
               ->update([
+                'name_staff' => $requestData['name_staff'],
                 'std_of' => $requestData['select_University'],
-                'student_id' => $requestData['student_id'],
+                'student_id' =>  $requestData['student_id'],
           ]);
+
+        }else if(!empty($requestData['name_staff'])){
+            DB::table('users')
+              ->where('id', $requestData['user_id'])
+              ->update([
+                'name_staff' => $requestData['name_staff'],
+            ]);
         }
+
+        if (!empty($requestData['student_id_2'])) {
+            $requestData['student_id'] = $requestData['student_id_2'] ;
+        }
+
+        Check_in::create($requestData);
+
 
         if (!empty($requestData['time_in'])) {
             $time = $requestData['time_in'] ;

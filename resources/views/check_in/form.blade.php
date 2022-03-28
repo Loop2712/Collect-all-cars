@@ -52,68 +52,66 @@
         {!! $errors->first('check_in_at', '<p class="help-block">:message</p>') !!}
     </div>
 
+
     @if(empty($real_name))
-        <div id="div_name_guest" class="form-group {{ $errors->has('name_guest') ? 'has-error' : ''}}">
-            <label for="name_guest" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
-            <input class="form-control" name="name_guest" type="text" id="name_guest" value="" >
-            {!! $errors->first('name_guest', '<p class="help-block">:message</p>') !!}
-        </div>
-    @endif
-
-    <div id="for_std" class="d-none">
-        <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
-            <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
-            <select name="select_University" id="select_University" class="form-control notranslate">
-                <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
-                <option class="notranslate" value="KMUTNB" >มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</option>
-            </select>
+        <div id="div_name_guest" class="form-group {{ $errors->has('name_staff') ? 'has-error' : ''}}">
+            <label for="name_staff" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
+            <input class="form-control" name="name_staff" type="text" id="name_staff" value="{{ $real_name }}" required >
+            {!! $errors->first('name_staff', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <div id="div_student_id" class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
-            <label for="student_id" class="control-label">{{ 'Student Id' }}</label>
-            <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id }}" >
-            {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
-        </div>
+        <div class="d-none" id="div_for_Uni">
+            
+            <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
+                <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
+                <select name="select_University" id="select_University" class="form-control notranslate">
+                    <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
+                    <option class="notranslate" value="KMUTNB" >มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</option>
+                </select>
+            </div>
 
-        <div id="div_name_staff_kmutnb" class="form-group {{ $errors->has('name_staff_kmutnb') ? 'has-error' : ''}}">
-            <label for="name_staff_kmutnb" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
-            <input class="form-control" name="name_staff_kmutnb" type="text" id="name_staff_kmutnb" value="" >
-            {!! $errors->first('name_staff_kmutnb', '<p class="help-block">:message</p>') !!}
-        </div>
+            <div id="div_student_id" class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
+                <label for="student_id" class="control-label">{{ 'Student Id' }}</label>
+                <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id }}" >
+                {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
+            </div>
 
-        <div id="div_std_check_in">
-            <input type="radio" name="guest_check_in" id="std_check_in" checked 
-                onclick="if(this.checked){
-                    fu_std_check_in();
-                }else{
-                    fu_guest_check_in();
-                }"> 
-            <span class="text-danger">&nbsp;&nbsp;นักศึกษา</span>
-        </div>
-
-        <div class="d-none" id="div_staff_kmutnb">
+            <div id="div_std_check_in">
+                <input type="radio" name="guest_check_in" id="std_check_in" checked 
+                    onclick="if(this.checked){
+                        fu_std_check_in();
+                    }else{
+                        fu_guest_check_in();
+                    }"> 
+                <span class="text-danger">&nbsp;&nbsp;นักศึกษา</span>
+            </div>
 
             <input type="radio" name="guest_check_in" id="staff_kmutnb" 
                 onclick="if(this.checked){
-                    fu_staff_kmutnb_check_in();
+                    fu_personnel_check_in();
                 }else{
                     fu_std_check_in();
                 }"> 
             <span class="text-danger">&nbsp;&nbsp;บุคลากร</span>
             <br>
+
+            <input type="radio" name="guest_check_in" id="guest_check_in" 
+                onclick="if(this.checked){
+                    fu_guest_check_in();
+                }else{
+                    fu_std_check_in();
+                }"> 
+            <span class="text-danger">&nbsp;&nbsp;บุคคลทั่วไป</span>
+            
+            <br><br>
+
         </div>
-
-        <input type="radio" name="guest_check_in" id="guest_check_in" 
-            onclick="if(this.checked){
-                fu_guest_check_in();
-            }else{
-                fu_std_check_in();
-            }"> 
-        <span class="text-danger">&nbsp;&nbsp;บุคคลทั่วไป</span>
+    @endif
         
-        <br><br>
+    @if(!empty(Auth::user()->student_id))
+        <input class="form-control d-none" name="student_id_2" type="text" id="student_id_2" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id }}" >
+    @endif
 
-    </div>
 
     <input class="form-control d-none" name="check_in_out" type="text" id="check_in_out" value="" >
     <input class="form-control d-none" name="type" type="text" id="type" value="" >
@@ -142,51 +140,37 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         let check_in_at = document.querySelector('#check_in_at').value;
-        if (check_in_at === "KMUTNB") {
-            document.querySelector('#div_staff_kmutnb').classList.remove('d-none');
-        }else{
-            document.querySelector('#div_staff_kmutnb').classList.add('d-none');
-        }
 
         let std_of = document.querySelector("#std_of");
         let uni = document.querySelector("#Uni");
 
         if (uni.value === "Yes") {
+
+            document.querySelector("#div_for_Uni").classList.remove("d-none");
+            
             if (std_of.value) {
-                document.querySelector("#for_std").classList.add("d-none");
                 document.querySelector("#div_std_check_in").classList.remove("d-none");
-                document.querySelector("#div_name_guest").classList.add("d-none");
 
                 // เอา required ออกจาก student_id และ select_University
                 document.querySelector("#select_University").required = "";
                 document.querySelector("#student_id").required = "";
-                document.querySelector("#name_guest").required = "";
 
             }else{
-                document.querySelector("#for_std").classList.remove("d-none");
                 document.querySelector("#div_std_check_in").classList.remove("d-none");
-                document.querySelector("#div_name_guest").classList.add("d-none");
-
 
                 // ใส่ required ใน student_id และ select_University
                 document.querySelector("#select_University").required = "true";
                 document.querySelector("#student_id").required = "true";
-                document.querySelector("#name_guest").required = "";
 
 
             }
             document.querySelector("#type").value = "std";
         }else{
-            document.querySelector("#for_std").classList.add('d-none');
             // เอา required ออกจาก student_id และ select_University
             document.querySelector("#select_University").required = "";
             document.querySelector("#student_id").required = "";
 
             document.querySelector("#type").value = "guest";
-
-            document.querySelector("#name_guest").required = "true";
-            document.querySelector("#div_name_guest").classList.remove("d-none");
-
 
         }
 
@@ -239,14 +223,12 @@
 
         document.querySelector("#type").value = "guest";
 
-        document.querySelector("#div_name_staff_kmutnb").classList.remove("d-none");
-        document.querySelector("#name_staff_kmutnb").required = "true";
-
     };
 
     function fu_std_check_in(){
         document.querySelector("#div_select_University").classList.remove("d-none");
         document.querySelector("#div_student_id").classList.remove("d-none");
+        document.querySelector("#div_select_University").classList.remove("d-none");
 
         // ใส่ required ใน student_id และ select_University
         document.querySelector("#select_University").required = "true";
@@ -254,24 +236,22 @@
 
         document.querySelector("#type").value = "std";
 
-        document.querySelector("#div_name_staff_kmutnb").classList.add("d-none");
-        document.querySelector("#name_staff_kmutnb").required = "";
 
     };
 
-    function fu_staff_kmutnb_check_in(){
+    function fu_personnel_check_in(){
         document.querySelector("#div_select_University").classList.add("d-none");
         document.querySelector("#div_student_id").classList.add("d-none");
+        document.querySelector("#div_select_University").classList.remove("d-none");
+
         // เอา required ออกจาก student_id และ select_University
-        document.querySelector("#select_University").required = "";
+        document.querySelector("#select_University").required = "true";
         document.querySelector("#student_id").required = "";
         document.querySelector("#select_University").value = "";
         document.querySelector("#student_id").value = "";
 
         document.querySelector("#type").value = "บุคลากร";
 
-        document.querySelector("#div_name_staff_kmutnb").classList.remove("d-none");
-        document.querySelector("#name_staff_kmutnb").required = "true";
         
     };
     
