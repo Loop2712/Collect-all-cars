@@ -44,19 +44,14 @@ class Check_inController extends Controller
     public function create(Request $request)
     {
         $location = $request->get('location');
-        $Uni = "No";
 
-        $date_now = date("Y/m/d H:i:s");
-
-        if (!empty($location)) {
-            if (strpos($location, 'University') !== false) {
-                $location_sp = explode(":",$location);
-                $location = $location_sp[1];
-                $Uni = "Yes";
-            }
+        if(Auth::check()){
+            return redirect('check_in/create?location=' . $location);
+        }else{
+            return redirect('/login/line?redirectTo=check_in/create?location=' . $location);
         }
-
-        return view('check_in.create', compact('location','Uni','date_now'));
+        
+        
     }
 
     /**
@@ -103,6 +98,13 @@ class Check_inController extends Controller
             ]);
 
             $requestData['student_id'] = 'บุคลากร' ;
+        }
+        if (!empty($requestData['name_guest'])) {
+            DB::table('users')
+                ->where('id', $requestData['user_id'])
+                ->update([
+                    'name_staff' => $requestData['name_guest'],
+            ]);
         }
 
         Check_in::create($requestData);
