@@ -410,6 +410,12 @@ class PartnersController extends Controller
     }
     public function show_group_risk($user_id , $check_in_at)
     {
+        DB::table('users')
+          ->where('id', $user_id)
+          ->update([
+            'check_covid' => "Yes",
+        ]);
+
         $data_all_date = array();
         $uesr_risk_groups = array();
         $data_user_risk_groups = array();

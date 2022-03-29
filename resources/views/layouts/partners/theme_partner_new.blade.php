@@ -154,6 +154,13 @@
 						<div class="menu-title">วิธีใช้งาน</div>
 					</a>
 				</li>
+				<li>
+					<a href="#" target="blank">
+						<div class="parent-icon"><i class="fas fa-photo-video"></i>
+						</div>
+						<div class="menu-title">สื่อประชาสัมพันธ์</div>
+					</a>
+				</li>
 			</ul>
 			<!--end navigation-->
 		</div>
