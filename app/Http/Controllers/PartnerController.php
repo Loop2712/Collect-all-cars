@@ -290,6 +290,21 @@ class PartnerController extends Controller
 
         return view('partner.user.create_user_partner', compact('data_partners' , 'partners' , 'username' , 'password','data_time_zone'));
     }
+
+    public function partner_media(Request $request)
+    {
+        $media_menu = $request->get('menu');
+
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        return view('partner.partner_media', compact('data_partners','data_time_zone' ,'media_menu'));
+    }
     
 
     public function partner_theme()

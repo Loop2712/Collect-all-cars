@@ -36,6 +36,13 @@
 	<title>Partner Viicheck</title>
 
 	<style>
+		.main-shadow{
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+        }
+        .main-radius{
+            border-radius: 5px;
+        }
+
 		.notify_alert{
           animation-name: notify_alert;
           color: red;
@@ -155,7 +162,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" target="blank">
+					<a href="{{ url('/partner_media?menu=viimove') }}" target="blank">
 						<div class="parent-icon"><i class="fas fa-photo-video"></i>
 						</div>
 						<div class="menu-title">สื่อประชาสัมพันธ์</div>

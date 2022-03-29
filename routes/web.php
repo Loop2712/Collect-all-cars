@@ -162,6 +162,7 @@ Route::middleware(['auth', 'role:admin-partner,partner'])->group(function () {
 		Route::get('/create_user_partner', 'PartnerController@create_user_partner');
 
 		Route::get('/check_in/view', 'PartnerController@view_check_in');
+		Route::get('/partner_media', 'PartnerController@partner_media');
 
 });
 // end admin-partner
