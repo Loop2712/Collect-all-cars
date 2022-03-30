@@ -79,33 +79,7 @@
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="content">
-              <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-NO-TEXT.jpeg') }}">
-              <div class="text-center">
-                <h4 style="margin-top: -230px;"><b id="reg_num"></b>ให้เราได้ช่วยเหลือคุณ</h4>
-              </div>
-              <center>
-                  <div style="position: absolute;top: 309px;left: 31%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ลงทะเบียนแล้วใช้ได้ทันที!</b></p>
-                  </div>
-                  <div style="position: absolute;top: 467px;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>จอดรถขวาง</b></p>
-                  </div>
-                  <div style="position: absolute;top: 467px;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>รถเกิดอุบัติเหตุ</b></p>
-                  </div>
-                  <div style="position: absolute;top: 467px;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ไฟรถเปิดอยู่</b></p>
-                  </div>
-                  <div style="position: absolute;top: 548px;left: 25%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ปัญหาการขับขี่</b></p>
-                  </div>
-                  <div style="position: absolute;top: 548px;left: 50%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>เด็กอยู่ในรถ</b></p>
-                  </div>
-                  <div style="position: absolute;top: 548px;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #ffff;font-family: 'Prompt', sans-serif;">
-                    <p style="font-size:5px;line-height: 20pt; width:250px; overflow: visible;"><b>ปัญหาอื่นๆ</b></p>
-                  </div>
-              </center>
+              <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/Service-Viicheck ver2.png') }}">
             </div>
           </div>
           <div class="col-lg-7 d-flex align-items-stretch">
@@ -180,6 +154,9 @@
             <div class="row">
               <div class="col-5" style="padding:20px;">
                 <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
+                  <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
+                </div>
+                <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-none">
                   <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
                 </div>
               </div>
