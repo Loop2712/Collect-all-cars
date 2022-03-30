@@ -156,9 +156,9 @@
                 <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
                   <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
                 </div>
-                <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-none">
+                <!-- <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-none">
                   <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
-                </div>
+                </div> -->
               </div>
               <div class="col-6" style="padding:20px;">
                 <br>

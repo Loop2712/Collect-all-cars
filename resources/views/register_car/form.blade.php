@@ -596,7 +596,7 @@
                                         @if(!empty($province_old))
                                             <option class="notranslate" value="{{ $province_old }}" selected>{{ $province_old }}</option>
                                             @foreach($location_array as $lo)
-                                            <option  class="notranslate"
+                                            <option
                                             value="{{ $lo->province }}" 
                                             {{ request('province') == $lo->province ? 'selected' : ''   }} >
                                             {{ $lo->province }} 
