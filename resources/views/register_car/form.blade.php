@@ -1140,10 +1140,10 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        showCar_brand();
-        showMotor_brand();
         show_location_P();
         show_location_P_2();
+        showCar_brand();
+        showMotor_brand();
     });
 
     function showCar_brand(){
