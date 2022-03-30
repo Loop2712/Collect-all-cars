@@ -31,6 +31,7 @@
 
                 <!-- ------------------- Vii MOVE ----------------------- -->
                 <div class="card" id="div_viimove">
+
                     <div class="row">
                         <div class="col-9">
                             <div id="carouselExampleCaptions" class="carousel slide main-shadow main-radius" data-ride="carousel">
@@ -133,6 +134,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- ------------------- Vii MOVE ----------------------- -->
 
