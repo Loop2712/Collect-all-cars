@@ -594,7 +594,7 @@
                             <div class="form-group {{ $errors->has('province') ? 'has-error' : ''}}">
                                 <select name="province" id="province" class="form-control" required onchange="check_register_car();">
                                         @if(!empty($province_old))
-                                            <option class="notranslate" value="{{ $province_old }}" selected>{{ $province_old }}</option>
+                                            <option value="{{ $province_old }}" selected>{{ $province_old }}</option>
                                             @foreach($location_array as $lo)
                                             <option
                                             value="{{ $lo->province }}" 
