@@ -1108,7 +1108,7 @@
     </div>
 </div>
 
-<input type="text" class="d-none" name="language_user" id="language_user" value="{{ Auth::user()->profile->language }}">
+<input type="text" class="d-none" name="language_user" id="language_user" value="{{ Auth::user()->language }}">
 <a id="btn_change_language" class="d-none" href=""></a>
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
