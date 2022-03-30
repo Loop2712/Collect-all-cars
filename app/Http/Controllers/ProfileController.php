@@ -12,6 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Sos_map;
 use App\Models\Guest;
 use App\Models\Cancel_Profile;
+use App\Models\Name_University;
 use App\Http\Controllers\API\LineApiController;
 
 class ProfileController extends Controller
@@ -205,7 +206,9 @@ class ProfileController extends Controller
         if (Auth::id() == $id )
         {
             $data = User::findOrFail($id);
-            return view('ProfileUser/edit', compact('data'));
+            $name_university = Name_University::get();
+
+            return view('ProfileUser/edit', compact('data','name_university'));
             
         }else
             return view('404');

@@ -105,6 +105,14 @@ class Check_inController extends Controller
             $requestData['student_id'] = $requestData['student_id_2'] ;
         }
 
+        if(!empty($requestData['phone_user'])){
+            DB::table('users')
+              ->where('id', $requestData['user_id'])
+              ->update([
+                'phone' => $requestData['phone_user'],
+            ]);
+        }
+        
         Check_in::create($requestData);
 
 

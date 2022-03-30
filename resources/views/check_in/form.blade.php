@@ -11,6 +11,10 @@
             @else
                 <b>คุณ : {{ Auth::user()->name }}</b>
             @endif
+            <br>
+            <a href="{{ url('/profile/' . Auth::user()->id . '/edit') }}">
+                <span class="text-danger" style="font-size:15px;"><i>แก้ไขข้อมูล</i></span>
+            </a>
         </h3>
 
         @if(!empty(Auth::user()->std_of and Auth::user()->std_of != "guest"))
@@ -52,6 +56,15 @@
         {!! $errors->first('check_in_at', '<p class="help-block">:message</p>') !!}
     </div>
 
+    <input class="form-control d-none" name="phone_user" type="text" id="phone_user" value="{{ Auth::user()->phone }}" >
+
+    @if(!empty($real_name) and empty( Auth::user()->phone ))
+        <div class="d- form-group {{ $errors->has('tow_time_input_phone') ? 'has-error' : ''}}">
+            <label for="tow_time_input_phone" class="control-label">{{ 'เบอร์ติดต่อ' }}</label>
+            <input class="form-control" name="tow_time_input_phone" type="text" id="tow_time_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#tow_time_input_phone').value ;">
+            {!! $errors->first('tow_time_input_phone', '<p class="help-block">:message</p>') !!}
+        </div>
+    @endif
 
     @if(empty($real_name))
         <div id="div_name_guest" class="form-group {{ $errors->has('name_staff') ? 'has-error' : ''}}">
@@ -60,25 +73,13 @@
             {!! $errors->first('name_staff', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <div class="d-none" id="div_for_Uni">
-            
-            <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
-                <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
-                <select name="select_University" id="select_University" class="form-control notranslate">
-                    <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
-                    @foreach($name_university as $item)
-                        <option class="notranslate" value="{{ $item->initials_en }}" >
-                            <b>{{ $item->initials_th }} : </b>{{ $item->full_name_th }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+        <div class="d- form-group {{ $errors->has('first_input_phone') ? 'has-error' : ''}}">
+            <label for="first_input_phone" class="control-label">{{ 'เบอร์ติดต่อ' }}</label>
+            <input class="form-control" name="first_input_phone" type="text" id="first_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#first_input_phone').value ;">
+            {!! $errors->first('first_input_phone', '<p class="help-block">:message</p>') !!}
+        </div>
 
-            <div id="div_student_id" class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
-                <label for="student_id" class="control-label">{{ 'Student Id' }}</label>
-                <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id }}" >
-                {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
-            </div>
+        <div class="d-none" id="div_for_Uni">
 
             <div id="div_std_check_in">
                 <input type="radio" name="guest_check_in" id="std_check_in" checked 
@@ -108,6 +109,24 @@
             <span class="text-danger">&nbsp;&nbsp;บุคคลทั่วไป</span>
             
             <br><br>
+            
+            <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
+                <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
+                <select name="select_University" id="select_University" class="form-control notranslate">
+                    <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
+                    @foreach($name_university as $item)
+                        <option class="notranslate" value="{{ $item->initials_en }}" >
+                            <b>{{ $item->initials_th }} : </b>{{ $item->full_name_th }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div id="div_student_id" class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
+                <label for="student_id" class="control-label">{{ 'Student Id' }}</label>
+                <input class="form-control" name="student_id" type="text" id="student_id" value="{{ isset($check_in->student_id) ? $check_in->student_id : Auth::user()->student_id }}" >
+                {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
+            </div>
 
         </div>
     @endif

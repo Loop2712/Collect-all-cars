@@ -41,6 +41,11 @@
                             <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" >
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                         </div>
+                        <label for="massengbox" class="control-label"><b>{{ 'ชื่อจริง' }}</b></label>
+                        <div class="notranslate form-group {{ $errors->has('name_staff') ? 'has-error' : ''}}">
+                            <input class="form-control" name="name_staff" type="text" id="name_staff" value="{{ isset($data->name_staff) ? $data->name_staff : ''}}" >
+                                {!! $errors->first('name_staff', '<p class="help-block">:message</p>') !!}
+                        </div>
                         <label for="massengbox" class="control-label"><b>{{ 'วันเกิด' }}</b></label>
                         <div class="form-group {{ $errors->has('brith') ? 'has-error' : ''}}">
                             <input class="form-control" name="brith" type="date" id="brith" value="{{ isset($data->brith) ? $data->brith : ''}}" >
@@ -76,6 +81,26 @@
                             <input class="form-control" name="phone" type="number" id="phone" value="{{ isset($data->phone) ? $data->phone : ''}}" >
                             {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                         </div>
+
+                        @if(!empty($data->std_of))
+                            <label for="massengbox" class="control-label"><b>{{ 'มหาวิทยาลัย' }}</b></label>
+                            <div class="form-group {{ $errors->has('std_of') ? 'has-error' : ''}}">
+                                <select name="std_of" id="std_of" class="form-control notranslate">
+                                    <option class="translate" value="{{ $data->std_of }}" selected >{{ $data->std_of }}</option>
+                                    @foreach($name_university as $university)
+                                        <option class="notranslate" value="{{ $university->initials_en }}" >
+                                            <b>{{ $university->initials_th }} : </b>{{ $university->full_name_th }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <label for="massengbox" class="control-label"><b>{{ 'รหัสนักศึกษา' }}</b></label>
+                            <div class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
+                                <input class="form-control" name="student_id" type="number" id="student_id" value="{{ isset($data->student_id) ? $data->student_id : ''}}" >
+                                {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        @endif
+
                         <div id="div_change_language">
                             <label for="massengbox" class="control-label"><b>{{ 'ภาษา' }}</b></label>
                             <div class="form-group {{ $errors->has('language') ? 'has-error' : ''}}">
