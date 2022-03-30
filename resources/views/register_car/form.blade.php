@@ -605,7 +605,7 @@
                                         @else
                                             <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
                                             @foreach($location_array as $lo)
-                                            <option  class="notranslate"
+                                            <option
                                             value="{{ $lo->province }}" 
                                             {{ request('province') == $lo->province ? 'selected' : ''   }} >
                                             {{ $lo->province }} 
