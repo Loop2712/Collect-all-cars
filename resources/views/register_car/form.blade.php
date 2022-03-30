@@ -1108,6 +1108,9 @@
     </div>
 </div>
 
+<input type="text" class="d-none" name="language_user" id="language_user" value="{{ Auth::user()->profile->language }}">
+<a id="btn_change_language" class="d-none" href=""></a>
+
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 
@@ -1138,6 +1141,9 @@
     });
 </script>
 <script>
+
+    var language_user = document.querySelector('#language_user').value ;
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         show_location_P();
@@ -1344,6 +1350,9 @@
                     location_A.add(option);
                 }
             });
+
+            change_language_user();
+
             return location_A.value;
     }
 
@@ -1382,5 +1391,17 @@
                         phone_insurance.value = result[0]['phone'] ;
                 });
         }
+    }
+
+    function change_language_user()
+    {
+        let btn_change_language = document.querySelector('#btn_change_language');
+            btn_change_language.href = "javascript:trocarIdioma('" + language_user +"')" ;
+        
+        var delayInMilliseconds = 1000; //1.5 second
+
+        setTimeout(function() {
+            document.querySelector('#btn_change_language').click();
+        }, delayInMilliseconds);
     }
 </script>
