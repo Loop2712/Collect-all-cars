@@ -7,13 +7,13 @@
         <br><br>
         <h3 class="notranslate">
             @if(!empty(Auth::user()->name_staff))
-                <b>คุณ : {{ Auth::user()->name_staff }}</b>
+                <b><span class="translate">คุณ</span> : {{ Auth::user()->name_staff }}</b>
             @else
-                <b>คุณ : {{ Auth::user()->name }}</b>
+                <b><span class="translate">คุณ</span> : {{ Auth::user()->name }}</b>
             @endif
             <br>
             <a href="{{ url('/profile/' . Auth::user()->id . '/edit') }}">
-                <span class="text-danger" style="font-size:15px;"><i>แก้ไขข้อมูล</i></span>
+                <span class="text-danger translate" style="font-size:15px;"><i>แก้ไขข้อมูล</i></span>
             </a>
         </h3>
 
@@ -56,26 +56,26 @@
         {!! $errors->first('check_in_at', '<p class="help-block">:message</p>') !!}
     </div>
 
-    <input class="form-control d-none" name="phone_user" type="text" id="phone_user" value="{{ Auth::user()->phone }}" >
+    <input class="form-control d-none" name="phone_user" type="tel" id="phone_user" value="{{ Auth::user()->phone }}" pattern="[0-9]{10}">
 
     @if(!empty($real_name) and empty( Auth::user()->phone ))
         <div class="d- form-group {{ $errors->has('tow_time_input_phone') ? 'has-error' : ''}}">
-            <label for="tow_time_input_phone" class="control-label">{{ 'เบอร์ติดต่อ' }}</label>
-            <input class="form-control" name="tow_time_input_phone" type="phone" id="tow_time_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#tow_time_input_phone').value ;" placeholder="กรุณากรอกหมายเลขโทรศัพท์"> 
+            <label for="tow_time_input_phone" class="control-label translate">{{ 'Mobile number' }}</label>
+            <input class="form-control" name="tow_time_input_phone" type="tel" id="tow_time_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#tow_time_input_phone').value ;" placeholder="กรุณาใส่เบอร์มือถือ" pattern="[0-9]{10}"> 
             {!! $errors->first('tow_time_input_phone', '<p class="help-block">:message</p>') !!}
         </div>
     @endif
 
     @if(empty($real_name))
         <div id="div_name_guest" class="form-group {{ $errors->has('name_staff') ? 'has-error' : ''}}">
-            <label for="name_staff" class="control-label">{{ 'ชื่อ - นามสกุล' }}</label>
+            <label for="name_staff" class="control-label translate">{{ 'First name - Surname' }}</label>
             <input class="form-control" name="name_staff" type="text" id="name_staff" value="{{ $real_name }}" required >
             {!! $errors->first('name_staff', '<p class="help-block">:message</p>') !!}
         </div>
 
         <div class="d- form-group {{ $errors->has('first_input_phone') ? 'has-error' : ''}}">
-            <label for="first_input_phone" class="control-label">{{ 'เบอร์ติดต่อ' }}</label>
-            <input class="form-control" name="first_input_phone" type="phone" id="first_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#first_input_phone').value ;"  placeholder="กรุณากรอกหมายเลขโทรศัพท์">
+            <label for="first_input_phone" class="control-label translate">{{ 'Mobile number' }}</label>
+            <input class="form-control" name="first_input_phone" type="tel" id="first_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#first_input_phone').value ;"  placeholder="กรุณาใส่เบอร์มือถือ" pattern="[0-9]{10}">
             {!! $errors->first('first_input_phone', '<p class="help-block">:message</p>') !!}
         </div>
 
@@ -88,7 +88,7 @@
                     }else{
                         fu_guest_check_in();
                     }"> 
-                <span class="text-danger">&nbsp;&nbsp;นักศึกษา</span>
+                <span class="text-danger">&nbsp;&nbsp;Student</span>
             </div>
 
             <input type="radio" name="guest_check_in" id="staff_kmutnb" 
@@ -97,7 +97,7 @@
                 }else{
                     fu_std_check_in();
                 }"> 
-            <span class="text-danger">&nbsp;&nbsp;บุคลากร</span>
+            <span class="text-danger">&nbsp;&nbsp;Personnel</span>
             <br>
 
             <input type="radio" name="guest_check_in" id="guest_check_in" 
@@ -106,14 +106,14 @@
                 }else{
                     fu_std_check_in();
                 }"> 
-            <span class="text-danger">&nbsp;&nbsp;บุคคลทั่วไป</span>
+            <span class="text-danger">&nbsp;&nbsp;Guest</span>
             
             <br><br>
             
             <div id="div_select_University" class="form-group {{ $errors->has('select_University') ? 'has-error' : ''}}">
-                <label for="" class="control-label">{{ 'กรุณาเลือกมหาวิทยาลัย' }}</label>
+                <label for="" class="control-label">{{ 'Please select a university' }}</label>
                 <select name="select_University" id="select_University" class="form-control notranslate">
-                    <option class="translate" value="" selected > - เลือกมหาวิทยาลัย - </option>
+                    <option class="translate" value="" selected > - Please select a university - </option>
                     @foreach($name_university as $item)
                         <option class="notranslate" value="{{ $item->initials_en }}" >
                             <b>{{ $item->initials_th }} : </b>{{ $item->full_name_th }}

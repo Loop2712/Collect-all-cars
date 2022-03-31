@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <label  class="control-label"><b>{{ 'รูปภาพโปรไฟล์' }}</b></label>
+                        <label  class="control-label"><b>{{ 'Profile picture' }}</b></label>
                         <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                             <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple" onchange="document.querySelector('#img_profile_old').classList.add('d-none');">
                                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
@@ -36,17 +36,17 @@
 
                     <div class="col-12 col-md-6">
                         <br class="d-block d-md-none">
-                        <label for="massengbox" class="control-label"><b>{{ 'Name' }}</b></label><span style="color: #FF0033;"> *</span>
+                        <label for="massengbox" class="control-label"><b>{{ 'Username' }}</b></label><span style="color: #FF0033;"> *</span>
                         <div class="notranslate form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                             <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" >
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label for="massengbox" class="control-label"><b>{{ 'First name - last name' }}</b></label>
+                        <label for="massengbox" class="control-label"><b>{{ 'First name - Surname' }}</b></label>
                         <div class="notranslate form-group {{ $errors->has('name_staff') ? 'has-error' : ''}}">
                             <input class="form-control" name="name_staff" type="text" id="name_staff" value="{{ isset($data->name_staff) ? $data->name_staff : ''}}" >
                                 {!! $errors->first('name_staff', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label for="massengbox" class="control-label"><b>{{ 'วันเกิด' }}</b></label>
+                        <label for="massengbox" class="control-label"><b>{{ 'Birthday' }}</b></label>
                         <div class="form-group {{ $errors->has('brith') ? 'has-error' : ''}}">
                             <input class="form-control" name="brith" type="date" id="brith" value="{{ isset($data->brith) ? $data->brith : ''}}" >
                                     {!! $errors->first('brith', '<p class="help-block">:message</p>') !!}
@@ -71,19 +71,19 @@
                             </select>
                             {!! $errors->first('massengbox', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label for="massengbox" class="control-label"><b>{{ 'อีเมล' }}</b></label>
+                        <label for="massengbox" class="control-label"><b>{{ 'Email' }}</b></label>
                         <div class="notranslate form-group {{ $errors->has('email') ? 'has-error' : ''}}">
                             <input class="form-control" name="email" type="text" id="email" value="{{ isset($data->email ) ? $data->email  : ''}}" >
                             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label for="massengbox" class="control-label"><b>{{ 'เบอร์โทรศัพท์' }}</b></label>
+                        <label for="massengbox" class="control-label"><b>{{ 'Mobile number' }}</b></label>
                         <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                             <input class="form-control" name="phone" type="number" id="phone" value="{{ isset($data->phone) ? $data->phone : ''}}" >
                             {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                         </div>
 
                         @if(!empty($data->std_of))
-                            <label for="massengbox" class="control-label"><b>{{ 'มหาวิทยาลัย' }}</b></label>
+                            <label for="massengbox" class="control-label"><b>{{ 'University' }}</b></label>
                             <div class="form-group {{ $errors->has('std_of') ? 'has-error' : ''}}">
                                 <select name="std_of" id="std_of" class="form-control notranslate">
                                     <option class="translate" value="{{ $data->std_of }}" selected >{{ $data->std_of }}</option>
@@ -94,7 +94,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <label for="massengbox" class="control-label"><b>{{ 'รหัสนักศึกษา' }}</b></label>
+                            <label for="massengbox" class="control-label"><b>{{ 'Student ID' }}</b></label>
                             <div class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
                                 <input class="form-control" name="student_id" type="number" id="student_id" value="{{ isset($data->student_id) ? $data->student_id : ''}}" >
                                 {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
@@ -102,7 +102,7 @@
                         @endif
 
                         <div id="div_change_language">
-                            <label for="massengbox" class="control-label"><b>{{ 'ภาษา' }}</b></label>
+                            <label for="massengbox" class="control-label"><b>{{ 'Language' }}</b></label>
                             <div class="form-group {{ $errors->has('language') ? 'has-error' : ''}}">
                                 <div style="margin-top: 10px;" class="row">
                                     <div class="col-12" style="top:-15px">
@@ -240,7 +240,7 @@
                 <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <label class="control-label"><b>{{ 'รถยนต์' }}</b></label>
+                        <label class="control-label"><b>{{ 'Car' }}</b></label>
                         <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
                             <input class="form-control" name="driver_license" type="file" id="driver_license" value="{{ isset($data->driver_license) ? $data->driver_license : ''}}" onchange="document.querySelector('#driver_license_old').classList.add('d-none');">
                             {!! $errors->first('driver_license', '<p class="help-block">:message</p>') !!}
@@ -255,7 +255,7 @@
                         <br>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
+                        <label class="control-label"><b>{{ 'Motorcycle' }}</b></label>
                         <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
                             <input class="form-control" name="driver_license2" type="file" id="driver_license2" value="{{ isset($data->driver_license2) ? $data->driver_license2 : ''}}" onchange="document.querySelector('#driver_license2_old').classList.add('d-none');">
                             {!! $errors->first('driver_license2', '<p class="help-block">:message</p>') !!}
@@ -282,7 +282,7 @@
                 <hr style="margin-top: 0px;height:0.1px;width: 96%;border-color: red;">
                 <div class="row">
                     <div class="col-12">
-                        <label class="control-label"><b>{{ 'รถยนต์' }}</b></label>
+                        <label class="control-label"><b>{{ 'Car' }}</b></label>
                         <div class="form-group {{ $errors->has('driver_license') ? 'has-error' : ''}}">
                             <center>
                                 <button id="btn_click_capture" type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="
@@ -339,7 +339,7 @@
                     </div>
                     <hr>
                     <div class="col-12">
-                        <label class="control-label"><b>{{ 'รถจักยานยนต์' }}</b></label>
+                        <label class="control-label"><b>{{ 'Motorcycle' }}</b></label>
                         <div class="form-group {{ $errors->has('driver_license2') ? 'has-error' : ''}}">
                             <center>
                                 <button id="btn_click_capture2" type="button" class="btn btn-sm btn-outline-info main-shadow main-radius" onclick="
@@ -904,7 +904,7 @@
         });
     });
 </script>
-<!-- ใบขับขี่รถยนต์ -->
+<!-- ใบขับขี่Car -->
 <script>
 function capture_driver_license(){
 
