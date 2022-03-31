@@ -25,26 +25,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $data_phones = User::where('phone' , '!=' , null)->get();
-
-        foreach ($data_phones as $key ) {
-            
-            if (is_numeric($key->phone)) {
-                echo "int";
-                echo "<br>";
-            }else{
-                echo "NOT int";
-                echo "<br>";
-
-                DB::table('users')
-                    ->where('id', $key->id)
-                    ->update([
-                        'phone' => null,
-                ]);
-            }
-        }
-
-        exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
