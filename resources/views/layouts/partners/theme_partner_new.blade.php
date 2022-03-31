@@ -162,7 +162,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{{ url('/partner_media?menu=viimove') }}" target="blank">
+					<a href="{{ url('/partner_media?menu=all') }}" target="blank">
 						<div class="parent-icon"><i class="fas fa-photo-video"></i>
 						</div>
 						<div class="menu-title">สื่อประชาสัมพันธ์</div>

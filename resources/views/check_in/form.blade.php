@@ -61,7 +61,7 @@
     @if(!empty($real_name) and empty( Auth::user()->phone ))
         <div class="d- form-group {{ $errors->has('tow_time_input_phone') ? 'has-error' : ''}}">
             <label for="tow_time_input_phone" class="control-label">{{ 'เบอร์ติดต่อ' }}</label>
-            <input class="form-control" name="tow_time_input_phone" type="text" id="tow_time_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#tow_time_input_phone').value ;">
+            <input class="form-control" name="tow_time_input_phone" type="phone" id="tow_time_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#tow_time_input_phone').value ;" placeholder="กรุณากรอกหมายเลขโทรศัพท์"> 
             {!! $errors->first('tow_time_input_phone', '<p class="help-block">:message</p>') !!}
         </div>
     @endif
@@ -75,7 +75,7 @@
 
         <div class="d- form-group {{ $errors->has('first_input_phone') ? 'has-error' : ''}}">
             <label for="first_input_phone" class="control-label">{{ 'เบอร์ติดต่อ' }}</label>
-            <input class="form-control" name="first_input_phone" type="text" id="first_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#first_input_phone').value ;">
+            <input class="form-control" name="first_input_phone" type="phone" id="first_input_phone" value="{{ Auth::user()->phone }}" oninput="document.querySelector('#phone_user').value = document.querySelector('#first_input_phone').value ;"  placeholder="กรุณากรอกหมายเลขโทรศัพท์">
             {!! $errors->first('first_input_phone', '<p class="help-block">:message</p>') !!}
         </div>
 

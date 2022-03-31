@@ -36,12 +36,12 @@
 
                     <div class="col-12 col-md-6">
                         <br class="d-block d-md-none">
-                        <label for="massengbox" class="control-label"><b>{{ 'ชื่อ' }}</b></label><span style="color: #FF0033;"> *</span>
+                        <label for="massengbox" class="control-label"><b>{{ 'Name' }}</b></label><span style="color: #FF0033;"> *</span>
                         <div class="notranslate form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                             <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" >
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                         </div>
-                        <label for="massengbox" class="control-label"><b>{{ 'ชื่อจริง' }}</b></label>
+                        <label for="massengbox" class="control-label"><b>{{ 'First name - last name' }}</b></label>
                         <div class="notranslate form-group {{ $errors->has('name_staff') ? 'has-error' : ''}}">
                             <input class="form-control" name="name_staff" type="text" id="name_staff" value="{{ isset($data->name_staff) ? $data->name_staff : ''}}" >
                                 {!! $errors->first('name_staff', '<p class="help-block">:message</p>') !!}

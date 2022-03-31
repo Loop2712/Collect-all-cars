@@ -9,6 +9,12 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-2">
+                        <a href="{{ url('/partner_media?menu=all') }}" id="btn_menu_all" style="width:100%;" type="button" class="btn btn-outline-danger main-shadow main-radius">
+                            <img width="50" src="{{ asset('/img/stickerline/PNG/1.png') }}">
+                            All
+                        </a>
+                    </div>
+                    <div class="col-2">
                         <a href="{{ url('/partner_media?menu=viimove') }}" id="btn_menu_viimove" style="width:100%;" type="button" class="btn btn-outline-danger main-shadow main-radius">
                             <img width="50" src="{{ asset('/img/stickerline/PNG/35.2.png') }}">
                             ViiMOVE
@@ -28,6 +34,45 @@
                     </div>
                 </div>
                 <hr class="text-danger">
+
+                <!-- ------------------- ALL ----------------------- -->
+                <div class="card" id="div_all">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
+                    <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/line_oa.png') }}">
+                            <div class="card-body">
+                                <h6 class="card-title cursor-pointer">QR-Code LINE OA</h6>
+                                <div class="d-flex align-items-center mt-3 fs-6">
+                                    <a class="btn btn-danger notranslate main-shadow main-radius" href="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/line_oa.png') }}" download >
+                                        ดาวน์โหลด
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/qrcode_line.png') }}">
+                            <div class="card-body">
+                                <h6 class="card-title cursor-pointer">QR-Code LINE OA</h6>
+                                <div class="d-flex align-items-center mt-3 fs-6">
+                                    <a class="btn btn-danger notranslate main-shadow main-radius" href="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/qrcode_line.png') }}" download >
+                                        ดาวน์โหลด
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end row-->
+                        </div>
+                    </div>
+                </div>
+                <!-- ------------------- ALL ----------------------- -->
+
 
                 <!-- ------------------- Vii MOVE ----------------------- -->
                 <div class="card" id="div_viimove">
@@ -138,6 +183,28 @@
                 </div>
                 <!-- ------------------- Vii MOVE ----------------------- -->
 
+                <!-- ------------------- Vii sos ----------------------- -->
+                <div class="card" id="div_viisos">
+
+                    <div class="row">
+                        <div class="col-9">
+                            div_viisos
+                        </div>
+                    </div>
+                </div>
+                <!-- ------------------- Vii sos ----------------------- -->
+
+                <!-- ------------------- Check in ----------------------- -->
+                <div class="card" id="div_check_in">
+
+                    <div class="row">
+                        <div class="col-9">
+                            div_check_in
+                        </div>
+                    </div>
+                </div>
+                <!-- ------------------- Check in ----------------------- -->
+
             </div>
         </div>
     </div>
@@ -154,25 +221,49 @@
         function add_color_btn_menu(media_menu){
 
             switch(media_menu) {
+                case 'all':
+                    document.querySelector('#btn_menu_all').classList.add('btn-danger');
+                    document.querySelector('#btn_menu_all').classList.remove('btn-outline-danger');
+
+                    document.querySelector('#div_all').classList.remove('d-none');
+
+                    document.querySelector('#div_viimove').classList.add('d-none');
+                    document.querySelector('#div_viisos').classList.add('d-none');
+                    document.querySelector('#div_check_in').classList.add('d-none');
+
+
+                break;
                 case 'viimove':
                     document.querySelector('#btn_menu_viimove').classList.add('btn-danger');
                     document.querySelector('#btn_menu_viimove').classList.remove('btn-outline-danger');
 
                     document.querySelector('#div_viimove').classList.remove('d-none');
 
+                    document.querySelector('#div_all').classList.add('d-none');
+                    document.querySelector('#div_viisos').classList.add('d-none');
+                    document.querySelector('#div_check_in').classList.add('d-none');
+
                 break;
                 case 'viisos':
                     document.querySelector('#btn_menu_viisos').classList.add('btn-danger');
                     document.querySelector('#btn_menu_viisos').classList.remove('btn-outline-danger');
 
+                    document.querySelector('#div_viisos').classList.remove('d-none');
+
+                    document.querySelector('#div_all').classList.add('d-none');
                     document.querySelector('#div_viimove').classList.add('d-none');
+                    document.querySelector('#div_check_in').classList.add('d-none');
 
                 break;
                 case 'check_in':
                     document.querySelector('#btn_menu_check_in').classList.add('btn-danger');
                     document.querySelector('#btn_menu_check_in').classList.remove('btn-outline-danger');
 
+                    document.querySelector('#div_check_in').classList.remove('d-none');
+
+                    document.querySelector('#div_all').classList.add('d-none');
                     document.querySelector('#div_viimove').classList.add('d-none');
+                    document.querySelector('#div_viisos').classList.add('d-none');
 
                 break;
             }
