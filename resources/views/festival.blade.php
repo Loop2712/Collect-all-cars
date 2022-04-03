@@ -61,3 +61,16 @@
 	</div>
 @endif
 
+<!-- songkran -->
+@if( $month_now == "4" and $day_now >= "1" and $day_now <= 16)
+<div class="container">
+  <div class="bg-image p-2 text-center shadow-1-strong rounded mb-5 text-white" 
+       style="background-image: url('{{ asset('/img/festival/bg-songkran2.jpg') }}'); ">
+		
+	<img width="70%" src="{{ asset('/img/stickerline/PNG/29.png') }}">
+	<h1 class="mb-3 h2" style="margin-bottom:0px;color:black;font-family: 'Pattaya', sans-serif;-webkit-text-stroke: 0.5px black;font-size:35px;">สวัสดีปีใหม่ไทย</h1>
+  </div>
+	<img style="position:absolute;width: 80%; top: 0px;" src="{{ url('/') }}/img/festival/flower2.gif">
+
+</div>
+@endif
