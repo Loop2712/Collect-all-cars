@@ -660,7 +660,7 @@
     	let color_of_partner = document.querySelector('#color_of_partner');
             color_of_partner = color_of_partner.value.replaceAll(" ","_");
 
-        fetch("{{ url('/') }}/api/change_color_partner/"+ color + "/" + color_of_partner);
+        fetch("{{ url('/') }}/api/change_color_navbar/"+ color + "/" + color_of_partner);
     }
 
 
