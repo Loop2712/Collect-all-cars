@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -8,24 +9,24 @@
 	<!--favicon-->
 	<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
 	<!--plugins-->
-	<link href="{{ asset('/partner_new/plugins/simplebar/css/simplebar.css') }}">
-	<link href="{{ asset('/partner_new/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+	<link href="{{ asset('partner_new/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+	<link href="{{ asset('partner_new/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+	<link href="{{ asset('partner_new/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('/partner_new/plugins/highcharts/css/highcharts.css') }}" rel="stylesheet" />
-	<link href="{{ asset('/partner_new/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('/partner_new/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
 	<!-- loader-->
-	<link href="{{ asset('/partner_new/css/pace.min.css') }}" rel="stylesheet" />
-	<script src="{{ asset('/partner_new/js/pace.min.js') }}"></script>
+	<link href="{{ asset('/css/pace.min.css') }}" rel="stylesheet" />
+	<script src="{{ asset('/js/pace.min.js') }}"></script>
 	<!-- Bootstrap CSS -->
-	<link href="{{ asset('/partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-	<link href="{{ asset('/partner_new/css/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('/partner_new/css/icons.css') }}" rel="stylesheet">
+	<link href="{{ asset('partner_new/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('partner_new/css/icons.css') }}" rel="stylesheet">
 	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="{{ asset('/partner_new/css/dark-theme.css') }}" />
-	<link rel="stylesheet" href="{{ asset('/partner_new/css/semi-dark.css') }}" />
-	<link rel="stylesheet" href="{{ asset('/partner_new/css/header-colors.css') }}" />
-    <!-- fontawesome icon -->
+	<link rel="stylesheet" href="{{ asset('partner_new/css/dark-theme.css') }}" />
+	<link rel="stylesheet" href="{{ asset('partner_new/css/semi-dark.css') }}" />
+	<link rel="stylesheet" href="{{ asset('partner_new/css/header-colors.css') }}" />
+	<!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
     
@@ -63,6 +64,7 @@
 </head>
 
 <body>
+	<!--wrapper-->
 	<!--wrapper-->
 	@foreach($data_partners as $data_partner)
 	<div class="wrapper">
@@ -174,8 +176,8 @@
 		<!--end sidebar wrapper -->
 		<!--start header -->
 		<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                <div class="topbar d-flex align-items-center" style="background-color:{{ $data_partner->color }}">
-				<nav class="navbar navbar-expand" >
+			<div class="topbar d-flex align-items-center">
+				<nav class="navbar navbar-expand ">
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
 					</div>
 					<div class="top-menu-left d-none d-lg-block">
@@ -200,7 +202,7 @@
 						  </li>
 					  </ul>
 					 </div>
-					<div class="search-bar flex-grow-1">
+					 <div class="search-bar flex-grow-1 header-notifications-list header-message-list">
 						<div class="position-relative search-bar-box">
 							<input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
 							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
@@ -208,7 +210,7 @@
 					</div>
 					<div class="top-menu ms-auto">
 					</div>
-					<div class="user-box dropdown">
+					 <div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         @if(!empty(Auth::user()->photo))
                                 <img alt="" style="width:50px;"class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
@@ -274,7 +276,7 @@
 	@endforeach
 	<!--end wrapper-->
 	<!--start switcher-->
-	<!-- <div class="switcher-wrapper">
+	<div class="switcher-wrapper">
 		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
 		</div>
 		<div class="switcher-body">
@@ -367,10 +369,9 @@
 				</div>
 			</div>
 		</div>
-	</div> -->
-	
+	</div>
 	<!--end switcher-->
-    <!-- modal_change_color -->
+	<!-- modal_change_color -->
     <div class="modal fade" id="modal_change_color" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -494,6 +495,7 @@
     </div>
   </div>
 </div>
+
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
