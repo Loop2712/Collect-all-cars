@@ -1,6 +1,8 @@
 
 <!doctype html>
-<html lang="en">
+@foreach($data_partners as $data_partner)
+<html lang="en" class="{{ $data_partner->class_color_menu }}">
+
 
 <head>
 	<!-- Required meta tags -->
@@ -60,8 +62,10 @@
           100%  {color: yellow;}
 
         }
+
 	</style>
 </head>
+@endforeach
 
 <body>
 	<!--wrapper-->
@@ -69,8 +73,8 @@
 	@foreach($data_partners as $data_partner)
 	<div class="wrapper">
 		<!--sidebar wrapper -->
-		<div class="sidebar-wrapper" data-simplebar="true">
-			<div class="sidebar-header">
+		<div class="sidebar-wrapper menu-background" data-simplebar="true">
+			<div class="sidebar-header menu-background">
                     <div>
                         @if(!empty($data_partner->logo))
                             <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%">
@@ -164,7 +168,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{{ url('/partner_media?menu=all') }}" target="blank">
+					<a href="{{ url('/partner_media?menu=all') }},javascript:;">
 						<div class="parent-icon"><i class="fas fa-photo-video"></i>
 						</div>
 						<div class="menu-title">สื่อประชาสัมพันธ์</div>
@@ -174,9 +178,12 @@
 			<!--end navigation-->
 		</div>
 		<!--end sidebar wrapper -->
+
+		<input id="color_of_partner" type="text" class="d-none" name="" value="{{ $data_partner->name }}">
+
 		<!--start header -->
 		<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-			<div class="topbar d-flex align-items-center">
+			<div id="div_color_navbar" class="topbar d-flex align-items-center header_nav-background" style="background: {{ $data_partner->color_navbar  }} ;">
 				<nav class="navbar navbar-expand ">
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
 					</div>
@@ -277,7 +284,7 @@
 	<!--end wrapper-->
 	<!--start switcher-->
 	<div class="switcher-wrapper">
-		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
+		<div class="switcher-btn" onclick="change_color();"> <i class='bx bx-cog bx-spin'></i>
 		</div>
 		<div class="switcher-body">
 			<div class="d-flex align-items-center">
@@ -285,55 +292,46 @@
 				<button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
 			</div>
 			<hr/>
-			<h6 class="mb-0">Theme Styles</h6>
-			<hr/>
-			<div class="d-flex align-items-center justify-content-between">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
-					<label class="form-check-label" for="lightmode">Light</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
-					<label class="form-check-label" for="darkmode">Dark</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="semidark">
-					<label class="form-check-label" for="semidark">Semi Dark</label>
-				</div>
-			</div>
-			<hr/>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault">
-				<label class="form-check-label" for="minimaltheme">Minimal Theme</label>
-			</div>
-			<hr/>
-			<h6 class="mb-0">Header Colors</h6>
+			<h6 class="mb-0">
+				Header Colors
+				<i class="fas fa-sync-alt btn" style="float: right;" onclick="random_color();"></i>
+			</h6>
 			<hr/>
 			<div class="header-colors-indigators">
 				<div class="row row-cols-auto g-3">
 					<div class="col">
-						<div class="indigator headercolor1" id="headercolor1"></div>
+						<div class="indigator" id="color_item_1"></div>
 					</div>
 					<div class="col">
-						<div class="indigator headercolor2" id="headercolor2"></div>
+						<div class="indigator" id="color_item_2"></div>
 					</div>
 					<div class="col">
-						<div class="indigator headercolor3" id="headercolor3"></div>
+						<div class="indigator" id="color_item_3"></div>
 					</div>
 					<div class="col">
-						<div class="indigator headercolor4" id="headercolor4"></div>
+						<div class="indigator" id="color_item_4"></div>
 					</div>
 					<div class="col">
-						<div class="indigator headercolor5" id="headercolor5"></div>
+						<div class="indigator" id="color_item_5"></div>
 					</div>
 					<div class="col">
-						<div class="indigator headercolor6" id="headercolor6"></div>
+						<div class="indigator" id="color_item_6"></div>
 					</div>
 					<div class="col">
-						<div class="indigator headercolor7" id="headercolor7"></div>
+						<div class="indigator" id="color_item_7"></div>
 					</div>
 					<div class="col">
-						<div class="indigator headercolor8" id="headercolor8"></div>
+						<div class="indigator" id="color_item_8"></div>
+					</div>
+					<div class="col">
+						<div class="row">
+							<div class="col-5">
+								<div style="float: right;" class="indigator" id="color_item_Ex"></div>
+							</div>
+							<div class="col-7">
+								<input style="margin-top:5px;" type="text" class="form-control" id="code_color" name="code_color" placeholder="color code" oninput="add_color_item_Ex();">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -368,74 +366,13 @@
 					</div>
 				</div>
 			</div>
+			<hr/>
+			<hr/>
+			<h6 class="mb-0"><i class="fab fa-line text-success" style="font-size: 20px;"></i> Set up a line group</h6>
+			<hr/>
 		</div>
 	</div>
 	<!--end switcher-->
-	<!-- modal_change_color -->
-    <div class="modal fade" id="modal_change_color" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">เลือกสีที่คุณต้องการ</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-12">
-                                <center>
-                                    <div class="menu">
-                                        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" checked="" />
-                                        <label class="menu-open-button" for="menu-open" onclick="change_color();"> 
-                                            <i class="fas fa-sync-alt text-info"></i>
-                                        </label>
-                                        <a id="fa_item_1" href="#" class="menu-item item-1"> 
-                                            <i class="fa fa"></i><span id="text_item_1"></span>
-                                        </a>
-                                        <a id="fa_item_2" href="#" class="menu-item item-2"> 
-                                            <i class="fa fa"></i> <span id="text_item_2"></span>
-                                        </a> 
-                                        <a id="fa_item_3" href="#" class="menu-item item-3"> 
-                                            <i class="fa fa"></i> <span id="text_item_3"></span>
-                                        </a> 
-                                        <a id="fa_item_4" href="#" class="menu-item item-4"> 
-                                            <i class="fa fa"></i> <span id="text_item_4"></span>
-                                        </a> 
-                                        <a id="fa_item_5" href="#" class="menu-item item-5"> 
-                                            <i class="fa fa"></i> <span id="text_item_5"></span>
-                                        </a> 
-                                        <a id="fa_item_6" href="#" class="menu-item item-6"> 
-                                            <i class="fa fa"></i> <span id="text_item_6"></span>
-                                        </a> 
-                                    </div>
-                                </center>
-                            </div>
-                            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                            <div class="col-3"></div>
-                            <div class="col-2">
-                                <i id="circle_color" class="fas fa-circle" style="font-size:45px;"></i>
-                            </div>
-                            <div class="col-4">
-                                <input class="form-control" type="text" name="" id="input_color" oninput="view_color();">
-                            </div>
-                            <div class="col-1">
-                                <!-- <button class="btn btn-sm btn-outline-success" onclick="view_color();">ดู</button> -->
-                            </div>
-                            <div class="col-2">
-                                <input id="color_of_partner" type="hidden" name="" value="{{ $data_partner->name }}">
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <button id="bnt_sub_color" type="button" class="btn btn-primary d-none" onclick="submit_color();">ตกลง</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
     <input id="check_name_partner" type="hidden" name="" value="{{ $data_partner->name }}">
 
@@ -595,11 +532,23 @@
         let delayInMilliseconds = 500; //0.5 second
 
         setTimeout(function() {
-            document.querySelector('#menu-open').click();
             random_color();
         }, delayInMilliseconds);
 
         
+    }
+
+    function add_color_item_Ex()
+    {
+    	let code_color = document.querySelector('#code_color').value ;
+
+    	let color_item_Ex = document.querySelector('#color_item_Ex');
+            let color_item_Ex_style = document.createAttribute("style");
+                color_item_Ex_style.value = "background-color:" + code_color + " ;";
+                color_item_Ex.setAttributeNode(color_item_Ex_style); 
+            let click_color_item_Ex = document.createAttribute("onclick");
+                click_color_item_Ex.value = "add_input_color('" + code_color + "')";
+                 color_item_Ex.setAttributeNode(click_color_item_Ex); 
     }
 
     function random_color()
@@ -620,123 +569,100 @@
         let color_1 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "FF" ;
         let color_2 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "CC" ;
         let color_3 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "99" ;
-        let color_4 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "66" ;
-        let color_5 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "33" ;
-        let color_6 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "00" ;
+        let color_4 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "77" ;
+        let color_5 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "55" ;
+        let color_6 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "33" ;
+        let color_7 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "11" ;
+        let color_8 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "00" ;
 
         // 1
-        let text_item_1 = document.querySelector('#text_item_1');
-            text_item_1.innerHTML =  color_1 ;
-
-        let fa_item_1 = document.querySelector('#fa_item_1');
-            let style_fa_item_1 = document.createAttribute("style");
-                style_fa_item_1.value = "background-color:" + color_1 + " ;";
-                fa_item_1.setAttributeNode(style_fa_item_1); 
-            let click_fa_item_1 = document.createAttribute("onclick");
-                click_fa_item_1.value = "add_input_color('" + color_1 + "')";
-                 fa_item_1.setAttributeNode(click_fa_item_1); 
+        let color_item_1 = document.querySelector('#color_item_1');
+            let color_item_1_style = document.createAttribute("style");
+                color_item_1_style.value = "background-color:" + color_1 + " ;";
+                color_item_1.setAttributeNode(color_item_1_style); 
+            let click_color_item_1 = document.createAttribute("onclick");
+                click_color_item_1.value = "add_input_color('" + color_1 + "')";
+                 color_item_1.setAttributeNode(click_color_item_1); 
 
         // 2
-        let text_item_2 = document.querySelector('#text_item_2');
-            text_item_2.innerHTML =  color_2 ;
-
-        let fa_item_2 = document.querySelector('#fa_item_2');
-            let style_fa_item_2 = document.createAttribute("style");
-                style_fa_item_2.value = "background-color:" + color_2 + " ;";
-                fa_item_2.setAttributeNode(style_fa_item_2); 
-            let click_fa_item_2 = document.createAttribute("onclick");
-                click_fa_item_2.value = "add_input_color('" + color_2 + "')";
-                 fa_item_2.setAttributeNode(click_fa_item_2); 
+        let color_item_2 = document.querySelector('#color_item_2');
+            let color_item_2_style = document.createAttribute("style");
+                color_item_2_style.value = "background-color:" + color_2 + " ;";
+                color_item_2.setAttributeNode(color_item_2_style); 
+            let click_color_item_2 = document.createAttribute("onclick");
+                click_color_item_2.value = "add_input_color('" + color_2 + "')";
+                 color_item_2.setAttributeNode(click_color_item_2); 
 
         // 3
-        let text_item_3 = document.querySelector('#text_item_3');
-            text_item_3.innerHTML =  color_3 ;
-
-        let fa_item_3 = document.querySelector('#fa_item_3');
-            let style_fa_item_3 = document.createAttribute("style");
-                style_fa_item_3.value = "background-color:" + color_3 + " ;";
-                fa_item_3.setAttributeNode(style_fa_item_3); 
-            let click_fa_item_3 = document.createAttribute("onclick");
-                click_fa_item_3.value = "add_input_color('" + color_3 + "')";
-                 fa_item_3.setAttributeNode(click_fa_item_3); 
+        let color_item_3 = document.querySelector('#color_item_3');
+            let color_item_3_style = document.createAttribute("style");
+                color_item_3_style.value = "background-color:" + color_3 + " ;";
+                color_item_3.setAttributeNode(color_item_3_style); 
+            let click_color_item_3 = document.createAttribute("onclick");
+                click_color_item_3.value = "add_input_color('" + color_3 + "')";
+                 color_item_3.setAttributeNode(click_color_item_3); 
 
         // 4
-        let text_item_4 = document.querySelector('#text_item_4');
-            text_item_4.innerHTML =  color_4 ;
-
-        let fa_item_4 = document.querySelector('#fa_item_4');
-            let style_fa_item_4 = document.createAttribute("style");
-                style_fa_item_4.value = "background-color:" + color_4 + " ;";
-                fa_item_4.setAttributeNode(style_fa_item_4); 
-            let click_fa_item_4 = document.createAttribute("onclick");
-                click_fa_item_4.value = "add_input_color('" + color_4 + "')";
-                 fa_item_4.setAttributeNode(click_fa_item_4); 
+        let color_item_4 = document.querySelector('#color_item_4');
+            let color_item_4_style = document.createAttribute("style");
+                color_item_4_style.value = "background-color:" + color_4 + " ;";
+                color_item_4.setAttributeNode(color_item_4_style); 
+            let click_color_item_4 = document.createAttribute("onclick");
+                click_color_item_4.value = "add_input_color('" + color_4 + "')";
+                 color_item_4.setAttributeNode(click_color_item_4); 
 
         // 5
-        let text_item_5 = document.querySelector('#text_item_5');
-            text_item_5.innerHTML =  color_5 ;
-
-        let fa_item_5 = document.querySelector('#fa_item_5');
-            let style_fa_item_5 = document.createAttribute("style");
-                style_fa_item_5.value = "background-color:" + color_5 + " ;";
-                fa_item_5.setAttributeNode(style_fa_item_5); 
-            let click_fa_item_5 = document.createAttribute("onclick");
-                click_fa_item_5.value = "add_input_color('" + color_5 + "')";
-                 fa_item_5.setAttributeNode(click_fa_item_5); 
+        let color_item_5 = document.querySelector('#color_item_5');
+            let color_item_5_style = document.createAttribute("style");
+                color_item_5_style.value = "background-color:" + color_5 + " ;";
+                color_item_5.setAttributeNode(color_item_5_style); 
+            let click_color_item_5 = document.createAttribute("onclick");
+                click_color_item_5.value = "add_input_color('" + color_5 + "')";
+                 color_item_5.setAttributeNode(click_color_item_5); 
 
         // 6
-        let text_item_6 = document.querySelector('#text_item_6');
-            text_item_6.innerHTML =  color_6 ;
+        let color_item_6 = document.querySelector('#color_item_6');
+            let color_item_6_style = document.createAttribute("style");
+                color_item_6_style.value = "background-color:" + color_6 + " ;";
+                color_item_6.setAttributeNode(color_item_6_style); 
+            let click_color_item_6 = document.createAttribute("onclick");
+                click_color_item_6.value = "add_input_color('" + color_6 + "')";
+                 color_item_6.setAttributeNode(click_color_item_6); 
 
-        let fa_item_6 = document.querySelector('#fa_item_6');
-            let style_fa_item_6 = document.createAttribute("style");
-                style_fa_item_6.value = "background-color:" + color_6 + " ;";
-                fa_item_6.setAttributeNode(style_fa_item_6); 
-            let click_fa_item_6 = document.createAttribute("onclick");
-                click_fa_item_6.value = "add_input_color('" + color_6 + "')";
-                 fa_item_6.setAttributeNode(click_fa_item_6); 
+        // 7
+        let color_item_7 = document.querySelector('#color_item_7');
+            let color_item_7_style = document.createAttribute("style");
+                color_item_7_style.value = "background-color:" + color_7 + " ;";
+                color_item_7.setAttributeNode(color_item_7_style); 
+            let click_color_item_7 = document.createAttribute("onclick");
+                click_color_item_7.value = "add_input_color('" + color_7 + "')";
+                 color_item_7.setAttributeNode(click_color_item_7); 
+
+        // 8
+        let color_item_8 = document.querySelector('#color_item_8');
+            let color_item_8_style = document.createAttribute("style");
+                color_item_8_style.value = "background-color:" + color_8 + " ;";
+                color_item_8.setAttributeNode(color_item_8_style); 
+            let click_color_item_8 = document.createAttribute("onclick");
+                click_color_item_8.value = "add_input_color('" + color_8 + "')";
+                 color_item_8.setAttributeNode(click_color_item_8); 
+
     }
 
     function add_input_color(color)
     {
-        let input_color = document.querySelector('#input_color');
-         input_color.value = color ;
+    	let div_color_navbar = document.querySelector('#div_color_navbar');
+    		div_color_navbar.style = "";
+    		div_color_navbar.style = "background-color:" + color + " ;";
 
-         let circle_color = document.querySelector('#circle_color');
-            let circle_color_style = document.createAttribute("style");
-                circle_color_style.value = "font-size:45px;color:" + color + " ;";
-                 circle_color.setAttributeNode(circle_color_style);
-        document.querySelector('#bnt_sub_color').classList.remove('d-none');
-    }
+            color = color.replace("#","_");
 
-    function view_color()
-    {
-        let input_color = document.querySelector('#input_color');
-
-        let circle_color = document.querySelector('#circle_color');
-            let circle_color_style = document.createAttribute("style");
-                circle_color_style.value = "font-size:45px;color:" + input_color.value + " ;";
-                 circle_color.setAttributeNode(circle_color_style);
-
-        document.querySelector('#bnt_sub_color').classList.remove('d-none');
-    }
-
-    function submit_color()
-    {
-        let input_color = document.querySelector('#input_color');
-            input_color = input_color.value.replace("#","_");
-
-        let color_of_partner = document.querySelector('#color_of_partner');
+    	let color_of_partner = document.querySelector('#color_of_partner');
             color_of_partner = color_of_partner.value.replaceAll(" ","_");
 
-        fetch("{{ url('/') }}/api/change_color_partner/"+input_color + "/" + color_of_partner);
-
-        let delay = 800; 
-
-        setTimeout(function() {
-            window.location.reload(true);
-        }, delay);
+        fetch("{{ url('/') }}/api/change_color_partner/"+ color + "/" + color_of_partner);
     }
+
 
     function set_group_line()
     {

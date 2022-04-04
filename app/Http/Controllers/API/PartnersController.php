@@ -182,18 +182,19 @@ class PartnersController extends Controller
         return $id ;
     }
 
-    public function change_color_partner($color , $partner)
+    public function change_color_partner($color_navbar , $partner)
     {
-        $color = str_replace("_","#",$color);
+        $color_navbar = str_replace("_","#",$color_navbar);
         $partner = str_replace("_"," ",$partner);
-
+        
         DB::table('partners')
               ->where('name', $partner)
+              ->where("name_area", null)
               ->update([
-                'color' => $color,
+                'color_navbar' => $color_navbar,
         ]);
 
-        return $color ;
+        return $color_navbar ;
     }
 
     public function area_other($id_user , $name_area)
