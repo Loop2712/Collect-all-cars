@@ -828,6 +828,9 @@
     <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
     <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('js/car/main.js')}}"></script>
+    <script src="{{ asset('medilab/js/wow.min.js') }}"></script>
+
+    <script src="{{ asset('medilab/js/script.js') }}"></script>
     <!-- <script type="text/javascript">
               function googleTranslateElementInit2() {
                 new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');

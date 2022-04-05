@@ -5,6 +5,7 @@
   <!-- ======= Hero Section ======= -->
 <!-- End Hero -->
 
+</div>
   <main id="main">
     @if(Auth::check())
       <!-- MODAL ยินดีต้อนรับกลับมา -->
@@ -63,13 +64,13 @@
 
     <!-- ======= Why Us Section ======= -->
     <div class="d-none d-lg-block">
-    <section id="hero" class="d-flex align-items-center">
+    <section id="hero" class="d-flex align-items-center ">
     <div class="container">
     <div class="row">
-    <div class="col-sm-6">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
-    <div class="col-sm-6" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
-      <h2 style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-      <a style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+    <div class="col-sm-6 wow animated fadeInLeft">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
+    <div class="col-sm-6  wow animated fadeInRight" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+      <h2 class="wow animated fadeInRight" style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
+      <a  style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class="animated fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
     </div>
 
   </section>
@@ -77,7 +78,7 @@
     <section id="why-us" class="why-us">
       <div class="container">
         <div class="row">
-          <div class="col-lg-5 d-flex align-items-stretch">
+          <div class="col-lg-5 d-flex align-items-stretch wow fadeInRight">
             <div class="content">
               <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/Service-Viicheck ver2.png') }}">
             </div>
@@ -86,7 +87,7 @@
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
 
-                <div class="icon-box d-flex"  style="padding: 33px; margin: 10px;">
+                <div class="icon-box d-flex wow animated fadeInDown"  style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-car-crash"></i>
@@ -102,7 +103,7 @@
                   </div>
                 </div>
 
-                <div class="icon-box d-flex" style="padding: 33px; margin: 10px;">
+                <div class="icon-box d-flex wow animated fadeInDown" style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-id-card-alt"></i>
@@ -120,7 +121,7 @@
                   </div>
                 </div>
 
-                <div class="icon-box d-flex" style="padding: 33px; margin: 10px;">
+                <div class="icon-box d-flex wow animated fadeInDown" style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-user-lock"></i>
@@ -163,10 +164,10 @@
               <div class="col-6" style="padding:20px;">
                 <br>
                 <div  class="icon-boxes d-flex flex-column align-items-stretch justify-content-center ">
-                  <h3>Top4 ปัญหาเกี่ยวกับการใช้รถใช้ถนนที่ทุกคนมักเจอ</h3>
-                  <p>เชื่อว่า ใครๆที่เดินทางไปไหนมาไหนบ่อยๆ และสันจรโดยรถ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน มั่นใจมากว่า คุณต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
+                  <h3 class="wow fadeInDown">Top4 ปัญหาเกี่ยวกับการใช้รถใช้ถนนที่ทุกคนมักเจอ</h3>
+                  <p class="wow fadeInDown">เชื่อว่า ใครๆที่เดินทางไปไหนมาไหนบ่อยๆ และสันจรโดยรถ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน มั่นใจมากว่า คุณต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
 
-                  <div class="icon-box">
+                  <div class="icon-box fadeInLeft wow">
                     <div class="icon"><i class="fas fa-house-damage"></i></div>
                     <h4 class="title"><a href="">รถจอดขวางหน้าบ้าน</a></h4>
                     <p class="description">ใครที่อาศัยอยู่ในเขตชุมชน เช่น ตลาด ย่านการค้า หรือบ้านที่รั้วบ้านติดๆกันและมีบ้านทั้งสองฝั่ง
@@ -176,19 +177,19 @@
                     </p>
                   </div>
 
-                  <div class="icon-box">
+                  <div class="icon-box fadeInLeft wow">
                     <div class="icon"><i class="fas fa-road"></i></div>
                     <h4 class="title"><a href="">ถนนแคบ วิ่งได้แค่สองเลน แต่คนก็ยังจอดรถขวางเลน</a></h4>
                     <p class="description">ปัญหาที่พบได้บ่อยในย่านชุมชนเล็กๆที่ถนนเป็นแค่ 2 เลน รถวิ่งสวนทางกัน หลายคนมักจอดรถขวางเลนเพื่อลงไปซื้อของริมทาง  รถคันอื่นๆต้องคอยหักหลบ จนทำให้การจราจรติดขัด</p>
                   </div>
 
-                  <div class="icon-box">
+                  <div class="icon-box fadeInLeft wow">
                     <div class="icon"><i class="fas fa-ban"></i></div>
                     <h4 class="title"><a href="">จอดรถซ้อนคันแต่ลืมปลดเกียร์ว่างและเอาเบรกมือลง</a></h4>
                     <p class="description">เคยไหม? เวลาไปห้าง ซื้อของเสร็จและอยากลับกลับบ้าน แต่มีรถมาจอดซ้อนคัน คุณจะเข็นก็เข็นไม่ได้เพราะใส่เกียร์ P กับเบรคมือเอาไว้ ห้างก็ตั้งใหญ่ ลูกค้ามีเยอะมาก แต่คุณไม่รู้จะไปตามหาเจ้าของรถได้ที่ไหน ถึงแม้ว่าจะประกาศประชาสัมพันธ์ แต่ก็ไม่สามารถตามตัวเจ้าของรถได้สำเร็จ  เพราะบางครั้งเจ้าของรถก็แค่มาจอดรถทิ้งไว้แล้วไปทำธุระที่อื่น บางคนหายไปเป็นชั่วโมง ซึ่งเสียเวลา</p>
                   </div>
 
-                  <div class="icon-box">
+                  <div class="icon-box fadeInLeft wow">
                     <div class="icon"><i class="fas fa-car-crash"></i></div>
                     <h4 class="title"><a href="">รถโดนกรีด ขูด หรือเสียหาย</a></h4>
                     <p class="description">มักเกิดขึ้นในที่จอดรถที่มีรถจำนวนมาก หรือที่จอดรถที่จอดซ้อนคันได้ เมื่อคุณกลับมาที่รถอีกที รถของคุณก็มีรอยซะแล้ว ถ้าบริเวณนั้นไม่มีกล้องวงจรปิด คุณก็ไม่รู้จะไปตามตัวคนที่เป็นสาเหตุความเสียหายของรถคุณได้จากที่ไหน หรือบางครั้ง คุณอยากเป็นพลเมืองดี ต้องการแจ้งอุบัติเหตุที่เกิดกับรถของคนอื่น แต่ก็ไม่รู้จะไปติดต่อเจ้าของรถให้มารับรู้เรื่องยังไงดี</p>
@@ -204,7 +205,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
+    <section id="counts" class="counts wow fadeInRight">
       <div class="container">
 
         <div class="section-title">
@@ -1209,6 +1210,5 @@ function check_email() {
 
 
 </script>
-
 
 @endsection

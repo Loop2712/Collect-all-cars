@@ -63,14 +63,21 @@
 
 <!-- songkran -->
 @if( $month_now == "4" and $day_now >= "1" and $day_now <= 16)
-<div class="container">
-  <div class="bg-image p-2 text-center shadow-1-strong rounded mb-5 text-white" 
-       style="background-image: url('{{ asset('/img/festival/bg-songkran2.jpg') }}'); ">
+<div class="container " style="margin-bottom:25px;">
+  <div class="card img-fluid" style="width:100%">
+    <img class="card-img-top" src="{{ asset('/img/festival/bg-songkran3.jfif') }}" alt="Card image" style="width:100%">
+	<div class="col-md-4">
+    </div>
+	<div class="card-img-overlay text-center" style="padding-top:0px;">
+		<img width="60%"class="animated fadeInRight" src="{{ asset('/img/stickerline/PNG/29.png') }}">
 		
-	<img width="70%" src="{{ asset('/img/stickerline/PNG/29.png') }}">
-	<h1 class="mb-3 h2" style="margin-bottom:0px;color:black;font-family: 'Pattaya', sans-serif;-webkit-text-stroke: 0.5px black;font-size:35px;">สวัสดีปีใหม่ไทย</h1>
+		<h1 class="mb-3 h2" style="margin-top:10px;margin-bottom:0px;color:black;font-family: 'Pattaya', sans-serif;-webkit-text-stroke: 0.5px black;font-size:30px;">สวัสดีปีใหม่ไทย</h1>
+	</div>
+	<img style="position:absolute;width: 100%; top: 0px;" src="{{ url('/') }}/img/festival/flower2.gif">
   </div>
-	<img style="position:absolute;width: 80%; top: 0px;" src="{{ url('/') }}/img/festival/flower2.gif">
-
 </div>
 @endif
+
+<script>
+	$(".animated").addClass("delay-1s");
+</script>
