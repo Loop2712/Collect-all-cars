@@ -197,6 +197,26 @@ class PartnersController extends Controller
         return $color_navbar ;
     }
 
+    public function change_color_menu($color_menu , $partner , $class_color_menu)
+    {
+        $color_menu = str_replace("_","#",$color_menu);
+        if ($color_menu == "#null") {
+            $color_menu = null ;
+        }
+
+        $partner = str_replace("_"," ",$partner);
+
+        DB::table('partners')
+              ->where('name', $partner)
+              ->where("name_area", null)
+              ->update([
+                'color' => $color_menu,
+                'class_color_menu' => $class_color_menu,
+        ]);
+
+        return $color_menu ;
+    }
+
     public function area_other($id_user , $name_area)
     {
         $data_user = DB::table('users')

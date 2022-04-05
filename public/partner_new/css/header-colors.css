@@ -262,7 +262,7 @@ html.color-sidebar .sidebar-wrapper {
 .switcher-wrapper .sidebarcolor8 {
 	background-image: url(../images/bg-themes/8.png);
 }
-.switcher-wrapper .sidebarcolor_other {
+.switcher-wrapper .color_item_Ex_menu {
 	/*background-image: url(../images/bg-themes/8.png);*/
 	background-color: {{ $data_partner->color }};
 }

@@ -113,6 +113,7 @@ Route::get('/approve_area/{input_new_area}/{id}', 'API\PartnersController@approv
 Route::get('/disapproved_area/{id}/{answer_reason}/{reason_other}', 'API\PartnersController@disapproved_area');
 
 Route::get('/change_color_navbar/{color_navbar}/{name_partner}', 'API\PartnersController@change_color_navbar');
+Route::get('/change_color_menu/{color_navbar}/{name_partner}/{class_color_menu}', 'API\PartnersController@change_color_menu');
 
 Route::get('/sos_map/all_area','API\SosmapController@all_area');
 Route::get('/submit_score/{sos_map_id}/{score_1}/{score_2}/{total_score}/{comment_help}', 'API\SosmapController@submit_score');

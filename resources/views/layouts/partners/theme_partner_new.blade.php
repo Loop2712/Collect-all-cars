@@ -1,7 +1,7 @@
 
 <!doctype html>
 @foreach($data_partners as $data_partner)
-<html lang="en" class="{{ $data_partner->class_color_menu }}">
+<html lang="en" id="html_class" class="{{ $data_partner->class_color_menu }}">
 
 
 <head>
@@ -73,8 +73,8 @@
 	@foreach($data_partners as $data_partner)
 	<div class="wrapper">
 		<!--sidebar wrapper -->
-		<div class="sidebar-wrapper menu-background" data-simplebar="true">
-			<div class="sidebar-header menu-background">
+		<div id="switcher-wrapper_menu" class="sidebar-wrapper menu-background" data-simplebar="true">
+			<div id="header-wrapper_menu" class="sidebar-header menu-background">
                     <div>
                         @if(!empty($data_partner->logo))
                             <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%">
@@ -140,23 +140,27 @@
 						</div>
 					</a>
 				</li>
-                <li>
-					<a href="{{ url('/add_area') }}">
-						<div class="parent-icon"><i class='far fa-map'></i>
-						</div>
-						<div class="menu-title">พื้นที่บริการ</div>
-					</a>
-				</li>
-                <li class="menu-label" style="font-size:15px;">
-                    ผู้ใช้
-                </li>
-                <li>
-					<a href="{{ url('/manage_user_partner') }}">
-						<div class="parent-icon"><i class='fas fa-users-cog'></i>
-						</div>
-						<div class="menu-title">จัดการผู้ใช้</div>
-					</a>
-				</li>
+				@if(Auth::check())
+                    @if(Auth::user()->role == "admin-partner")
+		                <li>
+							<a href="{{ url('/add_area') }}">
+								<div class="parent-icon"><i class='far fa-map'></i>
+								</div>
+								<div class="menu-title">พื้นที่บริการ</div>
+							</a>
+						</li>
+		                <li class="menu-label" style="font-size:15px;">
+		                    ผู้ใช้
+		                </li>
+		                <li>
+							<a href="{{ url('/manage_user_partner') }}">
+								<div class="parent-icon"><i class='fas fa-users-cog'></i>
+								</div>
+								<div class="menu-title">จัดการผู้ใช้</div>
+							</a>
+						</li>
+					@endif
+				@endif
                 <li class="menu-label" style="font-size:15px;">
                     การใช้งาน
                 </li>
@@ -180,6 +184,7 @@
 		<!--end sidebar wrapper -->
 
 		<input id="color_of_partner" type="text" class="d-none" name="" value="{{ $data_partner->name }}">
+		<input id="class_color_menu" type="text" class="d-none" name="" value="{{ $data_partner->class_color_menu }}">
 
 		<!--start header -->
 		<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
@@ -284,8 +289,13 @@
 	<!--end wrapper-->
 	<!--start switcher-->
 	<div class="switcher-wrapper">
-		<div class="switcher-btn" onclick="change_color();"> <i class='bx bx-cog bx-spin'></i>
-		</div>
+		@if(Auth::check())
+            @if(Auth::user()->role == "admin-partner")
+				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style="background: {{ $data_partner->color_navbar  }} ;"> 
+					<i class='bx bx-cog bx-spin'></i>
+				</div>
+			@endif
+		@endif
 		<div class="switcher-body">
 			<div class="d-flex align-items-center">
 				<h5 class="mb-0 text-uppercase">Theme Customizer</h5>
@@ -341,29 +351,39 @@
 			<div class="header-colors-indigators">
 				<div class="row row-cols-auto g-3">
 					<div class="col">
-						<div class="indigator sidebarcolor1" id="sidebarcolor1"></div>
+						<div class="indigator sidebarcolor1" id="sidebarcolor1" onclick="add_input_color_menu('1')"></div>
 					</div>
 					<div class="col">
-						<div class="indigator sidebarcolor2" id="sidebarcolor2"></div>
+						<div class="indigator sidebarcolor2" id="sidebarcolor2" onclick="add_input_color_menu('2')"></div>
 					</div>
 					<div class="col">
-						<div class="indigator sidebarcolor3" id="sidebarcolor3"></div>
+						<div class="indigator sidebarcolor3" id="sidebarcolor3" onclick="add_input_color_menu('3')"></div>
 					</div>
 					<div class="col">
-						<div class="indigator sidebarcolor4" id="sidebarcolor4"></div>
+						<div class="indigator sidebarcolor4" id="sidebarcolor4" onclick="add_input_color_menu('4')"></div>
 					</div>
 					<div class="col">
-						<div class="indigator sidebarcolor5" id="sidebarcolor5"></div>
+						<div class="indigator sidebarcolor5" id="sidebarcolor5" onclick="add_input_color_menu('5')"></div>
 					</div>
 					<div class="col">
-						<div class="indigator sidebarcolor6" id="sidebarcolor6"></div>
+						<div class="indigator sidebarcolor6" id="sidebarcolor6" onclick="add_input_color_menu('6')"></div>
 					</div>
 					<div class="col">
-						<div class="indigator sidebarcolor7" id="sidebarcolor7"></div>
+						<div class="indigator sidebarcolor7" id="sidebarcolor7" onclick="add_input_color_menu('7')"></div>
 					</div>
 					<div class="col">
-						<div class="indigator sidebarcolor8" id="sidebarcolor8"></div>
+						<div class="indigator sidebarcolor8" id="sidebarcolor8" onclick="add_input_color_menu('8')"></div>
 					</div>
+					<!-- <div class="col">
+						<div class="row">
+							<div class="col-5">
+								<div style="float: right;background-color:{{ $data_partner->color }} ;" class="indigator color_item_Ex_menu" id="color_item_Ex_menu" onclick="add_input_color_menu('{{ $data_partner->color }}')"></div>
+							</div>
+							<div class="col-7">
+								<input style="margin-top:5px;" type="text" class="form-control" id="code_color_menu" name="code_color" placeholder="color code"  oninput="add_color_item_Ex_menu('8');">
+							</div>
+						</div>
+					</div> -->
 				</div>
 			</div>
 			<hr/>
@@ -466,6 +486,17 @@
 	    setInterval(function() {
 	       	check_sos_alarm();
 	    }, 5000);
+
+		let delayInMilliseconds = 200; //0.5 second
+
+        setTimeout(function() {
+       //  	if ({{ $data_partner->class_color_menu }} === "other") {
+	    		// document.querySelector('#color_item_Ex_menu').click();
+       //  	}
+        	if ({{ $data_partner->class_color_menu }} !== "other"){
+	    		document.querySelector('#sidebarcolor' + {{ $data_partner->class_color_menu }} ).click();
+        	}
+        }, delayInMilliseconds);
         
     });
 
@@ -549,6 +580,22 @@
             let click_color_item_Ex = document.createAttribute("onclick");
                 click_color_item_Ex.value = "add_input_color('" + code_color + "')";
                  color_item_Ex.setAttributeNode(click_color_item_Ex); 
+    }
+
+    function add_color_item_Ex_menu()
+    {
+    	let code_color_menu = document.querySelector('#code_color_menu').value ;
+
+    	let color_item_Ex_menu = document.querySelector('#color_item_Ex_menu');
+    		color_item_Ex_menu.style = "";
+    		color_item_Ex_menu.onclick = "";
+
+            let color_item_Ex_style_menu = document.createAttribute("style");
+                color_item_Ex_style_menu.value = "background-color:" + code_color_menu + " ;";
+                color_item_Ex_menu.setAttributeNode(color_item_Ex_style_menu); 
+            let click_color_item_Ex_menu = document.createAttribute("onclick");
+                click_color_item_Ex_menu.value = "add_input_color_menu('" + code_color_menu + "')";
+                 color_item_Ex_menu.setAttributeNode(click_color_item_Ex_menu); 
     }
 
     function random_color()
@@ -655,12 +702,98 @@
     		div_color_navbar.style = "";
     		div_color_navbar.style = "background-color:" + color + " ;";
 
+    	let div_switcher = document.querySelector('#div_switcher');
+    		div_switcher.style = "";
+    		div_switcher.style = "background-color:" + color + " ;";
+
+    		div_switcher
+
             color = color.replace("#","_");
 
     	let color_of_partner = document.querySelector('#color_of_partner');
             color_of_partner = color_of_partner.value.replaceAll(" ","_");
 
         fetch("{{ url('/') }}/api/change_color_navbar/"+ color + "/" + color_of_partner);
+    }
+
+    function add_input_color_menu(color)
+    {
+    	var header_wrapper_menu = document.querySelector('#header-wrapper_menu');
+
+    	switch (color) {
+			case "1":
+			    color = "#null" ;
+			    class_color_menu = "1"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			case "2":
+			    color = "#null" ;
+			    class_color_menu = "2"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			case "3":
+			    color = "#null" ;
+			    class_color_menu = "3"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			case "4":
+			    color = "#null" ;
+			    class_color_menu = "4"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			case "5":
+			    color = "#null" ;
+			    class_color_menu = "5"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			case "6":
+			    color = "#null" ;
+			    class_color_menu = "6"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			case "7":
+			    color = "#null" ;
+			    class_color_menu = "7"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			case "8":
+			    color = "#null" ;
+			    class_color_menu = "8"
+			    	header_wrapper_menu.style = "" ;
+			break;
+			default:
+			    color = color ;
+			    class_color_menu = "other"
+
+			    let html_class = document.querySelector('#html_class');
+
+		    	let html_class_class_1 = document.createAttribute("class");
+            		html_class_class_1.value = "";
+            		html_class.setAttributeNode(html_class_class_1);
+
+            	let html_class_class_2 = document.createAttribute("class");
+            		html_class_class_2.value = "";
+            		html_class.setAttributeNode(html_class_class_2); 
+
+			    let switcher_wrapper_menu = document.querySelector('#switcher-wrapper_menu');
+			    	switcher_wrapper_menu.style = "" ;
+			    	switcher_wrapper_menu.style = "background-color: " + color + ";" ;
+
+			    	header_wrapper_menu.style = "" ;
+			    	header_wrapper_menu.style = "background-color: " + color + ";" ;
+
+			    	
+		}
+
+    	// console.log(color);
+    	// console.log(class_color_menu);
+
+        color = color.replace("#","_");
+
+    	let color_of_partner = document.querySelector('#color_of_partner');
+            color_of_partner = color_of_partner.value.replaceAll(" ","_");
+
+        fetch("{{ url('/') }}/api/change_color_menu/"+ color + "/" + color_of_partner + "/" + class_color_menu);
     }
 
 
