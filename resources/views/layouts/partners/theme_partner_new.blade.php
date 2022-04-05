@@ -290,7 +290,7 @@
 	<!--start switcher-->
 	<div class="switcher-wrapper">
 		@if(Auth::check())
-            @if(Auth::user()->id == 1)
+            @if(Auth::user()->role == "admin-partner")
 				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style="background: {{ $data_partner->color_navbar  }} ;"> 
 					<i class='bx bx-cog bx-spin'></i>
 				</div>
