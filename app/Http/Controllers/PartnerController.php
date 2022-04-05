@@ -99,6 +99,8 @@ class PartnerController extends Controller
 
         $requestData['phone'] = str_replace("-", "", $requestData['phone']);
         $requestData['phone'] = str_replace(" ", "", $requestData['phone']);
+
+        $requestData['class_color_menu'] = "other";
         
         Partner::create($requestData);
 
