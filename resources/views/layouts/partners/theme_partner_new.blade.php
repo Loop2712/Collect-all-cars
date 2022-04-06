@@ -355,7 +355,7 @@
 			</div>
 			<hr/>
 			<hr/>
-			<h6 class="mb-0">
+			<h6 type="button" class="mb-0" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 				<i class="fab fa-line text-success" style="font-size: 25px;"></i> ตั้งค่ากลุ่มไลน์
 				<a type="button" style="float:right;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fas fa-sort-down"></i>
@@ -363,18 +363,69 @@
 			</h6>
             <div class="collapse" id="collapseExample">
             	<br>
-                <ul class="list-group">
-				  	<li class="list-group-item">Cras justo odio</li>
-				  	<li class="list-group-item">Dapibus ac facilisis in</li>
-				  	<li class="list-group-item">Morbi leo risus</li>
-				  	<li class="list-group-item">Porta ac consectetur ac</li>
-				  	<li class="list-group-item">Vestibulum at eros</li>
+                <ul id="ul_group_line" class="list-group">
+                	
 				</ul>
             </div>
 			<hr/>
 		</div>
 	</div>
 	<!--end switcher-->
+
+	<!-- modal set_group_line -->
+
+	<button id="btn_modal_set_group_line" class="d-none" data-toggle="modal" data-target="#set_group_line">
+	</button>
+
+	<div class="modal fade" id="set_group_line" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">ตั้งค่ากลุ่มไลน์</h5>
+	        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="col-12">
+	            <div class="row">
+	                <div class="col-12">
+	                    <h3>ชื่อกลุ่มไลน์ : 
+	                        <b class="text-info">
+	                            <span id="span_name_line">line_group</span>
+	                        </b>
+	                    </h3>
+	                    <hr>
+	                </div>
+	                <div class="col-6">
+	                    <label class="control-label">ภาษา  (เดิม language)</label>
+	                    <select class="form-control" name="input_language" id="input_language" required>
+	                        <option value="language" selected>- เลือกภาษา -</option>
+	                        <option value="th" >ไทย (th)</option>
+	                        <option value="en" >English (en)</option>
+	                        <option value="zh-TW" >中國人 (zh-TW)</option>
+	                        <option value="ja" >日本 (ja)</option>
+	                        <option value="ko" >한국인 (ko)</option>
+	                        <option value="es" >Español (es)</option>
+	                    </select>
+	                </div>
+	                <div class="col-6">
+	                    <label class="control-label">Time zone (เดิม time_zone)</label>
+	                    <select class="form-control" name="input_time_zone" id="input_time_zone" required>
+	                        <option value="time_zone" selected>- เลือก Time zone -</option>
+	                        
+	                    </select>
+	                </div>
+	            </div>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-info text-white" data-dismiss="modal" onclick="set_group_line();">ตั้งค่า</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- end modal set_group_line -->
 
     <!-- Button trigger modal -->
 	<button id="btn_modal_notify" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_notify">
@@ -423,7 +474,7 @@
 	  </div>
 	</div>
 
-	<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
     <div class="modal-content">
       <div class="modal-body text-center" style="padding:0px;">
@@ -434,7 +485,6 @@
 </div>
 
 <input type="text" class="d-none" name="user_organization" id="user_organization" value="{{ Auth::user()->organization }}">
-
 <input id="color_of_partner" type="text" class="d-none" name="" value="">
 <input id="class_color_menu" type="text" class="d-none" name="" value="">
 <input id="check_name_partner" type="hidden" name="" value="">
@@ -503,6 +553,31 @@
                 document.querySelector('#div_switcher').style = "background: " + result[0]['color_navbar'] + ";" ;
 
 		});
+
+        fetch("{{ url('/') }}/api/all_group_line/" + user_organization)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let ul_group_line = document.querySelector('#ul_group_line') ;
+
+                for(let item of result){
+                    let tag_li = document.createElement("li");
+                    let class_tag_li = document.createAttribute("class");
+                    	class_tag_li.value = "list-group-item";
+                    	tag_li.setAttributeNode(class_tag_li);
+
+                    // let onclick_tag_li = document.createAttribute("onclick");
+                    // 	onclick_tag_li.value = "set_group_line('"+ item.group_line_id + "')";
+                    // 	tag_li.setAttributeNode(onclick_tag_li);
+
+                    tag_li.innerHTML = 
+                    	"<b>" + item.line_group + "</b>" +
+                    	"<br><span class='btn' onclick='set_group_line(" + item.group_line_id + ")' style='float:right;font-style: italic;color: red;font-size: 14px;''>แก้ไข</span> "
+                    ;
+                    ul_group_line.appendChild(tag_li);
+                }
+        });
     }
 
     function check_sos_alarm()
@@ -801,22 +876,15 @@
     }
 
 
-    function set_group_line()
+    function set_group_line(group_line_id)
     {
-        let input_language = document.querySelector('#input_language').value;
-        let input_time_zone = document.querySelector('#input_time_zone').value;
-            input_time_zone = input_time_zone.replace("/","_");
-        let input_id_partner = document.querySelector('#input_id_partner').value;
+        document.querySelector('#btn_modal_set_group_line').click();
 
-        let span_name_line = document.querySelector('#span_name_line').innerText;
+        // let delay = 800; 
 
-        fetch("{{ url('/') }}/api/set_group_line/"+ input_id_partner + "/" + input_language + "/" + input_time_zone);
-
-        let delay = 800; 
-
-        setTimeout(function() {
-            alert("ตั้งค่ากลุ่มไลน์ "+ span_name_line + " เรียบร้อยแล้ว");
-        }, delay);
+        // setTimeout(function() {
+        //     alert("ตั้งค่ากลุ่มไลน์ "+ span_name_line + " เรียบร้อยแล้ว");
+        // }, delay);
     }
 </script>
 </body>

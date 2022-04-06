@@ -25,6 +25,15 @@ class PartnersController extends Controller
         return $data_partners;
     }
 
+    public function all_group_line($user_organization)
+    {
+        $data_partners_groupline = Partner::where("name", $user_organization)
+            ->where("name_area", "!=" ,null)
+            ->get();
+
+        return $data_partners_groupline;
+    }
+
     public function check_user($id_user)
     {
         $check_user = DB::select("SELECT * FROM users WHERE id = '$id_user' AND email = 'กรุณาเพิ่มอีเมล' AND role != 'null'");

@@ -62,6 +62,7 @@ Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersContro
 Route::get('/check_username/{put_username}/{id_user}','API\PartnersController@check_username');
 Route::get('/check_email/{put_email}','API\PartnersController@check_email');
 Route::get('/check_data_partner/{user_organization}','API\PartnersController@check_data_partner');
+Route::get('/all_group_line/{user_organization}','API\PartnersController@all_group_line');
 
 Route::get('/explode_name/{name_user}', 'ProfileController@explode_name');
 
