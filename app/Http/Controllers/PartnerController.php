@@ -297,29 +297,7 @@ class PartnerController extends Controller
     {
         $media_menu = $request->get('menu');
 
-        $data_user = Auth::user();
-
-        $data_partners = Partner::where("name", $data_user->organization)
-            ->where("name_area", null)
-            ->get();
-
-        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
-
-        return view('partner.partner_media', compact('data_partners','data_time_zone' ,'media_menu'));
-    }
-    
-
-    public function partner_theme()
-    {
-        $data_user = Auth::user();
-
-        $data_partners = Partner::where("name", $data_user->organization)
-            ->where("name_area", null)
-            ->get();
-
-        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
-
-        return view('partner.partner_index', compact('data_partners','data_time_zone'));
+        return view('partner.partner_media', compact('media_menu'));
     }
 
     public function partner_index()
@@ -327,12 +305,10 @@ class PartnerController extends Controller
         $data_user = Auth::user();
 
         $data_partners = Partner::where("name", $data_user->organization)
-                    ->where("name_area", null)
-                    ->get();
+            ->where("name_area", null)
+            ->get();
 
-        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
-
-        return view('partner.partner_index', compact('data_partners','data_time_zone'));
+        return view('partner.partner_index', compact('data_partners'));
     }
 
     public function register_cars(Request $request)
@@ -683,10 +659,6 @@ class PartnerController extends Controller
 
         $data_user = Auth::user();
 
-        $data_partners = Partner::where("name", $data_user->organization)
-                    ->where("name_area", null)
-                    ->get();
-
         $check_in_at = $data_user->organization;
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
@@ -754,7 +726,7 @@ class PartnerController extends Controller
             $check_in = Check_in::where('check_in_at', $data_user->organization)->latest()->paginate($perPage);
         }
 
-        return view('check_in.index', compact('data_partners','data_time_zone','check_in','check_in_at'));
+        return view('check_in.index', compact('data_time_zone','check_in','check_in_at'));
     }
 
     public function sos_detail_chart(Request $request)

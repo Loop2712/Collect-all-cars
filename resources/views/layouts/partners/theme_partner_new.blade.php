@@ -1,7 +1,6 @@
 
 <!doctype html>
-@foreach($data_partners as $data_partner)
-<html lang="en" id="html_class" class="{{ $data_partner->class_color_menu }}">
+<html lang="en" id="html_class">
 
 
 <head>
@@ -65,25 +64,18 @@
 
 	</style>
 </head>
-@endforeach
 
 <body>
 	<!--wrapper-->
 	<!--wrapper-->
-	@foreach($data_partners as $data_partner)
 	<div class="wrapper">
 		<!--sidebar wrapper -->
 		<div id="switcher-wrapper_menu" class="sidebar-wrapper menu-background" data-simplebar="true">
 			<div id="header-wrapper_menu" class="sidebar-header menu-background">
                     <div>
-                        @if(!empty($data_partner->logo))
-                            <img src="{{ asset('/img/logo/GreenLogo.png') }}" class="navbar-brand-img" width="60%">
-                        @endif
-                    </div>
-                    <div>
                         <a href="{{ url('/partner_index') }}" >
-                            <h4 class="logo-text" style="font-family: 'Baloo Bhaijaan 2', cursive;
-                            font-family: 'Prompt', sans-serif;">{{ $data_partner->name }}</h4>
+                            <h4 id="h4_name_partner" class="logo-text" style="font-family: 'Baloo Bhaijaan 2', cursive;
+                            font-family: 'Prompt', sans-serif;"></h4>
                         </a>
                     </div>
                 <div class="toggle-icon ms-auto">
@@ -183,12 +175,9 @@
 		</div>
 		<!--end sidebar wrapper -->
 
-		<input id="color_of_partner" type="text" class="d-none" name="" value="{{ $data_partner->name }}">
-		<input id="class_color_menu" type="text" class="d-none" name="" value="{{ $data_partner->class_color_menu }}">
-
 		<!--start header -->
 		<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-			<div id="div_color_navbar" class="topbar d-flex align-items-center header_nav-background" style="background: {{ $data_partner->color_navbar  }} ;">
+			<div id="div_color_navbar" class="topbar d-flex align-items-center header_nav-background" style="">
 				<nav class="navbar navbar-expand ">
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
 					</div>
@@ -244,17 +233,6 @@
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							@if(Auth::user()->id == "0")
-	                            <li><a href="" class="dropdown-item"><i class="lni lni-line"></i><span>ตั้งค่ากลุ่มไลน์</span></a>
-								</li>
-								<li><a href="" class="dropdown-item" data-toggle="modal" data-target="#modal_change_color" onclick="random_color();"><i class="bx bx-paint"></i><span>เปลี่ยนสี Template</span></a>
-								</li>
-	                            <li><a href="" class="dropdown-item"><i class="bx bx-edit-alt"></i><span>เปลี่ยนโลโก้ Template(soon)</span></a>
-								</li>
-								<li>
-									<div class="dropdown-divider mb-0"></div>
-								</li>
-							@endif
 							<li>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -285,25 +263,24 @@
 			<!-- <p class="mb-0">Copyright © 2021. All right reserved.</p> -->
 		</footer>
 	</div>
-	@endforeach
 	<!--end wrapper-->
 	<!--start switcher-->
 	<div class="switcher-wrapper">
 		@if(Auth::check())
             @if(Auth::user()->role == "admin-partner")
-				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style="background: {{ $data_partner->color_navbar  }} ;"> 
+				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style=""> 
 					<i class='bx bx-cog bx-spin'></i>
 				</div>
 			@endif
 		@endif
 		<div class="switcher-body">
 			<div class="d-flex align-items-center">
-				<h5 class="mb-0 text-uppercase">Theme Customizer</h5>
+				<h5 class="mb-0 text-uppercase">เครื่องมือปรับแต่งธีม</h5>
 				<button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
 			</div>
 			<hr/>
 			<h6 class="mb-0">
-				Header Colors
+				พื้นหลังส่วนหัว
 				<i class="fas fa-sync-alt btn" style="float: right;" onclick="random_color();"></i>
 			</h6>
 			<hr/>
@@ -346,7 +323,7 @@
 				</div>
 			</div>
 			<hr/>
-			<h6 class="mb-0">Sidebar Backgrounds</h6>
+			<h6 class="mb-0">พื้นหลังแถบเมนู</h6>
 			<hr/>
 			<div class="header-colors-indigators">
 				<div class="row row-cols-auto g-3">
@@ -374,27 +351,30 @@
 					<div class="col">
 						<div class="indigator sidebarcolor8" id="sidebarcolor8" onclick="add_input_color_menu('8')"></div>
 					</div>
-					<!-- <div class="col">
-						<div class="row">
-							<div class="col-5">
-								<div style="float: right;background-color:{{ $data_partner->color }} ;" class="indigator color_item_Ex_menu" id="color_item_Ex_menu" onclick="add_input_color_menu('{{ $data_partner->color }}')"></div>
-							</div>
-							<div class="col-7">
-								<input style="margin-top:5px;" type="text" class="form-control" id="code_color_menu" name="code_color" placeholder="color code"  oninput="add_color_item_Ex_menu('8');">
-							</div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 			<hr/>
 			<hr/>
-			<h6 class="mb-0"><i class="fab fa-line text-success" style="font-size: 20px;"></i> Set up a line group</h6>
+			<h6 class="mb-0">
+				<i class="fab fa-line text-success" style="font-size: 25px;"></i> ตั้งค่ากลุ่มไลน์
+				<a type="button" style="float:right;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fas fa-sort-down"></i>
+            </a>
+			</h6>
+            <div class="collapse" id="collapseExample">
+            	<br>
+                <ul class="list-group">
+				  	<li class="list-group-item">Cras justo odio</li>
+				  	<li class="list-group-item">Dapibus ac facilisis in</li>
+				  	<li class="list-group-item">Morbi leo risus</li>
+				  	<li class="list-group-item">Porta ac consectetur ac</li>
+				  	<li class="list-group-item">Vestibulum at eros</li>
+				</ul>
+            </div>
 			<hr/>
 		</div>
 	</div>
 	<!--end switcher-->
-
-    <input id="check_name_partner" type="hidden" name="" value="{{ $data_partner->name }}">
 
     <!-- Button trigger modal -->
 	<button id="btn_modal_notify" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_notify">
@@ -453,52 +433,77 @@
   </div>
 </div>
 
-	<!-- Bootstrap JS -->
-	<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
-	<!--plugins-->
-	<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/simplebar/js/simplebar.min.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/metismenu/js/metisMenu.min.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/highcharts/js/highcharts.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/highcharts/js/exporting.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/highcharts/js/variable-pie.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/highcharts/js/export-data.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/highcharts/js/accessibility.js') }}"></script>
-	<script src="{{ asset('partner_new/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script>
-		new PerfectScrollbar('.dashboard-top-countries');
-	</script>
-	<script src="{{ asset('partner_new/js/index.js') }}"></script>
-	<!--app JS-->
-	<script src="{{ asset('partner_new/js/app.js') }}"></script>
-    <script>
+<input type="text" class="d-none" name="user_organization" id="user_organization" value="{{ Auth::user()->organization }}">
+
+<input id="color_of_partner" type="text" class="d-none" name="" value="">
+<input id="class_color_menu" type="text" class="d-none" name="" value="">
+<input id="check_name_partner" type="hidden" name="" value="">
+
+
+<!-- Bootstrap JS -->
+<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
+<!--plugins-->
+<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/simplebar/js/simplebar.min.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/highcharts/js/highcharts.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/highcharts/js/exporting.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/highcharts/js/variable-pie.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/highcharts/js/export-data.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/highcharts/js/accessibility.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script>
+	new PerfectScrollbar('.dashboard-top-countries');
+</script>
+<script src="{{ asset('partner_new/js/index.js') }}"></script>
+<!--app JS-->
+<script src="{{ asset('partner_new/js/app.js') }}"></script>
+<script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+		check_data_partner();
 		check_sos_alarm();
 
 	    setInterval(function() {
 	       	check_sos_alarm();
 	    }, 5000);
-
-		let delayInMilliseconds = 200; //0.5 second
-
-        setTimeout(function() {
-       //  	if ({{ $data_partner->class_color_menu }} === "other") {
-	    		// document.querySelector('#color_item_Ex_menu').click();
-       //  	}
-        	if ({{ $data_partner->class_color_menu }} !== "other"){
-	    		document.querySelector('#sidebarcolor' + {{ $data_partner->class_color_menu }} ).click();
-        	}
-        }, delayInMilliseconds);
         
     });
+
+    function check_data_partner()
+    {
+    	let user_organization = document.querySelector('#user_organization').value ;
+    	// console.log(user_organization);
+
+    	fetch("{{ url('/') }}/api/check_data_partner/" + user_organization)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                // console.log(result[0]['class_color_menu']);
+                let delayInMilliseconds = 200; 
+
+		        setTimeout(function() {
+		        	if (result[0]['class_color_menu'] !== "other"){
+			    		document.querySelector('#sidebarcolor' + result[0]['class_color_menu'] ).click();
+		        	}
+		        }, delayInMilliseconds);
+                
+                document.querySelector('#h4_name_partner').innerHTML = result[0]['name'];
+                document.querySelector('#color_of_partner').value = result[0]['name'];
+                document.querySelector('#check_name_partner').value = result[0]['name'];
+                document.querySelector('#class_color_menu').value = result[0]['class_color_menu'];
+                document.querySelector('#div_color_navbar').style = "background: " + result[0]['color_navbar'] + ";" ;
+                document.querySelector('#div_switcher').style = "background: " + result[0]['color_navbar'] + ";" ;
+
+		});
+    }
 
     function check_sos_alarm()
     {
@@ -566,7 +571,6 @@
             random_color();
         }, delayInMilliseconds);
 
-        
     }
 
     function add_color_item_Ex()

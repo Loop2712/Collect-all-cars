@@ -142,7 +142,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:admin-partner,partner'])->group(function () {
 	
 	// Route::get('/partner_theme', 'PartnerController@partner_theme');
-	Route::get('/partner_index', 'PartnerController@partner_theme');
+	Route::get('/partner_index', 'PartnerController@partner_index');
 	Route::get('/how_to_use_partner', function () {
 		return view('partner/partner_how_to_use');
 	});

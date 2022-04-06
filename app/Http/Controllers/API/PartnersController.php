@@ -12,9 +12,19 @@ use App\Models\LineMessagingAPI;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Mylog;
 use App\Models\Check_in;
+use App\Models\Partner;
 
 class PartnersController extends Controller
 {
+    public function check_data_partner($user_organization)
+    {
+        $data_partners = Partner::where("name", $user_organization)
+            ->where("name_area", null)
+            ->get();
+
+        return $data_partners;
+    }
+
     public function check_user($id_user)
     {
         $check_user = DB::select("SELECT * FROM users WHERE id = '$id_user' AND email = 'กรุณาเพิ่มอีเมล' AND role != 'null'");
