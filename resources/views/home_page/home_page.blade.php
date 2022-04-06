@@ -67,10 +67,10 @@
     <section id="hero" class="d-flex align-items-center ">
     <div class="container">
     <div class="row">
-    <div class="col-sm-6 wow animated fadeInLeft">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
-    <div class="col-sm-6  wow animated fadeInRight" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
-      <h2 class="wow animated fadeInRight" style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-      <a  style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class="animated fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+    <div class="col-sm-6 wow  fadeInLeft">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
+    <div class="col-sm-6  wow  fadeInRight" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+      <h2 class="wow  fadeInRight" style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
+      <a  style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class=" fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
     </div>
 
   </section>
@@ -87,7 +87,7 @@
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
 
-                <div class="icon-box d-flex wow animated fadeInDown"  style="padding: 33px; margin: 10px;">
+                <div class="icon-box d-flex wow  fadeInDown"  style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-car-crash"></i>
@@ -103,7 +103,7 @@
                   </div>
                 </div>
 
-                <div class="icon-box d-flex wow animated fadeInDown" style="padding: 33px; margin: 10px;">
+                <div class="icon-box d-flex wow  fadeInDown" style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-id-card-alt"></i>
@@ -121,7 +121,7 @@
                   </div>
                 </div>
 
-                <div class="icon-box d-flex wow animated fadeInDown" style="padding: 33px; margin: 10px;">
+                <div class="icon-box d-flex wow  fadeInDown" style="padding: 33px; margin: 10px;">
                   <div class="row">
                       <div class="col-4">
                           <i style="margin: 12px;" class="fas fa-user-lock"></i>
@@ -600,7 +600,7 @@
 
 <div class="d-block d-lg-none">
 <section id="hero2" class="d-flex align-items-center">
-    <div class="container">
+    <div class="container wow  fadeInLeft">
       <h1>ยินดีต้อนรับสู่ ViiCHECK</h1>
       <h2>ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
       <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
@@ -616,7 +616,7 @@
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="content">
-            <img width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" alt="">
+            <img class="wow  fadeInUp" width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" alt="">
               <div class="text-center">
                 <br>
               </div>
@@ -625,7 +625,7 @@
           <div class="col-lg-8 d-flex align-items-stretch">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
-                <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="fas fa-car-crash"></i>
                     <br>
@@ -637,7 +637,7 @@
                     <p>หรือแม้กระทั่ง <b class="text-dark">ตำรวจท่องเที่ยว</b></p>
                   </div>
                 </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="fas fa-id-card-alt"></i>
                     <br>
@@ -653,7 +653,7 @@
                      <p>เพียงเท่านี้คุณก็สามารถเดินเที่ยวได้อย่างสบายใจ</p>
                   </div>
                 </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="fas fa-user-lock"></i>
                     <h4 style="margin:-10px 0px 15px 0px">เก็บรวบรวมข้อมูล</h4>
@@ -685,11 +685,11 @@
                 <div style="border: 1px solid red; border-radius: 10px; min-height: 317px;" class=" video-box d-flex justify-content-center align-items-stretch position-relative">
                 <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
                 </div>
-              </div> <h5  class="text-center"><b>Top4 ปัญหาเกี่ยวกับการใช้รถใช้ถนนที่ทุกคนมักเจอ</b></h5>
-                  <p style="text-indent: 50px; ">ใครที่เดินทางไปไหนมาไหนบ่อยๆ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน เชื่อว่าต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
+              </div> <h5  class="text-center wow  fadeInDown"><b>Top4 ปัญหาเกี่ยวกับการใช้รถใช้ถนนที่ทุกคนมักเจอ</b></h5>
+                  <p class="wow  fadeInUp" style="text-indent: 50px; ">ใครที่เดินทางไปไหนมาไหนบ่อยๆ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน เชื่อว่าต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
               <div class="col-12" ><br>
                 <div  class="icon-boxes d-flex flex-column align-items-stretch justify-content-center ">
-                    <div class="icon-box">
+                    <div class="icon-box wow  fadeInLeft">
                     <center><div class="icon"><i class="fas fa-house-damage"></i></div>
                     <h4 class="title"><a href="">รถจอดขวางหน้าบ้าน</a></h4></center>
                     <p class="description" style="text-indent: 30px;">
@@ -698,7 +698,7 @@
                     </p>
                     <br></div>
 
-                  <div class="icon-box">
+                  <div class="icon-box wow  fadeInLeft">
                   <center><div class="icon"><i class="fas fa-road"></i></div>
                     <h4 class="title"><a href="">ถนนแคบ วิ่งได้แค่สองเลน แต่คนก็ยังจอดรถขวางเลน</a></h4></center>
                     <p class="description" style="text-indent: 30px;">
@@ -706,7 +706,7 @@
                     </p>
                     <br></div>
 
-                  <div class="icon-box">
+                  <div class="icon-box wow  fadeInLeft">
                   <center><div class="icon"><i class="fas fa-ban"></i></div>
                     <h4 class="title"><a href="">จอดรถซ้อนคันแต่ลืมปลดเกียร์ว่างและเอาเบรกมือลง</a></h4></center>
                     <p class="description" style="text-indent: 30px;">
@@ -714,7 +714,7 @@
                     </p>
                     <br></div>
 
-                  <div class="icon-box">
+                  <div class="icon-box wow  fadeInLeft">
                   <center><div class="icon"><i class="fas fa-car-crash"></i></div>
                     <h4 class="title"><a href="">รถโดนกรีด ขูด หรือเสียหาย</a></h4></center>
                     <p class="description" style="text-indent: 30px;">
@@ -746,7 +746,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-block d-md-none mt-5" >
+          <div class="col-lg-3 col-md-6 d-block d-md-none mt-5 wow  fadeInDown" >
             <div class="count-box">
               <i>
                 <img width="150%" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
@@ -756,7 +756,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-sm-block mt-5" >
+          <div class="col-lg-3 col-md-6 d-sm-block mt-5 wow  fadeInDown" >
             <div class="count-box">
               <i>
                 <img width="150%" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
@@ -766,7 +766,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6  mt-5">
+          <div class="col-lg-3 col-md-6  mt-5 wow  fadeInDown">
             <div class="count-box">
               <i>
                 <img width="150%" src="{{ asset('/img/stickerline/PNG/18.png') }}" alt="">
