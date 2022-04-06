@@ -420,7 +420,7 @@
 	        </div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-info text-white" data-dismiss="modal" onclick="set_group_line();">ตั้งค่า</button>
+	        <button type="button" class="btn btn-info text-white" data-dismiss="modal" >ตั้งค่า</button>
 	      </div>
 	    </div>
 	  </div>
