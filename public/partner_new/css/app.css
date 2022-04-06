@@ -5200,7 +5200,7 @@ input::placeholder {
 
 
 	right: 0px;
-
+	overflow: auto;
 
 }
 
