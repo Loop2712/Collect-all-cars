@@ -11,4 +11,5 @@
         });
         wow.init();
     }
+    new WOW().init();
 })(window.jQuery);
