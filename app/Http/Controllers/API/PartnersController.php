@@ -13,9 +13,20 @@ use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Mylog;
 use App\Models\Check_in;
 use App\Models\Partner;
+use App\Models\Group_line;
+use App\Models\Time_zone;
 
 class PartnersController extends Controller
 {
+    public function search_time_zone()
+    {
+        $data_time_zone = Time_zone::where("CountryCode", "!=" , null)
+            ->orderBy('TimeZone', 'ASC')
+            ->get();
+
+        return $data_time_zone;
+    }
+
     public function check_data_partner($user_organization)
     {
         $data_partners = Partner::where("name", $user_organization)
@@ -23,6 +34,14 @@ class PartnersController extends Controller
             ->get();
 
         return $data_partners;
+    }
+
+    public function check_data_line_group($group_line_id)
+    {
+        $data_line_group = Group_line::where("id", $group_line_id)
+            ->get();
+
+        return $data_line_group;
     }
 
     public function all_group_line($user_organization)

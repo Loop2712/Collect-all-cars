@@ -58,16 +58,24 @@ class API_line_group extends Controller
         return $name_partner;
     }
 
-    public function set_group_line($partner_id, $language, $time_zone)
+    public function set_group_line($group_id, $language, $time_zone, $input_name_group_line)
     {
         $time_zone = str_replace("_","/",$time_zone);
         
         DB::table('group_lines')
-                ->where('partner_id', $partner_id)
+                ->where('id', $group_id)
                 ->update([
                     'language' => $language,
                     'time_zone' => $time_zone,
+                    'groupName' => $input_name_group_line,
             ]);
+
+        DB::table('partners')
+                ->where('group_line_id', $group_id)
+                ->update([
+                    'line_group' => $input_name_group_line,
+            ]);
+
 
         return $partner_id;
     }

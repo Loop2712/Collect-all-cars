@@ -63,6 +63,7 @@ Route::get('/check_username/{put_username}/{id_user}','API\PartnersController@ch
 Route::get('/check_email/{put_email}','API\PartnersController@check_email');
 Route::get('/check_data_partner/{user_organization}','API\PartnersController@check_data_partner');
 Route::get('/all_group_line/{user_organization}','API\PartnersController@all_group_line');
+Route::get('/check_data_line_group/{group_line_id}','API\PartnersController@check_data_line_group');
 
 Route::get('/explode_name/{name_user}', 'ProfileController@explode_name');
 
@@ -91,7 +92,7 @@ Route::get('/select_sos_insurance/{name_insurance}/select_insurance', 'API\Save_
 Route::get('/insurance_select_line_group/{name_line_group}/{company}', 'API\API_line_group@save_line_group_insurance');
 Route::get('/partner_viicheck_select_line_group/{name_line_group}/{name_partner}', 'API\API_line_group@save_line_group_partner_viicheck');
 
-Route::get('/set_group_line/{partner_id}/{language}/{time_zone}', 'API\API_line_group@set_group_line');
+Route::get('/set_group_line/{group_id}/{language}/{time_zone}/{input_name_group_line}', 'API\API_line_group@set_group_line');
 
 Route::get('/change_language/{language}/{user_id}', 'API\API_language@change_language');
 Route::get('/change_language_fromline/{language}/{user_id}', 'API\API_language@change_language_fromline');
@@ -102,6 +103,7 @@ Route::get('/send_sos_area/{area_arr}/{name_partner}/{name_area}', 'API\Partners
 Route::get('/area_pending/{name_partner}/{name_area}', 'API\PartnersController@area_pending');
 Route::get('/area_current/{name_partner}/{name_area}', 'API\PartnersController@area_current');
 Route::get('/send_pass_area/{line_group}/{num_pass_area}', 'API\PartnersController@send_pass_area');
+Route::get('/search_time_zone', 'API\PartnersController@search_time_zone');
 
 Route::get('/show_amphoe/{province}', 'API\LocationController@amphoe_search');
 Route::get('/show_district/{amphoe}', 'API\LocationController@district_search');
