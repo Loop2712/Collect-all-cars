@@ -39,6 +39,10 @@
 
   <!-- snow -->
   <link href="https://www.cssscript.com/demo/sticky.css" rel="stylesheet" type="text/css">
+
+  <!-- carousel -->
+  <!-- <link href="{{ asset('carousel-12/fonts/icomoon/style.css') }}" rel="stylesheet"> -->
+  <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
   
 
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -677,6 +681,7 @@
 
 
     @yield('content')
+    <br>
 
 <!-- ======= Footer WEB ======= -->
   <br><br>
@@ -697,13 +702,28 @@
                 </a>
               </div>
             <div class="col-1">
-                <img width="100%" src="{{ asset('/img/logo/GreenLogo.png') }}">
+                <img style="width: 100%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
             </div>
             <div class="col-1">
-                <img width="100%" src="{{ asset('/img/logo/js100.png') }}">
+                <img style="width: 100%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/js100.png') }}">
             </div>
             <div class="col-1">
-                <img width="55%" src="{{ asset('/img/logo/SouthernCoffee2.png') }}">
+                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
+            </div>
+            <div class="col-1">
+                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
+            </div>
+            <div class="col-1">
+                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
+            </div>
+            <div class="col-1">
+                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
+            </div>
+            <div class="col-1">
+                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
+            </div>
+            <div class="col-1">
+                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
             </div>
           </div>
         </div>
@@ -743,23 +763,35 @@
       <div class="me-md-auto text-center text-md-start">
         <div class="credits">
           <div class="row">
-              <div class="col-6">
+              <div class="col-4">
                 <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                  <img width="50%" src="{{ asset('/img/logo/bns_registered.png') }}">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo/bns_registered.png') }}">
                 </a>
               </div>
-            <div class="col-6">
-                <img width="50%" src="{{ asset('/img/logo/GreenLogo.png') }}">
-            </div>
-            <div class="col-6">
-              <br>
-                <img width="50%" src="{{ asset('/img/logo/js100.png') }}">
-            </div>
-            <br>
-            <div class="col-6">
-              <br>
-                <img width="20%" src="{{ asset('/img/logo/SouthernCoffee2.png') }}">
-            </div>
+              <div class="col-4">
+                  <img style="width: 100%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 100%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/js100.png') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/TU.png') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
+              </div>
           </div>
         </div>
         <div class="copyright">

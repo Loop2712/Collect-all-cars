@@ -521,78 +521,13 @@
           @include('home_page/download_sticker')
           </div>
 
-          <!-- <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-            <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
-              <div class="icon-box">
-                <img width="72%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
-                <br>
-                <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
-              </div>
-            </a>
-          </div>
-
-          <!-- <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-            <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
-              <div class="icon-box">
-                <br><br><br><br><br><br><br><br><br><br>
-                <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-                  <br>
-                    <img width="75%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
-                    <br>
-                    <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
-                </div>
-                <div style="position: relative;top: -120px;left: -18px; z-index: 5; color: #fff;">
-                    <p style="font-size:39px;line-height: 30pt"><b>ติดต่อ</b></p>
-                    <p style="font-size:25px;line-height: 30pt">เจ้าของรถ</p>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-4  align-items-stretch mt-4">
-            <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
-              <div class="icon-box">
-                <br><br><br><br><br><br><br><br>
-                <div style="position: absolute;right: 40px;top: 5%;z-index: 2;margin-left: 40px;">
-                  <br>
-                    <img width="75%" src="{{ asset('/img/more/sticker-VII-v-nonetext.png') }}" class="img-fluid" alt="">
-                    <br>
-                    <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
-                </div>
-                <div style="position: relative;top: -120px;left: -18px; z-index: 5; color: #fff;">
-                    <p style="font-size:39px;line-height: 30pt"><b>ติดต่อ</b></p>
-                    <p style="font-size:25px;line-height: 30pt">เจ้าของรถ</p>
-                </div>
-              </div>
-            </a>
-          </div> -->
-
-          
-
-          <!-- <div class="col-lg-6 col-md-6  align-items-stretch mt-4">
-            <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download >
-              <div class="icon-box">
-                <div class="circle">Hello I am A Circle</div>
-                <style type="text/css">
-                  .circle {
-                          width: 500px;
-                          height: 500px;
-                          border-radius: 50%;
-                          font-size: 26px;
-                          color: #fff;
-                          line-height: 500px;
-                          text-align: center;
-                          background: #000
-                        }
-                </style>
-              </div>
-            </a>
-          </div> -->
-
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+      <!-- thx_partner -->
+      @include('home_page/thx_partner')
+    </section>
+    <!-- End Services Section -->
 </div>
 
 
@@ -967,6 +902,10 @@
 
       </div>
     </section><!-- End Services Section -->
+
+    <!-- thx_partner -->
+    @include('home_page/thx_partner')
+
     </div>
     @if(Auth::check())
       <input type="hidden" name="id_user" id="id_user" value="{{ Auth::user()->id }}">
