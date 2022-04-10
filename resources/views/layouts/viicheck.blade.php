@@ -41,7 +41,6 @@
   <link href="https://www.cssscript.com/demo/sticky.css" rel="stylesheet" type="text/css">
 
   <!-- carousel -->
-  <!-- <link href="{{ asset('carousel-12/fonts/icomoon/style.css') }}" rel="stylesheet"> -->
   <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
   
 
