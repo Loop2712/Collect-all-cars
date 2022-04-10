@@ -381,8 +381,10 @@
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">ตั้งค่ากลุ่มไลน์</h5>
-	        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+	        <h5 class="modal-title" id="staticBackdropLabel">
+	        	ตั้งค่ากลุ่มไลน์ <b><span id="span_name_line" class="text-info"></span></b>
+	        </h5>
+	        <button id="btn_close_set_group" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
@@ -390,29 +392,33 @@
 	        <div class="col-12">
 	            <div class="row">
 	                <div class="col-12">
-	                    <h3>ชื่อกลุ่มไลน์ : 
-	                        <b class="text-info">
-	                            <span id="span_name_line">line_group</span>
-	                        </b>
-	                    </h3>
+	                    <label class="control-label">ชื่อกลุ่มไลน์</label>
+	                    <input class="form-control" type="text" name="input_name_group_line" id="input_name_group_line" value="">
 	                    <hr>
 	                </div>
 	                <div class="col-6">
-	                    <label class="control-label">ภาษา  (เดิม language)</label>
+	                    <label id="label_old_language" class="control-label"></label>
 	                    <select class="form-control" name="input_language" id="input_language" required>
-	                        <option value="language" selected>- เลือกภาษา -</option>
+	                        <option id="old_language" value="" selected>- เลือกภาษา -</option>
 	                        <option value="th" >ไทย (th)</option>
 	                        <option value="en" >English (en)</option>
 	                        <option value="zh-TW" >中國人 (zh-TW)</option>
 	                        <option value="ja" >日本 (ja)</option>
 	                        <option value="ko" >한국인 (ko)</option>
 	                        <option value="es" >Español (es)</option>
+	                        <option value="lo" >ພາສາລາວ (lo)</option>
+	                        <option value="my" >မြန်မာ (my)</option>
+	                        <option value="de" >Deutsch (de)</option>
+	                        <option value="hi" >हिन्दी (hi)</option>
+	                        <option value="ar" >عربي (ar)</option>
+	                        <option value="ru" >русский (ru)</option>
+	                        <option value="zh-CN" >中国人 (zh-CN)</option>
 	                    </select>
 	                </div>
 	                <div class="col-6">
-	                    <label class="control-label">Time zone (เดิม time_zone)</label>
+	                    <label id="label_old_time_zone" class="control-label"></label>
 	                    <select class="form-control" name="input_time_zone" id="input_time_zone" required>
-	                        <option value="time_zone" selected>- เลือก Time zone -</option>
+	                        <option id="old_time_zone" value="" selected>- เลือก Time zone -</option>
 	                        
 	                    </select>
 	                </div>
@@ -420,7 +426,7 @@
 	        </div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-info text-white" data-dismiss="modal" >ตั้งค่า</button>
+	        <button id="btn_cf_set" type="button" class="btn btn-info text-white" data-dismiss="modal" >ยืนยัน</button>
 	      </div>
 	    </div>
 	  </div>
@@ -557,7 +563,7 @@
         fetch("{{ url('/') }}/api/all_group_line/" + user_organization)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let ul_group_line = document.querySelector('#ul_group_line') ;
 
@@ -566,10 +572,6 @@
                     let class_tag_li = document.createAttribute("class");
                     	class_tag_li.value = "list-group-item";
                     	tag_li.setAttributeNode(class_tag_li);
-
-                    // let onclick_tag_li = document.createAttribute("onclick");
-                    // 	onclick_tag_li.value = "set_group_line('"+ item.group_line_id + "')";
-                    // 	tag_li.setAttributeNode(onclick_tag_li);
 
                     tag_li.innerHTML = 
                     	"<b>" + item.line_group + "</b>" +
@@ -878,14 +880,59 @@
 
     function set_group_line(group_line_id)
     {
+        fetch("{{ url('/') }}/api/check_data_line_group/" + group_line_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                document.querySelector('#span_name_line').innerHTML = result[0]['groupName'] ;
+                document.querySelector('#label_old_language').innerHTML = "Language  (" + result[0]['language'] + ")" ;
+                document.querySelector('#label_old_time_zone').innerHTML = "Time zone  (" + result[0]['time_zone'] + ")" ;
+                document.querySelector('#old_time_zone').value = result[0]['time_zone'];
+                document.querySelector('#old_language').value = result[0]['language'];
+                document.querySelector('#input_name_group_line').value = result[0]['groupName'];
+
+                let btn_cf_set = document.querySelector('#btn_cf_set') ;
+                let onclick = document.createAttribute("onclick");
+                	onclick.value = "update_data_group_line('" + result[0]['id']+ "')";
+                	btn_cf_set.setAttributeNode(onclick);
+                
+        });
+
+        fetch("{{ url('/') }}/api/search_time_zone")
+            .then(response => response.json())
+            .then(result => {
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.TimeZone;
+                    option.value = item.TimeZone;
+                    input_time_zone.add(option);             
+                } 
+
+        });
+
         document.querySelector('#btn_modal_set_group_line').click();
-
-        // let delay = 800; 
-
-        // setTimeout(function() {
-        //     alert("ตั้งค่ากลุ่มไลน์ "+ span_name_line + " เรียบร้อยแล้ว");
-        // }, delay);
     }
+
+    function update_data_group_line(group_id)
+    {
+        let input_name_group_line = document.querySelector('#input_name_group_line').value;
+        let input_language = document.querySelector('#input_language').value;
+        let input_time_zone = document.querySelector('#input_time_zone').value;
+            input_time_zone = input_time_zone.replace("/","_");
+
+        fetch("{{ url('/') }}/api/set_group_line/"+ group_id + "/" + input_language + "/" + input_time_zone + "/" + input_name_group_line);
+
+        document.querySelector('#btn_close_set_group').click();
+
+        let delay = 800; 
+
+        setTimeout(function() {
+            alert("ตั้งค่ากลุ่มไลน์ "+ input_name_group_line + " เรียบร้อยแล้ว");
+        }, delay);
+    }
+
 </script>
 </body>
 

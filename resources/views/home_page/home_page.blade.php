@@ -221,7 +221,7 @@
               <i style="margin-top:-10px;">
                 <img width="200%" src="{{ asset('/img/stickerline/PNG/tab.png') }}" alt="">
               </i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_user }}" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="7000" data-purecounter-end="{{ $count_user }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>สมาชิก</p>
             </div>
           </div>
@@ -741,7 +741,7 @@
               <i>
                 <img width="150%" src="{{ asset('/img/stickerline/PNG/tab.png') }}" alt="">
               </i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_user }}" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="7000" data-purecounter-end="{{ $count_user }}" data-purecounter-duration="1" class="purecounter"></span>
               <p>สมาชิก</p>
             </div>
           </div>
