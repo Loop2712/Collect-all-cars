@@ -82,7 +82,7 @@
         var delayInMilliseconds = 5000; 
 
         setTimeout(function() {
-          document.getElementById("a_line").click();
+          // document.getElementById("a_line").click();
         }, delayInMilliseconds);
     });
 
