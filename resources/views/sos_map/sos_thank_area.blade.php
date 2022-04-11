@@ -62,7 +62,26 @@
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
             </div>
         </center>
-        @include ('footer_thx_partner') 
+        <div class="row">
+          <div class="col-2">
+            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/southerncoffee-1.png') }}">
+          </div>
+          <div class="col-2">
+            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/ตลาดคลองเตย.png') }}">
+          </div>
+          <div class="col-2">
+            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/KMUTNB.png') }}">
+          </div>
+          <div class="col-2">
+            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/TU.png') }}">
+          </div>
+          <div class="col-2">
+            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/RMUTP.png') }}">
+          </div>
+          <div class="col-2">
+            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/IMPACT.jpg') }}">
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
