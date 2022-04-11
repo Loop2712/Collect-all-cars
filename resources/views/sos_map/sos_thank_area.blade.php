@@ -69,16 +69,16 @@
             <button type="button" class="btn btn-success">เสร็จสิ้น</button>
         </a>
       </div>
-      @include ('footer_thx_partner') 
     </div>
   </div>
+      @include ('footer_thx_partner') 
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
 
         document.getElementById("btn_modal").click();
 
-        var delayInMilliseconds = 3000; 
+        var delayInMilliseconds = 5000; 
 
         setTimeout(function() {
           document.getElementById("a_line").click();
