@@ -7,8 +7,10 @@ use App\Http\Requests;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Check_in;
+use App\User;
 use Illuminate\Http\Request;
 use App\Models\Name_University;
+use App\Models\Partner;
 use Auth;
 
 class Check_inController extends Controller
@@ -114,6 +116,35 @@ class Check_inController extends Controller
         }
         
         Check_in::create($requestData);
+
+        $data_user = User::where('id' , $requestData['user_id'])->get();
+        $data_partner = Partner::where('name' , $requestData['check_in_at'])
+            ->where('name_area' , null)
+            ->get(); ;
+
+        foreach($data_partner as $partner){
+            $id_partner = $partner->id ;
+        }
+
+        foreach ($data_user as $user) {
+            if (empty($user->check_in_at)) {
+                $check_in_all = array($id_partner) ;
+            }else{
+                $check_in_all = json_decode($user->check_in_at) ;
+                if (in_array($id_partner , $check_in_all)){
+                    $check_in_all = $check_in_all ;
+                }
+                else{   
+                    array_push($check_in_all , $id_partner) ;
+                }
+            }
+        }
+
+        DB::table('users')
+            ->where('id', $requestData['user_id'])
+            ->update([
+                'check_in_at' => $check_in_all,
+        ]);
 
 
         if (!empty($requestData['time_in'])) {
