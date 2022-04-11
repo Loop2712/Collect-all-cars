@@ -729,6 +729,11 @@ class PartnerController extends Controller
         return view('check_in.index', compact('data_time_zone','check_in','check_in_at'));
     }
 
+    function add_new_check_in(){
+
+        return view('check_in.add_new_check_in');
+    }
+
     public function sos_detail_chart(Request $request)
     {
         $data_user = Auth::user();
