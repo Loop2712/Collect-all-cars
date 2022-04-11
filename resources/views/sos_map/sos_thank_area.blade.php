@@ -62,6 +62,7 @@
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
             </div>
         </center>
+        @include ('footer_thx_partner') 
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
@@ -69,9 +70,9 @@
             <button type="button" class="btn btn-success">เสร็จสิ้น</button>
         </a>
       </div>
+
     </div>
-  </div>
-      @include ('footer_thx_partner') 
+  </div> 
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
