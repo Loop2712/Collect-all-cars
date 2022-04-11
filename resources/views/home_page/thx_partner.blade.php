@@ -2,8 +2,8 @@
   <div class="site-section bg-left-half mb-5">
     <div class="container owl-2-style">
       <div class="section-title">
-          <h2>ขอขอบคุณ</h2>
-        </div>
+        <h2>ขอขอบคุณ</h2>
+      </div>
       <div class="owl-carousel owl-2">
         <div class="media-29101 text-center">
           <center>

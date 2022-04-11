@@ -69,6 +69,7 @@
             <button type="button" class="btn btn-success">เสร็จสิ้น</button>
         </a>
       </div>
+      @include ('footer_thx_partner') 
     </div>
   </div>
 </div>
