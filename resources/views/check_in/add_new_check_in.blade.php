@@ -20,13 +20,14 @@
                             <label class="control-label" for="name_new_check_in">ชื่อจุด Check in</label>
                             <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in">
                             <br>
-                            <button class="btn btn-info text-white" style="float:right;" onclick="gen_qr_code();">
+                            <a href="{{ url('/check_in/add_new_check_in?name_new_location=ทดสอบ') }}" class="btn btn-info text-white" style="float:right;" onclick="gen_qr_code();">
                                 สร้าง QR-Code
-                            </button>
+                            </a>
                         </div>
                         <div class="col-6 visible-print text-center">
                             <div id="div_qr_code" class="d-">
-                                <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->generate('Make me into a QrCode!') ) }}">
+                                {!! QrCode::size(100)->generate('https://www.viicheck.com/check_in/create?location={{ $name_new_location }}'); !!} 
+                                
                             </div>
                         </div>
                     </div>
@@ -42,7 +43,6 @@
     {
         let name_new_check_in = document.querySelector('#name_new_check_in') ;
         let div_qr_code = document.querySelector('#div_qr_code');
-            div_qr_code.innerText = {!! QrCode::size(100)->generate(  name_new_check_in.value  ); !!} ;
 
             document.querySelector('#div_qr_code').classList.remove('d-none');
     }
