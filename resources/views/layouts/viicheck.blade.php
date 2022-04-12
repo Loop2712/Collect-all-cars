@@ -718,6 +718,9 @@
             <div class="col-1">
                 <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
             </div>
+            <div class="col-1">
+                <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
+            </div>
             <!-- <div class="col-1">
                 <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
             </div> -->
@@ -784,6 +787,9 @@
               </div>
               <div class="col-4">
                   <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/TU.png') }}">
+              </div>
+              <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
               </div>
               <!-- <div class="col-4">
                   <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">

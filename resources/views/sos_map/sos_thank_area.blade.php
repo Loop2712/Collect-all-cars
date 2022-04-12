@@ -83,9 +83,9 @@
               <div id="logo_6" class="col-3 d-none">
                 <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/js100.png') }}">
               </div>
-              <div id="logo_7" class="col-3 d-none">
+              <!-- <div id="logo_7" class="col-3 d-none">
                 <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
-              </div>
+              </div> -->
               <div id="logo_8" class="col-3 d-none">
                 <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/GreenLogo.png') }}">
               </div>

@@ -24,6 +24,9 @@
                 <div class="col-4">
                     <img style="width: 80%;height: 70px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
                 </div>
+                <div class="col-4">
+                    <img style="width: 80%;height: 70px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
+                </div>
             </div>
         </div>
       </div>
