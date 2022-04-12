@@ -41,12 +41,12 @@
             <h5 class="text-danger">Southern Coffee</h5>
           </center>
         </div>
-        <div class="media-29101 text-center">
+        <!-- <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
             <h5 class="text-danger">การท่าเรือแห่งประเทศไทย</h5>
           </center>
-        </div>
+        </div> -->
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/ตลาดคลองเตย.png') }}">
