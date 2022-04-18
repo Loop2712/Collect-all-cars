@@ -442,9 +442,10 @@
 
       </div>
     </section><!-- End Gallery Section -->
-
+    <!-- thx_partner -->
+    @include('home_page/thx_partner')
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <section id="services" class="services" style="padding-top:50px;">
       <div class="container">
 
         <div class="section-title">
@@ -524,8 +525,7 @@
         </div>
 
       </div>
-      <!-- thx_partner -->
-      @include('home_page/thx_partner')
+     
     </section>
     <!-- End Services Section -->
 </div>
@@ -801,9 +801,10 @@
 
       </div>  
     </section><!-- End Gallery Section -->
-
+    <!-- thx_partner -->
+    @include('home_page/thx_partner')
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services d-block d-lg-none">
+    <section id="services" class="services d-block d-lg-none" style="padding-top:50px;">
       <div class="container">
 
         <div class="section-title">
@@ -903,8 +904,7 @@
       </div>
     </section><!-- End Services Section -->
 
-    <!-- thx_partner -->
-    @include('home_page/thx_partner')
+    
 
     </div>
     @if(Auth::check())

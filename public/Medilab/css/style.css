@@ -26,6 +26,21 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
+/*------------------------ thx partner------------------------ */
+.owl-nav{
+  display: flex;
+  justify-content: space-between;
+  margin-top:-90px;
+  z-index:3;
+  font-size: 18px;
+  }
+  .owl-prev{
+    margin-left:-10px;
+  }
+  .owl-next{
+    margin-right:-10px;
+  }
+/* ---------------------------------------------------- */
 
 /*--------------------------------------------------------------
 # Preloader

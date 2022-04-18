@@ -1,4 +1,4 @@
-<div class="container notranslate d-none d-lg-block" style="margin-top:-20px;">
+<div class="container notranslate" style="margin-top:-20px;">
   <div class="site-section bg-left-half mb-5">
     <div class="container owl-2-style">
       <div class="section-title">
