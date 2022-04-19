@@ -50,7 +50,7 @@
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/ตลาดคลองเตย.png') }}">
-            <h5 class="text-danger">ตลาดคลองเตย</h5>
+            <h5 class="text-danger">บริษัท ตลาดคลองเตย (2551) จำกัด</h5>
           </center>
         </div>
       </div>
