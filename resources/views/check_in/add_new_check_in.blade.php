@@ -27,7 +27,7 @@
                         <div class="col-6 visible-print text-center">
                             <div id="div_qr_code" class="d-">
                                 <!-- QR Code -->
-                                <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->merge(public_path('logo.png'),.3, true)->generate('Make me into a QrCode!') ) }}">
+                                <!-- <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->merge(public_path('logo.png'),.3, true)->generate('Make me into a QrCode!') ) }}"> -->
                             </div>
                         </div>
                     </div>
