@@ -632,7 +632,13 @@ class PartnersController extends Controller
 
                 $zx=0;
                 foreach ($data_in_outs as $data_in_out ) {
-                    $text_time[$zx] = date("d/m/Y H:i" , strtotime($data_in_out->created_at)) ;
+                    
+                    if (!empty($data_in_out->created_at)) {
+                        $text_time[$zx] = date("d/m/Y H:i" , strtotime($data_in_out->created_at)) ;
+                    }else{
+                        $text_time[$zx] = "" ;
+                    }
+
                     $zx = $zx + 1 ;    
                 }
 
