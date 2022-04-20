@@ -3,9 +3,9 @@
 
 <div id="div_information" class="">
     <center>
-        <img width="60%" src="{{ asset('/img/stickerline/PNG/1.png') }}">
+        <img class="wow fadeInLeft" width="70%" src="{{ asset('/img/stickerline/PNG/1.png') }}">
         <br><br>
-        <h3 class="notranslate">
+        <h3 class="notranslate wow fadeInUp">
             @if(!empty(Auth::user()->name_staff))
                 <b><span class="translate">คุณ</span> : {{ Auth::user()->name_staff }}</b>
             @else
@@ -18,14 +18,14 @@
         </h3>
 
         @if(!empty(Auth::user()->std_of and Auth::user()->std_of != "guest"))
-            <p class="notranslate">
+            <p class="notranslate wow fadeInUp">
                 {{ Auth::user()->std_of }} <br>
                 {{ Auth::user()->student_id }}
             </p>
         @endif
 
         @if(!empty(Auth::user()->std_of and Auth::user()->std_of == "guest"))
-            <p class="notranslate">
+            <p class="notranslate wow fadeInUp">
                 {{ Auth::user()->name_staff }} <br>
                 บุคคลทั่วไป
             </p>
@@ -140,10 +140,10 @@
     <input class="form-control d-none" name="type" type="text" id="type" value="" >
 
     <div class="text-center">
-        <a id="btn_click_check_in" class="btn btn-success notranslate text-white" onclick="check_in_or_out('check_in');">Check in</a>
+        <a id="btn_click_check_in" class="wow fadeInLeft btn button-checkin shadow-btn-checkin notranslate " onclick="check_in_or_out('check_in');">Check in</a>
         <h3 id="text_check_in" class="text-success d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;"><b>Check in</b></h3>
 
-        <a id="btn_click_check_out" class="btn btn-danger notranslate text-white" onclick="check_in_or_out('check_out');">Check out</a>
+        <a id="btn_click_check_out" class="wow fadeInRight btn button-checkout shadow-btn notranslate " onclick="check_in_or_out('check_out');">Check out</a>
         <h3 id="text_check_out" class="text-danger d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;"><b>Check out</b></h3>
 
         <h5 id="text_time" class="d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">{{ date("d/m/Y H:i" , strtotime($date_now)) }}</h5>

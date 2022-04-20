@@ -5,6 +5,74 @@
 * License: https://bootstrapmade.com/license/
 */
 @import url('animate.css');
+
+
+
+/*-------------------- button check in/out --------------------*/
+.thx_partner{
+  font-family: 'Baloo Bhaijaan 2';
+}
+.button-three {
+  background-color: #19CF68;
+  color: #ffffff !important;
+  padding: 5px 28px!important;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px !important;
+  cursor: default;
+  border: 2px solid #009C44;
+  border-radius: 25px !important;
+  font-family: 'Sarabun', sans-serif;
+}
+.shadow-btn{
+  box-shadow: 10px 10px 12px -8px rgba(242,37,37,0.34) inset;
+  -webkit-box-shadow: 10px 10px 12px -8px rgba(242,37,37,0.34) inset;
+  -moz-box-shadow: 10px 10px 12px -8px rgba(242,37,37,0.34) inset;
+          }
+  .shadow-btn-checkin{
+  box-shadow: 10px 10px 12px -8px rgba(72,188,166,0.34) inset;
+  -webkit-box-shadow: 10px 10px 12px -8px rgba(72,188,166,0.34) inset;
+  -moz-box-shadow: 10px 10px 12px -8px rgba(72,188,166,0.34) inset;
+          }     
+  .button-checkout {
+      background-color: #FFEDED;
+      color: #d9534f !important;
+      padding: 5px 28px!important;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px !important;
+      cursor: default;
+      border: 2px solid #db2d2e;
+      border-radius: 25px !important;
+      font-family: 'Sarabun', sans-serif;
+  }
+  .button-checkout:hover {
+  color: #ffffff !important;
+  background: #db2d2e;
+}
+  .button-checkin {
+      background-color: #DDF3EF;
+      color: #5FC5B1 !important;
+      padding: 5px 28px!important;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px !important;
+      cursor: default;
+      border: 2px solid #5FC5B1;
+      border-radius: 25px !important;
+      font-family: 'Sarabun', sans-serif;
+  }
+  .button-checkin:hover {
+  color: #ffffff !important;
+  background: #5FC5B1;
+}
+/* ------------------------------------------------------------ */
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/

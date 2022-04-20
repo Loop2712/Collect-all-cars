@@ -5,8 +5,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Scan QR-Code</div>
+                    <div class="header">
+                        <h3 class="text-center wow fadeInDown" style="font-family: 'Kanit', sans-serif;"><b>Scan QR-Code</b></h3>
+                        
+                    </div>
                     <div class="card-body">
                         <!-- <a href="{{ url('/check_in') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
@@ -28,7 +30,6 @@
                         </form>
 
                     </div>
-                </div>
             </div>
         </div>
     </div>

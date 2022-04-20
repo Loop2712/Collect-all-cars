@@ -332,8 +332,6 @@
             <a href="#" data-toggle="modal" data-target="#Partner_reportnew">รายละเอียดเพิ่มเติม »</a>
             </div>
         </div>
-    </div>
-    <div class="card-deck col-11" style="margin-top:20px;" >
         <div class="card" style="font-family: 'Prompt', sans-serif;">
             <br>
             <center><i class="fas fa-hands-helping" style="background-color: #AED6F1;border-radius: 50%;font-size:550%;padding:25px" width="35%" alt="Card image cap"></i></center>
@@ -341,6 +339,19 @@
             <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">ให้ความช่วยเหลือ</h5>
             <p class="card-text">วิธีใช้งานระบบ ให้ความช่วยเหลือ</p>
             <a href="#" data-toggle="modal" data-target="#Partner_gsos">
+                รายละเอียดเพิ่มเติม »
+            </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-deck col-11" style="margin-top:20px;" >
+        <div class="card" style="font-family: 'Prompt', sans-serif;">
+            <br>
+            <center><i class="fa-solid fa-location-plus" style="background-color: #AED6F1;border-radius: 100%;font-size:550%;padding:30px 40px 30px 40px" width="35%" alt="Card image cap"></i></center>
+            <div class="card-body">
+            <h5 class="card-title" style="font-family: 'Prompt', sans-serif;">วิธีเพิ่มพื้นที่บริการ</h5>
+            <p class="card-text">ขั้นตอนการเพิ่มพื้นที่บริการ</p>
+            <a href="#" data-toggle="modal" data-target="#Partner_add_area">
                 รายละเอียดเพิ่มเติม »
             </a>
             </div>
@@ -652,6 +663,127 @@
     </div>
   </div>
   <!------------------------------------------- Modal ให้ความช่วยเหลือ------------------------------------------->
+  
+  
+  
+  
+  <!------------------------------------------- Modal เพิ่มพื้นที่บริการ ------------------------------------------->
+  <div class="modal fade"  id="Partner_add_area" tabindex="-1" role="dialog" aria-labelledby="Partner_add_area" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="Partner_add_area">เพิ่มพื้นที่บริการ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#create_line" aria-expanded="false" aria-controls="create_line">
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.สร้างไลน์กลุ่มและเพิ่มเจ้าหน้าที่เข้าภายในกลุ่ม</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#create_line" aria-expanded="false" aria-controls="register">
+                      <i class="fas fa-angle-down"></i>
+                  </div>
+                  <div class="col-12 collapse" id="create_line">
+                      <br>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/add_area_1.png') }}" style="border: 2px solid #555;" width="50%" alt="Card image cap"></center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">สร้างไลน์กลุ่มและทำการเพิ่มเจ้าหน้าที่ ที่รับผิดชอบภายในพื้นที่เข้าภายในไลน์กลุ่มนี้</h5>
+                  </div>
+              </div>
+          </div>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+              <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px"  data-toggle="collapse" data-target="#add_line_bot" aria-expanded="false" aria-controls="add_line_bot" >
+                          <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.เพิ่มแชทบอทไลน์ ViiCHECK เข้าภายในกลุ่มไลน์</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#add_line_bot" aria-expanded="false" aria-controls="registerline" >
+                      <i class="fas fa-angle-down" ></i>
+                      </div>
+                  <div class="col-12 collapse" id="add_line_bot">
+                      <br>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/add_area_2.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                      <br>
+                              
+                  </div>
+              </div>
+          </div>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#manage_area" aria-expanded="false" aria-controls="manage_area">
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">4.เข้าสู่หน้าจัดการพื้นที่บริการ</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#manage_area" aria-expanded="false" aria-controls="manage_area">
+                      <i class="fas fa-angle-down"></i>
+                  </div>
+                  <div class="col-12 collapse" id="manage_area">
+                      <br>
+                        <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.1</h5>
+                        <center>
+                        <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_3.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
+                      </center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1).คลิกที่เมนูโปรไฟล์</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).เลือกเมนู admin-partner </h5>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.2</h5>
+                      <center>
+                        <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_4.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
+                      </center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1).เลือกเมนูพื้นที่บริการ</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).คลิกที่ปุ่ม เพิ่มพื้นที่บริการใหม่ </h5>
+                  </div>
+              </div>
+          </div>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#add_area" aria-expanded="false" aria-controls="add_area">
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">5.เพิ่มพื้นที่บริการใหม่</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#add_area" aria-expanded="false" aria-controls="manage_area">
+                      <i class="fas fa-angle-down"></i>
+                  </div>
+                  <div class="col-12 collapse" id="add_area">
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.1</h5>
+                      <center>
+                        <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_5.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
+                      </center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1).กรอกชื่อพื้นที่</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).เลือกกลุ่มไลน์ที่จะใช้ในพื้นที่นี้ </h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).ส่งรหัสยืนยันไปยังกลุ่มไลน์ที่เลือก </h5>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.2ระบบจะทำการส่งรหัสยืนยันไปยังกลุ่มไลน์</h5>
+                      <center>
+                        <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_6.png') }}" style="border: 2px solid #555;margin-left:15px;" width="40%" alt="Card image cap"><br>
+                      </center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.3</h5>
+                      <center>
+                        <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_7.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
+                      </center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1).นำรหัสที่ได้จากกลุ่มไลน์มากรอก</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).คลิกที่ปุ่มยืนยันการเพิ่มพื้นที่ใหม่ </h5>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------- Modal เพิ่มพื้นที่บริการ ------------------------------------------->
+  
+  
+  
+  
   <!------------------------------------------- Modal พื้นที่บริการ ------------------------------------------->
   <div class="modal fade"  id="Partner_map" tabindex="-1" role="dialog" aria-labelledby="Partner_mapTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" >

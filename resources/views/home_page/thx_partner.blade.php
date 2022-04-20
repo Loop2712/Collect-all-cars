@@ -8,37 +8,37 @@
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/js100.png') }}">
-            <h5 class="text-danger">จส.100</h5>
+            <h5 class="text-danger thx_partner">จส.100</h5>
           </center>
         </div>
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/IMPACT.jpg') }}">
-            <h5 class="text-danger">IMPACT</h5>
+            <h5 class="text-danger thx_partner">IMPACT</h5>
           </center>
         </div>
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/KMUTNB.png') }}">
-            <h5 class="text-danger">KMUTNB</h5>
+            <h5 class="text-danger thx_partner">KMUTNB</h5>
           </center>
         </div>
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/RMUTP.png') }}">
-            <h5 class="text-danger">RMUTP</h5>
+            <h5 class="text-danger thx_partner">RMUTP</h5>
           </center>
         </div>
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/TU.png') }}">
-            <h5 class="text-danger">TU</h5>
+            <h5 class="text-danger thx_partner">TU</h5>
           </center>
         </div>
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/southerncoffee-1.png') }}">
-            <h5 class="text-danger">Southern Coffee</h5>
+            <h5 class="text-danger thx_partner">Southern Coffee</h5>
           </center>
         </div>
         <!-- <div class="media-29101 text-center">
@@ -50,7 +50,7 @@
         <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/ตลาดคลองเตย.png') }}">
-            <h5 class="text-danger">บริษัท ตลาดคลองเตย (2551) จำกัด</h5>
+            <h5 class="text-danger thx_partner" >บริษัท ตลาดคลองเตย (2551) จำกัด</h5>
           </center>
         </div>
       </div>
