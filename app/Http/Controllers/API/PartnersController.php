@@ -610,7 +610,7 @@ class PartnersController extends Controller
         $count_user = count($data);
         $check_in_at = $data[0]['check_in_at'] ;
 
-        for ($i=0; $i < $count_user ; $i++) { 
+        for ($i=0; $i < $count_user ; $i++) {
 
             $user_id = $data[$i]['id'] ;
 
@@ -632,7 +632,7 @@ class PartnersController extends Controller
 
                 $zx=0;
                 foreach ($data_in_outs as $data_in_out ) {
-                    
+
                     if (!empty($data_in_out->created_at)) {
                         $text_time[$zx] = date("d/m/Y H:i" , strtotime($data_in_out->created_at)) ;
                     }else{
@@ -645,26 +645,24 @@ class PartnersController extends Controller
                 if (!empty($text_time[0])) {
                    $text_time_1 = $text_time[0] ;
                 }else{
-                    $text_time_1 = "" ;
+                    $text_time_1 = "-" ;
                 }
 
                 if (!empty($text_time[1])) {
                    $text_time_2 = $text_time[1] ;
                 }else{
-                    $text_time_2 = "" ;
+                    $text_time_2 = "-" ;
                 }
 
                 if (!empty($text_time[2])) {
                    $text_time_3 = $text_time[2] ;
                 }else{
-                    $text_time_3 = "" ;
+                    $text_time_3 = "-" ;
                 }
 
-                
-
                 // TIME ZONE
-                $API_Time_zone = new API_Time_zone();
-                $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
+                // $API_Time_zone = new API_Time_zone();
+                // $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
 
                 $data_topic = [
                             "เรียนคุณ",
@@ -700,9 +698,9 @@ class PartnersController extends Controller
                 $string_json = str_replace("text_03",$data_topic[3],$string_json);
                 $string_json = str_replace("ตามวัน / เวลาด้านล่าง",$data_topic[4],$string_json);
 
-                $string_json = str_replace("text_time_1",$text_time[0],$string_json);
-                $string_json = str_replace("text_time_2",$text_time[1],$string_json);
-                $string_json = str_replace("text_time_3",$text_time[2],$string_json);
+                $string_json = str_replace("text_time_1",$text_time_1,$string_json);
+                $string_json = str_replace("text_time_2",$text_time_2,$string_json);
+                $string_json = str_replace("text_time_3",$text_time_3,$string_json);
                 
 
                 $messages = [ json_decode($string_json, true) ];
