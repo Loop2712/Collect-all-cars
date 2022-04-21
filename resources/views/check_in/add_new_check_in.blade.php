@@ -18,16 +18,19 @@
                     <div class="row col-12">
                         <div class="col-6">
                             <label class="control-label" for="name_new_check_in">ชื่อจุด Check in</label>
-                            <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in" >
+                            <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in" oninput="gen_qr_code();">
                             <br>
-                            <p class="btn btn-info text-white" style="float:right;" onclick="gen_qr_code();">
+                            <!-- <p class="btn btn-info text-white" style="float:right;" onclick="gen_qr_code();">
                                 สร้าง QR-Code
-                            </p>
+                            </p> -->
+                            <a id="tag_a_qr" href="" class="btn btn-info text-white" style="float:right;" >
+                                สร้าง QR-Code
+                            </a>
                         </div>
                         <div class="col-6 visible-print text-center">
                             <div id="div_qr_code" class="d-">
                                 <!-- QR Code -->
-                                <!-- <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->merge(public_path('logo.png'),.3, true)->generate('Make me into a QrCode!') ) }}"> -->
+                                {{ QrCode::size(100)->generate('https://www.viicheck.com/check_in/create?location=$name_new_location') }} 
                             </div>
                         </div>
                     </div>
@@ -43,11 +46,15 @@
     {
         let name_new_check_in = document.querySelector('#name_new_check_in') ;
 
-        let div_qr_code = document.querySelector('#div_qr_code');
-            div_qr_code.innerHTML = "QrCode::size(100)->generate('https://www.viicheck.com/check_in/create?location=" + name_new_check_in.value + "'); " ;
+        // let div_qr_code = document.querySelector('#div_qr_code');
+        //     div_qr_code.innerHTML = "QrCode::size(100)->generate('https://www.viicheck.com/check_in/create?location=" + name_new_check_in.value + "');" ;
         
+        let tag_a_qr = document.querySelector('#tag_a_qr') ;
+        let text_href = "{{ url('/check_in/add_new_check_in?name_new_location=') }}" + name_new_check_in.value ;
+        // console.log(text_href);
+            tag_a_qr.href = text_href ;
 
-        document.querySelector('#div_qr_code').classList.remove('d-none');
+        // document.querySelector('#div_qr_code').classList.remove('d-none');
     }
 </script>
 

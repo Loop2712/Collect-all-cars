@@ -28,6 +28,9 @@
                 <div class="col-4">
                     <img style="width: 55%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
                 </div>
+                <div class="col-4">
+                    <img style="width: 55%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+                </div>
             </div>
         </div>
       </div>

@@ -477,6 +477,17 @@
           </div>
 
           <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
+            <a href="#">
+              <div class="icon-box">
+                <div class="icon"><i class="fas fa-virus"></i></div>
+                <h4><a href="#">Chech in/out Covid-19</a></h4>
+                <p>หายห่วงเรื่องการเข้าสถานที่ต่างๆ</p>
+                <p>ด้วยระบบจะแจ้งเตือนทันทีเมื่อคุณคือกลุ่มเสี่ยง</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
             <a href="https://line.me/R/ti/p/%40702ytkls">
               <div class="icon-box">
                 <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
@@ -508,16 +519,6 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-            <a href="https://line.me/R/ti/p/%40702ytkls">
-              <div class="icon-box">
-                <div class="icon"><i class="fas fa-user-lock"></i></div>
-                <h4><a href="https://line.me/R/ti/p/%40702ytkls">เก็บรวบรวมข้อมูล</a></h4>
-                <p>รวบรวมข้อมูลไว้ที่เดียว สะดวก รวดเร็ว ง่ายต่อการใช้งาน</p>
-                <p>และปลอดภัยด้วยการรักษาความเป็นส่วนตัวของผู้ใช้งาน</p>
-              </div>
-            </a>
-          </div>
           <!-- สติกเกอร์ -->
           @include('home_page/download_sticker')
           </div>
@@ -836,6 +837,17 @@
           </div>
 
           <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
+            <a href="#">
+              <div class="icon-box" style="padding: 40px 15px;">
+                <div class="icon"><i class="fas fa-virus"></i></div>
+                <h4><a href="#">Chech in/out Covid-19</a></h4>
+                <p>หายห่วงเรื่องการเข้าสถานที่ต่างๆ</p>
+                <p>ด้วยระบบจะแจ้งเตือนทันทีเมื่อคุณคือกลุ่มเสี่ยง</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
             <a href="https://line.me/R/ti/p/%40702ytkls">
               <div class="icon-box" style="padding: 40px 15px;">
                 <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
@@ -864,17 +876,6 @@
                 <h4><a href="{{ url('/promotion') }}">โปรโมชั่นเกี่ยวกับยานพาหนะ</a></h4>
                 <p>โปรโมชั่นมากมายที่รอเสนอให้คุณใช้บริการ</p>
                 <p>รีบเลยก่อนหมดเวลา !</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-            <a href="https://line.me/R/ti/p/%40702ytkls">
-              <div class="icon-box" style="padding: 40px 15px;">
-                <div class="icon"><i class="fas fa-user-lock"></i></div>
-                <h4><a href="https://line.me/R/ti/p/%40702ytkls">เก็บรวบรวมข้อมูล</a></h4>
-                <p>รวบรวมข้อมูลของคุณไว้ที่เดียว สะดวก รวดเร็ว ง่ายต่อการใช้งาน
-                ที่สำคัญปลอดภัยด้วยการรักษาความเป็นส่วนตัวของผู้ใช้บริการ</p>
               </div>
             </a>
           </div>
