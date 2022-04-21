@@ -487,7 +487,7 @@
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
+          <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-4">
             <a href="https://line.me/R/ti/p/%40702ytkls">
               <div class="icon-box">
                 <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
