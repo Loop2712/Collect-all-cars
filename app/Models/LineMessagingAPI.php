@@ -182,6 +182,7 @@ class LineMessagingAPI extends Model
                     "ถามตอบ",
                     "ติดต่อ",
                     "ยินดีให้บริการค่ะ",
+                    "ลงทะเบียนสัตว์เลี้ยง",
                 ];
 
                 $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
@@ -193,6 +194,7 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("ถามตอบ",$data_topic[2],$string_json);
                 $string_json = str_replace("ติดต่อ",$data_topic[3],$string_json);
                 $string_json = str_replace("ยินดีให้บริการค่ะ",$data_topic[4],$string_json);
+                $string_json = str_replace("ลงทะเบียนสัตว์เลี้ยง",$data_topic[5],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
