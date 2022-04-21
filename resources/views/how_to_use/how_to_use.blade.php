@@ -713,14 +713,14 @@
           <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
               <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
                   <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#manage_area" aria-expanded="false" aria-controls="manage_area">
-                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">4.เข้าสู่หน้าจัดการพื้นที่บริการ</h5>
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">3.เข้าสู่หน้าจัดการพื้นที่บริการ</h5>
                   </div> 
                   <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#manage_area" aria-expanded="false" aria-controls="manage_area">
                       <i class="fas fa-angle-down"></i>
                   </div>
                   <div class="col-12 collapse" id="manage_area">
                       <br>
-                        <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.1</h5>
+                        <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.1</h5>
                         <center>
                         <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_3.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
                       </center>
@@ -728,7 +728,7 @@
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1).คลิกที่เมนูโปรไฟล์</h5>
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).เลือกเมนู admin-partner </h5>
                       <br>
-                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.2</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.2</h5>
                       <center>
                         <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_4.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
                       </center>
@@ -741,14 +741,14 @@
           <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
               <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
                   <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#add_area" aria-expanded="false" aria-controls="add_area">
-                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">5.เพิ่มพื้นที่บริการใหม่</h5>
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">4.เพิ่มพื้นที่บริการใหม่</h5>
                   </div> 
                   <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#add_area" aria-expanded="false" aria-controls="manage_area">
                       <i class="fas fa-angle-down"></i>
                   </div>
                   <div class="col-12 collapse" id="add_area">
                       <br>
-                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.1</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.1</h5>
                       <center>
                         <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_5.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
                       </center>
@@ -757,12 +757,12 @@
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).เลือกกลุ่มไลน์ที่จะใช้ในพื้นที่นี้ </h5>
                       <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2).ส่งรหัสยืนยันไปยังกลุ่มไลน์ที่เลือก </h5>
                       <br>
-                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.2ระบบจะทำการส่งรหัสยืนยันไปยังกลุ่มไลน์</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.2ระบบจะทำการส่งรหัสยืนยันไปยังกลุ่มไลน์</h5>
                       <center>
                         <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_6.png') }}" style="border: 2px solid #555;margin-left:15px;" width="40%" alt="Card image cap"><br>
                       </center>
                       <br>
-                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.3</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.3</h5>
                       <center>
                         <img src="{{ asset('/img/วิธีใช้งาน_p/add_area_7.png') }}" style="border: 2px solid #555;margin-left:15px;" width="80%" alt="Card image cap"><br>
                       </center>
