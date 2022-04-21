@@ -8,6 +8,9 @@
             </div>
             <div class="row text-center" style="margin-bottom:-80px;">
                 <div class="col-3">
+                    <img style="width: 55%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+                </div>
+                <div class="col-3">
                     <img style="width: 100%;height: 90px;object-fit: contain;margin-top:-10px;" src="{{ asset('/img/logo-partner/js100.png') }}">
                 </div>
                 <div class="col-3">
@@ -19,18 +22,16 @@
                 <div class="col-3">
                     <img style="width: 75%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <img style="width: 55%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <img style="width: 70%;height: 70px;object-fit: contain;margin-top:-10px;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <img style="width: 55%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
                 </div>
-                <div class="col-4">
-                    <img style="width: 55%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
-                </div>
+                
             </div>
         </div>
       </div>

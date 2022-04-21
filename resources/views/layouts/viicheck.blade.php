@@ -701,6 +701,9 @@
                 </a>
               </div>
             <div class="col-1">
+                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+            </div>
+            <div class="col-1">
                 <img style="width: 100%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
             </div>
             <div class="col-1">
@@ -726,9 +729,6 @@
             </div> -->
             <div class="col-1">
                 <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
-            </div>
-            <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
             </div>
           </div>
         </div>
@@ -774,6 +774,9 @@
                 </a>
               </div>
               <div class="col-4">
+                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+              </div>
+              <div class="col-4">
                   <img style="width: 100%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
               </div>
               <div class="col-4">
@@ -800,9 +803,7 @@
               <div class="col-4">
                   <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
               </div>
-              <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
-              </div>
+              
           </div>
         </div>
         <div class="copyright">

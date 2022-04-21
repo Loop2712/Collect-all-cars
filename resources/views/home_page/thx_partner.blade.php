@@ -7,6 +7,12 @@
       <div class="owl-carousel owl-2">
         <div class="media-29101 text-center">
           <center>
+            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/logo-ph.png') }}">
+            <h5 class="text-danger thx_partner" >PeddyHub</h5>
+          </center>
+        </div>
+        <div class="media-29101 text-center">
+          <center>
             <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/js100.png') }}">
             <h5 class="text-danger thx_partner">จส.100</h5>
           </center>
@@ -53,12 +59,7 @@
             <h5 class="text-danger thx_partner" >บริษัท ตลาดคลองเตย (2551) จำกัด</h5>
           </center>
         </div>
-        <div class="media-29101 text-center">
-          <center>
-            <img style="width: 40%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/logo-ph.png') }}">
-            <h5 class="text-danger thx_partner" >PeddyHub</h5>
-          </center>
-        </div>
+        
       </div>
     </div>
   </div>
