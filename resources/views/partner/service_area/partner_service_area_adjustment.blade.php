@@ -5,6 +5,10 @@
     #map {
       height: calc(95vh);
     }
+
+    #map_show{
+        height: calc(60vh);
+    }
     
 </style>
 <br>
@@ -89,54 +93,26 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-4 order-sm-9 " style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
                 <div class="col-12">
+                    <!-- <br><br><br><br><br> -->
                     <div class="card">
                         <div class="card-header border-bottom-0 bg-transparent">
                             <div class="d-flex align-items-center" style="margin-top:10px;">
                                 <div>
                                     <button class="btn btn-sm btn-info" data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" >
-                                        ตัวอย่าง
+                                        ตัวอย่างการลากเส้น
                                     </button>
                                     <div class="collapse container-fluid" id="img_EX">
                                         <br>
                                         <img data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" width="100%"  src="{{ asset('/img/more/Hnet-image.gif') }}">
                                     </div>
-                                    
+                                    <hr>
                                     <div class="container">
                                     <div class="row">
-                                        <div class="col-12">
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <center>
-                                                        <i style="color:#FD8433; font-size: 30px;" class="fas fa-circle"></i> <br>
-                                                        พื้นที่ของท่านปัจจุบัน
-                                                    </center>
-                                                </div>
-                                                <div class="col-3">
-                                                    <center>
-                                                        <i style="color:#008450; font-size: 30px;" class="fas fa-circle"></i> <br>
-                                                        พื้นที่องค์กรทั้งหมด
-                                                    </center>
-                                                </div>
-                                                <div class="col-3">
-                                                    <center>
-                                                        <i style="color:#173066; font-size: 30px;" class="fas fa-circle"></i> <br>
-                                                        พื้นที่ขอรับการอนุมัติ
-                                                    </center>
-                                                </div>
-                                                <div class="col-3">
-                                                    <center>
-                                                        <i style="color:#8f887b; font-size: 30px;" class="fas fa-circle"></i> <br>
-                                                        พื้นที่บริการอื่นๆ
-                                                    </center>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                        <hr>
-                                        <div class="col-12" id="div_lat_lng">
+                                        <br>
+                                        <div class="col-12 d-none" id="div_lat_lng">
                                             <div id="div_form_{{ $count_position }}" class="form-group">
                                                 <label class="control-label">จุดที่ {{ $count_position }}</label>
                                                 <input class="form-control" name="position_{{ $count_position }}" type="text" id="position_{{ $count_position }}" value="" placeholder="คลิกที่แผนที่เพื่อรับโลเคชั่น">
@@ -151,19 +127,6 @@
                                         </div>
                                         <div class="col-6">
                                             <textarea class="form-control d-none" name="area_arr"  id="area_arr" value="" rows="10"></textarea>
-                                        </div>
-                                        <div class="col-6">
-                                            <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
-                                                แก้ไขจุดก่อนหน้า
-                                            </button>
-                                            <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
-                                                เริ่มใหม่
-                                            </a>
-                                        </div>
-                                        <div class="col-6 ">
-                                            <button id="btn_send_sos_area" class="btn btn-sm btn-primary d-none" onclick="send_sos_area();">
-                                                ส่งข้อมูล
-                                            </button>
                                         </div>
                                     </div>
                                     <br>
@@ -213,6 +176,64 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <hr>
+                    <div id="div_map_show" class="card d-none">
+                        <div class="card-header border-bottom-0 bg-transparent">
+                            <div class="align-items-center" style="margin-top:10px;">
+                                <div>
+                                    <div class="col-12">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
+                                                    แก้ไขจุดก่อนหน้า
+                                                </button>
+                                                <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
+                                                    เริ่มใหม่
+                                                </a>
+                                            </div>
+                                            <div class="col-6 ">
+                                                <button style="float:right;" id="btn_check_area_new" class="btn btn-sm btn-info d-none" onclick="check_area_new();">
+                                                    ตรวจสอบ
+                                                </button>
+                                                <button style="float:right;" id="btn_send_sos_area" class="btn btn-sm btn-primary d-none" onclick="send_sos_area();">
+                                                    ยืนยัน
+                                                </button>
+                                            </div>
+                                            <br><br>
+                                            <hr>
+                                            <div class="col-3">
+                                                <center>
+                                                    <i style="color:#FD8433; font-size: 30px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่ของท่านปัจจุบัน
+                                                </center>
+                                            </div>
+                                            <div class="col-3">
+                                                <center>
+                                                    <i style="color:#008450; font-size: 30px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่องค์กรทั้งหมด
+                                                </center>
+                                            </div>
+                                            <div class="col-3">
+                                                <center>
+                                                    <i style="color:#173066; font-size: 30px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่ขอรับการอนุมัติ
+                                                </center>
+                                            </div>
+                                            <div class="col-3">
+                                                <center>
+                                                    <i style="color:#8f887b; font-size: 30px;" class="fas fa-circle"></i> <br>
+                                                    พื้นที่บริการอื่นๆ
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        </div>
+                                    <div id="map_show"></div>
+                                </div>
+                            </div>
+                        </div>          
                     </div>
                 </div>
             </div>
@@ -371,13 +392,17 @@
         let text_center_lng = document.getElementById("center_lng").value  = lng;
 
         initMap();
+        initMap_show();
     }
 
     var draw_area ;
     var markers = [] ;
     var map ;
+    var map_show ;
     var area = [] ;
     let marker ;
+    var draw_area_new ;
+
     const image = "https://www.viicheck.com/img/icon/flag_2.png";
 
 
@@ -403,7 +428,7 @@
             center: myLatlng,
         });
 
-        func_draw_area(map);
+        // func_draw_area(map);
 
         
         // Create the initial InfoWindow.
@@ -453,7 +478,7 @@
         
     }
 
-    function func_draw_area(map) {
+    function func_draw_area(map_show) {
         let id_user = document.querySelector('#id_user').value;
         let name_area = document.querySelector('#name_area').value;
 
@@ -462,22 +487,22 @@
             .then(result => {
                 // console.log(result);
                 // พื้นที่อื่นๆ
-                // for (let ii = 0; ii < result.length; ii++) {
+                for (let ii = 0; ii < result.length; ii++) {
 
-                //     // console.log(JSON.parse(result[ii]['sos_area']));
+                    // console.log(JSON.parse(result[ii]['sos_area']));
 
-                //     let draw_area_other = new google.maps.Polygon({
-                //         paths: JSON.parse(result[ii]['sos_area']),
-                //         strokeColor: "#8f887b",
-                //         strokeOpacity: 0.8,
-                //         strokeWeight: 1,
-                //         fillColor: "#8f887b",
-                //         fillOpacity: 0.25,
-                //         zIndex: 0,
-                //     });
-                //     draw_area_other.setMap(map);
+                    let draw_area_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#8f887b",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#8f887b",
+                        fillOpacity: 0.25,
+                        zIndex: 0,
+                    });
+                    draw_area_other.setMap(map_show);
 
-                // }
+                }
         });
 
         fetch("{{ url('/') }}/api/service_area/area_partner_other/" + id_user + '/' + name_area)
@@ -485,20 +510,20 @@
             .then(result => {
                 // console.log(result);
 
-                // for (let ii = 0; ii < result.length; ii++) {
+                for (let ii = 0; ii < result.length; ii++) {
 
-                //     // console.log(JSON.parse(result[ii]['sos_area']));
+                    // console.log(JSON.parse(result[ii]['sos_area']));
 
-                //     let draw_area_partner_other = new google.maps.Polygon({
-                //         paths: JSON.parse(result[ii]['sos_area']),
-                //         strokeColor: "#008450",
-                //         strokeOpacity: 0.8,
-                //         strokeWeight: 1,
-                //         fillColor: "#008450",
-                //         fillOpacity: 0.25,
-                //         zIndex: 0,
-                //     });
-                //     draw_area_partner_other.setMap(map);
+                    let draw_area_partner_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[ii]['sos_area']),
+                        strokeColor: "#008450",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#008450",
+                        fillOpacity: 0.25,
+                        zIndex: 0,
+                    });
+                    draw_area_partner_other.setMap(map_show);
 
                     // var bounds = new google.maps.LatLngBounds();
                     // var centerLatLng = bounds.getCenter();
@@ -512,7 +537,7 @@
 
                     // markers.push(marker);
 
-                // }
+                }
         });
 
         fetch("{{ url('/') }}/api/service_area/your_old_area/" + id_user + '/' + name_area)
@@ -520,22 +545,22 @@
             .then(result_2 => {
                 // console.log(result_2);
 
-                // for (let ii = 0; ii < result_2.length; ii++) {
+                for (let ii = 0; ii < result_2.length; ii++) {
 
-                //     // console.log(JSON.parse(result_2[ii]['sos_area']));
+                    // console.log(JSON.parse(result_2[ii]['sos_area']));
 
-                //     let draw_your_old_area = new google.maps.Polygon({
-                //         paths: JSON.parse(result_2[ii]['sos_area']),
-                //         strokeColor: "#FD8433",
-                //         strokeOpacity: 0.8,
-                //         strokeWeight: 1,
-                //         fillColor: "#FD8433",
-                //         fillOpacity: 0.25,
-                //         zIndex: 0,
-                //     });
-                //     draw_your_old_area.setMap(map);
+                    let draw_your_old_area = new google.maps.Polygon({
+                        paths: JSON.parse(result_2[ii]['sos_area']),
+                        strokeColor: "#FD8433",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#FD8433",
+                        fillOpacity: 0.25,
+                        zIndex: 0,
+                    });
+                    draw_your_old_area.setMap(map_show);
 
-                // }
+                }
 
         });
 
@@ -689,14 +714,21 @@
         document.querySelector('#btn_re').classList.remove('d-none');
 
         if (parseFloat(add_count) > 3) {
-            document.querySelector('#btn_send_sos_area').classList.remove('d-none');
+            // document.querySelector('#btn_send_sos_area').classList.remove('d-none');
+            document.querySelector('#btn_check_area_new').classList.remove('d-none');
         }
 
         co_position.value = add_count ;
 
+        document.querySelector('#btn_send_sos_area').classList.add('d-none');
+
+
     }
 
     function delete_input() {
+
+        document.querySelector('#btn_send_sos_area').classList.add('d-none');
+        document.querySelector('#btn_check_area_new').classList.remove('d-none');
 
         let count_position = document.querySelector('#count_position');
             // console.log(count_position.value);
@@ -707,6 +739,7 @@
         let count_delete = parseFloat(count_position.value) - 1 ;
 
         if (parseFloat(count_position.value) < 2) {
+            document.querySelector('#btn_check_area_new').classList.add('d-none');
             document.querySelector('#btn_send_sos_area').classList.add('d-none');
         }
 
@@ -888,6 +921,55 @@
                 initMap();
 
             });
+
+    }
+
+    function initMap_show() {
+        document.querySelector('#div_map_show').classList.remove('d-none');
+
+        let text_zoom = document.getElementById("va_zoom").value;
+        let num_zoom = parseFloat(text_zoom);
+
+        let text_center_lat = document.getElementById("center_lat").value;
+        let num_center_lat = parseFloat(text_center_lat);
+
+        let text_center_lng = document.getElementById("center_lng").value;
+        let num_center_lng = parseFloat(text_center_lng);
+
+        let count_position = document.querySelector('#count_position');
+
+        // 13.7248936,100.4930264 lat lng ประเทศไทย
+
+        const myLatlng = { lat: num_center_lat, lng: num_center_lng };
+
+        map_show = new google.maps.Map(document.getElementById("map_show"), {
+            zoom: 14,
+            center: myLatlng,
+        });
+
+        func_draw_area(map_show);
+    }
+
+    function check_area_new()
+    {   
+        if (draw_area_new) {
+            draw_area_new.setMap(null);
+        }
+
+        // Construct the polygon.
+        draw_area_new = new google.maps.Polygon({
+            paths: area,
+            strokeColor: "#173066",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#173066",
+            fillOpacity: 0.25,
+            zIndex: 1,
+        });
+        draw_area_new.setMap(map_show);
+
+        document.querySelector('#btn_send_sos_area').classList.remove('d-none');
+        document.querySelector('#btn_check_area_new').classList.add('d-none');
 
     }
 </script>
