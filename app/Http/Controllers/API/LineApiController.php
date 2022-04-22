@@ -166,7 +166,7 @@ class LineApiController extends Controller
                 case "โปรโมชั่นรถจักรยานยนต์" :  
                     $line->replyToUser(null, $event, "promotion_motorcycle");
                     break;
-                case "PeddyHub" :  
+                case "peddyhub" :  
                     $line->replyToUser(null, $event, "peddyhub");
                     break;
                 case "language" :  
