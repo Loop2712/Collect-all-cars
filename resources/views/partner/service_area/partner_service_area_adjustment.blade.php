@@ -133,8 +133,9 @@
                                                     </center>
                                                 </div>
                                             </div>
-                                            <br><br>
+                                            <br>
                                         </div>
+                                        <hr>
                                         <div class="col-12" id="div_lat_lng">
                                             <div id="div_form_{{ $count_position }}" class="form-group">
                                                 <label class="control-label">จุดที่ {{ $count_position }}</label>
