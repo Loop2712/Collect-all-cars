@@ -661,6 +661,12 @@ class PartnerController extends Controller
 
         $check_in_at = $data_user->organization;
 
+        $data_of_check_in_ats = Partner::where('name' , $check_in_at)->where('name_area' , null)->get();
+
+        foreach ($data_of_check_in_ats as $data_of_check_in_at) {
+            $type_partner = $data_of_check_in_at->type_partner ;
+        }
+
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
         $select_date = $request->get('select_date');
@@ -726,7 +732,7 @@ class PartnerController extends Controller
             $check_in = Check_in::where('check_in_at', $data_user->organization)->latest()->paginate($perPage);
         }
 
-        return view('check_in.index', compact('data_time_zone','check_in','check_in_at'));
+        return view('check_in.index', compact('data_time_zone','check_in','check_in_at','type_partner'));
     }
 
     function add_new_check_in(Request $request){

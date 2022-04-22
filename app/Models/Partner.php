@@ -25,7 +25,7 @@ class Partner extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone', 'line_group', 'mail','sos_area','new_sos_area','user_id_admin','color','logo','color_navbar','color_body','group_line_id','name_area','class_color_menu'];
+    protected $fillable = ['name', 'phone', 'line_group', 'mail','sos_area','new_sos_area','user_id_admin','color','logo','color_navbar','color_body','group_line_id','name_area','class_color_menu','type_partner'];
 
     public function group_line(){
         return $this->hasOne('App\Models\Group_line', 'partner_id');

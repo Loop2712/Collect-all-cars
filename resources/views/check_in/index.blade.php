@@ -100,10 +100,12 @@
                                         <input class="form-control" type="time" name="select_time_2" id="select_time_2" value="{{ request('select_time_2') }}">
                                     </div>
                                     <div class="col-md-2">
-                                        <label  class="control-label">{{ 'รหัสนักศึกษา' }}</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="select_student_id" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('select_student_id') }}">
-                                        </div>
+                                        @if($type_partner == "university")
+                                            <label  class="control-label">{{ 'รหัสนักศึกษา' }}</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="select_student_id" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('select_student_id') }}">
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="col-3">
                                         <br>
@@ -140,7 +142,9 @@
                         <th>เวลาเข้า - ออก</th>
                         <th>เบอร์</th>
                         <th>สถานที่</th>
-                        <th>รหัสนักศึกษา</th>
+                        @if($type_partner == "university")
+                            <th>รหัสนักศึกษา</th>
+                        @endif
                         <th></th>
                     </tr>
                 </thead>
@@ -222,10 +226,12 @@
                                             <h5>ค้นหาชื่อหรือรหัสนักศึกษา</h5>
                                         </div>
                                         <div class="col-3">
-                                            <input type="text" class="form-control" id="student_name_covid" name="student_name_covid" placeholder="ค้นหาจากชื่อ..." oninput="search_name('{{ $check_in_at }}');">
+                                            @if($type_partner == "university")
+                                                <input type="text" class="form-control" id="student_id_covid" name="student_id_covid" placeholder="ค้นหาจากรหัสนักศึกษา..." oninput="search_std('{{ $check_in_at }}');">
+                                            @endif
                                         </div>
                                         <div class="col-3">
-                                            <input type="text" class="form-control" id="student_id_covid" name="student_id_covid" placeholder="ค้นหาจากรหัสนักศึกษา..." oninput="search_std('{{ $check_in_at }}');">
+                                            <input type="text" class="form-control" id="student_name_covid" name="student_name_covid" placeholder="ค้นหาจากชื่อ..." oninput="search_name('{{ $check_in_at }}');">
                                         </div>
                                     </div>
                                 </div>
