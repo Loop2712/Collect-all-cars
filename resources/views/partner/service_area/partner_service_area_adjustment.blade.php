@@ -3,7 +3,7 @@
 @section('content')
 <style type="text/css">
     #map {
-      height: calc(100vh);
+      height: calc(95vh);
     }
     
 </style>
@@ -30,6 +30,12 @@
                             <div>
                                 <div class="col-8">
                                     <div class="row">
+                                        <div class="col-12">
+                                            <h3 style="margin-top:10px;">
+                                                ปรับพื้นที่บริการ <b class="text-info">{{ $name_area }}</b>
+                                            </h3>
+                                            <br>
+                                        </div>
                                         <div class="col-12 col-md-4 d-none d-lg-block">
                                             <select id="select_province" class="form-control" onchange="show_amphoe();">
                                                 <option value="" selected > - จังหวัด - </option> 
@@ -60,7 +66,7 @@
                                  <div class="col-lg-12 col-12 order-3  ">
                                     <div class="row">
                                         <div class="col-12">
-                                            <a style="position:absolute;z-index: 5;top: 85px; right:75px;margin-top:7px;" href="#map">
+                                            <a style="position:absolute;z-index: 5;top: 160px; right:75px;margin-top:7px;" href="#select_province">
                                                 <i style="margin-top: 4px; font-size: 20px;" class="far fa-search-location btn btn-danger float-right" onclick="getLocation();"></i>
                                             </a>
                                             <br>
@@ -73,7 +79,7 @@
                                             <input class="d-none" type="text" id="va_zoom" name="" value="6">
                                             <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                                             <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                                            <a href="#map"><div id="map"></div></a>
+                                            <a href="#select_province"><div id="map"></div></a>
                                             <br>
                                         </div>
                                     </div>
@@ -96,12 +102,7 @@
                                         <br>
                                         <img data-toggle="collapse" data-target="#img_EX" aria-expanded="false" aria-controls="img_EX" width="100%"  src="{{ asset('/img/more/Hnet-image.gif') }}">
                                     </div>
-                                    <h3 style="margin-top:10px;">
-                                        ปรับพื้นที่บริการ <b class="text-info">{{ $name_area }}</b>
-                                        <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
-                                            เริ่มใหม่
-                                        </a>
-                                    </h3>
+                                    
                                     <div class="container">
                                     <div class="row">
                                         <div class="col-12">
@@ -154,6 +155,9 @@
                                             <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
                                                 แก้ไขจุดก่อนหน้า
                                             </button>
+                                            <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
+                                                เริ่มใหม่
+                                            </a>
                                         </div>
                                         <div class="col-6 ">
                                             <button id="btn_send_sos_area" class="btn btn-sm btn-primary d-none" onclick="send_sos_area();">
