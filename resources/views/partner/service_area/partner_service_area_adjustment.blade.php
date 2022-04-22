@@ -456,7 +456,7 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
-
+                // พื้นที่อื่นๆ
                 // for (let ii = 0; ii < result.length; ii++) {
 
                 //     // console.log(JSON.parse(result[ii]['sos_area']));
