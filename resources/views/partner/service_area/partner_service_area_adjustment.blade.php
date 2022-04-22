@@ -189,7 +189,7 @@
                                                 <button id="btn_delete_form" class="btn btn-sm btn-warning d-none" onclick="delete_input();">
                                                     แก้ไขจุดก่อนหน้า
                                                 </button>
-                                                <a id="btn_re" href="{{ url('/service_area') }}" class="btn btn-sm btn-info float-right d-none">
+                                                <a id="btn_re" onclick="window.location.reload(true);" class="btn btn-sm btn-info float-right d-none">
                                                     เริ่มใหม่
                                                 </a>
                                             </div>
@@ -594,6 +594,8 @@
 
     function add_location(text_content , count_position , map , marker_lat , marker_lng) {
 
+        initMap_show();
+
         let co_position = document.querySelector('#count_position');
 
         let add_count = parseFloat(co_position.value) + 1 ;
@@ -943,7 +945,7 @@
         const myLatlng = { lat: num_center_lat, lng: num_center_lng };
 
         map_show = new google.maps.Map(document.getElementById("map_show"), {
-            zoom: 14,
+            zoom: 14.2,
             center: myLatlng,
         });
 
