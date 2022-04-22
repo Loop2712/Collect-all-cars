@@ -480,20 +480,20 @@
             .then(result => {
                 // console.log(result);
 
-                for (let ii = 0; ii < result.length; ii++) {
+                // for (let ii = 0; ii < result.length; ii++) {
 
-                    // console.log(JSON.parse(result[ii]['sos_area']));
+                //     // console.log(JSON.parse(result[ii]['sos_area']));
 
-                    let draw_area_partner_other = new google.maps.Polygon({
-                        paths: JSON.parse(result[ii]['sos_area']),
-                        strokeColor: "#008450",
-                        strokeOpacity: 0.8,
-                        strokeWeight: 1,
-                        fillColor: "#008450",
-                        fillOpacity: 0.25,
-                        zIndex: 0,
-                    });
-                    draw_area_partner_other.setMap(map);
+                //     let draw_area_partner_other = new google.maps.Polygon({
+                //         paths: JSON.parse(result[ii]['sos_area']),
+                //         strokeColor: "#008450",
+                //         strokeOpacity: 0.8,
+                //         strokeWeight: 1,
+                //         fillColor: "#008450",
+                //         fillOpacity: 0.25,
+                //         zIndex: 0,
+                //     });
+                //     draw_area_partner_other.setMap(map);
 
                     // var bounds = new google.maps.LatLngBounds();
                     // var centerLatLng = bounds.getCenter();
@@ -507,7 +507,7 @@
 
                     // markers.push(marker);
 
-                }
+                // }
         });
 
         fetch("{{ url('/') }}/api/service_area/your_old_area/" + id_user + '/' + name_area)
@@ -515,22 +515,22 @@
             .then(result_2 => {
                 // console.log(result_2);
 
-                for (let ii = 0; ii < result_2.length; ii++) {
+                // for (let ii = 0; ii < result_2.length; ii++) {
 
-                    // console.log(JSON.parse(result_2[ii]['sos_area']));
+                //     // console.log(JSON.parse(result_2[ii]['sos_area']));
 
-                    let draw_your_old_area = new google.maps.Polygon({
-                        paths: JSON.parse(result_2[ii]['sos_area']),
-                        strokeColor: "#FD8433",
-                        strokeOpacity: 0.8,
-                        strokeWeight: 1,
-                        fillColor: "#FD8433",
-                        fillOpacity: 0.25,
-                        zIndex: 0,
-                    });
-                    draw_your_old_area.setMap(map);
+                //     let draw_your_old_area = new google.maps.Polygon({
+                //         paths: JSON.parse(result_2[ii]['sos_area']),
+                //         strokeColor: "#FD8433",
+                //         strokeOpacity: 0.8,
+                //         strokeWeight: 1,
+                //         fillColor: "#FD8433",
+                //         fillOpacity: 0.25,
+                //         zIndex: 0,
+                //     });
+                //     draw_your_old_area.setMap(map);
 
-                }
+                // }
 
         });
 
