@@ -457,22 +457,22 @@
             .then(result => {
                 // console.log(result);
 
-                for (let ii = 0; ii < result.length; ii++) {
+                // for (let ii = 0; ii < result.length; ii++) {
 
-                    // console.log(JSON.parse(result[ii]['sos_area']));
+                //     // console.log(JSON.parse(result[ii]['sos_area']));
 
-                    let draw_area_other = new google.maps.Polygon({
-                        paths: JSON.parse(result[ii]['sos_area']),
-                        strokeColor: "#8f887b",
-                        strokeOpacity: 0.8,
-                        strokeWeight: 1,
-                        fillColor: "#8f887b",
-                        fillOpacity: 0.25,
-                        zIndex: 0,
-                    });
-                    draw_area_other.setMap(map);
+                //     let draw_area_other = new google.maps.Polygon({
+                //         paths: JSON.parse(result[ii]['sos_area']),
+                //         strokeColor: "#8f887b",
+                //         strokeOpacity: 0.8,
+                //         strokeWeight: 1,
+                //         fillColor: "#8f887b",
+                //         fillOpacity: 0.25,
+                //         zIndex: 0,
+                //     });
+                //     draw_area_other.setMap(map);
 
-                }
+                // }
         });
 
         fetch("{{ url('/') }}/api/service_area/area_partner_other/" + id_user + '/' + name_area)
