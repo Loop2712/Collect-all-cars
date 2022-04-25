@@ -552,7 +552,7 @@
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="content">
-            <img class="wow  fadeInUp" width="100%" src="{{ asset('/img/more/poster-v4-good-Vii-v4.jpg') }}" alt="">
+            <img class="wow  fadeInUp" width="100%" src="{{ asset('/img/more/Service-Viicheck ver2.png') }}" alt="">
               <div class="text-center">
                 <br>
               </div>
