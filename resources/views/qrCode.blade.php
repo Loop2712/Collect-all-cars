@@ -11,6 +11,8 @@
     {!! QrCode::size(250)->generate('ItSolutionStuff.com'); !!}
      
     <p>example by ItSolutionStuf.com.</p>
+
+    <img src="{{ url('/img/new_qr_code/qrcode.png') }}">
 </div>
     
 </body>

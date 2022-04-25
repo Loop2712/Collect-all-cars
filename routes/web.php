@@ -337,7 +337,7 @@ Route::get('qr-code-g', function () {
   
     \QrCode::size(500)
             ->format('png')
-            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+            ->generate('viicheck.com', public_path('img/new_qr_code/qrcode.png'));
     
   return view('qrCode');
     
