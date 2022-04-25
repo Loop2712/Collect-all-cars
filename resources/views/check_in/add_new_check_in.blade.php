@@ -30,6 +30,11 @@
                         <div class="col-6 visible-print text-center">
                             <div id="div_qr_code" class="d-">
 
+                                <img id="img_qr_code" src="">
+
+                                <a href="https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=555&chs=180x180&choe=UTF-8" class="btn btn-danger text-white" download>
+                                    ดาวน์โหลด
+                                </a>
                                 <!-- QR Code -->
                                 <!-- {{ QrCode::size(250)->generate('https://www.viicheck.com/check_in/create?location=$name_new_location') }}  -->
                             </div>
@@ -61,8 +66,11 @@
     }
 
     function btn_test(){
-        let div_qr_code = document.querySelector('#div_qr_code') ;
-            div_qr_code.innerHTML = "{{ QrCode::size(250)->generate('https://www.viicheck.com/check_in/create?location=$name_new_location') }}"  ;
+        
+        let name_new_check_in = document.querySelector('#name_new_check_in') ;
+
+        let img_qr_code = document.querySelector('#img_qr_code') ;
+            img_qr_code.src = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_new_check_in.value + "&chs=180x180&choe=UTF-8"  ;
     }
 </script>
 
