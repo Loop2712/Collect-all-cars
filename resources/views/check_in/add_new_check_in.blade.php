@@ -29,8 +29,9 @@
                         </div>
                         <div class="col-6 visible-print text-center">
                             <div id="div_qr_code" class="d-">
+
                                 <!-- QR Code -->
-                                {{ QrCode::size(100)->generate('https://www.viicheck.com/check_in/create?location=$name_new_location') }} 
+                                <!-- {{ QrCode::size(250)->generate('https://www.viicheck.com/check_in/create?location=$name_new_location') }}  -->
                             </div>
                         </div>
                     </div>
@@ -40,6 +41,8 @@
     </div>
     <br>
 </div>
+
+<button class="btn btn-danger" id="btn_test" onclick="btn_test();">btn_test</button>
 
 <script>
     function gen_qr_code()
@@ -55,6 +58,11 @@
             tag_a_qr.href = text_href ;
 
         // document.querySelector('#div_qr_code').classList.remove('d-none');
+    }
+
+    function btn_test(){
+        let div_qr_code = document.querySelector('#div_qr_code') ;
+            div_qr_code.innerHTML = "{{ QrCode::size(250)->generate('https://www.viicheck.com/check_in/create?location=$name_new_location') }}"  ;
     }
 </script>
 

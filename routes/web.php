@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QrCodeGeneratorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -331,3 +332,13 @@ Route::get('/check_ip', 'Home_pageController@check_ip');
 
 Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
+
+Route::get('qr-code-g', function () {
+  
+    \QrCode::size(500)
+            ->format('png')
+            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+    
+  return view('qrCode');
+    
+});

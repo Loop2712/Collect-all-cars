@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Models\Name_University;
 use App\Models\Partner;
+use App\Http\Controllers\QrCodeGeneratorController;
 use Auth;
 
 class Check_inController extends Controller
