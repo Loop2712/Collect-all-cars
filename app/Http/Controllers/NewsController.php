@@ -106,6 +106,8 @@ class NewsController extends Controller
                 $image_facebook->greyscale();
             }
 
+            $image->colorize(100, 0, 0);
+
             // facebook
             // ปรับขนาดภาพ
             $image_facebook->fit(1200, 628);

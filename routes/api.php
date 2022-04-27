@@ -149,6 +149,11 @@ Route::post('/api_data_tu_greats', 'API\API_TU_Greats@api_data_tu_greats');
 
 
 
+Route::post('/save_img_url', 'API\ImageController@save_img_url');
+
+
+
+
 
 
 

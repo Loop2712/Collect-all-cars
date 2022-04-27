@@ -24,6 +24,7 @@ use App\county;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Time_zone;
 use App\Models\Check_in;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class PartnerController extends Controller
@@ -736,11 +737,18 @@ class PartnerController extends Controller
     }
 
     function add_new_check_in(Request $request){
+        
+        // $data_user = Auth::user();
+        // $data_partners = Partner::where("name", $data_user->organization)
+        //     ->where("name_area", null)
+        //     ->get();
 
+        // foreach ($data_partners as $key) {
+        //     $logo_partner = $key->logo ;
+        // }
 
-        $name_new_location = $request->get('name_new_location');
+        return view('check_in.add_new_check_in');
 
-        return view('check_in.add_new_check_in', compact('name_new_location'));
     }
 
     public function sos_detail_chart(Request $request)
