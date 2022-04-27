@@ -109,8 +109,7 @@
             return response.text();
         }).then(function(text){
             // console.log(text);
-
-            let url_img = "{{ url('/') }}" + "/img/check_in/" + text;
+            let url_img = "{{ url('/storage') }}" + "/check_in/" + text;
 
             let img_qr_code = document.querySelector('#img_qr_code') ;
                 img_qr_code.src = url_img;

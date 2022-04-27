@@ -61,12 +61,14 @@ class ImageController extends Controller
         $name_new_check_in = $data['name_new_check_in'];
  
         // Image path
-        $img = public_path('img/check_in/' . $name_partner . '/check_in_' . $name_partner . '_' . $name_new_check_in . '.png');
+        // $img = public_path('img/check_in/' . $name_partner . '/check_in_' . $name_partner . '_' . $name_new_check_in . '.png');
+
+        $img = storage_path("app/public")."/check_in". "/" . 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
 
         // Save image
         file_put_contents($img, file_get_contents($url));
 
-        return $name_partner . '/' . "check_in_" . $name_partner . '_' . $name_new_check_in . '.png' ;
+        return 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
 
     }
 
