@@ -44,7 +44,12 @@
                             </button>
                         </span>
                     </div>
-                </form>
+                </form> &nbsp;
+                <a style="float: right;" type="button" data-toggle="modal" data-target="#Partner_register_p">
+                        <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-info-circle"></i>วิธีใช้
+                        </button>
+                    </a>
             </div>
         </div>
         <div class="card-body">
@@ -327,4 +332,63 @@
             </div>
         </div>
     </div>
+    <!------------------------------------------- Modal ลงทะเบียน ------------------------------------------->
+  <div class="modal fade"  id="Partner_register_p" tabindex="-1" role="dialog" aria-labelledby="registerTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="registerTitle">รถลงทะเบียน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center><img src="{{ asset('/img/วิธีใช้งาน_p/1.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.ตารางรายการ รถลงทะเบียน</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;"  data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" >
+                      <i class="fas fa-angle-down"></i>
+                  </div>
+                  <div class="col-12 collapse" id="login">
+                      <br>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/2.png') }}"  width="100%" alt="Card image cap"></center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.คันที่ : แสดงลำดับที่อ้างอิงของรถที่ลงทะเบียน</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ยี่ห้อ : ชื่อยี่ห้อรถที่ลงทะเบียน</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.รุ่น : ชื่อรุ่นรถที่ลงทะเบียน</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.หมายเลขทะเบียน : แสดงหมายเลขทะเบียนรถและจังหวัดของทะเบียนรถ</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ประเภท : ประเภทรถมีรูปแบบ ดังต่อไปนี้ <br>
+                          <h5 style="text-indent:35px;font-family: 'Prompt', sans-serif;">-" <img width="5%" src="https://www.viicheck.com/img/icon/motorcycle.png"> " หมายถึง รถจักรยานยนต์ </h5> 
+                          <h5 style="text-indent:35px;font-family: 'Prompt', sans-serif;">-" <img width="5%" src="https://www.viicheck.com/img/icon/car.png"> " หมายถึง รถยนต์</h5>
+                      </h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">6.ผู้ลงทะเบียน : คลิกที่ "<i class="far fa-eye text-info"></i> " เพื่อแสดงรายละเอียนผู้ลงทะเบียนรถ</h5>
+                  </div>
+              </div>
+          </div>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+              <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;" >
+                  <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login">
+                          <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.การค้นหา</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" >
+                      <i class="fas fa-angle-down" ></i>
+                      </div>
+                  <div class="col-12 collapse" id="Social_login">
+                              <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">ค้นหารายการจากหมายเลขทะเบียนรถตามคำระบุ</h5>
+                      
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------- Modal ลงทะเบียน  ------------------------------------------->
 @endsection

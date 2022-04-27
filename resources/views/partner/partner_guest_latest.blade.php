@@ -4,9 +4,18 @@
 @section('content')
 <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
         <div class="card-header border-bottom-0 bg-transparent">
-            <div class="d-flex align-items-center">
-                <div>
-                    <h5 class="font-weight-bold mb-0">รถที่ถูกรายงานล่าสุด</h5>
+            <div class="row col-12">
+                <div class="col-9">
+                    <h5 style="margin-top: 8px;" class="font-weight-bold mb-0">
+                    รถที่ถูกรายงานล่าสุด
+                    </h5>
+                </div>
+                <div class="col-3">
+                    <a style="float: right;" type="button" data-toggle="modal" data-target="#Partner_reportnew">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-info-circle"></i>วิธีใช้
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -317,4 +326,52 @@
             </div>
         </div>
     </div>
+    <!------------------------------------------- Modal รถที่ถูกรายงานล่าสุด------------------------------------------->
+  <div class="modal fade"  id="Partner_reportnew" tabindex="-1" role="dialog" aria-labelledby="Partner_reportnewTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="Partner_reportnewTitle">รถที่ถูกรายงานล่าสุด</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- <br>
+          <section id="about2" class="about2" style="padding:0px;">
+              <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
+                  <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
+              </div>
+          </section>
+          <br>
+          <hr>
+          <br> -->
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.รถที่ถูกรายงานล่าสุด</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;"data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
+                      <i class="fas fa-angle-down"  ></i>
+                  </div>
+                  <div class="col-12 collapse" id="sos1">
+                      <br>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/6.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.คันที่ : แสดงลำดับที่อ้างอิงของรถที่ถูกรายงาน</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ยี่ห้อ/รุ่น : แสดงยี่ห้อรถและรุ่นรถที่ถูกรายงาน</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.หมายเลขทะเบียน : แสดงหมายเลขทะเบียนรถและจังหวัดของทะเบียนรถ</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.เหตุผล : แสดงเหตุผลที่ถูกรายงาน</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.วันที่ : แสดงวันที่ถูกรายงาน</h5>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------- Modal รถที่ถูกรายงานล่าสุด ------------------------------------------->
 @endsection
