@@ -58,8 +58,7 @@
                             </span>
                             <br>
                             <span style="line-height: 30pt;">
-                                เป็นสมาชิกเมื่อ {{$data->created_at->diffForHumans()}}  <br>
-                                {{ thaidate("l j F Y" , strtotime($data->created_at)) }}
+                                เป็นสมาชิกเมื่อ {{$data->created_at->diffForHumans()}}
                             </span>
                         </center>
                         <br>
