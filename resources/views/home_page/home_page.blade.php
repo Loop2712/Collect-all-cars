@@ -529,6 +529,87 @@
      
     </section>
     <!-- End Services Section -->
+    <!-- section บริการ peddyhub -->
+    <section id="peddyhub" class="doctors d-none d-lg-block">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>บริการดีๆจาก Partner PEDDyHUB</h2>
+          <p>PeddyHub ศูนย์รวมบริการ ข้อมูล และ community สำหรับคนรักสัตว์ peddy hub ครบจบในที่เดียว !!</p>
+        </div>
+
+        <div class="row">
+         
+          <div class="col-lg-6 ">
+            <a class="peddyhub" href="#">
+              <div class="d-flex align-items-start member">
+                <div class="row">
+                  <div class="col-2 text-center align-self-center p-0" >
+                    <img width="100%" src="{{ asset('/img/sticker_ph/1.png') }}" class="img-fluid" alt="">
+                  </div>
+                  <div class="col-10">
+                    <h4>ตามหาเจ้าตัวแสบ</h4>
+                    <p>ตามหาเจ้าตัวแสบได้ง่ายๆ เพียงลงทะเบียนสัตว์เลี้ยงกับระบบ ของเรา เพียงเท่านี้ ผู้คนที่อยู่ในบริเวณใกล้เคียงก็พร้อมช่วยเหลือท่านทันที</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-6 ">
+            <a class="peddyhub" href="#">
+              <div class="d-flex align-items-start member">
+                <div class="row">
+                  <div class="col-2 text-center align-self-center p-0" >
+                    <img width="90%" src="{{ asset('/img/sticker_ph/3.png') }}" class="img-fluid" alt="">
+                  </div>
+                  <div class="col-10">
+                    <h4>อาหารและอุปกรณ์</h4>
+                    <p>อาหารและอุปกรณ์สัตว์เลี้ยง มีคุณภาพและได้มาตรฐาน พร้อมบริการส่ง 24 ชม. และโปรโมชั่นลดราคาสุดพิเศษเตรียมไว้เพื่อคุณแล้ว</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          
+          <div class="col-12"><br></div>
+          
+          <div class="col-lg-6 ">
+            <a class="peddyhub" href="#">
+              <div class="d-flex align-items-start member">
+                <div class="row">
+                  <div class="col-2 text-center align-self-center p-0" >
+                    <img width="100%" src="{{ asset('/img/sticker_ph/2.png') }}" class="img-fluid" alt="">
+                  </div>
+                  <div class="col-10">
+                    <h4>โรงพยาบาลสัตว์ </h4>
+                    <p>เมื่อต้องการหาโรงพยาบาลสัตว์ ก็สามารถค้นหาโรงพยาบาลสัตว์ใกล้คุณได้ทันที</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-6 ">
+            <a class="peddyhub" href="#">
+              <div class="d-flex align-items-start member">
+                <div class="row">
+                  <div class="col-2 text-center align-self-center p-0" >
+                    <img width="100%" src="{{ asset('/img/sticker_ph/4.png') }}" class="img-fluid" alt="">
+                  </div>
+                  <div class="col-10">
+                    <h4>ชุมชนคนรักสัตว์ </h4>
+                    <p>เรามีชุมชนสำหรับคนรักสัตว์ สามารถชมหรือมาแชร์ความน่ารักของสัตว์เลี้ยงของทุกๆคนได้เลย!!</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12"><br></div>
+          <div class="col-12"><br></div>
+        </div>
+      </div>
+    </section>
+    <!-- section บริการ peddyhub -->
 </div>
 
 
@@ -904,9 +985,94 @@
 
       </div>
     </section><!-- End Services Section -->
+      <!-- section บริการ peddyhub -->
+      <section id="peddyhub" class="doctors" style="padding-bottom:5px;">
+        <div class="container">
 
-    
+          <div class="section-title">
+            <h2>บริการดีๆจาก Partner PEDDyHUB</h2>
+            <p>PeddyHub ศูนย์รวมบริการ ข้อมูล และ community สำหรับคนรักสัตว์ peddy hub ครบจบในที่เดียว !!</p>
+          </div>
 
+          <div class="row">
+          
+            <div class="col-12 ">
+              <a class="peddyhub" href="#">
+                <div class="d-flex align-items-start member">
+                  <div class="row">
+                    <div class="col-12">
+                      <h4 class="text-center">ตามหาเจ้าตัวแสบ</h4>
+                    </div>
+                    <div class="col-3 text-center align-self-center p-0" >
+                      <img width="100%" src="{{ asset('/img/sticker_ph/1.png') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-9">
+                      <p>ตามหาเจ้าตัวแสบได้ง่ายๆ เพียงลงทะเบียนสัตว์เลี้ยงกับระบบ ของเรา เพียงเท่านี้ ผู้คนที่อยู่ในบริเวณใกล้เคียงก็พร้อมช่วยเหลือท่านทันที</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-12"><br></div>
+            <div class="col-12 ">
+              <a class="peddyhub" href="#">
+                <div class="d-flex align-items-start member">
+                  <div class="row">
+                    <div class="col-12">
+                      <h4 class="text-center">อาหารและอุปกรณ์</h4>
+                    </div>
+                    <div class="col-3 text-center align-self-center p-0" >
+                      <img width="100%" src="{{ asset('/img/sticker_ph/3.png') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-9">
+                      <p>อาหารและอุปกรณ์สัตว์เลี้ยง มีคุณภาพและได้มาตรฐาน พร้อมบริการส่ง 24 ชม. และโปรโมชั่นลดราคาสุดพิเศษเตรียมไว้เพื่อคุณแล้ว</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            
+            <div class="col-12"><br></div>
+            
+            <div class="col-12 ">
+              <a class="peddyhub" href="#">
+                <div class="d-flex align-items-start member">
+                  <div class="row">
+                    <div class="col-12">
+                      <h4 class="text-center">โรงพยาบาลสัตว์ </h4>
+                    </div>
+                    <div class="col-3 text-center align-self-center p-0" >
+                      <img width="100%" src="{{ asset('/img/sticker_ph/2.png') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-9">
+                      <p>เมื่อต้องการหาโรงพยาบาลสัตว์ ก็สามารถค้นหาโรงพยาบาลสัตว์ใกล้คุณได้ทันที</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-12"><br></div>
+            <div class="col-12 ">
+              <a class="peddyhub" href="#">
+                <div class="d-flex align-items-start member">
+                  <div class="row">
+                    <div class="col-12">
+                      <h4 class="text-center">ชุมชนคนรักสัตว์ </h4>
+                    </div>
+                    <div class="col-3 text-center align-self-center p-0" >
+                      <img width="100%" src="{{ asset('/img/sticker_ph/4.png') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-9">
+                      <p>เรามีชุมชนสำหรับคนรักสัตว์ สามารถชมหรือมาแชร์ความน่ารักของสัตว์เลี้ยงของทุกๆคนได้เลย!!</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- section บริการ peddyhub -->
     </div>
     @if(Auth::check())
       <input type="hidden" name="id_user" id="id_user" value="{{ Auth::user()->id }}">

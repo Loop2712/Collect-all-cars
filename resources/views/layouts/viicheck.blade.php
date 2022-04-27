@@ -687,7 +687,7 @@
   <footer class="d-none d-lg-block footer-bottom" id="footer">
     <div class="container d-md-flex py-3">
       <div class="me-md-auto text-center text-md-start">
-        <div class="credits">
+        <div class="credits" style="margin-bottom: 10px;">
           <div class="row d-flex align-items-center">
             <!-- <div class="col-1">
                 <p id="Certificate-banners"></p>
@@ -701,34 +701,38 @@
                 </a>
               </div>
             <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
             </div>
             <div class="col-1">
-                <img style="width: 100%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
             </div>
             <div class="col-1">
-                <img style="width: 100%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/js100.png') }}">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
             </div>
             <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/nstda.png') }}">
             </div>
-            <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
+            <div class="col-1 text-center" style="margin-left:15px;">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/js100.png') }}">
             </div>
-            <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
+            <div class="col-1 ">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
             </div>
+            
             <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
-            </div>
-            <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
             </div>
             <!-- <div class="col-1">
                 <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
             </div> -->
             <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
+            </div>
+            <div class="col-1">
+                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
+            </div>
+            <div class="col-1" style="margin-left:30px;">
+                <img height="42px" style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
             </div>
           </div>
         </div>
@@ -768,45 +772,55 @@
       <div class="me-md-auto text-center text-md-start">
         <div class="credits">
           <div class="row">
-              <div class="col-4">
+              <div class="col-3" >
                 <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo/bns_registered.png') }}">
+                  <img height="42px" height="42px" style="object-fit: contain;padding:5px" src="{{ asset('/img/logo/bns_registered.png') }}">
                 </a>
               </div>
-              <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+              <div class="col-3">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
               </div>
-              <div class="col-4">
-                  <img style="width: 100%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
+              
+              <div class="col-3">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
               </div>
-              <div class="col-4">
-                  <img style="width: 100%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/js100.png') }}">
+              
+              <div class="col-3">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
               </div>
-              <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
+              <div class="col-12"><br></div>
+              <div class="col-3">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/nstda.png') }}">
               </div>
-              <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
+              <div class="col-3">
+                  <img height="42px" style="object-fit: contain;padding:5px" src="{{ asset('/img/logo-partner/js100.png') }}">
               </div>
-              <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
+              <div class="col-3">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
               </div>
-              <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/TU.png') }}">
-              </div>
-              <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
+              
+              <div class="col-3">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
               </div>
               <!-- <div class="col-4">
                   <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
               </div> -->
+              
+              <div class="col-12"><br></div>  
               <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
+              </div>      
+              <div class="col-4">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
+              </div>
+             
+              <div class="col-4">
+                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
               </div>
               
           </div>
         </div>
-        <div class="copyright">
+        <div class="copyright" >
           <div class="row">
             <div class="col-12">
               <div class="row">

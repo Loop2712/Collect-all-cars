@@ -2,11 +2,11 @@
 
 @section('content')
 <center>
-  <div style="margin-top:-40px;">
+  <div style="margin-top:-80px;">
     <div class="row">
         <div class="col-12">
             <br>
-            <img  width="60%" src="{{ asset('/img/stickerline/PNG/15.png') }}">
+            <img  width="50%" src="{{ asset('/img/stickerline/PNG/15.png') }}">
             <br><br>
             @if($type == "CHECK IN")
               <h1 class="text-success notranslate" style="font-family: 'Days One', sans-serif;"><b>{{ $type }}</b></h1>
@@ -15,16 +15,17 @@
               <h1 class="text-danger notranslate" style="font-family: 'Days One', sans-serif;"><b>{{ $type }}</b></h1>
             @endif
             <h4 >คุณ : <b>{{ Auth::user()->name }}</b></h4>
-            <h4 style="color:blue;"><b><u>{{ date("d/m/Y H:i" , strtotime($time)) }}</u></b></h4>
+            <h4 style="color:blue;font-family: 'Sarabun', sans-serif;"><b><u>วัน{{ thaidate("lที่ j F Y" , strtotime($time)) }}</u></b></h4>
+            <h4 style="color:blue;font-family: 'Sarabun', sans-serif;"><b><u>เวลา {{ thaidate("H:i" , strtotime($time)) }}</u></b></h4>
             <br>
             <p style="margin-bottom:0px;font-size:20px;font-family: 'Sarabun', sans-serif;font-weight:600;">ประวัติการเข้าออก {{ $check_in_at }}</p>
             @foreach($data_in_out as $item)
               @if(!empty($item->time_in))
-                <b class="text-success" style="font-family: 'Sarabun', sans-serif;font-weight:600;">เข้า :</b> <span  style="font-family: 'Sarabun', sans-serif;font-weight:600;">{{ date("d/m/Y H:i" , strtotime($item->time_in)) }}</span>
+                <b class="text-success" style="font-family: 'Sarabun', sans-serif;font-weight:600;">เข้า :</b> <span  style="font-family: 'Sarabun', sans-serif;font-weight:600;">{{ thaidate("lที่ j F Y H:i" , strtotime($item->time_in)) }}</span>
                 <br>
               @endif
               @if(!empty($item->time_out))
-                <b class="text-danger" style="font-family: 'Sarabun', sans-serif;font-weight:600;">ออก :</b> <span  style="font-family: 'Sarabun', sans-serif;font-weight:600;">{{ date("d/m/Y H:i" , strtotime($item->time_out)) }}</span>
+                <b class="text-danger" style="font-family: 'Sarabun', sans-serif;font-weight:600;">ออก :</b> <span  style="font-family: 'Sarabun', sans-serif;font-weight:600;">{{ thaidate("lที่ j F Y H:i" , strtotime($item->time_out)) }}</span>
                 <br>
               @endif
             @endforeach

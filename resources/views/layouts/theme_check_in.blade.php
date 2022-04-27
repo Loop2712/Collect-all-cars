@@ -113,10 +113,8 @@
   background-attachment: fixed;  
   background-size: cover;">
     <div>
-        <div class="header__logo" style="margin-top:20px;">
-            <center>
-                <img width="200" src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}">  
-            </center>   
+        <div class="header__logo" style="margin:5px 0px 0px 5px;">
+                <img width="100" src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}">  
         </div>
         <main class="">
             <div class="">
