@@ -82,11 +82,18 @@ class ImageController extends Controller
         $color = explode(",",$color);
 
         // เรียกรูปภาพใส่ $image
-        $image = Image::make(public_path('img/check_in/theme/viicheck.png'));
+        $image = Image::make(public_path('img/check_in/theme/art_work_check_in vc (3).png'));
         $image->orientate();
 
         // ระบายสี
         $image->colorize(100,25,0);
+
+        //ลายน้ำ
+        $bg = Image::make(public_path('img/check_in/theme/viicheck.png'));
+        // $image->insert($bg)->save('img/check_in/theme/test_1.png');
+
+        $watermark = Image::make(public_path('img/check_in/theme/1.png'));
+        $image->insert($watermark)->save('img/check_in/theme/test_1.png');
 
 
         return "OK";
