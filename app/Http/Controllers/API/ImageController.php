@@ -92,7 +92,7 @@ class ImageController extends Controller
         $bg = Image::make(public_path('img/check_in/theme/viicheck.png'));
         // $image->insert($bg)->save('img/check_in/theme/test_1.png');
 
-        $watermark = Image::make(public_path('img/check_in/theme/1.png'));
+        $watermark = Image::make(public_path('img/check_in/theme/viicheck-01.png'));
         $image->insert($watermark)->save('img/check_in/theme/test_1.png');
 
 
