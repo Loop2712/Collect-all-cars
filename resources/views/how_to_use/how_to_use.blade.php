@@ -572,7 +572,7 @@
   </div>
   <!------------------------------------------- Modal รถที่ถูกรายงานล่าสุด ------------------------------------------->
   <!------------------------------------------- Modal ให้ความช่วยเหลือ ------------------------------------------->
-  <div class="modal fade"  id="Partner_gsos" tabindex="-1" role="dialog" aria-labelledby="Partner_gsosTitle" aria-hidden="true">
+<div class="modal fade"  id="Partner_gsos" tabindex="-1" role="dialog" aria-labelledby="Partner_gsosTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" >
       <div class="modal-content" >
         <div class="modal-header" >
@@ -618,15 +618,14 @@
                     <br>
                     <center><img src="{{ asset('/img/วิธีใช้งาน_p/8.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
                     <br>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อ : แสดงชื่อผู้ขอความช่วยเหลือ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.เบอร์ : แสดงเบอร์ผู้ขอความช่วยเหลือ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.เวลา : แสดงแวลาที่ขอความช่วยเหลือ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.รูปภาพ : </h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ตำแหน่ง : ตำแหน่งขอความช่วยเหลือ มีดังนี้
-                      <h5 style="font-family: 'Prompt', sans-serif;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-" <i class="fas fa-map-marker-alt text-danger text-center"> <br> <span style="font-size:15px;">ดูหมุด</span> </i>  " แสดงตำแหน่งผู้ขอความช่วยเหลือบนแผนที่ด้านข้าง </h5> 
-                      <h5 style="font-family: 'Prompt', sans-serif;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-" <i class="fas fa-location-arrow text-info text-center"><br> <span style="font-size:15px;">นำทาง</span></i>  " เปิดตำแหน่งผู้ขอความช่วยเหลือบน Google Map</h5>
-                    </h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">6.จำนวนทั้งหมด : แสดงจำนวนผู้ขอความช่วยเหลือบนพื้นที่บริการของท่านทั้งหมด</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อ : แสดงชื่อและเบอร์ผู้ขอความช่วยเหลือ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.เวลา : แสดงแวลาที่ขอความช่วยเหลือ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.สถานะ : แสดงสถานะการช่วยเหลือ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.รูปภาพ : แสดงรูปภาพ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ตำแหน่ง : แสดงตำแหน่งผู้ขอความช่วยเหลือบนแผนที่ด้านข้าง</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">6.คะแนนความช่วยเหลือ : แสดงคะแนนที่ผู้ขอความช่วยเหลือประเมิน ผู้ให้ความช่วยเหลือ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">7.จำนวนทั้งหมด : แสดงจำนวนผู้ขอความช่วยเหลือบนพื้นที่บริการของท่านทั้งหมด</h5>
+
                   </div>
               </div>
           </div>
@@ -650,8 +649,8 @@
                     </h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ตารางขอความช่วยเหลือสำหรับกลางวัน : แสดงจำนวนจำนวนที่ถูกขอความช่วยเหลือ ตั้งแต่เวลา 1 A.M. - 12 A.M.</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.ตารางขอความช่วยเหลือสำหรับกลางคืน : แสดงจำนวนจำนวนที่ถูกขอความช่วยเหลือ ตั้งแต่เวลา 1 P.M. - 12 P.M.</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.ขอความช่วยเหลือทั้งหมด : แสดงจำนวนการขอความช่วยเหลือทั้งหมด</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ทั้งหมด : แสดงจำนวนการขอความช่วยเหลือตามช่วงเวลาที่ค้นหา</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.ขอความช่วยเหลือที่ค้นหาทั้งหมด : แสดงจำนวนการขอความช่วยเหลือตามช่วงเวลาที่ค้นหา </h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ขอความช่วยเหลือทั้งหมด : แสดงจำนวนการขอความช่วยเหลือทั้งหมด</h5>
                   </div>
               </div>
           </div>
@@ -840,10 +839,11 @@
                       <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.2.อำเภอ : เลือกอำเภอที่ต้องการค้นหา</h5>
                       <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.3.ตำบล : เลือกตำบลที่ต้องการค้นหา</h5> 
                     </h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ตำแหน่งของฉัน : สำหรับค้นหาตำแหน่งปัจจุบันของคุณ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.แผนที่ : สำหรับแสดงพื้นที่บริการ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.แผนที่ : สำหรับกำหนดขนาดพื้นที่บริการ</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.ตำแหน่งของฉัน : สำหรับค้นหาตำแหน่งปัจจุบันของคุณ</h5>
                     <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.แก้ไขจุดก่อนหน้า : สำหรับลบจุดที่ทำการเพิ่มไปล่าสุด</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ส่งข้อมูล : เมื่อกำหนดพื้นที่เรียบร้อยแล้วให้คลิกที่ปุ่มส่งข้อมูล</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.แผนที่พื้นที่บริการ : สำหรับแสดงพื้นที่บริการทั้งหมด</h5>
+                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">6.ยืนยัน : เมื่อกำหนดพื้นที่เรียบร้อยแล้วให้คลิกที่ปุ่มส่งข้อมูล</h5>
                   </div>
               </div>
           </div>
@@ -855,12 +855,12 @@
     </div>
   </div>
   <!------------------------------------------- Modal พื้นที่บริการ------------------------------------------->
-  <!------------------------------------------- Modal พื้นที่บริการ ------------------------------------------->
+  <!------------------------------------------- Modal จัดการผู้ใช้ ------------------------------------------->
   <div class="modal fade"  id="Partner_user" tabindex="-1" role="dialog" aria-labelledby="Partner_userTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" >
       <div class="modal-content" >
         <div class="modal-header" >
-          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="Partner_userTitle">พื้นที่บริการ</h5>
+          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="Partner_userTitle">จัดการผู้ใช้</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -940,7 +940,7 @@
       </div>
     </div>
   </div>
-  <!------------------------------------------- Modal พื้นที่บริการ------------------------------------------->
+  <!------------------------------------------- Modal จัดการผู้ใช้------------------------------------------->
   <!------------------------------------------- Modal Check in ------------------------------------------->
   <div class="modal fade"  id="Partner_checkin" tabindex="-1" role="dialog" aria-labelledby="Partner_userTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" >

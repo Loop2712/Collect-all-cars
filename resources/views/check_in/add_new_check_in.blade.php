@@ -56,7 +56,7 @@
                                     </a>
                                 </div>
                                 <div class="col-8">
-                                   
+                                   <img class="d-none" id="img_theme_new" src="" width="90%">
                                 </div>
                             </div>
 
@@ -130,9 +130,32 @@
     {
         // console.log('change_color_theme');
 
+        let img_theme_new = document.querySelector('#img_theme_new') ;
+
         let color_theme = document.querySelector('#color_theme') ;
         let name_partner = document.querySelector('#name_partner') ;
         let name_new_check_in = document.querySelector('#name_new_check_in') ;
+
+        let data = {
+            'color_theme' : color_theme.value,
+            'name_partner' : name_partner.value,
+            'name_new_check_in' : name_new_check_in,
+        };
+
+        fetch("{{ url('/') }}/api/create_img_check_in", {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            console.log(text);
+
+        }).catch(function(error){
+            console.error(error);
+        });
 
     }
 

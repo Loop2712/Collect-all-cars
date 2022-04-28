@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header border-bottom-0 bg-transparent">
                     <div class="d-flex align-items-center" style="margin-top:10px;">
-                        <div>
+                        <div class="col-12">
                         @include ('partner.service_area.btn_menu')
                         </div>
                     </div>

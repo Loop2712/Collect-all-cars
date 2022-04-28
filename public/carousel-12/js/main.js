@@ -16,14 +16,25 @@ $(function() {
                 600:{
                     margin: 20,
                     nav: true,
-                  items: 2
+                    items: 2
                 },
-                1000:{
+                700:{
                     margin: 20,
                     stagePadding: 0,
                     nav: true,
                   items: 3
-                }
+                },
+                800:{
+                  margin: 20,
+                  nav: true,
+                  items: 4
+              },
+              1000:{
+                  margin: 20,
+                  stagePadding: 0,
+                  nav: true,
+                items: 5
+              }
             }
         });            
     }

@@ -60,9 +60,6 @@ class ImageController extends Controller
         $name_partner = $data['name_partner'];
         $name_new_check_in = $data['name_new_check_in'];
  
-        // Image path
-        // $img = public_path('img/check_in/' . $name_partner . '/check_in_' . $name_partner . '_' . $name_new_check_in . '.png');
-
         $img = storage_path("app/public")."/check_in". "/" . 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
 
         // Save image
@@ -74,12 +71,30 @@ class ImageController extends Controller
 
     function create_img_check_in()
     {
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
 
+        $color_theme = $data['color_theme'];
+        $name_partner = $data['name_partner'];
+        $name_new_check_in = $data['name_new_check_in'];
+
+        $color = $this->hex2rgba($color_theme) ;
+        $color = explode(",",$color);
+
+        // เรียกรูปภาพใส่ $image
+        $image = Image::make(public_path('img/check_in/theme/viicheck.png'));
+        $image->orientate();
+
+        // ระบายสี
+        $image->colorize(100,25,0);
+
+
+        return "OK";
     }
 
     function hex2rgba($color, $opacity = false) {
  
-        $default = 'rgb(0,0,0)';
+        $default = '0,0,0';
      
         //Return default if no color provided
         if(empty($color))
@@ -104,9 +119,9 @@ class ImageController extends Controller
      
             //Check if opacity is set(rgba or rgb)
             if($opacity){
-                $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+                $output = implode(",",$rgb).','.$opacity;
             } else {
-                $output = 'rgb('.implode(",",$rgb).')';
+                $output = implode(",",$rgb);
             }
      
             //Return rgb(a) color string

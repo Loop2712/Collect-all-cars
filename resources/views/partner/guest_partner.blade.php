@@ -101,9 +101,18 @@
     </div>
     <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
         <div class="card-header border-bottom-0 bg-transparent">
-            <div class="d-flex align-items-center" style="margin-top:10px;">
-                <div>
-                    <h5 class="font-weight-bold mb-0"> รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)  </h5>
+            <div class="row col-12">
+                <div class="col-9">
+                    <h5 style="margin-top: 8px;" class="font-weight-bold mb-0">
+                        รายการรถที่ถูกแจ้งปัญหาการขับขี่ (มากไปน้อย)
+                    </h5>
+                </div>
+                <div class="col-3">
+                    <a style="float: right;" type="button" data-toggle="modal" data-target="#Partner_report">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-info-circle"></i>วิธีใช้
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -533,6 +542,65 @@
             </div>
         </div>
     </div>
+    <!------------------------------------------- Modal รถที่ถูกรายงาน ------------------------------------------->
+  <div class="modal fade"  id="Partner_report" tabindex="-1" role="dialog" aria-labelledby="Partner_reportTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="Partner_reportTitle">รถที่ถูกรายงาน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center><img src="{{ asset('/img/วิธีใช้งาน_p/3.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
+              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register">
+                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.การค้นหารรายการรถที่ถูกรายงาน รายเดือน/ปี</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register">
+                      <i class="fas fa-angle-down"></i>
+                  </div>
+                  <div class="col-12 collapse" id="register">
+                      <br>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/4.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.เลือกปี : เลือกปีที่ต้องการค้นหารายการรถที่ถูกแจ้งปัญหาการขับขี่</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.เลือกเดือน : สามารถระบุช่วงเดือนที่ถูกแจ้งปัญหาการขับขี่ได้ โดยเลือกช่วงเดือนจาก Dropdown List เพื่อเลือกเดือนที่ที่ต้องการค้นหา</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.ค้นหา : เมื่อกรอกข้อมูลครบถ้วนและถูกต้องให้คลิกที่ปุ่มค้นหาเพื่อทำการค้นหาข้อมูล</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.ล้างการค้นหา : หากต้องการยกเลิกการค้นหาให้คลิกที่ปุ่มล้างการค้นหา เพื่อยกเลิกการค้นหา</h5>
+                  </div>
+              </div>
+          </div>
+          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+              <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;">
+                  <div class="col-10" style="margin-bottom:0px"  data-toggle="collapse" data-target="#registerline" aria-expanded="false" aria-controls="registerline" >
+                          <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.รายการรถที่ถูกแจ้งปัญหาการขับขี่</h5>
+                  </div> 
+                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#registerline" aria-expanded="false" aria-controls="registerline" >
+                      <i class="fas fa-angle-down" ></i>
+                      </div>
+                  <div class="col-12 collapse" id="registerline">
+                      <br>
+                      <center><img src="{{ asset('/img/วิธีใช้งาน_p/5.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
+                      <br>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ยี่ห้อรถ/รุ่น : แสดงยี่ห้อรถและรุ่นรถที่ถูกรายงาน</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.หมายเลขทะเบียน : แสดงหมายเลขทะเบียนรถและจังหวัดของทะเบียนรถ</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.รายงานทั้งหมด : แสดงจำนวนครั้งที่ถูกรายงานทั้งหมด</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.รายงานต่อเดือน : แสดงจำนวนครั้งที่ถูกรายงานตามเดือนที่ทำการค้นหา</h5>
+                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ผู้ลงทะเบียน : แสดงชื่อผู้ลงทะเบียนรถ</h5>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------- Modal รถที่ถูกรายงาน ------------------------------------------->
 <script>
     function select_year(){
         let select_year = document.getElementById('select_year').value;

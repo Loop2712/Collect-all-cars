@@ -138,6 +138,8 @@ Route::get('/show_group_risk/{id}/{check_in_at}','API\PartnersController@show_gr
 Route::post('/send_risk_group', 'API\PartnersController@send_risk_group');
 
 
+Route::post('/save_img_url', 'API\ImageController@save_img_url');
+Route::post('/create_img_check_in', 'API\ImageController@create_img_check_in');
 
 
 
@@ -145,13 +147,6 @@ Route::post('/send_risk_group', 'API\PartnersController@send_risk_group');
 // API TU
 
 Route::post('/api_data_tu_greats', 'API\API_TU_Greats@api_data_tu_greats');
-
-
-
-
-Route::post('/save_img_url', 'API\ImageController@save_img_url');
-
-
 
 
 
