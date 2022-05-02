@@ -214,7 +214,7 @@
                 </div>
             </div>
         </div>
-        <label  class="control-label">{{ 'สาขา' }}</label>
+        <!-- <label  class="control-label">{{ 'สาขา' }}</label>
 
         <div id="show_branch_notempty" class="row">
             <div class="col-12 col-md-4">
@@ -235,7 +235,7 @@
                     {!! $errors->first('branch_district', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-        </div>
+        </div> -->
     @endif
 
 <hr>
