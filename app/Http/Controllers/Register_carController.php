@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Organization;
 use App\Models\Insurance;
+use App\Models\Partner;
 use Illuminate\Support\Facades\DB;
 use App\CarModel;
 use App\county;
@@ -186,12 +187,14 @@ class Register_carController extends Controller
             ->orderBy('company')
             ->get();
 
+        $name_partners = Partner::where('name_area' , null)->get();
+
         // echo "<pre>";
         // print_r($name_insurance);
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization','select_Organization','name_insurance'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization','select_Organization','name_insurance','name_partners'));
     }
 
     /**
@@ -294,7 +297,7 @@ class Register_carController extends Controller
                     'location_P' => $requestData['location_P'],
                     'location_A' => $requestData['location_A'],
                     'phone' => $requestData['phone'],
-                    'organization' => $requestData['juristicNameTH'],
+                    'organization' => $requestData['name_partner'],
                     'branch' => $requestData['branch'],
                     'branch_district' => $requestData['branch_district'],
                     'branch_province' => $requestData['branch_province'],
@@ -305,7 +308,7 @@ class Register_carController extends Controller
             DB::table('users')
                 ->where('id', $requestData['user_id'])
                 ->update([
-                    'organization' => $requestData['juristicNameTH'],
+                    'organization' => $requestData['name_partner'],
                     'branch' => $requestData['branch'],
                     'branch_district' => $requestData['branch_district'],
                     'branch_province' => $requestData['branch_province'],
