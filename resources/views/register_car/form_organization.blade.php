@@ -2,27 +2,7 @@
 <div id="div_organization" class="">
     <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร' }}</span><span style="color: #FF0033;"> *<br><br></span>
 
-    <div class="row" id="div_selest_organization_1">
-        <div class="col-12 col-md-4">
-            <div class="form-group">
-                <select name="name_partner" id="name_partner" class="form-control notranslate">
-                        <option value="" selected > - กรุณาเลือกองค์กร - </option> 
-                        @if(!empty($name_partners))
-                            @foreach($name_partners as $name_partner)
-                                <option
-                                value="{{ $name_partner->name }}" 
-                                {{ request('name') == $name_partner->name ? 'selected' : ''   }} >
-                                {{ $name_partner->name }} 
-                                </option>
-                            @endforeach
-                        @endif
-                </select>
-            </div>
-        </div>
-    </div>
-    
-
-    <!-- @if(empty($juristicID))
+    @if(empty($juristicID))
         <div id="empty_juristicID">
             <div class="row" id="div_selest_organization_1">
                 <div class="col-12 col-md-4">
@@ -37,9 +17,9 @@
                 </div>
                 <div class="col-12 col-md-4">
                     @if(!empty(Auth::user()->role))
-                        <div class="form-group">
-                            <button type="button" class="btn btn-success" onclick="click_btn_organization_new();">ลงทะเบียนองค์กรใหม่</button>
-                        </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success" onclick="click_btn_organization_new();">ลงทะเบียนองค์กรใหม่</button>
+                    </div>
                     @endif
                 </div>
             </div>
@@ -87,19 +67,19 @@
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
-                            <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : ''}}"  placeholder="ชื่อองค์กร" >
+                            <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{ isset($not_comfor->juristicNameTH) ? $not_comfor->juristicNameTH : ''}}"  placeholder="ชื่อองค์กร" readonly>
                             {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('location_A_2') ? 'has-error' : ''}}">
-                            <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  '' }}"  placeholder="อำเภอ">
+                            <input class="form-control" name="location_A_2" type="text" id="location_A_2" value="{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  '' }}"  placeholder="อำเภอ"readonly>
                             {!! $errors->first('location_A_2', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group {{ $errors->has('location_P_2') ? 'has-error' : ''}}">
-                            <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  '' }}"  placeholder="จังหวัด" onchange="change_location_2();">
+                            <input class="form-control" name="location_P_2" type="text" id="location_P_2" value="{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  '' }}"  placeholder="จังหวัด" onchange="change_location_2();"readonly>
                             {!! $errors->first('location_P_2', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
@@ -162,7 +142,7 @@
                 </div>
             </div>
         </div>
-    @endif -->
+    @endif
 
     @if(!empty($juristicID))
         <div id="not_empty_juristicID">
@@ -274,49 +254,49 @@
 
         document.querySelector('#div_spinner').classList.remove('d-none');
 
-        // fetch("https://dataapi.moc.go.th/juristic?juristic_id="+juristicID.value)
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         console.log(result);
+        fetch("https://dataapi.moc.go.th/juristic?juristic_id="+juristicID.value)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
 
-        //         fetch("{{ url('/') }}/api/juristic", {
-        //             method: 'post',
-        //             body: JSON.stringify(result),
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             }
-        //         }).then(function (response){
-        //             return response.text();
-        //         }).then(function(text){
-        //             // console.log(text);
-        //         }).catch(function(error){
-        //             // console.error(error);
-        //         });
+                fetch("{{ url('/') }}/api/juristic", {
+                    method: 'post',
+                    body: JSON.stringify(result),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response){
+                    return response.text();
+                }).then(function(text){
+                    // console.log(text);
+                }).catch(function(error){
+                    // console.error(error);
+                });
 
-        //         if (result == null) {
-        //             document.querySelector('#div_spinner').classList.add('d-none');
-        //             document.querySelector('#div_wrong').classList.remove('d-none');
-        //         }else if (result == "") {
-        //             document.querySelector('#div_spinner').classList.add('d-none');
-        //             document.querySelector('#div_wrong').classList.remove('d-none');
-        //         }else if (result['juristicStatus'] != "ยังดำเนินกิจการอยู่") {
-        //             document.querySelector('#div_spinner').classList.add('d-none');
-        //             document.querySelector('#div_wrong').classList.add('d-none');
-        //             document.querySelector('#div_not_open').classList.remove('d-none');
-        //         }
-        //         else{ 
-        //             document.querySelector('#div_spinner').classList.add('d-none');
-        //             document.querySelector('#div_data_organization').classList.remove('d-none');
-        //         }
+                if (result == null) {
+                    document.querySelector('#div_spinner').classList.add('d-none');
+                    document.querySelector('#div_wrong').classList.remove('d-none');
+                }else if (result == "") {
+                    document.querySelector('#div_spinner').classList.add('d-none');
+                    document.querySelector('#div_wrong').classList.remove('d-none');
+                }else if (result['juristicStatus'] != "ยังดำเนินกิจการอยู่") {
+                    document.querySelector('#div_spinner').classList.add('d-none');
+                    document.querySelector('#div_wrong').classList.add('d-none');
+                    document.querySelector('#div_not_open').classList.remove('d-none');
+                }
+                else{ 
+                    document.querySelector('#div_spinner').classList.add('d-none');
+                    document.querySelector('#div_data_organization').classList.remove('d-none');
+                }
 
-        //         juristicNameTH.value = result['juristicNameTH'];
-        //         location_P_2.value = result['addressDetail']['province'];
-        //         location_A_2.value = result['addressDetail']['district'];
+                juristicNameTH.value = result['juristicNameTH'];
+                location_P_2.value = result['addressDetail']['province'];
+                location_A_2.value = result['addressDetail']['district'];
 
-        //         let location = document.querySelector("#location");
-        //             location.value = result['addressDetail']['province'];
+                let location = document.querySelector("#location");
+                    location.value = result['addressDetail']['province'];
 
-        //     });
+            });
     }
 
     // องค์กร
