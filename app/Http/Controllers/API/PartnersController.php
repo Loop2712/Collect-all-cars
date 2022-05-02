@@ -747,4 +747,11 @@ class PartnersController extends Controller
         return $count_user;
     }
 
+    function input_data_partner($name_partner)
+    {
+        $data = Partner::where('name_area', null )->where('name' , $name_partner)->get();
+
+        return $data ;
+    }
+
 }

@@ -73,44 +73,10 @@
 
         document.querySelector('#blade_organization').classList.remove('d-none');
 
-        document.querySelector('#row_organization').classList.remove('d-none');
-        document.querySelector('#btn_back').classList.remove('d-none');
-        document.querySelector('#btn_back_pc').classList.remove('d-none');
-
         add_required();
     }
     
-    function add_required(){ 
-
-        // องค์กร
-        var juristicID = document.querySelector('#juristicID');
-        var organization_mail = document.querySelector('#organization_mail');
-        var location_P_2 = document.querySelector('#location_P_2');
-        var location_A_2 = document.querySelector('#location_A_2');
-        var phone_2 = document.querySelector('#phone_2');
-        var juristicNameTH = document.querySelector('#juristicNameTH');
-        var branch = document.querySelector('#branch');
-        var branch_province = document.querySelector('#branch_province');
-        var branch_district = document.querySelector('#branch_district');
-
-        // juristicID.setAttributeNode(document.createAttribute('required'));
-        organization_mail.setAttributeNode(document.createAttribute('required'));
-        location_P_2.setAttributeNode(document.createAttribute('required'));
-        location_A_2.setAttributeNode(document.createAttribute('required'));
-        phone_2.setAttributeNode(document.createAttribute('required'));
-        juristicNameTH.setAttributeNode(document.createAttribute('required'));
-
-        juristicNameTH.value = "{{ isset($register_car->juristicNameTH) ? $register_car->juristicNameTH : $juristicNameTH}}";
-        location_A_2.value = "{{ isset($register_car->location_A_2) ? $register_car->location_A_2 :  $juristicDistrict }}";
-        location_P_2.value = "{{ isset($register_car->location_P_2) ? $register_car->location_P_2 :  $juristicProvince }}";
-        organization_mail.value = "{{ isset($register_car->organization_mail) ? $register_car->organization_mail :  $juristicMail }}";
-        phone_2.value = "{{ $juristicPhone }}";
-        juristicID.value = "{{ isset($register_car->juristicID) ? $register_car->juristicID :  $juristicID }}";
-
-        branch.value = "{{ isset($register_car->branch) ? $register_car->branch :  Auth::user()->branch }}";
-        branch_province.value = "{{ isset($register_car->branch_province) ? $register_car->branch_province :  Auth::user()->branch_province }}";
-        branch_district.value = "{{ isset($register_car->branch_district) ? $register_car->branch_district :  Auth::user()->branch_district }}";
-    }
+    
 
 </script>
 @endsection

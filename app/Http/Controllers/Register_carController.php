@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Organization;
 use App\Models\Insurance;
+use App\Models\Partner;
 use Illuminate\Support\Facades\DB;
 use App\CarModel;
 use App\county;
@@ -130,28 +131,8 @@ class Register_carController extends Controller
 
         $organization = $user->organization;
 
-        $Juristic_ID = Organization::where('juristicNameTH', $organization )->get();
-
-        $select_Organization = Organization::selectRaw('juristicNameTH')->groupBy('juristicNameTH')->get();
-
-
-        $juristicNameTH = "";
-        $juristicID = "" ;
-        $juristicMail = "" ;
-        $juristicPhone = "" ;
-        $juristicProvince = "" ;
-        $juristicDistrict = "" ;
-
-        foreach ($Juristic_ID as $key ) {
-            if (!empty($key->juristicNameTH)) {
-                $juristicNameTH = $key->juristicNameTH ;
-                $juristicID = $key->juristicID ;
-                $juristicMail = $key->mail ;
-                $juristicPhone = $key->phone ;
-                $juristicProvince = $key->province ;
-                $juristicDistrict = $key->district ;
-            }
-        }
+        $data_partners = Partner::where('name_area', null )->where('name' , $organization)->get();
+        $all_partners = Partner::where('name_area', null )->get();
 
         $location_array = county::selectRaw('province')
             ->groupBy('province')
@@ -191,7 +172,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'juristicNameTH' , 'juristicID' , 'juristicMail' , 'juristicPhone' , 'juristicProvince' , 'juristicDistrict' , 'organization','select_Organization','name_insurance'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'organization','name_insurance','data_partners', 'all_partners'));
     }
 
     /**
@@ -275,6 +256,9 @@ class Register_carController extends Controller
 
             // Organization::firstOrCreate($juristicData);
         }
+        
+        $requestData['location_A_2'] = "" ;
+        $requestData['location_P_2'] = "" ;
 
         if ( empty($requestData['branch']) and !empty($requestData['juristicNameTH'])) {
             $requestData['branch'] = "สำนักงานใหญ";

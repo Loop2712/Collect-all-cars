@@ -9,7 +9,7 @@
 
                 <!-- หน้าลงทะเบียนสำหรับองค์กร -->
                 <div id="blade_organization" class="d-none">
-                    @include ('register_car.form_organization')
+                    @include ('register_car.form_partner')
                 </div>
 
                 <!-- หน้าลงทะเบียนสำหรับบุคคลทั่วไป -->

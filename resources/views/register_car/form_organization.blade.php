@@ -2,7 +2,7 @@
 <div id="div_organization" class="">
     <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลองค์กร' }}</span><span style="color: #FF0033;"> *<br><br></span>
 
-    @if(empty($juristicID))
+    @if(empty($organization))
         <div id="empty_juristicID">
             <div class="row" id="div_selest_organization_1">
                 <div class="col-12 col-md-4">
@@ -144,7 +144,7 @@
         </div>
     @endif
 
-    @if(!empty($juristicID))
+    @if(!empty($organization))
         <div id="not_empty_juristicID">
             <!-- <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
@@ -159,7 +159,7 @@
                     </div>
                 </div>
             </div> -->
-
+            @foreach
             <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
                     <label  class="control-label">{{ 'ชื่อองค์กร' }}</label><span style="color: #FF0033;"> *</span>
@@ -174,7 +174,7 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group {{ $errors->has('juristicNameTH') ? 'has-error' : ''}}">
-                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value=""  readonly>
+                        <input class="form-control" name="juristicNameTH" type="text" id="juristicNameTH" value="{{  }}"  readonly>
                         {!! $errors->first('juristicNameTH', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>

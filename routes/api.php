@@ -115,6 +115,7 @@ Route::get('/check_new_sos_area', 'API\PartnersController@check_new_sos_area');
 
 Route::get('/approve_area/{input_new_area}/{id}', 'API\PartnersController@approve_area');
 Route::get('/disapproved_area/{id}/{answer_reason}/{reason_other}', 'API\PartnersController@disapproved_area');
+Route::get('/input_data_partner/{name_partner}', 'API\PartnersController@input_data_partner');
 
 Route::get('/change_color_navbar/{color_navbar}/{name_partner}', 'API\PartnersController@change_color_navbar');
 Route::get('/change_color_menu/{color_navbar}/{name_partner}/{class_color_menu}', 'API\PartnersController@change_color_menu');
