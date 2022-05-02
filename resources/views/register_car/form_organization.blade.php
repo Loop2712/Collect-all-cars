@@ -146,7 +146,7 @@
 
     @if(!empty($juristicID))
         <div id="not_empty_juristicID">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
                     <label  class="control-label">{{ 'เลขทะเบียนนิติบุคคล' }}</label><span style="color: #FF0033;"> *</span>
                 </div>
@@ -158,7 +158,7 @@
                         {!! $errors->first('juristicID', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row">
                 <div class="col-12 col-md-4 d-none d-lg-block">
