@@ -77,6 +77,7 @@ class ImageController extends Controller
         $color_theme = $data['color_theme'];
         $name_partner = $data['name_partner'];
         $name_new_check_in = $data['name_new_check_in'];
+        $url_img = $data['url_img'];
 
         $color = $this->hex2rgba($color_theme) ;
         $color = explode(",",$color);
@@ -89,11 +90,11 @@ class ImageController extends Controller
         $image->colorize(100,25,0);
 
         //ลายน้ำ
-        $bg = Image::make(public_path('img/check_in/theme/viicheck.png'));
+        // $bg = Image::make(public_path('img/check_in/theme/viicheck.png'));
         // $image->insert($bg)->save('img/check_in/theme/test_1.png');
 
         $watermark = Image::make(public_path('img/check_in/theme/viicheck-01.png'));
-        $image->insert($watermark)->save('img/check_in/theme/test_1.png');
+        $image->insert($watermark)->save(public_path('img/check_in/theme/test_1.png'));
 
 
         return "OK";

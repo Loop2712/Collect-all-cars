@@ -34,7 +34,8 @@
                     <tbody>
                         @foreach($guest_latest as $item)
                             <tr class="text-center">
-                                <td>{{ $item->id }}</td>
+                                <!-- <td>{{ $item->id }}</td> -->
+                                <td>{{ $loop->iteration }}</td>
                                 <td> 
                                     <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
                                     <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation }} </span>

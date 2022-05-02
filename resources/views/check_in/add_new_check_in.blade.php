@@ -110,6 +110,7 @@
         }).then(function(text){
             // console.log(text);
             let url_img = "{{ url('storage') }}/" + "check_in/" + text;
+            console.log(url_img);
 
             let img_qr_code = document.querySelector('#img_qr_code') ;
                 img_qr_code.src = url_img;
@@ -123,10 +124,10 @@
             // console.error(error);
         });
 
-        change_color_theme();
+        change_color_theme(url_img);
     }
 
-    function change_color_theme()
+    function change_color_theme(url_img)
     {
         // console.log('change_color_theme');
 
@@ -140,6 +141,7 @@
             'color_theme' : color_theme.value,
             'name_partner' : name_partner.value,
             'name_new_check_in' : name_new_check_in,
+            'url_img' : url_img,
         };
 
         fetch("{{ url('/') }}/api/create_img_check_in", {

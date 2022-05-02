@@ -68,7 +68,8 @@
                     <tbody>
                         @foreach($report_register_cars as $item)
                             <tr class="text-center">
-                                <td>{{ $item->id }}</td>
+                                <!-- <td>{{ $item->id }}</td> -->
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->brand }}</td>
                                 <td>{{ $item->generation }}</td>
                                 <td>
