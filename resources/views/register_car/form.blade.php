@@ -1147,7 +1147,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         show_location_P();
-        show_location_P_2();
+        // show_location_P_2();
         showCar_brand();
         showMotor_brand();
     });
