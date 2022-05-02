@@ -87,9 +87,9 @@
                                 <td>
                                     <a target="bank" class="btn btn-sm" href="{{ url('/profile') . '/' . $item->user_id }}"><i class="far fa-eye text-info"></i>{{ $item->name }}</a>
                                     <br>
-                                    @if(!empty($item->user->branch))
+                                    <!-- @if(!empty($item->user->branch))
                                         <b>สาขา</b> {{ $item->user->branch }}
-                                    @endif
+                                    @endif -->
                                 </td>
                             </tr>
                         @endforeach
