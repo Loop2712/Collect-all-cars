@@ -80,11 +80,12 @@ class Register_carController extends Controller
                 $type_car = "all";
             }
 
-        $organization = "";
-        if (!empty($user['organization'])) {
-            $organization = Organization::where('juristicNameTH', $user['organization'] )->get();
-                foreach ($organization as $key ) {
-                    $juristicNameTH = $key->juristicNameTH;
+        $organization = $user->organization;
+
+        if (!empty($organization)) {
+            $organizations = Partner::where('name', $organization )->get();
+                foreach ($organizations as $key ) {
+                    $juristicNameTH = $key->name;
                 }
         }
 
@@ -256,7 +257,7 @@ class Register_carController extends Controller
 
             // Organization::firstOrCreate($juristicData);
         }
-        
+
         $requestData['location_A_2'] = "" ;
         $requestData['location_P_2'] = "" ;
 
