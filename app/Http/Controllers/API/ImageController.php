@@ -95,23 +95,23 @@ class ImageController extends Controller
 
         // QR-code
         $watermark_2 = Image::make( storage_path("app/public") . "/" .  $url_img );
-        $image->insert($watermark_2 ,'bottom-right', 600, 200);
+        $image->insert($watermark_2 ,'bottom-right', 385, 150);
 
         // logo viicheck && sticker
         $watermark = Image::make(public_path('img/check_in/theme/viicheck-01.png'));
         $image->insert($watermark);
 
-        $image->text($name_partner, 850, 125, function($font) {
+        $image->text($name_partner, 530, 205, function($font) {
             $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-            $font->size(90);
+            $font->size(65);
             $font->color('#ffffff');
             $font->align('center');
             $font->valign('top');
         });
 
-        $image->text($name_new_check_in, 1250, 850, function($font) {
+        $image->text($name_new_check_in, 750, 810, function($font) {
             $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-            $font->size(65);
+            $font->size(45);
             $font->color('#000000');
             $font->align('center');
             $font->valign('top');
