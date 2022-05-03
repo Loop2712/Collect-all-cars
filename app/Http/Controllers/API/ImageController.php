@@ -79,25 +79,48 @@ class ImageController extends Controller
         $name_new_check_in = $data['name_new_check_in'];
         $url_img = $data['url_img'];
 
-        $color = $this->hex2rgba($color_theme) ;
-        $color = explode(",",$color);
+        $color_hex = $this->hex2rgba($color_theme) ;
+        $color_sp = explode(",",$color_hex);
+        $color_1 = intval($color_sp[0]);
+        $color_2 = intval($color_sp[1]);
+        $color_3 = intval($color_sp[2]);
 
         // เรียกรูปภาพใส่ $image
-        $image = Image::make(public_path('img/check_in/theme/art_work_check_in vc (3).png'));
+        $image = Image::make(public_path('img/check_in/theme/artwork_new.png'));
         $image->orientate();
 
         // ระบายสี
-        $image->colorize(100,25,0);
+        // $image->colorize( intval($color[0]) , intval($color[1]) , intval($color[2]) );
+        $image->colorize( 20 ,25 , 25 );
 
-        //ลายน้ำ
-        // $bg = Image::make(public_path('img/check_in/theme/viicheck.png'));
-        // $image->insert($bg)->save('img/check_in/theme/test_1.png');
+        // QR-code
+        $watermark_2 = Image::make( storage_path("app/public") . "/" .  $url_img );
+        $image->insert($watermark_2 ,'bottom-right', 600, 200);
 
+        // logo viicheck && sticker
         $watermark = Image::make(public_path('img/check_in/theme/viicheck-01.png'));
-        $image->insert($watermark)->save(public_path('img/check_in/theme/test_1.png'));
+        $image->insert($watermark);
+
+        $image->text($name_partner, 850, 125, function($font) {
+            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+            $font->size(90);
+            $font->color('#ffffff');
+            $font->align('center');
+            $font->valign('top');
+        });
+
+        $image->text($name_new_check_in, 1250, 850, function($font) {
+            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+            $font->size(65);
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+        });
+
+        $image->save(public_path('img/check_in/theme/test_1.png'));
 
 
-        return "OK";
+        return $color_1;
     }
 
     function hex2rgba($color, $opacity = false) {

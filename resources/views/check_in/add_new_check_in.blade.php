@@ -26,21 +26,8 @@
                             <br>
                             <div id="select_color">
                                 <label class="control-label" for="name_new_check_in">เลือกสีรูปภาพ</label>
-                                <input type="text" class="form-control d-" id="color_theme" name="color_theme" value="" placeholder="กรอกสีรูปภาพ" >
+                                <input type="text" class="form-control d-" id="color_theme" name="color_theme" value="" placeholder="กรอกโค้ดสี เช่น #F15423" >
                                 <br>
-                                <div class="row text-center">
-                                    <div class="col-1">
-                                        <i class="fas fa-circle" style="font-size: 45px;color:#FF66FF;" onclick="document.querySelector('#color_theme').value = '#FF66FF' "></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="fas fa-circle" style="font-size: 45px;color:#FF0000;" onclick="document.querySelector('#color_theme').value = '#FF0000' "></i>
-                                    </div>
-                                    <div class="col-2">
-                                        <button class="btn btn-success main-shadow main-radius" style="width: 100%;margin-top: 5px;">
-                                            สุ่มสี
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
 
                             <button id="tag_a_qr" class="btn btn-info text-white d-none" style="float:right;" onclick="gen_qr_code();">
@@ -49,14 +36,14 @@
 
                             <div id="div_qr_code" class="row col-12 text-center">
                                 <br>
-                                <div class="col-4">
+                                <div class="col-6">
+                                    <img class="d-none" id="img_str_load" src="{{ url('/img/stickerline/PNG/25.png') }}" width="85%">
+                                </div>
+                                <div class="col-6">
                                     <img class="d-none" id="img_qr_code" src="" width="250" height="250">
                                     <a id="download_img_qr_code" href="" class="btn btn-danger text-white d-none" download="">
                                         ดาวน์โหลด
                                     </a>
-                                </div>
-                                <div class="col-8">
-                                   <img class="d-none" id="img_theme_new" src="" width="90%">
                                 </div>
                             </div>
 
@@ -64,7 +51,13 @@
 
                         <div class="col-6">
                             <center>
-                                <img class="main-shadow main-radius" src="{{ url('/img/check_in/theme/artwork_check_in.png') }}" width="80%">
+                                <img id="img_theme_old" class="main-shadow main-radius" src="{{ url('/img/check_in/theme/artwork_check_in_EX.png') }}" width="80%">
+
+                                <img id="img_theme_new" class="d-none main-shadow main-radius"  src="" width="80%">
+                                <br><br>
+                                <a id="download_img_theme_new" href="" class="btn btn-danger text-white d-none" download="">
+                                    ดาวน์โหลด
+                                </a>
                             </center>
                         </div>
                     </div>
@@ -89,7 +82,7 @@
 
         let name_partner = document.querySelector('#name_partner') ;
 
-        let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_new_check_in + "&chs=250x250&choe=UTF-8"
+        let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_new_check_in + "&chs=500x500&choe=UTF-8"
 
             // console.log(url);
 
@@ -110,21 +103,23 @@
         }).then(function(text){
             // console.log(text);
             let url_img = "{{ url('storage') }}/" + "check_in/" + text;
-            console.log(url_img);
+            // console.log(url_img);
 
             let img_qr_code = document.querySelector('#img_qr_code') ;
                 img_qr_code.src = url_img;
-                img_qr_code.classList.remove('d-none');
+                // img_qr_code.classList.remove('d-none');
 
             let download_img_qr_code = document.querySelector('#download_img_qr_code') ;
                 download_img_qr_code.href = url_img;
-                download_img_qr_code.classList.remove('d-none');
+                // download_img_qr_code.classList.remove('d-none');
+
+            change_color_theme("check_in/" + text);
+
 
         }).catch(function(error){
             // console.error(error);
         });
 
-        change_color_theme(url_img);
     }
 
     function change_color_theme(url_img)
@@ -134,13 +129,14 @@
         let img_theme_new = document.querySelector('#img_theme_new') ;
 
         let color_theme = document.querySelector('#color_theme') ;
+
         let name_partner = document.querySelector('#name_partner') ;
         let name_new_check_in = document.querySelector('#name_new_check_in') ;
 
         let data = {
             'color_theme' : color_theme.value,
             'name_partner' : name_partner.value,
-            'name_new_check_in' : name_new_check_in,
+            'name_new_check_in' : name_new_check_in.value,
             'url_img' : url_img,
         };
 
@@ -154,6 +150,22 @@
             return response.text();
         }).then(function(text){
             console.log(text);
+
+            document.querySelector('#img_theme_old').classList.add('d-none');
+
+            let url_img_theme_new = "{{ url('/') }}/img/check_in/theme/test_1.png" ;
+
+            let img_theme_new = document.querySelector('#img_theme_new');
+                img_theme_new.src = url_img_theme_new ;
+
+            let download_img_theme_new = document.querySelector('#download_img_theme_new');
+                download_img_theme_new.href = url_img_theme_new ;
+            
+            img_qr_code.classList.remove('d-none');
+            img_theme_new.classList.remove('d-none');
+            download_img_theme_new.classList.remove('d-none');
+            document.querySelector('#img_str_load').classList.remove('d-none');
+            document.querySelector('#download_img_qr_code').classList.remove('d-none');
 
         }).catch(function(error){
             console.error(error);
