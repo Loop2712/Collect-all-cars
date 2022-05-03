@@ -58,7 +58,7 @@
       },
       {
         "type": "text",
-        "text": "that let V be part of the service",
+        "text": "for using ViiCHECK services.",
         "weight": "bold",
         "size": "md",
         "margin": "xl",
@@ -74,7 +74,7 @@
       },
       {
         "type": "text",
-        "text": "V will do my best.",
+        "text": "Vii will do our best to assist you.",
         "weight": "bold",
         "size": "md",
         "margin": "lg",
