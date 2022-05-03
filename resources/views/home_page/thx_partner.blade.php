@@ -1,6 +1,6 @@
-<div class="container notranslate" style="margin-top:-20px;">
+<div class=" notranslate" style="margin-top:-20px;">
   <div class="site-section bg-left-half mb-5">
-    <div class="container owl-2-style">
+    <div class=" owl-2-style">
       <div class="section-title">
         <h2>ขอขอบคุณ</h2>
       </div>
