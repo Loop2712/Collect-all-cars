@@ -25,20 +25,6 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $default = '20,5,1';
-        $color = explode(",",$default);
-
-        echo "<pre>";
-        print_r($color);
-        echo "<pre>";
-        echo "<br>";
-        echo "1 >>>>> " . gettype(intval($color[0]));
-        echo "<br>";
-
-        echo intval($color[0]) .','. intval($color[1]) .','. intval($color[2]);
-
-
-        exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');

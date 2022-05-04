@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
+use Auth;
+use App\Models\Partner;
 
 use Google\Cloud\Vision\VisionClient;
 
@@ -79,53 +81,85 @@ class ImageController extends Controller
         $name_new_check_in = $data['name_new_check_in'];
         $url_img = $data['url_img'];
 
-        $color_hex = $this->hex2rgba($color_theme) ;
-        $color_sp = explode(",",$color_hex);
-        $color_1 = intval($color_sp[0]);
-        $color_2 = intval($color_sp[1]);
-        $color_3 = intval($color_sp[2]);
+        $check_new_area = Partner::where('name' , $name_partner)->where('name_area' , $name_new_check_in)->get();
 
-        // เรียกรูปภาพใส่ $image
-        $image = Image::make(public_path('img/check_in/theme/artwork_new.png'));
-        $image->orientate();
+        foreach ($check_new_area as $key ) {
+            $check_id_area = $key->id ;
+        }
 
-        // ระบายสี
-        // $image->colorize( intval($color[0]) , intval($color[1]) , intval($color[2]) );
-        $image->colorize( 20 ,25 , 25 );
+        if (!empty($check_id_area)) {
+            return "already have this area" ;
+        }else{
 
-        // QR-code
-        $watermark_2 = Image::make( storage_path("app/public") . "/" .  $url_img );
-        $image->insert($watermark_2 ,'bottom-right', 385, 150);
+            $data_partners = Partner::where('name' , $name_partner)->where('name_area' , null)->get();
 
-        // logo viicheck && sticker
-        $watermark = Image::make(public_path('img/check_in/theme/viicheck-01.png'));
-        $image->insert($watermark);
+            // สร้างพาร์ทเนอร์ย่อย
+            foreach ($data_partners as $item) {
 
-        $image->text($name_partner, 530, 205, function($font) {
-            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-            $font->size(65);
-            $font->color('#ffffff');
-            $font->align('center');
-            $font->valign('top');
-        });
+                $requestData['name'] = $name_partner ;
+                $requestData['phone'] = $item->phone ;
+                $requestData['mail'] = $item->mail ;
+                $requestData['name_area'] = $name_new_check_in ;
+                $requestData['full_name'] = $item->full_name ;
 
-        $image->text($name_new_check_in, 750, 810, function($font) {
-            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-            $font->size(45);
-            $font->color('#000000');
-            $font->align('center');
-            $font->valign('top');
-        });
+                $img_logo_partner = $item->logo ;
 
-        $image->save(public_path('img/check_in/theme/test_1.png'));
+            }
 
+            Partner::create($requestData);
 
-        return $color_1;
+            $color_hex = $this->hex2rgba($color_theme) ;
+            $color_sp = explode(",",$color_hex);
+            $color_1 = intval($color_sp[0] / 255 * 100);
+            $color_2 = intval($color_sp[1] / 255 * 100);
+            $color_3 = intval($color_sp[2] / 255 * 100);
+
+            // เรียกรูปภาพใส่ $image // logo viicheck && sticker
+            $image = Image::make(public_path('img/check_in/theme/viicheck-02.png'));
+
+            $image->orientate();
+
+            // QR-code
+            $watermark_2 = Image::make( storage_path("app/public") . "/" .  $url_img );
+            $image->insert($watermark_2 ,'bottom-right', 385, 150);
+
+            // หัวภาพ
+            $watermark = Image::make(public_path('img/check_in/theme/artwork_ใหม่ล่าสุดกว่าเยอะ.png'));
+            // ระบายสี
+            $watermark->colorize( $color_1 , $color_2 , $color_3 );
+            // $watermark->colorize( 50, 0, 0 );
+            $image->insert($watermark);
+
+            // logo partner
+            $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
+            $image->insert($logo_partner,'top-right', 40, 20);
+
+            $image->text($name_partner, 530, 205, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(65);
+                $font->color('#ffffff');
+                $font->align('center');
+                $font->valign('top');
+            });
+
+            $image->text($name_new_check_in, 750, 810, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(45);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('top');
+            });
+
+            $image->save( storage_path("app/public")."/check_in". "/" . 'artwork_' . $name_partner . '_' . $name_new_check_in . '.png' );
+
+            return "OK";
+        }
+        
     }
 
     function hex2rgba($color, $opacity = false) {
  
-        $default = '0,0,0';
+        $default = '255,0,0';
      
         //Return default if no color provided
         if(empty($color))

@@ -18,29 +18,44 @@
 
                     <div class="row col-12">
                         <div id="div_create_qr" class="col-6">
-                            <input type="text" class="form-control d-none" id="name_partner" name="name_partner" value="{{ Auth::user()->organization }}">
-
-                            <label class="control-label" for="name_new_check_in">ชื่อจุด Check in</label>
-                            <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in" onchange="document.querySelector('#tag_a_qr').classList.remove('d-none');">
-
-                            <br>
-                            <div id="select_color">
-                                <label class="control-label" for="name_new_check_in">เลือกสีรูปภาพ</label>
-                                <input type="text" class="form-control d-" id="color_theme" name="color_theme" value="" placeholder="กรอกโค้ดสี เช่น #F15423" >
-                                <br>
+                            <div id="have_area" class="d-none">
+                                <h3 class="text-danger" style="margin-top:20px;">มีพื้นที่นี้แล้ว</h3>
+                                <p>หากมีข้อสงสัยกรุณาติดต่อทีมงาน ViiCHECK</p>
                             </div>
 
-                            <button id="tag_a_qr" class="btn btn-info text-white d-none" style="float:right;" onclick="gen_qr_code();">
-                                สร้าง QR-Code
-                            </button>
+                            <div id="add_area_ok" class="d-none">
+                                <h3 class="text-success" style="margin-top:20px;">เพิ่มจุด Check in/out เรียบร้อยแล้ว</h3>
+                                <p>คุณสามารถดาวน์โหลดรูปภาพและเริ่มใช้งานได้ทันที</p>
+                            </div>
+
+                            <div id="div_input_data_qr" class="">
+                                <input type="text" class="form-control d-none" id="name_partner" name="name_partner" value="{{ Auth::user()->organization }}">
+
+                                <label class="control-label" for="name_new_check_in">ชื่อจุด Check in</label>
+                                <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in" onchange="document.querySelector('#tag_a_qr').classList.remove('d-none');">
+
+                                <br>
+                                <div id="select_color">
+                                    <label class="control-label" for="name_new_check_in">เลือกสีรูปภาพ</label>
+                                    <input type="text" class="form-control d-" id="color_theme" name="color_theme" value="" placeholder="กรอกโค้ดสี เช่น #F15423" >
+                                    <br>
+                                </div>
+
+                                <button id="tag_a_qr" class="btn btn-info text-white d-none" style="float:right;" onclick="gen_qr_code();">
+                                    สร้าง QR-Code
+                                </button>
+                            </div>
 
                             <div id="div_qr_code" class="row col-12 text-center">
                                 <br>
                                 <div class="col-6">
+                                    <br><br>
                                     <img class="d-none" id="img_str_load" src="{{ url('/img/stickerline/PNG/25.png') }}" width="85%">
                                 </div>
                                 <div class="col-6">
-                                    <img class="d-none" id="img_qr_code" src="" width="250" height="250">
+                                    <br>
+                                    <img class="d-none" id="img_qr_code" src="" width="220" height="220">
+                                    <br>
                                     <a id="download_img_qr_code" href="" class="btn btn-danger text-white d-none" download="">
                                         ดาวน์โหลด
                                     </a>
@@ -78,7 +93,7 @@
     function gen_qr_code(){
         
         let result = document.querySelector('#name_new_check_in') ;
-        let name_new_check_in = result.value.replace(' ' , '_');
+        let name_new_check_in = result.value.replaceAll(' ' , '_');
 
         let name_partner = document.querySelector('#name_partner') ;
 
@@ -151,21 +166,33 @@
         }).then(function(text){
             console.log(text);
 
-            document.querySelector('#img_theme_old').classList.add('d-none');
+            if (text === "already have this area") {
+                document.querySelector('#div_input_data_qr').classList.add('d-none');
+                document.querySelector('#have_area').classList.remove('d-none');
+            }else{
 
-            let url_img_theme_new = "{{ url('/') }}/img/check_in/theme/test_1.png" ;
+                document.querySelector('#div_input_data_qr').classList.add('d-none');
+                document.querySelector('#add_area_ok').classList.remove('d-none');
 
-            let img_theme_new = document.querySelector('#img_theme_new');
-                img_theme_new.src = url_img_theme_new ;
+                document.querySelector('#img_theme_old').classList.add('d-none');
 
-            let download_img_theme_new = document.querySelector('#download_img_theme_new');
-                download_img_theme_new.href = url_img_theme_new ;
-            
-            img_qr_code.classList.remove('d-none');
-            img_theme_new.classList.remove('d-none');
-            download_img_theme_new.classList.remove('d-none');
-            document.querySelector('#img_str_load').classList.remove('d-none');
-            document.querySelector('#download_img_qr_code').classList.remove('d-none');
+                // let url_img_theme_new = "{{ url('/') }}/img/check_in/theme/test_1.png" ;
+                let url_img_theme_new = "{{ url('storage') }}/" + "check_in"+ "/" + "artwork_" +  name_partner.value + '_' + name_new_check_in.value + '.png';
+
+
+                let img_theme_new = document.querySelector('#img_theme_new');
+                    img_theme_new.src = url_img_theme_new ;
+
+                let download_img_theme_new = document.querySelector('#download_img_theme_new');
+                    download_img_theme_new.href = url_img_theme_new ;
+                
+                img_qr_code.classList.remove('d-none');
+                img_theme_new.classList.remove('d-none');
+                download_img_theme_new.classList.remove('d-none');
+                document.querySelector('#img_str_load').classList.remove('d-none');
+                document.querySelector('#download_img_qr_code').classList.remove('d-none');
+            }
+
 
         }).catch(function(error){
             console.error(error);
