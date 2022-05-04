@@ -80,6 +80,7 @@
                                             <h4 id="tag_h_name_{{ $item->id }}" class="text-center">
                                                 <a href="{{ url('/detail_area/'.$item->name) }}">
                                                     <span class="text-success ">{{ $item->name }}</span>
+                                                    <p>{{ $item->full_name }}</p>
                                                 </a>
                                             </h4>
                                         </div>
