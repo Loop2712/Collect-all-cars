@@ -69,13 +69,6 @@
                         <br>
                         <select id="line_group" name="line_group" class="btn btn-sm btn-outline-success">
                             <option value="" selected>- เลือกกลุ่มไลน์ -</option>
-                           <!--  @foreach($group_line as $item)
-                                <option value="{{ $item->groupName }}" 
-                                {{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
-                                {{ $item->groupName }} 
-                                </option>
-                                {!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
-                            @endforeach  -->
                         </select>
                     </div>
                 </div>

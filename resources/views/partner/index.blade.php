@@ -38,8 +38,8 @@
                     <table class="table" style="margin-bottom:0px">
                             <thead style="font-family: 'Prompt', sans-serif; background-color:#E3E5E8;">
                                 <tr class="text-center" >
+                                    <th class="col-md-2" style="font-size:15px">ชื่อพาร์ทเนอร์</th>
                                     <th class="col-md-5" style="font-size:15px">ชื่อพาร์ทเนอร์</th>
-                                    <th class="col-md-2" style="font-size:15px">พื้นที่ดูแลทั้งหมด</th>
                                     <th class="col-md-3" style="font-size:15px">Admin</th>
                                     <th class="col-md-2" style="font-size:15px"></th>
                                 </tr>
@@ -70,6 +70,11 @@
                                 <!-- <hr> -->
                                 @foreach($partner as $item)
                                 <div class="row">
+                                    <div class="col-2">
+                                        <center>
+                                            <img src="{{ url('storage')}}/{{ $item->logo }}" width="40%">
+                                        </center>
+                                    </div>
                                     <div class="col-5">
                                         <div>
                                             <h4 id="tag_h_name_{{ $item->id }}" class="text-center">
@@ -82,11 +87,6 @@
                                             <b>Phone : </b>{{ $item->phone }} &nbsp;&nbsp;&nbsp;
                                             <b>Mail : </b>{{ $item->mail }}&nbsp;&nbsp;&nbsp;
                                         </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <center>
-                                            <!-- พื้นที่ดูแลทั้งหมด -->
-                                        </center>
                                     </div>
                                     <div class="col-3">
                                         <center>
@@ -102,6 +102,9 @@
                                         <div style="float: right;">
                                             <a href="{{ url('/detail_area/'.$item->name) }}" class="btn btn-sm btn-primary">
                                                 ดูข้อมูล
+                                            </a>
+                                            <a href="{{ url('/partner_viicheck/' . $item->id . '/edit') }}" class="btn btn-sm btn-warning text-white">
+                                                แก้ไข
                                             </a>
                                             <form method="POST" action="{{ url('/partner_viicheck' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

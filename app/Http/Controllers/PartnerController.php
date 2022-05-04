@@ -206,13 +206,16 @@ class PartnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $requestData = $request->all();
+
+        if ($request->hasFile('logo')) {
+            $requestData['logo'] = $request->file('logo')->store('uploads', 'public');
+        }
         
         $partner = Partner::findOrFail($id);
         $partner->update($requestData);
 
-        return redirect('partner')->with('flash_message', 'Partner updated!');
+        return redirect('partner_viicheck')->with('flash_message', 'Partner updated!');
     }
 
     /**
