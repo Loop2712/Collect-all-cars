@@ -133,7 +133,7 @@ class Register_carController extends Controller
         $organization = $user->organization;
 
         $data_partners = Partner::where('name_area', null )->where('name' , $organization)->get();
-        $all_partners = Partner::where('name_area', null )->orderBy('name', 'ASC')->get();
+        $all_partners = Partner::where('name_area', null )->orderBy('full_name', 'ASC')->get();
         $location_array = county::selectRaw('province')
             ->groupBy('province')
             ->get();

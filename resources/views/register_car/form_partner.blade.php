@@ -13,7 +13,7 @@
                                     <option
                                     value="{{ $all_partner->name }}" 
                                     {{ request('name') == $all_partner->name ? 'selected' : ''   }} >
-                                    {{ $all_partner->name }} 
+                                    {{ $all_partner->full_name }} 
                                     </option>
                                 @endforeach
                             @endif
