@@ -1,0 +1,1 @@
+ <a class="d-none" href="https://www.freecounterstat.com" title="hit counter html code"><img width="80px" src="https://counter9.stat.ovh/private/freecounterstat.php?c=7lqrrmxd97rl9c42zdfbb5pyg3ctlz2u" border="0" title="hit counter html code" alt="hit counter html code"></a>

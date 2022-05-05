@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.theme_check_in')
 
 @section('content')
+<br>
 
 <center>
 	<div class="col-12">
@@ -45,6 +46,8 @@
 		<!-- <a href="{{ url('/guest/create') }}"><button class="btn btn-primary btn-sm"><i class="fas fa-check-circle"></i>&nbsp;&nbsp; ตกลง</button></a> -->
 	</div>
 </center>
+<br>
+
 <script>
 
 function not_ready() {

@@ -1,5 +1,5 @@
 <footer class="d-block d-lg-none" id="footer" style="padding-top: 0px;">
-    <div class="container d-md-flex " style="padding-top: 0px;">
+    <div class="container d-md-flex " style="padding-top: 0px; padding-bottom: 20px;">
       <div class="me-md-auto text-md-start" style="padding-top: 0px;">
         <div class="credits" style="padding-top: 0px;padding-bottom: 20px;">
             <div class="section-title">
@@ -91,6 +91,8 @@
                     <img style="width: 55%;height: 70px;object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
                 </div>
             </div> -->
+            
+            <br>
         </div>
       </div>
     </div>

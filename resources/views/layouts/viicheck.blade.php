@@ -695,58 +695,79 @@
             <!-- <div class="col-1">
                 <img width="100%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
             </div> -->
-            <div class="col-1">
-                <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                  <img width="100%" src="{{ asset('/img/logo/bns_registered.png') }}">
-                </a>
-              </div>
-            <div class="col-1">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
-            </div>
-            <div class="col-1">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
-            </div>
-            <div class="col-1">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
-            </div>
-            <div class="col-1">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/nstda.png') }}">
-            </div>
-            <div class="col-1 text-center" style="margin-left:15px;">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/js100.png') }}">
-            </div>
-            <div class="col-1 ">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
-            </div>
+            <div class="col-3 " style="margin-top:10px;float:left">
             
-            <div class="col-1">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
+                <span class="d-flex justify-content-start">WWW.ViiCHECK.COM</span>
+                
+                <a class="link d-flex justify-content-start" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
+                
+                <a class="link d-flex justify-content-start" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
+             
+              @include ('counter') 
             </div>
-            <!-- <div class="col-1">
-                <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
-            </div> -->
-            <div class="col-1">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
-            </div>
-            <div class="col-1">
-                <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
-            </div>
-            <div class="col-1" style="margin-left:30px;">
-                <img height="42px" style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+            <div class="col-9">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-2">
+                      <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
+                        <img width="100%" src="{{ asset('/img/logo/bns_registered.png') }}">
+                      </a>
+                    </div>
+                    <div class="col-2">
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
+                    </div>
+                    <div class="col-2">
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
+                    </div>
+                    <div class="col-2">
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
+                    </div>
+                    <div class="col-2">
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/nstda.png') }}">
+                    </div>
+                    <div class="col-2 text-center" >
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/js100.png') }}">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" style="margin-top: 10px;">
+                  <div class="row">
+                    <div class="col-2 ">
+                      <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
+                    </div>
+                    
+                    <div class="col-2">
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
+                    </div>
+                    <!-- <div class="col-1">
+                        <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
+                    </div> -->
+                    <div class="col-2">
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
+                    </div>
+                    <div class="col-2">
+                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
+                    </div>
+                    <div class="col-2" style="margin-left:30px;">
+                        <img height="42px" style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
+                    </div>
+                  </div>
+                </div>
+              </div>  
             </div>
           </div>
         </div>
-        <div class="copyright">
+        <!-- <div class="copyright">
           <div class="row">
             <div class="col-12">
               <div class="row">
-                  <div class="col-8" style="margin-top:10px">
-                    <span>WWW.ViiCHECK.COM</span>
-                    &nbsp;&nbsp;
-                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
-                    &nbsp;&nbsp;
-                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <div class="col-3" style="margin-top:10px;float:left">
+                    •<span>WWW.ViiCHECK.COM</span>
+                    <br>
+                    •<a class="link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
+                    <br>
+                    •<a class="link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
                 </div>
                 
                 <div class="col-4">
@@ -761,7 +782,7 @@
               </div>
             </div>
           </div>
-      </div>
+        </div> -->
     </div>
   </footer>
   <!-- End Footer -->

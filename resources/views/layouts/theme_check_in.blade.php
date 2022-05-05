@@ -126,7 +126,8 @@
                         <br>
                         @yield('content')
                     </div>
-                    <div class="col-12" style="top:-50px;">
+                    <div class="col-12" >
+                        <br>
                         @include ('footer_thx_partner') 
                     </div>
                     
