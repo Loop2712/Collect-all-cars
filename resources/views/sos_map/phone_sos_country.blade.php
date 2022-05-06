@@ -823,7 +823,7 @@
                     document.querySelector('#btn_quick_help').classList.add('d-none');
                     }
 
-                    document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
+                    // document.querySelector('#sos_'+result['countryCode']).classList.remove('d-none');
                 }
 
             });
