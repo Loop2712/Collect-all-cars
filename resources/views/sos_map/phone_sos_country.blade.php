@@ -812,7 +812,7 @@
         fetch("{{ url('/') }}/api/check_sos_country/" + user_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let countryCode = document.querySelector('#CountryCode');
                     countryCode.value = result['countryCode'];
