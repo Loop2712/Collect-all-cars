@@ -816,6 +816,8 @@
 
                 let countryCode = document.querySelector('#CountryCode');
                     countryCode.value = result['countryCode'];
+                    
+                    result['countryCode'] = "TW" ;
 
                 if (result['countryCode']) {
 
