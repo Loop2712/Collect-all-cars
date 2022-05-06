@@ -474,6 +474,7 @@
             infoWindow.open(map);
 
             add_location(text_content, count_position.value, map , marker_lat , marker_lng)
+            check_area_new();
         });
         
     }
