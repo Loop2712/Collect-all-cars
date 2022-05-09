@@ -754,6 +754,21 @@ class PartnerController extends Controller
 
     }
 
+    function gallery(Request $request){
+        
+        $data_user = Auth::user();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
+
+        $all_areas = Partner::where("name", $data_user->organization)
+            ->where("name_area", "!=" , null)
+            ->get();
+
+        return view('check_in.gallery', compact('all_areas'));
+
+    }
+
     public function sos_detail_chart(Request $request)
     {
         $data_user = Auth::user();

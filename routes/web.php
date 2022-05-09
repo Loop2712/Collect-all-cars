@@ -164,6 +164,7 @@ Route::middleware(['auth', 'role:admin-partner,partner'])->group(function () {
 
 		Route::get('/check_in/view', 'PartnerController@view_check_in');
 		Route::get('/check_in/add_new_check_in', 'PartnerController@add_new_check_in');
+		Route::get('/check_in/gallery', 'PartnerController@gallery');
 		Route::get('/partner_media', 'PartnerController@partner_media');
 
 });

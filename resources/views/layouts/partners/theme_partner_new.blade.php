@@ -103,6 +103,13 @@
 						<div class="menu-title">เพิ่มจุด Check in</div>
 					</a>
 				</li>
+				<li>
+					<a href="{{ url('/check_in/gallery') }}">
+						<div class="parent-icon"><i class="far fa-images"></i>
+						</div>
+						<div class="menu-title">คลังภาพ Check in</div>
+					</a>
+				</li>
 					@endif
 				@endif
                 <li class="menu-label" style="font-size:15px;">
