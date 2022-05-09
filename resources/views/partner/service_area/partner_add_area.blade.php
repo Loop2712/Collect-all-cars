@@ -180,6 +180,30 @@
                 </div>
             </div>
         </div>
+
+        <!-- Button trigger modal -->
+	    <button id="btn_modal_edit_ok" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_edit_ok">
+	    </button>
+	    <!-- Modal -->
+	    <div class="modal fade" id="modal_edit_ok" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	      <div class="modal-dialog modal-dialog-centered">
+	        <div class="modal-content">
+	            <div class="modal-body text-center">
+	                <div class="wrapper">
+	                	<center>
+	                    	<img width="80%" src="{{ url('/img/stickerline/PNG/22.png') }}">
+	                	</center>
+	                	<br>
+	                    <h2 style="color: #7ac142;">แก้ไขข้อมูลเรียบร้อยแล้ว</h2>
+	                </div>
+	            </div>
+	            <div class="modal-footer d-none">
+	                <button id="close_madal_send_finish" type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table mb-0 align-middle">
@@ -197,7 +221,7 @@
                             <tr class="text-center">
                                 <td>{{ $area->name_area }}</td>
                                 <td>
-                                	@if(!empty($area->linegroup))
+                                	@if(!empty($area->line_group))
                                 		{{ $area->line_group }}
                                 	@else
                                 		<div class="form-group">
@@ -221,9 +245,11 @@
 										</div>
 										<div id="div_cf_pass_area_{{ $area->id }}" class="d-none">
 											<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
-											<input class="form-control" type="text" name="cf_pass_area_{{ $area->id }}" id="cf_pass_area_{{ $area->id }}" oninput="check_pass_area_have_area('{{ $area->id }}');">
+											<center>
+												<input class="form-control col-8" type="text" name="cf_pass_area_{{ $area->id }}" id="cf_pass_area_{{ $area->id }}" oninput="check_pass_area_have_area('{{ $area->id }}');">
+											</center>
 										</div>
-										<input style="margin-top: 9px;" id="submit_add_area_{{ $area->id }}" class="btn btn-primary float-right d-none" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
+										<a style="margin-top: 9px;" id="submit_add_area_{{ $area->id }}" class="btn btn-primary float-right d-none" onclick="submit_group_line('{{ $area->id }}')">ยืนยันการเพิ่มพื้นที่ใหม่</a>
                                 	@endif
                                 </td>
                                 <td>
@@ -551,11 +577,62 @@
 
 			let div_cf_pass_area = document.querySelector('#div_cf_pass_area_'+id);
 				div_cf_pass_area.classList.remove('d-none');
+
+			let line_group = document.querySelector('#line_group_' + id).value; ;
+
+				num_pass_area = Math.floor(Math.random() * 10000);
+				num_pass_area = num_pass_area.toString();
+
+			fetch("{{ url('/') }}/api/send_pass_area/"+line_group+'/'+num_pass_area)
+	            .then(response => response.json())
+	            .then(result => {
+	                // console.log(result);
+	                // console.log(num_pass_area);
+	                
+	                // let group_line_id = document.querySelector('#group_line_id');
+	                // 	group_line_id.value = result[0]['id'];
+
+					div_cf_pass_area.classList.remove('d-none');
+
+	        });
+
 		}
 
 		function check_pass_area_have_area(id)
 		{
+			let cf_pass_area = document.querySelector('#cf_pass_area_'+id).value ;
+				cf_pass_area = cf_pass_area.toString();
 
+			if (cf_pass_area === num_pass_area) {
+				document.querySelector('#submit_add_area_'+id).classList.remove('d-none');
+				let div_cf_pass_area = document.querySelector('#div_cf_pass_area_'+id);
+					div_cf_pass_area.classList.add('d-none');
+			}else{
+				document.querySelector('#submit_add_area_'+id).classList.add('d-none');
+			}
+		}
+
+		function submit_group_line(id)
+		{
+			let name_line_group = document.querySelector('#line_group_' + id).value ;
+			let id_partner = id ;
+
+	        // console.log(name_line_group);
+	        // console.log(id_partner);
+
+	        fetch("{{ url('/') }}/api/submit_group_line/"+name_line_group+"/"+id_partner)
+	            .then(response => response.json())
+	            .then(result => {
+	                // console.log(result);
+	                document.querySelector('#btn_modal_edit_ok').click();
+
+	                var delayInMilliseconds = 1500; //1.5 second
+
+			        setTimeout(function() {
+			        	window.location.reload(true);
+			        }, delayInMilliseconds);
+
+	        });
 		}
 
 	</script>

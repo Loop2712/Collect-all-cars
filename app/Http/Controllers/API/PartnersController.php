@@ -347,6 +347,35 @@ class PartnersController extends Controller
         return $data_line_group ;
     }
 
+    public function submit_group_line($line_group ,$id_partner )
+    {
+        $data_line_group = DB::table('group_lines')
+                            ->where("groupName", $line_group)
+                            ->get();
+
+        foreach ($data_line_group as $key ) {
+            DB::table('partners')
+                ->where('id', $id_partner)
+                ->update([
+                    'line_group' => $line_group,
+                    'group_line_id' => $key->id,
+            ]);
+        }
+        
+        $data_partner = Partner::where("id" , $id_partner)->get();
+
+        foreach ($data_partner as $item) {
+            DB::table('group_lines')
+                ->where('groupName', $line_group)
+                ->update([
+                    'owner' => $item->name . " (Partner)",
+                    'partner_id' => $id_partner,
+            ]);
+        }
+
+        return $data_line_group ;
+    }
+
     public function send_pass_area_togroupline($data_line_group , $num_pass_area)
     {
         foreach ($data_line_group as $key) {

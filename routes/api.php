@@ -103,6 +103,7 @@ Route::get('/send_sos_area/{area_arr}/{name_partner}/{name_area}', 'API\Partners
 Route::get('/area_pending/{name_partner}/{name_area}', 'API\PartnersController@area_pending');
 Route::get('/area_current/{name_partner}/{name_area}', 'API\PartnersController@area_current');
 Route::get('/send_pass_area/{line_group}/{num_pass_area}', 'API\PartnersController@send_pass_area');
+Route::get('/submit_group_line/{line_group}/{id_partner}', 'API\PartnersController@submit_group_line');
 Route::get('/search_time_zone', 'API\PartnersController@search_time_zone');
 
 Route::get('/show_amphoe/{province}', 'API\LocationController@amphoe_search');
