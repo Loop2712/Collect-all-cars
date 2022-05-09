@@ -196,7 +196,36 @@
 					@foreach($all_area_partners as $area)
                             <tr class="text-center">
                                 <td>{{ $area->name_area }}</td>
-                                <td>{{ $area->line_group }}</td>
+                                <td>
+                                	@if(!empty($area->linegroup))
+                                		{{ $area->line_group }}
+                                	@else
+                                		<div class="form-group">
+											<br>
+											<select id="line_group_{{ $area->id }}" name="line_group_{{ $area->id }}" class="btn btn-md text-white" style="background-color: #27CF00;margin-top: 9px;" onchange="select_line_group_have_area('{{ $area->id }}');" required>
+												<option value="" selected>- เลือกกลุ่มไลน์ -</option>
+												@foreach($group_line as $item)
+													<option value="{{ $item->groupName }}" 
+													{{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
+													{{ $item->groupName }} 
+													</option>
+												@endforeach 
+											</select>
+										</div>
+										<div id="btn_send_pass_area_{{ $area->id }}" class="d-none text-center">
+											<span id="text_group_line_{{ $area->id }}"></span>
+											<br>
+											<a class="btn text-white" style="background-color: #FA9E33;margin-top: 9px;" onclick="send_pass_area_have_area('{{ $area->id }}');">
+												ส่งรหัสยืนยันกลุ่มไลน์
+											</a>
+										</div>
+										<div id="div_cf_pass_area_{{ $area->id }}" class="d-none">
+											<label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
+											<input class="form-control" type="text" name="cf_pass_area_{{ $area->id }}" id="cf_pass_area_{{ $area->id }}" oninput="check_pass_area_have_area('{{ $area->id }}');">
+										</div>
+										<input style="margin-top: 9px;" id="submit_add_area_{{ $area->id }}" class="btn btn-primary float-right d-none" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
+                                	@endif
+                                </td>
                                 <td>
 									@if(!empty($area->sos_area))
 										<a href="javaScript:;" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>Yes</a>
@@ -212,9 +241,11 @@
 									@endif
                                 </td>
 								<td>
-									<a  type="submit" class="btn btn-warning " href="{{ url('/service_area?name_area=' . $area->name_area) }}">
-										<i class="far fa-edit"></i> ดูข้อมูล / แก้ไข
-									</a>
+									@if(!empty($area->line_group))
+										<a  type="submit" class="btn btn-warning " href="{{ url('/service_area?name_area=' . $area->name_area) }}">
+											<i class="far fa-edit"></i> ดูข้อมูล / แก้ไข
+										</a>
+									@endif
 								</td>
                             </tr>
                         @endforeach
@@ -499,5 +530,33 @@
 				document.querySelector('#submit_add_area').classList.add('d-none');
 			}
 		}
+
+		// ------------- have area -------------
+
+		function select_line_group_have_area(id)
+		{
+			let select_line_group = document.querySelector('#line_group_' + id) ;
+				// console.log(select_line_group.value);
+				select_line_group.classList.add('d-none');
+			let btn_send_pass_area = document.querySelector('#btn_send_pass_area_'+id);
+				btn_send_pass_area.classList.remove('d-none');
+
+			document.querySelector('#text_group_line_'+id).innerHTML = select_line_group.value ;
+		}
+
+		function send_pass_area_have_area(id)
+		{
+			let btn_send_pass_area = document.querySelector('#btn_send_pass_area_'+id);
+				btn_send_pass_area.classList.add('d-none');
+
+			let div_cf_pass_area = document.querySelector('#div_cf_pass_area_'+id);
+				div_cf_pass_area.classList.remove('d-none');
+		}
+
+		function check_pass_area_have_area(id)
+		{
+
+		}
+
 	</script>
 @endsection

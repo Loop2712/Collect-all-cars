@@ -15,7 +15,10 @@
                 <hr>
                 <br>
                 @foreach($all_areas as $all_area)
-                <div class="col-6" style="border-style: solid;border-width: 1px;padding: 20px;">
+                @php
+                    $img_name_area = str_replace(" ","_" ,$all_area->name_area) ;
+                @endphp
+                <div class="col-6" style="border-style: solid;border-width: 1px;padding: 20px;border-radius: 10px;">
                     <div class="row">
                         <div class="col-12">
                             <h4>พื้นที่ : <b>{{ $all_area->name_area }}</b></h4>
@@ -25,8 +28,8 @@
                         <div class="col-4">
                             <!-- QR-Code -->
                             <center>
-                                <img src="{{ url('storage') }}/check_in/check_in_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 90%;">
-                                <a class="btn-sm btn-danger" href="{{ url('storage') }}/check_in/check_in_{{ $all_area->name }}_{{ $all_area->name_area }}.png" download >
+                                <img src="{{ url('storage') }}/check_in/check_in_{{ $all_area->name }}_{{ $img_name_area }}.png" style="background-color: red;width: 90%;">
+                                <a class="btn-sm btn-danger" href="{{ url('storage') }}/check_in/check_in_{{ $all_area->name }}_{{ $img_name_area }}.png" download >
                                     ดาวน์โหด
                                 </a>
                             </center>
@@ -34,7 +37,7 @@
                         <div class="col-8">
                             <!-- art_work -->
                             <center>
-                                <img src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 100%;">
+                                <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 100%;">
                                 <br><br>
                                 <a class="btn-sm btn-danger" href="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" download >
                                     ดาวน์โหด
