@@ -1,5 +1,5 @@
 <div class=" notranslate" style="margin-top:-20px;">
-  <div class="site-section bg-left-half mb-5">
+  <div class="site-section bg-left-half mb-5"style="padding:80px 0px 80px 0px">
     <div class=" owl-2-style">
       <div class="section-title">
         <h2>ขอขอบคุณ</h2>
