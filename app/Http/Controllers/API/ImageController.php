@@ -80,6 +80,7 @@ class ImageController extends Controller
         $name_partner = $data['name_partner'];
         $name_new_check_in = $data['name_new_check_in'];
         $url_img = $data['url_img'];
+        $type_of = $data['type_of'];
 
         $check_new_area = Partner::where('name' , $name_partner)->where('name_area' , $name_new_check_in)->get();
 
@@ -106,7 +107,9 @@ class ImageController extends Controller
 
             }
 
-            Partner::create($requestData);
+            if ($type_of == "check_in") {
+                Partner::create($requestData);
+            }
 
             $color_hex = $this->hex2rgba($color_theme) ;
             $color_sp = explode(",",$color_hex);

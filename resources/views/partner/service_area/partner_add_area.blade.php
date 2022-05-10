@@ -154,7 +154,12 @@
 						</div>
 					</div>
 					<div class="col-4">
+                        <input type="text" class="form-control d-none" id="color_theme" name="color_theme" value="{{ $data_partner->color_navbar }}">
+
 						<br>
+						<a style="margin-top: 9px;" id="btn_submit_add_area" class="btn btn-primary float-right d-none" onclick="gen_qr_code();">
+							ยืนยันการเพิ่มพื้นที่ใหม่
+						</a>
 						<input style="margin-top: 9px;" id="submit_add_area" class="btn btn-primary float-right d-none" type="submit" value="{{ 'ยืนยันการเพิ่มพื้นที่ใหม่' }}">
 					</div>
 						@endforeach
@@ -551,9 +556,9 @@
 				cf_pass_area = cf_pass_area.toString();
 
 			if (cf_pass_area === num_pass_area) {
-				document.querySelector('#submit_add_area').classList.remove('d-none');
+				document.querySelector('#btn_submit_add_area').classList.remove('d-none');
 			}else{
-				document.querySelector('#submit_add_area').classList.add('d-none');
+				document.querySelector('#btn_submit_add_area').classList.add('d-none');
 			}
 		}
 
@@ -634,6 +639,85 @@
 
 	        });
 		}
+
+		// ------------------ gen qr-code -----------------------
+
+		function gen_qr_code(){
+        
+        let result = document.querySelector('#name_area') ;
+        let name_new_check_in = result.value.replaceAll(' ' , '_');
+
+        let name_partner = document.querySelector('#name') ;
+
+        let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_new_check_in + "&chs=500x500&choe=UTF-8"
+
+            // console.log(url);
+
+        let data = {
+            'url' : url,
+            'name_partner' : name_partner.value,
+            'name_new_check_in' : name_new_check_in,
+        };
+
+        fetch("{{ url('/') }}/api/save_img_url", {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            // console.log(text);
+            change_color_theme("check_in/" + text);
+
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+    }
+
+    function change_color_theme(url_img)
+    {
+        console.log('change_color_theme');
+
+        let color_theme = document.querySelector('#color_theme') ;
+
+        let name_partner = document.querySelector('#name') ;
+        let name_new_check_in = document.querySelector('#name_area') ;
+
+        let data = {
+            'color_theme' : color_theme.value,
+            'name_partner' : name_partner.value,
+            'name_new_check_in' : name_new_check_in.value,
+            'url_img' : url_img,
+            'type_of' : "sos",
+        };
+
+        fetch("{{ url('/') }}/api/create_img_check_in", {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            // console.log(text);
+            click_submit();
+
+        }).catch(function(error){
+            console.error(error);
+        });
+
+    }
+
+    function click_submit()
+    {
+    	let submit_add_area = document.querySelector('#submit_add_area');
+    		submit_add_area.click();
+    }
 
 	</script>
 @endsection

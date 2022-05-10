@@ -153,6 +153,7 @@
             'name_partner' : name_partner.value,
             'name_new_check_in' : name_new_check_in.value,
             'url_img' : url_img,
+            'type_of' : "check_in",
         };
 
         fetch("{{ url('/') }}/api/create_img_check_in", {
