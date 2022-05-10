@@ -17,7 +17,6 @@
                 @foreach($all_areas as $all_area)
                 @php
                     $img_name_area = str_replace(" ","_" ,$all_area->name_area) ;
-                    $mediapath = url('storage') . '/check_in/check_in_' . $all_area->name  . '_' . $img_name_area . '.png' ;
                 @endphp
 
                 <div class="col-6" style="border-style: solid;border-width: 1px;padding: 20px;border-radius: 10px;">
