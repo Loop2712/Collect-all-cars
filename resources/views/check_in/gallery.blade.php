@@ -18,10 +18,6 @@
                 @php
                     $img_name_area = str_replace(" ","_" ,$all_area->name_area) ;
                     $mediapath = url('storage') . '/check_in/check_in_' . $all_area->name  . '_' . $img_name_area . '.png' ;
-
-                    $imginfo = getimagesize($mediapath);
-                    header("Content-type: {$imginfo['mime']}");
-                    readfile($mediapath);
                 @endphp
 
                 <div class="col-6" style="border-style: solid;border-width: 1px;padding: 20px;border-radius: 10px;">
@@ -31,13 +27,6 @@
                             <br>
                             <br>
                         </div>
-                        @if(@is_array(getimagesize($mediapath)))
-                            <p>yes</p>
-                            <p>{{ $mediapath }}</p>
-                        @else
-                            <p>no</p>
-                            <p>{{ $mediapath }}</p>
-                        @endif
                         <div class="col-4">
                             <!-- QR-Code -->
                             <center>
