@@ -534,14 +534,14 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>บริการดีๆจาก Partner PEDDyHUB</h2>
+          <h2>บริการดีๆจาก PEDDyHUB</h2>
           <p>PeddyHub ศูนย์รวมบริการ ข้อมูล และ community สำหรับคนรักสัตว์ peddy hub ครบจบในที่เดียว !!</p>
         </div>
 
         <div class="row">
          
           <div class="col-lg-6 ">
-            <a class="peddyhub" href="#">
+            <a class="peddyhub" href="https://lin.ee/QRPGdf7">
               <div class="d-flex align-items-start member">
                 <div class="row">
                   <div class="col-2 text-center align-self-center p-0" >
@@ -557,7 +557,7 @@
           </div>
 
           <div class="col-lg-6 ">
-            <a class="peddyhub" href="#">
+            <a class="peddyhub" href="https://lin.ee/QRPGdf7">
               <div class="d-flex align-items-start member">
                 <div class="row">
                   <div class="col-2 text-center align-self-center p-0" >
@@ -575,7 +575,7 @@
           <div class="col-12"><br></div>
           
           <div class="col-lg-6 ">
-            <a class="peddyhub" href="#">
+            <a class="peddyhub" href="https://lin.ee/QRPGdf7">
               <div class="d-flex align-items-start member">
                 <div class="row">
                   <div class="col-2 text-center align-self-center p-0" >
@@ -590,7 +590,7 @@
             </a>
           </div>
           <div class="col-lg-6 ">
-            <a class="peddyhub" href="#">
+            <a class="peddyhub" href="https://lin.ee/QRPGdf7">
               <div class="d-flex align-items-start member">
                 <div class="row">
                   <div class="col-2 text-center align-self-center p-0" >
@@ -990,14 +990,14 @@
         <div class="container">
 
           <div class="section-title">
-            <h2>บริการดีๆจาก Partner PEDDyHUB</h2>
+            <h2>บริการดีๆจาก PEDDyHUB</h2>
             <p>PeddyHub ศูนย์รวมบริการ ข้อมูล และ community สำหรับคนรักสัตว์ peddy hub ครบจบในที่เดียว !!</p>
           </div>
 
           <div class="row">
           
             <div class="col-12 ">
-              <a class="peddyhub" href="#">
+              <a class="peddyhub" href="https://lin.ee/QRPGdf7">
                 <div class="d-flex align-items-start member">
                   <div class="row">
                     <div class="col-12">
@@ -1015,7 +1015,7 @@
             </div>
             <div class="col-12"><br></div>
             <div class="col-12 ">
-              <a class="peddyhub" href="#">
+              <a class="peddyhub" href="https://lin.ee/QRPGdf7">
                 <div class="d-flex align-items-start member">
                   <div class="row">
                     <div class="col-12">
@@ -1035,7 +1035,7 @@
             <div class="col-12"><br></div>
             
             <div class="col-12 ">
-              <a class="peddyhub" href="#">
+              <a class="peddyhub" href="https://lin.ee/QRPGdf7">
                 <div class="d-flex align-items-start member">
                   <div class="row">
                     <div class="col-12">
@@ -1053,7 +1053,7 @@
             </div>
             <div class="col-12"><br></div>
             <div class="col-12 ">
-              <a class="peddyhub" href="#">
+              <a class="peddyhub" href="https://lin.ee/QRPGdf7">
                 <div class="d-flex align-items-start member">
                   <div class="row">
                     <div class="col-12">
