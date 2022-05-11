@@ -96,8 +96,12 @@
         let name_new_check_in = result.value.replaceAll(' ' , '_');
 
         let name_partner = document.querySelector('#name_partner') ;
+        let name_partner_re = name_partner.value.replaceAll(' ' , '_');
 
-        let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_new_check_in + "&chs=500x500&choe=UTF-8"
+            // console.log(name_partner.value);
+
+
+        let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_partner_re + "-" +name_new_check_in + "&chs=500x500&choe=UTF-8"
 
             // console.log(url);
 
