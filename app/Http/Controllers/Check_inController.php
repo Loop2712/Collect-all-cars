@@ -115,16 +115,30 @@ class Check_inController extends Controller
                 'phone' => $requestData['phone_user'],
             ]);
         }
+
+        // ค้นหา name && name_area 
+        $data_partner_name_area = Partner::where('name' , $requestData['check_in_at'])
+            ->where('name_area' , $requestData['name_area'])
+            ->get();
+
+        foreach ($data_partner_name_area as $data_name_area ) {
+            $requestData['check_in_at'] = $data_name_area->id ;
+            $name_partner = $data_name_area->name ;
+        }
         
         Check_in::create($requestData);
 
         $data_user = User::where('id' , $requestData['user_id'])->get();
-        $data_partner = Partner::where('name' , $requestData['check_in_at'])
-            ->where('name_area' , null)
-            ->get(); ;
+
+        // $data_partner = Partner::where('name' , $name_partner)
+        //     ->where('name_area' , null)
+        //     ->get(); 
+
+        $data_partner = Partner::where('id' , $requestData['check_in_at'])->get(); 
 
         foreach($data_partner as $partner){
             $id_partner = $partner->id ;
+            $check_in_at = $partner->name . " - " . $partner->name_area ;
         }
 
         foreach ($data_user as $user) {
@@ -164,7 +178,7 @@ class Check_inController extends Controller
             ->take(3)
             ->get();   
 
-        $check_in_at = $requestData['check_in_at'] ;
+        // $data_check_in_ats = Partner::where('id' , $check_in_at)->get();
 
         $time = str_replace("T"," ",$time);
 
@@ -248,6 +262,7 @@ class Check_inController extends Controller
     {
         $location = $request->get('location');
         $Uni = "No";
+        $name_area = null ;
 
         $date_now = date("Y/m/d H:i:s");
 
@@ -256,8 +271,31 @@ class Check_inController extends Controller
                 $location_sp = explode(":",$location);
                 $location = $location_sp[1];
                 $Uni = "Yes";
+
+                if (strpos($location, '-') !== false) {
+                    $location_sp_name_area = explode("-",$location);
+
+                    $name_area = $location_sp_name_area[1] ;
+                    $location = $location_sp_name_area[0] ;
+                }
+            }else{
+                if (strpos($location, '-') !== false) {
+                    $location_sp = explode("-",$location);
+                    $location = $location_sp[0];
+
+                    $name_area = $location_sp[1] ;
+                }
             }
         }
+
+        // echo $location ;
+        // echo "<br>";
+        // echo $Uni;
+        // echo "<br>";
+        // echo $name_area;
+
+        // exit();
+
 
         $user = Auth::user();
 
@@ -266,7 +304,7 @@ class Check_inController extends Controller
         $name_university = Name_University::get();
 
 
-        return view('check_in.create', compact('location','Uni','date_now','real_name','name_university'));
+        return view('check_in.create', compact('location','Uni','date_now','real_name','name_university','name_area'));
     }
 
 }

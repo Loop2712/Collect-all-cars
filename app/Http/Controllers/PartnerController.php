@@ -741,16 +741,20 @@ class PartnerController extends Controller
 
     function add_new_check_in(Request $request){
         
-        // $data_user = Auth::user();
-        // $data_partners = Partner::where("name", $data_user->organization)
-        //     ->where("name_area", null)
-        //     ->get();
+        $data_user = Auth::user();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
+
+        foreach($data_partners as $item){
+            $type_partner = $item->type_partner ;
+        }
 
         // foreach ($data_partners as $key) {
         //     $logo_partner = $key->logo ;
         // }
 
-        return view('check_in.add_new_check_in');
+        return view('check_in.add_new_check_in' , compact('type_partner'));
 
     }
 

@@ -31,6 +31,8 @@
                             <div id="div_input_data_qr" class="">
                                 <input type="text" class="form-control d-none" id="name_partner" name="name_partner" value="{{ Auth::user()->organization }}">
 
+                                <input type="text" class="form-control d-none" id="type_partner" name="type_partner" value="{{ $type_partner }}">
+
                                 <label class="control-label" for="name_new_check_in">ชื่อจุด Check in</label>
                                 <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in" onchange="document.querySelector('#tag_a_qr').classList.remove('d-none');">
 
@@ -98,10 +100,15 @@
         let name_partner = document.querySelector('#name_partner') ;
         let name_partner_re = name_partner.value.replaceAll(' ' , '_');
 
-            // console.log(name_partner.value);
+        let type_partner = document.querySelector('#type_partner') ;
 
+        if (type_partner.value === "university") {
 
-        let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_partner_re + "-" +name_new_check_in + "&chs=500x500&choe=UTF-8"
+            let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=University:" + name_partner_re + "-" +name_new_check_in + "&chs=500x500&choe=UTF-8"
+        }else{
+
+            let url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_partner_re + "-" +name_new_check_in + "&chs=500x500&choe=UTF-8"
+        }
 
             // console.log(url);
 

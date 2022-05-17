@@ -55,6 +55,10 @@
         <input class="form-control" name="check_in_at" type="text" id="check_in_at" value="{{ isset($check_in->check_in_at) ? $check_in->check_in_at : $location}}" >
         {!! $errors->first('check_in_at', '<p class="help-block">:message</p>') !!}
     </div>
+    <div class="d-none form-group {{ $errors->has('name_area') ? 'has-error' : ''}}">
+        <label for="name_area" class="control-label">{{ 'Check In At' }}</label>
+        <input class="form-control" name="name_area" type="text" id="name_area" value="{{ $name_area }}" >
+    </div>
 
     <input class="form-control d-none" name="phone_user" type="tel" id="phone_user" value="{{ Auth::user()->phone }}" pattern="[0-9]{10}">
 
