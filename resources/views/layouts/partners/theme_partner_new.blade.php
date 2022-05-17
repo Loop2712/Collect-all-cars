@@ -94,8 +94,6 @@
 						<div class="menu-title">ข้อมูลการเข้าออก</div>
 					</a>
 				</li>
-				@if(Auth::check())
-                    @if(Auth::user()->id == 1)
 				<li>
 					<a href="{{ url('/check_in/add_new_check_in') }}">
 						<div class="parent-icon"><i class="fas fa-qrcode"></i>
@@ -110,8 +108,6 @@
 						<div class="menu-title">คลังภาพ Check in</div>
 					</a>
 				</li>
-					@endif
-				@endif
                 <li class="menu-label" style="font-size:15px;">
                     จัดการรถ
                 </li>
