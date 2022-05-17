@@ -116,6 +116,8 @@ class Check_inController extends Controller
             ]);
         }
 
+        $requestData['check_in_at'] = str_replace("_"," ",$requestData['check_in_at']);
+
         // ค้นหา name && name_area 
         $data_partner_name_area = Partner::where('name' , $requestData['check_in_at'])
             ->where('name_area' , $requestData['name_area'])
