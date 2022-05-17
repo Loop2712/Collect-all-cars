@@ -134,7 +134,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/create_time_zone', 'Time_zoneController@create_time_zone');
 	Route::resource('text_topic', 'Text_topicController');
 	Route::resource('name_-university', 'Name_UniversityController');
-
+	Route::resource('disease', 'DiseaseController');
 
 });
 // END ADMIN VIICHECK
