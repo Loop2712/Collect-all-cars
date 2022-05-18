@@ -85,7 +85,7 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
 				<li class="menu-label" style="font-size:15px;">
-                    Check in / out
+                    Vii Care
                 </li>
                 <li>
 					<a href="{{ url('/check_in/view') }}">
@@ -109,7 +109,7 @@
 					</a>
 				</li>
                 <li class="menu-label" style="font-size:15px;">
-                    จัดการรถ
+                    Vii Move
                 </li>
 				<li>
 					<a href="{{ url('/register_cars_partner') }}">
@@ -133,7 +133,7 @@
 					</a>
 				</li>
                 <li class="menu-label" style="font-size:15px;">
-                    พื้นที่ช่วยเหลือ
+                    Vii SOS
                 </li>
                 <li>
 					<a href="{{ url('/sos_partner') }}">
@@ -156,7 +156,7 @@
 							</a>
 						</li>
 		                <li class="menu-label" style="font-size:15px;">
-		                    ผู้ใช้
+		                    จัดการผู้ใช้
 		                </li>
 		                <li>
 							<a href="{{ url('/manage_user_partner') }}">
@@ -168,7 +168,7 @@
 					@endif
 				@endif
                 <li class="menu-label" style="font-size:15px;">
-                    การใช้งาน
+                    อื่นๆ
                 </li>
                 <li>
 					<a href="{{ url('/how_to_use') }}" target="blank">

@@ -57,60 +57,83 @@
 }
 </style>
 
+<form style="float: left;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="col-12 form-inline float-right" role="search">
+
 <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="d-flex align-items-center">
-            <div class="row col-12">
+            <div class="col-12">
                 <div class="col-12">
-                    <div class="row col-12">
-                        <div class="col-9">
-                            <h3 style="margin-top: 8px;" class="font-weight-bold mb-0">
-                                ค้นหา
-                            </h3>
+                    <h3 style="margin-top: 10px;">กรุณาเลือกพื้นที่</h3>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <select style="margin-left: 10px;margin-top: 10px;" class="form-control" name="name_area" id="name_area" value="{{ request('name_area') }}" onchange="document.querySelector('#btn_submit_search').click();">
+                                @if(!empty($text_name_area))
+                                    <option value="{{ $id_partner_name_area }}" selected>{{ $text_name_area }}</option>
+                                @else
+                                    <option value="" selected>- กรุณาเลือกพื้นที่ -</option>
+                                @endif
+                                <option value="all"> ทั้งหมด </option>
+                                @foreach($data_name_area_all as $name_area)
+                                    <option value="{{ $name_area->id }}">{{ $name_area->name_area }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
+                            <h5 style="margin-top: 10px;" class="font-weight-bold mb-0 btn btn-outline-info" data-toggle="collapse" href="#filter_data" role="button" aria-expanded="false" aria-controls="filter_data">
+                                <i class="fas fa-filter"></i> ตัวกรองการค้นหา
+                            </h5> 
+                        </div>
+                        <div class="col-4">
+                            @if(!empty($text_name_area))
                             <a style="float: right;margin-top: 15px;" type="button" data-toggle="modal" data-target="#covid">
-                                <button class="btn btn-warning btn-sm">
-                                    <i class="fas fa-head-side-virus"></i> แจ้งติดโควิด!
+                                <button class="btn btn-warning">
+                                    <i class="fas fa-head-side-virus"></i> ค้นหาผู้ติดเชื้อ !
                                 </button>
                             </a>
+                            @endif
                         </div>
                     </div>
-                    <hr>
-                    <div class="row col-12">
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12 collapse" id="filter_data">
+                        <br>
                         <center>
-                            <form style="float: left;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="col-12 form-inline float-right" role="search">
-                                <div class="row col-12">
-                                    <div class="col-md-2">
-                                        <label  class="control-label">{{ 'วันที่' }}</label>
-                                        <input class="form-control" type="date" name="select_date" id="select_date" value="{{ request('select_date') }}">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label  class="control-label">{{ 'เวลา' }}</label>
-                                        <input class="form-control" type="time" name="select_time_1" id="select_time_1" value="{{ request('select_time_1') }}" onchange="document.querySelector('#select_time_2').required = true,document.querySelector('#select_date').required = true;">
-                                    </div>
-                                    <div class="col-1">
-                                        <center>
-                                            <br>
-                                            <label style="margin-top:7px;" class="control-label">{{ 'ถึง' }}</label>
-                                        </center>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label  class="control-label">{{ 'เวลา' }}</label>
-                                        <input class="form-control" type="time" name="select_time_2" id="select_time_2" value="{{ request('select_time_2') }}">
-                                    </div>
-                                    <div class="col-md-2">
-                                        @if($type_partner == "university")
-                                            <label  class="control-label">{{ 'รหัสนักศึกษา' }}</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="select_student_id" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('select_student_id') }}">
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="col-3">
+                            <div class="row col-12">
+                                <div class="col-md-2">
+                                    <label  class="control-label">{{ 'วันที่' }}</label>
+                                    <input class="form-control" type="date" name="select_date" id="select_date" value="{{ request('select_date') }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label  class="control-label">{{ 'เวลา' }}</label>
+                                    <input class="form-control" type="time" name="select_time_1" id="select_time_1" value="{{ request('select_time_1') }}" onchange="document.querySelector('#select_time_2').required = true,document.querySelector('#select_date').required = true;">
+                                </div>
+                                <div class="col-1">
+                                    <center>
+                                        <br>
+                                        <label style="margin-top:7px;" class="control-label">{{ 'ถึง' }}</label>
+                                    </center>
+                                </div>
+                                <div class="col-md-2">
+                                    <label  class="control-label">{{ 'เวลา' }}</label>
+                                    <input class="form-control" type="time" name="select_time_2" id="select_time_2" value="{{ request('select_time_2') }}">
+                                </div>
+                                <div class="col-md-2">
+                                    @if($type_partner == "university")
+                                        <label  class="control-label">{{ 'รหัสนักศึกษา' }}</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="select_student_id" placeholder="ค้นหารหัสนักศึกษา..." value="{{ request('select_student_id') }}">
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-3">
+                                    <div style="float: right;">
                                         <br>
                                         <span class="input-group-append">
-                                            <button class="btn btn-info text-white" type="submit">
+                                            <button id="btn_submit_search" class="btn btn-info text-white" type="submit">
                                                 <i class="fa fa-search"></i>ค้นหา
                                             </button>
                                         </span>
@@ -119,7 +142,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </center>
                     </div>
                 </div>
@@ -129,13 +152,13 @@
     <br>
 </div>
 <br>
-<div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+<div id="data_check_in" class="card radius-10 d-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="card-body">
         <div class="table-responsive">
             <div class="row">
                 <div class="col-9"> 
                     <h3 style="margin-top: 8px;" class="font-weight-bold mb-0">
-                        รายชื่อ Check in / out
+                        รายชื่อ Check in / out : <span class="text-info">{{ $text_name_area }}</span>
                     </h3>
                 </div>
                 <div class="col-3">
@@ -191,8 +214,8 @@
                             </td>
 
                             <td>
-                                @if(!empty($item->check_in_at))
-                                    <b>{{ $item->check_in_at}}</b>
+                                @if(!empty($item->name_partner))
+                                    <b>{{ $item->name_partner}}</b>
                                 @else
                                     -
                                 @endif
@@ -240,11 +263,11 @@
                                         </div>
                                         <div class="col-3">
                                             @if($type_partner == "university")
-                                                <input type="text" class="form-control" id="student_id_covid" name="student_id_covid" placeholder="ค้นหาจากรหัสนักศึกษา..." oninput="search_std('{{ $check_in_at }}');">
+                                                <input type="text" class="form-control" id="student_id_covid" name="student_id_covid" placeholder="ค้นหาจากรหัสนักศึกษา..." oninput="search_std('{{ $name_partner }}');">
                                             @endif
                                         </div>
                                         <div class="col-3">
-                                            <input type="text" class="form-control" id="student_name_covid" name="student_name_covid" placeholder="ค้นหาจากชื่อ..." oninput="search_name('{{ $check_in_at }}');">
+                                            <input type="text" class="form-control" id="student_name_covid" name="student_name_covid" placeholder="ค้นหาจากชื่อ..." oninput="search_name('{{ $name_partner }}');">
                                         </div>
                                     </div>
                                 </div>
@@ -289,6 +312,9 @@
         </div>
     </div>
 </div>
+
+</form>
+
 <!------------------------------------------- Modal Check in ------------------------------------------->
 <div class="modal fade"  id="Partner_checkin" tabindex="-1" role="dialog" aria-labelledby="Partner_userTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" >
@@ -426,6 +452,15 @@
 
     <script>
         
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // console.log("START");
+            @if(!empty($text_name_area))
+                document.querySelector('#data_check_in').classList.remove('d-none');
+            @else
+                document.querySelector('#data_check_in').classList.add('d-none');
+            @endif
+        });
         function search_std(check_in_at){
 
             let student_id_covid = document.querySelector('#student_id_covid');

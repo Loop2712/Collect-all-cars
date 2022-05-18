@@ -33,8 +33,8 @@
 
                                 <input type="text" class="form-control d-none" id="type_partner" name="type_partner" value="{{ $type_partner }}">
 
-                                <label class="control-label" for="name_new_check_in">ชื่อจุด Check in</label>
-                                <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in" onchange="document.querySelector('#tag_a_qr').classList.remove('d-none');">
+                                <label class="control-label" for="name_new_check_in">พื้นที่ Check in</label><span class="text-danger">*</span>
+                                <input type="text" class="form-control" id="name_new_check_in" name="name_new_check_in" placeholder="กรอกชื่อจุด Check in เช่น ชื่ออาคารหรือพื้นที่ย่อย" onchange="document.querySelector('#tag_a_qr').classList.remove('d-none');">
 
                                 <br>
                                 <div id="select_color">
