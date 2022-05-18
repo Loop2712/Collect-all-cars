@@ -125,14 +125,11 @@ class Check_inController extends Controller
 
         foreach ($data_partner_name_area as $data_name_area ) {
             $requestData['check_in_at'] = $data_name_area->id . '(' . $requestData['check_in_at'] . ')';
+            $id_name_area = $data_name_area->id ;
             $name_partner = $data_name_area->name ;
         }
         
         Check_in::create($requestData);
-
-        foreach ($data_partner_name_area as $data_name_area ) {
-            $requestData['check_in_at'] = $data_name_area->id ;
-        }
 
         $data_user = User::where('id' , $requestData['user_id'])->get();
 
@@ -140,7 +137,7 @@ class Check_inController extends Controller
         //     ->where('name_area' , null)
         //     ->get(); 
 
-        $data_partner = Partner::where('id' , $requestData['check_in_at'])->get(); 
+        $data_partner = Partner::where('id' , $id_name_area)->get(); 
 
         foreach($data_partner as $partner){
             $id_partner = $partner->id ;
@@ -179,7 +176,7 @@ class Check_inController extends Controller
         }
 
         $data_in_out = check_in::where('user_id', $requestData['user_id'])
-            ->where('check_in_at', $requestData['check_in_at'])
+            ->where('check_in_at', $id_name_area)
             ->latest()
             ->take(3)
             ->get();   
