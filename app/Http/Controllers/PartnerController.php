@@ -659,6 +659,8 @@ class PartnerController extends Controller
 
     public function view_check_in(Request $request)
     {
+        $perPage = 50;
+
         $data_user = Auth::user();
         $name_partner = $data_user->organization;
 
@@ -675,7 +677,6 @@ class PartnerController extends Controller
             $id_partner_name_area = $name_partner ;
             $text_name_area = "ทั้งหมด" ;
 
-            $perPage = 25;
             $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
                 ->latest()
                 ->paginate($perPage);
@@ -686,7 +687,6 @@ class PartnerController extends Controller
                 $text_name_area = $data_name_area->name_area ;
             }
 
-            $perPage = 25;
             $check_in = Check_in::where('check_in_at', $id_partner_name_area . '(' . $name_partner . ')')
                 ->latest()
                 ->paginate($perPage);
