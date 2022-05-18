@@ -130,6 +130,10 @@ class Check_inController extends Controller
         
         Check_in::create($requestData);
 
+        foreach ($data_partner_name_area as $data_name_area ) {
+            $requestData['check_in_at'] = $data_name_area->id ;
+        }
+
         $data_user = User::where('id' , $requestData['user_id'])->get();
 
         // $data_partner = Partner::where('name' , $name_partner)
