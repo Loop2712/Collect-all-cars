@@ -677,9 +677,6 @@ class PartnerController extends Controller
             $id_partner_name_area = $name_partner ;
             $text_name_area = "ทั้งหมด" ;
 
-            $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
-                ->latest()
-                ->paginate($perPage);
         }else{
             $data_partner_name_area = Partner::where('id' , $request_name_area)->get();
             $id_partner_name_area = $request_name_area ;
@@ -687,13 +684,7 @@ class PartnerController extends Controller
                 $text_name_area = $data_name_area->name_area ;
             }
 
-            $check_in = Check_in::where('check_in_at', $id_partner_name_area . '(' . $name_partner . ')')
-                ->latest()
-                ->paginate($perPage);
         }
-
-        
-
         // echo "select_date >>>" . $select_date;
         // echo "<br>";
         // echo "select_time_1 >>>" . $select_time_1;
@@ -701,59 +692,57 @@ class PartnerController extends Controller
         // echo "select_time_2 >>>" . $select_time_2;
         // echo "<br>";
 
-        
+        // รหัส นศ. อย่างเดียว
+        if ( !empty($select_student_id) and empty($select_time_1) and empty($select_date) ) {
+            $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
+                ->where('student_id','LIKE', "%$select_student_id%")
+                ->latest()->paginate($perPage);
+        }
+        // วันที่ อย่างเดียว
+        else if ( !empty($select_date) and empty($select_time_1) and empty($select_student_id) ) {
+            $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
+                ->whereDate('created_at', $select_date)
+                ->latest()->paginate($perPage);
+        }
+        // วันที่ และ รหัส นศ.
+        else if ( !empty($select_date) and !empty($select_student_id) and empty($select_time_1) ) {
+            $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
+                ->where('student_id','LIKE', "%$select_student_id%")
+                ->whereDate('created_at', $select_date)
+                ->latest()->paginate($perPage);
+        }
+        // วันที่ และ เวลา
+        else if ( !empty($select_date) and !empty($select_time_1) and empty($select_student_id) ) {
+            $date_and_time_1 =  $select_date . " " . $select_time_1 ;
+            $date_and_time_1 = date("Y/m/d H:i" , strtotime($date_and_time_1));
 
-        // // รหัส นศ. อย่างเดียว
-        // if ( !empty($select_student_id) and empty($select_time_1) and empty($select_date) ) {
-        //     $check_in = Check_in::where('check_in_at', $data_user->organization)
-        //         ->where('student_id','LIKE', "%$select_student_id%")
-        //         ->latest()->paginate($perPage);
-        // }
-        // // วันที่ อย่างเดียว
-        // else if ( !empty($select_date) and empty($select_time_1) and empty($select_student_id) ) {
-        //     $check_in = Check_in::where('check_in_at', $data_user->organization)
-        //         ->whereDate('created_at', $select_date)
-        //         ->latest()->paginate($perPage);
-        // }
-        // // วันที่ และ รหัส นศ.
-        // else if ( !empty($select_date) and !empty($select_student_id) and empty($select_time_1) ) {
-        //     $check_in = Check_in::where('check_in_at', $data_user->organization)
-        //         ->where('student_id','LIKE', "%$select_student_id%")
-        //         ->whereDate('created_at', $select_date)
-        //         ->latest()->paginate($perPage);
-        // }
-        // // วันที่ และ เวลา
-        // else if ( !empty($select_date) and !empty($select_time_1) and empty($select_student_id) ) {
-        //     $date_and_time_1 =  $select_date . " " . $select_time_1 ;
-        //     $date_and_time_1 = date("Y/m/d H:i" , strtotime($date_and_time_1));
+            $date_and_time_2 =  $select_date . " " . $select_time_2 ;
+            $date_and_time_2 = date("Y/m/d H:i" , strtotime($date_and_time_2));
 
-        //     $date_and_time_2 =  $select_date . " " . $select_time_2 ;
-        //     $date_and_time_2 = date("Y/m/d H:i" , strtotime($date_and_time_2));
+            $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
+                ->whereBetween('created_at', [$date_and_time_1, $date_and_time_2])
+                ->latest()->paginate($perPage);
+        }
+        // วันที่ และ เวลา และ รหัส นศ.
+        else if ( !empty($select_date) and !empty($select_time_1) and !empty($select_student_id) ) {
+            $date_and_time_1 =  $select_date . " " . $select_time_1 ;
+            $date_and_time_1 = date("Y/m/d H:i" , strtotime($date_and_time_1));
 
-        //     $check_in = Check_in::where('check_in_at', $data_user->organization)
-        //         ->whereBetween('created_at', [$date_and_time_1, $date_and_time_2])
-        //         ->latest()->paginate($perPage);
-        // }
-        // // วันที่ และ เวลา และ รหัส นศ.
-        // else if ( !empty($select_date) and !empty($select_time_1) and !empty($select_student_id) ) {
-        //     $date_and_time_1 =  $select_date . " " . $select_time_1 ;
-        //     $date_and_time_1 = date("Y/m/d H:i" , strtotime($date_and_time_1));
+            $date_and_time_2 =  $select_date . " " . $select_time_2 ;
+            $date_and_time_2 = date("Y/m/d H:i" , strtotime($date_and_time_2));
 
-        //     $date_and_time_2 =  $select_date . " " . $select_time_2 ;
-        //     $date_and_time_2 = date("Y/m/d H:i" , strtotime($date_and_time_2));
+            $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
+                ->whereBetween('created_at', [$date_and_time_1, $date_and_time_2])
+                ->where('student_id','LIKE', "%$select_student_id%")
+                ->latest()->paginate($perPage);
+        }
+        // ว่าง
+        else {
 
-        //     $check_in = Check_in::where('check_in_at', $data_user->organization)
-        //         ->whereBetween('created_at', [$date_and_time_1, $date_and_time_2])
-        //         ->where('student_id','LIKE', "%$select_student_id%")
-        //         ->latest()->paginate($perPage);
-        // }
-        // // ว่าง
-        // else {
-        //     $check_in = Check_in::where('check_in_at', $data_user->organization)
-        //         ->where('name_area' , $request_name_area)
-        //         ->latest()
-        //         ->paginate($perPage);
-        // }
+            $check_in = Check_in::where('check_in_at', 'LIKE', "%$id_partner_name_area%")
+                ->latest()
+                ->paginate($perPage);
+        }
 
 
         // ส่งค่าไปใช้งานฝนหน้า blade

@@ -57,6 +57,14 @@
 }
 </style>
 
+@php
+    if(is_int($id_partner_name_area)){
+        $id_partner_name_area = $id_partner_name_area ;
+    }else{
+        $id_partner_name_area = 'all' ;
+    }
+@endphp
+
 <form style="float: left;" method="GET" action="{{ url('/check_in/view') }}" accept-charset="UTF-8" class="col-12 form-inline float-right" role="search">
 
 <div class="card radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
@@ -82,9 +90,9 @@
                             </select>
                         </div>
                         <div class="col-4">
-                            <h5 style="margin-top: 10px;" class="font-weight-bold mb-0 btn btn-outline-info" data-toggle="collapse" href="#filter_data" role="button" aria-expanded="false" aria-controls="filter_data">
+                            <!-- <h5 style="margin-top: 10px;" class="font-weight-bold mb-0 btn btn-outline-info" data-toggle="collapse" href="#filter_data" role="button" aria-expanded="false" aria-controls="filter_data">
                                 <i class="fas fa-filter"></i> ตัวกรองการค้นหา
-                            </h5> 
+                            </h5> --> 
                         </div>
                         <div class="col-4">
                             @if(!empty($text_name_area))
@@ -457,8 +465,10 @@
             // console.log("START");
             @if(!empty($text_name_area))
                 document.querySelector('#data_check_in').classList.remove('d-none');
+                document.querySelector('#filter_data').classList.remove('collapse');
             @else
                 document.querySelector('#data_check_in').classList.add('d-none');
+                document.querySelector('#filter_data').classList.add('collapse');
             @endif
         });
         function search_std(check_in_at){
