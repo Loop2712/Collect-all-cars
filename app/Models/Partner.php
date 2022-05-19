@@ -31,4 +31,8 @@ class Partner extends Model
         return $this->hasOne('App\Models\Group_line', 'partner_id');
     }
 
+    public function check_in(){
+        return $this->hasMany('App\Models\Check_in', 'partner_id');
+    }
+
 }

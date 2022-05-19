@@ -25,10 +25,14 @@ class Check_in extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'time_in', 'time_out', 'check_in_at', 'student_id'];
+    protected $fillable = ['user_id', 'time_in', 'time_out', 'check_in_at', 'student_id','partner_id'];
 
     public function user(){
         return $this->belongsTo('App\User', 'user_id' , 'id'); 
+    }
+
+    public function partner(){
+        return $this->belongsTo('App\Models\Partner', 'partner_id' , 'id'); 
     }
     
 }

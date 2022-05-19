@@ -214,8 +214,8 @@
                             </td>
 
                             <td>
-                                @if(!empty($item->name_partner))
-                                    <b>{{ $item->name_partner}}</b>
+                                @if(!empty($item->partner->name_area))
+                                    <b>{{ $item->partner->name_area}}</b>
                                 @else
                                     -
                                 @endif

@@ -124,6 +124,7 @@ class Check_inController extends Controller
             ->get();
 
         foreach ($data_partner_name_area as $data_name_area ) {
+            $requestData['partner_id'] = $data_name_area->id ;
             $requestData['check_in_at'] = $data_name_area->id . '(' . $requestData['check_in_at'] . ')';
             $name_partner = $data_name_area->name ;
         }
