@@ -1,6 +1,17 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
+
+@php
+    if(!empty($color_navbar)){
+        $color_navbar = $color_navbar ;
+        $color_text = '#000000' ;
+    }else{
+        $color_navbar = '#dc3545';
+        $color_text = '#ffffff' ;
+    }
+@endphp
+
 <style>
 .checkmark__circle {
     stroke-dasharray: 166;
@@ -30,6 +41,16 @@
     stroke-dasharray: 48;
     stroke-dashoffset: 48;
     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+}
+
+.btn_dis {
+    background-color: #F8F8FF;
+    text-decoration-color: {{ $color_text  }} ;
+}
+
+.btn_dis:hover {
+    color: {{ $color_text }};
+    background-color: {{ $color_navbar  }};
 }
 
 @keyframes stroke {
@@ -79,7 +100,7 @@
                         <div class="col-4">
                             <select style="margin-left: 10px;margin-top: 10px;" class="form-control" name="name_area" id="name_area" value="{{ request('name_area') }}" onchange="document.querySelector('#btn_submit_search').click();">
                                 @if(!empty($text_name_area))
-                                    <option value="{{ $id_partner_name_area }}" selected>{{ $text_name_area }}</option>
+                                    <option value="{{ request('name_area') }}" selected>{{ $text_name_area }}</option>
                                 @else
                                     <option value="" selected>- กรุณาเลือกพื้นที่ -</option>
                                 @endif
@@ -259,9 +280,76 @@
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">แจ้งเตือนกลุ่มเสี่ยง</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">ค้นหาผู้ติดเชื้อ</h5>
+                        <span id="btn_show_name" class="d-none" data-toggle="collapse" href="#modal_detail_covid" role="button" aria-expanded="false" aria-controls="modal_detail_covid">
+                            แสดงรายชื่อ
+                        </span>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="select_disease">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-3">
+                                    <p style="width:100%;" class="btn btn-danger text-white main-shadow main-radius" onclick="report_disease('covid');">
+                                        พบเชื้อโควิด ! <i class="fas fa-virus"></i>
+                                    </p>
+                                </div>
+                                <div class="col-3">
+                                    <p style="width:100%;" class="btn btn-warning text-white main-shadow main-radius" data-toggle="collapse" href="#disease_all" role="button" aria-expanded="false" aria-controls="disease_all">
+                                        พบเชื้ออื่นๆ <i class="fas fa-bacterium"></i>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <!-- ว่าง -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body collapse" id="disease_all">
+                        <div class="col-12">
+                            <div class="row">
+                                @php
+                                    $ix = 1 ;
+                                @endphp
+                                @foreach($diseases as $disease)
+                                    <div class="col-3">
+                                        <p style="width:100%;" class="btn_dis btn main-shadow main-radius" onclick="report_disease('{{ $disease->name }}');">
+                                            {{ $disease->name }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                                <div class="col-3">
+                                    <p style="width:100%;" class="btn_dis btn main-shadow main-radius" onclick="document.querySelector('#div_diseaes_other').classList.remove('d-none');">
+                                        อื่นๆ
+                                    </p>
+                                </div>
+                                <div class="col-3"></div>
+                                <!-- โรคอื่นๆ -->
+                                <div id="div_diseaes_other" class="col-12 d-none">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <br>
+                                            <label>กรุณาระบุชื่อโรค</label>
+                                            <br><br>
+                                            <input class="form-control" type="text" name="input_diseaes_other" id="input_diseaes_other" value="" placeholder="กรุณาระบุชื่อโรค">
+                                        </div>
+                                        <div class="col-6">
+                                            <br>
+                                            <label class="d-none">ว่าง</label>
+                                            <br><br>
+                                            <p style="width:50%;" class="btn btn-primary text-white main-shadow main-radius" onclick="report_disease_input()">
+                                                ยืนยัน
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ชื่อโรค -->
+                    <input class="form-control d-none" type="text" name="name_disease" id="name_disease" value="">
+
+                    <!-- รายชื่อ -->
+                    <div class="modal-body collapse" id="modal_detail_covid">
                         <div class=" radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
                                 <div class="d-flex align-items-center" >
                                     <div class="row col-12" style="background:none;">
@@ -471,7 +559,33 @@
                 document.querySelector('#filter_data').classList.add('collapse');
             @endif
         });
+
+        
+
+        function report_disease(name_disease){
+            console.log(name_disease);
+            document.querySelector('#name_disease').value = name_disease;
+
+            document.querySelector('#exampleModalLabel').innerHTML = 'ค้นหาผู้ติดเชื้อ : ' + '<b class="text-danger">' + name_disease + '</b>' ;
+            document.querySelector('#select_disease').classList.add('d-none');
+            document.querySelector('#disease_all').classList.add('d-none');
+
+            document.querySelector('#btn_show_name').click();
+        }
+
+        function report_disease_input(){
+            let name_disease = document.querySelector('#input_diseaes_other').value;
+            document.querySelector('#disease_all').classList.add('d-none');
+
+            // console.log(name_disease);
+            report_disease(name_disease);
+        }
+
+        
+
         function search_std(check_in_at){
+
+            let name_disease = document.querySelector('#name_disease').value ;
 
             let student_id_covid = document.querySelector('#student_id_covid');
 
@@ -592,7 +706,7 @@
                             div_data_btn.setAttributeNode(class_div_data_btn);
 
                             let btn_data = document.createElement("button");
-                            btn_data.innerHTML = '<i class="fas fa-viruses"></i> ติดโควิด !'
+                            btn_data.innerHTML = '<i class="fas fa-viruses"></i> พบเชื้อ ' + name_disease + ' !'
                             let class_btn_data = document.createAttribute("class");
                                 class_btn_data.value = "btn btn-danger";
                                 btn_data.setAttributeNode(class_btn_data); 
@@ -621,9 +735,12 @@
 
         function search_name(check_in_at){
 
+            let name_disease = document.querySelector('#name_disease').value ;
             let student_name_covid = document.querySelector('#student_name_covid');
+            let name_area = document.querySelector('#name_area').value;
+                // console.log(name_area);
 
-            fetch("{{ url('/') }}/api/search_name/"+student_name_covid.value+"/"+check_in_at)
+            fetch("{{ url('/') }}/api/search_name/"+student_name_covid.value+"/"+check_in_at+"/"+name_area)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -740,7 +857,7 @@
                             div_data_btn.setAttributeNode(class_div_data_btn);
 
                             let btn_data = document.createElement("button");
-                            btn_data.innerHTML = '<i class="fas fa-viruses"></i> ติดโควิด !'
+                            btn_data.innerHTML = '<i class="fas fa-viruses"></i> พบเชื้อ ' + name_disease + ' !'
                             let class_btn_data = document.createAttribute("class");
                                 class_btn_data.value = "btn btn-danger";
                                 btn_data.setAttributeNode(class_btn_data); 

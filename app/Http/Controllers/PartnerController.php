@@ -24,6 +24,7 @@ use App\county;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Time_zone;
 use App\Models\Check_in;
+use App\Models\Disease;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -758,13 +759,16 @@ class PartnerController extends Controller
 
         foreach ($data_of_check_in_ats as $data_of_check_in_at) {
             $type_partner = $data_of_check_in_at->type_partner ;
+            $color_navbar = $data_of_check_in_at->color_navbar ;
         }
 
         $data_time_zone = Time_zone::groupBy('TimeZone')
             ->orderBy('CountryCode' , 'ASC')
             ->get();
 
-        return view('check_in.index', compact('data_time_zone','check_in','name_partner','type_partner','data_name_area_all','id_partner_name_area','text_name_area'));
+        $diseases = Disease::where('status' , 'show')->orderBy('name' , 'ASC')->get();
+
+        return view('check_in.index', compact('data_time_zone','check_in','name_partner','type_partner','data_name_area_all','id_partner_name_area','text_name_area','diseases','color_navbar'));
     }
 
     function add_new_check_in(Request $request){

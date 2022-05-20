@@ -484,15 +484,27 @@ class PartnersController extends Controller
         return $data ;
     }
 
-    public function search_name($name , $check_in_at)
+    public function search_name($name , $check_in_at, $name_area)
     {
-        $data = DB::table('users')
-            ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
-            ->select('users.*')
-            ->where("check_ins.check_in_at", $check_in_at)
-            ->where("users.name_staff" , 'LIKE', "%$name%")
-            ->groupBy('users.id')
-            ->get();
+        if ($name_area == "all") {
+            $data = DB::table('users')
+                ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
+                ->select('users.*')
+                ->where("check_ins.check_in_at",'LIKE', "%$check_in_at%")
+                ->where("users.name_staff" , 'LIKE', "%$name%")
+                ->groupBy('users.id')
+                ->get();
+        }else{
+            $data = DB::table('users')
+                ->join('check_ins', 'users.id', '=', 'check_ins.user_id')
+                ->select('users.*')
+                ->where("check_ins.partner_id", $name_area)
+                ->where("users.name_staff" , 'LIKE', "%$name%")
+                ->groupBy('users.id')
+                ->get();
+        }
+
+        
 
         return $data ;
     }
