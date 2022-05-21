@@ -920,7 +920,7 @@
                             class_div_btn_col_3.value = "col-3 text-center";
                             div_btn_col_3.setAttributeNode(class_div_btn_col_3);
 
-                            let btn_send = document.createElement("button");
+                            let btn_send = document.createElement("p");
                                 btn_send.innerHTML = '<i class="fas fa-share-square"></i> ส่งข้อความเตือน !'
                             let class_btn_send = document.createAttribute("class");
                                 class_btn_send.value = "btn btn-info text-white";

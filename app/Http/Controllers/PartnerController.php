@@ -660,7 +660,8 @@ class PartnerController extends Controller
 
     public function view_check_in(Request $request)
     {
-        $perPage = 50;
+        // $perPage = 50;
+        $perPage = 15;
 
         $data_user = Auth::user();
         $name_partner = $data_user->organization;
