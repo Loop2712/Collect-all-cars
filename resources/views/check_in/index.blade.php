@@ -273,7 +273,18 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="pagination round-pagination " style="margin-top:10px;"> {!! $check_in->appends(['search' => Request::get('search')])->render() !!} </div>
+            <div class="pagination round-pagination " style="margin-top:10px;"> 
+            {!! $check_in->appends([
+            'name_area' => Request::get('name_area'),
+            'select_date' => Request::get('select_date'),
+            'select_time_1' => Request::get('select_time_1'),
+            'select_time_2' => Request::get('select_time_2'),
+            'input_diseaes_other' => Request::get('input_diseaes_other'),
+            'name_disease' => Request::get('name_disease'),
+            'text_array' => Request::get('text_array'),
+            'student_name_covid' => Request::get('student_name_covid'),
+            ])->render() !!} 
+            </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="covid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
