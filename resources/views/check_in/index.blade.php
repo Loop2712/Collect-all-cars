@@ -563,7 +563,7 @@
         
 
         function report_disease(name_disease){
-            console.log(name_disease);
+            // console.log(name_disease);
             document.querySelector('#name_disease').value = name_disease;
 
             document.querySelector('#exampleModalLabel').innerHTML = 'ค้นหาผู้ติดเชื้อ : ' + '<b class="text-danger">' + name_disease + '</b>' ;
@@ -586,10 +586,11 @@
         function search_std(check_in_at){
 
             let name_disease = document.querySelector('#name_disease').value ;
+            let name_area = document.querySelector('#name_area').value;
 
             let student_id_covid = document.querySelector('#student_id_covid');
 
-            fetch("{{ url('/') }}/api/search_std/"+student_id_covid.value+"/"+check_in_at)
+            fetch("{{ url('/') }}/api/search_std/"+student_id_covid.value+"/"+check_in_at+"/"+name_area)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -888,7 +889,10 @@
             let div_content_search_std = document.querySelector('#div_content_search_std');
                 div_content_search_std.textContent = "" ;
 
-                fetch("{{ url('/') }}/api/show_group_risk/"+id+"/"+check_in_at)
+            let name_disease = document.querySelector('#name_disease').value ;
+            let name_area = document.querySelector('#name_area').value;
+
+                fetch("{{ url('/') }}/api/show_group_risk/"+id+"/"+check_in_at+"/"+name_area+"/"+name_disease)
                     .then(response => response.json())
                     .then(result => {
                     // console.log(result);
