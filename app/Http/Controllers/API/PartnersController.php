@@ -825,6 +825,7 @@ class PartnersController extends Controller
                             "เนื่องจาก ท่านได้ Scan เข้าพื้นที่",
                             "จึงขอความร่วมมือในการปฏิบัติตามมาตราการเร่งด่วนในการป้องกันและควบคุมโรคติดต่อไวรัสโคโรนา กรุณาทำการตรวจเช็คและเฝ้าระวังตามพระราชบัญญัติโรคติดต่อ พ.ศ.2558",
                             "วัน / เวลา",
+                            $name_disease,
                         ];
                 }else{
                     $data_topic = [
@@ -833,6 +834,7 @@ class PartnersController extends Controller
                             "เนื่องจาก ท่านได้ Scan เข้าพื้นที่",
                             "จึงขอความร่วมมือในการปฏิบัติตามมาตราการเร่งด่วนในการป้องกันและควบคุมโรคติดต่อ กรุณาทำการตรวจเช็คและเฝ้าระวังตามพระราชบัญญัติโรคติดต่อ พ.ศ.2558",
                             "วัน / เวลา",
+                            $name_disease,
                         ];
                 }
 
@@ -859,10 +861,10 @@ class PartnersController extends Controller
                 $string_json = str_replace("xxx",$user->name,$string_json);
 
                 $string_json = str_replace("text_00",$data_topic[1],$string_json);
-                $string_json = str_replace("text_01",$name_disease,$string_json);
                 $string_json = str_replace("text_02",$data_topic[2],$string_json);
                 $string_json = str_replace("text_03",$data_topic[3],$string_json);
                 $string_json = str_replace("ตามวัน / เวลาด้านล่าง",$data_topic[4],$string_json);
+                $string_json = str_replace("text_01",$data_topic[5],$string_json);
 
                 $string_json = str_replace("text_time_1",$text_time_1,$string_json);
                 $string_json = str_replace("text_time_2",$text_time_2,$string_json);
