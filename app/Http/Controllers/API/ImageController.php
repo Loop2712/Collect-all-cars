@@ -201,6 +201,51 @@ class ImageController extends Controller
 
             }
 
+            // รูปภาพธง
+            // ภาพส่วนบน
+            $image_flag = Image::make(public_path('img/check_in/theme/Standythem-บน.png'));
+            $image_flag->orientate();
+
+            // ระบายสี
+            $image_flag->colorize( $color_1 , $color_2 , $color_3 );
+
+            // qr-coed
+            $watermark_2->resize(850, 850);
+            $image_flag->insert($watermark_2 ,'top-right', 350, 525);
+            
+            // logo partner
+            $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
+            $logo_partner->resize(400, 400);
+            $image_flag->insert($logo_partner,'top-right', 15, 35);
+
+            $image_flag->text($name_partner, 530, 360, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(100);
+                $font->color('#ffffff');
+                $font->align('center');
+                $font->valign('top');
+            });
+
+            $image_flag->text($name_new_check_in, 800, 1310, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(85);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('top');
+            });
+
+            // เช็คมหาลัย
+            if ($type_partner == "university") { // มหาลัย
+
+                $image_flag_bottom = Image::make(public_path('img/check_in/theme/Standythemeล่างมหาลัย55x120-01.png'));
+                $image_flag->insert($image_flag_bottom);
+            }else{ // ทั่วไป
+                $image_flag_bottom = Image::make(public_path('img/check_in/theme/Standythemeล่าง55x120-01.png'));
+                $image_flag->insert($image_flag_bottom);
+            }
+
+            $image_flag->save( storage_path("app/public")."/check_in". "/" . 'artwork_flag' . $name_partner . '_' . $name_new_check_in . '.png' );
+
             return "OK";
         }
         

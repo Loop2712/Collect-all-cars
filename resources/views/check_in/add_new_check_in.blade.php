@@ -38,16 +38,61 @@
                         </div>
                     </div>
 
+                    <div id="add_area_ok" class="col-12 d-none">
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img class="d-none" id="img_str_load" src="{{ url('/img/stickerline/PNG/25.png') }}" width="100%">
+                                    </div>
+                                    <div class="col-10">
+                                        <h3 class="text-success" style="margin-top:20px;">
+                                            เพิ่มจุด Check in/out เรียบร้อยแล้ว
+                                        </h3>
+                                        <p>คุณสามารถดาวน์โหลดรูปภาพและเริ่มใช้งานได้ทันที</p>
+                                    </div>
+                                    <!-- รูป QR theme -->
+                                    <div class="col-3">
+                                        <center>
+                                            <br><br><br><br><br><br><br>
+                                            <img class="d-none" id="img_qr_code" src="" width="100%">
+                                            <br>
+                                            <a id="download_img_qr_code" href="" class="btn btn-danger text-white d-none" download="">
+                                                ดาวน์โหลด
+                                            </a>
+                                        </center>
+                                    </div>
+                                    <div class="col-9">
+                                        <center>
+                                            <br><br>
+                                            <img id="img_theme_new" class="d-none main-shadow main-radius"  src="" width="80%">
+                                            <br><br>
+                                            <a id="download_img_theme_new" href="" class="btn btn-danger text-white d-none" download="">
+                                                ดาวน์โหลด
+                                            </a>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- รูปธง -->
+                            <div class="col-3">
+                                <center>
+                                    <br><br>
+                                    <img id="img_flag_theme_new" class="d-none main-shadow main-radius"  src="" width="80%">
+                                    <br><br>
+                                    <a id="download_img_flag_theme_new" href="" class="btn btn-danger text-white d-none" download="">
+                                        ดาวน์โหลด
+                                    </a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="div_data_qr" class="row col-12 d-none">
                         <div id="div_create_qr" class="col-6">
                             <div id="have_area" class="d-none">
                                 <h3 class="text-danger" style="margin-top:20px;">มีพื้นที่นี้แล้ว</h3>
                                 <p>หากมีข้อสงสัยกรุณาติดต่อทีมงาน ViiCHECK</p>
-                            </div>
-
-                            <div id="add_area_ok" class="d-none">
-                                <h3 class="text-success" style="margin-top:20px;">เพิ่มจุด Check in/out เรียบร้อยแล้ว</h3>
-                                <p>คุณสามารถดาวน์โหลดรูปภาพและเริ่มใช้งานได้ทันที</p>
                             </div>
 
                             <div id="div_input_data_qr" class="">
@@ -75,38 +120,14 @@
                                     สร้าง QR-Code
                                 </button>
                             </div>
-
-                            <div id="div_qr_code" class="row col-12 text-center">
-                                <br>
-                                <div class="col-6">
-                                    <br><br>
-                                    <img class="d-none" id="img_str_load" src="{{ url('/img/stickerline/PNG/25.png') }}" width="85%">
-                                </div>
-                                <div class="col-6">
-                                    <br>
-                                    <img class="d-none" id="img_qr_code" src="" width="220" height="220">
-                                    <br>
-                                    <a id="download_img_qr_code" href="" class="btn btn-danger text-white d-none" download="">
-                                        ดาวน์โหลด
-                                    </a>
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="col-6">
                             <center>
                                 <img id="img_theme_old" class="main-shadow main-radius" src="" width="80%">
-
-                                <img id="img_theme_new" class="d-none main-shadow main-radius"  src="" width="80%">
-                                <br><br>
-                                <a id="download_img_theme_new" href="" class="btn btn-danger text-white d-none" download="">
-                                    ดาวน์โหลด
-                                </a>
                             </center>
                         </div>
                     </div>
-
                     <br>
                  </div>
             </div>
@@ -245,18 +266,27 @@
                 // let url_img_theme_new = "{{ url('/') }}/img/check_in/theme/test_1.png" ;
                 let url_img_theme_new = "{{ url('storage') }}/" + "check_in"+ "/" + "artwork_" +  name_partner.value + '_' + name_new_check_in.value + '.png';
 
+                let url_img_theme_new_flag = "{{ url('storage') }}/" + "check_in"+ "/" + "artwork_flag" +  name_partner.value + '_' + name_new_check_in.value + '.png';
 
                 let img_theme_new = document.querySelector('#img_theme_new');
                     img_theme_new.src = url_img_theme_new ;
 
                 let download_img_theme_new = document.querySelector('#download_img_theme_new');
                     download_img_theme_new.href = url_img_theme_new ;
+
+                let img_flag_theme_new = document.querySelector('#img_flag_theme_new');
+                    img_flag_theme_new.src = url_img_theme_new_flag ;
+
+                let download_img_flag_theme_new = document.querySelector('#download_img_flag_theme_new');
+                    download_img_flag_theme_new.href = url_img_theme_new_flag ;
                 
                 img_qr_code.classList.remove('d-none');
                 img_theme_new.classList.remove('d-none');
+                img_flag_theme_new.classList.remove('d-none');
                 download_img_theme_new.classList.remove('d-none');
                 document.querySelector('#img_str_load').classList.remove('d-none');
                 document.querySelector('#download_img_qr_code').classList.remove('d-none');
+                document.querySelector('#download_img_flag_theme_new').classList.remove('d-none');
             }
 
 
