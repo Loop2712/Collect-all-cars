@@ -116,9 +116,16 @@
                                     <br>
                                 </div>
 
-                                <button id="tag_a_qr" class="btn btn-info text-white d-none" style="float:right;" onclick="gen_qr_code();">
+                                <div style="float:right;">
+                                    <span id="qr_spinner" class="text-success d-none">
+                                       <div class="spinner-border text-success"></div> &nbsp; กรุณารอสักครู่..
+                                    </span>
+
+                                    <button id="tag_a_qr" class="btn btn-info text-white d-none" onclick="gen_qr_code();">
                                     สร้าง QR-Code
                                 </button>
+                                </div>
+                                
                             </div>
                         </div>
 
@@ -160,6 +167,8 @@
 
 
     function gen_qr_code(){
+
+        document.querySelector('#qr_spinner').classList.remove('d-none');
         
         let result = document.querySelector('#name_new_check_in') ;
         let name_new_check_in = result.value.replaceAll(' ' , '_');
@@ -251,7 +260,8 @@
         }).then(function (response){
             return response.text();
         }).then(function(text){
-            console.log(text);
+            // console.log(text);
+            document.querySelector('#qr_spinner').classList.add('d-none');
 
             if (text === "already have this area") {
                 document.querySelector('#div_input_data_qr').classList.add('d-none');
