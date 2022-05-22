@@ -16,7 +16,29 @@
                     </div>
                     <hr>
 
-                    <div class="row col-12">
+                    <div id="div_select_theme_qr" class="row">
+                        <div class="col-12">
+                            <br>
+                            <h4>เลือกรูปแบบที่ต้องการ</h4>
+                            <br>
+                        </div>
+                        <div class="col-6 text-center">
+                            <img class="main-shadow main-radius" src="{{ url('/img/check_in/theme/artwork_check_in_EX.png') }}" width="80%">
+                            <br><br><br>
+                            <p style="width:30%;" class="btn btn-danger main-shadow main-radius" onclick="select_theme_qr('1')">
+                                เลือก
+                            </p>
+                        </div>
+                        <div class="col-6 text-center">
+                            <img class="main-shadow main-radius" src="{{ url('/img/check_in/theme/art_work_check_in_EX_V3000.png') }}" width="80%">
+                            <br><br><br>
+                            <p style="width:30%;" class="btn btn-danger main-shadow main-radius" onclick="select_theme_qr('2')">
+                                เลือก
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="div_data_qr" class="row col-12 d-none">
                         <div id="div_create_qr" class="col-6">
                             <div id="have_area" class="d-none">
                                 <h3 class="text-danger" style="margin-top:20px;">มีพื้นที่นี้แล้ว</h3>
@@ -40,6 +62,12 @@
                                 <div id="select_color">
                                     <label class="control-label" for="name_new_check_in">เลือกสีรูปภาพ</label>
                                     <input type="text" class="form-control d-" id="color_theme" name="color_theme" value="" placeholder="กรอกโค้ดสี เช่น #F15423" >
+                                    <br>
+                                </div>
+
+                                <div>
+                                    <label class="control-label">รูปแบบที่เลือก</label>
+                                    <input class="form-control" type="text" name="num_theme_qr" id="num_theme_qr" value="" readonly>
                                     <br>
                                 </div>
 
@@ -68,7 +96,7 @@
 
                         <div class="col-6">
                             <center>
-                                <img id="img_theme_old" class="main-shadow main-radius" src="{{ url('/img/check_in/theme/artwork_check_in_EX.png') }}" width="80%">
+                                <img id="img_theme_old" class="main-shadow main-radius" src="" width="80%">
 
                                 <img id="img_theme_new" class="d-none main-shadow main-radius"  src="" width="80%">
                                 <br><br>
@@ -91,6 +119,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
 
 <script>
+
+    function select_theme_qr(num_of_theme){
+        let num_theme_qr = document.querySelector('#num_theme_qr') ;
+            num_theme_qr.value = num_of_theme ;
+
+        let img_theme_old = document.querySelector('#img_theme_old') ;
+
+            if (num_of_theme === '1') {
+                img_theme_old.src = "{{ url('/img/check_in/theme/artwork_check_in_EX.png') }}" ;
+            }
+            if (num_of_theme === '2'){
+                img_theme_old.src = "{{ url('/img/check_in/theme/art_work_check_in_EX_V3000.png') }}" ;
+            }
+
+        document.querySelector('#div_select_theme_qr').classList.add('d-none');
+        document.querySelector('#div_data_qr').classList.remove('d-none');
+    }
+
 
     function gen_qr_code(){
         
@@ -154,6 +200,8 @@
     {
         // console.log('change_color_theme');
 
+        let num_theme_qr = document.querySelector('#num_theme_qr') ;
+
         let img_theme_new = document.querySelector('#img_theme_new') ;
 
         let color_theme = document.querySelector('#color_theme') ;
@@ -161,12 +209,16 @@
         let name_partner = document.querySelector('#name_partner') ;
         let name_new_check_in = document.querySelector('#name_new_check_in') ;
 
+        let type_partner = document.querySelector('#type_partner') ;
+
         let data = {
             'color_theme' : color_theme.value,
             'name_partner' : name_partner.value,
             'name_new_check_in' : name_new_check_in.value,
             'url_img' : url_img,
             'type_of' : "check_in",
+            'num_theme_qr' : num_theme_qr.value,
+            'type_partner' : type_partner.value,
         };
 
         fetch("{{ url('/') }}/api/create_img_check_in", {
