@@ -52,7 +52,7 @@
                                         <p>คุณสามารถดาวน์โหลดรูปภาพและเริ่มใช้งานได้ทันที</p>
                                     </div>
                                     <!-- รูป QR theme -->
-                                    <div class="col-3">
+                                    <!-- <div class="col-3">
                                         <center>
                                             <br><br><br><br><br><br><br>
                                             <img class="d-none" id="img_qr_code" src="" width="100%">
@@ -61,11 +61,11 @@
                                                 ดาวน์โหลด
                                             </a>
                                         </center>
-                                    </div>
-                                    <div class="col-9">
+                                    </div> -->
+                                    <div class="col-12">
                                         <center>
                                             <br><br>
-                                            <img id="img_theme_new" class="d-none main-shadow main-radius"  src="" width="80%">
+                                            <img id="img_theme_new" class="d-none main-shadow main-radius"  src="" width="65%">
                                             <br><br>
                                             <a id="download_img_theme_new" href="" class="btn btn-danger text-white d-none" download="">
                                                 ดาวน์โหลด
@@ -77,7 +77,7 @@
                             <!-- รูปธง -->
                             <div class="col-3">
                                 <center>
-                                    <br><br>
+                                    <br><br><br><br>
                                     <img id="img_flag_theme_new" class="d-none main-shadow main-radius"  src="" width="80%">
                                     <br><br>
                                     <a id="download_img_flag_theme_new" href="" class="btn btn-danger text-white d-none" download="">
@@ -209,13 +209,13 @@
             let url_img = "{{ url('storage') }}/" + "check_in/" + text;
             // console.log(url_img);
 
-            let img_qr_code = document.querySelector('#img_qr_code') ;
-                img_qr_code.src = url_img;
-                // img_qr_code.classList.remove('d-none');
+            // let img_qr_code = document.querySelector('#img_qr_code') ;
+            //     img_qr_code.src = url_img;
+            //     // img_qr_code.classList.remove('d-none');
 
-            let download_img_qr_code = document.querySelector('#download_img_qr_code') ;
-                download_img_qr_code.href = url_img;
-                // download_img_qr_code.classList.remove('d-none');
+            // let download_img_qr_code = document.querySelector('#download_img_qr_code') ;
+            //     download_img_qr_code.href = url_img;
+            //     // download_img_qr_code.classList.remove('d-none');
 
             change_color_theme("check_in/" + text);
 
@@ -290,12 +290,12 @@
                 let download_img_flag_theme_new = document.querySelector('#download_img_flag_theme_new');
                     download_img_flag_theme_new.href = url_img_theme_new_flag ;
                 
-                img_qr_code.classList.remove('d-none');
+                // img_qr_code.classList.remove('d-none');
                 img_theme_new.classList.remove('d-none');
                 img_flag_theme_new.classList.remove('d-none');
                 download_img_theme_new.classList.remove('d-none');
                 document.querySelector('#img_str_load').classList.remove('d-none');
-                document.querySelector('#download_img_qr_code').classList.remove('d-none');
+                // document.querySelector('#download_img_qr_code').classList.remove('d-none');
                 document.querySelector('#download_img_flag_theme_new').classList.remove('d-none');
             }
 
