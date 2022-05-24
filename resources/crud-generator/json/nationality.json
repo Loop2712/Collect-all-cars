@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "country",
+            "type": "string"
+        },
+        {
+            "name": "nationality",
+            "type": "string"
+        },
+        {
+            "name": "nationality_noun",
+            "type": "string"
+        },
+        {
+            "name": "language",
+            "type": "string"
+        }
+    ]
+}
