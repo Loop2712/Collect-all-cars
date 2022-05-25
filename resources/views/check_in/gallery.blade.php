@@ -74,7 +74,7 @@
                     <div class="col-6 ">
                         <!-- link to light box -->
                         <a href="#flag{{ $loop->iteration }}">
-                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 33%;">
+                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 33%;">
                         </a>
 
                         <!-- light box -->
