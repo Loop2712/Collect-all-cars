@@ -52,13 +52,15 @@
 
                     </div>
                 </div>
+                <br>
                 <div class="row text-center">
                     <div class="col-6">
                         
                        <!-- link to light box -->
-                       <a href="#artwork_{{ $loop->iteration }}">
+                       <a href="#artwork_{{ $loop->iteration }}" class="btn-outline-dark">
                             <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 90%;">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            <i style="position: absolute; font-size:18px;margin:10px -20px;" class="fa-solid fa-magnifying-glass-plus"></i>
+
                         </a>
 
                         <!-- light box -->
@@ -72,9 +74,9 @@
                     </div>
                     <div class="col-6 ">
                         <!-- link to light box -->
-                        <a href="#flag{{ $loop->iteration }}">
+                        <a href="#flag{{ $loop->iteration }}" class="btn-outline-dark">
                             <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 33%;">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            <i style="position: absolute; font-size:18px;margin:10px -20px;" class="fa-solid fa-magnifying-glass-plus"></i>
                         </a>
 
                         <!-- light box -->
