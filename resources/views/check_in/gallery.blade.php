@@ -47,9 +47,6 @@
             $text_name_area = 'รวม' ;
         }else{
             $text_name_area = $all_area->name_area ;
-
-            $text_name_area = str_replace(" ","_" ,$text_name_area) ;
-
         }
     @endphp
     <div class="col">

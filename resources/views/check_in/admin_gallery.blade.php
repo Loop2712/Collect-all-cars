@@ -91,9 +91,6 @@
                 $text_name_area = 'รวม' ;
             }else{
                 $text_name_area = $all_area->name_area ;
-
-                $text_name_area = str_replace(" ","_" ,$text_name_area) ;
-
             }
         @endphp
         <div class="col">
@@ -224,7 +221,7 @@
             // console.log(text);
             let url_img = "{{ url('storage') }}/" + "check_in/" + text;
 
-            change_color_theme("check_in/" + text, name_new_check_in, name, type_partner);
+            change_color_theme("check_in/" + text, name_area, name, type_partner);
 
         }).catch(function(error){
             // console.error(error);
