@@ -41,7 +41,16 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
     @foreach($all_areas as $all_area)
     @php
-    $img_name_area = str_replace(" ","_" ,$all_area->name_area) ;
+        $img_name_area = str_replace(" ","_" ,$all_area->name_area) ;
+
+        if(empty($all_area->name_area)){
+            $text_name_area = 'รวม' ;
+        }else{
+            $text_name_area = $all_area->name_area ;
+
+            $text_name_area = str_replace(" ","_" ,$text_name_area) ;
+
+        }
     @endphp
     <div class="col">
         <div class="card radius-10">
@@ -58,32 +67,32 @@
                         
                        <!-- link to light box -->
                        <a href="#artwork_{{ $loop->iteration }}" class="btn-outline-dark">
-                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 100%;">
+                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png" style="background-color: red;width: 100%;">
                         </a>
 
                         <!-- light box -->
                         <a href="##" class="lightbox" id="artwork_{{ $loop->iteration }}">
-                            <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png')"></span>
+                            <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png')"></span>
                         </a>
                         <br>
                         <!-- download btn -->
-                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
                         <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
                         
                     </div>
                     <div class="col-6 ">
                         <!-- link to light box -->
                         <a href="#flag{{ $loop->iteration }}">
-                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 33%;">
+                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png" style="background-color: red;width: 33%;">
                         </a>
 
                         <!-- light box -->
                         <a href="##" class="lightbox" id="flag{{ $loop->iteration }}">
-                            <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png')"></span>
+                            <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png')"></span>
                         </a>
                         <br>
                         <!-- download btn -->
-                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
                         <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
                         
                     </div>
