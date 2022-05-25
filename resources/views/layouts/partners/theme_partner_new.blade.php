@@ -4,6 +4,7 @@
 
 
 <head>
+	
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +30,7 @@
 	<link rel="stylesheet" href="{{ asset('partner_new/css/header-colors.css') }}" />
 	<!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
-    <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
+ 	<link href="https://kit-pro.fontawesome.com/releases/v6.0.0/css/pro.min.css" rel="stylesheet">
     
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
