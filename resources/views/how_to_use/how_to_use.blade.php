@@ -315,7 +315,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
+        <div style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <center><img src="{{ asset('/img/วิธีใช้งาน/fixios.jpg') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
           <br>
           <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">ให้แตะ Settings > Safari > Advanced > Website Data แล้วแตะ "Remove All Web Site Data"</h5>
