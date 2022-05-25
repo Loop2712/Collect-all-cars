@@ -142,6 +142,8 @@ Route::post('/send_risk_group', 'API\PartnersController@send_risk_group');
 
 Route::post('/save_img_url', 'API\ImageController@save_img_url');
 Route::post('/create_img_check_in', 'API\ImageController@create_img_check_in');
+Route::post('/admin_create_img_check_in', 'API\ImageController@admin_create_img_check_in');
+
 
 
 

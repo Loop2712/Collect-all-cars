@@ -235,6 +235,12 @@
                     <span class="nav-link-text">ลงโปรโมชั่น</span>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/check_in/admin_gallery') }}">
+                    <i class="fas fa-qrcode text-info"></i>
+                    <span class="nav-link-text">สร้าง QR-Code เช็คอิน</span>
+                  </a>
+                </li>
               </div>
             </div>
           </ul>

@@ -360,7 +360,7 @@
 
   <!-- --------------------------------------------- -->
   @if(Auth::check())
-      <h1 class="d-none" id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}');"></h1> 
+      <h1 class="d-none" id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}' , '{{ Auth::user()->nationalitie }}');"></h1> 
       <div class="d-none">
         <a id="btn_change_language_th" href="javascript:trocarIdioma('th')">th</a>
         <a id="btn_change_language_en" href="javascript:trocarIdioma('en')">en</a>
@@ -672,6 +672,39 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
               </div> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- modal nationalitie -->
+        <!-- Button trigger modal -->
+        <button id="btn_select_nationalitie" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_nationalitie">
+          BTN nationalitie
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="modal_nationalitie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  <img width="35" src="{{ url('/img/icon/translation.png') }}">
+                  &nbsp;
+                  <span>Please select nationalitie</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                  <!----------------------------------------------- pc ----------------------------------------------->
+              <div class="modal-body d-none d-lg-block">
+                <div class="col-12">
+                  <div class="row text-center">
+                    <div class="col-4" style="left:-35px">
+                      <!-- ตรงนี้ -->
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -992,7 +1025,7 @@
     }
 
 
-function change_country(user_id, country , language) {
+function change_country(user_id, country , language , nationalitie) {
 
     // console.log(user_id);
     // console.log(country);
@@ -1013,6 +1046,10 @@ function change_country(user_id, country , language) {
           document.querySelector('#btn_change_language_' + language).click();
 
       }, delayInMilliseconds);
+    }
+
+    if (nationalitie === "") {
+      document.querySelector('#btn_select_nationalitie').click();
     }
 
 }

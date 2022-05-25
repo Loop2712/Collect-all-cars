@@ -61,6 +61,10 @@ class ImageController extends Controller
         $url = $data['url'];
         $name_partner = $data['name_partner'];
         $name_new_check_in = $data['name_new_check_in'];
+
+        if (empty($name_new_check_in)) {
+            $name_new_check_in = 'รวม' ;
+        }
  
         $img = storage_path("app/public")."/check_in". "/" . 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
 
@@ -285,6 +289,125 @@ class ImageController extends Controller
      
             //Return rgb(a) color string
             return $output;
+    }
+
+
+    function admin_create_img_check_in()
+    {
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+
+        $color_theme = $data['color_theme'];
+        $name_partner = $data['name_partner'];
+        $url_img = $data['url_img'];
+        $type_partner = $data['type_partner'];
+
+        $name_new_check_in = $data['name_new_check_in'];
+        if (empty($name_new_check_in)) {
+            $name_new_check_in = 'รวม' ;
+        }
+
+        $data_partners = Partner::where('name' , $name_partner)->where('name_area' , null)->get();
+
+        // สร้างพาร์ทเนอร์ย่อย
+        foreach ($data_partners as $item) {
+            $img_logo_partner = $item->logo ;
+        }
+
+        $color_hex = $this->hex2rgba($color_theme) ;
+        $color_sp = explode(",",$color_hex);
+        $color_1 = intval($color_sp[0] / 255 * 100);
+        $color_2 = intval($color_sp[1] / 255 * 100);
+        $color_3 = intval($color_sp[2] / 255 * 100);
+
+        // เรียกรูปภาพใส่ $image // logo viicheck && sticker
+        $image = Image::make(public_path('img/check_in/theme/artwork_V3000-2.png'));
+        $image->orientate();
+
+        // QR-code
+        $watermark_2 = Image::make( storage_path("app/public") . "/" .  $url_img );
+        $image->insert($watermark_2 ,'bottom-right', 840, 175);
+
+        // หัวภาพ
+        $watermark = Image::make(public_path('img/check_in/theme/artwork_V3000-1.png'));
+        // ระบายสี
+        $watermark->colorize( $color_1 , $color_2 , $color_3 );
+        // $watermark->colorize( 50, 0, 0 );
+        $image->insert($watermark);
+
+        // logo partner
+        $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
+        $image->insert($logo_partner,'top-right', 40, 20);
+
+        $image->text($name_partner, 530, 205, function($font) {
+            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+            $font->size(65);
+            $font->color('#ffffff');
+            $font->align('center');
+            $font->valign('top');
+        });
+
+        if ($name_new_check_in != 'รวม') {
+            $image->text($name_new_check_in, 300, 800, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(45);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('top');
+            });
+        }
+
+        $image->save( storage_path("app/public")."/check_in". "/" . 'artwork_' . $name_partner . '_' . $name_new_check_in . '.png' );
+
+        // รูปภาพธง
+        // ภาพส่วนบน
+        $image_flag = Image::make(public_path('img/check_in/theme/Standythem-บน.png'));
+        $image_flag->orientate();
+
+        // ระบายสี
+        $image_flag->colorize( $color_1 , $color_2 , $color_3 );
+
+        // qr-coed
+        $watermark_2->resize(850, 850);
+        $image_flag->insert($watermark_2 ,'top-right', 350, 525);
+        
+        // logo partner
+        $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
+        $logo_partner->resize(400, 400);
+        $image_flag->insert($logo_partner,'top-right', 15, 35);
+
+        $image_flag->text($name_partner, 530, 360, function($font) {
+            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+            $font->size(100);
+            $font->color('#ffffff');
+            $font->align('center');
+            $font->valign('top');
+        });
+
+        if ($name_new_check_in != 'รวม') {
+            $image_flag->text($name_new_check_in, 800, 1310, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(85);
+                $font->color('#000000');
+                $font->align('center');
+                $font->valign('top');
+            });
+        }
+        
+
+        // เช็คมหาลัย
+        if ($type_partner == "university") { // มหาลัย
+
+            $image_flag_bottom = Image::make(public_path('img/check_in/theme/Standythemeล่างมหาลัย55x120-01.png'));
+            $image_flag->insert($image_flag_bottom);
+        }else{ // ทั่วไป
+            $image_flag_bottom = Image::make(public_path('img/check_in/theme/Standythemeล่าง55x120-01.png'));
+            $image_flag->insert($image_flag_bottom);
+        }
+
+        $image_flag->save( storage_path("app/public")."/check_in". "/" . 'artwork_flag' . $name_partner . '_' . $name_new_check_in . '.png' );
+
+        return "OK";
     }
 
 }

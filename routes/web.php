@@ -135,6 +135,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('text_topic', 'Text_topicController');
 	Route::resource('name_-university', 'Name_UniversityController');
 	Route::resource('disease', 'DiseaseController');
+	Route::get('/check_in/admin_gallery', 'Check_inController@admin_gallery');
 
 });
 // END ADMIN VIICHECK

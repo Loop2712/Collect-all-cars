@@ -314,4 +314,35 @@ class Check_inController extends Controller
         return view('check_in.create', compact('location','Uni','date_now','real_name','name_university','name_area'));
     }
 
+    function admin_gallery(Request $request){
+        
+        // $data_user = Auth::user();
+
+        $requestData = $request->all();
+        $request_name_partner = $request->get('name_partner');
+        $name_partner = null ;
+        $all_areas = null ;
+
+        $all_partners = Partner::where("name", '!=' , null)->groupBy('name')->orderBy('name', 'ASC')->get();
+
+        if ($request_name_partner == "all") {
+
+            $name_partner = 'ทั้งหมด' ;
+            $all_areas = Partner::where("name", '!=' , null)->groupBy('name')->orderBy('name', 'ASC')->get();
+
+        }else{
+
+            $data_name_partner = Partner::where("id", $request_name_partner)->get();
+
+            foreach ($data_name_partner as $item_1) {
+                $name_partner = $item_1->name ;
+            }
+
+            $all_areas = Partner::where("id", $request_name_partner)->groupBy('name_area')->orderBy('name_area', 'ASC')->get();
+        }
+
+        return view('check_in.admin_gallery', compact('all_partners', 'all_areas','name_partner'));
+
+    }
+
 }
