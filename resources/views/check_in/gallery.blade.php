@@ -59,8 +59,6 @@
                        <!-- link to light box -->
                        <a href="#artwork_{{ $loop->iteration }}" class="btn-outline-dark">
                             <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 90%;">
-                            <i style="position: absolute; font-size:18px;margin:10px -20px;" class="fa-solid fa-magnifying-glass-plus"></i>
-
                         </a>
 
                         <!-- light box -->
@@ -69,14 +67,14 @@
                         </a>
                         <br>
                         <!-- download btn -->
-                        <a class="btn btn-outline-danger px-5 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                        <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
                         
                     </div>
                     <div class="col-6 ">
                         <!-- link to light box -->
-                        <a href="#flag{{ $loop->iteration }}" class="btn-outline-dark">
-                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 33%;">
-                            <i style="position: absolute; font-size:18px;margin:10px -20px;" class="fa-solid fa-magnifying-glass-plus"></i>
+                        <a href="#flag{{ $loop->iteration }}">
+                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 33%;">
                         </a>
 
                         <!-- light box -->
@@ -85,7 +83,8 @@
                         </a>
                         <br>
                         <!-- download btn -->
-                        <a class="btn btn-outline-danger px-5 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                        <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
                         
                     </div>
 
