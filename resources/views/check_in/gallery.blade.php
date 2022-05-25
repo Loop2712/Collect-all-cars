@@ -57,7 +57,7 @@
                         
                        <!-- link to light box -->
                        <a href="#artwork_{{ $loop->iteration }}">
-                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 100%;">
+                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $all_area->name_area }}.png" style="background-color: red;width: 90%;">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
                         </a>
 
