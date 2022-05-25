@@ -328,7 +328,7 @@ class Check_inController extends Controller
         if ($request_name_partner == "all") {
 
             $name_partner = 'ทั้งหมด' ;
-            $all_areas = Partner::where("name", '!=' , null)->groupBy('name')->orderBy('name', 'ASC')->get();
+            $all_areas = Partner::where("name", '!=' , null)->orderBy('name', 'ASC')->get();
 
         }else{
 
@@ -338,7 +338,7 @@ class Check_inController extends Controller
                 $name_partner = $item_1->name ;
             }
 
-            $all_areas = Partner::where("id", $request_name_partner)->groupBy('name_area')->orderBy('name_area', 'ASC')->get();
+            $all_areas = Partner::where("name", $name_partner)->orderBy('name_area', 'ASC')->get();
         }
 
         return view('check_in.admin_gallery', compact('all_partners', 'all_areas','name_partner'));
