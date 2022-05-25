@@ -79,7 +79,7 @@
                         <a href="##" class="lightbox" id="flag{{ $loop->iteration }}">
                             <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png')"></span>
                         </a>
-                        
+                        <br>
                         <!-- download btn -->
                         <a class="btn btn-outline-danger px-5 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $all_area->name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
                         
