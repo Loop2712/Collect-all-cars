@@ -319,7 +319,7 @@
 
         for (let ii = 0; ii < result_area.length; ii++) {
 
-            console.log(result_area[ii]);
+            // console.log(result_area[ii]);
             // console.log(result_area[ii]['name']);
             // console.log(JSON.parse(result_area[ii]['sos_area']));
             // console.log(JSON.parse(result_area[ii]['sos_area']).length);
