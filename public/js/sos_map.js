@@ -345,11 +345,15 @@
 
                     document.querySelector('#a_help').classList.remove('d-none');
                     let area_help = document.querySelector("#area_help");
-                    let area = document.querySelector("#area");
                     let name_area = document.querySelector("#name_area");
-                        area.value = result_area[ii]['area'];
                         name_area.value = result_area[ii]['name_area'];
                         // console.log(area_help.innerHTML);
+
+                        if (name_area.value !== "") {
+                            name_area.value = name_area.value + " & " + name_area.value ;
+                        }else{
+                            name_area.value = name_area.value ;
+                        }
 
                         if (area_help.innerHTML !== "") {
                             area_help.innerHTML = area_help.innerHTML + " & " + name_partner ;
