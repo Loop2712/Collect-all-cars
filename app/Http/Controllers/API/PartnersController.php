@@ -487,7 +487,7 @@ class PartnersController extends Controller
             DB::table('sos_maps')
                 ->where('id', $item->id)
                 ->update([
-                        'notify' => $old_notify + 1,
+                        'notify' => number_format($old_notify) + 1,
                     
             ]);
         }
