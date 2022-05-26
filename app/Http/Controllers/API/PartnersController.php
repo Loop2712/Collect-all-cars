@@ -476,19 +476,19 @@ class PartnersController extends Controller
                         ->where("notify", 'not like', "%$num_helper%")
                         ->get();
 
-        foreach ($notify as $item) {
+        // foreach ($notify as $item) {
 
-            $num_notify = 0 ;
+        //     $num_notify = 0 ;
 
-            DB::table('sos_maps')
-                ->where('id', $item->id)
-                ->update([
-                        'notify' => $num_notify + 1,
+        //     DB::table('sos_maps')
+        //         ->where('id', $item->id)
+        //         ->update([
+        //                 'notify' => $num_notify + 1,
                     
-            ]);
-        }
+        //     ]);
+        // }
 
-        return $notify ;
+        // return $notify ;
     }
 
     public function search_std($student_id , $check_in_at, $name_area)
