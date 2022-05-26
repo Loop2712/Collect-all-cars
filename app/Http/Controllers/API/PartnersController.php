@@ -455,30 +455,30 @@ class PartnersController extends Controller
 
     public function check_sos_alarm_notify($check_name_partner)
     {
-        // $data_sos_map = DB::table('sos_maps')
-        //                 ->where("area",'LIKE', "%$check_name_partner%")
-        //                 ->where("helper", null)
-        //                 ->get();
+        $data_sos_map = DB::table('sos_maps')
+                        ->where("area",'LIKE', "%$check_name_partner%")
+                        ->where("helper", null)
+                        ->get();
 
 
-        // $notify = DB::table('sos_maps')
-        //                 ->where("area",'LIKE', "%$check_name_partner%")
-        //                 ->where("helper", null)
-        //                 ->Where("notify", 'LIKE', "%$check_name_partner%")
-        //                 ->get();
+        $notify = DB::table('sos_maps')
+                        ->where("area",'LIKE', "%$check_name_partner%")
+                        ->where("helper", null)
+                        ->Where("notify", 'LIKE', "%$check_name_partner%")
+                        ->get();
 
-        // foreach ($notify as $item) {
+        foreach ($notify as $item) {
 
-        //     $text_noti = str_replace($check_name_partner,"-",$item->notify) ;
+            $text_noti = str_replace($check_name_partner,"-",$item->notify) ;
 
-        //     DB::table('sos_maps')
-        //         ->where('id', $item->id)
-        //         ->update([
-        //                 'notify' => $text_noti ,
-        //     ]);
-        // }
+            DB::table('sos_maps')
+                ->where('id', $item->id)
+                ->update([
+                        'notify' => $text_noti ,
+            ]);
+        }
 
-        // return $notify ;
+        return $notify ;
     }
 
     public function search_std($student_id , $check_in_at, $name_area)
