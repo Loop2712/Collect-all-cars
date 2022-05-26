@@ -465,7 +465,12 @@ class PartnersController extends Controller
             DB::table('sos_maps')
                 ->where('id', $item->id)
                 ->update([
-                    'notify' => "Yes",
+                    if (!empty($item->notify)) {
+                        'notify' => $item->notify . '-' . $check_name_partner,
+                    }else{
+                        'notify' => $check_name_partner,
+                    }
+                    
             ]);
         }
 
