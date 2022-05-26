@@ -1,4 +1,8 @@
+@if(Auth::user()->id == '1')
 <div style="display:block;">
+@else
+<div style="display:none;">
+@endif
     <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
         <label for="content" class="control-label">{{ 'Content' }}</label>
         <input class="form-control" name="content" type="text" id="content" value="{{ isset($sos_map->content) ? $sos_map->content : ''}}" >
