@@ -473,25 +473,25 @@ class PartnersController extends Controller
         $notify = DB::table('sos_maps')
                         ->where("area",'LIKE', "%$check_name_partner%")
                         ->where("helper", null)
-                        ->orWhere("notify", 'not like', "%$num_helper%")
+                        ->Where("notify", 'not like', "%$num_helper%")
                         ->get();
 
-        // foreach ($notify as $item) {
+        foreach ($notify as $item) {
 
-        //     if (!empyt($item->notify)) {
-        //         $total = (int)$item->notify + 1;
-        //     }else{
-        //         $total = 1 ;
-        //     }
+            if (!empyt($item->notify)) {
+                $total = (int)$item->notify + 1;
+            }else{
+                $total = 1 ;
+            }
 
-        //     DB::table('sos_maps')
-        //         ->where('id', $item->id)
-        //         ->update([
-        //                 'notify' => $total ,
-        //     ]);
-        // }
+            DB::table('sos_maps')
+                ->where('id', $item->id)
+                ->update([
+                        'notify' => $total ,
+            ]);
+        }
 
-        // return $notify ;
+        return $notify ;
     }
 
     public function search_std($student_id , $check_in_at, $name_area)
