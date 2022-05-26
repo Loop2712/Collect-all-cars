@@ -305,11 +305,16 @@
                                     </p>
                                 </div>
                                 <div class="col-3">
+                                    <p style="width:100%;" class="btn btn-outline-danger main-shadow main-radius" onclick="report_disease('ฝีดาษลิง');">
+                                        พบเชื้อฝีดาษลิง ! <i class="fas fa-virus"></i>
+                                    </p>
+                                </div>
+                                <div class="col-3">
                                     <p style="width:100%;" class="btn btn-warning text-white main-shadow main-radius" data-toggle="collapse" href="#disease_all" role="button" aria-expanded="false" aria-controls="disease_all">
                                         พบเชื้ออื่นๆ <i class="fas fa-bacterium"></i>
                                     </p>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-3">
                                     <!-- ว่าง -->
                                 </div>
                             </div>
