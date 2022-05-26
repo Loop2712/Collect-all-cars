@@ -88,7 +88,7 @@ class Sos_mapController extends Controller
             $url_img_sos = str_replace("./storage/","",$output_file_img);
             $requestData['photo'] = $url_img_sos ;
         }
-        
+        $requestData['notify'] = 0 ;
         Sos_map::create($requestData);
 
         // หา $id_sos_map
@@ -292,7 +292,7 @@ class Sos_mapController extends Controller
                 ->where('name', $data_name_sp[$i])
                 ->where('name_area', $data_name_area_sp[$i])
                 ->get();
-                
+
             foreach ($data_partners as $data_partner) {
                 $name_partner = $data_partner->name ;
                 $name_line_group = $data_partner->line_group ;
