@@ -81,7 +81,6 @@
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP </b>
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
-                            <b><span class="notranslate" id="area_help_name_area"></span></b>
                         </a>
                         <a href="tel:112" id="btn_quick_help" class="btn btn-warning btn-block shadow-box " onclick="save_sos_content('police' , '112');">
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP</b>
