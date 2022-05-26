@@ -292,7 +292,7 @@ class Sos_mapController extends Controller
 
             $data_partners = DB::table('partners')
                 ->where('name', $data_name_sp[$i])
-                ->where('name_area','LIKE', "%$data_name_area_sp%")
+                ->where('name_area','LIKE', "%$data_name_area_sp[$i]%")
                 ->get();
 
             foreach ($data_partners as $data_partner) {
