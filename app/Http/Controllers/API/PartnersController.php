@@ -473,7 +473,6 @@ class PartnersController extends Controller
         $notify = DB::table('sos_maps')
                         ->where("area",'LIKE', "%$check_name_partner%")
                         ->where("helper", null)
-                        ->where("notify", null)
                         ->orWhere("notify", 'not like', "%$num_helper%")
                         ->get();
 
