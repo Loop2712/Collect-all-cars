@@ -348,8 +348,8 @@
                     let area_help = document.querySelector("#area_help");
                     let name_area = document.querySelector("#name_area");
 
-                        name_area.value = result_area[ii]['name_area'];
-                        
+                        let text_name_area = result_area[ii]['name_area'];
+
                         console.log(name_area.value);
                         // console.log(area_help.innerHTML);
 
