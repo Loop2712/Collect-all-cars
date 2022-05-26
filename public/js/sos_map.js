@@ -350,7 +350,7 @@
 
                         let text_name_area = result_area[ii]['name_area'];
 
-                        console.log(name_area.value);
+                        // console.log(name_area.value);
                         // console.log(area_help.innerHTML);
 
                         if (name_area.value !== "") {
