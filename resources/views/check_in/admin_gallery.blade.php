@@ -115,11 +115,11 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="">
-                                                    <input type="text" class="form-control" id="color_theme" name="color_theme" value="" placeholder="กรอกโค้ดสี เช่น #F15423" style="float: right;">
+                                                    <input type="text" class="form-control" id="color_theme_{{ $all_area->id }}" name="color_theme_{{ $all_area->id }}" value="" placeholder="กรอกโค้ดสี เช่น #F15423" style="float: right;">
                                                 </div>
                                             </div>
                                             <div class="col-2">
-                                                <span class="btn btn-sm btn-success main-shadow main-radius" style="float: right;width: 100%;margin-top: 5px;" onclick="gen_qr_code('{{ $all_area->name_area }}' , '{{ $all_area->name }}' , '{{ $all_area->type_partner }}');">
+                                                <span class="btn btn-sm btn-success main-shadow main-radius" style="float: right;width: 100%;margin-top: 5px;" onclick="gen_qr_code('{{ $all_area->name_area }}' , '{{ $all_area->name }}' , '{{ $all_area->type_partner }}' ,'{{ $all_area->id }}');">
                                                     ยืนยัน
                                                 </span>
                                             </div>
@@ -183,7 +183,7 @@
 
 <script>
     
-    function gen_qr_code(name_area, name, type_partner){
+    function gen_qr_code(name_area, name, type_partner , id){
         
         let url = "" ;
 
@@ -240,7 +240,7 @@
             // console.log(text);
             let url_img = "{{ url('storage') }}/" + "check_in/" + text;
 
-            change_color_theme("check_in/" + text, name_area, name, type_partner);
+            change_color_theme("check_in/" + text, name_area, name, type_partner , id);
 
         }).catch(function(error){
             // console.error(error);
@@ -248,10 +248,10 @@
 
     }
 
-    function change_color_theme(url_img, name_area, name, type_partner)
+    function change_color_theme(url_img, name_area, name, type_partner, id)
     {
         // console.log('change_color_theme');
-        let color_theme = document.querySelector('#color_theme') ;
+        let color_theme = document.querySelector('#color_theme_'+id) ;
 
         let name_partner = name ;
         let name_new_check_in = name_area ;
