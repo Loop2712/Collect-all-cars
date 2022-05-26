@@ -614,7 +614,7 @@
                 	fetch("{{ url('/') }}/api/check_sos_alarm/notify/" + check_name_partner)
 			            .then(response => response.json())
 			            .then(result => {
-			                console.log(result);
+			                // console.log(result);
 			                if (result.length != 0) {
 
 								document.querySelector('#modal_notify_name').innerHTML = result[0]['name'];
