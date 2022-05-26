@@ -461,20 +461,20 @@ class PartnersController extends Controller
                         // ->whereNotIn("notify", null)
                         ->get();
 
-        foreach ($notify as $item) {
-            DB::table('sos_maps')
-                ->where('id', $item->id)
-                ->update([
-                    if (!empty($item->notify)) {
-                        'notify' => $item->notify . '-' . $check_name_partner,
-                    }else{
-                        'notify' => $check_name_partner,
-                    }
+        // foreach ($notify as $item) {
+        //     DB::table('sos_maps')
+        //         ->where('id', $item->id)
+        //         ->update([
+        //             if (!empty($item->notify)) {
+        //                 'notify' => $item->notify . '-' . $check_name_partner,
+        //             }else{
+        //                 'notify' => $check_name_partner,
+        //             }
                     
-            ]);
-        }
+        //     ]);
+        // }
 
-        return $notify ;
+        // return $notify ;
     }
 
     public function search_std($student_id , $check_in_at, $name_area)
