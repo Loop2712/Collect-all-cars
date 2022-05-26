@@ -288,11 +288,11 @@ class Sos_mapController extends Controller
         for ($i=0; $i < count($data_name_sp); $i++) {
             
             $data_name_sp[$i] = str_replace("amp; ","",$data_name_sp[$i]);
-            $data_name_area_sp[$i] = str_replace(" ","",$data_name_area_sp[$i]);
+            // $data_name_area_sp[$i] = str_replace(" ","",$data_name_area_sp[$i]);
 
             $data_partners = DB::table('partners')
                 ->where('name', $data_name_sp[$i])
-                ->where('name_area', $data_name_area_sp[$i])
+                ->where('name_area','LIKE', "%$data_name_area_sp%")
                 ->get();
 
             foreach ($data_partners as $data_partner) {
