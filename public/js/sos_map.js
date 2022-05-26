@@ -325,8 +325,7 @@
             // console.log(JSON.parse(result_area[ii]['sos_area']).length);
 
             let name_partner = result_area[ii]['name'];
-            let text_name_area = result_area[ii]['name_area'];
-                console.log(text_name_area);
+            // let text_name_area = result_area[ii]['name_area'];
             let arr_lat_lng = JSON.parse(result_area[ii]['sos_area']);
             
             if (arr_lat_lng !== null) {
@@ -350,6 +349,7 @@
                     let name_area = document.querySelector("#name_area");
 
                         name_area.value = result_area[ii]['name_area'];
+                        
                         console.log(name_area.value);
                         // console.log(area_help.innerHTML);
 
