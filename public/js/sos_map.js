@@ -354,7 +354,7 @@
                         // console.log(area_help.innerHTML);
 
                         if (name_area.value !== "") {
-                            name_area.value = name_area.value + " & " + text_name_area ;
+                            name_area.value = name_area.value + "&" + text_name_area ;
                         }else{
                             name_area.value = text_name_area ;
                         }
