@@ -25,6 +25,21 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
+
+        $notify = DB::table('sos_maps')
+                        ->where("helper", null)
+                        ->get();
+
+        foreach ($notify as $item) {
+            DB::table('sos_maps')
+                ->where('id', $item->id)
+                ->update([
+                    'helper' => "null",
+            ]);
+        }
+
+        echo "OK";
+        exit();
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
