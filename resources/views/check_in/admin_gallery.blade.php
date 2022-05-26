@@ -103,9 +103,28 @@
                                     <h3>พาร์ทเนอร์ : <b class="text-success">{{ $all_area->name }}</b></h3>
                                 </div>
                                 <div class="col-3">
-                                    <span class="btn btn-sm btn-primary main-shadow main-radius" style="float: right;" onclick="gen_qr_code('{{ $all_area->name_area }}' , '{{ $all_area->name }}' , '{{ $all_area->type_partner }}');">
-                                        สร้าง QR-CODE
+                                    <span class="btn btn-sm btn-primary main-shadow main-radius" style="float: right;width: 100%;" data-toggle="collapse" href="#coll_gen_qr_{{ $all_area->id }}" role="button" aria-expanded="false" aria-controls="coll_gen_qr_{{ $all_area->id }}">
+                                        สร้าง QR-Code
                                     </span>
+                                </div>
+                                <div class="col-12">
+                                    <div class="collapse" id="coll_gen_qr_{{ $all_area->id }}">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <!--  -->
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="color_theme" name="color_theme" value="" placeholder="กรอกโค้ดสี เช่น #F15423" style="float: right;">
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <span class="btn btn-sm btn-success main-shadow main-radius" style="float: right;width: 100%;margin-top: 5px;" onclick="gen_qr_code('{{ $all_area->name_area }}' , '{{ $all_area->name }}' , '{{ $all_area->type_partner }}');">
+                                                    ยืนยัน
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12">
                                     @if(!empty($all_area->name_area))
@@ -232,8 +251,7 @@
     function change_color_theme(url_img, name_area, name, type_partner)
     {
         // console.log('change_color_theme');
-
-        let color_theme = null ;
+        let color_theme = document.querySelector('#color_theme') ;
 
         let name_partner = name ;
         let name_new_check_in = name_area ;
@@ -246,7 +264,7 @@
 
 
         let data = {
-            'color_theme' : color_theme,
+            'color_theme' : color_theme.value,
             'name_partner' : name_partner,
             'name_new_check_in' : name_new_check_in,
             'url_img' : url_img,
