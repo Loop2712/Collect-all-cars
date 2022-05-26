@@ -88,7 +88,9 @@ class Sos_mapController extends Controller
             $url_img_sos = str_replace("./storage/","",$output_file_img);
             $requestData['photo'] = $url_img_sos ;
         }
-        $requestData['notify'] = 0 ;
+
+        $requestData['notify'] = $requestData['area'] ;
+
         Sos_map::create($requestData);
 
         // หา $id_sos_map

@@ -460,32 +460,21 @@ class PartnersController extends Controller
                         ->where("helper", null)
                         ->get();
 
-        foreach ($data_sos_map as $key) {
-            $data_name_sp = explode("&",$key->area);
-        }
-
-        if (!empty($data_name_sp[1])) {
-            $num_helper = 2 ;
-        }else{
-            $num_helper = 1 ;
-        }
 
         $notify = DB::table('sos_maps')
                         ->where("area",'LIKE', "%$check_name_partner%")
                         ->where("helper", null)
-                        ->Where("notify", 'not like', "%$num_helper%")
+                        ->Where("notify", 'LIKE', "%$check_name_partner%")
                         ->get();
 
         foreach ($notify as $item) {
 
-            $num_noti = $item->notify ;
-            
-            $total = (int)$num_noti + 1;
+            $text_noti = str_replace($check_name_partner,"-",$item->notify) ;
 
             DB::table('sos_maps')
                 ->where('id', $item->id)
                 ->update([
-                        'notify' => $total ,
+                        'notify' => $text_noti ,
             ]);
         }
 
