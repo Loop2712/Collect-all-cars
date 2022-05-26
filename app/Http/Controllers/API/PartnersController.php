@@ -492,7 +492,7 @@ class PartnersController extends Controller
         //     ]);
         // }
 
-        return $notify ;
+        // return $notify ;
     }
 
     public function search_std($student_id , $check_in_at, $name_area)
