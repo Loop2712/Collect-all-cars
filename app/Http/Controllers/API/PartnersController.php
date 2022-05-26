@@ -476,20 +476,20 @@ class PartnersController extends Controller
                         ->where("notify", 'not like', "%$num_helper%")
                         ->get();
 
-        foreach ($notify as $item) {
+        // foreach ($notify as $item) {
 
-            if (!empyt($item->notify)) {
-                $total = (int)$item->notify + 1;
-            }else{
-                $total = 1 ;
-            }
+        //     if (!empyt($item->notify)) {
+        //         $total = (int)$item->notify + 1;
+        //     }else{
+        //         $total = 1 ;
+        //     }
 
-            DB::table('sos_maps')
-                ->where('id', $item->id)
-                ->update([
-                        'notify' => $total ,
-            ]);
-        }
+        //     DB::table('sos_maps')
+        //         ->where('id', $item->id)
+        //         ->update([
+        //                 'notify' => $total ,
+        //     ]);
+        // }
 
         return $notify ;
     }
