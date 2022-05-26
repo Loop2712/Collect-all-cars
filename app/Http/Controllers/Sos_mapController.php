@@ -292,7 +292,7 @@ class Sos_mapController extends Controller
 
             $data_partners = DB::table('partners')
                 ->where('name', $data_name_sp[$i])
-                ->where('name_area', 'LIKE', "%$data_name_area_sp[$i]%")
+                ->where('name_area', $data_name_area_sp[$i])
                 ->get();
 
             foreach ($data_partners as $data_partner) {
@@ -302,7 +302,7 @@ class Sos_mapController extends Controller
                 $id_partner = $data_partner->id ;
             }
 
-            $data_line_group = DB::table('group_lines')->where('groupName', $name_line_group)->get();
+            $data_line_group = DB::table('group_lines')->where('groupName', 'LIKE', "%$name_line_group%")->get();
 
             foreach ($data_line_group as $key) {
                 $groupId = $key->groupId ;
