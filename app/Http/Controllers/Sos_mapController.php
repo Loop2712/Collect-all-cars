@@ -95,6 +95,8 @@ class Sos_mapController extends Controller
         $sos_map_latests = Sos_map::get();
         foreach ($sos_map_latests as $latest) {
             $id_sos_map = $latest->id;
+            $requestData['name_partner'] = $latest->area ;
+            $requestData['name_area'] = $latest->name_area ;
         }
 
         DB::table('users')
@@ -279,12 +281,17 @@ class Sos_mapController extends Controller
         $photo = $data['photo'];
 
         $data_name_sp = explode("&",$data['area']);
+        $data_name_area_sp = explode("&",$data['name_area']);
 
         for ($i=0; $i < count($data_name_sp); $i++) {
             
             $data_name_sp[$i] = str_replace("amp; ","",$data_name_sp[$i]);
+            $data_name_area_sp[$i] = str_replace("amp; ","",$data_name_area_sp[$i]);
 
-            $data_partners = DB::table('partners')->where('name', $data_name_sp[$i])->get();
+            $data_partners = DB::table('partners')
+                ->where('name', $data_name_sp[$i])
+                ->where('name_area', $data_name_area_sp[$i])
+                ->get();
 
             foreach ($data_partners as $data_partner) {
                 $name_partner = $data_partner->name ;
