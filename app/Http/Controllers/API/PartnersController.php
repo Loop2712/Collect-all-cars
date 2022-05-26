@@ -478,11 +478,9 @@ class PartnersController extends Controller
 
         foreach ($notify as $item) {
 
-            if (!empyt($item->notify)) {
-                $total = (int)$item->notify + 1;
-            }else{
-                $total = 1 ;
-            }
+            $num_noti = $item->notify ;
+            
+            $total = (int)$num_noti + 1;
 
             DB::table('sos_maps')
                 ->where('id', $item->id)
