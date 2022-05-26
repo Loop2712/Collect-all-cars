@@ -458,7 +458,7 @@ class PartnersController extends Controller
         $notify = DB::table('sos_maps')
                         ->where("area",'LIKE', "%$check_name_partner%")
                         ->where("helper", null)
-                        ->whereNotIn("notify", 'LIKE', "%$check_name_partner%")
+                        ->whereNotIn("notify", '1')
                         ->get();
 
         // foreach ($notify as $item) {
