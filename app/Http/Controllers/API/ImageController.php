@@ -292,7 +292,7 @@ class ImageController extends Controller
             }elseif($cuont_name_partner >= 10 && $cuont_name_partner < 15){
                 $image_flag->text($name_partner, 530, 360, function($font) {
                     $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-                    $font->size(75);
+                    $font->size(85);
                     $font->color('#ffffff');
                     $font->align('center');
                     $font->valign('top');
@@ -511,7 +511,7 @@ class ImageController extends Controller
         }elseif($cuont_name_partner >= 10 && $cuont_name_partner < 15){
             $image_flag->text($name_partner, 530, 360, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
-                $font->size(75);
+                $font->size(85);
                 $font->color('#ffffff');
                 $font->align('center');
                 $font->valign('top');
