@@ -279,9 +279,9 @@ class Register_carController extends Controller
                     'location_A' => $requestData['location_A'],
                     'phone' => $requestData['phone'],
                     'organization' => $requestData['juristicNameTH'],
-                    // 'branch' => $requestData['branch'],
-                    // 'branch_district' => $requestData['branch_district'],
-                    // 'branch_province' => $requestData['branch_province'],
+                    'branch' => $requestData['branch'],
+                    'branch_district' => $requestData['branch_district'],
+                    'branch_province' => $requestData['branch_province'],
                 ]);
         }
         if (!empty(Auth::user()->location_P) and empty(Auth::user()->organization)) {
