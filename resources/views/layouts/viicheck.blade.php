@@ -699,8 +699,91 @@
               <div class="modal-body d-none d-lg-block">
                 <div class="col-12">
                   <div class="row text-center">
+                    <div class="col-4" style="top:2px;left:-5px">
+                      <div class="btn"  onclick="" data-dismiss="modal">
+                        <img width="60" src="{{ url('/img/national-flag/en.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">English</h5>
+                      </div>
+                    </div>
+                    <div class="col-4 " style="top:5px;" >
+                      <div class="btn" style="margin-left:-10px;" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;" class="notranslate">Chinese</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" >
+                      <div class="btn"style="margin-top:5px;" onclick="" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/flex-in.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">इंडिया</h5>
+                      </div>
+                    </div>
+                    <!-- จบจีนเสริม -->
+
+                    <div class="col-4">
+                      <div class="btn" onclick="" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ar.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">عرب</h5>
+                      </div>
+                    </div>
+                    <div class="col-4 ">
+                      <div class="btn" style="margin-left:-5px;" onclick="" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ru.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Россия</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-10px;">
+                      <div class="btn"  onclick="" data-dismiss="modal">
+                        <img width="58" src="{{ url('/img/national-flag/es.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Español</h5>
+                      </div>
+                    </div>
                     <div class="col-4" style="left:-35px">
-                      <!-- ตรงนี้ -->
+                      <div class="btn" onclick="" data-dismiss="modal">
+                        <img width="60" src="{{ url('/img/national-flag/flex-de.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Deutschland</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-10px">
+                      <div class="btn" onclick="" data-dismiss="modal">
+                        <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">日本</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">한국인</h5>
+                      </div>
+                    </div>
+                    <div class="col-4" style="left:-5px ; top:-2px">
+                      <div class="btn" onclick="" data-dismiss="modal">
+                        <img width="55" src="{{ url('/img/national-flag/th.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">ไทย</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="" data-dismiss="modal">
+                        <img width="50" src="{{ url('/img/national-flag/lo.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">ລາວ</h5>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" onclick="" data-dismiss="modal">
+                        <img width="50" src="{{ url('/img/national-flag/my.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">မြန်မာပြည်</h5>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1049,7 +1132,7 @@ function change_country(user_id, country , language , nationalitie) {
     }
 
     if (nationalitie === "") {
-      // document.querySelector('#btn_select_nationalitie').click();
+      document.querySelector('#btn_select_nationalitie').click();
     }
 
 }

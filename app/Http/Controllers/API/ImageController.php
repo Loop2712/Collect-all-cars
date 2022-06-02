@@ -156,7 +156,15 @@ class ImageController extends Controller
                 $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
                 $image->insert($logo_partner,'top-right', 40, 20);
 
-                if($cuont_name_partner >= 30){
+                if($cuont_name_partner >= 37){
+                    $image->text($name_partner, 530, 205, function($font) {
+                        $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                        $font->size(48);
+                        $font->color('#ffffff');
+                        $font->align('center');
+                        $font->valign('top');
+                    });
+                }elseif($cuont_name_partner >= 30 && $cuont_name_partner < 37){
                     $image->text($name_partner, 530, 205, function($font) {
                         $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                         $font->size(55);
@@ -176,7 +184,15 @@ class ImageController extends Controller
 
                 if ($name_new_check_in != 'รวม') {
 
-                    if($cuont_name_new_check_in >= 20){
+                    if($cuont_name_new_check_in >= 30){
+                        $image->text($name_new_check_in, 300, 800, function($font) {
+                            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                            $font->size(29);
+                            $font->color('#000000');
+                            $font->align('center');
+                            $font->valign('top');
+                        });
+                    }elseif($cuont_name_new_check_in >= 20 && $cuont_name_new_check_in < 30){
                         $image->text($name_new_check_in, 300, 800, function($font) {
                             $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                             $font->size(35);
@@ -220,7 +236,15 @@ class ImageController extends Controller
                 $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
                 $image->insert($logo_partner,'top-right', 40, 20);
 
-                if($cuont_name_partner >= 30){
+                if($cuont_name_partner >= 37){
+                    $image->text($name_partner, 530, 205, function($font) {
+                        $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                        $font->size(48);
+                        $font->color('#ffffff');
+                        $font->align('center');
+                        $font->valign('top');
+                    });
+                }elseif($cuont_name_partner >= 30 && $cuont_name_partner < 37){
                     $image->text($name_partner, 530, 205, function($font) {
                         $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                         $font->size(55);
@@ -240,7 +264,15 @@ class ImageController extends Controller
 
                 if ($name_new_check_in != 'รวม') {
 
-                    if($cuont_name_new_check_in >= 20){
+                    if($cuont_name_new_check_in >= 30){
+                        $image->text($name_new_check_in, 300, 800, function($font) {
+                            $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                            $font->size(29);
+                            $font->color('#000000');
+                            $font->align('center');
+                            $font->valign('top');
+                        });
+                    }elseif($cuont_name_new_check_in >= 20 && $cuont_name_new_check_in < 30){
                         $image->text($name_new_check_in, 300, 800, function($font) {
                             $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                             $font->size(35);
@@ -281,7 +313,7 @@ class ImageController extends Controller
             $logo_partner->resize(400, 400);
             $image_flag->insert($logo_partner,'top-right', 15, 35);
 
-            if($cuont_name_partner >= 15){
+            if($cuont_name_partner >= 25){
                 $image_flag->text($name_partner, 530, 360, function($font) {
                     $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                     $font->size(65);
@@ -289,7 +321,7 @@ class ImageController extends Controller
                     $font->align('center');
                     $font->valign('top');
                 });
-            }elseif($cuont_name_partner >= 10 && $cuont_name_partner < 15){
+            }elseif($cuont_name_partner >= 20 && $cuont_name_partner < 25){
                 $image_flag->text($name_partner, 530, 360, function($font) {
                     $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                     $font->size(85);
@@ -297,7 +329,7 @@ class ImageController extends Controller
                     $font->align('center');
                     $font->valign('top');
                 });
-            }elseif($cuont_name_partner < 10) {
+            }elseif($cuont_name_partner < 20) {
                 $image_flag->text($name_partner, 530, 360, function($font) {
                     $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                     $font->size(100);
@@ -422,6 +454,11 @@ class ImageController extends Controller
         $cuont_name_partner =  utf8_strlen($name_partner);
         $cuont_name_new_check_in =  utf8_strlen($name_new_check_in);
 
+
+        // echo $cuont_name_partner ;
+        // echo "  //  " ;
+        // echo $cuont_name_new_check_in ;
+
         // เรียกรูปภาพใส่ $image // logo viicheck && sticker
         $image = Image::make(public_path('img/check_in/theme/artwork_V3000-2.png'));
         $image->orientate();
@@ -441,7 +478,15 @@ class ImageController extends Controller
         $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
         $image->insert($logo_partner,'top-right', 40, 20);
 
-        if($cuont_name_partner >= 30){
+        if($cuont_name_partner >= 37){
+            $image->text($name_partner, 530, 205, function($font) {
+                $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(48);
+                $font->color('#ffffff');
+                $font->align('center');
+                $font->valign('top');
+            });
+        }elseif($cuont_name_partner >= 30 && $cuont_name_partner < 37){
             $image->text($name_partner, 530, 205, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                 $font->size(55);
@@ -461,7 +506,15 @@ class ImageController extends Controller
 
         if ($name_new_check_in != 'รวม') {
 
-            if($cuont_name_new_check_in >= 20){
+            if($cuont_name_new_check_in >= 30){
+                $image->text($name_new_check_in, 300, 800, function($font) {
+                    $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
+                    $font->size(29);
+                    $font->color('#000000');
+                    $font->align('center');
+                    $font->valign('top');
+                });
+            }elseif($cuont_name_new_check_in >= 20 && $cuont_name_new_check_in < 30){
                 $image->text($name_new_check_in, 300, 800, function($font) {
                     $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                     $font->size(35);
@@ -500,7 +553,7 @@ class ImageController extends Controller
         $logo_partner->resize(400, 400);
         $image_flag->insert($logo_partner,'top-right', 15, 35);
 
-        if($cuont_name_partner >= 15){
+        if($cuont_name_partner >= 25){
             $image_flag->text($name_partner, 530, 360, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                 $font->size(65);
@@ -508,7 +561,7 @@ class ImageController extends Controller
                 $font->align('center');
                 $font->valign('top');
             });
-        }elseif($cuont_name_partner >= 10 && $cuont_name_partner < 15){
+        }elseif($cuont_name_partner >= 20 && $cuont_name_partner < 25){
             $image_flag->text($name_partner, 530, 360, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                 $font->size(85);
@@ -516,7 +569,7 @@ class ImageController extends Controller
                 $font->align('center');
                 $font->valign('top');
             });
-        }elseif($cuont_name_partner < 10) {
+        }elseif($cuont_name_partner < 20) {
             $image_flag->text($name_partner, 530, 360, function($font) {
                 $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                 $font->size(100);

@@ -199,6 +199,7 @@
             name_new_check_in = null ;
         }
         // console.log(name_new_check_in);
+        // console.log(type_partner);
 
         if (name_new_check_in != null) {
             if (type_partner === "university") {
