@@ -871,8 +871,8 @@
                       <img width="25%" src="{{ url('/img/stickerline/PNG/18.png') }}">
                       <img width="25%" src="{{ url('/img/stickerline/PNG/17.png') }}">
                       <br><br><br>
-                      <h2>
-                        คุณยืนยันการเลือก <b><span id="name_cf_nationalitie_2" class="notranslate text-primary"></span></b> ใช่หรือไม่
+                      <h2 class="translate">
+                        คุณยืนยันการเลือก&nbsp;<b><span id="name_cf_nationalitie_2" class="notranslate text-primary"></span></b>&nbsp;ใช่หรือไม่
                       </h2>
                       <br><br>
                       <p id="btn_submit_nationalitie" class="btn btn-success main-shadow main-radius" style="width:40%;">
