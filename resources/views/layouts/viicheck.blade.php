@@ -1132,7 +1132,7 @@ function change_country(user_id, country , language , nationalitie) {
     }
 
     if (nationalitie === "") {
-      document.querySelector('#btn_select_nationalitie').click();
+      // document.querySelector('#btn_select_nationalitie').click();
     }
 
 }
