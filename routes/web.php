@@ -136,6 +136,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('name_-university', 'Name_UniversityController');
 	Route::resource('disease', 'DiseaseController');
 	Route::get('/check_in/admin_gallery', 'Check_inController@admin_gallery');
+	Route::resource('nationality', 'NationalityController');
+
 
 });
 // END ADMIN VIICHECK
@@ -345,4 +347,3 @@ Route::get('qr-code-g', function () {
     
 });
 
-Route::resource('nationality', 'NationalityController');
