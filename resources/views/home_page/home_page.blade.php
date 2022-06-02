@@ -70,7 +70,7 @@
     <div class="col-sm-6 wow  fadeInLeft">  <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
     <div class="col-sm-6  wow  fadeInRight" style="margin-top:60px;"> <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
       <h2 class="wow  fadeInRight" style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-      <a  style="font-size: 18px; float: right;" href="{{ url('/register_car/create') }}" class=" fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+      <a  style="font-size: 18px; float: right;" href="https://line.me/R/ti/p/%40702ytkls" class=" fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
     </div>
 
   </section>
