@@ -11,6 +11,7 @@ use App\Http\Controllers\API\LineApiController;
 use App\Models\LineMessagingAPI;
 
 use App\Models\Mylog;
+use App\Models\Nationality;
 use App\Http\Controllers\API\API_Time_zone;
 
 class API_language extends Controller
@@ -145,4 +146,27 @@ class API_language extends Controller
         return $data_topic ;
 
     }
+
+    public function search_nationalitie()
+    {
+        // $data_nationality = Nationality::where('nationality' ,'!=' , null)->orderBy('nationality' , 'ASC')->get();
+
+        $data_nationality = Nationality::select('nationality')
+            ->orderBy('nationality', 'ASC')
+            ->get();
+
+        return $data_nationality ;
+    }
+
+    public function update_user_nationalitie($nationality , $user_id)
+    {
+        DB::table('users')
+              ->where('id', $user_id)
+              ->update([
+                'nationalitie' => $nationality,
+        ]);
+
+        return "OK" ;
+    }
+
 }

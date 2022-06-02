@@ -683,7 +683,7 @@
         </button>
         <!-- Modal -->
         <div class="modal fade" id="modal_nationalitie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-xl">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
@@ -691,99 +691,194 @@
                   &nbsp;
                   <span>Please select nationalitie</span>
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button id="btn_close_modal_nationalitie" type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
                   <!----------------------------------------------- pc ----------------------------------------------->
-              <div class="modal-body d-none d-lg-block">
+              <div class="modal-body d-none d-lg-block notranslate">
                 <div class="col-12">
                   <div class="row text-center">
-                    <div class="col-4" style="top:2px;left:-5px">
-                      <div class="btn"  onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn"  onclick="submit_nationality('American')">
                         <img width="60" src="{{ url('/img/national-flag/en.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">English</h5>
+                        <h5 style="margin-top:10px;">American</h5>
                       </div>
                     </div>
-                    <div class="col-4 " style="top:5px;" >
-                      <div class="btn" style="margin-left:-10px;" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Chinese')">
                         <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;" class="notranslate">Chinese</h5>
+                        <h5 style="margin-top:10px;">Chinese</h5>
                       </div>
                     </div>
-                    <div class="col-4" >
-                      <div class="btn"style="margin-top:5px;" onclick="" data-dismiss="modal">
+                    <div class="col-2" >
+                      <div class="btn" onclick="submit_nationality('Indian')">
                         <img width="55" src="{{ url('/img/national-flag/flex-in.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">इंडिया</h5>
+                        <h5 style="margin-top:10px;">Indian</h5>
                       </div>
                     </div>
-                    <!-- จบจีนเสริม -->
-
-                    <div class="col-4">
-                      <div class="btn" onclick="" data-dismiss="modal">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ar.png') }}">
-                        <br>
-                        <h5 style="margin-top:10px;">عرب</h5>
-                      </div>
-                    </div>
-                    <div class="col-4 ">
-                      <div class="btn" style="margin-left:-5px;" onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Russian')">
                         <img width="55" src="{{ url('/img/national-flag/flex-ru.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Россия</h5>
+                        <h5 style="margin-top:10px;">Russian</h5>
                       </div>
                     </div>
-                    <div class="col-4" style="left:-10px;">
-                      <div class="btn"  onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn"  onclick="submit_nationality('Spanish')">
                         <img width="58" src="{{ url('/img/national-flag/es.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Español</h5>
+                        <h5 style="margin-top:10px;">Spanish</h5>
                       </div>
                     </div>
-                    <div class="col-4" style="left:-35px">
-                      <div class="btn" onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('German')">
                         <img width="60" src="{{ url('/img/national-flag/flex-de.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">Deutschland</h5>
+                        <h5 style="margin-top:10px;">German</h5>
                       </div>
                     </div>
-                    <div class="col-4" style="left:-10px">
-                      <div class="btn" onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Japanese')">
                         <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">日本</h5>
+                        <h5 style="margin-top:10px;">Japanese</h5>
                       </div>
                     </div>
-                    <div class="col-4">
-                      <div class="btn" onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Korean')">
                         <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">한국인</h5>
+                        <h5 style="margin-top:10px;">Korean</h5>
                       </div>
                     </div>
-                    <div class="col-4" style="left:-5px ; top:-2px">
-                      <div class="btn" onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Thai')">
                         <img width="55" src="{{ url('/img/national-flag/th.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">ไทย</h5>
+                        <h5 style="margin-top:10px;">Thai</h5>
                       </div>
                     </div>
-                    <div class="col-4">
-                      <div class="btn" onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Bruneian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-bn.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Bruneian</h5>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Cambodian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-kr.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Cambodian</h5>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Lao')">
                         <img width="50" src="{{ url('/img/national-flag/lo.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">ລາວ</h5>
+                        <h5 style="margin-top:10px;">Lao</h5>
                       </div>
                     </div>
-                    <div class="col-4">
-                      <div class="btn" onclick="" data-dismiss="modal">
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Malaysian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-my.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Malaysian</h5>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Burmese')">
                         <img width="50" src="{{ url('/img/national-flag/my.png') }}">
                         <br>
-                        <h5 style="margin-top:10px;">မြန်မာပြည်</h5>
+                        <h5 style="margin-top:10px;">Burmese</h5>
                       </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Philippine')">
+                        <img width="50" src="{{ url('/img/national-flag/flex-ph.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Philippine</h5>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Singaporean')">
+                        <img width="50" src="{{ url('/img/national-flag/flex-sg.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Singaporean</h5>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Vietnamese')">
+                        <img width="50" src="{{ url('/img/national-flag/flex-vn.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Vietnamese</h5>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Indonesian')">
+                        <img width="50" src="{{ url('/img/national-flag/flex-id.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Indonesian</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="modal-body notranslate">
+                <div class="row">
+                  <div class="col-12">
+                    <label class="control-label translate">nationalitie other</label>
+                    <select id="select_nationalitie" name="select_nationalitie" class="form-control" onchange="submit_nationality_select()">
+                      <option class="translate">Please select nationalitie</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- modal nationalitie -->
+        <!-- Button trigger modal -->
+        <button id="btn_cf_nationalitie" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#cf_nationalitie">
+          BTN cf_nationalitie
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="cf_nationalitie" tabindex="-1" aria-labelledby="cf_nationalitie" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">
+                  <img width="35" src="{{ url('/img/icon/tick.png') }}">
+                  &nbsp;
+                  <span>ยืนยันการเลือกสัญชาติ</span>&nbsp;<span id="name_cf_nationalitie" class="notranslate text-primary"></span>
+                </h5>
+                <button id="btn_close_cf_nationalitie" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                  <!----------------------------------------------- pc ----------------------------------------------->
+              <div class="modal-body d-none d-lg-block notranslate">
+                <div class="col-12">
+                  <div class="row text-center">
+                    <div class="col-12">
+                      <img width="25%" src="{{ url('/img/stickerline/PNG/18.png') }}">
+                      <img width="25%" src="{{ url('/img/stickerline/PNG/17.png') }}">
+                      <br><br><br>
+                      <h2>
+                        คุณยืนยันการเลือก <b><span id="name_cf_nationalitie_2" class="notranslate text-primary"></span></b> ใช่หรือไม่
+                      </h2>
+                      <br><br>
+                      <p id="btn_submit_nationalitie" class="btn btn-success main-shadow main-radius" style="width:40%;">
+                        ยืนยัน
+                      </p>
+                      <br><br>
                     </div>
                   </div>
                 </div>
@@ -1132,7 +1227,13 @@ function change_country(user_id, country , language , nationalitie) {
     }
 
     if (nationalitie === "") {
-      // document.querySelector('#btn_select_nationalitie').click();
+      document.querySelector('#btn_select_nationalitie').click();
+
+      let delayI = 1000; //1.5 second
+
+        setTimeout(function() {
+          search_nationalitie();
+      }, delayI);
     }
 
 }
@@ -1153,6 +1254,80 @@ function user_language(language, user_id) {
     }, delayInMilliseconds);
       
 }
+
+function search_nationalitie() {
+
+  fetch("{{ url('/') }}/api/search_nationalitie")
+    .then(response => response.json())
+    .then(result => {
+        // console.log(result);
+
+        let select_nationalitie = document.querySelector('#select_nationalitie') ;
+
+        for(let item of result){
+            let option = document.createElement("option");
+            option.text = item.nationality;
+            option.value = item.nationality;
+
+            // let onclick = document.createAttribute("onclick");
+            //     onclick.value = "submit_nationality('" + item.nationality + "');";
+
+            // option.setAttributeNode(onclick);
+
+            select_nationalitie.add(option);
+        }
+        
+    });
+
+}
+
+function submit_nationality(nationality)
+{
+    document.querySelector('#btn_cf_nationalitie').click();
+    document.querySelector('#name_cf_nationalitie').innerText = nationality ;
+    document.querySelector('#name_cf_nationalitie_2').innerText = nationality ;
+
+    let btn_submit_nationalitie = document.querySelector('#btn_submit_nationalitie') ;
+
+    let onclick = document.createAttribute("onclick");
+        onclick.value = "update_user('" + nationality + "' , '{{ Auth::user()->id }}');";
+
+      btn_submit_nationalitie.setAttributeNode(onclick);
+
+}
+
+function submit_nationality_select()
+{
+    let nationality = document.querySelector('#select_nationalitie').value;
+    // console.log(nationality);
+
+    document.querySelector('#btn_cf_nationalitie').click();
+    document.querySelector('#name_cf_nationalitie').innerText = nationality ;
+    document.querySelector('#name_cf_nationalitie_2').innerText = nationality ;
+
+    let btn_submit_nationalitie = document.querySelector('#btn_submit_nationalitie') ;
+
+    let onclick = document.createAttribute("onclick");
+        onclick.value = "update_user('" + nationality + "' , '{{ Auth::user()->id }}');";
+
+      btn_submit_nationalitie.setAttributeNode(onclick);
+}
+
+function update_user(nationality , user_id)
+{
+    fetch("{{ url('/') }}/api/update_user_nationalitie/" + nationality + "/" + user_id)
+      .then(response => response.text())
+      .then(result => {
+          console.log(result);
+
+          if (result === "OK") {
+            document.querySelector('#btn_close_modal_nationalitie').click();
+            document.querySelector('#btn_close_cf_nationalitie').click();
+          }
+        
+    });
+}
+
 </script>
 </body>
 

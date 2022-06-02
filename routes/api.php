@@ -144,6 +144,9 @@ Route::post('/save_img_url', 'API\ImageController@save_img_url');
 Route::post('/create_img_check_in', 'API\ImageController@create_img_check_in');
 Route::post('/admin_create_img_check_in', 'API\ImageController@admin_create_img_check_in');
 
+Route::get('/search_nationalitie', 'API\API_language@search_nationalitie');
+Route::get('/update_user_nationalitie/{nationality}/{user_id}', 'API\API_language@update_user_nationalitie');
+
 
 
 
