@@ -108,6 +108,7 @@ class ImageController extends Controller
                 $requestData['mail'] = $item->mail ;
                 $requestData['name_area'] = $name_new_check_in ;
                 $requestData['full_name'] = $item->full_name ;
+                $requestData['type_partner'] = $type_partner ;
 
                 $img_logo_partner = $item->logo ;
 
