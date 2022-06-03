@@ -38,7 +38,7 @@
                     <table class="table" style="margin-bottom:0px">
                             <thead style="font-family: 'Prompt', sans-serif; background-color:#E3E5E8;">
                                 <tr class="text-center" >
-                                    <th class="col-md-2" style="font-size:15px">ชื่อพาร์ทเนอร์</th>
+                                    <th class="col-md-2" style="font-size:15px">โลโก้พาร์ทเนอร์</th>
                                     <th class="col-md-5" style="font-size:15px">ชื่อพาร์ทเนอร์</th>
                                     <th class="col-md-3" style="font-size:15px">การแสดงผล</th>
                                     <th class="col-md-2" style="font-size:15px"></th>
