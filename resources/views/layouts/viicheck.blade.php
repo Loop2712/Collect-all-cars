@@ -360,6 +360,8 @@
 
   <!-- --------------------------------------------- -->
   @if(Auth::check())
+
+      <input type="text" name="user_name_id" id="user_name_id" class="d-none" value="{{ Auth::user()->id }}">
       <h1 class="d-none" id="change_country" onclick="change_country('{{ Auth::user()->id }}','{{ Auth::user()->country }}' , '{{ Auth::user()->language }}' , '{{ Auth::user()->nationalitie }}');"></h1> 
       <div class="d-none">
         <a id="btn_change_language_th" href="javascript:trocarIdioma('th')">th</a>
@@ -1283,6 +1285,7 @@ function search_nationalitie() {
 
 function submit_nationality(nationality)
 {
+    let user_id = document.querySelector('#user_name_id').value ;
     document.querySelector('#btn_cf_nationalitie').click();
     document.querySelector('#name_cf_nationalitie').innerText = nationality ;
     document.querySelector('#name_cf_nationalitie_2').innerText = nationality ;
@@ -1290,7 +1293,7 @@ function submit_nationality(nationality)
     let btn_submit_nationalitie = document.querySelector('#btn_submit_nationalitie') ;
 
     let onclick = document.createAttribute("onclick");
-        onclick.value = "update_user('" + nationality + "' , '{{ Auth::user()->id }}');";
+        onclick.value = "update_user('" + nationality + "','" + user_id + "');";
 
       btn_submit_nationalitie.setAttributeNode(onclick);
 
@@ -1298,6 +1301,7 @@ function submit_nationality(nationality)
 
 function submit_nationality_select()
 {
+    let user_id = document.querySelector('#user_name_id').value ;
     let nationality = document.querySelector('#select_nationalitie').value;
     // console.log(nationality);
 
@@ -1308,7 +1312,7 @@ function submit_nationality_select()
     let btn_submit_nationalitie = document.querySelector('#btn_submit_nationalitie') ;
 
     let onclick = document.createAttribute("onclick");
-        onclick.value = "update_user('" + nationality + "' , '{{ Auth::user()->id }}');";
+        onclick.value = "update_user('" + nationality + "','" + user_id + "');";
 
       btn_submit_nationalitie.setAttributeNode(onclick);
 }
