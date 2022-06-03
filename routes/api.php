@@ -147,7 +147,7 @@ Route::post('/admin_create_img_check_in', 'API\ImageController@admin_create_img_
 Route::get('/search_nationalitie', 'API\API_language@search_nationalitie');
 Route::get('/update_user_nationalitie/{nationality}/{user_id}', 'API\API_language@update_user_nationalitie');
 
-
+Route::get('/submit_show_homepage/{partner_id}/{input_show_homepage}', 'API\PartnersController@submit_show_homepage');
 
 
 

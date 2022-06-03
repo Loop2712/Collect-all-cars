@@ -40,7 +40,7 @@
                                 <tr class="text-center" >
                                     <th class="col-md-2" style="font-size:15px">ชื่อพาร์ทเนอร์</th>
                                     <th class="col-md-5" style="font-size:15px">ชื่อพาร์ทเนอร์</th>
-                                    <th class="col-md-3" style="font-size:15px">Admin</th>
+                                    <th class="col-md-3" style="font-size:15px">การแสดงผล</th>
                                     <th class="col-md-2" style="font-size:15px"></th>
                                 </tr>
                             </thead>
@@ -91,12 +91,20 @@
                                     </div>
                                     <div class="col-3">
                                         <center>
-                                            <h6>Admin</h6>
-                                            @if(!empty($item->user_id_admin))
-                                            <a href="{{ url('/profile/' . $item->user_id_admin) }}" target="bank">
-                                                <i class="far fa-eye text-primary"></i>
-                                            </a>
+                                            @if($item->show_homepage == "show")
+                                                <div class="custom-control custom-switch">
+                                                    <br><br>
+                                                    <input type="checkbox" checked class="custom-control-input" id="customSwitch1_{{ $item->id }}" onclick="document.querySelector('#input_show_homepage_' + {{ $item->id }}).value = 'no',submit_show_homepage('{{ $item->id }}');">
+                                                    <label class="custom-control-label" for="customSwitch1_{{ $item->id }}"></label>
+                                                </div>
+                                            @else
+                                                <div class="custom-control custom-switch">
+                                                    <br><br>
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1_{{ $item->id }}" onclick="document.querySelector('#input_show_homepage_' + {{ $item->id }}).value = 'show',submit_show_homepage('{{ $item->id }}');">
+                                                    <label class="custom-control-label" for="customSwitch1_{{ $item->id }}"></label>
+                                                </div>
                                             @endif
+                                            <input class="d-none" type="text" name="input_show_homepage_{{ $item->id }}" id="input_show_homepage_{{ $item->id }}" value="">
                                         </center>
                                     </div>
                                     <div class="col-2">
@@ -431,7 +439,7 @@
             fetch("{{ url('/') }}/api/check_new_sos_area")
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
 
                     let check = "no" ;
                     let id_partner = null ;
@@ -447,7 +455,7 @@
                             name_partner = result[i]['name'] ;
                         }
 
-                        console.log(name_partner);
+                        // console.log(name_partner);
 
                     }
 
@@ -463,6 +471,19 @@
 
                     //     tag_h_name.appendChild(tag_i);
                     // }
+            });
+        }
+
+        function submit_show_homepage(partner_id)
+        {
+            let input_show_homepage = document.querySelector('#input_show_homepage_' + partner_id).value ;
+            // console.log(input_show_homepage);
+            // console.log(partner_id);
+
+            fetch("{{ url('/') }}/api/submit_show_homepage/" + partner_id + "/" + input_show_homepage)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
             });
         }
 

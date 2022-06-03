@@ -931,4 +931,15 @@ class PartnersController extends Controller
         return $data ;
     }
 
+    function submit_show_homepage($partner_id , $input_show_homepage)
+    {
+        DB::table('partners')
+            ->where('id', $partner_id)
+              ->update([
+                'show_homepage' => $input_show_homepage,
+        ]);
+
+        return "OK" ;
+    }
+
 }
