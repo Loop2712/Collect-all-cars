@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cancel_Profile;
 use App\User;
 use App\Models\Sos_map;
+use App\Models\Partner;
 
 class Home_pageController extends Controller
 {
@@ -57,7 +58,17 @@ class Home_pageController extends Controller
         $count_sos_map = count($data_sos_maps);
         $count_help = $count_guest + $count_sos_map ;
 
-        return view('home_page.home_page', compact('count_user','count_vehicle','count_help','user_id' ,'cancel_ago'));
+        $partner_show_all = Partner::where('name_area', null)->where('show_homepage' , 'show')->get();
+
+        $count_partner_show = count($partner_show_all);
+
+        $data_partner_show = Partner::where('name_area', null)
+            ->where('show_homepage' , 'show')
+            ->inRandomOrder()
+            ->limit($count_partner_show)
+            ->get();
+
+        return view('home_page.home_page', compact('count_user','count_vehicle','count_help','user_id' ,'cancel_ago','data_partner_show'));
     }
 
     public function check_ip()
