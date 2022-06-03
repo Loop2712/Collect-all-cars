@@ -28,7 +28,13 @@
                     <div class="col-12" style="margin-top:10px;">
                         <div>
                             <div class="col-12">
-                                <h3>พื้นที่บริการปัจจุบัน</h3><br class="d-block d-md-none">
+                                <h3>
+                                    พื้นที่บริการปัจจุบัน
+                                    <span id="span_btn_clear" style="float:right;" class="btn btn-warning text-white d-none" onclick="document.querySelector('#btn_madal_clear_area').click();">
+                                        เคลียร์พื้นที่
+                                    </span>
+                                </h3>
+                                <br class="d-block d-md-none">
                             </div>
                             <br>
                             <input class="d-none" type="text" id="va_zoom" name="" value="6">
@@ -78,6 +84,36 @@
                                 </center>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button id="btn_madal_clear_area" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#madal_clear_area">
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="madal_clear_area" tabindex="-1" aria-labelledby="exampleModalLabel_madal_clear_area" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel_madal_clear_area">ยืนยันการเคลียร์พื้นที่ ?</h5>
+                              </div>
+                              <div class="modal-body">
+                                <div class="row text-center">
+                                    <div class="col-12">
+                                        <img width="25%" src="{{ url('/img/stickerline/PNG/18.png') }}">
+                                        <img width="25%" src="{{ url('/img/stickerline/PNG/17.png') }}">
+                                        <br><br><br>
+                                        <h3 class="translate">
+                                            คุณยืนยันการเคลียร์พื้นที่ใช่หรือไม่
+                                        </h3>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                <span class="btn btn-primary" data-dismiss="modal" >ยกเลิก</span>
+                                <span class="btn btn-secondary"  id="btn_clear_area" onclick="clear_area('{{ Auth::user()->organization }}' , '{{ $name_area }}');">ยืนยัน</span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -176,6 +212,7 @@
                     }
 
                     initMap(result,bounds);
+                    document.querySelector('#span_btn_clear').classList.remove('d-none');
                 }else{
                     let div_card = document.querySelector('#div_card');
 
@@ -226,6 +263,21 @@
         });
         draw_area.setMap(map);
         
+    }
+
+    function clear_area(name_partner , name_area)
+    {
+        // console.log(name_partner);
+        // console.log(name_area);
+
+        fetch("{{ url('/') }}/api/clear_area/" + name_partner + "/" + name_area)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    if (result === "OK") {
+                        window.location.reload(true);
+                    }
+            });
     }
     
 </script>

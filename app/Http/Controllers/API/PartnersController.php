@@ -942,4 +942,17 @@ class PartnersController extends Controller
         return "OK" ;
     }
 
+
+    function clear_area($name_partner , $name_area)
+    {
+        DB::table('partners')
+            ->where('name', $name_partner)
+            ->where('name_area', $name_area)
+              ->update([
+                'sos_area' => null,
+        ]);
+
+        return "OK" ;
+    }
+
 }

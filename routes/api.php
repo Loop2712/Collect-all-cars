@@ -149,6 +149,7 @@ Route::get('/update_user_nationalitie/{nationality}/{user_id}', 'API\API_languag
 
 Route::get('/submit_show_homepage/{partner_id}/{input_show_homepage}', 'API\PartnersController@submit_show_homepage');
 
+Route::get('/clear_area/{name_partner}/{name_area}', 'API\PartnersController@clear_area');
 
 
 // API TU
