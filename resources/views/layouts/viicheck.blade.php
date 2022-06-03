@@ -896,202 +896,75 @@
     <br>
 
 <!-- ======= Footer WEB ======= -->
-  <br><br>
-  <br><br>
-  <br><br>
-  <br><br>
- 
-  <footer class="d-none d-lg-block footer-bottom" id="footer">
-    <div class="container d-md-flex py-3">
-      <div class="me-md-auto text-center text-md-start">
-        <div class="credits" style="margin-bottom: 10px;">
-          <div class="row d-flex align-items-center">
-            <!-- <div class="col-1">
-                <p id="Certificate-banners"></p>
-            </div> -->
-            <!-- <div class="col-1">
-                <img width="100%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
-            </div> -->
-            <div class="col-3 " style="margin-top:10px;float:left">
-            
-                <span class="d-flex justify-content-start">WWW.ViiCHECK.COM</span>
-                
-                <a class="link d-flex justify-content-start" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
-                
-                <a class="link d-flex justify-content-start" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
-             
-              @include ('counter') 
-            </div>
-            <div class="col-9">
-              <div class="row">
-                <div class="col-12">
-                  <div class="row">
-                    <div class="col-2">
-                      <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                        <img width="100%" src="{{ asset('/img/logo/bns_registered.png') }}">
-                      </a>
-                    </div>
-                    <div class="col-2">
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
-                    </div>
-                    <div class="col-2">
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
-                    </div>
-                    <div class="col-2">
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
-                    </div>
-                    <div class="col-2">
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/nstda.png') }}">
-                    </div>
-                    <div class="col-2 text-center" >
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/js100.png') }}">
-                    </div>
+  <footer class="text-center text-white" style="background-color: #F1F7FD;padding-top:10px;">
+  <!-- Grid container -->
+  <div class="container p-1">
+    <!-- Section: Images -->
+      <div class="row">
+        <div class="col-md-11 col-lg-11 col-12">
+          <div class=" notranslate">
+            <div class="site-section bg-left-half ">
+              <div class=" owl-3-style">
+                <div class="owl-carousel owl-3 ">
+                  <div class="text-center">
+                    <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
+                        <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
+                    </a>
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/KMUTNB.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/RMUTP.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/TU.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/nstda.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/js100.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/IMPACT.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/southerncoffee-1.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/ตลาดคลองเตย.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/green-logo-01.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/logo-ph.png') }}">
                   </div>
                 </div>
-                <div class="col-12" style="margin-top: 10px;">
-                  <div class="row">
-                    <div class="col-2 ">
-                      <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
-                    </div>
-                    
-                    <div class="col-2">
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
-                    </div>
-                    <!-- <div class="col-1">
-                        <img style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
-                    </div> -->
-                    <div class="col-2">
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
-                    </div>
-                    <div class="col-2">
-                        <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
-                    </div>
-                    <div class="col-2" style="margin-left:30px;">
-                        <img height="42px" style="width: 80%;height: 50px;object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
-                    </div>
-                  </div>
-                </div>
-              </div>  
+              </div>
             </div>
           </div>
         </div>
-        <!-- <div class="copyright">
-          <div class="row">
-            <div class="col-12">
-              <div class="row">
-                  <div class="col-3" style="margin-top:10px;float:left">
-                    •<span>WWW.ViiCHECK.COM</span>
-                    <br>
-                    •<a class="link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}"><b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b></a>
-                    <br>
-                    •<a class="link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}"><b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b></a>
-                </div>
-                
-                <div class="col-4">
-                  <div class="social-links float-right">
-                    <a href="https://www.facebook.com/ViiCheck-100959585396310" ><i class="fab fa-facebook"></i></a>
-                    <a href="https://line.me/R/ti/p/%40702ytkls" ><i class="fab fa-line"></i></a>
-                    <a href="mailto:contact.viicheck@gmail.com" ><i class="fas fa-mail-bulk"></i></a>
-                    <a href="#" ><i class="fab fa-youtube"></i></a>
-                    <a href="tel:020277856" ><i class="fas fa-phone-alt"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-    </div>
-  </footer>
-  <!-- End Footer -->
-
-  <!-- ======= Footer mobile  ======= -->
-  <footer class="d-block d-lg-none" id="footer">
-    <div class="container d-md-flex py-4">
-      <div class="me-md-auto text-center text-md-start">
-        <div class="credits">
-          <div class="row">
-              <div class="col-3" >
-                <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                  <img height="42px" height="42px" style="object-fit: contain;padding:5px" src="{{ asset('/img/logo/bns_registered.png') }}">
-                </a>
-              </div>
-              <div class="col-3">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/KMUTNB.png') }}">
-              </div>
-              
-              <div class="col-3">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/RMUTP.png') }}">
-              </div>
-              
-              <div class="col-3">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/TU.png') }}">
-              </div>
-              <div class="col-12"><br></div>
-              <div class="col-3">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/nstda.png') }}">
-              </div>
-              <div class="col-3">
-                  <img height="42px" style="object-fit: contain;padding:5px" src="{{ asset('/img/logo-partner/js100.png') }}">
-              </div>
-              <div class="col-3">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/IMPACT.jpg') }}">
-              </div>
-              
-              <div class="col-3">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/southerncoffee-1.png') }}">
-              </div>
-              <!-- <div class="col-4">
-                  <img style="width: 80%;height: 50px;object-fit: contain;padding: 10px;" src="{{ asset('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
-              </div> -->
-              
-              <div class="col-12"><br></div>  
-              <div class="col-4">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/ตลาดคลองเตย.png') }}">
-              </div>      
-              <div class="col-4">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/GreenLogo.png') }}">
-              </div>
-             
-              <div class="col-4">
-                  <img height="42px" style="object-fit: contain;" src="{{ asset('/img/logo-partner/logo-ph.png') }}">
-              </div>
-              
-          </div>
-        </div>
-        <div class="copyright" >
-          <div class="row">
-            <div class="col-12">
-              <div class="row">
-                  <div class="col-12">
-                    <br>
-                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/privacy_policy') }}">
-                      <b>นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</b>
-                    </a>
-                    <br>
-                    <a class="link" style="font-size: 15px;" target="bank" href="{{ url('/terms_of_service') }}">
-                      <b>ข้อกำหนดและเงื่อนไขการใช้บริการ</b>
-                    </a>
-                    <br><br>
-                </div>
-
-                
-                <div class="col-12">
-                  <div class="social-links">
-                    <a href="https://www.facebook.com/ViiCheck-100959585396310" ><i class="fab fa-facebook"></i></a>
-                    <a href="https://line.me/R/ti/p/%40702ytkls" ><i class="fab fa-line"></i></a>
-                    <a href="mailto:contact.viicheck@gmail.com" ><i class="fas fa-mail-bulk"></i></a>
-                    <a href="#" ><i class="fab fa-youtube"></i></a>
-                    <a href="tel:020277856" ><i class="fas fa-phone-alt"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <br class="d-block d-md-none"><br class="d-block d-md-none"><br class="d-block d-md-none">
+        <div class="col-md-1 col-lg-1 col-12">
+          @include ('counter') 
         </div>
       </div>
-    </div>
-  </footer>
+    <!-- Section: Images -->
+  </div>
+  
+  <div class="text-center" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
+    <span class="text-dark">WWW.ViiCHECK.com</span > <span class="text-dark">•<span>
+      <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a>  <span class="text-dark">•<span>
+      <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
+  </div>
+  <!-- Grid container -->
 
+  <!-- Copyright -->
+ 
+  <!-- Copyright -->
+</footer>
 
 
     <div id="preloader"></div>
