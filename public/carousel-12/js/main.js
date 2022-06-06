@@ -21,18 +21,18 @@ $(function () {
           margin: 20,
           stagePadding: 0,
           nav: true,
-          items: 3
+          items: 7
         },
         600: {
           margin: 20,
           nav: true,
-          items: 4
+          items: 10
         },
         1000: {
           margin: 0,
           stagePadding: 0,
           nav: true,
-          items: 12
+          items: 11
         }
       }
     });
