@@ -863,10 +863,10 @@
                       </div>
                     </div>
                     <div class="col-4">
-                      <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Russian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ru1.png') }}">
+                      <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Taiwanese')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
                         <br>
-                        <h6 style="margin-top:10px;">Russian</h6>
+                        <h6 style="margin-top:10px;">Taiwanese</h6>
                       </div>
                     </div>
                     <div class="col-4">
@@ -965,13 +965,6 @@
                         <img width="55" src="{{ url('/img/national-flag/flex-id.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Indonesian</h6>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="btn" style="padding:10px  0px;margin-left:-5px;"onclick="submit_nationality('Taiwan')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
-                        <br>
-                        <h6 style="margin-top:10px;">Taiwan</h6>
                       </div>
                     </div>
                   </div>
