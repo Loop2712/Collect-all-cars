@@ -715,6 +715,13 @@
                         <h5 style="margin-top:10px;">Chinese</h5>
                       </div>
                     </div>
+                    <div class="col-2">
+                      <div class="btn" onclick="submit_nationality('Taiwanese')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Taiwanese</h5>
+                      </div>
+                    </div>
                     <div class="col-2" >
                       <div class="btn" onclick="submit_nationality('Indian')">
                         <img width="55" src="{{ url('/img/national-flag/flex-in 2.png') }}">
@@ -722,13 +729,13 @@
                         <h5 style="margin-top:10px;">Indian</h5>
                       </div>
                     </div>
-                    <div class="col-2">
+                    <!-- <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Russian')">
                         <img width="55" src="{{ url('/img/national-flag/flex-ru1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Russian</h5>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col-2">
                       <div class="btn"  onclick="submit_nationality('Spanish')">
                         <img width="58" src="{{ url('/img/national-flag/es.png') }}">
@@ -825,13 +832,6 @@
                         <img width="55" src="{{ url('/img/national-flag/flex-id.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Indonesian</h5>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="btn" onclick="submit_nationality('Taiwan')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
-                        <br>
-                        <h5 style="margin-top:10px;">Taiwan</h5>
                       </div>
                     </div>
                   </div>
