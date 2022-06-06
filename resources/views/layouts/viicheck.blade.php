@@ -1053,48 +1053,18 @@
   <div class="container p-1">
     <!-- Section: Images -->
       <div class="row">
-      <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
-        <div class="text-center">
-          <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-              <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
-          </a>
-        </div>
+        <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
+          <div class="text-center">
+            <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
+                <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
+            </a>
+          </div>
         </div>
         <div class="col-md-10 col-lg-10 col-10">
           <div class=" notranslate">
             <div class="site-section bg-left-half ">
               <div class=" owl-3-style">
-                <div class="owl-carousel owl-3 ">
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/KMUTNB.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/RMUTP.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/TU.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/nstda.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/js100.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/IMPACT.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/southerncoffee-1.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/ตลาดคลองเตย.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/green-logo-01.png') }}">
-                  </div>
-                  <div class="text-center">
-                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/logo-ph.png') }}">
-                  </div>
+                <div id="foot_logo_partner" class="owl-carousel owl-3 ">
                 </div>
               </div>
             </div>
@@ -1224,6 +1194,9 @@
           document.querySelector('#btn_welcome_home').click();
           fetch("{{ url('/') }}/api/welcome_home/"+status_id+"/profile");
         }
+
+        show_logo_partner();
+
     });
 
     if (document.querySelector("#change_country")) {
@@ -1362,9 +1335,46 @@ function update_user(nationality , user_id)
     });
 }
 
+function show_logo_partner()
+{
+
+  fetch("{{ url('/') }}/api/show_logo_partner")
+      .then(response => response.json())
+      .then(result => {
+          // console.log(result);
+
+          let foot_logo_partner = document.querySelector('#foot_logo_partner');
+
+          for (var iii = 0; iii < result.length; iii++) {
+            // div
+            let div_img = document.createElement("div");
+            let div_class = document.createAttribute("class");
+                div_class.value = "text-center";
+                div_img.setAttributeNode(div_class);
+
+            // img
+            let img = document.createElement("img");
+            let img_class = document.createAttribute("class");
+                img_class.value = "p-md-3 p-lg-3";
+                img.setAttributeNode(img_class);
+            let img_style = document.createAttribute("style");
+                img_style.value = "width: 20%;object-fit: contain;";
+                img.setAttributeNode(img_style);
+            let img_src = document.createAttribute("src");
+                img_src.value = "{{ url('storage')}}/" + result[iii]['logo'];
+                img.setAttributeNode(img_src);
+            // เพิ่ม img เข้า div เล็ก
+            div_img.appendChild(img);
+
+            // เพิ่มเข้า div ใหญ่
+            foot_logo_partner.prepend(div_img);
+
+          }
+        
+    });
+}
+
 </script>
 </body>
-
-
 
 </html>

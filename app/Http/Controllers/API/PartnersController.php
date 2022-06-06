@@ -989,4 +989,13 @@ class PartnersController extends Controller
         return "OK" ;
     }
 
+    function show_logo_partner()
+    {
+        $data_partner_show = Partner::where('name_area', null)
+            ->where('show_homepage' , 'show')
+            ->get();
+
+        return $data_partner_show ;
+    }
+
 }
