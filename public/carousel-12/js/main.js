@@ -15,7 +15,7 @@ $(function () {
         0: {
           margin: 20,
           nav: true,
-          items: 6
+          items: 5
         },
         700: {
           margin: 20,

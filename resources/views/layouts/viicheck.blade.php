@@ -703,28 +703,28 @@
                   <div class="row text-center">
                     <div class="col-2">
                       <div class="btn"  onclick="submit_nationality('American')">
-                        <img width="60" src="{{ url('/img/national-flag/en.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-en1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">American</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Chinese')">
-                        <img width="55" src="{{ url('/img/national-flag/zh-TW.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-cn.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Chinese</h5>
                       </div>
                     </div>
                     <div class="col-2" >
                       <div class="btn" onclick="submit_nationality('Indian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-in.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-in 2.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Indian</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Russian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ru.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ru1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Russian</h5>
                       </div>
@@ -745,21 +745,21 @@
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Japanese')">
-                        <img width="75" src="{{ url('/img/national-flag/ja.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ja.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Japanese</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Korean')">
-                        <img width="55" src="{{ url('/img/national-flag/ko.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ko1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Korean</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Thai')">
-                        <img width="55" src="{{ url('/img/national-flag/th.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-th1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Thai</h5>
                       </div>
@@ -780,7 +780,7 @@
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Lao')">
-                        <img width="50" src="{{ url('/img/national-flag/lo.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-lo.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Lao</h5>
                       </div>
@@ -794,37 +794,184 @@
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Burmese')">
-                        <img width="50" src="{{ url('/img/national-flag/my.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/my.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Burmese</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Philippine')">
-                        <img width="50" src="{{ url('/img/national-flag/flex-ph.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ph.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Philippine</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Singaporean')">
-                        <img width="50" src="{{ url('/img/national-flag/flex-sg.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-sg.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Singaporean</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Vietnamese')">
-                        <img width="50" src="{{ url('/img/national-flag/flex-vn.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-vn.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Vietnamese</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Indonesian')">
-                        <img width="50" src="{{ url('/img/national-flag/flex-id.png') }}">
+                        <img width="55" src="{{ url('/img/national-flag/flex-id.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Indonesian</h5>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="btn" onclick="submit_nationality('Taiwan')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
+                        <br>
+                        <h5 style="margin-top:10px;">Taiwan</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!----------------------------------------------------------- mobile ----------------------------------------------------------->
+            <div class="modal-body d-block d-md-none notranslate">
+                <div class="col-12">
+                  <div class="row text-center">
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px 0px;" onclick="submit_nationality('American')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-en1.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">American</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Chinese')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-cn.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Chinese</h6>
+                      </div>
+                    </div>
+                    <div class="col-4" >
+                      <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Indian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-in.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Indian</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Russian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ru1.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Russian</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px 0px;" onclick="submit_nationality('Spanish')">
+                        <img width="58" src="{{ url('/img/national-flag/es.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Spanish</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('German')">
+                        <img width="60" src="{{ url('/img/national-flag/flex-de.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">German</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Japanese')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ja.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Japanese</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Korean')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ko1.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Korean</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Thai')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-th1.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Thai</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Bruneian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-bn.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Bruneian</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;margin-left:-3px"onclick="submit_nationality('Cambodian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-kr.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Cambodian</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Lao')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-lo.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Lao</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Malaysian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-my.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Malaysian</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Burmese')">
+                        <img width="55" src="{{ url('/img/national-flag/my.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Burmese</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Philippine')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-ph.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Philippine</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;margin-left:-8px;"onclick="submit_nationality('Singaporean')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-sg.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Singaporean</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;margin-left:-5px;"onclick="submit_nationality('Vietnamese')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-vn.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Vietnamese</h6>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn" style="padding:10px  0px;margin-left:-5px;"onclick="submit_nationality('Indonesian')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-id.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Indonesian</h6>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="btn" style="padding:10px  0px;margin-left:-5px;"onclick="submit_nationality('Taiwan')">
+                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
+                        <br>
+                        <h6 style="margin-top:10px;">Taiwan</h6>
                       </div>
                     </div>
                   </div>
@@ -866,17 +1013,29 @@
                 </button>
               </div>
                   <!----------------------------------------------- pc ----------------------------------------------->
-              <div class="modal-body d-none d-lg-block notranslate">
+              <div class="modal-body  notranslate">
                 <div class="col-12">
                   <div class="row text-center">
                     <div class="col-12">
-                      <img width="25%" src="{{ url('/img/stickerline/PNG/18.png') }}">
-                      <img width="25%" src="{{ url('/img/stickerline/PNG/17.png') }}">
-                      <br><br><br>
-                      <h2 class="translate">
+                      <div class="d-none d-lg-block ">
+                        <img  width="25%" src="{{ url('/img/stickerline/PNG/18.png') }}">
+                        <img width="25%" src="{{ url('/img/stickerline/PNG/17.png') }}">
+                      </div>
+
+                      <div class="d-block d-md-none mt-sm-2">
+                        <img  width="40%" src="{{ url('/img/stickerline/PNG/18.png') }}">
+                        <img  width="40%" src="{{ url('/img/stickerline/PNG/17.png') }}">
+                      </div>
+                      <br class="d-none d-lg-block"><br class="d-none d-lg-block">---------------------------------------------------------<br>
+                      <h2 class="d-none d-lg-block translate">
                         คุณยืนยันการเลือก&nbsp;<b><span id="name_cf_nationalitie_2" class="notranslate text-primary"></span></b>&nbsp;ใช่หรือไม่
                       </h2>
-                      <br><br>
+                  
+                      <h4 class="d-block d-md-none translate">
+                        คุณยืนยันการเลือก&nbsp;<b><span id="name_cf_nationalitie_3" class="notranslate text-primary"></span></b>&nbsp;ใช่หรือไม่
+                      </h4>
+
+                      <br class="d-none d-lg-block"><br>
                       <p id="btn_submit_nationalitie" class="btn btn-success main-shadow main-radius" style="width:40%;">
                         ยืนยัน
                       </p>
@@ -901,16 +1060,18 @@
   <div class="container p-1">
     <!-- Section: Images -->
       <div class="row">
-        <div class="col-md-11 col-lg-11 col-12">
+      <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
+        <div class="text-center">
+          <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
+              <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
+          </a>
+        </div>
+        </div>
+        <div class="col-md-10 col-lg-10 col-10">
           <div class=" notranslate">
             <div class="site-section bg-left-half ">
               <div class=" owl-3-style">
                 <div class="owl-carousel owl-3 ">
-                  <div class="text-center">
-                    <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-                        <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
-                    </a>
-                  </div>
                   <div class="text-center">
                       <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/KMUTNB.png') }}">
                   </div>
@@ -1162,6 +1323,8 @@ function submit_nationality(nationality)
     document.querySelector('#btn_cf_nationalitie').click();
     document.querySelector('#name_cf_nationalitie').innerText = nationality ;
     document.querySelector('#name_cf_nationalitie_2').innerText = nationality ;
+    document.querySelector('#name_cf_nationalitie_3').innerText = nationality ;
+
 
     let btn_submit_nationalitie = document.querySelector('#btn_submit_nationalitie') ;
 
@@ -1181,6 +1344,7 @@ function submit_nationality_select()
     document.querySelector('#btn_cf_nationalitie').click();
     document.querySelector('#name_cf_nationalitie').innerText = nationality ;
     document.querySelector('#name_cf_nationalitie_2').innerText = nationality ;
+    
 
     let btn_submit_nationalitie = document.querySelector('#btn_submit_nationalitie') ;
 
