@@ -32,38 +32,56 @@
                     <div class="card-body border-bottom-0 bg-transparent">
                         <div class="col-12" style="margin-top:10px;">
                             <div>
-                                <div class="col-8">
+                                <div class="col-12">
                                     <div class="row">
                                         <div class="col-12">
                                             <h3 style="margin-top:10px;">
                                                 ปรับพื้นที่บริการ <b class="text-info">{{ $name_area }}</b>
+                                                <span id="btn_search_by_latlng" style="float: right;" class="btn btn-info" onclick="search_by_latlng();">
+                                                    ค้นหาด้วย Lat , Long
+                                                </span>
+                                                <span id="btn_search_by_district" style="float: right;" class="btn btn-info d-none" onclick="search_by_district();">
+                                                    ค้นหาด้วยตำบล
+                                                </span>
                                             </h3>
                                             <br>
                                         </div>
-                                        <div class="col-12 col-md-4 d-none d-lg-block">
-                                            <select id="select_province" class="form-control" onchange="show_amphoe();">
-                                                <option value="" selected > - จังหวัด - </option> 
-                                                @foreach($location_array as $lo)
-                                                <option 
-                                                value="{{ $lo->changwat_th }}" 
-                                                {{ request('changwat_th') == $lo->changwat_th ? 'selected' : ''   }} >
-                                                @php
-                                                    $text_changwat_th = str_replace("จ.","","$lo->changwat_th");
-                                                @endphp
-                                                {{ $text_changwat_th }} 
-                                                </option>
-                                                @endforeach    
-                                            </select>
+                                        <div id="div_search_by_latlng" class="row d-none">
+                                            <div class="col-8">
+                                                <input type="text" name="input_search_by_latlng" id="input_search_by_latlng" class="form-control" value="" placeholder="กรุณาระบุ lat , long เช่น 13.7248936,100.4930264">
+                                            </div>
+                                            <div class="col-4">
+                                                <span class="btn btn-success" onclick="map_by_latlng();">
+                                                    ค้นหา
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="col-12 col-md-4 d-none d-lg-block">
-                                            <select id="select_amphoe" class="form-control" onchange="show_district();">
-                                                <option>- อำเภอ -</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 col-md-4 d-none d-lg-block">
-                                            <select id="select_district" class="form-control" onchange="zoom_district();">
-                                                <option>- ตำบล -</option>
-                                            </select>
+                                        <div id="div_search_by_district" class="row">
+                                            <div class="col-12 col-md-4 d-none d-lg-block">
+                                                <select id="select_province" class="form-control" onchange="show_amphoe();">
+                                                    <option value="" selected > - จังหวัด - </option> 
+                                                    @foreach($location_array as $lo)
+                                                    <option 
+                                                    value="{{ $lo->changwat_th }}" 
+                                                    {{ request('changwat_th') == $lo->changwat_th ? 'selected' : ''   }} >
+                                                    @php
+                                                        $text_changwat_th = str_replace("จ.","","$lo->changwat_th");
+                                                    @endphp
+                                                    {{ $text_changwat_th }} 
+                                                    </option>
+                                                    @endforeach    
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-md-4 d-none d-lg-block">
+                                                <select id="select_amphoe" class="form-control" onchange="show_district();">
+                                                    <option>- อำเภอ -</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-md-4 d-none d-lg-block">
+                                                <select id="select_district" class="form-control" onchange="zoom_district();">
+                                                    <option>- ตำบล -</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -83,6 +101,10 @@
                                             <input class="d-none" type="text" id="va_zoom" name="" value="6">
                                             <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                                             <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+
+                                            <input class="d-none" type="text" id="center_lat_map_show" name="" value="13.7248936">
+                                            <input class="d-none" type="text" id="center_lng_map_show" name="" value="100.4930264">
+
                                             <a href="#select_province"><div id="map"></div></a>
                                             <br>
                                         </div>
@@ -392,7 +414,7 @@
         let text_center_lng = document.getElementById("center_lng").value  = lng;
 
         initMap();
-        initMap_show();
+        // initMap_show();
     }
 
     var draw_area ;
@@ -468,7 +490,12 @@
 
             // console.log(marker_lat)
             // console.log(marker_lng)
-            
+
+            let center_lat_map_show = document.querySelector('#center_lat_map_show') ;
+            let center_lng_map_show = document.querySelector('#center_lng_map_show') ;
+                center_lat_map_show.value = marker_lat ;
+                center_lng_map_show.value = marker_lng ;
+
             addMarker(count_position , marker_lat , marker_lng);
 
             infoWindow.open(map);
@@ -933,10 +960,10 @@
         let text_zoom = document.getElementById("va_zoom").value;
         let num_zoom = parseFloat(text_zoom);
 
-        let text_center_lat = document.getElementById("center_lat").value;
+        let text_center_lat = document.getElementById("center_lat_map_show").value;
         let num_center_lat = parseFloat(text_center_lat);
 
-        let text_center_lng = document.getElementById("center_lng").value;
+        let text_center_lng = document.getElementById("center_lng_map_show").value;
         let num_center_lng = parseFloat(text_center_lng);
 
         let count_position = document.querySelector('#count_position');
@@ -946,7 +973,7 @@
         const myLatlng = { lat: num_center_lat, lng: num_center_lng };
 
         map_show = new google.maps.Map(document.getElementById("map_show"), {
-            zoom: 14.2,
+            zoom: 14,
             center: myLatlng,
         });
 
@@ -975,6 +1002,53 @@
         document.querySelector('#btn_check_area_new').classList.add('d-none');
 
     }
+
+    function search_by_latlng()
+    {
+        document.querySelector('#btn_search_by_latlng').classList.add('d-none');
+        document.querySelector('#btn_search_by_district').classList.remove('d-none');
+
+        document.querySelector('#div_search_by_district').classList.add('d-none');
+        document.querySelector('#div_search_by_latlng').classList.remove('d-none');
+    }
+
+    function search_by_district()
+    {
+        document.querySelector('#btn_search_by_latlng').classList.remove('d-none');
+        document.querySelector('#btn_search_by_district').classList.add('d-none');
+
+        document.querySelector('#div_search_by_district').classList.remove('d-none');
+        document.querySelector('#div_search_by_latlng').classList.add('d-none');
+    }
+
+    function map_by_latlng()
+    {
+        let input_search_by_latlng = document.querySelector('#input_search_by_latlng').value ;
+        const myArray_search = input_search_by_latlng.split(",");
+
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+        let latlng = document.querySelector("#latlng");
+
+        lat_text.value = myArray_search[0] ;
+        lng_text.value = myArray_search[1] ;
+        latlng.value = input_search_by_latlng ;
+
+        let lat = parseFloat(lat_text.value) ;
+        let lng = parseFloat(lng_text.value) ;
+
+        // -----------------------------------------------------
+
+        let text_zoom = document.getElementById("va_zoom").value = 15;
+
+        let text_center_lat = document.getElementById("center_lat").value = lat;
+
+        let text_center_lng = document.getElementById("center_lng").value  = lng;
+
+        initMap();
+        // initMap_show();
+    }
+
 </script>
 
 @endsection

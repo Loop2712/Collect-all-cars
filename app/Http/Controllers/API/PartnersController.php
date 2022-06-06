@@ -955,4 +955,38 @@ class PartnersController extends Controller
         return "OK" ;
     }
 
+    function clear_area_new($name_partner , $name_area)
+    {
+        DB::table('partners')
+            ->where('name', $name_partner)
+            ->where('name_area', $name_area)
+              ->update([
+                'new_sos_area' => null,
+        ]);
+
+        return "OK" ;
+    }
+
+    function delete_area($id)
+    {
+        $data_partners = Partner::where('id' , $id)->get();
+
+        foreach ($data_partners as $item) {
+            $group_line_id = $item->group_line_id;
+        }
+
+        if (!empty($group_line_id)) {
+            DB::table('group_lines')
+                ->where('id', $group_line_id)
+                  ->update([
+                    'owner' => null,
+                    'partner_id' => null,
+            ]);
+        }
+        
+        Partner::where('id' , $id)->delete();
+
+        return "OK" ;
+    }
+
 }

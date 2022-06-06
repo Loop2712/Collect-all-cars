@@ -91,10 +91,10 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="madal_clear_area" tabindex="-1" aria-labelledby="exampleModalLabel_madal_clear_area" aria-hidden="true">
-                          <div class="modal-dialog">
+                          <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel_madal_clear_area">ยืนยันการเคลียร์พื้นที่ ?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel_madal_clear_area">ยืนยันการเคลียร์พื้นที่ปัจจุบัน ?</h5>
                               </div>
                               <div class="modal-body">
                                 <div class="row text-center">
@@ -103,7 +103,7 @@
                                         <img width="25%" src="{{ url('/img/stickerline/PNG/17.png') }}">
                                         <br><br><br>
                                         <h3 class="translate">
-                                            คุณยืนยันการเคลียร์พื้นที่ใช่หรือไม่
+                                            คุณยืนยันการเคลียร์พื้นที่ปัจจุบันใช่หรือไม่
                                         </h3>
                                     </div>
                                   </div>

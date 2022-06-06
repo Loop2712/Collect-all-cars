@@ -192,6 +192,50 @@
         </div>
 
         <!-- Button trigger modal -->
+	    <button id="btb_modal_delete_area" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_delete_area">
+	    </button>
+
+	    <!-- Modal -->
+	    <div class="modal fade" id="modal_delete_area" tabindex="-1" aria-labelledby="exampleModalLabel_modal_delete_area" aria-hidden="true">
+	      <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+	          <div class="modal-header">
+	            <h5 class="modal-title" id="exampleModalLabel_modal_delete_area">ยืนยันการยกเลิกพื้นที่ ?</h5>
+	          </div>
+	          <div class="modal-body">
+	            <div class="row text-center">
+	                <div class="col-12">
+	                    <img width="30%" src="{{ url('/img/stickerline/PNG/5.png') }}">
+	                    <br><br><br>
+	                    <h3 class="translate">
+	                        คุณยืนยันการยกเลิกพื้นที่ใช่หรือไม่
+	                    </h3>
+	                    <br>
+	                </div>
+	                <div class="col-2"></div>
+	                <div class="col-8">
+	                	<label>กรุณาพิมพ์ <span id="text_name_and_namearea"></span> เพื่อยืนยัน</label>
+	                    <input class="form-control" type="text" name="text_cf_name_area" id="text_cf_name_area" 
+	                    oninput="check_text_input();">
+	                </div>
+	                <div class="col-2"></div>
+	                <div id="div_group_line_modal" class="col-12 d-none">
+	                	<br>
+	                	<i class="fas fa-exclamation-triangle text-warning"></i> <span>หลังจากการยกเลิกพื้นที่แล้ว กลุ่มไลน์ </span><b><span class="text-success" id="group_line_modal"></b> ของคุณสามารถนำกลับมาใช้กับพื้นที่อื่นๆได้</span> <i class="fas fa-exclamation-triangle text-warning"></i>
+	                </div>
+
+	              </div>
+	          </div>
+	          <div class="modal-footer">
+	            <button id="btn_cf_delete_area" data-disable-invalid="" type="submit" data-view-component="true" class="btn-danger btn" disabled="">
+	            	<span>ยืนยันการยกเลิกพื้นที่</span>
+				</button>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+
+        <!-- Button trigger modal -->
 	    <button id="btn_modal_edit_ok" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_edit_ok">
 	    </button>
 	    <!-- Modal -->
@@ -282,6 +326,9 @@
 											<i class="far fa-edit"></i> ดูข้อมูล / แก้ไข
 										</a>
 									@endif
+									<span style="float: right;" class="btn btn-danger" onclick="click_modal_delete_area('{{ $area->id }}' , '{{ $area->name }}' , '{{ $area->name_area }}' , '{{ $area->line_group }}');">
+										<i class="fas fa-trash-alt"></i> ลบ
+									</span>
 								</td>
                             </tr>
                         @endforeach
@@ -290,6 +337,7 @@
             </div>
         </div>
     </div>
+
 	<!------------------------------------------------------- mobile ------------------------------------------------------->
 	<div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
         <div class="row">
@@ -723,6 +771,52 @@
     	let submit_add_area = document.querySelector('#submit_add_area');
     		submit_add_area.click();
     }
+
+    function click_modal_delete_area(id , name , name_area , group_line)
+    {	
+    	if (group_line) {
+    		document.querySelector('#group_line_modal').innerHTML = group_line ;
+    		document.querySelector('#div_group_line_modal').classList.remove('d-none') ;
+    	}
+
+    	let text_name_and_namearea = document.querySelector('#text_name_and_namearea');
+    		text_name_and_namearea.innerHTML = name+"/"+name_area ;
+
+    	let btn_cf_delete_area = document.querySelector('#btn_cf_delete_area');
+
+    	let onclick = document.createAttribute("onclick");
+            onclick.value =  "delete_area(" + id +")" ;
+        
+        btn_cf_delete_area.setAttributeNode(onclick);
+    	
+    	document.querySelector('#btb_modal_delete_area').click();
+    }
+
+    function check_text_input()
+    {
+    	let text_cf_name_area = document.querySelector('#text_cf_name_area').value ;
+    	let text_name_and_namearea = document.querySelector('#text_name_and_namearea').innerHTML;
+
+    	if (text_cf_name_area === text_name_and_namearea) {
+    		document.querySelector('#btn_cf_delete_area').disabled = false ;
+    	}else{
+    		document.querySelector('#btn_cf_delete_area').disabled = true ;
+    	}
+    }
+
+    function delete_area(id)
+    {
+        fetch("{{ url('/') }}/api/delete_area/" + id )
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if (result === "OK") {
+        			// console.log('delete_area ' + id);
+                    window.location.reload(true);
+                }
+        });
+    }
+
 
 	</script>
 @endsection
