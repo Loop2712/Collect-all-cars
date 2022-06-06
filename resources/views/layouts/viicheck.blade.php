@@ -1064,7 +1064,37 @@
           <div class=" notranslate">
             <div class="site-section bg-left-half ">
               <div class=" owl-3-style">
-                <div id="foot_logo_partner" class="owl-carousel owl-3 ">
+                <div class="owl-carousel owl-3 ">
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/KMUTNB.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/RMUTP.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/TU.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/nstda.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/js100.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/IMPACT.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/southerncoffee-1.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/ตลาดคลองเตย.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/green-logo-01.png') }}">
+                  </div>
+                  <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/logo-ph.png') }}">
+                  </div>
                 </div>
               </div>
             </div>
