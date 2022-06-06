@@ -117,6 +117,12 @@
 											</option>
 											{!! $errors->first('line_group', '<p class="help-block">:message</p>') !!}
 										@endforeach 
+										@foreach($our_line_group as $item_our)
+											<option value="{{ $item_our->groupName }}" 
+											{{ request('groupName') == $item_our->groupName ? 'selected' : ''   }} >
+											{{ $item_our->groupName }} 
+											</option>
+										@endforeach 
 									</select>
 								</div>
 								<input class="form-control d-none" name="group_line_id" type="group_line_id" id="group_line_id" value="" >
@@ -286,6 +292,12 @@
 													<option value="{{ $item->groupName }}" 
 													{{ request('groupName') == $item->groupName ? 'selected' : ''   }} >
 													{{ $item->groupName }} 
+													</option>
+												@endforeach 
+												@foreach($our_line_group as $item_our)
+													<option value="{{ $item_our->groupName }}" 
+													{{ request('groupName') == $item_our->groupName ? 'selected' : ''   }} >
+													{{ $item_our->groupName }} 
 													</option>
 												@endforeach 
 											</select>

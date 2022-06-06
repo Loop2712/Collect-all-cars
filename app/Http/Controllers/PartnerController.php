@@ -531,7 +531,9 @@ class PartnerController extends Controller
 
         $group_line = Group_line::where('owner', null)->get();
 
-        return view('partner.service_area.partner_add_area', compact('data_partners' , 'data_time_zone' ,'group_line' ,'all_area_partners'));
+        $our_line_group = Group_line::where('owner', $data_user->organization." (Partner)")->get();
+
+        return view('partner.service_area.partner_add_area', compact('data_partners' , 'data_time_zone' ,'group_line' ,'all_area_partners','our_line_group'));
     }
 
     public function service_area(Request $request)
