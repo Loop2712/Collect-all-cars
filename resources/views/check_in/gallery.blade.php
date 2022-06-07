@@ -53,9 +53,41 @@
         <div class="card radius-10">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <div>
-                        <h5 class="mb-1">พื้นที่ : <b>{{ $all_area->name_area }}</b></h5>
-
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-9">
+                                @if(!empty($all_area->name_area))
+                                    <h5 class="mb-1">พื้นที่ : <b class="text-info">{{ $all_area->name_area }}</b></h5>
+                                @else
+                                    <h5 class="mb-1">พื้นที่ : <b class="text-info">รวม</b></h5>
+                                @endif
+                            </div>
+                            <div class="col-3">
+                                <span class="btn btn-sm btn-primary main-shadow main-radius" style="float: right;width: 100%;" data-toggle="collapse" href="#coll_gen_qr_{{ $all_area->id }}" role="button" aria-expanded="false" aria-controls="coll_gen_qr_{{ $all_area->id }}">
+                                    สร้าง QR-Code
+                                </span>
+                            </div>
+                            <div class="col-12">
+                                <br>
+                                <div class="collapse" id="coll_gen_qr_{{ $all_area->id }}">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <!--  -->
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="color_theme_{{ $all_area->id }}" name="color_theme_{{ $all_area->id }}" value="" placeholder="กรอกโค้ดสี เช่น #F15423" style="float: right;">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <span class="btn btn-sm btn-success main-shadow main-radius" style="float: right;width: 100%;margin-top: 5px;" onclick="gen_qr_code('{{ $all_area->name_area }}' , '{{ $all_area->name }}' , '{{ $all_area->type_partner }}' ,'{{ $all_area->id }}');">
+                                                ยืนยัน
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -101,5 +133,115 @@
     @endforeach
 </div>
 
+<script>
+    
+    function gen_qr_code(name_area, name, type_partner , id){
+        
+        let url = "" ;
+
+        let name_partner = name ;
+        let name_partner_re = name_partner.replaceAll(' ' , '_');
+
+        let result = name_area ;
+        let name_new_check_in = result.replaceAll(' ' , '_');
+
+        if (name_new_check_in) {
+            name_new_check_in = name_new_check_in ;
+        }else{
+            name_new_check_in = null ;
+        }
+        // console.log(name_new_check_in);
+        // console.log(type_partner);
+
+        if (name_new_check_in != null) {
+            if (type_partner === "university") {
+
+                url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=University:" + name_partner_re + "-" +name_new_check_in + "&chs=500x500&choe=UTF-8" ;
+            }else{
+
+                url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_partner_re + "-" +name_new_check_in + "&chs=500x500&choe=UTF-8" ;
+            }
+        }
+
+        if (name_new_check_in === null) {
+            if (type_partner === "university") {
+
+                url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=University:" + name_partner_re + "&chs=500x500&choe=UTF-8" ;
+            }else{
+
+                url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/check_in/create?location=" + name_partner_re + "&chs=500x500&choe=UTF-8" ;
+            }
+        }
+
+        // console.log(url);
+
+        let data = {
+            'url' : url,
+            'name_partner' : name_partner,
+            'name_new_check_in' : name_new_check_in,
+        };
+
+        fetch("{{ url('/') }}/api/save_img_url", {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            // console.log(text);
+            let url_img = "{{ url('storage') }}/" + "check_in/" + text;
+
+            change_color_theme("check_in/" + text, name_area, name, type_partner , id);
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+    }
+
+    function change_color_theme(url_img, name_area, name, type_partner, id)
+    {
+        // console.log('change_color_theme');
+        let color_theme = document.querySelector('#color_theme_'+id) ;
+
+        let name_partner = name ;
+        let name_new_check_in = name_area ;
+
+        if (name_new_check_in) {
+            name_new_check_in = name_new_check_in ;
+        }else{
+            name_new_check_in = null ;
+        }
+
+
+        let data = {
+            'color_theme' : color_theme.value,
+            'name_partner' : name_partner,
+            'name_new_check_in' : name_new_check_in,
+            'url_img' : url_img,
+            'type_partner' : type_partner,
+        };
+
+        fetch("{{ url('/') }}/api/admin_create_img_check_in", {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            // console.log(text);
+            window.location.reload(true);
+
+        }).catch(function(error){
+            console.error(error);
+        });
+
+    }
+
+</script>
 
 @endsection

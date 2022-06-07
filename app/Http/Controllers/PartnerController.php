@@ -800,7 +800,7 @@ class PartnerController extends Controller
             ->get();
 
         $all_areas = Partner::where("name", $data_user->organization)
-            ->where("name_area", "!=" , null)
+            // ->where("name_area", "!=" , null)
             ->get();
 
         return view('check_in.gallery', compact('all_areas'));
