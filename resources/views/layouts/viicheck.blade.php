@@ -1065,6 +1065,7 @@
             <div class="site-section bg-left-half ">
               <div class=" owl-3-style">
                 <div class="owl-carousel owl-3 ">
+                  <!-- <span id="foot_logo_partner"></span> -->
                   <div class="text-center">
                       <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/KMUTNB.png') }}">
                   </div>
