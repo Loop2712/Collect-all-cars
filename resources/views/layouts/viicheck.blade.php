@@ -189,6 +189,10 @@
           justify-content: center;
           align-items: center;
         }
+        .border-circle{
+          border-radius: 50%;
+            border: solid 0.2px black;
+        }
     </style>
     
     
@@ -703,28 +707,28 @@
                   <div class="row text-center">
                     <div class="col-2">
                       <div class="btn"  onclick="submit_nationality('American')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-en1.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-en1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">American</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Chinese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-cn.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-cn.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Chinese</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Taiwanese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-tw.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Taiwanese</h5>
                       </div>
                     </div>
                     <div class="col-2" >
                       <div class="btn" onclick="submit_nationality('Indian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-in 2.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-in 2.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Indian</h5>
                       </div>
@@ -738,98 +742,98 @@
                     </div> -->
                     <div class="col-2">
                       <div class="btn"  onclick="submit_nationality('Spanish')">
-                        <img width="58" src="{{ url('/img/national-flag/es.png') }}">
+                        <img width="58"class="border-circle main-shadow" src="{{ url('/img/national-flag/es.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Spanish</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('German')">
-                        <img width="60" src="{{ url('/img/national-flag/flex-de.png') }}">
+                        <img width="60"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-de.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">German</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Japanese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ja.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-ja.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Japanese</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Korean')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ko1.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-ko1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Korean</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Thai')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-th1.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-th1.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Thai</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Bruneian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-bn.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-bn.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Bruneian</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Cambodian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-kr.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-kr.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Cambodian</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Lao')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-lo.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-lo.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Lao</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Malaysian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-my.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-my.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Malaysian</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Burmese')">
-                        <img width="55" src="{{ url('/img/national-flag/my.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/my.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Burmese</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Philippine')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ph.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-ph.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Philippine</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Singaporean')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-sg.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-sg.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Singaporean</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Vietnamese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-vn.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-vn.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Vietnamese</h5>
                       </div>
                     </div>
                     <div class="col-2">
                       <div class="btn" onclick="submit_nationality('Indonesian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-id.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-id.png') }}">
                         <br>
                         <h5 style="margin-top:10px;">Indonesian</h5>
                       </div>
@@ -843,126 +847,126 @@
                   <div class="row text-center">
                     <div class="col-4">
                       <div class="btn" style="padding:10px 0px;" onclick="submit_nationality('American')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-en1.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-en1.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">American</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Chinese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-cn.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-cn.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Chinese</h6>
                       </div>
                     </div>
                     <div class="col-4" >
                       <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Indian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-in.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-in.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Indian</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn"style="padding:10px 0px;" onclick="submit_nationality('Taiwanese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-tw.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-tw.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Taiwanese</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px 0px;" onclick="submit_nationality('Spanish')">
-                        <img width="58" src="{{ url('/img/national-flag/es.png') }}">
+                        <img width="58"class="border-circle main-shadow" src="{{ url('/img/national-flag/es.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Spanish</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('German')">
-                        <img width="60" src="{{ url('/img/national-flag/flex-de.png') }}">
+                        <img width="60"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-de.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">German</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Japanese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ja.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-ja.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Japanese</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Korean')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ko1.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-ko1.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Korean</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Thai')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-th1.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-th1.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Thai</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Bruneian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-bn.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-bn.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Bruneian</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;margin-left:-3px"onclick="submit_nationality('Cambodian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-kr.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-kr.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Cambodian</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Lao')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-lo.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-lo.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Lao</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Malaysian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-my.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-my.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Malaysian</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Burmese')">
-                        <img width="55" src="{{ url('/img/national-flag/my.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/my.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Burmese</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;"onclick="submit_nationality('Philippine')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-ph.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-ph.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Philippine</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;margin-left:-8px;"onclick="submit_nationality('Singaporean')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-sg.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-sg.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Singaporean</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;margin-left:-5px;"onclick="submit_nationality('Vietnamese')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-vn.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-vn.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Vietnamese</h6>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="btn" style="padding:10px  0px;margin-left:-5px;"onclick="submit_nationality('Indonesian')">
-                        <img width="55" src="{{ url('/img/national-flag/flex-id.png') }}">
+                        <img width="55"class="border-circle main-shadow" src="{{ url('/img/national-flag/flex-id.png') }}">
                         <br>
                         <h6 style="margin-top:10px;">Indonesian</h6>
                       </div>

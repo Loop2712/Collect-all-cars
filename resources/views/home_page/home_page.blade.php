@@ -561,6 +561,21 @@
               <div class="d-flex align-items-start member">
                 <div class="row">
                   <div class="col-2 text-center align-self-center p-0" >
+                    <img width="85%" src="{{ asset('/img/sticker_ph/5.png') }}" class="img-fluid" alt="">
+                  </div>
+                  <div class="col-10">
+                    <h4>บัตรประจำตัวสัตว์เลี้ยง</h4>
+                    <p>เมื่อลงทะเบียนสัตว์ เรามีบัตรประจำตัวสัตว์เลี้ยงให้ ภายในบัตรมีรายละเอียดสัตว์เลี้ยงอย่าครบถ้วนรวมไปถึงข้อมูลติดต่อเจ้าของอีกด้วย </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- <div class="col-lg-6 ">
+            <a class="peddyhub" href="https://lin.ee/QRPGdf7">
+              <div class="d-flex align-items-start member">
+                <div class="row">
+                  <div class="col-2 text-center align-self-center p-0" >
                     <img width="90%" src="{{ asset('/img/sticker_ph/3.png') }}" class="img-fluid" alt="">
                   </div>
                   <div class="col-10">
@@ -570,7 +585,7 @@
                 </div>
               </div>
             </a>
-          </div>
+          </div> -->
           
           <div class="col-12"><br></div>
           
@@ -1019,13 +1034,13 @@
                 <div class="d-flex align-items-start member">
                   <div class="row">
                     <div class="col-12">
-                      <h4 class="text-center">อาหารและอุปกรณ์</h4>
+                      <h4 class="text-center">บัตรประจำตัวสัตว์เลี้ยง</h4>
                     </div>
                     <div class="col-3 text-center align-self-center p-0" >
-                      <img width="100%" src="{{ asset('/img/sticker_ph/3.png') }}" class="img-fluid" alt="">
+                      <img width="100%" src="{{ asset('/img/sticker_ph/5.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-9">
-                      <p>อาหารและอุปกรณ์สัตว์เลี้ยง มีคุณภาพและได้มาตรฐาน พร้อมบริการส่ง 24 ชม. และโปรโมชั่นลดราคาสุดพิเศษเตรียมไว้เพื่อคุณแล้ว</p>
+                      <p>เมื่อลงทะเบียนสัตว์ เรามีบัตรประจำตัวสัตว์เลี้ยงให้ ภายในบัตรมีรายละเอียดสัตว์เลี้ยงอย่าครบถ้วนรวมไปถึงข้อมูลติดต่อเจ้าของอีกด้วย </p>
                     </div>
                   </div>
                 </div>
