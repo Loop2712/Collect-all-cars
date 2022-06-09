@@ -122,8 +122,12 @@
                                                 </div>
                                                 <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
                                                     <hr>
+                                                    @if(!empty($item->register_cars->brand))
                                                     <p style="font-size:18px;padding:0px"> ยี่ห้อ <br>  {{ $item->register_cars->brand }}  </p> <hr>
+                                                    @endif
+                                                    @if(!empty($item->register_cars->generation))
                                                     <p style="font-size:18px;padding:0px">รุ่น <br> {{ $item->register_cars->generation }}  </p> <hr>
+                                                    @endif
                                                     <p style="font-size:18px;padding:0px">รายงาน <br> 
                                                         @switch($item->massengbox)
                                                             @case('1')
