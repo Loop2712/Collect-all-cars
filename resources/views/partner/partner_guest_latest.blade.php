@@ -37,7 +37,9 @@
                                 <!-- <td>{{ $item->id }}</td> -->
                                 <td>{{ $loop->iteration }}</td>
                                 <td> 
+                                    @if(!empty($item->register_cars->brand))
                                     <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
+                                    @endif
                                     <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation }} </span>
                                 </td>
                                 <td>
