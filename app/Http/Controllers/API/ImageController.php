@@ -186,7 +186,7 @@ class ImageController extends Controller
                 if ($name_new_check_in != 'รวม') {
 
                     if($cuont_name_new_check_in >= 30){
-                        $image->text($name_new_check_in, 300, 800, function($font) {
+                        $image->text($name_new_check_in, 760, 800, function($font) {
                             $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                             $font->size(29);
                             $font->color('#000000');
@@ -194,7 +194,7 @@ class ImageController extends Controller
                             $font->valign('top');
                         });
                     }elseif($cuont_name_new_check_in >= 20 && $cuont_name_new_check_in < 30){
-                        $image->text($name_new_check_in, 300, 800, function($font) {
+                        $image->text($name_new_check_in, 760, 800, function($font) {
                             $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                             $font->size(35);
                             $font->color('#000000');
@@ -202,7 +202,7 @@ class ImageController extends Controller
                             $font->valign('top');
                         });
                     }elseif($cuont_name_new_check_in < 20) {
-                        $image->text($name_new_check_in, 300, 800, function($font) {
+                        $image->text($name_new_check_in, 760, 800, function($font) {
                             $font->file(public_path('fonts/Prompt/Prompt-Black.ttf'));
                             $font->size(45);
                             $font->color('#000000');
