@@ -40,7 +40,9 @@
                                     @if(!empty($item->register_cars->brand))
                                     <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
                                     @endif
+                                    @if(!empty($item->register_cars->generation))
                                     <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation }} </span>
+                                    @endif
                                 </td>
                                 <td>
                                     <span> <b>{{ $item->registration }}</b> </span><br>
