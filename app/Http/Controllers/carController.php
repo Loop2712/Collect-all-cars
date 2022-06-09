@@ -52,7 +52,7 @@ class CarController extends Controller
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $LINE_CLIENT_SECRET]);
         $response = $bot->linkRichMenu($provider_id, $richMenuId);
 
-        exit();
+        // exit();
 
 
         // ส่งข้อความ
