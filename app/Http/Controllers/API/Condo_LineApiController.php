@@ -18,22 +18,20 @@ class Condo_LineApiController extends Controller
 {
     public function store(Request $request)
 	{
-        /*Return HTTP Request 200*/
-        http_response_code(200);
         //SAVE LOG
-        // $requestData = $request->all();
+        $requestData = $request->all();
 
         // หาว่าเป็นข้อความที่ส่งมาจากไลน์ไหน
         // $From_LINE = $requestData["events"]["message"]["text"];
 
-        // $data = [
-        //     "title" => "ข้อความเข้าจากไลน์",
-        //     "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
-        // ];
-        // Mylog_condo::create($data);  
+        $data = [
+            "title" => "ข้อความเข้าจากไลน์",
+            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+        ];
+        Mylog_condo::create($data);  
 
-        // return "OK" ;
-
+        return "OK" ;
+        
 
         //GET ONLY FIRST EVENT
         // $event = $requestData["events"][0];
@@ -141,7 +139,7 @@ class Condo_LineApiController extends Controller
         //             $line_condo->replyToUser(null, $event, "vnews");
         //             break;
         //     }   
-        }
+        // }
     }
 
     public function save_group_line($event)
