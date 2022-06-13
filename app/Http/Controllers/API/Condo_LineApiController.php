@@ -19,7 +19,7 @@ class Condo_LineApiController extends Controller
     public function store(Request $request)
 	{
         //SAVE LOG
-        $requestData = $request->all();
+        // $requestData = $request->all();
 
         // หาว่าเป็นข้อความที่ส่งมาจากไลน์ไหน
         // $From_LINE = $requestData["events"]["message"]["text"];
