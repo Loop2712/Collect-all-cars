@@ -1070,7 +1070,15 @@
               <div class=" owl-3-style">
                 <div class="owl-carousel owl-3 ">
                   <!-- <span id="foot_logo_partner"></span> -->
+                  @php 
+                    $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
+                  @endphp
+                  @foreach($partner as $item)
                   <div class="text-center">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
+                  </div>
+                  @endforeach
+                  <!-- <div class="text-center">
                       <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/KMUTNB.png') }}">
                   </div>
                   <div class="text-center">
@@ -1099,7 +1107,7 @@
                   </div>
                   <div class="text-center">
                       <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/logo-ph.png') }}">
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
