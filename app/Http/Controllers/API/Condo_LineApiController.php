@@ -23,13 +23,13 @@ class Condo_LineApiController extends Controller
 
         // หาว่าเป็นข้อความที่ส่งมาจากไลน์ไหน
         // $From_LINE = $requestData["events"]["message"]["text"];
+        return "OK" ;
 
-
-        $data = [
-            "title" => "ข้อความเข้าจากไลน์",
-            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
-        ];
-        Mylog_condo::create($data);  
+        // $data = [
+        //     "title" => "ข้อความเข้าจากไลน์",
+        //     "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+        // ];
+        // Mylog_condo::create($data);  
 
         //GET ONLY FIRST EVENT
         // $event = $requestData["events"][0];
