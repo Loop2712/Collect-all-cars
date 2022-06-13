@@ -347,3 +347,5 @@ Route::get('qr-code-g', function () {
     
 });
 
+
+Route::resource('mylog_condo', 'Mylog_condoController');

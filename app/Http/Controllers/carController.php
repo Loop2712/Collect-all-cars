@@ -36,7 +36,7 @@ class CarController extends Controller
             case 'AAA':
                 $CHANNEL_ACCESS_TOKEN = "NRxjYpcw4EquaNMRsLcMs2lmjNS+05u4A2bhg/smJhqErM76hPQXYJH96h+qSumi7WucQk44QP83EBAkahtjMIbRS9hCv26G7GyeaMlN8HGbcRjhb/SnwuYshLqfa1MtFjk3WGL8tWQd+BOeyGLGDQdB04t89/1O/w1cDnyilFU=" ;
                 $LINE_CLIENT_SECRET = "673b705d517f882b57239af15b9ead2b";
-                $richMenuId = "richmenu-c2ca0a249fe9fb993b622cf2f9b2255d" ;
+                $richMenuId = "richmenu-fd1ec452d620df42a481542298b3d343" ;
                 break;
 
             case 'Vii':

@@ -1,0 +1,17 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        },
+        {
+            "name": "condo_id",
+            "type": "text"
+        }
+    ]
+}
+
