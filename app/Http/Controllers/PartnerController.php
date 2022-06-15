@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Partner;
+use App\Models\Partner_condo;
 use Illuminate\Http\Request;
 use App\Models\Group_line;
 use Auth;
@@ -103,6 +104,23 @@ class PartnerController extends Controller
         $requestData['phone'] = str_replace(" ", "", $requestData['phone']);
 
         $requestData['class_color_menu'] = "other";
+
+        if (!empty($requestData['type_partner'])) {
+            $save_Partner_condo = [
+                "name" => $requestData['name'],
+            ];
+            
+            Partner_condo::firstOrCreate($save_Partner_condo);
+
+            $data_Partner_condo = Partner_condo::latest()->get();
+
+            foreach ($data_Partner_condo as $key_condo) {
+                $condo_id = $key_condo->id ;
+
+            }
+            $requestData['condo_id'] = $condo_id ;
+
+        }
         
         Partner::create($requestData);
 
@@ -113,6 +131,12 @@ class PartnerController extends Controller
                     ->where('groupName', $requestData['line_group'])
                     ->update([
                         'owner' => $requestData['name']." (Partner)",
+                        'partner_id' => $key_1->id,
+                ]);
+
+            DB::table('partner_condos')
+                    ->where('id', $requestData['condo_id'])
+                    ->update([
                         'partner_id' => $key_1->id,
                 ]);
         }

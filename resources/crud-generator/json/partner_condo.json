@@ -1,0 +1,44 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "name_line_oa",
+            "type": "string"
+        },
+        {
+            "name": "link_line_oa",
+            "type": "string"
+        },
+        {
+            "name": "channel_access_token",
+            "type": "string"
+        },
+        {
+            "name": "channel_secret",
+            "type": "string"
+        },
+        {
+            "name": "rich_menu_TH",
+            "type": "string"
+        },
+        {
+            "name": "rich_menu_EN",
+            "type": "string"
+        },
+        {
+            "name": "rich_menu_zh_TW",
+            "type": "string"
+        },
+        {
+            "name": "rich_menu_zh_CN",
+            "type": "string"
+        },
+        {
+            "name": "partner_id",
+            "type": "integer"
+        }
+    ]
+}
