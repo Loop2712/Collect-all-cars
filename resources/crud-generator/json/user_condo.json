@@ -1,0 +1,44 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "last_name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "name_condo",
+            "type": "string"
+        },
+        {
+            "name": "building",
+            "type": "string"
+        },
+        {
+            "name": "floor",
+            "type": "string"
+        },
+        {
+            "name": "room_number",
+            "type": "string"
+        },
+        {
+            "name": "rich_menu_language",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "condo_id",
+            "type": "integer"
+        }
+    ]
+}

@@ -345,3 +345,5 @@ Route::get('qr-code-g', function () {
     
 });
 
+
+Route::resource('user_condo', 'User_condoController');
