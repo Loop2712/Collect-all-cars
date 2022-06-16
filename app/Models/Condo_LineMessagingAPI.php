@@ -20,17 +20,19 @@ class Condo_LineMessagingAPI extends Model
 {
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
-    public function replyToUser($data, $event, $message_type)
+    public function replyToUser($data_line_condos, $event, $message_type)
     {   
+        foreach ($data_line_condos as $item_condo) {
+            $channel_access_token = $item_condo->channel_access_token ;
+            $condo_id = $item_condo->condo_id ;
+        }
+
     	switch($message_type)
         {   
             case 'other':
                 $provider_id = $event["source"]['userId'];
                 $user = User::where('provider_id', $provider_id)->get();
 
-                foreach ($user as $item) {
-                    $user_id = $item->id ;
-                }
                 $template_path = storage_path('../public/json/text_success.json'); 
                 $string_json = file_get_contents($template_path);
 
@@ -38,6 +40,7 @@ class Condo_LineMessagingAPI extends Model
             break;
         }
 
+        // ----------------------------- ส่งข้อความ -------------------------------
         $body = [
             "replyToken" => $event["replyToken"],
             "messages" => $messages,
@@ -47,7 +50,7 @@ class Condo_LineMessagingAPI extends Model
             'http' =>[
                 'method'  => 'POST',
                 'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                            'Authorization: Bearer '. $channel_access_token,
                 'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
                 //'timeout' => 60
             ]
@@ -62,6 +65,7 @@ class Condo_LineMessagingAPI extends Model
         $data = [
             "title" => "reply Success",
             "content" => "reply Success",
+            "condo_id" => $condo_id,
         ];
         Mylog_condo::create($data);
         return $result;
@@ -113,6 +117,5 @@ class Condo_LineMessagingAPI extends Model
 
     }
 
-    
 
 }

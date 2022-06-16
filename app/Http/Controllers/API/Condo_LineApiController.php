@@ -12,6 +12,7 @@ use App\Models\Condo_LineMessagingAPI;
 use App\Models\Group_line;
 use App\Models\Sos_map;
 use App\Models\Partner;
+use App\Models\Partner_condo;
 use App\User;
 
 class Condo_LineApiController extends Controller
@@ -21,24 +22,28 @@ class Condo_LineApiController extends Controller
         //SAVE LOG
         $requestData = $request->all();
 
+        //GET ONLY FIRST EVENT
+        $event = $requestData["events"][0];
+
         // หาว่าเป็นข้อความที่ส่งมาจากไลน์ไหน
-        // $From_LINE = $requestData["events"]["message"]["text"];
+        $data_postback_explode = explode("From_LINE=",$event["postback"]["data"]);
+        $From_LINE = $data_postback_explode[1] ;
+        // ข้อมูลไลน์คอนโด
+        $data_line_condos = Partner_condo::where('id' , $From_LINE)->get();
 
         $data = [
             "title" => "LINE INPUT",
             "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+            "condo_id" => $From_LINE,
         ];
         Mylog_condo::create($data);  
-
-        //GET ONLY FIRST EVENT
-        $event = $requestData["events"][0];
 
         switch($event["type"]){
             case "message" : 
                 $this->messageHandler($event);
                 break;
             case "postback" : 
-                $this->postbackHandler($event);
+                $this->postbackHandler($event , $data_line_condos);
                 break;
             case "join" :
                 $this->save_group_line($event);
@@ -66,16 +71,16 @@ class Condo_LineApiController extends Controller
 
     }
 
-    public function postbackHandler($event)
+    public function postbackHandler($event, $data_line_condos)
     {
         $line_condo = new Condo_LineMessagingAPI();
     	
-        $data_postback_explode = explode("?",$event["postback"]["data"]);
+        $data_postback_explode = explode("From_LINE=",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
 
         switch($data_postback){
-            case "Chinese" : 
-                $line_condo->replyToUser(null, $event, "Chinese");
+            case "อื่นๆ" :  
+                $line_condo->replyToUser($data_line_condos, $event, "other");
                 break;
         }   
 
@@ -87,9 +92,9 @@ class Condo_LineApiController extends Controller
 
         switch( $event["message"]["text"] )
         {     
-            case "อื่นๆ" :  
-                $line_condo->replyToUser(null, $event, "other");
-                break;
+            // case "อื่นๆ" :  
+            //     $line_condo->replyToUser(null, $event, "other");
+            //     break;
             // case "ข่าวสาร" :  
             //     $line_condo->replyToUser(null, $event, "vnews");
             //     break;
