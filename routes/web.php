@@ -120,13 +120,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/change_ToBronze', 'GuestController@change_ToBronze');
 	
 	Route::resource('profanity', 'ProfanityController');
-
 	Route::resource('report_news', 'Report_newsController');
-
 	Route::resource('insurance', 'InsuranceController');
-
 	Route::resource('sos_insurance', 'Sos_insuranceController');
-
 	Route::resource('partner_viicheck', 'PartnerController');
 	Route::resource('group_line', 'Group_lineController');
 
@@ -138,6 +134,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/check_in/admin_gallery', 'Check_inController@admin_gallery');
 	Route::resource('nationality', 'NationalityController');
 
+	Route::resource('mylog_condo', 'Mylog_condoController');
+	Route::resource('partner_condo', 'Partner_condoController');
 
 });
 // END ADMIN VIICHECK
@@ -347,6 +345,3 @@ Route::get('qr-code-g', function () {
     
 });
 
-
-Route::resource('mylog_condo', 'Mylog_condoController');
-Route::resource('partner_condo', 'Partner_condoController');

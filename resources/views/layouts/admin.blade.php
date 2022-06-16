@@ -194,6 +194,13 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a id="btn_partner_condo_url" class="nav-link" href="{{ url('/partner_condo') }}">
+                    <i class="fas fa-hotel text-orange"></i>
+                    <span class="nav-link-text">Partner Condo</span>
+                    &nbsp;&nbsp;
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="{{ url('/insurance') }}">
                     <i class="fas fa-user-shield text-info"></i>
                     <span class="nav-link-text">บริษัทประกันภัย</span>
