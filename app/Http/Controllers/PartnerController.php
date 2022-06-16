@@ -99,6 +99,10 @@ class PartnerController extends Controller
     {
         
         $requestData = $request->all();
+        
+        if ($request->hasFile('logo')) {
+            $requestData['logo'] = $request->file('logo')->store('uploads', 'public');
+        }
 
         $requestData['phone'] = str_replace("-", "", $requestData['phone']);
         $requestData['phone'] = str_replace(" ", "", $requestData['phone']);
