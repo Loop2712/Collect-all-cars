@@ -112,7 +112,7 @@ class PartnerController extends Controller
             
             Partner_condo::firstOrCreate($save_Partner_condo);
 
-            $data_Partner_condo = Partner_condo::latest()->get();
+            $data_Partner_condo = Partner_condo::get();
 
             foreach ($data_Partner_condo as $key_condo) {
                 $condo_id = $key_condo->id ;
