@@ -71,6 +71,10 @@
 <br>
 
 <script>
+
+	document.addEventListener('DOMContentLoaded', (event) => {
+		document.querySelector('#tag_a_login_viicheck').classList.add('d-none');
+  	});
 	
 	function check_checkbox()
 	{

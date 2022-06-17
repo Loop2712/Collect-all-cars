@@ -320,7 +320,7 @@
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
         </ul>
       </nav>
-      <a href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
+      <a id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
         <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
       </a>
 
