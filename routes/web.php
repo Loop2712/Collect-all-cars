@@ -136,6 +136,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 	Route::resource('mylog_condo', 'Mylog_condoController');
 	Route::resource('partner_condo', 'Partner_condoController');
+	Route::resource('user_condo', 'User_condoController');
 
 });
 // END ADMIN VIICHECK
@@ -345,5 +346,7 @@ Route::get('qr-code-g', function () {
     
 });
 
-
-Route::resource('user_condo', 'User_condoController');
+Route::get('/select_register', function () {
+    
+    return view('select_register');
+});
