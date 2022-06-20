@@ -1101,6 +1101,7 @@
   @endif
   <!-- --------------------------------------------- -->
 
+  <input class="d-none" type="text" name="full_url" id="full_url" value="{{ url()->full() }}">
 
   @yield('content')
   <br>
@@ -1174,7 +1175,9 @@
 
 
   <div id="preloader"></div>
-  <a style="margin-right:80px;margin-bottom: 15px;" href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a id="a_up_short" style="margin-right:10px;margin-bottom: 15px;" href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
   <!-- Vendor JS Files -->
   <script src="{{ asset('Medilab/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -1283,6 +1286,12 @@
     }
 
     show_logo_partner();
+
+    let full_url = document.querySelector('#full_url').value;
+
+    if (full_url === "https://www.viicheck.com/" || full_url === "https://www.viicheck.com/home" || full_url === "https://www.viicheck.com/#_=_") {
+      document.querySelector('#a_up_short').style = "margin-right:80px;margin-bottom: 15px;";
+    }
 
   });
 
