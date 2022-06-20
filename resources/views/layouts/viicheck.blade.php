@@ -1139,11 +1139,11 @@
         <br class="d-block d-md-none"><br class="d-block d-md-none"><br class="d-block d-md-none">
         <div class="col-md-1 col-lg-1 col-12">
           <div class="row">
-            <div class="col-3">
+            <div class="col-4">
                 @include ('counter')
             </div>
-            <div class="col-9" style="font-size: 14px;">
-              <div class="text-center d-block d-md-none" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
+            <div class="col-8" style="font-size: 13px;">
+              <div class="text-center d-block d-md-none" style="background-color: #F1F7FD;padding:0px 25px 25px 25px;">
                 <span class="text-dark">WWW.ViiCHECK.com</span>
                 <br>
                 <span class="text-dark">•<span>
