@@ -126,4 +126,13 @@ class Partner_condoController extends Controller
 
         return redirect('partner_condo')->with('flash_message', 'Partner_condo deleted!');
     }
+
+    public function select_condo(Request $request)
+    {
+        $requestData = $request->all();
+
+        $all_condo = Partner_condo::get() ;
+
+        return view('partner_condo.select_condo', compact('all_condo'));
+    }
 }

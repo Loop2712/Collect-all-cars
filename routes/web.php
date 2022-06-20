@@ -208,6 +208,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/check_in_finish', function () {
 	    return view('check_in/check_in_finish');
 	});
+	
+	Route::get('select_condo', 'Partner_condoController@select_condo');
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');

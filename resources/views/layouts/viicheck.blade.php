@@ -1311,12 +1311,16 @@
     // console.log(user_id);
     // console.log(country);
     // console.log(language);
+    let full_url = document.querySelector('#full_url').value;
+    let url_sp = full_url.split("/");
+    let iii = url_sp.length - 1 ;
+    let url = url_sp[iii];
 
     if (country === "") {
       fetch("{{ url('/') }}/api/change_country/" + user_id);
     }
 
-    if (language === "") {
+    if (language === "" && url != "select_condo") {
       document.querySelector('#btn_select_language').click();
     } else {
 
