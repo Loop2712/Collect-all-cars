@@ -1131,36 +1131,6 @@
                     <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
                   </div>
                   @endforeach
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/KMUTNB.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/RMUTP.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/TU.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/nstda.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/js100.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/IMPACT.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/southerncoffee-1.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/ตลาดคลองเตย.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/green-logo-01.png') }}">
-                  </div>
-                  <div class="text-center">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo-partner/logo 250x250/logo-ph.png') }}">
-                  </div>
                 </div>
               </div>
             </div>
@@ -1168,13 +1138,29 @@
         </div>
         <br class="d-block d-md-none"><br class="d-block d-md-none"><br class="d-block d-md-none">
         <div class="col-md-1 col-lg-1 col-12">
-          @include ('counter')
+          <div class="row">
+            <div class="col-3">
+                @include ('counter')
+            </div>
+            <div class="col-9" style="font-size: 14px;">
+              <div class="text-center d-block d-md-none" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
+                <span class="text-dark">WWW.ViiCHECK.com</span>
+                <br>
+                <span class="text-dark">•<span>
+                <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a>
+                <br>
+                <span class="text-dark">•<span>
+                <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Section: Images -->
     </div>
 
-    <div class="text-center" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
+    <!-- คอม -->
+    <div class="text-center d-none d-lg-block" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
       <span class="text-dark">WWW.ViiCHECK.com</span> <span class="text-dark">•<span>
           <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a> <span class="text-dark">•<span>
               <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
