@@ -1143,8 +1143,8 @@
             <div class="col-4">
                 @include ('counter')
             </div>
-            <div class="col-8" style="font-size: 13px;">
-              <div style="margin-left: -80px;margin-top: 12px;" class="text-center d-block d-md-none">
+            <div class="col-8" style="font-size: 12px;">
+              <div style="margin-left: -70px;margin-top: 12px;" class="text-center d-block d-md-none">
                 <span class="text-dark">WWW.ViiCHECK.com</span>
                 <br>
                 <span class="text-dark">•<span>
