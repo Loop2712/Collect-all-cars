@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
+use App\Models\Nationality;
+
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\LineMessagingAPI;
 use Illuminate\Support\Facades\Mail;
@@ -53,10 +55,21 @@ class Sos_mapController extends Controller
      */
     public function create(Request $request)
     {
+        
         $text_sos = $request->get('text');
 
         $user = Auth::user();
-
+        if (!empty($user->nationalitie)){
+            $nationalitie = Nationality::where('nationality',$user->nationalitie)->get();
+            foreach ($nationalitie as $item) {
+                $nationalitie_tel = $item->tel;
+            }
+            return view('sos_map.create', compact('user','text_sos','nationalitie_tel'));
+        }
+        // echo "<pre>";
+        // print_r($nationalitie_tel);
+        // echo "<pre>";
+        // exit();
         return view('sos_map.create', compact('user','text_sos'));
     }
 
@@ -71,7 +84,7 @@ class Sos_mapController extends Controller
     {
         
         $requestData = $request->all();
-
+ 
         if (!empty($requestData['text_img'])) {
 
             $name_file_img = uniqid('photo_sos-', true);
