@@ -1143,7 +1143,7 @@
                 @include ('counter')
             </div>
             <div class="col-8" style="font-size: 13px;">
-              <div class="text-center d-block d-md-none" style="background-color: #F1F7FD;padding:0px 25px 25px 25px;">
+              <div class="text-center d-block d-md-none">
                 <span class="text-dark">WWW.ViiCHECK.com</span>
                 <br>
                 <span class="text-dark">•<span>
