@@ -1289,7 +1289,7 @@
 
     let full_url = document.querySelector('#full_url').value;
 
-    if (full_url === "https://www.viicheck.com/" || full_url === "https://www.viicheck.com/home" || full_url === "https://www.viicheck.com/#_=_") {
+    if (full_url === "https://www.viicheck.com" || full_url === "https://www.viicheck.com/home") {
       document.querySelector('#a_up_short').style = "margin-right:80px;margin-bottom: 15px;";
     }
 
