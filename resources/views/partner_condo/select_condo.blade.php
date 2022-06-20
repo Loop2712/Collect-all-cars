@@ -20,7 +20,7 @@
 						</div>
 					</div>
 				</h3>
-				<p>กรุณากรอกข้อมูลด้านล่างเพื่อเริ่มใช้งาน</p>
+				<p style="color:#f07f7f;">กรุณากรอกข้อมูลด้านล่างเพื่อเริ่มใช้งาน</p>
 				<hr>
 				<form>
           <input class="d-none" type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
