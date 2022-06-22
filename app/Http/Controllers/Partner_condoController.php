@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\API\Condo_LineApiController;
 
 use App\Models\Partner_condo;
 use App\Models\User_condo;
