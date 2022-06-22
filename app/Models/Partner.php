@@ -35,4 +35,8 @@ class Partner extends Model
         return $this->hasMany('App\Models\Check_in', 'partner_id');
     }
 
+    public function partner_condo(){
+        return $this->hasOne('App\Models\Partner_condo', 'partner_id');
+    }
+
 }

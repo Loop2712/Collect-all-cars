@@ -224,71 +224,34 @@ class Condo_LineApiController extends Controller
 
     }
 
-    public function set_richmanu_start($provider_id , $device_language)
+
+    public function set_richmanu_language($data_user, $data_condos, $rich_menu_language)
     {
-        switch ($device_language) {
+        $provider_id = $data_user->provider_id ;
+
+        switch ($rich_menu_language) {
             case 'th':
-                $richMenuId_start = "richmenu-7db63f1962320163f3e733a48b9d44bc" ;
+                $richMenuId = $data_condos->rich_menu_TH ;
                 break;
             case 'en':
-                $richMenuId_start = "richmenu-889d55423c76bfc75ae480d3578399ba" ;
+                $richMenuId = $data_condos->rich_menu_EN ;
                 break;
-
-            
-            default:
-                // en
-                $richMenuId_start = "richmenu-889d55423c76bfc75ae480d3578399ba" ;
+            case 'zh-TW':
+                $richMenuId = $data_condos->rich_menu_zh_TW ;
+                break;
+            case 'zh-CN':
+                $richMenuId = $data_condos->rich_menu_zh_CN ;
                 break;
         }
-        // เก่า
-        // $richMenuId_start = "richmenu-fcfe7e45ecac9c831a2ba9da47fab085" ;
 
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
-        $response = $bot->linkRichMenu($provider_id, $richMenuId_start);
-
-        $data = [
-            "title" => "set_richmanu_start",
-            "content" => $provider_id,
-        ];
-        Mylog_condo::create($data);
-
-    }
-
-    public function check_language_user($data_users)
-    {
-        foreach ($data_users as $data_user) {
-            $user_language = $data_user->language ;
-            $provider_id = $data_user->provider_id ;
-        }
-
-        if (empty($user_language)) {
-            // DF ริชเมนู EN 
-            $richMenuId = "richmenu-abf409dee26385d885a3fee64572bca5" ;
-        }else {
-            switch ($user_language) {
-                case 'th':
-                    $richMenuId = "richmenu-454c598f6cc2cfa01d9e61dd08c90f1a" ;
-                    break;
-                case 'en':
-                    $richMenuId = "richmenu-abf409dee26385d885a3fee64572bca5" ;
-                    break;
-            }
-        }
-
-        $this->set_richmanu_language($provider_id , $richMenuId , $user_language);
-        
-    }
-
-    public function set_richmanu_language($provider_id , $richMenuId , $user_language)
-    {
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_ACCESS_TOKEN'));
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CLIENT_SECRET')]);
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($data_condos->channel_access_token);
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $data_condos->channel_secret]);
         $response = $bot->linkRichMenu($provider_id, $richMenuId);
 
         $data = [
-            "title" => "set_richmanu_" . $user_language,
-            "content" => $provider_id,
+            "title" => "set_richmanu_" . $rich_menu_language,
+            "content" => $provider_id . "-" . $data_user->name . "(" . $data_user->id . ")",
+            "condo_id" => $data_condos->id,
         ];
         Mylog_condo::create($data);
     }

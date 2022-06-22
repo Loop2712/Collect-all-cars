@@ -27,5 +27,7 @@ class Partner_condo extends Model
      */
     protected $fillable = ['name', 'name_line_oa', 'link_line_oa', 'channel_access_token', 'channel_secret', 'rich_menu_TH', 'rich_menu_EN', 'rich_menu_zh_TW', 'rich_menu_zh_CN', 'partner_id'];
 
-    
+    public function partner(){
+        return $this->belongsTo('App\Models\Partner', 'partner_id' , 'id'); 
+    }
 }
