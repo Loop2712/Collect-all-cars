@@ -15,6 +15,7 @@ use App\Mail\MailToGuest;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Text_topic;
 use App\User;
+use App\Models\Partner_condo;
 
 class Condo_LineMessagingAPI extends Model
 {
@@ -31,11 +32,7 @@ class Condo_LineMessagingAPI extends Model
     	switch($message_type)
         {   
             case 'hello':
-                // $template_path = storage_path('../public/json/text_success.json'); 
-                $template_path = {
-                                   "type": "text",
-                                   "text": "สวัสดีครับ (ตอบกลับ)"
-                                }
+                $template_path = storage_path('../public/json/text_success.json');
 
                 $string_json = file_get_contents($template_path);
 
