@@ -25,66 +25,7 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $data_users = User::where('id' , 1)->get();
-
-        foreach ($data_users as $item) {
-            $provider_id = $item->provider_id ;
-            $status_role = $item->role ;
-        }
-
-        switch ($status_role) {
-            case 'AAA':
-                $CHANNEL_ACCESS_TOKEN = "NRxjYpcw4EquaNMRsLcMs2lmjNS+05u4A2bhg/smJhqErM76hPQXYJH96h+qSumi7WucQk44QP83EBAkahtjMIbRS9hCv26G7GyeaMlN8HGbcRjhb/SnwuYshLqfa1MtFjk3WGL8tWQd+BOeyGLGDQdB04t89/1O/w1cDnyilFU=" ;
-                $LINE_CLIENT_SECRET = "673b705d517f882b57239af15b9ead2b";
-                $richMenuId = "richmenu-fd1ec452d620df42a481542298b3d343" ;
-                break;
-
-            case 'Vii':
-                $CHANNEL_ACCESS_TOKEN = "VsNZQKpv/ojbmRVXqM6v4PdOHGG5MKQblyKr4LuXo0jyGGRkaNBRLmEBQKE1BzLRNA9SPWTBr4ooOYPusYcwuZjsy6khvF717wmNnAEBu4oeppBc/woRCLiPqz3X5xTCMrEwxvrExidXIidR9SWUxAdB04t89/1O/w1cDnyilFU=" ;
-                $LINE_CLIENT_SECRET = "bd789f47e55a0a41dba530a677f75333";
-                $richMenuId = "richmenu-454c598f6cc2cfa01d9e61dd08c90f1a" ;
-                break;
-            
-        }
-
-        // เซ็ตริชเมนู
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($CHANNEL_ACCESS_TOKEN);
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $LINE_CLIENT_SECRET]);
-        $response = $bot->linkRichMenu($provider_id, $richMenuId);
-
-        // exit();
-
-
-        // ส่งข้อความ
-        $template_path = storage_path('../public/json/text_success.json');   
-
-        $string_json = file_get_contents($template_path);
-        $messages = [ json_decode($string_json, true) ];
-
-        $body = [
-            "to" => $provider_id,
-            "messages" => $messages,
-        ];
-
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.$CHANNEL_ACCESS_TOKEN,
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
-        $result = file_get_contents($url, false, $context);
-
-        return "ส่งข้อความแล้ว";
-
-        exit();
-
-
+        
         $brand     = $request->get('brand');
         $typecar   = $request->get('typecar');
         $year      = $request->get('year');
