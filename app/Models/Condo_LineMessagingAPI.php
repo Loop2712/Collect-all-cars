@@ -32,7 +32,7 @@ class Condo_LineMessagingAPI extends Model
     	switch($message_type)
         {   
             case 'hello':
-                $template_path = storage_path('../public/json/text_success.json'); 
+                $template_path = storage_path('../public/json/test_hello.json'); 
                 $string_json = file_get_contents($template_path);
 
                 $messages = [ json_decode($string_json, true) ]; 
