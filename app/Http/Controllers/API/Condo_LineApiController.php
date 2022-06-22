@@ -92,7 +92,6 @@ class Condo_LineApiController extends Controller
 
         switch( $event["message"]["text"] )
         {     
-            $x = "x" ;
             // case "อื่นๆ" :  
             //     $line_condo->replyToUser(null, $event, "other");
             //     break;
