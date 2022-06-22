@@ -20,20 +20,23 @@ class Condo_LineMessagingAPI extends Model
 {
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
-    public function replyToUser($data_line_condos, $event, $message_type)
+    public function replyToUser($event , $condo_id, $message_type)
     {   
-        foreach ($data_line_condos as $item_condo) {
-            $channel_access_token = $item_condo->channel_access_token ;
-            $condo_id = $item_condo->condo_id ;
-        }
+        $data_condos = Partner_condo::where('id' , $condo_id)->first();
+        $channel_access_token; = $data_condos->channel_access_token;
+
+        $provider_id = $event["source"]['userId'];
+        $user = User::where('provider_id', $provider_id)->first();
 
     	switch($message_type)
         {   
-            case 'other':
-                $provider_id = $event["source"]['userId'];
-                $user = User::where('provider_id', $provider_id)->get();
+            case 'hello':
+                // $template_path = storage_path('../public/json/text_success.json'); 
+                $template_path = {
+                                   "type": "text",
+                                   "text": "สวัสดีครับ (ตอบกลับ)"
+                                }
 
-                $template_path = storage_path('../public/json/text_success.json'); 
                 $string_json = file_get_contents($template_path);
 
                 $messages = [ json_decode($string_json, true) ]; 
@@ -63,7 +66,7 @@ class Condo_LineMessagingAPI extends Model
 
         //SAVE LOG
         $data = [
-            "title" => "reply Success",
+            "title" => "reply TO >> " . $user->name . "(" . $user->id . ")" ,
             "content" => "reply Success",
             "condo_id" => $condo_id,
         ];

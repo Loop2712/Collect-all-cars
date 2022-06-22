@@ -14,6 +14,7 @@ use App\Models\Sos_map;
 use App\Models\Partner;
 use App\Models\Partner_condo;
 use App\User;
+use App\Models\User_condo;
 
 class Condo_LineApiController extends Controller
 {
@@ -24,58 +25,56 @@ class Condo_LineApiController extends Controller
 
         //GET ONLY FIRST EVENT
         $event = $requestData["events"][0];
-
-        // หาว่าเป็นข้อความที่ส่งมาจากไลน์ไหน
-        // $data_postback_explode = explode("From_LINE=",$event["postback"]["data"]);
-        // $From_LINE = $data_postback_explode[1] ;
-        // // ข้อมูลไลน์คอนโด
-        // $data_line_condos = Partner_condo::where('id' , $From_LINE)->get();
+        $condo_id = $requestData["condo_id"];
 
         $data = [
             "title" => "LINE INPUT",
             "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
-            "condo_id" => "",
+            "condo_id" => $condo_id,
         ];
         Mylog_condo::create($data);  
 
-        // switch($event["type"]){
-        //     case "message" : 
-        //         $this->messageHandler($event);
-        //         break;
-        //     case "postback" : 
-        //         $this->postbackHandler($event , $data_line_condos);
-        //         break;
-        //     case "join" :
-        //         $this->save_group_line($event);
-        //         break;
-        //     case "follow" :
-        //         $this->user_follow_line($event);
-        //         // DB::table('users')
-        //         //     ->where([ 
-        //         //             ['type', 'line'],
-        //         //             ['provider_id', $event['source']['userId']],
-        //         //             ['status', "active"] 
-        //         //         ])
-        //         //     ->update(['add_line' => 'Yes']);
-        //         break;
-        // }
+        switch($event["type"]){
+            case "message" : 
+                $this->messageHandler($event , $condo_id);
+                break;
+            case "postback" : 
+                $this->postbackHandler($event , $condo_id);
+                break;
+            // case "join" :
+            //     $this->save_group_line($event);
+            //     break;
+            case "follow" :
+                // SET RICH MENU LINE
+                $this->set_richmanu_language($requestData['userId'], $condo_id);
+
+                // UPDATE USER ADDLINE
+                DB::table('users')
+                    ->where([ 
+                            ['type', 'line'],
+                            ['provider_id', $event['source']['userId']],
+                            ['status', "active"] 
+                        ])
+                    ->update(['add_line' => 'Yes']);
+                break;
+        }
 	}
 
-	public function messageHandler($event)
+	public function messageHandler($event , $condo_id)
     {
         switch($event["message"]["type"]){
             case "text" : 
-                $this->textHandler($event);
+                $this->textHandler($event , $condo_id);
                 break;
         } 
 
     }
 
-    public function postbackHandler($event, $data_line_condos)
+    public function postbackHandler($event , $condo_id)
     {
         $line_condo = new Condo_LineMessagingAPI();
-    	
-        $data_postback_explode = explode("From_LINE=",$event["postback"]["data"]);
+
+        $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
 
         switch($data_postback){
@@ -86,15 +85,15 @@ class Condo_LineApiController extends Controller
 
     }
 
-    public function textHandler($event)
+    public function textHandler($event , $condo_id)
     {
         $line_condo = new Condo_LineMessagingAPI();
 
         switch( $event["message"]["text"] )
         {     
-            // case "อื่นๆ" :  
-            //     $line_condo->replyToUser(null, $event, "other");
-            //     break;
+            case "สวัสดีครับ" :  
+                $line_condo->replyToUser($event , $condo_id , "hello");
+                break;
             // case "ข่าวสาร" :  
             //     $line_condo->replyToUser(null, $event, "vnews");
             //     break;
@@ -102,10 +101,13 @@ class Condo_LineApiController extends Controller
 
     }
 
-    public function set_richmanu_language($user_id, $data_condos, $rich_menu_language)
+    public function set_richmanu_language($provider_id, $condo_id)
     {
-        $data_user = User::where('id' , $user_id)->first();
-        $provider_id = $data_user->provider_id ;
+        $data_user = User::where('provider_id' , $provider_id)->first();
+        $user_condos = User_condo::where('user_id' , $data_user->id)->where('condo_id' , $condo_id)->first();
+        $data_condos = Partner_condo::where('id' , $condo_id)->first();
+
+        $rich_menu_language = $user_condos->rich_menu_language ;
 
         switch ($rich_menu_language) {
             case 'th':

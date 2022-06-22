@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\API\Condo_LineApiController;
 
 use App\Models\Partner_condo;
 use App\Models\User_condo;
@@ -176,11 +175,6 @@ class Partner_condoController extends Controller
                 'language' => $requestData['rich_menu_language'],
                 'condo_id' => $condo_id_all,
             ]);
-
-        // set rich menu line
-        $set_rich_menu = new Condo_LineApiController();
-
-        $set_rich_menu->set_richmanu_language($requestData['user_id'], $data_condos, $requestData['rich_menu_language']);
 
         return view('partner_condo.add_line_condo', compact('data_condos'));
     }
