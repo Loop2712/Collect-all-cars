@@ -38,27 +38,27 @@ class Condo_LineApiController extends Controller
         ];
         Mylog_condo::create($data);  
 
-        switch($event["type"]){
-            case "message" : 
-                $this->messageHandler($event);
-                break;
-            case "postback" : 
-                $this->postbackHandler($event , $data_line_condos);
-                break;
-            case "join" :
-                $this->save_group_line($event);
-                break;
-            case "follow" :
-                $this->user_follow_line($event);
-                // DB::table('users')
-                //     ->where([ 
-                //             ['type', 'line'],
-                //             ['provider_id', $event['source']['userId']],
-                //             ['status', "active"] 
-                //         ])
-                //     ->update(['add_line' => 'Yes']);
-                break;
-        }
+        // switch($event["type"]){
+        //     case "message" : 
+        //         $this->messageHandler($event);
+        //         break;
+        //     case "postback" : 
+        //         $this->postbackHandler($event , $data_line_condos);
+        //         break;
+        //     case "join" :
+        //         $this->save_group_line($event);
+        //         break;
+        //     case "follow" :
+        //         $this->user_follow_line($event);
+        //         // DB::table('users')
+        //         //     ->where([ 
+        //         //             ['type', 'line'],
+        //         //             ['provider_id', $event['source']['userId']],
+        //         //             ['status', "active"] 
+        //         //         ])
+        //         //     ->update(['add_line' => 'Yes']);
+        //         break;
+        // }
 	}
 
 	public function messageHandler($event)
