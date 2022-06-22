@@ -91,8 +91,8 @@ class Condo_LineApiController extends Controller
 
         switch( $event["message"]["text"] )
         {     
-            case "ซ่อมบำรุง" :  
-                $line_condo->replyToUser($event , $condo_id , "aaa");
+            case "สวัสดีครับ" :  
+                $line_condo->replyToUser($event , $condo_id , "hello");
                 break;
             // case "ข่าวสาร" :  
             //     $line_condo->replyToUser(null, $event, "vnews");
