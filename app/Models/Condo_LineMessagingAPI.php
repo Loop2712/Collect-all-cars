@@ -27,13 +27,11 @@ class Condo_LineMessagingAPI extends Model
         $channel_access_token; = $data_condos->channel_access_token;
 
         $provider_id = $event["source"]['userId'];
-        $user = User::where('provider_id', $provider_id)->first();
 
     	switch($message_type)
         {   
             case 'hello':
-                $template_path = storage_path('../public/json/text_success.json');
-
+                $template_path = storage_path('../public/json/text_success.json');   
                 $string_json = file_get_contents($template_path);
 
                 $messages = [ json_decode($string_json, true) ]; 
@@ -63,7 +61,7 @@ class Condo_LineMessagingAPI extends Model
 
         //SAVE LOG
         $data = [
-            "title" => "reply TO >> " . $user->name . "(" . $user->id . ")" ,
+            "title" => "reply TO >> " . $provider_id,
             "content" => "reply Success",
             "condo_id" => $condo_id,
         ];
