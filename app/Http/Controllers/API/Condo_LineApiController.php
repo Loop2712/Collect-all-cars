@@ -26,10 +26,10 @@ class Condo_LineApiController extends Controller
         $event = $requestData["events"][0];
 
         // หาว่าเป็นข้อความที่ส่งมาจากไลน์ไหน
-        $data_postback_explode = explode("From_LINE=",$event["postback"]["data"]);
-        $From_LINE = $data_postback_explode[1] ;
-        // ข้อมูลไลน์คอนโด
-        $data_line_condos = Partner_condo::where('id' , $From_LINE)->get();
+        // $data_postback_explode = explode("From_LINE=",$event["postback"]["data"]);
+        // $From_LINE = $data_postback_explode[1] ;
+        // // ข้อมูลไลน์คอนโด
+        // $data_line_condos = Partner_condo::where('id' , $From_LINE)->get();
 
         $data = [
             "title" => "LINE INPUT",
