@@ -130,7 +130,7 @@ class Condo_LineApiController extends Controller
 
         $data = [
             "title" => "set_richmanu_" . $rich_menu_language,
-            "content" => $provider_id . "-" . $data_user->name . "(" . $data_user->id . ")",
+            "content" => $provider_id . " / " . $data_user->name . "(" . $data_user->id . ")",
             "condo_id" => $data_condos->id,
         ];
         Mylog_condo::create($data);
