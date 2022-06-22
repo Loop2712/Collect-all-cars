@@ -210,6 +210,8 @@ Route::middleware(['auth'])->group(function () {
 	});
 	
 	Route::get('select_condo', 'Partner_condoController@select_condo');
+	Route::get('/data_user_of_condo', 'Partner_condoController@data_user_of_condo');
+
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');

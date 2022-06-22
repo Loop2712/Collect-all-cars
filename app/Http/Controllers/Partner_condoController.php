@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Partner_condo;
+use App\Models\User_condo;
+use App\User;
 use Illuminate\Http\Request;
 
 class Partner_condoController extends Controller
@@ -134,5 +137,47 @@ class Partner_condoController extends Controller
         $all_condo = Partner_condo::get() ;
 
         return view('partner_condo.select_condo', compact('all_condo'));
+    }
+
+    public function data_user_of_condo(Request $request)
+    {
+        
+        $requestData = $request->all();
+
+        $data_user = User::where('id' , $requestData['user_id'])->get();
+
+        $data_condos = Partner_condo::where('id' , $requestData['condo_id'])->first();
+        $requestData['name_condo'] = $data_condos->name ;
+
+        User_condo::create($requestData);
+
+        $id_condo = $data_condos->id ;
+
+        foreach ($data_user as $user) {
+            if (empty($user->condo_id)) {
+                $condo_id_all = array($id_condo) ;
+            }else{
+                $condo_id_all = json_decode($user->condo_id) ;
+                if (in_array($id_condo , $condo_id_all)){
+                    $condo_id_all = $condo_id_all ;
+                }
+                else{   
+                    array_push($condo_id_all , $id_condo) ;
+                }
+            }
+        }
+
+        DB::table('users')
+            ->where('id', $requestData['user_id'])
+            ->update([
+                'name_staff' => $requestData['name'] . " " . $requestData['last_name'],
+                'phone' => $requestData['phone'],
+                'language' => $requestData['rich_menu_language'],
+                'condo_id' => $condo_id_all,
+            ]);
+
+        // set rich menu line
+
+        return view('partner_condo.add_line_condo', compact('data_condos'));
     }
 }
