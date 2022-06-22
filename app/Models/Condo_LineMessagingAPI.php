@@ -26,11 +26,11 @@ class Condo_LineMessagingAPI extends Model
         $data_condos = Partner_condo::where('id' , $condo_id)->first();
         $channel_access_token; = $data_condos->channel_access_token;
 
-        $provider_id = $event["source"]['userId'];
-
     	switch($message_type)
         {   
-            case 'hello':
+            case 'aaa':
+                $provider_id = $event["source"]['userId'];
+                
                 $template_path = storage_path('../public/json/text_success.json');   
                 $string_json = file_get_contents($template_path);
 
