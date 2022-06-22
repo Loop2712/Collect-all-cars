@@ -225,8 +225,9 @@ class Condo_LineApiController extends Controller
     }
 
 
-    public function set_richmanu_language($data_user, $data_condos, $rich_menu_language)
+    public function set_richmanu_language($user_id, $data_condos, $rich_menu_language)
     {
+        $data_user = User::where('id' , $user_id)->first();
         $provider_id = $data_user->provider_id ;
 
         switch ($rich_menu_language) {

@@ -180,7 +180,7 @@ class Partner_condoController extends Controller
         // set rich menu line
         $set_rich_menu = new Condo_LineApiController();
 
-        $set_rich_menu->set_richmanu_language($data_user, $data_condos, $requestData['rich_menu_language']);
+        $set_rich_menu->set_richmanu_language($requestData['user_id'], $data_condos, $requestData['rich_menu_language']);
 
         return view('partner_condo.add_line_condo', compact('data_condos'));
     }
