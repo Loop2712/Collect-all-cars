@@ -35,6 +35,18 @@ class SosmapController extends Controller
     {
         $data_partners = DB::table('partners')
             ->where('name_area' , '!=' , null)
+            ->where('type_partner' , '!=' , 'condo')
+            ->get();
+
+        return $data_partners ;
+    }
+
+    public function area_condo_id($condo_id)
+    {
+        $data_partners = DB::table('partners')
+            ->where('name_area' , '!=' , null)
+            ->where('type_partner' , 'condo')
+            ->where('condo_id' , $condo_id)
             ->get();
 
         return $data_partners ;
