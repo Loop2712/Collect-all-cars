@@ -55,7 +55,7 @@ class Sos_mapController extends Controller
      */
     public function create(Request $request)
     {
-        
+        $condo_id = $request->get('condo_id');
         $text_sos = $request->get('text');
 
         $user = Auth::user();
@@ -64,13 +64,13 @@ class Sos_mapController extends Controller
             foreach ($nationalitie as $item) {
                 $nationalitie_tel = $item->tel;
             }
-            return view('sos_map.create', compact('user','text_sos','nationalitie_tel'));
+            return view('sos_map.create', compact('user','text_sos','nationalitie_tel', 'condo_id'));
         }
         // echo "<pre>";
         // print_r($nationalitie_tel);
         // echo "<pre>";
         // exit();
-        return view('sos_map.create', compact('user','text_sos'));
+        return view('sos_map.create', compact('user','text_sos', 'condo_id'));
     }
 
     /**
@@ -232,13 +232,27 @@ class Sos_mapController extends Controller
     public function sos_login(Request $request)
     {
         $requestData = $request->all();
-        $condo_id = $requestData['condo_id'];
 
-        if(Auth::check()){
-            return redirect('sos_map/create?condo_id=' . $condo_id);
+        if (!empty($requestData['condo_id'])) {
+            
+            $condo_id = $requestData['condo_id'];
+
+            if(Auth::check()){
+                return redirect('sos_map/create?condo_id=' . $condo_id);
+            }else{
+                return redirect('login/line?redirectTo=sos_map/create?condo_id=' . $condo_id);
+            }
+
         }else{
-            return redirect('login/line?redirectTo=sos_map/create?condo_id=' . $condo_id);
+
+            if(Auth::check()){
+                return redirect('sos_map/create');
+            }else{
+                return redirect('login/line?redirectTo=sos_map/create');
+            }
+
         }
+        
     }
 
     public function sos_login_facebook()
