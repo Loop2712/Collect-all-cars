@@ -47,15 +47,6 @@ class Condo_LineApiController extends Controller
             case "follow" :
                 // SET RICH MENU LINE
                 $this->set_richmanu_language($event["source"]['userId'], $condo_id);
-
-                // UPDATE USER ADDLINE
-                DB::table('users')
-                    ->where([ 
-                            ['type', 'line'],
-                            ['provider_id', $event['source']['userId']],
-                            ['status', "active"] 
-                        ])
-                    ->update(['add_line' => 'Yes']);
                 break;
         }
 	}

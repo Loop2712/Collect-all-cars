@@ -229,12 +229,15 @@ class Sos_mapController extends Controller
         return view('sos_map.sos_insurance', compact('register_car','latlng','name_insurance','select_ins'));
     }
 
-    public function sos_login()
+    public function sos_login(Request $request)
     {
+        $requestData = $request->all();
+        $condo_id = $requestData['condo_id'];
+
         if(Auth::check()){
-            return redirect('sos_map/create');
+            return redirect('sos_map/create?condo_id=' . $condo_id);
         }else{
-            return redirect('login/line?redirectTo=sos_map/create');
+            return redirect('login/line?redirectTo=sos_map/create?condo_id=' . $condo_id);
         }
     }
 
