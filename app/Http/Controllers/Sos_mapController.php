@@ -234,7 +234,7 @@ class Sos_mapController extends Controller
         $requestData = $request->all();
 
         if (!empty($requestData['condo_id'])) {
-            
+
             $condo_id = $requestData['condo_id'];
 
             if(Auth::check()){

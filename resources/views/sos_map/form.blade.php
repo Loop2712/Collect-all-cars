@@ -252,35 +252,18 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        if ( {{ $condo_id }} ) {
 
-            fetch("{{ url('/') }}/api/sos_map/area_condo_id/" + {{ $condo_id }})
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    result_area = result ;
+        fetch("{{ url('/') }}/api/sos_map/all_area")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                result_area = result ;
 
-                    if (typeof result_area !== "undefined") {
-                        // console.log(result_area)
-                        getLocation();
-                    }
-            });
-
-        }else{
-            fetch("{{ url('/') }}/api/sos_map/all_area")
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    result_area = result ;
-
-                    if (typeof result_area !== "undefined") {
-                        // console.log(result_area)
-                        getLocation();
-                    }
-            });
-        }
-
-        
+                if (typeof result_area !== "undefined") {
+                    // console.log(result_area)
+                    getLocation();
+                }
+        });
 
         let phone = document.querySelector('#phone').value ;
 
