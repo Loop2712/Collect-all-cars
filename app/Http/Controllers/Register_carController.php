@@ -260,6 +260,8 @@ class Register_carController extends Controller
         $requestData['location_A_2'] = "" ;
         $requestData['location_P_2'] = "" ;
         $requestData['branch'] = "" ;
+        $requestData['branch_district'] = "" ;
+        $requestData['branch_province'] = "" ;
 
         if ( empty($requestData['branch']) and !empty($requestData['juristicNameTH'])) {
             $requestData['branch'] = "สำนักงานใหญ";
