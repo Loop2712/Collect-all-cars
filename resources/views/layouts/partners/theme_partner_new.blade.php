@@ -85,6 +85,98 @@
 			</div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+				@if(Auth::check())
+                    @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
+		                <li class="menu-label" style="font-size:15px;">
+		                    Admin
+		                </li>
+		                <li>
+							<a href="{{ url('/manage_user_partner') }}">
+								<div class="parent-icon"><i class='fas fa-users-cog'></i>
+								</div>
+								<div class="menu-title">จัดการผู้ใช้</div>
+							</a>
+						</li>
+					@endif
+				@endif
+
+				<!-- สำหรับ องค์กร / คอนโด -->
+				@if(Auth::check())
+                    @if(Auth::user()->role == "admin-condo")
+		                <li class="menu-label" style="font-size:15px;">
+		                    For Corporation
+		                </li>
+		                <li>
+							<a href="{{ url('/sos_partner') }}">
+								<div class="parent-icon"><i class='fas fa-hands-helping'></i>
+								</div>
+								<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
+								<div id="div_menu_help" class="d-none">
+									&nbsp;
+									<i class="fas fa-exclamation-circle notify_alert"></i>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/add_area') }}">
+								<div class="parent-icon"><i class='far fa-map'></i>
+								</div>
+								<div class="menu-title">พื้นที่บริการ</div>
+							</a>
+						</li>
+		                <li>
+							<a href="{{ url('/parcel') }}">
+								<div class="parent-icon"><i class="fas fa-truck-loading"></i>
+								</div>
+								<div class="menu-title">พัสดุ</div>
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/notify_repair') }}">
+								<div class="parent-icon"><i class="fas fa-tools"></i>
+								</div>
+								<div class="menu-title">แจ้งซ่อม</div>
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/cleaning_appointment') }}">
+								<div class="parent-icon"><i class="fas fa-broom"></i>
+								</div>
+								<div class="menu-title">นัดหมายทำความสะอาด</div>
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/bill_payment') }}">
+								<div class="parent-icon"><i class="fas fa-file-invoice-dollar"></i>
+								</div>
+								<div class="menu-title">บิลเรียกชำระ</div>
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/news_condo') }}">
+								<div class="parent-icon"><i class="fas fa-newspaper"></i>
+								</div>
+								<div class="menu-title">ข่าวสาร</div>
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/report_condo') }}">
+								<div class="parent-icon"><i class="fas fa-exclamation-circle"></i>
+								</div>
+								<div class="menu-title">การแจ้งปัญหา</div>
+							</a>
+						</li>
+						<li>
+							<a href="{{ url('/report_condo') }}">
+								<div class="parent-icon"><i class="fas fa-tasks"></i>
+								</div>
+								<div class="menu-title">แบบประเมิน</div>
+							</a>
+						</li>
+					@endif
+				@endif
+				<!-- สิ้นสุด สำหรับ องค์กร / คอนโด -->
+
 				<li class="menu-label" style="font-size:15px;">
                     Vii Care
                 </li>
@@ -133,20 +225,26 @@
 						<div class="menu-title">รถที่ถูกรายงานล่าสุด</div>
 					</a>
 				</li>
-                <li class="menu-label" style="font-size:15px;">
-                    Vii SOS
-                </li>
-                <li>
-					<a href="{{ url('/sos_partner') }}">
-						<div class="parent-icon"><i class='fas fa-hands-helping'></i>
-						</div>
-						<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
-						<div id="div_menu_help" class="d-none">
-							&nbsp;
-							<i class="fas fa-exclamation-circle notify_alert"></i>
-						</div>
-					</a>
-				</li>
+                
+                @if(Auth::check())
+                    @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
+                    <li class="menu-label" style="font-size:15px;">
+	                    Vii SOS
+	                </li>
+	                <li>
+						<a href="{{ url('/sos_partner') }}">
+							<div class="parent-icon"><i class='fas fa-hands-helping'></i>
+							</div>
+							<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
+							<div id="div_menu_help" class="d-none">
+								&nbsp;
+								<i class="fas fa-exclamation-circle notify_alert"></i>
+							</div>
+						</a>
+					</li>
+					@endif
+				@endif
+
 				@if(Auth::check())
                     @if(Auth::user()->role == "admin-partner")
 		                <li>
@@ -156,18 +254,9 @@
 								<div class="menu-title">พื้นที่บริการ</div>
 							</a>
 						</li>
-		                <li class="menu-label" style="font-size:15px;">
-		                    จัดการผู้ใช้
-		                </li>
-		                <li>
-							<a href="{{ url('/manage_user_partner') }}">
-								<div class="parent-icon"><i class='fas fa-users-cog'></i>
-								</div>
-								<div class="menu-title">จัดการผู้ใช้</div>
-							</a>
-						</li>
 					@endif
 				@endif
+
                 <li class="menu-label" style="font-size:15px;">
                     อื่นๆ
                 </li>
@@ -243,6 +332,9 @@
                                         @case('admin-partner')
                                             แอดมิน
                                         @break
+                                        @case('admin-condo')
+                                            แอดมิน
+                                        @break
                                     @endswitch
 								</p>
 							</div>
@@ -282,7 +374,7 @@
 	<!--start switcher-->
 	<div class="switcher-wrapper">
 		@if(Auth::check())
-            @if(Auth::user()->role == "admin-partner")
+            @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
 				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style=""> 
 					<i class='bx bx-cog bx-spin'></i>
 				</div>

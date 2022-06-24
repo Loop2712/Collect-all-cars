@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "photo",
+            "type": "file"
+        },
+        {
+            "name": "name_staff",
+            "type": "string"
+        },
+        {
+            "name": "time_in",
+            "type": "datetime"
+        },
+        {
+            "name": "time_out",
+            "type": "datetime"
+        },
+        {
+            "name": "staff_id",
+            "type": "integer"
+        },
+        {
+            "name": "condo_id",
+            "type": "integer"
+        },
+        {
+            "name": "user_condo_id",
+            "type": "integer"
+        }
+    ]
+}

@@ -144,7 +144,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // END ADMIN VIICHECK
 
 //admin-partner
-Route::middleware(['auth', 'role:admin-partner,partner'])->group(function () {
+Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(function () {
 	
 	// Route::get('/partner_theme', 'PartnerController@partner_theme');
 	Route::get('/partner_index', 'PartnerController@partner_index');
@@ -170,6 +170,8 @@ Route::middleware(['auth', 'role:admin-partner,partner'])->group(function () {
 		Route::get('/check_in/add_new_check_in', 'PartnerController@add_new_check_in');
 		Route::get('/check_in/gallery', 'PartnerController@gallery');
 		Route::get('/partner_media', 'PartnerController@partner_media');
+
+	Route::resource('parcel', 'ParcelController');
 
 });
 // end admin-partner
