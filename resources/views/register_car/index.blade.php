@@ -46,23 +46,7 @@
                     </a>
                 </div>
                 <div class="col-6">
-                    <!-- <div style="float:right;">
-                        @if(!empty($type_car))
-                            @switch($type_car)
-                                @case('all')
-                                    <img class="" id="img_show_car" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
-                                    &nbsp;&nbsp;
-                                    <img class="" id="img_show_mortor" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
-                                @break
-                                @case('car')
-                                    <img class="" id="img_show_car" width="40" src="{{ url('/img/icon/menu_car.png' ) }}">
-                                @break
-                                @case('motorcycle')
-                                    <img class="" id="img_show_mortor" width="40" src="{{ url('/img/icon/menu_motorcycle.png' ) }}">
-                                @break
-                            @endswitch
-                        @endif
-                    </div> -->
+                    <!--  -->
                 </div>
             </div>
         </div>
