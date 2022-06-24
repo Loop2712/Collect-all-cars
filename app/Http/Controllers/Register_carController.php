@@ -264,12 +264,6 @@ class Register_carController extends Controller
         $requestData['branch_district'] = null ;
         $requestData['branch_province'] = null ;
 
-        if ( empty($requestData['branch']) and !empty($requestData['juristicNameTH'])) {
-            $requestData['branch'] = "สำนักงานใหญ";
-            $requestData['branch_district'] = $requestData['location_A_2'];
-            $requestData['branch_province'] = $requestData['location_P_2'];
-        }
-
         // echo "<pre>";
         // print_r($requestData);
         // echo "</pre>";
@@ -283,9 +277,6 @@ class Register_carController extends Controller
                     'location_A' => $requestData['location_A'],
                     'phone' => $requestData['phone'],
                     'organization' => $requestData['juristicNameTH'],
-                    'branch' => $requestData['branch'],
-                    'branch_district' => $requestData['branch_district'],
-                    'branch_province' => $requestData['branch_province'],
                 ]);
         }
         if (!empty(Auth::user()->location_P) and empty(Auth::user()->organization)) {
@@ -294,9 +285,6 @@ class Register_carController extends Controller
                 ->where('id', $requestData['user_id'])
                 ->update([
                     'organization' => $requestData['juristicNameTH'],
-                    'branch' => $requestData['branch'],
-                    'branch_district' => $requestData['branch_district'],
-                    'branch_province' => $requestData['branch_province'],
                 ]);
         }
 
