@@ -308,7 +308,7 @@ class Register_carController extends Controller
         Register_car::create($requestData);
 
         // return view('register_car.select_get')->with('flash_message', 'Register_car added!');
-        return redirect('/select_get?openExternalBrowser=1');
+        return redirect('/select_get_login?openExternalBrowser=1');
     }
 
     /**
@@ -517,6 +517,15 @@ class Register_carController extends Controller
             return redirect('register_car/' . $car_id . '/edit_act');
         }else{
             return redirect('login/line?redirectTo=register_car/' . $car_id . '/edit_act');
+        }
+    }
+
+    public function select_get()
+    {
+        if(Auth::check()){
+            return redirect('/select_get');
+        }else{
+            return redirect('login/line?redirectTo=select_get');
         }
     }
 

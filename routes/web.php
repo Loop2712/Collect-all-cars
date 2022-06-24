@@ -71,6 +71,8 @@ Route::get('/cars', function () {
     return view('auth/login2');
 });
 
+Route::get('/select_get_login', 'Register_carController@select_get');
+
 Route::get('/select_get', function () {
     return view('register_car/select_get');
 });
