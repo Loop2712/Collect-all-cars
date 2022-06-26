@@ -51,11 +51,11 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-8">
-                                <i class="fas fa-address-card"></i> อาคาร : {{ $item->user_condo->building }} ห้อง : {{ $item->user_condo->room_number }}
+                                <span style="line-height: 25px;"><i class="fas fa-address-card"></i> อาคาร : {{ $item->user_condo->building }} ห้อง : {{ $item->user_condo->room_number }}</span>
                                 <br>
-                                <i class="far fa-clock"></i> {{ $item->created_at }}
+                                <span style="line-height: 25px;"><i class="far fa-clock"></i> {{ $item->created_at }}</span>
                                 <br>
-                                <i class="fas fa-user-shield"></i> {{ $item->name_staff }}
+                                <span style="line-height: 25px;"><i class="fas fa-user-shield"></i> {{ $item->name_staff }}</span>
                             </div>
                             <div class="col-4">
                                 <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
