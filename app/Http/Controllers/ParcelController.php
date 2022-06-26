@@ -103,13 +103,14 @@ class ParcelController extends Controller
         $text_arr = explode(",",$requestData['text_arr_user_con_id']);
 
         for ($i=0; $i < count($text_arr); $i++) { 
-            if ($request->hasFile('photo')) {
+            if ($request->hasFile('photo_user_condo_id_' . $text_arr[$i])) {
                 $requestData['photo_user_condo_id_' . $text_arr[$i] ] = $request->file('photo_user_condo_id_' . $text_arr[$i] )->store('uploads', 'public');
+
             }
 
             $data_user_condos = User_condo::where('id' , $text_arr[$i])->first();
 
-            $requestData['photo'] = $requestData['photo_user_condo_id_' . $text_arr[$i]] ;
+            $requestData['photo'] = $requestData['photo_user_condo_id_' . $text_arr[$i]];
             $requestData['user_condo_id'] = $text_arr[$i] ;
             $requestData['building'] = $data_user_condos->building ;
 
