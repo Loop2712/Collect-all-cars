@@ -1,18 +1,49 @@
-@extends('layouts.app')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Create New Parcel</div>
-                    <div class="card-body">
-                        <a href="{{ url('/parcel') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
-
+<div class="row" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="d-flex align-items-center" style="margin-top:10px;">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-9">
+                                <h4 class="font-weight-bold mb-0">
+                                    <b>เพิ่มรายการพัสดุ</b>
+                                </h4>
+                            </div>
+                            <div class="col-3">
+                                <center>
+                                    <div style="margin-top:-12px;">
+                                        อาคาร <br>
+                                        <b class="text-danger" id="span_building">{{ $building }}</b>
+                                    </div>
+                                </center>
+                            </div>
+                            <br><br>
+                            <hr>
+                            <div class="col-12">
+                                @foreach($all_building as $item)
+                                    @if($building == $item->building)
+                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-info text-white" >
+                                            &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
+                                        </a>
+                                    @else
+                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-outline-info" >
+                                            &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" >
+                <div class="row">
+                    <div class="col-12">
                         @if ($errors->any())
                             <ul class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -27,10 +58,11 @@
                             @include ('parcel.form', ['formMode' => 'create'])
 
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 @endsection

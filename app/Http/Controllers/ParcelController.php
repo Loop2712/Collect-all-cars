@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Auth;
 
 use App\Models\Parcel;
 use Illuminate\Http\Request;
+use App\Models\Partner_condo;
+use App\Models\Partner;
+use App\Models\User_condo;
 
 class ParcelController extends Controller
 {
@@ -17,23 +21,33 @@ class ParcelController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
+        $building = $request->get('building');
+        $perPage = 25; 
 
-        if (!empty($keyword)) {
-            $parcel = Parcel::where('photo', 'LIKE', "%$keyword%")
-                ->orWhere('name_staff', 'LIKE', "%$keyword%")
-                ->orWhere('time_in', 'LIKE', "%$keyword%")
-                ->orWhere('time_out', 'LIKE', "%$keyword%")
-                ->orWhere('staff_id', 'LIKE', "%$keyword%")
-                ->orWhere('condo_id', 'LIKE', "%$keyword%")
-                ->orWhere('user_condo_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $parcel = Parcel::latest()->paginate($perPage);
+        $user = Auth::user();
+
+        if ($user->role == "admin-condo") {
+            $name_condo_of_admin = $user->organization ;
+            $data_partners = Partner::where('name' ,$name_condo_of_admin)->where('name_area' , null)->first();
+
+            $condo_id = $data_partners->condo_id ;
+
+            $all_building = User_condo::where('condo_id' , $condo_id)->groupBy('building')->get();
         }
 
-        return view('parcel.index', compact('parcel'));
+        if (!empty($building)) {
+            $parcel = Parcel::where('building', $building)
+                ->where('condo_id', $condo_id)
+                ->latest()
+                ->paginate($perPage);
+        } else {
+            $building = "ทั้งหมด";
+            $parcel = Parcel::where('condo_id', $condo_id)
+                ->latest()
+                ->paginate($perPage);
+        }
+
+        return view('parcel.index', compact('parcel', 'user', 'all_building','building'));
     }
 
     /**
@@ -41,11 +55,36 @@ class ParcelController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        $building = $request->get('building');
+
         $user = Auth::user();
+
+        if ($user->role == "admin-condo") {
+            $name_condo_of_admin = $user->organization ;
+            $data_partners = Partner::where('name' ,$name_condo_of_admin)->where('name_area' , null)->first();
+
+            $condo_id = $data_partners->condo_id ;
+
+            $all_building = User_condo::where('condo_id' , $condo_id)->groupBy('building')->get();
+
+            if (!empty($building)) {
+                $all_user_condos = User_condo::where('condo_id' , $condo_id)
+                    ->where('building', $building)
+                    ->orderBy('building' , 'ASC')
+                    ->orderBy('room_number' , 'ASC')
+                    ->get();
+            } else {
+                $building = "ทั้งหมด";
+                $all_user_condos = User_condo::where('condo_id' , $condo_id)
+                    ->orderBy('building' , 'ASC')
+                    ->orderBy('room_number' , 'ASC')
+                    ->get();
+            }
+        }
         
-        return view('parcel.create');
+        return view('parcel.create', compact('user','condo_id','all_building','building','all_user_condos'));
     }
 
     /**
@@ -57,14 +96,30 @@ class ParcelController extends Controller
      */
     public function store(Request $request)
     {
-        
         $requestData = $request->all();
-                if ($request->hasFile('photo')) {
-            $requestData['photo'] = $request->file('photo')
-                ->store('uploads', 'public');
-        }
+        $date_now = date('d/m/Y h:i:sa');
+        $requestData['time_in'] = $date_now ;
 
-        Parcel::create($requestData);
+        $text_arr = explode(",",$requestData['text_arr_user_con_id']);
+
+        for ($i=0; $i < count($text_arr); $i++) { 
+            if ($request->hasFile('photo')) {
+                $requestData['photo_user_condo_id_' . $text_arr[$i] ] = $request->file('photo')->store('uploads', 'public');
+            }
+
+            $data_user_condos = User_condo::where('id' , $text_arr[$i])->first();
+
+            $requestData['photo'] = $requestData['photo_user_condo_id_' . $text_arr[$i]] ;
+            $requestData['user_condo_id'] = $text_arr[$i] ;
+            $requestData['building'] = $data_user_condos->building ;
+
+            // echo "<pre>";
+            // print_r($requestData);
+            // echo "<pre>";
+            // exit();
+
+            Parcel::create($requestData);
+        }
 
         return redirect('parcel')->with('flash_message', 'Parcel added!');
     }

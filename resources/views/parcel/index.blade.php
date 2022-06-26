@@ -2,17 +2,68 @@
 
 
 @section('content')
+@if($user->role == "admin-condo")
 
-    <div class="container">
+<div class="row" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="d-flex align-items-center" style="margin-top:10px;">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <h4 class="font-weight-bold mb-0">
+                                    <b>รายการพัสดุ</b>
+                                </h4>
+                            </div>
+                            <div class="col-6">
+                                <a style="float: right;" href="{{ url('/parcel/create') }}" class="btn btn-success btn-sm" title="Add New Parcel">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการ
+                                </a>
+                            </div>
+                            <br><br>
+                            <hr>
+                            <div class="col-12">
+                                @foreach($all_building as $item)
+                                    @if($building == $item->building)
+                                        <a href="{{ url('/parcel') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-info text-white" >
+                                            &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
+                                        </a>
+                                    @else
+                                        <a href="{{ url('/parcel') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-outline-info" >
+                                            &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" >
+                <div class="row">
+                    <div class="col-12">
+                        <h5>รายการพัสดุอาคาร : <b style="font-size:25px;" class="text-danger" id="span_building">{{ $building }}</b></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- -------------------------------------------------------------------------- -->
+    <!-- <div class="container-fluid">
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">Parcel</div>
                     <div class="card-body">
-                        <a href="{{ url('/parcel/create') }}" class="btn btn-success btn-sm" title="Add New Parcel">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
+                        
 
                         <form method="GET" action="{{ url('/parcel') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
@@ -60,5 +111,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+@endif
 @endsection

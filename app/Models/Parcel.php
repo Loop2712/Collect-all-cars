@@ -25,7 +25,7 @@ class Parcel extends Model
      *
      * @var array
      */
-    protected $fillable = ['photo', 'name_staff', 'time_in', 'time_out', 'staff_id', 'condo_id', 'user_condo_id'];
+    protected $fillable = ['photo', 'name_staff', 'time_in', 'time_out', 'staff_id', 'condo_id', 'user_condo_id','building'];
 
     
 }
