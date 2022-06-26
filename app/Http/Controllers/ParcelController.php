@@ -97,10 +97,10 @@ class ParcelController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
-        $date_now = date('d/m/Y h:i:sa');
-        $requestData['time_in'] = $date_now ;
 
-        $text_arr = explode(",",$requestData['text_arr_user_con_id']);
+        $text_arr_sp = str_replace("0,","",$requestData['text_arr_user_con_id']);
+
+        $text_arr = explode(",",$text_arr_sp);
 
         for ($i=0; $i < count($text_arr); $i++) { 
             if ($request->hasFile('photo_user_condo_id_' . $text_arr[$i])) {

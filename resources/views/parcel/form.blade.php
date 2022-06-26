@@ -6,7 +6,11 @@
     <br><br>
     @foreach($all_user_condos as $item)
     <div style="font-size:20px;" class="col-12">
-        <input type="checkbox" name="user_condo_id_{{ $item->id }}" id="user_condo_id_{{ $item->id }}" onclick="click_check_box('{{ $item->id }}');"> 
+        <input type="checkbox" name="user_condo_id_{{ $item->id }}" id="user_condo_id_{{ $item->id }}" onclick="if(this.checked){
+                click_check_box('{{ $item->id }}');
+            }else{
+                not_click_check_box('{{ $item->id }}');
+            }"> 
         อาคาร : <span class="text-danger">{{ $item->building }}</span> ห้อง : <span class="text-danger">{{ $item->room_number }}</span> 
 
         <div id="div_photo_user_condo_id_{{ $item->id }}" class="d-none">
@@ -20,7 +24,7 @@
     <hr>
     @endforeach
 
-    <input class="form-control d-none" type="text" name="text_arr_user_con_id" id="text_arr_user_con_id" value="null">
+    <input class="form-control d-none" type="text" name="text_arr_user_con_id" id="text_arr_user_con_id" value="0">
 </div>
 
 <div class="form-group d-none {{ $errors->has('name_staff') ? 'has-error' : ''}}">
@@ -57,22 +61,47 @@
 
 <script>
     function click_check_box(id){
+
         document.querySelector('#photo_user_condo_id_' + id).classList.remove('d-none');
         document.querySelector('#div_photo_user_condo_id_' + id).classList.remove('d-none');
         document.querySelector('#photo_user_condo_id_' + id).required = true ;
 
         let text_arr_user_con_id = document.querySelector('#text_arr_user_con_id');
-            console.log(text_arr_user_con_id.value);
+            // console.log(text_arr_user_con_id.value);
 
         if (text_arr_user_con_id.value != "null") {
-            console.log("add");
+            // console.log("add");
             text_arr_user_con_id.value = text_arr_user_con_id.value + "," + id ;
             // add arr 
         }else{
-            console.log("create");
+            // console.log("create");
             text_arr_user_con_id.value = "" ;
             text_arr_user_con_id.value = id ;
             // create arr
+        }
+
+    }
+
+    function not_click_check_box(id){
+        
+        document.querySelector('#photo_user_condo_id_' + id).classList.add('d-none');
+        document.querySelector('#div_photo_user_condo_id_' + id).classList.add('d-none');
+        document.querySelector('#photo_user_condo_id_' + id).required = false ;
+
+        let text_arr_user_con_id = document.querySelector('#text_arr_user_con_id');
+            // console.log(text_arr_user_con_id.value);
+
+        if (text_arr_user_con_id.value != "0") {
+            // console.log("add");
+            let count_text_arr = text_arr_user_con_id.value.split(",") ;
+
+            // console.log(count_text_arr.length);
+
+            if (count_text_arr.length === 1) {
+                text_arr_user_con_id.value = "0" ;
+            }else{
+                text_arr_user_con_id.value = text_arr_user_con_id.value.replace("," + id , "");
+            }
         }
 
     }
