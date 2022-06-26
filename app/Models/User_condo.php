@@ -27,5 +27,7 @@ class User_condo extends Model
      */
     protected $fillable = ['name', 'last_name', 'phone', 'name_condo', 'building', 'floor', 'room_number', 'rich_menu_language', 'user_id', 'condo_id'];
 
-    
+    public function parcel(){
+        return $this->hasMany('App\Models\Parcel', 'user_condo_id');
+    }
 }

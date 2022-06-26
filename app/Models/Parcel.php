@@ -27,5 +27,7 @@ class Parcel extends Model
      */
     protected $fillable = ['photo', 'name_staff', 'time_in', 'time_out', 'staff_id', 'condo_id', 'user_condo_id','building'];
 
-    
+    public function user_condo(){
+        return $this->belongsTo('App\Models\User_condo', 'user_condo_id' , 'id'); 
+    }
 }

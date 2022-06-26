@@ -45,6 +45,29 @@
                     <div class="col-12">
                         <h5>รายการพัสดุอาคาร : <b style="font-size:25px;" class="text-danger" id="span_building">{{ $building }}</b></h5>
                     </div>
+                    <br><br>
+                    <hr>
+                    @foreach($parcel as $item)
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <i class="fas fa-address-card"></i> อาคาร : {{ $item->user_condo->building }} ห้อง : {{ $item->user_condo->room_number }}
+                                <br>
+                                <i class="far fa-clock"></i> {{ $item->created_at }}
+                                <br>
+                                <i class="fas fa-user-shield"></i> {{ $item->name_staff }}
+                            </div>
+                            <div class="col-4">
+                                <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                    <img style="width:100%;margin-top: 8px;" src="{{ url('storage')}}/{{ $item->photo }}">
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <br><br>
+                    <hr>
+                    @endforeach
                 </div>
             </div>
         </div>
