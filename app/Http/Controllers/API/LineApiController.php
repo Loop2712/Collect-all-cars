@@ -12,6 +12,7 @@ use App\Models\LineMessagingAPI;
 use App\Models\Group_line;
 use App\Models\Sos_map;
 use App\Models\Partner;
+use App\Models\Partner_condo;
 use App\User;
 
 class LineApiController extends Controller
@@ -412,6 +413,13 @@ class LineApiController extends Controller
         $id_organization_helper = $data_data[1] ;
 
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
+
+        if (!empty($data_sos_map->condo_id)) {
+            $condo_id = $data_sos_map->condo_id ;
+        }else{
+            $condo_id = null ;
+        }
+
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
         $users = DB::table('users')->where('provider_id', $provider_id)->get();
@@ -457,7 +465,7 @@ class LineApiController extends Controller
                                 'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
                         ]);
 
-                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id);
+                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id) , $condo_id;
 
                     }else{
                         //
@@ -472,7 +480,7 @@ class LineApiController extends Controller
                             'organization_helper' => $data_partner_helpers->name,
                     ]);
 
-                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id);
+                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
                     
                 }
             }
@@ -551,7 +559,7 @@ class LineApiController extends Controller
         MyLog::create($data);
     }
 
-    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper , $helper_id)
+    protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper , $helper_id, $condo_id)
     {   
         $data_line_group = DB::table('group_lines')
                     ->where('groupName', $data_partner_helpers->line_group)
@@ -629,12 +637,18 @@ class LineApiController extends Controller
         MyLog::create($data);
 
         // ส่งไลน์หา user ที่ขอความช่วยเหลือ
-        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name);
+        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name , $condo_id);
 
     }
 
-    protected function _send_helper_to_user($helper_id , $user_id , $name_partner_helpers)
+    protected function _send_helper_to_user($helper_id , $user_id , $name_partner_helpers , $condo_id)
     {
+        if (!empty($condo_id)) {
+            $data_condos = Partner_condo::where('id' , $condo_id)->first();
+            $channel_access_token = $data_condos->channel_access_token ;
+        }else{
+            $channel_access_token = env('CHANNEL_ACCESS_TOKEN') ;
+        }
 
         $users = DB::table('users')->where('id', $user_id)->get();
         $data_helpers = DB::table('users')->where('id', $helper_id)->get();
@@ -711,7 +725,7 @@ class LineApiController extends Controller
                 'http' =>[
                     'method'  => 'POST',
                     'header'  => "Content-Type: application/json \r\n".
-                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                                'Authorization: Bearer '. $channel_access_token,
                     'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
                     //'timeout' => 60
                 ]

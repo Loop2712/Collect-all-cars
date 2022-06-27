@@ -123,7 +123,13 @@ class Sos_mapController extends Controller
         switch ($requestData['content']) {
             case 'help_area':
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
-                $this->_pushLine($requestData , $id_sos_map);
+                if (!empty($requestData['condo_id'])) {
+                    // condo_id
+                }else{
+                    // not condo_id
+                    $this->_pushLine($requestData , $id_sos_map);
+
+                }
                 break;
         }
         
