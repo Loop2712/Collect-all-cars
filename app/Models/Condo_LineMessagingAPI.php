@@ -15,6 +15,7 @@ use App\Mail\MailToGuest;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Text_topic;
 use App\User;
+use App\Models\User_condo;
 use App\Models\Partner_condo;
 
 class Condo_LineMessagingAPI extends Model
@@ -71,10 +72,68 @@ class Condo_LineMessagingAPI extends Model
 
     }
 
-    public function _pushguestLine($data, $event, $postback_data)
+    public function _push_parcel_To_Line($requestData)
     {
-       //
+        // เวลาปัจจุบัน
+        $datetime =  date("d-m-Y  h:i:sa");
 
+        $data_user = User_condo::where('id' , $requestData['user_condo_id'])->first();
+        $data_condo = Partner_condo::where('id' , $requestData['condo_id'])->first();
+
+        // echo "_push_parcel_To_Line";
+        // echo "<br>";
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
+
+        // $data_Text_topic = [
+        //     "รอคำ",
+        // ];
+
+        // $data_topic = $this->language_for_user($data_Text_topic, $to_user);
+
+        // // TIME ZONE LINE
+        // $API_Time_zone = new API_Time_zone();
+        // $time_zone = $API_Time_zone->change_Time_zone($item->time_zone);
+
+        $template_path = storage_path('../public/json/flex_parcel_to_user.json');   
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ตัวอย่าง","เรียนคุณลูกบ้าน..",$string_json);
+        $string_json = str_replace("<$photo>",$requestData['photo'],$string_json);
+        $string_json = str_replace("<$building>",$data_user->building,$string_json);
+        $string_json = str_replace("<$room_number>",$data_user->room_number,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_user->user->provider_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '. $data_condo->channel_access_token,
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "_push_parcel_To_Line >> " . $data_user->user->name . "(" . $data_user->user->id . ")" ,
+            "content" => "push Success",
+            "condo_id" => $requestData['condo_id'],
+        ];
+        Mylog_condo::create($data);
+
+        return $result ;
     }
 
 

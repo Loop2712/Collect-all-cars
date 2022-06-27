@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Auth;
+use App\Models\Condo_LineMessagingAPI;
 
 use App\Models\Parcel;
 use Illuminate\Http\Request;
@@ -120,6 +121,11 @@ class ParcelController extends Controller
             // exit();
 
             Parcel::create($requestData);
+
+            // ส่งไลน์หาลูกบ้าน
+            $line_condo = new Condo_LineMessagingAPI();
+            $line_condo->_push_parcel_To_Line($requestData);
+
         }
 
         return redirect('parcel')->with('flash_message', 'Parcel added!');

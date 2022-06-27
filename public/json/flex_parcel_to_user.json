@@ -1,0 +1,41 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://www.viicheck.com/storage/<$photo>",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "http://linecorp.com/"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "เรียนลูกบ้าน",
+        "weight": "bold",
+        "size": "lg",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "อาคาร <$building> ห้อง <$room_number>",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "มีพัสดุส่งถึงคุณค่ะ ขอบคุณค่ะ"
+      }
+    ]
+  }
+}
+    
+}

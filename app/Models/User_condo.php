@@ -30,4 +30,8 @@ class User_condo extends Model
     public function parcel(){
         return $this->hasMany('App\Models\Parcel', 'user_condo_id');
     }
+
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id' , 'id'); 
+    }
 }

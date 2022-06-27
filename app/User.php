@@ -53,6 +53,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Check_in', 'user_id');
     }
 
+    public function user_condo(){
+        return $this->hasMany('App\Models\User_condo', 'user_id');
+    }
+
 
     // public function sell(){
     //     return $this->hasMany('App\Sell', 'user_id'); 
