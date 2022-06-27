@@ -371,6 +371,10 @@
                 <a href="{{ url('/partner_index') }}">📊 &nbsp; admin-partner</a>
               <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
               @break
+              @case("admin-condo")
+                <a href="{{ url('/partner_index') }}">📊 &nbsp; For Corporation</a>
+              <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
+              @break
               @case("partner")
               <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; partner</a>
               @break
