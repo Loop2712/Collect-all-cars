@@ -414,11 +414,10 @@ class LineApiController extends Controller
 
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
 
-        $sos_maps_of_condo = Sos_map::where('id' , $id_sos_map)->first();
-        if (!empty($sos_maps_of_condo->condo_id)) {
+        if (!empty($data_sos_map->condo_id)) {
             $condo_id = $data_sos_map->condo_id ;
         }else{
-            $condo_id = "No" ;
+            $condo_id = null ;
         }
 
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
@@ -466,7 +465,7 @@ class LineApiController extends Controller
                                 'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
                         ]);
 
-                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id) , $condo_id;
+                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
 
                     }else{
                         //
@@ -644,7 +643,7 @@ class LineApiController extends Controller
 
     protected function _send_helper_to_user($helper_id , $user_id , $name_partner_helpers , $condo_id)
     {
-        if ($condo_id != "No") {
+        if (!empty($condo_id)) {
             $data_condos = Partner_condo::where('id' , $condo_id)->first();
             $channel_access_token = $data_condos->channel_access_token ;
         }else{
