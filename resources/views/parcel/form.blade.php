@@ -57,16 +57,17 @@
     {!! $errors->first('condo_id', '<p class="help-block">:message</p>') !!}
 </div>
 
-<button style="width: 100%;" class="btn btn-success" onclick="submit_form_parcel();">
-    ยืนยัน
-</button>
-
 <div id="div_spinner_parcel" class="d-none">
     <br>
     <h4 style="color: #7ac142;">
         <div class="spinner-border text-success"></div> กรุณารอสักครู่..
     </h4>
+    <br>
 </div>
+
+<button style="width: 100%;" class="btn btn-success" onclick="submit_form_parcel();">
+    ยืนยัน
+</button>
 
 <div class="form-group">
     <input id="btn_submit_form_parcel" class="d-none" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
