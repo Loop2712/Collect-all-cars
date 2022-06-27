@@ -345,7 +345,9 @@ class PartnerController extends Controller
             $id_condo = $key->condo_id ;
         }
 
-        $data_condos = Partner_condo::where('id' , $id_condo)->first();
+        if (!empty($id_condo)) {
+            $data_condos = Partner_condo::where('id' , $id_condo)->first();
+        }
 
         if (!empty($data_condos)) {
             $partner_condo = "Yes" ;
