@@ -85,17 +85,6 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-
-        if (!empty($requestData['condo_id'])) {
-            echo "condo_id >> " . $requestData['condo_id'] ;
-        }else{
-            echo "not condo_id";
-        }
-        exit();
- 
         if (!empty($requestData['text_img'])) {
 
             $name_file_img = uniqid('photo_sos-', true);
