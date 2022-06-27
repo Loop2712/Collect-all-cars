@@ -35,7 +35,6 @@ class SosmapController extends Controller
     {
         $data_partners = DB::table('partners')
             ->where('name_area' , '!=' , null)
-            ->where('type_partner' , '!=' , 'condo')
             ->get();
 
         return $data_partners ;
