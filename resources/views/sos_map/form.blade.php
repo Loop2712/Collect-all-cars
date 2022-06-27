@@ -43,6 +43,8 @@
         <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
+
+    <input type="text" id="condo_id" name="condo_id" value="{{ $condo_id }}">
     
 
 
@@ -237,7 +239,6 @@
 </div>
 <br><br>
 <input type="hidden" id="text_sos" name="" value="{{ $text_sos }}">
-<input type="hidden" id="condo_id" name="condo_id" value="{{ $condo_id }}">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 <style type="text/css">
