@@ -237,7 +237,7 @@
 </div>
 <br><br>
 <input type="hidden" id="text_sos" name="" value="{{ $text_sos }}">
-<input type="hidden" id="condo_id" name="" value="{{ $condo_id }}">
+<input type="hidden" id="condo_id" name="condo_id" value="{{ $condo_id }}">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 <style type="text/css">

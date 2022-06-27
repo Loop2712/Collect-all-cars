@@ -84,6 +84,11 @@ class Sos_mapController extends Controller
     {
         
         $requestData = $request->all();
+
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
  
         if (!empty($requestData['text_img'])) {
 
