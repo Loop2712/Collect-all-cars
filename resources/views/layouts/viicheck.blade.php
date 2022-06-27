@@ -363,23 +363,23 @@
                 <!-- @if(Auth::user()->role == "admin" )
                             <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
                         @endif -->
-                @switch (Auth::user()->role)
-                @case("admin")
-                <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
-                @break
-                @case("admin-partner")
-                <a href="{{ url('/partner_index') }}">📊 &nbsp; admin-partner</a>
-              <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
-              @break
-              @case("admin-condo")
-                <a href="{{ url('/partner_index') }}">📊 &nbsp; For Corporation</a>
-              <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
-              @break
-              @case("partner")
-              <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; partner</a>
-              @break
-              @endswitch
-              @endif
+                  @switch (Auth::user()->role)
+                    @case("admin")
+                      <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
+                    @break
+                    @case("admin-partner")
+                      <a href="{{ url('/partner_index') }}">📊 &nbsp; admin-partner</a>
+                      <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
+                    @break
+                    @case("admin-condo")
+                      <a href="{{ url('/partner_index') }}">📊 &nbsp; For Corporation</a>
+                      <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
+                    @break
+                    @case("partner")
+                      <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; partner</a>
+                    @break
+                  @endswitch
+                @endif
           </li>
           <li>
             @if (Route::has('password.request'))

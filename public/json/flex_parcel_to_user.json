@@ -5,7 +5,7 @@
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://www.viicheck.com/storage/<$photo>",
+    "url": "https://www.viicheck.com/storage/<photo>",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -27,7 +27,7 @@
       },
       {
         "type": "text",
-        "text": "อาคาร <$building> ห้อง <$room_number>",
+        "text": "อาคาร <building> ห้อง <room_number>",
         "wrap": true
       },
       {
@@ -37,5 +37,5 @@
     ]
   }
 }
-    
+
 }

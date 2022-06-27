@@ -100,9 +100,9 @@ class Condo_LineMessagingAPI extends Model
         $template_path = storage_path('../public/json/flex_parcel_to_user.json');   
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("ตัวอย่าง","เรียนคุณลูกบ้าน..",$string_json);
-        $string_json = str_replace("<$photo>",$requestData['photo'],$string_json);
-        $string_json = str_replace("<$building>",$data_user->building,$string_json);
-        $string_json = str_replace("<$room_number>",$data_user->room_number,$string_json);
+        $string_json = str_replace("<photo>",$requestData['photo'],$string_json);
+        $string_json = str_replace("<building>",$data_user->building,$string_json);
+        $string_json = str_replace("<room_number>",$data_user->room_number,$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
