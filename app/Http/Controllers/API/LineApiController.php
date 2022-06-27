@@ -748,6 +748,20 @@ class LineApiController extends Controller
     protected function help_complete($id_sos_map)
     {   
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
+
+        if (!empty($data_sos_map->condo_id)) {
+            $condo_id = $data_sos_map->condo_id ;
+        }else{
+            $condo_id = null ;
+        }
+
+        if (!empty($condo_id)) {
+            $data_condos = Partner_condo::where('id' , $condo_id)->first();
+            $channel_access_token = $data_condos->channel_access_token ;
+        }else{
+            $channel_access_token = env('CHANNEL_ACCESS_TOKEN') ;
+        }
+
         $data_users = User::findOrFail($data_sos_map->user_id);
         $date_now = date('Y-m-d\TH:i:s');
 
@@ -810,7 +824,7 @@ class LineApiController extends Controller
                 'http' =>[
                     'method'  => 'POST',
                     'header'  => "Content-Type: application/json \r\n".
-                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                                'Authorization: Bearer '. $channel_access_token,
                     'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
                     //'timeout' => 60
                 ]

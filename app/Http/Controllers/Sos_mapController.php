@@ -17,6 +17,7 @@ use App\Http\Controllers\API\API_Time_zone;
 use App\Models\LineMessagingAPI;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailTo_sos_partner;
+use App\Models\Partner_condo;
 use App\User;
 
 
@@ -134,7 +135,16 @@ class Sos_mapController extends Controller
         foreach ($data_user as $key_itme) {
 
             if ($key_itme->type == 'line') {
-                return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
+                if (!empty($requestData['condo_id'])) {
+                    $data_condos = Partner_condo::where('id' , $requestData['condo_id'])->first();
+                    $link_line_oa = $data_condos->link_line_oa ;
+                }else{
+                    $link_line_oa = "https://lin.ee/xnFKMfc" ;
+                }
+
+                // return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
+                return view('sos_map.sos_thank_area', compact('link_line_oa'));
+
             }else{
                 return redirect('/sos_thank')->with('flash_message', 'Sos_map added!');
             }
