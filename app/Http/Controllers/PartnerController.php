@@ -341,7 +341,19 @@ class PartnerController extends Controller
             ->where("name_area", null)
             ->get();
 
-        return view('partner.partner_index', compact('data_partners'));
+        foreach ($data_partners as $key) {
+            $id_condo = $key->condo_id ;
+        }
+
+        $data_condos = Partner_condo::where('id' , $id_condo)->first();
+
+        if (!empty($data_condos)) {
+            $partner_condo = "Yes" ;
+        }else{
+            $partner_condo = "No" ;
+        }
+
+        return view('partner.partner_index', compact('data_partners','partner_condo'));
     }
 
     public function register_cars(Request $request)

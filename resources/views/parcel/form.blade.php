@@ -15,7 +15,10 @@
 
         <div id="div_photo_user_condo_id_{{ $item->id }}" class="d-none">
             <label style="font-size:14px;"  class="control-label">{{ 'เพิ่มรูปภาพ' }}</label>
-            <input class="form-control d-none" name="photo_user_condo_id_{{ $item->id }}" type="file" id="photo_user_condo_id_{{ $item->id }}" accept="image/*" multiple="multiple">
+            <input class="form-control d-none" name="photo_user_condo_id_{{ $item->id }}" type="file" id="photo_user_condo_id_{{ $item->id }}" accept="image/*" multiple="multiple" onchange="document.getElementById('show_photo_id_' + {{ $item->id }}).src = window.URL.createObjectURL(this.files[0]),document.getElementById('show_photo_id_' + {{ $item->id }}).classList.remove('d-none');">
+            <center>
+                <img class="d-none full_img" style="padding:0px ;object-fit: cover;margin-top: 8px;" width="50%" id="show_photo_id_{{ $item->id }}" />
+            </center>
             {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
             <br>
         </div>
@@ -54,9 +57,19 @@
     {!! $errors->first('condo_id', '<p class="help-block">:message</p>') !!}
 </div>
 
+<button style="width: 100%;" class="btn btn-success" onclick="submit_form_parcel();">
+    ยืนยัน
+</button>
+
+<div id="div_spinner_parcel" class="d-none">
+    <br>
+    <h4 style="color: #7ac142;">
+        <div class="spinner-border text-success"></div> กรุณารอสักครู่..
+    </h4>
+</div>
 
 <div class="form-group">
-    <input style="width: 100%;" class="btn btn-success" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
+    <input id="btn_submit_form_parcel" class="d-none" type="submit" value="{{ $formMode === 'edit' ? 'ยืนยัน' : 'ยืนยัน' }}">
 </div>
 
 <script>
@@ -103,6 +116,16 @@
                 text_arr_user_con_id.value = text_arr_user_con_id.value.replace("," + id , "");
             }
         }
+
+    }
+
+    function submit_form_parcel(){
+
+        // click modal
+        document.querySelector('#div_spinner_parcel').classList.remove('d-none');
+
+        // click submit
+        document.querySelector('#btn_submit_form_parcel').click();
 
     }
 </script>
