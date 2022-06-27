@@ -237,6 +237,7 @@
 </div>
 <br><br>
 <input type="hidden" id="text_sos" name="" value="{{ $text_sos }}">
+<input type="hidden" id="condo_id" name="" value="{{ $condo_id }}">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 <style type="text/css">
@@ -252,18 +253,36 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        let condo_id = document.querySelector('#condo_id').value ;
 
-        fetch("{{ url('/') }}/api/sos_map/all_area")
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                result_area = result ;
+        if (condo_id) {
+            // console.log( "condo_id == " +  condo_id  );
 
-                if (typeof result_area !== "undefined") {
-                    // console.log(result_area)
-                    getLocation();
-                }
-        });
+            fetch("{{ url('/') }}/api/sos_map/area_condo_id" + "/" + condo_id)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    result_area = result ;
+
+                    if (typeof result_area !== "undefined") {
+                        // console.log(result_area)
+                        getLocation();
+                    }
+            });
+        }else{
+            // console.log( "NOT condo_id");
+            fetch("{{ url('/') }}/api/sos_map/all_area")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    result_area = result ;
+
+                    if (typeof result_area !== "undefined") {
+                        // console.log(result_area)
+                        getLocation();
+                    }
+            });
+        }
 
         let phone = document.querySelector('#phone').value ;
 
