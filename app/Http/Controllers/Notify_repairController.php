@@ -177,4 +177,15 @@ class Notify_repairController extends Controller
 
         return redirect('notify_repair')->with('flash_message', 'Notify_repair deleted!');
     }
+
+    public function login_line(Request $request)
+    {
+        $condo_id = $request->get('condo_id');
+
+        if(Auth::check()){
+            return redirect('notify_repair/create?condo_id=' . $condo_id);
+        }else{
+            return redirect('login/line?redirectTo=notify_repair/create?condo_id=' . $condo_id);
+        }
+    }
 }

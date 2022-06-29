@@ -171,7 +171,10 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 		Route::get('/check_in/gallery', 'PartnerController@gallery');
 		Route::get('/partner_media', 'PartnerController@partner_media');
 
+	// ------- CONDO -------
 	Route::resource('parcel', 'ParcelController');
+	Route::resource('notify_repair', 'Notify_repairController');
+	Route::resource('category_condo', 'Category_condoController');
 
 });
 // end admin-partner
@@ -359,5 +362,6 @@ Route::get('/select_register', function () {
     return view('select_register');
 });
 
-Route::resource('notify_repair', 'Notify_repairController');
-Route::resource('category_condo', 'Category_condoController');
+// ------- CONDO -------
+Route::get('/login_line/notify_repair', 'Notify_repairController@login_line');
+Route::get('/notify_repair/create', 'Notify_repairController@create');
