@@ -28,11 +28,11 @@
                             <div class="col-12">
                                 @foreach($all_building as $item)
                                     @if($building == $item->building)
-                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-info text-white notranslate" >
+                                        <a href="{{ url('/notify_repair/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-info text-white notranslate" >
                                             &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
                                         </a>
                                     @else
-                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-outline-info notranslate" >
+                                        <a href="{{ url('/notify_repair/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-outline-info notranslate" >
                                             &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
                                         </a>
                                     @endif
