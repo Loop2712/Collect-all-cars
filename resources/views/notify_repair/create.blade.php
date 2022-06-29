@@ -10,39 +10,18 @@
                 <div class="d-flex align-items-center" style="margin-top:10px;">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-9">
+                            <div class="col-12">
                                 <h4 class="font-weight-bold mb-0">
-                                    <b>เพิ่มรายการพัสดุ</b>
+                                    <b>การแจ้งซ่อมบำรุง</b>
                                 </h4>
-                            </div>
-                            <div class="col-3">
-                                <center>
-                                    <div style="margin-top:-12px;">
-                                        อาคาร <br>
-                                        <b class="text-danger" id="span_building">{{ $building }}</b>
-                                    </div>
-                                </center>
                             </div>
                             <br><br>
                             <hr>
-                            <div class="col-12">
-                                @foreach($all_building as $item)
-                                    @if($building == $item->building)
-                                        <a href="{{ url('/notify_repair/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-info text-white notranslate" >
-                                            &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
-                                        </a>
-                                    @else
-                                        <a href="{{ url('/notify_repair/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-outline-info notranslate" >
-                                            &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
-                                        </a>
-                                    @endif
-                                @endforeach
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-body" >
+            <div class="card-body" style="margin-top:-25px;">
                 <div class="row">
                     <div class="col-12">
                         @if ($errors->any())

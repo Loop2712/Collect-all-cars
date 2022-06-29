@@ -14,6 +14,7 @@ use App\Models\Condo_LineMessagingAPI;
 use App\Models\Partner_condo;
 use App\Models\Partner;
 use App\Models\User_condo;
+use App\Models\Category_condo;
 
 class Notify_repairController extends Controller
 {
@@ -63,32 +64,24 @@ class Notify_repairController extends Controller
     {
         $building = $request->get('building');
 
-        $user = Auth::user();
-
-        if ($user->role == "admin-condo") {
-            $name_condo_of_admin = $user->organization ;
-            $data_partners = Partner::where('name' ,$name_condo_of_admin)->where('name_area' , null)->first();
-
-            $condo_id = $data_partners->condo_id ;
-
-            $all_building = User_condo::where('condo_id' , $condo_id)->groupBy('building')->get();
-
-            if (!empty($building)) {
-                $all_user_condos = User_condo::where('condo_id' , $condo_id)
-                    ->where('building', $building)
-                    ->orderBy('building' , 'ASC')
-                    ->orderBy('room_number' , 'ASC')
-                    ->get();
-            } else {
-                $building = "ทั้งหมด";
-                $all_user_condos = User_condo::where('condo_id' , $condo_id)
-                    ->orderBy('building' , 'ASC')
-                    ->orderBy('room_number' , 'ASC')
-                    ->get();
-            }
+        if (empty($building)) {
+            $building = "ทั้งหมด";
         }
 
-        return view('notify_repair.create', compact('user','condo_id','all_building','building','all_user_condos'));
+        $condo_id = $request->get('condo_id');
+
+        $user = Auth::user();
+
+        $all_building = User_condo::where('condo_id' , $condo_id)->groupBy('building')->get();
+
+        $data_user_condo = User_condo::where('user_id' , $user->id)->where('condo_id' , $condo_id)->first();
+
+        $data_category_condo = Category_condo::where('system' , 'notify_repair')
+            ->where('condo_id' , null)
+            ->orWhere('condo_id' , $condo_id)
+            ->get();
+
+        return view('notify_repair.create', compact('user','condo_id','all_building','building','data_category_condo' ,'data_user_condo'));
 
     }
 
@@ -103,9 +96,15 @@ class Notify_repairController extends Controller
     {
         
         $requestData = $request->all();
-                if ($request->hasFile('photo')) {
+
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
+                
+        if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')
-                ->store('uploads', 'public');
+            ->store('uploads', 'public');
         }
 
         Notify_repair::create($requestData);
