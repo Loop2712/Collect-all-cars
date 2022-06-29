@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "name_category",
+            "type": "string"
+        },
+        {
+            "name": "system",
+            "type": "string"
+        },
+        {
+            "name": "condo_id",
+            "type": "integer"
+        },
+        {
+            "name": "name_staff",
+            "type": "string"
+        },
+        {
+            "name": "staff_id",
+            "type": "integer"
+        }
+    ]
+}

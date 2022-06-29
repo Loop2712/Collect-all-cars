@@ -1,0 +1,64 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "string"
+        },
+        {
+            "name": "photo",
+            "type": "file"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "time_wait_cf",
+            "type": "datetime"
+        },
+        {
+            "name": "time_pending",
+            "type": "datetime"
+        },
+        {
+            "name": "time_finished",
+            "type": "datetime"
+        },
+        {
+            "name": "appointment_date",
+            "type": "string"
+        },
+        {
+            "name": "appointment_time",
+            "type": "string"
+        },
+        {
+            "name": "name_staff",
+            "type": "string"
+        },
+        {
+            "name": "staff_id",
+            "type": "integer"
+        },
+        {
+            "name": "condo_id",
+            "type": "integer"
+        },
+        {
+            "name": "user_condo_id",
+            "type": "integer"
+        },
+        {
+            "name": "building",
+            "type": "string"
+        },
+        {
+            "name": "category",
+            "type": "string"
+        }
+    ]
+}

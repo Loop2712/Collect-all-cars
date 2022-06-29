@@ -358,3 +358,6 @@ Route::get('/select_register', function () {
     
     return view('select_register');
 });
+
+Route::resource('notify_repair', 'Notify_repairController');
+Route::resource('category_condo', 'Category_condoController');
