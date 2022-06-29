@@ -364,4 +364,5 @@ Route::get('/select_register', function () {
 
 // ------- CONDO -------
 Route::get('/login_line/notify_repair', 'Notify_repairController@login_line');
-Route::get('/notify_repair/create', 'Notify_repairController@create');
+Route::resource('notify_repair', 'Notify_repairController')->except(['index','show','edit']);
+

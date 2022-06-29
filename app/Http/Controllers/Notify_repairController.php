@@ -97,11 +97,6 @@ class Notify_repairController extends Controller
         
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
-                
         if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')
             ->store('uploads', 'public');

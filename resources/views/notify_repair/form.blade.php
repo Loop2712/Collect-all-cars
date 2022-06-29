@@ -31,12 +31,24 @@
 <!-- วัน-เวลา นัดหมาย -->
 <div class="form-group {{ $errors->has('appointment_date') ? 'has-error' : ''}}">
     <label for="appointment_date" class="control-label">{{ 'วันที่ต้องการนัด' }}</label>
-    <input class="form-control" name="appointment_date" type="text" id="appointment_date" value="{{ isset($notify_repair->appointment_date) ? $notify_repair->appointment_date : ''}}" >
+    <input class="form-control" name="appointment_date" type="date" id="appointment_date" value="{{ isset($notify_repair->appointment_date) ? $notify_repair->appointment_date : ''}}" >
     {!! $errors->first('appointment_date', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('appointment_time') ? 'has-error' : ''}}">
     <label for="appointment_time" class="control-label">{{ 'เวลาที่ต้องการนัด' }}</label>
-    <input class="form-control" name="appointment_time" type="text" id="appointment_time" value="{{ isset($notify_repair->appointment_time) ? $notify_repair->appointment_time : ''}}" >
+    <!-- <input class="form-control" name="appointment_time" type="time" id="appointment_time" value="{{ isset($notify_repair->appointment_time) ? $notify_repair->appointment_time : ''}}" > -->
+    <select class="form-control notranslate" name="appointment_time" id="appointment_time" required>
+        <option value="" selected>กรุณาเลือกเวลาที่ต้องการนัด</option>
+        <option value="08:00">08:00</option>
+        <option value="09:00">09:00</option>
+        <option value="10:00">10:00</option>
+        <option value="11:00">11:00</option>
+        <option value="" disabled>----- พักเที่ยง -----</option>
+        <option value="13:00">13:00</option>
+        <option value="14:00">14:00</option>
+        <option value="15:00">15:00</option>
+        <option value="16:00">16:00</option>
+    </select>
     {!! $errors->first('appointment_time', '<p class="help-block">:message</p>') !!}
 </div>
 
