@@ -1,7 +1,7 @@
-
-@extends('layouts.partners.theme_partner_new')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br>
 
 <div class="row" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="col-12">
@@ -28,11 +28,11 @@
                             <div class="col-12">
                                 @foreach($all_building as $item)
                                     @if($building == $item->building)
-                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-info text-white" >
+                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-info text-white notranslate" >
                                             &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
                                         </a>
                                     @else
-                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-outline-info" >
+                                        <a href="{{ url('/parcel/create') }}?building={{ $item->building }}" type="button" class="btn btn-sm btn-outline-info notranslate" >
                                             &nbsp;&nbsp;{{ $item->building }}&nbsp;&nbsp;
                                         </a>
                                     @endif
