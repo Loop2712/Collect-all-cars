@@ -31,7 +31,7 @@
 <!-- วัน-เวลา นัดหมาย -->
 <div class="form-group {{ $errors->has('appointment_date') ? 'has-error' : ''}}">
     <label for="appointment_date" class="control-label">{{ 'วันที่ต้องการนัด' }}</label>
-    <input class="form-control" name="appointment_date" type="date" id="appointment_date" value="{{ isset($notify_repair->appointment_date) ? $notify_repair->appointment_date : ''}}" onchange="select_appointment_time();">
+    <input class="form-control" name="appointment_date" type="date" id="appointment_date" value="{{ isset($notify_repair->appointment_date) ? $notify_repair->appointment_date : ''}}" required onchange="check_date();">
     {!! $errors->first('appointment_date', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('appointment_time') ? 'has-error' : ''}}">
@@ -100,6 +100,7 @@
     <input class="form-control" name="staff_id" type="number" id="staff_id" value="{{ isset($notify_repair->staff_id) ? $notify_repair->staff_id : ''}}" >
     {!! $errors->first('staff_id', '<p class="help-block">:message</p>') !!}
 </div>
+<input class="d-none" type="datetime" name="date_now" id="date_now" value="{{ $date_now }}">
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
@@ -107,6 +108,19 @@
 
 
 <script>
+
+    function check_date(){
+        let appointment_date = document.querySelector('#appointment_date');
+        let date_now = document.querySelector('#date_now');
+
+        if (appointment_date.value < date_now.value) {
+            alert("ไม่สามารถเลือกวันนี้ได้");
+            appointment_date.value = "";
+        }else{
+            select_appointment_time();
+        }
+        
+    }
 
     function select_appointment_time(){
         let appointment_date = document.querySelector('#appointment_date');
@@ -134,7 +148,7 @@
         fetch("{{ url('/') }}/api/select_appointment_time" + "/" + appointment_date.value + "/" + condo_id.value)
                 .then(response => response.json())
                 .then(result => {
-                    // console.log(result);
+                    console.log(result); 
 
                     for(let item of result){
 
@@ -149,8 +163,8 @@
                         }
                         document.querySelector('#option_time_' + finished.toString()).disabled = true ;
                         document.querySelector('#option_time_' + finished.toString()).innerHTML = finished.toString()+":00 (ไม่ว่าง)";
-
                     }
+
             });
     }
 

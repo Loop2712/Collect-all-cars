@@ -27,7 +27,7 @@ class Notify_repairController extends Controller
     {
         $building = $request->get('building');
         $perPage = 25;
-
+        
         $user = Auth::user();
 
         if ($user->role == "admin-condo") {
@@ -62,6 +62,8 @@ class Notify_repairController extends Controller
      */
     public function create(Request $request)
     {
+        $date_now = date("Y-m-d");
+
         $building = $request->get('building');
 
         if (empty($building)) {
@@ -81,7 +83,7 @@ class Notify_repairController extends Controller
             ->orWhere('condo_id' , $condo_id)
             ->get();
 
-        return view('notify_repair.create', compact('user','condo_id','all_building','building','data_category_condo' ,'data_user_condo'));
+        return view('notify_repair.create', compact('user','condo_id','all_building','building','data_category_condo' ,'data_user_condo' ,'date_now'));
 
     }
 
@@ -94,8 +96,8 @@ class Notify_repairController extends Controller
      */
     public function store(Request $request)
     {
-        $date_now = date("d-m-Y");
-        
+        $date_now = date('Y-m-d\TH:i:sP');
+
         $requestData = $request->all();
 
         if ($request->hasFile('photo')) {
