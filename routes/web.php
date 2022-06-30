@@ -367,3 +367,4 @@ Route::get('/select_register', function () {
 // ------- CONDO -------
 Route::get('/login_line/notify_repair', 'Notify_repairController@login_line');
 
+

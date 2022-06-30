@@ -27,7 +27,7 @@ class Notify_repairController extends Controller
     {
         $building = $request->get('building');
         $perPage = 25;
-        
+
         $user = Auth::user();
 
         if ($user->role == "admin-condo") {
@@ -44,6 +44,7 @@ class Notify_repairController extends Controller
                 ->where('condo_id', $condo_id)
                 ->latest()
                 ->paginate($perPage);
+            
         } else {
             $building = "ทั้งหมด";
             $notify_repair = Notify_repair::where('condo_id', $condo_id)
@@ -51,7 +52,7 @@ class Notify_repairController extends Controller
                 ->paginate($perPage);
         }
 
-        return view('notify_repair.index', compact('notify_repair', 'user', 'all_building','building'));
+        return view('notify_repair.index', compact('notify_repair', 'user', 'all_building','building' , 'condo_id'));
 
     }
 
@@ -110,7 +111,16 @@ class Notify_repairController extends Controller
 
         Notify_repair::create($requestData);
 
-        return redirect('notify_repair')->with('flash_message', 'Notify_repair added!');
+        $condo_id = $requestData['condo_id'];
+        $data_condos = Partner_condo::where('id' , $condo_id)->first();
+        $link_line_oa = $data_condos->link_line_oa ;
+
+        if (!empty($requestData['user_condo_id'])) {
+            return view('notify_repair.add_line', compact('link_line_oa'));
+        }else{
+            return redirect('notify_repair')->with('flash_message', 'Notify_repair added!');
+        }
+
     }
 
     /**
@@ -195,4 +205,5 @@ class Notify_repairController extends Controller
 
         return $data ;
     }
+
 }

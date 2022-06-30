@@ -1,6 +1,4 @@
-
 @extends('layouts.partners.theme_partner_new')
-
 
 @section('content')
 @if($user->role == "admin-condo")
@@ -12,10 +10,15 @@
                 <div class="d-flex align-items-center" style="margin-top:10px;">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <h4 class="font-weight-bold mb-0">
                                     <b>รายการแจ้งซ่อมบำรุง</b>
                                 </h4>
+                            </div>
+                            <div class="col-6">
+                                <a style="float: right;" href="{{ url('/notify_repair/create?condo_id=' . $condo_id) }}" class="btn btn-success btn-sm" title="Add New Parcel">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการ
+                                </a>
                             </div>
                             <br><br>
                             <hr>
@@ -31,6 +34,14 @@
                                         </a>
                                     @endif
                                 @endforeach
+                                @if($building == "ส่วนกลาง")
+                                    <a href="{{ url('/notify_repair') }}?building=ส่วนกลาง" type="button" class="btn btn-sm btn-secondary">
+                                    &nbsp;&nbsp;ส่วนกลาง&nbsp;&nbsp;
+                                @else
+                                    <a href="{{ url('/notify_repair') }}?building=ส่วนกลาง" type="button" class="btn btn-sm btn-outline-secondary">
+                                    &nbsp;&nbsp;ส่วนกลาง&nbsp;&nbsp;
+                                @endif
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -46,16 +57,50 @@
                     @foreach($notify_repair as $item)
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-8">
-                                <span style="line-height: 25px;"><i class="fas fa-address-card"></i> อาคาร : {{ $item->user_condo->building }} ห้อง : {{ $item->user_condo->room_number }}</span>
-                                <br>
-                                <span style="line-height: 25px;"><i class="far fa-clock"></i> {{ $item->created_at }}</span>
-                                <br>
-                                <span style="line-height: 25px;"><i class="fas fa-user-shield"></i> {{ $item->name_staff }}</span>
+                            <div class="col-10" style="font-size:15px;">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <span style="line-height: 25px;">
+                                           {{ $item->building }}
+                                        </span>
+                                        @if(!empty($item->user_condo->room_number))
+                                            <span style="line-height: 25px;">
+                                               {{ $item->user_condo->room_number }}
+                                            </span>
+                                        @endif
+                                   </div> 
+                                   <div class="col-3">
+                                        <span style="line-height: 25px;">
+                                           {{ $item->title }}
+                                        </span>
+                                        <br>
+                                        <span style="line-height: 25px;">
+                                           {{ $item->content }}
+                                        </span>
+                                   </div> 
+                                   <div class="col-3">
+                                        <span style="line-height: 25px;">
+                                           {{ $item->status }}
+                                        </span>
+                                        <br>
+                                        <span style="line-height: 25px;">
+                                           เวลา
+                                        </span>
+                                   </div> 
+                                   <div class="col-3">
+                                        <span style="line-height: 25px;">
+                                           วันเวลานัดหมาย
+                                        </span>
+                                        <br>
+                                        <span style="line-height: 25px;">
+                                           เวลา
+                                        </span>
+                                   </div> 
+                                </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                    <img style="width:100%;margin-top: 8px;" src="{{ url('storage')}}/{{ $item->photo }}">
+                                    <img style="width:50%;margin-top: 8px;" src="{{ url('storage')}}/{{ $item->photo }}">
                                 </a>
                             </div>
                         </div>

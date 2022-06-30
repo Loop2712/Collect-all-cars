@@ -29,15 +29,20 @@
 </div>
 
 <!-- วัน-เวลา นัดหมาย -->
+<hr>
+<label for="appointment_date" class="control-label">{{ 'วัน - เวลาที่ต้องการนัดหมาย' }}</label>
+<br>
+<span style="color: #FF0033;">ในกรณีที่ช่างเกิดเหตุสุดวิสัยไม่สามารถมาตามนัดได้ทันเวลาระบบจะทำการแจ้งเตือนและให้ช่างติดต่อกลับ ขออภัยมา ณ ที่นี้</span>
+<br><br>
 <div class="form-group {{ $errors->has('appointment_date') ? 'has-error' : ''}}">
-    <label for="appointment_date" class="control-label">{{ 'วันที่ต้องการนัด' }}</label>
+    <label for="appointment_date" class="control-label">{{ 'เลือกวันที่' }}</label>
     <input class="form-control" name="appointment_date" type="date" id="appointment_date" value="{{ isset($notify_repair->appointment_date) ? $notify_repair->appointment_date : ''}}" required onchange="check_date();">
     {!! $errors->first('appointment_date', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('appointment_time') ? 'has-error' : ''}}">
-    <label for="appointment_time" class="control-label">{{ 'เวลาที่ต้องการนัด' }}</label>
+<div id="div_appointment_time" class="form-group d-none {{ $errors->has('appointment_time') ? 'has-error' : ''}}">
+    <label for="appointment_time" class="control-label">{{ 'เลือกเวลา' }}</label>
     <!-- <input class="form-control" name="appointment_time" type="time" id="appointment_time" value="{{ isset($notify_repair->appointment_time) ? $notify_repair->appointment_time : ''}}" > -->
-    <select class="form-control notranslate" name="appointment_time" id="appointment_time" required>
+    <select class="form-control notranslate " name="appointment_time" id="appointment_time" required>
         <option value="" selected>กรุณาเลือกเวลาที่ต้องการนัด</option>
         <option id="option_time_8" value="08">08:00</option>
         <option id="option_time_9" value="09">09:00</option>
@@ -53,6 +58,15 @@
 </div>
 
 <!-- ข้อมูลผู้ใช้และคอนโด -->
+@php
+    if(!empty($data_user_condo)){
+        $data_user_condo_id = $data_user_condo->id ;
+        $data_user_condo_building = $data_user_condo->building ;
+    }else{
+        $data_user_condo_id = null ;
+        $data_user_condo_building = "ส่วนกลาง" ;
+    }
+@endphp
 <div class="form-group d-none {{ $errors->has('condo_id') ? 'has-error' : ''}}">
     <label for="condo_id" class="control-label">{{ 'Condo Id' }}</label>
     <input class="form-control" name="condo_id" type="number" id="condo_id" value="{{ $condo_id }}" readonly>
@@ -60,14 +74,20 @@
 </div>
 <div class="form-group d-none {{ $errors->has('user_condo_id') ? 'has-error' : ''}}">
     <label for="user_condo_id" class="control-label">{{ 'User Condo Id' }}</label>
-    <input class="form-control" name="user_condo_id" type="number" id="user_condo_id" value="{{ $data_user_condo->id }}" readonly>
+    <input class="form-control" name="user_condo_id" type="number" id="user_condo_id" value="{{ $data_user_condo_id }}" readonly>
     {!! $errors->first('user_condo_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group d-none {{ $errors->has('building') ? 'has-error' : ''}}">
     <label for="building" class="control-label">{{ 'Building' }}</label>
-    <input class="form-control" name="building" type="text" id="building" value="{{ $data_user_condo->building }}" readonly>
+    <input class="form-control" name="building" type="text" id="building" value="{{ $data_user_condo_building }}" readonly>
     {!! $errors->first('building', '<p class="help-block">:message</p>') !!}
 </div>
+<div class="form-group d-none {{ $errors->has('user_id') ? 'has-error' : ''}}">
+    <label for="user_id" class="control-label">{{ 'User Id' }}</label>
+    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ Auth::user()->id }}" readonly>
+    {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+</div>
+
 
 <!-- STATUS -->
 <div class="form-group d-none {{ $errors->has('status') ? 'has-error' : ''}}">
@@ -102,8 +122,11 @@
 </div>
 <input class="d-none" type="datetime" name="date_now" id="date_now" value="{{ $date_now }}">
 
+<br>
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+    <center>
+        <input style="width:90%;" class="btn btn-success main-shadow main-radius" type="submit" value="{{ $formMode === 'edit' ? 'ส่งข้อมูล' : 'ส่งข้อมูล' }}">
+    </center>
 </div>
 
 
@@ -125,6 +148,8 @@
     function select_appointment_time(){
         let appointment_date = document.querySelector('#appointment_date');
         let condo_id = document.querySelector('#condo_id');
+
+        document.querySelector('#div_appointment_time').classList.remove('d-none');
 
         document.querySelector('#option_time_8').disabled = false ;
         document.querySelector('#option_time_9').disabled = false ;
