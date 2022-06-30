@@ -12,15 +12,10 @@
                 <div class="d-flex align-items-center" style="margin-top:10px;">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <h4 class="font-weight-bold mb-0">
                                     <b>รายการแจ้งซ่อมบำรุง</b>
                                 </h4>
-                            </div>
-                            <div class="col-6">
-                                <a style="float: right;" href="{{ url('/notify_repair/create') }}" class="btn btn-success btn-sm" title="Add New Parcel">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรายการ
-                                </a>
                             </div>
                             <br><br>
                             <hr>

@@ -94,6 +94,7 @@ class Notify_repairController extends Controller
      */
     public function store(Request $request)
     {
+        $date_now = date("d-m-Y");
         
         $requestData = $request->all();
 
@@ -101,6 +102,9 @@ class Notify_repairController extends Controller
             $requestData['photo'] = $request->file('photo')
             ->store('uploads', 'public');
         }
+
+        $requestData['status'] = "รอยืนยันการนัด";
+        $requestData['time_wait_cf'] = $date_now;
 
         Notify_repair::create($requestData);
 
