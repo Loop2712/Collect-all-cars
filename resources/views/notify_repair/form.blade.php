@@ -43,7 +43,7 @@
         <option id="option_time_9" value="09">09:00</option>
         <option id="option_time_10" value="10">10:00</option>
         <option id="option_time_11" value="11">11:00</option>
-        <option value="" disabled>----- พักเที่ยง -----</option>
+        <option id="option_time_12" value="" disabled>----- พักเที่ยง -----</option>
         <option id="option_time_13" value="13">13:00</option>
         <option id="option_time_14" value="14">14:00</option>
         <option id="option_time_15" value="15">15:00</option>
