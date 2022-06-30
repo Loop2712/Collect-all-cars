@@ -39,8 +39,8 @@
     <!-- <input class="form-control" name="appointment_time" type="time" id="appointment_time" value="{{ isset($notify_repair->appointment_time) ? $notify_repair->appointment_time : ''}}" > -->
     <select class="form-control notranslate" name="appointment_time" id="appointment_time" required>
         <option value="" selected>กรุณาเลือกเวลาที่ต้องการนัด</option>
-        <option id="option_time_08" value="08">08:00</option>
-        <option id="option_time_09" value="09">09:00</option>
+        <option id="option_time_8" value="08">08:00</option>
+        <option id="option_time_9" value="09">09:00</option>
         <option id="option_time_10" value="10">10:00</option>
         <option id="option_time_11" value="11">11:00</option>
         <option value="" disabled>----- พักเที่ยง -----</option>
@@ -112,8 +112,8 @@
         let appointment_date = document.querySelector('#appointment_date');
         let condo_id = document.querySelector('#condo_id');
 
-        document.querySelector('#option_time_08').disabled = false ;
-        document.querySelector('#option_time_09').disabled = false ;
+        document.querySelector('#option_time_8').disabled = false ;
+        document.querySelector('#option_time_9').disabled = false ;
         document.querySelector('#option_time_10').disabled = false ;
         document.querySelector('#option_time_11').disabled = false ;
         document.querySelector('#option_time_13').disabled = false ;
@@ -121,8 +121,8 @@
         document.querySelector('#option_time_15').disabled = false ;
         document.querySelector('#option_time_16').disabled = false ;
 
-        document.querySelector('#option_time_08').innerHTML = "08:00" ;
-        document.querySelector('#option_time_09').innerHTML = "09:00" ;
+        document.querySelector('#option_time_8').innerHTML = "08:00" ;
+        document.querySelector('#option_time_9').innerHTML = "09:00" ;
         document.querySelector('#option_time_10').innerHTML = "10:00" ;
         document.querySelector('#option_time_11').innerHTML = "11:00" ;
         document.querySelector('#option_time_13').innerHTML = "13:00" ;
