@@ -182,4 +182,11 @@ class Notify_repairController extends Controller
             return redirect('login/line?redirectTo=notify_repair/create?condo_id=' . $condo_id);
         }
     }
+
+    public function select_appointment_time($appointment_date , $condo_id)
+    {
+        $data = Notify_repair::where('condo_id' , $condo_id)->where('appointment_date', $appointment_date)->get();
+
+        return $data ;
+    }
 }

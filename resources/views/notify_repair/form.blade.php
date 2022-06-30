@@ -31,7 +31,7 @@
 <!-- วัน-เวลา นัดหมาย -->
 <div class="form-group {{ $errors->has('appointment_date') ? 'has-error' : ''}}">
     <label for="appointment_date" class="control-label">{{ 'วันที่ต้องการนัด' }}</label>
-    <input class="form-control" name="appointment_date" type="date" id="appointment_date" value="{{ isset($notify_repair->appointment_date) ? $notify_repair->appointment_date : ''}}" >
+    <input class="form-control" name="appointment_date" type="date" id="appointment_date" value="{{ isset($notify_repair->appointment_date) ? $notify_repair->appointment_date : ''}}" onchange="select_appointment_time();">
     {!! $errors->first('appointment_date', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('appointment_time') ? 'has-error' : ''}}">
@@ -39,15 +39,15 @@
     <!-- <input class="form-control" name="appointment_time" type="time" id="appointment_time" value="{{ isset($notify_repair->appointment_time) ? $notify_repair->appointment_time : ''}}" > -->
     <select class="form-control notranslate" name="appointment_time" id="appointment_time" required>
         <option value="" selected>กรุณาเลือกเวลาที่ต้องการนัด</option>
-        <option value="08:00">08:00</option>
-        <option value="09:00">09:00</option>
-        <option value="10:00">10:00</option>
-        <option value="11:00">11:00</option>
+        <option id="option_time_08" value="08">08:00</option>
+        <option id="option_time_09" value="09">09:00</option>
+        <option id="option_time_10" value="10">10:00</option>
+        <option id="option_time_11" value="11">11:00</option>
         <option value="" disabled>----- พักเที่ยง -----</option>
-        <option value="13:00">13:00</option>
-        <option value="14:00">14:00</option>
-        <option value="15:00">15:00</option>
-        <option value="16:00">16:00</option>
+        <option id="option_time_13" value="13">13:00</option>
+        <option id="option_time_14" value="14">14:00</option>
+        <option id="option_time_15" value="15">15:00</option>
+        <option id="option_time_16" value="16">16:00</option>
     </select>
     {!! $errors->first('appointment_time', '<p class="help-block">:message</p>') !!}
 </div>
@@ -104,3 +104,54 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
+
+
+<script>
+
+    function select_appointment_time(){
+        let appointment_date = document.querySelector('#appointment_date');
+        let condo_id = document.querySelector('#condo_id');
+
+        document.querySelector('#option_time_08').disabled = false ;
+        document.querySelector('#option_time_09').disabled = false ;
+        document.querySelector('#option_time_10').disabled = false ;
+        document.querySelector('#option_time_11').disabled = false ;
+        document.querySelector('#option_time_13').disabled = false ;
+        document.querySelector('#option_time_14').disabled = false ;
+        document.querySelector('#option_time_15').disabled = false ;
+        document.querySelector('#option_time_16').disabled = false ;
+
+        document.querySelector('#option_time_08').innerHTML = "08:00" ;
+        document.querySelector('#option_time_09').innerHTML = "09:00" ;
+        document.querySelector('#option_time_10').innerHTML = "10:00" ;
+        document.querySelector('#option_time_11').innerHTML = "11:00" ;
+        document.querySelector('#option_time_13').innerHTML = "13:00" ;
+        document.querySelector('#option_time_14').innerHTML = "14:00" ;
+        document.querySelector('#option_time_15').innerHTML = "15:00" ;
+        document.querySelector('#option_time_16').innerHTML = "16:00" ;
+
+
+        fetch("{{ url('/') }}/api/select_appointment_time" + "/" + appointment_date.value + "/" + condo_id.value)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    for(let item of result){
+
+                        let sum = parseInt(item.appointment_time) ;
+                        let finished = parseInt(item.appointment_time_finished) ;
+
+                        while  (sum < finished) {
+                            text_sum = sum.toString();
+                            document.querySelector('#option_time_' + text_sum).disabled = true ;
+                            document.querySelector('#option_time_' + text_sum).innerHTML = text_sum+":00 (ไม่ว่าง)";
+                            sum = sum + 1 ;
+                        }
+                        document.querySelector('#option_time_' + finished.toString()).disabled = true ;
+                        document.querySelector('#option_time_' + finished.toString()).innerHTML = finished.toString()+":00 (ไม่ว่าง)";
+
+                    }
+            });
+    }
+
+</script>

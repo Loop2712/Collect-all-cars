@@ -216,8 +216,10 @@ Route::middleware(['auth'])->group(function () {
 	    return view('check_in/check_in_finish');
 	});
 	
+	// -------- CONDO ---------
 	Route::get('select_condo', 'Partner_condoController@select_condo');
 	Route::get('/data_user_of_condo', 'Partner_condoController@data_user_of_condo');
+	Route::resource('notify_repair', 'Notify_repairController')->except(['index','show','edit']);
 
 });
 
@@ -364,5 +366,4 @@ Route::get('/select_register', function () {
 
 // ------- CONDO -------
 Route::get('/login_line/notify_repair', 'Notify_repairController@login_line');
-Route::resource('notify_repair', 'Notify_repairController')->except(['index','show','edit']);
 

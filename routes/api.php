@@ -160,11 +160,10 @@ Route::get('/show_logo_partner', 'API\PartnersController@show_logo_partner');
 
 
 // API TU
-
 Route::post('/api_data_tu_greats', 'API\API_TU_Greats@api_data_tu_greats');
 
-
-
+// condo
+Route::get('/select_appointment_time/{appointment_date}/{condo_id}', 'Notify_repairController@select_appointment_time');
 
 
 
