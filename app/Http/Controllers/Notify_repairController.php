@@ -15,6 +15,7 @@ use App\Models\Partner_condo;
 use App\Models\Partner;
 use App\Models\User_condo;
 use App\Models\Category_condo;
+use App\Models\Group_line;
 
 class Notify_repairController extends Controller
 {
@@ -52,7 +53,10 @@ class Notify_repairController extends Controller
                 ->paginate($perPage);
         }
 
-        return view('notify_repair.index', compact('notify_repair', 'user', 'all_building','building' , 'condo_id'));
+        $naem_group_line = Group_line::where('condo_id' , $condo_id)->where('system' , 'notify_repair')->first();
+        $all_group_line = Group_line::where('owner' , null)->get();
+
+        return view('notify_repair.index', compact('notify_repair', 'user', 'all_building','building' , 'condo_id','naem_group_line','all_group_line'));
 
     }
 
