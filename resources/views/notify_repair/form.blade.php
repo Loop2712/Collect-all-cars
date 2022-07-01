@@ -5,6 +5,9 @@
 </div>
 <div class="form-group {{ $errors->has('category') ? 'has-error' : ''}}">
     <label for="category" class="control-label">{{ 'หมวดหมู่' }}</label><span style="color: #FF0033;"> *</span>
+    @if($user->role == "admin-condo")
+        <span class="btn btn-sm btn-success">เพิ่มหมวดหมู่</span>
+    @endif
     <select class="form-control" name="category" id="category" required>
         <option value="" selected>กรุณาเลือกหมวดหมู่</option>
         @foreach($data_category_condo as $category)

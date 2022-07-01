@@ -130,6 +130,7 @@ class Condo_LineApiController extends Controller
     public function save_group_line($event , $condo_id)
     {
         $data_condo = Partner_condo::where('id' , $condo_id)->first();
+        $data_partner_of_condo = Partner::where('condo_id' , $condo_id)->where('name_area' , null)->first();
 
         $opts = [
             'http' =>[
@@ -151,8 +152,10 @@ class Condo_LineApiController extends Controller
             "groupId" => $data_group_line->groupId,
             "groupName" => $data_group_line->groupName,
             "pictureUrl" => $data_group_line->pictureUrl,
+            "owner" => $data_partner_of_condo->name . " (Partner)",
             "time_zone" => "Asia/Bangkok",
             "language" => "en",
+            "partner_id" => $data_partner_of_condo->id,
             "condo_id" => $condo_id,
         ];
         
