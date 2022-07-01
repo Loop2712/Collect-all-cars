@@ -135,7 +135,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div id="btn_send_pass_area" class="d-none text-center">
-                                            <a class="btn btn-sm text-white" style="background-color: #FA9E33;width: 100%;" onclick="send_pass_area();">
+                                            <a class="btn btn-sm text-white" style="background-color: #FA9E33;width: 100%;" onclick="send_pass_condo();">
                                                 ส่งรหัสยืนยัน
                                             </a>
                                         </div>
@@ -240,7 +240,7 @@
     
     var num_pass_area ;
 
-    function send_pass_area(){
+    function send_pass_condo(){
         document.querySelector('#btn_send_pass_area').classList.add('d-none');
         document.querySelector('#spinner_send_pass').classList.remove('d-none');
         
