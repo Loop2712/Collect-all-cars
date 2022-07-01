@@ -129,11 +129,13 @@ class Condo_LineApiController extends Controller
 
     public function save_group_line($event , $condo_id)
     {
+        $data_condo = Partner_condo::where('id' , $condo_id)->first();
+
         $opts = [
             'http' =>[
                 'method'  => 'GET',
                 'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                            'Authorization: Bearer '. $data_condo->channel_access_token,
             ]
         ];
 
