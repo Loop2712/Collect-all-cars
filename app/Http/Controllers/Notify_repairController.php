@@ -54,7 +54,7 @@ class Notify_repairController extends Controller
         }
 
         $naem_group_line = Group_line::where('condo_id' , $condo_id)->where('system' , 'notify_repair')->first();
-        $all_group_line = Group_line::where('owner' , null)->get();
+        $all_group_line = Group_line::where('owner' , null)->where('condo_id' , $condo_id)->get();
 
         return view('notify_repair.index', compact('notify_repair', 'user', 'all_building','building' , 'condo_id','naem_group_line','all_group_line'));
 
