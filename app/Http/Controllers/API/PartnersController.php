@@ -13,6 +13,7 @@ use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Mylog;
 use App\Models\Check_in;
 use App\Models\Partner;
+use App\Models\Partner_condo;
 use App\Models\Group_line;
 use App\Models\Time_zone;
 use App\Models\Disease;
@@ -343,7 +344,18 @@ class PartnersController extends Controller
                             ->where("groupName", $line_group)
                             ->get();
 
-        $this->send_pass_area_togroupline($data_line_group , $num_pass_area);
+        $this->send_pass_area_togroupline($data_line_group , $num_pass_area , "viicheck");
+
+        return $data_line_group ;
+    }
+
+    public function send_pass_condo($line_group , $num_pass_area)
+    {
+        $data_line_group = DB::table('group_lines')
+                            ->where("groupName", $line_group)
+                            ->get();
+
+        $this->send_pass_area_togroupline($data_line_group , $num_pass_area , "condo");
 
         return $data_line_group ;
     }
@@ -377,12 +389,24 @@ class PartnersController extends Controller
         return $data_line_group ;
     }
 
-    public function send_pass_area_togroupline($data_line_group , $num_pass_area)
+    public function send_pass_area_togroupline($data_line_group , $num_pass_area , $type)
     {
         foreach ($data_line_group as $key) {
             $groupId = $key->groupId ;
             $name_time_zone = $key->time_zone ;
             $group_language = $key->language ;
+            $condo_id = $key->condo_id ;
+        }
+
+        $data_condo = Partner_condo::where('id' , $condo_id)->first();
+
+        if ($type == "viicheck") {
+            $template_path = storage_path('../public/json/flex-pass_area.json'); 
+            $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
+        }else{
+            // รอแก้ template_path เป็นของคอนโด
+            $template_path = storage_path('../public/json/flex-pass_area.json'); 
+            $channel_access_token = $data_condo->channel_access_token;
         }
 
         // TIME ZONE
@@ -405,8 +429,7 @@ class PartnersController extends Controller
                 $data_topic[$xi] = $item_of_text_topic->$group_language ;
             }
         }
-
-        $template_path = storage_path('../public/json/flex-pass_area.json');   
+  
 
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("รหัสยืนยัน",$data_topic[0],$string_json);
@@ -423,7 +446,7 @@ class PartnersController extends Controller
             'http' =>[
                 'method'  => 'POST',
                 'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                            'Authorization: Bearer '. $channel_access_token,
                 'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
                 //'timeout' => 60
             ]

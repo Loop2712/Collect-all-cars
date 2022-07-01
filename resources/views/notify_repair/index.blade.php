@@ -249,7 +249,7 @@
         num_pass_area = Math.floor(Math.random() * 10000);
         num_pass_area = num_pass_area.toString();
 
-        fetch("{{ url('/') }}/api/send_pass_area/"+line_group+'/'+num_pass_area)
+        fetch("{{ url('/') }}/api/send_pass_condo/"+line_group+'/'+num_pass_area)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
