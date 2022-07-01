@@ -41,9 +41,9 @@ class Condo_LineApiController extends Controller
             case "postback" : 
                 $this->postbackHandler($event , $condo_id);
                 break;
-            // case "join" :
-            //     $this->save_group_line($event);
-            //     break;
+            case "join" :
+                $this->save_group_line($event , $condo_id);
+                break;
             case "follow" :
                 // SET RICH MENU LINE
                 $this->set_richmanu_language($event["source"]['userId'], $condo_id);
@@ -125,6 +125,47 @@ class Condo_LineApiController extends Controller
             "condo_id" => $data_condos->id,
         ];
         Mylog_condo::create($data);
+    }
+
+    public function save_group_line($event , $condo_id)
+    {
+        $opts = [
+            'http' =>[
+                'method'  => 'GET',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            ]
+        ];
+
+        $group_id = $event['source']['groupId'];
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/group/".$group_id."/summary";
+        $result = file_get_contents($url, false, $context);
+
+        $data_group_line = json_decode($result);
+
+        $save_name_group = [
+            "groupId" => $data_group_line->groupId,
+            "groupName" => $data_group_line->groupName,
+            "pictureUrl" => $data_group_line->pictureUrl,
+            "time_zone" => "Asia/Bangkok",
+            "language" => "en",
+            "condo_id" => $condo_id,
+        ];
+        
+        Group_line::firstOrCreate($save_name_group);
+
+        $data = [
+            "title" => "บันทึก Name Group Line CONDO",
+            "content" => $data_group_line->groupName,
+            "condo_id" => $condo_id,
+        ];
+        Mylog_condo::create($data);
+
+        $line_condo = new Condo_LineMessagingAPI();
+        $line_condo->send_HelloLinegroup($event,$save_name_group);
+
     }
 
 }
