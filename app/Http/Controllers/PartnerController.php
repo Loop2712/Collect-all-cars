@@ -56,7 +56,7 @@ class PartnerController extends Controller
             $new_sos_area = $key->new_sos_area ;
         }
 
-        $group_line = Group_line::where('owner', null)->get();
+        $group_line = Group_line::where('owner', null)->where('condo_id', null)->get();
 
         return view('partner.index', compact('partner','group_line','new_sos_area'));
     }
@@ -71,7 +71,7 @@ class PartnerController extends Controller
                 ->latest()
                 ->paginate($perPage);
 
-        $group_line = Group_line::where('owner', null)->get();
+        $group_line = Group_line::where('owner', null)->where('condo_id', null)->get();
 
         return view('partner.detail_name_area', compact('partner','group_line'));
     }
@@ -83,7 +83,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        $group_line = Group_line::where('owner', null)->get();
+        $group_line = Group_line::where('owner', null)->where('condo_id', null)->get();
 
         return view('partner.create', compact('group_line'));
     }
@@ -571,7 +571,7 @@ class PartnerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        $group_line = Group_line::where('owner', null)->get();
+        $group_line = Group_line::where('owner', null)->where('condo_id', null)->get();
 
         $our_line_group = Group_line::where('owner', $data_user->organization." (Partner)")->get();
 
@@ -600,7 +600,7 @@ class PartnerController extends Controller
         if (!empty($name_area)) {
             return view('partner.service_area.partner_service_area_adjustment', compact('data_partners','count_position','location_array','data_time_zone','name_area'));
         }else{
-            $group_line = Group_line::where('owner', null)->get();
+            $group_line = Group_line::where('owner', null)->where('condo_id', null)->get();
             $all_area_partners = Partner::where("name", $data_user->organization)
                             ->where("name_area", "!=" , null)
                             ->get();
