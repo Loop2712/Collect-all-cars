@@ -291,7 +291,7 @@
         let system = "notify_repair" ;
 
         fetch("{{ url('/') }}/api/update_data_groupline/" + id_groupline + "/" + system)
-            .then(response => response.json())
+            .then(response => response.text())
             .then(result => {
                 // console.log(result);
                 window.location.reload(true);
