@@ -287,7 +287,15 @@
 
     function update_data_groupline(id_groupline)
     {
-        console.log(id_groupline);
+        // console.log(id_groupline);
+        let system = "notify_repair" ;
+
+        fetch("{{ url('/') }}/api/update_data_groupline/" + id_groupline + "/" + system)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                window.location.reload(true);
+        });
     }
 
 </script>

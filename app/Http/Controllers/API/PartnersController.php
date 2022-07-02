@@ -360,6 +360,17 @@ class PartnersController extends Controller
         return $data_line_group ;
     }
 
+    public function update_data_groupline($id_groupline, $system)
+    {
+        DB::table('group_lines')
+            ->where('id', $id_groupline)
+            ->update([
+                'system' => $system,
+        ]);
+
+        return "OK" ;
+    }
+
     public function submit_group_line($line_group ,$id_partner )
     {
         $data_line_group = DB::table('group_lines')

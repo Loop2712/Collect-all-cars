@@ -165,6 +165,7 @@ Route::post('/api_data_tu_greats', 'API\API_TU_Greats@api_data_tu_greats');
 // condo
 Route::get('/select_appointment_time/{appointment_date}/{condo_id}', 'Notify_repairController@select_appointment_time');
 Route::get('/send_pass_condo/{line_group}/{num_pass_area}', 'API\PartnersController@send_pass_condo');
+Route::get('/update_data_groupline/{id_groupline}/{system}', 'API\PartnersController@update_data_groupline');
 
 
 
