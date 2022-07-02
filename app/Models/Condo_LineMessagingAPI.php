@@ -203,9 +203,13 @@ class Condo_LineMessagingAPI extends Model
         $string_json = str_replace("หมวดหมู่",$data_notify_repair->category,$string_json);
         $string_json = str_replace("photo_notify_repair.png",$data_notify_repair->photo,$string_json);
 
-        // $string_json = str_replace("content",$data_notify_repair->content,$string_json);
+         if (!empty($data_notify_repair->content)) {
+            $string_json = str_replace("เนื้อหาคำอธิบาย",$data_notify_repair->content,$string_json);
+        }else{
+            $string_json = str_replace("เนื้อหาคำอธิบาย","-",$string_json);
+        }
         
-        $string_json = str_replace("datetime",$data_notify_repair->appointment_date . "เวลา" . $data_notify_repair->appointment_time . ":00",$string_json);
+        $string_json = str_replace("datetime",$data_notify_repair->appointment_date . " เวลา " . $data_notify_repair->appointment_time . ":00",$string_json);
 
         if (!empty($data_notify_repair->user_condo_id)) {
             $name_user_condo = "อาคาร " . $data_notify_repair->user_condo->building . " ห้อง " . $data_notify_repair->user_condo->room_number ;
