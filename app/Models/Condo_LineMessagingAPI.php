@@ -212,7 +212,7 @@ class Condo_LineMessagingAPI extends Model
         //     $string_json = str_replace("name_user","นิติ",$string_json);
         // }
 
-        $string_json = str_replace("VA_notify_repair",$data_notify_repair->id,$string_json);
+        // $string_json = str_replace("VA_notify_repair",$data_notify_repair->id,$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
