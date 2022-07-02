@@ -156,9 +156,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="div_cf_pass_area" class="col-12 d-none">
-                                        <label for="cf_pass_area" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
-                                        <input class="form-control" type="text" name="cf_pass_area" id="cf_pass_area" oninput="check_pass_area();">
+                                    <div id="div_cf_pass_condo" class="col-12 d-none">
+                                        <label for="cf_pass_condo" class="control-label">{{ 'กรุณายืนยันรหัส' }}</label>
+                                        <input class="form-control" type="text" name="cf_pass_condo" id="cf_pass_condo" oninput="check_pass_condo();">
+                                    </div>
+                                    <div id="div_btn_submit_add_area" class="col-12 d-none">
+                                        <a style="margin-top: 9px;" id="btn_submit_add_area" class="btn btn-primary float-right">
+                                            ยืนยันการเพิ่มไลน์กลุ่ม
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +243,7 @@
 
 <script>
     
-    var num_pass_area ;
+    var num_pass_condo ;
 
     function send_pass_condo(){
         document.querySelector('#btn_send_pass_area').classList.add('d-none');
@@ -246,22 +251,43 @@
         
         let line_group = document.querySelector('#line_group').value;
 
-        num_pass_area = Math.floor(Math.random() * 10000);
-        num_pass_area = num_pass_area.toString();
+        num_pass_condo = Math.floor(Math.random() * 10000);
+        num_pass_condo = num_pass_condo.toString();
 
-        fetch("{{ url('/') }}/api/send_pass_condo/"+line_group+'/'+num_pass_area)
+        fetch("{{ url('/') }}/api/send_pass_condo/"+line_group+'/'+num_pass_condo)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
-                // console.log(num_pass_area);
+                // console.log(num_pass_condo);
                 
                 let group_line_id = document.querySelector('#group_line_id');
                     group_line_id.value = result[0]['id'];
                 document.querySelector('#spinner_send_pass').classList.add('d-none');
                 document.querySelector('#text_send_pass_done').classList.remove('d-none');
-                document.querySelector('#div_cf_pass_area').classList.remove('d-none');
+                document.querySelector('#div_cf_pass_condo').classList.remove('d-none');
+
+                let btn_submit_add_area = document.querySelector('#btn_submit_add_area');
+                let onclick = document.createAttribute("onclick");
+                    onclick.value =  "update_data_groupline(" + result[0]['id'] +")" ;
+                btn_submit_add_area.setAttributeNode(onclick);
 
         });
+    }
+
+    function check_pass_condo(){
+        let cf_pass_condo = document.querySelector('#cf_pass_condo').value ;
+            cf_pass_condo = cf_pass_condo.toString();
+
+        if (cf_pass_condo === num_pass_condo) {
+            document.querySelector('#div_btn_submit_add_area').classList.remove('d-none');
+        }else{
+            document.querySelector('#div_btn_submit_add_area').classList.add('d-none');
+        }
+    }
+
+    function update_data_groupline(id_groupline)
+    {
+        console.log(id_groupline);
     }
 
 </script>
