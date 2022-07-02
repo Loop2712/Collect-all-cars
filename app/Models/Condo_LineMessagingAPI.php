@@ -199,9 +199,9 @@ class Condo_LineMessagingAPI extends Model
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("ตัวอย่าง","การแจ้งซ่อมบำรุง",$string_json);
         $string_json = str_replace("VA_photo_condo",$photo_condo,$string_json);
-        // $string_json = str_replace("หัวเรื่อง",$data_notify_repair->title,$string_json);
-        // $string_json = str_replace("หมวดหมู่",$data_notify_repair->category,$string_json);
-        // $string_json = str_replace("photo_notify_repair.png",$data_notify_repair->photo,$string_json);
+        $string_json = str_replace("หัวเรื่อง",$data_notify_repair->title,$string_json);
+        $string_json = str_replace("หมวดหมู่",$data_notify_repair->category,$string_json);
+        $string_json = str_replace("photo_notify_repair.png",$data_notify_repair->photo,$string_json);
         // $string_json = str_replace("content",$data_notify_repair->content,$string_json);
         // $string_json = str_replace("datetime",$data_notify_repair->appointment_date . "เวลา" . $data_notify_repair->appointment_time . ":00",$string_json);
 

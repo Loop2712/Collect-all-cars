@@ -13,7 +13,8 @@
         "url": "https://www.viicheck.com/storage/VA_photo_condo",
         "size": "xxl",
         "aspectRatio": "16:9",
-        "aspectMode": "cover"
+        "aspectMode": "fit",
+        "offsetBottom": "md"
       },
       {
         "type": "box",
