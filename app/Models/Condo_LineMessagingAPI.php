@@ -140,11 +140,16 @@ class Condo_LineMessagingAPI extends Model
     {
 
         $data_condo = Partner_condo::where('id' , $save_name_group['condo_id'])->first();
+        $photo_condo = $data_condo->partner->logo ;
+        $name_condo = $data_condo->name ;
 
-        $template_path = storage_path('../public/json/hello_group_line.json');   
+        $template_path = storage_path('../public/json/hello_group_line_condo.json');   
         $string_json = file_get_contents($template_path);
         $string_json = str_replace("ตัวอย่าง","สวัสดีค่ะ",$string_json);
+        $string_json = str_replace("VA_photo_condo",$photo_condo,$string_json);
         $string_json = str_replace("GROUP",$save_name_group['groupName'],$string_json);
+        $string_json = str_replace("VA_name_condo",$name_condo,$string_json);
+        $string_json = str_replace("VA_condo_id",$save_name_group['condo_id'],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 

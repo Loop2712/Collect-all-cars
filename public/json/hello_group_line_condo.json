@@ -1,0 +1,149 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/storage/VA_photo_condo",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "fit",
+        "offsetBottom": "md"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/PNG/1.png",
+            "size": "xxl",
+            "aspectRatio": "1:1",
+            "aspectMode": "fit",
+            "margin": "xs",
+            "animated": true,
+            "align": "center",
+            "gravity": "center"
+          },
+          {
+            "type": "text",
+            "text": "GROUP",
+            "weight": "bold",
+            "align": "center",
+            "margin": "xl",
+            "size": "lg",
+            "offsetBottom": "lg"
+          }
+        ],
+        "backgroundColor": "#f0e4e4",
+        "borderWidth": "bold",
+        "borderColor": "#ff0101",
+        "cornerRadius": "xxl"
+      },
+      {
+        "type": "text",
+        "text": "สวัสดีค่ะ เจ้าหน้าที่",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true,
+        "align": "center",
+        "gravity": "center"
+      },
+      {
+        "type": "text",
+        "text": "VA_name_condo",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "sm",
+        "color": "#4566ed",
+        "wrap": true,
+        "align": "center",
+        "gravity": "center"
+      },
+      {
+        "type": "text",
+        "text": "เจ้าหน้าที่ท่านใดยังไม่ได้ลงทะเบียน รบกวนลงทะเบียนเพื่อเริ่มใช้งานค่ะ",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xl",
+        "color": "#4a4848",
+        "wrap": true,
+        "align": "center",
+        "gravity": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "ลงทะเบียน",
+          "uri": "https://www.viicheck.com/reg_staff_condo?condo_id=VA_condo_id"
+        },
+        "style": "primary",
+        "height": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "text",
+        "text": "ติดต่อ ViiCHECK (วีเช็ค)",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "📩 contact.viicheck@gmail.com",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true,
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "mailto:contact.viicheck@gmail.com"
+        }
+      },
+      {
+        "type": "text",
+        "text": "📞 02-0277856",
+        "weight": "bold",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true,
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "tel:020277856"
+        }
+      }
+    ],
+    "backgroundColor": "#ffffff",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}
+}
