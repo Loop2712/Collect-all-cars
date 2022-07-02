@@ -119,6 +119,12 @@ class Notify_repairController extends Controller
         $data_condos = Partner_condo::where('id' , $condo_id)->first();
         $link_line_oa = $data_condos->link_line_oa ;
 
+        $data_notify_repair = Notify_repair::where('condo_id' , $condo_id)->latest()->first();
+
+        // ส่งไลน์เข้ากลุ่มช่าง (notify_repair)
+        $line_condo = new Condo_LineMessagingAPI();
+        $line_condo->send_TO_notify_repair($data_condos,$data_notify_repair);
+
         if (!empty($requestData['user_condo_id'])) {
             return view('notify_repair.add_line', compact('link_line_oa'));
         }else{

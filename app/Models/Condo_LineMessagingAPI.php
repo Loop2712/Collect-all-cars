@@ -16,6 +16,7 @@ use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Text_topic;
 use App\User;
 use App\Models\User_condo;
+use App\Models\Group_line;
 use App\Models\Partner_condo;
 
 class Condo_LineMessagingAPI extends Model
@@ -178,6 +179,68 @@ class Condo_LineMessagingAPI extends Model
             "title" => "HELLO LINE GROUP CONDO",
             "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
             "condo_id" => $save_name_group['condo_id'],
+        ];
+
+        Mylog_condo::create($data);
+
+    }
+
+    public function send_TO_notify_repair($data_condos,$data_notify_repair)
+    {
+        $data_line_group = DB::table('group_lines')
+            ->where('condo_id', $data_condos->id)
+            ->where('system', "notify_repair")
+            ->first();
+
+        $photo_condo = $data_condos->partner->logo ;
+        $data_groupline = Group_line::where('system','notify_repair')->where('condo_id',$data_condos->id)->first();
+
+        $template_path = storage_path('../public/json/hello_group_line_condo.json');   
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ตัวอย่าง","การแจ้งซ่อมบำรุง",$string_json);
+        $string_json = str_replace("VA_photo_condo",$photo_condo,$string_json);
+        $string_json = str_replace("หัวเรื่อง",$data_notify_repair->title,$string_json);
+        $string_json = str_replace("หมวดหมู่",$data_notify_repair->category,$string_json);
+        $string_json = str_replace("photo_notify_repair.png",$data_notify_repair->photo,$string_json);
+        $string_json = str_replace("content",$data_notify_repair->content,$string_json);
+        $string_json = str_replace("datetime",$data_notify_repair->appointment_date . "เวลา" . $data_notify_repair->appointment_time . ":00",$string_json);
+
+        if (!empty($data_notify_repair->user_condo_id)) {
+            $name_user_condo = "อาคาร " . $data_notify_repair->user_condo->building . " ห้อง " . $data_notify_repair->user_condo->room_number ;
+            $string_json = str_replace("name_user",$name_user_condo,$string_json);
+        }else{
+            $string_json = str_replace("name_user","นิติ",$string_json);
+        }
+
+        $string_json = str_replace("VA_notify_repair",$data_notify_repair->id,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+
+        $body = [
+            "to" => $data_line_group->groupId,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '. $data_condos->channel_access_token,
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "send_TO_notify_repair",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+            "condo_id" => $data_condos->id,
         ];
 
         Mylog_condo::create($data);

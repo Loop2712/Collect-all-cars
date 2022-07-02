@@ -1,0 +1,216 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/storage/VA_photo_condo",
+        "size": "xxl",
+        "aspectRatio": "16:9",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "color": "#4a4848",
+            "text": "หัวเรื่อง",
+            "margin": "xxl",
+            "size": "xl",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "color": "#4a4848",
+            "text": "หมวดหมู่",
+            "margin": "xl",
+            "size": "md",
+            "align": "center",
+            "weight": "bold",
+            "gravity": "bottom",
+            "wrap": true,
+            "offsetBottom": "md"
+          },
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/storage/photo_notify_repair.png",
+            "aspectMode": "fit",
+            "aspectRatio": "4:3",
+            "size": "full",
+            "align": "center",
+            "gravity": "center"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "icon",
+                "url": "https://www.viicheck.com/img/icon/zoom-in.png",
+                "size": "xl"
+              }
+            ],
+            "position": "absolute",
+            "offsetBottom": "md",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/storage/photo_notify_repair.png"
+            },
+            "offsetStart": "210px"
+          }
+        ],
+        "backgroundColor": "#f0e4e4",
+        "borderColor": "#ff0101",
+        "borderWidth": "bold",
+        "cornerRadius": "xxl",
+        "margin": "md"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "คำอธิบาย",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true,
+        "text": "content"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "เวลานัดหมาย",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "datetime",
+        "size": "md",
+        "margin": "xxl",
+        "color": "#4a4848",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "text",
+        "text": "จาก",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "xxl",
+        "color": "#4a4848"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "name_user",
+            "size": "lg",
+            "margin": "lg",
+            "color": "#4a4848"
+          }
+        ],
+        "spacing": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "lg",
+        "color": "#07375D"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "ยันยัน",
+                  "uri": "https://www.viicheck.com/cf_notify_repair?notify_repair_id=VA_notify_repair"
+                },
+                "height": "sm",
+                "style": "secondary",
+                "color": "#FFFFFF"
+              }
+            ],
+            "backgroundColor": "#ffffff",
+            "borderWidth": "semi-bold",
+            "borderColor": "#0B9CFF",
+            "cornerRadius": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "ยกเลิก",
+                  "uri": "https://www.viicheck.com/nocf_notify_repair?notify_repair_id=VA_notify_repair"
+                },
+                "height": "sm",
+                "style": "secondary",
+                "color": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": "lg",
+            "borderColor": "#ff0101",
+            "borderWidth": "semi-bold"
+          }
+        ],
+        "flex": 0,
+        "borderColor": "#000000",
+        "margin": "lg"
+      }
+    ],
+    "backgroundColor": "#ffffff",
+    "borderColor": "#ff0101",
+    "borderWidth": "bold",
+    "cornerRadius": "xl"
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}
+}

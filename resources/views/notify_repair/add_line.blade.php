@@ -31,7 +31,7 @@
         document.getElementById("btn_modal").click();
 
         setTimeout(function(){ 
-          // document.getElementById("btn_add_line_condo").click(); 
+          document.getElementById("btn_add_line_condo").click(); 
         }, 4000);
 
     });
