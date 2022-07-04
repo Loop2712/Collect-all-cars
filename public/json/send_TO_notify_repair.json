@@ -163,9 +163,10 @@
               {
                 "type": "button",
                 "action": {
-                  "type": "uri",
-                  "label": "ยันยัน",
-                  "uri": "https://www.viicheck.com/cf_notify_repair?notify_repair_id=VA_notify_repair"
+                  "type": "postback",
+                  "label": "ยืนยัน",
+                  "data": "notify_repair?notify_repair_id/CF",
+                  "displayText": "ยืนยัน"
                 },
                 "height": "sm",
                 "style": "secondary",
@@ -184,9 +185,10 @@
               {
                 "type": "button",
                 "action": {
-                  "type": "uri",
+                  "type": "postback",
                   "label": "ยกเลิก",
-                  "uri": "https://www.viicheck.com/nocf_notify_repair?notify_repair_id=VA_notify_repair"
+                  "data": "notify_repair?notify_repair_id/NOCF",
+                  "displayText": "ยกเลิก"
                 },
                 "height": "sm",
                 "style": "secondary",
