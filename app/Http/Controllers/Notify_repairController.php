@@ -216,4 +216,11 @@ class Notify_repairController extends Controller
         return $data ;
     }
 
+    public function notify_repair_NOCF($id)
+    {
+        $notify_repair = Notify_repair::findOrFail($id);
+
+        return view('notify_repair.edit', compact('notify_repair'));
+    }
+
 }

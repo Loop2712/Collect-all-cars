@@ -366,5 +366,6 @@ Route::get('/select_register', function () {
 
 // ------- CONDO -------
 Route::get('/login_line/notify_repair', 'Notify_repairController@login_line');
+Route::get('/notify_repair/{id}/NOCF', 'Notify_repairController@notify_repair_NOCF');
 
 
