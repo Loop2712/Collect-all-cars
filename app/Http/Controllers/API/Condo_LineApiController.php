@@ -69,8 +69,8 @@ class Condo_LineApiController extends Controller
         $data_postback = $data_postback_explode[0] ;
 
         switch($data_postback){
-            case "อื่นๆ" :  
-                $line_condo->replyToUser($data_line_condos, $event, "other");
+            case "notify_repair" :  
+                $line_condo->postback_notify_repair($data_postback_explode[1], $event, $condo_id);
                 break;
         }  
 

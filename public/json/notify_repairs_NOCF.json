@@ -1,0 +1,43 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "สวัสดีค่ะ name_staff",
+        "weight": "bold",
+        "size": "xl",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "โปรดระบุเหตุผล",
+        "margin": "md"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "ระบุเหตุผล",
+          "uri": "https://www.viicheck.com/notify_repair/VA_notify_repair_id/NOCF"
+        }
+      }
+    ],
+    "flex": 0
+  }
+}
+}
