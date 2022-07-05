@@ -119,7 +119,7 @@
                                         <div class="card-body">
                                             <h6 class="card-title cursor-pointer">Service Viicheck</h6>
                                             <div class="d-flex align-items-center mt-3 fs-6">
-                                                <a class="btn btn-danger notranslate main-shadow main-radius" href="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/Service-Viicheck ver2.png') }}" download >
+                                                <a class="btn btn-danger notranslate main-shadow main-radius" href="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/Service-Viicheck ver3.png') }}" download >
                                                     ดาวน์โหลด
                                                 </a>
                                             </div>

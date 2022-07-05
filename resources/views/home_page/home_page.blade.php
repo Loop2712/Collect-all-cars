@@ -80,7 +80,7 @@
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch wow fadeInRight">
             <div class="content">
-              <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/Service-Viicheck ver2.png') }}">
+              <img style="z-index: 2;"  width="100%" src="{{ asset('/img/more/Service-Viicheck ver3.png') }}">
             </div>
           </div>
           <div class="col-lg-7 d-flex align-items-stretch">
@@ -648,7 +648,7 @@
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="content">
-            <img class="wow  fadeInUp" width="100%" src="{{ asset('/img/more/Service-Viicheck ver2.png') }}" alt="">
+            <img class="wow  fadeInUp" width="100%" src="{{ asset('/img/more/Service-Viicheck ver3.png') }}" alt="">
               <div class="text-center">
                 <br>
               </div>
