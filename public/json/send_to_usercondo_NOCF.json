@@ -35,7 +35,8 @@
         "type": "text",
         "text": "annotation",
         "margin": "md",
-        "wrap": true
+        "wrap": true,
+        "weight": "bold"
       }
     ]
   }

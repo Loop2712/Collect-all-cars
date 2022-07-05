@@ -63,8 +63,7 @@
                 .then(response => response.text())
                 .then(result => {
                     // console.log(result); 
-                    // document.querySelector('#btn_add_line_condo').click();
-                    window.close() ;
+                    document.querySelector('#btn_add_line_condo').click();
             });
         }else{
           alert('โปรดระบุเหตุผล');
