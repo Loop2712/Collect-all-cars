@@ -220,9 +220,10 @@ class Notify_repairController extends Controller
     public function notify_repair_NOCF($id)
     {
         $notify_repair = Notify_repair::findOrFail($id);
+        $annotation = $notify_repair->annotation ;
         $data_condos = Partner_condo::where('id', $notify_repair->condo_id)->first();
 
-        return view('notify_repair.nocf', compact('notify_repair','data_condos'));
+        return view('notify_repair.nocf', compact('notify_repair','data_condos','annotation'));
     }
 
     function notify_repair_annotation($id, $annotation)

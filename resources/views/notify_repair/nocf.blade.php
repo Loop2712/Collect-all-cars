@@ -35,20 +35,53 @@
                       <textarea class="form-control" id="annotation" name="annotation" rows="4" placeholder="ระบุเหตุผลการยกเลิก"></textarea>
                       <br>
                       <center>
-                        <button class="btn btn-success main-shadow main-radius" style="width:90%;" onclick="check_input();">ยืนยัน</button>
+                        <button id="btn_send_annotation" class="btn btn-success main-shadow main-radius" style="width:90%;" onclick="check_input();">ยืนยัน</button>
                       </center>
                       <input class="d-none" type="text" name="notify_repair_id" id="notify_repair_id" value="{{ $notify_repair->id }}">
+                      <input class="d-none" type="text" name="old_annotation" id="old_annotation" value="{{ $notify_repair->annotation }}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Button trigger modal -->
+<button id="btn_modal" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-body" style="margin:-16.5px;">
+        <center>
+          <br>
+          <h5 class="modal-title text-danger text-center" id="staticBackdropLabel"> <b>ขออภัยค่ะมีการดำเนินการแล้ว</b>
+          <br><br>
+          <img width="70%" src="{{ asset('/img/stickerline/PNG/17.png') }}">
+          <br><br>
+          <a href="{{ $data_condos->link_line_oa }}" style="width:90%;"  class="btn btn-success">ปิด</a>
+          <br><br>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
 <a id="btn_add_line_condo" href="{{ $data_condos->link_line_oa }}" style="width:90%;"  class="btn btn-success d-none"></a>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START"); 
+        let old_annotation = document.querySelector('#old_annotation');
+
+        if (old_annotation.value) {
+          document.querySelector('#btn_modal').click();
+          document.querySelector('#btn_send_annotation').classList.add('d-none');
+        }
+
     });
 
     function check_input()
