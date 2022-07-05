@@ -35,7 +35,7 @@
 <hr>
 <label for="appointment_date" class="control-label">{{ 'วัน - เวลาที่ต้องการนัดหมาย' }}</label>
 <br>
-<span style="color: #FF0033;">ในกรณีที่ช่างเกิดเหตุสุดวิสัยไม่สามารถมาตามนัดได้ทันเวลาระบบจะทำการแจ้งเตือนและให้ช่างติดต่อกลับ ขออภัยมา ณ ที่นี้</span>
+<span style="color: #FF0033;">ในกรณีที่ช่างเกิดเหตุสุดวิสัยไม่สามารถมาได้ทันเวลาระบบจะทำการแจ้งเตือนและให้ช่างติดต่อกลับ ขออภัยมา ณ ที่นี้</span>
 <br><br>
 <div class="form-group {{ $errors->has('appointment_date') ? 'has-error' : ''}}">
     <label for="appointment_date" class="control-label">{{ 'เลือกวันที่' }}</label>
