@@ -270,7 +270,7 @@ class Condo_LineMessagingAPI extends Model
 
         if (!empty($users)) {
 
-            if (!empty($users->role) {
+            if (!empty($users->role)) {
                 DB::table('users')
                     ->where('provider_id', $provider_id)
                     ->update([
