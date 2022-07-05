@@ -233,6 +233,48 @@ class Notify_repairController extends Controller
                 'annotation' => $annotation,
             ]);
 
+        $notify_repair = Notify_repair::where('id', $id)->first();
+        $data_condos = Partner_condo::where('id', $notify_repair->condo_id)->first();
+        $data_user_condo = User_condo::where('id', $notify_repair->user_condo_id)->first();
+
+        // ส่งไลน์แจ้งลูกบ้านว่ายกเลิกพร้อมเหตุผล
+        $template_path = storage_path('../public/json/send_to_usercondo_NOCF.json');
+        $string_json = file_get_contents($template_path);
+
+        $string_json = str_replace("ตัวอย่าง","เรียนคุณ",$string_json);
+        $string_json = str_replace("name_user",$data_user_condo->user->name,$string_json);
+        $string_json = str_replace("annotation",$annotation,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_user_condo->user->provider_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '. $data_condos->channel_access_token,
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "notify_repair_annotation",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+            "condo_id" => $data_condos->id,
+        ];
+
+        Mylog_condo::create($data);
+
         return "OK";
     }
 

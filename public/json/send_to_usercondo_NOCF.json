@@ -16,34 +16,28 @@
       },
       {
         "type": "text",
-        "text": "name_staff",
+        "text": "name_user",
         "size": "xl",
         "wrap": true
       },
       {
         "type": "text",
-        "text": "โปรดระบุเหตุผล",
+        "text": "ช่างไม่ได้ยืนยันการนัดของคุณ",
+        "margin": "md",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "เนื่องจาก",
         "margin": "md"
+      },
+      {
+        "type": "text",
+        "text": "annotation",
+        "margin": "md",
+        "wrap": true
       }
     ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "sm",
-    "contents": [
-      {
-        "type": "button",
-        "style": "primary",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "ระบุเหตุผล",
-          "uri": "https://www.viicheck.com/notify_repair/VA_notify_repair_id/NOCF"
-        }
-      }
-    ],
-    "flex": 0
   }
 }
 }
