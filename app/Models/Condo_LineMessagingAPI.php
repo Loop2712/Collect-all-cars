@@ -264,67 +264,14 @@ class Condo_LineMessagingAPI extends Model
 
         $data_condos = Partner_condo::where('id' , $condo_id)->first();
 
-        // เช็คสถานะ staff_condo หรือ admin-condo
-        $provider_id = $event["source"]["userId"] ;
-        $users = DB::table('users')->where('provider_id', $provider_id)->first();
+        // เช็คมีการดำเนินการเคสหรือยัง
+        $data_notify_repair = Notify_repair::where('id' , $notify_repair_id)->first();
+        if (!empty($data_notify_repair->staff_id)) {
+            // มีการดำเนินการแล้ว
+            $template_path = storage_path('../public/json/text_done.json');
+            $string_json = file_get_contents($template_path);
 
-        if (!empty($users)) {
-
-            if (!empty($users->role)) {
-                DB::table('users')
-                    ->where('provider_id', $provider_id)
-                    ->update([
-                        'organization' => $data_condos->name,
-                    ]);
-            }else{
-                DB::table('users')
-                    ->where('provider_id', $provider_id)
-                    ->update([
-                        'role' => "staff_condo",
-                        'organization' => $data_condos->name,
-                    ]);
-            }
-
-            // ตรวจสอบยืนยันหรือยกเลิก
-            if ($cf_or_nocf == "CF") {
-
-                DB::table('notify_repairs')
-                    ->where('id', $notify_repair_id)
-                    ->update([
-                        'result' => $cf_or_nocf,
-                        'name_staff' => $users->name,
-                        'staff_id' => $users->id,
-                        'status' => "รอดำเนินการ",
-                        'time_pending' => $date_now,
-                    ]);
-
-                $template_path = storage_path('../public/json/register_line_of_condo.json');
-                $string_json = file_get_contents($template_path);
-
-                $messages = [ json_decode($string_json, true) ];
-
-            }else if ($cf_or_nocf == "NOCF") {
-
-                DB::table('notify_repairs')
-                    ->where('id', $notify_repair_id)
-                    ->update([
-                        'result' => $cf_or_nocf,
-                        'name_staff' => $users->name,
-                        'staff_id' => $users->id,
-                        'status' => "ดำเนินการเสร็จสิ้น",
-                        'time_finished' => $date_now,
-                    ]);
-
-                $template_path = storage_path('../public/json/notify_repairs_NOCF.json');
-                $string_json = file_get_contents($template_path);
-
-                $string_json = str_replace("ตัวอย่าง","โปรดระบุเหตุผล",$string_json);
-                $string_json = str_replace("name_staff",$users->name,$string_json);
-                $string_json = str_replace("VA_notify_repair_id",$notify_repair_id,$string_json);
-
-                $messages = [ json_decode($string_json, true) ];
-
-            }
+            $messages = [ json_decode($string_json, true) ];
 
             $body = [
                 "replyToken" => $event["replyToken"],
@@ -348,7 +295,7 @@ class Condo_LineMessagingAPI extends Model
 
             //SAVE LOG
             $data = [
-                "title" => "send" . $cf_or_nocf,
+                "title" => "ส่งข้อความมีการดำเนินการแล้ว notify_repair",
                 "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
                 "condo_id" => $condo_id,
             ];
@@ -356,7 +303,102 @@ class Condo_LineMessagingAPI extends Model
             Mylog_condo::create($data);
 
         }else{
-            $this->send_register_viicheck($event, $condo_id);
+            // ยังไม่มีการดำเนินการ
+            // เช็คสถานะ staff_condo หรือ admin-condo
+            $provider_id = $event["source"]["userId"] ;
+            $users = DB::table('users')->where('provider_id', $provider_id)->first();
+
+            if (!empty($users)) {
+
+                if (!empty($users->role)) {
+                    DB::table('users')
+                        ->where('provider_id', $provider_id)
+                        ->update([
+                            'organization' => $data_condos->name,
+                        ]);
+                }else{
+                    DB::table('users')
+                        ->where('provider_id', $provider_id)
+                        ->update([
+                            'role' => "staff_condo",
+                            'organization' => $data_condos->name,
+                        ]);
+                }
+
+                // ตรวจสอบยืนยันหรือยกเลิก
+                if ($cf_or_nocf == "CF") {
+
+                    DB::table('notify_repairs')
+                        ->where('id', $notify_repair_id)
+                        ->update([
+                            'result' => $cf_or_nocf,
+                            'name_staff' => $users->name,
+                            'staff_id' => $users->id,
+                            'status' => "รอดำเนินการ",
+                            'time_pending' => $date_now,
+                        ]);
+
+                    $template_path = storage_path('../public/json/register_line_of_condo.json');
+                    $string_json = file_get_contents($template_path);
+
+                    $messages = [ json_decode($string_json, true) ];
+
+                }else if ($cf_or_nocf == "NOCF") {
+
+                    DB::table('notify_repairs')
+                        ->where('id', $notify_repair_id)
+                        ->update([
+                            'result' => $cf_or_nocf,
+                            'name_staff' => $users->name,
+                            'staff_id' => $users->id,
+                            'status' => "ดำเนินการเสร็จสิ้น",
+                            'time_finished' => $date_now,
+                        ]);
+
+                    $template_path = storage_path('../public/json/notify_repairs_NOCF.json');
+                    $string_json = file_get_contents($template_path);
+
+                    $string_json = str_replace("ตัวอย่าง","โปรดระบุเหตุผล",$string_json);
+                    $string_json = str_replace("name_staff",$users->name,$string_json);
+                    $string_json = str_replace("VA_notify_repair_id",$notify_repair_id,$string_json);
+
+                    $messages = [ json_decode($string_json, true) ];
+
+                }
+
+                $body = [
+                    "replyToken" => $event["replyToken"],
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '. $data_condos->channel_access_token,
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                //https://api-data.line.me/v2/bot/message/11914912908139/content
+                $url = "https://api.line.me/v2/bot/message/reply";
+                $result = file_get_contents($url, false, $context);
+
+                //SAVE LOG
+                $data = [
+                    "title" => "send" . $cf_or_nocf,
+                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+                    "condo_id" => $condo_id,
+                ];
+
+                Mylog_condo::create($data);
+
+            }else{
+                $this->send_register_viicheck($event, $condo_id);
+            }
+
         }
 
     }
