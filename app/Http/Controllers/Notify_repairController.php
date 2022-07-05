@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Notify_repair;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use Auth;
 use App\Models\Condo_LineMessagingAPI;
@@ -219,8 +220,20 @@ class Notify_repairController extends Controller
     public function notify_repair_NOCF($id)
     {
         $notify_repair = Notify_repair::findOrFail($id);
+        $data_condos = Partner_condo::where('id', $notify_repair->condo_id)->first();
 
-        return view('notify_repair.edit', compact('notify_repair'));
+        return view('notify_repair.nocf', compact('notify_repair','data_condos'));
+    }
+
+    function notify_repair_annotation($id, $annotation)
+    {
+        DB::table('notify_repairs')
+            ->where('id', $id)
+            ->update([
+                'annotation' => $annotation,
+            ]);
+
+        return "OK";
     }
 
 }
