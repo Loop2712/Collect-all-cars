@@ -271,7 +271,11 @@ class LineMessagingAPI extends Model
                         $photo_profile = "https://www.viicheck.com/storage/".$item->photo ;
                     }
                     if (empty($item->photo)) {
-                        $photo_profile = $item->avatar ;
+                        if ($item->avatar == "กรุณาเพิ่มรูปโปรไฟล์") {
+                            $photo_profile = "https://www.viicheck.com/simg/stickerline/PNG/tab.png";
+                        }else{
+                            $photo_profile = $item->avatar ;
+                        }
                     }
 
                     $template_path = storage_path('../public/json/flex-profile.json');   
