@@ -50,14 +50,6 @@
         "layout": "baseline",
         "contents": [
           {
-            "type": "icon",
-            "url": "https://www.viicheck.com/img/ranking/gold.png",
-            "margin": "md",
-            "size": "3xl",
-            "offsetTop": "8px",
-            "offsetStart": "55px"
-          },
-          {
             "type": "text",
             "text": "hello, world",
             "contents": [
@@ -92,7 +84,7 @@
           }
         ],
         "offsetTop": "-8px",
-        "margin": "xl"
+        "margin": "xxl"
       },
       {
         "type": "box",

@@ -272,7 +272,7 @@ class LineMessagingAPI extends Model
                     }
                     if (empty($item->photo)) {
                         if ($item->avatar == "กรุณาเพิ่มรูปโปรไฟล์") {
-                            $photo_profile = "https://www.viicheck.com/simg/stickerline/PNG/tab.png";
+                            $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
                         }else{
                             $photo_profile = $item->avatar ;
                         }
@@ -311,19 +311,19 @@ class LineMessagingAPI extends Model
                     //     $string_json = str_replace("ชาย","กรุณาระบุเพศ",$string_json);
                     // }
                     // ranking
-                    if (!empty($item->ranking)) {
-                        switch ($item->ranking) {
-                            case 'Gold':
-                                $string_json = str_replace("1212312121","gold",$string_json);
-                                break;
-                            case 'Silver':
-                                $string_json = str_replace("1212312121","silver",$string_json);
-                                break;
-                            case 'Bronze':
-                                $string_json = str_replace("1212312121","bronze",$string_json);
-                                break;
-                        }
-                    }
+                    // if (!empty($item->ranking)) {
+                    //     switch ($item->ranking) {
+                    //         case 'Gold':
+                    //             $string_json = str_replace("1212312121","gold",$string_json);
+                    //             break;
+                    //         case 'Silver':
+                    //             $string_json = str_replace("1212312121","silver",$string_json);
+                    //             break;
+                    //         case 'Bronze':
+                    //             $string_json = str_replace("1212312121","bronze",$string_json);
+                    //             break;
+                    //     }
+                    // }
                     
                     $string_json = str_replace("xxxxx",$item->id,$string_json);
 
