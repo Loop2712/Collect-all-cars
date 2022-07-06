@@ -115,7 +115,7 @@
                                 <!-- ------------- แถวที่ 2 ------------- -->
                                 <div class="col">
                                     <div class="card main-shadow main-radius">
-                                        <img class="card-img-top" style="width: 100%;height: 300px;object-fit: contain;" src="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/Service-Viicheck ver2.png') }}">
+                                        <img class="card-img-top" style="width: 100%;height: 300px;object-fit: contain;" src="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/Service-Viicheck ver3.png') }}">
                                         <div class="card-body">
                                             <h6 class="card-title cursor-pointer">Service Viicheck</h6>
                                             <div class="d-flex align-items-center mt-3 fs-6">
