@@ -26,14 +26,14 @@
                                 </div>
                                 <div class="col-12 d-block d-lg-none">
                                     <br>
-                                    <a id="btn_back" class="btn btn-outline-success d-none" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
+                                    <a id="btn_back" class="btn btn-outline-success" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
                                 </div>
                                 <!-- คอม -->
                                 <div class="col-6 d-none d-lg-block" style="margin-top:5px;">
                                     <span style="font-size: 22px;" class="control-label">ลงทะเบียนสำหรับองค์กร</span><br>
                                 </div>
                                 <div class="col-6 d-none d-lg-block">
-                                    <a id="btn_back_pc" class="btn btn-outline-success d-none float-right" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
+                                    <a id="btn_back_pc" class="btn btn-outline-success float-right" href="{{ url('/register_car/create') }}">สำหรับบุคคลทั่วไป</a>
                                 </div>
                             </div>
                         </h4>
@@ -54,7 +54,7 @@
                             {{ csrf_field() }}
 
                             @include ('register_car.form', ['formMode' => 'create'])
-
+                            <input class="d-" type="text" name="check_reg" id="check_reg" value="1">
                         </form>
                     </div>
                 </div>
@@ -73,6 +73,9 @@
 
         document.querySelector('#blade_organization').classList.remove('d-none');
 
+        document.querySelector('#row_organization').classList.remove('d-none');
+
+        document.querySelector('#check_reg').value = '2';
         add_required();
     }
     

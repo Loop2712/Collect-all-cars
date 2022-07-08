@@ -210,8 +210,9 @@ class ProfileController extends Controller
 
             return view('ProfileUser/edit', compact('data','name_university'));
             
-        }else
+        }else{
             return view('404');
+        }
 
     }
 
