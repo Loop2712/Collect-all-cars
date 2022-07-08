@@ -71,6 +71,12 @@ class ImageController extends Controller
         // Save image
         file_put_contents($img, file_get_contents($url));
 
+        $qr_code = Image::make( $img );
+        //logo viicheck
+        $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
+        $logo_viicheck->resize(80,80);
+        $qr_code->insert($logo_viicheck,'center')->save();
+
         return 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
 
     }
@@ -155,6 +161,7 @@ class ImageController extends Controller
 
                 // logo partner
                 $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
+                $logo_partner->resize(250, 250);
                 $image->insert($logo_partner,'top-right', 40, 20);
 
                 if($cuont_name_partner >= 37){
@@ -235,6 +242,7 @@ class ImageController extends Controller
 
                 // logo partner
                 $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
+                $logo_partner->resize(250, 250);
                 $image->insert($logo_partner,'top-right', 40, 20);
 
                 if($cuont_name_partner >= 37){
@@ -477,6 +485,7 @@ class ImageController extends Controller
 
         // logo partner
         $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
+        $logo_partner->resize(250, 250);
         $image->insert($logo_partner,'top-right', 40, 20);
 
         if($cuont_name_partner >= 37){
