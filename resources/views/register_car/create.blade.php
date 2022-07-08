@@ -54,7 +54,7 @@
                             {{ csrf_field() }}
 
                             @include ('register_car.form', ['formMode' => 'create'])
-                            <input class="d-" type="text" name="check_reg" id="check_reg" value="1">
+                            <input class="d-none" type="text" name="check_reg" id="check_reg" value="1">
                         </form>
                     </div>
                 </div>
