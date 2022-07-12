@@ -247,6 +247,21 @@
       border-radius: 50%;
       border: solid 0.2px black;
     }
+
+    .goog-tooltip:hover {
+        display: none !important;
+    }
+    .goog-text-highlight {
+        background-color: transparent !important;
+        border: none !important; 
+        box-shadow: none !important;
+    }
+
+    #goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+    .goog-text-highlight { background: none !important; box-shadow: none !important;}
+    .goog-logo-link{display: none !important;}
+    .goog-te-gadget{height: 28px !important;  overflow: hidden;}
+    .goog-te-ban
   </style>
 
 
