@@ -923,6 +923,11 @@ section {
   min-height: 650px;
 }
 
+.about .video-box2 {
+
+  background-size: cover;
+}
+
 .about .play-btn {
   width: 94px;
   height: 94px;
