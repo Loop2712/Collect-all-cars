@@ -63,20 +63,20 @@
   </div>
 
   <!-- ======= Why Us Section ======= -->
-  <div class="d-none d-lg-block">
+  <div class="d-none d-lg-block" style="font-family: 'Kanit', sans-serif;">
     <section id="hero" class="d-flex align-items-center ">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 wow  fadeInLeft"> <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
           <div class="col-sm-6  wow  fadeInRight" style="margin-top:60px;">
-            <h1 style="text-align: right;">ยินดีต้อนรับสู่ ViiCHECK</h1>
-            <h2 class="wow  fadeInRight" style="text-align: right;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-            <a style="font-size: 18px; float: right;" href="https://line.me/R/ti/p/%40702ytkls" class=" fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+            <h1 style="text-align: right;font-family: 'Kanit', sans-serif;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+            <h2 class="wow  fadeInRight" style="text-align: right;font-family: 'Kanit', sans-serif;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
+            <a style="font-size: 18px; float: right;font-family: 'Kanit', sans-serif;" href="https://line.me/R/ti/p/%40702ytkls" class=" fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
           </div>
 
     </section>
 
-    <section id="why-us" class="why-us">
+    <section id="why-us" class="why-us" style="font-family: 'Kanit', sans-serif;">
       <div class="container">
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch wow fadeInRight">
@@ -92,7 +92,7 @@
                   <div class="row">
                     <div class="col-4 ">
                       <i style="margin: 12px;" class="fas fa-car-crash"></i>
-                      <h4>เหตุฉุกเฉิน</h4>
+                      <h4 style="font-family: 'Kanit', sans-serif;">เหตุฉุกเฉิน</h4>
                     </div>
                     <div class="col-8">
                       <br>
@@ -110,7 +110,7 @@
                   <div class="row">
                     <div class="col-4 ">
                       <i style="margin: 12px;" class="fas fa-id-card-alt"></i>
-                      <h4>ติดต่อเจ้าของรถ</h4>
+                      <h4 style="font-family: 'Kanit', sans-serif;">ติดต่อเจ้าของรถ</h4>
                     </div>
                     <div class="col-8">
                       <br>
@@ -132,7 +132,7 @@
                           <i style="margin: 12px;" class="fas fa-virus"></i>
                         </div>
                         <div class="col-12">
-                          <h4 class="d-flex align-items-center">แจ้งเตือนโรคติดต่อ</h4>
+                          <h4 class="text-center" style="font-family: 'Kanit', sans-serif;">แจ้งเตือนโรคติดต่อ</h4>
                         </div>
                       </div>
                     </div>
@@ -149,7 +149,7 @@
                     <div class="row">
                       <div class="col-12  text-center">
                         <i style="margin: 12px;" class="fas fa-exclamation-triangle"></i>
-                        <h4>แจ้งเตือน พรบ./ประกัน</h4>
+                        <h4 style="font-family: 'Kanit', sans-serif;">แจ้งเตือน พรบ./ประกัน</h4>
                       </div>
                       <div class="col-12 text-center" style="padding: 0px;">
                         <p style="text-indent:1.5em;">
@@ -165,7 +165,7 @@
                     <div class="row">
                       <div class="col-12 ">
                         <i style="margin: 12px;" class="fas fa-bullhorn"></i>
-                        <h4>โปรโมชั่นยานพาหนะ</h4>
+                        <h4 style="font-family: 'Kanit', sans-serif;">โปรโมชั่นยานพาหนะ</h4>
                       </div>
                       <div class="col-12 text-center" style="padding: 0px;">
                         <p style=" text-indent:1.5em;">
@@ -189,7 +189,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>วีเช็ค (ประเทศไทย)</h2>
+          <h2 style="font-family: 'Kanit', sans-serif;">วีเช็ค (ประเทศไทย)</h2>
           <p>เราภูมิใจที่ได้ให้บริการและช่วยให้คนไทยมีความปลอดภัยหายห่วงกับทุกสถานการณ์</p>
           <br>
         </div>
@@ -197,532 +197,268 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6">
-            <div class="count-box">
+            <div class="count-box cout-box-shadow">
               <i style="margin-top:-10px;">
                 <img width="200%" src="{{ asset('/img/stickerline/PNG/tab.png') }}" alt="">
               </i>
               <span data-purecounter-start="7000" data-purecounter-end="{{ $count_user }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>สมาชิก</p>
+              <p style="font-family: 'Kanit', sans-serif;"><b>สมาชิก</b></p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
+            <div class="count-box cout-box-shadow">
               <i style="margin-top:-10px;">
                 <img width="200%" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
               </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_vehicle * 3 }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>ยานพาหนะ</p>
+              <p style="font-family: 'Kanit', sans-serif;"><b>ยานพาหนะ</b></p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-            <div class="count-box">
+            <div class="count-box cout-box-shadow">
               <i style="margin-top:-10px;">
                 <img width="200%" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
               </i>
               <span data-purecounter-start="0" data-purecounter-end="{{ $count_help }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>ให้การช่วยเหลือ</p>
+              <p style="font-family: 'Kanit', sans-serif;"><b>ให้การช่วยเหลือ</b></p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
+            <div class="count-box cout-box-shadow">
               <i style="margin-top:-10px;">
                 <img width="200%" src="{{ asset('/img/stickerline/PNG/18.png') }}" alt="">
               </i>
               <span data-purecounter-start="0" data-purecounter-end="77" data-purecounter-duration="1" class="purecounter"></span>
-              <p>จังหวัดที่ครอบคลุม</p>
+              <p style="font-family: 'Kanit', sans-serif;"><b>จังหวัดที่ครอบคลุม</b></p>
             </div>
           </div>
 
         </div>
-
-
       </div>
     </section><!-- End Counts Section -->
-    <style>
-      .containersystem {
-        display: flex;
-        justify-content: space-around;
-        align-items: flex-start;
-        padding:80px;
-      }
-
-      .mysystem {
-        position: sticky;
-        top: 5rem;
-      }
-
-      .shark-2 {
-        position: sticky;
-        top: 4rem;
-      }
-
-      .shark-3 {
-        position: sticky;
-        bottom: 1rem;
-        align-self: flex-end;
-      }
-      .mysystem .nav-link {
-          border: 0;
-          padding: 12px 15px 12px 0;
-          transition: 0.3s;
-          color: #2c4964;
-          border-radius: 0;
-          border-right: 2px solid #ebf1f6;
-          font-weight: 600;
-          font-size: 15px;
-        }
-
-        .mysystem .nav-link:hover {
-          color: #db2d2e;
-        }
-
-        .mysystem .nav-link.active {
-          color: #db2d2e;
-          border-color: #db2d2e;
-        }
-        @media (max-width: 992px) {
-        .mysystem .nav-link {
-          border: 0;
-          padding: 15px;
-        }
-        .mysystem .nav-link.active {
-          color: #fff;
-          background: #db2d2e;
-        }
-      }
-    </style>
-    <div class="containersystem" >
+    
+    <div class="containersystem">
       <div class="item mysystem col-2" style=" top: 5rem;">
-        <ul class="nav nav-tabs flex-column">
-          <li class="nav-item">
-            <a class="nav-link"href="#tab-1" style="font-size: 20px;">
+        <ul class="nav flex-column">
+          <li class="nav-item ">
+            <a class="nav-link  notranslate" href="#tab-1" style="font-size: 20px;">
               <i class="fa-duotone fa-bullhorn"></i> ViiSOS
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  href="#tab-2" style="font-size: 20px;">
+            <a class="nav-link notranslate" href="#tab-2" style="font-size: 20px;">
               <i class="fa-duotone fa-cars"></i> ViiMOVE
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#tab-3" style="font-size: 20px;">
+          <li class="nav-item" style="border:0px solid">
+            <a class="nav-link notranslate" href="#tab-3" style="font-size: 20px;">
               <i class="fa-duotone fa-virus-covid"></i> ViiCARE
             </a>
           </li>
         </ul>
       </div>
-
-
-
       <div class="item">
         <div class="tab-content">
           <span id="tab-1" style="position: absolute;margin-top:-130px"></span>
-          <div class="tab-pane show active" >
+          <div style="margin-bottom: 25px;">
             <div class="row">
               <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>ระบบช่วยเหลือเหตุฉุกเฉิน ViiSOS</h3>
-                <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem veroEt nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem veroEt nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem veroEt nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
-                <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem veroEt nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem veroEt nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem veroEt nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                <h3 style="font-family: 'Kanit', sans-serif;" class="text-center"> <b>ระบบช่วยเหลือเหตุฉุกเฉิน ViiSOS</b> </h3>
+                <p style="text-indent: 15px;font-size:20px;">สามารถขอความช่วยเหลือจากเจ้าหน้าที่ในพื้นที่เพื่อรับการช่วยเหลือที่รวดเร็วมากยิ่งขึ้น และระบบยังแสดงเบอร์ที่จำเป็นต่างๆตามประเทศที่ท่านอยู่ นอกจากนี้ระบบยังรองรับหลากหลายภาษาทั่วโลก </span>
+                <p style="font-size:20px;"><b>ขั้นตอนการใช้งาน</b></p>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"><span style="text-indent: 25px;font-size:22px;" class="timeline_head"></i><b>สแกน <span style="color: #EB2424;">QR CODE</span>เพื่อเข้าสู่ Line Official ของ <span style="color: #EB2424;">Viicheck</b></p>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="galelry-lightbox-1">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="img-fluid">
+                  </a>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"><span style="text-indent: 25px;font-size:22px;" class="timeline_head"></i><b>เลือกเมนู <span style="color: #EB2424;">SOS</span></b></p>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="galelry-lightbox-1">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="img-fluid">
+                  </a>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"><span style="text-indent: 25px;font-size:22px;" class="timeline_head"></i><b>กดขอความช่วยเหลือจากเจ้าหน้าที่ได้เลย!!</b></p>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="galelry-lightbox-1">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="img-fluid">
+                  </a>
+                </div>
               </div>
               <div class="col-lg-4 text-center order-1 order-lg-2 about">
-                <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
-                  <img width="100%" style="border: 1px solid red; border-radius: 10px;" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
+                <div class="item mysystem-video">
+                  <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
+                    <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
+                    <img width="100%" style="border: 1px solid red; border-radius: 10px;" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr style="border:#EB2424 0.1px solid"> 
+          <br><br>
+          <span id="tab-2" style="position: absolute;margin-top:-130px"></span>
+          <div style="margin-bottom: 25px;">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-2">
+                <h3 style="font-family: 'Kanit', sans-serif;" class="text-center"> <b>ระบบติดต่อเจ้าของรถ ViiMOVE</b> </h3>
+                <p style="text-indent: 15px;font-size:18px;">หมดปัญหาเรื่องการจอดรถซ้อนคัน เพียงลงทะเบียนรถกับ ViiCHECK และดาวน์โหลดแล้วนำไปติดที่รถของคุณ นอกจากนี้ระบบจะแจ้งเตือนไปยังคุณเมื่อใกล้ถึงวันหมด ประกัน/พรบ. </p>
+                <p style="font-size:20px;"><b>ขั้นตอนการใช้งาน</b></p>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head">
+                    <b>
+                      สแกน<span style="color: #EB2424;">QR CODE</span>เพื่อเข้าสู่ Line Official<span style="color: #EB2424;">Viicheck</span>
+                    </b>
+                  </span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="img-fluid">
+                  </a>               
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head"> <b><span style="color: #EB2424;">ลงทะเบียน</span>ในการใช้งาน <span style="color: #EB2424;">Viicheck</span></b></span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="img-fluid">
+                  </a>                
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head"> <b><span style="color: #EB2424;">กรอกข้อมูล</span>รถของคุณเพื่อใช้บริการ<span style="color: #EB2424;">Viicheck</b> </span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="img-fluid">
+                  </a>               
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head"> <b><span style="color: #EB2424;">ดาวน์โหลด</span>และ<span style="color: #EB2424;">ติดสติ๊กเกอร์</b> </span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="img-fluid">
+                  </a>               
+                </div>
+                <div class="timeline_content">
+                  <div class="col-lg-6 col-md-6  text-center">
+                    <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download>
+                      <div class="icon-box" style="padding: 0px;">
+                        <img width="80%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
+                        <br>
+                        <button type="button" class="btn btn-danger">Download</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-6 col-md-6  text-center">
+                    <a id="sticker_qr_1" href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
+                      <div class="icon-box" style="padding: 0px;">
+                        <img id="sticker_qr_2" width="80%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
+                        <br>
+                        <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 text-center order-1 order-lg-1 about">
+                <div class="item mysystem-video">
+                  <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
+                    <a href="{{ asset('Medilab/video/ViiMOVE.mp4') }}" class="glightbox play-btn mb-4"></a>
+                    <img width="100%" style="border: 1px solid red; border-radius: 10px;" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <span id="tab-2" style="position: absolute;margin-top:-130px"></span>
+          <span id="tab-3" style="position: absolute;margin-top:-130px"></span>
           <div>
             <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>ระบบติดต่อเจ้าของรถ ViiMOVE</h3>
-                <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                <p>Ea ipsuEa ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis m voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
-              </div>
-              <div class="col-lg-4 text-center order-1 order-lg-2 about">
-                <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/ViiMOVE.mp4') }}" class="glightbox play-btn mb-4"></a>
-                  <img width="100%" style="border: 1px solid red; border-radius: 10px;" src="{{ asset('/img/stickerline/PNG/35.2.png') }}" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-3">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>แจ้งเตือนโรคติดต่อ ViiCARE</h3>
-                <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
-                <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
-              </div>
-              <div class="col-lg-4 text-center order-1 order-lg-2 about">
-                <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-4">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-                <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus</p>
-                <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
-              </div>
-              <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="assets/img/departments-4.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-5">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-                <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
-              </div>
-              <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="assets/img/departments-5.jpg" alt="" class="img-fluid">
+              <div class="col-12 details ">
+                <h3 style="font-family: 'Kanit', sans-serif;"> <b>แจ้งเตือนโรคติดต่อ</b> </h3>
+                <span style="text-indent: 5px;font-size:18px;" class="timeline_head">เข้าสถานที่ต่างๆได้อย่างหายห่วง ด้วยระบบ<span style="color: #EB2424;"> ViiCARE </span>เพียงแสกน<span style="color: #EB2424;"> QR-Code </span>ก่อนเข้าพื้นที่ หากเกิดโรคติดต่อขึ้นในพื้นที่ ระบบจะแจ้งเตือนไปยังกลุ่มเสี่ยงพร้อมทั้งระบุแนวทางการปฎิบัติเบื้องต้น </span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+  <!-- End Services Section -->
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="row">
-              <div class="col-5" style="padding:20px;">
-                <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
-                </div>
-                <!-- <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-none">
-                  <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
-                </div> -->
-              </div>
-              <div class="col-6" style="padding:20px;">
-                <br>
-                <div class="icon-boxes d-flex flex-column align-items-stretch justify-content-center ">
-                  <h3 class="wow fadeInDown">Top4 ปัญหาเกี่ยวกับการใช้รถใช้ถนนที่ทุกคนมักเจอ</h3>
-                  <p class="wow fadeInDown">เชื่อว่า ใครๆที่เดินทางไปไหนมาไหนบ่อยๆ และสันจรโดยรถ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน มั่นใจมากว่า คุณต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
-
-                  <div class="icon-box fadeInLeft wow">
-                    <div class="icon"><i class="fas fa-house-damage"></i></div>
-                    <h4 class="title"><a href="">รถจอดขวางหน้าบ้าน</a></h4>
-                    <p class="description">ใครที่อาศัยอยู่ในเขตชุมชน เช่น ตลาด ย่านการค้า หรือบ้านที่รั้วบ้านติดๆกันและมีบ้านทั้งสองฝั่ง
-                      ต้องเคยมีประสบการณ์แบบนี้มาแล้วแน่นอน ถ้าเกิดมีคนแปลกหน้ามาจอดรถขวางหน้าบ้าน แล้วหายไปโดยไม่สามารถติดต่อได้
-                      ปัญหาที่ตามมาคือเจ้าของบ้านจะไม่สามารถเอารถออกจากบ้านไปไหนได้ เจ้าของบ้านคงต้องโมโหฉุนเฉียวแน่นอน
-                      เหตุการณ์แบบนี้ที่ตามหรือติดต่อเจ้าของรถไม่ได้ เป็นประเด็นที่เห็นทางโซเชียลบ่อยครั้ง
-                    </p>
-                  </div>
-
-                  <div class="icon-box fadeInLeft wow">
-                    <div class="icon"><i class="fas fa-road"></i></div>
-                    <h4 class="title"><a href="">ถนนแคบ วิ่งได้แค่สองเลน แต่คนก็ยังจอดรถขวางเลน</a></h4>
-                    <p class="description">ปัญหาที่พบได้บ่อยในย่านชุมชนเล็กๆที่ถนนเป็นแค่ 2 เลน รถวิ่งสวนทางกัน หลายคนมักจอดรถขวางเลนเพื่อลงไปซื้อของริมทาง รถคันอื่นๆต้องคอยหักหลบ จนทำให้การจราจรติดขัด</p>
-                  </div>
-
-                  <div class="icon-box fadeInLeft wow">
-                    <div class="icon"><i class="fas fa-ban"></i></div>
-                    <h4 class="title"><a href="">จอดรถซ้อนคันแต่ลืมปลดเกียร์ว่างและเอาเบรกมือลง</a></h4>
-                    <p class="description">เคยไหม? เวลาไปห้าง ซื้อของเสร็จและอยากลับกลับบ้าน แต่มีรถมาจอดซ้อนคัน คุณจะเข็นก็เข็นไม่ได้เพราะใส่เกียร์ P กับเบรคมือเอาไว้ ห้างก็ตั้งใหญ่ ลูกค้ามีเยอะมาก แต่คุณไม่รู้จะไปตามหาเจ้าของรถได้ที่ไหน ถึงแม้ว่าจะประกาศประชาสัมพันธ์ แต่ก็ไม่สามารถตามตัวเจ้าของรถได้สำเร็จ เพราะบางครั้งเจ้าของรถก็แค่มาจอดรถทิ้งไว้แล้วไปทำธุระที่อื่น บางคนหายไปเป็นชั่วโมง ซึ่งเสียเวลา</p>
-                  </div>
-
-                  <div class="icon-box fadeInLeft wow">
-                    <div class="icon"><i class="fas fa-car-crash"></i></div>
-                    <h4 class="title"><a href="">รถโดนกรีด ขูด หรือเสียหาย</a></h4>
-                    <p class="description">มักเกิดขึ้นในที่จอดรถที่มีรถจำนวนมาก หรือที่จอดรถที่จอดซ้อนคันได้ เมื่อคุณกลับมาที่รถอีกที รถของคุณก็มีรอยซะแล้ว ถ้าบริเวณนั้นไม่มีกล้องวงจรปิด คุณก็ไม่รู้จะไปตามตัวคนที่เป็นสาเหตุความเสียหายของรถคุณได้จากที่ไหน หรือบางครั้ง คุณอยากเป็นพลเมืองดี ต้องการแจ้งอุบัติเหตุที่เกิดกับรถของคนอื่น แต่ก็ไม่รู้จะไปติดต่อเจ้าของรถให้มารับรู้เรื่องยังไงดี</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-
-    <!-- ======= Doctors Section ======= -->
-    <!-- <section id="doctors" class="doctors">
-      <div class="container">
-
-        <div class="row">
-          <div style="margin-left: 50px;" class="col-md-5 main-shadow main-radius">
-            <div class="member d-flex align-items-start">
-              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-5 main-shadow main-radius">
-            <div class="member d-flex align-items-start">
-              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <center>
-          <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
-      </center>
-    </section> -->
-    <!-- End Doctors Section -->
-
-    <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
       <div class="container">
-
         <div class="section-title">
-          <h2>ขั้นตอนการลงทะเบียน</h2>
+          <h2 style="font-family: 'Kanit', sans-serif;">ขอขอบคุณความไว้วางใจในการใช้ระบบ <span style="color: #EB2424;">ViiCHECK</span></h2>
         </div>
       </div>
 
-      <!-- <div class="container-fluid">
-        <div class="row no-gutters">
-
-          
-          <div class="col-lg-4 col-md-4 d-none">
-            <div class="gallery-item">
-              <a href="{{ asset('/img/more/Advantages.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/more/Advantages.jpg') }}" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-         
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" class="galelry-lightbox">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>   -->
-
-      <div class="container-fluid">
-        <div class="row no-gutters">
-
-          <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
-          <div class="col-lg-4 col-md-4 d-none">
-            <div class="gallery-item">
-              <img src="{{ asset('/img/more/Advantages.jpg') }}" alt="" class="img-fluid">
-            </div>
-          </div>
-          <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-01.jpg') }}" class="img-fluid">
-              <img style="position: absolute;top:30px; left: 45%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/39.png') }}">
-            </div>
-            <div style="position: absolute;top: 60%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>สแกน <span style="color: #EB2424;">QR CODE</span></b></p>
-              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">เพื่อเข้าสู่ Line Official ของ <span style="color: #EB2424;">Viicheck</span></p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-02.jpg') }}" alt="" class="img-fluid">
-              <img style="position: absolute;top:170px; left: 0%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/10.png') }}">
-            </div>
-            <div style="position: absolute;top: 44%;left: 75%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:30px;line-height: 20pt; width:200px; overflow: visible;"><b>ลง<span style="color: #EB2424;">ทะเบียน</span></b></p>
-              <p style="font-size:15px;line-height: 15pt; width:200px; overflow: visible;">ในการใช้งาน <span style="color: #EB2424;">Viicheck</span></p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-04.jpg') }}" class="img-fluid">
-              <img style="position: absolute;top:25px; left: 75%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/18.png') }}">
-            </div>
-            <div style="position: absolute;top: 60%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:30px;line-height: 20pt; width:250px; overflow: visible;"><b>กรอก<span style="color: #EB2424;">ข้อมูล</span></b></p>
-              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">รถของคุณเพื่อใช้บริการ <span style="color: #EB2424;">Viicheck</span></p>
-
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-07.jpg') }}" alt="" class="img-fluid">
-              <img style="position: absolute;top:30px; left: 75%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/15.png') }}">
-            </div>
-            <div style="position: absolute;top: 60%;left: 73%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b>ยืนยันการลงทะเบียน</b></p>
-              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">กด"<span style="color: #EB2424;">ยืนยัน</span>"เมื่อข้อมูลถูกต้อง</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-05.jpg') }}" alt="" class="img-fluid">
-              <img style="position: absolute;top:50px; left: 50%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/43.png') }}">
-              <img style="position: absolute;top:50px; left: 70%;z-index: 1;transform:rotate(360deg);" width="100" src="{{ asset('/img/stickerline/PNG/20.png') }}">
-            </div>
-            <div style="position: absolute;top: 70%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:25px;line-height: 20pt; width:250px; overflow: visible;"><b><span style="color: #EB2424;">Download</span> and Print</b></p>
-              <p style="font-size:15px;line-height: 15pt; width:250px; overflow: visible;">สติ๊กเกอร์<span style="color: #EB2424;">ViiCHECK</span>ได้เลย!</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4">
-            <div class="gallery-item">
-              <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/how to ลงทะเบียน 1920x1080 V2 no text-06.jpg') }}" alt="" class="img-fluid">
-              <img style="position: absolute;top:40px; left: 67%;z-index: 1;transform:rotate(360deg);" width="130" src="{{ asset('/img/stickerline/PNG/24.png') }}">
-            </div>
-            <div style="position: absolute;top: 70%;left: 70%;transform: translate(-50%, -50%); z-index: 5; color: #000000;font-family: 'Prompt', sans-serif;">
-              <p style="font-size:2px;line-height: 10pt; width:200px; overflow: visible;margin-left:10px;"><b>ร่วมกันสร้างสังคมแห่งการช่วยแบ่งปันความสุข</b></p>
-              <p style="font-size:15px;line-height: 15pt; width:200px; overflow: visible;">และมิตรภาพที่ดีกับ"<span style="color: #EB2424;">ViiCHECK</span>"</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Gallery Section -->
-    <!-- thx_partner -->
-    @include('home_page/thx_partner')
-    
-    
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services" style="padding-top:50px;">
       <div class="container">
+        <div class="row no-gutters">
+          <div class=" owl-4-style">
+              <div class="owl-carousel owl-4 ">
 
-        <div class="section-title">
-          <h2>บริการของเรา</h2>
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/2.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/2.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
 
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/3.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/3.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/1.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/1.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/4.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/6.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/6.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+              </div>
+            </div>
         </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 align-items-stretch">
-            <a href="https://line.me/R/ti/p/%40702ytkls">
-              <div class="icon-box">
-                <div class="icon"><i class="fas fa-id-card-alt"></i></div>
-                <h4><a href="https://line.me/R/ti/p/%40702ytkls">ติดต่อเจ้าของรถ</a></h4>
-                <p>ติดต่อเจ้าของรถได้ง่ายๆ โดยผ่าน <b>Line Official: @Viicheck</b> เพียงแค่สแกน <b>QR-CODE</b> บนสติ๊กเกอร์</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-md-0">
-            <a href="https://line.me/R/ti/p/%40702ytkls">
-              <div class="icon-box">
-                <div class="icon"><i class="fas fa-car-crash"></i></div>
-                <h4><a href="https://line.me/R/ti/p/%40702ytkls">เหตุฉุกเฉิน</a></h4>
-                <p>ติดต่อแจ้งเหตุฉุกเฉิน 24 ชั่วโมง</p>
-                <p>เพียงแค่กดปุ่มก็จะมีเบอร์ที่จำเป็นแสดงขึ้นมา</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
-            <a href="#">
-              <div class="icon-box">
-                <div class="icon"><i class="fas fa-virus"></i></div>
-                <h4><a href="#">Check in/out Covid-19</a></h4>
-                <p>หายห่วงเรื่องการเข้าสถานที่ต่างๆ</p>
-                <p>ด้วยระบบจะแจ้งเตือนทันทีเมื่อมีกลุ่มเสี่ยง</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-4">
-            <a href="https://line.me/R/ti/p/%40702ytkls">
-              <div class="icon-box">
-                <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
-                <h4><a href="https://line.me/R/ti/p/%40702ytkls">แจ้งเตือน พรบ./ประกัน</a></h4>
-                <p>หายห่วงเรื่องลืมต่ออายุ พรบ./ประกัน</p>
-                <p>ระบบจะแจ้งเตือนเมื่อใกล้วันครบกำหนด</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6 align-items-stretch mt-4">
-            <a href="{{ url('/middle_price_car') }}">
-              <div class="icon-box">
-                <div class="icon"><i class="fas fa-clipboard-check"></i></div>
-                <h4><a href="{{ url('/middle_price_car') }}">ตรวจสอบราคาจากกรมขนส่ง</a></h4>
-                <p>เมื่อคิดจะขายหรือขอสินเชื่อก็สามารถตรวจสอบประมาณราคามาตรฐานได้ตลอด</p>
-
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-            <a href="{{ url('/promotion') }}">
-              <div class="icon-box">
-                <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                <h4><a href="{{ url('/promotion') }}">โปรโมชั่นเกี่ยวกับยานพาหนะ</a></h4>
-                <p>โปรโมชั่นมากมายที่รอเสนอให้คุณใช้บริการรีบเลยก่อนหมดเวลา !</p>
-              </div>
-            </a>
-          </div>
-
-          <!-- สติกเกอร์ -->
-          @include('home_page/download_sticker')
-        </div>
-
       </div>
-
-  </div>
-
-  </section>
-  <!-- End Services Section -->
+    </section>
+<br><br>
+<!-- thx_partner -->
+@include('home_page/thx_partner')
   <!-- section บริการ peddyhub -->
   <section id="peddyhub" class="doctors d-none d-lg-block">
     <div class="container">
@@ -827,16 +563,16 @@
   <div class="d-block d-lg-none">
     <section id="hero2" class="d-flex align-items-center">
       <div class="container wow  fadeInLeft">
-        <h1>ยินดีต้อนรับสู่ ViiCHECK</h1>
-        <h2>ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-        <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+        <h1 style="font-family: 'Kanit', sans-serif;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+        <h2 style="font-family: 'Kanit', sans-serif;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
+        <a style="font-size: 18px ;font-family: 'Kanit', sans-serif;" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
       </div>
 
     </section>
     <main id="main">
 
       <!-- ======= Why Us Section ======= -->
-      <section id="why-us" class="why-us">
+      <section id="why-us" class="why-us" style="font-family: 'Kanit', sans-serif;">
         <div class="container">
 
           <div class="row">
@@ -852,7 +588,7 @@
               <div class="icon-boxes d-flex flex-column justify-content-center">
                 <div class="row">
                   <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
-                    <div class="icon-box mt-4 mt-xl-0">
+                    <div style="font-family: 'Kanit', sans-serif;" class="icon-box mt-4 mt-xl-0">
                       <i class="fas fa-car-crash"></i>
                       <br>
                       <h4 style="margin:-10px 0px 15px 0px">เหตุฉุกเฉิน</h4>
@@ -867,7 +603,7 @@
                     <div class="icon-box mt-4 mt-xl-0">
                       <i class="fas fa-id-card-alt"></i>
                       <br>
-                      <h4 style="margin:-10px 0px 15px 0px">ติดต่อเจ้าของรถ</h4>
+                      <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">ติดต่อเจ้าของรถ</h4>
                       <!-- <p>เมื่อการ<b class="text-dark">จอดซ้อนคัน</b>ทำให้คุณไม่สบายใจ</p>
                     <p>เพียงแค่ลงทะเบียนกับเราแล้วนำ</p>
                     <p>สติ๊กเกอร์ไปติดที่ของรถเพียงเท่านี้</p>
@@ -881,17 +617,26 @@
                   </div>
                   <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
                     <div class="icon-box mt-4 mt-xl-0">
-                      <i class="fas fa-user-lock"></i>
-                      <h4 style="margin:-10px 0px 15px 0px">เก็บรวบรวมข้อมูล</h4>
-
-                      <p>เก็บรวบรวมข้อมูลของคุณไว้ที่เดียว </p>
-                      <p>มีการแจ้งเตือนวันหมดอายุของ </p>
-                      <p><b class="text-dark">พรบ. / ประกัน</b> เมื่อใกล้วันครบกำหนด</p>
-                      <p>ระบบจะทำการแจ้งเตือน และคุณ </p>
-                      <p>หายห่วงได้เลยเรื่อง <b class="text-dark">รักษาความเป็นส่วนตัว</b></p>
-                      <p><b class="text-dark">ของผู้ใช้บริการ</b> ในระบบของเรา</p>
-
-
+                      <i class="fas fa-virus"></i>
+                      <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">แจ้งเตือนโรคติดต่อ</h4>
+                      <p>หายห่วงเรื่องการเข้าสถานที่ต่างๆ </p>
+                      <p>ด้วยระบบจะ <b class="text-dark">แจ้งเตือนทันทีเมื่อมีกลุ่มเสี่ยง</b> </p>
+                    </div>
+                  </div>
+                  <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
+                    <div class="icon-box mt-4 mt-xl-0">
+                      <i class="fas fa-exclamation-triangle"></i>
+                      <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">แจ้งเตือน พรบ./ประกัน</h4>
+                      <p>หายห่วงเรื่องลืมต่ออายุ พรบ./ประกัน </p>
+                      <p>ระบบจะ <b class="text-dark">แจ้งเตือนเมื่อใกล้วันครบกำหนด</b> </p>
+                    </div>
+                  </div>
+                  <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
+                    <div class="icon-box mt-4 mt-xl-0">
+                      <i class="fas fa-bullhorn"></i>
+                      <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">โปรโมชั่นยานพาหนะ</h4>
+                      <p> <b class="text-dark">โปรโมชั่นมากมาย</b>ที่รอเสนอให้คุณใช้บริการ </p>
+                      <p>รีบเลยก่อนหมดเวลา !</p>
                     </div>
                   </div>
                 </div>
@@ -901,72 +646,6 @@
 
         </div>
       </section><!-- End Why Us Section -->
-      <!-- ======= About Section ======= -->
-      <section id="about1" class="about1">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="row">
-                <div class="col-12" style="padding:0px 20px 20px 20px;margin-top:-50px ">
-                  <div style="border: 1px solid red; border-radius: 10px; min-height: 317px;" class=" video-box d-flex justify-content-center align-items-stretch position-relative">
-                    <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
-                  </div>
-                </div>
-                <h5 class="text-center wow  fadeInDown"><b>Top4 ปัญหาเกี่ยวกับการใช้รถใช้ถนนที่ทุกคนมักเจอ</b></h5>
-                <p class="wow  fadeInUp" style="text-indent: 50px; ">ใครที่เดินทางไปไหนมาไหนบ่อยๆ โดยเฉพาะอย่างยิ่งในเขตเมืองหรือเขตชุมชน เชื่อว่าต้องเคยเจอปัญหาต่อไปนี้มาแล้วกันทั้งนั้น...</p>
-                <div class="col-12"><br>
-                  <div class="icon-boxes d-flex flex-column align-items-stretch justify-content-center ">
-                    <div class="icon-box wow  fadeInLeft">
-                      <center>
-                        <div class="icon"><i class="fas fa-house-damage"></i></div>
-                        <h4 class="title"><a href="">รถจอดขวางหน้าบ้าน</a></h4>
-                      </center>
-                      <p class="description" style="text-indent: 30px;">
-                        ใครที่อาศัยอยู่ในเขตชุมชน เช่น ตลาด ย่านการค้า หรือบ้านที่รั้วบ้านติดๆกันและมีบ้านทั้งสองฝั่ง
-                        ต้องเคยมีประสบการณ์แบบนี้มาแล้วแน่นอน ถ้าเกิดมีคนแปลกหน้ามาจอดรถขวางหน้าบ้าน แล้วหายไปโดยไม่สามารถติดต่อได้ ปัญหาที่ตามมาคือเจ้าของบ้านจะไม่สามารถเอารถออกจากบ้านไปไหนได้ เจ้าของบ้านคงต้องโมโหฉุนเฉียวแน่นอน เหตุการณ์แบบนี้ที่ตามหรือติดต่อเจ้าของรถไม่ได้ เป็นประเด็นที่เห็นทางโซเชียลบ่อยครั้ง
-                      </p>
-                      <br>
-                    </div>
-
-                    <div class="icon-box wow  fadeInLeft">
-                      <center>
-                        <div class="icon"><i class="fas fa-road"></i></div>
-                        <h4 class="title"><a href="">ถนนแคบ วิ่งได้แค่สองเลน แต่คนก็ยังจอดรถขวางเลน</a></h4>
-                      </center>
-                      <p class="description" style="text-indent: 30px;">
-                        ปัญหาที่พบได้บ่อยในย่านชุมชนเล็กๆที่ถนนเป็นแค่ 2 เลน รถวิ่งสวนทางกัน หลายคนมักจอดรถขวางเลนเพื่อลงไปซื้อของริมทาง รถคันอื่นๆต้องคอยหักหลบ จนทำให้การจราจรติดขัด
-                      </p>
-                      <br>
-                    </div>
-
-                    <div class="icon-box wow  fadeInLeft">
-                      <center>
-                        <div class="icon"><i class="fas fa-ban"></i></div>
-                        <h4 class="title"><a href="">จอดรถซ้อนคันแต่ลืมปลดเกียร์ว่างและเอาเบรกมือลง</a></h4>
-                      </center>
-                      <p class="description" style="text-indent: 30px;">
-                        เคยไหม? เวลาไปห้าง ซื้อของเสร็จและอยากลับกลับบ้าน แต่มีรถมาจอดซ้อนคัน คุณจะเข็นก็เข็นไม่ได้เพราะใส่เกียร์ P กับเบรคมือเอาไว้ ห้างก็ตั้งใหญ่ ลูกค้ามีเยอะมาก แต่คุณไม่รู้จะไปตามหาเจ้าของรถได้ที่ไหน ถึงแม้ว่าจะประกาศประชาสัมพันธ์ แต่ก็ไม่สามารถตามตัวเจ้าของรถได้สำเร็จ เพราะบางครั้งเจ้าของรถก็แค่มาจอดรถทิ้งไว้แล้วไปทำธุระที่อื่น บางคนหายไปเป็นชั่วโมง ซึ่งเสียเวลา
-                      </p>
-                      <br>
-                    </div>
-
-                    <div class="icon-box wow  fadeInLeft">
-                      <center>
-                        <div class="icon"><i class="fas fa-car-crash"></i></div>
-                        <h4 class="title"><a href="">รถโดนกรีด ขูด หรือเสียหาย</a></h4>
-                      </center>
-                      <p class="description" style="text-indent: 30px;">
-                        มักเกิดขึ้นในที่จอดรถที่มีรถจำนวนมาก หรือที่จอดรถที่จอดซ้อนคันได้ เมื่อคุณกลับมาที่รถอีกที รถของคุณก็มีรอยซะแล้ว ถ้าบริเวณนั้นไม่มีกล้องวงจรปิด คุณก็ไม่รู้จะไปตามตัวคนที่เป็นสาเหตุความเสียหายของรถคุณได้จากที่ไหน หรือบางครั้ง คุณอยากเป็นพลเมืองดี ต้องการแจ้งอุบัติเหตุที่เกิดกับรถของคนอื่น แต่ก็ไม่รู้จะไปติดต่อเจ้าของรถให้มารับรู้เรื่องยังไงดี
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section><!-- End About Section -->
 
       <!-- ======= Counts Section ======= -->
       <section id="counts" class="counts d-block d-lg-none">
@@ -975,7 +654,7 @@
           <div class="row">
 
             <div class="col-lg-3 col-md-6 ">
-              <div class="count-box">
+              <div class="count-box cout-box-shadow">
                 <i>
                   <img width="150%" src="{{ asset('/img/stickerline/PNG/tab.png') }}" alt="">
                 </i>
@@ -985,7 +664,7 @@
             </div>
 
             <div class="col-lg-3 col-md-6 d-block d-md-none mt-5 wow  fadeInDown">
-              <div class="count-box">
+              <div class="count-box cout-box-shadow">
                 <i>
                   <img width="150%" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
                 </i>
@@ -995,7 +674,7 @@
             </div>
 
             <div class="col-lg-3 col-md-6 d-sm-block mt-5 wow  fadeInDown">
-              <div class="count-box">
+              <div class="count-box cout-box-shadow">
                 <i>
                   <img width="150%" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
                 </i>
@@ -1005,7 +684,7 @@
             </div>
 
             <div class="col-lg-3 col-md-6  mt-5 wow  fadeInDown">
-              <div class="count-box">
+              <div class="count-box cout-box-shadow">
                 <i>
                   <img width="150%" src="{{ asset('/img/stickerline/PNG/18.png') }}" alt="">
                 </i>
@@ -1018,194 +697,209 @@
 
         </div>
       </section><!-- End Counts Section -->
-      <!-- ======= Doctors Section ======= -->
-      <!-- <section id="doctors" class="doctors">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-12 main-shadow main-radius">
-            <div class="member d-flex align-items-start">
-              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-          <div class="col-12 main-shadow main-radius">
-            <div class="member d-flex align-items-start">
-              <div style="border-radius:120px;"><img src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt=""></div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <center>
-          <a style="font-size: 18px" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
-      </center>
-    </section> -->
-      <!-- End Doctors Section -->
-
 
       <!-- ======= Gallery Section ======= -->
-      <section id="gallery" class="gallery d-block d-lg-none">
-        <div class="container">
+    <div class="container  mt-5" style="font-family: 'Kanit', sans-serif;">
+      <div class="item">
+        <div class="tab-content">
+          <span id="tab-1" style="position: absolute;margin-top:-130px"></span>
+          <div style="margin-bottom: 25px;">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h4 style="font-family: 'Kanit', sans-serif;" class="text-center mt-3"> <b>ระบบช่วยเหลือเหตุฉุกเฉิน ViiSOS</b> </h4>
+                <p style="text-indent: 15px;font-size:16px;font-family: 'Kanit', sans-serif;">สามารถขอความช่วยเหลือจากเจ้าหน้าที่ในพื้นที่เพื่อรับการช่วยเหลือที่รวดเร็วมากยิ่งขึ้น และระบบยังแสดงเบอร์ที่จำเป็นต่างๆตามประเทศที่ท่านอยู่ นอกจากนี้ระบบยังรองรับหลากหลายภาษาทั่วโลก </span>
+                <p style="font-size:20px;"><b>ขั้นตอนการใช้งาน</b></p>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"><span style="text-indent: 25px;font-size:22px;" class="timeline_head"></i><b>สแกน <span style="color: #EB2424;">QR CODE</span>เพื่อเข้าสู่ Line Official ของ <span style="color: #EB2424;">Viicheck</b></p>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="galelry-lightbox-1">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="img-fluid">
+                  </a>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"><span style="text-indent: 25px;font-size:22px;" class="timeline_head"></i><b>เลือกเมนู <span style="color: #EB2424;">SOS</span></b></p>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="galelry-lightbox-1">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="img-fluid">
+                  </a>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"><span style="text-indent: 25px;font-size:22px;" class="timeline_head"></i><b>กดขอความช่วยเหลือจากเจ้าหน้าที่ได้เลย!!</b></p>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="galelry-lightbox-1">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="img-fluid">
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2 about">
+                <div class="item mysystem-video">
+                  <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
+                    <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
+                    <img width="100%" style="border: 1px solid red; border-radius: 10px;" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr style="border:#EB2424 0.1px solid"> 
+          <br><br>
+          <span id="tab-2" style="position: absolute;margin-top:-130px"></span>
+          <div style="margin-bottom: 25px;">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-2">
+                <h4 style="font-family: 'Kanit', sans-serif;" class="text-center mt-3"> <b>ระบบติดต่อเจ้าของรถ ViiMOVE</b> </h4>
+                <p style="text-indent: 15px;font-size:16px;">หมดปัญหาเรื่องการจอดรถซ้อนคัน เพียงลงทะเบียนรถกับ ViiCHECK และดาวน์โหลดแล้วนำไปติดที่รถของคุณ นอกจากนี้ระบบจะแจ้งเตือนไปยังคุณเมื่อใกล้ถึงวันหมด ประกัน/พรบ. </p>
+                <p style="font-size:20px;"><b>ขั้นตอนการใช้งาน</b></p>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head">
+                    <b>
+                      สแกน<span style="color: #EB2424;">QR CODE</span>เพื่อเข้าสู่ Line Official<span style="color: #EB2424;">Viicheck</span>
+                    </b>
+                  </span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="img-fluid">
+                  </a>               
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head"> <b><span style="color: #EB2424;">ลงทะเบียน</span>ในการใช้งาน <span style="color: #EB2424;">Viicheck</span></b></span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="img-fluid">
+                  </a>                
+                </div>
 
-          <div class="section-title">
-            <h2>ขั้นตอนการลงทะเบียน</h2>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head"> <b><span style="color: #EB2424;">กรอกข้อมูล</span>รถของคุณเพื่อใช้บริการ<span style="color: #EB2424;">Viicheck</b> </span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="img-fluid">
+                  </a>               
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle timeline_icon"></i>
+                  <span style="text-indent: 5px;font-size:18px;" class="timeline_head"> <b><span style="color: #EB2424;">ดาวน์โหลด</span>และ<span style="color: #EB2424;">ติดสติ๊กเกอร์</b> </span>
+                </div>
+                <div class="timeline_content">
+                  <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="galelry-lightbox-2">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="img-fluid">
+                  </a>               
+                </div>
+                <div class="row">
+                  <div class="col-6  text-center">
+                    <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download>
+                      <div class="icon-box" style="padding: 0px;">
+                        <img width="100%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
+                        <br>
+                        <button type="button" class="btn btn-danger">Download</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-6 text-center">
+                    <a id="sticker_qr_1" href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
+                      <div class="icon-box" style="padding: 0px;">
+                        <img id="sticker_qr_2" width="100%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
+                        <br>
+                        <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 text-center order-1 order-lg-1 about">
+                <div class="item mysystem-video">
+                  <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
+                    <a href="{{ asset('Medilab/video/ViiMOVE.mp4') }}" class="glightbox play-btn mb-4"></a>
+                    <img width="100%" style="border: 1px solid red; border-radius: 10px;" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <span id="tab-3" style="position: absolute;margin-top:-130px"></span>
+          <div>
+            <div class="row">
+              <div class="col-12 details ">
+                <h4 style="font-family: 'Kanit', sans-serif;"> <b>แจ้งเตือนโรคติดต่อ</b> </h4>
+                <span style="text-indent: 5px;font-size:16px;" class="timeline_head">เข้าสถานที่ต่างๆได้อย่างหายห่วง ด้วยระบบ<span style="color: #EB2424;"> ViiCARE </span>เพียงแสกน<span style="color: #EB2424;"> QR-Code </span>ก่อนเข้าพื้นที่ หากเกิดโรคติดต่อขึ้นในพื้นที่ ระบบจะแจ้งเตือนไปยังกลุ่มเสี่ยงพร้อมทั้งระบุแนวทางการปฎิบัติเบื้องต้น </span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  <!-- End Services Section -->
 
-        <div class="container-fluid">
-          <div class="row no-gutters">
-
-            <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
-            <div class="col-lg-4 col-md-4 d-none">
-              <div class="gallery-item">
-                <img src="{{ asset('/img/more/Advantages.jpg') }}" alt="" class="img-fluid">
-              </div>
-            </div>
-            <!-- ข้อดีของ VMOVE ซ่อนไว้ -->
-            <div class="col-lg-4 col-md-4">
-              <div class="gallery-item">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/2 how to ลงทะเบียน 1920x1080-01.jpg') }}" class="img-fluid">
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4">
-              <div class="gallery-item">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/3 how to ลงทะเบียน 1920x1080-02.jpg') }}" alt="" class="img-fluid">
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4">
-              <div class="gallery-item">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/4 how to ลงทะเบียน 1920x1080-04.jpg') }}" class="img-fluid">
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4">
-              <div class="gallery-item">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/5 how to ลงทะเบียน 1920x1080-05.jpg') }}" alt="" class="img-fluid">
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4">
-              <div class="gallery-item">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/6-how-to-ลงทะเบียน-1920x1080-06-v3.jpg') }}" alt="" class="img-fluid">
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4">
-              <div class="gallery-item">
-                <img src="{{ asset('/img/ขั้นตอนการลงทะเบียน/7 how to ลงทะเบียน 1920x1080 cre v2-06.jpg') }}" alt="" class="img-fluid">
-              </div>
-            </div>
-
-          </div>
-
+  <section id="gallery" class="gallery">
+      <div class="container">
+        <div class="section-title">
+          <h4 style="font-family: 'Kanit', sans-serif;"> <b> ขอขอบคุณความไว้วางใจในการใช้ระบบ <span style="color: #EB2424;">ViiCHECK</span></b></h4>
         </div>
-      </section><!-- End Gallery Section -->
+      </div>
+
+      <div class="container">
+        <div class="row no-gutters">
+          <div class=" owl-4-style">
+              <div class="owl-carousel owl-4 ">
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/2.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/2.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/3.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/3.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/1.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/1.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/4.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/6.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/6.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+                <div class="gallery-item item">
+                  <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
       <!-- thx_partner -->
       @include('home_page/thx_partner')
-      <!-- ======= Services Section ======= -->
-      <section id="services" class="services d-block d-lg-none" style="padding-top:50px;">
-        <div class="container">
 
-          <div class="section-title">
-            <h2>บริการของเรา</h2>
-
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4 col-md-6 align-items-stretch">
-              <a href="https://line.me/R/ti/p/%40702ytkls">
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <div class="icon"><i class="fas fa-id-card-alt"></i></div>
-                  <h4><a href="https://line.me/R/ti/p/%40702ytkls">ติดต่อเจ้าของรถ</a></h4>
-                  <p>ติดต่อเจ้าของรถได้ง่ายๆ โดยผ่าน <b class="text:dark;">Line Official: @Viicheck</b> เพียงแค่สแกน <b class="text:dark;">QR-CODE</b> บนสติ๊กเกอร์</p>
-
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-md-0">
-              <a href="https://line.me/R/ti/p/%40702ytkls">
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <div class="icon"><i class="fas fa-car-crash"></i></div>
-                  <h4><a href="https://line.me/R/ti/p/%40702ytkls">เหตุฉุกเฉิน</a></h4>
-                  <p>ติดต่อแจ้งเหตุฉุกเฉิน 24 ชั่วโมง</p>
-                  <p>เพียงแค่กดปุ่มก็จะมีเบอร์ที่จำเป็นแสดงขึ้นมา</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
-              <a href="#">
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <div class="icon"><i class="fas fa-virus"></i></div>
-                  <h4><a href="#">Check in/out Covid-19</a></h4>
-                  <p>หายห่วงเรื่องการเข้าสถานที่ต่างๆ</p>
-                  <p>ด้วยระบบจะแจ้งเตือนทันทีเมื่อมีกลุ่มเสี่ยง</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6  align-items-stretch mt-4 mt-lg-0">
-              <a href="https://line.me/R/ti/p/%40702ytkls">
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
-                  <h4><a href="https://line.me/R/ti/p/%40702ytkls">แจ้งเตือน พรบ./ประกัน</a></h4>
-                  <p>หายห่วงเรื่องลืมต่ออายุ พรบ./ประกัน</p>
-                  <p>ระบบจะแจ้งเตือนเมื่อใกล้วันครบกำหนด</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 align-items-stretch mt-4">
-              <a href="{{ url('/middle_price_car') }}">
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <div class="icon"><i class="fas fa-clipboard-check"></i></div>
-                  <h4><a href="{{ url('/middle_price_car') }}">ตรวจสอบประมาณราคามาตรฐาน จากกรมขนส่ง</a></h4>
-                  <p>เมื่อคิดจะขายหรือขอสินเชื่อ</p>
-                  <p>ก็สามารถตรวจสอบประมาณราคามาตรฐานได้ตลอด</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-              <a href="{{ url('/promotion') }}">
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                  <h4><a href="{{ url('/promotion') }}">โปรโมชั่นเกี่ยวกับยานพาหนะ</a></h4>
-                  <p>โปรโมชั่นมากมายที่รอเสนอให้คุณใช้บริการ</p>
-                  <p>รีบเลยก่อนหมดเวลา !</p>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-              <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download>
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <img width="80%" src="{{ asset('/img/more/sticker-VII-v1.png') }}" class="img-fluid" alt="">
-                  <br>
-                  <button type="button" class="btn btn-danger">Download</button>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6  align-items-stretch mt-4">
-              <a href="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" download>
-                <div class="icon-box" style="padding: 40px 15px;">
-                  <img width="80%" src="{{ asset('/img/more/sticker-VII-v2-9x9-10.png') }}" class="img-fluid" alt="">
-                  <br>
-                  <button type="button" class="btn btn-danger">ดาวน์โหลด</button>
-                </div>
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-      </section><!-- End Services Section -->
       <!-- section บริการ peddyhub -->
       <section id="peddyhub" class="doctors" style="padding-bottom:5px;">
         <div class="container">

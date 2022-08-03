@@ -182,9 +182,17 @@
    * Initiate Gallery Lightbox 
    */
   const galelryLightbox = GLightbox({
-    selector: '.galelry-lightbox'
+    selector: '.galelry-lightbox',
   });
 
+
+  const galelryLightbox1 = GLightbox({
+    selector: '.galelry-lightbox-1'
+  });
+
+  const galelryLightbox2 = GLightbox({
+    selector: '.galelry-lightbox-2'
+  });
   /**
    * Testimonials slider
    */

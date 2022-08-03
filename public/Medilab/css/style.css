@@ -6,7 +6,81 @@
 */
 @import url('animate.css');
 
+/*------------------------ home page new------------------------ */
+.cout-box-shadow{
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+border-radius: 15px
+}
+.containersystem {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding:80px 200px 80px 200px;
+  font-family: 'Kanit', sans-serif;
+}
 
+.mysystem {
+  position: sticky;
+  top: 5rem;
+  
+}
+
+.mysystem-video {
+  position: sticky;
+  top: 7rem;
+}
+
+.timeline_head {
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.timeline_content {
+  border-left: 5px solid #e9e9e9;
+  display: flex;
+  flex: 1;
+  padding-left: 30px;
+  margin: 10px 0px 10px 31px;
+  position: relative;
+
+}
+
+.timeline_icon {
+  font-size: 30px;
+  padding-left: 20px;
+
+}
+.mysystem .nav-link {
+    border: 0;
+    padding: 12px 15px 12px 0;
+    transition: 0.3s;
+    color: #2c4964;
+    border-radius: 0;
+    border-right: 2px solid #ebf1f6;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .mysystem .nav-link:hover {
+    color: #db2d2e;
+    border-color: #db2d2e;
+  }
+
+  .mysystem .nav-link.active {
+    color: #db2d2e;
+    border-color: #db2d2e;
+  }
+  @media (max-width: 992px) {
+  .mysystem .nav-link {
+    border: 0;
+    padding: 15px;
+  }
+  .mysystem .nav-link.active {
+    color: #fff;
+    background: #db2d2e;
+  }
+}
+/*--------------------- end home page new ---------------------*/
 
 /*-------------------- button check in/out --------------------*/
 .thx_partner{

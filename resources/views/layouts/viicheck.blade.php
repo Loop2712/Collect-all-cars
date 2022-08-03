@@ -16,7 +16,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
   <!-- Vendor CSS Files -->
   <link href="{{ asset('Medilab/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('Medilab/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -261,7 +261,7 @@
     .goog-text-highlight { background: none !important; box-shadow: none !important;}
     .goog-logo-link{display: none !important;}
     .goog-te-gadget{height: 28px !important;  overflow: hidden;}
-    .goog-te-ban
+  
   </style>
 
 
