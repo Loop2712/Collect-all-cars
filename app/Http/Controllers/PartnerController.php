@@ -512,7 +512,6 @@ class PartnerController extends Controller
         foreach ($data_partners as $data_partner) {
             $search_area = $data_partner->name ;
         }
-
         $perPage = 10;
 
         $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
@@ -542,7 +541,7 @@ class PartnerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('test_test', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area'));
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area'));
     }
 
     // public function sos_insurance(Request $request)
