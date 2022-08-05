@@ -119,6 +119,7 @@
             </div>
         </div>
     </div>
+    <br>
     <a class="d-none" id="btn_sos_thank_submit_score" href="{{ url('/sos_thank_submit_score') . '/' . $data_sos_map->user_id }}"></a>
     
     <script>
