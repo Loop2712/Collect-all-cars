@@ -591,6 +591,9 @@
   <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
     <div class="modal-content">
       <div class="modal-body text-center" style="padding:0px;">
+      	<a id="tag_a_modal_notify_img" href="" target="bank">
+	        <img src="{{ asset('/img/icon/zoom-in.png') }}" style="position:absolute;right: 10px;bottom: 10px;width: 20px;">
+	    </a>
         <img src="" alt="" id="modal_notify_img">
       </div>
     </div>
@@ -717,6 +720,11 @@
 
 								if (result[0]['photo']) {
 									document.querySelector('#btn_modal_notify_img').classList.remove('d-none');
+									
+									let tag_a_modal_notify_img = document.querySelector('#tag_a_modal_notify_img');
+									let tag_a_notify_img_href = document.createAttribute("href");
+									tag_a_notify_img_href.value = "{{ url('storage' )}}"+"/"+ result[0]['photo'];
+									tag_a_modal_notify_img.setAttributeNode(tag_a_notify_img_href);
 
 									let modal_notify_img = document.querySelector('#modal_notify_img');
 
@@ -737,6 +745,10 @@
 				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class); 
 
 								document.querySelector('#btn_modal_notify').click();
+
+								if (result[0]['photo']) {
+									document.querySelector('#btn_modal_notify_img').click();
+								}
 								
 								audio.play();
 			                }
