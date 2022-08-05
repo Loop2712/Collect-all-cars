@@ -72,7 +72,7 @@
                                     <span style="font-size: 15px; float: right; margin-top:-5px;">
                                       จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
                                       &nbsp;&nbsp; | &nbsp;&nbsp;
-                                      ระยะเวลาโดยเฉลี่ย <b>{{ $count_data }}</b> นาที / เคส
+                                      ระยะเวลาโดยเฉลี่ย <b> .. </b> นาที / เคส
                                   </span>
                                 </h5>
                             </div>
@@ -104,12 +104,21 @@
                     <div class="card-body">
                         @php
                           $Number = 1 ;
+                          $minute_all = 0 ;
+                          $count_case = 0 ;
                         @endphp
 
                         @foreach($view_maps as $item)
 
                         @php
                           $color_row = "" ;
+
+                          if(!empty($item->created_at) && !empty($item->help_complete_time)){
+                            $minute_row = \Carbon\Carbon::parse($item->help_complete_time)->diffinMinutes(\Carbon\Carbon::parse($item->created_at)) ;
+                          }else{
+                            $minute_row = 0 ;
+                          }
+
                           if( $Number%2 == 0 ){
                             $color_row = "#FFEFD5" ;
                           }
@@ -165,8 +174,38 @@
                               </div>
                             </div>
                             <div class="col-2">
+                              @php
+                                if( !empty($item->created_at) && !empty($item->help_complete_time) ){
+                                  $count_case = $count_case + 1 ;
+                                }
+                              @endphp
                               @if( !empty($item->created_at) && !empty($item->help_complete_time) )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i นาที %s วินาที')}}
+                                <!-- ปี -->
+                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
+                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y')}} ปี <br>
+                                @endif
+                                <!-- เดือน -->
+                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m') != 0 )
+                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m')}} เดือน <br>
+                                @endif
+                                <!-- วัน -->
+                                @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d') != 0 )
+                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d')}} วัน <br>
+                                @endif
+                                <!-- ชัวโมง -->
+                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h') != 0 )
+                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h')}} ชั่วโมง <br>
+                                @endif
+                                <!-- นาที -->
+                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i') != 0 )
+                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i')}} นาที <br>
+                                @endif
+                                <!-- วินาที -->
+                                @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
+                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที <br>
+                                @endif
+
+                                <!-- เวลานาทีทั้งหมด :{{ $minute_row }} นาที -->
                               @else
                                 <span>-</span>
                               @endif
@@ -257,10 +296,22 @@
                             <hr>
                             <br><br>
                           </div>
-                        @php
-                          $Number = $Number + 1  ;
-                        @endphp
+                          @php
+                            $Number = $Number + 1  ;
+                            $minute_all = $minute_all + (int)$minute_row ; 
+
+                            if($count_case != 0){
+                              $minute_per_case = $minute_all / $count_case ;
+                            }else{
+                              $minute_per_case = 0 ;
+                            }
+                          @endphp
                         @endforeach
+                        <div style="float: right;">
+                          <!-- เวลาทั้งหมด : {{ $minute_all }} | -->
+                          <!-- เคสช่วยเสร็จ : {{ $count_case }} เคส |
+                          นาทีเฉลี่ยต่อเคส : {{ $minute_per_case }} นาที -->
+                        </div>
                         <div class="table-responsive">
                             <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
