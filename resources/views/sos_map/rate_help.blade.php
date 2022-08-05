@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary float-right" style="border-radius: 50px;" onclick="submit_score('{{ $data_sos_map->id }}');">
+                <button type="button" class="btn btn-primary float-right" style="border-radius: 50px;z-index: 99999;" onclick="submit_score('{{ $data_sos_map->id }}');">
                     ให้คะแนน
                 </button>
             </div>
