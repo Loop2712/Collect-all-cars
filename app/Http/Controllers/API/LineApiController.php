@@ -577,8 +577,9 @@ class LineApiController extends Controller
 
         $data_topic = [
                     "การขอความช่วยเหลือ",
-                    "ผู้ให้การช่วยเหลือ",
+                    "เจ้าหน้าที่",
                     "การช่วยเหลือเสร็จสิ้น",
+                    "กำลังไปช่วยเหลือ",
                 ];
 
         for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -601,8 +602,9 @@ class LineApiController extends Controller
         $string_json = str_replace("date_time",$time_zone,$string_json);
 
         $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
-        $string_json = str_replace("ผู้ให้การช่วยเหลือ",$data_topic[1],$string_json);
+        $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
         $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
+        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
 
         $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
         $string_json = str_replace("name_helper",$name_helper,$string_json);
