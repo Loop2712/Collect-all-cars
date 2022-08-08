@@ -1,0 +1,113 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "action": {
+      "type": "uri",
+      "uri": "https://linecorp.com"
+    },
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/stickerline/PNG/32.png",
+        "size": "xxl",
+        "margin": "lg",
+        "align": "center",
+        "gravity": "center",
+        "aspectMode": "fit",
+        "offsetBottom": "md"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "text",
+        "text": "ViiCHECK",
+        "size": "md",
+        "weight": "bold",
+        "margin": "lg",
+        "wrap": true,
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "text": "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+        "size": "md",
+        "weight": "bold",
+        "margin": "lg",
+        "wrap": true,
+        "align": "center"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "text",
+        "text": "hello, world",
+        "contents": [
+          {
+            "type": "span",
+            "text": "การขอความช่วยเหลือ",
+            "weight": "bold"
+          }
+        ],
+        "margin": "lg",
+        "size": "sm",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "hello, world",
+        "contents": [
+          {
+            "type": "span",
+            "text": "name_user",
+            "color": "#bcbcbc",
+            "weight": "bold"
+          }
+        ],
+        "margin": "lg",
+        "size": "sm",
+        "wrap": true
+      },
+      {
+        "type": "text",
+        "text": "hello, world",
+        "contents": [
+          {
+            "type": "span",
+            "text": "date_time",
+            "color": "#bcbcbc",
+            "weight": "bold"
+          }
+        ],
+        "margin": "lg",
+        "size": "sm",
+        "wrap": true
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#76d128",
+        "action": {
+          "type": "uri",
+          "label": "📸 เพิ่มภาพถ่าย",
+          "uri": "https://www.peddyhub.com/log_in_sos_map/add_photo/id_sos_map"
+        },
+        "height": "sm"
+      }
+    ]
+  }
+}
+}

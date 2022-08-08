@@ -84,7 +84,7 @@ class LineApiController extends Controller
                 break;
             case "help_complete" : 
                 $this->help_complete($data_postback_explode[1]);
-                $this->reply_success_groupline($event , $data_postback);
+                $this->reply_success_groupline($event , $data_postback, $data_postback_explode[1]);
                 break;
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
@@ -844,8 +844,10 @@ class LineApiController extends Controller
 
     }
 
-    public function reply_success_groupline($event , $data_postback)
+    public function reply_success_groupline($event , $data_postback , $id_sos_map)
     {
+        $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
+
         $data_line_group = DB::table('group_lines')
                     ->where('groupId', $event['source']['groupId'])
                     ->get();
@@ -856,8 +858,14 @@ class LineApiController extends Controller
             $group_language = $key->language ;
         }
 
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
         $data_topic = [
-                    "ViiCHECK ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+                    "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+                    "การขอความช่วยเหลือ",
+                    "เพิ่มภาพถ่าย",
                 ];
 
         for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -873,10 +881,21 @@ class LineApiController extends Controller
             }
         }
 
-        $template_path = storage_path('../public/json/text_success.json');   
+        $template_path = storage_path('../public/json/sos_map_success.json');   
 
         $string_json = file_get_contents($template_path);
-        $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ",$data_topic[0],$string_json);
+
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+
+        $string_json = str_replace("ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",$data_topic[0],$string_json);
+        $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[1],$string_json);
+        $string_json = str_replace("เพิ่มภาพถ่าย",$data_topic[2],$string_json);
+
+        $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+        $string_json = str_replace("date_time",$time_zone,$string_json);
+
+        $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
+
         $messages = [ json_decode($string_json, true) ];
 
 

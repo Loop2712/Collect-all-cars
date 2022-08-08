@@ -25,7 +25,7 @@ class Sos_map extends Model
      *
      * @var array
      */
-    protected $fillable = ['content', 'name', 'phone', 'lat', 'lng', 'area', 'user_id','photo','CountryCode','helper','helper_id','organization_helper','help_complete','score_impression','score_period','score_total','comment_help' , 'name_area' , 'help_complete_time' ,'notify','condo_id','photo_succeed'];
+    protected $fillable = ['content', 'name', 'phone', 'lat', 'lng', 'area', 'user_id','photo','CountryCode','helper','helper_id','organization_helper','help_complete','score_impression','score_period','score_total','comment_help' , 'name_area' , 'help_complete_time' ,'notify','condo_id','photo_succeed','photo_succeed_by'];
 
     
 }
