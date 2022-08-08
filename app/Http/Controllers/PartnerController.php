@@ -574,23 +574,26 @@ class PartnerController extends Controller
 
         }
 
-        //  วัน
-        $data_day = (int)$minute_per_case / 1440 ; 
-        $data_day_sp = explode("." , $data_day) ;
-        $data_average['day'] = $data_day_sp[0] ;
+        if (!empty($minute_per_case)) {
+            //  วัน
+            $data_day = (int)$minute_per_case / 1440 ; 
+            $data_day_sp = explode("." , $data_day) ;
+            $data_average['day'] = $data_day_sp[0] ;
 
-        // ชม.
-        $data_hr = (int)$minute_per_case / 60 - ($data_average['day'] * 24) ; 
-        $data_hr_sp = explode("." , $data_hr) ;
-        $data_average['hr'] = $data_hr_sp[0] ;
+            // ชม.
+            $data_hr = (int)$minute_per_case / 60 - ($data_average['day'] * 24) ; 
+            $data_hr_sp = explode("." , $data_hr) ;
+            $data_average['hr'] = $data_hr_sp[0] ;
 
-        // นาที
-        $data_min_1 = "0." . $data_hr_sp[1] ; 
-        $data_min_2 = (float)$data_min_1 * 60 ; 
-        $data_average['min'] = $data_min_2 ;
+            // นาที
+            $data_min_1 = "0." . $data_hr_sp[1] ; 
+            $data_min_2 = (float)$data_min_1 * 60 ; 
+            $data_average['min'] = $data_min_2 ;
 
-        // เคส
-        $data_average['count_case'] = $count_case ;
+            // เคส
+            $data_average['count_case'] = $count_case ;
+        }
+        
 
         // echo "เวลาทั้งหมด : " . $minute_all;
         // echo "<br>";
