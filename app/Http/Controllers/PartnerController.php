@@ -586,9 +586,13 @@ class PartnerController extends Controller
             $data_average['hr'] = $data_hr_sp[0] ;
 
             // นาที
-            $data_min_1 = "0." . $data_hr_sp[1] ; 
-            $data_min_2 = (float)$data_min_1 * 60 ; 
-            $data_average['min'] = $data_min_2 ;
+            if (!empty($data_hr_sp[1])) {
+                $data_min_1 = "0." . $data_hr_sp[1] ; 
+                $data_min_2 = (float)$data_min_1 * 60 ; 
+                $data_average['min'] = $data_min_2 ;
+            }else{
+                $data_average['min'] = 0 ;
+            }
 
             // เคส
             $data_average['count_case'] = $count_case ;
