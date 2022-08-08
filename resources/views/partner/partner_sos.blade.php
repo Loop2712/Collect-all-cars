@@ -72,7 +72,17 @@
                                     <span style="font-size: 15px; float: right; margin-top:-5px;">
                                       จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
                                       &nbsp;&nbsp; | &nbsp;&nbsp;
-                                      ระยะเวลาโดยเฉลี่ย <b> .. </b> นาที / เคส
+                                      @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                      @endif
+
+                                      @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                      @endif
+
+                                      @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                        ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                      @endif
                                   </span>
                                 </h5>
                             </div>
@@ -104,20 +114,12 @@
                     <div class="card-body">
                         @php
                           $Number = 1 ;
-                          $minute_all = 0 ;
-                          $count_case = 0 ;
                         @endphp
 
                         @foreach($view_maps as $item)
 
                         @php
                           $color_row = "" ;
-
-                          if(!empty($item->created_at) && !empty($item->help_complete_time)){
-                            $minute_row = \Carbon\Carbon::parse($item->help_complete_time)->diffinMinutes(\Carbon\Carbon::parse($item->created_at)) ;
-                          }else{
-                            $minute_row = 0 ;
-                          }
 
                           if( $Number%2 == 0 ){
                             $color_row = "#FFEFD5" ;
@@ -174,11 +176,6 @@
                               </div>
                             </div>
                             <div class="col-2">
-                              @php
-                                if( !empty($item->created_at) && !empty($item->help_complete_time) ){
-                                  $count_case = $count_case + 1 ;
-                                }
-                              @endphp
                               @if( !empty($item->created_at) && !empty($item->help_complete_time) )
                                 <!-- ปี -->
                                 @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
@@ -204,8 +201,7 @@
                                 @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
                                     {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที <br>
                                 @endif
-
-                                <!-- เวลานาทีทั้งหมด :{{ $minute_row }} นาที -->
+                                
                               @else
                                 <span>-</span>
                               @endif
@@ -298,19 +294,9 @@
                           </div>
                           @php
                             $Number = $Number + 1  ;
-                            $minute_all = $minute_all + (int)$minute_row ; 
-
-                            if($count_case != 0){
-                              $minute_per_case = $minute_all / $count_case ;
-                            }else{
-                              $minute_per_case = 0 ;
-                            }
                           @endphp
                         @endforeach
                         <div style="float: right;">
-                          <!-- เวลาทั้งหมด : {{ $minute_all }} | -->
-                          <!-- เคสช่วยเสร็จ : {{ $count_case }} เคส |
-                          นาทีเฉลี่ยต่อเคส : {{ $minute_per_case }} นาที -->
                         </div>
                         <div class="table-responsive">
                             <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>

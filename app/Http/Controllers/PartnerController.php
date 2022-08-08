@@ -541,7 +541,81 @@ class PartnerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area'));
+        $average_per_minute = $this->average_per_minute($view_maps_all);
+
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area' , 'average_per_minute'));
+    }
+
+    public function average_per_minute($view_maps_all)
+    {
+        $minute_all = 0 ;
+        $count_case = 0 ;
+        $data_average = [] ;
+
+        foreach ($view_maps_all as $item) {
+            
+            if(!empty($item->created_at) && !empty($item->help_complete_time)){
+                $minute_row = \Carbon\Carbon::parse($item->help_complete_time)->diffinMinutes(\Carbon\Carbon::parse($item->created_at)) ;
+            }else{
+                $minute_row = 0 ;
+            }
+
+            if( !empty($item->created_at) && !empty($item->help_complete_time) ){
+                $count_case = $count_case + 1 ;
+            }
+
+            $minute_all = $minute_all + (int)$minute_row ; 
+
+            if($count_case != 0){
+              $minute_per_case = $minute_all / $count_case ;
+            }else{
+              $minute_per_case = 0 ;
+            }
+
+        }
+
+        //  วัน
+        $data_day = (int)$minute_per_case / 1440 ; 
+        $data_day_sp = explode("." , $data_day) ;
+        $data_average['day'] = $data_day_sp[0] ;
+
+        // ชม.
+        $data_hr = (int)$minute_per_case / 60 - ($data_average['day'] * 24) ; 
+        $data_hr_sp = explode("." , $data_hr) ;
+        $data_average['hr'] = $data_hr_sp[0] ;
+
+        // นาที
+        $data_min_1 = "0." . $data_hr_sp[1] ; 
+        $data_min_2 = (float)$data_min_1 * 60 ; 
+        $data_average['min'] = $data_min_2 ;
+
+        // เคส
+        $data_average['count_case'] = $count_case ;
+
+        // echo "เวลาทั้งหมด : " . $minute_all;
+        // echo "<br>";
+        // echo "เคสช่วยเสร็จ : " . $count_case;
+        // echo "<br>";
+        // echo "นาทีเฉลี่ยต่อเคส : " . $minute_per_case;
+        // echo "<br>";
+        // echo "<--------------------------------->";
+        // echo "<br>";
+
+        // echo "data_average : " . $data_average['day'];
+        // echo "<br>";
+
+        // echo "data_average : " . $data_average['hr'];
+        // echo "<br>";
+
+        // echo "data_average : " . $data_average['min'];
+        // echo "<br>";
+
+        // echo "<pre>";
+        // print_r($view_maps);
+        // echo "<pre>";
+        // exit();
+
+        return $data_average ;
     }
 
     // public function sos_insurance(Request $request)
