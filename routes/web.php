@@ -227,6 +227,8 @@ Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
 Route::get('/sos_login', 'Sos_mapController@sos_login');
 Route::get('/insurance_login', 'Sos_mapController@insurance_login');
 Route::get('/sos_map/rate_help/{id_sos_map}', 'Sos_mapController@rate_help');
+Route::get('/log_in_sos_map_add_photo/{id_sos_map}', 'Sos_mapController@log_in_sos_map_add_photo');
+Route::get('/sos_map/add_photo/{id_sos_map}', 'Sos_mapController@sos_map_add_photo');
 Route::get('/sos_thank_submit_score/{user_id}', 'Sos_mapController@sos_thank_submit_score');
 
 // Route::get('/sos_map/helper/{id_sos_map}/{organization}','API\SosmapController@sos_helper');

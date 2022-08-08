@@ -310,6 +310,35 @@ class Sos_mapController extends Controller
         return view('sos_map.sos_thank_submit_score', compact('user_id'));
     }
 
+    public function log_in_sos_map_add_photo($id_sos_map)
+    {
+        if(Auth::check()){
+            return redirect('sos_map/add_photo' . '/' . $id_sos_map);
+        }else{
+            return redirect('login/line?redirectTo=sos_map/add_photo' . '/' . $id_sos_map);
+        }
+    }
+
+    public function sos_map_add_photo($id_sos_map)
+    {   
+        $user = Auth::user();
+        $data_sos_map = Sos_map::findOrFail($id_sos_map);
+
+        if (!empty($data_sos_map->photo_succeed_by)) {
+            $data_officer = User::where('id' , $data_sos_map->photo_succeed_by)->first();
+        }else{
+            $data_officer = "" ;
+        }
+
+        if (!empty($data_sos_map->photo_succeed)) {
+            $photo_succeed = "Yes" ; 
+        }else{
+            $photo_succeed = "No" ;
+        }
+
+        return view('sos_map.add_photo_succeed', compact('user' , 'data_sos_map' , 'photo_succeed' ,'data_officer'));
+    }
+
     // public $channel_access_token = env('CHANNEL_ACCESS_TOKEN');
 
     protected function _pushLine($data , $id_sos_map)
