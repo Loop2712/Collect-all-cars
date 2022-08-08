@@ -83,8 +83,8 @@ class LineApiController extends Controller
                 $line->select_reply(null, $event, "reply");
                 break;
             case "help_complete" : 
-                $this->help_complete($data_postback_explode[1]);
                 $this->reply_success_groupline($event , $data_postback, $data_postback_explode[1]);
+                $this->help_complete($data_postback_explode[1]);
                 break;
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
