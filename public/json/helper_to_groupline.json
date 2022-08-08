@@ -30,7 +30,7 @@
       },
       {
         "type": "text",
-        "text": "ผู้ให้การช่วยเหลือ",
+        "text": "เจ้าหน้าที่",
         "size": "md",
         "weight": "bold",
         "margin": "lg"
@@ -39,7 +39,15 @@
         "type": "text",
         "text": "name_helper",
         "size": "md",
-        "weight": "regular"
+        "weight": "bold",
+        "style": "italic"
+      },
+      {
+        "type": "text",
+        "text": "กำลังไปช่วยเหลือ",
+        "size": "md",
+        "weight": "bold",
+        "margin": "lg"
       },
       {
         "type": "text",
