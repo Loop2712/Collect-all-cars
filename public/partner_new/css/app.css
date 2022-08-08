@@ -31,7 +31,19 @@ File: app.css
 
 
 /* General */
-
+/*-------------- partner sos--------------*/
+.container-partner-sos{
+	display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  }
+  
+  .sos-map {
+  position: sticky;
+  top: 4rem;
+  }
+  /*-------------- end partner sos--------------*/
 
 body {
 

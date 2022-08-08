@@ -1,317 +1,319 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 col-12 col-lg-4">
-            <div class="row">
-                <div class="col-6">
-                    <a href="{{ url('/sos_partner') }}" style="float: left; background-color: green;" type="button" class="btn text-white" > <!-- onclick="initMap();" -->
-                        <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
-                    </a>
-                    <br><br>
-                </div>
-                <div class="col-6">
-                    <h4 style="float: right;color: #007bff;"><b>{{ $name_area }}</b></h4>
-                </div>
-                <div class="col-12">
-                    <input class="d-none" type="text" id="va_zoom" name="" value="6">
-                    <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
-                    <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                    <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
-                    @foreach($data_partners as $data_partner)
-                        <input class="d-none" type="text" id="name_partner" name="" value="{{ $data_partner->name }}">
-                    @endforeach
+<div class="container-partner-sos">
+  <div class="item sos-map col-md-12 col-12 col-lg-4">
+        <div class="row">
+            <div class="col-6">
+                <a href="{{ url('/sos_partner') }}" style="float: left; background-color: green;" type="button" class="btn text-white" > <!-- onclick="initMap();" -->
+                    <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
+                </a>
+                <br><br>
+            </div>
+            <div class="col-6">
+                <h4 style="float: right;color: #007bff;"><b>{{ $name_area }}</b></h4>
+            </div>
+            <div class="col-12">
+                <input class="d-none" type="text" id="va_zoom" name="" value="6">
+                <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
+                <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
+                <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
+                @foreach($data_partners as $data_partner)
+                    <input class="d-none" type="text" id="name_partner" name="" value="{{ $data_partner->name }}">
+                @endforeach
+                <div style="padding-right:15px ;">
                     <div class="card">
                         <div id="map"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-------------------------------------------------- pc -------------------------------------------------->
-        <div class="col-8 d-none d-lg-block" >
-            <div class="row">
-                <div class="col-3">
-                    <div class="dropdown">
-                        <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            เลือกพื้นที่
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
-                            @foreach($select_name_areas as $select_name_area)
-                                <a id="select_name_area_{{ $select_name_area->name_area }}" class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
-                                    {{ $select_name_area->name_area }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div style="float: right;">
-                        <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
-                        @if(Auth::check())
-                            @if(Auth::user()->role == 'admin-partner')
-                        <a href="#" type="button" class="btn btn-primary text-white d-">คะแนนการช่วยเหลือ (soon) </a>
-                        <!--  href="{{ url('/sos_score_helper') }}" -->
-                            @endif
-                        @endif
-                        <a type="button" data-toggle="modal" data-target="#Partner_gsos">
-                            <button class="btn btn-success">
-                                <i class="fas fa-info-circle"></i>วิธีใช้
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <br><br>
-                <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                    <div class="card-header border-bottom-0 bg-transparent" style="margin-top: 10px;">
-                        <div class="d-flex align-items-center">
-                            <div class="col-12">
-                                <h5 class="font-weight-bold mb-0" style="margin-top:10px;">
-                                    การขอความช่วยเหลือ
-                                    <span style="font-size: 15px; float: right; margin-top:-5px;">
-                                      จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
-                                      &nbsp;&nbsp; | &nbsp;&nbsp;
-                                      @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                      @endif
-
-                                      @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                      @endif
-
-                                      @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                      @endif
-
-                                      @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>น้อยกว่า 1 นาที</b> / เคส ({{ $average_per_minute['count_case'] }})
-                                      @endif
-                                  </span>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <hr style="color:black;background-color:black;height:2px;">
-                    <div class="card-body">
-                      <div class="row text-center">
-                          <div class="col-3">
-                              <b>ผู้ขอความช่วยเหลือ</b>
-                          </div>
-                          <div class="col-3">
-                              <b>เวลาแจ้งเหตุ</b>
-                          </div>
-                          <div class="col-3">
-                              <b>สถานะ</b>
-                          </div>
-                          <div class="col-2">
-                              <b>ระยะเวลา</b>
-                          </div>
-                          <div class="col-1">
-                              <b>ตำแหน่ง</b>
-                          </div>
-
-                          <br><br>
-                          <hr style="color:black;background-color:black;height:2px;">
-                      </div>
-                    </div>
-                    <div class="card-body">
-                        @php
-                          $Number = 1 ;
-                        @endphp
-
-                        @foreach($view_maps as $item)
-
-                        @php
-                          $color_row = "" ;
-
-                          if( $Number%2 == 0 ){
-                            $color_row = "#FFEFD5" ;
-                          }
-                        @endphp
-                          <div class="row text-center"> 
-                            <div class="col-3">
-                              <div style="margin-top: -10px;" >
-                                <h5 class="text-success float-left">
-                                    <span style="font-size: 15px;">
-                                        <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
-                                        <i class="far fa-eye text-primary"></i>
-                                        </a>
-                                    </span>&nbsp;{{ $item->name }}<br> 
-                                </h5>
-                                {{ $item->phone }}
-                              </div>
-                            </div>
-                            <div class="col-3">
-                              <div style="margin-top: -10px;">
-                                <p><b>
-                                  {{ date("d/m/Y" , strtotime($item->created_at)) }} <br>
-                                  {{ date("H:i" , strtotime($item->created_at)) }}
-                                </b></p>
-                                @if(!empty($item->photo))
-                                  <br>
-                                  <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                    <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo }}">
-                                  </a>
-                                  <br><br>
-                                @endif
-                              </div>
-                            </div>
-                            <div class="col-3">
-                              <div style="margin-top: -10px;">
-                                @if( !empty($item->helper) and empty($item->help_complete) )
-                                    <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ</a>
-                                @elseif($item->helper == null)
-                                    <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ</a>
-                                @elseif($item->help_complete == "Yes" && $item->helper != null)
-                                    <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
-                                    @if(!empty($item->help_complete_time))
-                                        <p style="margin-top:8px;"><b>
-                                          {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}
-                                        </b></p> 
-                                    @endif 
-                                    @if(!empty($item->photo_succeed))
-                                      <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">
-                                        <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo_succeed }}">
-                                      </a>
-                                      <br><br>
-                                    @endif
-                                @endif              
-                              </div>
-                            </div>
-                            <div class="col-2">
-                              @if( !empty($item->created_at) && !empty($item->help_complete_time) )
-                                <!-- ปี -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y')}} ปี <br>
-                                @endif
-                                <!-- เดือน -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m')}} เดือน <br>
-                                @endif
-                                <!-- วัน -->
-                                @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d')}} วัน <br>
-                                @endif
-                                <!-- ชัวโมง -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h')}} ชั่วโมง <br>
-                                @endif
-                                <!-- นาที -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i')}} นาที <br>
-                                @endif
-                                <!-- วินาที -->
-                                @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที <br>
-                                @endif
-                                
-                              @else
-                                <span>-</span>
-                              @endif
-                            </div>
-                            <div class="col-1">
-                              <div style="margin-top: -10px;">
-                                <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
-                                    <i class="fas fa-map-marker-alt"></i> 
-                                    <br>
-                                    ดูหมุด
-                                </a>
-                              </div>
-                            </div>
-                            <br>
-                            <div class="col-12">
-                              @if(Auth::check())
-                                  @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
-                                      @if($item->help_complete == "Yes" and $item->score_total != null)
-                                          <div class="col-12 text-left" style="margin-top:5px;">
-                                            <h5>คะแนนการช่วยเหลือ</h5>
-                                            <div class="row">
-                                                <div class="col-2" style="padding:0px">
-                                                    เจ้าหน้าที่ : <br>{{$item->helper}}
-                                                </div> 
-                                                <div class="col-2" style="padding:0px">
-                                                    @if($item->score_impression < 3)
-                                                        ความประทับใจ : <br>
-                                                        <span class="text-danger">{{$item->score_impression}}</span>
-                                                    @elseif($item->score_impression == 3)
-                                                        ความประทับใจ : <br>
-                                                        <span class="text-warning">{{$item->score_impression}}</span>
-                                                    @elseif($item->score_impression > 3)
-                                                        ความประทับใจ : <br>
-                                                        <span class="text-success">{{$item->score_impression}}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-2" style="padding:0px">
-                                                    @if($item->score_period < 3)
-                                                        ระยะเวลา : <br>
-                                                        <span class="text-danger">{{$item->score_period}}</span>
-                                                    @elseif($item->score_period == 3)
-                                                        ระยะเวลา : <br>
-                                                        <span class="text-warning">{{$item->score_period}}</span>
-                                                    @elseif($item->score_period > 3)
-                                                        ระยะเวลา : <br>
-                                                        <span class="text-success">{{$item->score_period}}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-2" style="padding:0px">
-                                                    @if($item->score_total < 3)
-                                                        ภาพรวม : <br>
-                                                        <span class="text-danger">{{$item->score_total}}</span>
-                                                    @elseif($item->score_total == 3)
-                                                        ภาพรวม : <br>
-                                                        <span class="text-warning">{{$item->score_total}}</span>
-                                                    @elseif($item->score_total > 3)
-                                                        ภาพรวม : <br>
-                                                        <span class="text-success">{{$item->score_total}}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-4" style="padding:0px">
-                                                    คำแนะนำ/ติชม : <br>{{$item->comment_help}}
-                                                </div> 
-                                            </div>
-                                          </div>
-                                      @elseif($item->help_complete == "Yes" and $item->score_total == null)
-                                          <h5>คะแนนการช่วยเหลือ</h5>
-                                          <div class="row">
-                                              <div class="col-6" style="padding:0px">
-                                                  เจ้าหน้าที่ : {{$item->helper}}
-                                              </div> 
-                                              <div class="col-6" style="padding:0px">
-                                                  ไม่ได้ทำแบบประเมิน
-                                              </div> 
-                                          </div>
-                                      @elseif(!empty($item->helper) and empty($item->help_complete))
-                                          <h5>คะแนนการช่วยเหลือ</h5>
-                                          <div class="row">
-                                              <div class="col-12" style="padding:0px">
-                                                  เจ้าหน้าที่ : {{$item->helper}}
-                                              </div> 
-                                          </div>
-                                      @endif      
-                                  @endif
-                                @endif
-                                <br>
-                            </div>
-                            <hr>
-                            <br><br>
-                          </div>
-                          @php
-                            $Number = $Number + 1  ;
-                          @endphp
+  </div>
+  <div class="col-8 d-none d-lg-block">
+        <div class="row">
+            <div class="col-3">
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        เลือกพื้นที่
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
+                        @foreach($select_name_areas as $select_name_area)
+                            <a id="select_name_area_{{ $select_name_area->name_area }}" class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
+                                {{ $select_name_area->name_area }}
+                            </a>
                         @endforeach
-                        <div style="float: right;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div style="float: right;">
+                    <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
+                    @if(Auth::check())
+                        @if(Auth::user()->role == 'admin-partner')
+                    <a href="#" type="button" class="btn btn-primary text-white d-">คะแนนการช่วยเหลือ (soon) </a>
+                    <!--  href="{{ url('/sos_score_helper') }}" -->
+                        @endif
+                    @endif
+                    <a type="button" data-toggle="modal" data-target="#Partner_gsos">
+                        <button class="btn btn-success">
+                            <i class="fas fa-info-circle"></i>วิธีใช้
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <br><br>
+            <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+                <div class="card-header border-bottom-0 bg-transparent" style="margin-top: 10px;">
+                    <div class="d-flex align-items-center">
+                        <div class="col-12">
+                            <h5 class="font-weight-bold mb-0" style="margin-top:10px;">
+                                การขอความช่วยเหลือ
+                                <span style="font-size: 15px; float: right; margin-top:-5px;">
+                                จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
+                                &nbsp;&nbsp; | &nbsp;&nbsp;
+                                @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                    ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+
+                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                    ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+
+                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                    ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+
+                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
+                                    ระยะเวลาโดยเฉลี่ย <b>น้อยกว่า 1 นาที</b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+                            </span>
+                            </h5>
                         </div>
-                        <div class="table-responsive">
-                            <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
+                    </div>
+                </div>
+                <hr style="color:black;background-color:black;height:2px;">
+                <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-3">
+                        <b>ผู้ขอความช่วยเหลือ</b>
+                    </div>
+                    <div class="col-3">
+                        <b>เวลาแจ้งเหตุ</b>
+                    </div>
+                    <div class="col-3">
+                        <b>สถานะ</b>
+                    </div>
+                    <div class="col-2">
+                        <b>ระยะเวลา</b>
+                    </div>
+                    <div class="col-1">
+                        <b>ตำแหน่ง</b>
+                    </div>
+
+                    <br><br>
+                    <hr style="color:black;background-color:black;height:2px;">
+                </div>
+                </div>
+                <div class="card-body">
+                    @php
+                    $Number = 1 ;
+                    @endphp
+
+                    @foreach($view_maps as $item)
+
+                    @php
+                    $color_row = "" ;
+
+                    if( $Number%2 == 0 ){
+                        $color_row = "#FFEFD5" ;
+                    }
+                    @endphp
+                    <div class="row text-center"> 
+                        <div class="col-3">
+                        <div style="margin-top: -10px;" >
+                            <h5 class="text-success float-left">
+                                <span style="font-size: 15px;">
+                                    <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
+                                    <i class="far fa-eye text-primary"></i>
+                                    </a>
+                                </span>&nbsp;{{ $item->name }}<br> 
+                            </h5>
+                            {{ $item->phone }}
                         </div>
+                        </div>
+                        <div class="col-3">
+                        <div style="margin-top: -10px;">
+                            <p><b>
+                            {{ date("d/m/Y" , strtotime($item->created_at)) }} <br>
+                            {{ date("H:i" , strtotime($item->created_at)) }}
+                            </b></p>
+                            @if(!empty($item->photo))
+                            <br>
+                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo }}">
+                            </a>
+                            <br><br>
+                            @endif
+                        </div>
+                        </div>
+                        <div class="col-3">
+                        <div style="margin-top: -10px;">
+                            @if( !empty($item->helper) and empty($item->help_complete) )
+                                <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ</a>
+                            @elseif($item->helper == null)
+                                <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ</a>
+                            @elseif($item->help_complete == "Yes" && $item->helper != null)
+                                <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
+                                @if(!empty($item->help_complete_time))
+                                    <p style="margin-top:8px;"><b>
+                                    {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}
+                                    </b></p> 
+                                @endif 
+                                @if(!empty($item->photo_succeed))
+                                <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">
+                                    <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo_succeed }}">
+                                </a>
+                                <br><br>
+                                @endif
+                            @endif              
+                        </div>
+                        </div>
+                        <div class="col-2">
+                        @if( !empty($item->created_at) && !empty($item->help_complete_time) )
+                            <!-- ปี -->
+                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
+                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y')}} ปี <br>
+                            @endif
+                            <!-- เดือน -->
+                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m') != 0 )
+                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m')}} เดือน <br>
+                            @endif
+                            <!-- วัน -->
+                            @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d') != 0 )
+                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d')}} วัน <br>
+                            @endif
+                            <!-- ชัวโมง -->
+                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h') != 0 )
+                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h')}} ชั่วโมง <br>
+                            @endif
+                            <!-- นาที -->
+                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i') != 0 )
+                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i')}} นาที <br>
+                            @endif
+                            <!-- วินาที -->
+                            @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
+                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที <br>
+                            @endif
+                            
+                        @else
+                            <span>-</span>
+                        @endif
+                        </div>
+                        <div class="col-1">
+                        <div style="margin-top: -10px;">
+                            <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
+                                <i class="fas fa-map-marker-alt"></i> 
+                                <br>
+                                ดูหมุด
+                            </a>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="col-12">
+                        @if(Auth::check())
+                            @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
+                                @if($item->help_complete == "Yes" and $item->score_total != null)
+                                    <div class="col-12 text-left" style="margin-top:5px;">
+                                        <h5>คะแนนการช่วยเหลือ</h5>
+                                        <div class="row">
+                                            <div class="col-2" style="padding:0px">
+                                                เจ้าหน้าที่ : <br>{{$item->helper}}
+                                            </div> 
+                                            <div class="col-2" style="padding:0px">
+                                                @if($item->score_impression < 3)
+                                                    ความประทับใจ : <br>
+                                                    <span class="text-danger">{{$item->score_impression}}</span>
+                                                @elseif($item->score_impression == 3)
+                                                    ความประทับใจ : <br>
+                                                    <span class="text-warning">{{$item->score_impression}}</span>
+                                                @elseif($item->score_impression > 3)
+                                                    ความประทับใจ : <br>
+                                                    <span class="text-success">{{$item->score_impression}}</span>
+                                                @endif
+                                            </div>
+                                            <div class="col-2" style="padding:0px">
+                                                @if($item->score_period < 3)
+                                                    ระยะเวลา : <br>
+                                                    <span class="text-danger">{{$item->score_period}}</span>
+                                                @elseif($item->score_period == 3)
+                                                    ระยะเวลา : <br>
+                                                    <span class="text-warning">{{$item->score_period}}</span>
+                                                @elseif($item->score_period > 3)
+                                                    ระยะเวลา : <br>
+                                                    <span class="text-success">{{$item->score_period}}</span>
+                                                @endif
+                                            </div>
+                                            <div class="col-2" style="padding:0px">
+                                                @if($item->score_total < 3)
+                                                    ภาพรวม : <br>
+                                                    <span class="text-danger">{{$item->score_total}}</span>
+                                                @elseif($item->score_total == 3)
+                                                    ภาพรวม : <br>
+                                                    <span class="text-warning">{{$item->score_total}}</span>
+                                                @elseif($item->score_total > 3)
+                                                    ภาพรวม : <br>
+                                                    <span class="text-success">{{$item->score_total}}</span>
+                                                @endif
+                                            </div>
+                                            <div class="col-4" style="padding:0px">
+                                                คำแนะนำ/ติชม : <br>{{$item->comment_help}}
+                                            </div> 
+                                        </div>
+                                    </div>
+                                @elseif($item->help_complete == "Yes" and $item->score_total == null)
+                                    <h5>คะแนนการช่วยเหลือ</h5>
+                                    <div class="row">
+                                        <div class="col-6" style="padding:0px">
+                                            เจ้าหน้าที่ : {{$item->helper}}
+                                        </div> 
+                                        <div class="col-6" style="padding:0px">
+                                            ไม่ได้ทำแบบประเมิน
+                                        </div> 
+                                    </div>
+                                @elseif(!empty($item->helper) and empty($item->help_complete))
+                                    <h5>คะแนนการช่วยเหลือ</h5>
+                                    <div class="row">
+                                        <div class="col-12" style="padding:0px">
+                                            เจ้าหน้าที่ : {{$item->helper}}
+                                        </div> 
+                                    </div>
+                                @endif      
+                            @endif
+                            @endif
+                            <br>
+                        </div>
+                        <hr>
+                        <br><br>
+                    </div>
+                    @php
+                        $Number = $Number + 1  ;
+                    @endphp
+                    @endforeach
+                    <div style="float: right;">
+                    </div>
+                    <div class="table-responsive">
+                        <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!----------------------------------------------------- end pc ----------------------------------------------------->
-    </div>
+  </div>
 </div>
+
+
+
+
 <!------------------------------------------------ mobile---------------------------------------------------------------------- -->
 <div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
                         <div class="row">
