@@ -40,13 +40,12 @@
         "text": "name_helper",
         "size": "md",
         "weight": "bold",
-        "style": "italic"
+        "decoration": "underline"
       },
       {
         "type": "text",
         "text": "กำลังไปช่วยเหลือ",
         "size": "md",
-        "weight": "bold",
         "margin": "lg"
       },
       {
