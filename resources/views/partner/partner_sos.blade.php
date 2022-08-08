@@ -73,15 +73,15 @@
                                       จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
                                       &nbsp;&nbsp; | &nbsp;&nbsp;
                                       @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ (int)$average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
                                       @endif
 
                                       @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ (int)$average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
                                       @endif
 
                                       @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>{{ (int)$average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                        ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
                                       @endif
 
                                       @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")

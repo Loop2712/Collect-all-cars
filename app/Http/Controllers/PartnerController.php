@@ -589,7 +589,7 @@ class PartnerController extends Controller
             if (!empty($data_hr_sp[1])) {
                 $data_min_1 = "0." . $data_hr_sp[1] ; 
                 $data_min_2 = (float)$data_min_1 * 60 ; 
-                $data_average['min'] = $data_min_2 ;
+                $data_average['min'] = (int)$data_min_2 ;
             }else{
                 $data_average['min'] = 0 ;
             }
