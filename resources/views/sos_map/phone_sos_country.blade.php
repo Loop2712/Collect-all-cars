@@ -3,7 +3,7 @@
 <div class="d-none" id="btn_tel"></div>
 
 <!-- SOS ไทย -->
-<div id="sos_TH" class="row " style="margin-top:10px">
+<div id="sos_TH" class="row d-none" style="margin-top:10px">
     @if(!empty($user->nationalitie) && !empty($nationalitie_tel))
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','{{ $nationalitie_tel }}');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>Embassy of {{$user->nationalitie}}
