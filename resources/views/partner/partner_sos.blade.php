@@ -293,6 +293,11 @@
                             @endif
                             <br>
                         </div>
+                        @if(!empty($item->remark))
+                        <div class="col-12">
+                            <b>หมายเหตุจากเจ้าหน้าที่ : </b> {{ $item->remark }}
+                        </div>
+                        @endif
                         <hr>
                         <br><br>
                     </div>
