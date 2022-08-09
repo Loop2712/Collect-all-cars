@@ -296,7 +296,7 @@
                         @if(!empty($item->remark))
                         <div class="col-12">
                             <b>หมายเหตุจากเจ้าหน้าที่ : </b> {{ $item->remark }}
-                            <br>
+                            <br><br>
                         </div>
                         @endif
                         <hr>
