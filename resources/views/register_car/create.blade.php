@@ -62,10 +62,52 @@
         </div>
     </div>
     <br><br><br>
+
+    <!-- Button trigger modal -->
+    <button id="btn_modal_addline" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_addline">
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_addline" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <br>
+            <h4 class="text-center text-back">
+                <b><span class="text-danger">กรุณา</span>เพิ่มเพื่อนไลน์เพื่อรับข้อความการติดต่อ</b>
+            </h4>
+            <br>
+            <center>
+              <a href="https://lin.ee/xnFKMfc">
+                <img width="100%" src="{{ asset('/img/more/poster add line 2.png') }}">
+              </a>
+            </center>
+            <br>
+            <a id="btn_add_line" href="https://lin.ee/xnFKMfc">
+              <button  style="width:100% ;font-size: 22px; background-color: #28A745;" type="button" class="btn btn-lg btn-success text-white" ><b>
+                <i class="fab fa-line "></i> เพิ่มเพื่อน</b>
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("");
+        let user_id = document.querySelector('#user_id');
+
+        fetch("{{ url('/') }}/api/check_add_line/" + user_id.value)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result[0]['add_line']);
+                if (result[0]['add_line'] != "Yes") {
+                    document.querySelector('#btn_modal_addline').click();
+                }
+        });
     });
+
     function show_organization(){
 
         document.querySelector('#row_general').classList.add('d-none');
