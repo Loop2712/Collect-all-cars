@@ -82,7 +82,7 @@
                 <div class="card-body" style="color: white;">
                     <p class="text-center" style="font-size:18px;">
                         @if(!empty($data_officer->name))
-                            เจ้าหน้า : {{ $data_officer->name }} ได้เพิ่มภาพถ่ายแล้ว
+                            เจ้าหน้าที่ : {{ $data_officer->name }} ได้เพิ่มภาพถ่ายแล้ว
                         @endif
                     </p>
                     <center>
