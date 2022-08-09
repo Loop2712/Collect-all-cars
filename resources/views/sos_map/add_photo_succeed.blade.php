@@ -201,6 +201,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.querySelector('#content_add_photo').classList.remove('d-none');
     }
 
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+      // { video: true }
+      // { video: { facingMode: { exact: "environment" } } }
+        .then(function (stream) {
+          if (typeof video.srcObject == "object") {
+              video.srcObject = stream;
+            } else {
+              video.src = URL.createObjectURL(stream);
+            }
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
+    }
+
 });
 
 function capture() {
