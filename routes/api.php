@@ -126,6 +126,8 @@ Route::get('/change_color_menu/{color_navbar}/{name_partner}/{class_color_menu}'
 Route::get('/sos_map/all_area','API\SosmapController@all_area');
 Route::get('/sos_map/area_condo_id/{condo_id}','API\SosmapController@area_condo_id');
 Route::get('/submit_score/{sos_map_id}/{score_1}/{score_2}/{total_score}/{comment_help}', 'API\SosmapController@submit_score');
+Route::post('/submit_add_photo', 'API\SosmapController@submit_add_photo');
+
 Route::get('/service_area/area_other/{id_user}/{name_area}','API\PartnersController@area_other');
 Route::get('/service_area/area_partner_other/{id_user}/{name_area}','API\PartnersController@area_partner_other');
 Route::get('/service_area/check_area_other/{id_partnet}','API\PartnersController@check_area_other');
