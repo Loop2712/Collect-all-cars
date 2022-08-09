@@ -228,46 +228,46 @@
                                         <h5>คะแนนการช่วยเหลือ</h5>
                                         <div class="row">
                                             <div class="col-2" style="padding:0px">
-                                                เจ้าหน้าที่ : <br>{{$item->helper}}
+                                                <b>เจ้าหน้าที่ : </b><br>{{$item->helper}}
                                             </div> 
                                             <div class="col-2" style="padding:0px">
                                                 @if($item->score_impression < 3)
-                                                    ความประทับใจ : <br>
+                                                    <b>ความประทับใจ : </b><br>
                                                     <span class="text-danger">{{$item->score_impression}}</span>
                                                 @elseif($item->score_impression == 3)
-                                                    ความประทับใจ : <br>
+                                                    <b>ความประทับใจ : </b><br>
                                                     <span class="text-warning">{{$item->score_impression}}</span>
                                                 @elseif($item->score_impression > 3)
-                                                    ความประทับใจ : <br>
+                                                    <b>ความประทับใจ : </b><br>
                                                     <span class="text-success">{{$item->score_impression}}</span>
                                                 @endif
                                             </div>
                                             <div class="col-2" style="padding:0px">
                                                 @if($item->score_period < 3)
-                                                    ระยะเวลา : <br>
+                                                    <b>ระยะเวลา : </b><br>
                                                     <span class="text-danger">{{$item->score_period}}</span>
                                                 @elseif($item->score_period == 3)
-                                                    ระยะเวลา : <br>
+                                                    <b>ระยะเวลา : </b><br>
                                                     <span class="text-warning">{{$item->score_period}}</span>
                                                 @elseif($item->score_period > 3)
-                                                    ระยะเวลา : <br>
+                                                    <b>ระยะเวลา : </b><br>
                                                     <span class="text-success">{{$item->score_period}}</span>
                                                 @endif
                                             </div>
                                             <div class="col-2" style="padding:0px">
                                                 @if($item->score_total < 3)
-                                                    ภาพรวม : <br>
+                                                    <b>ภาพรวม : </b><br>
                                                     <span class="text-danger">{{$item->score_total}}</span>
                                                 @elseif($item->score_total == 3)
-                                                    ภาพรวม : <br>
+                                                    <b>ภาพรวม : </b><br>
                                                     <span class="text-warning">{{$item->score_total}}</span>
                                                 @elseif($item->score_total > 3)
-                                                    ภาพรวม : <br>
+                                                    <b>ภาพรวม : </b><br>
                                                     <span class="text-success">{{$item->score_total}}</span>
                                                 @endif
                                             </div>
                                             <div class="col-4" style="padding:0px">
-                                                คำแนะนำ/ติชม : <br>{{$item->comment_help}}
+                                                <b>คำแนะนำ/ติชม : </b><br>{{$item->comment_help}}
                                             </div> 
                                         </div>
                                     </div>
@@ -275,17 +275,17 @@
                                     <h5>คะแนนการช่วยเหลือ</h5>
                                     <div class="row">
                                         <div class="col-6" style="padding:0px">
-                                            เจ้าหน้าที่ : {{$item->helper}}
+                                            <b>เจ้าหน้าที่ : </b>{{$item->helper}}
                                         </div> 
                                         <div class="col-6" style="padding:0px">
-                                            ไม่ได้ทำแบบประเมิน
+                                            <b>ไม่ได้ทำแบบประเมิน</b>
                                         </div> 
                                     </div>
                                 @elseif(!empty($item->helper) and empty($item->help_complete))
                                     <h5>คะแนนการช่วยเหลือ</h5>
                                     <div class="row">
                                         <div class="col-12" style="padding:0px">
-                                            เจ้าหน้าที่ : {{$item->helper}}
+                                            <b>เจ้าหน้าที่ : </b>{{$item->helper}}
                                         </div> 
                                     </div>
                                 @endif      
