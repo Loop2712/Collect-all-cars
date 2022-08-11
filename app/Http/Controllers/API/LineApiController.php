@@ -399,6 +399,7 @@ class LineApiController extends Controller
     {
         $data_user = DB::table('users')
             ->where('id', $id_user)
+            ->where('type', 'line')
             ->get();
 
         return $data_user;
