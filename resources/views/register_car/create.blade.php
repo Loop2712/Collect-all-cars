@@ -98,14 +98,14 @@
         // console.log("");
         let user_id = document.querySelector('#user_id');
 
-        fetch("{{ url('/') }}/api/check_add_line/" + user_id.value)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result[0]['add_line']);
-                if (result[0]['add_line'] != "Yes") {
-                    document.querySelector('#btn_modal_addline').click();
-                }
-        });
+        // fetch("{{ url('/') }}/api/check_add_line/" + user_id.value)
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         // console.log(result[0]['add_line']);
+        //         if (result[0]['add_line'] != "Yes") {
+        //             document.querySelector('#btn_modal_addline').click();
+        //         }
+        // });
     });
 
     function show_organization(){
