@@ -417,7 +417,7 @@
         let tag_a = document.createElement("a");
 
         let tag_a_href = document.createAttribute("href");
-        tag_a_href.value = 'tel:1137,1';
+        tag_a_href.value = 'tel:1137';
         tag_a.setAttributeNode(tag_a_href);
 
         let tag_a_id = document.createAttribute("id");
