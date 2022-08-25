@@ -139,15 +139,14 @@ class LineMessagingAPI extends Model
     	switch($message_type)
         {   
             // บอทตอบกลับ
-            case 'วีเช็คอยู่ไหม':
+            case 'where':
                 $template_path = storage_path('../public/json/text_success.json');   
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","อยู่ครับ",$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
             break;
-            // บอทตอบกลับ
-            case 'เอาไงดี':
+            case 'how':
                 $template_path = storage_path('../public/json/text_success.json');   
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","ไม่รู้ ไม่รู้",$string_json);
