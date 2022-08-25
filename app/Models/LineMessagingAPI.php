@@ -138,6 +138,14 @@ class LineMessagingAPI extends Model
     {   
     	switch($message_type)
         {   
+            // บอทตอบกลับ
+            case 'วีเช็คอยู่ไหม':
+                $template_path = storage_path('../public/json/text_success.json');   
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","อยู่ครับ",$string_json);
+
+                $messages = [ json_decode($string_json, true) ]; 
+            break;
             case 'Chinese':
                 $provider_id = $event["source"]['userId'];
                 $user = User::where('provider_id', $provider_id)->get();

@@ -3,6 +3,7 @@
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
         navigator.geolocation.getCurrentPosition(initMap);
+
         // navigator.geolocation.getCurrentPosition(geocodeLatLng);
       } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
@@ -31,6 +32,9 @@
     }
 
     function initMap(position) { 
+
+        document.querySelector('#btn_emergency_js100').classList.remove('d-none');
+        
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
@@ -345,6 +349,7 @@
                 if ( inside([ lat, lng ], area_arr) ) {
 
                     document.querySelector('#a_help').classList.remove('d-none');
+
                     let area_help = document.querySelector("#area_help");
                     let name_area = document.querySelector("#name_area");
 

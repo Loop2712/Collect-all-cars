@@ -1000,6 +1000,7 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+                // console.log(result['countryCode']);
 
                 let countryCode = document.querySelector('#CountryCode');
                 countryCode.value = result['countryCode'];
