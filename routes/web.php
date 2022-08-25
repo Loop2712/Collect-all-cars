@@ -371,3 +371,5 @@ Route::get('/login_line/notify_repair', 'Notify_repairController@login_line');
 Route::get('/notify_repair/{id}/NOCF', 'Notify_repairController@notify_repair_NOCF');
 
 
+// test_for_dev
+Route::get('test_for_dev/type_car_registration', 'test_for_devController@type_car_registration');
