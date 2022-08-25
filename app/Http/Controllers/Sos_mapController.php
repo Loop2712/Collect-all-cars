@@ -498,7 +498,7 @@ class Sos_mapController extends Controller
         $data_name_sp = explode("&",$data['area']);
         $data_name_area_sp = explode("&",$data['name_area']);
 
-        $data_line_group = DB::table('group_lines')->where('system', 'js100')->first();
+        $data_line_group = DB::table('group_lines')->where('system', 'emergency_js100')->first();
 
         $groupId = $data_line_group->groupId ;
         $name_time_zone = $data_line_group->time_zone ;
