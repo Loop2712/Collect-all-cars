@@ -73,6 +73,7 @@
             <div class="col-12 p-3 mb-5 rounded" >
                 <div class="row">
                     <div class="col-12" >
+                        <br>
                         <p  style=" color:#B3B6B7;font-family: 'Kanit', sans-serif;" id="location_user">
                             <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
                             <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
@@ -88,11 +89,13 @@
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP</b>
                         </a>
                     </div> 
+                    @if(Auth::user()->id == "0")
                     <div class="col-12 mt-3">
                         <button class="shadow btn btn-md btn-block" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#08361d;">
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp;Call Emergency  JS 100</b>
                         </button>
                     </div>
+                    @endif
                 </div>
             </div>
 
