@@ -177,6 +177,9 @@ class LineApiController extends Controller
                 case "วีเช็คอยู่ไหม" :  
                     $line->replyToUser(null, $event, "วีเช็คอยู่ไหม");
                     break;
+                case "เอาไงดี" :  
+                    $line->replyToUser(null, $event, "เอาไงดี");
+                    break;
             }   
         }
     }
