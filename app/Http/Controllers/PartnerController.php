@@ -548,6 +548,7 @@ class PartnerController extends Controller
 
     public function average_per_minute($view_maps_all)
     {
+
         $minute_all = 0 ;
         $count_case = 0 ;
         $data_average = [] ;
@@ -556,12 +557,11 @@ class PartnerController extends Controller
             
             if(!empty($item->created_at) && !empty($item->help_complete_time)){
                 $minute_row = \Carbon\Carbon::parse($item->help_complete_time)->diffinMinutes(\Carbon\Carbon::parse($item->created_at)) ;
+
+                $count_case = $count_case + 1 ;
+
             }else{
                 $minute_row = 0 ;
-            }
-
-            if( !empty($item->created_at) && !empty($item->help_complete_time) ){
-                $count_case = $count_case + 1 ;
             }
 
             $minute_all = $minute_all + (int)$minute_row ; 
@@ -727,11 +727,58 @@ class PartnerController extends Controller
         $user_of_partners = User::where('organization', $data_user->organization)->get();
 
         // echo "<pre>";
-        // print_r($data_score[0]);
+        // print_r($all_go_to_help);
         // echo "<pre>";
         // exit();
 
         return view('partner.sos_score_helper', compact('data_partners','data_time_zone','user_of_partners'));
+    }
+
+     public function score_helper($user_id)
+    {
+
+        $data_user = User::where('id' , $user_id)->first();
+
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
+
+        foreach ($data_partners as $data_partner) {
+            $search_area = $data_partner->name ;
+        }
+        $perPage = 20;
+
+        $sos_all_request = Sos_map::selectRaw('count(id) as count')
+            ->where('helper', "%$data_user->name%")
+            ->get();
+
+        foreach ($sos_all_request as $key) {
+                $sos_all = $key->count ;
+            }
+
+        // นับจำนวนทั้งหมด
+        $view_maps_all = DB::table('sos_maps')
+            ->where('helper','LIKE', "%$data_user->name%")
+            ->get();
+
+        $count_data = count($view_maps_all);
+        ////////
+
+        $view_maps = DB::table('sos_maps')
+            ->where('helper','LIKE', "%$data_user->name%")
+            ->latest()->paginate($perPage);
+
+        $select_name_areas = DB::table('sos_maps')
+            ->where('helper','LIKE', "%$data_user->name%")
+            ->get();
+
+        $text_at = '@' ;
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        $average_per_minute = $this->average_per_minute($view_maps_all);
+
+        return view('partner.score_helper', compact('data_user' ,'data_partners','view_maps' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'average_per_minute'));
     }
 
     public function view_check_in(Request $request)
