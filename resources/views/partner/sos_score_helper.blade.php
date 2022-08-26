@@ -141,7 +141,7 @@
                                         $average_per_minute = $data_average ;
 
                                         if($count_rate_of_helper == 0){
-                                            $average_per_minute = "" ;
+                                            $average_per_minute = 0 ;
                                         }
 
                                     @endphp
