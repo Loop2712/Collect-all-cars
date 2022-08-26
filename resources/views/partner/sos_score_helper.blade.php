@@ -140,6 +140,10 @@
 
                                         $average_per_minute = $data_average ;
 
+                                        if($count_rate_of_helper == 0){
+                                            $average_per_minute = "" ;
+                                        }
+
                                     @endphp
 
                                     <div class="row text-center" style="font-size: 17px;">
