@@ -726,61 +726,12 @@ class PartnerController extends Controller
 
         $user_of_partners = User::where('organization', $data_user->organization)->get();
 
-        $name_of_partner = [];
-        foreach ($user_of_partners as $user_of_partner ) {
-            array_push($name_of_partner , $user_of_partner->name);
-        }
-
-        // echo count($name_of_partner);
-        // echo "<br>";
-        // echo "<pre>";
-        // print_r($name_of_partner);
-        // echo "<pre>";
-
-        $data_score = [];
-        for ($i=0; $i < count($name_of_partner); $i++) { 
-
-            $sos_maps = Sos_map::where('area', 'LIKE', "%$data_user->organization%")
-                ->where('score_impression', '!=' ,  null)
-                ->where('helper', 'LIKE', "%$name_of_partner[$i]%")
-                ->get();
-
-            array_push($data_score , $sos_maps);
-
-        }
-        // echo count($data_score);
-        // echo "<br>";
-        // echo "<pre>";
-        // print_r($data_score);
-        // echo "<pre>";
-
-        // for ($c=0; $c < count($data_score); $c++) { 
-            $sum_impression = 0 ;
-            $sum_period = 0 ;
-            $sum_total = 0 ;
-            $count_sum = 0 ;
-            foreach ($data_score[0] as $key) {
-                $count_sum = $count_sum + 1 ;
-                $sum_impression = ($sum_impression + $key->score_impression) /  $count_sum;
-                $sum_period = ($sum_period + $key->score_period) /  $count_sum;
-                $sum_total = ($sum_total + $key->score_total) /  $count_sum;
-            }
-        // }
-            // echo $name_of_partner[0];
-            // echo "<br>";
-            // echo $sum_impression;
-            // echo "<br>";
-            // echo $sum_period;
-            // echo "<br>";
-            // echo $sum_total;
-            // echo "<br>";
-
         // echo "<pre>";
         // print_r($data_score[0]);
         // echo "<pre>";
         // exit();
 
-        return view('partner.sos_score_helper', compact('data_partners','data_time_zone','data_score'));
+        return view('partner.sos_score_helper', compact('data_partners','data_time_zone','user_of_partners'));
     }
 
     public function view_check_in(Request $request)
