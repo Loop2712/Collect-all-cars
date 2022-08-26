@@ -201,24 +201,20 @@
                                         </div>
                                         <div class="col-12">
                                             <br>
-                                            @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                                ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส
-                                            @endif
-
-                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                                ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส
-                                            @endif
-
-                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
-                                                ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส
-                                            @endif
-
-                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
-                                                ระยะเวลาโดยเฉลี่ย <b>น้อยกว่า 1 นาที</b> / เคส
-                                            @endif
-
                                             @if($average_per_minute['day'] == "-" && $average_per_minute['hr'] == "-" && $average_per_minute['min'] == "-")
                                                 ระยะเวลาโดยเฉลี่ย <b>-</b>
+
+                                            @elseif($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส
+
+                                            @elseif($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส
+
+                                            @elseif($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                                ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส
+                                            
+                                            @elseif($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
+                                                ระยะเวลาโดยเฉลี่ย <b>น้อยกว่า 1 นาที</b> / เคส
                                             @endif
 
                                         </div>
