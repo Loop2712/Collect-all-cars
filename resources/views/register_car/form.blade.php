@@ -791,7 +791,7 @@
                 </div>
 
                 <hr>
-                <div id="div_information" class="col-12">
+                <div id="div_information" class="col-12 d-none">
                     <div class="row">
                         <div class="col-9 col-md-4 col-lg-2">
                             <p style="font-size: 22px;" class="control-label"><b>ข้อมูลของท่าน</b></p>
