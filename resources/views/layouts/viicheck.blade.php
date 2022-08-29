@@ -326,38 +326,61 @@
       </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      @guest
+
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" href="{{ url('/how_to_use') }}"><b>วิธีใช้งาน</b></a></li>
-          <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
-          <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
+          <!-- <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li> -->
+          <li><a class="nav-link scrollto notranslate" href="#tab-1">
+            <b><span class="text-danger">Vii</span>SOS</b></a>
+          </li>
+          <li><a class="nav-link scrollto notranslate" href="#tab-2">
+            <b><span class="text-danger">Vii</span>MOVE</b></a>
+          </li>
+          <li><a class="nav-link scrollto notranslate" href="#tab-3">
+            <b><span class="text-danger">Vii</span>CARE</b></a>
+          </li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
+          <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
+          
+          <li class="dropdown">
+              <a href="#">
+                <b>อื่นๆ</b>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul >
+              <a class="nav-link scrollto" href="{{ url('/how_to_use') }}">
+                <li>
+                  <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/37.2.png') }}">&nbsp;
+                  <b>วิธีใช้งาน</b>
+                </li>
+              </a>
+              <a class="nav-link scrollto" href="{{ url('/faq') }}">
+                <li>
+                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/18.png') }}">&nbsp;
+                    <b>Q&A</b>
+                </li>
+              </a>
+              <a class="nav-link scrollto" href="">
+                <li>
+                    <img width="22" style="margin-left: -5px;" src="{{ url('/img/sticker_qr/sticker_qr_th.png') }}">&nbsp;
+                    <b>ดาวน์โหลดสติกเกอร์</b>
+                </li>
+              </a>
+            </ul>
+          </li>
         </ul>
       </nav>
+
+      @guest
       <a id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
         <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
       </a>
-
       @else
       <input id="status_user" type="hidden" name="" value="{{ Auth::user()->status }}">
       <input id="status_id" type="hidden" name="" value="{{ Auth::user()->id }}">
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li>
-          </li>
-          <li><a class="nav-link scrollto" href="{{ url('/how_to_use') }}"><b>วิธีใช้งาน</b></a></li>
-          <!-- @if(Auth::check())
-            @switch (Auth::user()->role)
-              @case("admin-partner") 
-                <li><a class="nav-link scrollto" href="{{ url('/how_to_use_partner') }}"><b>วิธีใช้งาน Partner</b></a></li>
-              @break
-            @endswitch
-          @endif -->
-          <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
-          <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
-          <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li>
           <li class="dropdown">
             <input class="notranslate" type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
             <a class="notranslate" href="#" style="font-size: 18px;">
@@ -370,44 +393,74 @@
             <ul class="dropdown-active">
               <a href="{{ url('/profile') }}">
                 <li>
-                  <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/tab.png') }}">&nbsp;โปรไฟล์
+                  <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/12.png') }}">&nbsp; โปรไฟล์
                 </li>
               </a>
-              <li class="notranslate">
-                @if(Auth::check())
-                <!-- @if(Auth::user()->role == "admin" )
-                            <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
-                        @endif -->
-                  @switch (Auth::user()->role)
-                    @case("admin")
-                      <a href="{{ url('/dashboard') }}" target="blank">📊 &nbsp;Admin</a>
-                    @break
-                    @case("admin-partner")
-                      <a href="{{ url('/partner_index') }}">📊 &nbsp; admin-partner</a>
-                      <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
-                    @break
-                    @case("admin-condo")
-                      <a href="{{ url('/partner_index') }}">📊 &nbsp; For Corporation</a>
-                      <li><a href="{{ url('/how_to_use') }}">📕 &nbsp; วิธีใช้งาน</a></li>
-                    @break
-                    @case("partner")
-                      <a href="{{ url('/partner_index') }}" target="blank">📊 &nbsp; partner</a>
-                    @break
-                  @endswitch
-                @endif
-          </li>
-          <li>
+              @if(Auth::check())
+                @switch (Auth::user()->role)
+                  @case("admin")
+                    <a href="{{ url('/dashboard') }}" target="blank">
+                      <li>
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        Admin
+                      </li>
+                    </a>
+                  @break
+                  @case("admin-partner")
+                    <a href="{{ url('/partner_index') }}">
+                      <li class="notranslate">
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        admin-partner
+                      </li>
+                    </a>
+                    <a href="{{ url('/how_to_use') }}">
+                      <li>
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/37.2.png') }}">&nbsp;
+                        วิธีใช้งาน
+                      </li>
+                    </a>
+                  @break
+                  @case("admin-condo")
+                    <a href="{{ url('/partner_index') }}">
+                      <li class="notranslate">
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        For Corporation
+                      </li>
+                    </a>
+                    <a href="{{ url('/how_to_use') }}">
+                      <li>
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/37.2.png') }}">&nbsp;
+                        วิธีใช้งาน
+                      </li>
+                    </a>
+                  @break
+                  @case("partner")
+                    <a href="{{ url('/partner_index') }}" target="blank">
+                      <li class="notranslate">
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        partner
+                      </li>
+                    </a>
+                  @break
+                @endswitch
+              @endif
+          
             @if (Route::has('password.request'))
-            <a href="{{ route('password.request') }}">🔑 &nbsp;เปลี่ยนรหัสผ่าน</a>
+            <a href="{{ route('password.request') }}">
+              <li>
+                <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/20.png') }}"> &nbsp;
+                เปลี่ยนรหัสผ่าน
+              </li>
+            </a>
             @endif
-          </li>
-          <li>
-            <a id="btn_logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-              🏃‍♂️ &nbsp;{{ __(' Logout') }}</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
-            </form>
-          </li>
+          <a id="btn_logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <li class="notranslate">
+              <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/5.png') }}"> &nbsp;{{ __(' ออกจากระบบ') }}
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+            </li>
+          </a>
         </ul>
         </li>
         </ul>

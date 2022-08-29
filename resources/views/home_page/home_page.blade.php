@@ -308,7 +308,7 @@
           <hr style="border:#EB2424 0.1px solid"> 
           <br><br>
           <span id="tab-2" style="position: absolute;margin-top:-130px"></span>
-          <div style="margin-bottom: 25px;">
+          <div style="margin-bottom: 25px;" >
             <div class="row">
               <div class="col-lg-8 details order-2 order-lg-2">
                 <h3 style="font-family: 'Kanit', sans-serif;" class="text-center"> <b>ระบบติดต่อเจ้าของรถ ViiMOVE</b> </h3>
