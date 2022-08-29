@@ -1276,7 +1276,7 @@
             .then(response => response.json())
             .then(result => {
 
-            if (result.length == 1 ) {
+            if (result.length != 0 ) {
                 document.querySelector('#submit_form').classList.add('d-none');
 
                 document.getElementById("btn_repeatedly").click();
