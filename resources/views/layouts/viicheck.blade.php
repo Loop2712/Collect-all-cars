@@ -408,24 +408,12 @@
                         admin-partner
                       </li>
                     </a>
-                    <a href="{{ url('/how_to_use') }}">
-                      <li>
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/37.2.png') }}">&nbsp;
-                        วิธีใช้งาน
-                      </li>
-                    </a>
                   @break
                   @case("admin-condo")
                     <a href="{{ url('/partner_index') }}">
                       <li class="notranslate">
                         <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
                         For Corporation
-                      </li>
-                    </a>
-                    <a href="{{ url('/how_to_use') }}">
-                      <li>
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/37.2.png') }}">&nbsp;
-                        วิธีใช้งาน
                       </li>
                     </a>
                   @break
