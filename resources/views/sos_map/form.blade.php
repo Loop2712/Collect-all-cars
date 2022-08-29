@@ -246,6 +246,43 @@
     </div>
 </div>
 <br><br>
+
+<!-- btn Modal pls input phone -->
+<button id="btn_open_pls_input_phone" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#pls_input_phone"></button>
+<!-- Modal pls input phone -->
+<div class="modal fade" id="pls_input_phone" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="pls_input_phoneLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+        <div class="modal-header d-none">
+            <button id="btn_close_pls_input_phone" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+            </button>
+        </div>
+    @if(!empty($user))
+      <div class="modal-body text-center">
+        <div>
+            <br>
+            <img width="50%" src="{{ asset('/img/stickerline/PNG/10.png') }}">
+            <br><br>
+            <span class="text-secondary">
+                โปรดระบุหมายเลขโทรศัพท์ของคุณ<br>เพื่อให้เจ้าหน้าที่สามารถติดต่อกลับได้<br>
+                <span class="text-danger">(ครั้งแรกเท่านั้น)</span>
+            </span>
+            <br>
+        
+            <input style="margin-top:15px;" class="form-control text-center" type="phone" id="input_pls_input_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="check_input_pls_input_phone();">
+            <hr>
+            <br>
+            <button id="cf_input_pls_input_phone" style="width:50%;" type="button" class="btn btn-success d-none" onclick="click_cf_input_pls_input_phone();">ยืนยัน</button>
+            <br>
+        </div>
+      </div>
+    @endif
+    </div>
+  </div>
+</div>
+<!-- end pls input phone -->
+
 <input type="hidden" id="text_sos" name="" value="{{ $text_sos }}">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
@@ -295,8 +332,12 @@
         }
 
         let phone = document.querySelector('#phone').value ;
-
+            
         if (phone === "") {
+
+            // click modal pls input phone
+            document.querySelector('#btn_open_pls_input_phone').click();
+            // end click modal pls input phone
 
             let input_phone_url = document.querySelector('#input_phone_url').value ;
             let phone_url_sp = input_phone_url.split("=");
@@ -430,6 +471,31 @@
         document.querySelector("#btn_submit").click();
 
 
+    }
+
+    function check_input_pls_input_phone(){
+
+        let input_pls_input_phone = document.querySelector('#input_pls_input_phone').value;
+
+        if (input_pls_input_phone) {
+            document.querySelector('#cf_input_pls_input_phone').classList.remove('d-none');
+        }else{
+            document.querySelector('#cf_input_pls_input_phone').classList.add('d-none');
+        }
+    }
+
+    function click_cf_input_pls_input_phone(){
+        let input_pls_input_phone = document.querySelector('#input_pls_input_phone');
+        let user_id = document.querySelector('#user_id');
+
+        fetch("{{ url('/') }}/api/input_pls_input_phone/" + input_pls_input_phone.value + "/" + user_id.value)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+            });
+
+        window.location.href = window.location.href;
+        // document.querySelector('#btn_close_pls_input_phone').click();
     }
 
 </script>

@@ -123,6 +123,7 @@ Route::get('/input_data_partner/{name_partner}', 'API\PartnersController@input_d
 Route::get('/change_color_navbar/{color_navbar}/{name_partner}', 'API\PartnersController@change_color_navbar');
 Route::get('/change_color_menu/{color_navbar}/{name_partner}/{class_color_menu}', 'API\PartnersController@change_color_menu');
 
+Route::get('/input_pls_input_phone/{phone}/{user_id}','API\SosmapController@input_pls_input_phone');
 Route::get('/sos_map/all_area','API\SosmapController@all_area');
 Route::get('/sos_map/area_condo_id/{condo_id}','API\SosmapController@area_condo_id');
 Route::get('/submit_score/{sos_map_id}/{score_1}/{score_2}/{total_score}/{comment_help}', 'API\SosmapController@submit_score');

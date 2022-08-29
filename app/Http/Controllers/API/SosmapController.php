@@ -117,5 +117,15 @@ class SosmapController extends Controller
         return "submit_add_photo ok" ;
     }
 
+    function input_pls_input_phone($phone , $user_id){
+        DB::table('users')
+            ->where('id', $user_id)
+            ->update([
+                'phone' => $phone,
+        ]);
+
+        return "OK" ;
+    }
+
 
 }
