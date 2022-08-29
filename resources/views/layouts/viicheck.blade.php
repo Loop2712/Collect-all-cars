@@ -318,7 +318,7 @@
     <div class="container d-flex align-items-center">
       <div class="row">
         <div class="col-3 d-none d-lg-block">
-          <a href="{{URL::to('/')}}"><img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
+          <a href="{{URL::to('/')}}"><img width="110%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
         <div class="col-6 d-block d-lg-none">
           <a href="{{URL::to('/')}}"><img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
@@ -330,13 +330,13 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <!-- <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li> -->
-          <li><a class="nav-link scrollto notranslate" href="#tab-1">
+          <li><a class="nav-link scrollto notranslate" href="{{ url('/#tab-1') }}">
             <b><span class="text-danger">Vii</span>SOS</b></a>
           </li>
-          <li><a class="nav-link scrollto notranslate" href="#tab-2">
+          <li><a class="nav-link scrollto notranslate" href="{{ url('/#tab-2') }}">
             <b><span class="text-danger">Vii</span>MOVE</b></a>
           </li>
-          <li><a class="nav-link scrollto notranslate" href="#tab-3">
+          <li><a class="nav-link scrollto notranslate" href="{{ url('/#tab-3') }}">
             <b><span class="text-danger">Vii</span>CARE</b></a>
           </li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
@@ -360,12 +360,12 @@
                     <b>Q&A</b>
                 </li>
               </a>
-              <a class="nav-link scrollto" href="">
+              <!-- <a class="nav-link scrollto" href="#">
                 <li>
                     <img width="22" style="margin-left: -5px;" src="{{ url('/img/sticker_qr/sticker_qr_th.png') }}">&nbsp;
                     <b>ดาวน์โหลดสติกเกอร์</b>
                 </li>
-              </a>
+              </a> -->
             </ul>
           </li>
 
@@ -396,7 +396,7 @@
                   @case("admin")
                     <a href="{{ url('/dashboard') }}" target="blank">
                       <li>
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
                         Admin
                       </li>
                     </a>
@@ -404,7 +404,7 @@
                   @case("admin-partner")
                     <a href="{{ url('/partner_index') }}">
                       <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
                         admin-partner
                       </li>
                     </a>
@@ -418,7 +418,7 @@
                   @case("admin-condo")
                     <a href="{{ url('/partner_index') }}">
                       <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
                         For Corporation
                       </li>
                     </a>
@@ -432,7 +432,7 @@
                   @case("partner")
                     <a href="{{ url('/partner_index') }}" target="blank">
                       <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/9.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
                         partner
                       </li>
                     </a>
@@ -450,7 +450,7 @@
             @endif
           <a id="btn_logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             <li class="notranslate">
-              <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/5.png') }}"> &nbsp;{{ __(' ออกจากระบบ') }}
+              <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/5.png') }}"> &nbsp;{{ __('Logout') }}
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
               </form>
