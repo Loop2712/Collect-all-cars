@@ -305,20 +305,9 @@ class Register_carController extends Controller
         $count_sp_text = $this->utf8_strlen($text_registration);
 
         if ($requestData['car_type'] == "car") {
-            $type_car_registration = $this->check_type_car_registration($text_registration);
-            // update to database where id = $key->id
-            DB::table('register_cars')
-                ->where('id', $key->id)
-                ->update([
-                    'type_car_registration' => $type_car_registration,
-            ]);
+            $requestData['type_car_registration'] = $this->check_type_car_registration($text_registration);
         }else{
-            // update to database where id = $key->id
-            DB::table('register_cars')
-                ->where('id', $key->id)
-                ->update([
-                    'type_car_registration' => "รถจักรยานยนต์",
-            ]);
+            $requestData['type_car_registration'] = "รถจักรยานยนต์"
         }
 
         Register_car::create($requestData);
