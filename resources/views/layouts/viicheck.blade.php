@@ -368,19 +368,14 @@
               </a>
             </ul>
           </li>
-        </ul>
-      </nav>
 
-      @guest
-      <a id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
-        <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
-      </a>
-      @else
-      <input id="status_user" type="hidden" name="" value="{{ Auth::user()->status }}">
-      <input id="status_id" type="hidden" name="" value="{{ Auth::user()->id }}">
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
+          @guest
+          <a id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
+            <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
+          </a>
+          @else
+          <input id="status_user" type="hidden" name="" value="{{ Auth::user()->status }}">
+          <input id="status_id" type="hidden" name="" value="{{ Auth::user()->id }}">
           <li class="dropdown">
             <input class="notranslate" type="hidden" name="name_user" id="name_user" value="{{ Auth::user()->name }}">
             <a class="notranslate" href="#" style="font-size: 18px;">
