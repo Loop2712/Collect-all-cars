@@ -307,7 +307,7 @@ class Register_carController extends Controller
         if ($requestData['car_type'] == "car") {
             $requestData['type_car_registration'] = $this->check_type_car_registration($text_registration);
         }else{
-            $requestData['type_car_registration'] = "รถจักรยานยนต์"
+            $requestData['type_car_registration'] = "รถจักรยานยนต์" ;
         }
 
         Register_car::create($requestData);
