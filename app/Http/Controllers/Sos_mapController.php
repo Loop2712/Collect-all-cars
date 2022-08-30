@@ -125,9 +125,11 @@ class Sos_mapController extends Controller
             case 'help_area':
                 // ตรวจสอบ area แล้วส่งข้อมูลผ่านไลน์ 
                 $this->_pushLine($requestData , $id_sos_map);
+                break;
             case 'emergency_js100':
                 // send data to grouplin js100
                 $this->_pushLine_to_js100($requestData , $id_sos_map);
+                break;
                 
         }
         
