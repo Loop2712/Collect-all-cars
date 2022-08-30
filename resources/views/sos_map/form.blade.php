@@ -89,13 +89,13 @@
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP</b>
                         </a>
                     </div> 
-                    @if(Auth::user()->id == "1")
+                    <!-- @if(Auth::user()->id == "1")
                     <div class="col-12 mt-3 d-none" id="btn_emergency_js100">
                         <button class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#08361d;" onclick="call_sos_of_js100();">
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp;Call Emergency  JS 100</b>
                         </button>
                     </div>
-                    @endif
+                    @endif -->
                 </div>
             </div>
 
