@@ -267,8 +267,8 @@
                 <span class="text-danger">(ครั้งแรกเท่านั้น)</span>
             </span>
             <br>
-        <!-- 
-            <input style="margin-top:15px;" class="form-control text-center" type="phone" name="input_pls_input_phone" id="input_pls_input_phone" value="" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="check_input_pls_input_phone();"> -->
+        
+            <input style="margin-top:15px;" class="form-control text-center" type="phone" name="input_pls_input_phone" id="input_pls_input_phone" value="" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="check_input_pls_input_phone();">
             <hr>
             <br>
             <button id="cf_input_pls_input_phone" style="width:50%;" type="button" class="btn btn-success d-none" onclick="click_cf_input_pls_input_phone();">ยืนยัน</button>
