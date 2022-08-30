@@ -33,7 +33,7 @@
 
     function initMap(position) { 
 
-        document.querySelector('#btn_emergency_js100').classList.remove('d-none');
+        // document.querySelector('#btn_emergency_js100').classList.remove('d-none');
         
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
