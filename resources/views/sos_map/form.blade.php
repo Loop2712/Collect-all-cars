@@ -90,7 +90,7 @@
                         </a>
                     </div> 
                     <div class="col-12 mt-3 d-none" id="btn_emergency_js100">
-                        <button class="shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#08361d;" onclick="call_sos_of_js100();">
+                        <button class="shadow btn btn-md btn-block d-"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#08361d;" onclick="call_sos_of_js100();">
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp;Call Emergency  JS 100</b>
                         </button>
                     </div>
@@ -443,33 +443,33 @@
         
     }
 
-    // function call_sos_of_js100() {
-    //     let text_phone = document.querySelector("#text_phone");
-    //     let lat_text = document.querySelector("#lat");
-    //     let lng_text = document.querySelector("#lng");
+    function call_sos_of_js100() {
+        let text_phone = document.querySelector("#text_phone");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
 
-    //     let content = document.querySelector("#content");
-    //     content.value = 'emergency_js100';
+        let content = document.querySelector("#content");
+        content.value = 'emergency_js100';
 
-    //     let btn_tel = document.querySelector('#btn_tel');
+        let btn_tel = document.querySelector('#btn_tel');
 
-    //     let tag_a = document.createElement("a");
+        let tag_a = document.createElement("a");
 
-    //     let tag_a_href = document.createAttribute("href");
-    //     tag_a_href.value = 'tel:1137';
-    //     tag_a.setAttributeNode(tag_a_href);
+        let tag_a_href = document.createAttribute("href");
+        tag_a_href.value = 'tel:1137';
+        tag_a.setAttributeNode(tag_a_href);
 
-    //     let tag_a_id = document.createAttribute("id");
-    //     tag_a_id.value = 'btn_js_1137';
-    //     tag_a.setAttributeNode(tag_a_id);
+        let tag_a_id = document.createAttribute("id");
+        tag_a_id.value = 'btn_js_1137';
+        tag_a.setAttributeNode(tag_a_id);
 
-    //     btn_tel.appendChild(tag_a);
+        btn_tel.appendChild(tag_a);
 
-    //     document.querySelector("#btn_js_1137").click();
-    //     document.querySelector("#btn_submit").click();
+        document.querySelector("#btn_js_1137").click();
+        document.querySelector("#btn_submit").click();
 
 
-    // }
+    }
 
     function check_input_pls_input_phone(){
 

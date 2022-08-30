@@ -33,8 +33,6 @@
 
     function initMap(position) { 
 
-        // document.querySelector('#btn_emergency_js100').classList.remove('d-none');
-        
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
         let latlng = document.querySelector("#latlng");
@@ -69,6 +67,8 @@
         marker_user.addListener("click", () => {
             geocodeLatLng(geocoder, map, infowindow);
         });
+
+        document.querySelector('#btn_emergency_js100').classList.remove('d-none');
 
         let text_sos = document.querySelector('#text_sos').value;
 
