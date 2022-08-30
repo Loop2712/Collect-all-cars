@@ -326,7 +326,11 @@
       </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
+      @guest
+      <a  id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
+        <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
+      </a>
+      @endif
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <!-- <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li> -->
@@ -368,12 +372,8 @@
               </a> -->
             </ul>
           </li>
-
-          @guest
-          <a id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto">
-            <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
-          </a>
-          @else
+          
+          @if(Auth::check())
           <input id="status_user" type="hidden" name="" value="{{ Auth::user()->status }}">
           <input id="status_id" type="hidden" name="" value="{{ Auth::user()->id }}">
           <li class="dropdown">
