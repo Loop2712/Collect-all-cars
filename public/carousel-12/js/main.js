@@ -79,39 +79,24 @@ $(function () {
 
   if ($('.owl-4').length > 0) {
     $('.owl-4').owlCarousel({
-      center: false,
-      items: 1,
-      loop: true,
-      stagePadding: 0,
-      margin: 20,
+      loop:true,
+      margin:10,
       smartSpeed: 1000,
       autoplay: true,
-      nav: true,
-      dots: true,
-      pauseOnHover: false,
-      responsive: {
-        0: {
-          margin: 20,
-          nav: true,
-          items: 5
-        },
-        700: {
-          margin: 20,
-          stagePadding: 0,
-          nav: true,
-          items: 5
-        },
-        600: {
-          margin: 20,
-          nav: true,
-          items: 5
-        },
-        1000: {
-          margin: 0,
-          stagePadding: 10,
-          nav: true,
-          items: 5
-        }
+      responsiveClass:true,
+      responsive:{
+          0:{
+              items:1,
+              nav:true
+          },
+          600:{
+              items:3,
+              nav:false
+          },
+          1000:{
+              items:5,
+              nav:true
+          }
       }
     });
   }
