@@ -1176,8 +1176,8 @@
         <div class="col-10">
           <div class=" notranslate">
             <div class="site-section bg-left-half ">
-              <div class=" owl-3-style">
-                <div class="owl-carousel owl-3 ">
+              <div class=" owl-4-style">
+                <div class="owl-carousel owl-4 ">
                   <!-- <span id="foot_logo_partner"></span> -->
                   @php
                   $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()

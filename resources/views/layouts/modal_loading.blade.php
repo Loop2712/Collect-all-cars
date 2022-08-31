@@ -101,8 +101,9 @@
         <h4 style="font-family: 'Kanit', sans-serif;"><b>สนับสนุนโดย</b> </h4>
         <div class="row">
             <div class="col-12">
-                <div class="owl-4-style align-self-center" >
-                    <div class="owl-carousel owl-4">
+                <div class=" owl-4-style">
+                    <div class="owl-carousel owl-4 ">
+                        <!-- <span id="foot_logo_partner"></span> -->
                         @php
                         $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
                         @endphp
@@ -117,38 +118,19 @@
                 </div>
             </div>
             <div class="col-12">
-                <h1>
-                    asd
-                </h1>
-            </div>
-        </div>
-        <!-- <div class="col-12 owl-4-style align-self-center" style="padding:0px;">
-            <div class="owl-carousel owl-4">
-                @php
-                $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
-                @endphp
-                @foreach($partner as $item)
-                    @if($loop->iteration % 2 == 0)
-                    <div class="item" style="padding:0px;z-index:-1;">
-                        <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                <div class=" owl-4-style">
+                    <div class="owl-carousel owl-4 ">
+                        @foreach($partner as $item)
+                            @if($loop->iteration % 2 != 0)
+                                <div class="item" style="padding:0px;z-index:-1;">
+                                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
-                    @endif
-                @endforeach
-            </div>
-            <div class="owl-carousel owl-4">
-                @php
-                $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
-                @endphp
-                @foreach($partner as $item)
-                    @if($loop->iteration % 2 != 0)
-                        <div class="item" style="padding:0px;z-index:-1;">
-                            <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
-                        </div>
-                    @endif
-                @endforeach
+                </div>
             </div>
         </div>
-      </div> -->
     </div>
   </div>
 </div>
