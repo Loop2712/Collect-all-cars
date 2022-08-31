@@ -514,17 +514,17 @@ class Sos_mapController extends Controller
         $template_path = storage_path('../public/json/flex-sos-js100.json');
         $string_json = file_get_contents($template_path);
 
-        $string_json = str_replace("name",$name_user,$string_json);
+        $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
+        $string_json = str_replace("name_user",$name_user,$string_json);
         $string_json = str_replace("png_language",$data_users->language,$string_json);
         $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
         $string_json = str_replace("0899999999",$phone_user,$string_json);
-        $string_json = str_replace("30-08-2022",$date_now,$string_json);
-        $string_json = str_replace("05:08:54pm",$time_now,$string_json);
+        $string_json = str_replace("วันที่แจ้ง",$date_now,$string_json);
+        $string_json = str_replace("เวลาที่แจ้ง",$time_now,$string_json);
 
-
-        $string_json = str_replace("lat",$lat_user,$string_json);
+        $string_json = str_replace("gg_lat_mail",$text_at.$lat_user,$string_json);
+        $string_json = str_replace("gg_lat",$lat_user,$string_json);
         $string_json = str_replace("lng",$lng_user,$string_json);
-        $string_json = str_replace("lat_mail",$text_at.$lat_user,$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 

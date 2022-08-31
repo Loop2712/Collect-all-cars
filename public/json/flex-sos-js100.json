@@ -21,7 +21,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "name",
+            "text": "name_user",
             "color": "#ffffff",
             "size": "xl",
             "wrap": false
@@ -105,7 +105,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "30-08-2022",
+            "text": "วันที่แจ้ง",
             "color": "#ffffff",
             "size": "lg",
             "wrap": false
@@ -124,7 +124,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "05:08:54pm",
+            "text": "เวลาที่แจ้ง",
             "color": "#ffffff",
             "size": "lg",
             "wrap": false
@@ -151,7 +151,7 @@
         "action": {
           "type": "uri",
           "label": "google map",
-          "uri": "https://www.google.co.th/maps/search/lat,lng/lat_mail,lng,16z"
+          "uri": "https://www.google.co.th/maps/search/gg_lat,lng/gg_lat_mail,lng,16z"
         }
       }
     ],
