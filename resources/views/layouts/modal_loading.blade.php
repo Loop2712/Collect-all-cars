@@ -2,6 +2,7 @@
 
 @section('content')
 <br><br><br><br><br><br><br><br>
+@include ('layouts.partner_2_row')
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_thx">
   Launch demo modal
 </button>
