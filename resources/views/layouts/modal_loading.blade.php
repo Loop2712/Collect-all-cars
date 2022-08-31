@@ -99,7 +99,7 @@
                 </div>
         </center>
         <h4 style="font-family: 'Kanit', sans-serif;"><b>สนับสนุนโดย</b> </h4>
-        <div class="col-12 owl-style align-self-center" style="padding:0px;">
+        <div class="col-12 owl-4-style align-self-center" style="padding:0px;">
             <div class="owl-carousel owl-4">
                 @php
                 $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
