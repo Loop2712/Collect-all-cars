@@ -513,8 +513,6 @@ class Sos_mapController extends Controller
 
         $template_path = storage_path('../public/json/flex-sos-js100.json');
         $string_json = file_get_contents($template_path);
-           
-        $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
 
         $string_json = str_replace("name",$name_user,$string_json);
         $string_json = str_replace("png_language",$data_users->language,$string_json);
