@@ -1,5 +1,5 @@
-<div class="col-12 owl-carousel-two align-self-center" style="padding:0px;">
-    <div class="owl-carousel">
+<div class="col-12 owl-3-style align-self-center" style="padding:0px;">
+    <div class="owl-carousel owl-4">
         @php
           $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
         @endphp
@@ -15,7 +15,7 @@
             @endif
         @endforeach
     </div>
-    <div class="owl-carousel">
+    <div class="owl-carousel owl-4">
         @php
           $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
         @endphp

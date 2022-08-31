@@ -3,6 +3,7 @@
 @section('content')
 <br><br><br><br><br><br><br><br>
 @include ('layouts.partner_2_row')
+<br><br><br>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_thx">
   Launch demo modal
 </button>
@@ -21,8 +22,8 @@
                 </center>
                 <br>
                 <h5 style="font-family: 'Kanit', sans-serif;">สนับสนุนโดย</h5>
-                <div class="col-12 owl-carousel-two align-self-center" style="padding:0px;">
-                    <div class="owl-carousel">
+                <div class="col-12 owl-style align-self-center" style="padding:0px;">
+                    <div class="owl-carousel owl-4">
                         @php
                         $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
                         @endphp
@@ -38,7 +39,7 @@
                             @endif
                         @endforeach
                     </div>
-                    <div class="owl-carousel">
+                    <div class="owl-carousel owl-4">
                         @php
                         $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
                         @endphp
