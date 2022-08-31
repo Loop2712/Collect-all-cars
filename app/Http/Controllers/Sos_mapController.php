@@ -514,7 +514,12 @@ class Sos_mapController extends Controller
         $template_path = storage_path('../public/json/flex-sos-js100.json');
         $string_json = file_get_contents($template_path);
 
-        $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
+        if (!empty($data_users->photo)) {
+            $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
+        }else{
+            $string_json = str_replace("https://www.viicheck.com/storage/photo_profile_user","https://www.viicheck.com/img/stickerline/Flex/12.png",$string_json);
+        }
+
         $string_json = str_replace("name_user",$name_user,$string_json);
         $string_json = str_replace("png_language",$data_users->language,$string_json);
         $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
