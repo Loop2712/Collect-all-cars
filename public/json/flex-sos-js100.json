@@ -2,161 +2,165 @@
     "type": "flex",
     "altText": "SOS JS100",
     "contents": {
-  "type": "bubble",
-  "size": "giga",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "image",
-        "url": "https://www.viicheck.com/img/flex/sos-js100.png",
-        "size": "full",
-        "aspectRatio": "5:6",
-        "aspectMode": "cover"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "name_user",
-            "color": "#ffffff",
-            "size": "xl",
-            "wrap": false
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "18%",
-        "offsetStart": "37%",
-        "width": "40%"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/Flex/12.png",
-            "aspectRatio": "1:1",
-            "aspectMode": "cover"
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "15.5%",
-        "offsetStart": "19.5%",
-        "cornerRadius": "150px",
-        "width": "15%",
-        "height": "12.5%"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/national-flag/flag/png_language.png",
-            "aspectRatio": "149:100",
-            "size": "50px"
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "35%",
-        "offsetStart": "30%"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/national-flag/flag/png_national.png",
-            "aspectRatio": "149:99",
-            "size": "50px"
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "35%",
-        "offsetStart": "56%"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "0899999999",
-            "color": "#ffffff",
-            "size": "xl",
-            "wrap": false
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "58.5%",
-        "offsetStart": "26%",
-        "width": "47%",
-        "alignItems": "center",
-        "justifyContent": "center"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "วันที่แจ้ง",
-            "color": "#ffffff",
-            "size": "lg",
-            "wrap": false
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "74%",
-        "offsetStart": "19%",
-        "width": "28%",
-        "alignItems": "center",
-        "justifyContent": "center"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "เวลาที่แจ้ง",
-            "color": "#ffffff",
-            "size": "lg",
-            "wrap": false
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "74%",
-        "offsetStart": "51.5%",
-        "width": "29%",
-        "alignItems": "center",
-        "justifyContent": "center"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [],
-        "position": "absolute",
-        "offsetTop": "87%",
-        "offsetStart": "14%",
-        "width": "72%",
-        "alignItems": "center",
-        "justifyContent": "center",
-        "height": "9%",
-        "action": {
-          "type": "uri",
-          "label": "google map",
-          "uri": "https://www.google.co.th/maps/search/gg_lat,lng/gg_lat_mail,lng,16z"
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/sos-js100-new.png",
+              "size": "full",
+              "aspectRatio": "5:6",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "name_user",
+                  "color": "#ffffff",
+                  "size": "xl",
+                  "wrap": false
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "18%",
+              "offsetStart": "37%",
+              "width": "40%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/img/stickerline/Flex/12.png",
+                  "aspectRatio": "1:1",
+                  "aspectMode": "cover"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "15.5%",
+              "offsetStart": "19.5%",
+              "cornerRadius": "150px",
+              "width": "15%",
+              "height": "12.5%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/img/national-flag/flag/png_language.png",
+                  "aspectRatio": "149:100",
+                  "size": "50px"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "35%",
+              "offsetStart": "21.5%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "png_national",
+                  "color": "#ffffff",
+                  "wrap": false,
+                  "size": "lg"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "37%",
+              "offsetStart": "43%",
+              "width": "37%",
+              "justifyContent": "center",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "0899999999",
+                  "color": "#ffffff",
+                  "size": "xl",
+                  "wrap": false
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "58.5%",
+              "offsetStart": "26%",
+              "width": "47%",
+              "alignItems": "center",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "วันที่แจ้ง",
+                  "color": "#ffffff",
+                  "size": "lg",
+                  "wrap": false
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "74%",
+              "offsetStart": "14%",
+              "width": "33%",
+              "alignItems": "center",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "เวลาที่แจ้ง",
+                  "color": "#ffffff",
+                  "size": "lg",
+                  "wrap": false
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "74%",
+              "offsetStart": "51.5%",
+              "width": "33%",
+              "alignItems": "center",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "offsetTop": "87%",
+              "offsetStart": "14%",
+              "width": "72%",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "height": "9%",
+              "action": {
+                "type": "uri",
+                "label": "google map",
+                "uri": "https://www.google.co.th/maps/search/gg_lat,lng/gg_lat_mail,lng,16z"
+              }
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
         }
       }
-    ],
-    "position": "relative",
-    "paddingAll": "0px"
-  }
-}
 }
