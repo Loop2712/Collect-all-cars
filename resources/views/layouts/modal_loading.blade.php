@@ -13,7 +13,7 @@
                 <div class="line-spinner"></div>
             </div>
             <div class="modal-body text-center">
-                <img width="60%" src="{{ asset('peddyhub/images/home_5/preloader.gif') }}">
+                <img width="60%" src="{{ url('/img/stickerline/PNG/10.png') }}">
                 <br>
                 <center style="margin-top:15px;">
                     <h6 style="font-family: 'Kanit', sans-serif;">กำลังโหลด โปรดรอสักครู่..</h6>
@@ -29,7 +29,7 @@
                             @if($loop->iteration % 2 == 0)
                             <div class="item" style="padding:0px;z-index:-1;">
                                 <div class="testimon">
-                                    <a href="{{$item->link}}" target="bank">
+                                    <a href="#">
                                         <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                                     </a>
                                 </div>
@@ -45,7 +45,7 @@
                             @if($loop->iteration % 2 != 0)
                                 <div class="item" style="padding:0px;z-index:-1;">
                                     <div class="testimon">
-                                        <a href="{{$item->link}}" target="bank">
+                                        <a href="#">
                                             <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                                         </a>
                                     </div>
