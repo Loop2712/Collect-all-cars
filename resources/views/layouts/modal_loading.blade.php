@@ -30,11 +30,7 @@
                         @foreach($partner as $item)
                             @if($loop->iteration % 2 == 0)
                             <div class="item" style="padding:0px;z-index:-1;">
-                                <div class="testimon">
-                                    <a href="#">
-                                        <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
-                                    </a>
-                                </div>
+                                <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                             </div>
                             @endif
                         @endforeach
@@ -46,11 +42,7 @@
                         @foreach($partner as $item)
                             @if($loop->iteration % 2 != 0)
                                 <div class="item" style="padding:0px;z-index:-1;">
-                                    <div class="testimon">
-                                        <a href="#">
-                                            <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
-                                        </a>
-                                    </div>
+                                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                                 </div>
                             @endif
                         @endforeach
