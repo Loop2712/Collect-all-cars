@@ -1243,8 +1243,6 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('Medilab/js/main.js') }}"></script>
-  <script src="{{ asset('Medilab/js/script.js') }}"></script>
-  <script src="{{ asset('Medilab/js/wow.min.js') }}"></script>
 
   <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script>
 
@@ -1263,12 +1261,14 @@
   <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
   <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
   <script src="{{ asset('js/car/main.js')}}"></script>
+  <script src="{{ asset('medilab/js/wow.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/main.js') }}"></script>
 
+  <script src="{{ asset('medilab/js/script.js') }}"></script>
   <!-- <script type="text/javascript">
               function googleTranslateElementInit2() {
                 new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
