@@ -491,11 +491,17 @@ class Sos_mapController extends Controller
     protected function _pushLine_to_js100($data , $id_sos_map)
     {   
         $datetime =  date("d-m-Y  h:i:sa");
+        $date_now =  date("d-m-Y");
+        $time_now =  date("h:i:sa");
+
         $name_user = $data['name'];
+        $user_id = $data['user_id'];
         $phone_user = $data['phone'];
         $lat_user = $data['lat'];
         $lng_user = $data['lng'];
         $photo = $data['photo'];
+
+        $data_users = User::where('id' , $user_id)->first();
 
         $data_name_sp = explode("&",$data['area']);
         $data_name_area_sp = explode("&",$data['name_area']);
@@ -512,11 +518,7 @@ class Sos_mapController extends Controller
 
         $data_topic = [
                     "ขอความช่วยเหลือ",
-                    "เวลา",
-                    "จาก",
-                    "โทร",
-                    "รูปภาพสถานที่",
-                    "กำลังไปช่วยเหลือ",
+                    "ดูแผนที่",
                 ];
 
         for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -534,44 +536,18 @@ class Sos_mapController extends Controller
         
         $text_at = '@' ;
 
-        // //ส่งเมล
-        // $data_send_mail = array();
-        // $data_send_mail['photo'] = $photo ;
-        // $data_send_mail['time_zone'] = $time_zone ;
-        // $data_send_mail['name_user'] = $name_user ;
-        // $data_send_mail['phone_user'] = $phone_user ;
-        // $data_send_mail['lat'] = $lat_user ;
-        // $data_send_mail['lng'] = $lng_user ;
-        // $data_send_mail['lat_mail'] = $text_at.$lat_user;
-
-        // $email = $mail_partner ;
-        // Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
-
-        // // flex ask_for_help
-        // if (!empty($data['photo'])) {
-        //     $template_path = storage_path('../public/json/ask_for_help_photo.json');
-        //     $string_json = file_get_contents($template_path);
-        //     $string_json = str_replace("photo_sos.png",$photo,$string_json);
-        // }else{
-        //     $template_path = storage_path('../public/json/ask_for_help.json');
-        //     $string_json = file_get_contents($template_path);
-        // }
-
-        $template_path = storage_path('../public/json/ask_for_help.json');
+        $template_path = storage_path('../public/json/flex-sos-js100.json');
         $string_json = file_get_contents($template_path);
            
-        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-        $string_json = str_replace("datetime",$time_zone,$string_json);
-        $string_json = str_replace("name",$name_user,$string_json);
-        $string_json = str_replace("0999999999",$phone_user,$string_json);
-        $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
+        $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
 
-        $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0]."JS100",$string_json);
-        $string_json = str_replace("เวลา",$data_topic[1],$string_json);
-        $string_json = str_replace("จาก",$data_topic[2],$string_json);
-        $string_json = str_replace("โทร",$data_topic[3],$string_json);
-        $string_json = str_replace("รูปภาพสถานที่",$data_topic[4],$string_json);
-        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[5],$string_json);
+        $string_json = str_replace("name",$name_user,$string_json);
+        $string_json = str_replace("png_language",$data_users->language,$string_json);
+        $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
+        $string_json = str_replace("0899999999",$phone_user,$string_json);
+        $string_json = str_replace("30-08-2022",$date_now,$string_json);
+        $string_json = str_replace("05:08:54pm",$time_now,$string_json);
+
 
         $string_json = str_replace("lat",$lat_user,$string_json);
         $string_json = str_replace("lng",$lng_user,$string_json);
