@@ -511,28 +511,6 @@ class Sos_mapController extends Controller
         $groupId = $data_line_group->groupId ;
         $name_time_zone = $data_line_group->time_zone ;
         $group_language = $data_line_group->language ;
-
-        // TIME ZONE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
-
-        $data_topic = [
-                    "ขอความช่วยเหลือ",
-                    "ดูแผนที่",
-                ];
-
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
-
-            $text_topic = DB::table('text_topics')
-                    ->select($group_language)
-                    ->where('th', $data_topic[$xi])
-                    ->where('en', "!=", null)
-                    ->get();
-
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$xi] = $item_of_text_topic->$group_language ;
-            }
-        }
         
         $text_at = '@' ;
 
@@ -541,12 +519,12 @@ class Sos_mapController extends Controller
            
         $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
 
-        $string_json = str_replace("name",$name_user,$string_json);
-        $string_json = str_replace("png_language",$data_users->language,$string_json);
-        $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
-        $string_json = str_replace("0899999999",$phone_user,$string_json);
-        $string_json = str_replace("30-08-2022",$date_now,$string_json);
-        $string_json = str_replace("05:08:54pm",$time_now,$string_json);
+        // $string_json = str_replace("name",$name_user,$string_json);
+        // $string_json = str_replace("png_language",$data_users->language,$string_json);
+        // $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
+        // $string_json = str_replace("0899999999",$phone_user,$string_json);
+        // $string_json = str_replace("30-08-2022",$date_now,$string_json);
+        // $string_json = str_replace("05:08:54pm",$time_now,$string_json);
 
 
         $string_json = str_replace("lat",$lat_user,$string_json);
