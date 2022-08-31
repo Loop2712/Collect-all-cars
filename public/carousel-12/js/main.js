@@ -93,24 +93,24 @@ $(function () {
         0: {
           margin: 20,
           nav: true,
-          items: 6
+          items: 5
         },
         700: {
           margin: 20,
           stagePadding: 0,
           nav: true,
-          items: 6
+          items: 5
         },
         600: {
           margin: 20,
           nav: true,
-          items: 6
+          items: 5
         },
         1000: {
           margin: 0,
           stagePadding: 10,
           nav: true,
-          items: 6
+          items: 5
         }
       }
     });
