@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" style="margin-bottom: 25px;">
                 <div class=" owl-4-style">
                     <div class="owl-carousel owl-4 ">
                         @foreach($partner as $item)
