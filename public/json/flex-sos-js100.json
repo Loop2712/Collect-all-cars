@@ -38,7 +38,7 @@
               "contents": [
                 {
                   "type": "image",
-                  "url": "https://www.viicheck.com/img/stickerline/Flex/12.png",
+                  "url": "https://www.viicheck.com/storage/photo_profile_user.jpg",
                   "aspectRatio": "1:1",
                   "aspectMode": "cover"
                 }
@@ -71,15 +71,16 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "png_national",
+                  "text": "thai",
                   "color": "#ffffff",
                   "wrap": false,
-                  "size": "lg"
+                  "size": "lg",
+                  "weight": "bold"
                 }
               ],
               "position": "absolute",
               "offsetTop": "37%",
-              "offsetStart": "43%",
+              "offsetStart": "42%",
               "width": "37%",
               "justifyContent": "center",
               "alignItems": "center"
@@ -116,7 +117,7 @@
                 }
               ],
               "position": "absolute",
-              "offsetTop": "74%",
+              "offsetTop": "75%",
               "offsetStart": "14%",
               "width": "33%",
               "alignItems": "center",
@@ -135,7 +136,7 @@
                 }
               ],
               "position": "absolute",
-              "offsetTop": "74%",
+              "offsetTop": "75%",
               "offsetStart": "51.5%",
               "width": "33%",
               "alignItems": "center",
