@@ -1,7 +1,5 @@
-@extends('layouts.viicheck')
 
-@section('content')
-<br><br><br><br><br><br><br><br>
+<!-- <br><br><br><br><br><br><br><br>
 @include ('layouts.partner_2_row')
 <br><br><br>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_thx">
@@ -51,7 +49,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <style>
   @keyframes bouncing-loader {
   to {
@@ -77,27 +75,11 @@
 .bouncing-loader > div:nth-child(4) {
   animation-delay: 0.4s;
 }
-.owl-item{
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    height: auto !important;
-}
-.owl-stage {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
 
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
 </style>
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading">
-  Launch demo modal
-</button>
+
 
 <div class="modal fade" id="btn-loading" tabindex="-1" role="dialog" aria-labelledby="btn-loading" aria-hidden="true" data-backdrop="static" data-keyboard="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -125,20 +107,20 @@
                         @foreach($partner as $item)
                             @if($loop->iteration % 2 == 0)
                             <div class="item" style="padding:0px;z-index:-1;">
-                                <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                                <img class="p-md-1 p-lg-1" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                             </div>
                             @endif
                         @endforeach
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12 mt-3">
                 <div class=" owl-4-style">
                     <div class="owl-carousel owl-4 ">
                         @foreach($partner as $item)
                             @if($loop->iteration % 2 != 0)
                                 <div class="item" style="padding:0px;z-index:-1;">
-                                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                                    <img class="p-md-1 p-lg-1" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                                 </div>
                             @endif
                         @endforeach
@@ -149,4 +131,3 @@
     </div>
   </div>
 </div>
-@endsection
