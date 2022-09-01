@@ -10,7 +10,7 @@
     "contents": [
       {
         "type": "image",
-        "url": "https://i.im.ge/2022/09/01/OxRUzC.community-2500-2500px-2500-3000px-2500-3500px.png",
+        "url": "https://i.im.ge/2022/09/01/OxZ7N4.community-2500-2500px-2500-3000px-2500-3500px-1.png",
         "size": "full",
         "aspectRatio": "5:9",
         "aspectMode": "cover"
@@ -113,14 +113,37 @@
             "type": "image",
             "url": "https://www.viicheck.com/storage/photo_sos.png",
             "aspectRatio": "5:9",
-            "aspectMode": "cover"
+            "aspectMode": "cover",
+            "action": {
+              "type": "uri",
+              "uri": "https://www.viicheck.com/storage/photo_sos.png"
+            }
           }
         ],
         "position": "absolute",
         "offsetTop": "27%",
-        "offsetStart": "37%",
+        "offsetStart": "38%",
         "cornerRadius": "15px",
-        "width": "25%"
+        "width": "25%",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.viicheck.com/storage/photo_sos.png"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "position": "absolute",
+        "offsetTop": "47.5%",
+        "offsetStart": "65%",
+        "cornerRadius": "15px",
+        "width": "9%",
+        "height": "5%",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.viicheck.com/storage/photo_sos.png"
+        }
       },
       {
         "type": "box",
@@ -150,12 +173,12 @@
             "type": "text",
             "text": "วันที่แจ้ง",
             "color": "#ffffff",
-            "size": "xl",
+            "size": "lg",
             "wrap": false
           }
         ],
         "position": "absolute",
-        "offsetTop": "75%",
+        "offsetTop": "75.5%",
         "offsetStart": "12%",
         "width": "38%",
         "alignItems": "center",
@@ -169,12 +192,12 @@
             "type": "text",
             "text": "เวลาที่แจ้ง",
             "color": "#ffffff",
-            "size": "xl",
+            "size": "lg",
             "wrap": false
           }
         ],
         "position": "absolute",
-        "offsetTop": "75%",
+        "offsetTop": "75.5%",
         "offsetStart": "50%",
         "width": "38%",
         "alignItems": "center",

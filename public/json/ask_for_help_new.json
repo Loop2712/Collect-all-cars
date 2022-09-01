@@ -115,12 +115,12 @@
             "type": "text",
             "text": "วันที่แจ้ง",
             "color": "#ffffff",
-            "size": "xl",
+            "size": "lg",
             "wrap": false
           }
         ],
         "position": "absolute",
-        "offsetTop": "62.5%",
+        "offsetTop": "63.5%",
         "offsetStart": "12%",
         "width": "38%",
         "alignItems": "center",
@@ -134,12 +134,12 @@
             "type": "text",
             "text": "เวลาที่แจ้ง",
             "color": "#ffffff",
-            "size": "xl",
+            "size": "lg",
             "wrap": false
           }
         ],
         "position": "absolute",
-        "offsetTop": "62.5%",
+        "offsetTop": "63.5%",
         "offsetStart": "50%",
         "width": "38%",
         "alignItems": "center",
