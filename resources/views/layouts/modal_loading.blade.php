@@ -77,6 +77,21 @@
 .bouncing-loader > div:nth-child(4) {
   animation-delay: 0.4s;
 }
+.owl-item{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto !important;
+}
+.owl-stage {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
 </style>
 
 
