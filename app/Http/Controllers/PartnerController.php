@@ -546,6 +546,47 @@ class PartnerController extends Controller
         return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area' , 'average_per_minute'));
     }
 
+    public function sos_emergency_js100(Request $request)
+    {
+        $name_area = $request->get('name_area');
+
+        $data_user = Auth::user();
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
+
+        foreach ($data_partners as $data_partner) {
+            $search_area = $data_partner->name ;
+        }
+        $perPage = 20;
+
+        $sos_all_request = Sos_map::selectRaw('count(id) as count')->where('area', $search_area)->get();
+                    foreach ($sos_all_request as $key) {
+                            $sos_all = $key->count ;
+                        }
+
+        // นับจำนวนทั้งหมด
+        $view_maps_all = DB::table('sos_maps')
+            ->where('content', "emergency_js100")
+            ->get();
+
+        $count_data = count($view_maps_all);
+        ////////
+
+        $view_maps = DB::table('sos_maps')
+            ->where('content', "emergency_js100")
+            ->latest()->paginate($perPage);
+
+
+        $text_at = '@' ;
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+        $average_per_minute = $this->average_per_minute($view_maps_all);
+
+        return view('partner.js100.sos_emergency_js100', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data' , 'name_area' , 'average_per_minute'));
+    }
+
     public function average_per_minute($view_maps_all)
     {
 

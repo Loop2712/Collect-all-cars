@@ -155,6 +155,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('/guest_partner', 'PartnerController@guest_partner');
 	Route::get('/partner_guest_latest', 'PartnerController@partner_guest_latest');
 	Route::get('/sos_partner', 'PartnerController@view_sos');
+	Route::get('/sos_emergency_js100', 'PartnerController@sos_emergency_js100');
 	Route::get('/sos_detail_partner', 'PartnerController@sos_detail_chart');
 	Route::get('/sos_score_helper', 'PartnerController@sos_score_helper');
 	Route::get('/score_helper/{user_id}', 'PartnerController@score_helper');

@@ -5,13 +5,15 @@
   <div class="item sos-map col-md-12 col-12 col-lg-4">
         <div class="row">
             <div class="col-6">
-                <a href="{{ url('/sos_partner') }}" style="float: left; background-color: green;" type="button" class="btn text-white" > <!-- onclick="initMap();" -->
+                <a href="#" style="float: left; background-color: green;" type="button" class="btn text-white"onclick="initMap('13.6248936' , '100.9930264');">
                     <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
                 </a>
                 <br><br>
             </div>
             <div class="col-6">
-                <h4 style="float: right;color: #007bff;"><b>{{ $name_area }}</b></h4>
+                <a href="#" style="float: right;margin-right: 20px;" type="button" class="btn btn-info text-white"onclick="initMap('13.6248936' , '100.9930264');">
+                    <i class="fas fa-city"></i> กรุงเทพฯ
+                </a>
             </div>
             <div class="col-12">
                 <input class="d-none" type="text" id="va_zoom" name="" value="6">
@@ -31,38 +33,9 @@
   </div>
   <div class="col-8 d-none d-lg-block">
         <div class="row">
-            <div class="col-3">
-                <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        เลือกพื้นที่
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
-                        @foreach($select_name_areas as $select_name_area)
-                            <a id="select_name_area_{{ $select_name_area->name_area }}" class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
-                                {{ $select_name_area->name_area }}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="col-9">
+            <div class="col-12">
                 <div style="float: right;">
-                    <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
-                    @if(Auth::check())
-                        @if(Auth::user()->role == 'admin-partner')
-                            @if(Auth::user()->organization != "JS100 Radio" and Auth::user()->id == 1 or Auth::user()->id == 9 )
-                            <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-primary text-white d-">
-                                คะแนนการช่วยเหลือ
-                            </a>
-                            @else
-                            <a href="#" type="button" class="btn btn-primary text-white d-">
-                                คะแนนการช่วยเหลือ (soon)
-                            </a>
-                            @endif
-                    <!--  href="{{ url('/sos_score_helper') }}" -->
-                        @endif
-                    @endif
+                    <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white d-none">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
                     <a type="button" data-toggle="modal" data-target="#Partner_gsos">
                         <button class="btn btn-success">
                             <i class="fas fa-info-circle"></i>วิธีใช้
@@ -511,7 +484,7 @@
         if (name_area) {
             select_name_area(name_area);
         }else{
-            initMap();
+            initMap('13.6248936' , '100.9930264');
         }
 
     });
@@ -520,11 +493,14 @@
     var map ;
     var marker ;
 
-    function initMap() {
+    function initMap(lat , lng) {
+
+        let m_lat = parseInt(lat);
+        let m_lng = parseInt(lng);
         // 13.7248936,100.4930264 lat lng ประเทศไทย
         map = new google.maps.Map(document.getElementById("map"), {
-            center: {lat: 13.7248936, lng: 100.4930264 },
-            zoom: 14,
+            center: {lat: m_lat, lng: m_lng },
+            zoom: 6.2,
         });
 
         let all_lat = [];
@@ -578,11 +554,11 @@
                         bounds.extend(all_lat_lng[vc]);
                     }
 
-                    map = new google.maps.Map(document.getElementById("map"), {
-                        // zoom: num_zoom,
-                        // center: bounds.getCenter(),
-                    });
-                    map.fitBounds(bounds);
+                    // map = new google.maps.Map(document.getElementById("map"), {
+                    //     // zoom: num_zoom,
+                    //     // center: bounds.getCenter(),
+                    // });
+                    // map.fitBounds(bounds);
 
                 for (let xi = 0; xi < result.length; xi++) {
 

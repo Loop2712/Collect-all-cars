@@ -231,17 +231,30 @@
                     <li class="menu-label" style="font-size:15px;">
 	                    Vii SOS
 	                </li>
-	                <li>
-						<a href="{{ url('/sos_partner') }}">
-							<div class="parent-icon"><i class='fas fa-hands-helping'></i>
-							</div>
-							<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
-							<div id="div_menu_help" class="d-none">
-								&nbsp;
-								<i class="fas fa-exclamation-circle notify_alert"></i>
-							</div>
-						</a>
-					</li>
+	                	@if(Auth::user()->organization == "JS100 Radio")
+							<li>
+								<a href="{{ url('/sos_emergency_js100') }}">
+									<div class="parent-icon"><i class="fas fa-siren-on"></i>
+									</div>
+									<div id="div_menu_help_1" class="menu-title">SOS by calling</div>
+									<div id="div_menu_help" class="d-none">
+										&nbsp;
+										<i class="fas fa-exclamation-circle notify_alert"></i>
+									</div>
+								</a>
+							</li>
+						@endif
+		                <li>
+							<a href="{{ url('/sos_partner') }}">
+								<div class="parent-icon"><i class='fas fa-hands-helping'></i>
+								</div>
+								<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
+								<div id="div_menu_help" class="d-none">
+									&nbsp;
+									<i class="fas fa-exclamation-circle notify_alert"></i>
+								</div>
+							</a>
+						</li>
 					@endif
 				@endif
 

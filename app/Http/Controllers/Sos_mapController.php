@@ -350,11 +350,16 @@ class Sos_mapController extends Controller
     protected function _pushLine($data , $id_sos_map)
     {   
         $datetime =  date("d-m-Y  h:i:sa");
+        $date_now =  date("d-m-Y");
+        $time_now =  date("h:i:sa");
         $name_user = $data['name'];
         $phone_user = $data['phone'];
         $lat_user = $data['lat'];
         $lng_user = $data['lng'];
         $photo = $data['photo'];
+        $user_id = $data['user_id'];
+
+        $data_users = User::where('id' , $user_id)->first();
 
         $data_name_sp = explode("&",$data['area']);
         $data_name_area_sp = explode("&",$data['name_area']);
@@ -390,11 +395,9 @@ class Sos_mapController extends Controller
 
             $data_topic = [
                         "ขอความช่วยเหลือ",
-                        "เวลา",
-                        "จาก",
-                        "โทร",
-                        "รูปภาพสถานที่",
                         "กำลังไปช่วยเหลือ",
+                        "ดูแผนที่",
+                        "รูปภาพสถานที่",
                     ];
 
             for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -432,27 +435,39 @@ class Sos_mapController extends Controller
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("photo_sos.png",$photo,$string_json);
             }else{
-                $template_path = storage_path('../public/json/ask_for_help.json');
+                $template_path = storage_path('../public/json/ask_for_help_new.json');
                 $string_json = file_get_contents($template_path);
             }
                
             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-            $string_json = str_replace("datetime",$time_zone,$string_json);
-            $string_json = str_replace("name",$name_user,$string_json);
-            $string_json = str_replace("0999999999",$phone_user,$string_json);
+
+            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
+            $string_json = str_replace("name_user",$name_user,$string_json);
+
+            if (!empty($data_users->photo)) {
+                $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
+            }else{
+                $string_json = str_replace("https://www.viicheck.com/storage/photo_profile_user","https://www.viicheck.com/img/stickerline/Flex/12.png",$string_json);
+            }
+
+            $string_json = str_replace("png_language",$data_users->language,$string_json);
+            $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
+
+            $string_json = str_replace("วันที่แจ้ง",$date_now,$string_json);
+            $string_json = str_replace("เวลาที่แจ้ง",$time_now,$string_json);
+
+            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[1],$string_json);
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
             $string_json = str_replace("organization",$id_partner,$string_json);
 
-            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
-            $string_json = str_replace("เวลา",$data_topic[1],$string_json);
-            $string_json = str_replace("จาก",$data_topic[2],$string_json);
-            $string_json = str_replace("โทร",$data_topic[3],$string_json);
-            $string_json = str_replace("รูปภาพสถานที่",$data_topic[4],$string_json);
-            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[5],$string_json);
+            $string_json = str_replace("0999999999",$phone_user,$string_json);
+            $string_json = str_replace("ดูแผนที่",$data_topic[2],$string_json);
 
-            $string_json = str_replace("lat",$lat_user,$string_json);
+            $string_json = str_replace("รูปภาพสถานที่",$data_topic[3],$string_json);
+
+            $string_json = str_replace("gg_lat_mail",$text_at.$lat_user,$string_json);
+            $string_json = str_replace("gg_lat",$lat_user,$string_json);
             $string_json = str_replace("lng",$lng_user,$string_json);
-            $string_json = str_replace("lat_mail",$text_at.$lat_user,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
