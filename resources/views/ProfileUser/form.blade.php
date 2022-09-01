@@ -413,13 +413,15 @@
                     <a href="{{ url('/profile') }}" class="btn btn-warning text-white" title="Back">
                         BACK
                     </a>
-                    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'SAVE' : 'ส่งข้อมูล' }}">
+                    <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" onclick="submitform()">
+                        SAVE
+                    </button>
+                    <input id="btn-submit-form" class="d-none btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'SAVE' : 'ส่งข้อมูล' }}">
                 </div>
             </div>
         </div>
     </div>
-
-
+    @include ('layouts.modal_loading')
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -1054,4 +1056,14 @@ function capture2() {
     document.querySelector('#driver_license_capture2').classList.add('d-none');
     document.querySelector("#btn_click_capture2").classList.remove('d-none');
 }
+</script>
+
+<script>
+    function submitform() {
+        var delayInMilliseconds = 3000; //3 second
+
+        setTimeout(function() {
+            document.querySelector('#btn-submit-form').click();
+        }, delayInMilliseconds);
+    }
 </script>
