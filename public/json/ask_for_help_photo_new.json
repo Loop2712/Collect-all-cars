@@ -1,0 +1,266 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://i.im.ge/2022/09/01/OxRUzC.community-2500-2500px-2500-3000px-2500-3500px.png",
+        "size": "full",
+        "aspectRatio": "5:9",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ขอความช่วยเหลือ",
+            "color": "#ffffff",
+            "size": "xl",
+            "wrap": true,
+            "weight": "bold",
+            "align": "center"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "1.5%",
+        "offsetStart": "20%",
+        "width": "50%",
+        "height": "8%",
+        "justifyContent": "space-around",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/storage/photo_profile_user",
+            "aspectRatio": "1:1",
+            "aspectMode": "cover"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "10.27%",
+        "offsetStart": "18%",
+        "cornerRadius": "150px",
+        "width": "15%",
+        "height": "8%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "name_user",
+            "color": "#ffffff",
+            "size": "xl",
+            "wrap": false
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "11.5%",
+        "offsetStart": "36%",
+        "width": "40%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "รูปภาพสถานที่",
+            "color": "#ffffff",
+            "size": "xl",
+            "wrap": false
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "22%",
+        "offsetStart": "25%",
+        "width": "50%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/national-flag/flag/png_language.png",
+            "aspectRatio": "149:100",
+            "size": "50px"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "58%",
+        "offsetStart": "23.5%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/storage/photo_sos.png",
+            "aspectRatio": "5:9",
+            "aspectMode": "cover"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "27%",
+        "offsetStart": "37%",
+        "cornerRadius": "20px",
+        "width": "25%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "png_national",
+            "color": "#ffffff",
+            "wrap": false,
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "58%",
+        "offsetStart": "50.5%",
+        "width": "36.5%",
+        "justifyContent": "center",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "วันที่แจ้ง",
+            "color": "#ffffff",
+            "size": "xl",
+            "wrap": false
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "75%",
+        "offsetStart": "12%",
+        "width": "38%",
+        "alignItems": "center",
+        "justifyContent": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "เวลาที่แจ้ง",
+            "color": "#ffffff",
+            "size": "xl",
+            "wrap": false
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "75%",
+        "offsetStart": "50%",
+        "width": "38%",
+        "alignItems": "center",
+        "justifyContent": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "กำลังไปช่วยเหลือ",
+            "color": "#000000",
+            "size": "lg",
+            "wrap": true,
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "82.6%",
+        "offsetStart": "15%",
+        "width": "50%",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "action": {
+          "type": "postback",
+          "data": "sos?id_sos_map/organization",
+          "displayText": "กำลังไปช่วยเหลือ"
+        },
+        "height": "6%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "position": "absolute",
+        "offsetTop": "82.5%",
+        "offsetStart": "66%",
+        "width": "27%",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "height": "5.9%",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "tel:0999999999"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ดูแผนที่",
+                "weight": "bold",
+                "align": "center",
+                "color": "#000000",
+                "size": "lg"
+              }
+            ],
+            "width": "80%",
+            "justifyContent": "flex-end",
+            "alignItems": "flex-end"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "90.5%",
+        "offsetStart": "8%",
+        "width": "85%",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "height": "6%",
+        "action": {
+          "type": "uri",
+          "label": "google map",
+          "uri": "https://www.google.co.th/maps/search/gg_lat,lng/gg_lat_mail,lng,16z"
+        }
+      }
+    ],
+    "position": "relative",
+    "paddingAll": "0px"
+  }
+}
+}

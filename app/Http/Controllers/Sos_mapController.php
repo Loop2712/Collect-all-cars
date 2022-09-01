@@ -431,7 +431,7 @@ class Sos_mapController extends Controller
 
             // flex ask_for_help
             if (!empty($data['photo'])) {
-                $template_path = storage_path('../public/json/ask_for_help_photo.json');
+                $template_path = storage_path('../public/json/ask_for_help_photo_new.json');
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("photo_sos.png",$photo,$string_json);
             }else{
