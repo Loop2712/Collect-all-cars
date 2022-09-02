@@ -286,11 +286,15 @@
                 @include ('guest.form_modal')
             </div>
             <div class="form-group">
-                <input class="d-none btn btn-primary" id="submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
+                <button id="submit_form" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" onclick="submitform()">
+                 ส่งข้อมูล
+                </button>
+                <input class="d-none btn btn-primary" id="btn_submit_form" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'ส่งข้อมูล' }}">
             </div>
         </div>
     </div>
 </div>
+@include ('layouts.modal_loading')
 
 
 
@@ -999,4 +1003,13 @@
         btn_click_frame_motor.classList.remove('btn-outline-success');
     }
 
+</script>
+<script>
+    function submitform() {
+        var delayInMilliseconds = 3000; //3 second
+
+        setTimeout(function() {
+            document.querySelector('#btn_submit_form').click();
+        }, delayInMilliseconds);
+    }
 </script>

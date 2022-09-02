@@ -693,7 +693,7 @@
                 </div>
                 
                 <div>
-                    <button type="button" class="btn btn-primary" onclick="document.getElementById('btn_confirm').click();re_check();">บันทึก</button>
+                    <button id="btn_edit_form" type="button" class="btn btn-primary" onclick="document.getElementById('btn_confirm').click();re_check();">บันทึก</button>
                 </div>
                 <!-- <button type="button" class="btn btn-primary" onclick="alert('hello')">Primary</button> -->
 
@@ -783,7 +783,10 @@
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">แก้ไข</button>
                         <div style="margin-top:15px;" class="form-group">
-                            <input  id="submit_form" class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
+                        <button id="submit_form"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" onclick="submitform()">
+                            บันทึก
+                        </button>
+                            <input id="btn_confirm_form"  class="d-none btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'บันทึก' : 'บันทึก' }}" >
                         </div>
                       </div>
                     </div>
@@ -1107,7 +1110,8 @@
         </div>
     </div>
 </div>
-
+@include ('layouts.modal_loading')
+    
 <input type="text" class="d-none" name="language_user" id="language_user" value="{{ Auth::user()->language }}">
 <a id="btn_change_language" class="d-none" href=""></a>
 
@@ -1402,6 +1406,15 @@
 
         setTimeout(function() {
             document.querySelector('#btn_change_language').click();
+        }, delayInMilliseconds);
+    }
+</script>
+<script>
+    function submitform() {
+        var delayInMilliseconds = 3000; //3 second
+
+        setTimeout(function() {
+            document.querySelector('#btn_confirm_form').click();
         }, delayInMilliseconds);
     }
 </script>
