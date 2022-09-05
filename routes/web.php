@@ -372,6 +372,8 @@ Route::get('/select_register', function () {
 Route::get('/login_line/notify_repair', 'Notify_repairController@login_line');
 Route::get('/notify_repair/{id}/NOCF', 'Notify_repairController@notify_repair_NOCF');
 
+//set_new_richMenu
+Route::get('set_new_richMenu', 'API\LineApiController@set_new_richMenu');
 
 // test_for_dev
 Route::get('test_for_dev/type_car_registration', 'test_for_devController@type_car_registration');

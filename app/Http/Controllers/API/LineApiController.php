@@ -330,47 +330,47 @@ class LineApiController extends Controller
 
         if (empty($user_language)) {
             // DF ริชเมนู EN 
-            $richMenuId = "richmenu-abf409dee26385d885a3fee64572bca5" ;
+            $richMenuId = "richmenu-995ba378f3ad783b679dab18b9cb981e" ;
         }else {
             switch ($user_language) {
                 case 'th':
-                    $richMenuId = "richmenu-454c598f6cc2cfa01d9e61dd08c90f1a" ;
+                    $richMenuId = "richmenu-c63483a8288529796f82fd427e268ce9" ;
                     break;
                 case 'en':
-                    $richMenuId = "richmenu-abf409dee26385d885a3fee64572bca5" ;
+                    $richMenuId = "richmenu-995ba378f3ad783b679dab18b9cb981e" ;
                     break;
                 case 'zh-TW':
-                    $richMenuId = "richmenu-9fdda8ede31d57ed115ba17ee8d805de" ;
+                    $richMenuId = "richmenu-e1f05af2e8638eb19f2623de38b593da" ;
                     break;
                 case 'zh-CN':
-                    $richMenuId = "richmenu-883e4734ad7a448fea5decc2453c48c5" ;
+                    $richMenuId = "richmenu-aaf26413c43367b03976559186172c16" ;
                     break;
                 case 'ja':
-                    $richMenuId = "richmenu-790398060879ccc8d5e35ddc085f1536" ;
+                    $richMenuId = "richmenu-cf1a83e9bea9ca538c0d0a2310e8367d" ;
                     break;
                 case 'ko':
-                    $richMenuId = "richmenu-4fadb1df378f383eb469cc33947cc3e8" ;
+                    $richMenuId = "richmenu-35897cceb9c47c971be8e7b4981121fd" ;
                     break;
                 case 'es':
-                    $richMenuId = "richmenu-bdba6cee86b6931d6995e2f4f7f2d9ad" ;
+                    $richMenuId = "richmenu-1f5ad16d70304187f9d9f054f17775a7" ;
                     break;
                 case 'lo':
-                    $richMenuId = "richmenu-45e735e7e3b6e3a778fb38352ba3c39f" ;
+                    $richMenuId = "richmenu-639d03ff46ab2d91290103c370fd9e72" ;
                     break;
                 case 'my':
-                    $richMenuId = "richmenu-f6b56b3e09870e5f047cc70a3b65ed3e" ;
+                    $richMenuId = "richmenu-61599990dc30897b6f97df7311bd4b7c" ;
                     break;
                 case 'de':
-                    $richMenuId = "richmenu-df18eecf91b93c5e78d4e9aee5e7f299" ;
+                    $richMenuId = "richmenu-1c4a0b8bfa9536c78ec0c8c53ab7f64f" ;
                     break;
                 case 'hi':
-                    $richMenuId = "richmenu-c08eb065d01402a4534ca25f82fc9b16" ;
+                    $richMenuId = "richmenu-77d3a65621847add10087f92c53ddda1" ;
                     break;
                 case 'ar':
-                    $richMenuId = "richmenu-905e46e96a4548be41d3108af77701c8" ;
+                    $richMenuId = "richmenu-62b66dcb604d2e11ed436c3dbdc022bb" ;
                     break;
                 case 'ru':
-                    $richMenuId = "richmenu-bba8c83af254e2ad6ab1e4bd8739caee" ;
+                    $richMenuId = "richmenu-4ce9f73d2875b143a686a3272a5eafce" ;
                     break;
                 case 'test':
                     $richMenuId = "richmenu-10bc4d017796598b87cfee95413653e3" ;
@@ -994,6 +994,72 @@ class LineApiController extends Controller
 
         }
 
+    }
+
+    // ตั้งค่าริชเมนูอันใหม่ทั้งระบบ
+    public function set_new_richMenu()
+    {
+        $data_users = User::where('type', 'line')->get();
+
+        foreach ($data_users as $key) {
+            $user_language = $key->language ;
+            $provider_id = $key->provider_id;
+
+            if (empty($user_language)) {
+                // DF ริชเมนู EN 
+                $richMenuId = "richmenu-995ba378f3ad783b679dab18b9cb981e" ;
+            }else {
+                switch ($user_language) {
+                    case 'th':
+                        $richMenuId = "richmenu-c63483a8288529796f82fd427e268ce9" ;
+                        break;
+                    case 'en':
+                        $richMenuId = "richmenu-995ba378f3ad783b679dab18b9cb981e" ;
+                        break;
+                    case 'zh-TW':
+                        $richMenuId = "richmenu-e1f05af2e8638eb19f2623de38b593da" ;
+                        break;
+                    case 'zh-CN':
+                        $richMenuId = "richmenu-aaf26413c43367b03976559186172c16" ;
+                        break;
+                    case 'ja':
+                        $richMenuId = "richmenu-cf1a83e9bea9ca538c0d0a2310e8367d" ;
+                        break;
+                    case 'ko':
+                        $richMenuId = "richmenu-35897cceb9c47c971be8e7b4981121fd" ;
+                        break;
+                    case 'es':
+                        $richMenuId = "richmenu-1f5ad16d70304187f9d9f054f17775a7" ;
+                        break;
+                    case 'lo':
+                        $richMenuId = "richmenu-639d03ff46ab2d91290103c370fd9e72" ;
+                        break;
+                    case 'my':
+                        $richMenuId = "richmenu-61599990dc30897b6f97df7311bd4b7c" ;
+                        break;
+                    case 'de':
+                        $richMenuId = "richmenu-1c4a0b8bfa9536c78ec0c8c53ab7f64f" ;
+                        break;
+                    case 'hi':
+                        $richMenuId = "richmenu-77d3a65621847add10087f92c53ddda1" ;
+                        break;
+                    case 'ar':
+                        $richMenuId = "richmenu-62b66dcb604d2e11ed436c3dbdc022bb" ;
+                        break;
+                    case 'ru':
+                        $richMenuId = "richmenu-4ce9f73d2875b143a686a3272a5eafce" ;
+                        break;
+                    case 'test':
+                        $richMenuId = "richmenu-10bc4d017796598b87cfee95413653e3" ;
+                        break;
+                }
+            }
+
+            $this->set_richmanu_language($provider_id , $richMenuId , $user_language);
+
+        }
+        
+        return "OK KUB" ;
     }
 
 }
