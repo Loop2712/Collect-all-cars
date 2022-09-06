@@ -36,7 +36,10 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-6">
-                        <h4 class="text-dark"><b>การขอความช่วยเหลือ</b></h4>
+                        <h4 class="text-dark">
+                            <b>การขอความช่วยเหลือ</b>
+                            <span style="font-size:14px;">( จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง )</span>
+                        </h4>
                     </div>
                     <div class="col-6">
                         <div style="float: right;">
@@ -69,7 +72,7 @@
                                 <div class="col-5">
                                     <h5 class="font-weight-bold mb-0" style="margin-top:10px;">
                                         <span style="font-size: 15px; float: right; margin-top:5px;">
-                                        จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
+                                            ผลการค้นหา <b id="count_search">{{ $count_data }}</b> ครั้ง
                                         </span>
                                     </h5>
                                 </div>
@@ -120,7 +123,7 @@
                         </div>
                         <div class="col-3">
                             <div style="margin-top: -10px;">
-                                <a id="tag_a_view_marker" class="link text-danger" href="#map" >
+                                <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name }}');">
                                     <i class="fas fa-map-marker-alt"></i> 
                                     <br>
                                     ดูหมุด
@@ -135,7 +138,11 @@
                 </div>
 
                 <!-- div_content_sos_js100 -->
-                <div id="div_content_sos_js100" class="card-body d-none"></div>
+                <div id="div_body_content_sos_js100" class="card-body d-none">
+                    <div id="div_content_sos_js100" class="row text-center">
+                        
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -496,8 +503,10 @@
         let js100_phone = document.querySelector('#search_by_phone').value;
 
         if (!js100_name && !js100_phone) {
-            document.querySelector('#div_content_sos_js100').classList.add('d-none');
+            document.querySelector('#div_body_content_sos_js100').classList.add('d-none');
             document.querySelector('#data_by_con').classList.remove('d-none');
+            document.querySelector('#count_search').innerHTML = {{ $count_data }};
+
         }else{
             if (!js100_name) {
                 js100_name = "all" ;
@@ -512,8 +521,9 @@
 
     function search_data_sos_js100(search_by_name , search_by_phone){
 
+        document.querySelector('#div_body_content_sos_js100').classList.remove('d-none');
+
         let div_content_sos_js100 = document.querySelector('#div_content_sos_js100');
-            div_content_sos_js100.classList.remove('d-none');
             div_content_sos_js100.innerHTML = "" ;
 
         document.querySelector('#data_by_con').classList.add('d-none');
@@ -521,13 +531,185 @@
         fetch("{{ url('/') }}/api/search_data_sos_js100/" + search_by_name + "/" + search_by_phone)
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            // console.log(result);
+            document.querySelector('#count_search').innerHTML = result['length'];
 
             for(let item of result){
-                
+
+                // DIV NAME USER
+                let div_name_user = document.createElement("div");
+                let class_div_name_user = document.createAttribute("class");
+                    class_div_name_user.value = "col-3";
+                    div_name_user.setAttributeNode(class_div_name_user);
+
+                let div_margin_name_user = document.createElement("div");
+                let style_div_margin_name_user = document.createAttribute("style");
+                    style_div_margin_name_user.value = "margin-top: -10px;";
+                    div_margin_name_user.setAttributeNode(style_div_margin_name_user);
+                div_name_user.appendChild(div_margin_name_user);
+
+                let h5_name_user = document.createElement("h5");
+                let class_h5_name_user = document.createAttribute("class");
+                    class_h5_name_user.value = "text-success float-left";
+                    h5_name_user.setAttributeNode(class_h5_name_user);
+                div_margin_name_user.appendChild(h5_name_user);
+
+                let span_1_name_user = document.createElement("span");
+                let style_span_1_name_user = document.createAttribute("style");
+                    style_span_1_name_user.value = "font-size: 15px;";
+                    span_1_name_user.setAttributeNode(style_span_1_name_user);
+                h5_name_user.appendChild(span_1_name_user);
+
+                let a_name_user = document.createElement("a");
+                let target_a_name_user = document.createAttribute("target");
+                    target_a_name_user.value = "break";
+                    a_name_user.setAttributeNode(target_a_name_user);
+                let href_a_name_user = document.createAttribute("href");
+                    href_a_name_user.value = "{{ url('/').'/profile/' }}" + item.user_id;
+                    a_name_user.setAttributeNode(href_a_name_user);
+                span_1_name_user.appendChild(a_name_user);
+
+                let i_name_user = document.createElement("i");
+                let class_i_name_user = document.createAttribute("class");
+                    class_i_name_user.value = "far fa-eye text-primary";
+                    i_name_user.setAttributeNode(class_i_name_user);
+                a_name_user.appendChild(i_name_user);
+
+                let span_2_name_user = document.createElement("span");
+                    span_2_name_user.innerHTML = "&nbsp;" + item.name ;
+                    let br_span_2_name_user = document.createElement("br");
+                    span_2_name_user.appendChild(br_span_2_name_user);
+                h5_name_user.appendChild(span_2_name_user);
+                // END DIV NAME USER
+
+                // DIV PHONE USER
+                let div_phone_user = document.createElement("div");
+                let class_div_phone_user = document.createAttribute("class");
+                    class_div_phone_user.value = "col-3";
+                    div_phone_user.setAttributeNode(class_div_phone_user);
+                div_phone_user.innerHTML = item.phone ;
+                // END DIV PHONE USER
+
+                // DIV TIME USER
+                let div_time_user = document.createElement("div");
+                let class_div_time_user = document.createAttribute("class");
+                    class_div_time_user.value = "col-3";
+                    div_time_user.setAttributeNode(class_div_time_user);
+                div_time_user.innerHTML = item.created_at ;
+                // END DIV TIME USER
+
+                // DIV TIME USER
+                let div_location_user = document.createElement("div");
+                let class_div_location_user = document.createAttribute("class");
+                    class_div_location_user.value = "col-3";
+                    div_location_user.setAttributeNode(class_div_location_user);
+
+                let div_margin_location_user = document.createElement("div");
+                let style_div_margin_location_user = document.createAttribute("style");
+                    style_div_margin_location_user.value = "margin-top: -10px;";
+                    div_margin_location_user.setAttributeNode(style_div_margin_location_user);
+                div_location_user.appendChild(div_margin_location_user);
+
+                let a_location_user = document.createElement("a");
+                let id_a_location_user = document.createAttribute("id");
+                    id_a_location_user.value = "tag_a_view_marker" + item.id;
+                    a_location_user.setAttributeNode(id_a_location_user);
+                let class_a_location_user = document.createAttribute("class");
+                    class_a_location_user.value = "link text-danger";
+                    a_location_user.setAttributeNode(class_a_location_user);
+                let href_a_location_user = document.createAttribute("href");
+                    href_a_location_user.value = "#map";
+                    a_location_user.setAttributeNode(href_a_location_user);
+                let onclick_a_location_user = document.createAttribute("onclick");
+                    onclick_a_location_user.value = "view_marker('"+item.lat+"' , '"+item.lng+"', '"+item.id+"', '"+item.name+"');";
+                    a_location_user.setAttributeNode(onclick_a_location_user);
+                div_margin_location_user.appendChild(a_location_user);
+
+                let i_a_location_user = document.createElement("i");
+                let class_i_a_location_user = document.createAttribute("class");
+                    class_i_a_location_user.value = "fas fa-map-marker-alt";
+                    i_a_location_user.setAttributeNode(class_i_a_location_user);
+                a_location_user.appendChild(i_a_location_user);
+
+                let br_a_location_user = document.createElement("br");
+                a_location_user.appendChild(br_a_location_user);
+
+                let span_location_user = document.createElement("span");
+                    span_location_user.innerHTML = "ดูหมุด" ;
+                a_location_user.appendChild(span_location_user);
+                // END DIV TIME USER
+
+                let br_1_sos_js100 = document.createElement("br");
+                let br_2_sos_js100 = document.createElement("br");
+                let hr_1_sos_js100 = document.createElement("hr");
+                let br_3_sos_js100 = document.createElement("br");
+                let br_4_sos_js100 = document.createElement("br");
+
+                // เพิ่มทั้งหมดเข้า div_content_sos_js100
+                div_content_sos_js100.appendChild(div_name_user);
+                div_content_sos_js100.appendChild(div_phone_user);
+                div_content_sos_js100.appendChild(div_time_user);
+                div_content_sos_js100.appendChild(div_location_user);
+                div_content_sos_js100.appendChild(br_1_sos_js100);
+                div_content_sos_js100.appendChild(br_2_sos_js100);
+                div_content_sos_js100.appendChild(hr_1_sos_js100);
+                div_content_sos_js100.appendChild(br_3_sos_js100);
+                div_content_sos_js100.appendChild(br_4_sos_js100);
             }
-            
+
         });
+
+    }
+
+    function view_marker(lat , lng , sos_id , name_user){
+
+        let lat_mail = '@' + lat ;
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 17,
+            center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+        });
+
+        let image = "https://www.viicheck.com/img/icon/flag_2.png";
+        let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
+
+        marker = new google.maps.Marker({
+            position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
+            map: map,
+            icon: image,
+        });  
+
+        @foreach($view_maps_all as $view_map)
+            if ( {{ $view_map->id }} !== parseFloat(sos_id) ) {
+                marker = new google.maps.Marker({
+                    position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                    map: map,
+                    icon: image2,
+                });
+            }
+        @endforeach
+
+        const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+        const contentString =
+            '<div id="content">' +
+            '<div id="siteNotice">' +
+            "</div>" +
+            '<h4 id="firstHeading" class="firstHeading">'+ name_user +'</h4>' +
+            '<div id="bodyContent">' +
+            "<p>lat : "+ lat + "<br>" +
+            "lng : "+ lng + "</p>" +
+            "</div>" +
+            '<a href="https://www.google.co.th/maps/search/'+lat+','+lng+'/'+lat_mail+','+lng+',16z" target="bank" type="button" class="btn btn-sm btn-info text-white" style="width:100%;"><i class="fas fa-location-arrow"></i> นำทาง</a>' +
+            "</div>";
+
+        let infoWindow = new google.maps.InfoWindow({
+            // content: "<p>ชื่อพื้นที่ : <b>" + name_area  + "</b></p>" + "Lat :" + lat + "<br>" + "Lat :" + lng,
+            content: contentString,
+            position: myLatlng,
+        });
+
+        infoWindow.open(map);
 
     }
 
