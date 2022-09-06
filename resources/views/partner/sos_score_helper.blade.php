@@ -134,7 +134,7 @@
 
 
 @endphp
-<div class="card" style="border-radius: 15px;background-color:#D9D9D9;padding-right: 10px;">
+<div class="card d-none d-lg-block " style="border-radius: 15px;background-color:#D9D9D9;padding-right: 10px;">
     <div class="card-body">
         <div class="d-flex flex-row">
             <div>
@@ -165,7 +165,7 @@
                                 <div class="row">
                                     <div class="col-4"><i class="fa-duotone fa-loader" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                        <h3 class="m-0">{{ $count_all_go_to_help }}</h3>
+                                        <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
                                         รอดำเนินการ
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                 <div class="row">
                                     <div class="col-4"><i class="fa-duotone fa-circle-check" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                        <h3 class="m-0">{{ $count_of_helper }}</h3>
+                                        <h3 class="m-0"><b>{ $count_of_helper }}</b></h3>
                                         เสร็จสิ้น
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                 <div class="row">
                                     <div class="col-4"><i class="fa-duotone fa-sparkles" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                        <h3 class="m-0">{{ $count_rate_of_helper }}</h3>
+                                        <h3 class="m-0"><b>{{ $count_rate_of_helper }}</b></h3>
                                         มีการให้คะแนน
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@
                                 <div class="row">
                                     <div class="col-4"><i class="fa-duotone fa-clock" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                        <h3 class="m-0">
+                                        <h3 class="m-0" style="font-family: 'Kanit', sans-serif;">
                                             @if(!empty($average_per_minute))
                                                 @if($average_per_minute['day'] == "-" && $average_per_minute['hr'] == "-" && $average_per_minute['min'] == "-")
                                                     <b>-</b>
@@ -340,12 +340,216 @@
         </div>
     </div>
 </div>
+
+<!------------------------------------------------ mobile---------------------------------------------- -->
+<div class="card d-block d-md-none " style="border-radius: 15px;background-color:#D9D9D9;">
+    <div class="card-body">
+        <div class="d-flex flex-row">
+            <div>
+                @if(empty($item->photo))
+                <img src="{{ asset('/img/stickerline/PNG/20.png') }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">  
+                @else
+                <img src="{{ url('storage')}}/{{ $item->photo }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">
+                @endif
+            </div>
+            <div class="d-flex align-items-center" style="margin-left: 10px;">
+                <div style="font-family: 'Kanit', sans-serif;">
+                    <h4 class="m-0">{{ $item->name }}</h4>
+                    @if($item->role == "admin-partner")
+                        <p class="m-0">แอดมิน</p>
+                    @elseif($item->role == "partner")
+                        <p class="m-0">เจ้าหน้าที่</p>
+                    @endif
+                </div>
+            </div>
+            
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                    <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
+                                    รอดำเนินการ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                    <h3 class="m-0"><b>{{ $count_of_helper }}</b></h3>
+                                    เสร็จสิ้น
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3"></div>
+                    <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                    <h3 class="m-0"><b>{{ $count_rate_of_helper }}</b></h3>
+                                    มีการให้คะแนน
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                    <h3 class="m-0" style="font-family: 'Kanit', sans-serif;">
+                                        @if(!empty($average_per_minute))
+                                            @if($average_per_minute['day'] == "-" && $average_per_minute['hr'] == "-" && $average_per_minute['min'] == "-")
+                                                <b>-</b>
+
+                                            @elseif($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+
+                                            @elseif($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+
+                                            @elseif($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                                <b>{{ $average_per_minute['min'] }} นาที </b>
+                                            
+                                            @elseif($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
+                                                <b>น้อยกว่า 1 นาที</b>
+                                            @endif
+                                        @endif
+                                    </h3>
+                                    ระยะเวลา/เคส
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                                    <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
+                                        <h3 class="m-0 text-center " style="color: {{$x_total_font}};">{{ $x_impression }}</h3>
+                                        <p class="text-center  m-0"  style="font-weight: bold;color:{{$x_total_font}}">คะแนน</p>
+                                    </div>
+                                </div>
+                                <div class="col-8 p-0 d-flex align-items-center" style="font-family: 'Kanit', sans-serif;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h6 class="m-0">คะแนนความประทับใจเฉลี่ย</h6>
+                                        </div>
+                                        <div class="col-12">
+                                            @if($x_impression <= 0.9 )
+                                            <i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_impression <= 1.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_impression <= 2.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_impression <= 3.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_impression <= 4.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_impression <= 5 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i>
+
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-12 mt-3" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                                    <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
+                                        <h3 class="m-0 text-center " style="color: {{$x_total_font}};">{{ $x_period }}</h3>
+                                        <p class="text-center  m-0"  style="font-weight: bold;color:{{$x_total_font}}">คะแนน</p>
+                                    </div>
+                                </div>
+                                <div class="col-8 p-0 d-flex align-items-center" style="font-family: 'Kanit', sans-serif;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h6 class="m-0">คะแนนระยะเวลาเฉลี่ย</h6>
+                                        </div>
+                                        <div class="col-12">
+                                            @if($x_period <= 0.9 )
+                                            <i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_period <= 1.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_period <= 2.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_period <= 3.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_period <= 4.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_period <= 5 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-12 mt-3" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                                    <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
+                                        <h3 class="m-0 text-center " style="color: {{$x_total_font}};">{{ $x_total }}</h3>
+                                        <p class="text-center  m-0"  style="font-weight: bold;color:{{$x_total_font}}">คะแนน</p>
+                                    </div>
+                                </div>
+                                <div class="col-8 p-0 d-flex align-items-center" style="font-family: 'Kanit', sans-serif;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h6 class="m-0">คะแนนภาพรวมเฉลี่ย</h6>
+                                        </div>
+                                        <div class="col-12">
+                                            @if($x_total <= 0.9 )
+                                            <i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_total <= 1.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_total <= 2.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_total <= 3.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_total <= 4.9 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i>
+                                            @elseif($x_total <= 5 )
+                                                <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <a href="{{ url('/score_helper') . '/' . $id_helper }}" target="bank" class="col-12 text-center d-flex align-items-center mt-3" style="background-color: #db2e2d;border-radius:10px;">
+                    <div class="col-12 p-2" >
+                        <i class="fa-solid fa-chevron-right" style="color: white;font-size:25px"></i> 
+                    </div>
+                </a>  
+            </div>                          
+        </div>
+    </div>
+</div>
+<!------------------------------------------------ end mobile---------------------------------------------- -->
 @endforeach
 
-
-<br>
 <!-- --------------------------------- แสดงเฉพาะคอม ------------------------------- -->
-    <div class="container-fluid d-none d-lg-block">
+    <!-- <div class="container-fluid d-none d-lg-block">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -572,13 +776,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 <!-- --------------------------------- สิ้นสุดแสดงเฉพาะคอม ------------------------------- -->
-
-
-<!------------------------------------------------ mobile---------------------------------------------- -->
-
-<!------------------------------------------------ end mobile---------------------------------------------- -->
-
-
 @endsection
