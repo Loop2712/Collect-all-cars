@@ -176,7 +176,7 @@
                                 <div class="row">
                                     <div class="col-4"><i class="fa-duotone fa-circle-check" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                        <h3 class="m-0"><b>{ $count_of_helper }}</b></h3>
+                                        <h3 class="m-0"><b>{{ $count_of_helper }}</b></h3>
                                         เสร็จสิ้น
                                     </div>
                                 </div>
