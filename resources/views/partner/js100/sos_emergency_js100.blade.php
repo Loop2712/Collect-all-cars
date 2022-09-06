@@ -5,13 +5,13 @@
   <div class="item sos-map col-md-12 col-12 col-lg-4">
         <div class="row">
             <div class="col-6">
-                <a href="#" style="float: left; background-color: green;" type="button" class="btn text-white"onclick="initMap('13.6248936' , '100.9930264');">
+                <a  style="float: left; background-color: green;" type="button" class="btn text-white"onclick="initMap('12.870032' , '100.992541','6');">
                     <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
                 </a>
                 <br><br>
             </div>
             <div class="col-6">
-                <a href="#" style="float: right;margin-right: 20px;" type="button" class="btn btn-info text-white"onclick="initMap('13.6248936' , '100.9930264');">
+                <a  style="float: right;margin-right: 20px;" type="button" class="btn btn-info text-white"onclick="initMap('13.7558541' , '100.5038224','10.7');">
                     <i class="fas fa-city"></i> กรุงเทพฯ
                 </a>
             </div>
@@ -19,7 +19,7 @@
                 <input class="d-none" type="text" id="va_zoom" name="" value="6">
                 <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                 <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
+                <input class="d-none" type="text" id="name_area" name="" value="">
                 @foreach($data_partners as $data_partner)
                     <input class="d-none" type="text" id="name_partner" name="" value="{{ $data_partner->name }}">
                 @endforeach
@@ -34,13 +34,20 @@
   <div class="col-8 d-none d-lg-block">
         <div class="row">
             <div class="col-12">
-                <div style="float: right;">
-                    <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white d-none">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
-                    <a type="button" data-toggle="modal" data-target="#Partner_gsos">
-                        <button class="btn btn-success">
-                            <i class="fas fa-info-circle"></i>วิธีใช้
-                        </button>
-                    </a>
+                <div class="row">
+                    <div class="col-6">
+                        <h4 class="text-dark"><b>การขอความช่วยเหลือ</b></h4>
+                    </div>
+                    <div class="col-6">
+                        <div style="float: right;">
+                            <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white d-none">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
+                            <a type="button" data-toggle="modal" data-target="#Partner_gsos">
+                                <button class="btn btn-success">
+                                    <i class="fas fa-info-circle"></i>วิธีใช้
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <br><br>
@@ -48,335 +55,94 @@
                 <div class="card-header border-bottom-0 bg-transparent" style="margin-top: 10px;">
                     <div class="d-flex align-items-center">
                         <div class="col-12">
-                            <h5 class="font-weight-bold mb-0" style="margin-top:10px;">
-                                การขอความช่วยเหลือ
-                                <span style="font-size: 15px; float: right; margin-top:-5px;">
-                                จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
-                                &nbsp;&nbsp; | &nbsp;&nbsp;
-                                @if(!empty($average_per_minute))
-                                    @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-
-                                    @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-
-                                    @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-
-                                    @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>น้อยกว่า 1 นาที</b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-                                @endif
-                            </span>
-                            </h5>
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="form-control" type="text" name="search_by_name" id="search_by_name" value="" placeholder="ค้นหาจากชื่อ" oninput="search_js100_by_name_or_phone();">
+                                        </div>
+                                        <div class="col-6">
+                                            <input class="form-control" type="text" name="search_by_phone" id="search_by_phone" value="" placeholder="ค้นหาจากเบอร์" oninput="search_js100_by_name_or_phone();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <h5 class="font-weight-bold mb-0" style="margin-top:10px;">
+                                        <span style="font-size: 15px; float: right; margin-top:5px;">
+                                        จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <hr style="color:black;background-color:black;height:2px;">
                 <div class="card-body">
-                <div class="row text-center">
-                    <div class="col-3">
-                        <b>ผู้ขอความช่วยเหลือ</b>
-                    </div>
-                    <div class="col-3">
-                        <b>เวลาแจ้งเหตุ</b>
-                    </div>
-                    <div class="col-3">
-                        <b>สถานะ</b>
-                    </div>
-                    <div class="col-2">
-                        <b>ระยะเวลา</b>
-                    </div>
-                    <div class="col-1">
-                        <b>ตำแหน่ง</b>
-                    </div>
+                    <div class="row text-center">
+                        <div class="col-3">
+                            <b>ชื่อ</b>
+                        </div>
+                        <div class="col-3">
+                            <b>เบอร์</b>
+                        </div>
+                        <div class="col-3">
+                            <b>เวลาแจ้งเหตุ</b>
+                        </div>
+                        <div class="col-3">
+                            <b>ตำแหน่ง</b>
+                        </div>
 
-                    <br><br>
-                    <hr style="color:black;background-color:black;height:2px;">
+                        <br><br>
+                        <hr style="color:black;background-color:black;height:2px;">
+                    </div>
                 </div>
-                </div>
-                <div class="card-body">
-                    @php
-                    $Number = 1 ;
-                    @endphp
 
-                    @foreach($view_maps as $item)
-
-                    @php
-                    $color_row = "" ;
-
-                    if( $Number%2 == 0 ){
-                        $color_row = "#FFEFD5" ;
-                    }
-                    @endphp
+                <div id="data_by_con" class="card-body">
+                    @foreach($view_maps_all as $item)
                     <div class="row text-center"> 
                         <div class="col-3">
-                        <div style="margin-top: -10px;" >
-                            <h5 class="text-success float-left">
-                                <span style="font-size: 15px;">
-                                    <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
-                                    <i class="far fa-eye text-primary"></i>
-                                    </a>
-                                </span>&nbsp;{{ $item->name }}<br> 
-                            </h5>
+                            <div style="margin-top: -10px;" >
+                                <h5 class="text-success float-left">
+                                    <span style="font-size: 15px;">
+                                        <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
+                                        <i class="far fa-eye text-primary"></i>
+                                        </a>
+                                    </span>&nbsp;{{ $item->name }}<br> 
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-3">
                             {{ $item->phone }}
                         </div>
+                        <div class="col-3">
+                            <b>{{ $item->created_at}} </b>
                         </div>
                         <div class="col-3">
-                        <div style="margin-top: -10px;">
-                            <p><b>
-                            {{ date("d/m/Y" , strtotime($item->created_at)) }} <br>
-                            {{ date("H:i" , strtotime($item->created_at)) }}
-                            </b></p>
-                            @if(!empty($item->photo))
-                            <br>
-                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo }}">
-                            </a>
-                            <br><br>
-                            @endif
-                        </div>
-                        </div>
-                        <div class="col-3">
-                        <div style="margin-top: -10px;">
-                            @if( !empty($item->helper) and empty($item->help_complete) )
-                                <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ</a>
-                            @elseif($item->helper == null)
-                                <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ</a>
-                            @elseif($item->help_complete == "Yes" && $item->helper != null)
-                                <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
-                                @if(!empty($item->help_complete_time))
-                                    <p style="margin-top:8px;"><b>
-                                    {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}
-                                    </b></p> 
-                                @endif 
-                                @if(!empty($item->photo_succeed))
-                                <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">
-                                    <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo_succeed }}">
+                            <div style="margin-top: -10px;">
+                                <a id="tag_a_view_marker" class="link text-danger" href="#map" >
+                                    <i class="fas fa-map-marker-alt"></i> 
+                                    <br>
+                                    ดูหมุด
                                 </a>
-                                <br><br>
-                                @endif
-                            @endif              
+                            </div>
                         </div>
-                        </div>
-                        <div class="col-2">
-                        @if( !empty($item->created_at) && !empty($item->help_complete_time) )
-                            <!-- ปี -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y')}} ปี <br>
-                            @endif
-                            <!-- เดือน -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m')}} เดือน <br>
-                            @endif
-                            <!-- วัน -->
-                            @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d')}} วัน <br>
-                            @endif
-                            <!-- ชัวโมง -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h')}} ชั่วโมง <br>
-                            @endif
-                            <!-- นาที -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i')}} นาที <br>
-                            @endif
-                            <!-- วินาที -->
-                            @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที <br>
-                            @endif
-                            
-                        @else
-                            <span>-</span>
-                        @endif
-                        </div>
-                        <div class="col-1">
-                        <div style="margin-top: -10px;">
-                            <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
-                                <i class="fas fa-map-marker-alt"></i> 
-                                <br>
-                                ดูหมุด
-                            </a>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                        @if(Auth::check())
-                            @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
-                                @if($item->help_complete == "Yes" and $item->score_total != null)
-                                    <div class="col-12 text-left" style="margin-top:5px;">
-                                        <h5>คะแนนการช่วยเหลือ</h5>
-                                        <div class="row">
-                                            <div class="col-2" style="padding:0px">
-                                                <b>เจ้าหน้าที่ : </b><br>{{$item->helper}}
-                                            </div> 
-                                            <div class="col-2" style="padding:0px">
-                                                @if($item->score_impression < 3)
-                                                    <b>ความประทับใจ : </b><br>
-                                                    <span class="text-danger">{{$item->score_impression}}</span>
-                                                @elseif($item->score_impression == 3)
-                                                    <b>ความประทับใจ : </b><br>
-                                                    <span class="text-warning">{{$item->score_impression}}</span>
-                                                @elseif($item->score_impression > 3)
-                                                    <b>ความประทับใจ : </b><br>
-                                                    <span class="text-success">{{$item->score_impression}}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-2" style="padding:0px">
-                                                @if($item->score_period < 3)
-                                                    <b>ระยะเวลา : </b><br>
-                                                    <span class="text-danger">{{$item->score_period}}</span>
-                                                @elseif($item->score_period == 3)
-                                                    <b>ระยะเวลา : </b><br>
-                                                    <span class="text-warning">{{$item->score_period}}</span>
-                                                @elseif($item->score_period > 3)
-                                                    <b>ระยะเวลา : </b><br>
-                                                    <span class="text-success">{{$item->score_period}}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-2" style="padding:0px">
-                                                @if($item->score_total < 3)
-                                                    <b>ภาพรวม : </b><br>
-                                                    <span class="text-danger">{{$item->score_total}}</span>
-                                                @elseif($item->score_total == 3)
-                                                    <b>ภาพรวม : </b><br>
-                                                    <span class="text-warning">{{$item->score_total}}</span>
-                                                @elseif($item->score_total > 3)
-                                                    <b>ภาพรวม : </b><br>
-                                                    <span class="text-success">{{$item->score_total}}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-4" style="padding:0px">
-                                                <b>คำแนะนำ/ติชม : </b><br>{{$item->comment_help}}
-                                            </div> 
-                                        </div>
-                                    </div>
-                                @elseif($item->help_complete == "Yes" and $item->score_total == null)
-                                    <h5>คะแนนการช่วยเหลือ</h5>
-                                    <div class="row">
-                                        <div class="col-6" style="padding:0px">
-                                            <b>เจ้าหน้าที่ : </b>{{$item->helper}}
-                                        </div> 
-                                        <div class="col-6" style="padding:0px">
-                                            <b>ไม่ได้ทำแบบประเมิน</b>
-                                        </div> 
-                                    </div>
-                                @elseif(!empty($item->helper) and empty($item->help_complete))
-                                    <h5>คะแนนการช่วยเหลือ</h5>
-                                    <div class="row">
-                                        <div class="col-12" style="padding:0px">
-                                            <b>เจ้าหน้าที่ : </b>{{$item->helper}}
-                                        </div> 
-                                    </div>
-                                @endif      
-                            @endif
-                            @endif
-                            <br>
-                        </div>
-                        @if(!empty($item->remark))
-                        <div class="col-12">
-                            <b>หมายเหตุจากเจ้าหน้าที่ : </b> {{ $item->remark }}
-                            <br><br>
-                        </div>
-                        @endif
+                        <br><br>
                         <hr>
                         <br><br>
                     </div>
-                    @php
-                        $Number = $Number + 1  ;
-                    @endphp
                     @endforeach
-                    <div style="float: right;">
-                    </div>
-                    <div class="table-responsive">
-                        <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
-                    </div>
                 </div>
+
+                <!-- div_content_sos_js100 -->
+                <div id="div_content_sos_js100" class="card-body d-none"></div>
+
             </div>
         </div>
   </div>
 </div>
 
 
-
-
-<!------------------------------------------------ mobile---------------------------------------------------------------------- -->
-<div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                        <div class="row">
-                            <div class="card-header border-bottom-0 bg-transparent">
-                                <div class="col-12"  style="margin-top:10px">
-                                    <div>
-                                        <h5 class="font-weight-bold mb-0">รถที่ถูกรายงานล่าสุด</h5> 
-                                    </div>
-                                    <span style="font-size: 15px; float: right; margin-top:-40px;">จำนวนทั้งหมด {{ $count_data }}</span>
-                                    <div class="d-flex justify-content-end" style="margin-top:10px">
-                                        <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-white radius-10" ><i class="fas fa-chart-line"></i>ดูช่วงเวลา</a>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="card-body" style="padding: 0px 10px 0px 10px;">
-                           
-                            @foreach($view_maps as $item)
-                                    @foreach($data_partners as $data_partner)
-                                    @endforeach
-                                    <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
-                                        <center>
-                                        <div class="row col-12 card-body border border-bottom-0" style="padding:15px 0px 15px 0px ;border-radius: 25px;margin-bottom: -2px;">
-                                                    <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}' , '{{ $item->id }}');">
-                                                            <i class="fas fa-map-marker-alt"></i> 
-                                                            <br>
-                                                            ดูหมุด
-                                                        </a> 
-                                                        <br>
-                                                        <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
-                                                            <i class="fas fa-location-arrow"></i> 
-                                                            <br>
-                                                            นำทาง
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-8 d-flex align-items-center" style="margin-bottom:0px;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <center class="col-12">
-                                                            <h5 style="margin-bottom:0px; margin-top:0px; ">
-                                                            <a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>
-                                                                {{ $item->name }}
-                                                            </h5>
-                                                        </center>
-                                                    </div> 
-                                                    <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#sos_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <i class="fas fa-angle-down" ></i>
-                                                    </div>
-                                                    <div class="col-12 collapse" id="sos_{{ $item->id }}"> 
-                                                        <hr>
-                                                        <p style="font-size:18px;padding:0px"> เบอร์ :  {{ $item->phone }}  </p> <hr>
-                                                        <p style="font-size:18px;padding:0px">วันที่แจ้ง <br> 
-                                                            
-                                                            {{ date("l d F Y" , strtotime($item->created_at)) }}
-                                                            <br>
-                                                        </p>  <hr>
-                                                        <p style="font-size:18px;padding:0px"> เวลา:  {{ date("H:i" , strtotime($item->created_at)) }}
-                                                            
-                                                        </p>
-                                                         <hr>
-                                                        <p style="font-size:18px;padding:0px">รูปภาพ <br> 
-                                                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                                                <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
-                                                            </a>
-                                                        </p>  
-                                                    </div>
-                                                </div>
-                                            </center>   
-                                        </div>  
-                                    @endforeach
-                                    <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
-                            </div>
-                        </div>
-                    </div>
-                <!-------------------------------- end mobile--------------------------------------------- -->
 <!------------------------------------------- Modal ให้ความช่วยเหลือ ------------------------------------------->
 <div class="modal fade"  id="Partner_gsos" tabindex="-1" role="dialog" aria-labelledby="Partner_gsosTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" >
@@ -476,6 +242,7 @@
     }
     
 </style>
+
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -484,8 +251,10 @@
         if (name_area) {
             select_name_area(name_area);
         }else{
-            initMap('13.6248936' , '100.9930264');
+            initMap('12.870032' , '100.992541','6');
         }
+
+        // search_data_sos_js100("all" , "all");
 
     });
 
@@ -493,14 +262,15 @@
     var map ;
     var marker ;
 
-    function initMap(lat , lng) {
+    function initMap(lat , lng , numZoom) {
 
-        let m_lat = parseInt(lat);
-        let m_lng = parseInt(lng);
+        let m_lat = parseFloat(lat);
+        let m_lng = parseFloat(lng);
+        let m_numZoom = parseFloat(numZoom);
         // 13.7248936,100.4930264 lat lng ประเทศไทย
         map = new google.maps.Map(document.getElementById("map"), {
             center: {lat: m_lat, lng: m_lng },
-            zoom: 6.2,
+            zoom: m_numZoom,
         });
 
         let all_lat = [];
@@ -721,80 +491,45 @@
     }
 
 
-    function view_marker(lat , lng , sos_id , name_area){
+    function search_js100_by_name_or_phone(){
+        let js100_name = document.querySelector('#search_by_name').value;
+        let js100_phone = document.querySelector('#search_by_phone').value;
 
-        let name_partner = document.querySelector('#name_partner').value;
-        // let name_area = 'คอนโด' ;
+        if (!js100_name && !js100_phone) {
+            document.querySelector('#div_content_sos_js100').classList.add('d-none');
+            document.querySelector('#data_by_con').classList.remove('d-none');
+        }else{
+            if (!js100_name) {
+                js100_name = "all" ;
+            }
+            if (!js100_phone) {
+                js100_phone = "all" ;
+            }
+            search_data_sos_js100(js100_name , js100_phone); 
+        }
 
-        fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
+    }
 
-                var bounds = new google.maps.LatLngBounds();
+    function search_data_sos_js100(search_by_name , search_by_phone){
 
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
-                }
+        let div_content_sos_js100 = document.querySelector('#div_content_sos_js100');
+            div_content_sos_js100.classList.remove('d-none');
+            div_content_sos_js100.innerHTML = "" ;
 
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 18,
-                center: { lat: parseFloat(lat), lng: parseFloat(lng) },
-            });
+        document.querySelector('#data_by_con').classList.add('d-none');
 
-            // Construct the polygon.
-            draw_area = new google.maps.Polygon({
-                paths: result,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
+        fetch("{{ url('/') }}/api/search_data_sos_js100/" + search_by_name + "/" + search_by_phone)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
 
-            let image = "https://www.viicheck.com/img/icon/flag_2.png";
-            let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
-            marker = new google.maps.Marker({
-                position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
-                map: map,
-                icon: image,
-            });  
-
-            @foreach($view_maps as $view_map)
-                if ( {{ $view_map->id }} !== parseFloat(sos_id) ) {
-                    marker = new google.maps.Marker({
-                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                        map: map,
-                        icon: image2,
-                    });
-                }
-            @endforeach
-
-            const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-
-            const contentString =
-                '<div id="content">' +
-                '<div id="siteNotice">' +
-                "</div>" +
-                '<h4 id="firstHeading" class="firstHeading">'+name_area +'</h4>' +
-                '<div id="bodyContent">' +
-                "<p>lat : "+ lat + "<br>" +
-                "lng : "+ lng + "</p>" +
-                "</div>" +
-                "</div>";
-
-            let infoWindow = new google.maps.InfoWindow({
-                // content: "<p>ชื่อพื้นที่ : <b>" + name_area  + "</b></p>" + "Lat :" + lat + "<br>" + "Lat :" + lng,
-                content: contentString,
-                position: myLatlng,
-            });
-
-            infoWindow.open(map);
+            for(let item of result){
+                
+            }
+            
         });
 
     }
 
 </script>
-
 @endsection

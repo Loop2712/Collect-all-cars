@@ -1032,4 +1032,35 @@ class PartnersController extends Controller
         return $data_partner_show ;
     }
 
+    function search_data_sos_js100($name , $phone)
+    {
+        if ($name == "all" and $phone == "all") {
+            $data_sos_js100 = DB::table('sos_maps')
+                ->where('content', "emergency_js100")
+                ->orderBy('id' , 'desc')
+                ->get();
+        }elseif ($name == "all" and $phone != "all") {
+            $data_sos_js100 = DB::table('sos_maps')
+                ->where('content', "emergency_js100")
+                ->where('phone','LIKE', "%$phone%")
+                ->orderBy('id' , 'desc')
+                ->get();
+        }elseif ($name != "all" and $phone == "all") {
+            $data_sos_js100 = DB::table('sos_maps')
+                ->where('content', "emergency_js100")
+                ->where('name','LIKE', "%$name%")
+                ->orderBy('id' , 'desc')
+                ->get();
+        }elseif ($name != "all" and $phone != "all") {
+            $data_sos_js100 = DB::table('sos_maps')
+                ->where('content', "emergency_js100")
+                ->where('name','LIKE', "%$name%")
+                ->where('phone','LIKE', "%$phone%")
+                ->orderBy('id' , 'desc')
+                ->get();
+        }
+
+        return $data_sos_js100 ;
+    }
+
 }

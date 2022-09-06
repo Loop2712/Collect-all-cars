@@ -136,6 +136,7 @@ Route::get('/service_area/your_old_area/{id_user}/{name_area}','API\PartnersCont
 
 Route::get('/all_sos_area','API\PartnersController@all_sos_area');
 Route::get('/all_area_partner/{name_partner}','API\PartnersController@all_area_partner');
+Route::get('/search_data_sos_js100/{name}/{phone}','API\PartnersController@search_data_sos_js100');
 
 Route::get('/check_sos_alarm/{check_name_partner}','API\PartnersController@check_sos_alarm');
 Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersController@check_sos_alarm_notify');
