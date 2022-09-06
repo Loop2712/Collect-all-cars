@@ -252,6 +252,8 @@
                                                 @elseif($x_impression <= 4.9 )
                                                     <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i>
                                                 @elseif($x_impression <= 5 )
+                                                    <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i>
+
                                                 @endif
                                             </div>
                                         </div>
@@ -285,6 +287,7 @@
                                                 @elseif($x_period <= 4.9 )
                                                     <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i>
                                                 @elseif($x_period <= 5 )
+                                                    <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i>
                                                 @endif
                                             </div>
                                         </div>
@@ -318,6 +321,7 @@
                                                 @elseif($x_total <= 4.9 )
                                                     <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-duotone fa-star"></i>
                                                 @elseif($x_total <= 5 )
+                                                    <i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i><i class="fa-solid fa-star" style="color:#FFD058"></i>
                                                 @endif
                                             </div>
                                         </div>
