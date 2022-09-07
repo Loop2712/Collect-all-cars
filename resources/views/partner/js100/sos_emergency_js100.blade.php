@@ -556,7 +556,7 @@
             .then(result => {
                 // console.log(result);
 
-                if (result['length'] != 0) {
+                if (result['length'] > 0) {
                     // console.log(result);
 
                     for(let item of result){
@@ -573,7 +573,7 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
-                if (result['length'] != 0) {
+                if (result['length'] > 0) {
                     // console.log(result);
 
                     for(let item of result){

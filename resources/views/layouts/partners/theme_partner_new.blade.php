@@ -1074,7 +1074,7 @@
             .then(result => {
                 // console.log(result);
 
-                if (result['length'] != 0) {
+                if (result['length'] > 0) {
                 	document.querySelector('#div_menu_alert_js100').classList.remove('d-none');
                 }else{
                 	document.querySelector('#div_menu_alert_js100').classList.add('d-none');
