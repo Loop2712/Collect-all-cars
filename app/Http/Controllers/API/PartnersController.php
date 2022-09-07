@@ -1063,4 +1063,78 @@ class PartnersController extends Controller
         return $data_sos_js100 ;
     }
 
+    function check_new_sos_js100_by_theme()
+    {
+        $check_new = DB::table('sos_maps')
+            ->where('content', "emergency_js100")
+            ->where('notify', "!=" , "admin_click")
+            ->orWhere('notify', null)
+            ->get();
+
+        return $check_new ;
+    }
+
+    function check_new_sos_js100()
+    {
+        $check_new = DB::table('sos_maps')
+            ->where('content', "emergency_js100")
+            ->Where('notify', null)
+            ->get();
+
+        return $check_new ;
+    }
+
+    function check_notified_js100()
+    {
+        $check_notified = DB::table('sos_maps')
+            ->where('content', "emergency_js100")
+            ->Where('notify', "notified")
+            ->get();
+
+        return $check_notified ;
+    }
+
+    function update_new_sos_js100($id_sos_map)
+    {
+        DB::table('sos_maps')
+            ->where('id', $id_sos_map)
+              ->update([
+                'notify' => "notified",
+        ]);
+
+        return "ok" ;
+    }
+
+    function admin_click($all_or_id)
+    {
+        if ($all_or_id == "all") {
+
+            DB::table('sos_maps')
+                ->where('content', "emergency_js100")
+                  ->update([
+                    'notify' => "admin_click",
+            ]);
+
+            $data = DB::table('sos_maps')
+                ->where('content', "emergency_js100")
+                ->get();
+
+        }else{
+
+            DB::table('sos_maps')
+                ->where('id', $all_or_id)
+                  ->update([
+                    'notify' => "admin_click",
+            ]);
+
+            $data = DB::table('sos_maps')
+                ->where('id', $all_or_id)
+                ->where('content', "emergency_js100")
+                ->get();
+
+        }
+
+        return $data ;
+    }
+
 }

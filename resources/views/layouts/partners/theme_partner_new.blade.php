@@ -236,8 +236,8 @@
 								<a href="{{ url('/sos_emergency_js100') }}">
 									<div class="parent-icon"><i class="fas fa-siren-on"></i>
 									</div>
-									<div id="div_menu_help_1" class="menu-title">SOS by calling</div>
-									<div id="div_menu_help" class="d-none">
+									<div id="div_menu_help_js100" class="menu-title">SOS by calling</div>
+									<div id="div_menu_alert_js100" class="d-none">
 										&nbsp;
 										<i class="fas fa-exclamation-circle notify_alert"></i>
 									</div>
@@ -649,9 +649,11 @@
         // console.log("START");
 		check_data_partner();
 		check_sos_alarm();
+	    check_sos_js100();
 
 	    setInterval(function() {
 	       	check_sos_alarm();
+	       	check_sos_js100();
 	    }, 5000);
         
     });
@@ -1063,6 +1065,21 @@
         setTimeout(function() {
             alert("ตั้งค่ากลุ่มไลน์ "+ input_name_group_line + " เรียบร้อยแล้ว");
         }, delay);
+    }
+
+    function check_sos_js100(){
+        // console.log("CHECK");
+        fetch("{{ url('/') }}/api/check_new_sos_js100_by_theme" )
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if (result['length'] != 0) {
+                	document.querySelector('#div_menu_alert_js100').classList.remove('d-none');
+                }else{
+                	document.querySelector('#div_menu_alert_js100').classList.add('d-none');
+                }
+        });
     }
 
 </script>

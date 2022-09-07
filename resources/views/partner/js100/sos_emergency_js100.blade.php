@@ -1,13 +1,36 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
+<!-- ALERT -->
+<style>
+    .alert_js100{
+        position: absolute;
+        right: 1.2%;
+        top: 11%;
+        z-index: 9999;
+        margin-top: 5px;
+        width: 24%;
+    }
+</style>
+<div id="div_alert_js100" class="alert_js100">
+    <div style="margin-top: -5px;" class="alert alert-danger" role="alert">
+        <span>
+            มีการขอความช่วยเหลือใหม่ จากคุณ 
+            <b class="text-dark">BENZE THANAKORN</b> 
+            <a href="#" class="alert-link">
+                <i style="float:right;" class="fas fa-window-close"></i>
+            </a>
+        </span>
+    </div>
+</div>
+
 <div class="container-partner-sos">
   <div class="item sos-map col-md-12 col-12 col-lg-4">
         <div class="row">
             <div class="col-6">
                 <a  style="float: left; background-color: green;" type="button" class="btn text-white"onclick="initMap('12.870032' , '100.992541','6');">
                     <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
-                </a>
+                </a>c
                 <br><br>
             </div>
             <div class="col-6">
@@ -108,6 +131,7 @@
                             <div style="margin-top: -10px;" >
                                 <h5 class="text-success float-left">
                                     <span style="font-size: 15px;">
+                                        <i id="sos_js100_id_{{ $item->id }}" class="fas fa-exclamation-circle notify_alert d-none" style="float:left;"></i>
                                         <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
                                         <i class="far fa-eye text-primary"></i>
                                         </a>
@@ -253,14 +277,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        let name_area = document.querySelector('#name_area').value;
 
-        if (name_area) {
-            select_name_area(name_area);
-        }else{
-            initMap('12.870032' , '100.992541','6');
-        }
+        initMap('12.870032' , '100.992541','6');
+        check_notified_js100();
 
+        setInterval(function() {
+            check_new_sos_js100();
+        }, 5000);
         // search_data_sos_js100("all" , "all");
 
     });
@@ -290,213 +313,20 @@
         let lat_sum = 0 ;
         let lng_sum = 0 ;
 
-        let name_partner = document.querySelector('#name_partner');
-
-        fetch("{{ url('/') }}/api/all_area_partner/" + name_partner.value)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-
-                for (let ii = 0; ii < result.length; ii++) {
-
-                    for (let xx = 0; xx < JSON.parse(result[ii]['sos_area']).length; xx++) {
-
-                        all_lat_lng.push(JSON.parse(result[ii]['sos_area'])[xx]);
-
-                        // all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
-                        // all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
-                        
-                    }
-
-                }
-
-                // หาจุดกลาง polygons ทั้งหมด
-                // for (let zz = 0; zz < all_lat.length; zz++) {
-
-                //     lat_sum = lat_sum + all_lat[zz] ; 
-                //     lng_sum = lng_sum + all_lng[zz] ; 
-
-                //     lat_average = lat_sum / all_lat.length ;
-                //     lng_average = lng_sum / all_lng.length ;
-                // }
-
-                // map = new google.maps.Map(document.getElementById("map"), {
-                //     center: {lat: lat_average, lng: lng_average },
-                //     zoom: 14,
-                // });
-
-                let bounds = new google.maps.LatLngBounds();
-
-                    for (let vc = 0; vc < all_lat_lng.length; vc++) {
-                        bounds.extend(all_lat_lng[vc]);
-                    }
-
-                    // map = new google.maps.Map(document.getElementById("map"), {
-                    //     // zoom: num_zoom,
-                    //     // center: bounds.getCenter(),
-                    // });
-                    // map.fitBounds(bounds);
-
-                for (let xi = 0; xi < result.length; xi++) {
-
-                    // วาดพื้นที่รวมทั้งหมด
-                    let draw_sum_area = new google.maps.Polygon({
-                        paths: all_lat_lng,
-                        strokeColor: "red",
-                        strokeOpacity: 0,
-                        strokeWeight: 0,
-                        fillColor: "red",
-                        fillOpacity: 0,
-                    });
-                    draw_sum_area.setMap(map);
-
-                    // วาดแยกแต่ละพื้นที่
-                    let draw_area_other = new google.maps.Polygon({
-                        paths: JSON.parse(result[xi]['sos_area']),
-                        strokeColor: "#008450",
-                        strokeOpacity: 0.8,
-                        strokeWeight: 1,
-                        fillColor: "#008450",
-                        fillOpacity: 0.25,
-                        zIndex:10,
-                    });
-                    draw_area_other.setMap(map);
-
-                    // mouseover on polygon
-                    google.maps.event.addListener(draw_area_other, 'mouseover', function (event) {
-                        this.setOptions({
-                            strokeColor: '#00ff00',
-                            fillColor: '#00ff00'
-                        });
-
-                        let image_empty = "https://www.viicheck.com/img/icon/flag_empty.png";
-
-                        for (let mm = 0; mm < JSON.parse(result[xi]['sos_area']).length; mm++) {
-
-                            all_lat.push(JSON.parse(result[xi]['sos_area'])[mm]['lat']);
-                            all_lng.push(JSON.parse(result[xi]['sos_area'])[mm]['lng']);
-                            
-                        }
-
-                        for (let zz = 0; zz < all_lat.length; zz++) {
-
-                            lat_sum = lat_sum + all_lat[zz] ; 
-                            lng_sum = lng_sum + all_lng[zz] ; 
-
-                            lat_average = lat_sum / all_lat.length ;
-                            lng_average = lng_sum / all_lng.length ;
-                        }
-
-                        marker_mouseover = new google.maps.Marker({
-                            // position: JSON.parse(result[xi]['sos_area'])[0],
-                            position: {lat: lat_average, lng: lng_average },
-                            map: map,
-                            icon: image_empty,
-                            label: {
-                                text: result[xi]['name_area'],
-                                color: 'black',
-                                fontSize: "18px",
-                                fontWeight: 'bold',
-                            },
-                            zIndex:10,
-                        }); 
-
-                    });
-
-                    // mouseout polygon
-                    google.maps.event.addListener(draw_area_other, 'mouseout', function (event) {
-                        this.setOptions({
-                            strokeColor: '#008450',
-                            fillColor: '#008450'
-                        });
-                        marker_mouseover.setMap(null);
-
-                        lat_sum = 0 ;
-                        lng_sum = 0 ;
-                        lat_average = 0 ;
-                        lng_average = 0 ;
-                        all_lat = [] ;
-                        all_lng = [] ;
-                    });
-
-                    draw_area_other.addListener("click", () => {
-                        // select_name_area(result[xi]['name_area']);
-                        try {
-                            document.querySelector('#select_name_area_' + result[xi]['name_area']).click();
-                        }
-                        catch(err) {
-                            alert('ไม่มีข้อมูลการขอความช่วยเหลือ');
-                        }
-                        
-                    });
-                }
-
-
-                //ปักหมุด
-                let image = "https://www.viicheck.com/img/icon/flag_2.png";
-                @foreach($view_maps_all as $view_map)
-                @if(!empty($item->lat))
-                    marker = new google.maps.Marker({
-                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                        map: map,
-                        icon: image,
-                        zIndex:5,
-                    });  
-                @endif   
-                @endforeach
-
-
-            });
+        //ปักหมุด
+        let image = "https://www.viicheck.com/img/icon/flag_2.png";
+        @foreach($view_maps_all as $view_map)
+        @if(!empty($item->lat))
+            marker = new google.maps.Marker({
+                position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                map: map,
+                icon: image,
+                zIndex:5,
+            });  
+        @endif   
+        @endforeach
 
     }
-
-    function select_name_area(name_area){
-
-        let name_partner = document.querySelector('#name_partner').value;
-
-        fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-
-                var bounds = new google.maps.LatLngBounds();
-
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
-                }
-
-            map = new google.maps.Map(document.getElementById("map"), {
-                // zoom: 18,
-            });
-            map.fitBounds(bounds);
-
-            // Construct the polygon.
-            draw_area = new google.maps.Polygon({
-                paths: result,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
-
-            //ปักหมุด
-            let image = "https://www.viicheck.com/img/icon/flag_2.png";
-            @foreach($view_maps_all as $view_map)
-            @if(!empty($item->lat))
-                marker = new google.maps.Marker({
-                    position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                    map: map,
-                    icon: image,
-                    zIndex:5,
-                });  
-            @endif   
-            @endforeach
-        });
-        
-    }
-
 
     function search_js100_by_name_or_phone(){
         let js100_name = document.querySelector('#search_by_name').value;
@@ -517,6 +347,10 @@
             search_data_sos_js100(js100_name , js100_phone); 
         }
 
+        document.querySelector('#div_alert_js100').innerHTML = "" ;
+
+        admin_click("all");
+
     }
 
     function search_data_sos_js100(search_by_name , search_by_phone){
@@ -534,7 +368,7 @@
             // console.log(result);
             document.querySelector('#count_search').innerHTML = result['length'];
 
-            for(let item of result){
+            for(let item of result){ 
 
                 // DIV NAME USER
                 let div_name_user = document.createElement("div");
@@ -559,6 +393,17 @@
                     style_span_1_name_user.value = "font-size: 15px;";
                     span_1_name_user.setAttributeNode(style_span_1_name_user);
                 h5_name_user.appendChild(span_1_name_user);
+
+                if (item.notify != "admin_click") {
+                    let alert_name_user = document.createElement("i");
+                    let class_alert_name_user = document.createAttribute("class");
+                        class_alert_name_user.value = "fas fa-exclamation-circle notify_alert";
+                        alert_name_user.setAttributeNode(class_alert_name_user);
+                    let style_alert_name_user = document.createAttribute("style");
+                        style_alert_name_user.value = "float:left;";
+                        alert_name_user.setAttributeNode(style_alert_name_user);
+                    span_1_name_user.appendChild(alert_name_user);
+                }
 
                 let a_name_user = document.createElement("a");
                 let target_a_name_user = document.createAttribute("target");
@@ -711,6 +556,137 @@
 
         infoWindow.open(map);
 
+    }
+
+    function check_new_sos_js100(){
+        // console.log("CHECK");
+        fetch("{{ url('/') }}/api/check_new_sos_js100" )
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if (result['length'] != 0) {
+                    // console.log(result);
+
+                    for(let item of result){
+                        fetch("{{ url('/') }}/api/update_new_sos_js100/" + item.id );
+                    }
+
+                    window.location.reload(true);
+                }
+        });
+    }
+
+    function check_notified_js100(){
+        fetch("{{ url('/') }}/api/check_notified_js100" )
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                if (result['length'] != 0) {
+                    // console.log(result);
+
+                    for(let item of result){
+                        document.querySelector('#sos_js100_id_' + item.id).classList.remove('d-none');
+                    }
+
+                    show_div_alert(result);
+                }
+        });
+    }
+
+    function show_div_alert(result){
+        console.log(result);
+
+        let div_alert_js100 = document.querySelector('#div_alert_js100');
+            div_alert_js100.innerHTML = "" ;
+
+        for(let item of result){
+
+            console.log(item.id);
+
+            let sos_alert_js100 = document.createElement("div");
+            let id_sos_alert_js100 = document.createAttribute("id");
+                id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
+                sos_alert_js100.setAttributeNode(id_sos_alert_js100);
+            let style_sos_alert_js100 = document.createAttribute("style");
+                style_sos_alert_js100.value = "margin-top: -5px;";
+                sos_alert_js100.setAttributeNode(style_sos_alert_js100);
+            let class_sos_alert_js100 = document.createAttribute("class");
+                class_sos_alert_js100.value = "alert alert-danger";
+                sos_alert_js100.setAttributeNode(class_sos_alert_js100);
+            let row_sos_alert_js100 = document.createAttribute("row");
+                row_sos_alert_js100.value = "alert";
+                sos_alert_js100.setAttributeNode(row_sos_alert_js100);
+
+            let span_sos_alert_js100 = document.createElement("span");
+                sos_alert_js100.appendChild(span_sos_alert_js100);
+
+            let span_sos_alert_js100 = document.createElement("span");
+                span_sos_alert_js100.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ" ;
+                sos_alert_js100.appendChild(span_sos_alert_js100);
+
+            let b_span_sos_alert_js100 = document.createElement("b");
+            let class_b_span_sos_alert_js100 = document.createAttribute("class");
+                class_b_span_sos_alert_js100.value = "text-dark";
+                b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
+                
+                b_span_sos_alert_js100.innerText = item.name ;
+
+                span_sos_alert_js100.appendChild(b_span_sos_alert_js100);
+
+            let a_span_sos_alert_js100 = document.createElement("a");
+            let href_a_span_sos_alert_js100 = document.createAttribute("href");
+                href_a_span_sos_alert_js100.value = "#";
+                a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
+            let class_a_span_sos_alert_js100 = document.createAttribute("class");
+                class_a_span_sos_alert_js100.value = "alert-link";
+                a_span_sos_alert_js100.setAttributeNode(class_a_span_sos_alert_js100);
+
+                span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
+
+            let i_a_span_sos_alert_js100 = document.createElement("i");
+            let style_i_a_span_sos_alert_js100 = document.createAttribute("style");
+                style_i_a_span_sos_alert_js100.value = "float:right;";
+                i_a_span_sos_alert_js100.setAttributeNode(style_i_a_span_sos_alert_js100);
+            let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
+                class_i_a_span_sos_alert_js100.value = "fas fa-window-close";
+                i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
+
+                a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
+
+            div_alert_js100.appendChild(sos_alert_js100);
+        }
+        
+
+    }
+
+
+    function admin_click(all_or_id){
+        // console.log(all_or_id);
+
+        if (all_or_id === "all") {
+            fetch("{{ url('/') }}/api/admin_click/" + all_or_id )
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    for(let item of result){
+                        document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
+
+                    }
+            });
+        }else{
+            fetch("{{ url('/') }}/api/admin_click/" + all_or_id )
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    for(let item of result){
+                        document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
+
+                    }
+            });
+        }
+
+        
     }
 
 </script>
