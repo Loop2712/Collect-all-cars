@@ -12,17 +12,8 @@
         width: 24%;
     }
 </style>
-<div id="div_alert_js100" class="alert_js100">
-    <div style="margin-top: -5px;" class="alert alert-danger" role="alert">
-        <span>
-            มีการขอความช่วยเหลือใหม่ จากคุณ 
-            <b class="text-dark">BENZE THANAKORN</b> 
-            <a href="#" class="alert-link">
-                <i style="float:right;" class="fas fa-window-close"></i>
-            </a>
-        </span>
-    </div>
-</div>
+<!-- div_alert_js100 -->
+<div id="div_alert_js100" class="alert_js100"></div>
 
 <div class="container-partner-sos">
   <div class="item sos-map col-md-12 col-12 col-lg-4">
@@ -595,14 +586,11 @@
     }
 
     function show_div_alert(result){
-        console.log(result);
 
         let div_alert_js100 = document.querySelector('#div_alert_js100');
             div_alert_js100.innerHTML = "" ;
 
         for(let item of result){
-
-            console.log(item.id);
 
             let sos_alert_js100 = document.createElement("div");
             let id_sos_alert_js100 = document.createAttribute("id");
@@ -617,9 +605,9 @@
             let row_sos_alert_js100 = document.createAttribute("row");
                 row_sos_alert_js100.value = "alert";
                 sos_alert_js100.setAttributeNode(row_sos_alert_js100);
-
-            let span_sos_alert_js100 = document.createElement("span");
-                sos_alert_js100.appendChild(span_sos_alert_js100);
+            let onclicl_sos_alert_js100 = document.createAttribute("onclick");
+                onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
+                sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
 
             let span_sos_alert_js100 = document.createElement("span");
                 span_sos_alert_js100.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ" ;
@@ -630,7 +618,7 @@
                 class_b_span_sos_alert_js100.value = "text-dark";
                 b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
                 
-                b_span_sos_alert_js100.innerText = item.name ;
+                b_span_sos_alert_js100.innerText = " " + item.name ;
 
                 span_sos_alert_js100.appendChild(b_span_sos_alert_js100);
 
@@ -681,7 +669,7 @@
                     // console.log(result);
                     for(let item of result){
                         document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
-
+                        document.querySelector('#sos_alert_js100_' + item.id).classList.add('d-none');
                     }
             });
         }
