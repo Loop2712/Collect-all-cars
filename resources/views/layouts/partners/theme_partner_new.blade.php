@@ -1072,7 +1072,7 @@
         fetch("{{ url('/') }}/api/check_new_sos_js100_by_theme" )
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result['length'] > 0) {
                 	document.querySelector('#div_menu_alert_js100').classList.remove('d-none');

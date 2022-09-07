@@ -1068,7 +1068,8 @@ class PartnersController extends Controller
         $check_new = DB::table('sos_maps')
             ->where('content', "emergency_js100")
             ->where('notify', "!=" , "admin_click")
-            ->orWhere('notify', null)
+            ->orwhere('content', "emergency_js100")
+            ->Where('notify', null)
             ->get();
 
         return $check_new ;
