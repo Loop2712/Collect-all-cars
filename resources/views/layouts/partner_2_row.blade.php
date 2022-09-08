@@ -15,7 +15,7 @@
             @endif
         @endforeach
     </div>
-    <div class="owl-carousel owl-4">
+    <div class="owl-carousel owl-4 mt-3">
         @php
           $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
         @endphp
