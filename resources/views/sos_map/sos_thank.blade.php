@@ -69,7 +69,9 @@
       </div>
       <div class="modal-footer d-none">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
-        <button type="button" class="btn btn-success">เสร็จสิ้น</button>
+        <a id="a_line" href="{{ url('/') }}">
+            <button type="button" class="btn btn-success">เสร็จสิ้น</button>
+        </a>
       </div>
     </div>
   </div>
@@ -78,6 +80,12 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START"); 
         document.getElementById("btn_modal").click();
+
+        var delayInMilliseconds = 5000; 
+
+        setTimeout(function() {
+          document.getElementById("a_line").click();
+        }, delayInMilliseconds);
 
     });
     document.addEventListener('DOMContentLoaded', (event) => {
