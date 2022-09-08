@@ -13,7 +13,18 @@
     }
 </style>
 <!-- div_alert_js100 -->
-<div id="div_alert_js100" class="alert_js100"></div>
+<div id="div_alert_js100" class="alert_js100">
+    <!-- ออกแบบ -->
+    <div style="margin-top: -5px;" class="alert alert-danger" role="alert">
+        <span>
+            มีการขอความช่วยเหลือใหม่ จากคุณ 
+            <b class="text-dark">BENZE THANAKORN</b> 
+            <a href="#" class="alert-link">
+                <i style="float:right;" class="fas fa-window-close"></i>
+            </a>
+        </span>
+    </div>
+</div>
 
 <div class="container-partner-sos">
   <div class="item sos-map col-md-12 col-12 col-lg-4">
@@ -57,7 +68,9 @@
                     </div>
                     <div class="col-6">
                         <div style="float: right;">
-                            <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white d-none">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
+                            <a href="{{ url('/sos_detail_js100') }}" type="button" class="btn btn-primary text-white">
+                                ดูช่วงเวลา <i class="fas fa-chart-line"></i>
+                            </a>
                             <a type="button" data-toggle="modal" data-target="#Partner_gsos">
                                 <button class="btn btn-success">
                                     <i class="fas fa-info-circle"></i>วิธีใช้
@@ -150,6 +163,7 @@
                         <br><br>
                     </div>
                     @endforeach
+                    <!-- เลื่อนหน้า -->
                 </div>
 
                 <!-- div_content_sos_js100 -->

@@ -225,6 +225,15 @@
 						<div class="menu-title">รถที่ถูกรายงานล่าสุด</div>
 					</a>
 				</li>
+				@if(Auth::user()->organization == "JS100 Radio")
+					<li>
+					<a href="{{ url('/broadcast_by_car') }}">
+						<div class="parent-icon"><i class="fas fa-bullhorn"></i>
+						</div>
+						<div class="menu-title">บรอดแคสต์</div>
+					</a>
+				</li>
+				@endif
                 
                 @if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
