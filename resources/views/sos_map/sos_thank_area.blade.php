@@ -22,7 +22,7 @@
           <br>
             <h5 class="modal-title text-danger text-center" id="staticBackdropLabel"> <b>เจ้าหน้าที่กำลังเดินทางไปหาคุณ</b> <br><span style="font-size:18px;"> <b>โปรดรอสักครู่</b> </span></h5>
             
-            <div id="sos_TH" class="d-none">
+            <div id="sos_TH" class="d-">
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_th.png') }}">
             </div>
             <div id="sos_JP" class="d-none">
@@ -61,43 +61,17 @@
             <div id="sos_VN" class="d-none">
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
             </div>
-            <div class="row">
-              <div id="logo_0" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/southerncoffee-1.png') }}">
-              </div>
-              <div id="logo_1" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/ตลาดคลองเตย.png') }}">
-              </div>
-              <div id="logo_2" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/KMUTNB.png') }}">
-              </div>
-              <div id="logo_3" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/TU.png') }}">
-              </div>
-              <div id="logo_4" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/RMUTP.png') }}">
-              </div>
-              <div id="logo_5" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/IMPACT.jpg') }}">
-              </div>
-              <div id="logo_6" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/js100.png') }}">
-              </div>
-              <!-- <div id="logo_7" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/การท่าเรือแห่งประเทศไทย.png') }}">
-              </div> -->
-              <div id="logo_8" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/GreenLogo.png') }}">
-              </div>
-              <div id="logo_9" class="col-3 d-none">
-                <img style="width: 80%;height: 100px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/สวนนงนุช-กลม.png') }}">
-              </div>
-            </div>
         </center>
+        <br>
+        <div class="row">
+            @include ('layouts.partner_2_row')
+        </div>
+        <br>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer d-none">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
-        <a id="a_line" href="{{ $link_line_oa }}">
+        <a id="a_line" href="">
+        <!-- <a id="a_line" href="{ $link_line_oa }"> -->
             <button type="button" class="btn btn-success">เสร็จสิ้น</button>
         </a>
       </div>
@@ -113,7 +87,7 @@
         var delayInMilliseconds = 5000; 
 
         setTimeout(function() {
-          document.getElementById("a_line").click();
+          // document.getElementById("a_line").click();
         }, delayInMilliseconds);
     });
 
