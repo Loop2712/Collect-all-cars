@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-1 col-6">
                                 <br>
-                                <form style="float: right;" method="GET" action="{{ url('/sos_detail_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
+                                <form style="float: right;" method="GET" action="{{ url('/sos_detail_js100') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
                                     <div class="input-group ">
                                       <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
                                       <input type="hidden" class="form-control" id="input_month" name="month" value="{{ request('month') }}">
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-2 col-6 d-none d-lg-block ">
                                 <br>
-                                <a href="{{ url('/sos_detail_partner') }}" >
+                                <a href="{{ url('/sos_detail_js100') }}" >
                                     <button class="btn btn-danger">
                                         ล้างการค้นหา
                                     </button>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="col-md-2 col-6 d-block d-md-none " style="margin-top:8px;">
                                 <br>
-                                <a href="{{ url('/sos_detail_partner') }}" >
+                                <a href="{{ url('/sos_detail_js100') }}" >
                                     <button class="btn btn-danger">
                                         ล้างการค้นหา
                                     </button>
