@@ -70,8 +70,7 @@
       </div>
       <div class="modal-footer d-none">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
-        <a id="a_line" href="">
-        <!-- <a id="a_line" href="{ $link_line_oa }"> -->
+        <a id="a_line" href="{{ $link_line_oa }}">
             <button type="button" class="btn btn-success">เสร็จสิ้น</button>
         </a>
       </div>
@@ -87,7 +86,7 @@
         var delayInMilliseconds = 5000; 
 
         setTimeout(function() {
-          // document.getElementById("a_line").click();
+          document.getElementById("a_line").click();
         }, delayInMilliseconds);
     });
 
