@@ -15,12 +15,12 @@
           </div>
         @endforeach
 
-        <div class="media-29101 text-center">
+        <!-- <div class="media-29101 text-center">
           <center>
             <img style="width: 40%;height: 120px;object-fit: contain;padding: 10px;" src="{{ url('/img/logo-partner/logo-ph.png') }}">
             <h5 class="text-danger thx_partner" >PeddyHub</h5>
           </center>
-        </div>
+        </div> -->
 
 
         <!-- <div class="media-29101 text-center">
