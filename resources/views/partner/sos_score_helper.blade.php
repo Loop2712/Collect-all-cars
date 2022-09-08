@@ -39,25 +39,41 @@
 
     if($x_impression >= 4){
         $x_impression_class = "text-success" ;
+        $x_impression_background = "#D1F0ED";
+        $x_impression_font = "#659590";
     }elseif($x_impression >= 2.5){
         $x_impression_class = "text-warning" ;
+        $x_impression_background = "#F0EED1";
+        $x_impression_font = "#958065";
     }elseif($x_impression == "-"){
         $x_impression_class = "text-secondary" ;
+        $x_impression_background = "#BABFCC";
+        $x_impression_font = "#525F7F";
     }else{
         $x_impression_class = "text-danger" ;
+        $x_impression_background = "#F0D1D1";
+        $x_impression_font = "#956565";
     }
 
     if($x_period >= 4){
         $x_period_class = "text-success" ;
+        $x_period_background = "#D1F0ED";
+        $x_period_font = "#659590";
     }elseif($x_period >= 2.5){
         $x_period_class = "text-warning" ;
+        $x_period_background = "#F0EED1";
+        $x_period_font = "#958065";
     }elseif($x_period == "-"){
         $x_period_class = "text-secondary" ;
+        $x_period_background = "#BABFCC";
+        $x_period_font = "#525F7F";
     }else{
         $x_period_class = "text-danger" ;
+        $x_period_background = "#F0D1D1";
+        $x_period_font = "#956565";
     }
 
-    if($x_total >= 4){
+    if($x_total >= 4) {
         $x_total_class = "text-success" ;
         $x_total_background = "#D1F0ED";
         $x_total_font = "#659590";
@@ -163,18 +179,7 @@
                         <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
                             <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
                                 <div class="row">
-                                    <div class="col-4"><i class="fa-duotone fa-loader" style="font-size: 58px;"></i></div>
-                                    <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                        <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
-                                        รอดำเนินการ
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
-                                <div class="row">
-                                    <div class="col-4"><i class="fa-duotone fa-circle-check" style="font-size: 58px;"></i></div>
+                                    <div class="col-4"><i class="fa-duotone fa-circle-check text-success" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                         <h3 class="m-0"><b>{{ $count_of_helper }}</b></h3>
                                         เสร็จสิ้น
@@ -185,7 +190,19 @@
                         <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
                             <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
                                 <div class="row">
-                                    <div class="col-4"><i class="fa-duotone fa-sparkles" style="font-size: 58px;"></i></div>
+                                    <div class="col-4"><i class=" fa-duotone fa-loader" style="font-size: 58px;"></i></div>
+                                    <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                        <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
+                                        รอดำเนินการ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                                <div class="row">
+                                    <div class="col-4"><i class="text-warning fa-duotone fa-sparkles" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                         <h3 class="m-0"><b>{{ $count_rate_of_helper }}</b></h3>
                                         มีการให้คะแนน
@@ -196,7 +213,7 @@
                         <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
                             <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
                                 <div class="row">
-                                    <div class="col-4"><i class="fa-duotone fa-clock" style="font-size: 58px;"></i></div>
+                                    <div class="col-4"><i class="fa-duotone fa-clock" style="font-size: 58px;color:#EE4D28;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                         <h3 class="m-0" style="font-family: 'Kanit', sans-serif;">
                                             @if(!empty($average_per_minute))
@@ -230,9 +247,9 @@
                             <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                        <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
-                                            <h3 class="m-0 text-center " style="color: {{$x_total_font}};">{{ $x_impression }}</h3>
-                                            <p class="text-center  m-0"  style="font-weight: bold;color:{{$x_total_font}}">คะแนน</p>
+                                        <div  style="background-color: {{$x_impression_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
+                                            <h3 class="m-0 text-center " style="color: {{$x_impression_font}};">{{ $x_impression }}</h3>
+                                            <p class="text-center  m-0"  style="font-weight: bold;color:{{$x_impression_font}}">คะแนน</p>
                                         </div>
                                     </div>
                                     <div class="col-8 p-0 d-flex align-items-center" style="font-family: 'Kanit', sans-serif;">
@@ -265,9 +282,9 @@
                             <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                        <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
-                                            <h3 class="m-0 text-center " style="color: {{$x_total_font}};">{{ $x_period }}</h3>
-                                            <p class="text-center  m-0"  style="font-weight: bold;color:{{$x_total_font}}">คะแนน</p>
+                                        <div  style="background-color: {{$x_period_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
+                                            <h3 class="m-0 text-center " style="color: {{$x_period_font}};">{{ $x_period }}</h3>
+                                            <p class="text-center  m-0"  style="font-weight: bold;color:{{$x_period_font}}">คะแนน</p>
                                         </div>
                                     </div>
                                     <div class="col-8 p-0 d-flex align-items-center" style="font-family: 'Kanit', sans-serif;">
@@ -371,8 +388,8 @@
                         <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                    <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
-                                    รอดำเนินการ
+                                    <h3 class="m-0"><b>{{ $count_of_helper }}</b></h3>
+                                    เสร็จสิ้น
                                 </div>
                             </div>
                         </div>
@@ -381,12 +398,13 @@
                         <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                    <h3 class="m-0"><b>{{ $count_of_helper }}</b></h3>
-                                    เสร็จสิ้น
+                                    <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
+                                    รอดำเนินการ
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-12 mt-3"></div>
                     <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
                         <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">

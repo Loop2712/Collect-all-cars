@@ -1,7 +1,438 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<div class="container-partner-sos">
+<div class="card" style="background-color: #D9D9D9;border-radius:15px">
+    <div class="card-body">
+        <div class="d-flex flex-row">
+            <div class="d-flex align-items-center">
+                @if(empty($data_user->photo))
+                <img src="{{ asset('/img/stickerline/PNG/20.png') }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">  
+                @else
+                <img src="{{ url('storage')}}/{{ $data_user->photo }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">
+                @endif
+            </div>
+            <div class="d-flex align-items-center" style="margin-left: 10px;">
+                <div style="font-family: 'Kanit', sans-serif;">
+                    <h4 class="m-0">{{ $data_user->name }}</h4>
+                    @if($data_user->role == "admin-partner")
+                        <p class="m-0">แอดมิน</p>
+                    @elseif($data_user->role == "partner")
+                        <p class="m-0">เจ้าหน้าที่</p>
+                    @endif
+                </div>
+            </div>
+            <!-- pc -->
+            <div class="col d-flex justify-content-end d-none d-lg-block"></div>
+            <div class="col-md-2 col-lg-2 col-6  d-none d-lg-block" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                    <div class="row">
+                        <div class="col-3"><i class="fa-duotone fa-circle-check text-success" style="font-size: 58px;"></i></div>
+                        <div class="col-9 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                            <h3 class="m-0"><b>{{ $count_data }}</b></h3>
+                            ทั้งหมด
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-6  d-none d-lg-block" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                    <div class="row">
+                        <div class="col-3"><i class="fa-duotone fa-clock" style="font-size: 58px;color:#EE4D28;"></i></div>
+                        <div class="col-9 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                            <h3 class="m-0">
+                                <b>
+                                    @if(!empty($average_per_minute))
+
+                                        @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                             <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+                                        @endif
+
+                                        @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                             <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+                                        @endif
+
+                                        @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                             <b>{{ $average_per_minute['min'] }} นาที </b>
+                                        @endif
+
+                                        @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
+                                             <b>น้อยกว่า 1 นาที</b>
+                                        @endif
+                                    @endif
+                                </b>
+                            </h3>
+                            ระยะเวลา/เคส
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- pc -->
+           
+
+        </div> 
+        <!-- mobile -->
+        <div class=" d-block d-md-none">
+            <div class="row mt-3">
+                <div class="col-6" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                    <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div class="row">
+                            <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                <h3 class="m-0"><b>{{ $count_data }}</b></h3>
+                                ทั้งหมด
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                    <div style="background-color: #ffffff;border-radius: 15px;padding:14px 10px 14px 10px;">
+                        <div class="row">
+                            <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                <h6 class="m-0">
+                                    <b>
+                                        @if(!empty($average_per_minute))
+
+                                            @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+                                            @endif
+
+                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+                                            @endif
+
+                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                                <b>{{ $average_per_minute['min'] }} นาที </b>
+                                            @endif
+
+                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
+                                                <b>น้อยกว่า 1 นาที</b>
+                                            @endif
+                                        @endif
+                                    </b>
+                                </h6>
+                                ระยะเวลา/เคส
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile -->
+    </div>
+    @foreach($view_maps as $item)
+        @php
+            if(!empty($item->photo)){
+                $div_photo = "col-lg-2 col-md-2 col-12" ;
+                $div_status = "col-lg-10 col-md-10 col-12" ;
+
+            }else{
+                $div_photo = "d-none" ;
+                $div_status = "col-12" ;
+
+            }
+
+            if($item->score_impression >= 4){
+                $impression_background = "#D1F0ED";
+                $impression_font = "#659590";
+            }elseif($item->score_impression >= 2.5){
+                $impression_background = "#F0EED1";
+                $impression_font = "#958065";
+            }else{
+                $impression_background = "#F0D1D1";
+                $impression_font = "#956565";
+            }
+
+            if($item->score_period >= 4){
+                $period_background = "#D1F0ED";
+                $period_font = "#659590";
+            }elseif($item->score_period >= 2.5){
+                $period_background = "#F0EED1";
+                $period_font = "#958065";
+            }else{
+                $period_background = "#F0D1D1";
+                $period_font = "#956565";
+            }
+
+            if($item->score_total >= 4) {
+                $total_background = "#D1F0ED";
+                $total_font = "#659590";
+            }elseif($item->score_total >= 2.5){
+                $total_background = "#F0EED1";
+                $total_font = "#958065";
+            }else{
+                $total_background = "#F0D1D1";
+                $total_font = "#956565";
+            }
+        @endphp
+        <div class="card" style="margin:0px 20px 20px 20px;border-radius:20px">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div>
+                        @if(empty($item->photo))
+                        <img src="{{ asset('/img/stickerline/PNG/20.png') }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">  
+                        @else
+                        <img src="{{ url('storage')}}/{{ $item->photo }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">
+                        @endif
+                    </div>
+                    <div class="d-flex align-items-center" style="margin-left: 10px;">
+                        <div style="font-family: 'Kanit', sans-serif;">
+                            <h4 class="m-0">{{ $item->name }}
+                                <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
+                                    <i class="far fa-eye text-primary"></i>
+                                </a>
+                            </h4>
+                            <p class="m-0">{{$item->phone}}</p>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-end"></div>
+                    <div class="col-md-1 col-lg-1 col-6 d-none d-lg-block" style="border-radius: 10px;">
+                        <div style="background-color: #db2d2e;border-radius: 15px;padding:10px">
+                            <div class="row">
+                                <a href="{{ url('/').'/profile/'.$item->user_id }}" class="m-0 p-0">
+                                    <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                        <h4 class="m-0 text-center text-white"><b>เพิ่มเติม</b></h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="{{$div_photo}} text-center" >
+                        <div style="background-color: #D9D9D9;border-radius: 20px;">
+                            <img src="{{ url('storage')}}/{{ $item->photo }}" style="object-fit: cover;border-radius:20px" alt="" width="150px" height="150px">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3 d-block d-md-none"></div>
+                    <div class="{{$div_status}}">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                                    <div style="background-color: #D9D9D9;border-radius: 15px;padding:10px;">
+                                        <div class="row">
+                                            <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                                <h5 class="m-0">
+                                                    <b>
+                                                        {{ date("d/m/Y" , strtotime($item->created_at)) }} 
+                                                        {{ date("H:i" , strtotime($item->created_at)) }}
+                                                    </b>
+                                                </h5>
+                                                เวลาแจ้งเหตุ
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-3 d-block d-md-none"></div>
+                                <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                                    @if( !empty($item->helper) and empty($item->help_complete) )
+                                        <div style="background-color: #FFF8E9;border-radius: 15px;padding:10px;">
+                                            <div class="col-12 text-center p-0 "  style="color:#958065;font-family: 'Kanit', sans-serif;">
+                                                <h5 style="color:#958065;margin:11px 0px 11px 0px;">
+                                                    <b>
+                                                    <i class="fa-solid fa-circle-exclamation"></i> ระหว่างดำเนินการ
+                                                    </b>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    @elseif($item->help_complete == "Yes" && $item->helper != null)
+                                        <div style="background-color: #D1F0ED;border-radius: 15px;padding:10px;">
+                                            <div class="col-12 text-center p-0" style="color:#659590;font-family: 'Kanit', sans-serif;">
+                                                <h5 class="m-0" style="color: #659590;">
+                                                    <b>
+                                                        {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} 
+                                                        {{ date("H:i" , strtotime($item->help_complete_time)) }}
+                                                    </b>
+                                                </h5>
+                                                <i class="fa-solid fa-check"></i> เสร็จสิ้น
+                                            </div>
+                                        </div>
+                                    @endif     
+                                </div>
+                                <div class="col-12 mt-3 d-block d-md-none"></div>
+                                <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                                    <div style="background-color: #D9D9D9;border-radius: 15px;padding:10px;">
+                                        <div class="row">
+                                            <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                                <h5 class="m-0">
+                                                    <b>
+                                                        @if( !empty($item->created_at) && !empty($item->help_complete_time) )
+                                                        <!-- ปี -->
+                                                        @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
+                                                            {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y')}} ปี 
+                                                        @endif
+                                                        <!-- เดือน -->
+                                                        @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m') != 0 )
+                                                            {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m')}} เดือน 
+                                                        @endif
+                                                        <!-- วัน -->
+                                                        @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d') != 0 )
+                                                            {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d')}} วัน 
+                                                        @endif
+                                                        <!-- ชัวโมง -->
+                                                        @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h') != 0 )
+                                                            {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h')}} ชั่วโมง 
+                                                        @endif
+                                                        <!-- นาที -->
+                                                        @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i') != 0 )
+                                                            {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i')}} นาที 
+                                                        @endif
+                                                        <!-- วินาที -->
+                                                        @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
+                                                            {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที 
+                                                        @endif
+                                                        
+                                                        @else
+                                                            <span>-</span>
+                                                        @endif
+                                                    </b>
+                                                </h5>
+                                                เวลาช่วยเหลือ
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if(!empty($item->score_impression) and !empty($item->score_period) and !empty($item->score_total))
+                                    <!-- pc -->
+                                    <div class="col-md-6 col-lg-6 col-12 mt-3 d-none d-lg-block" style="padding:0px 20px 0px 20px;border-radius: 10px;">
+                                        <div class="row">
+                                            <div class="col-4 pt-0 pb-0">
+                                                <div class="text-center p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:{{$impression_background}};">
+                                                    <h3 class="m-0" style="color:{{$impression_font}};">
+                                                        <b>
+                                                            {{$item->score_impression}}
+                                                        </b>
+                                                    </h3>
+                                                    ความประทับใจ
+                                                </div>
+                                            </div>
+                                            <div class="col-4 pt-0 pb-0">
+                                                <div class="text-center p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:{{$period_background}}">
+                                                    <h3 class="m-0" style="color:{{ $period_font}};">
+                                                        <b>
+                                                            {{$item->score_period}}
+                                                        </b>
+                                                    </h3>
+                                                    ระยะเวลา
+                                                </div>
+                                            </div>
+                                            <div class="col-4 pt-0 pb-0">
+                                                <div class="text-center p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:{{$total_background}}">
+                                                    <h3 class="m-0" style="color:{{$total_font}};">
+                                                        <b>
+                                                        {{$item->score_total}}
+                                                        </b>
+                                                    </h3>
+                                                    ภาพรวม
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- pc -->
+                                    <!-- mobile -->
+                                    <div class="d-block d-md-none">
+                                        <div class="row mt-3 ">
+                                            <div class="col-4" style="padding-right: 0px;">
+                                                <div style="border-radius:15px 0px 0px 15px;font-family: 'Kanit', sans-serif;background-color:{{$impression_background}};">
+                                                    <h3 class="m-0 text-center" style="color:{{$impression_font}};">
+                                                            <b>
+                                                                {{$item->score_impression}}
+                                                            </b>
+                                                        </h3>
+                                                        <p class="m-0 text-center">
+                                                            ประทับใจ
+                                                        </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 p-0">
+                                                <div class="text-center p-0" style="font-family: 'Kanit', sans-serif;background-color:{{$period_background}}">
+                                                    <h3 class="m-0" style="color:{{ $period_font}};">
+                                                        <b>
+                                                            {{$item->score_period}}
+                                                        </b>
+                                                    </h3>
+                                                    ระยะเวลา
+                                                </div>
+                                            </div>
+                                            <div class="col-4" style="padding-left: 0px;">
+                                                <div class="text-center" style="border-radius:0px 15px 15px 0px;font-family: 'Kanit', sans-serif;background-color:{{$total_background}}">
+                                                    <h3 class="m-0" style="color:{{$total_font}};">
+                                                        <b>
+                                                        {{$item->score_total}}
+                                                        </b>
+                                                    </h3>
+                                                    ภาพรวม
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- mobile -->
+
+                                    <div class="col-lg-6 col-md-6 col-12 mt-3">
+                                        <div class="p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:#D9D9D9">
+                                            @if(!empty($item->comment_help))
+                                            <h5 class="m-0" style="padding-left:15px;">
+                                                <b>
+                                                คำแนะนำ/ติชม
+                                                </b>
+                                            </h5 >
+                                            <p style="padding-left:15px;margin-bottom:6px;">{{$item->comment_help}}</p>
+                                            @else
+                                                <h5 class="text-center" style="margin:14px 0px 14px 0px;">
+                                                    <b>
+                                                    ไม่มีคำแนะนำ
+                                                    </b>
+                                                </h5>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @else
+                                <div class="col-12 mt-3" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                                    <div style="background-color: #D9D9D9;border-radius: 15px;padding:10px;">
+                                        <h3 class="text-center" style="font-family: 'Kanit', sans-serif;">
+                                            ไม่ได้ทำแบบประเมิน
+                                        </h3>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if(!empty($item->photo_succeed_by) or !empty($item->remark))
+                <div class="row mt-3">
+                    <div class="col-12 col-md-3 col-lg-3">
+                        <div class="text-center" style="background-color: #D9D9D9;border-radius:20px;">
+                            <img src="{{ url('storage')}}/{{ $item->photo_succeed }}" style="object-fit: cover;border-radius:5px;max-width:150px; max-height:150px" alt="" >
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3 d-block d-md-none"></div>
+
+                    <div class="col-12 col-md-9 col-lg-9">
+                        <div class="mt-0 p-2" style="font-family: 'Kanit', sans-serif;margin-top:10px;background-color: #D9D9D9;border-radius:20px;">
+                            @if(!empty($item->remark))
+                            <h3>
+                                คำแนะนำจากเจ้าหน้าที่
+                            </h3>
+                            <p class="m-0">
+                                {{ $item->remark}}
+                            </p>
+                            @else
+                            <h4 class="text-center">
+                                ไม่มีคำแนะนำจากเจ้าหน้าที่
+                            </h4>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
+    @endforeach
+</div>
+
+<br>
+
+<div class="container-partner-sos d-none">
   <div class="col-12 d-none d-lg-block">
         <div class="row">
             <br><br>
