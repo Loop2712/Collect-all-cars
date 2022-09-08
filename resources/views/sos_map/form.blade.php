@@ -235,7 +235,7 @@
                 @endif -->
                 
 
-                <button type="button" class="btn btn-primary" onclick="confirm_phone();">ยืนยัน</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" onclick="confirm_phone();">ยืนยัน</button>
               </div>
             @endif
             </div>
@@ -244,6 +244,8 @@
     </div>
 </div>
 <br><br>
+
+@include ('layouts.modal_loading')
 
 <!-- btn Modal pls input phone -->
 <button id="btn_open_pls_input_phone" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#pls_input_phone"></button>
