@@ -17,7 +17,7 @@
     <!-- ออกแบบ -->
     <div style="margin-top: -5px;" class="alert alert-danger" role="alert">
         <span>
-            มีการขอความช่วยเหลือใหม่ จากคุณ 
+            ตัวอย่างมีการขอความช่วยเหลือใหม่ จากคุณ 
             <b class="text-dark">BENZE THANAKORN</b> 
             <a href="#" class="alert-link">
                 <i style="float:right;" class="fas fa-window-close"></i>
