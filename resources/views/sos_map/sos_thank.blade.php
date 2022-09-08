@@ -61,8 +61,13 @@
               <img width="100%" src="{{ asset('/img/more/sos_thx/vn.png') }}">
             </div>
         </center>
+        <br>
+        <div style="padding: 0px 5px 0px 5px;">
+            @include ('layouts.partner_2_row')
+        </div>
+        <br>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer d-none">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button> -->
         <button type="button" class="btn btn-success">เสร็จสิ้น</button>
       </div>
