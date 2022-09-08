@@ -349,6 +349,13 @@ class LineMessagingAPI extends Model
                 }
 
                 break;
+
+            case "myvehicle": 
+                $template_path = storage_path('../public/json/flex_select_car.json');   
+                $string_json = file_get_contents($template_path);
+
+                $messages = [ json_decode($string_json, true) ]; 
+            break;
             case "mycar": 
 
                 $data_Text_topic = [

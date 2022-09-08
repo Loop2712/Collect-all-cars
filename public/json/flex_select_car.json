@@ -1,0 +1,50 @@
+{
+    "type": "flex",
+    "altText": "รถของฉัน",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/flex/car/flexcar.png",
+                    "size": "full",
+                    "aspectRatio": "27:11",
+                    "aspectMode": "cover"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "50%",
+                    "position": "absolute",
+                    "height": "100%",
+                    "action": {
+                        "type": "message",
+                        "label": "รถยนต์",
+                        "text": "รถยนต์"
+                    }
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "50%",
+                    "position": "absolute",
+                    "height": "100%",
+                    "offsetStart": "50%",
+                    "action": {
+                        "type": "message",
+                        "label": "จักรยานยนต์",
+                        "text": "จักรยานยนต์"
+                    }
+                }
+            ],
+            "position": "relative",
+            "paddingAll": "0px"
+        }
+    }
+}
