@@ -63,7 +63,7 @@
             </div>
         </center>
         <br>
-        <div class="row" style="padding: 0px 5px 0px 5px;">
+        <div style="padding: 0px 5px 0px 5px;">
             @include ('layouts.partner_2_row')
         </div>
         <br>
