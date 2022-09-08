@@ -235,7 +235,7 @@
                 @endif -->
                 
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" onclick="confirm_phone();">ยืนยัน</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone();">ยืนยัน</button>
               </div>
             @endif
             </div>
