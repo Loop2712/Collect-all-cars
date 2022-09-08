@@ -63,7 +63,7 @@
             </div>
         </center>
         <br>
-        <div class="row">
+        <div class="row p-5">
             @include ('layouts.partner_2_row')
         </div>
         <br>
