@@ -85,7 +85,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content"style="border-radius: 25px;">
       <div class="modal-body text-center" >
-        <img width="60%" src="{{ url('/img/icon/cars.gif') }}">
+        <img class="mt-3" width="60%" src="{{ url('/img/icon/cars.gif') }}">
         <br>
         <center style="margin-top:15px;">
                 <div class="bouncing-loader">
@@ -95,9 +95,9 @@
                     <div></div>
                 </div>
         </center>
-        <h4 style="font-family: 'Kanit', sans-serif;"><b>สนับสนุนโดย</b> </h4>
+        <h4 class="mt-3" style="font-family: 'Kanit', sans-serif;"><b>สนับสนุนโดย</b> </h4>
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 mt-3">
                 <div class=" owl-4-style">
                     <div class="owl-carousel owl-4 ">
                         <!-- <span id="foot_logo_partner"></span> -->
@@ -107,7 +107,7 @@
                         @foreach($partner as $item)
                             @if($loop->iteration % 2 == 0)
                             <div class="item" style="padding:0px;z-index:-1;">
-                                <img class="p-md-1 p-lg-1" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                                <img class="p-md-2 p-lg-2" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                             </div>
                             @endif
                         @endforeach
@@ -120,7 +120,7 @@
                         @foreach($partner as $item)
                             @if($loop->iteration % 2 != 0)
                                 <div class="item" style="padding:0px;z-index:-1;">
-                                    <img class="p-md-1 p-lg-1" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                                    <img class="p-md-2 p-lg-2" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                                 </div>
                             @endif
                         @endforeach
