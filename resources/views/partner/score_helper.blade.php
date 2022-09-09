@@ -1,7 +1,44 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<div class="card" style="background-color: #D9D9D9;border-radius:15px">
+<style>
+    .lightbox {
+        /* Default to hidden */
+        display: none;
+
+        /* Overlay entire screen */
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        /* A bit of padding around image */
+        padding: 1em;
+
+        /* Translucent background */
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Unhide the lightbox when it's the target */
+    .lightbox:target {
+        display: block;
+    }
+
+    .lightbox span {
+        /* Full width and height */
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        /* Size and position background image */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+</style>
+<div class="card" style="background-color: #fff;border-radius:15px">
     <div class="card-body">
         <div class="d-flex flex-row">
             <div class="d-flex align-items-center">
@@ -13,7 +50,7 @@
             </div>
             <div class="d-flex align-items-center" style="margin-left: 10px;">
                 <div style="font-family: 'Kanit', sans-serif;">
-                    <h4 class="m-0">{{ $data_user->name }}</h4>
+                    <h4 class="m-0"><b>{{ $data_user->name }}</b></h4>
                     @if($data_user->role == "admin-partner")
                         <p class="m-0">แอดมิน</p>
                     @elseif($data_user->role == "partner")
@@ -22,9 +59,9 @@
                 </div>
             </div>
             <!-- pc -->
-            <div class="col d-flex justify-content-end d-none d-lg-block"></div>
-            <div class="col-md-2 col-lg-2 col-6  d-none d-lg-block" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+            <div class=" col d-flex justify-content-end d-none d-lg-block"></div>
+            <div class=" col-md-2 col-lg-2 col-6  d-none d-lg-block main-shadow" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                <div style="background-color:#fff;border-radius: 15px;padding:10px;">
                     <div class="row">
                         <div class="col-3"><i class="fa-duotone fa-circle-check text-success" style="font-size: 58px;"></i></div>
                         <div class="col-9 text-center p-0" style="font-family: 'Kanit', sans-serif;">
@@ -34,8 +71,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-6  d-none d-lg-block" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+           &nbsp;&nbsp;&nbsp;
+            <div class="col-md-3 col-lg-3 col-6  d-none d-lg-block main-shadow" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                <div style="background-color: #fff;border-radius: 15px;padding:10px; ">
                     <div class="row">
                         <div class="col-3"><i class="fa-duotone fa-clock" style="font-size: 58px;color:#EE4D28;"></i></div>
                         <div class="col-9 text-center p-0" style="font-family: 'Kanit', sans-serif;">
@@ -73,43 +111,47 @@
         <!-- mobile -->
         <div class=" d-block d-md-none">
             <div class="row mt-3">
-                <div class="col-6" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                    <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
-                        <div class="row">
-                            <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                <h3 class="m-0"><b>{{ $count_data }}</b></h3>
-                                ทั้งหมด
+                <div class="col-6">
+                    <div class="main-shadow" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #fff;border-radius: 15px;padding:10px;">
+                            <div class="row">
+                                <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                    <h3 class="m-0"><b>{{ $count_data }}</b></h3>
+                                    ทั้งหมด
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                    <div style="background-color: #ffffff;border-radius: 15px;padding:14px 10px 14px 10px;">
-                        <div class="row">
-                            <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                <h6 class="m-0">
-                                    <b>
-                                        @if(!empty($average_per_minute))
+                <div class="col-6">
+                    <div class="main-shadow" style="padding:0px 10px 0px 10px;border-radius: 10px;">
+                        <div style="background-color: #fff;border-radius: 15px;padding:14px 10px 14px 10px;">
+                            <div class="row">
+                                <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                    <h6 class="m-0">
+                                        <b>
+                                            @if(!empty($average_per_minute))
 
-                                            @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                                <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
-                                            @endif
+                                                @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                    <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+                                                @endif
 
-                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                                <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
-                                            @endif
+                                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                                    <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b>
+                                                @endif
 
-                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
-                                                <b>{{ $average_per_minute['min'] }} นาที </b>
-                                            @endif
+                                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                                    <b>{{ $average_per_minute['min'] }} นาที </b>
+                                                @endif
 
-                                            @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
-                                                <b>น้อยกว่า 1 นาที</b>
+                                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
+                                                    <b>น้อยกว่า 1 นาที</b>
+                                                @endif
                                             @endif
-                                        @endif
-                                    </b>
-                                </h6>
-                                ระยะเวลา/เคส
+                                        </b>
+                                    </h6>
+                                    ระยะเวลา/เคส
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -164,13 +206,16 @@
             }
 
             $background_color = $loop->iteration;
-            if ($background_color % 2 == 0){
-                $background_color = "#BDE9FF" ;
-            } elseif ($background_color % 2 == 1) {
-                $background_color = "#9CE4D9" ;
-            }
+    if ($background_color % 2 == 0){
+        $background_color = "#fff" ;
+        $div_color = "#E1E1E1";
+    } elseif ($background_color % 2 == 1) {
+        $background_color = "#E1E1E1" ;
+        $div_color = "#fff";
+
+    }
         @endphp
-        <div class="card" style="margin:0px 20px 20px 20px;border-radius:20px;background-color:{{$background_color}}">
+        <div class="card main-shadow" style="margin:0px 20px 20px 20px;border-radius:20px;background-color:{{$background_color}}">
             <div class="card-body">
                 <div class="d-flex flex-row">
                     <div>
@@ -182,7 +227,7 @@
                     </div>
                     <div class="d-flex align-items-center" style="margin-left: 10px;">
                         <div style="font-family: 'Kanit', sans-serif;">
-                            <h4 class="m-0">{{ $item->name }}
+                            <h4 class="m-0"><b>{{ $item->name }}</b>
                                 <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
                                     <i class="far fa-eye text-primary"></i>
                                 </a>
@@ -193,16 +238,21 @@
                 </div>
                 <div class="row mt-3">
                     <div class="{{$div_photo}} text-center" >
-                        <div style="background-color: #fff;border-radius: 20px;">
-                            <img src="{{ url('storage')}}/{{ $item->photo }}" style="object-fit: cover;border-radius:20px" alt="" width="150px" height="150px">
-                        </div>
+                        <a href="#photo-sos{{$item->id}}">
+                            <div style="background-color: {{$div_color}};border-radius: 20px;">
+                                <img src="{{ url('storage')}}/{{ $item->photo }}" style="object-fit: cover;border-radius:20px" alt="" width="150px" height="150px">
+                            </div>
+                        </a>
+                        <a href="#img-photo-sos{{$item->id}}" class="lightbox" id="photo-sos{{$item->id}}">
+                            <span style="background-image: url('{{ url('storage')}}/{{ $item->photo }}')"></span>
+                        </a>
                     </div>
                     <div class="col-12 mt-3 d-block d-md-none"></div>
                     <div class="{{$div_status}}">
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                    <div style="background-color: #fff;border-radius: 15px;padding:10px;">
+                                    <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                         <div class="row">
                                             <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                                 <h5 class="m-0">
@@ -244,7 +294,7 @@
                                 </div>
                                 <div class="col-12 mt-3 d-block d-md-none"></div>
                                 <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                    <div style="background-color: #fff;border-radius: 15px;padding:10px;">
+                                    <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                         <div class="row">
                                             <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                                 <h5 class="m-0">
@@ -363,7 +413,7 @@
                                     <!-- mobile -->
 
                                     <div class="col-lg-6 col-md-6 col-12 mt-3">
-                                        <div class="p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:#fff   ">
+                                        <div class="p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:{{$div_color}}   ">
                                             @if(!empty($item->comment_help))
                                             <h5 class="m-0" style="padding-left:15px;">
                                                 <b>
@@ -382,7 +432,7 @@
                                     </div>
                                 @else
                                 <div class="col-12 mt-3" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                    <div style="background-color: #fff;border-radius: 15px;padding:10px;">
+                                    <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                         <h3 class="text-center" style="font-family: 'Kanit', sans-serif;">
                                             ไม่ได้ทำแบบประเมิน
                                         </h3>
@@ -396,14 +446,20 @@
                 @if(!empty($item->photo_succeed_by) or !empty($item->remark))
                 <div class="row mt-3">
                     <div class="col-12 col-md-3 col-lg-3">
-                        <div class="text-center" style="background-color: #fff;border-radius:20px;">
-                            <img src="{{ url('storage')}}/{{ $item->photo_succeed }}" style="object-fit: cover;border-radius:5px;max-width:150px; max-height:150px" alt="" >
-                        </div>
+                        <a href="#photo-hleper{{$item->id}}">
+                            <div class="text-center" style="background-color: {{$div_color}};border-radius:20px;">
+                                <img src="{{ url('storage')}}/{{ $item->photo_succeed }}" style="object-fit: cover;border-radius:5px;max-width:150px; max-height:150px" alt="" >
+                            </div>
+                        </a>
+                        <a href="#img-photo-hleper{{$item->id}}" class="lightbox" id="photo-hleper{{$item->id}}">
+                            <span style="background-image: url('{{ url('storage')}}/{{ $item->photo }}')"></span>
+                        </a>
+                        
                     </div>
                     <div class="col-12 mt-3 d-block d-md-none"></div>
 
                     <div class="col-12 col-md-9 col-lg-9">
-                        <div class="mt-0 p-2" style="font-family: 'Kanit', sans-serif;margin-top:10px;background-color: #fff;border-radius:20px;">
+                        <div class="mt-0 p-2" style="font-family: 'Kanit', sans-serif;margin-top:10px;background-color: {{$div_color}};border-radius:20px;">
                             @if(!empty($item->remark))
                             <h3>
                                 หมายเหตุจากเจ้าหน้าที่

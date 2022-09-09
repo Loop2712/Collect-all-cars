@@ -149,9 +149,12 @@
 
     $background_color = $loop->iteration;
     if ($background_color % 2 == 0){
-        $background_color = "#BDE9FF" ;
+        $background_color = "#fff" ;
+        $div_color = "#E1E1E1";
     } elseif ($background_color % 2 == 1) {
-        $background_color = "#9CE4D9" ;
+        $background_color = "#E1E1E1" ;
+        $div_color = "#fff";
+
     }
 
 
@@ -168,7 +171,7 @@
             </div>
             <div class="d-flex align-items-center" style="margin-left: 10px;">
                 <div style="font-family: 'Kanit', sans-serif;">
-                    <h4 class="m-0">{{ $item->name }}</h4>
+                    <h4 class="m-0"><b>{{ $item->name }}</b></h4>
                     @if($item->role == "admin-partner")
                         <p class="m-0">แอดมิน</p>
                     @elseif($item->role == "partner")
@@ -183,7 +186,7 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div style="background-color:{{$div_color}};border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4"><i class="fa-duotone fa-circle-check text-success" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
@@ -194,11 +197,15 @@
                             </div>
                         </div>
                         <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4"><i class=" fa-duotone fa-loader" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
+                                        @if($count_all_go_to_help == 0)
                                         <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
+                                        @else
+                                        <h3 class="m-0 text-danger"><b>{{ $count_all_go_to_help }}</b></h3>
+                                        @endif
                                         รอดำเนินการ
                                     </div>
                                 </div>
@@ -206,7 +213,7 @@
                         </div>
                         
                         <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4"><i class="text-warning fa-duotone fa-sparkles" style="font-size: 58px;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
@@ -217,7 +224,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4"><i class="fa-duotone fa-clock" style="font-size: 58px;color:#EE4D28;"></i></div>
                                     <div class="col-8 text-center p-0" style="font-family: 'Kanit', sans-serif;">
@@ -250,7 +257,7 @@
                 <div class="col-12 mt-3">
                     <div class="row">
                         <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div style="background-color:{{$div_color}};border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
                                         <div  style="background-color: {{$x_impression_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
@@ -285,7 +292,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
                                         <div  style="background-color: {{$x_period_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
@@ -319,7 +326,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                            <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                            <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                                 <div class="row">
                                     <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
                                         <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
@@ -391,7 +398,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                     <h3 class="m-0"><b>{{ $count_of_helper }}</b></h3>
@@ -401,7 +408,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                     <h3 class="m-0"><b>{{ $count_all_go_to_help }}</b></h3>
@@ -413,7 +420,7 @@
                     
                     <div class="col-12 mt-3"></div>
                     <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                     <h3 class="m-0"><b>{{ $count_rate_of_helper }}</b></h3>
@@ -423,7 +430,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3 col-6 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                     <h3 class="m-0" style="font-family: 'Kanit', sans-serif;">
@@ -455,7 +462,7 @@
             <div class="col-12 mt-3">
                 <div class="row">
                     <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
                                     <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
@@ -490,7 +497,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-4 col-12 mt-3" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
                                     <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
@@ -524,7 +531,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-4 col-12 mt-3" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                        <div style="background-color: #ffffff;border-radius: 15px;padding:10px;">
+                        <div style="background-color: {{$div_color}};border-radius: 15px;padding:10px;">
                             <div class="row">
                                 <div class="col-4" style="padding:0px 10px 0px 10px;border-radius: 10px;">
                                     <div  style="background-color: {{$x_total_background}};border-radius: 15px;font-family: 'Kanit', sans-serif; padding:10px 0px">
