@@ -957,4 +957,9 @@ class PartnerController extends Controller
 
     }
 
+    function broadcast_by_car(){
+
+        return view('partner.broadcast_by_car');
+    }
+
 }

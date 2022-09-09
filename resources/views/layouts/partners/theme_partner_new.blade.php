@@ -225,7 +225,7 @@
 						<div class="menu-title">รถที่ถูกรายงานล่าสุด</div>
 					</a>
 				</li>
-				@if(Auth::user()->organization == "JS100 Radio")
+				@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
 					<li>
 					<a href="{{ url('/broadcast_by_car') }}">
 						<div class="parent-icon"><i class="fas fa-bullhorn"></i>
@@ -240,7 +240,7 @@
                     <li class="menu-label" style="font-size:15px;">
 	                    Vii SOS
 	                </li>
-	                	@if(Auth::user()->organization == "JS100 Radio")
+	                	@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
 							<li>
 								<a href="{{ url('/sos_emergency_js100') }}">
 									<div class="parent-icon"><i class="fas fa-siren-on"></i>
