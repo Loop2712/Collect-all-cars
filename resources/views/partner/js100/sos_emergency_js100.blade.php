@@ -1,23 +1,164 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-<!-- ALERT -->
+<style>
+  
+    .div-alert{
+        position: fixed;
+        top: 25px;
+        right: 30px;
+        z-index: 999999;
+        display: flex;
+        align-items: end;
+        flex-direction: column;
+        
+        
+    }
+    .alert{
+        border-radius: 12px;
+        background: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        border-style: solid;
+        border-color: #db2d2e;;
+    }
+
+    .alert .icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 35px;
+        min-width: 35px;
+        background-color: #db2d2e;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 50%;
+    }
+
+    .alert .message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+  font-family: 'Kanit', sans-serif;
+}
+    .message .text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+}
+
+.message .text.text-1 {
+  font-weight: 600;
+  color: #333;
+}
+
+.alert .exit {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+    .div-alert.active {
+    transform: translateX(10%);
+    }
+@keyframes close {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+}
+@keyframes active {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(550px);
+	}
+}
+.close{
+    animation: close 1s ease 0s 1 normal forwards;
+}
+.active{
+    animation: active 1s ease 0s 1 reverse none;
+}
+
+.badge-without-number {
+    background-color: #f5424e;
+    font-size: 11px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.badge-without-number.with-wave {
+  animation-name: wave;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+
+@keyframes wave {
+  0% {box-shadow: 0 0 0px 0px rgba(245, 66, 78, 0.5);}
+  100% {box-shadow: 0 0 0px 10px rgba(245, 66, 78, 0);}
+}
+</style>
+
+<script></script>
+<div class="div-alert d-none">
+    <div class="alert active">
+        <i class="fa-solid fa-circle-exclamation icon"></i>
+        <div class="message">
+            <span class="text text-1">แจ้งเตือน</span>
+            <span class="text text-2"> มีการขอความช่วยเหลือใหม่ จากคุณ <b class="text-dark">BENZE THANAKORN</b> </span>
+        </div>
+        <a href="">
+            <i class="fa-solid fa-xmark exit"></i>
+        </a>
+    </div>
+    <div class="alert close">
+        <i class="fa-solid fa-circle-exclamation icon"></i>
+        <div class="message">
+            <span class="text text-1">แจ้งเตือน</span>
+            <span class="text text-2"> มีการขอความช่วยเหลือใหม่ จากคุณ <b class="text-dark">BENZE THANAKORN</b> </span>
+        </div>
+        <a href="">
+            <i class="fa-solid fa-xmark exit"></i>
+        </a>
+    </div>
+</div>
 <style>
     .alert_js100{
-        position: absolute;
-        right: 1.2%;
+        position: fixed;
+        right: 1%;
         top: 11%;
         z-index: 9999;
         margin-top: 5px;
         width: 24%;
+        -webkit-animation: slide-left 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
+	        animation: slide-left 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
     }
 </style>
+
+
+
 <!-- div_alert_js100 -->
-<div id="div_alert_js100" class="alert_js100">
+<div id="div_alert_js100" class="div-alert ">
     <!-- ออกแบบ -->
-    <div style="margin-top: -5px;" class="alert alert-danger" role="alert">
+    <div style="margin-top: -5px;" class="alert alert-danger d-none" role="alert">
         <span>
-            ตัวอย่างมีการขอความช่วยเหลือใหม่ จากคุณ 
+            มีการขอความช่วยเหลือใหม่ จากคุณ 
             <b class="text-dark">BENZE THANAKORN</b> 
             <a href="#" class="alert-link">
                 <i style="float:right;" class="fas fa-window-close"></i>
@@ -32,7 +173,7 @@
             <div class="col-6">
                 <a  style="float: left; background-color: green;" type="button" class="btn text-white"onclick="initMap('12.870032' , '100.992541','6');">
                     <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
-                </a>c
+                </a>
                 <br><br>
             </div>
             <div class="col-6">
@@ -111,6 +252,7 @@
                 <div class="card-body">
                     <div class="row text-center">
                         <div class="col-3">
+                        
                             <b>ชื่อ</b>
                         </div>
                         <div class="col-3">
@@ -135,7 +277,8 @@
                             <div style="margin-top: -10px;" >
                                 <h5 class="text-success float-left">
                                     <span style="font-size: 15px;">
-                                        <i id="sos_js100_id_{{ $item->id }}" class="fas fa-exclamation-circle notify_alert d-none" style="float:left;"></i>
+                                        <div id="sos_js100_id_{{ $item->id }}" class="badge-without-number with-wave d-none" style="margin-bottom: -17px;"></div>
+                                        
                                         <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
                                         <i class="far fa-eye text-primary"></i>
                                         </a>
@@ -604,60 +747,132 @@
         let div_alert_js100 = document.querySelector('#div_alert_js100');
             div_alert_js100.innerHTML = "" ;
 
-        for(let item of result){
+            for(let item of result){
 
-            let sos_alert_js100 = document.createElement("div");
-            let id_sos_alert_js100 = document.createAttribute("id");
-                id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
-                sos_alert_js100.setAttributeNode(id_sos_alert_js100);
-            let style_sos_alert_js100 = document.createAttribute("style");
-                style_sos_alert_js100.value = "margin-top: -5px;";
-                sos_alert_js100.setAttributeNode(style_sos_alert_js100);
-            let class_sos_alert_js100 = document.createAttribute("class");
-                class_sos_alert_js100.value = "alert alert-danger";
-                sos_alert_js100.setAttributeNode(class_sos_alert_js100);
-            let row_sos_alert_js100 = document.createAttribute("row");
-                row_sos_alert_js100.value = "alert";
-                sos_alert_js100.setAttributeNode(row_sos_alert_js100);
-            let onclicl_sos_alert_js100 = document.createAttribute("onclick");
-                onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
-                sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
+let sos_alert_js100 = document.createElement("div");
+let id_sos_alert_js100 = document.createAttribute("id");
+    id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
+    sos_alert_js100.setAttributeNode(id_sos_alert_js100);
+let class_sos_alert_js100 = document.createAttribute("class");
+    class_sos_alert_js100.value = "alert active";
+    sos_alert_js100.setAttributeNode(class_sos_alert_js100);
+let row_sos_alert_js100 = document.createAttribute("row");
+    row_sos_alert_js100.value = "alert";
+    sos_alert_js100.setAttributeNode(row_sos_alert_js100);
+let onclicl_sos_alert_js100 = document.createAttribute("onclick");
+    onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
+    sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
 
-            let span_sos_alert_js100 = document.createElement("span");
-                span_sos_alert_js100.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ" ;
-                sos_alert_js100.appendChild(span_sos_alert_js100);
+let icon_alert = document.createElement("i");
+let class_icon_alert = document.createAttribute("class");
+    class_icon_alert.value = "fa-solid fa-circle-exclamation icon";
+    icon_alert.setAttributeNode(class_icon_alert);
+    sos_alert_js100.appendChild(icon_alert);
 
-            let b_span_sos_alert_js100 = document.createElement("b");
-            let class_b_span_sos_alert_js100 = document.createAttribute("class");
-                class_b_span_sos_alert_js100.value = "text-dark";
-                b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
-                
-                b_span_sos_alert_js100.innerText = " " + item.name ;
+let div_message = document.createElement("div");
+let class_div_message = document.createAttribute("class");
+    class_div_message.value = "message";
+    div_message.setAttributeNode(class_div_message);
+    sos_alert_js100.appendChild(div_message);
 
-                span_sos_alert_js100.appendChild(b_span_sos_alert_js100);
+let span_sos_alert_js100 = document.createElement("span");
+let class_span_sos_alert_js100 = document.createAttribute("class");
+    class_span_sos_alert_js100.value = "text text-1";
+    span_sos_alert_js100.setAttributeNode(class_span_sos_alert_js100);
+    span_sos_alert_js100.innerText = "แจ้งเตือน" ;
+    div_message.appendChild(span_sos_alert_js100);
 
-            let a_span_sos_alert_js100 = document.createElement("a");
-            let href_a_span_sos_alert_js100 = document.createAttribute("href");
-                href_a_span_sos_alert_js100.value = "#";
-                a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
-            let class_a_span_sos_alert_js100 = document.createAttribute("class");
-                class_a_span_sos_alert_js100.value = "alert-link";
-                a_span_sos_alert_js100.setAttributeNode(class_a_span_sos_alert_js100);
+let span_sos_alert_name = document.createElement("span");
+let class_span_sos_alert_name = document.createAttribute("class");
+    class_span_sos_alert_name.value = "text text-2";
+    span_sos_alert_name.setAttributeNode(class_span_sos_alert_name);
+    span_sos_alert_name.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ";
+    div_message.appendChild(span_sos_alert_name);
 
-                span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
 
-            let i_a_span_sos_alert_js100 = document.createElement("i");
-            let style_i_a_span_sos_alert_js100 = document.createAttribute("style");
-                style_i_a_span_sos_alert_js100.value = "float:right;";
-                i_a_span_sos_alert_js100.setAttributeNode(style_i_a_span_sos_alert_js100);
-            let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
-                class_i_a_span_sos_alert_js100.value = "fas fa-window-close";
-                i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
+let b_span_sos_alert_js100 = document.createElement("b");
+let class_b_span_sos_alert_js100 = document.createAttribute("class");
+    class_b_span_sos_alert_js100.value = "text-dark";
+    b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
+    
+    b_span_sos_alert_js100.innerText = " " + item.name ;
 
-                a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
+    span_sos_alert_name.appendChild(b_span_sos_alert_js100);
 
-            div_alert_js100.appendChild(sos_alert_js100);
-        }
+    
+let a_span_sos_alert_js100 = document.createElement("a");
+let href_a_span_sos_alert_js100 = document.createAttribute("href");
+    href_a_span_sos_alert_js100.value = "#";
+    a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
+
+    span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
+
+let i_a_span_sos_alert_js100 = document.createElement("i");
+let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
+    class_i_a_span_sos_alert_js100.value = "fa-solid fa-xmark exit";
+    i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
+
+    a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
+
+div_alert_js100.appendChild(sos_alert_js100);
+
+}
+
+// for(let item of result){
+
+//     let sos_alert_js100 = document.createElement("div");
+//     let id_sos_alert_js100 = document.createAttribute("id");
+//         id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
+//         sos_alert_js100.setAttributeNode(id_sos_alert_js100);
+//     let style_sos_alert_js100 = document.createAttribute("style");
+//         style_sos_alert_js100.value = "margin-top: -5px;";
+//         sos_alert_js100.setAttributeNode(style_sos_alert_js100);
+//     let class_sos_alert_js100 = document.createAttribute("class");
+//         class_sos_alert_js100.value = "alert alert-danger slide-open";
+//         sos_alert_js100.setAttributeNode(class_sos_alert_js100);
+//     let row_sos_alert_js100 = document.createAttribute("row");
+//         row_sos_alert_js100.value = "alert";
+//         sos_alert_js100.setAttributeNode(row_sos_alert_js100);
+//     let onclicl_sos_alert_js100 = document.createAttribute("onclick");
+//         onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
+//         sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
+
+//     let span_sos_alert_js100 = document.createElement("span");
+//         span_sos_alert_js100.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ" ;
+//         sos_alert_js100.appendChild(span_sos_alert_js100);
+
+//     let b_span_sos_alert_js100 = document.createElement("b");
+//     let class_b_span_sos_alert_js100 = document.createAttribute("class");
+//         class_b_span_sos_alert_js100.value = "text-dark";
+//         b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
+    
+//         b_span_sos_alert_js100.innerText = " " + item.name ;
+
+//         span_sos_alert_js100.appendChild(b_span_sos_alert_js100);
+
+//     let a_span_sos_alert_js100 = document.createElement("a");
+//     let href_a_span_sos_alert_js100 = document.createAttribute("href");
+//         href_a_span_sos_alert_js100.value = "#";
+//         a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
+//     let class_a_span_sos_alert_js100 = document.createAttribute("class");
+//         class_a_span_sos_alert_js100.value = "alert-link";
+//         a_span_sos_alert_js100.setAttributeNode(class_a_span_sos_alert_js100);
+
+//         span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
+
+//     let i_a_span_sos_alert_js100 = document.createElement("i");
+//     let style_i_a_span_sos_alert_js100 = document.createAttribute("style");
+//         style_i_a_span_sos_alert_js100.value = "float:right;";
+//         i_a_span_sos_alert_js100.setAttributeNode(style_i_a_span_sos_alert_js100);
+//     let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
+//         class_i_a_span_sos_alert_js100.value = "fas fa-window-close";
+//         i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
+
+//         a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
+
+//     div_alert_js100.appendChild(sos_alert_js100);
+
+// }
         
 
     }
@@ -672,7 +887,7 @@
                 .then(result => {
                     // console.log(result);
                     for(let item of result){
-                        document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
+                        document.querySelector('#sos_js100_id_' + item.id).classList.add('close');
 
                     }
             });
@@ -683,7 +898,8 @@
                     // console.log(result);
                     for(let item of result){
                         document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
-                        document.querySelector('#sos_alert_js100_' + item.id).classList.add('d-none');
+                        document.querySelector('#sos_alert_js100_' + item.id).classList.remove('active');
+                        document.querySelector('#sos_alert_js100_' + item.id).classList.add('close');
                     }
             });
         }

@@ -1,4 +1,29 @@
 $(function () {
+  if ($('.owl-1').length > 0) {
+    $('.owl-1').owlCarousel({
+      loop:true,
+      margin:10,
+      smartSpeed: 1000,
+      autoplay: true,
+      responsiveClass:true,
+      responsive:{
+          0:{
+              items:1,
+              nav:true
+          },
+          600:{
+              items:4,
+              nav:false
+          },
+          1000:{
+              items:6,
+              nav:true
+          }
+      }
+    });
+  }
+
+
   if ($('.owl-3').length > 0) {
     $('.owl-3').owlCarousel({
       center: false,
@@ -15,24 +40,24 @@ $(function () {
         0: {
           margin: 20,
           nav: true,
-          items: 5
+          items: 1
         },
         700: {
           margin: 20,
           stagePadding: 0,
           nav: true,
-          items: 7
+          items: 2
         },
         600: {
           margin: 20,
           nav: true,
-          items: 10
+          items: 6
         },
         1000: {
           margin: 0,
           stagePadding: 0,
           nav: true,
-          items: 11
+          items: 6
         }
       }
     });

@@ -412,8 +412,8 @@
 
       <div class="container">
         <div class="row no-gutters">
-          <div class=" owl-4-style">
-              <div class="owl-carousel owl-4 ">
+          <div class=" owl-1-style">
+              <div class="owl-carousel owl-1 ">
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/2.jpg') }}" class="galelry-lightbox">
@@ -852,8 +852,8 @@
 
       <div class="container">
         <div class="row no-gutters">
-          <div class=" owl-4-style">
-              <div class="owl-carousel owl-4 ">
+          <div class=" owl-1-style">
+              <div class="owl-carousel owl-1 ">
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/2.jpg') }}" class="galelry-lightbox">
