@@ -147,10 +147,16 @@
 
     $average_per_minute = $data_average ;
 
+    $background_color = $loop->iteration;
+    if ($background_color % 2 == 0){
+        $background_color = "#BDE9FF" ;
+    } elseif ($background_color % 2 == 1) {
+        $background_color = "#9CE4D9" ;
+    }
 
 
 @endphp
-<div class="card d-none d-lg-block " style="border-radius: 15px;background-color:#D9D9D9;padding-right: 10px;">
+<div class="card d-none d-lg-block " style="border-radius: 15px;background-color:{{$background_color}};padding-right: 10px;">
     <div class="card-body">
         <div class="d-flex flex-row">
             <div>

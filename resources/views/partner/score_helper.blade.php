@@ -162,8 +162,15 @@
                 $total_background = "#F0D1D1";
                 $total_font = "#956565";
             }
+
+            $background_color = $loop->iteration;
+            if ($background_color % 2 == 0){
+                $background_color = "#BDE9FF" ;
+            } elseif ($background_color % 2 == 1) {
+                $background_color = "#9CE4D9" ;
+            }
         @endphp
-        <div class="card" style="margin:0px 20px 20px 20px;border-radius:20px">
+        <div class="card" style="margin:0px 20px 20px 20px;border-radius:20px;background-color:{{$background_color}}">
             <div class="card-body">
                 <div class="d-flex flex-row">
                     <div>
@@ -183,22 +190,10 @@
                             <p class="m-0">{{$item->phone}}</p>
                         </div>
                     </div>
-                    <div class="col d-flex justify-content-end"></div>
-                    <div class="col-md-1 col-lg-1 col-6 d-none d-lg-block" style="border-radius: 10px;">
-                        <div style="background-color: #db2d2e;border-radius: 15px;padding:10px">
-                            <div class="row">
-                                <a href="{{ url('/').'/profile/'.$item->user_id }}" class="m-0 p-0">
-                                    <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
-                                        <h4 class="m-0 text-center text-white"><b>เพิ่มเติม</b></h4>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row mt-3">
                     <div class="{{$div_photo}} text-center" >
-                        <div style="background-color: #D9D9D9;border-radius: 20px;">
+                        <div style="background-color: #fff;border-radius: 20px;">
                             <img src="{{ url('storage')}}/{{ $item->photo }}" style="object-fit: cover;border-radius:20px" alt="" width="150px" height="150px">
                         </div>
                     </div>
@@ -207,7 +202,7 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                    <div style="background-color: #D9D9D9;border-radius: 15px;padding:10px;">
+                                    <div style="background-color: #fff;border-radius: 15px;padding:10px;">
                                         <div class="row">
                                             <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                                 <h5 class="m-0">
@@ -249,7 +244,7 @@
                                 </div>
                                 <div class="col-12 mt-3 d-block d-md-none"></div>
                                 <div class="col-md-4 col-lg-4 col-12 " style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                    <div style="background-color: #D9D9D9;border-radius: 15px;padding:10px;">
+                                    <div style="background-color: #fff;border-radius: 15px;padding:10px;">
                                         <div class="row">
                                             <div class="col-12 text-center p-0" style="font-family: 'Kanit', sans-serif;">
                                                 <h5 class="m-0">
@@ -368,7 +363,7 @@
                                     <!-- mobile -->
 
                                     <div class="col-lg-6 col-md-6 col-12 mt-3">
-                                        <div class="p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:#D9D9D9">
+                                        <div class="p-1" style="border-radius:20px;font-family: 'Kanit', sans-serif;background-color:#fff   ">
                                             @if(!empty($item->comment_help))
                                             <h5 class="m-0" style="padding-left:15px;">
                                                 <b>
@@ -387,7 +382,7 @@
                                     </div>
                                 @else
                                 <div class="col-12 mt-3" style="padding:0px 10px 0px 10px;border-radius: 10px;">
-                                    <div style="background-color: #D9D9D9;border-radius: 15px;padding:10px;">
+                                    <div style="background-color: #fff;border-radius: 15px;padding:10px;">
                                         <h3 class="text-center" style="font-family: 'Kanit', sans-serif;">
                                             ไม่ได้ทำแบบประเมิน
                                         </h3>
@@ -401,24 +396,24 @@
                 @if(!empty($item->photo_succeed_by) or !empty($item->remark))
                 <div class="row mt-3">
                     <div class="col-12 col-md-3 col-lg-3">
-                        <div class="text-center" style="background-color: #D9D9D9;border-radius:20px;">
+                        <div class="text-center" style="background-color: #fff;border-radius:20px;">
                             <img src="{{ url('storage')}}/{{ $item->photo_succeed }}" style="object-fit: cover;border-radius:5px;max-width:150px; max-height:150px" alt="" >
                         </div>
                     </div>
                     <div class="col-12 mt-3 d-block d-md-none"></div>
 
                     <div class="col-12 col-md-9 col-lg-9">
-                        <div class="mt-0 p-2" style="font-family: 'Kanit', sans-serif;margin-top:10px;background-color: #D9D9D9;border-radius:20px;">
+                        <div class="mt-0 p-2" style="font-family: 'Kanit', sans-serif;margin-top:10px;background-color: #fff;border-radius:20px;">
                             @if(!empty($item->remark))
                             <h3>
-                                คำแนะนำจากเจ้าหน้าที่
+                                หมายเหตุจากเจ้าหน้าที่
                             </h3>
                             <p class="m-0">
                                 {{ $item->remark}}
                             </p>
                             @else
                             <h4 class="text-center">
-                                ไม่มีคำแนะนำจากเจ้าหน้าที่
+                                ไม่มีหมายเหตุจากเจ้าหน้าที่
                             </h4>
                             @endif
                         </div>
