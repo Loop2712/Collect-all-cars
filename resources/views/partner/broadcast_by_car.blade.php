@@ -104,6 +104,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         showCar_brand();
+        showMotor_brand();
     });
 
     function showCar_brand(){
@@ -133,9 +134,86 @@
                     option.setAttributeNode(option_class); 
 
                 //QUERY model
-                // showCar_model();
+                showCar_model();
             });
             return input_car_brand.value;
+    }
+    function showCar_model(){
+        // console.log(input_car_model.options.length);
+        while (input_car_model.options.length > 1) {
+                input_car_model.remove(1);
+            } 
+        let input_car_brand = document.querySelector("#input_car_brand");
+        // console.log(input_car_brand.value);
+        fetch("{{ url('/') }}/api/brand_middle_price/"+input_car_brand.value+"/model")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.model;
+                    option.value = item.model;
+                    input_car_model.add(option);             
+                } 
+                let option = document.createElement("option");
+                    option.text = "other";
+                    option.value = "other";
+                    input_car_model.add(option);  
+            });
+    }
+
+    // motorcycle
+    function showMotor_brand(){
+        //PARAMETERS
+        fetch("{{ url('/') }}/api/motor_middle_price")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.brand;
+                    option.value = item.brand;
+                    input_motor_brand.add(option);
+                }
+                let option = document.createElement("option");
+                    option.text = "อื่นๆ";
+                    option.value = "อื่นๆ";
+                    input_motor_brand.add(option); 
+
+                    let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                     
+                    option.setAttributeNode(option_class);
+
+                //QUERY model
+                showMotor_model();
+            });
+            return input_motor_brand.value;
+    }
+    function showMotor_model(){
+        // console.log(input_motor_model.options.length);
+        while (input_motor_model.options.length > 1) {
+                input_motor_model.remove(1);
+            } 
+        let input_motor_brand = document.querySelector("#input_motor_brand");
+        fetch("{{ url('/') }}/api/motor_middle_price/"+input_motor_brand.value+"/model")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.model;
+                    option.value = item.model;
+                    input_motor_model.add(option);                
+                } 
+                let option = document.createElement("option");
+                    option.text = "other";
+                    option.value = "other";
+                    input_motor_model.add(option); 
+            });
     }
 
 </script>
