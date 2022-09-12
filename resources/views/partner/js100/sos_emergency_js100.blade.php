@@ -804,7 +804,7 @@
             fetch("{{ url('/') }}/api/admin_click/" + all_or_id )
                 .then(response => response.json())
                 .then(result => {
-                    // console.log(result);
+                    console.log(result);
                     for(let item of result){
                         document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
 
