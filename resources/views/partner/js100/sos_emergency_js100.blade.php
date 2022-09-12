@@ -520,12 +520,12 @@
                 h5_name_user.appendChild(span_1_name_user);
 
                 if (item.notify != "admin_click") {
-                    let alert_name_user = document.createElement("i");
+                    let alert_name_user = document.createElement("div");
                     let class_alert_name_user = document.createAttribute("class");
-                        class_alert_name_user.value = "fas fa-exclamation-circle notify_alert";
+                        class_alert_name_user.value = "badge-without-number with-wave";
                         alert_name_user.setAttributeNode(class_alert_name_user);
                     let style_alert_name_user = document.createAttribute("style");
-                        style_alert_name_user.value = "float:left;";
+                        style_alert_name_user.value = "margin-bottom: -17px;";
                         alert_name_user.setAttributeNode(style_alert_name_user);
                     span_1_name_user.appendChild(alert_name_user);
                 }
