@@ -115,29 +115,6 @@
 }
 </style>
 
-<script></script>
-<div class="div-alert d-none">
-    <div class="alert active">
-        <i class="fa-solid fa-circle-exclamation icon"></i>
-        <div class="message">
-            <span class="text text-1">แจ้งเตือน</span>
-            <span class="text text-2"> มีการขอความช่วยเหลือใหม่ จากคุณ <b class="text-dark">BENZE THANAKORN</b> </span>
-        </div>
-        <a href="">
-            <i class="fa-solid fa-xmark exit"></i>
-        </a>
-    </div>
-    <div class="alert close">
-        <i class="fa-solid fa-circle-exclamation icon"></i>
-        <div class="message">
-            <span class="text text-1">แจ้งเตือน</span>
-            <span class="text text-2"> มีการขอความช่วยเหลือใหม่ จากคุณ <b class="text-dark">BENZE THANAKORN</b> </span>
-        </div>
-        <a href="">
-            <i class="fa-solid fa-xmark exit"></i>
-        </a>
-    </div>
-</div>
 <style>
     .alert_js100{
         position: fixed;
@@ -749,130 +726,130 @@
 
             for(let item of result){
 
-let sos_alert_js100 = document.createElement("div");
-let id_sos_alert_js100 = document.createAttribute("id");
-    id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
-    sos_alert_js100.setAttributeNode(id_sos_alert_js100);
-let class_sos_alert_js100 = document.createAttribute("class");
-    class_sos_alert_js100.value = "alert active";
-    sos_alert_js100.setAttributeNode(class_sos_alert_js100);
-let row_sos_alert_js100 = document.createAttribute("row");
-    row_sos_alert_js100.value = "alert";
-    sos_alert_js100.setAttributeNode(row_sos_alert_js100);
-let onclicl_sos_alert_js100 = document.createAttribute("onclick");
-    onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
-    sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
+                let sos_alert_js100 = document.createElement("div");
+                let id_sos_alert_js100 = document.createAttribute("id");
+                    id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
+                    sos_alert_js100.setAttributeNode(id_sos_alert_js100);
+                let class_sos_alert_js100 = document.createAttribute("class");
+                    class_sos_alert_js100.value = "alert active";
+                    sos_alert_js100.setAttributeNode(class_sos_alert_js100);
+                let row_sos_alert_js100 = document.createAttribute("row");
+                    row_sos_alert_js100.value = "alert";
+                    sos_alert_js100.setAttributeNode(row_sos_alert_js100);
+                let onclicl_sos_alert_js100 = document.createAttribute("onclick");
+                    onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
+                    sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
 
-let icon_alert = document.createElement("i");
-let class_icon_alert = document.createAttribute("class");
-    class_icon_alert.value = "fa-solid fa-circle-exclamation icon";
-    icon_alert.setAttributeNode(class_icon_alert);
-    sos_alert_js100.appendChild(icon_alert);
+                let icon_alert = document.createElement("i");
+                let class_icon_alert = document.createAttribute("class");
+                    class_icon_alert.value = "fa-solid fa-circle-exclamation icon";
+                    icon_alert.setAttributeNode(class_icon_alert);
+                    sos_alert_js100.appendChild(icon_alert);
 
-let div_message = document.createElement("div");
-let class_div_message = document.createAttribute("class");
-    class_div_message.value = "message";
-    div_message.setAttributeNode(class_div_message);
-    sos_alert_js100.appendChild(div_message);
+                let div_message = document.createElement("div");
+                let class_div_message = document.createAttribute("class");
+                    class_div_message.value = "message";
+                    div_message.setAttributeNode(class_div_message);
+                    sos_alert_js100.appendChild(div_message);
 
-let span_sos_alert_js100 = document.createElement("span");
-let class_span_sos_alert_js100 = document.createAttribute("class");
-    class_span_sos_alert_js100.value = "text text-1";
-    span_sos_alert_js100.setAttributeNode(class_span_sos_alert_js100);
-    span_sos_alert_js100.innerText = "แจ้งเตือน" ;
-    div_message.appendChild(span_sos_alert_js100);
+                let span_sos_alert_js100 = document.createElement("span");
+                let class_span_sos_alert_js100 = document.createAttribute("class");
+                    class_span_sos_alert_js100.value = "text text-1";
+                    span_sos_alert_js100.setAttributeNode(class_span_sos_alert_js100);
+                    span_sos_alert_js100.innerText = "แจ้งเตือน" ;
+                    div_message.appendChild(span_sos_alert_js100);
 
-let span_sos_alert_name = document.createElement("span");
-let class_span_sos_alert_name = document.createAttribute("class");
-    class_span_sos_alert_name.value = "text text-2";
-    span_sos_alert_name.setAttributeNode(class_span_sos_alert_name);
-    span_sos_alert_name.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ";
-    div_message.appendChild(span_sos_alert_name);
+                let span_sos_alert_name = document.createElement("span");
+                let class_span_sos_alert_name = document.createAttribute("class");
+                    class_span_sos_alert_name.value = "text text-2";
+                    span_sos_alert_name.setAttributeNode(class_span_sos_alert_name);
+                    span_sos_alert_name.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ";
+                    div_message.appendChild(span_sos_alert_name);
 
 
-let b_span_sos_alert_js100 = document.createElement("b");
-let class_b_span_sos_alert_js100 = document.createAttribute("class");
-    class_b_span_sos_alert_js100.value = "text-dark";
-    b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
-    
-    b_span_sos_alert_js100.innerText = " " + item.name ;
+                let b_span_sos_alert_js100 = document.createElement("b");
+                let class_b_span_sos_alert_js100 = document.createAttribute("class");
+                    class_b_span_sos_alert_js100.value = "text-dark";
+                    b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
+                    
+                    b_span_sos_alert_js100.innerText = " " + item.name ;
 
-    span_sos_alert_name.appendChild(b_span_sos_alert_js100);
+                    span_sos_alert_name.appendChild(b_span_sos_alert_js100);
 
-    
-let a_span_sos_alert_js100 = document.createElement("a");
-let href_a_span_sos_alert_js100 = document.createAttribute("href");
-    href_a_span_sos_alert_js100.value = "#";
-    a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
+                    
+                let a_span_sos_alert_js100 = document.createElement("a");
+                let href_a_span_sos_alert_js100 = document.createAttribute("href");
+                    href_a_span_sos_alert_js100.value = "#";
+                    a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
 
-    span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
+                    span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
 
-let i_a_span_sos_alert_js100 = document.createElement("i");
-let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
-    class_i_a_span_sos_alert_js100.value = "fa-solid fa-xmark exit";
-    i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
+                let i_a_span_sos_alert_js100 = document.createElement("i");
+                let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
+                    class_i_a_span_sos_alert_js100.value = "fa-solid fa-xmark exit";
+                    i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
 
-    a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
+                    a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
 
-div_alert_js100.appendChild(sos_alert_js100);
+                div_alert_js100.appendChild(sos_alert_js100);
 
-}
+                }
 
-// for(let item of result){
+                // for(let item of result){
 
-//     let sos_alert_js100 = document.createElement("div");
-//     let id_sos_alert_js100 = document.createAttribute("id");
-//         id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
-//         sos_alert_js100.setAttributeNode(id_sos_alert_js100);
-//     let style_sos_alert_js100 = document.createAttribute("style");
-//         style_sos_alert_js100.value = "margin-top: -5px;";
-//         sos_alert_js100.setAttributeNode(style_sos_alert_js100);
-//     let class_sos_alert_js100 = document.createAttribute("class");
-//         class_sos_alert_js100.value = "alert alert-danger slide-open";
-//         sos_alert_js100.setAttributeNode(class_sos_alert_js100);
-//     let row_sos_alert_js100 = document.createAttribute("row");
-//         row_sos_alert_js100.value = "alert";
-//         sos_alert_js100.setAttributeNode(row_sos_alert_js100);
-//     let onclicl_sos_alert_js100 = document.createAttribute("onclick");
-//         onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
-//         sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
+                //     let sos_alert_js100 = document.createElement("div");
+                //     let id_sos_alert_js100 = document.createAttribute("id");
+                //         id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
+                //         sos_alert_js100.setAttributeNode(id_sos_alert_js100);
+                //     let style_sos_alert_js100 = document.createAttribute("style");
+                //         style_sos_alert_js100.value = "margin-top: -5px;";
+                //         sos_alert_js100.setAttributeNode(style_sos_alert_js100);
+                //     let class_sos_alert_js100 = document.createAttribute("class");
+                //         class_sos_alert_js100.value = "alert alert-danger slide-open";
+                //         sos_alert_js100.setAttributeNode(class_sos_alert_js100);
+                //     let row_sos_alert_js100 = document.createAttribute("row");
+                //         row_sos_alert_js100.value = "alert";
+                //         sos_alert_js100.setAttributeNode(row_sos_alert_js100);
+                //     let onclicl_sos_alert_js100 = document.createAttribute("onclick");
+                //         onclicl_sos_alert_js100.value = "admin_click(" + item.id + ")";
+                //         sos_alert_js100.setAttributeNode(onclicl_sos_alert_js100);
 
-//     let span_sos_alert_js100 = document.createElement("span");
-//         span_sos_alert_js100.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ" ;
-//         sos_alert_js100.appendChild(span_sos_alert_js100);
+                //     let span_sos_alert_js100 = document.createElement("span");
+                //         span_sos_alert_js100.innerText = "มีการขอความช่วยเหลือใหม่ จากคุณ" ;
+                //         sos_alert_js100.appendChild(span_sos_alert_js100);
 
-//     let b_span_sos_alert_js100 = document.createElement("b");
-//     let class_b_span_sos_alert_js100 = document.createAttribute("class");
-//         class_b_span_sos_alert_js100.value = "text-dark";
-//         b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
-    
-//         b_span_sos_alert_js100.innerText = " " + item.name ;
+                //     let b_span_sos_alert_js100 = document.createElement("b");
+                //     let class_b_span_sos_alert_js100 = document.createAttribute("class");
+                //         class_b_span_sos_alert_js100.value = "text-dark";
+                //         b_span_sos_alert_js100.setAttributeNode(class_b_span_sos_alert_js100);
+                    
+                //         b_span_sos_alert_js100.innerText = " " + item.name ;
 
-//         span_sos_alert_js100.appendChild(b_span_sos_alert_js100);
+                //         span_sos_alert_js100.appendChild(b_span_sos_alert_js100);
 
-//     let a_span_sos_alert_js100 = document.createElement("a");
-//     let href_a_span_sos_alert_js100 = document.createAttribute("href");
-//         href_a_span_sos_alert_js100.value = "#";
-//         a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
-//     let class_a_span_sos_alert_js100 = document.createAttribute("class");
-//         class_a_span_sos_alert_js100.value = "alert-link";
-//         a_span_sos_alert_js100.setAttributeNode(class_a_span_sos_alert_js100);
+                //     let a_span_sos_alert_js100 = document.createElement("a");
+                //     let href_a_span_sos_alert_js100 = document.createAttribute("href");
+                //         href_a_span_sos_alert_js100.value = "#";
+                //         a_span_sos_alert_js100.setAttributeNode(href_a_span_sos_alert_js100);
+                //     let class_a_span_sos_alert_js100 = document.createAttribute("class");
+                //         class_a_span_sos_alert_js100.value = "alert-link";
+                //         a_span_sos_alert_js100.setAttributeNode(class_a_span_sos_alert_js100);
 
-//         span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
+                //         span_sos_alert_js100.appendChild(a_span_sos_alert_js100);
 
-//     let i_a_span_sos_alert_js100 = document.createElement("i");
-//     let style_i_a_span_sos_alert_js100 = document.createAttribute("style");
-//         style_i_a_span_sos_alert_js100.value = "float:right;";
-//         i_a_span_sos_alert_js100.setAttributeNode(style_i_a_span_sos_alert_js100);
-//     let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
-//         class_i_a_span_sos_alert_js100.value = "fas fa-window-close";
-//         i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
+                //     let i_a_span_sos_alert_js100 = document.createElement("i");
+                //     let style_i_a_span_sos_alert_js100 = document.createAttribute("style");
+                //         style_i_a_span_sos_alert_js100.value = "float:right;";
+                //         i_a_span_sos_alert_js100.setAttributeNode(style_i_a_span_sos_alert_js100);
+                //     let class_i_a_span_sos_alert_js100 = document.createAttribute("class");
+                //         class_i_a_span_sos_alert_js100.value = "fas fa-window-close";
+                //         i_a_span_sos_alert_js100.setAttributeNode(class_i_a_span_sos_alert_js100);
 
-//         a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
+                //         a_span_sos_alert_js100.appendChild(i_a_span_sos_alert_js100);
 
-//     div_alert_js100.appendChild(sos_alert_js100);
+                //     div_alert_js100.appendChild(sos_alert_js100);
 
-// }
+                // }
         
 
     }
@@ -887,7 +864,7 @@ div_alert_js100.appendChild(sos_alert_js100);
                 .then(result => {
                     // console.log(result);
                     for(let item of result){
-                        document.querySelector('#sos_js100_id_' + item.id).classList.add('close');
+                        document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
 
                     }
             });
