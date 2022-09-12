@@ -41,13 +41,13 @@
                             <div class="row">
                                 <div class="col-6 form-group">
                                     <label for="input_car_brand" class="control-label">{{ 'ยี่ห้อรถ' }}</label>
-                                    <select name="input_car_brand" class="notranslate form-control" id="input_car_brand"  onchange="showCar_model();">
+                                    <select name="input_car_brand" class="notranslate form-control" id="input_car_brand" onchange="showCar_model();">
                                         <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
                                     </select>
                                 </div>
                                 <div class="col-6 form-group">
                                     <label for="input_car_model" class="control-label">{{ 'รุ่นรถ' }}</label>
-                                    <select name="input_car_model" class="notranslate form-control" id="input_car_model"  onchange="showCar_model();">
+                                    <select name="input_car_model" class="notranslate form-control" id="input_car_model">
                                         <option class="translate" value="" selected> - เลือกรุ่น - </option> 
                                     </select>
                                 </div>
@@ -60,13 +60,13 @@
                             <div class="row">
                                 <div class="col-6 form-group">
                                     <label for="input_motor_brand" class="control-label">{{ 'ยี่ห้อรถ' }}</label>
-                                    <select name="input_motor_brand" class="notranslate form-control" id="input_motor_brand"  onchange="showCar_model();">
+                                    <select name="input_motor_brand" class="notranslate form-control" id="input_motor_brand"  onchange="showMotor_model()">
                                         <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
                                     </select>
                                 </div>
                                 <div class="col-6 form-group">
                                     <label for="input_motor_model" class="control-label">{{ 'รุ่นรถ' }}</label>
-                                    <select name="input_motor_model" class="notranslate form-control" id="input_motor_model"  onchange="showCar_model();">
+                                    <select name="input_motor_model" class="notranslate form-control" id="input_motor_model">
                                         <option class="translate" value="" selected> - เลือกรุ่น - </option> 
                                     </select>
                                 </div>
@@ -132,9 +132,6 @@
                         option_class.value = "translate";
                      
                     option.setAttributeNode(option_class); 
-
-                //QUERY model
-                showCar_model();
             });
             return input_car_brand.value;
     }
@@ -187,8 +184,6 @@
                      
                     option.setAttributeNode(option_class);
 
-                //QUERY model
-                showMotor_model();
             });
             return input_motor_brand.value;
     }
@@ -202,7 +197,7 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
-                
+
                 for(let item of result){
                     let option = document.createElement("option");
                     option.text = item.model;
