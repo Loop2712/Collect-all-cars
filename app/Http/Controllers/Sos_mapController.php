@@ -536,8 +536,19 @@ class Sos_mapController extends Controller
         }
 
         $string_json = str_replace("name_user",$name_user,$string_json);
-        $string_json = str_replace("png_language",$data_users->language,$string_json);
-        $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
+
+        if (!empty($data_users->language)) {
+            $string_json = str_replace("png_language",$data_users->language,$string_json);
+        }else{
+            $string_json = str_replace("png_language","-",$string_json);
+        }
+
+        if (!empty($data_users->nationalitie)) {
+            $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
+        }else{
+            $string_json = str_replace("png_national","-",$string_json);
+        }
+        
         $string_json = str_replace("0899999999",$phone_user,$string_json);
         $string_json = str_replace("วันที่แจ้ง",$date_now,$string_json);
         $string_json = str_replace("เวลาที่แจ้ง",$time_now,$string_json);
