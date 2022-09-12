@@ -810,7 +810,7 @@
                             document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
                         }
                         catch(err) {
-                            console.log(err);
+                            // console.log(err);
                         }
 
                     }
