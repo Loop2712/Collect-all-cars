@@ -3,119 +3,48 @@
     "altText": "select language",
     "contents": {
   "type": "bubble",
+  "size": "giga",
   "body": {
     "type": "box",
     "layout": "vertical",
-    "spacing": "md",
     "contents": [
       {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-            "size": "4xl",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.peddyhub.com/"
-            }
-          }
-        ]
-      },
-      {
-        "type": "separator",
-        "color": "#ff0101"
+        "type": "image",
+        "url": "https://www.peddyhub.com/peddyhub/images/flex-line/language/flexcn.png",
+        "size": "full",
+        "aspectRatio": "229:60",
+        "aspectMode": "cover"
       },
       {
         "type": "box",
         "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "image",
-                    "url": "https://www.peddyhub.com/peddyhub/images/national-flag/flex-zh-TW.png",
-                    "size": "60px"
-                  },
-                  {
-                    "type": "text",
-                    "text": "中國人",
-                    "align": "center",
-                    "margin": "md"
-                  },
-                  {
-                    "type": "text",
-                    "text": "Traditional Chinese",
-                    "align": "center",
-                    "wrap": true,
-                    "margin": "md"
-                  }
-                ],
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/api/change_language_fromline/zh-TW/user_id"
-                }
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "image",
-                    "url": "https://www.peddyhub.com/peddyhub/images/national-flag/flex-zh-TW.png",
-                    "size": "60px"
-                  },
-                  {
-                    "type": "text",
-                    "text": "中国人",
-                    "align": "center",
-                    "margin": "md"
-                  },
-                  {
-                    "type": "text",
-                    "text": "Simplified Chinese",
-                    "margin": "md",
-                    "align": "center",
-                    "wrap": true
-                  }
-                ],
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/api/change_language_fromline/zh-CN/user_id"
-                },
-                "margin": "md"
-              }
-            ],
-            "margin": "md"
-          }
-        ]
+        "contents": [],
+        "width": "50%",
+        "position": "absolute",
+        "height": "100%",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://www.viicheck.com/api/change_language_fromline/zh-CN/user_id"
+        }
       },
       {
-        "type": "separator",
-        "color": "#ff0101",
-        "margin": "xl"
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "width": "50%",
+        "position": "absolute",
+        "height": "100%",
+        "offsetStart": "50%",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://www.viicheck.com/api/change_language_fromline/zh-TW/user_id"
+        }
       }
     ],
-    "borderWidth": "bold",
-    "cornerRadius": "xl",
-    "borderColor": "#ff0101"
-  },
-  "styles": {
-    "hero": {
-      "backgroundColor": "#ff0101"
-    }
+    "position": "relative",
+    "paddingAll": "0px"
   }
 }
 }
