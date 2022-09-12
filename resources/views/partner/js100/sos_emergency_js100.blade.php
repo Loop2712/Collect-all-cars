@@ -254,7 +254,7 @@
                             <div style="margin-top: -10px;" >
                                 <h5 class="text-success float-left">
                                     <span style="font-size: 15px;">
-                                        <div id="sos_js100_id_{{ $item->id }}" class="badge-without-number with-wave d-none" style="margin-bottom: -17px;"></div>
+                                        <div id="sos_js100_id_{{ $item->id }}" class="badge-without-number with-wave d-" style="margin-bottom: -17px;"></div>
                                         
                                         <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
                                         <i class="far fa-eye text-primary"></i>
