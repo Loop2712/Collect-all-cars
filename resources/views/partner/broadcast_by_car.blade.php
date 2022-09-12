@@ -114,7 +114,7 @@
                 // console.log(result);
                 //UPDATE SELECT OPTION
                 let input_car_brand = document.querySelector("#input_car_brand");
-                    input_car_brand.innerHTML = "";
+                    // input_car_brand.innerHTML = "";
 
                 for(let item of result){
                     let option = document.createElement("option");
