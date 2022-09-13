@@ -213,9 +213,9 @@ class CarbrandController extends Controller
         $data = json_decode($json, true);
 
         DB::table('register_cars')
-                ->where('location' , null)
+                ->where('type_car_registration' , null)
                 ->update([
-                    'location' => "-",
+                    'type_car_registration' => "-",
             ]);
 
         $car_type = $data['car_type'];
