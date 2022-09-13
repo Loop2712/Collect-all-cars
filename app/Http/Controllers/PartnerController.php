@@ -963,12 +963,17 @@ class PartnerController extends Controller
 
         $location_user = Register_car::select('location')
             ->orderBy('location')
+            ->where('brand', "!=" , null )
+            ->where('generation', "!=" , null )
             ->where('location', "!=" , null )
+            ->where('location', "!=" , "-" )
             ->groupBy('location')
             ->get();
 
         $province_registration = Register_car::select('province')
             ->orderBy('province')
+            ->where('brand', "!=" , null )
+            ->where('generation', "!=" , null )
             ->where('province', "!=" , null )
             ->groupBy('province')
             ->get();
@@ -977,6 +982,7 @@ class PartnerController extends Controller
             ->orderBy('type_car_registration')
             ->where('type_car_registration', "!=" , "รถจักรยานยนต์" )
             ->where('type_car_registration', "!=" , null )
+            ->where('type_car_registration', "!=" , "-" )
             ->groupBy('type_car_registration')
             ->get();
 
