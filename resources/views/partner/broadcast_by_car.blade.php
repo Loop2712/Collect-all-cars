@@ -27,7 +27,8 @@
                             </div>
                             <br>
                         </div>
-                        <form method="GET" action="{{ url('/broadcast_by_car') }}" accept-charset="UTF-8" role="search">
+                        <form method="GET" action="{{ url('/broadcast_by_car') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                          
                             <input class="form-control d-" type="text" name="car_type" id="car_type" value="">
                             <!-- การกรองเพิ่มเติม -->
                             <div id="div_filter" class="d-none">
@@ -120,9 +121,9 @@
                                 <a href="{{ url('/broadcast_by_car') }}" style="width:45%;" type="button" class="btn btn-secondary">
                                     ล้างการค้นหา
                                 </a>
-                                <button style="width:45%;" type="button" class="btn btn-success" type="submit">
-                                    <i class="fas fa-search"></i> ค้นหา
-                                </button>
+                                <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px" >
+                                               ค้นหา
+                                            </button>
                             </div>
                         </form>
                     </div>
