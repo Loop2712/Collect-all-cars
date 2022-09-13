@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\CarModel;
 use DB;
 use App\Models\Insurance;
+use App\Models\Register_car;
 
 class CarbrandController extends Controller
 {
@@ -150,6 +151,56 @@ class CarbrandController extends Controller
 
         return $phones;
 
+    }
+
+    // รถยนต์
+    public function select_car_brand_user()
+    {
+        $car_brand = Register_car::select('brand')
+            ->orderBy('brand')
+            ->where('brand', "!=" , null)
+            ->where('car_type', "car")
+            ->groupBy('brand')
+            ->get();
+
+        return $car_brand;
+    }
+
+    public function select_car_model_user($car_brand)
+    {
+        $car_model = Register_car::select('generation')
+            ->orderBy('generation')
+            ->where('generation', "!=" , null )
+            ->where('car_type', "car" )
+            ->where('brand', $car_brand )
+            ->groupBy('generation')
+            ->get();
+        return $car_model;
+    }
+
+    // รถจักรยนต์
+    public function select_motor_brand_user()
+    {
+        $car_brand = Register_car::select('brand')
+            ->orderBy('brand')
+            ->where('brand', "!=" , null)
+            ->where('car_type', "motorcycle")
+            ->groupBy('brand')
+            ->get();
+
+        return $car_brand;
+    }
+
+    public function select_motor_model_user($motor_brand)
+    {
+        $car_model = Register_car::select('generation')
+            ->orderBy('generation')
+            ->where('generation', "!=" , null )
+            ->where('car_type', "motorcycle" )
+            ->where('brand', $motor_brand )
+            ->groupBy('generation')
+            ->get();
+        return $car_model;
     }
 
 }

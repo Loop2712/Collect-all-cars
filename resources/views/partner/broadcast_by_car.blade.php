@@ -18,72 +18,113 @@
                                 <label for="car_type" class="control-label">{{ 'เลือกประเภทรถ' }}</label>
                                 <br>
                                 <div style="margin-top:12px;font-size: 18px;">
-                                    <input type="radio" name="select_car_type" id="select_type_car">
+                                    <input type="radio" name="select_car_type" id="select_type_car" onclick="select_type_car('car')">
                                     &nbsp; <i class="fas fa-car text-danger"></i> รถยนต์ 
                                     <br>
-                                    <input type="radio" name="select_car_type" id="select_type_motor">
+                                    <input type="radio" name="select_car_type" id="select_type_motor" onclick="select_type_car('motor')">
                                     &nbsp; <i class="fas fa-motorcycle text-success"></i> รถจักรยานยนต์
                                 </div>
-
-                                <input class="form-control d-none" type="text" name="car_type" id="car_type" value="">
                             </div>
                             <br>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group {{ $errors->has('location_user') ? 'has-error' : ''}}">
-                                <label for="location_user" class="control-label">{{ 'พื้นที่ผู้ลงทะเบียนรถ' }}</label>
-                                <input class="form-control" type="text" name="location_user" id="location_user" value="">
-                            </div>
-                            <br>
-                        </div>
-                        <!-- รถยนต์ -->
-                        <div id="div_car_brand" class="col-12">
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <label for="input_car_brand" class="control-label">{{ 'ยี่ห้อรถ' }}</label>
-                                    <select name="input_car_brand" class="notranslate form-control" id="input_car_brand" onchange="showCar_model();">
-                                        <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
-                                    </select>
+                        <form method="GET" action="{{ url('/broadcast_by_car') }}" accept-charset="UTF-8" role="search">
+                            <input class="form-control d-" type="text" name="car_type" id="car_type" value="">
+                            <!-- การกรองเพิ่มเติม -->
+                            <div id="div_filter" class="d-none">
+                                <!-- รถยนต์ -->
+                                <div id="div_car_brand" class="col-12 d-none">
+                                    <div class="row">
+                                        <div class="col-6 form-group">
+                                            <label for="input_car_brand" class="control-label">{{ 'ยี่ห้อรถ' }}</label>
+                                            <select name="input_car_brand" class="notranslate form-control" id="input_car_brand" onchange="showCar_model();">
+                                                <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
+                                            </select>
+                                        </div>
+                                        <div class="col-6 form-group">
+                                            <label for="input_car_model" class="control-label">{{ 'รุ่นรถ' }}</label>
+                                            <select name="input_car_model" class="notranslate form-control" id="input_car_model">
+                                                <option class="translate" value="" selected> - เลือกรุ่น - </option> 
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
                                 </div>
-                                <div class="col-6 form-group">
-                                    <label for="input_car_model" class="control-label">{{ 'รุ่นรถ' }}</label>
-                                    <select name="input_car_model" class="notranslate form-control" id="input_car_model">
-                                        <option class="translate" value="" selected> - เลือกรุ่น - </option> 
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
 
-                        <!-- รถจักรยานยนต์ -->
-                        <div id="div_motor_brand" class="col-12">
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <label for="input_motor_brand" class="control-label">{{ 'ยี่ห้อรถ' }}</label>
-                                    <select name="input_motor_brand" class="notranslate form-control" id="input_motor_brand"  onchange="showMotor_model()">
-                                        <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
-                                    </select>
+                                <!-- รถจักรยานยนต์ -->
+                                <div id="div_motor_brand" class="col-12 d-none">
+                                    <div class="row">
+                                        <div class="col-6 form-group">
+                                            <label for="input_motor_brand" class="control-label">{{ 'ยี่ห้อรถ' }}</label>
+                                            <select name="input_motor_brand" class="notranslate form-control" id="input_motor_brand"  onchange="showMotor_model()">
+                                                <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
+                                            </select>
+                                        </div>
+                                        <div class="col-6 form-group">
+                                            <label for="input_motor_model" class="control-label">{{ 'รุ่นรถ' }}</label>
+                                            <select name="input_motor_model" class="notranslate form-control" id="input_motor_model">
+                                                <option class="translate" value="" selected> - เลือกรุ่น - </option> 
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
                                 </div>
-                                <div class="col-6 form-group">
-                                    <label for="input_motor_model" class="control-label">{{ 'รุ่นรถ' }}</label>
-                                    <select name="input_motor_model" class="notranslate form-control" id="input_motor_model">
-                                        <option class="translate" value="" selected> - เลือกรุ่น - </option> 
-                                    </select>
+
+                                <div class="col-12">
+                                    <div class="form-group {{ $errors->has('location_user') ? 'has-error' : ''}}">
+                                        <label for="location_user" class="control-label">{{ 'พื้นที่ผู้ลงทะเบียนรถ' }}</label>
+                                        <select name="location_user" class="notranslate form-control" id="location_user" >
+                                            <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
+                                            @foreach($location_user as $lo_user)
+                                            <option class="translate" value="{{ $lo_user->location }}">
+                                                {{ $lo_user->location }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="province_registration" class="control-label">{{ 'จังหวัดของทะเบียนรถ' }}</label>
+                                        <select name="province_registration" class="notranslate form-control" id="province_registration" >
+                                            <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
+                                            @foreach($province_registration as $pro_reg)
+                                            <option class="translate" value="{{ $pro_reg->province }}">
+                                                {{ $pro_reg->province }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div id="type_car_registration" class="col-12 d-none">
+                                    <div class="form-group">
+                                        <label for="type_registration" class="control-label">{{ 'ประเภท' }}</label>
+                                        <select name="type_registration" class="notranslate form-control" id="type_registration" >
+                                            <option class="translate" value="" selected> - เลือกประเภท - </option>
+                                            @foreach($type_registrations as $type_registration)
+                                            <option class="translate" value="{{ $type_registration->type_reg }}">
+                                                {{ $type_registration->type_reg }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <br>
                                 </div>
                             </div>
-                            <br>
-                        </div>
 
-
-                        <hr><br>
-                        <div class="col-12 text-center">
-                            <button style="width:45%;" type="button" class="btn btn-secondary">
-                                ล้างการค้นหา
-                            </button>
-                            <button style="width:45%;" type="button" class="btn btn-success">
-                                <i class="fas fa-search"></i> ค้นหา
-                            </button>
-                        </div>
+                            <hr><br>
+                            <div id="div_btn_search" class="col-12 text-center d-none ">
+                                <a href="{{ url('/broadcast_by_car') }}" style="width:45%;" type="button" class="btn btn-secondary">
+                                    ล้างการค้นหา
+                                </a>
+                                <button style="width:45%;" type="button" class="btn btn-success" type="submit">
+                                    <i class="fas fa-search"></i> ค้นหา
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- ผลการค้นหา -->
@@ -101,21 +142,60 @@
 
 <script>
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        showCar_brand();
-        showMotor_brand();
-    });
+    function select_type_car(type){
+
+        document.querySelector('#car_type').value = type ;
+        document.querySelector('#div_btn_search').classList.remove('d-none');
+
+        if (type === "car") {
+
+            showCar_brand();
+
+            let input_motor_brand = document.querySelector("#input_motor_brand");
+                input_motor_brand.innerHTML = "";
+            let input_motor_model = document.querySelector("#input_motor_model");
+                input_motor_model.innerHTML = "";
+
+            document.querySelector('#div_filter').classList.remove('d-none');
+            document.querySelector('#div_car_brand').classList.remove('d-none');
+            document.querySelector('#div_motor_brand').classList.add('d-none');
+            document.querySelector('#type_car_registration').classList.remove('d-none');
+        }else{
+
+            showMotor_brand();
+
+            let input_car_brand = document.querySelector("#input_car_brand");
+                input_car_brand.innerHTML = "";
+            let input_car_model = document.querySelector("#input_car_model");
+                input_car_model.innerHTML = "";
+
+            document.querySelector('#div_filter').classList.remove('d-none');
+            document.querySelector('#div_motor_brand').classList.remove('d-none');
+            document.querySelector('#div_car_brand').classList.add('d-none');
+            document.querySelector('#type_car_registration').classList.add('d-none');
+        }
+
+    }
 
     function showCar_brand(){
         //PARAMETERS
-        fetch("{{ url('/') }}/api/brand_middle_price")
+        fetch("{{ url('/') }}/api/select_car_brand_user")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
                 //UPDATE SELECT OPTION
                 let input_car_brand = document.querySelector("#input_car_brand");
                     // input_car_brand.innerHTML = "";
+
+                let option_first = document.createElement("option");
+                    option_first.text = "เลือกยี่ห้อ";
+                    option_first.value = "";
+                    input_car_brand.add(option_first); 
+
+                let option_first_class = document.createAttribute("class");
+                        option_first_class.value = "translate";
+                     
+                    option_first.setAttributeNode(option_first_class);
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -136,21 +216,33 @@
             return input_car_brand.value;
     }
     function showCar_model(){
-        // console.log(input_car_model.options.length);
+
         while (input_car_model.options.length > 1) {
-                input_car_model.remove(1);
-            } 
+            input_car_model.remove(1);
+        } 
+            
         let input_car_brand = document.querySelector("#input_car_brand");
         // console.log(input_car_brand.value);
-        fetch("{{ url('/') }}/api/brand_middle_price/"+input_car_brand.value+"/model")
+
+        fetch("{{ url('/') }}/api/select_car_brand_user/"+input_car_brand.value+"/model")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
+                let option_first = document.createElement("option");
+                    option_first.text = "เลือกรุ่น";
+                    option_first.value = "";
+                    input_car_model.add(option_first); 
+
+                let option_first_class = document.createAttribute("class");
+                        option_first_class.value = "translate";
+                     
+                    option_first.setAttributeNode(option_first_class);
+
                 for(let item of result){
                     let option = document.createElement("option");
-                    option.text = item.model;
-                    option.value = item.model;
+                    option.text = item.generation;
+                    option.value = item.generation;
                     input_car_model.add(option);             
                 } 
                 let option = document.createElement("option");
@@ -163,10 +255,22 @@
     // motorcycle
     function showMotor_brand(){
         //PARAMETERS
-        fetch("{{ url('/') }}/api/motor_middle_price")
+        fetch("{{ url('/') }}/api/select_motor_brand_user")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+                let input_motor_brand = document.querySelector("#input_motor_brand");
+                    // input_motor_brand.innerHTML = "";
+
+                let option_first = document.createElement("option");
+                    option_first.text = "เลือกยี่ห้อ";
+                    option_first.value = "";
+                    input_motor_brand.add(option_first); 
+
+                let option_first_class = document.createAttribute("class");
+                    option_first_class.value = "translate";
+                     
+                option_first.setAttributeNode(option_first_class);
 
                 for(let item of result){
                     let option = document.createElement("option");
@@ -188,20 +292,32 @@
             return input_motor_brand.value;
     }
     function showMotor_model(){
-        // console.log(input_motor_model.options.length);
+
         while (input_motor_model.options.length > 1) {
-                input_motor_model.remove(1);
-            } 
+            input_motor_model.remove(1);
+        } 
+
         let input_motor_brand = document.querySelector("#input_motor_brand");
-        fetch("{{ url('/') }}/api/motor_middle_price/"+input_motor_brand.value+"/model")
+
+        fetch("{{ url('/') }}/api/select_motor_brand_user/"+input_motor_brand.value+"/model")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
+                let option_first = document.createElement("option");
+                    option_first.text = "เลือกรุ่น";
+                    option_first.value = "";
+                    input_motor_model.add(option_first); 
+
+                let option_first_class = document.createAttribute("class");
+                    option_first_class.value = "translate";
+                     
+                option_first.setAttributeNode(option_first_class);
+
                 for(let item of result){
                     let option = document.createElement("option");
-                    option.text = item.model;
-                    option.value = item.model;
+                    option.text = item.generation;
+                    option.value = item.generation;
                     input_motor_model.add(option);                
                 } 
                 let option = document.createElement("option");
@@ -212,5 +328,4 @@
     }
 
 </script>
-
 @endsection

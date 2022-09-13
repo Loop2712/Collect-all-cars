@@ -957,9 +957,35 @@ class PartnerController extends Controller
 
     }
 
-    function broadcast_by_car(){
+    function broadcast_by_car(Request $request){
 
-        return view('partner.broadcast_by_car');
+        $requestData = $request->all();
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
+
+        $location_user = Register_car::select('location')
+            ->orderBy('location')
+            ->where('location', "!=" , null )
+            ->groupBy('location')
+            ->get();
+
+        $province_registration = Register_car::select('province')
+            ->orderBy('province')
+            ->where('province', "!=" , null )
+            ->groupBy('province')
+            ->get();
+
+        $type_registrations = Register_car::select('type_car_registration as type_reg')
+            ->orderBy('type_car_registration')
+            ->where('type_car_registration', "!=" , "รถจักรยานยนต์" )
+            ->where('type_car_registration', "!=" , null )
+            ->groupBy('type_car_registration')
+            ->get();
+
+        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations'));
     }
 
 }

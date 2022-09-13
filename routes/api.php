@@ -71,6 +71,13 @@ Route::get('/explode_name/{name_user}', 'ProfileController@explode_name');
 
 Route::get('/check_add_line/{id_user}','API\LineApiController@check_add_line');
 
+Route::get('/select_car_brand_user','API\CarbrandController@select_car_brand_user');
+Route::get('/select_car_brand_user/{car_brand}/model','API\CarbrandController@select_car_model_user');
+
+Route::get('/select_motor_brand_user','API\CarbrandController@select_motor_brand_user');
+Route::get('/select_motor_brand_user/{motor_brand}/model','API\CarbrandController@select_motor_model_user');
+
+
 // ยี่ห้อจากราคากลาง
 Route::get('/brand_middle_price','API\Brand_middle_price_carsController@getBrand');
 Route::get('/brand_middle_price/{car_brand}/model','API\Brand_middle_price_carsController@getModel');
