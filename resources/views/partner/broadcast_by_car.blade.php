@@ -7,7 +7,7 @@
 	    <div class="col-12" style="padding:20px;">
 	        <div class="row">
                 <!-- การค้นหา -->
-                <div class="col-4">
+                <div class="col-3">
                     <div class="row">
                         <div class="col-12">
                             <h3 class="text-dark"><b>กรองข้อมูล</b></h3>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <!-- ผลการค้นหา -->
-                <div id="div_data_car_search" class="col-8">
+                <div id="div_data_car_search" class="col-9">
                     <div class="col-12">
                         <h3 class="text-dark"><b>ผลการค้นหา</b>&nbsp;&nbsp;<span style="font-size:15px;"><span id="count_search_data">0</span> คัน</span> </h3>
                         <br>
