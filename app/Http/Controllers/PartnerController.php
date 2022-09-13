@@ -961,11 +961,6 @@ class PartnerController extends Controller
 
         $requestData = $request->all();
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
-
         $location_user = Register_car::select('location')
             ->orderBy('location')
             ->where('location', "!=" , null )

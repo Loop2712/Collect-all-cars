@@ -77,6 +77,8 @@ Route::get('/select_car_brand_user/{car_brand}/model','API\CarbrandController@se
 Route::get('/select_motor_brand_user','API\CarbrandController@select_motor_brand_user');
 Route::get('/select_motor_brand_user/{motor_brand}/model','API\CarbrandController@select_motor_model_user');
 
+Route::post('/search_data_broadcast_by_car','API\CarbrandController@search_data_broadcast_by_car');
+
 
 // ยี่ห้อจากราคากลาง
 Route::get('/brand_middle_price','API\Brand_middle_price_carsController@getBrand');

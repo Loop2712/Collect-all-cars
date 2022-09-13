@@ -159,6 +159,7 @@ class CarbrandController extends Controller
         $car_brand = Register_car::select('brand')
             ->orderBy('brand')
             ->where('brand', "!=" , null)
+            ->where('active', "Yes")
             ->where('car_type', "car")
             ->groupBy('brand')
             ->get();
@@ -172,6 +173,7 @@ class CarbrandController extends Controller
             ->orderBy('generation')
             ->where('generation', "!=" , null )
             ->where('car_type', "car" )
+            ->where('active', "Yes")
             ->where('brand', $car_brand )
             ->groupBy('generation')
             ->get();
@@ -184,6 +186,7 @@ class CarbrandController extends Controller
         $car_brand = Register_car::select('brand')
             ->orderBy('brand')
             ->where('brand', "!=" , null)
+            ->where('active', "Yes")
             ->where('car_type', "motorcycle")
             ->groupBy('brand')
             ->get();
@@ -197,10 +200,84 @@ class CarbrandController extends Controller
             ->orderBy('generation')
             ->where('generation', "!=" , null )
             ->where('car_type', "motorcycle" )
+            ->where('active', "Yes")
             ->where('brand', $motor_brand )
             ->groupBy('generation')
             ->get();
         return $car_model;
+    }
+
+    function search_data_broadcast_by_car()
+    {
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+
+        $car_type = $data['car_type'];
+        $brand = $data['brand'];
+        $model = $data['model'];
+        $location_user = $data['location_user'];
+        $province_registration = $data['province_registration'];
+        $type_registration = $data['type_registration'];
+
+        if ($car_type != "car") {
+            $car_type = "motorcycle" ;
+        }
+
+        if ( empty($brand) and empty($model) and empty($location_user) and empty($province_registration) and empty($type_registration) ) {
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->get();
+
+        }elseif ( !empty($brand) and empty($model) and empty($location_user) and empty($province_registration) and empty($type_registration) ) {
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->where('brand', $brand)
+                ->get();
+
+        }elseif ( !empty($brand) and !empty($model) and empty($location_user) and empty($province_registration) and empty($type_registration) ) {
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->where('brand', $brand)
+                ->where('generation', $model)
+                ->get();
+
+        }elseif ( !empty($brand) and !empty($model) and !empty($location_user) and empty($province_registration) and empty($type_registration) ) {
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->where('brand', $brand)
+                ->where('generation', $model)
+                ->where('location', $location_user)
+                ->get();
+
+        }elseif ( !empty($brand) and !empty($model) and !empty($location_user) and !empty($province_registration) and empty($type_registration) ) {
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->where('brand', $brand)
+                ->where('generation', $model)
+                ->where('location', $location_user)
+                ->where('province', $province_registration)
+                ->get();
+
+        }elseif ( !empty($brand) and !empty($model) and !empty($location_user) and !empty($province_registration) and !empty($type_registration) ) {
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->where('brand', $brand)
+                ->where('generation', $model)
+                ->where('location', $location_user)
+                ->where('province', $province_registration)
+                ->where('type_car_registration', $type_registration)
+                ->get();
+
+        }
+
+        return $data_search ;
+
     }
 
 }
