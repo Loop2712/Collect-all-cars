@@ -125,29 +125,6 @@ $(function () {
       }
     });
   }
-  if ($('.owl-5').length > 0) {
-    $('.owl-5').owlCarousel({
-      loop:true,
-      margin:10,
-      smartSpeed: 1000,
-      autoplay: true,
-      responsiveClass:true,
-      responsive:{
-          0:{
-              items:11,
-              nav:true
-          },
-          600:{
-              items:11,
-              nav:false
-          },
-          1000:{
-              items:11,
-              nav:true
-          }
-      }
-    });
-  }
   if ($('.owl-4').length > 0) {
     $('.owl-4').owlCarousel({
       loop:true,
