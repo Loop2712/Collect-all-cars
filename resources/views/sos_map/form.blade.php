@@ -70,26 +70,33 @@
                     </div>
                 <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4989368.068715823!2d100.32470292487557!3d14.23861745451566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1625474458473!5m2!1sth!2sth" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
             </div></center>
-            <div class="col-12 p-3 mb-5 rounded" >
+            <div id="location_users">
+
+            </div>
+            <div class="col-12 p-3 mb-5 rounded " >
                 <div class="row">
-                    <div class="col-12" >
+                    <div class="col-12 mt-2" id="location_user">
                         <br>
-                        <p  style=" color:#B3B6B7;font-family: 'Kanit', sans-serif;" id="location_user">
+                        <p  style=" color:#B3B6B7;font-family: 'Kanit', sans-serif;" >
                             <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
                             <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
                         </p>
                     </div>
-                    <div class="col-12">
-                        <a style="font-family: 'Kanit', sans-serif;border-radius:15px" id="a_help" class="shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop">
+
+                    <div class="col-12  order-1">
+                        <a style="font-family: 'Kanit', sans-serif;border-radius:15px" id="a_help" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop">
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP </b>
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
                         </a>
+                    </div>
+                    <div class="col-12 order-3">
                         <a style="font-family: 'Kanit', sans-serif;border-radius:15px" href="tel:112" id="btn_quick_help" class="shadow btn btn-warning btn-block shadow-box " onclick="save_sos_content('police' , '112');">
-                            <i class="fas fa-bullhorn"></i> <b>Ask for HELP</b>
+                                <i class="fas fa-bullhorn"></i> <b>Ask for HELP</b>
                         </a>
-                    </div> 
-                    <div class="col-12 mt-3 d-none" id="btn_emergency_js100">
+                    </div>
+                        
+                    <div class="col-12 d-none order-2 mt-3 mb-3" id="btn_emergency_js100">
                         <button class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#08361d;" onclick="call_sos_of_js100();">
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp;Call Emergency  JS 100</b>
                         </button>

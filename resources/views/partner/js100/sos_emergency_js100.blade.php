@@ -75,7 +75,7 @@
 		transform: translateX(250px);
 	}
 }
-@keyframes active {
+@keyframes active-alert {
 	0% {
 		opacity: 1;
 		transform: translateX(0);
@@ -89,8 +89,8 @@
 .close{
     animation: close 1s ease 0s 1 normal forwards;
 }
-.active{
-    animation: active 1s ease 0s 1 reverse none;
+.active-alert{
+    animation: active-alert 1s ease 0s 1 reverse none;
 }
 
 .badge-without-number {
@@ -284,6 +284,7 @@
                     </div>
                     @endforeach
                     <!-- เลื่อนหน้า -->
+                    <div class="pagination-wrapper"> {!! $view_maps_all->appends(['search' => Request::get('search')])->render() !!} </div>
                 </div>
 
                 <!-- div_content_sos_js100 -->
@@ -731,7 +732,7 @@
                     id_sos_alert_js100.value = "sos_alert_js100_" + item.id ;
                     sos_alert_js100.setAttributeNode(id_sos_alert_js100);
                 let class_sos_alert_js100 = document.createAttribute("class");
-                    class_sos_alert_js100.value = "alert active";
+                    class_sos_alert_js100.value = "alert active-alert";
                     sos_alert_js100.setAttributeNode(class_sos_alert_js100);
                 let row_sos_alert_js100 = document.createAttribute("row");
                     row_sos_alert_js100.value = "alert";
@@ -822,7 +823,7 @@
                     // console.log(result);
                     for(let item of result){
                         document.querySelector('#sos_js100_id_' + item.id).classList.add('d-none');
-                        document.querySelector('#sos_alert_js100_' + item.id).classList.remove('active');
+                        document.querySelector('#sos_alert_js100_' + item.id).classList.remove('active-alert');
                         document.querySelector('#sos_alert_js100_' + item.id).classList.add('close');
                     }
             });

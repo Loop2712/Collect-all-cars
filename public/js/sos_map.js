@@ -24,9 +24,9 @@
 
         // console.log(lat);
         // console.log(lng);
-
-        let location_user = document.querySelector("#location_user");
-            location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary shadow" style="border-radius:10px" id="submit"><i class="fas fa-search-location"></i> &nbsp; My Position</a>';
+       
+        let location_users = document.querySelector("#location_user");
+            location_users.innerHTML = '<a class=" shadow-box text-white btn btn-primary shadow" style="position:absolute;margin-top:-100px;margin-left:10px;border-radius:10px" id="submit"><i class="fas fa-search-location"></i></a>';
 
         check_area(lat,lng);
     }
@@ -61,6 +61,7 @@
         const infowindow = new google.maps.InfoWindow();
 
         document.getElementById("location_user").addEventListener("click", () => {
+            
             geocodeLatLng(geocoder, map, infowindow);
         });
 
