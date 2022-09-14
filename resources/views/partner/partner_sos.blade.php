@@ -51,16 +51,9 @@
                     <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
                     @if(Auth::check())
                         @if(Auth::user()->role == 'admin-partner')
-                            @if(Auth::user()->organization != "JS100 Radio" and Auth::user()->id == 1 or Auth::user()->id == 9 )
                             <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-primary text-white d-">
                                 คะแนนการช่วยเหลือ
                             </a>
-                            @else
-                            <a href="#" type="button" class="btn btn-primary text-white d-">
-                                คะแนนการช่วยเหลือ (soon)
-                            </a>
-                            @endif
-                    <!--  href="{{ url('/sos_score_helper') }}" -->
                         @endif
                     @endif
                     <a type="button" data-toggle="modal" data-target="#Partner_gsos">
