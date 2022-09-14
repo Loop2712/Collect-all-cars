@@ -116,9 +116,9 @@
 
                         <hr><br>
                         <div id="div_btn_search" class="col-12 text-center d-none ">
-                            <a href="{{ url('/broadcast_by_car') }}" style="width:45%;" type="button" class="btn btn-secondary main-shadow main-radius d-none">
+                            <button style="width:60%;" type="button" class="btn btn-sm btn-secondary main-shadow main-radius" onclick="clear_search_input_data();">
                                 ล้างการค้นหา
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,17 @@
                         <br>
                     </div>
                     <div class="col-12">
-                        <div id="content_search_data"></div>
+                        <div class="row">
+                            <div class="col-9">
+                                <div id="content_search_data"></div>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-center">เลือกแล้ว <span id="car_selected">0</span> / 10 คัน</p>
+                                <p class="text-center">จากผู้ใช้ <span id="user_selected">0</span> / 10 คน</p>
+                                <input class="form-control" type="text" name="arr_car_id_selected" id="arr_car_id_selected">
+                                <input class="form-control" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,87 +155,45 @@
         
     });
 
-    function search_data(){
+    function click_select_car(user_id , car_id){
+        
+        let arr_user_id_selected = document.querySelector('#arr_user_id_selected');
+        let arr_car_id_selected = document.querySelector('#arr_car_id_selected');
 
-        let car_type = document.querySelector("#car_type").value;
-        let input_car_brand = document.querySelector("#input_car_brand").value;
-        let input_car_model = document.querySelector("#input_car_model").value;
-        let input_motor_brand = document.querySelector("#input_motor_brand").value;
-        let input_motor_model = document.querySelector("#input_motor_model").value;
-        let location_user = document.querySelector("#location_user").value;
-        let province_registration = document.querySelector("#province_registration").value;
-        let type_registration = document.querySelector("#type_registration").value;
+        let arr_user_id  = [];
+        let arr_car_id  = [];
 
-        let data_search_data ;
-
-        if (car_type == "car") {
-
-            data_search_data = {
-                'car_type' : car_type,
-                'brand' : input_car_brand,
-                'model' : input_car_model,
-                'location_user' : location_user,
-                'province_registration' : province_registration,
-                'type_registration' : type_registration,
-            };
-
+        if (!arr_user_id_selected.value) {
+            arr_user_id_selected.value = '["'+user_id +'"]' ;
         }else{
+            arr_user_id = JSON.parse(arr_user_id_selected.value) ;
 
-            data_search_data = {
-                'car_type' : car_type,
-                'brand' : input_motor_brand,
-                'model' : input_motor_model,
-                'location_user' : location_user,
-                'province_registration' : province_registration,
-                'type_registration' : null,
-            };
+            if ( arr_user_id.includes(user_id) ) {
+                // 
+            }else{
+                arr_user_id.push(user_id);
+                arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
+            }
 
         }
 
-        fetch("{{ url('/') }}/api/search_data_broadcast_by_car", 
-        {
-            method: 'post',
-            body: JSON.stringify(data_search_data),
-            headers: {
-                'Content-Type': 'application/json'
+        if (!arr_car_id_selected.value) {
+            arr_car_id_selected.value = '["'+car_id +'"]' ;
+        }else{
+            arr_car_id = JSON.parse(arr_car_id_selected.value) ;
+
+            if ( arr_car_id.includes(car_id) ) {
+                // 
+            }else{
+                arr_car_id.push(car_id);
+                arr_car_id_selected.value = JSON.stringify(arr_car_id) ;
             }
-        })
-        .then(response => response.json())
-            .then(result => {
-                try {
-                    // console.log(result);
-                    document.querySelector('#count_search_data').innerHTML = result['length'] ;
 
-                    let content_search_data = document.querySelector('#content_search_data');
-                        content_search_data.innerHTML = "" ;
+        }
 
-                    for(let item of result){
-
-                        let p_data = document.createElement("p");
-                        let class_p_data = document.createAttribute("class");
-                            class_p_data.value = "text-dark";
-                            p_data.setAttributeNode(class_p_data);
-
-                        p_data.innerHTML = "ยี่ห้อ : " + item.brand + "  รุ่น : " + item.generation + "  ทะเบียน : " + item.registration_number 
-                        + " " + item.province + "  พื้นที่ : " + item.location ;
-
-                        content_search_data.appendChild(p_data);
-                    }
-                }
-                catch(err) {
-                    // console.log(err);
-                }
-                
-            });
-
-        // console.log(car_type);
-        // console.log(input_car_brand);
-        // console.log(input_car_model);
-        // console.log(input_motor_brand);
-        // console.log(input_motor_model);
-        // console.log(location_user);
-        // console.log(province_registration);
-        // console.log(type_registration);
+        document.querySelector('#user_selected').innerHTML = JSON.parse(arr_user_id_selected.value).length ;
+        document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
+        
     }
 
     function select_type_car(type){
@@ -267,6 +235,27 @@
             document.querySelector('#type_registration').value = "";
         }
 
+    }
+
+    function clear_search_input_data(){
+
+        let car_type = document.querySelector('#car_type').value ;
+        let input_car_brand = document.querySelector("#input_car_brand").innerHTML = "";
+        let input_car_model = document.querySelector("#input_car_model").innerHTML = "";
+        let input_motor_brand = document.querySelector("#input_motor_brand").innerHTML = "";
+        let input_motor_model = document.querySelector("#input_motor_model").innerHTML = "";
+
+        let location_user = document.querySelector("#location_user").value = "";
+        let province_registration = document.querySelector("#province_registration").value = "";
+        let type_registration = document.querySelector("#type_registration").value = "";
+
+        if (car_type === "car") {
+            showCar_brand();
+        }else{
+            showMotor_brand();
+        }
+
+        search_data();
     }
 
     function showCar_brand(){
@@ -416,6 +405,94 @@
                     option.text = "other";
                     option.value = "other";
                     input_motor_model.add(option); 
+            });
+    }
+
+    function search_data(){
+
+        let car_type = document.querySelector("#car_type").value;
+        let input_car_brand = document.querySelector("#input_car_brand").value;
+        let input_car_model = document.querySelector("#input_car_model").value;
+        let input_motor_brand = document.querySelector("#input_motor_brand").value;
+        let input_motor_model = document.querySelector("#input_motor_model").value;
+        let location_user = document.querySelector("#location_user").value;
+        let province_registration = document.querySelector("#province_registration").value;
+        let type_registration = document.querySelector("#type_registration").value;
+
+        let data_search_data ;
+
+        if (car_type == "car") {
+
+            data_search_data = {
+                'car_type' : car_type,
+                'brand' : input_car_brand,
+                'model' : input_car_model,
+                'location_user' : location_user,
+                'province_registration' : province_registration,
+                'type_registration' : type_registration,
+            };
+
+        }else{
+
+            data_search_data = {
+                'car_type' : car_type,
+                'brand' : input_motor_brand,
+                'model' : input_motor_model,
+                'location_user' : location_user,
+                'province_registration' : province_registration,
+                'type_registration' : null,
+            };
+
+        }
+
+        fetch("{{ url('/') }}/api/search_data_broadcast_by_car", 
+        {
+            method: 'post',
+            body: JSON.stringify(data_search_data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+            .then(result => {
+                try {
+                    // console.log(result);
+                    document.querySelector('#count_search_data').innerHTML = result['length'] ;
+
+                    let content_search_data = document.querySelector('#content_search_data');
+                        content_search_data.innerHTML = "" ;
+
+                    for(let item of result){
+
+                        let div_data_car = document.createElement("div");
+
+                        let p_data = document.createElement("p");
+                        let class_p_data = document.createAttribute("class");
+                            class_p_data.value = "text-dark";
+                            p_data.setAttributeNode(class_p_data);
+
+                            p_data.innerHTML = "ยี่ห้อ : " + item.brand + "  รุ่น : " + item.generation + "  ทะเบียน : " + item.registration_number 
+                            + " " + item.province + "  พื้นที่ : " + item.location ;
+                        div_data_car.appendChild(p_data);
+
+                        let btn_select = document.createElement("bottom");
+                        let class_btn_select = document.createAttribute("class");
+                            class_btn_select.value = "btn btn-sm btn-info text-white";
+                            btn_select.setAttributeNode(class_btn_select);
+                        let onclick_btn_select = document.createAttribute("onclick");
+                            onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
+                            btn_select.setAttributeNode(onclick_btn_select);
+                            btn_select.innerHTML = "เลือก" ;
+                        div_data_car.appendChild(btn_select);
+
+
+                        content_search_data.appendChild(div_data_car);
+                    }
+                }
+                catch(err) {
+                    // console.log(err);
+                }
+                
             });
     }
 
