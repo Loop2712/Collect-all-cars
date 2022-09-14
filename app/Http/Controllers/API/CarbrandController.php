@@ -207,6 +207,13 @@ class CarbrandController extends Controller
         return $car_model;
     }
 
+    function search_data_selected_car($car_id)
+    {
+        $data = Register_car::where('id', $car_id)->get();
+
+        return $data ;
+    }
+
     function search_data_broadcast_by_car()
     {
         $json = file_get_contents("php://input");

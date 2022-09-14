@@ -138,6 +138,8 @@
                                 <p class="text-center">จากผู้ใช้ <span id="user_selected">0</span> / 10 คน</p>
                                 <input class="form-control" type="text" name="arr_car_id_selected" id="arr_car_id_selected">
                                 <input class="form-control" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
+                                <br>
+                                <div id="content_selected_car"></div>
                             </div>
                         </div>
                     </div>
@@ -188,6 +190,63 @@
                 arr_car_id.push(car_id);
                 arr_car_id_selected.value = JSON.stringify(arr_car_id) ;
             }
+
+        }
+
+        // เช็คปุ่มเลือก เช็คว่าเลือกแล้วหรือยัง
+        let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
+        let content_selected_car = document.querySelector('#content_selected_car');
+
+        if (btn_select_car_id.classList[0] == "far") {
+
+            // ยังไม่ได้เลือก
+            btn_select_car_id.classList = "fad fa-circle btn" ;
+
+            fetch("{{ url('/') }}/api/search_data_selected_car/" + car_id)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    for(let item of result){
+                        
+                        let div_data_car_selected = document.createElement("div");
+                        let id_div_data_car_selected = document.createAttribute("id");
+                            id_div_data_car_selected.value = "div_car_selected_id_" + car_id;
+                            div_data_car_selected.setAttributeNode(id_div_data_car_selected);
+
+                        let p_data = document.createElement("p");
+                        let class_p_data = document.createAttribute("class");
+                            class_p_data.value = "text-dark";
+                            p_data.setAttributeNode(class_p_data);
+
+                            p_data.innerHTML = "ยี่ห้อ : " + item.brand + "  ทะเบียน : " + item.registration_number 
+                            + " " + item.province ;
+                        div_data_car_selected.appendChild(p_data);
+
+                        // <i class="fas fa-minus-circle text-danger"></i>
+                        let btn_drop_select = document.createElement("i");
+                        let class_btn_drop_select = document.createAttribute("class");
+                            class_btn_drop_select.value = "fas fa-minus-circle text-danger btn";
+                        btn_drop_select.setAttributeNode(class_btn_drop_select);
+
+                        let onclick_btn_drop_select = document.createAttribute("onclick");
+                            onclick_btn_drop_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
+                            btn_drop_select.setAttributeNode(onclick_btn_drop_select);
+                        div_data_car_selected.appendChild(btn_drop_select);
+
+                        let hr_hr = document.createElement("hr");
+                        div_data_car_selected.appendChild(hr_hr);
+
+
+                        content_selected_car.appendChild(div_data_car_selected);
+
+                    } 
+                });
+
+        }else{
+            // เลือกแล้ว
+            btn_select_car_id.classList = "far fa-circle btn" ;
+            document.querySelector('#div_car_selected_id_' + car_id).remove() ;
 
         }
 
@@ -462,6 +521,13 @@
                     let content_search_data = document.querySelector('#content_search_data');
                         content_search_data.innerHTML = "" ;
 
+                    let arr_car_id = [] ;
+                    let arr_car_id_selected = document.querySelector('#arr_car_id_selected');
+
+                    if (arr_car_id_selected.value) {
+                        arr_car_id = JSON.parse(arr_car_id_selected.value) ;
+                    }
+
                     for(let item of result){
 
                         let div_data_car = document.createElement("div");
@@ -475,17 +541,35 @@
                             + " " + item.province + "  พื้นที่ : " + item.location ;
                         div_data_car.appendChild(p_data);
 
-                        let btn_select = document.createElement("bottom");
+                        // <i class="far fa-circle"></i>
+                        // <i class="fad fa-circle"></i>
+                        let btn_select = document.createElement("i");
                         let class_btn_select = document.createAttribute("class");
-                            class_btn_select.value = "btn btn-sm btn-info text-white";
-                            btn_select.setAttributeNode(class_btn_select);
+                        let text_car_id = item.id.toString();
+
+                            if ( arr_car_id.includes(text_car_id) ) {
+                                // console.log("เลือกแล้ว");
+                                class_btn_select.value = "fad fa-circle btn ";
+                            }else{
+                                class_btn_select.value = "far fa-circle btn";
+                                // console.log("ยังไม่ได้เลือก");
+                            }
+
+                        btn_select.setAttributeNode(class_btn_select);
+
                         let onclick_btn_select = document.createAttribute("onclick");
                             onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
                             btn_select.setAttributeNode(onclick_btn_select);
-                            btn_select.innerHTML = "เลือก" ;
+
+                        let id_btn_select = document.createAttribute("id");
+                            id_btn_select.value = "btn_select_car_id_" + item.id ;
+                            btn_select.setAttributeNode(id_btn_select);
+
                         div_data_car.appendChild(btn_select);
 
-
+                        let hr_hr = document.createElement("hr");
+                        div_data_car.appendChild(hr_hr);
+                        
                         content_search_data.appendChild(div_data_car);
                     }
                 }
