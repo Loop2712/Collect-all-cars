@@ -27,5 +27,7 @@ class Sos_map extends Model
      */
     protected $fillable = ['content', 'name', 'phone', 'lat', 'lng', 'area', 'user_id','photo','CountryCode','helper','helper_id','organization_helper','help_complete','score_impression','score_period','score_total','comment_help' , 'name_area' , 'help_complete_time' ,'notify','condo_id','photo_succeed','photo_succeed_by','remark'];
 
-    
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id' , 'id'); 
+    }
 }

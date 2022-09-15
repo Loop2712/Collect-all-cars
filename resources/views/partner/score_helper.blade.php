@@ -206,28 +206,28 @@
             }
 
             $background_color = $loop->iteration;
-    if ($background_color % 2 == 0){
-        $background_color = "#fff" ;
-        $div_color = "#E1E1E1";
-    } elseif ($background_color % 2 == 1) {
-        $background_color = "#E1E1E1" ;
-        $div_color = "#fff";
+                if ($background_color % 2 == 0){
+                    $background_color = "#fff" ;
+                    $div_color = "#E1E1E1";
+                } elseif ($background_color % 2 == 1) {
+                    $background_color = "#E1E1E1" ;
+                    $div_color = "#fff";
 
-    }
+                }
         @endphp
         <div class="card main-shadow" style="margin:0px 20px 20px 20px;border-radius:20px;background-color:{{$background_color}}">
             <div class="card-body">
                 <div class="d-flex flex-row">
                     <div>
-                        @if(empty($item->photo))
+                        @if(empty($item->user->photo))
                         <img src="{{ asset('/img/stickerline/PNG/20.png') }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">  
                         @else
-                        <img src="{{ url('storage')}}/{{ $item->photo }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">
+                        <img src="{{ url('storage')}}/{{ $item->user->photo }}" style="object-fit: cover;border-radius:50%" alt="" width="50px" height="50px">
                         @endif
                     </div>
                     <div class="d-flex align-items-center" style="margin-left: 10px;">
                         <div style="font-family: 'Kanit', sans-serif;">
-                            <h4 class="m-0"><b>{{ $item->name }}</b>
+                            <h4 class="m-0"><b>{{ $item->name }} </b>
                                 <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
                                     <i class="far fa-eye text-primary"></i>
                                 </a>

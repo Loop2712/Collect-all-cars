@@ -97,10 +97,10 @@
     $count_case = 0 ;
     $data_average = [] ;
 
-    foreach ($view_maps_all as $item) {
+    foreach ($view_maps_all as $key) {
         
-        if(!empty($item->created_at) && !empty($item->help_complete_time)){
-            $minute_row = \Carbon\Carbon::parse($item->help_complete_time)->diffinMinutes(\Carbon\Carbon::parse($item->created_at)) ;
+        if(!empty($key->created_at) && !empty($key->help_complete_time)){
+            $minute_row = \Carbon\Carbon::parse($key->help_complete_time)->diffinMinutes(\Carbon\Carbon::parse($key->created_at)) ;
 
             $count_case = $count_case + 1 ;
 
@@ -171,7 +171,7 @@
             </div>
             <div class="d-flex align-items-center" style="margin-left: 10px;">
                 <div style="font-family: 'Kanit', sans-serif;">
-                    <h4 class="m-0"><b>{{ $item->name }}</b></h4>
+                    <h4 class="m-0"><b>{{ $item->name }} </b></h4>
                     @if($item->role == "admin-partner")
                         <p class="m-0">แอดมิน</p>
                     @elseif($item->role == "partner")

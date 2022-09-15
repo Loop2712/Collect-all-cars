@@ -793,8 +793,7 @@ class PartnerController extends Controller
         $count_data = count($view_maps_all);
         ////////
 
-        $view_maps = DB::table('sos_maps')
-            ->where('helper','LIKE', "%$data_user->name%")
+        $view_maps = Sos_map::where('helper','LIKE', "%$data_user->name%")
             ->latest()->paginate($perPage);
 
         $select_name_areas = DB::table('sos_maps')
