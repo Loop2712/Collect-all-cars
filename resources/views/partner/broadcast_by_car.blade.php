@@ -2,6 +2,166 @@
 
 @section('content')
 
+<style>
+    .header{
+        font-family: 'Kanit', sans-serif;
+        padding: 15px;
+        align-items: center;
+    }
+    .text-filter h5 {
+        color:#db2d2e;
+    }
+    .text-result h5 {
+        color:#3b5998;
+    }
+    .filter{
+        border-top: red solid 4px;
+        border-radius: 20px;
+    }
+    .result{
+        border-top: #3b5998 solid 4px;
+        border-radius: 20px;
+    }
+    .form-filter{
+        padding: 10px;
+    }
+    .form-filter .form-label{
+        font-family: 'Kanit', sans-serif;
+
+    }
+    .select-form{
+        font-family: 'Kanit', sans-serif;
+        margin-bottom: 10px;
+        border-radius: 9px;
+    }
+    .form-filter button{
+        font-family: 'Kanit', sans-serif;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12 col-lg-3 col-md-3">
+        <div class="card filter">
+            <div class="header text-filter">
+                <h5>
+                    <i class="fa-regular fa-filter-list"></i> กรองข้อมูล
+                </h5>
+            </div>
+            <div class="plans">
+                <label class="plan basic-plan" for="basic">
+                    <input type="radio" name="plan" id="basic" onclick="select_type_car('car');search_data();"/>
+                    <div class="plan-content">
+                        <img loading="lazy" src="{{ asset('/img/icon/car1.png') }}" alt="" />
+                        <div class="plan-details">
+                        <span>รถยนต์</span>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="plan complete-plan" for="complete">
+                    <input type="radio" id="complete" name="plan" onclick="select_type_car('motor');search_data();"/>
+                    <div class="plan-content">
+                        <img loading="lazy" src="{{ asset('/img/icon/car2.png') }}" alt="" />
+                        
+                        <div class="plan-details">
+                        <span>รถจักรยานยนต์</span>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <input class="form-control d-none" type="text" name="car_type" id="car_type" value="">
+            <div  class="form-filter d-none" id="div_filter">
+                <hr>
+                <!-- รถยนต์ -->
+                <div class="col-12 d-none" id="div_car_brand">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="input_car_brand" class="form-label">ยี่ห้อรถ</label>
+                            <select name="input_car_brand" class="notranslate form-control select-form" id="input_car_brand" onchange="showCar_model();search_data();">
+                                <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="input_car_model" class="form-label">รุ่นรถ</label>
+                            <select name="input_car_model" class="notranslate form-control select-form" id="input_car_model" onchange="search_data();">
+                                <option class="translate" value="" selected> - เลือกรุ่น - </option> 
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- รถมอไซต์ -->
+                <div class="col-12  d-none" id="div_motor_brand">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="input_motor_brand" class="form-label">ยี่ห้อรถ</label>
+                            <select name="input_motor_brand" class="notranslate form-control select-form" id="input_motor_brand"  onchange="showMotor_model();search_data();">
+                                <option class="translate" value="" selected> - เลือกยี่ห้อ - </option> 
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="input_motor_model" class="form-label">รุ่นรถ</label>
+                            <select name="input_motor_model" class="notranslate form-control select-form" id="input_motor_model" onchange="search_data();">
+                                <option class="translate" value="" selected> - เลือกรุ่น - </option> 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label for="location_user" class="form-label">พื้นที่ผู้ลงทะเบียนรถ</label>
+                    <select name="location_user" class="notranslate form-control select-form" id="location_user" onchange="search_data();">
+                        <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
+                        @foreach($location_user as $lo_user)
+                        <option class="translate" value="{{ $lo_user->location }}">
+                            {{ $lo_user->location }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label for="province_registration" class="form-label">จังหวัดของทะเบียนรถ</label>
+                    <select name="province_registration" class="notranslate form-control select-form" id="province_registration" onchange="search_data();">
+                        <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
+                        @foreach($province_registration as $pro_reg)
+                        <option class="translate" value="{{ $pro_reg->province }}">
+                            {{ $pro_reg->province }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label for="type_registration" class="form-label">ประเภท</label>
+                    <select name="type_registration" class="notranslate form-control select-form" id="type_registration" onchange="search_data();">
+                        <option class="translate" value="" selected> - เลือกประเภท - </option>
+                        @foreach($type_registrations as $type_registration)
+                        <option class="translate" value="{{ $type_registration->type_reg }}">
+                            {{ $type_registration->type_reg }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary px-5" onclick="clear_search_input_data();">ล้างการค้นหา</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="card result">
+            <div class="header text-result">
+                <h5>
+                 <i class="fa-solid fa-square-poll-horizontal"></i> ผลการค้นหา
+                </h5>
+            </div>    
+            <div class="div-result"></div>        
+        </div>
+    </div>
+</div>
+
+
+
 <div class="radius-10 d-none d-lg-block" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="card">
 	    <div class="col-12" style="padding:20px;">
