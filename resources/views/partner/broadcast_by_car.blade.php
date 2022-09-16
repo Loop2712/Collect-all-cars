@@ -135,9 +135,9 @@
                             </div>
                             <div class="col-3">
                                 <p class="text-center">เลือกแล้ว <span id="car_selected">0</span> / 10 คัน</p>
-                                <p class="text-center">จากผู้ใช้ <span id="user_selected">0</span> / 10 คน</p>
+                                <!-- <p class="text-center">จากผู้ใช้ <span id="user_selected">0</span> / 10 คน</p> -->
                                 <input class="form-control" type="text" name="arr_car_id_selected" id="arr_car_id_selected">
-                                <input class="form-control" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
+                                <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
                                 <br>
                                 <div id="content_selected_car"></div>
                             </div>
@@ -159,25 +159,27 @@
 
     function click_select_car(user_id , car_id){
         
-        let arr_user_id_selected = document.querySelector('#arr_user_id_selected');
+        // let arr_user_id_selected = document.querySelector('#arr_user_id_selected');
+
+        // let arr_user_id  = [];
+
+        // if (!arr_user_id_selected.value) {
+        //     arr_user_id_selected.value = '["'+user_id +'"]' ;
+        // }else{
+        //     arr_user_id = JSON.parse(arr_user_id_selected.value) ;
+
+        //     if ( arr_user_id.includes(user_id) ) {
+        //         // 
+        //     }else{
+        //         arr_user_id.push(user_id);
+        //         arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
+        //     }
+
+        // }
+
         let arr_car_id_selected = document.querySelector('#arr_car_id_selected');
 
-        let arr_user_id  = [];
         let arr_car_id  = [];
-
-        if (!arr_user_id_selected.value) {
-            arr_user_id_selected.value = '["'+user_id +'"]' ;
-        }else{
-            arr_user_id = JSON.parse(arr_user_id_selected.value) ;
-
-            if ( arr_user_id.includes(user_id) ) {
-                // 
-            }else{
-                arr_user_id.push(user_id);
-                arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
-            }
-
-        }
 
         if (!arr_car_id_selected.value) {
             arr_car_id_selected.value = '["'+car_id +'"]' ;
