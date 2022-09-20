@@ -215,17 +215,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-12">
-                            <label for="type_registration" class="form-label">ประเภท</label>
-                            <select name="type_registration" class="notranslate form-control select-form" id="type_registration" onchange="search_data();">
-                                <option class="translate" value="" selected> - เลือกประเภท - </option>
-                                @foreach($type_registrations as $type_registration)
-                                <option class="translate" value="{{ $type_registration->type_reg }}">
-                                    {{ $type_registration->type_reg }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div id="type_car_registration" class="col-12 d-none">
                             <div class="form-group">
                                 <label for="type_registration" class="control-label">{{ 'ประเภท' }}</label>
@@ -249,28 +238,50 @@
         </div>
         <div class="col-12 col-lg-9 col-md-9 test item" id="div_data_car_search">
             <div class="card result">
-            <input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected">
-            <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
             <div class="header text-result">
                 <h5>
-                 <i class="fa-solid fa-square-poll-horizontal"></i> ผลการค้นหา
+                    <i class="fa-solid fa-square-poll-horizontal"></i> ผลการค้นหา&nbsp;&nbsp;
                 </h5>
                 <div>
-                    <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คัน</span>
+                    <span style="font-size:15px;">
+                        <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คัน</span>
+                    </span>
                 </div>
-                
             </div>    
             <div class="div-result" >
                 <div class="row ">
                     <div class="col-9">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        เลือกจำนวน
+                                        <input class="form-control" type="number" name="select_amount" id="select_amount">
+                                    </div>
+                                    <div class="col-8">
+                                        <button style="margin-top: 28px;" class="btn btn-primary btn-sm">เลือก</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="margin-top: 40px;float: right;">
+                                    <input type="checkbox" name="select_car_all" id="select_car_all">&nbsp;
+                                    <span style="font-size:15px;">เลือกทั้งหมด</span>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- content_search_data -->
                         <div class="row"id="content_search_data"></div>
                     </div>
-                    <div class="col-3 section-filter"style="height:300px;overflow:auto;">
+                    <div class="col-3 section-filter"style="height:650px;overflow:auto;">
                         <div class="row ">
                             <div class="col-12 text-selected">
-                                <h5>เลือกแล้ว</h5> <h5 id="car_selected">0</h5> <h5>/ 10 คัน</h4>
+                                <h5>เลือกแล้ว</h5> &nbsp;<h5 id="car_selected">0</h5>&nbsp; <h5>/ 10 คัน</h5>
                             </div>
                             <div class="col-12" id="content_selected_car" >
+                                <input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected">
+                                <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
                                 <!-- <div class="col-12 p-1">
                                     <div class="result-content">
                                         <div class="result-car">
@@ -303,11 +314,6 @@
 </div>
 
 
-              
-      
-
-
-
 
 <script>
 
@@ -317,42 +323,33 @@
     });
 
     function click_select_car(user_id , car_id){
-        
-        // let arr_user_id_selected = document.querySelector('#arr_user_id_selected');
-
-        // let arr_user_id  = [];
-
-        // if (!arr_user_id_selected.value) {
-        //     arr_user_id_selected.value = '["'+user_id +'"]' ;
-        // }else{
-        //     arr_user_id = JSON.parse(arr_user_id_selected.value) ;
-
-        //     if ( arr_user_id.includes(user_id) ) {
-        //         // 
-        //     }else{
-        //         arr_user_id.push(user_id);
-        //         arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
-        //     }
-
-        // }
 
         let arr_car_id_selected = document.querySelector('#arr_car_id_selected');
+            // console.log(arr_car_id_selected.value);
 
-        let arr_car_id  = [];
+        let arr_car_id  = [] ;
 
         if (!arr_car_id_selected.value) {
-            arr_car_id_selected.value = '["'+car_id +'"]' ;
+            arr_car_id = JSON.parse( '["'+car_id +'"]' );
+            // arr_car_id = JSON.parse('{"' + car_id + '": ' + parseFloat(car_id) + '}') ;
+            arr_car_id_selected.value = JSON.stringify(arr_car_id) ;
         }else{
             arr_car_id = JSON.parse(arr_car_id_selected.value) ;
+            // console.log(arr_car_id);
 
             if ( arr_car_id.includes(car_id) ) {
-                // 
+                const keys = Object.keys(arr_car_id);
+
+                console.log(keys);
+
             }else{
                 arr_car_id.push(car_id);
                 arr_car_id_selected.value = JSON.stringify(arr_car_id) ;
             }
 
         }
+            
+        // console.log(arr_car_id);
 
         // เช็คปุ่มเลือก เช็คว่าเลือกแล้วหรือยัง
         let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
@@ -361,7 +358,7 @@
         if (btn_select_car_id.classList[0] == "far") {
 
             // ยังไม่ได้เลือก
-            btn_select_car_id.classList = "fad fa-circle btn" ;
+            btn_select_car_id.classList = "fad fa-circle btn text-success" ;
 
             fetch("{{ url('/') }}/api/search_data_selected_car/" + car_id)
                 .then(response => response.json())
@@ -455,15 +452,37 @@
                     } 
                 });
 
+                document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
+
         }else{
             // เลือกแล้ว
             btn_select_car_id.classList = "far fa-circle btn" ;
             document.querySelector('#div_car_selected_id_' + car_id).remove() ;
 
+            console.log("car_id >> " + car_id);
+
+            let arr_car_id_select_car = JSON.parse(arr_car_id_selected.value) ;
+
+            console.log(arr_car_id_select_car);
+            console.log(arr_car_id_select_car[car_id]);
+
+            if ( JSON.parse(arr_car_id_selected.value).length == "1") {
+                arr_car_id_selected.value = "" ;
+
+                document.querySelector('#car_selected').innerHTML = "0" ;
+            }else{
+                
+                document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
+            }
+
+            // arr_car_id_selected.value = arr_car_id_selected.value.replace('"' + car_id + '"', '');
+
+            // console.log("รอบ 2");
+            // console.log(arr_car_id_selected.value);
+
+
         }
 
-        document.querySelector('#user_selected').innerHTML = JSON.parse(arr_user_id_selected.value).length ;
-        document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
         
     }
 
@@ -805,7 +824,7 @@
 
                             if ( arr_car_id.includes(text_car_id) ) {
                                 // console.log("เลือกแล้ว");
-                                class_btn_select.value = "fad fa-circle btn ";
+                                class_btn_select.value = "fad fa-circle btn text-success";
                             }else{
                                 class_btn_select.value = "far fa-circle btn";
                                 // console.log("ยังไม่ได้เลือก");
