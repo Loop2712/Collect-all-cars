@@ -223,7 +223,7 @@ display:none;
                                     <div class="col-7 phone-name ">
                                         <div class="row">
                                             <div class="col-2 text-center"><i class="fa-solid fa-chevron-left"></i></div>
-                                            <div class="col-10 text-start p-0"> <img src="{{ asset('/img/icon/โล่.png') }}" alt="" width="8%"> PEDDYHUB</div>
+                                            <div class="col-10 text-start p-0"> <img src="{{ asset('/img/icon/โล่.png') }}" alt="" width="8%"> ViiCHECK</div>
                                         </div>
                                     </div>
                                     <div class="col-5 phone-icon-header">
