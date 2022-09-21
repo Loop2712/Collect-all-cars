@@ -399,19 +399,40 @@ display:none;
                         <div class="row">
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col-4">
-                                        เลือกจำนวน
-                                        <input class="form-control" type="number" name="select_amount" id="select_amount">
+                                    <div class="col-7">
+                                        <p>
+                                            เลือกจำนวน 
+                                            <span id="tell_BC_by_car_max" class="">(ไม่เกิน {{ $BC_by_car_max }})</span>
+                                        </p>
+                                        <input style="width:100%;" class="form-control" type="number" name="select_amount" id="select_amount">
                                     </div>
-                                    <div class="col-8">
-                                        <button style="margin-top: 28px;" class="btn btn-primary btn-sm">เลือก</button>
+                                    <div class="col-5">
+                                        <button style="margin-top: 40px;" class="btn btn-primary btn-sm" onclick="document.querySelector('#select_car_all').checked = false,select_from_amount();">
+                                            เลือก
+                                        </button>
+                                    </div>
+                                    <div class="col-12">
+                                        <p id="warn_BC_by_car_max" class="d-none text-danger" style="margin-top:10px;">
+                                            <!-- ข้อความแจ้งเตือน -->
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div style="margin-top: 40px;float: right;">
-                                    <input type="checkbox" name="select_car_all" id="select_car_all">&nbsp;
-                                    <span style="font-size:15px;">เลือกทั้งหมด</span>
+                                <div style="margin-top: 50px;float: right;">
+                                    <input type="checkbox" name="select_car_all" id="select_car_all" 
+                                    onclick="if(this.checked){
+                                                document.querySelector('#select_amount').value = '',
+                                                document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger'),
+                                                document.querySelector('#warn_BC_by_car_max').classList.add('d-none'),
+                                                select_content_from_amount('{{ $BC_by_car_max }}');
+                                            }else{
+                                                document.querySelector('#select_amount').value = '',
+                                                document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger'),
+                                                document.querySelector('#warn_BC_by_car_max').classList.add('d-none'),
+                                                select_content_from_amount('0');
+                                            }">&nbsp;
+                                    <span style="font-size:15px;">เลือกทั้งหมด</span> (<span>{{ $BC_by_car_max }}</span>)
                                 </div>
                             </div>
                         </div>
@@ -892,6 +913,8 @@ display:none;
                         arr_car_id = JSON.parse(arr_car_id_selected.value) ;
                     }
 
+                    let content_count = 1 ;
+
                     for(let item of result){
 
                         let div_data_car = document.createElement("div");
@@ -968,6 +991,9 @@ display:none;
                         let onclick_btn_select = document.createAttribute("onclick");
                             onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
                             div_result_content.setAttributeNode(onclick_btn_select);
+                        let id_div_result_content = document.createAttribute("id");
+                            id_div_result_content.value = "div_result_content_count_" + content_count ;
+                            div_result_content.setAttributeNode(id_div_result_content);
 
                         let id_btn_select = document.createAttribute("id");
                             id_btn_select.value = "btn_select_car_id_" + item.id ;
@@ -991,9 +1017,9 @@ display:none;
                             span_province.innerHTML = item.province;
                             div_license_plate.appendChild(span_province);
                        
-
-                       
                         content_search_data.appendChild(div_data_car);
+
+                        content_count = content_count + 1 ;
                     }
                 }
                 catch(err) {
@@ -1001,6 +1027,43 @@ display:none;
                 }
                 
             });
+    }
+
+    function select_from_amount(){
+        let select_amount = document.querySelector('#select_amount').value ;
+            // console.log(select_amount);
+
+        if (select_amount <= {{ $BC_by_car_max }}) {
+            // console.log(select_amount);
+            document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
+            document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger');
+
+            select_content_from_amount(select_amount);
+        }else{
+            document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินกว่าจำนวนที่กำหนด" ;
+            document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
+            document.querySelector('#tell_BC_by_car_max').classList.add('text-danger');
+        }
+    }
+
+    function select_content_from_amount(amount){
+        // console.log(amount);
+        let content_search_data = document.querySelector('#content_search_data');
+
+        if (!content_search_data.innerHTML) {
+            // console.log("stop");
+            document.querySelector('#warn_BC_by_car_max').innerHTML = "กรุณาเลือกรถยนต์หรือรถจักรยานยนต์" ;
+            document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
+        }else{
+            // console.log("next");
+            document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
+
+            for (var i = 1; i <= amount; i++) {
+                // console.log("click >> " + "div_result_content_count_"+ i);
+                // console.log(document.querySelector('#div_result_content_count_' + i).innerHTML);
+                document.querySelector('#div_result_content_count_' + i).click();
+            }
+        }
     }
 
 </script>

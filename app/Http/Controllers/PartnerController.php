@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Partner;
+use App\Models\Partner_premium;
 use App\Models\Partner_condo;
 use Illuminate\Http\Request;
 use App\Models\Group_line;
@@ -959,6 +960,7 @@ class PartnerController extends Controller
     function broadcast_by_car(Request $request){
 
         $requestData = $request->all();
+        $data_user = Auth::user();
 
         $location_user = Register_car::select('location')
             ->orderBy('location')
@@ -985,7 +987,17 @@ class PartnerController extends Controller
             ->groupBy('type_car_registration')
             ->get();
 
-        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations'));
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->first();
+
+        $partners_id = $data_partners->id ;
+
+        $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
+
+        $BC_by_car_max = $partner_premium->BC_by_car_max ;
+
+        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max'));
     }
 
 }
