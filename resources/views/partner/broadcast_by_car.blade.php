@@ -279,7 +279,8 @@
                             <div class="col-12 text-selected">
                                 <h5>เลือกแล้ว</h5> &nbsp;<h5 id="car_selected">0</h5>&nbsp; <h5>/ 10 คัน</h5>
                             </div>
-                            <div class="col-12" id="content_selected_car" >
+                            <div class="col-12" id="content_selected_car">
+
                                 <input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected">
                                 <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
                                 <!-- <div class="col-12 p-1">
@@ -325,31 +326,22 @@
     function click_select_car(user_id , car_id){
 
         let arr_car_id_selected = document.querySelector('#arr_car_id_selected');
-            // console.log(arr_car_id_selected.value);
-
         let arr_car_id  = [] ;
 
         if (!arr_car_id_selected.value) {
             arr_car_id = JSON.parse( '["'+car_id +'"]' );
-            // arr_car_id = JSON.parse('{"' + car_id + '": ' + parseFloat(car_id) + '}') ;
             arr_car_id_selected.value = JSON.stringify(arr_car_id) ;
         }else{
             arr_car_id = JSON.parse(arr_car_id_selected.value) ;
-            // console.log(arr_car_id);
 
             if ( arr_car_id.includes(car_id) ) {
-                const keys = Object.keys(arr_car_id);
-
-                console.log(keys);
-
+                // 
             }else{
                 arr_car_id.push(car_id);
                 arr_car_id_selected.value = JSON.stringify(arr_car_id) ;
             }
 
         }
-            
-        // console.log(arr_car_id);
 
         // เช็คปุ่มเลือก เช็คว่าเลือกแล้วหรือยัง
         let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
@@ -358,7 +350,8 @@
         if (btn_select_car_id.classList[0] == "far") {
 
             // ยังไม่ได้เลือก
-            btn_select_car_id.classList = "fad fa-circle btn text-success" ;
+            // <i class="fas fa-check-circle"></i>
+            btn_select_car_id.classList = "fas fa-check-circle btn text-success" ;
 
             fetch("{{ url('/') }}/api/search_data_selected_car/" + car_id)
                 .then(response => response.json())
@@ -459,31 +452,26 @@
             btn_select_car_id.classList = "far fa-circle btn" ;
             document.querySelector('#div_car_selected_id_' + car_id).remove() ;
 
-            console.log("car_id >> " + car_id);
-
             let arr_car_id_select_car = JSON.parse(arr_car_id_selected.value) ;
-
-            console.log(arr_car_id_select_car);
-            console.log(arr_car_id_select_car[car_id]);
 
             if ( JSON.parse(arr_car_id_selected.value).length == "1") {
                 arr_car_id_selected.value = "" ;
 
                 document.querySelector('#car_selected').innerHTML = "0" ;
             }else{
-                
+
+                // delete array by car_id
+                for( var i = 0; i < arr_car_id_select_car.length; i++){ 
+                    if ( arr_car_id_select_car[i] === car_id) { 
+                        arr_car_id_select_car.splice(i, 1); 
+                    }
+                }
+
+                arr_car_id_selected.value = JSON.stringify(arr_car_id_select_car) ;
+
                 document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
             }
-
-            // arr_car_id_selected.value = arr_car_id_selected.value.replace('"' + car_id + '"', '');
-
-            // console.log("รอบ 2");
-            // console.log(arr_car_id_selected.value);
-
-
         }
-
-        
     }
 
     function select_type_car(type){
