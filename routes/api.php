@@ -69,7 +69,9 @@ Route::get('/check_data_line_group/{group_line_id}','API\PartnersController@chec
 
 Route::get('/explode_name/{name_user}', 'ProfileController@explode_name');
 
+
 Route::get('/check_add_line/{id_user}','API\LineApiController@check_add_line');
+Route::get('/update_add_line/{id_user}','API\LineApiController@update_add_line');
 
 Route::get('/select_car_brand_user','API\CarbrandController@select_car_brand_user');
 Route::get('/select_car_brand_user/{car_brand}/model','API\CarbrandController@select_car_model_user');

@@ -79,14 +79,16 @@
             </h4>
             <br>
             <center>
-              <a href="https://lin.ee/xnFKMfc">
-                <img width="100%" src="{{ asset('/img/more/poster add line 2.png') }}">
-              </a>
+                <img onclick="click_add_line();" width="100%" src="{{ asset('/img/more/poster add line 2.png') }}" class="link">
             </center>
             <br>
-            <a id="btn_add_line" href="https://lin.ee/xnFKMfc">
-              <button  style="width:100% ;font-size: 22px; background-color: #28A745;" type="button" class="btn btn-lg btn-success text-white" ><b>
+            <button onclick="click_add_line();" style="width:100% ;font-size: 22px; background-color: #28A745;" type="button" class="btn btn-lg btn-success text-white" ><b>
                 <i class="fab fa-line "></i> เพิ่มเพื่อน</b>
+            </button>
+
+            <a id="btn_add_line" href="https://lin.ee/xnFKMfc">
+              <button type="button" class="d-none">
+                <i class="fab fa-line "></i> เพิ่มเพื่อน
               </button>
             </a>
           </div>
@@ -107,6 +109,17 @@
                 }
         });
     });
+
+    function click_add_line(){
+        let user_id = document.querySelector('#user_id');
+
+        fetch("{{ url('/') }}/api/update_add_line/" + user_id.value)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                document.querySelector('#btn_add_line').click();
+        });
+    }
 
     function show_organization(){
 

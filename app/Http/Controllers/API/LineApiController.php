@@ -408,6 +408,18 @@ class LineApiController extends Controller
         return $data_user;
     }
 
+    public function update_add_line($id_user)
+    {
+        DB::table('users')
+            ->where('id', $id_user)
+            ->whereDate('created_at', '<=' , date('2022-08-30').' 00:00:00' )
+            ->update([
+                'add_line' => "Yes",
+        ]);
+
+        return "ok";
+    }
+
 
     public function sos_helper($data_postback_explode , $provider_id)
     {
