@@ -1,0 +1,40 @@
+{
+    "fields": [
+        {
+            "name": "name_content",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "string"
+        },
+        {
+            "name": "link",
+            "type": "string"
+        },
+        {
+            "name": "photo",
+            "type": "file"
+        },
+        {
+            "name": "type_content",
+            "type": "string"
+        },
+        {
+            "name": "name_partner",
+            "type": "string"
+        },
+        {
+            "name": "id_partner",
+            "type": "integer"
+        },
+        {
+            "name": "show_user",
+            "type": "string"
+        },
+        {
+            "name": "user_click",
+            "type": "string"
+        }
+    ]
+}

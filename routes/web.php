@@ -384,3 +384,6 @@ Route::get('test_for_dev/main_test', 'test_for_devController@main_test');
 Route::get('/modal_loading', function () {
     return view('layouts/modal_loading');
 });
+
+Route::resource('partner_premium', 'Partner_premiumController');
+Route::resource('ads_content', 'Ads_contentController');

@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "name_partner",
+            "type": "string"
+        },
+        {
+            "name": "id_partner",
+            "type": "integer"
+        },
+        {
+            "name": "level",
+            "type": "string"
+        },
+        {
+            "name": "BC_by_car_max",
+            "type": "string"
+        },
+        {
+            "name": "BC_by_car_sent",
+            "type": "string"
+        }
+    ]
+}
