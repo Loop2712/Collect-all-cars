@@ -118,8 +118,145 @@
     color:#3b5998;
 
   font-family: 'Kanit', sans-serif;
+}.phone-frame{
+    border-radius: 40px;
+    border: black 12px solid;
+    flex-direction:  column;
+    font-family: 'Kanit', sans-serif;
+
+}
+.phone-camera{
+    border-radius: 0px 0px 15px 15px;
+    color: black;
+    background-color: black;
+}
+.phone-icon{
+    font-size: 10px;
+
+
+}
+.phone-header{
+    background-color: #8CABD9;
+    flex-direction:  row;
+
+}
+.phone-name{
+    padding: 10px 10px 10px 10px;
+}
+.phone-icon-header{
+    display: flex;
+     align-items: center;
+}
+.phone-footer{
+    padding: 10px;
+}
+.richmenu{
+    z-index: 99;
+    padding: 0;
+}
+.phone-content{
+    background-color: #8CABD9;
+    padding:0px;
+    display: flex;
+    align-items: flex-end;
+    height: 250px;
+    z-index: 1;
+}
+.sand{
+animation: myAnim 1s ease 0s 1 normal forwards;
+}
+
+@keyframes myAnim {
+	0% {
+		transform: translateY(180px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
 }
 </style>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content" style="border-radius: 20px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;font-family: 'Kanit', sans-serif;">กำหนดบรอดแคสต์</h5>
+                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-9 col-md-9 col-12 card">
+                        <h4 style="font-family: 'Kanit', sans-serif;">รูปภาพ</h4>
+                        <input type="file" accept="image/*" onchange="loadFile(event)">
+                        <h4 style="font-family: 'Kanit', sans-serif;">ลิงค์</h4>
+                        <h4 style="font-family: 'Kanit', sans-serif;">ข้อมูลรถ</h4>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-12 phone-frame">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                <div class="col-3 text-center">{{ date('H:i') }}</div>
+                                <div class="col-6 phone-camera"></div>
+                                <div class="col-3 d-flex align-items-center">
+                                    <div class="col-12 p-0">
+                                        <div class="row ">
+                                            <div class="col p-0 phone-icon"><i class="fa-sharp fa-solid fa-signal-bars"></i></div>
+                                            <div class="col p-0 phone-icon"><i class="fa-solid fa-wifi"></i></div>
+                                            <div class="col p-0 phone-icon"><i class="fa-solid fa-battery-full"></i></div></div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="phone-header">
+                                <div class="row">
+                                    <div class="col-7 phone-name ">
+                                        <div class="row">
+                                            <div class="col-2 text-center"><i class="fa-solid fa-chevron-left"></i></div>
+                                            <div class="col-10 text-start p-0"> <img src="{{ asset('/img/icon/โล่.png') }}" alt="" width="8%"> PEDDYHUB</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 phone-icon-header">
+                                        <div class="row ">
+                                            <div class="col"><img src="{{ asset('/img/icon/search.png') }}" alt="" width="100%"></i></div>
+                                            <div class="col"><img src="{{ asset('/img/icon/document.png') }}" alt="" width="100%"></div>
+                                            <div class="col"><img src="{{ asset('/img/icon/more.png') }}" alt="" width="100%"></i></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-content" >
+                                <div id="div_img" class="col-12 d-none " >
+                                    <img src="" alt="" width="100%" id="img-content"  style="object-fit: cover;min-width: 100%;max-height: 220px;">
+                                    <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
+                                </div>
+                            </div>
+                            <div class="richmenu" >
+                                <img src="{{ asset('/img/new_rich_menu/rich_menu_new/richmenu-th.png') }}" alt="" width="100%">
+                            </div>
+                            <div class="row phone-footer">
+                                <div class="col"><img src="{{ asset('/img/icon/keyboard.png') }}" alt="" width="15%">
+                                </div>
+                                <div class="col">
+                                    <span>เมนู▾</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="container-data-car">
@@ -858,5 +995,18 @@
             });
     }
 
+</script>
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+        document.querySelector('#div_img').classList.remove('d-none');
+        document.querySelector('#div_img').classList.add('sand');
+
+      var img_content = document.getElementById('img-content');
+      img_content.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 </script>
 @endsection
