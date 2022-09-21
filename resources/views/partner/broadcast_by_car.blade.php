@@ -175,13 +175,15 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 		transform: translateY(0);
 	}
 }
-</style>
 
+.remove-scrollbar::-webkit-scrollbar {
+display:none;
+}
+</style>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Launch demo modal
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -196,7 +198,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                 <div class="row">
                     <div class="col-lg-9 col-md-9 col-12 card">
                         <h4 style="font-family: 'Kanit', sans-serif;">รูปภาพ</h4>
-                        <input type="file" accept="image/*" onchange="loadFile(event)">
+                        <input id="asd" type="file" accept="image/*" onchange="loadFile(event)">
                         <h4 style="font-family: 'Kanit', sans-serif;">ลิงค์</h4>
                         <h4 style="font-family: 'Kanit', sans-serif;">ข้อมูลรถ</h4>
                     </div>
@@ -235,8 +237,14 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                 </div>
                             </div>
                             <div class="phone-content" >
-                                <div id="div_img" class="col-12 d-none " >
-                                    <img src="" alt="" width="100%" id="img-content"  style="object-fit: cover;min-width: 100%;max-height: 220px;">
+                                <div id="div_img" class="col-12 d-none remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;">
+                                    <div class="col-12" >
+                                        <div id="send-img">
+                                            <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                            <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
+                                        </div>
+                                    </div>
+                                    
                                     <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
                                 </div>
                             </div>
@@ -996,17 +1004,28 @@ animation: myAnim 1s ease 0s 1 normal forwards;
     }
 
 </script>
+
 <script>
   var loadFile = function(event) {
     var reader = new FileReader();
     reader.onload = function(){
-        document.querySelector('#div_img').classList.remove('d-none');
-        document.querySelector('#div_img').classList.add('sand');
 
-      var img_content = document.getElementById('img-content');
-      img_content.src = reader.result;
+        
+        document.querySelector('#send-img').classList.remove('sand');
+
+        setTimeout(function(){ 
+            document.querySelector('#div_img').classList.remove('d-none');
+
+            document.querySelector('#send-img').classList.add('sand');
+            var img_content = document.getElementById('img-content');
+            img_content.src = reader.result;
+        }, 100);
+        
+
+     
     };
     reader.readAsDataURL(event.target.files[0]);
+
   };
 </script>
 @endsection
