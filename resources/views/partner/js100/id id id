@@ -1,0 +1,9 @@
+1. content_search_data == div แสดงผลการค้นหารถ
+2. content_selected_car == div รถที่เลือกแล้ว
+3. arr_car_id_selected == array ของ id ของรถที่เลือกแล้ว
+4. select_amount == input เลือกจำนวนรถ
+5. select_car_all == checkbox เลือกรถทั้งหมด
+
+6. tell_BC_by_car_max == เลือกจำนวน (ไม่เกิน 10)
+7. warn_BC_by_car_max == ข้อความแจ้งเตือน
+8. car_selected == จำนวนรถที่เลือกแล้ว
