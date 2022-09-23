@@ -403,7 +403,7 @@ display:none;
                                         <p>
                                             เลือกจำนวน 
                                             <span id="tell_BC_by_car_max" class="">
-                                                (ไม่เกิน <span id="BC_remain">{{ $BC_by_car_max - $BC_by_car_sent }}</span>)
+                                                (ไม่เกิน <span id="amount_remain">{{ $BC_by_car_max - $BC_by_car_sent }}</span>)
                                             </span>
                                         </p>
                                         <input style="width:100%;" class="form-control" type="number" name="select_amount" id="select_amount">
@@ -479,14 +479,15 @@ display:none;
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
+        // console.log(remain);
     });
 
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด -------------------------------------------------------------------------
 
     var delayInMilliseconds = 1000; // Delay
     var count_arr_car_id = 0 ;
-    var BC_remain = document.querySelector('#BC_remain').innerHTML ;
+    var text_BC_remain = "";
+    var amount_remain = document.querySelector('#amount_remain') ;
 
     var arr_car_id = [] ; // array() car_id
     var arr_car_id_selected = document.querySelector('#arr_car_id_selected'); // input array car_id
@@ -620,6 +621,10 @@ display:none;
                         div_result_car.appendChild(div_status);
 
                         let btn_select = document.createElement("i");
+                        let name_btn_select = document.createAttribute("name");
+                            name_btn_select.value = "i_btn_select_"  + content_count;
+                        btn_select.setAttributeNode(name_btn_select);
+
                         let class_btn_select = document.createAttribute("class");
 
                         let text_car_id = item.id.toString();
@@ -800,7 +805,8 @@ display:none;
                 document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
 
                 remain = remain - 1 ;
-                BC_remain = remain  ;
+                text_BC_remain = remain.toString();
+                amount_remain.innerHTML = text_BC_remain ;
 
         }else{
             // เลือกแล้ว
@@ -841,11 +847,9 @@ display:none;
 
         document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
 
-        remain = remain - 1 ;
-        BC_remain = remain  ;
-
-        console.log("remain >> " + remain);
-        console.log("BC_remain >> " + BC_remain);
+        remain = remain + 1 ;
+        text_BC_remain = remain.toString();
+        amount_remain.innerHTML = text_BC_remain ;
 
     }
 
@@ -954,7 +958,17 @@ display:none;
             document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger');
             // คลิกเลือกรถตามจำนวน
             for (var i = 1; i <= amount; i++) {
-                document.querySelector('#div_result_content_count_' + i).click();
+                console.log(document.querySelector('#div_result_content_count_' + i));
+                let i_btn_select = document.getElementsByName('i_btn_select_' + i);
+
+                let class_i_btn_select = i_btn_select[0].classList[0] ;
+                if (class_i_btn_select == "far") {
+                    document.querySelector('#div_result_content_count_' + i).click();
+                }else{
+                    console.log("amount >> " + amount);
+                    console.log("i >> " + i);
+                    // amount = amount + 1 ;
+                }
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินกว่าจำนวนที่กำหนด" ;
