@@ -997,7 +997,13 @@ class PartnerController extends Controller
 
         $BC_by_car_max = $partner_premium->BC_by_car_max ;
 
-        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max'));
+        if ($partner_premium->BC_by_car_max == null) {
+            $BC_by_car_sent = 0 ;
+        }else{
+            $BC_by_car_sent = $partner_premium->BC_by_car_sent ;
+        }
+
+        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max','BC_by_car_sent'));
     }
 
 }
