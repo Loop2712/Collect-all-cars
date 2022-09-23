@@ -409,7 +409,7 @@ display:none;
                                         <input style="width:100%;" class="form-control" type="number" name="select_amount" id="select_amount">
                                     </div>
                                     <div class="col-5">
-                                        <button style="margin-top: 40px;" class="btn btn-primary btn-sm" onclick="document.querySelector('#select_car_all').checked = false,select_from_amount();">
+                                        <button id="btn_select_from_amount" style="margin-top: 45px;" class="btn btn-primary btn-sm" onclick="select_from_amount();">
                                             เลือก
                                         </button>
                                     </div>
@@ -421,11 +421,9 @@ display:none;
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div style="margin-top: 50px;float: right;" class="d-none">
-                                    <input type="checkbox" name="select_car_all" id="select_car_all" 
-                                    onclick="click_select_car_all();">&nbsp;
-                                    <span style="font-size:15px;">เลือกทั้งหมด</span> (<span>{{ $BC_by_car_max - $BC_by_car_sent }}</span>)
-                                </div>
+                                <button id="btn_amount_remain_all" style="margin-top: 45px;float: right;" class="btn btn-sm btn-info text-white" onclick="click_select_car_all();">
+                                    เลือกทั้งหมด&nbsp;(<span id="amount_remain_all">{{ $BC_by_car_max - $BC_by_car_sent }}</span>)
+                                </button>
                             </div>
                         </div>
                         <br>
@@ -488,6 +486,7 @@ display:none;
     var count_arr_car_id = 0 ;
     var text_BC_remain = "";
     var amount_remain = document.querySelector('#amount_remain') ;
+    var amount_remain_all = document.querySelector('#amount_remain_all') ;
 
     var arr_car_id = [] ; // array() car_id
     var arr_car_id_selected = document.querySelector('#arr_car_id_selected'); // input array car_id
@@ -807,6 +806,9 @@ display:none;
                 remain = remain - 1 ;
                 text_BC_remain = remain.toString();
                 amount_remain.innerHTML = text_BC_remain ;
+                amount_remain_all.innerHTML = text_BC_remain ;
+
+                remain_it_0(remain);
 
         }else{
             // เลือกแล้ว
@@ -850,12 +852,25 @@ display:none;
         remain = remain + 1 ;
         text_BC_remain = remain.toString();
         amount_remain.innerHTML = text_BC_remain ;
+        amount_remain_all.innerHTML = text_BC_remain ;
 
+        remain_it_0(remain);
+
+    }
+
+    // เช็คจำนวน = 0
+    function remain_it_0(remain){
+        if (remain <= 0) {
+            document.querySelector('#btn_amount_remain_all').disabled = true ;
+            document.querySelector('#btn_select_from_amount').disabled = true ;
+        }else{
+            document.querySelector('#btn_amount_remain_all').disabled = false ;
+            document.querySelector('#btn_select_from_amount').disabled = false ;
+        }
     }
 
     // เลือกประเภทรถ
     function select_type_car(type){
-        document.querySelector('#select_car_all').checked = false ;
         document.querySelector('#select_amount').value = "" ;
         document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger');
         document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
@@ -921,6 +936,28 @@ display:none;
         search_data();
     }
 
+    // คลิกเลือกทั้งหมด
+    function click_select_car_all(){
+
+        // เช็ค content ค้นหารถ
+        let car_type = document.querySelector('#car_type').value;
+        if (!car_type) {
+            // ไม่มี content ค้นหารถ
+            document.querySelector('#warn_BC_by_car_max').innerHTML = "กรุณาเลือกรถยนต์หรือรถจักรยานยนต์" ;
+            document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
+        }else{
+            // มี content ค้นหารถ
+            // เคลียค่า array และ div content ต่างๆ
+            document.querySelector('#content_search_data').innerHTML = "" ;
+            document.querySelector('#select_amount').value = "" ;
+            document.querySelector('#car_selected').innerHTML = "0" ;
+            search_data();
+            // ส่งต่อฟังก์ชั่น
+            setTimeout(function() {
+                select_content_from_amount(remain);
+            }, delayInMilliseconds);
+        }
+    }
 
     // เลือกรถจากจำนวน
     function select_from_amount(){
@@ -934,9 +971,6 @@ display:none;
             // มี content ค้นหารถ
             // เคลียค่า array และ div content ต่างๆ
             document.querySelector('#content_search_data').innerHTML = "" ;
-            // document.querySelector('#content_selected_car').innerHTML = "" ;
-            // document.querySelector('#arr_car_id_selected').value = "" ;
-            document.querySelector('#select_car_all').checked = false ;
             document.querySelector('#car_selected').innerHTML = "0" ;
             search_data();
             // ส่งต่อฟังก์ชั่น
@@ -960,7 +994,7 @@ display:none;
             for (var i = 1; i <= amount; i++) {
                 let i_btn_select = document.getElementsByName('i_btn_select_' + i);
                 let class_i_btn_select = i_btn_select[0].classList[0] ;
-                
+
                 if (class_i_btn_select == "far") {
                     document.querySelector('#div_result_content_count_' + i).click();
                 }else{
@@ -975,36 +1009,6 @@ display:none;
 
     }
 
-    // เลือกทั้งหมด
-    // function click_select_car_all(){
-
-    //     // เช็ค content ค้นหารถ
-    //     let car_type = document.querySelector('#car_type').value;
-    //     if (!car_type) {
-    //         // ไม่มี content ค้นหารถ
-    //         document.querySelector('#warn_BC_by_car_max').innerHTML = "กรุณาเลือกรถยนต์หรือรถจักรยานยนต์" ;
-    //         document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
-    //     }else{
-    //         // มี content ค้นหารถ
-    //         // เคลียค่า array และ div content ต่างๆ
-    //         document.querySelector('#content_search_data').innerHTML = "" ;
-    //         // document.querySelector('#content_selected_car').innerHTML = "" ;
-    //         // document.querySelector('#arr_car_id_selected').value = "" ;
-    //         document.querySelector('#select_amount').value = "" ;
-    //         document.querySelector('#car_selected').innerHTML = "0" ;
-    //         search_data();
-    //         // ส่งต่อฟังก์ชั่น
-    //         setTimeout(function() {
-    //             // เช็ค select checkbox
-    //             if(select_car_all.checked){
-    //                 select_content_from_amount('{{ $BC_by_car_max - $BC_by_car_sent }}');
-    //             }else{
-    //                 document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger');
-    //                 document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
-    //             }
-    //         }, delayInMilliseconds);
-    //     }
-    // }
 
 </script>
 
