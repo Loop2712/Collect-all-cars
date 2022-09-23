@@ -958,16 +958,13 @@ display:none;
             document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger');
             // คลิกเลือกรถตามจำนวน
             for (var i = 1; i <= amount; i++) {
-                console.log(document.querySelector('#div_result_content_count_' + i));
                 let i_btn_select = document.getElementsByName('i_btn_select_' + i);
-
                 let class_i_btn_select = i_btn_select[0].classList[0] ;
+                
                 if (class_i_btn_select == "far") {
                     document.querySelector('#div_result_content_count_' + i).click();
                 }else{
-                    console.log("amount >> " + amount);
-                    console.log("i >> " + i);
-                    // amount = amount + 1 ;
+                    amount = parseInt(amount) + 1 ;
                 }
             }
         }else{
