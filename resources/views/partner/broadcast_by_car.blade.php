@@ -180,10 +180,6 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 display:none;
 }
 </style>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -395,6 +391,7 @@ display:none;
             </div>    
             <div class="div-result" >
                 <div class="row ">
+
                     <div class="col-9">
                         <div class="row">
                             <div class="col-6">
@@ -426,20 +423,35 @@ display:none;
                                 </button>
                             </div>
                         </div>
-                        <br>
-                        <!-- content_search_data -->
-                        <div class="row"id="content_search_data"></div>
                     </div>
-                    <div class="col-3 section-filter"style="height:650px;overflow:auto;">
+
+                    <div class="col-3">
                         <div class="row ">
                             <div class="col-12 text-selected">
                                 <h5>เลือกแล้ว</h5> &nbsp;<h5 id="car_selected">0</h5>&nbsp; <h5>/ {{ $BC_by_car_max - $BC_by_car_sent }} คัน</h5>
                             </div>
                             <div class="col-12">
-                                <input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected">
+                                <input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
                                 <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
                             </div>
+                            <div class="col-12">
+                                <center>
+                                    <button id="btn_next_selected_car" type="button" class="btn btn-sm btn-success main-shadow main-radius" style="width:70%;" data-toggle="modal" data-target="#exampleModalCenter" disabled>
+                                        ต่อไป
+                                    </button>
+                                </center>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-9">
+                        <!-- content_search_data -->
+                        <div class="row"id="content_search_data"></div>
+                    </div>
+
+                    <div class="col-3 section-filter"style="height:650px;overflow:auto;">
+                        <div class="row ">
                             <div class="col-12" id="content_selected_car">
                                 <!-- <div class="col-12 p-1">
                                     <div class="result-content">
@@ -679,9 +691,31 @@ display:none;
             });
     }
 
-    // คลิกเลือกรถและโชว์ด้านขวา
+    // ตรวจสอบเกินจำนวนหรือไม่และเลือกหรือลบ => คลิกเลือกรถและโชว์ด้านขวา
     function click_select_car(user_id , car_id){
-        // console.log(arr_car_id_selected.value);
+
+        let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
+        let class_btn_select_car_id = btn_select_car_id.classList[0] ;
+
+        if (remain <= 0) {
+            if (class_btn_select_car_id == "fas") {
+                document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
+                click_select_car_2(user_id , car_id);
+            }else{
+                // เกินจำนวนที่กำหนด
+                // console.log(remain + " <= 0");
+                document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+                document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
+            }
+        }else{
+            document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
+            click_select_car_2(user_id , car_id);
+        }
+
+    }
+
+    // คลิกเลือกรถและโชว์ด้านขวา
+    function click_select_car_2(user_id , car_id){
 
         if (!arr_car_id_selected.value) {
             arr_car_id = JSON.parse( '["'+car_id +'"]' );
@@ -867,6 +901,19 @@ display:none;
             document.querySelector('#btn_amount_remain_all').disabled = false ;
             document.querySelector('#btn_select_from_amount').disabled = false ;
         }
+
+        // เช็คเพื่อเปิด / ปิด ปุ่มต่อไป
+        let count_i = 0 ;
+        let arr_car_i = document.querySelector('#arr_car_id_selected'); // input array car_id
+        if (arr_car_i.value) {
+            count_i = JSON.parse(arr_car_i.value).length ;
+        }
+
+        if (count_i != 0) {
+            document.querySelector('#btn_next_selected_car').disabled = false ;
+        }else{
+            document.querySelector('#btn_next_selected_car').disabled = true ;
+        }
     }
 
     // เลือกประเภทรถ
@@ -1002,7 +1049,7 @@ display:none;
                 }
             }
         }else{
-            document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินกว่าจำนวนที่กำหนด" ;
+            document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
             document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
             document.querySelector('#tell_BC_by_car_max').classList.add('text-danger');
         }
