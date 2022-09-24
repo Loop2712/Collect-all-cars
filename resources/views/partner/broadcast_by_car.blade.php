@@ -11,10 +11,10 @@
         justify-content: space-between;
         align-items: flex-start;
     }
-    .text-filter h5 {
+    .text-filter h4 {
         color:#db2d2e;
     }
-    .text-result h5 {
+    .text-result h4 {
         color:#3b5998;
     }
     .filter{
@@ -380,14 +380,12 @@ display:none;
         <div class="col-12 col-lg-9 col-md-9 test item" id="div_data_car_search">
             <div class="card result">
             <div class="header text-result">
-                <h5>
+                <h4>
                     <i class="fa-solid fa-square-poll-horizontal"></i> ผลการค้นหา&nbsp;&nbsp;
-                </h5>
-                <div>
-                    <span style="font-size:15px;">
+                    <span style="font-size:15px;color: grey;">
                         <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คัน</span>
                     </span>
-                </div>
+                </h4>
             </div>    
             <div class="div-result" >
                 <div class="row ">
