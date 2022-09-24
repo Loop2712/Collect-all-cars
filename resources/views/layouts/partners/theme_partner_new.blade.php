@@ -661,7 +661,15 @@
 	    check_sos_js100();
 
 	    setInterval(function() {
-	       	check_sos_alarm();
+	    	// เช็ค SOS
+	    	try{
+	       		check_sos_alarm();
+	    	}catch{
+	    		setInterval(function() {
+	       		check_sos_alarm();
+	    		}, 1000);
+	    	}
+	    	// เช็ค JS100
 	       	check_sos_js100();
 	    }, 5000);
         
