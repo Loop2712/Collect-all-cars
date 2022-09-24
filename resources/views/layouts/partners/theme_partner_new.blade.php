@@ -666,7 +666,7 @@
 	       		check_sos_alarm();
 	    	}catch{
 	    		setInterval(function() {
-	       		check_sos_alarm();
+	       			check_sos_alarm();
 	    		}, 1000);
 	    	}
 	    	// เช็ค JS100
