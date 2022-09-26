@@ -179,7 +179,39 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 .remove-scrollbar::-webkit-scrollbar {
 display:none;
 }
+
+.div_alert{
+  position: fixed;
+  top: 110%;
+  left: 50%;
+  background-color: #D64646;
+  padding:15px; 
+  border-radius:10px;
+  color:white;
+  font-family: 'Kanit', sans-serif;
+  z-index: 9999;
+  
+}
+.up_down{
+  animation: up-down 2s cubic-bezier(0.5, 0, 0.75, 0) 0s 2 alternate-reverse both;
+}
+
+@keyframes up-down {
+	0% {
+		opacity: 1;
+		transform: translateY(-150px);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(0px);
+	}
+}
 </style>
+<div id="car_max" class="alert alert-primary div_alert" role="alert">
+    <center>ขออภัย เกินจำนวนที่กำหนด</center>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -704,6 +736,12 @@ display:none;
                 // console.log(remain + " <= 0");
                 document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
                 document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
+                document.querySelector('#car_max').classList.add('up_down');
+
+                const animated = document.querySelector('.up_down');
+                animated.onanimationend = () => {
+                    document.querySelector('#car_max').classList.remove('up_down');
+                };
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
@@ -1050,6 +1088,12 @@ display:none;
             document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
             document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
             document.querySelector('#tell_BC_by_car_max').classList.add('text-danger');
+            document.querySelector('#car_max').classList.add('up_down');
+
+            const animated = document.querySelector('.up_down');
+            animated.onanimationend = () => {
+                document.querySelector('#car_max').classList.remove('up_down');
+            };
         }
 
     }
