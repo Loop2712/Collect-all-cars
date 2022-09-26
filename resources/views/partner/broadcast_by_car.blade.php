@@ -522,6 +522,19 @@ display:none;
         // console.log(remain);
     });
 
+    function sleep(i) {
+        setTimeout(function(){ 
+            console.log("sleep 5 วิ (คลิกแล้ว : " + i + " ครั้ง)");
+        }, 5000);
+    }
+
+    async function make_sleep(i) {
+        // console.log("sleep 5 วิ (คลิกแล้ว : " + i + " ครั้ง)");
+        await sleep(i);
+    }
+
+        
+
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด -------------------------------------------------------------------------
 
     var delayInMilliseconds = 1000; // Delay
@@ -1075,14 +1088,20 @@ display:none;
             document.querySelector('#tell_BC_by_car_max').classList.remove('text-danger');
             // คลิกเลือกรถตามจำนวน
             for (var i = 1; i <= amount; i++) {
-                let i_btn_select = document.getElementsByName('i_btn_select_' + i);
-                let class_i_btn_select = i_btn_select[0].classList[0] ;
 
-                if (class_i_btn_select == "far") {
-                    document.querySelector('#div_result_content_count_' + i).click();
-                }else{
-                    amount = parseInt(amount) + 1 ;
+                if (i % 10 == 0) {
+                    make_sleep(i);
+
                 }
+
+                // let i_btn_select = document.getElementsByName('i_btn_select_' + i);
+                // let class_i_btn_select = i_btn_select[0].classList[0] ;
+
+                // if (class_i_btn_select == "far") {
+                //     document.querySelector('#div_result_content_count_' + i).click();
+                // }else{
+                //     amount = parseInt(amount) + 1 ;
+                // }
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
