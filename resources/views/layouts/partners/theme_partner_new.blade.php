@@ -662,13 +662,7 @@
 
 	    setInterval(function() {
 	    	// เช็ค SOS
-	    	try{
-	       		check_sos_alarm();
-	    	}catch{
-	    		setInterval(function() {
-	       			check_sos_alarm();
-	    		}, 1000);
-	    	}
+	       	check_sos_alarm();
 	    	// เช็ค JS100
 	       	check_sos_js100();
 	    }, 5000);

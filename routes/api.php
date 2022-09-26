@@ -80,8 +80,20 @@ Route::get('/select_motor_brand_user','API\CarbrandController@select_motor_brand
 Route::get('/select_motor_brand_user/{motor_brand}/model','API\CarbrandController@select_motor_model_user');
 
 Route::post('/search_data_broadcast_by_car','API\CarbrandController@search_data_broadcast_by_car');
-Route::get('/search_data_selected_car/{car_id}','API\CarbrandController@search_data_selected_car');
+// Route::get('/search_data_selected_car/{car_id}','API\CarbrandController@search_data_selected_car');
 
+// อะไรก็ไม่รู้
+Route::get('/search_data_selected_car_0/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_1/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_2/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_3/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_4/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_5/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_6/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_7/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_8/{car_id}','API\CarbrandController@search_data_selected_car');
+Route::get('/search_data_selected_car_9/{car_id}','API\CarbrandController@search_data_selected_car');
+// อะไรก็ไม่รู้
 
 // ยี่ห้อจากราคากลาง
 Route::get('/brand_middle_price','API\Brand_middle_price_carsController@getBrand');

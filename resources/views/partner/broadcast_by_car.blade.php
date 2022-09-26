@@ -522,19 +522,6 @@ display:none;
         // console.log(remain);
     });
 
-    function sleep(i) {
-        setTimeout(function(){ 
-            console.log("sleep 5 วิ (คลิกแล้ว : " + i + " ครั้ง)");
-        }, 5000);
-    }
-
-    async function make_sleep(i) {
-        // console.log("sleep 5 วิ (คลิกแล้ว : " + i + " ครั้ง)");
-        await sleep(i);
-    }
-
-        
-
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด -------------------------------------------------------------------------
 
     var delayInMilliseconds = 1000; // Delay
@@ -694,7 +681,7 @@ display:none;
                         btn_select.setAttributeNode(class_btn_select);
 
                         let onclick_btn_select = document.createAttribute("onclick");
-                            onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
+                            onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "','" + content_count +"')";
                             div_result_content.setAttributeNode(onclick_btn_select);
                         let id_div_result_content = document.createAttribute("id");
                             id_div_result_content.value = "div_result_content_count_" + content_count ;
@@ -735,7 +722,7 @@ display:none;
     }
 
     // ตรวจสอบเกินจำนวนหรือไม่และเลือกหรือลบ => คลิกเลือกรถและโชว์ด้านขวา
-    function click_select_car(user_id , car_id){
+    function click_select_car(user_id , car_id , count_Requests){
 
         let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
         let class_btn_select_car_id = btn_select_car_id.classList[0] ;
@@ -743,7 +730,7 @@ display:none;
         if (remain <= 0) {
             if (class_btn_select_car_id == "fas") {
                 document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
-                click_select_car_2(user_id , car_id);
+                click_select_car_2(user_id , car_id , count_Requests);
             }else{
                 // เกินจำนวนที่กำหนด
                 // console.log(remain + " <= 0");
@@ -758,13 +745,30 @@ display:none;
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
-            click_select_car_2(user_id , car_id);
+            click_select_car_2(user_id , car_id , count_Requests);
         }
 
     }
 
     // คลิกเลือกรถและโชว์ด้านขวา
-    function click_select_car_2(user_id , car_id){
+    function click_select_car_2(user_id , car_id , count_Requests){
+        // console.log(typeof count_Requests);
+
+        let text_sp = count_Requests.split("") ;
+            text_sp = text_sp[0];
+
+        let text_first  = parseInt(count_Requests) / (parseInt(text_sp) + 1 ) ;
+            text_first = text_first.toString();
+            text_first = text_first.split("") ;
+            text_first = text_first[0];
+
+        let url_selected_car = "{{ url('/') }}/api/search_data_selected_car_" + text_first + "/" + car_id ;
+    
+        // console.log(text_sp);
+        // console.log(typeof text_first);
+        // console.log(text_first);
+        // console.log(url_selected_car);
+        // console.log("------------------------");
 
         if (!arr_car_id_selected.value) {
             arr_car_id = JSON.parse( '["'+car_id +'"]' );
@@ -788,10 +792,10 @@ display:none;
         if (btn_select_car_id.classList[0] == "far") {
 
             // ยังไม่ได้เลือก
-            // <i class="fas fa-check-circle"></i>
             btn_select_car_id.classList = "fas fa-check-circle btn text-success" ;
 
-            fetch("{{ url('/') }}/api/search_data_selected_car/" + car_id)
+            // fetch("{{ url('/') }}/api/search_data_selected_car/"+ car_id)
+            fetch(url_selected_car)
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
@@ -1079,9 +1083,9 @@ display:none;
     }
 
     // คลิกเลือกรถตามจำนวนที่เลือก
-    function select_content_from_amount(amount){
+    async function select_content_from_amount(amount){
         // console.log(amount);
-        
+
         // เช็ค จำนวนที่เลือกเกินกำหนดหรือไม่
         if ( amount <= remain ) {
             document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
@@ -1089,19 +1093,15 @@ display:none;
             // คลิกเลือกรถตามจำนวน
             for (var i = 1; i <= amount; i++) {
 
-                if (i % 10 == 0) {
-                    make_sleep(i);
+                let i_btn_select = document.getElementsByName('i_btn_select_' + i);
+                let class_i_btn_select = i_btn_select[0].classList[0] ;
 
+                if (class_i_btn_select == "far") {
+                    document.querySelector('#div_result_content_count_' + i).click();
+                }else{
+                    amount = parseInt(amount) + 1 ;
                 }
 
-                // let i_btn_select = document.getElementsByName('i_btn_select_' + i);
-                // let class_i_btn_select = i_btn_select[0].classList[0] ;
-
-                // if (class_i_btn_select == "far") {
-                //     document.querySelector('#div_result_content_count_' + i).click();
-                // }else{
-                //     amount = parseInt(amount) + 1 ;
-                // }
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
