@@ -309,7 +309,11 @@ class CarbrandController extends Controller
 
         $arr_car_id = json_decode($requestData['arr_car_id_selected']);
         $arr_user_id = [] ;
-        $show_user = json_decode($data_Ads_content->show_user) ;
+
+        $show_user = [] ;
+        if (!empty($data_Ads_content->show_user)) {
+            $show_user = json_decode($data_Ads_content->show_user) ;
+        }
 
         // เพิ่ม id_user จาก car_id แบบไม่ซ้ำคน
         for ($i=0; $i < count($arr_car_id); $i++) { 
