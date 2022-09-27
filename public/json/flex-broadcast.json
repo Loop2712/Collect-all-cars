@@ -1,0 +1,20 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+      "type": "bubble",
+      "size": "giga",
+      "hero": {
+        "type": "image",
+        "url": "https://www.viicheck.com/storage/PHOTO_BC",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://www.viicheck.com/"
+        }
+      }
+    }
+}

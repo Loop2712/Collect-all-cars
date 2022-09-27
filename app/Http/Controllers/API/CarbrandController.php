@@ -5,10 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CarModel;
+use App\Models\Mylog;
+use App\User;
 use DB;
 use App\Models\Insurance;
 use App\Models\Register_car;
 use App\Models\Ads_content;
+use App\Models\Partner_premium;
 
 class CarbrandController extends Controller
 {
@@ -271,16 +274,101 @@ class CarbrandController extends Controller
             $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
         }
 
-
         Ads_content::create($requestData);
 
-        echo $requestData['photo'];
+        $data_Ads_content = Ads_content::latest()->first();
+        $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
 
-        echo "<br>";
+        $BC_by_car_sent = $data_partner_premium->BC_by_car_sent ;
+        $sum_BC_by_car_sent = $BC_by_car_sent + $requestData['amount'] ;
+        $sum_send_round = $data_Ads_content->send_round + 1 ;
 
-        print_r($requestData);
+        DB::table('partner_premia')
+            ->where('id_partner', $requestData['id_partner'])
+            ->update([
+                'BC_by_car_sent' => $sum_BC_by_car_sent ,
+        ]);
 
-        return "ok" ;
+        DB::table('ads_contents')
+            ->where('id', $data_Ads_content->id)
+            ->update([
+                'link' => "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id,
+                'send_round' => $sum_send_round ,
+        ]);
+
+        $requestData['link'] = "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id;
+
+        // ส่ง content เข้าไลน์
+        $this->send_content_BC_to_line($requestData);
+
+        return redirect('broadcast_by_car')->with('flash_message', 'Partner updated!');
+
+    }
+
+    function send_content_BC_to_line($requestData){
+
+        $arr_car_id = json_decode($requestData['arr_car_id_selected']);
+        $arr_user_id = [] ;
+
+        // เพิ่ม id_user จาก car_id แบบไม่ซ้ำคน
+        for ($i=0; $i < count($arr_car_id); $i++) { 
+
+            $data_user_of_car = Register_car::where('id' , $arr_car_id[$i])->first();
+
+            if (in_array($data_user_of_car->user_id, $arr_user_id)){
+                // ข้าม
+            }else{
+                // เพิ่ม
+                array_push($arr_user_id, $data_user_of_car->user_id);
+            }
+
+        }
+
+        // ส่ง content
+        for ($xi=0; $xi < count($arr_user_id); $xi++) { 
+
+            $data_user = User::where('id' , $arr_user_id[$xi])->first();
+
+            $template_path = storage_path('../public/json/flex-broadcast.json');
+            $string_json = file_get_contents($template_path);
+
+            $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
+            $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
+            $string_json = str_replace("https://www.viicheck.com/",$requestData['link'],$string_json);
+
+            $messages = [ json_decode($string_json, true) ];
+
+            $body = [
+                "to" => $data_user->provider_id,
+                "messages" => $messages,
+            ];
+
+            // flex ask_for_help
+            $opts = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
+                                
+            $context  = stream_context_create($opts);
+            $url = "https://api.line.me/v2/bot/message/push";
+            $result = file_get_contents($url, false, $context);
+
+            // SAVE LOG
+            $data = [
+                "title" => "BC_by_car" ,
+                "content" => "TO >> user_id = " . $arr_user_id[$xi],
+            ];
+            MyLog::create($data);
+
+        }
+
+        return "send done all"
+
     }
 
 }

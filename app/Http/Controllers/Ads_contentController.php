@@ -59,9 +59,9 @@ class Ads_contentController extends Controller
     {
         
         $requestData = $request->all();
-                if ($request->hasFile('photo')) {
-            $requestData['photo'] = $request->file('photo')
-                ->store('uploads', 'public');
+
+        if ($request->hasFile('photo')) {
+            $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
         }
 
         Ads_content::create($requestData);

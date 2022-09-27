@@ -212,6 +212,14 @@ display:none;
     <center>ขออภัย เกินจำนวนที่กำหนด</center>
 </div>
 
+<form method="POST" action="{{ url('/') }}/api/send_content_BC_by_car" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+{{ csrf_field() }}
+
+<input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
+<input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
+<input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
+<input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $id_partner }}">
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -264,9 +272,9 @@ display:none;
                                 </div>
                             </div>
                             <div class="col-6">
-                                <button id="btn_send_content" style="float: right;width: 40%;" class="btn btn-success btn-sm" onclick="send_content();" disabled>
-                                    ยืนยัน
-                                </button>
+                                <div class="form-group">
+                                    <input id="btn_send_content" style="float: right;width: 40%;" class="btn btn-success btn-sm" class="btn btn-primary" type="submit" value="{{ 'ยืนยัน' }}" disabled>
+                                </div>
                             </div>
                         </div>
                         <hr>
@@ -347,6 +355,7 @@ display:none;
         </div>
     </div>
 </div>
+</form>
 
 
 <div class="container-data-car">
@@ -391,7 +400,6 @@ display:none;
                                         <h5>เลือกแล้ว</h5> &nbsp;<h5 id="car_selected">0</h5>&nbsp; <h5>/ {{ $BC_by_car_max - $BC_by_car_sent }} คัน</h5>
                                     </div>
                                     <div class="col-12">
-                                        <input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
                                         <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
                                     </div>
                                     <div class="col-12">
@@ -1079,41 +1087,6 @@ display:none;
             document.querySelector('#btn_send_content').disabled = true ;
         }
     }
-
-    // ส่งข้อมูลบรอดแคสต์
-    function send_content(){
-
-        let name_content = document.querySelector("#name_content").value;
-        let link = document.querySelector("#link").value;
-        let photo = document.querySelector("#photo").value;
-        let detail = document.querySelector("#detail").value;
-        let amount = document.querySelector("#amount").value;
-
-        let data_send_content = {
-                'arr_car_id_selected' : arr_car_id_selected.value,
-                'name_content' : name_content,
-                'link' : link,
-                'photo' : photo,
-                'detail' : detail,
-                'amount' : amount,
-                'type_content' : "BC_by_car",
-            };
-
-        fetch("{{ url('/') }}/api/send_content_BC_by_car", 
-        {
-            method: 'post',
-            body: JSON.stringify(data_send_content),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.text())
-            .then(result => {
-                console.log(result);
-            });
-
-    }
-
 
 </script>
 

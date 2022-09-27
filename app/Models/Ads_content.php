@@ -25,7 +25,7 @@ class Ads_content extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_content', 'detail', 'link', 'photo', 'type_content', 'name_partner', 'id_partner', 'show_user', 'user_click'];
+    protected $fillable = ['name_content', 'detail', 'link', 'photo', 'type_content', 'name_partner', 'id_partner', 'show_user', 'user_click','send_round'];
 
     
 }
