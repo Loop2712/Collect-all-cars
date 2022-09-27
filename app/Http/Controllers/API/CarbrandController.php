@@ -299,16 +299,17 @@ class CarbrandController extends Controller
         $requestData['link'] = "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id;
 
         // ส่ง content เข้าไลน์
-        $this->send_content_BC_to_line($requestData);
+        $this->send_content_BC_to_line($requestData , $data_Ads_content);
 
         return redirect('broadcast_by_car')->with('flash_message', 'Partner updated!');
 
     }
 
-    function send_content_BC_to_line($requestData){
+    function send_content_BC_to_line($requestData , $data_Ads_content){
 
         $arr_car_id = json_decode($requestData['arr_car_id_selected']);
         $arr_user_id = [] ;
+        $show_user = json_decode($data_Ads_content->show_user) ;
 
         // เพิ่ม id_user จาก car_id แบบไม่ซ้ำคน
         for ($i=0; $i < count($arr_car_id); $i++) { 
@@ -364,6 +365,15 @@ class CarbrandController extends Controller
                 "content" => "TO >> user_id = " . $arr_user_id[$xi],
             ];
             MyLog::create($data);
+
+            // update show_user in ads_contents
+            array_push($show_user, $arr_user_id[$xi]);
+
+            DB::table('ads_contents')
+                ->where('id', $data_Ads_content->id)
+                ->update([
+                    'show_user' => $show_user ,
+            ]);
 
         }
 
