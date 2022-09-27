@@ -996,6 +996,8 @@ class PartnerController extends Controller
         $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
 
         $BC_by_car_max = $partner_premium->BC_by_car_max ;
+        $name_partner = $partner_premium->name_partner ;
+        $id_partner = $partner_premium->id_partner ;
 
         if ($partner_premium->BC_by_car_max == null) {
             $BC_by_car_sent = 0 ;
@@ -1003,7 +1005,7 @@ class PartnerController extends Controller
             $BC_by_car_sent = $partner_premium->BC_by_car_sent ;
         }
 
-        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max','BC_by_car_sent'));
+        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max','BC_by_car_sent','name_partner' , 'id_partner'));
     }
 
 }

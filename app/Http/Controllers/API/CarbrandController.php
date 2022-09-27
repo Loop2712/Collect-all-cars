@@ -8,6 +8,7 @@ use App\CarModel;
 use DB;
 use App\Models\Insurance;
 use App\Models\Register_car;
+use App\Models\Ads_content;
 
 class CarbrandController extends Controller
 {
@@ -260,6 +261,26 @@ class CarbrandController extends Controller
 
         return $data_search ;
 
+    }
+
+    function send_content_BC_by_car(Request $request)
+    {
+        $requestData = $request->all();
+
+        if ($request->hasFile('photo')) {
+            $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
+        }
+
+
+        Ads_content::create($requestData);
+
+        echo $requestData['photo'];
+
+        echo "<br>";
+
+        print_r($requestData);
+
+        return "ok" ;
     }
 
 }
