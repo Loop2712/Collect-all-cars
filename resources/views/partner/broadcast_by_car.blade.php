@@ -322,7 +322,10 @@ display:none;
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <input id="btn_send_content" style="float: right;width: 40%;" class="btn btn-success btn-sm" class="btn btn-primary" type="submit" value="{{ 'ยืนยัน' }}" disabled data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close">
+                                    <button id="btn_send_content" style="float: right;width: 40%;" class="btn btn-success btn-sm" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" disabled onclick="document.querySelector('#btn_btn_send_content_submit').click();">
+                                        ยืนยัน
+                                    </button>
+                                    <input class="d-none" id="btn_btn_send_content_submit" type="submit" value="{{ 'ยืนยัน' }}"  >
                                 </div>
                             </div>
                         </div>
