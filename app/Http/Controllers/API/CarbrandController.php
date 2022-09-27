@@ -334,7 +334,7 @@ class CarbrandController extends Controller
 
             $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
             $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
-            $string_json = str_replace("https://www.viicheck.com/",$requestData['link'],$string_json);
+            $string_json = str_replace("TEXT_URL",$requestData['link'],$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 

@@ -13,7 +13,7 @@
         "action": {
           "type": "uri",
           "label": "action",
-          "uri": "https://www.viicheck.com/"
+          "uri": "TEXT_URL"
         }
       }
     }
