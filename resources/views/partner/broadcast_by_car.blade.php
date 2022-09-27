@@ -681,7 +681,7 @@ display:none;
                         btn_select.setAttributeNode(class_btn_select);
 
                         let onclick_btn_select = document.createAttribute("onclick");
-                            onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "','" + content_count +"')";
+                            onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
                             div_result_content.setAttributeNode(onclick_btn_select);
                         let id_div_result_content = document.createAttribute("id");
                             id_div_result_content.value = "div_result_content_count_" + content_count ;
@@ -722,7 +722,7 @@ display:none;
     }
 
     // ตรวจสอบเกินจำนวนหรือไม่และเลือกหรือลบ => คลิกเลือกรถและโชว์ด้านขวา
-    function click_select_car(user_id , car_id , count_Requests){
+    function click_select_car(user_id , car_id){
 
         let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
         let class_btn_select_car_id = btn_select_car_id.classList[0] ;
@@ -730,7 +730,7 @@ display:none;
         if (remain <= 0) {
             if (class_btn_select_car_id == "fas") {
                 document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
-                click_select_car_2(user_id , car_id , count_Requests);
+                click_select_car_2(user_id , car_id);
             }else{
                 // เกินจำนวนที่กำหนด
                 // console.log(remain + " <= 0");
@@ -745,30 +745,14 @@ display:none;
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
-            click_select_car_2(user_id , car_id , count_Requests);
+            click_select_car_2(user_id , car_id);
         }
 
     }
 
     // คลิกเลือกรถและโชว์ด้านขวา
-    function click_select_car_2(user_id , car_id , count_Requests){
-        // console.log(typeof count_Requests);
-
-        let text_sp = count_Requests.split("") ;
-            text_sp = text_sp[0];
-
-        let text_first  = parseInt(count_Requests) / (parseInt(text_sp) + 1 ) ;
-            text_first = text_first.toString();
-            text_first = text_first.split("") ;
-            text_first = text_first[0];
-
-        let url_selected_car = "{{ url('/') }}/api/search_data_selected_car_" + text_first + "/" + car_id ;
-    
-        // console.log(text_sp);
-        // console.log(typeof text_first);
-        // console.log(text_first);
-        // console.log(url_selected_car);
-        // console.log("------------------------");
+    function click_select_car_2(user_id , car_id){
+        // console.log();
 
         if (!arr_car_id_selected.value) {
             arr_car_id = JSON.parse( '["'+car_id +'"]' );
@@ -782,7 +766,6 @@ display:none;
                 arr_car_id.push(car_id);
                 arr_car_id_selected.value = JSON.stringify(arr_car_id) ;
             }
-
         }
 
         // เช็คปุ่มเลือก เช็คว่าเลือกแล้วหรือยัง
@@ -794,8 +777,7 @@ display:none;
             // ยังไม่ได้เลือก
             btn_select_car_id.classList = "fas fa-check-circle btn text-success" ;
 
-            // fetch("{{ url('/') }}/api/search_data_selected_car/"+ car_id)
-            fetch(url_selected_car)
+            fetch("{{ url('/') }}/api/search_data_selected_car/"+ car_id)
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
