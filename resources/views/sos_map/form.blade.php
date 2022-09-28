@@ -340,22 +340,22 @@
 
         let phone = document.querySelector('#phone').value ;
             
-        if (phone === "") {
+        // if (phone === "") {
 
-            // click modal pls input phone
-            document.querySelector('#btn_open_pls_input_phone').click();
-            // end click modal pls input phone
+        //     click modal pls input phone
+        //     document.querySelector('#btn_open_pls_input_phone').click();
+        //     end click modal pls input phone
 
-            let input_phone_url = document.querySelector('#input_phone_url').value ;
-            let phone_url_sp = input_phone_url.split("=");
+        //     let input_phone_url = document.querySelector('#input_phone_url').value ;
+        //     let phone_url_sp = input_phone_url.split("=");
 
-                if (phone_url_sp[1]) {
-                    document.querySelector('#phone').value = phone_url_sp[1] ;
-                    document.querySelector('#text_phone').innerHTML = phone_url_sp[1] ;
-                    document.querySelector('#input_not_phone').value = phone_url_sp[1] ;
-                    document.querySelector('#input_not_phone').classList.add('d-none') ;
-                } 
-        }
+        //         if (phone_url_sp[1]) {
+        //             document.querySelector('#phone').value = phone_url_sp[1] ;
+        //             document.querySelector('#text_phone').innerHTML = phone_url_sp[1] ;
+        //             document.querySelector('#input_not_phone').value = phone_url_sp[1] ;
+        //             document.querySelector('#input_not_phone').classList.add('d-none') ;
+        //         } 
+        // }
 
         
 
