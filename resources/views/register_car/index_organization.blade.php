@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-6">
                     <div style="float:right;">
-                        <img class="" id="img_show_car" style="width: 50px;height: 50px;"  src="{{ url('storage')}}/{{ $logo }}">
+                        <img class="" id="img_show_car" style="width: 90px;height: 90px;"  src="{{ url('storage')}}/{{ $logo }}">
                     </div>
                     <!-- <div style="float:right;">
                         <img class="" id="img_show_car" width="100" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
