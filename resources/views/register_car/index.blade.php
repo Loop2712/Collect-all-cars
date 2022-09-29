@@ -285,28 +285,28 @@
     <div class="row">
         <div class="col-12">
             <div class="row">
-                <div class="col-3">
+                <div class="col-6" style="padding:5px;">
                     <a href="{{ url('/register_car') }}?type=all">
                         <button id="btn_type_all_mobile" style="width: 100%;"  class="btn btn-sm btn-danger main-shadow main-radius">
                             ทั้งหมด
                         </button>
                     </a>
                 </div>
-                <div class="col-3">
+                <div class="col-6" style="padding:5px;">
                     <a href="{{ url('/register_car') }}?type=car">
                         <button id="btn_type_car_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถยนต์
                         </button>
                     </a>
                 </div>
-                <div class="col-3">
+                <div class="col-6" style="padding:5px;">
                     <a href="{{ url('/register_car') }}?type=motorcycle">
                         <button id="btn_type_motorcycle_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             จักรยานยนต์
                         </button>
                     </a>
                 </div>
-                <div class="col-3">
+                <div class="col-6" style="padding:5px;">
                     <a href="{{ url('/register_car') }}?type=other">
                         <button id="btn_type_other_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             อื่นๆ
@@ -340,8 +340,13 @@
                                                 <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div> 
                                             <div class="col-8 notranslate">
-                                                <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
-                                                <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @if(!empty($item->brand))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @elseif(empty($item->brand) and !empty($item->brand_other))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand_other }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation_other }} </p>
+                                                @endif
                                             </div>
                                         </div>
                                         <center>

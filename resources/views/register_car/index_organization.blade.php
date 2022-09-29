@@ -38,14 +38,21 @@
                         </button>
                     </a>
                 </div>
-                <div class="col-2">
+                <div class="col-lg-2 col-md-3">
                     <a href="{{ url('/register_car_organization') }}?type=motorcycle">
                         <button id="btn_type_motorcycle" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถจักรยานยนต์
                         </button>
                     </a>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-2 col-md-3">
+                    <a href="{{ url('/register_car_organization') }}?type=other">
+                        <button id="btn_type_other" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
+                            อื่นๆ
+                        </button>
+                    </a>
+                </div>
+                <div class="col-4">
                     <div style="float:right;">
                         <img class="" id="img_show_car" style="width: 90px;height: 90px;"  src="{{ url('storage')}}/{{ $logo }}">
                     </div>
@@ -96,8 +103,13 @@
                                                 <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div> 
                                             <div class="col-7 col-md-8 notranslate">
-                                                <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
-                                                <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @if(!empty($item->brand))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @elseif(empty($item->brand) and !empty($item->brand_other))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand_other }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation_other }} </p>
+                                                @endif
                                             </div>
                                         </div>
                                         <center>
@@ -282,7 +294,7 @@
         </div>
         <div class="col-12">
             <br>
-            <img class="" id="img_show_car" width="120" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
+            <img class="" id="img_show_car" width="120" src="{{ url('storage')}}/{{ $logo }}">
             <a style="float:right;" href="{{ url('/register_car/create') }}" class="btn btn-success main-shadow main-radius" title="Add New Register_car">
                 <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
             </a>
@@ -292,24 +304,31 @@
     <div class="row">
         <div class="col-12">
             <div class="row">
-                <div class="col-4">
+                <div class="col-6" style="padding:5px;">
                     <a href="{{ url('/register_car_organization') }}?type=all">
                         <button id="btn_type_all_mobile" style="width: 100%;"  class="btn btn-sm btn-danger main-shadow main-radius">
                             ทั้งหมด
                         </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-6" style="padding:5px;">
                     <a href="{{ url('/register_car_organization') }}?type=car">
                         <button id="btn_type_car_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถยนต์
                         </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-6" style="padding:5px;">
                     <a href="{{ url('/register_car_organization') }}?type=motorcycle">
                         <button id="btn_type_motorcycle_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             จักรยานยนต์
+                        </button>
+                    </a>
+                </div>
+                <div class="col-6" style="padding:5px;">
+                    <a href="{{ url('/register_car_organization') }}?type=other">
+                        <button id="btn_type_other_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
+                            อื่นๆ
                         </button>
                     </a>
                 </div>
@@ -340,8 +359,13 @@
                                                 <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div> 
                                             <div class="col-8 notranslate">
-                                                <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
-                                                <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @if(!empty($item->brand))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @elseif(empty($item->brand) and !empty($item->brand_other))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand_other }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation_other }} </p>
+                                                @endif
                                             </div>
                                         </div>
                                         <center>
@@ -524,57 +548,92 @@
                 btn_type_all.classList.add('btn-danger');
                 btn_type_car.classList.remove('btn-danger');
                 btn_type_motorcycle.classList.remove('btn-danger');
+                btn_type_other.classList.remove('btn-danger');
 
                 btn_type_all.classList.remove('btn-outline-danger');
                 btn_type_car.classList.add('btn-outline-danger');
                 btn_type_motorcycle.classList.add('btn-outline-danger');
+                btn_type_other.classList.add('btn-outline-danger');
 
                 // มือถือ
                 btn_type_all_mobile.classList.add('btn-danger');
                 btn_type_car_mobile.classList.remove('btn-danger');
                 btn_type_motorcycle_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.remove('btn-danger');
 
                 btn_type_all_mobile.classList.remove('btn-outline-danger');
                 btn_type_car_mobile.classList.add('btn-outline-danger');
                 btn_type_motorcycle_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.add('btn-outline-danger');
              break;
             case 'car':
                 // คอม
                 btn_type_all.classList.remove('btn-danger');
                 btn_type_car.classList.add('btn-danger');
                 btn_type_motorcycle.classList.remove('btn-danger');
+                btn_type_other.classList.remove('btn-danger');
 
                 btn_type_all.classList.add('btn-outline-danger');
                 btn_type_car.classList.remove('btn-outline-danger');
                 btn_type_motorcycle.classList.add('btn-outline-danger');
+                btn_type_other.classList.add('btn-outline-danger');
 
                 // มือถือ
                 btn_type_all_mobile.classList.remove('btn-danger');
                 btn_type_car_mobile.classList.add('btn-danger');
                 btn_type_motorcycle_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.remove('btn-danger');
 
                 btn_type_all_mobile.classList.add('btn-outline-danger');
                 btn_type_car_mobile.classList.remove('btn-outline-danger');
                 btn_type_motorcycle_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.add('btn-outline-danger');
                 break;
             case 'motorcycle':
                 // คอม
                 btn_type_all.classList.remove('btn-danger');
                 btn_type_car.classList.remove('btn-danger');
+                btn_type_other.classList.remove('btn-danger');
                 btn_type_motorcycle.classList.add('btn-danger');
 
                 btn_type_all.classList.add('btn-outline-danger');
                 btn_type_car.classList.add('btn-outline-danger');
+                btn_type_other.classList.add('btn-outline-danger');
                 btn_type_motorcycle.classList.remove('btn-outline-danger');
 
                 // มือถือ
                 btn_type_all_mobile.classList.remove('btn-danger');
                 btn_type_car_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.remove('btn-danger');
                 btn_type_motorcycle_mobile.classList.add('btn-danger');
 
                 btn_type_all_mobile.classList.add('btn-outline-danger');
                 btn_type_car_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.add('btn-outline-danger');
                 btn_type_motorcycle_mobile.classList.remove('btn-outline-danger');
+                break;
+            case 'other':
+                // คอม
+                btn_type_all.classList.remove('btn-danger');
+                btn_type_car.classList.remove('btn-danger');
+                btn_type_motorcycle.classList.remove('btn-danger');
+                btn_type_other.classList.add('btn-danger');
+
+                btn_type_all.classList.add('btn-outline-danger');
+                btn_type_car.classList.add('btn-outline-danger');
+                btn_type_motorcycle.classList.add('btn-outline-danger');
+                btn_type_other.classList.remove('btn-outline-danger');
+
+                // มือถือ
+                btn_type_all_mobile.classList.remove('btn-danger');
+                btn_type_car_mobile.classList.remove('btn-danger');
+                btn_type_motorcycle_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.add('btn-danger');
+
+                btn_type_all_mobile.classList.add('btn-outline-danger');
+                btn_type_car_mobile.classList.add('btn-outline-danger');
+                btn_type_motorcycle_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.remove('btn-outline-danger');
                 break;
         }
     }
