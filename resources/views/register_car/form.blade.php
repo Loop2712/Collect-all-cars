@@ -447,14 +447,17 @@
                 <hr>
                 <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลรถ' }}</span><span style="color: #FF0033;"> *</span>
                 <br><br>
+                <input class="d-none" type="text" id="input_check_type_car" value="car">
                 <h4>
                     <input id="btn_type_car" type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
+                        document.querySelector('#input_check_type_car').value = 'car',
 
                         document.querySelector('#div_motor_brand').classList.add('d-none'),
                         document.querySelector('#brand_input').classList.add('d-none'),
                         document.querySelector('#generation_input').classList.add('d-none'),
                         document.querySelector('#input_motor_brand').classList.add('d-none'),
                         document.querySelector('#input_motor_model').classList.add('d-none'),
+                        document.querySelector('#span_text_other').classList.add('d-none'),
 
                         document.querySelector('#div_input_model').classList.remove('d-none'),
                         document.querySelector('#div_car_brand').classList.remove('d-none'),
@@ -465,37 +468,42 @@
                     <!-- แสดงเฉพาะมือถือ -->
                     <div class="d-block d-lg-none">
                         <input id="btn_type_motor_mobile" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
+                            document.querySelector('#input_check_type_car').value = 'motorcycle',
 
                             document.querySelector('#brand_input').classList.add('d-none'),
                             document.querySelector('#generation_input').classList.add('d-none'),
                             document.querySelector('#input_car_model').classList.add('d-none'),
                             document.querySelector('#input_car_brand').classList.add('d-none'),
                             document.querySelector('#div_car_brand').classList.add('d-none'),
+                            document.querySelector('#span_text_other').classList.add('d-none'),
 
                             document.querySelector('#div_input_model').classList.remove('d-none'),
                             document.querySelector('#div_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_model').classList.remove('d-none');">
-                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ 1
+                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์
                     </div>
                     <!-- แสดงเฉพาะคอม -->
                     <div class="d-none d-lg-block">
                         <input id="btn_type_motor_pc" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
+                            document.querySelector('#input_check_type_car').value = 'motorcycle',
 
                             document.querySelector('#brand_input').classList.add('d-none'),
                             document.querySelector('#generation_input').classList.add('d-none'),
                             document.querySelector('#input_car_model').classList.add('d-none'),
                             document.querySelector('#input_car_brand').classList.add('d-none'),
                             document.querySelector('#div_car_brand').classList.add('d-none'),
+                            document.querySelector('#span_text_other').classList.add('d-none'),
 
                             document.querySelector('#div_input_model').classList.remove('d-none'),
                             document.querySelector('#div_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_model').classList.remove('d-none');">
-                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ 2
+                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์
                     </div>
 
                     <input id="btn_type_car_other" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'other'}}" required onclick="
+                        document.querySelector('#input_check_type_car').value = 'other',
 
                         document.querySelector('#div_motor_brand').classList.add('d-none'),
                         document.querySelector('#input_motor_brand').classList.add('d-none'),
@@ -506,6 +514,7 @@
                         document.querySelector('#div_car_brand').classList.add('d-none'),
                         document.querySelector('#div_input_model').classList.add('d-none'),
 
+                        document.querySelector('#span_text_other').classList.remove('d-none'),
                         document.querySelector('#brand_input').classList.remove('d-none'),
                         document.querySelector('#generation_input').classList.remove('d-none'),
                         document.querySelector('#brand_input').focus();
@@ -602,6 +611,12 @@
                                 <input class="d-none form-control" name="generation_other" type="text" id="generation_input" value="{{ isset($register_car->generation_other) ? $register_car->generation_other : ''}}" placeholder="รุ่นรถของคุณ / Your model" >
                                 {!! $errors->first('generation_other', '<p class="help-block">:message</p>') !!}
                             </div>
+                        </div>
+                        <div id="span_text_other" style="font-size:15px;" class="col-12 text-secondary d-none">
+                            <span>
+                                ในกรณีลงทะเบียนประเภทอื่นๆ กรุณากรอกหมวดหมู่ตัวอักษรอย่างน้อง 4 ตัว
+                                <br><br>
+                            </span>
                         </div>
                         <div class="col-12 col-md-2">
                             <label for="registration_number" class="control-label">{{ 'ทะเบียนรถ' }}<span style="color: #FF0033;"> *</span></label>
@@ -1298,8 +1313,29 @@
             });
     }
     function check_register_car(){
+
         let registration_number = document.querySelector("#registration_number");
         let province = document.querySelector("#province");
+
+        let span_text_other = document.querySelector("#span_text_other");
+        let input_check_type_car = document.querySelector('#input_check_type_car').value;
+        let text_registration = registration_number.value.replace(/[0-9]/g, '');
+
+        if (input_check_type_car == 'other') {
+
+            if (text_registration.length < 4) {
+                span_text_other.classList.add('text-danger');
+                document.querySelector('#btn_edit_form').disabled = true ;
+            }else{
+                span_text_other.classList.remove('text-danger');
+                span_text_other.classList.add('text-secondary');
+                document.querySelector('#btn_edit_form').disabled = false ;
+            }
+
+        }else{
+            document.querySelector('#btn_edit_form').disabled = false ;
+        }
+
 
         fetch("{{ url('/') }}/api/check_register_car/"+registration_number.value+"/"+province.value+"/check_register_car")
             .then(response => response.json())
