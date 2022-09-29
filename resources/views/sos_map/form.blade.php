@@ -342,9 +342,9 @@
             
         if (phone === "") {
 
-            click modal pls input phone
+            // click modal pls input phone
             document.querySelector('#btn_open_pls_input_phone').click();
-            end click modal pls input phone
+            // end click modal pls input phone
 
             let input_phone_url = document.querySelector('#input_phone_url').value ;
             let phone_url_sp = input_phone_url.split("=");
