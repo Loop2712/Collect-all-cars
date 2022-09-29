@@ -394,7 +394,7 @@ class CarbrandController extends Controller
         $arr_user_click = [] ;
 
         if (!empty($data_Ads_content->user_click)) {
-            $arr_user_click = $data_Ads_content->user_click ;
+            $arr_user_click = json_decode($data_Ads_content->user_click) ;
         }
         array_push($arr_user_click, $requestData['user_id']);
 
