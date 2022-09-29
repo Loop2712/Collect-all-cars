@@ -389,17 +389,22 @@ class CarbrandController extends Controller
 
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
+        $data_Ads_content = Ads_content::where('id' , $requestData['id_content'])->first();
 
-        exit();
+        $arr_user_click = [] ;
 
-        // DB::table('ads_contents')
-        //     ->where('id', $requestData['$id_content'])
-        //     ->update([
-        //         'user_click' => $show_user ,
-        // ]);
+        if (!empty($data_Ads_content->user_click)) {
+            $arr_user_click = $data_Ads_content->user_click ;
+        }
+        array_push($arr_user_click, $requestData['user_id']);
+
+        DB::table('ads_contents')
+            ->where('id', $requestData['id_content'])
+            ->update([
+                'user_click' => $arr_user_click ,
+        ]);
+
+        return redirect($requestData['redirectTo'])->with('flash_message', 'Partner updated!');
     }
 
 }
