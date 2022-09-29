@@ -553,7 +553,7 @@
 
                 btn_type_all.classList.add('btn-outline-danger');
                 btn_type_car.classList.remove('btn-outline-danger');
-                btn_type_other.classList.remove('btn-outline-danger');
+                btn_type_other.classList.add('btn-outline-danger');
                 btn_type_motorcycle.classList.add('btn-outline-danger');
 
                 // มือถือ
