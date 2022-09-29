@@ -131,10 +131,18 @@
                     <tbody>
                         @foreach($guest as $item)
                             <tr class="text-center">
-                                <td>
-                                    <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
-                                    <span style="font-size: 15px;color: #708090"> {{ $item->register_cars->generation }}</span>
-                                </td>
+                                @if(!empty($item->register_cars->brand))
+                                    <td>
+                                        <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
+                                        <span style="font-size: 15px;color: #708090"> {{ $item->register_cars->generation }}</span>
+                                    </td>
+                                @elseif(empty($item->register_cars->brand) and !empty($item->register_cars->brand_other))
+                                    <td>
+                                        <span> <b>{{ $item->register_cars->brand_other }}</b> </span><br>
+                                        <span style="font-size: 15px;color: #708090"> {{ $item->register_cars->generation_other }}</span>
+                                    </td>
+                                @endif
+
                                 <td>
                                     <span> <b>{{ $item->registration }}</b> </span><br>
                                     <span style="font-size: 15px;color: #708090"> {{ $item->county }}</span>

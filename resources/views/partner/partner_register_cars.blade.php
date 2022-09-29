@@ -70,8 +70,15 @@
                             <tr class="text-center">
                                 <!-- <td>{{ $item->id }}</td> -->
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->brand }}</td>
-                                <td>{{ $item->generation }}</td>
+
+                                @if(!empty($item->brand))
+                                    <td>{{ $item->brand }}</td>
+                                    <td>{{ $item->generation }}</td>
+                                @elseif(empty($item->brand) and !empty($item->brand_other))
+                                    <td>{{ $item->brand_other }}</td>
+                                    <td>{{ $item->generation_other }}</td>
+                                @endif
+                                
                                 <td>
                                     <span> {{ $item->registration_number }}</span><br>
                                     <span style="font-size: 15px;color: #708090">{{ $item->province }}</span>

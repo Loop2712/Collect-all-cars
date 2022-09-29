@@ -38,12 +38,22 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td> 
                                     @if(!empty($item->register_cars->brand))
-                                    <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
-                                    @endif
-                                    @if(!empty($item->register_cars->generation))
-                                    <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation }} </span>
+                                        @if(!empty($item->register_cars->brand))
+                                        <span> <b>{{ $item->register_cars->brand }}</b> </span><br>
+                                        @endif
+                                        @if(!empty($item->register_cars->generation))
+                                        <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation }} </span>
+                                        @endif
+                                    @elseif(empty($item->register_cars->brand) and !empty($item->register_cars->brand_other))
+                                        @if(!empty($item->register_cars->brand_other))
+                                        <span> <b>{{ $item->register_cars->brand_other }}</b> </span><br>
+                                        @endif
+                                        @if(!empty($item->register_cars->generation_other))
+                                        <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation_other }} </span>
+                                        @endif
                                     @endif
                                 </td>
+
                                 <td>
                                     <span> <b>{{ $item->registration }}</b> </span><br>
                                     <span style="font-size: 15px;color: #708090">{{ $item->county }}</span>
