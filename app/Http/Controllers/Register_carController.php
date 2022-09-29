@@ -72,42 +72,32 @@ class Register_carController extends Controller
         $organization = $user->organization;
 
         if (!empty($organization)) {
-            $organizations = Partner::where('name', $organization )->get();
+            $organizations = Partner::where('name', $organization )->where('name_area' , null)->get();
                 foreach ($organizations as $key ) {
                     $juristicNameTH = $key->name;
+                    $logo = $key->logo ;
                 }
         }
 
-        switch ($type_car) {
-            case 'all':
-                $register_car = DB::table('register_cars')
+        if ($type_car == 'all') {
+            $register_car = DB::table('register_cars')
                     ->where('user_id', $user->id)
                     ->where('juristicNameTH', $user['organization'])
                     ->where('active', "Yes")
                     ->get();
-                break;
-            case 'car':
-                $register_car = DB::table('register_cars')
+        }else{
+            $register_car = DB::table('register_cars')
                     ->where('user_id', $user->id)
                     ->where('juristicNameTH', $user['organization'])
-                    ->where('car_type', "car")
                     ->where('active', "Yes")
+                    ->where('car_type', $type_car)
                     ->get();
-                break;
-            case 'motorcycle':
-                $register_car = DB::table('register_cars')
-                    ->where('user_id', $user->id)
-                    ->where('juristicNameTH', $user['organization'])
-                    ->where('car_type', "motorcycle")
-                    ->where('active', "Yes")
-                    ->get();
-                break;
         }
 
         // เวลาปัจจุบัน
         $date_now = date("Y-m-d "); 
 
-        return view('register_car.index_organization', compact('register_car' , 'date_now' ,'type_car','organization','juristicNameTH'));
+        return view('register_car.index_organization', compact('register_car' , 'date_now' ,'type_car','organization','juristicNameTH' , 'logo'));
     }
 
     /**
