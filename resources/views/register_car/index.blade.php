@@ -45,7 +45,14 @@
                         </button>
                     </a>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-2 col-md-3">
+                    <a href="{{ url('/register_car') }}?type=other">
+                        <button id="btn_type_other" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
+                            อื่นๆ
+                        </button>
+                    </a>
+                </div>
+                <div class="col-4">
                     <!--  -->
                 </div>
             </div>
@@ -273,24 +280,31 @@
     <div class="row">
         <div class="col-12">
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <a href="{{ url('/register_car') }}?type=all">
                         <button id="btn_type_all_mobile" style="width: 100%;"  class="btn btn-sm btn-danger main-shadow main-radius">
                             ทั้งหมด
                         </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <a href="{{ url('/register_car') }}?type=car">
                         <button id="btn_type_car_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             รถยนต์
                         </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <a href="{{ url('/register_car') }}?type=motorcycle">
                         <button id="btn_type_motorcycle_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
                             จักรยานยนต์
+                        </button>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="{{ url('/register_car') }}?type=other">
+                        <button id="btn_type_other_mobile" style="width: 100%;"  class="btn btn-sm btn-outline-danger main-shadow main-radius">
+                            อื่นๆ
                         </button>
                     </a>
                 </div>
@@ -494,10 +508,12 @@
         let btn_type_all = document.querySelector('#btn_type_all');
         let btn_type_car = document.querySelector('#btn_type_car');
         let btn_type_motorcycle = document.querySelector('#btn_type_motorcycle');
+        let btn_type_other = document.querySelector('#btn_type_other');
         // มือถือ
         let btn_type_all_mobile = document.querySelector('#btn_type_all_mobile');
         let btn_type_car_mobile = document.querySelector('#btn_type_car_mobile');
         let btn_type_motorcycle_mobile = document.querySelector('#btn_type_motorcycle_mobile');
+        let btn_type_other_mobile = document.querySelector('#btn_type_other_mobile');
 
         switch(type_car) {
             case 'all':
@@ -505,57 +521,92 @@
                 btn_type_all.classList.add('btn-danger');
                 btn_type_car.classList.remove('btn-danger');
                 btn_type_motorcycle.classList.remove('btn-danger');
+                btn_type_other.classList.remove('btn-danger');
 
                 btn_type_all.classList.remove('btn-outline-danger');
                 btn_type_car.classList.add('btn-outline-danger');
                 btn_type_motorcycle.classList.add('btn-outline-danger');
+                btn_type_other.classList.add('btn-outline-danger');
 
                 // มือถือ
                 btn_type_all_mobile.classList.add('btn-danger');
                 btn_type_car_mobile.classList.remove('btn-danger');
                 btn_type_motorcycle_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.remove('btn-danger');
 
                 btn_type_all_mobile.classList.remove('btn-outline-danger');
                 btn_type_car_mobile.classList.add('btn-outline-danger');
                 btn_type_motorcycle_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.add('btn-outline-danger');
              break;
             case 'car':
                 // คอม
                 btn_type_all.classList.remove('btn-danger');
                 btn_type_car.classList.add('btn-danger');
                 btn_type_motorcycle.classList.remove('btn-danger');
+                btn_type_other.classList.remove('btn-danger');
 
                 btn_type_all.classList.add('btn-outline-danger');
                 btn_type_car.classList.remove('btn-outline-danger');
+                btn_type_other.classList.remove('btn-outline-danger');
                 btn_type_motorcycle.classList.add('btn-outline-danger');
 
                 // มือถือ
                 btn_type_all_mobile.classList.remove('btn-danger');
                 btn_type_car_mobile.classList.add('btn-danger');
                 btn_type_motorcycle_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.remove('btn-danger');
 
                 btn_type_all_mobile.classList.add('btn-outline-danger');
                 btn_type_car_mobile.classList.remove('btn-outline-danger');
                 btn_type_motorcycle_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.add('btn-outline-danger');
                 break;
             case 'motorcycle':
                 // คอม
                 btn_type_all.classList.remove('btn-danger');
                 btn_type_car.classList.remove('btn-danger');
+                btn_type_other.classList.remove('btn-danger');
                 btn_type_motorcycle.classList.add('btn-danger');
 
                 btn_type_all.classList.add('btn-outline-danger');
                 btn_type_car.classList.add('btn-outline-danger');
+                btn_type_other.classList.add('btn-outline-danger');
                 btn_type_motorcycle.classList.remove('btn-outline-danger');
 
                 // มือถือ
                 btn_type_all_mobile.classList.remove('btn-danger');
                 btn_type_car_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.remove('btn-danger');
                 btn_type_motorcycle_mobile.classList.add('btn-danger');
 
                 btn_type_all_mobile.classList.add('btn-outline-danger');
                 btn_type_car_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.add('btn-outline-danger');
                 btn_type_motorcycle_mobile.classList.remove('btn-outline-danger');
+                break;
+            case 'other':
+                // คอม
+                btn_type_all.classList.remove('btn-danger');
+                btn_type_car.classList.remove('btn-danger');
+                btn_type_motorcycle.classList.remove('btn-danger');
+                btn_type_other.classList.add('btn-danger');
+
+                btn_type_all.classList.add('btn-outline-danger');
+                btn_type_car.classList.add('btn-outline-danger');
+                btn_type_motorcycle.classList.add('btn-outline-danger');
+                btn_type_other.classList.remove('btn-outline-danger');
+
+                // มือถือ
+                btn_type_all_mobile.classList.remove('btn-danger');
+                btn_type_car_mobile.classList.remove('btn-danger');
+                btn_type_motorcycle_mobile.classList.remove('btn-danger');
+                btn_type_other_mobile.classList.add('btn-danger');
+
+                btn_type_all_mobile.classList.add('btn-outline-danger');
+                btn_type_car_mobile.classList.add('btn-outline-danger');
+                btn_type_motorcycle_mobile.classList.add('btn-outline-danger');
+                btn_type_other_mobile.classList.remove('btn-outline-danger');
                 break;
         }
     }

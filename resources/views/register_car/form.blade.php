@@ -18,7 +18,7 @@
                         <span style="font-size: 22px;" class="control-label">{{ 'ข้อมูลผู้ลงทะเบียน' }}</span><span style="color: #FF0033;"> *<br><br></span>
                         <div id="input_information">
                             <div class="row">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-3">
                                     <label  class="control-label">{{ 'จังหวัดที่อยู่ปัจจุบัน' }}</label><span style="color: #FF0033;"> *</span>
                                     <div class="form-group {{ $errors->has('location_P') ? 'has-error' : ''}}">
                                         <select name="location_P" id="location_P" class="form-control" required onchange="show_location_A();change_location();">
@@ -27,7 +27,7 @@
                                         {!! $errors->first('location_P', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-3">
                                     <label  class="control-label">{{ 'อำเภอที่อยู่ปัจจุบัน' }}</label><span style="color: #FF0033;"> *</span>
                                     <div class="form-group {{ $errors->has('location_A') ? 'has-error' : ''}}">
                                         <select name="location_A" id="location_A" class="form-control" required>
@@ -37,11 +37,18 @@
                                         {!! $errors->first('location_A', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-3">
                                     <label  class="control-label">{{ 'เบอร์โทรศัพท์' }}</label><span style="color: #FF0033;"> *</span>
                                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
                                         <input class="form-control" name="phone" type="phone" id="phone" value="{{ isset($register_car->phone) ? $register_car->phone :  Auth::user()->phone }}" required placeholder="กรุณาใส่เบอร์ของคุณ" pattern="[0-9]{9-10}">
                                         {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label  class="control-label">{{ 'วันเกิด' }}</label>
+                                    <div class="form-group {{ $errors->has('brith') ? 'has-error' : ''}}">
+                                        <input class="form-control" name="brith" type="date" id="brith" value="{{ isset($register_car->brith) ? $register_car->brith :  Auth::user()->brith }}">
+                                        {!! $errors->first('brith', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
                             </div>
@@ -442,7 +449,6 @@
                 <br><br>
                 <h4>
                     <input id="btn_type_car" type="radio" name="car_type" checked value="{{ isset($register_car->car_type) ? $register_car->car_type : 'car'}}" required onclick="
-                        document.querySelector('#div_data').classList.remove('d-none'),
 
                         document.querySelector('#div_motor_brand').classList.add('d-none'),
                         document.querySelector('#brand_input').classList.add('d-none'),
@@ -450,6 +456,7 @@
                         document.querySelector('#input_motor_brand').classList.add('d-none'),
                         document.querySelector('#input_motor_model').classList.add('d-none'),
 
+                        document.querySelector('#div_input_model').classList.remove('d-none'),
                         document.querySelector('#div_car_brand').classList.remove('d-none'),
                         document.querySelector('#input_car_model').classList.remove('d-none'),
                         document.querySelector('#input_car_brand').classList.remove('d-none');">
@@ -458,7 +465,6 @@
                     <!-- แสดงเฉพาะมือถือ -->
                     <div class="d-block d-lg-none">
                         <input id="btn_type_motor_mobile" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
-                            document.querySelector('#div_data').classList.remove('d-none'),
 
                             document.querySelector('#brand_input').classList.add('d-none'),
                             document.querySelector('#generation_input').classList.add('d-none'),
@@ -466,15 +472,15 @@
                             document.querySelector('#input_car_brand').classList.add('d-none'),
                             document.querySelector('#div_car_brand').classList.add('d-none'),
 
+                            document.querySelector('#div_input_model').classList.remove('d-none'),
                             document.querySelector('#div_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_model').classList.remove('d-none');">
-                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ 
+                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ 1
                     </div>
                     <!-- แสดงเฉพาะคอม -->
                     <div class="d-none d-lg-block">
                         <input id="btn_type_motor_pc" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'motorcycle'}}" required onclick="
-                            document.querySelector('#div_data').classList.remove('d-none'),
 
                             document.querySelector('#brand_input').classList.add('d-none'),
                             document.querySelector('#generation_input').classList.add('d-none'),
@@ -482,11 +488,30 @@
                             document.querySelector('#input_car_brand').classList.add('d-none'),
                             document.querySelector('#div_car_brand').classList.add('d-none'),
 
+                            document.querySelector('#div_input_model').classList.remove('d-none'),
                             document.querySelector('#div_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_brand').classList.remove('d-none'),
                             document.querySelector('#input_motor_model').classList.remove('d-none');">
-                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์
+                        &nbsp;<i class="fas fa-motorcycle text-success " ></i >&nbsp;&nbsp;มอเตอร์ไซต์ 2
                     </div>
+
+                    <input id="btn_type_car_other" type="radio" name="car_type" value="{{ isset($register_car->car_type) ? $register_car->car_type : 'other'}}" required onclick="
+
+                        document.querySelector('#div_motor_brand').classList.add('d-none'),
+                        document.querySelector('#input_motor_brand').classList.add('d-none'),
+                        document.querySelector('#input_motor_model').classList.add('d-none'),
+
+                        document.querySelector('#input_car_model').classList.add('d-none'),
+                        document.querySelector('#input_car_brand').classList.add('d-none'),
+                        document.querySelector('#div_car_brand').classList.add('d-none'),
+                        document.querySelector('#div_input_model').classList.add('d-none'),
+
+                        document.querySelector('#brand_input').classList.remove('d-none'),
+                        document.querySelector('#generation_input').classList.remove('d-none'),
+                        document.querySelector('#brand_input').focus();
+
+                        ">
+                    &nbsp;<i class="fas fa-dolly text-info"></i>&nbsp; อื่นๆ &nbsp;&nbsp;&nbsp;
                 </h4>
                 <br>
                 <!-- ข้อมูลรถ -->
@@ -543,7 +568,7 @@
                             <label for="generation" class="control-label">{{ 'รุ่นรถ' }}</label><span style="color: #FF0033;"> *</span>
                         </div>
                         <div class="col-12 col-md-4">
-                            <div class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
+                            <div id="div_input_model" class="form-group {{ $errors->has('generation') ? 'has-error' : ''}}">
                                 <!-- car -->
                                 <select name="generation" id="input_car_model" class=" form-control"  onchange="if(this.value=='อื่นๆ'){ 
                                         document.querySelector('#generation_input').classList.remove('d-none'),

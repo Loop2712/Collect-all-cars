@@ -33,30 +33,19 @@ class Register_carController extends Controller
                 $type_car = "all";
             }
 
-        switch ($type_car) {
-            case 'all':
-                $register_car = DB::table('register_cars')
-                    ->where('user_id', $user->id)
-                    ->where('juristicNameTH', null)
-                    ->where('active', "Yes")
-                    ->get();
-                break;
-            case 'car':
-                $register_car = DB::table('register_cars')
-                    ->where('user_id', $user->id)
-                    ->where('juristicNameTH', null)
-                    ->where('car_type', "car")
-                    ->where('active', "Yes")
-                    ->get();
-                break;
-            case 'motorcycle':
-                $register_car = DB::table('register_cars')
-                    ->where('user_id', $user->id)
-                    ->where('juristicNameTH', null)
-                    ->where('car_type', "motorcycle")
-                    ->where('active', "Yes")
-                    ->get();
-                break;
+        if ($type_car == 'all') {
+            $register_car = DB::table('register_cars')
+                ->where('user_id', $user->id)
+                ->where('juristicNameTH', null)
+                ->where('active', "Yes")
+                ->get();
+        }else{
+            $register_car = DB::table('register_cars')
+                ->where('user_id', $user->id)
+                ->where('juristicNameTH', null)
+                ->where('car_type', $type_car)
+                ->where('active', "Yes")
+                ->get();
         }
 
         $organization = "";
@@ -186,6 +175,11 @@ class Register_carController extends Controller
     {
         
         $requestData = $request->all();
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         // update registration_number
         $requestData['registration_number'] = str_replace(" ", "", $requestData['registration_number']);
