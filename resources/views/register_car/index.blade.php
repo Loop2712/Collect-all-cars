@@ -82,8 +82,13 @@
                                                 <img width="50" style="margin:-5px 13px;" src="{{ asset('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
                                             </div> 
                                             <div class="col-7 col-md-8 notranslate">
-                                                <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
-                                                <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @if(!empty($item->brand))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation }} </p>
+                                                @elseif(empty($item->brand) and !empty($item->brand_other))
+                                                    <p style="font-size:24px;margin-top:-10px"><b>{{ $item->brand_other }}</b></p>
+                                                    <p style="margin-top:-20px; font-size:16px">{{ $item->generation_other }} </p>
+                                                @endif
                                             </div>
                                         </div>
                                         <center>
