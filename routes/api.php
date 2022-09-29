@@ -83,6 +83,7 @@ Route::post('/search_data_broadcast_by_car','API\CarbrandController@search_data_
 Route::get('/search_data_selected_car/{car_id}','API\CarbrandController@search_data_selected_car');
 
 Route::post('/send_content_BC_by_car','API\CarbrandController@send_content_BC_by_car');
+Route::post('/check_content','API\CarbrandController@check_content');
 
 // ยี่ห้อจากราคากลาง
 Route::get('/brand_middle_price','API\Brand_middle_price_carsController@getBrand');

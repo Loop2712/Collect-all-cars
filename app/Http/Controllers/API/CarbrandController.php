@@ -339,7 +339,7 @@ class CarbrandController extends Controller
 
             $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
             $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
-            $string_json = str_replace("TEXT_URL",$requestData['link'],$string_json);
+            $string_json = str_replace("TEXT_URL",$requestData['link'] . "&user_id=" . $arr_user_id[$xi] ,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
@@ -383,6 +383,23 @@ class CarbrandController extends Controller
 
         return "send done all" ;
 
+    }
+
+    function check_content(Request $request){
+
+        $requestData = $request->all();
+
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+
+        exit();
+
+        // DB::table('ads_contents')
+        //     ->where('id', $requestData['$id_content'])
+        //     ->update([
+        //         'user_click' => $show_user ,
+        // ]);
     }
 
 }
