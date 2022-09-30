@@ -330,16 +330,11 @@ class CarbrandController extends Controller
 
         }
 
-        try {
-            $img = 'https://www.viicheck.com/storage/' . $requestData['photo'];
-            $img_content = Image::make( $img );
+        $img = 'https://www.viicheck.com/storage/' . $requestData['photo'];
+        $img_content = Image::make( $img );
 
-            $img_content_w = $img_content->width();
-            $img_content_h = $img_content->height();
-        }catch{
-            $img_content_w = "20";
-            $img_content_h = "13";
-        }
+        $img_content_w = $img_content->width();
+        $img_content_h = $img_content->height();
 
 
         // ส่ง content
