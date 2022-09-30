@@ -8,7 +8,7 @@
         "type": "image",
         "url": "https://www.viicheck.com/storage/PHOTO_BC",
         "size": "full",
-        "aspectRatio": "20:13",
+        "aspectRatio": "TEXT_W:TEXT_H",
         "aspectMode": "cover",
         "action": {
           "type": "uri",

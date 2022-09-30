@@ -12,6 +12,7 @@ use App\Models\Insurance;
 use App\Models\Register_car;
 use App\Models\Ads_content;
 use App\Models\Partner_premium;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class CarbrandController extends Controller
 {
@@ -329,6 +330,17 @@ class CarbrandController extends Controller
 
         }
 
+        $img = storage_path("app/public") . $requestData['photo'];
+        $img_content = Image::make( $img );
+
+        $img_content_width = $img_content->width();
+        $img_content_hight = $img_content->hight();
+
+        echo $img_content_width ;
+        echo $img_content_hight ;
+        exit();
+
+
         // ส่ง content
         for ($xi=0; $xi < count($arr_user_id); $xi++) { 
 
@@ -338,6 +350,8 @@ class CarbrandController extends Controller
             $string_json = file_get_contents($template_path);
 
             $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
+            $string_json = str_replace("TEXT_W","",$string_json);
+            $string_json = str_replace("TEXT_H","",$string_json);
             $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
             $string_json = str_replace("TEXT_URL",$requestData['link'] . "&user_id=" . $arr_user_id[$xi] ,$string_json);
 
