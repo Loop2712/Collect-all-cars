@@ -339,8 +339,8 @@ class CarbrandController extends Controller
             $string_json = file_get_contents($template_path);
 
             $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
-            // $string_json = str_replace("TEXT_W","",$string_json);
-            // $string_json = str_replace("TEXT_H","",$string_json);
+            $string_json = str_replace("TEXT_W","20",$string_json);
+            $string_json = str_replace("TEXT_H","13",$string_json);
             $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
             $string_json = str_replace("TEXT_URL",$requestData['link'] . "&user_id=" . $arr_user_id[$xi] ,$string_json);
 
