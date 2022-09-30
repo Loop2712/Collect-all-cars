@@ -235,12 +235,11 @@
                             <!-- -------------------- Presentation ------------------- -->
                             <br>
                             <hr class="text-danger">
-                            <br>
-                            <h3 style="margin-left: 20px;" class="text-danger">Presentation</h3>
-                            <br>
                             <div class="row">
-                                <div class="col-2"></div>
-                                <div class="col-8">
+                                <div class="col-6">
+
+                            <h3 style="margin-left: 20px;" class="text-danger">Presentation</h3>
+
                                     <img class="card-img-top main-shadow main-radius" src="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/ViiCHECK.jpg') }}">
                                     <br><br>
                                     <h5>
@@ -260,7 +259,19 @@
                                         </a>
                                     </h5>
                                 </div> -->
-                                <div class="col-2"></div>
+                                <div class="col-6 ">
+                            <h3 style="margin-left: 20px;" class="text-danger">Sound</h3>
+                                    <div class="text-center">
+                                    <img class="card-img-top main-shadow main-radius text-center" src="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/stk_line/6.png') }}" style="width: 65%;">
+                                    </div>
+                                    <br>
+                                    <h5>
+                                        เสียงตามสาย
+                                        <a style="float:right;" target="bank" class="btn btn-danger notranslate main-shadow main-radius" href="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/viicheck sound.zip') }}" >
+                                            ดาวน์โหลด
+                                        </a>
+                                    </h5>
+                                </div>
                             </div>
                             <br>
                         </div>
