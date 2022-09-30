@@ -330,6 +330,8 @@ class CarbrandController extends Controller
 
         }
 
+        $img = storage_path("app/public")."/check_in". "/" . 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
+
         // ส่ง content
         for ($xi=0; $xi < count($arr_user_id); $xi++) { 
 

@@ -992,6 +992,7 @@ class PartnerController extends Controller
             ->first();
 
         $partners_id = $data_partners->id ;
+        $partners_logo = $data_partners->logo ;
 
         $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
 
@@ -1004,6 +1005,10 @@ class PartnerController extends Controller
         }else{
             $BC_by_car_sent = $partner_premium->BC_by_car_sent ;
         }
+
+        $img = storage_path($partners_logo);
+        echo $img ;
+        exit();
 
         return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max','BC_by_car_sent','name_partner' , 'id_partner'));
     }
