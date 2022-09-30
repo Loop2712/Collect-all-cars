@@ -1006,10 +1006,6 @@ class PartnerController extends Controller
             $BC_by_car_sent = $partner_premium->BC_by_car_sent ;
         }
 
-        $img = storage_path($partners_logo);
-        echo $img ;
-        exit();
-
         return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max','BC_by_car_sent','name_partner' , 'id_partner'));
     }
 

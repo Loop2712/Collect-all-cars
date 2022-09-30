@@ -330,7 +330,17 @@ class CarbrandController extends Controller
 
         }
 
-        $img = storage_path("app/public")."/check_in". "/" . 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
+        try {
+            $img = 'https://www.viicheck.com/storage/' . $requestData['photo'];
+            $img_content = Image::make( $img );
+
+            $img_content_w = $img_content->width();
+            $img_content_h = $img_content->height();
+        }catch{
+            $img_content_w = "20";
+            $img_content_h = "13";
+        }
+
 
         // ส่ง content
         for ($xi=0; $xi < count($arr_user_id); $xi++) { 
@@ -341,8 +351,8 @@ class CarbrandController extends Controller
             $string_json = file_get_contents($template_path);
 
             $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
-            $string_json = str_replace("TEXT_W","20",$string_json);
-            $string_json = str_replace("TEXT_H","13",$string_json);
+            $string_json = str_replace("TEXT_W",$img_content_w,$string_json);
+            $string_json = str_replace("TEXT_H",$img_content_h,$string_json);
             $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
             $string_json = str_replace("TEXT_URL",$requestData['link'] . "&user_id=" . $arr_user_id[$xi] ,$string_json);
 
