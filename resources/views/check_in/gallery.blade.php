@@ -40,96 +40,157 @@
 </style>
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
     @foreach($all_areas as $all_area)
-    @php
-        $img_name_area = str_replace(" ","_" ,$all_area->name_area) ;
 
-        if(empty($all_area->name_area)){
-            $text_name_area = 'รวม' ;
-        }else{
-            $text_name_area = $all_area->name_area ;
-        }
-    @endphp
-    <div class="col">
-        <div class="card radius-10">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-9">
-                                @if(!empty($all_area->name_area))
-                                    <h5 class="mb-1">พื้นที่ : <b class="text-info">{{ $all_area->name_area }}</b></h5>
-                                @else
-                                    <h5 class="mb-1">พื้นที่ : <b class="text-info">รวม</b></h5>
-                                @endif
-                            </div>
-                            <div class="col-3">
-                                <span class="btn btn-sm btn-primary main-shadow main-radius" style="float: right;width: 100%;" data-toggle="collapse" href="#coll_gen_qr_{{ $all_area->id }}" role="button" aria-expanded="false" aria-controls="coll_gen_qr_{{ $all_area->id }}">
-                                    สร้าง QR-Code
-                                </span>
-                            </div>
+        @if($all_area->name_area == "Porto Go ท่าจีน")
+            <!-- Porto Go ท่าจีน -->
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
                             <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="mb-1">พื้นที่ : <b class="text-info">Porto Go ท่าจีน</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                
+                               <!-- link to light box -->
+                               <a href="#artwork_{{ $loop->iteration }}" class="btn-outline-dark">
+                                    <img class="main-shadow main-radius" src="{{ url('/img/check_in/Porto Go/art_work_check_in porto go ท่าจีน.png') }}" style="background-color: red;width: 100%;">
+                                </a>
+
+                                <!-- light box -->
+                                <a href="##" class="lightbox" id="artwork_{{ $loop->iteration }}">
+                                    <span style="background-image: url(' {{ url('/img/check_in/Porto Go/art_work_check_in porto go ท่าจีน.png') }}"></span>
+                                </a>
                                 <br>
-                                <div class="collapse" id="coll_gen_qr_{{ $all_area->id }}">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <!--  -->
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="">
-                                                <input type="text" class="form-control" id="color_theme_{{ $all_area->id }}" name="color_theme_{{ $all_area->id }}" value="" placeholder="กรอกโค้ดสี เช่น #F15423" style="float: right;">
+                                <!-- download btn -->
+                                <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('/img/check_in/Porto Go/art_work_check_in porto go ท่าจีน.png') }}" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                                <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#artwork_{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
+                                
+                            </div>
+                            <div class="col-6 ">
+                                <!-- link to light box -->
+                                <a href="#flag{{ $loop->iteration }}">
+                                    <img class="main-shadow main-radius" src="{{ url('/img/check_in/Porto Go/StandyPorto go ท่าจีน 55x120.png') }}" style="background-color: red;width: 33%;">
+                                </a>
+
+                                <!-- light box -->
+                                <a href="##" class="lightbox" id="flag{{ $loop->iteration }}">
+                                    <span style="background-image: url('{{ url('/img/check_in/Porto Go/StandyPorto go ท่าจีน 55x120.png') }}"></span>
+                                </a>
+                                <br>
+                                <!-- download btn -->
+                                <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('/img/check_in/Porto Go/StandyPorto go ท่าจีน 55x120.png') }}" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                                <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @elseif($all_area->name_area == "Porto Go บางปะอิน")
+            <!-- Porto Go บางปะอิน -->
+        @else
+            <!-- อื่นๆ -->
+            @php
+                $img_name_area = str_replace(" ","_" ,$all_area->name_area) ;
+
+                if(empty($all_area->name_area)){
+                    $text_name_area = 'รวม' ;
+                }else{
+                    $text_name_area = $all_area->name_area ;
+                }
+            @endphp
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-9">
+                                        @if(!empty($all_area->name_area))
+                                            <h5 class="mb-1">พื้นที่ : <b class="text-info">{{ $all_area->name_area }}</b></h5>
+                                        @else
+                                            <h5 class="mb-1">พื้นที่ : <b class="text-info">รวม</b></h5>
+                                        @endif
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="btn btn-sm btn-primary main-shadow main-radius" style="float: right;width: 100%;" data-toggle="collapse" href="#coll_gen_qr_{{ $all_area->id }}" role="button" aria-expanded="false" aria-controls="coll_gen_qr_{{ $all_area->id }}">
+                                            สร้าง QR-Code
+                                        </span>
+                                    </div>
+                                    <div class="col-12">
+                                        <br>
+                                        <div class="collapse" id="coll_gen_qr_{{ $all_area->id }}">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <!--  -->
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="color_theme_{{ $all_area->id }}" name="color_theme_{{ $all_area->id }}" value="" placeholder="กรอกโค้ดสี เช่น #F15423" style="float: right;">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <span class="btn btn-sm btn-success main-shadow main-radius" style="float: right;width: 100%;margin-top: 5px;" onclick="gen_qr_code('{{ $all_area->name_area }}' , '{{ $all_area->name }}' , '{{ $all_area->type_partner }}' ,'{{ $all_area->id }}');">
+                                                        ยืนยัน
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <span class="btn btn-sm btn-success main-shadow main-radius" style="float: right;width: 100%;margin-top: 5px;" onclick="gen_qr_code('{{ $all_area->name_area }}' , '{{ $all_area->name }}' , '{{ $all_area->type_partner }}' ,'{{ $all_area->id }}');">
-                                                ยืนยัน
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row text-center">
-                    <div class="col-6">
-                        
-                       <!-- link to light box -->
-                       <a href="#artwork_{{ $loop->iteration }}" class="btn-outline-dark">
-                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png" style="background-color: red;width: 100%;">
-                        </a>
-
-                        <!-- light box -->
-                        <a href="##" class="lightbox" id="artwork_{{ $loop->iteration }}">
-                            <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png')"></span>
-                        </a>
                         <br>
-                        <!-- download btn -->
-                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
-                        <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#artwork_{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
-                        
-                    </div>
-                    <div class="col-6 ">
-                        <!-- link to light box -->
-                        <a href="#flag{{ $loop->iteration }}">
-                            <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png" style="background-color: red;width: 33%;">
-                        </a>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                
+                               <!-- link to light box -->
+                               <a href="#artwork_{{ $loop->iteration }}" class="btn-outline-dark">
+                                    <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png" style="background-color: red;width: 100%;">
+                                </a>
 
-                        <!-- light box -->
-                        <a href="##" class="lightbox" id="flag{{ $loop->iteration }}">
-                            <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png')"></span>
-                        </a>
-                        <br>
-                        <!-- download btn -->
-                        <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
-                        <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
-                        
-                    </div>
+                                <!-- light box -->
+                                <a href="##" class="lightbox" id="artwork_{{ $loop->iteration }}">
+                                    <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png')"></span>
+                                </a>
+                                <br>
+                                <!-- download btn -->
+                                <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_{{ $all_area->name }}_{{ $text_name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                                <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#artwork_{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
+                                
+                            </div>
+                            <div class="col-6 ">
+                                <!-- link to light box -->
+                                <a href="#flag{{ $loop->iteration }}">
+                                    <img class="main-shadow main-radius" src="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png" style="background-color: red;width: 33%;">
+                                </a>
 
+                                <!-- light box -->
+                                <a href="##" class="lightbox" id="flag{{ $loop->iteration }}">
+                                    <span style="background-image: url(' {{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png')"></span>
+                                </a>
+                                <br>
+                                <!-- download btn -->
+                                <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('storage') }}/check_in/artwork_flag{{ $all_area->name }}_{{ $text_name_area }}.png" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                                <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
+                                
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        @endif
+
     @endforeach
 </div>
 
