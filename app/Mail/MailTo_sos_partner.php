@@ -19,11 +19,7 @@ class MailTo_sos_partner extends Mailable
      */
     public function __construct($data)
     {
-        try {
-            $this->data =$data;
-        } catch( Exception $e ){
-            echo "ไม่พบที่อยู่เมล";
-        }
+        $this->data =$data;
     }
 
     /**
@@ -35,7 +31,10 @@ class MailTo_sos_partner extends Mailable
     {
         $data = $this->data;
 
-        return $this->subject('ขอความช่วยเหลือ')
-        ->view('mail.MailTo_sos_partner', compact('data') );
+        try {
+            return $this->subject('ขอความช่วยเหลือ')->view('mail.MailTo_sos_partner', compact('data') );
+        } catch( Exception $e ){
+            exit();
+        }
     }
 }
