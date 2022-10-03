@@ -111,9 +111,9 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
 
-        setInterval(function() {
-            getLocation();
-        }, 5000);
+        // setInterval(function() {
+        //     getLocation();
+        // }, 5000);
         
     });
 
