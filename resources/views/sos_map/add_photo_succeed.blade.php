@@ -54,6 +54,8 @@
     100% {
         box-shadow: inset 0px 0px 0px 60px #7ac142
     }
+}.owl-dot{
+    display: none;
 }
 </style>
 
@@ -91,7 +93,7 @@
                 </div>
             </div>
 
-            <a style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" href="{{ url()->previous() }}">เสร็จสิ้น</a>
+            <a style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" href="{{ URL::previous() }}">เสร็จสิ้น</a>
         
         </div>
         <div id="content_add_photo" class="col-md-12 d-none">
