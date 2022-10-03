@@ -68,10 +68,10 @@ class Check_inController extends Controller
         
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         if ($requestData['check_in_out'] == "check_in") {
             $requestData['time_out'] = null ;
