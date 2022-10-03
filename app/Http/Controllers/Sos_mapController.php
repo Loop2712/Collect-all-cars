@@ -427,7 +427,12 @@ class Sos_mapController extends Controller
             $data_send_mail['lat_mail'] = $text_at.$lat_user;
 
             $email = $mail_partner ;
-            Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
+
+            try {
+                Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
+            } catch( Exception $e ){
+                echo "ไม่พบที่อยู่เมล";
+            }
 
             // flex ask_for_help
             if (!empty($data['photo'])) {
