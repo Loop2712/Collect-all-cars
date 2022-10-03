@@ -97,6 +97,58 @@
             </div>
         @elseif($all_area->name_area == "Porto Go บางปะอิน")
             <!-- Porto Go บางปะอิน -->
+            <div class="col">
+                <div class="card radius-10">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="mb-1">พื้นที่ : <b class="text-info">Porto Go บางปะอิน</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                
+                               <!-- link to light box -->
+                               <a href="#artwork_{{ $loop->iteration }}" class="btn-outline-dark">
+                                    <img class="main-shadow main-radius" src="{{ url('/img/check_in/Porto Go/art_work_check_in porto go บางปะอิน.png') }}" style="background-color: red;width: 100%;">
+                                </a>
+
+                                <!-- light box -->
+                                <a href="##" class="lightbox" id="artwork_{{ $loop->iteration }}">
+                                    <span style="background-image: url(' {{ url('/img/check_in/Porto Go/art_work_check_in porto go บางปะอิน.png') }}"></span>
+                                </a>
+                                <br>
+                                <!-- download btn -->
+                                <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('/img/check_in/Porto Go/art_work_check_in porto go บางปะอิน.png') }}" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                                <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#artwork_{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
+                                
+                            </div>
+                            <div class="col-6 ">
+                                <!-- link to light box -->
+                                <a href="#flag{{ $loop->iteration }}">
+                                    <img class="main-shadow main-radius" src="{{ url('/img/check_in/Porto Go/StandyPorto go บางปะอิน 55x120.png') }}" style="background-color: red;width: 33%;">
+                                </a>
+
+                                <!-- light box -->
+                                <a href="##" class="lightbox" id="flag{{ $loop->iteration }}">
+                                    <span style="background-image: url('{{ url('/img/check_in/Porto Go/StandyPorto go บางปะอิน 55x120.png') }}"></span>
+                                </a>
+                                <br>
+                                <!-- download btn -->
+                                <a class="btn btn-outline-danger px-3 radius-30 mt-3" href="{{ url('/img/check_in/Porto Go/StandyPorto go บางปะอิน 55x120.png') }}" download><i class="fa-solid fa-download"></i> ดาวน์โหลด</a>
+                                <a class="btn btn-outline-warning px-3 radius-30 mt-3" href="#flag{{ $loop->iteration }}" ><img  src="{{ asset('/img/icon/zoom-in.png') }}" width="18px" alt=""></a>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         @else
             <!-- อื่นๆ -->
             @php
