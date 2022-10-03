@@ -428,12 +428,13 @@ class Sos_mapController extends Controller
 
             $email = $mail_partner ;
 
-            try {
+            // try {
+            //     Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
+            // } catch( Exception $e ){
+            //     echo "ไม่พบที่อยู่เมล";
+            // }
                 Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
-            } catch( Exception $e ){
-                echo "ไม่พบที่อยู่เมล";
-            }
-
+            
             // flex ask_for_help
             if (!empty($data['photo'])) {
                 $template_path = storage_path('../public/json/ask_for_help_photo_new.json');
