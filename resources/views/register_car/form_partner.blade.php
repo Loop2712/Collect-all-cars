@@ -20,7 +20,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-md-7 d-none">
                 <div class="form-group float-right" style="margin-top: 7px;">
                     <b>แนะนำ : </b> <span class="text-secondary">กรุณาเปิดตำแหน่งที่ตั้งเพื่อค้นหาองค์กรในพื้นที่</span>
                     &nbsp;&nbsp;&nbsp;
