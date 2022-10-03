@@ -90,6 +90,9 @@
                     </center>
                 </div>
             </div>
+            <button style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" onclick="history.back()">
+                เสร็จสิ้น
+            </button>
         </div>
         <div id="content_add_photo" class="col-md-12 d-none">
             <div class="card">
