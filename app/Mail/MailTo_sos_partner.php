@@ -19,7 +19,11 @@ class MailTo_sos_partner extends Mailable
      */
     public function __construct($data)
     {
-        $this->data =$data;
+        try {
+            $this->data =$data;
+        } catch( Exception $e ){
+            echo "ไม่พบที่อยู่เมล";
+        }
     }
 
     /**
