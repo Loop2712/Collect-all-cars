@@ -31,10 +31,7 @@ class MailTo_sos_partner extends Mailable
     {
         $data = $this->data;
 
-        try {
-            return $this->subject('ขอความช่วยเหลือ')->view('mail.MailTo_sos_partner', compact('data') );
-        } catch( Exception $e ){
-            exit();
-        }
+        return $this->subject('ขอความช่วยเหลือ')
+        ->view('mail.MailTo_sos_partner', compact('data') );
     }
 }
