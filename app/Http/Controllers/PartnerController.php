@@ -241,6 +241,20 @@ class PartnerController extends Controller
         if ($request->hasFile('logo')) {
             $requestData['logo'] = $request->file('logo')->store('uploads', 'public');
         }
+
+        if (!empty($requestData['mail'])) {
+            $data_partner = Partner::where('id' , $id)->first();
+            $all_area = Partner::where('name' , $data_partner->name)->get();
+
+            foreach ($all_area as $key) {
+
+                DB::table('partners')
+                        ->where('id', $key->id)
+                        ->update([
+                            'mail' => $requestData['mail'],
+                    ]);
+            }
+        }
         
         $partner = Partner::findOrFail($id);
         $partner->update($requestData);
