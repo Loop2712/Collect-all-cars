@@ -68,10 +68,10 @@ class Check_inController extends Controller
         
         $requestData = $request->all();
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
 
         if ($requestData['check_in_out'] == "check_in") {
             $requestData['time_out'] = null ;
@@ -152,8 +152,25 @@ class Check_inController extends Controller
         foreach($data_partner as $partner){
             $id_partner = $partner->id ;
             $check_in_at = $partner->name . " - " . $partner->name_area ;
+            $user_check_in = $partner->user_check_in ;
         }
 
+        // update check_in id user to partner
+        if (empty($user_check_in)) {
+            $arr_user_check_in = array($requestData['user_id']) ;
+        }else{
+            $arr_user_check_in = json_decode($user_check_in) ;
+            array_push($arr_user_check_in , $requestData['user_id']) ;
+        }
+
+        DB::table('partners')
+            ->where('id', $id_partner)
+            ->update([
+                'user_check_in' => $arr_user_check_in,
+        ]);
+        // end update check_in id user to partner
+
+        // update check_in id location to users
         foreach ($data_user as $user) {
             if (empty($user->check_in_at)) {
                 $check_in_all = array($id_partner) ;
@@ -173,6 +190,7 @@ class Check_inController extends Controller
             ->update([
                 'check_in_at' => $check_in_all,
         ]);
+        // end update check_in id location to users
 
 
         if (!empty($requestData['time_in'])) {
