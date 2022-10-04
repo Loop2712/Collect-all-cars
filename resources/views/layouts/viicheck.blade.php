@@ -1261,7 +1261,7 @@
   <script src="{{ asset('js/car/jquery.slicknav.js')}}"></script>
   <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
   <script src="{{ asset('js/car/main.js')}}"></script>
-  <script src="{{ asset('medilab/js/wow.min.js') }}"></script>
+  <!-- <script src="{{ asset('medilab/js/wow.min.js') }}"></script> -->
   <script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>
