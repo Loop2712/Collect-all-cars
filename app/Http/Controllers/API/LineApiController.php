@@ -607,7 +607,7 @@ class LineApiController extends Controller
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-        if ($type = "helper_click_double") {
+        if ($type == "helper_click_double") {
             $data_topic = [
                     "ขออภัยค่ะมีการดำเนินการแล้ว ขอบคุณค่ะ",
                 ];
