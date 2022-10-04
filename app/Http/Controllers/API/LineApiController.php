@@ -444,7 +444,7 @@ class LineApiController extends Controller
         if ($data_sos_map->help_complete == "Yes") { // การช่วยเหลือเสร็จสิ้น
 
             // ส่งไลน์การช่วยเหลือนี้เสร็จสิ้นแล้ว
-            $this->This_help_is_done($data_partner_helpers, $event);
+            $this->This_help_is_done($data_partner_helpers, $event, "This_help_is_done");
 
         }else{ // การช่วยเหลือ อยู่ระหว่างดำเนินการ
 
@@ -452,7 +452,7 @@ class LineApiController extends Controller
             if ($users != '[]') { // เป็นสมาชิก ViiCHECK
 
                 foreach ($users as $user) {
-
+                    // ตรวจสอบสถานนะ role
                     if (!empty($user->role)) {
                         DB::table('users')
                             ->where('provider_id', $provider_id)
@@ -468,7 +468,7 @@ class LineApiController extends Controller
                         ]);
                     }
                     
-
+                    // ตรวจสอบรายชื่อคนช่วยเหลือ
                     if (!empty($data_sos_map->helper)) {
 
                         $explode_helper_id = explode(",",$data_sos_map->helper_id);
@@ -495,7 +495,8 @@ class LineApiController extends Controller
                             $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
 
                         }else{
-                            //
+                            // คุณได้ทำการกด "กำลังไปช่วยเหลือ" ซ้ำ
+                            $this->This_help_is_done($data_partner_helpers, $event , "helper_click_double");
                         }
 
                     }else {
@@ -589,7 +590,7 @@ class LineApiController extends Controller
         MyLog::create($data);
     }
 
-    protected function This_help_is_done($data_partner_helpers, $event)
+    protected function This_help_is_done($data_partner_helpers, $event , $type)
     {
         //การช่วยเหลือนี้เสร็จสิ้นแล้ว
         $data_line_group = DB::table('group_lines')
@@ -606,9 +607,16 @@ class LineApiController extends Controller
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-        $data_topic = [
+        if ($type = "helper_click_double") {
+            $data_topic = [
+                    "ขออภัยค่ะมีการดำเนินการแล้ว ขอบคุณค่ะ",
+                ];
+        }else{
+            $data_topic = [
                     "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
                 ];
+        }
+        
 
         for ($xi=0; $xi < count($data_topic); $xi++) { 
 
