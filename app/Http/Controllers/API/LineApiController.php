@@ -439,72 +439,86 @@ class LineApiController extends Controller
         $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
         $users = DB::table('users')->where('provider_id', $provider_id)->get();
-        
-        if ($users != '[]') {
-            foreach ($users as $user) {
-                if (!empty($user->role)) {
-                    DB::table('users')
-                        ->where('provider_id', $provider_id)
-                        ->update([
-                            'organization' => $data_partner_helpers->name,
-                    ]);
-                }else{
-                    DB::table('users')
-                        ->where('provider_id', $provider_id)
-                        ->update([
-                            'organization' => $data_partner_helpers->name,
-                            'role' => 'partner',
-                    ]);
-                }
-                
 
-                if (!empty($data_sos_map->helper)) {
+        // ตรวจสอบ "การช่วยเหลือเสร็จสิ้น" แล้วหรือยัง
+        if ($data_sos_map->help_complete == "Yes") { // การช่วยเหลือเสร็จสิ้น
 
-                    $explode_helper_id = explode(",",$data_sos_map->helper_id);
-                    for ($i=0; $i < count($explode_helper_id); $i++) {
+            // ส่งไลน์การช่วยเหลือนี้เสร็จสิ้นแล้ว
+            // $this->reply_success_groupline($event , $data_postback, $data_postback_explode[1]);
 
-                        if ($explode_helper_id[$i] != $user->id) {
-                            $helper_double = "No";
-                        }else{
-                            $helper_double = "Yes";
-                            break;
-                        }
+        }else{ // การช่วยเหลือ อยู่ระหว่างดำเนินการ
 
+            // ตรวจสอบการเป็นสมาชิก ViiCHECK
+            if ($users != '[]') { // เป็นสมาชิก ViiCHECK
+
+                foreach ($users as $user) {
+
+                    if (!empty($user->role)) {
+                        DB::table('users')
+                            ->where('provider_id', $provider_id)
+                            ->update([
+                                'organization' => $data_partner_helpers->name,
+                        ]);
+                    }else{
+                        DB::table('users')
+                            ->where('provider_id', $provider_id)
+                            ->update([
+                                'organization' => $data_partner_helpers->name,
+                                'role' => 'partner',
+                        ]);
                     }
                     
-                    if ($helper_double != "Yes") {
+
+                    if (!empty($data_sos_map->helper)) {
+
+                        $explode_helper_id = explode(",",$data_sos_map->helper_id);
+                        for ($i=0; $i < count($explode_helper_id); $i++) {
+
+                            if ($explode_helper_id[$i] != $user->id) {
+                                $helper_double = "No";
+                            }else{
+                                $helper_double = "Yes";
+                                break;
+                            }
+
+                        }
+                        
+                        if ($helper_double != "Yes") {
+                            DB::table('sos_maps')
+                                ->where('id', $id_sos_map)
+                                ->update([
+                                    'helper' => $data_sos_map->helper . ',' . $user->name,
+                                    'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
+                                    'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                            ]);
+
+                            $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
+
+                        }else{
+                            //
+                        }
+
+                    }else {
                         DB::table('sos_maps')
                             ->where('id', $id_sos_map)
                             ->update([
-                                'helper' => $data_sos_map->helper . ',' . $user->name,
-                                'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
-                                'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                                'helper' => $user->name,
+                                'helper_id' => $user->id,
+                                'organization_helper' => $data_partner_helpers->name,
                         ]);
 
-                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
-
-                    }else{
-                        //
+                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
+                        
                     }
 
-                }else {
-                    DB::table('sos_maps')
-                        ->where('id', $id_sos_map)
-                        ->update([
-                            'helper' => $user->name,
-                            'helper_id' => $user->id,
-                            'organization_helper' => $data_partner_helpers->name,
-                    ]);
-
-                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
-                    
                 }
-            }
-        }else{
-            // return redirect('login/line');
-            $this->_send_register_to_groupline($data_partner_helpers);
-        }
 
+            }else{ // ไม่ได้เป็นสมาชิก ViiCHECK
+                // return redirect('login/line');
+                $this->_send_register_to_groupline($data_partner_helpers);
+            }
+        }
+        
     }
 
     protected function _send_register_to_groupline($data_partner_helpers)
