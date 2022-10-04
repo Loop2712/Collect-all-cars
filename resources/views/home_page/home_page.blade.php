@@ -1066,13 +1066,13 @@
   @endif
 
   <!-- Messenger ปลั๊กอินแชท Code -->
-  <div id="fb-root"></div>
+  <!-- <div id="fb-root"></div> -->
 
   <!-- Your ปลั๊กอินแชท code -->
-  <div id="fb-customer-chat" class="fb-customerchat">
-  </div>
+  <!-- <div id="fb-customer-chat" class="fb-customerchat">
+  </div> -->
 
-  <script>
+  <!-- <script>
     var chatbox = document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", "107783134685421");
     chatbox.setAttribute("attribution", "biz_inbox");
@@ -1092,7 +1092,7 @@
       js.src = 'https://connect.facebook.net/th_TH/sdk/xfbml.customerchat.js';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  </script>
+  </script> -->
 
 </main><!-- End #main -->
 <script>
