@@ -93,12 +93,10 @@
                 </div>
             </div>
 
-            <button id="backbutton" style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" onclick="onBackKeyDown(false);">
-                เสร็จสิ้น
-            </button>
+            <button id="backbutton" style="width:100%;" class="btn btn-success main-shadow main-radius mt-3">เสร็จสิ้น</button>
 
             <script>
-                // document.addEventListener('backbutton', onBackKeyDown, false);
+                document.addEventListener('backbutton', onBackKeyDown, false);
 
                 function onBackKeyDown(event) {
                     // Handle the back button
