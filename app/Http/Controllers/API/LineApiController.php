@@ -87,7 +87,7 @@ class LineApiController extends Controller
                 $this->help_complete($data_postback_explode[1]);
                 break;
             case "sos" : 
-                $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"]);
+                $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"] , $event);
                 break;
             case "Chinese" : 
                 $line->replyToUser(null, $event, "Chinese");
@@ -421,7 +421,7 @@ class LineApiController extends Controller
     }
 
 
-    public function sos_helper($data_postback_explode , $provider_id)
+    public function sos_helper($data_postback_explode , $provider_id , $event)
     {
         $data_data = explode("/",$data_postback_explode);
 
@@ -444,7 +444,7 @@ class LineApiController extends Controller
         if ($data_sos_map->help_complete == "Yes") { // การช่วยเหลือเสร็จสิ้น
 
             // ส่งไลน์การช่วยเหลือนี้เสร็จสิ้นแล้ว
-            // $this->reply_success_groupline($event , $data_postback, $data_postback_explode[1]);
+            $this->This_help_is_done($data_partner_helpers, $event);
 
         }else{ // การช่วยเหลือ อยู่ระหว่างดำเนินการ
 
@@ -585,6 +585,74 @@ class LineApiController extends Controller
         $data = [
             "title" => "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
             "content" => "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
+        ];
+        MyLog::create($data);
+    }
+
+    protected function This_help_is_done($data_partner_helpers, $event)
+    {
+        //การช่วยเหลือนี้เสร็จสิ้นแล้ว
+        $data_line_group = DB::table('group_lines')
+                ->where('groupName', $data_partner_helpers->line_group)
+                ->get();
+
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        $data_topic = [
+                    "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
+
+        $template_path = storage_path('../public/json/text_done.json');
+        $string_json = file_get_contents($template_path);
+
+        $string_json = str_replace("ขออภัยค่ะมีการดำเนินการแล้ว ขอบคุณค่ะ",$data_topic[0],$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
+            "content" => "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
         ];
         MyLog::create($data);
     }
