@@ -108,7 +108,7 @@
     </style>
 
 </head>
-<body style="background-image: url('{{ asset('/img/bg-2.png') }}');
+<body style="background-image: url('{{ asset('/img/bg-1.png') }}');
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;">
@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-12" >
                         <br>
-                        @include ('footer_thx_partner') 
+                        @include ('layouts.partner_2_row')
                     </div>
                     
                 </div>

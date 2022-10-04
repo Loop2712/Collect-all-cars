@@ -37,6 +37,15 @@
                     <div class="row justify-content-center" style="margin-top:-30px">
                             <div class="col-md-2">
                                 <label  class="control-label">{{ '' }}</label>
+                                <select class="form-control" id="select_area" onchange="select_area();">
+                                  <option value="">พื้นที่ : ทั้งหมด</option>
+                                  @foreach($select_name_areas as $select_name_area)
+                                    <option value="{{ $select_name_area->name_area }}">{{ $select_name_area->name_area }}</option>
+                                  @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label  class="control-label">{{ '' }}</label>
                                 <select class="form-control" id="select_year" onchange="select_year();">
                                   <option value="">เลือกปี</option>
                                   <option value="2020">2563</option>
@@ -66,6 +75,8 @@
                                 <br>
                                 <form style="float: right;" method="GET" action="{{ url('/sos_detail_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 " role="search">
                                     <div class="input-group ">
+                                      <input type="hidden" class="form-control" id="input_area" name="area"value="{{ request('area') }}">
+
                                       <input type="hidden" class="form-control" id="input_year" name="year"value="{{ request('year') }}">
                                       <input type="hidden" class="form-control" id="input_month" name="month" value="{{ request('month') }}">
                                     </div>
@@ -100,7 +111,13 @@
         <div class="card-header border-bottom-0 bg-transparent">
             <div class="d-flex align-items-center" style="margin-top:10px;">
                 <div class="col-6">
-                    <h5 class="font-weight-bold mb-0">ขอความช่วยเหลือ</h5>
+                    <h5 class="font-weight-bold mb-0">
+                      @if(!empty($name_area))
+                      ขอความช่วยเหลือในพื้นที่ {{$name_area}}
+                      @else
+                      ขอความช่วยเหลือ
+                      @endif
+                    </h5>
                 </div>
                 <div class="col-6">
                     <div style="float: right;">ขอความช่วยเหลือในเดือนที่ค้นหา : <b>{{ $total }}</b> ครั้ง</div>
@@ -339,6 +356,13 @@
           
 </script>
 <script>
+  function select_area(){
+    var select_area = document.getElementById('select_area').value;
+      // console.log(select_year);
+    var input_area = document.getElementById('input_area');
+      input_area.value = select_area;
+  }
+
   function select_year(){
     var select_year = document.getElementById('select_year').value;
       // console.log(select_year);
@@ -352,12 +376,16 @@
       input_month.value = select_month;
   }
   document.addEventListener('DOMContentLoaded', (event) => {
+    var input_area = document.getElementById('input_area').value;
+
     var input_year = document.getElementById('input_year').value;
     var input_month = document.getElementById('input_month').value;
 
+    var select_area = document.getElementById('select_area');
     var select_year = document.getElementById('select_year');
     var select_month = document.getElementById('select_month');
 
+    select_area.value = input_area ;
       select_year.value = input_year ;
       select_month.value = input_month ;
 

@@ -1,3 +1,7 @@
+
+<!-- carousel -->
+<link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
+
 <div class="col-12 owl-4-style align-self-center">
     <div class="owl-carousel owl-4">
         @php
@@ -31,4 +35,10 @@
             @endif
         @endforeach
     </div>
-</div>
+</div>   
+<script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
+<script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/main.js') }}"></script> 
