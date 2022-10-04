@@ -93,7 +93,17 @@
                 </div>
             </div>
 
-            <a style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" href="{{ URL::previous() }}">เสร็จสิ้น</a>
+            <a id="backbutton" style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" href="{{ URL::previous() }}">เสร็จสิ้น</a>
+
+            <script>
+                document.addEventListener('backbutton', onBackKeyDown, false);
+
+                function onBackKeyDown(event) {
+                    // Handle the back button
+                    event.preventDefault();
+                    alert('I am a demo purpose alert thingy');
+                }
+            </script>
         
         </div>
         <div id="content_add_photo" class="col-md-12 d-none">
