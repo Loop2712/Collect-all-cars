@@ -308,21 +308,21 @@
 
         let condo_id = document.querySelector('#condo_id').value ;
 
-        if (condo_id) {
-            // console.log( "condo_id == " +  condo_id  );
+        // if (condo_id) {
+        //     // console.log( "condo_id == " +  condo_id  );
 
-            fetch("{{ url('/') }}/api/sos_map/area_condo_id" + "/" + condo_id)
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    result_area = result ;
+        //     fetch("{{ url('/') }}/api/sos_map/area_condo_id" + "/" + condo_id)
+        //         .then(response => response.json())
+        //         .then(result => {
+        //             // console.log(result);
+        //             result_area = result ;
 
-                    if (typeof result_area !== "undefined") {
-                        // console.log(result_area)
-                        getLocation();
-                    }
-            });
-        }else{
+        //             if (typeof result_area !== "undefined") {
+        //                 // console.log(result_area)
+        //                 getLocation();
+        //             }
+        //     });
+        // }else{
             // console.log( "NOT condo_id");
             fetch("{{ url('/') }}/api/sos_map/all_area")
                 .then(response => response.json())
@@ -335,7 +335,7 @@
                         getLocation();
                     }
             });
-        }
+        // }
 
         let phone = document.querySelector('#phone').value ;
             
