@@ -428,9 +428,9 @@ class Sos_mapController extends Controller
 
             $email = $mail_partner ;
 
-            if ($email == "-" or $email == null) {
-                $email = "vii_test@gmail.com" ;
-            }
+            // if ($email == "-" or $email == null) {
+            //     $email = "vii_test@gmail.com" ;
+            // }
             
             Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
             
