@@ -93,7 +93,14 @@
                 </div>
             </div>
 
-            <a id="backbutton" style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" href="javascript:window.close();" >เสร็จสิ้น</a>
+            <!-- <a id="backbutton" style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" href="javascript:window.close();" >เสร็จสิ้น</a> -->
+            <a id="backbutton" style="width:100%;" class="btn btn-success main-shadow main-radius mt-3" onclick="onBackKeyDown();">เสร็จสิ้น</a>
+
+            <script>
+                function onBackKeyDown() {
+                    navigator.app.exitApp();
+                }
+            </script>
 
         
         </div>
