@@ -261,8 +261,8 @@
                                 </div> -->
                                 <div class="col-6 ">
                             <h3 style="margin-left: 20px;" class="text-danger">Sound</h3>
-                                    <div class="text-center">
-                                    <img class="card-img-top main-shadow main-radius text-center" src="{{ asset('/img/สื่อประชมสัมพันธ์/รวม/stk_line/6.png') }}" style="width: 65%;">
+                                    <div class="text-center" style="font-size: 50px;">
+                                    <i class="fa-solid fa-volume card-img-top main-shadow main-radius text-center"style="width: 100%;font-size: 850%;" width="1% "></i>
                                     </div>
                                     <br>
                                     <h5>
@@ -414,8 +414,9 @@
                         <div class="col-8">
                             <br>
                             <br>
+                            <h3 style="margin-left: 20px;" class="text-danger">Video ViiSOS</h3>
                             <div class=" main-shadow main-radius">
-                                <iframe style="width: 100%;height: 675px;object-fit: contain;" src="https://www.youtube.com/embed/fH_cpKG-YCQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe style="width: 100%;height: 675px;object-fit: contain;" src="https://www.youtube.com/embed/X8SX35pf3dY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
                         <div class="col-4">
