@@ -297,7 +297,7 @@
               <div class="col-lg-4 text-center order-1 order-lg-2 about">
                 <div class="item mysystem-video">
                   <div style="border: 1px solid red; border-radius: 10px;" class="video-box2 d-flex justify-content-center align-items-stretch position-relative">
-                    <a href="{{ asset('Medilab/video/ViiCheck_Compress1.mp4') }}" class="glightbox play-btn mb-4"></a>
+                    <a href="{{ asset('https://www.youtube.com/embed/X8SX35pf3dY') }}" class="glightbox play-btn mb-4"></a>
                     <img width="100%" style="border: 1px solid red; border-radius: 10px;" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
                   </div>
                 </div>

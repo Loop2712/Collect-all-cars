@@ -262,7 +262,9 @@
                                 <div class="col-6 ">
                             <h3 style="margin-left: 20px;" class="text-danger">Sound</h3>
                                     <div class="text-center" style="font-size: 50px;">
-                                    <i class="fa-solid fa-volume card-img-top main-shadow main-radius text-center"style="width: 100%;font-size: 850%;" width="1% "></i>
+                                    <img class="card-img-top main-shadow main-radius"style="max-height: 57%; max-width:57%" alt=""src="{{ asset('/img/icon/volume.png') }}">
+                                    
+
                                     </div>
                                     <br>
                                     <h5>
