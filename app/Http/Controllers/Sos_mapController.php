@@ -448,6 +448,7 @@ class Sos_mapController extends Controller
 
             $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("name_user",$name_user,$string_json);
+            $string_json = str_replace("area",$data_name_area_sp[$i],$string_json);
 
             if (!empty($data_users->photo)) {
                 $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);

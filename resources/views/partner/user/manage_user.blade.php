@@ -74,6 +74,9 @@
                                         @case('admin-partner')
                                             <b>แอดมิน</b>
                                         @break
+                                        @case(null)
+                                            พนักงาน
+                                        @break
                                     @endswitch
                                 </td>
                                 <td class="text-center">
