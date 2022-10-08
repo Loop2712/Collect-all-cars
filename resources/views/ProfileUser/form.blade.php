@@ -38,7 +38,7 @@
                         <br class="d-block d-md-none">
                         <label for="massengbox" class="control-label"><b>{{ 'Username' }}</b></label><span style="color: #FF0033;"> *</span>
                         <div class="notranslate form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                            <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" >
+                            <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" required>
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                         </div>
                         <label for="massengbox" class="control-label"><b>{{ 'First name - Surname' }}</b></label>
