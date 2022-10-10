@@ -656,8 +656,8 @@ display:none;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log(remain);
-        document.querySelector('#btn_next_selected_car').disabled = false;
-        document.querySelector('#btn_next_selected_car').click();
+        // document.querySelector('#btn_next_selected_car').disabled = false;
+        // document.querySelector('#btn_next_selected_car').click();
     });
 
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด -------------------------------------------------------------------------
