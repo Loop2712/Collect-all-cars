@@ -64,6 +64,7 @@ Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersContro
 Route::get('/check_username/{put_username}/{id_user}','API\PartnersController@check_username');
 Route::get('/check_email/{put_email}','API\PartnersController@check_email');
 Route::get('/check_data_partner/{user_organization}','API\PartnersController@check_data_partner');
+Route::get('/check_data_partner_premium/{user_organization}','API\PartnersController@check_data_partner_premium');
 Route::get('/all_group_line/{user_organization}','API\PartnersController@all_group_line');
 Route::get('/check_data_line_group/{group_line_id}','API\PartnersController@check_data_line_group');
 
@@ -147,6 +148,8 @@ Route::get('/service_area/area_other/{id_user}/{name_area}','API\PartnersControl
 Route::get('/service_area/area_partner_other/{id_user}/{name_area}','API\PartnersController@area_partner_other');
 Route::get('/service_area/check_area_other/{id_partnet}','API\PartnersController@check_area_other');
 Route::get('/service_area/your_old_area/{id_user}/{name_area}','API\PartnersController@your_old_area');
+
+Route::get('/cancel_membership/{user_id}','Manage_userController@cancel_membership');
 
 Route::get('/all_sos_area','API\PartnersController@all_sos_area');
 Route::get('/all_area_partner/{name_partner}','API\PartnersController@all_area_partner');

@@ -235,7 +235,7 @@ display:none;
 
 }
 </style>
-<!-- MOFAL LOADING -->
+<!-- MODAL LOADING -->
 <div class="modal fade" id="btn-loading" tabindex="-1" role="dialog" aria-labelledby="btn-loading" aria-hidden="true" data-backdrop="static" data-keyboard="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content"style="border-radius: 25px;">
@@ -330,7 +330,28 @@ display:none;
                             </div>
                         </div>
                         <hr>
+
                         <h4>เลือกเนื้อหา</h4>
+                        <br>
+                        <div class="row text-center">
+                            @foreach($ads_contents as $ads)
+                            <div class="col-4">
+                                <p>
+                                    <b>ชื่อเนื้อหา : {{ $ads->name_content }}</b>
+                                    <a class="btn btn-info btn-sm text-white" style="float:right;margin-top: -5px;">
+                                        เลือก
+                                    </a>
+                                </p>
+                                <img src="{{ url('storage')}}/{{ $ads->photo }}" width="100px">
+                                <p>
+                                    <b>ส่งแล้ว : {{ $ads->send_round }} ครั้ง</b> &nbsp;|&nbsp;
+                                    <i class="fas fa-paper-plane"></i> &nbsp; 0 &nbsp;
+                                    <i class="fad fa-eye"></i> &nbsp; 0
+                                </p>
+                            </div>
+                            @endforeach
+                        </div>
+
                     </div>
                     <div class="col-lg-3 col-md-3 col-12 phone-frame">
                         <div class="row">
@@ -635,7 +656,8 @@ display:none;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log(remain);
-        // document.querySelector('#btn_next_selected_car').click();
+        document.querySelector('#btn_next_selected_car').disabled = false;
+        document.querySelector('#btn_next_selected_car').click();
     });
 
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด -------------------------------------------------------------------------
@@ -668,6 +690,7 @@ display:none;
         let location_user = document.querySelector("#location_user").value;
         let province_registration = document.querySelector("#province_registration").value;
         let type_registration = document.querySelector("#type_registration").value;
+        let id_partner = document.querySelector("#id_partner");
 
         let data_search_data ;
 
@@ -680,6 +703,7 @@ display:none;
                 'location_user' : location_user,
                 'province_registration' : province_registration,
                 'type_registration' : type_registration,
+                'id_partner' : id_partner.value,
             };
 
         }else{
@@ -691,6 +715,7 @@ display:none;
                 'location_user' : location_user,
                 'province_registration' : province_registration,
                 'type_registration' : null,
+                'id_partner' : id_partner.value,
             };
 
         }

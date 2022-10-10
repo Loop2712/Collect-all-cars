@@ -193,13 +193,13 @@ class Register_carController extends Controller
                 if ($brand != 'อื่นๆ' && $generation == 'อื่นๆ') {
                     $requestData['motor_brand'] = null;
                     $requestData['motor_generation'] = null;
-                    $requestData['generation'] = str_replace("อื่นๆ", $generation_other, $requestData['generation']);
+                    $requestData['generation'] = $generation_other;
                 }
                 if ($brand == 'อื่นๆ') {
                     $requestData['motor_brand'] = null;
                     $requestData['motor_generation'] = null;
-                    $requestData['generation'] = str_replace("อื่นๆ", $generation_other, $requestData['generation']);
-                    $requestData['brand'] = str_replace("อื่นๆ", $brand_other, $requestData['brand']);
+                    $requestData['generation'] = $brand_other;
+                    $requestData['brand'] = $generation_other;
                 }
 
                 break;
@@ -217,6 +217,12 @@ class Register_carController extends Controller
                     $requestData['brand'] = $brand_other;
                     $requestData['generation'] = $generation_other;
                 }
+
+                break;
+
+            case 'other':
+                $requestData['brand'] = $brand_other;
+                $requestData['generation'] = $generation_other;
 
                 break;
 
@@ -291,8 +297,10 @@ class Register_carController extends Controller
 
         if ($requestData['car_type'] == "car") {
             $requestData['type_car_registration'] = $this->check_type_car_registration($text_registration);
-        }else{
+        }elseif($requestData['car_type'] == "motorcycle"){
             $requestData['type_car_registration'] = "รถจักรยานยนต์" ;
+        }else{
+            $requestData['type_car_registration'] = "รถประเภทอื่นๆ" ;
         }
 
         Register_car::create($requestData);
@@ -476,11 +484,30 @@ class Register_carController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy($id , Request $request)
     {
         Register_car::destroy($id);
 
-        return redirect('register_car')->with('flash_message', 'Register_car deleted!');
+        $requestData = $request->all();
+
+        if (!empty($requestData)) {
+            switch ($requestData['type']) {
+                case 'person':
+                    return redirect('register_car')->with('flash_message', 'Register_car deleted!');
+                    break;
+                case 'organization':
+                    return redirect('register_car_organization')->with('flash_message', 'Register_car deleted!');
+                    break;
+                case 'admin-partner':
+                    return redirect('register_cars_partner')->with('flash_message', 'Register_car deleted!');
+                    break;
+                default:
+                    return redirect('register_car')->with('flash_message', 'Register_car deleted!');
+                    break;
+            }
+        }else{
+            return redirect('register_car')->with('flash_message', 'Register_car deleted!');
+        }
     }
 
     public function welcome_line()

@@ -41,6 +41,7 @@
                             <th>สถานะ</th>
                             <th>การใช้งาน</th>
                             <th>ผู้สร้าง</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,11 +90,20 @@
                                         @break
                                     @endswitch
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     @if(!empty($item->creator))
                                         <a href="{{ url('/profile/' . $item->creator) }}" target="bank">
                                             <i class="far fa-eye text-primary"></i>
                                         </a>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if($item->role != 'admin-partner')
+                                        <button class="btn btn-sm btn-warning main-shadow main-radius text-white" onclick="cancel_membership('{{ $item->id }}');">
+                                            ยกเลิกสถานะ
+                                        </button>
+                                    @else
+                                        <!--  -->
                                     @endif
                                 </td>
                             </tr>
@@ -528,6 +538,16 @@
 
         btn_modal.setAttributeNode(a_href); 
 
+    }
+
+    function cancel_membership(user_id){
+
+        fetch("{{ url('/') }}/api/cancel_membership/" + user_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                window.location.reload(true);
+            });
     }
 
 </script>

@@ -145,7 +145,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 //admin-partner
 Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(function () {
-	
+
+	Route::resource('ads_content', 'Ads_contentController')->except(['show','edit','index']);
 	// Route::get('/partner_theme', 'PartnerController@partner_theme');
 	Route::get('/partner_index', 'PartnerController@partner_index');
 	Route::get('/how_to_use_partner', function () {
@@ -386,4 +387,3 @@ Route::get('/modal_loading', function () {
 });
 
 Route::resource('partner_premium', 'Partner_premiumController');
-Route::resource('ads_content', 'Ads_contentController');

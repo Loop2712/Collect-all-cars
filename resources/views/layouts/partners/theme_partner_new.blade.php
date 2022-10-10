@@ -100,6 +100,21 @@
 					@endif
 				@endif
 
+				<!-- ----------------- Broadcast -------------------- -->
+				<div id="div_menu_Broadcast" class="d-none">
+					<li class="menu-label" style="font-size:15px;">
+		                Broadcast
+		            </li>
+					<li>
+						<a href="{{ url('/broadcast_by_car') }}">
+							<div class="parent-icon"><i class="fas fa-bullhorn"></i>
+							</div>
+							<div class="menu-title">By cars</div>
+						</a>
+					</li>
+				</div>
+				<!-- ---------------- END Broadcast ----------------- -->
+
 				<!-- สำหรับ องค์กร / คอนโด -->
 				@if(Auth::check())
                     @if(Auth::user()->role == "admin-condo")
@@ -225,15 +240,6 @@
 						<div class="menu-title">รถที่ถูกรายงานล่าสุด</div>
 					</a>
 				</li>
-				@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
-					<li>
-					<a href="{{ url('/broadcast_by_car') }}">
-						<div class="parent-icon"><i class="fas fa-bullhorn"></i>
-						</div>
-						<div class="menu-title">บรอดแคสต์</div>
-					</a>
-				</li>
-				@endif
                 
                 @if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
@@ -716,6 +722,18 @@
                     ul_group_line.appendChild(tag_li);
                 }
         });
+
+        fetch("{{ url('/') }}/api/check_data_partner_premium/" + user_organization)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                if (result.length >= 1) {
+                	document.querySelector('#div_menu_Broadcast').classList.remove('d-none');
+                }else{
+                	document.querySelector('#div_menu_Broadcast').classList.add('d-none');
+                }
+        });
+            
     }
 
     function check_sos_alarm()

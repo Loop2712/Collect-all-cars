@@ -254,14 +254,40 @@ class CarbrandController extends Controller
             $type_registration = "" ;
         }
 
-        $data_search = Register_car::where('car_type', $car_type)
-            ->where('active', "Yes")
-            ->where('brand', 'LIKE' , "%$brand%" )
-            ->where('generation', 'LIKE' , "%$model%" )
-            ->where('location', 'LIKE' , "%$location_user%" )
-            ->where('province', 'LIKE' , "%$province_registration%" )
-            ->where('type_car_registration', 'LIKE' , "%$type_registration%" )
-            ->get();
+        $id_partner = $data['id_partner'];
+        if (empty($id_partner)) {
+            $id_partner = "" ;
+        }
+        $partner_premium = Partner_premium::where("id_partner",$id_partner)->get();
+        foreach ($partner_premium as $premium) {
+            $name_partner = $premium->name_partner ;
+            $level = $premium->level ;
+        }
+
+        if ($level == "Test") {
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->where('brand', 'LIKE' , "%$brand%" )
+                ->where('generation', 'LIKE' , "%$model%" )
+                ->where('location', 'LIKE' , "%$location_user%" )
+                ->where('province', 'LIKE' , "%$province_registration%" )
+                ->where('type_car_registration', 'LIKE' , "%$type_registration%" )
+                ->where('juristicNameTH' ,'LIKE' , "%$name_partner%" )
+                ->get();
+
+        }else{
+
+            $data_search = Register_car::where('car_type', $car_type)
+                ->where('active', "Yes")
+                ->where('brand', 'LIKE' , "%$brand%" )
+                ->where('generation', 'LIKE' , "%$model%" )
+                ->where('location', 'LIKE' , "%$location_user%" )
+                ->where('province', 'LIKE' , "%$province_registration%" )
+                ->where('type_car_registration', 'LIKE' , "%$type_registration%" )
+                ->get();
+
+        }
 
         return $data_search ;
 
@@ -274,6 +300,8 @@ class CarbrandController extends Controller
         if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
         }
+
+        // เช็คว่าเป็น Content ใหม่หรือเก่า
 
         Ads_content::create($requestData);
 

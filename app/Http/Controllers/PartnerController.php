@@ -14,6 +14,7 @@ use Auth;
 
 use App\User;
 use App\CarModel;
+use App\Models\Ads_content;
 use App\Models\Register_car;
 use App\Models\Guest;
 use App\Models\News;
@@ -1010,17 +1011,25 @@ class PartnerController extends Controller
 
         $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
 
-        $BC_by_car_max = $partner_premium->BC_by_car_max ;
-        $name_partner = $partner_premium->name_partner ;
-        $id_partner = $partner_premium->id_partner ;
+        if (!empty($partner_premium)) {
+            $BC_by_car_max = $partner_premium->BC_by_car_max ;
+            $name_partner = $partner_premium->name_partner ;
+            $id_partner = $partner_premium->id_partner ;
 
-        if ($partner_premium->BC_by_car_max == null) {
-            $BC_by_car_sent = 0 ;
+            if ($partner_premium->BC_by_car_max == null) {
+                $BC_by_car_sent = 0 ;
+            }else{
+                $BC_by_car_sent = $partner_premium->BC_by_car_sent ;
+            }
+
+            $ads_contents = Ads_content::where('id_partner' , $id_partner)->where('type_content' , 'BC_by_car')->get();
+
+            return view('partner.broadcast.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max','BC_by_car_sent','name_partner' , 'id_partner','ads_contents'));
         }else{
-            $BC_by_car_sent = $partner_premium->BC_by_car_sent ;
+            return redirect('404');
         }
 
-        return view('partner.broadcast_by_car', compact('location_user','province_registration' , 'type_registrations' ,'BC_by_car_max','BC_by_car_sent','name_partner' , 'id_partner'));
+        
     }
 
 }

@@ -106,4 +106,16 @@ class Manage_userController extends Controller
         return view('admin_viicheck.user.create_user', compact('partners' , 'username' , 'password'));
     }
 
+    function cancel_membership($user_id)
+    {
+        DB::table('users')
+            ->where('id', $user_id)
+            ->update([
+                'role' => null,
+                'organization' => null,
+        ]);
+
+        return 'ok' ;
+    }
+
 }

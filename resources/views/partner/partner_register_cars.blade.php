@@ -63,6 +63,7 @@
                             <th>หมายเลขทะเบียน</th>
                             <th>ประเภท</th>
                             <th>ผู้ลงทะเบียน</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -97,6 +98,19 @@
                                     <!-- @if(!empty($item->user->branch))
                                         <b>สาขา</b> {{ $item->user->branch }}
                                     @endif -->
+                                </td>
+                                <td class="text-center">
+                                    @if($item->role != 'admin-partner')
+                                        <form method="POST" action="{{ url('/register_car/' . $item->id ) }}?type=admin-partner" accept-charset="UTF-8" style="display:inline">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px" onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                <i class="fa fa-trash"  aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    @else
+                                        <!--  -->
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -399,4 +413,5 @@
     </div>
   </div>
   <!------------------------------------------- Modal ลงทะเบียน  ------------------------------------------->
+
 @endsection

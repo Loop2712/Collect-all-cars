@@ -13,6 +13,7 @@ use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Mylog;
 use App\Models\Check_in;
 use App\Models\Partner;
+use App\Models\Partner_premium;
 use App\Models\Partner_condo;
 use App\Models\Group_line;
 use App\Models\Time_zone;
@@ -36,6 +37,14 @@ class PartnersController extends Controller
             ->get();
 
         return $data_partners;
+    }
+
+    public function check_data_partner_premium($user_organization)
+    {
+        $partner_premium = Partner_premium::where("name_partner", $user_organization)
+            ->get();
+
+        return $partner_premium ;
     }
 
     public function check_data_line_group($group_line_id)
