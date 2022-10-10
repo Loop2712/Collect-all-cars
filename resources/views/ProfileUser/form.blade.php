@@ -38,7 +38,7 @@
                         <br class="d-block d-md-none">
                         <label for="massengbox" class="control-label"><b>{{ 'Username' }}</b></label><span style="color: #FF0033;"> *</span>
                         <div class="notranslate form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                            <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" required>
+                            <input class="form-control" name="name" type="text" id="name" value="{{ isset($data->name) ? $data->name : ''}}" required onchange="check();">
                                 {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                         </div>
                         <label for="massengbox" class="control-label"><b>{{ 'First name - Surname' }}</b></label>
@@ -413,7 +413,7 @@
                     <a href="{{ url('/profile') }}" class="btn btn-warning text-white" title="Back">
                         BACK
                     </a>
-                    <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" onclick="submitform()">
+                    <button id="btn-save"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" onclick="submitform()">
                         SAVE
                     </button>
                     <input id="btn-submit-form" class="d-none btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'SAVE' : 'ส่งข้อมูล' }}">
@@ -1065,5 +1065,16 @@ function capture2() {
         setTimeout(function() {
             document.querySelector('#btn-submit-form').click();
         }, delayInMilliseconds);
+    }
+</script>
+
+<script>
+    function check() {
+        let name = document.querySelector('#name');
+        if (name.value == "") {
+                document.getElementById("btn-save").disabled = true;
+        }else{
+            document.getElementById("btn-save").disabled = false;
+        }
     }
 </script>
