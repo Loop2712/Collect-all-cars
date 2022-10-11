@@ -12,7 +12,7 @@ class API_Time_zone extends Controller
 {
     public function change_Time_zone($name_time_zone)
     {
-        $datetime =  date("d-m-Y  h:i:sa");
+        $datetime =  date("d-m-Y h:i:sa");
 
         // $name_time_zone = "Asia/Bangkok" ; //+7
         // // $name_time_zone = "Asia/Ust-Nera" ; //+10
@@ -29,12 +29,12 @@ class API_Time_zone extends Controller
         if ($UTC_time_zone < 7) {
 
             $distance_time = (7) - ($UTC_time_zone) ;
-            $time_2 = date("d-m-Y  h:i:sa", strtotime("-" . $distance_time ." hour"));
+            $time_2 = date("d-m-Y h:i:sa", strtotime("-" . $distance_time ." hour"));
 
         }elseif ($UTC_time_zone > 7) {
             $UTC_time_zone = "+".$UTC_time_zone;
             $distance_time = $UTC_time_zone - 7 ;
-            $time_2 = date("d-m-Y  h:i:sa", strtotime("+" . $distance_time ." hour"));
+            $time_2 = date("d-m-Y h:i:sa", strtotime("+" . $distance_time ." hour"));
         }elseif ($UTC_time_zone == 7) {
             $UTC_time_zone = "+".$UTC_time_zone;
             $time_2 = $datetime ;
