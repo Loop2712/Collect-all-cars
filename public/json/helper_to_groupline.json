@@ -2,86 +2,227 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "action": {
-      "type": "uri",
-      "uri": "https://linecorp.com"
-    },
-    "contents": [
-      {
-        "type": "text",
-        "text": "การขอความช่วยเหลือ",
-        "size": "md",
-        "weight": "bold",
-        "wrap": true
-      },
-      {
-        "type": "text",
-        "text": "name_user",
-        "size": "md",
-        "weight": "bold"
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "text",
-        "text": "เจ้าหน้าที่",
-        "size": "md",
-        "weight": "bold",
-        "margin": "lg"
-      },
-      {
-        "type": "text",
-        "text": "name_helper",
-        "size": "md",
-        "weight": "bold",
-        "decoration": "underline"
-      },
-      {
-        "type": "text",
-        "text": "กำลังไปช่วยเหลือ",
-        "size": "md",
-        "margin": "lg"
-      },
-      {
-        "type": "text",
-        "text": "hello, world",
+      "type": "bubble",
+      "size": "giga",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
         "contents": [
           {
-            "type": "span",
-            "text": "date_time",
-            "color": "#bcbcbc",
-            "weight": "bold"
+            "type": "image",
+            "url": "https://www.viicheck.com/img/flex/sos/flex_going_to_help.png",
+            "size": "full",
+            "aspectRatio": "2500:3500",
+            "aspectMode": "cover"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "การขอความช่วยเหลือ",
+                "size": "xl",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "80%",
+            "alignItems": "center",
+            "offsetTop": "5%",
+            "offsetStart": "5%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://www.viicheck.com/storage/photo_user.png",
+                "aspectRatio": "1:1",
+                "aspectMode": "cover"
+              }
+            ],
+            "position": "absolute",
+            "width": "16.5%",
+            "cornerRadius": "50px",
+            "offsetTop": "12.8%",
+            "offsetStart": "13.9%",
+            "height": "11.8%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "name_user",
+                "weight": "bold",
+                "size": "lg",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "50%",
+            "offsetTop": "16%",
+            "offsetStart": "32%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "เจ้าหน้าที่",
+                "weight": "bold",
+                "size": "lg",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "90%",
+            "offsetTop": "31%",
+            "offsetStart": "5%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://www.viicheck.com/storage/photo_helper.png",
+                "aspectRatio": "1:1",
+                "aspectMode": "cover",
+                "size": "xxl"
+              }
+            ],
+            "position": "absolute",
+            "width": "16.5%",
+            "height": "11.99%",
+            "cornerRadius": "50px",
+            "offsetTop": "38.7%",
+            "offsetStart": "17%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "name_helper",
+                "weight": "bold",
+                "size": "lg",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "46%",
+            "offsetTop": "42%",
+            "offsetStart": "35%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "going to help",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "48%",
+            "offsetTop": "54.5%",
+            "offsetStart": "26.5%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "UTC",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "27%",
+            "offsetTop": "66.5%",
+            "offsetStart": "40%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "date",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "38%",
+            "offsetTop": "80%",
+            "offsetStart": "10%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "time",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "38%",
+            "offsetTop": "80%",
+            "offsetStart": "52%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "การช่วยเหลือเสร็จสิ้น",
+                "weight": "bold",
+                "size": "xs",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "68%",
+            "offsetTop": "89.5%",
+            "offsetStart": "17%",
+            "alignItems": "center",
+            "height": "7%",
+            "justifyContent": "center",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "http://linecorp.com/"
+            }
           }
         ],
-        "margin": "lg",
-        "size": "sm",
-        "wrap": true
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "button",
-        "style": "primary",
-        "color": "#76d128",
-        "action": {
-          "type": "postback",
-          "label": "การช่วยเหลือเสร็จสิ้น",
-          "data": "help_complete?id_sos_map",
-          "displayText": "การช่วยเหลือเสร็จสิ้น"
-        },
-        "height": "sm"
-      }
-    ]
-  }
-}
+    }
 }

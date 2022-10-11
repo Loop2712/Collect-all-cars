@@ -677,9 +677,42 @@ class LineApiController extends Controller
             $group_language = $key->language ;
         }
 
+        //user
+        $data_users = DB::table('users')->where('id', $data_sos_map->user_id)->get();
+        foreach ($data_users as $data_user) {
+
+            if (!empty($data_user->photo)) {
+                $photo_user = $data_user->photo ;
+            }
+            if (empty($data_user->photo)) {
+                $photo_user = $data_user->avatar ;
+            }
+        }
+
+        //helper
+        $data_helpers = DB::table('users')->where('id', $helper_id)->get();
+        foreach ($data_helpers as $data_helper) {
+
+            if (!empty($data_helper->photo)) {
+                $photo_helper = "https://www.viicheck.com/storage/".$data_helper->photo ;
+            }
+            if (empty($data_helper->photo)) {
+                $photo_helper = $data_helper->avatar ;
+            }
+        }
+
         // TIME ZONE
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        // datetime
+
+        $time_zone_explode = explode(" ",$time_zone);
+
+        $date = $time_zone_explode[0] ;
+        $time = $time_zone_explode[1] ;
+        $utc = $time_zone_explode[3] ;
+
 
         $data_topic = [
                     "การขอความช่วยเหลือ",
@@ -705,16 +738,24 @@ class LineApiController extends Controller
         $string_json = file_get_contents($template_path);
            
         $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-        $string_json = str_replace("date_time",$time_zone,$string_json);
 
         $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
         $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
         $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
         $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
 
+        // user
         $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+        $string_json = str_replace("photo_user",$photo_user,$string_json);
+        // helper
         $string_json = str_replace("name_helper",$name_helper,$string_json);
+        $string_json = str_replace("photo_helper", $photo_helper,$string_json);
+    
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
+        $string_json = str_replace("date",$date,$string_json);
+        $string_json = str_replace("time",$time,$string_json);
+        $string_json = str_replace("UTC","UTC"+ $utc,$string_json);
+        
 
         $messages = [ json_decode($string_json, true) ];
 
