@@ -1009,12 +1009,20 @@ class LineApiController extends Controller
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
+        // datetime
+        $time_zone_explode = explode(" ",$time_zone);
+        
+        $date_success = $time_zone_explode[0] ;
+        $time_success = $time_zone_explode[1] ;
+
+        $count = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
+
 
         if ( empty($data_sos_map->help_complete) ) {
 
             $data_topic = [
                         "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
-                        "การขอความช่วยเหลือ",
+                        "การช่วยเหลือเสร็จสิ้น",
                         "เพิ่มภาพถ่าย",
                     ];
 
@@ -1038,10 +1046,24 @@ class LineApiController extends Controller
             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
 
             $string_json = str_replace("ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",$data_topic[0],$string_json);
-            $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[1],$string_json);
+            $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[1],$string_json);
             $string_json = str_replace("เพิ่มภาพถ่าย",$data_topic[2],$string_json);
 
-            $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+            // sos
+            $string_json = str_replace("name_sos",$data_sos_map->name,$string_json);
+            
+
+            //help
+            $string_json = str_replace("name_help",$data_sos_map->helper,$string_json);
+
+            // success
+            $string_json = str_replace("name_success",$data_sos_map->helper,$string_json);
+
+            $string_json = str_replace("cout_success",$count,$string_json);
+            $string_json = str_replace("date_success",$date_success,$string_json);
+            $string_json = str_replace("time_success",$time_success,$string_json);
+
+            
             $string_json = str_replace("date_time",$time_zone,$string_json);
 
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
