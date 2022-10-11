@@ -708,9 +708,9 @@ class LineApiController extends Controller
         // datetime
         $time_zone_explode = explode(" ",$time_zone);
         
-        $date = $time_zone_explode[0] ;
-        $time = $time_zone_explode[1] ;
-        $utc = $time_zone_explode[-1] ;
+        // $date = $time_zone_explode[0] ;
+        // $time = $time_zone_explode[1] ;
+        // $utc = $time_zone_explode[-1] ;
 
         $data_topic = [
                     "การขอความช่วยเหลือ",
@@ -750,9 +750,9 @@ class LineApiController extends Controller
         $string_json = str_replace("photo_helper", $photo_helper,$string_json);
     
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
-        // $string_json = str_replace("date",$date,$string_json);
-        // $string_json = str_replace("time",$time,$string_json);
-        // $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
+        $string_json = str_replace("date",$date,$string_json);
+        $string_json = str_replace("time",$time,$string_json);
+        $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
         
 
         $messages = [ json_decode($string_json, true) ];
@@ -779,7 +779,8 @@ class LineApiController extends Controller
         // SAVE LOG
         $data = [
             "title" => "send_helper_to_groupline",
-            "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
+            // "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
+            "content" => $time_zone,
         ];
         MyLog::create($data);
 
