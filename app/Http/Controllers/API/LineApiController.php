@@ -718,12 +718,9 @@ class LineApiController extends Controller
         $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
         $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
 
-        // user
-        $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
-        // helper
-        $string_json = str_replace("name_helper",$name_helper,$string_json);
     
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
+        
         $string_json = str_replace("date",$date,$string_json);
         $string_json = str_replace("time",$time,$string_json);
         $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
