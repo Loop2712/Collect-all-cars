@@ -2,227 +2,227 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-      "type": "bubble",
-      "size": "giga",
-      "body": {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/flex/sos/flex_going_to_help.png",
+        "size": "full",
+        "aspectRatio": "2500:3500",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "การขอความช่วยเหลือ",
+            "size": "xl",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "80%",
+        "alignItems": "center",
+        "offsetTop": "5%",
+        "offsetStart": "5%"
+      },
+      {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/flex/sos/flex_going_to_help.png",
-            "size": "full",
-            "aspectRatio": "2500:3500",
+            "url": "https://www.viicheck.com/storage/photo_user",
+            "aspectRatio": "1:1",
             "aspectMode": "cover"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "การขอความช่วยเหลือ",
-                "size": "xl",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "80%",
-            "alignItems": "center",
-            "offsetTop": "5%",
-            "offsetStart": "5%"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://www.viicheck.com/storage/photo_user.png",
-                "aspectRatio": "1:1",
-                "aspectMode": "cover"
-              }
-            ],
-            "position": "absolute",
-            "width": "16.5%",
-            "cornerRadius": "50px",
-            "offsetTop": "12.8%",
-            "offsetStart": "13.9%",
-            "height": "11.8%"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "name_user",
-                "weight": "bold",
-                "size": "lg",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "50%",
-            "offsetTop": "16%",
-            "offsetStart": "32%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "เจ้าหน้าที่",
-                "weight": "bold",
-                "size": "lg",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "90%",
-            "offsetTop": "31%",
-            "offsetStart": "5%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://www.viicheck.com/storage/photo_helper.png",
-                "aspectRatio": "1:1",
-                "aspectMode": "cover",
-                "size": "xxl"
-              }
-            ],
-            "position": "absolute",
-            "width": "16.5%",
-            "height": "11.99%",
-            "cornerRadius": "50px",
-            "offsetTop": "38.7%",
-            "offsetStart": "17%"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "name_helper",
-                "weight": "bold",
-                "size": "lg",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "46%",
-            "offsetTop": "42%",
-            "offsetStart": "35%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "going to help",
-                "weight": "bold",
-                "size": "md",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "48%",
-            "offsetTop": "54.5%",
-            "offsetStart": "26.5%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "UTC",
-                "weight": "bold",
-                "size": "md",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "27%",
-            "offsetTop": "66.5%",
-            "offsetStart": "40%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "date",
-                "weight": "bold",
-                "size": "md",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "38%",
-            "offsetTop": "80%",
-            "offsetStart": "10%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "time",
-                "weight": "bold",
-                "size": "md",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "38%",
-            "offsetTop": "80%",
-            "offsetStart": "52%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "การช่วยเหลือเสร็จสิ้น",
-                "weight": "bold",
-                "size": "xs",
-                "color": "#ffffff"
-              }
-            ],
-            "position": "absolute",
-            "width": "68%",
-            "offsetTop": "89.5%",
-            "offsetStart": "17%",
-            "alignItems": "center",
-            "height": "7%",
-            "justifyContent": "center",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "http://linecorp.com/"
-            }
           }
         ],
-        "position": "relative",
-        "paddingAll": "0px"
+        "position": "absolute",
+        "width": "16.5%",
+        "cornerRadius": "50px",
+        "offsetTop": "12.8%",
+        "offsetStart": "13.9%",
+        "height": "11.8%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "name_user",
+            "weight": "bold",
+            "size": "lg",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "50%",
+        "offsetTop": "16%",
+        "offsetStart": "32%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "เจ้าหน้าที่",
+            "weight": "bold",
+            "size": "lg",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "90%",
+        "offsetTop": "31%",
+        "offsetStart": "5%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/storage/photo_helper",
+            "aspectRatio": "1:1",
+            "aspectMode": "cover",
+            "size": "xxl"
+          }
+        ],
+        "position": "absolute",
+        "width": "16.5%",
+        "height": "11.99%",
+        "cornerRadius": "50px",
+        "offsetTop": "38.7%",
+        "offsetStart": "17%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "name_helper",
+            "weight": "bold",
+            "size": "lg",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "46%",
+        "offsetTop": "42%",
+        "offsetStart": "35%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "going to help",
+            "weight": "bold",
+            "size": "md",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "48%",
+        "offsetTop": "54.5%",
+        "offsetStart": "26.5%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "UTC",
+            "weight": "bold",
+            "size": "md",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "27%",
+        "offsetTop": "66.5%",
+        "offsetStart": "40%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "date",
+            "weight": "bold",
+            "size": "md",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "38%",
+        "offsetTop": "80%",
+        "offsetStart": "10%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "time",
+            "weight": "bold",
+            "size": "md",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "38%",
+        "offsetTop": "80%",
+        "offsetStart": "52%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "การช่วยเหลือเสร็จสิ้น",
+            "weight": "bold",
+            "size": "xs",
+            "color": "#ffffff"
+          }
+        ],
+        "position": "absolute",
+        "width": "68%",
+        "offsetTop": "89.5%",
+        "offsetStart": "17%",
+        "alignItems": "center",
+        "height": "7%",
+        "justifyContent": "center",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "http://linecorp.com/"
+        }
       }
-    }
+    ],
+    "position": "relative",
+    "paddingAll": "0px"
+  }
+}
 }
