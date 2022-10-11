@@ -748,10 +748,10 @@ class LineApiController extends Controller
 
         // user
         $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
-        $string_json = str_replace("TEXT_PHOTO_USER",$photo_user,$string_json);
+        // $string_json = str_replace("TEXT_PHOTO_USER",$photo_user,$string_json);
         // helper
         $string_json = str_replace("name_helper",$name_helper,$string_json);
-        $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
+        // $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
     
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
         $string_json = str_replace("date",$date,$string_json);
