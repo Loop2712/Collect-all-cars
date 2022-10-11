@@ -38,7 +38,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/storage/photo_user",
+            "url": "https://www.viicheck.com/storage/TEXT_PHOTO_USER",
             "aspectRatio": "1:1",
             "aspectMode": "cover"
           }
@@ -92,7 +92,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/storage/photo_helper",
+            "url": "https://www.viicheck.com/storage/TEXT_PHOTO_HELPER",
             "aspectRatio": "1:1",
             "aspectMode": "cover",
             "size": "xxl"
@@ -215,9 +215,10 @@
         "height": "7%",
         "justifyContent": "center",
         "action": {
-          "type": "uri",
-          "label": "action",
-          "uri": "http://linecorp.com/"
+          "type": "postback",
+          "label": "การช่วยเหลือเสร็จสิ้น",
+          "data": "help_complete?id_sos_map",
+          "displayText": "การช่วยเหลือเสร็จสิ้น"
         }
       }
     ],
