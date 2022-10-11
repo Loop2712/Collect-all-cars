@@ -708,22 +708,9 @@ class LineApiController extends Controller
         // datetime
         $time_zone_explode = explode(" ",$time_zone);
         
-  
-
-        // SAVE LOG
-        $data_time = [
-            "title" => $time_zone,
-            "content" => $time_zone_explode,
-        ];
-        MyLog::create($data_time);
-        exit();
-
         $date = $time_zone_explode[0] ;
         $time = $time_zone_explode[1] ;
         $utc = $time_zone_explode[3] ;
-
-        
-
 
         $data_topic = [
                     "การขอความช่วยเหลือ",
