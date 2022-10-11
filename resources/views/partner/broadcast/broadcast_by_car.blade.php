@@ -258,13 +258,18 @@ display:none;
 
 
 <div id="car_max" class="alert alert-primary div_alert" role="alert">
-    <center>ขออภัย เกินจำนวนที่กำหนด</center>
+    <center>
+        <span id="text_car_max">
+            ขออภัย เกินจำนวนที่กำหนด
+        </span>
+    </center>
 </div>
 
 <form method="POST" action="{{ url('/') }}/api/send_content_BC_by_car" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
 {{ csrf_field() }}
 
 <input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
+<input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
 <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
 <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $id_partner }}">
@@ -519,9 +524,6 @@ display:none;
                                         <h5>เลือกแล้ว</h5> &nbsp;<h5 id="car_selected">0</h5>&nbsp; <h5>/ {{ $BC_by_car_max - $BC_by_car_sent }} คัน</h5>
                                     </div>
                                     <div class="col-12">
-                                        <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected">
-                                    </div>
-                                    <div class="col-12">
                                         <center>
                                             <button id="btn_next_selected_car" type="button" class="btn btn-sm btn-success main-shadow main-radius" style="width:70%;" data-toggle="modal" data-target="#exampleModalCenter" disabled>
                                                 ต่อไป
@@ -653,6 +655,14 @@ display:none;
                         <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คัน</span>
                     </span>
                 </h4>
+                <div id="div_btn_view_all_car" class="d-none" style="float: right;">
+                    <span class="btn btn-info btn-sm text-white main-shadow main-radius">
+                        <i class="fa-solid fa-eye"></i> ดูรถที่เลือกทั้งหมด
+                    </span>
+                    <span class="btn btn-danger btn-sm text-white main-shadow main-radius">
+                        <i class="fa-sharp fa-solid fa-delete-left"></i> ยกเลิกการเลือกทั้งหมด
+                    </span>
+                </div>
             </div>    
             <div class="div-result" >
                 <div class="row ">
@@ -702,8 +712,8 @@ display:none;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log(remain);
-        document.querySelector('#btn_next_selected_car').disabled = false;
-        document.querySelector('#btn_next_selected_car').click();
+        // document.querySelector('#btn_next_selected_car').disabled = false;
+        // document.querySelector('#btn_next_selected_car').click();
     });
 
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด -------------------------------------------------------------------------
@@ -716,6 +726,9 @@ display:none;
 
     var arr_car_id = [] ; // array() car_id
     var arr_car_id_selected = document.querySelector('#arr_car_id_selected'); // input array car_id
+
+    var arr_user_id = [] ; // array() car_id
+    var arr_user_id_selected = document.querySelector('#arr_user_id_selected'); // input array user_id
 
     if (arr_car_id_selected.value) {
         count_arr_car_id = JSON.parse(arr_car_id_selected.value).length ;
@@ -852,6 +865,9 @@ display:none;
                         let name_btn_select = document.createAttribute("name");
                             name_btn_select.value = "i_btn_select_"  + content_count;
                         btn_select.setAttributeNode(name_btn_select);
+                        let uid = document.createAttribute("data");
+                            uid.value = item.user_id ;
+                        btn_select.setAttributeNode(uid);
 
                         let class_btn_select = document.createAttribute("class");
 
@@ -917,12 +933,14 @@ display:none;
         if (remain <= 0) {
             if (class_btn_select_car_id == "fas") {
                 document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
-                click_select_car_2(user_id , car_id);
+                check_select_ByUser_id(user_id , car_id);
             }else{
                 // เกินจำนวนที่กำหนด
                 // console.log(remain + " <= 0");
                 document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
                 document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
+
+                document.querySelector('#text_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
                 document.querySelector('#car_max').classList.add('up_down');
 
                 const animated = document.querySelector('.up_down');
@@ -932,9 +950,48 @@ display:none;
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
-            click_select_car_2(user_id , car_id);
+            check_select_ByUser_id(user_id , car_id);
         }
 
+    }
+
+    function check_select_ByUser_id(user_id , car_id){
+        // เช็ค user id เลือกแล้วหรือยัง
+        if (!arr_user_id_selected.value) {
+            arr_user_id = JSON.parse( '["'+user_id +'"]' );
+            arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
+
+            click_select_car_2(user_id , car_id);
+        }else{
+            arr_user_id = JSON.parse(arr_user_id_selected.value) ;
+
+            if ( arr_user_id.includes(user_id) ) {
+                // มีแล้ว
+                // เช็คปุ่มเลือก เช็คว่าเลือกแล้วหรือยัง
+                let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
+                let content_selected_car = document.querySelector('#content_selected_car');
+
+                if (btn_select_car_id.classList[0] == "far") {
+                    // ยังไม่ได้เลือก
+                    document.querySelector('#text_car_max').innerHTML = "ขออภัย คุณได้เลือกรถคันอื่นของผู้ใช้นี้แล้ว" ;
+                    document.querySelector('#car_max').classList.add('up_down');
+
+                    const animated = document.querySelector('.up_down');
+                    animated.onanimationend = () => {
+                        document.querySelector('#car_max').classList.remove('up_down');
+                    };
+                }else{
+                    // เลือกแล้ว
+                    click_drop_car(user_id , car_id);
+                }
+            }else{
+                // ยังไม่มี
+                arr_user_id.push(user_id);
+                arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
+
+                click_select_car_2(user_id , car_id);
+            }
+        }
     }
 
     // คลิกเลือกรถและโชว์ด้านขวา
@@ -998,16 +1055,24 @@ display:none;
         //         document.querySelector('#div_car_selected_id_' + car_id).remove() ;
         //     }, delayInMilliseconds);
         // }
+
+        let arr_user_id_select_car = JSON.parse(arr_user_id_selected.value) ;
+        // delete array by user_id
+        for( var ii = 0; ii < arr_user_id_select_car.length; ii++){ 
+            if ( arr_user_id_select_car[ii] === user_id) { 
+                arr_user_id_select_car.splice(ii, 1); 
+            }
+        }
+        arr_user_id_selected.value = JSON.stringify(arr_user_id_select_car) ;
+
         
         let arr_car_id_select_car = JSON.parse(arr_car_id_selected.value) ;
-
         // delete array by car_id
         for( var i = 0; i < arr_car_id_select_car.length; i++){ 
             if ( arr_car_id_select_car[i] === car_id) { 
                 arr_car_id_select_car.splice(i, 1); 
             }
         }
-
         arr_car_id_selected.value = JSON.stringify(arr_car_id_select_car) ;
 
         document.querySelector('#car_selected').innerHTML = JSON.parse(arr_car_id_selected.value).length ;
@@ -1042,8 +1107,10 @@ display:none;
             document.querySelector('#btn_next_selected_car').disabled = false ;
             document.querySelector('#amount').value = count_i.toString();
             document.querySelector('#span_amount_send').innerHTML = count_i.toString();
+            document.querySelector('#div_btn_view_all_car').classList.remove('d-none');
         }else{
             document.querySelector('#btn_next_selected_car').disabled = true ;
+            document.querySelector('#div_btn_view_all_car').classList.add('d-none');
         }
     }
 
@@ -1177,17 +1244,40 @@ display:none;
                 let i_btn_select = document.getElementsByName('i_btn_select_' + i);
                 let class_i_btn_select = i_btn_select[0].classList[0] ;
 
-                if (class_i_btn_select == "far") {
-                    document.querySelector('#div_result_content_count_' + i).click();
-                }else{
-                    amount = parseInt(amount) + 1 ;
-                }
+                let uid_i_btn_select = i_btn_select[0].getAttribute('data') ;
+                    // console.log(uid_i_btn_select);
 
+                if (!arr_user_id_selected.value) {
+                    // arr_user_id ว่าง
+                    if (class_i_btn_select == "far") {
+                        document.querySelector('#div_result_content_count_' + i).click();
+                    }else{
+                        amount = parseInt(amount) + 1 ;
+                    }
+                }else{
+                    // arr_user_id ไม่ว่าง
+                    arr_user_id = JSON.parse(arr_user_id_selected.value) ;
+
+                    if ( arr_user_id.includes(uid_i_btn_select) ) {
+                        // มี user id ใน arr_user_id แล้ว
+                        amount = parseInt(amount) + 1 ; 
+
+                    }else{
+                        // ยังไม่มี user id ใน arr_user_id แล้ว
+                        if (class_i_btn_select == "far") {
+                            document.querySelector('#div_result_content_count_' + i).click();
+                        }else{
+                            amount = parseInt(amount) + 1 ;
+                        }
+                    }
+                }
             }
         }else{
             document.querySelector('#warn_BC_by_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
             document.querySelector('#warn_BC_by_car_max').classList.remove('d-none');
             document.querySelector('#tell_BC_by_car_max').classList.add('text-danger');
+
+            document.querySelector('#text_car_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
             document.querySelector('#car_max').classList.add('up_down');
 
             const animated = document.querySelector('.up_down');
