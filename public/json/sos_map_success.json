@@ -2,112 +2,313 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "action": {
-      "type": "uri",
-      "uri": "https://linecorp.com"
-    },
-    "contents": [
-      {
-        "type": "image",
-        "url": "https://www.viicheck.com/img/stickerline/PNG/32.png",
-        "size": "xxl",
-        "margin": "lg",
-        "align": "center",
-        "gravity": "center",
-        "aspectMode": "fit",
-        "offsetBottom": "md"
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "text",
-        "text": "ViiCHECK",
-        "size": "md",
-        "weight": "bold",
-        "margin": "lg",
-        "wrap": true,
-        "align": "center"
-      },
-      {
-        "type": "text",
-        "text": "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
-        "size": "md",
-        "weight": "bold",
-        "margin": "lg",
-        "wrap": true,
-        "align": "center"
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "text",
-        "text": "hello, world",
+      "type": "bubble",
+      "size": "giga",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
         "contents": [
           {
-            "type": "span",
-            "text": "การขอความช่วยเหลือ",
-            "weight": "bold"
-          }
-        ],
-        "margin": "lg",
-        "size": "sm",
-        "wrap": true
-      },
-      {
-        "type": "text",
-        "text": "hello, world",
-        "contents": [
+            "type": "image",
+            "url": "https://www.viicheck.com/img/flex/sos/sos_map_success.png",
+            "size": "full",
+            "aspectRatio": "2500:3200",
+            "aspectMode": "cover"
+          },
           {
-            "type": "span",
-            "text": "name_user",
-            "color": "#bcbcbc",
-            "weight": "bold"
-          }
-        ],
-        "margin": "lg",
-        "size": "sm",
-        "wrap": true
-      },
-      {
-        "type": "text",
-        "text": "hello, world",
-        "contents": [
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ขอขอบคุณที่ร่วมสร้างสังคมที่ดี",
+                "weight": "bold",
+                "size": "20px",
+                "color": "#ffffff",
+                "maxLines": 2,
+                "wrap": true,
+                "align": "center"
+              }
+            ],
+            "position": "absolute",
+            "width": "60%",
+            "offsetTop": "15%",
+            "offsetStart": "32%",
+            "alignItems": "center",
+            "height": "14%",
+            "justifyContent": "center"
+          },
           {
-            "type": "span",
-            "text": "date_time",
-            "color": "#bcbcbc",
-            "weight": "bold"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "การช่วยเหลือเสร็จสิ้น",
+                "weight": "bold",
+                "size": "xl",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "35%",
+            "offsetStart": "5%",
+            "alignItems": "center",
+            "width": "90%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "date_sos",
+                "weight": "bold",
+                "size": "18px",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "28%",
+            "offsetTop": "41%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "time_sos",
+                "weight": "bold",
+                "size": "18px",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "28%",
+            "offsetTop": "45%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "cout_help",
+                "weight": "bold",
+                "size": "xxs",
+                "color": "#CFCFCF"
+              }
+            ],
+            "position": "absolute",
+            "width": "30%",
+            "offsetTop": "51.8%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "name_sos ขอความช่วยเหลือ",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 3,
+                "wrap": true
+              }
+            ],
+            "position": "absolute",
+            "width": "52%",
+            "offsetTop": "43%",
+            "offsetStart": "43%",
+            "alignItems": "flex-start",
+            "height": "15%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "date_help",
+                "weight": "bold",
+                "size": "18px",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "28%",
+            "offsetTop": "57.5%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "time_help",
+                "weight": "bold",
+                "size": "18px",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "28%",
+            "offsetTop": "61.5%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "name_help กำลังไปช่วยเหลือ",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 3,
+                "wrap": true
+              }
+            ],
+            "position": "absolute",
+            "width": "52%",
+            "offsetTop": "59%",
+            "offsetStart": "43%",
+            "alignItems": "flex-start",
+            "height": "15%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "cout_success",
+                "weight": "bold",
+                "size": "xxs",
+                "color": "#CFCFCF"
+              }
+            ],
+            "position": "absolute",
+            "width": "30%",
+            "offsetTop": "69.5%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "date_success",
+                "weight": "bold",
+                "size": "18px",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "28%",
+            "offsetTop": "73%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "time_success",
+                "weight": "bold",
+                "size": "18px",
+                "color": "#ffffff"
+              }
+            ],
+            "position": "absolute",
+            "width": "28%",
+            "offsetTop": "77.5%",
+            "offsetStart": "3.5%",
+            "alignItems": "flex-end"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "name_success ช่วยเหลือเสร็จสิ้น",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 2,
+                "wrap": true
+              }
+            ],
+            "position": "absolute",
+            "width": "50%",
+            "offsetTop": "76%",
+            "offsetStart": "43%",
+            "alignItems": "flex-start",
+            "height": "10%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "เพิ่มภาพถ่าย",
+                "weight": "bold",
+                "size": "19px",
+                "color": "#25548F",
+                "maxLines": 2,
+                "align": "center",
+                "wrap": true,
+                "lineSpacing": "0px",
+                "flex": 0,
+                "gravity": "center"
+              }
+            ],
+            "position": "absolute",
+            "width": "39%",
+            "offsetTop": "88%",
+            "offsetStart": "30%",
+            "alignItems": "center",
+            "height": "8.5%",
+            "justifyContent": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "position": "absolute",
+            "width": "62%",
+            "offsetTop": "88%",
+            "offsetStart": "19%",
+            "alignItems": "flex-start",
+            "height": "8.5%",
+            "justifyContent": "center",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/log_in_sos_map_add_photo/id_sos_map?openExternalBrowser=1"
+            }
           }
         ],
-        "margin": "lg",
-        "size": "sm",
-        "wrap": true
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "button",
-        "style": "primary",
-        "color": "#76d128",
-        "action": {
-          "type": "uri",
-          "label": "📸 เพิ่มภาพถ่าย",
-          "uri": "https://www.viicheck.com/log_in_sos_map_add_photo/id_sos_map?openExternalBrowser=1"
-        },
-        "height": "sm"
-      }
-    ]
-  }
-}
+    }
 }
