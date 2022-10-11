@@ -706,7 +706,7 @@ class LineApiController extends Controller
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
         // datetime
-        $text = "11-10-2022  01:31:33pm, UTC +7" ;
+        $text = "11-10-2022 01:31:33pm, UTC +7" ;
         $time_zone_explode = explode(" ",$text);
         
         $date = $time_zone_explode[0] ;
@@ -781,7 +781,7 @@ class LineApiController extends Controller
         $data = [
             "title" => "send_helper_to_groupline",
             // "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
-            "content" => gettype($time_zone),
+            "content" => gettype($time_zone) . "/" . $time_zone,
         ];
         MyLog::create($data);
 
