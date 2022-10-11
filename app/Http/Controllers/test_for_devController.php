@@ -146,40 +146,24 @@ class test_for_devController extends Controller
         $time = $time_zone_explode[1] ;
         $utc = $time_zone_explode[3] ;
 
-
-
-        // echo $text ;
-        // echo '<br>' ;
-        // echo $date ;
-        // echo '<br>' ;
-        // echo $time ;
-        // echo '<br>' ;
-        // echo $utc ;
-        // echo '<br>' ;
-
-
-        // echo "<pre>" ;
-        // print_r($time_zone_explode);
-        // echo "<pre>" ;
-
         $template_path = storage_path('../public/json/helper_to_groupline.json');
         $string_json = file_get_contents($template_path);
            
-        // $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
 
-        // $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
-        // $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
-        // $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
-        // $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
+        $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
+        $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
+        $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
+        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
 
-        // // user
-        // $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
-        // $string_json = str_replace("photo_user",$photo_user,$string_json);
-        // // helper
-        // $string_json = str_replace("name_helper",$name_helper,$string_json);
-        // $string_json = str_replace("photo_helper", $photo_helper,$string_json);
+        // user
+        $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+        $string_json = str_replace("TEXT_PHOTO_USER",$photo_user,$string_json);
+        // helper
+        $string_json = str_replace("name_helper",$name_helper,$string_json);
+        $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
     
-        // $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
+        $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
         $string_json = str_replace("date",$date,$string_json);
         $string_json = str_replace("time",$time,$string_json);
         $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
