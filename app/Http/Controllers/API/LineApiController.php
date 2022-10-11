@@ -765,7 +765,7 @@ class LineApiController extends Controller
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
         $string_json = str_replace("date",$date,$string_json);
         $string_json = str_replace("time",$time,$string_json);
-        $string_json = str_replace("UTC","UTC"+ $utc,$string_json);
+        $string_json = str_replace("UTC", "UTC " .$utc,$string_json);
         
 
         $messages = [ json_decode($string_json, true) ];
