@@ -677,6 +677,10 @@ class LineApiController extends Controller
             $group_language = $key->language ;
         }
 
+                $photo_user = "" ;
+                $photo_helper = "" ;
+
+
         // //user
         // $data_users = DB::table('users')->where('id', $data_sos_map->user_id)->get();
         // foreach ($data_users as $data_user) {
