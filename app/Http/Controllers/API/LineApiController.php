@@ -677,30 +677,29 @@ class LineApiController extends Controller
             $group_language = $key->language ;
         }
 
-        //user
-        $user_id = $data_sos_map->user_id ;
-        $data_users = DB::table('users')->where('id', $user_id)->get();
-        foreach ($data_users as $data_user) {
+        // //user
+        // $data_users = DB::table('users')->where('id', $data_sos_map->user_id)->get();
+        // foreach ($data_users as $data_user) {
 
-            if (!empty($data_user->photo)) {
-                $photo_user = $data_user->photo ;
-            }
-            if (empty($data_user->photo)) {
-                $photo_user = $data_user->avatar ;
-            }
-        }
+        //     if (!empty($data_user->photo)) {
+        //         $photo_user = $data_user->photo ;
+        //     }
+        //     if (empty($data_user->photo)) {
+        //         $photo_user = $data_user->avatar ;
+        //     }
+        // }
 
-        //helper
-        $data_helpers = DB::table('users')->where('id', $helper_id)->get();
-        foreach ($data_helpers as $data_helper) {
+        // //helper
+        // $data_helpers = DB::table('users')->where('id', $helper_id)->get();
+        // foreach ($data_helpers as $data_helper) {
 
-            if (!empty($data_helper->photo)) {
-                $photo_helper = $data_helper->photo ;
-            }
-            if (empty($data_helper->photo)) {
-                $photo_helper = $data_helper->avatar ;
-            }
-        }
+        //     if (!empty($data_helper->photo)) {
+        //         $photo_helper = $data_helper->photo ;
+        //     }
+        //     if (empty($data_helper->photo)) {
+        //         $photo_helper = $data_helper->avatar ;
+        //     }
+        // }
 
         // TIME ZONE
         $API_Time_zone = new API_Time_zone();
