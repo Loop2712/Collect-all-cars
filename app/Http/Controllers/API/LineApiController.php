@@ -506,7 +506,7 @@ class LineApiController extends Controller
                                 'helper' => $user->name,
                                 'helper_id' => $user->id,
                                 'organization_helper' => $data_partner_helpers->name,
-                                'time_go_to_help' => date("d-m-Y h:i:sa"),
+                                'time_go_to_help' => date('Y-m-d\TH:i:s'),
                         ]);
 
                         $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
