@@ -721,18 +721,18 @@ class LineApiController extends Controller
         // user
         $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
         
-        $data_users = DB::table('users')->where('id', $data_sos_map->user_id)->first();
-        if (!empty($data_users->photo)) {
-            $string_json = str_replace("TEXT_PHOTO_USER",$data_users->photo,$string_json);
+        // $data_users = DB::table('users')->where('id', $data_sos_map->user_id)->first();
+        // if (!empty($data_users->photo)) {
+        //     $string_json = str_replace("TEXT_PHOTO_USER",$data_users->photo,$string_json);
 
-        }
+        // }
         // helper
         $string_json = str_replace("name_helper",$name_helper,$string_json);
 
-        $data_helpers = DB::table('users')->where('id', $helper_id)->first();
-        if (!empty($data_helpers->photo)) {
-            $string_json = str_replace("TEXT_PHOTO_HELPER",$data_helpers->photo,$string_json);
-        }
+        // $data_helpers = DB::table('users')->where('id', $helper_id)->first();
+        // if (!empty($data_helpers->photo)) {
+        //     $string_json = str_replace("TEXT_PHOTO_HELPER",$data_helpers->photo,$string_json);
+        // }
 
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
         $string_json = str_replace("date",$date,$string_json);
