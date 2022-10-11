@@ -706,12 +706,16 @@ class LineApiController extends Controller
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
         // datetime
-
         $time_zone_explode = explode(" ",$time_zone);
+        echo $time_zone;
+        print_r($time_zone_explode);
+        exit();
 
         $date = $time_zone_explode[0] ;
         $time = $time_zone_explode[1] ;
         $utc = $time_zone_explode[3] ;
+
+        
 
 
         $data_topic = [
