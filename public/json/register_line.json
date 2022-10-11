@@ -2,41 +2,64 @@
     "type": "flex",
     "altText": "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
-        "weight": "bold",
-        "size": "md"
+      "type": "bubble",
+      "size": "giga",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/flex/login_line.png",
+            "size": "full",
+            "aspectRatio": "804:361",
+            "aspectMode": "cover"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
+                "color": "#FFFFFF",
+                "wrap": true,
+                "size": "18px",
+                "weight": "bold",
+                "maxLines": 3,
+                "align": "center"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "10.5%",
+            "offsetStart": "24%",
+            "width": "70%",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "borderWidth": "none",
+            "height": "40%"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [],
+            "position": "absolute",
+            "offsetTop": "63.5%",
+            "offsetStart": "12.5%",
+            "width": "68%",
+            "alignItems": "center",
+            "height": "28%",
+            "justifyContent": "center",
+            "paddingStart": "15%",
+            "action": {
+              "type": "uri",
+              "label": "Login line",
+              "uri": "https://www.viicheck.com/login/line?from=line_oa"
+            }
+          }
+        ],
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "sm",
-    "contents": [
-      {
-        "type": "button",
-        "style": "primary",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "Login line",
-          "uri": "https://www.viicheck.com/login/line?from=line_oa"
-        },
-        "color": "#76d128"
-      },
-      {
-        "type": "spacer",
-        "size": "sm"
-      }
-    ],
-    "flex": 0
-  }
-}
+    }
 }
