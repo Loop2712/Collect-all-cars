@@ -780,7 +780,8 @@ class LineApiController extends Controller
         // SAVE LOG
         $data = [
             "title" => "send_helper_to_groupline",
-            "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
+            // "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
+            "content" => gettype($time_zone),
         ];
         MyLog::create($data);
 
