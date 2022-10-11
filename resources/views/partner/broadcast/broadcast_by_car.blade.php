@@ -274,10 +274,17 @@ display:none;
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;font-family: 'Kanit', sans-serif;">กำหนดบรอดแคสต์</h5>
-                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;font-family: 'Kanit', sans-serif;">
+                    กำหนดบรอดแคสต์
+                </h5>
+                <div>
+                    <a class="btn btn-warning btn-sm text-white main-shadow main-radius" onclick="reset_BC();">
+                        <i class="fas fa-sync"></i> reset
+                    </a>
+                    <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -299,13 +306,6 @@ display:none;
                                 <br>
                             </div>
                             <div class="col-12 d-none">
-                                <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                                    <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label>
-                                    <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-12">
                                 <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
                                     <label for="detail" class="control-label">{{ 'คำอธิบาย' }}</label>
                                     <!-- <span class="text-secondary">(ไม่แสดงต่อผู้ใช้)</span> -->
@@ -313,6 +313,31 @@ display:none;
                                     <br>
                                 </div>
                             </div>
+                            <div id="div_user_unique" class="col-12 d-none">
+                                <input class="" name="user_unique" type="checkbox" id="user_unique" value="">
+                                &nbsp; ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว
+                                <br><br>
+                            </div>
+                            <div class="col-3 d-">
+                                <div class="form-group {{ $errors->has('send_again') ? 'has-error' : ''}}">
+                                    <input class="form-control" name="send_again" type="text" id="send_again" value="" readonly>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-3 d-">
+                                <div class="form-group {{ $errors->has('id_ads') ? 'has-error' : ''}}">
+                                    <input class="form-control" name="id_ads" type="text" id="id_ads" value="" readonly>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-6 d-">
+                                <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                                    <!-- <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label> -->
+                                    <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
+                                </div>
+                                <br>
+                            </div>
+
                             <div class="col-6">
                                 <span style="font-size:20px;color:blue;">จำนวน <span id="span_amount_send">0</span> คัน</span>
                                 <div class="d-none form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
@@ -322,31 +347,52 @@ display:none;
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <button id="btn_send_content" style="float: right;width: 40%;" class="btn btn-success btn-sm" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" disabled onclick="document.querySelector('#btn_btn_send_content_submit').click();">
+                                    <button id="btn_send_content" style="float: right;width: 40%;" class="btn btn-success btn-sm main-shadow main-radius" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" disabled onclick="document.querySelector('#btn_btn_send_content_submit').click();">
                                         ยืนยัน
                                     </button>
                                     <input class="d-none" id="btn_btn_send_content_submit" type="submit" value="{{ 'ยืนยัน' }}"  >
                                 </div>
                             </div>
                         </div>
+
+                        <br>
                         <hr>
+                        <br>
 
                         <h4>เลือกเนื้อหา</h4>
                         <br>
                         <div class="row text-center">
                             @foreach($ads_contents as $ads)
+                                @php
+                                    if(!empty($ads->show_user)){
+                                        $show_user = json_decode($ads->show_user) ;
+                                        $count_show_user = count($show_user) ;
+                                    }else{
+                                        $count_show_user = '0' ;
+                                    }
+
+                                    if(!empty($ads->user_click)){
+                                        $user_click = json_decode($ads->user_click) ;
+                                        $count_user_click = count($user_click) ;
+                                    }else{
+                                        $count_user_click = '0' ;
+                                    }
+                                    
+                                    
+                                @endphp
                             <div class="col-4">
                                 <p>
                                     <b>ชื่อเนื้อหา : {{ $ads->name_content }}</b>
-                                    <a class="btn btn-info btn-sm text-white" style="float:right;margin-top: -5px;">
+                                    <a class="btn btn-info btn-sm text-white" style="float:right;margin-top: -5px;" onclick="select_content_again('{{ $ads->id }}');">
                                         เลือก
                                     </a>
                                 </p>
                                 <img src="{{ url('storage')}}/{{ $ads->photo }}" width="100px">
+                                <br><br>
                                 <p>
                                     <b>ส่งแล้ว : {{ $ads->send_round }} ครั้ง</b> &nbsp;|&nbsp;
-                                    <i class="fas fa-paper-plane"></i> &nbsp; 0 &nbsp;
-                                    <i class="fad fa-eye"></i> &nbsp; 0
+                                    <i class="fas fa-user"></i> &nbsp; {{ $count_show_user }} &nbsp;
+                                    <i class="fad fa-eye"></i> &nbsp; {{ $count_user_click }}
                                 </p>
                             </div>
                             @endforeach
@@ -393,7 +439,7 @@ display:none;
                                         <div id="send-img">
                                             <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
 
-                                            <img src="{{ asset('/img/more/exchange.png') }}" style="float: right;margin-right: 10px;margin-top: 5px;" alt="" width="13%" onclick="document.querySelector('#photo').click();">
+                                            <img id="img_exchange" src="{{ asset('/img/more/exchange.png') }}" style="float: right;margin-right: 10px;margin-top: 5px;" alt="" width="13%" onclick="document.querySelector('#photo').click();">
                                             <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
                                         </div>
                                     </div>
@@ -404,7 +450,7 @@ display:none;
                                     <div class="col-12" >
                                         <div id="send-img">
                                             <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
-                                            <img src="{{ asset('/img/more/add_img.jpg') }}" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
+                                            <img src="{{ asset('/img/more/add_img.jpg') }}" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img_add_img"  >
                                         </div>
                                     </div>
                                     
@@ -656,8 +702,8 @@ display:none;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log(remain);
-        // document.querySelector('#btn_next_selected_car').disabled = false;
-        // document.querySelector('#btn_next_selected_car').click();
+        document.querySelector('#btn_next_selected_car').disabled = false;
+        document.querySelector('#btn_next_selected_car').click();
     });
 
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด -------------------------------------------------------------------------
@@ -1163,6 +1209,63 @@ display:none;
         }else{
             document.querySelector('#btn_send_content').disabled = true ;
         }
+    }
+
+    function select_content_again(ads_id){
+
+        document.querySelector('#send_again').value = 'Yes' ;
+        document.querySelector('#div_user_unique').classList.remove('d-none');
+
+        document.querySelector('#name_content').readOnly = true ;
+        document.querySelector('#link').readOnly = true ;
+        document.querySelector('#img_exchange').classList.add('d-none') ;
+        document.querySelector('#photo').value = null ;
+
+        @foreach($ads_contents as $ads)
+            if ({{ $ads->id }} == ads_id) {
+                
+                document.querySelector('#name_content').value = '{{ $ads->name_content }}';
+                document.querySelector('#id_ads').value = '{{ $ads->id }}';
+
+                let link_url = '{{ $ads->link }}' ; 
+                    link_url = link_url.split("/api");
+                let new_link_url = link_url[0];
+
+                document.querySelector('#link').value = new_link_url ;
+                document.querySelector('#detail').value = '{{ $ads->detail }}' ;
+                document.querySelector('#img-content').src = '{{ url("/storage") }}' + '/' + '{{ $ads->photo }}' ;
+
+                document.querySelector('#send-img').classList.remove('sand');
+
+                setTimeout(function(){ 
+                    document.querySelector('#div_img').classList.remove('d-none');
+                    document.querySelector('#div_add_img').classList.add('d-none');
+
+                    document.querySelector('#send-img').classList.add('sand');
+                }, 100);
+
+            }
+        @endforeach
+
+        
+    }
+
+    function reset_BC(){
+        document.querySelector('#id_ads').value = null ;
+        document.querySelector('#div_user_unique').classList.add('d-none');
+        document.querySelector('#send_again').value = null ;
+        document.querySelector('#name_content').readOnly = false ;
+        document.querySelector('#name_content').value = null;
+        document.querySelector('#link').readOnly = false ;
+        document.querySelector('#link').value = null;
+        document.querySelector('#img_exchange').classList.remove('d-none') ;
+        document.querySelector('#send-img').classList.add('sand');
+        document.querySelector('#div_img').classList.add('d-none');
+        document.querySelector('#div_add_img').classList.remove('d-none');
+        document.querySelector('#img-content').src = null ;
+        document.querySelector('#photo').value = null ;
+        document.querySelector('#img_add_img').src = "{{ asset('/img/more/add_img.jpg') }}" ;
+        
     }
 
 </script>
