@@ -677,34 +677,6 @@ class LineApiController extends Controller
             $group_language = $key->language ;
         }
 
-                $photo_user = "" ;
-                $photo_helper = "" ;
-
-
-        // //user
-        // $data_users = DB::table('users')->where('id', $data_sos_map->user_id)->get();
-        // foreach ($data_users as $data_user) {
-
-        //     if (!empty($data_user->photo)) {
-        //         $photo_user = $data_user->photo ;
-        //     }
-        //     if (empty($data_user->photo)) {
-        //         $photo_user = $data_user->avatar ;
-        //     }
-        // }
-
-        // //helper
-        // $data_helpers = DB::table('users')->where('id', $helper_id)->get();
-        // foreach ($data_helpers as $data_helper) {
-
-        //     if (!empty($data_helper->photo)) {
-        //         $photo_helper = $data_helper->photo ;
-        //     }
-        //     if (empty($data_helper->photo)) {
-        //         $photo_helper = $data_helper->avatar ;
-        //     }
-        // }
-
         // TIME ZONE
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
@@ -748,10 +720,8 @@ class LineApiController extends Controller
 
         // user
         $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
-        // $string_json = str_replace("TEXT_PHOTO_USER",$photo_user,$string_json);
         // helper
         $string_json = str_replace("name_helper",$name_helper,$string_json);
-        // $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
     
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
         $string_json = str_replace("date",$date,$string_json);
