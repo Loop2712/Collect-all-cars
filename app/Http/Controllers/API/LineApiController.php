@@ -678,7 +678,8 @@ class LineApiController extends Controller
         }
 
         //user
-        $data_users = DB::table('users')->where('id', $data_sos_map->user_id)->get();
+        $user_id = $data_sos_map->user_id ;
+        $data_users = DB::table('users')->where('id', $user_id)->get();
         foreach ($data_users as $data_user) {
 
             if (!empty($data_user->photo)) {
