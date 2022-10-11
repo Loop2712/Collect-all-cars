@@ -1015,6 +1015,10 @@ class LineApiController extends Controller
         $date_success = $time_zone_explode[0] ;
         $time_success = $time_zone_explode[1] ;
 
+        $date_sos = $data_sos_map->created_at->format('d/m/Y');
+        $time_sos = $data_sos_map->created_at->format('g:i a');
+        
+
         $count = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
 
 
@@ -1051,7 +1055,8 @@ class LineApiController extends Controller
 
             // sos
             $string_json = str_replace("name_sos",$data_sos_map->name,$string_json);
-            
+            $string_json = str_replace("date_sos",$date_sos,$string_json);
+            $string_json = str_replace("time_sos",$time_sos,$string_json);
 
             //help
             $string_json = str_replace("name_help",$data_sos_map->helper,$string_json);
