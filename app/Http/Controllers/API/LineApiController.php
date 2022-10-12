@@ -1067,8 +1067,10 @@ class LineApiController extends Controller
         $time_help_complete = $data_sos_map->help_complete_time;
         $time_go_to_help = $data_sos_map->time_go_to_help;
 
-        $count_time_help = $this->count_help($time_created , $time_go_to_help);
-        $count_time_complete = $this->count_complete($time_created , $time_help_complete);
+        $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
+        $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
+        $count_complete = $this->count_range_time($time_created , $time_help_complete);
+
 
 
         if ( empty($data_sos_map->help_complete) ) {
@@ -1117,14 +1119,11 @@ class LineApiController extends Controller
             // success
             $string_json = str_replace("date_success",$date_success,$string_json);
             $string_json = str_replace("time_success",$time_success,$string_json);
+            $string_json = str_replace("count_success",$count_success,$string_json);
 
-            $string_json = str_replace("count_success",$count_time_complete,$string_json);
-
-
+            $string_json = str_replace("count_complete",$count_complete,$string_json);
             $string_json = str_replace("date_time",$time_zone,$string_json);
-
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
-
             $messages = [ json_decode($string_json, true) ];
 
 
@@ -1285,71 +1284,38 @@ class LineApiController extends Controller
         return "OK KUB" ;
     }
 
-    public function count_help($time_created , $time_help_complete)
+    public function count_range_time($time_start , $time_end)
     {
         // count time success
-        $count_success_s = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%s');
-        $count_success_i = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%i');
-        $count_success_h = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%h');
-        $count_success_d = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%d');
-        $count_success_m = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%m');
-        $count_success_y = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%y');
+        $time_s = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%s');
+        $time_i = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%i');
+        $time_h = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%h');
+        $time_d = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%d');
+        $time_m = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%m');
+        $time_y = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%y');
 
-        if ( $count_success_s != 0 ) {
-            $count_success = $count_success_s ." วิ";
+        if ( $time_s != 0 ) {
+            $data = $time_s ." วิ";
         }
-        if( $count_success_i != 0){
-            $count_success = $count_success_i ." นาที " .$count_success;
+        if( $time_i != 0){
+            $data = $time_i ." นาที " .$data;
         }
-        if( $count_success_h != 0){
-            $count_success = $count_success_h ." ชม. " .$count_success;
+        if( $time_h != 0){
+            $data = $time_h ." ชม. " .$data;
         }
-       if( $count_success_d != 0){
-            $count_success = $count_success_d ." วัน " .$count_success;
+       if( $time_d != 0){
+            $data = $time_d ." วัน " .$data;
         }
-        if( $count_success_m != 0){
-            $count_success = $count_success_m ." เดือน " .$count_success;
+        if( $time_m != 0){
+            $data = $time_m ." เดือน " .$data;
         }
-        if( $count_success_y != 0){
-            $count_success = $count_success_y ." ปี " .$count_success;
+        if( $time_y != 0){
+            $data = $time_y ." ปี " .$data;
         }
-        return $count_success;
+        return $data;
     }
 
-    public function count_complete($time_created , $time_go_to_help)
-    {
-       
-        //count time help
-        $count_help_s = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%s');
-        $count_help_i = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%i');
-        $count_help_h = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%h');
-        $count_help_d = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%d');
-        $count_help_m = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%m');
-        $count_help_y = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%y'); 
-
-        
-        if ( $count_help_s != 0 ) {
-            $count_help = $count_help_s ." วิ";
-        }
-        if( $count_help_i != 0){
-            $count_help = $count_help_i ." นาที " .$count_help;
-        }
-        if( $count_help_h != 0){
-            $count_help = $count_help_h ." ชม. " .$count_help;
-        }
-        if( $count_help_d != 0){
-            $count_help = $count_help_d ." วัน " .$count_help;
-        }
-        if( $count_help_m != 0){
-            $count_help = $count_help_m ." เดือน " .$count_help;
-        }
-        if( $count_help_y != 0){
-            $count_help = $count_help_y ." ปี " .$count_help;
-        }
-        return $count_help;
-
-        
-    }
+    
 
 }
 

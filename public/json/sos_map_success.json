@@ -104,7 +104,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "count_help",
+                "text": "cout_help",
                 "weight": "bold",
                 "size": "xxs",
                 "color": "#CFCFCF"
@@ -217,7 +217,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "count_success",
+                "text": "cout_success",
                 "weight": "bold",
                 "size": "xxs",
                 "color": "#CFCFCF"
@@ -275,16 +275,24 @@
                 "weight": "bold",
                 "size": "18px",
                 "color": "#FFFFFF",
-                "maxLines": 2,
+                "maxLines": 1,
                 "wrap": true
+              },
+              {
+                "type": "text",
+                "text": "ใช้เวลา : cout_complete",
+                "weight": "bold",
+                "size": "xxs",
+                "color": "#CFCFCF",
+                "maxLines": 1
               }
             ],
             "position": "absolute",
             "width": "50%",
-            "offsetTop": "75.6%",
+            "offsetTop": "74.5%",
             "offsetStart": "42.5%",
             "alignItems": "flex-start",
-            "height": "10%"
+            "height": "20%"
           },
           {
             "type": "box",
