@@ -143,7 +143,8 @@
                                     </td>
                                 @else
                                     <td>
-                                        <!--  -->
+                                        <span class="text-secondary">รถคันนี้ถูกยกเลิกแล้ว</span>
+                                        <br>
                                     </td>
                                 @endif
 
