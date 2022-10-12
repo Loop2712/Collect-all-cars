@@ -1082,7 +1082,15 @@ class LineApiController extends Controller
                         "ขอความช่วยเหลือ",
                         "กำลังไปช่วยเหลือ",
                         "ช่วยเหลือเสร็จสิ้น",
-                        "ใช้เวลา"
+                        "ใช้เวลา",
+                        "วินาที",
+                        "นาที",
+                        "ชั่วโมง",
+                        "วัน",
+                        "เดือน",
+                        "ปี",
+                        
+
                     ];
 
             for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -1110,6 +1118,12 @@ class LineApiController extends Controller
             $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[4],$string_json);
             $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
             $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
+            $string_json = str_replace("วินาที",$data_topic[7],$string_json);
+            $string_json = str_replace("นาที",$data_topic[8],$string_json);
+            $string_json = str_replace("ชั่วโมง",$data_topic[9],$string_json);
+            $string_json = str_replace("วัน",$data_topic[10],$string_json);
+            $string_json = str_replace("เดือน",$data_topic[11],$string_json);
+            $string_json = str_replace("ปี",$data_topic[12],$string_json);
 
             // sos
             $string_json = str_replace("name_sos",$data_sos_map->name,$string_json);
