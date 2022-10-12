@@ -18,7 +18,7 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-        $data = "hello" ;
+        // $data = "hello" ;
         
         echo $data ;
         exit();
