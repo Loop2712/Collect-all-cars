@@ -156,9 +156,11 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if(!empty($item->register_cars->name))
                                     <b>{{ $item->register_cars->name }}</b>
                                     <a target="bank" href="{{ url('/profile/'.$item->register_cars->user_id) }}"><i class="fas fa-eye"></i></a>
                                     <br>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
