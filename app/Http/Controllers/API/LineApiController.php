@@ -1110,21 +1110,6 @@ class LineApiController extends Controller
 
             $string_json = file_get_contents($template_path);
 
-            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-            $string_json = str_replace("ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",$data_topic[0],$string_json);
-            $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[1],$string_json);
-            $string_json = str_replace("เพิ่มภาพถ่าย",$data_topic[2],$string_json);
-            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[3],$string_json);
-            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[4],$string_json);
-            $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
-            $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
-            $string_json = str_replace("วินาที",$data_topic[7],$string_json);
-            $string_json = str_replace("นาที",$data_topic[8],$string_json);
-            $string_json = str_replace("ชั่วโมง",$data_topic[9],$string_json);
-            $string_json = str_replace("วัน",$data_topic[10],$string_json);
-            $string_json = str_replace("เดือน",$data_topic[11],$string_json);
-            $string_json = str_replace("ปี",$data_topic[12],$string_json);
-
             // sos
             $string_json = str_replace("name_sos",$data_sos_map->name,$string_json);
             $string_json = str_replace("date_sos",$date_sos,$string_json);
@@ -1144,6 +1129,23 @@ class LineApiController extends Controller
             $string_json = str_replace("count_complete",$count_complete,$string_json);
             $string_json = str_replace("date_time",$time_zone,$string_json);
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
+
+            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+            $string_json = str_replace("ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",$data_topic[0],$string_json);
+            $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[1],$string_json);
+            $string_json = str_replace("เพิ่มภาพถ่าย",$data_topic[2],$string_json);
+            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[3],$string_json);
+            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[4],$string_json);
+            $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
+            $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
+            $string_json = str_replace("วินาที",$data_topic[7],$string_json);
+            $string_json = str_replace("นาที",$data_topic[8],$string_json);
+            $string_json = str_replace("ชั่วโมง",$data_topic[9],$string_json);
+            $string_json = str_replace("วัน",$data_topic[10],$string_json);
+            $string_json = str_replace("เดือน",$data_topic[11],$string_json);
+            $string_json = str_replace("ปี",$data_topic[12],$string_json);
+
+            
             $messages = [ json_decode($string_json, true) ];
 
 
