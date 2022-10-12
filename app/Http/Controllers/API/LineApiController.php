@@ -1064,7 +1064,46 @@ class LineApiController extends Controller
         $time_success = $time_zone_explode[1];
 
 
-        $count = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
+        $count_success_s = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
+        $count_success_m = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%m');
+        $count_success_h = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%h');
+        $count_success_d = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%d');
+        $count_success_m = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%m');
+        $count_success_y = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%y');
+
+        if ( $count_success_s != 0 ) {
+            $count_success = $count_success_s ."วิ";
+        }elseif( $count_success_m != 0){
+            if ( $count_success_s != 0 ) {
+                $count_success = $count_success_m ."นาที" .$count_success_s ."วิ";
+            }else{
+                $count_success = $count_success_m ."นาที";
+            }
+        }elseif( $count_success_h != 0){
+            if ( $count_success_m != 0 ) {
+                $count_success = $count_success_h ."ชม." .$count_success_m ."นาที";
+            }else{
+                $count_success = $count_success_h ."ชม.";
+            }
+        }elseif( $count_success_d != 0){
+            if ( $count_success_h != 0 ) {
+                $count_success = $count_success_d ."วัน" .$count_success_h ."ชม.";
+            }else{
+                $count_success = $count_success_d ."วัน";
+            }
+        }elseif( $count_success_m != 0){
+            if ( $count_success_d != 0 ) {
+                $count_success = $count_success_m ."เดือน" .$count_success_d ."วัน";
+            }else{
+                $count_success = $count_success_m ."เดือน";
+            }
+        }elseif( $count_success_y != 0){
+            if ( $count_success_m != 0 ) {
+                $count_success = $count_success_y ."ปี" .$count_success_m ."เดือน";
+            }else{
+                $count_success = $count_success_y ."ปี";
+            }
+        }
 
 
         if ( empty($data_sos_map->help_complete) ) {
@@ -1112,7 +1151,7 @@ class LineApiController extends Controller
             $string_json = str_replace("date_success",$date_success,$string_json);
             $string_json = str_replace("time_success",$time_success,$string_json);
 
-            $string_json = str_replace("cout_success",$count,$string_json);
+            $string_json = str_replace("cout_success",$count_success,$string_json);
 
 
             $string_json = str_replace("date_time",$time_zone,$string_json);
