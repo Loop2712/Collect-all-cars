@@ -1079,6 +1079,10 @@ class LineApiController extends Controller
                         "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
                         "การช่วยเหลือเสร็จสิ้น",
                         "เพิ่มภาพถ่าย",
+                        "ขอความช่วยเหลือ",
+                        "กำลังไปช่วยเหลือ",
+                        "ช่วยเหลือเสร็จสิ้น",
+                        "ใช้เวลา"
                     ];
 
             for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -1099,10 +1103,13 @@ class LineApiController extends Controller
             $string_json = file_get_contents($template_path);
 
             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-
             $string_json = str_replace("ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",$data_topic[0],$string_json);
             $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[1],$string_json);
             $string_json = str_replace("เพิ่มภาพถ่าย",$data_topic[2],$string_json);
+            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[3],$string_json);
+            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[4],$string_json);
+            $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
+            $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
 
             // sos
             $string_json = str_replace("name_sos",$data_sos_map->name,$string_json);
@@ -1114,7 +1121,6 @@ class LineApiController extends Controller
             $string_json = str_replace("date_help",$date_help,$string_json);
             $string_json = str_replace("time_help",$time_help,$string_json);
             $string_json = str_replace("count_help",$count_time_help,$string_json);
-
 
             // success
             $string_json = str_replace("date_success",$date_success,$string_json);
@@ -1295,13 +1301,13 @@ class LineApiController extends Controller
         $time_y = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%y');
 
         if ( $time_s != 0 ) {
-            $data = $time_s ." วิ";
+            $data = $time_s ." วินาที";
         }
         if( $time_i != 0){
             $data = $time_i ." นาที " .$data;
         }
         if( $time_h != 0){
-            $data = $time_h ." ชม. " .$data;
+            $data = $time_h ." ชั่วโมง " .$data;
         }
        if( $time_d != 0){
             $data = $time_d ." วัน " .$data;
