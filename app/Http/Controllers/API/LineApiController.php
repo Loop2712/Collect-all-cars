@@ -1019,14 +1019,14 @@ class LineApiController extends Controller
         // $date_success = date('d/m/Y', $data_date_success);
         // $time_success = date('g:i a', $data_time_success);
 
-        $date_success = 1;
-        $time_success = 2;
+        $date_success = "1";
+        $time_success = "2";
 
         $date_sos = $data_sos_map->created_at->format('d/m/Y');
         $time_sos = $data_sos_map->created_at->format('g:i a');
         
-        $date_help = $data_sos_map->time_go_to_help->format('d/m/Y');
-        $time_help = $data_sos_map->time_go_to_help->format('g:i a');
+        // $date_help = $data_sos_map->time_go_to_help->format('d/m/Y');
+        // $time_help = $data_sos_map->time_go_to_help->format('g:i a');
 
         $count = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
 
@@ -1069,8 +1069,8 @@ class LineApiController extends Controller
 
             //help
             $string_json = str_replace("name_help",$data_sos_map->helper,$string_json);
-            $string_json = str_replace("date_help",$date_help,$string_json);
-            $string_json = str_replace("time_help",$time_help,$string_json);
+            // $string_json = str_replace("date_help",$date_help,$string_json);
+            // $string_json = str_replace("time_help",$time_help,$string_json);
 
             // success
             $string_json = str_replace("date_success",$date_success,$string_json);
