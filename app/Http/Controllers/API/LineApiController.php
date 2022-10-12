@@ -99,6 +99,10 @@ class LineApiController extends Controller
         $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
         $data_helpers = User::where('provider_id' , $event["source"]["userId"])->first();
 
+        $data_groupline = Group_line::where('groupId',$event["source"]["groupId"])->first();
+        $id_organization_helper = $data_groupline->partner_id ;
+        $data_partner_helpers = Partner::findOrFail($id_organization_helper);
+
         $helper_id_explode = explode(",",$data_sos_map->helper_id);
 
         if (count($helper_id_explode) == 1) {
@@ -107,7 +111,7 @@ class LineApiController extends Controller
                 $this->help_complete($id_sos_map);
             }else{
                 // ไม่สามารถกดได้
-                echo "ไม่สามารถกดได้";
+                $this->This_help_is_done($data_partner_helpers, $event, "no_helper");
             }
         }else{
             if (in_array($data_helpers->id, $helper_id_explode)){
@@ -116,7 +120,7 @@ class LineApiController extends Controller
             }
             else{
                 // ไม่สามารถกดได้
-                echo "ไม่สามารถกดได้";
+                $this->This_help_is_done($data_partner_helpers, $event, "no_helper");
             }
         }
     }
@@ -637,6 +641,10 @@ class LineApiController extends Controller
             $data_topic = [
                     "ขออภัยค่ะมีการดำเนินการแล้ว ขอบคุณค่ะ",
                 ];
+        }elseif ($type == "no_helper") {
+            $data_topic = [
+                    "ขออภัยค่ะ คุณไม่ได้ทำการกดกำลังไปช่วยเหลือ",
+                ];
         }else{
             $data_topic = [
                     "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
@@ -685,8 +693,8 @@ class LineApiController extends Controller
 
         // SAVE LOG
         $data = [
-            "title" => "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
-            "content" => "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
+            "title" => "replyToken TO : " . $data_partner_helpers->line_group,
+            "content" => $data_topic[0],
         ];
         MyLog::create($data);
     }
