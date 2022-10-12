@@ -141,6 +141,10 @@
                                         <span> <b>{{ $item->register_cars->brand_other }}</b> </span><br>
                                         <span style="font-size: 15px;color: #708090"> {{ $item->register_cars->generation_other }}</span>
                                     </td>
+                                @else
+                                    <td>
+                                        <!--  -->
+                                    </td>
                                 @endif
 
                                 <td>
