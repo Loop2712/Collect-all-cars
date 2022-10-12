@@ -1015,7 +1015,7 @@ class LineApiController extends Controller
 
 
         $date_sos = $data_sos_map->created_at->format('d/m/Y');
-        $time_sos = $data_sos_map->created_at->format('g:i a');
+        $time_sos = $data_sos_map->created_at->format('g:i:sa');
 
         $date_help = $data_sos_map->time_go_to_help;
         $time_help = $data_sos_map->time_go_to_help;

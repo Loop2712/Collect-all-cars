@@ -40,7 +40,7 @@ class API_Time_zone extends Controller
             $time_2 = $datetime ;
         }
         
-        $time_zone = $time_2 . ", UTC " . $UTC_time_zone ;
+        $time_zone = $time_2 . " UTC " . $UTC_time_zone ;
 
         return $time_zone;
     }
