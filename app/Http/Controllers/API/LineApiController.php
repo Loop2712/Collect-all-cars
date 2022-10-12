@@ -1289,7 +1289,7 @@ class LineApiController extends Controller
     {
         // count time success
         $count_success_s = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%s');
-        $count_success_m = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%m');
+        $count_success_i = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%i');
         $count_success_h = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%h');
         $count_success_d = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%d');
         $count_success_m = \Carbon\Carbon::parse($time_help_complete)->diff(\Carbon\Carbon::parse($time_created))->format('%m');
@@ -1298,8 +1298,8 @@ class LineApiController extends Controller
         if ( $count_success_s != 0 ) {
             $count_success = $count_success_s ." วิ";
         }
-        if( $count_success_m != 0){
-            $count_success = $count_success_m ." นาที " .$count_success;
+        if( $count_success_i != 0){
+            $count_success = $count_success_i ." นาที " .$count_success;
         }
         if( $count_success_h != 0){
             $count_success = $count_success_h ." ชม. " .$count_success;
@@ -1321,7 +1321,7 @@ class LineApiController extends Controller
        
         //count time help
         $count_help_s = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%s');
-        $count_help_m = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%m');
+        $count_help_i = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%i');
         $count_help_h = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%h');
         $count_help_d = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%d');
         $count_help_m = \Carbon\Carbon::parse($time_go_to_help)->diff(\Carbon\Carbon::parse($time_created))->format('%m');
@@ -1331,13 +1331,13 @@ class LineApiController extends Controller
         if ( $count_help_s != 0 ) {
             $count_help = $count_help_s ." วิ";
         }
-        if( $count_help_m != 0){
-            $count_help = $count_help_m ." นาที " .$count_help;
+        if( $count_help_i != 0){
+            $count_help = $count_help_i ." นาที " .$count_help;
         }
         if( $count_help_h != 0){
             $count_help = $count_help_h ." ชม. " .$count_help;
         }
-       if( $count_help_d != 0){
+        if( $count_help_d != 0){
             $count_help = $count_help_d ." วัน " .$count_help;
         }
         if( $count_help_m != 0){
