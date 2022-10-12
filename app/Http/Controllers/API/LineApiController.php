@@ -1083,14 +1083,6 @@ class LineApiController extends Controller
                         "กำลังไปช่วยเหลือ",
                         "ช่วยเหลือเสร็จสิ้น",
                         "ใช้เวลา",
-                        "วินาที",
-                        "นาที",
-                        "ชั่วโมง",
-                        "วัน",
-                        "เดือน",
-                        "ปี",
-                        
-
                     ];
 
             for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -1138,12 +1130,6 @@ class LineApiController extends Controller
             $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[4],$string_json);
             $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
             $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
-            $string_json = str_replace("วินาที",$data_topic[7],$string_json);
-            $string_json = str_replace("นาที",$data_topic[8],$string_json);
-            $string_json = str_replace("ชั่วโมง",$data_topic[9],$string_json);
-            $string_json = str_replace("วัน",$data_topic[10],$string_json);
-            $string_json = str_replace("เดือน",$data_topic[11],$string_json);
-            $string_json = str_replace("ปี",$data_topic[12],$string_json);
 
             
             $messages = [ json_decode($string_json, true) ];
@@ -1317,22 +1303,22 @@ class LineApiController extends Controller
         $time_y = \Carbon\Carbon::parse($time_end)->diff(\Carbon\Carbon::parse($time_start))->format('%y');
 
         if ( $time_s != 0 ) {
-            $data = $time_s ." วินาที";
+            $data = $time_s ." sec";
         }
         if( $time_i != 0){
-            $data = $time_i ." นาที " .$data;
+            $data = $time_i ." min " .$data;
         }
         if( $time_h != 0){
-            $data = $time_h ." ชั่วโมง " .$data;
+            $data = $time_h ." hours " .$data;
         }
        if( $time_d != 0){
-            $data = $time_d ." วัน " .$data;
+            $data = $time_d ." day " .$data;
         }
         if( $time_m != 0){
-            $data = $time_m ." เดือน " .$data;
+            $data = $time_m ." month " .$data;
         }
         if( $time_y != 0){
-            $data = $time_y ." ปี " .$data;
+            $data = $time_y ." year " .$data;
         }
         return $data;
     }
