@@ -51,6 +51,9 @@
                                         @if(!empty($item->register_cars->generation_other))
                                         <span style="font-size: 15px;color: #708090">{{ $item->register_cars->generation_other }} </span>
                                         @endif
+                                    @else
+                                        <span class="text-secondary">รถคันนี้ถูกยกเลิกแล้ว</span>
+                                        <br>
                                     @endif
                                 </td>
 
