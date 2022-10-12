@@ -1064,6 +1064,7 @@ class LineApiController extends Controller
         $time_success = $time_zone_explode[1];
 
 
+        // count time success
         $count_success_s = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
         $count_success_m = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%m');
         $count_success_h = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%h');
@@ -1072,39 +1073,80 @@ class LineApiController extends Controller
         $count_success_y = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%y');
 
         if ( $count_success_s != 0 ) {
-            $count_success = $count_success_s ."วิ";
+            $count_success = $count_success_s ." วิ";
         }elseif( $count_success_m != 0){
             if ( $count_success_s != 0 ) {
-                $count_success = $count_success_m ."นาที" .$count_success_s ."วิ";
+                $count_success = $count_success_m ." นาที" .$count_success_s ." วิ";
             }else{
-                $count_success = $count_success_m ."นาที";
+                $count_success = $count_success_m ." นาที";
             }
         }elseif( $count_success_h != 0){
             if ( $count_success_m != 0 ) {
-                $count_success = $count_success_h ."ชม." .$count_success_m ."นาที";
+                $count_success = $count_success_h ." ชม." .$count_success_m ." นาที";
             }else{
-                $count_success = $count_success_h ."ชม.";
+                $count_success = $count_success_h ." ชม.";
             }
         }elseif( $count_success_d != 0){
             if ( $count_success_h != 0 ) {
-                $count_success = $count_success_d ."วัน" .$count_success_h ."ชม.";
+                $count_success = $count_success_d ." วัน" .$count_success_h ." ชม.";
             }else{
-                $count_success = $count_success_d ."วัน";
+                $count_success = $count_success_d ." วัน";
             }
         }elseif( $count_success_m != 0){
             if ( $count_success_d != 0 ) {
-                $count_success = $count_success_m ."เดือน" .$count_success_d ."วัน";
+                $count_success = $count_success_m ." เดือน" .$count_success_d ." วัน";
             }else{
-                $count_success = $count_success_m ."เดือน";
+                $count_success = $count_success_m ." เดือน";
             }
         }elseif( $count_success_y != 0){
             if ( $count_success_m != 0 ) {
-                $count_success = $count_success_y ."ปี" .$count_success_m ."เดือน";
+                $count_success = $count_success_y ." ปี" .$count_success_m ." เดือน";
             }else{
-                $count_success = $count_success_y ."ปี";
+                $count_success = $count_success_y ." ปี";
             }
         }
 
+        //count time help
+        $count_help_s = \Carbon\Carbon::parse($data_sos_map->time_go_to_help)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
+        $count_help_m = \Carbon\Carbon::parse($data_sos_map->time_go_to_help)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%m');
+        $count_help_h = \Carbon\Carbon::parse($data_sos_map->time_go_to_help)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%h');
+        $count_help_d = \Carbon\Carbon::parse($data_sos_map->time_go_to_help)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%d');
+        $count_help_m = \Carbon\Carbon::parse($data_sos_map->time_go_to_help)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%m');
+        $count_help_y = \Carbon\Carbon::parse($data_sos_map->time_go_to_help)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%y'); 
+
+        if ( $count_help_s != 0 ) {
+            $count_help = $count_help_s ." วิ";
+        }elseif( $count_help_m != 0){
+            if ( $count_help_s != 0 ) {
+                $count_help = $count_help_m ." นาที" .$count_help_s ." วิ";
+            }else{
+                $count_help = $count_help_m ." นาที";
+            }
+        }elseif( $count_help_h != 0){
+            if ( $count_help_m != 0 ) {
+                $count_help = $count_help_h ." ชม." .$count_help_m ." นาที";
+            }else{
+                $count_help = $count_help_h ." ชม.";
+            }
+        }elseif( $count_help_d != 0){
+            if ( $count_help_h != 0 ) {
+                $count_help = $count_help_d ." วัน" .$count_help_h ." ชม.";
+            }else{
+                $count_help = $count_help_d ." วัน";
+            }
+        }elseif( $count_help_m != 0){
+            if ( $count_help_d != 0 ) {
+                $count_help = $count_help_m ." เดือน" .$count_help_d ." วัน";
+            }else{
+                $count_help = $count_help_m ." เดือน";
+            }
+        }elseif( $count_help_y != 0){
+            if ( $count_help_m != 0 ) {
+                $count_help = $count_help_y ." ปี" .$count_help_m ." เดือน";
+            }else{
+                $count_help = $count_help_y ." ปี";
+            }
+        }
 
         if ( empty($data_sos_map->help_complete) ) {
 
@@ -1146,12 +1188,14 @@ class LineApiController extends Controller
             $string_json = str_replace("name_help",$data_sos_map->helper,$string_json);
             $string_json = str_replace("date_help",$date_help,$string_json);
             $string_json = str_replace("time_help",$time_help,$string_json);
+            $string_json = str_replace("count_help",$count_help,$string_json);
+
 
             // success
             $string_json = str_replace("date_success",$date_success,$string_json);
             $string_json = str_replace("time_success",$time_success,$string_json);
 
-            $string_json = str_replace("cout_success",$count_success,$string_json);
+            $string_json = str_replace("count_success",$count_success,$string_json);
 
 
             $string_json = str_replace("date_time",$time_zone,$string_json);
