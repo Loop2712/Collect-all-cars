@@ -1010,25 +1010,22 @@ class LineApiController extends Controller
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-        // datetime
-        $time_zone_explode = explode(" ",$time_zone);
+        
 
 
         $date_sos = $data_sos_map->created_at->format('d/m/Y');
         $time_sos = $data_sos_map->created_at->format('g:i:sa');
 
-        
+        $time_help_explode = explode(" ",$data_sos_map->time_go_to_help);
 
-        //SAVE LOG
-        $help = [
-            "title" => $data_sos_map->created_at,
-            "content" => $data_sos_map->time_go_to_help,
-        ];
-        MyLog::create($help);
-
-        $date_help = $data_sos_map->time_go_to_help->format('d/m/Y');
-        $time_help = $data_sos_map->time_go_to_help->format('g:i:sa');
+        $time_help_explode_1 = $time_help_explode[0];
+        $date_help = str_replace("-", "/" , $time_help_explode_1);
         
+        $time_help = $time_help_explode[1];
+
+        // datetime success
+        $time_zone_explode = explode(" ",$time_zone);
+
         $date_success = $time_zone_explode[0];
         $time_success = $time_zone_explode[1];
 
