@@ -483,7 +483,7 @@
                                                 <b><i class="fas fa-donate"></i> &nbsp;สินเชื่อ</b>
                                             </button>
                                         </a>
-                                        <form method="POST" action="{{ url('/register_car/' . $item->id ) }}" accept-charset="UTF-8" style="display:inline">
+                                        <form method="POST" action="{{ url('/register_car/' . $item->id ) }}?type=person" accept-charset="UTF-8" style="display:inline">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-sm btn-danger main-shadow main-radius float-right" style="font-size: 14px; margin: 0px 20px; padding: 4px 12px"  title="Delete registercar" onclick="return confirm(&quot;Confirm delete?&quot;)">
