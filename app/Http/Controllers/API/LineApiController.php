@@ -1016,9 +1016,11 @@ class LineApiController extends Controller
         $data_date_success = $time_zone_explode[0] ;
         $data_time_success = $time_zone_explode[1] ;
 
-        $date_success = date('d/m/Y', $data_date_success);
-        $time_success = date('g:i a', $data_time_success);
+        // $date_success = date('d/m/Y', $data_date_success);
+        // $time_success = date('g:i a', $data_time_success);
 
+        $date_success = 1;
+        $time_success = 2;
 
         $date_sos = $data_sos_map->created_at->format('d/m/Y');
         $time_sos = $data_sos_map->created_at->format('g:i a');
