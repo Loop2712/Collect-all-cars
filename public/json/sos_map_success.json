@@ -104,7 +104,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "cout_help",
+                "text": "count_help",
                 "weight": "bold",
                 "size": "xxs",
                 "color": "#CFCFCF"
@@ -217,7 +217,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "cout_success",
+                "text": "count_success",
                 "weight": "bold",
                 "size": "xxs",
                 "color": "#CFCFCF"
@@ -280,7 +280,7 @@
               },
               {
                 "type": "text",
-                "text": "ใช้เวลา : cout_complete",
+                "text": "ใช้เวลา : count_complete",
                 "weight": "bold",
                 "size": "xxs",
                 "color": "#CFCFCF",
