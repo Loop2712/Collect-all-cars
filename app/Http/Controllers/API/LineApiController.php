@@ -1012,21 +1012,17 @@ class LineApiController extends Controller
 
         // datetime
         $time_zone_explode = explode(" ",$time_zone);
-        
-        $data_date_success = $time_zone_explode[0] ;
-        $data_time_success = $time_zone_explode[1] ;
 
-        // $date_success = date('d/m/Y', $data_date_success);
-        // $time_success = date('g:i a', $data_time_success);
-
-        $date_success = "1";
-        $time_success = "2";
 
         $date_sos = $data_sos_map->created_at->format('d/m/Y');
         $time_sos = $data_sos_map->created_at->format('g:i a');
-        
+
         $date_help = $data_sos_map->time_go_to_help;
         $time_help = $data_sos_map->time_go_to_help;
+        
+        $date_success = date('d/m/Y', $time_zone_explode[0]) ;
+        $time_success = date('g:i a', $time_zone_explode[1] );
+
 
         $count = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
 
