@@ -1016,12 +1016,13 @@ class LineApiController extends Controller
         $date_sos = $data_sos_map->created_at->format('d/m/Y');
         $time_sos = $data_sos_map->created_at->format('g:i:sa');
 
-        $time_help_explode = explode(" ",$data_sos_map->time_go_to_help);
 
-        $time_help_explode_1 = $time_help_explode[0];
-        $date_help = str_replace("-", "/" , $time_help_explode_1);
+        $data_time_help = $data_sos_map->time_go_to_help;
+        $date_time_help = strtotime($data_time_help);
         
-        $time_help = $time_help_explode[1];
+        $date_help = date('d/m/Y', $date_time_help);
+        $time_help = date('g:i:sa', $date_time_help);
+
 
         // datetime success
         $time_zone_explode = explode(" ",$time_zone);
