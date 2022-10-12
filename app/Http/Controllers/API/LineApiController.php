@@ -1020,8 +1020,8 @@ class LineApiController extends Controller
         $date_help = $data_sos_map->time_go_to_help;
         $time_help = $data_sos_map->time_go_to_help;
         
-        $date_success = date('d/m/Y', $time_zone_explode[0]) ;
-        $time_success = date('g:i a', $time_zone_explode[1] );
+        $date_success = $time_zone_explode[0];
+        $time_success = $time_zone_explode[1];
 
 
         $count = \Carbon\Carbon::parse($data_sos_map->help_complete_time)->diff(\Carbon\Carbon::parse($data_sos_map->created_at))->format('%s');
