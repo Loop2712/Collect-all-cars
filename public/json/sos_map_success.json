@@ -47,14 +47,20 @@
                 "text": "การช่วยเหลือเสร็จสิ้น",
                 "weight": "bold",
                 "size": "xl",
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "maxLines": 2,
+                "wrap": true,
+                "align": "center",
+                "lineSpacing": "0px"
               }
             ],
             "position": "absolute",
-            "offsetTop": "35%",
+            "offsetTop": "32%",
             "offsetStart": "5%",
             "alignItems": "center",
-            "width": "90%"
+            "width": "90%",
+            "height": "10%",
+            "justifyContent": "center"
           },
           {
             "type": "box",
@@ -65,13 +71,13 @@
                 "text": "date_sos",
                 "weight": "bold",
                 "size": "18px",
-                "color": "#ffffff"
+                "color": "#000000"
               }
             ],
             "position": "absolute",
             "width": "28%",
-            "offsetTop": "41%",
-            "offsetStart": "3.5%",
+            "offsetTop": "42.9%",
+            "offsetStart": "3.1%",
             "alignItems": "flex-end"
           },
           {
@@ -82,14 +88,14 @@
                 "type": "text",
                 "text": "time_sos",
                 "weight": "bold",
-                "size": "18px",
-                "color": "#ffffff"
+                "size": "13px",
+                "color": "#000000"
               }
             ],
             "position": "absolute",
             "width": "28%",
-            "offsetTop": "45%",
-            "offsetStart": "3.5%",
+            "offsetTop": "46.3%",
+            "offsetStart": "3.1%",
             "alignItems": "flex-end"
           },
           {
@@ -106,8 +112,8 @@
             ],
             "position": "absolute",
             "width": "30%",
-            "offsetTop": "51.8%",
-            "offsetStart": "3.5%",
+            "offsetTop": "53.6%",
+            "offsetStart": "5.2%",
             "alignItems": "flex-end"
           },
           {
@@ -116,18 +122,27 @@
             "contents": [
               {
                 "type": "text",
-                "text": "name_sos ขอความช่วยเหลือ",
+                "text": "ขอความช่วยเหลือ",
                 "weight": "bold",
-                "size": "md",
-                "color": "#ffffff",
-                "maxLines": 3,
-                "wrap": true
+                "size": "18px",
+                "color": "#000000",
+                "maxLines": 2,
+                "wrap": true,
+                "lineSpacing": "0px"
+              },
+              {
+                "type": "text",
+                "text": "name_sos",
+                "weight": "bold",
+                "size": "14px",
+                "color": "#000000",
+                "wrap": false
               }
             ],
             "position": "absolute",
             "width": "52%",
-            "offsetTop": "43%",
-            "offsetStart": "43%",
+            "offsetTop": "43.7%",
+            "offsetStart": "42.1%",
             "alignItems": "flex-start",
             "height": "15%"
           },
@@ -140,13 +155,13 @@
                 "text": "date_help",
                 "weight": "bold",
                 "size": "18px",
-                "color": "#ffffff"
+                "color": "#000000"
               }
             ],
             "position": "absolute",
             "width": "28%",
-            "offsetTop": "57.5%",
-            "offsetStart": "3.5%",
+            "offsetTop": "59.5%",
+            "offsetStart": "3.1%",
             "alignItems": "flex-end"
           },
           {
@@ -157,14 +172,14 @@
                 "type": "text",
                 "text": "time_help",
                 "weight": "bold",
-                "size": "18px",
-                "color": "#ffffff"
+                "size": "12px",
+                "color": "#000000"
               }
             ],
             "position": "absolute",
             "width": "28%",
-            "offsetTop": "61.5%",
-            "offsetStart": "3.5%",
+            "offsetTop": "63.2%",
+            "offsetStart": "3.1%",
             "alignItems": "flex-end"
           },
           {
@@ -173,17 +188,25 @@
             "contents": [
               {
                 "type": "text",
-                "text": "name_help กำลังไปช่วยเหลือ",
+                "text": "กำลังไปช่วยเหลือ",
                 "weight": "bold",
-                "size": "md",
-                "color": "#ffffff",
-                "maxLines": 3,
+                "size": "18px",
+                "color": "#000000",
+                "maxLines": 2,
                 "wrap": true
+              },
+              {
+                "type": "text",
+                "text": "name_help",
+                "weight": "bold",
+                "size": "14px",
+                "color": "#000000",
+                "wrap": false
               }
             ],
             "position": "absolute",
             "width": "52%",
-            "offsetTop": "59%",
+            "offsetTop": "60.2%",
             "offsetStart": "43%",
             "alignItems": "flex-start",
             "height": "15%"
@@ -202,8 +225,8 @@
             ],
             "position": "absolute",
             "width": "30%",
-            "offsetTop": "69.5%",
-            "offsetStart": "3.5%",
+            "offsetTop": "69.2%",
+            "offsetStart": "5.2%",
             "alignItems": "flex-end"
           },
           {
@@ -215,13 +238,13 @@
                 "text": "date_success",
                 "weight": "bold",
                 "size": "18px",
-                "color": "#ffffff"
+                "color": "#000000"
               }
             ],
             "position": "absolute",
             "width": "28%",
-            "offsetTop": "73%",
-            "offsetStart": "3.5%",
+            "offsetTop": "75.7%",
+            "offsetStart": "3.1%",
             "alignItems": "flex-end"
           },
           {
@@ -232,14 +255,14 @@
                 "type": "text",
                 "text": "time_success",
                 "weight": "bold",
-                "size": "18px",
-                "color": "#ffffff"
+                "size": "12px",
+                "color": "#000000"
               }
             ],
             "position": "absolute",
             "width": "28%",
-            "offsetTop": "77.5%",
-            "offsetStart": "3.5%",
+            "offsetTop": "79.6%",
+            "offsetStart": "3.1%",
             "alignItems": "flex-end"
           },
           {
@@ -248,18 +271,18 @@
             "contents": [
               {
                 "type": "text",
-                "text": "name_success ช่วยเหลือเสร็จสิ้น",
+                "text": "ช่วยเหลือเสร็จสิ้น",
                 "weight": "bold",
-                "size": "md",
-                "color": "#ffffff",
+                "size": "18px",
+                "color": "#000000",
                 "maxLines": 2,
                 "wrap": true
               }
             ],
             "position": "absolute",
             "width": "50%",
-            "offsetTop": "76%",
-            "offsetStart": "43%",
+            "offsetTop": "76.5%",
+            "offsetStart": "42.5%",
             "alignItems": "flex-start",
             "height": "10%"
           },
