@@ -82,9 +82,8 @@ class LineApiController extends Controller
             case "การตอบกลับ" : 
                 $line->select_reply(null, $event, "reply");
                 break;
-            case "help_complete" : 
-                $this->reply_success_groupline($event , $data_postback, $data_postback_explode[1]);
-                $this->help_complete($data_postback_explode[1]);
+            case "help_complete" :
+                $this->check_help_complete_by_helper($event, $data_postback, $data_postback_explode[1]);
                 break;
             case "sos" : 
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"] , $event);
@@ -94,6 +93,32 @@ class LineApiController extends Controller
                 break;
         }   
 
+    }
+
+    function check_help_complete_by_helper($event, $data_postback, $id_sos_map){
+        $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
+        $data_helpers = User::where('provider_id' , $event["source"]["userId"])->first();
+
+        $helper_id_explode = explode(",",$data_sos_map->helper_id);
+
+        if (count($helper_id_explode) == 1) {
+            if ($helper_id_explode[0] == $data_helpers->id) {
+                $this->reply_success_groupline($event , $data_postback, $id_sos_map);
+                $this->help_complete($id_sos_map);
+            }else{
+                // ไม่สามารถกดได้
+                echo "ไม่สามารถกดได้";
+            }
+        }else{
+            if (in_array($data_helpers->id, $helper_id_explode)){
+                $this->reply_success_groupline($event , $data_postback, $id_sos_map);
+                $this->help_complete($id_sos_map);
+            }
+            else{
+                // ไม่สามารถกดได้
+                echo "ไม่สามารถกดได้";
+            }
+        }
     }
 
     public function textHandler($event)
