@@ -1017,9 +1017,11 @@ class LineApiController extends Controller
         $date_sos = $data_sos_map->created_at->format('d/m/Y');
         $time_sos = $data_sos_map->created_at->format('g:i:sa');
 
+        
+
         //SAVE LOG
         $help = [
-            "title" => "เวลาช่วยเหลือ",
+            "title" => $data_sos_map->created_at,
             "content" => $data_sos_map->time_go_to_help,
         ];
         MyLog::create($help);
