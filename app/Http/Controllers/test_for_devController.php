@@ -18,14 +18,10 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-        $register_cars = Register_car::get();
-
-        foreach ($register_cars as $key) {
-            DB::table('register_cars')
-                ->update([
-                    'type_car_registration' => null,
-            ]);
-        }
+        $data = "hello" ;
+        
+        echo $data ;
+        exit();
     }
 
     // นับตัวอักษร
