@@ -289,6 +289,7 @@
                                     <i class="fas fa-angle-down" ></i>
                                 </div>
                                 <div class="col-12 collapse" id="Line_{{ $item->id }}"> 
+                                    @if(!empty($item->register_cars->user_id))
                                     <hr>
                                     <p style="font-size:18px;padding:0px"> ยี่ห้อ <br>  {{ $item->register_cars->brand }}  </p> <hr>
                                     <p style="font-size:18px;padding:0px">รุ่น <br> {{ $item->register_cars->generation }}  </p> <hr>
@@ -305,7 +306,8 @@
                                         @if(!empty($item->user->branch))
                                             <b>สาขา</b> {{ $item->user->branch }}
                                         @endif
-                                    </p> 
+                                    </p>
+                                    @endif 
                                 </div>
                             </div>
                         </center>   
