@@ -105,8 +105,15 @@ class Register_carController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        $type_reg = "" ;
+        $type_reg_q = $request->get('type_reg');
+
+        if (!empty($type_reg_q)) {
+            $type_reg = $type_reg_q ;
+        }
+
         $user = Auth::user();
 
         $organization = $user->organization;
@@ -151,7 +158,7 @@ class Register_carController extends Controller
         // echo "</pre>";
         // exit();
 
-        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'organization','name_insurance','data_partners', 'all_partners'));
+        return view('register_car.create', compact('location_array', 'car_brand', 'user', 'car', 'motorcycle','type_array' , 'organization','name_insurance','data_partners', 'all_partners','type_reg'));
     }
 
     /**

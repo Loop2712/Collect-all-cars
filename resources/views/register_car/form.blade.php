@@ -73,19 +73,9 @@
                 </div>
 
                 <span style="font-size: 22px;" class="control-label">ขณะนี้ท่านลงทะเบียนรถประเทศ
-                    <!-- <img width="3%" src="{{ asset('/img/national-flag/th1.png') }}" style= "border-radius: 5px;"> ไทย -->
-                <!-- </span>
-                    <div class="col-4 form-group {{ $errors->has('CountryCode') ? 'has-error' : ''}}">
-                        <select name="CountryCode" id="CountryCode" class="form-control" required >
-                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
-                                <option value="TH">ไทย</option>
-                                <option value="ID">อินโด</option>
-                        </select>
-                        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
-                    </div> -->
 
-        <input class="d-none" type="text" name="CountryCode" id="CountryCode" required>
-        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
+                <input class="d-none" type="text" name="CountryCode" id="CountryCode">
+                {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
 
                     <!-- Button trigger modal -->
                     <!-- <button type="button"  class="btn" data-toggle="modal" data-target="#exampleModalCenter" style="padding:0px">
@@ -170,14 +160,6 @@
                         </div>
                         <div class="modal-body">
                            <div class="row text-center">
-                           <!-- <div class="col-4 form-group {{ $errors->has('CountryCode') ? 'has-error' : ''}}">
-                        <select name="CountryCode" id="CountryCode" class="form-control" required >
-                                <option value="" selected > - กรุณาเลือกจังหวัด - </option> 
-                                <option value="TH">ไทย</option>
-                                <option value="ID">อินโด</option>
-                        </select>
-                        {!! $errors->first('CountryCode', '<p class="help-block">:message</p>') !!}
-                    </div> -->
                                 <div class="col-lg-3 col-4">
                                     <!-- ไทย<br>  -->
                                      <a href="#"  class="select-btn" data-value="TH" data-dismiss="modal" onclick="

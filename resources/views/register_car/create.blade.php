@@ -2,6 +2,7 @@
 
 @section('content')
 <br><br><br><br><br><br><br>
+    <input class="d-none" type="text" name="type_reg" id="type_reg" value="{{ $type_reg }}" readonly>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -97,6 +98,18 @@
     </div>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("DOMContentLoaded");
+        let type_reg = document.querySelector('#type_reg').value;
+
+        if ( type_reg === "organization" ) {
+            // console.log("type_reg == organization");
+            document.querySelector('#btn_rg_organization').click();
+        }
+
+        
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("");
         let user_id = document.querySelector('#user_id');
 
@@ -108,6 +121,8 @@
                     document.querySelector('#btn_modal_addline').click();
                 }
         });
+
+        
     });
 
     function click_add_line(){
