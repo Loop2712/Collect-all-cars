@@ -305,22 +305,20 @@ class CarbrandController extends Controller
     {
         $requestData = $request->all();
 
-        if ($request->hasFile('photo')) {
-            $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
-        }
-
         // เช็คว่าเป็น Content ใหม่หรือเก่า
         if ($requestData['send_again'] == "Yes") {
 
-            $id_ads = $requestData['id_ads'];
-
-            $data_Ads_content = Ads_content::where('id' , $id_ads )->first();
+            $data_Ads_content = Ads_content::where('id' , $requestData['id_ads'] )->first();
             $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
+
+            $requestData['photo'] = $data_Ads_content->photo ;
 
             $BC_by_car_sent = $data_partner_premium->BC_by_car_sent ;
             $sum_BC_by_car_sent = $BC_by_car_sent + $requestData['amount'] ;
             $sum_send_round = $data_Ads_content->send_round + 1 ;
 
+            
+            
             DB::table('partner_premia')
                 ->where('id_partner', $requestData['id_partner'])
                 ->update([
@@ -328,7 +326,7 @@ class CarbrandController extends Controller
             ]);
 
             DB::table('ads_contents')
-                ->where('id', $id_ads)
+                ->where('id', $requestData['id_ads'])
                 ->update([
                     'send_round' => $sum_send_round ,
             ]);
@@ -339,6 +337,10 @@ class CarbrandController extends Controller
             $this->send_content_BC_to_line($requestData , $data_Ads_content);
 
         }else{
+
+            if ($request->hasFile('photo')) {
+                $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
+            }
 
             Ads_content::create($requestData);
 
@@ -388,7 +390,6 @@ class CarbrandController extends Controller
 
         $img_content_w = $img_content->width();
         $img_content_h = $img_content->height();
-
 
         // ส่ง content
         for ($xi=0; $xi < count($arr_user_id); $xi++) { 
