@@ -1435,12 +1435,18 @@ display:none;
                 }
 
                 document.querySelector('#span_amount_send').innerHTML = arr_send_to_user.length ;
+                document.querySelector('#car_selected').innerHTML = arr_send_to_user.length ;
                 // ส่ง content เดิม แบบไม่ซ้ำ user เดิม
                 arr_user_id_send_to_user.value = JSON.stringify(arr_send_to_user) ;
+                arr_user_id_selected.value = JSON.stringify(arr_send_to_user) ;
+                search_data();
             }
         }else{
             arr_user_id_send_to_user.value = null ;
             document.querySelector('#span_amount_send').innerHTML = arr_selected.length ;
+            document.querySelector('#car_selected').innerHTML = arr_selected.length ;
+            search_data();
+
         }
         
     }
