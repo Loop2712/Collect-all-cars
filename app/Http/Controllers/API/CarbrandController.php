@@ -312,7 +312,7 @@ class CarbrandController extends Controller
         // เช็คว่าเป็น Content ใหม่หรือเก่า
         if ($requestData['send_again'] == "Yes") {
 
-            $id_ads = $requestData['$requestData'];
+            $id_ads = $requestData['id_ads'];
 
             $data_Ads_content = Ads_content::where('id' , $id_ads )->first();
             $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
@@ -366,7 +366,7 @@ class CarbrandController extends Controller
 
             // ส่ง content เข้าไลน์
             $this->send_content_BC_to_line($requestData , $data_Ads_content);
-            
+
         }
 
         return redirect('broadcast_by_car')->with('flash_message', 'Partner updated!');
