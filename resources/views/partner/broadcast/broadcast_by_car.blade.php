@@ -561,7 +561,7 @@ display:none;
                         </label>
 
                         <label class="plan complete-plan" for="complete">
-                            <input type="radio" id="complete" name="plan"  onclick="select_type_car('motor');search_data();"/>
+                            <input type="radio" id="complete" name="plan"  onclick="select_type_car('motorcycle');search_data();"/>
                             <div class="plan-content">
                                 <img loading="lazy" src="{{ asset('/img/icon/car2.png') }}" alt="" />
                                 

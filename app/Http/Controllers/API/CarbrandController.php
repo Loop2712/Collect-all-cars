@@ -225,9 +225,6 @@ class CarbrandController extends Controller
         $data = json_decode($json, true);
 
         $car_type = $data['car_type'];
-        if ($car_type == "motor") {
-            $car_type = "motorcycle" ;
-        }
 
         $brand = $data['brand'];
         if (empty($brand)) {
@@ -285,6 +282,7 @@ class CarbrandController extends Controller
                 ->where('users.type', "line")
                 ->whereMonth('users.brith', 'LIKE' , "%$birth_month%" )
                 ->orWhere('users.brith', '=' , $birth_null )
+                ->where('register_cars.car_type', $car_type)
                 ->get();
 
         }else{
@@ -300,6 +298,7 @@ class CarbrandController extends Controller
                 ->where('users.type', "line")
                 ->whereMonth('users.brith', 'LIKE' , "%$birth_month%" )
                 ->orWhere('users.brith', '=' , $birth_null )
+                ->where('register_cars.car_type', $car_type)
                 ->get();
 
         }
