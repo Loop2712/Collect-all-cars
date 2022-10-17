@@ -1336,6 +1336,8 @@ display:none;
     }
 
     function select_content_again(ads_id){
+        let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
+            arr_user_id_send_to_user.value = arr_user_id_selected.value;
 
         document.querySelector('#user_unique').checked = false ;
         document.querySelector('#send_again').value = 'Yes' ;
