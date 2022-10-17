@@ -380,6 +380,9 @@ class CarbrandController extends Controller
     }
 
     function send_content_BC_to_line($requestData , $data_Ads_content){
+        echo "<pre>";
+        print_r($arr_user_id);
+        echo "<pre>";
 
         if ($requestData['send_again'] == "Yes") {
             $arr_user_id = json_decode($requestData['arr_user_id_send_to_user']) ;
@@ -387,11 +390,12 @@ class CarbrandController extends Controller
             $arr_user_id = json_decode($requestData['arr_user_id_selected']) ;
         }
 
+        echo "<----------------------->";
         echo "<pre>";
         print_r($arr_user_id);
         echo "<pre>";
         exit();
-        
+
         $arr_car_id = json_decode($requestData['arr_car_id_selected']);
 
         $show_user = [] ;
