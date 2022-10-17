@@ -310,33 +310,36 @@ class CarbrandController extends Controller
         }
 
         // เช็คว่าเป็น Content ใหม่หรือเก่า
+        if ($requestData['send_again'] == "Yes") {
+            // code...
+        }else{
+            Ads_content::create($requestData);
 
-        Ads_content::create($requestData);
+            $data_Ads_content = Ads_content::latest()->first();
+            $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
 
-        $data_Ads_content = Ads_content::latest()->first();
-        $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
+            $BC_by_car_sent = $data_partner_premium->BC_by_car_sent ;
+            $sum_BC_by_car_sent = $BC_by_car_sent + $requestData['amount'] ;
+            $sum_send_round = $data_Ads_content->send_round + 1 ;
 
-        $BC_by_car_sent = $data_partner_premium->BC_by_car_sent ;
-        $sum_BC_by_car_sent = $BC_by_car_sent + $requestData['amount'] ;
-        $sum_send_round = $data_Ads_content->send_round + 1 ;
+            DB::table('partner_premia')
+                ->where('id_partner', $requestData['id_partner'])
+                ->update([
+                    'BC_by_car_sent' => $sum_BC_by_car_sent ,
+            ]);
 
-        DB::table('partner_premia')
-            ->where('id_partner', $requestData['id_partner'])
-            ->update([
-                'BC_by_car_sent' => $sum_BC_by_car_sent ,
-        ]);
+            DB::table('ads_contents')
+                ->where('id', $data_Ads_content->id)
+                ->update([
+                    'link' => "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id,
+                    'send_round' => $sum_send_round ,
+            ]);
 
-        DB::table('ads_contents')
-            ->where('id', $data_Ads_content->id)
-            ->update([
-                'link' => "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id,
-                'send_round' => $sum_send_round ,
-        ]);
+            $requestData['link'] = "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id;
 
-        $requestData['link'] = "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id;
-
-        // ส่ง content เข้าไลน์
-        $this->send_content_BC_to_line($requestData , $data_Ads_content);
+            // ส่ง content เข้าไลน์
+            $this->send_content_BC_to_line($requestData , $data_Ads_content);
+        }
 
         return redirect('broadcast_by_car')->with('flash_message', 'Partner updated!');
 
@@ -345,26 +348,24 @@ class CarbrandController extends Controller
     function send_content_BC_to_line($requestData , $data_Ads_content){
 
         $arr_car_id = json_decode($requestData['arr_car_id_selected']);
-        $arr_user_id = [] ;
+        $arr_user_id = json_decode($requestData['arr_user_id_selected']) ;
 
         $show_user = [] ;
         if (!empty($data_Ads_content->show_user)) {
             $show_user = json_decode($data_Ads_content->show_user) ;
         }
 
-        // เพิ่ม id_user จาก car_id แบบไม่ซ้ำคน
-        for ($i=0; $i < count($arr_car_id); $i++) { 
+        // echo count($arr_user_id);
+        // echo "<br>";
 
-            $data_user_of_car = Register_car::where('id' , $arr_car_id[$i])->first();
+        // echo "<pre>";
+        // print_r($arr_user_id);
+        // echo "<pre>";
 
-            if (in_array($data_user_of_car->user_id, $arr_user_id)){
-                // ข้าม
-            }else{
-                // เพิ่ม
-                array_push($arr_user_id, $data_user_of_car->user_id);
-            }
-
-        }
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         $img = 'https://www.viicheck.com/storage/' . $requestData['photo'];
         $img_content = Image::make( $img );
