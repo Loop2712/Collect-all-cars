@@ -293,6 +293,8 @@ class CarbrandController extends Controller
                 ->where('register_cars.province', 'LIKE' , "%$province_registration%" )
                 ->where('register_cars.type_car_registration', 'LIKE' , "%$type_registration%" )
                 ->where('users.type', "line")
+                // ->whereMonth('users.brith', 'LIKE' , "%$birth_month%" )
+                // ->orWhere('users.brith', '=' , $birth_null )
                 ->get();
 
         }

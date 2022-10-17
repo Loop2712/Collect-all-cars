@@ -268,9 +268,9 @@ display:none;
 <form method="POST" action="{{ url('/') }}/api/send_content_BC_by_car" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
 {{ csrf_field() }}
 
-<input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
-<input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
-<input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+<input class="form-control d-" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
+<input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
+<input class="form-control d-" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
 <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
 <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $id_partner }}">
@@ -1333,6 +1333,7 @@ display:none;
 
     function select_content_again(ads_id){
 
+        document.querySelector('#user_unique').checked = false ;
         document.querySelector('#send_again').value = 'Yes' ;
         document.querySelector('#div_user_unique').classList.remove('d-none');
 
@@ -1344,7 +1345,9 @@ display:none;
         @foreach($ads_contents as $ads)
             if ({{ $ads->id }} == ads_id) {
                 
-                document.querySelector('#arr_show_user').value = '{{ $ads->show_user }}' ;
+                let text_show_user = '{{ $ads->show_user }}'.replaceAll('&quot;' , '"');
+
+                document.querySelector('#arr_show_user').value = text_show_user;
                 document.querySelector('#name_content').value = '{{ $ads->name_content }}';
                 document.querySelector('#id_ads').value = '{{ $ads->id }}';
 
@@ -1390,12 +1393,55 @@ display:none;
     }
 
     function check_user_unique(){
-        let text_arr_show_user = document.querySelector('#arr_show_user') ;
-        let arr_show_user = JSON.parse(text_arr_show_user.value) ;
+        let user_unique =  document.querySelector('#user_unique').checked ;
+            // console.log(user_unique);
         let arr_selected = JSON.parse(arr_user_id_selected.value) ;
+        let text_arr_show_user = document.querySelector('#arr_show_user') ;
+        let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
+            arr_user_id_send_to_user.value = arr_user_id_selected.value;
 
-        console.log(arr_selected);
-        console.log(arr_show_user);
+        let arr_send_to_user = JSON.parse(arr_user_id_send_to_user.value) ; 
+
+        if (user_unique) {
+            if (text_arr_show_user.value) {
+
+                let arr_show_user = JSON.parse(text_arr_show_user.value) ;
+                    // console.log(arr_show_user);
+                    // console.log(arr_selected);
+
+                // console.log(arr_send_to_user);
+                // console.log(">>>>>>-----------<<<<<<<");
+
+                let delete_at_index = 0 ;
+                for (let ii = 0; ii < arr_selected.length; ii++) {
+                    // console.log(">>>>>> รอบที่ " + ii + " <<<<<<<");
+
+                    if ( arr_show_user.includes(arr_selected[ii]) ) {
+                        // console.log(">> id ที่ ซ้ำ >> : " + arr_selected[ii]);
+
+                        // console.log(">> ก่อนลบ <<");
+                        // console.log(arr_send_to_user);
+
+                        // delete array
+                        arr_send_to_user.splice(delete_at_index, 1); 
+                        // console.log(">> ลบแล้ว <<");
+                        // console.log(arr_send_to_user);
+
+                    }else{
+                        delete_at_index = delete_at_index + 1 ; 
+                        // console.log('ไม่ซ้ำ บวก delete_at_index + 1 = ' + delete_at_index);
+                    }
+                }
+
+                document.querySelector('#span_amount_send').innerHTML = arr_send_to_user.length ;
+                // ส่ง content เดิม แบบไม่ซ้ำ user เดิม
+                arr_user_id_send_to_user.value = JSON.stringify(arr_send_to_user) ;
+            }
+        }else{
+            arr_user_id_send_to_user.value = null ;
+            document.querySelector('#span_amount_send').innerHTML = arr_selected.length ;
+        }
+        
     }
 
 </script>
