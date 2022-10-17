@@ -225,7 +225,7 @@ class CarbrandController extends Controller
         $data = json_decode($json, true);
 
         $car_type = $data['car_type'];
-        if ($car_type != "car") {
+        if ($car_type == "motor") {
             $car_type = "motorcycle" ;
         }
 
@@ -254,6 +254,13 @@ class CarbrandController extends Controller
             $type_registration = "" ;
         }
 
+        $birth_month = $data['birth_month'];
+        if (empty($birth_month)) {
+            $birth_null = null ;
+        }else{
+            $birth_null = $birth_month ;
+        }
+
         $id_partner = $data['id_partner'];
         if (empty($id_partner)) {
             $id_partner = "" ;
@@ -278,13 +285,17 @@ class CarbrandController extends Controller
 
         }else{
 
-            $data_search = Register_car::where('car_type', $car_type)
-                ->where('active', "Yes")
+            $data_search = Register_car::join('users', 'register_cars.user_id', '=', 'users.id')
+                ->where('car_type', $car_type)
+                ->where('register_cars.active', "Yes")
                 ->where('brand', 'LIKE' , "%$brand%" )
                 ->where('generation', 'LIKE' , "%$model%" )
                 ->where('location', 'LIKE' , "%$location_user%" )
                 ->where('province', 'LIKE' , "%$province_registration%" )
                 ->where('type_car_registration', 'LIKE' , "%$type_registration%" )
+                ->where('users.type', "line")
+                ->whereMonth('users.brith', 'LIKE' , "%$birth_month%" )
+                ->orWhere('users.brith', '=' , $birth_null )
                 ->get();
 
         }

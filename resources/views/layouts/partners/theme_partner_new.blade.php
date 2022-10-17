@@ -103,7 +103,7 @@
 				<!-- ----------------- Broadcast -------------------- -->
 				<div id="div_menu_Broadcast" class="d-none">
 					<li class="menu-label" style="font-size:15px;">
-		                Broadcast
+		                Broadcast Line
 		            </li>
 					<li>
 						<a href="{{ url('/broadcast_by_car') }}">

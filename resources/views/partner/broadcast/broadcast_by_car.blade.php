@@ -639,6 +639,27 @@ display:none;
                             </div>
                             <br>
                         </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="birth_month" class="control-label">{{ 'เดือนเกิดเจ้าของรถ' }}</label>
+                                <select name="birth_month" class="notranslate form-control" id="birth_month" onchange="search_data();">
+                                    <option class="translate" value="" selected> - เลือกเดือนเกิด - </option>
+                                    <option class="translate" value="1"> มกราคม </option>
+                                    <option class="translate" value="2"> กุมภาพันธ์ </option>
+                                    <option class="translate" value="3"> มีนาคม </option>
+                                    <option class="translate" value="4"> เมษายน </option>
+                                    <option class="translate" value="5"> พฤษภาคม </option>
+                                    <option class="translate" value="6"> มิถุนายน </option>
+                                    <option class="translate" value="7"> กรกฎาคม </option>
+                                    <option class="translate" value="8"> สิงหาคม </option>
+                                    <option class="translate" value="9"> กันยายน </option>
+                                    <option class="translate" value="10"> ตุลาคม </option>
+                                    <option class="translate" value="11"> พฤศจิกายน </option>
+                                    <option class="translate" value="12"> ธันวาคม </option>
+                                </select>
+                            </div>
+                            <br>
+                        </div>
                         <div class="col-12" id="div_btn_search">
                             <button type="submit" class="btn btn-secondary px-5" onclick="clear_search_input_data();">ล้างการค้นหา</button>
                         </div>
@@ -655,7 +676,7 @@ display:none;
                         <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คัน</span>
                     </span>
                 </h4>
-                <div id="div_btn_view_all_car" class="d-none" style="float: right;">
+                <div id="div_btn_view_all_car" class="d-none" style="float: right;display: none;">
                     <span class="btn btn-info btn-sm text-white main-shadow main-radius">
                         <i class="fa-solid fa-eye"></i> ดูรถที่เลือกทั้งหมด
                     </span>
@@ -749,6 +770,7 @@ display:none;
         let location_user = document.querySelector("#location_user").value;
         let province_registration = document.querySelector("#province_registration").value;
         let type_registration = document.querySelector("#type_registration").value;
+        let birth_month = document.querySelector("#birth_month").value;
         let id_partner = document.querySelector("#id_partner");
 
         let data_search_data ;
@@ -762,6 +784,7 @@ display:none;
                 'location_user' : location_user,
                 'province_registration' : province_registration,
                 'type_registration' : type_registration,
+                'birth_month' : birth_month,
                 'id_partner' : id_partner.value,
             };
 
@@ -774,6 +797,7 @@ display:none;
                 'location_user' : location_user,
                 'province_registration' : province_registration,
                 'type_registration' : null,
+                'birth_month' : birth_month,
                 'id_partner' : id_partner.value,
             };
 
