@@ -268,9 +268,9 @@ display:none;
 <form method="POST" action="{{ url('/') }}/api/send_content_BC_by_car" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
 {{ csrf_field() }}
 
-<input class="form-control d-" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
-<input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
-<input class="form-control d-" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+<input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
+<input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
+<input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
 <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
 <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $id_partner }}">
