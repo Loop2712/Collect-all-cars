@@ -268,8 +268,9 @@ display:none;
 <form method="POST" action="{{ url('/') }}/api/send_content_BC_by_car" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
 {{ csrf_field() }}
 
-<input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
-<input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+<input class="form-control d-" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
+<input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
+<input class="form-control d-" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
 <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
 <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $id_partner }}">
@@ -319,9 +320,15 @@ display:none;
                                 </div>
                             </div>
                             <div id="div_user_unique" class="col-12 d-none">
-                                <input class="" name="user_unique" type="checkbox" id="user_unique" value="">
+                                <input class="" name="user_unique" type="checkbox" id="user_unique" value="" onclick="check_user_unique();">
                                 &nbsp; ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว
                                 <br><br>
+                            </div>
+                            <div class="col-12 d-">
+                                <div class="form-group {{ $errors->has('arr_show_user') ? 'has-error' : ''}}">
+                                    <input class="form-control" name="arr_show_user" type="text" id="arr_show_user" value="" readonly>
+                                </div>
+                                <br>
                             </div>
                             <div class="col-3 d-">
                                 <div class="form-group {{ $errors->has('send_again') ? 'has-error' : ''}}">
@@ -1316,9 +1323,8 @@ display:none;
         let name_content = document.querySelector("#name_content").value;
         let link = document.querySelector("#link").value;
         let photo = document.querySelector("#photo").value;
-        let detail = document.querySelector("#detail").value;
 
-        if (name_content && link && photo && detail) {
+        if (name_content && link && photo) {
             document.querySelector('#btn_send_content').disabled = false ;
         }else{
             document.querySelector('#btn_send_content').disabled = true ;
@@ -1338,6 +1344,7 @@ display:none;
         @foreach($ads_contents as $ads)
             if ({{ $ads->id }} == ads_id) {
                 
+                document.querySelector('#arr_show_user').value = '{{ $ads->show_user }}' ;
                 document.querySelector('#name_content').value = '{{ $ads->name_content }}';
                 document.querySelector('#id_ads').value = '{{ $ads->id }}';
 
@@ -1380,6 +1387,15 @@ display:none;
         document.querySelector('#photo').value = null ;
         document.querySelector('#img_add_img').src = "{{ asset('/img/more/add_img.jpg') }}" ;
         
+    }
+
+    function check_user_unique(){
+        let text_arr_show_user = document.querySelector('#arr_show_user') ;
+        let arr_show_user = JSON.parse(text_arr_show_user.value) ;
+        let arr_selected = JSON.parse(arr_user_id_selected.value) ;
+
+        console.log(arr_selected);
+        console.log(arr_show_user);
     }
 
 </script>
