@@ -958,6 +958,9 @@ display:none;
 
     // ตรวจสอบเกินจำนวนหรือไม่และเลือกหรือลบ => คลิกเลือกรถและโชว์ด้านขวา
     function click_select_car(user_id , car_id){
+
+        document.querySelector('#user_unique').checked = false ;
+        document.querySelector('#arr_user_id_send_to_user').value = null ;
         
         let btn_select_car_id = document.querySelector('#btn_select_car_id_' + car_id);
         let class_btn_select_car_id = btn_select_car_id.classList[0] ;
@@ -1383,6 +1386,7 @@ display:none;
         document.querySelector('#name_content').value = null;
         document.querySelector('#link').readOnly = false ;
         document.querySelector('#link').value = null;
+        document.querySelector('#arr_show_user').value = null;
         document.querySelector('#img_exchange').classList.remove('d-none') ;
         document.querySelector('#send-img').classList.add('sand');
         document.querySelector('#div_img').classList.add('d-none');
@@ -1396,7 +1400,8 @@ display:none;
     function check_user_unique(){
         let user_unique =  document.querySelector('#user_unique').checked ;
             // console.log(user_unique);
-        let arr_selected = JSON.parse(arr_user_id_selected.value) ;
+        let arr_selected = JSON.parse(arr_user_id_selected.value) ;        
+        let arr_car_selected = JSON.parse(arr_car_id_selected.value) ;
         let text_arr_show_user = document.querySelector('#arr_show_user') ;
         let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
             arr_user_id_send_to_user.value = arr_user_id_selected.value;
@@ -1425,6 +1430,7 @@ display:none;
 
                         // delete array
                         arr_send_to_user.splice(delete_at_index, 1); 
+                        arr_car_selected.splice(delete_at_index, 1); 
                         // console.log(">> ลบแล้ว <<");
                         // console.log(arr_send_to_user);
 
@@ -1439,6 +1445,7 @@ display:none;
                 // ส่ง content เดิม แบบไม่ซ้ำ user เดิม
                 arr_user_id_send_to_user.value = JSON.stringify(arr_send_to_user) ;
                 arr_user_id_selected.value = JSON.stringify(arr_send_to_user) ;
+                arr_car_id_selected.value = JSON.stringify(arr_car_selected) ;
                 search_data();
             }
         }else{
