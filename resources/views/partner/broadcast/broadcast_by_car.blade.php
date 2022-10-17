@@ -269,6 +269,7 @@ display:none;
 {{ csrf_field() }}
 
 <input class="form-control d-" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
+
 <input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
 <input class="form-control d-" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
@@ -755,7 +756,7 @@ display:none;
     var arr_car_id = [] ; // array() car_id
     var arr_car_id_selected = document.querySelector('#arr_car_id_selected'); // input array car_id
 
-    var arr_user_id = [] ; // array() car_id
+    var arr_user_id = [] ; // array() user_id
     var arr_user_id_selected = document.querySelector('#arr_user_id_selected'); // input array user_id
 
     if (arr_car_id_selected.value) {
