@@ -268,10 +268,10 @@ display:none;
 <form method="POST" action="{{ url('/') }}/api/send_content_BC_by_car" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
 {{ csrf_field() }}
 
-<input class="form-control d-" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
+<input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
 
-<input class="form-control d-" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
-<input class="form-control d-" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+<input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
+<input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
 <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
 <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $id_partner }}">
@@ -325,25 +325,25 @@ display:none;
                                 &nbsp; ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว
                                 <br><br>
                             </div>
-                            <div class="col-12 d-">
+                            <div class="col-12 d-none">
                                 <div class="form-group {{ $errors->has('arr_show_user') ? 'has-error' : ''}}">
                                     <input class="form-control" name="arr_show_user" type="text" id="arr_show_user" value="" readonly>
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-3 d-">
+                            <div class="col-3 d-none">
                                 <div class="form-group {{ $errors->has('send_again') ? 'has-error' : ''}}">
                                     <input class="form-control" name="send_again" type="text" id="send_again" value="" readonly>
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-3 d-">
+                            <div class="col-3 d-none">
                                 <div class="form-group {{ $errors->has('id_ads') ? 'has-error' : ''}}">
                                     <input class="form-control" name="id_ads" type="text" id="id_ads" value="" readonly>
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-6 d-">
+                            <div class="col-6 d-none">
                                 <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                                     <!-- <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label> -->
                                     <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
