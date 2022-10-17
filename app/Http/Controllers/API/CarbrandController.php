@@ -381,6 +381,10 @@ class CarbrandController extends Controller
 
     function send_content_BC_to_line($requestData , $data_Ads_content){
 
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
         if ($requestData['send_again'] == "Yes") {
             $arr_user_id = json_decode($requestData['arr_user_id_send_to_user']) ;
         }else{
