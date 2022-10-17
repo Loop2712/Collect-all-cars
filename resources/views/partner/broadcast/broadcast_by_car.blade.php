@@ -1159,16 +1159,18 @@ display:none;
         document.querySelector('#car_type').value = type ;
         document.querySelector('#div_btn_search').classList.remove('d-none');
 
+        document.querySelector("#birth_month").value = "";
+        let location_user = document.querySelector("#location_user").value = "";
+        let province_registration = document.querySelector("#province_registration").value = "";
+        let type_registration = document.querySelector("#type_registration").value = "";
+
+
         if (type === "car") {
 
             showCar_brand();
 
             let input_motor_brand = document.querySelector("#input_motor_brand").innerHTML = "";
             let input_motor_model = document.querySelector("#input_motor_model").innerHTML = "";
-
-            let location_user = document.querySelector("#location_user").value = "";
-            let province_registration = document.querySelector("#province_registration").value = "";
-            let type_registration = document.querySelector("#type_registration").value = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_car_brand').classList.remove('d-none');
@@ -1180,10 +1182,6 @@ display:none;
 
             let input_car_brand = document.querySelector("#input_car_brand").innerHTML = "";
             let input_car_model = document.querySelector("#input_car_model").innerHTML = "";
-
-            let location_user = document.querySelector("#location_user").value = "";
-            let province_registration = document.querySelector("#province_registration").value = "";
-            let type_registration = document.querySelector("#type_registration").value = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_motor_brand').classList.remove('d-none');
@@ -1207,6 +1205,8 @@ display:none;
         let location_user = document.querySelector("#location_user").value = "";
         let province_registration = document.querySelector("#province_registration").value = "";
         let type_registration = document.querySelector("#type_registration").value = "";
+        let birth_month = document.querySelector("#birth_month").value = "";
+
 
         if (car_type === "car") {
             showCar_brand();

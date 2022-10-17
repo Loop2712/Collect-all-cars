@@ -252,11 +252,6 @@ class CarbrandController extends Controller
         }
 
         $birth_month = $data['birth_month'];
-        if (empty($birth_month)) {
-            $birth_null = null ;
-        }else{
-            $birth_null = $birth_month ;
-        }
 
         $id_partner = $data['id_partner'];
         if (empty($id_partner)) {
@@ -270,34 +265,66 @@ class CarbrandController extends Controller
 
         if ($level == "Test") {
 
-            $data_search = Register_car::join('users', 'register_cars.user_id', '=', 'users.id')
-                ->where('register_cars.car_type', $car_type)
-                ->where('register_cars.active', "Yes")
-                ->where('register_cars.brand', 'LIKE' , "%$brand%" )
-                ->where('register_cars.generation', 'LIKE' , "%$model%" )
-                ->where('register_cars.location', 'LIKE' , "%$location_user%" )
-                ->where('register_cars.province', 'LIKE' , "%$province_registration%" )
-                ->where('register_cars.type_car_registration', 'LIKE' , "%$type_registration%" )
-                ->where('register_cars.juristicNameTH' ,'LIKE' , "%$name_partner%" )
-                ->where('users.type', "line")
-                ->select('register_cars.*')
-                ->get();
+            if (!empty($birth_month)) {
+                $data_search = Register_car::join('users', 'register_cars.user_id', '=', 'users.id')
+                    ->where('register_cars.car_type', $car_type)
+                    ->where('register_cars.active', "Yes")
+                    ->where('register_cars.brand', 'LIKE' , "%$brand%" )
+                    ->where('register_cars.generation', 'LIKE' , "%$model%" )
+                    ->where('register_cars.location', 'LIKE' , "%$location_user%" )
+                    ->where('register_cars.province', 'LIKE' , "%$province_registration%" )
+                    ->where('register_cars.type_car_registration', 'LIKE' , "%$type_registration%" )
+                    ->where('register_cars.juristicNameTH' ,'LIKE' , "%$name_partner%" )
+                    ->where('users.type', "line")
+                    ->whereMonth('users.brith' , "$birth_month" )
+                    ->select('register_cars.*')
+                    ->get();
+            }else{
+                $data_search = Register_car::join('users', 'register_cars.user_id', '=', 'users.id')
+                    ->where('register_cars.car_type', $car_type)
+                    ->where('register_cars.active', "Yes")
+                    ->where('register_cars.brand', 'LIKE' , "%$brand%" )
+                    ->where('register_cars.generation', 'LIKE' , "%$model%" )
+                    ->where('register_cars.location', 'LIKE' , "%$location_user%" )
+                    ->where('register_cars.province', 'LIKE' , "%$province_registration%" )
+                    ->where('register_cars.type_car_registration', 'LIKE' , "%$type_registration%" )
+                    ->where('register_cars.juristicNameTH' ,'LIKE' , "%$name_partner%" )
+                    ->where('users.type', "line")
+                    ->select('register_cars.*')
+                    ->get();
+            }
+            
 
         }else{
 
-            $data_search = Register_car::join('users', 'register_cars.user_id', '=', 'users.id')
-                ->where('register_cars.car_type', $car_type)
-                ->where('register_cars.active', "Yes")
-                ->where('register_cars.brand', 'LIKE' , "%$brand%" )
-                ->where('register_cars.generation', 'LIKE' , "%$model%" )
-                ->where('register_cars.location', 'LIKE' , "%$location_user%" )
-                ->where('register_cars.province', 'LIKE' , "%$province_registration%" )
-                ->where('register_cars.type_car_registration', 'LIKE' , "%$type_registration%" )
-                ->where('users.type', "line")
-                ->select('register_cars.*')
-                // ->whereMonth('users.brith', 'LIKE' , "%$birth_month%" )
-                // ->orWhere('users.brith', '=' , $birth_null )
-                ->get();
+            if (!empty($birth_month)) {
+                $data_search = Register_car::join('users', 'register_cars.user_id', '=', 'users.id')
+                    ->where('register_cars.car_type', $car_type)
+                    ->where('register_cars.active', "Yes")
+                    ->where('register_cars.brand', 'LIKE' , "%$brand%" )
+                    ->where('register_cars.generation', 'LIKE' , "%$model%" )
+                    ->where('register_cars.location', 'LIKE' , "%$location_user%" )
+                    ->where('register_cars.province', 'LIKE' , "%$province_registration%" )
+                    ->where('register_cars.type_car_registration', 'LIKE' , "%$type_registration%" )
+                    ->where('users.type', "line")
+                    ->whereMonth('users.brith' , "$birth_month" )
+                    ->select('register_cars.*')
+                    ->get();
+            }else{
+                $data_search = Register_car::join('users', 'register_cars.user_id', '=', 'users.id')
+                    ->where('register_cars.car_type', $car_type)
+                    ->where('register_cars.active', "Yes")
+                    ->where('register_cars.brand', 'LIKE' , "%$brand%" )
+                    ->where('register_cars.generation', 'LIKE' , "%$model%" )
+                    ->where('register_cars.location', 'LIKE' , "%$location_user%" )
+                    ->where('register_cars.province', 'LIKE' , "%$province_registration%" )
+                    ->where('register_cars.type_car_registration', 'LIKE' , "%$type_registration%" )
+                    ->where('users.type', "line")
+                    ->select('register_cars.*')
+                    ->get();
+            }
+
+            
 
         }
 
