@@ -1368,7 +1368,7 @@ display:none;
             }
         @endforeach
 
-        check_send_content();
+        document.querySelector('#btn_send_content').disabled = false ;
     }
 
     function reset_BC(){
