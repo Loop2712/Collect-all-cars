@@ -1368,7 +1368,7 @@ display:none;
             }
         @endforeach
 
-        
+        check_send_content();
     }
 
     function reset_BC(){
