@@ -311,8 +311,35 @@ class CarbrandController extends Controller
 
         // เช็คว่าเป็น Content ใหม่หรือเก่า
         if ($requestData['send_again'] == "Yes") {
-            // code...
+
+            $id_ads = $requestData['$requestData'];
+
+            $data_Ads_content = Ads_content::where('id' , $id_ads )->first();
+            $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
+
+            $BC_by_car_sent = $data_partner_premium->BC_by_car_sent ;
+            $sum_BC_by_car_sent = $BC_by_car_sent + $requestData['amount'] ;
+            $sum_send_round = $data_Ads_content->send_round + 1 ;
+
+            DB::table('partner_premia')
+                ->where('id_partner', $requestData['id_partner'])
+                ->update([
+                    'BC_by_car_sent' => $sum_BC_by_car_sent ,
+            ]);
+
+            DB::table('ads_contents')
+                ->where('id', $id_ads)
+                ->update([
+                    'send_round' => $sum_send_round ,
+            ]);
+
+            $requestData['link'] = $data_Ads_content->link ;
+
+            // ส่ง content เข้าไลน์
+            $this->send_content_BC_to_line($requestData , $data_Ads_content);
+
         }else{
+
             Ads_content::create($requestData);
 
             $data_Ads_content = Ads_content::latest()->first();
@@ -339,6 +366,7 @@ class CarbrandController extends Controller
 
             // ส่ง content เข้าไลน์
             $this->send_content_BC_to_line($requestData , $data_Ads_content);
+            
         }
 
         return redirect('broadcast_by_car')->with('flash_message', 'Partner updated!');
@@ -354,18 +382,6 @@ class CarbrandController extends Controller
         if (!empty($data_Ads_content->show_user)) {
             $show_user = json_decode($data_Ads_content->show_user) ;
         }
-
-        // echo count($arr_user_id);
-        // echo "<br>";
-
-        // echo "<pre>";
-        // print_r($arr_user_id);
-        // echo "<pre>";
-
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
 
         $img = 'https://www.viicheck.com/storage/' . $requestData['photo'];
         $img_content = Image::make( $img );
