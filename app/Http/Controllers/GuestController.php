@@ -415,6 +415,7 @@ class GuestController extends Controller
                             $messages = [ json_decode($string_json, true) ];
                         }
                         if (!empty($phone)) {
+
                             switch($item->car_type)
                             {
                                 case "car":  
