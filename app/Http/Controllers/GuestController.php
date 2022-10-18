@@ -378,13 +378,19 @@ class GuestController extends Controller
                     default:
                         if (empty($phone)) {
 
-                            if($item->car_type == "car"){
-                                $template_path = storage_path('../public/json/viimove/nocall/flex-move-car.json');  
-                            }if($item->car_type == "motorcycle"){
-                                $template_path = storage_path('../public/json/viimove/nocall/flex-move-motorcycle.json'); 
-                            }else{
-                                $template_path = storage_path('../public/json/viimove/nocall/flex-move-other.json'); 
+                            switch($item->car_type)
+                            {
+                                case "car":  
+                                    $template_path = storage_path('../public/json/viimove/nocall/flex-move-car.json');  
+                                    break;
+                                case "motorcycle":  
+                                    $template_path = storage_path('../public/json/viimove/nocall/flex-move-motorcycle.json');  
+                                    break;
+                                default:
+                                    $template_path = storage_path('../public/json/viimove/nocall/flex-move-other.json');  
+                                    break;
                             }
+
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
@@ -400,14 +406,18 @@ class GuestController extends Controller
                             $messages = [ json_decode($string_json, true) ];
                         }
                         if (!empty($phone)) {
-                            
-                            if($item->car_type == "car"){
-                                $template_path = storage_path('../public/json/viimove/call/flex-move-car.json');  
-                            }if($item->car_type == "motorcycle"){
-                                $template_path = storage_path('../public/json/viimove/call/flex-move-motorcycle.json'); 
-                            }else{
-                                $template_path = storage_path('../public/json/viimove/call/flex-move-other.json'); 
-                            }  
+                            switch($item->car_type)
+                            {
+                                case "car":  
+                                    $template_path = storage_path('../public/json/viimove/call/flex-move-car.json');  
+                                    break;
+                                case "motorcycle":  
+                                    $template_path = storage_path('../public/json/viimove/call/flex-move-motorcycle.json');  
+                                    break;
+                                default:
+                                    $template_path = storage_path('../public/json/viimove/call/flex-move-other.json');  
+                                    break;
+                            }
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
