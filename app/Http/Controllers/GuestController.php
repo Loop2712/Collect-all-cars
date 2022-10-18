@@ -285,6 +285,7 @@ class GuestController extends Controller
                 $type_user = $user->type;
                 $name_time_zone = $user->time_zone;
                 $user_language = $user->language;
+
             }
 
             // TIME ZONE
@@ -376,7 +377,14 @@ class GuestController extends Controller
                     
                     default:
                         if (empty($phone)) {
-                            $template_path = storage_path('../public/json/flex-move.json');   
+
+                            if($item->car_type == "car"){
+                                $template_path = storage_path('../public/json/viimove/nocall/flex-move-car.json');  
+                            }if($item->car_type == "motorcycle"){
+                                $template_path = storage_path('../public/json/viimove/nocall/flex-move-motorcycle.json'); 
+                            }else{
+                                $template_path = storage_path('../public/json/viimove/nocall/flex-move-other.json'); 
+                            }
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
@@ -392,7 +400,14 @@ class GuestController extends Controller
                             $messages = [ json_decode($string_json, true) ];
                         }
                         if (!empty($phone)) {
-                            $template_path = storage_path('../public/json/flex-move-call.json');   
+                            
+                            if($item->car_type == "car"){
+                                $template_path = storage_path('../public/json/viimove/call/flex-move-car.json');  
+                            }if($item->car_type == "motorcycle"){
+                                $template_path = storage_path('../public/json/viimove/call/flex-move-motorcycle.json'); 
+                            }else{
+                                $template_path = storage_path('../public/json/viimove/call/flex-move-other.json'); 
+                            }  
                             $string_json = file_get_contents($template_path);
                             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                             $string_json = str_replace("datetime",$time_zone,$string_json);
