@@ -390,8 +390,6 @@ class GuestController extends Controller
                                 case "car":  
                                     $template_path = storage_path('../public/json/viimove/nocall/flex-move-car.json');  
                                     $string_json = file_get_contents($template_path);
-                                    $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                                    $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                                     break;
                                 case "motorcycle":  
                                     $template_path = storage_path('../public/json/viimove/nocall/flex-move-motorcycle.json'); 
@@ -414,8 +412,6 @@ class GuestController extends Controller
                                 default:
                                     $template_path = storage_path('../public/json/viimove/nocall/flex-move-other.json');  
                                     $string_json = file_get_contents($template_path);
-                                    $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                                    $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                                     break;
                             }
 
@@ -423,6 +419,8 @@ class GuestController extends Controller
                             $string_json = str_replace("date",$date,$string_json);
                             $string_json = str_replace("time",$time,$string_json);
                             $string_json = str_replace("UTC", "UTC " . $utc,$string_json); 
+                            $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                             $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
                             $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
@@ -439,8 +437,6 @@ class GuestController extends Controller
                                 case "car":  
                                     $template_path = storage_path('../public/json/viimove/call/flex-move-car.json');  
                                     $string_json = file_get_contents($template_path);
-                                    $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                                    $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                                     break;
                                 case "motorcycle":  
                                     $template_path = storage_path('../public/json/viimove/call/flex-move-motorcycle.json'); 
@@ -463,8 +459,6 @@ class GuestController extends Controller
                                 default:
                                     $template_path = storage_path('../public/json/viimove/call/flex-move-other.json');  
                                     $string_json = file_get_contents($template_path);
-                                    $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
-                                    $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                                     break;
                             }
 
@@ -472,6 +466,8 @@ class GuestController extends Controller
                             $string_json = str_replace("date",$date,$string_json);
                             $string_json = str_replace("time",$time,$string_json);
                             $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
+                            $string_json = str_replace("7ยษ2944",$item->registration_number,$string_json);
+                            $string_json = str_replace("กรุงเทพ",$item->province,$string_json);
                             $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
                             $string_json = str_replace("0999999999",$phone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
