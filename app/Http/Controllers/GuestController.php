@@ -141,6 +141,11 @@ class GuestController extends Controller
         // ส่งทางไลน์
         $this->_pushLine($requestData);
 
+        echo "<h1>ส่งข้อความหาเจ้าของรถแล้ว</h1>" ;
+        echo "<br>"
+        echo "<h4>ขณะนี้อยู่ระหว่างการปรับปรุงระบบ ขออภัยในความไม่สะดวก</h4>" ;
+        exit();
+
         // หา type ของ user ที่ register 
         $type_user = DB::table('users')
                     ->where('id', $requestData['user_id'])
