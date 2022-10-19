@@ -18,10 +18,9 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-        $reg = "1กษ5444" ;
+        $reg = "1ยษก294" ;
 
         $reg_text = preg_replace('/[0-9]+/', '', $reg);
-
         $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
         $reg_num_sp = explode(" ", $reg_num);
         $last_list_num = count($reg_num_sp) - 1 ;
