@@ -101,8 +101,8 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
                 break;
             case "motorcycle":  
-                // $template_path = storage_path('../public/json/viimove/call/flex-move-motorcycle.json'); 
-                // $string_json = file_get_contents($template_path);
+                $template_path = storage_path('../public/json/viimove/call/flex-move-motorcycle.json'); 
+                $string_json = file_get_contents($template_path);
 
                 // $reg = $item->registration_number ;
                 // $reg_text = preg_replace('/[0-9]+/', '', $reg);
