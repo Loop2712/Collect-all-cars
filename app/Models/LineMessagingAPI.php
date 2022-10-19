@@ -79,6 +79,7 @@ class LineMessagingAPI extends Model
 
         foreach ($data_cars as $data_car) {
             $license_plate_id = $data_car->id ;
+            $car_type = $item->car_type ;
         }
 
         $data_Text_topic = [
@@ -91,10 +92,38 @@ class LineMessagingAPI extends Model
 
         $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
-        $template_path = storage_path('../public/json/flex-reply-option.json');   
-        $string_json = file_get_contents($template_path);
-        $string_json = str_replace("7ยษ2944",$registration_number,$string_json);
-        $string_json = str_replace("กรุงเทพ",$province,$string_json);
+        switch($car_type)
+        {
+            case "car":  
+                $template_path = storage_path('../public/json/viimove/reply/flex_select_reply_car.json');  
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
+                $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
+                break;
+            case "motorcycle":  
+                // $template_path = storage_path('../public/json/viimove/call/flex-move-motorcycle.json'); 
+                // $string_json = file_get_contents($template_path);
+
+                // $reg = $item->registration_number ;
+                // $reg_text = preg_replace('/[0-9]+/', '', $reg);
+                // $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+                // $reg_num_sp = explode(" ", $reg_num);
+                // $last_list_num = count($reg_num_sp) - 1 ;
+
+                // $reg_1 = $reg_num_sp[0] . $reg_text ;
+                // $reg_2 = $reg_num_sp[$last_list_num] ;
+
+                // $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
+                // $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
+                break;
+            default:                
+                $template_path = storage_path('../public/json/viimove/reply/flex_select_reply_car.json');  
+                $string_json = file_get_contents($template_path);
+                $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
+                $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
+                break;
+        }
+
         $string_json = str_replace("license_plate_id",$license_plate_id,$string_json);
 
         $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
@@ -126,7 +155,7 @@ class LineMessagingAPI extends Model
 
         //SAVE LOG
         $data = [
-            "title" => "เลือกการตอบกลับ ",
+            "title" => "ส่งข้อความเลือกการตอบกลับ ",
             "content" => "ตอบกลับ " . $registration_number . '/' . $province,
         ];
         MyLog::create($data);
