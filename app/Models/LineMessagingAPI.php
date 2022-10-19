@@ -126,8 +126,8 @@ class LineMessagingAPI extends Model
 
         //SAVE LOG
         $data = [
-            "title" => "ตอบกลับ " . $registration_number . '/' . $province,
-            "content" => $data_topic[0],
+            "title" => "เลือกการตอบกลับ ",
+            "content" => "ตอบกลับ " . $registration_number . '/' . $province,
         ];
         MyLog::create($data);
         return $result;
