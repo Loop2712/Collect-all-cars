@@ -120,7 +120,7 @@ class LineMessagingAPI extends Model
                 break;
         }
 
-        
+
         $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
         $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
         $string_json = str_replace("license_plate_id",$license_plate_id,$string_json);
@@ -1236,6 +1236,13 @@ class LineMessagingAPI extends Model
         $registration_number = $license_plate[0];
         $province = $license_plate[1];
 
+        $data_cars = DB::table('register_cars')
+            ->where('registration_number', $registration_number)
+            ->where('province', $province)
+            ->first();
+
+        $car_type = $data_cars->car_type ;
+
         $google_registration_number = $license_plate[0] ;
         $google_province = $license_plate[1] ;
 
@@ -1280,39 +1287,54 @@ class LineMessagingAPI extends Model
 
             switch ($item->type) {
                 case 'line':
+
+                    switch($car_type)
+                    {
+                        case "car":  
+                            $template_path = storage_path('../public/json/viimove/reply/flex_reply_message_car.json');
+                            $string_json = file_get_contents($template_path);
+                            break;
+                        case "motorcycle":  
+                            $template_path = storage_path('../public/json/viimove/reply/flex-move-motorcycle.json'); 
+                            $string_json = file_get_contents($template_path);
+
+                            $reg = $registration_number ;
+                            $reg_text = preg_replace('/[0-9]+/', '', $reg);
+                            $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+                            $reg_num_sp = explode(" ", $reg_num);
+                            $last_list_num = count($reg_num_sp) - 1 ;
+
+                            $reg_1 = $reg_num_sp[0] . $reg_text ;
+                            $reg_2 = $reg_num_sp[$last_list_num] ;
+
+                            $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
+                            $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
+                            break;
+                        default:
+                            $template_path = storage_path('../public/json/viimove/reply/flex_reply_message_car.json');  
+                            $string_json = file_get_contents($template_path);
+                            break;
+                    }
+
                     switch($postback_data){
                         case "wait": 
-                            $template_path = storage_path('../public/json/callback_guest.json');   
-                            $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
-                            $string_json = str_replace("9กก9999",$registration_number,$string_json);
-                            $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                             $string_json = str_replace("ขอบคุณ",$data_topic[0],$string_json);
-                            $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","2",$string_json);
-
-                            $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
-                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
-
-                            $messages = [ json_decode($string_json, true) ];
                             break;
                         case "thx":
-                            $template_path = storage_path('../public/json/callback_guest.json');   
-                            $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
-                            $string_json = str_replace("9กก9999",$registration_number,$string_json);
-                            $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
                             $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
-                            $string_json = str_replace("datetime",$time_zone,$string_json);
                             $string_json = str_replace("สติกเกอร์ไลน์","3",$string_json);
-
-                            $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
-                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
-
-                            $messages = [ json_decode($string_json, true) ];
                             break;
-
                     }
+
+                    $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
+                    $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
+                    $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
+                    $string_json = str_replace("datetime",$time_zone,$string_json);
+                    $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
+                    $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
+
+                    $messages = [ json_decode($string_json, true) ];
 
                     $body = [
                         "to" => $to_user,

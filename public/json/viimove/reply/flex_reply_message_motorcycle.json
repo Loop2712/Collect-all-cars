@@ -1,0 +1,187 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/flex/move/reply/flex_reply_message_motorcycle.png",
+        "size": "full",
+        "aspectRatio": "2500:3200",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ขอบคุณ",
+            "color": "#FFFFFF",
+            "wrap": false,
+            "size": "19px",
+            "weight": "regular"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "27%",
+        "offsetStart": "24%",
+        "width": "67%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "borderWidth": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://www.viicheck.com/img/stickerline/Flex/สติกเกอร์ไลน์.png",
+            "aspectMode": "fit"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "19.8%",
+        "offsetStart": "4%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "borderWidth": "none",
+        "height": "16.5%",
+        "width": "26%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "UTC",
+            "color": "#FFFFFF",
+            "wrap": false,
+            "size": "19px",
+            "weight": "bold",
+            "align": "center"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "42.5%",
+        "offsetStart": "41%",
+        "width": "25%",
+        "justifyContent": "flex-start",
+        "alignItems": "center",
+        "borderWidth": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "date",
+            "color": "#FFFFFF",
+            "wrap": false,
+            "size": "23px",
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "56%",
+        "offsetStart": "5%",
+        "width": "43%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "borderWidth": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "time",
+            "color": "#FFFFFF",
+            "wrap": false,
+            "size": "23px",
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "56%",
+        "offsetStart": "50%",
+        "width": "43%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "borderWidth": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "TEXT_REG_MOR_1",
+            "color": "#000000",
+            "size": "45px",
+            "wrap": false,
+            "weight": "bold",
+            "align": "center"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "68%",
+        "offsetStart": "32.5%",
+        "width": "35%",
+        "justifyContent": "space-around",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "TEXT_REG_PRO",
+            "color": "#000000",
+            "size": "md",
+            "wrap": false
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "79.5%",
+        "offsetStart": "32.5%",
+        "width": "35%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "TEXT_REG_MOR_2",
+            "color": "#000000",
+            "size": "35px",
+            "wrap": false,
+            "weight": "regular",
+            "align": "center"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "82%",
+        "offsetStart": "32.5%",
+        "width": "35%",
+        "justifyContent": "space-around",
+        "alignItems": "center"
+      }
+    ],
+    "position": "relative",
+    "paddingAll": "0px"
+  }
+}
+}
