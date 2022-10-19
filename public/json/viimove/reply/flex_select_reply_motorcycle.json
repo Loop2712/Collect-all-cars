@@ -1,0 +1,211 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/flex/move/reply/flex_reply_move_motorcycle.png",
+        "size": "full",
+        "aspectRatio": "2500:3200",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "TEXT_REG_MOR_1",
+            "color": "#000000",
+            "size": "40px",
+            "wrap": false,
+            "weight": "bold",
+            "align": "center"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "19.5%",
+        "offsetStart": "32.5%",
+        "width": "35%",
+        "justifyContent": "space-around",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "TEXT_REG_PRO",
+            "color": "#000000",
+            "size": "17px",
+            "wrap": false
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "29.5%",
+        "offsetStart": "32.5%",
+        "width": "35%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "TEXT_REG_MOR_2",
+            "color": "#000000",
+            "size": "40px",
+            "wrap": false,
+            "weight": "bold",
+            "align": "center"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "32.5%",
+        "offsetStart": "32.5%",
+        "width": "35%",
+        "justifyContent": "space-around",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ตอบกลับได้เพียง 1 ข้อ เท่านั้น",
+            "color": "#FFA500",
+            "wrap": false,
+            "size": "sm",
+            "weight": "regular"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "49.5%",
+        "offsetStart": "16%",
+        "width": "77%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "borderWidth": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ขอบคุณ",
+                "size": "xl",
+                "weight": "bold",
+                "align": "center",
+                "color": "#25548F"
+              }
+            ],
+            "width": "75%",
+            "offsetStart": "9%",
+            "alignItems": "center"
+          }
+        ],
+        "width": "74%",
+        "height": "9.5%",
+        "position": "absolute",
+        "offsetTop": "58%",
+        "offsetStart": "13%",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "action": {
+          "type": "postback",
+          "label": "ขอบคุณ",
+          "data": "thx?TEXT_REG_NUM/TEXT_REG_PRO",
+          "displayText": "ขอบคุณ"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "รอสักครู่",
+                "size": "xl",
+                "weight": "bold",
+                "align": "center",
+                "color": "#25548F"
+              }
+            ],
+            "width": "75%",
+            "offsetStart": "9%",
+            "alignItems": "center"
+          }
+        ],
+        "width": "74%",
+        "height": "9.5%",
+        "position": "absolute",
+        "offsetTop": "70.5%",
+        "offsetStart": "13%",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "action": {
+          "type": "postback",
+          "label": "รอสักครู่",
+          "data": "wait?TEXT_REG_NUM/TEXT_REG_PRO",
+          "displayText": "รอสักครู่"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ฉันไม่สะดวก",
+                "size": "xl",
+                "weight": "bold",
+                "align": "center",
+                "color": "#25548F"
+              }
+            ],
+            "width": "75%",
+            "offsetStart": "9%",
+            "alignItems": "center"
+          }
+        ],
+        "width": "74%",
+        "height": "9.5%",
+        "position": "absolute",
+        "offsetTop": "83.5%",
+        "offsetStart": "13%",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "action": {
+          "type": "uri",
+          "label": "ฉันไม่สะดวก",
+          "uri": "https://www.viicheck.com/not_comfor_login/license_plate_id"
+        }
+      }
+    ],
+    "position": "relative",
+    "paddingAll": "0px"
+  }
+}
+}
