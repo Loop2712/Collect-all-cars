@@ -142,7 +142,7 @@ class GuestController extends Controller
         $this->_pushLine($requestData);
 
         echo "<h1>ส่งข้อความหาเจ้าของรถแล้ว</h1>" ;
-        echo "<br>"
+        echo "<br>" ;
         echo "<h4>ขณะนี้อยู่ระหว่างการปรับปรุงระบบ ขออภัยในความไม่สะดวก</h4>" ;
         exit();
 
