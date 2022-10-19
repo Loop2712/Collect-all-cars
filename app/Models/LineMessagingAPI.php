@@ -1285,6 +1285,13 @@ class LineMessagingAPI extends Model
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($item->time_zone);
 
+            // datetime
+            $time_zone_explode = explode(" ",$time_zone);
+            
+            $date = $time_zone_explode[0] ;
+            $time = $time_zone_explode[1] ;
+            $utc = $time_zone_explode[3] ;
+
             switch ($item->type) {
                 case 'line':
 
@@ -1330,7 +1337,11 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("ตัวอย่าง","ผู้ใช้แจ้งว่า..",$string_json);
                     $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
                     $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
-                    $string_json = str_replace("datetime",$time_zone,$string_json);
+
+                    $string_json = str_replace("date",$date,$string_json);
+                    $string_json = str_replace("time",$time,$string_json);
+                    $string_json = str_replace("UTC", "UTC " . $utc,$string_json); 
+
                     $string_json = str_replace("เวลาที่ตอบกลับ",$data_topic[2],$string_json);
                     $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
 
