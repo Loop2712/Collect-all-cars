@@ -79,7 +79,7 @@ class LineMessagingAPI extends Model
 
         foreach ($data_cars as $data_car) {
             $license_plate_id = $data_car->id ;
-            $car_type = $item->car_type ;
+            $car_type = $data_car->car_type ;
         }
 
         $data_Text_topic = [
