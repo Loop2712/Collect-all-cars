@@ -112,7 +112,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "กกก",
+                  "text": "TEXT_REG_MOR_1",
                   "weight": "bold",
                   "size": "35px",
                   "color": "#000000"
@@ -130,7 +130,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "กรุงเทพ",
+                  "text": "TEXT_REG_PRO",
                   "weight": "bold",
                   "size": "17px",
                   "color": "#000000"
@@ -148,7 +148,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "999",
+                  "text": "TEXT_REG_MOR_2",
                   "weight": "bold",
                   "size": "32px",
                   "color": "#000000"
@@ -200,7 +200,7 @@
               "action": {
                 "type": "postback",
                 "label": "ส่งข้อความตอบกลับ",
-                "data": "การตอบกลับ?7ยษ2944/กรุงเทพ",
+                "data": "การตอบกลับ?TEXT_REG_NUM/TEXT_REG_PRO",
                 "displayText": "ส่งข้อความตอบกลับ"
               }
             }

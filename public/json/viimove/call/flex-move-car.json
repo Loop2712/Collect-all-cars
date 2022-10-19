@@ -107,7 +107,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "7ยษ2944",
+                  "text": "TEXT_REG_NUM",
                   "weight": "bold",
                   "size": "40px",
                   "color": "#000000"
@@ -125,7 +125,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "กรุงเทพ",
+                  "text": "TEXT_REG_PRO",
                   "weight": "bold",
                   "size": "md",
                   "color": "#000000"
@@ -174,7 +174,7 @@
               "action": {
                 "type": "postback",
                 "label": "ส่งข้อความตอบกลับ",
-                "data": "การตอบกลับ?7ยษ2944/กรุงเทพ",
+                "data": "การตอบกลับ?TEXT_REG_NUM/TEXT_REG_PRO",
                 "displayText": "ส่งข้อความตอบกลับ"
               }
             },
