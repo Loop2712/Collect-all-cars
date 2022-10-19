@@ -380,7 +380,7 @@ Route::get('set_new_richMenu', 'API\LineApiController@set_new_richMenu');
 
 // test_for_dev
 Route::get('test_for_dev/type_car_registration', 'test_for_devController@type_car_registration');
-Route::get('test_for_dev/main_test', 'test_for_devController@main_test');
+Route::get('main_test', 'test_for_devController@main_test');
 Route::get('text_sp', 'test_for_devController@text_sp');
 
 Route::get('/modal_loading', function () {

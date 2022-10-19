@@ -18,9 +18,27 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-        // $data = "hello" ;
-        
-        echo $data ;
+        $reg = "1กษ5444" ;
+
+        $reg_text = preg_replace('/[0-9]+/', '', $reg);
+
+        $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+        $reg_num_sp = explode(" ", $reg_num);
+        $last_list_num = count($reg_num_sp) - 1 ;
+
+        $reg_1 = $reg_num_sp[0] . $reg_text ;
+        $reg_2 = "กรุงเทพมหานคร" ;
+        $reg_3 = $reg_num_sp[$last_list_num] ;
+
+        echo "<br>" ;
+        echo $reg_1 ;
+
+        echo "<br>" ;
+        echo $reg_2 ;
+
+        echo "<br>" ;
+        echo $reg_3 ;
+
         exit();
     }
 
