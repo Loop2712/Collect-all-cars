@@ -351,8 +351,33 @@ class GuestController extends Controller
                     case 'รถคุณเกิดอุบัติเหตุค่ะ':
 
                         if (empty($phone)) {
-                            $template_path = storage_path('../public/json/flex-accident.json');   
-                            $string_json = file_get_contents($template_path);
+                            switch($item->car_type)
+                            {
+                                case "car":  
+                                    $template_path = storage_path('../public/json/viimove/photo/nocall/flex-move-car.json');  
+                                    $string_json = file_get_contents($template_path);
+                                    break;
+                                case "motorcycle":  
+                                    $template_path = storage_path('../public/json/viimove/photo/nocall/flex-move-motorcycle.json'); 
+                                    $string_json = file_get_contents($template_path);
+
+                                    $reg = $item->registration_number ;
+                                    $reg_text = preg_replace('/[0-9]+/', '', $reg);
+                                    $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+                                    $reg_num_sp = explode(" ", $reg_num);
+                                    $last_list_num = count($reg_num_sp) - 1 ;
+
+                                    $reg_1 = $reg_num_sp[0] . $reg_text ;
+                                    $reg_2 = $reg_num_sp[$last_list_num] ;
+
+                                    $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
+                                    $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
+                                    break;
+                                default:
+                                    $template_path = storage_path('../public/json/viimove/photo/nocall/flex-move-other.json');  
+                                    $string_json = file_get_contents($template_path);
+                                    break;
+                            }
                         }
 
                         if (!empty($phone)) {
@@ -387,7 +412,7 @@ class GuestController extends Controller
                             $string_json = str_replace("0999999999",$phone,$string_json);
                             $string_json = str_replace("โทร",$data_topic[4],$string_json);
                         }
-                        
+
                         $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
                         $string_json = str_replace("uploads",$photo,$string_json);
                         $string_json = str_replace("pphhoottoo",$photo,$string_json);
