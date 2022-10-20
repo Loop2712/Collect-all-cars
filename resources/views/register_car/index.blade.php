@@ -94,19 +94,50 @@
                                         <center>
                                             <hr style="margin-top: -20px; width: 90%; height:0.3px; color:#BEBEBE;">
                                         </center>
-                                        <div class="row notranslate"  style="font-family: K2D, sans-serif;">
-                                            <div class="col-12">
-                                                <center>
-                                                    <br>
-                                                    <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
-                                                    <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                    <!-- แท็บเล็ต -->
-                                                    <img class="d-block d-lg-none" style="position: absolute;right: 42px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-                                                    <!-- pc -->
-                                                    <img class="d-none d-lg-block" style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-                                                </center>
+                                        @if($item->car_type == "motorcycle")
+                                            @php
+                                                $reg = $item->registration_number ;
+                                                $reg_text = preg_replace('/[0-9]+/', '', $reg);
+                                                $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+                                                $reg_num_sp = explode(" ", $reg_num);
+                                                $last_list_num = count($reg_num_sp) - 1 ;
+
+                                                $reg_1 = $reg_num_sp[0] . $reg_text ;
+                                                $reg_2 = $reg_num_sp[$last_list_num] ;
+                                            @endphp
+                                            <div class="row notranslate"  style="font-family: K2D, sans-serif;">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <p style="position: relative;top: 5px; z-index: 5; font-size:18px;">
+                                                            <b>{{ $reg_1 }}</b>
+                                                        </p>
+                                                        <p style="position: relative;top: -10px; color: #000000; z-index: 5">
+                                                            {{ $item->province }}
+                                                            <br>
+                                                            <b>{{ $reg_2 }}</b>
+                                                        </p>
+                                                        <!-- แท็บเล็ต -->
+                                                        <img class="d-block d-lg-none" style="position: absolute;right: 101px;top: -5%;z-index: 2" width="130"src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+                                                        <!-- pc -->
+                                                        <img class="d-none d-lg-block" style="position: absolute;right: 108px;top: -5%;z-index: 2" width="130"src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+                                                    </center>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @else
+                                            <div class="row notranslate"  style="font-family: K2D, sans-serif;">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <br>
+                                                        <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                        <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                        <!-- แท็บเล็ต -->
+                                                        <img class="d-block d-lg-none" style="position: absolute;right: 42px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        <!-- pc -->
+                                                        <img class="d-none d-lg-block" style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <br>
                                         
                                         <br>
@@ -352,16 +383,20 @@
                                         <center>
                                             <hr style="margin-top: -20px; width: 90%; height:0.3px; color:#BEBEBE;">
                                         </center>
-                                        <div class="row notranslate"  style="font-family: K2D, sans-serif;">
-                                            <div class="col-12">
-                                                <center>
-                                                    <br>
-                                                    <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
-                                                    <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                    <img style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-                                                </center>
+                                        @if($item->car_type == "motorcycle")
+                                            <!--  -->
+                                        @else
+                                            <div class="row notranslate"  style="font-family: K2D, sans-serif;">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <br>
+                                                        <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                        <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
+                                                        <img style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                    </center>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                         <br>
                                         
                                         <br>
