@@ -349,45 +349,60 @@ class GuestController extends Controller
             if ($type_user == "line") {
                 switch ($masseng) {
                     case 'รถคุณเกิดอุบัติเหตุค่ะ':
+
                         if (empty($phone)) {
                             $template_path = storage_path('../public/json/flex-accident.json');   
                             $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-                            $string_json = str_replace("datetime",$time_zone,$string_json);
-                            $string_json = str_replace("TEXT_REG_NUM",$item->registration_number,$string_json);
-                            $string_json = str_replace("TEXT_REG_PRO",$item->province,$string_json);
-                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
-                            $string_json = str_replace("uploads",$photo,$string_json);
-                            $string_json = str_replace("pphhoottoo",$photo,$string_json);
-
-                            $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
-                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
-                            $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
-
-                            $messages = [ json_decode($string_json, true) ];
                         }
 
                         if (!empty($phone)) {
-                            $template_path = storage_path('../public/json/flex-accident-call.json');   
-                            $string_json = file_get_contents($template_path);
-                            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-                            $string_json = str_replace("datetime",$time_zone,$string_json);
-                            $string_json = str_replace("TEXT_REG_NUM",$item->registration_number,$string_json);
-                            $string_json = str_replace("TEXT_REG_PRO",$item->province,$string_json);
-                            $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
-                            $string_json = str_replace("uploads",$photo,$string_json);
-                            $string_json = str_replace("pphhoottoo",$photo,$string_json);
-                            $string_json = str_replace("0999999999",$phone,$string_json);
+                            switch($item->car_type)
+                            {
+                                case "car":  
+                                    $template_path = storage_path('../public/json/viimove/photo/call/flex-move-car.json');  
+                                    $string_json = file_get_contents($template_path);
+                                    break;
+                                case "motorcycle":  
+                                    $template_path = storage_path('../public/json/viimove/photo/call/flex-move-motorcycle.json'); 
+                                    $string_json = file_get_contents($template_path);
 
-                            $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
-                            $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
-                            $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
-                            $string_json = str_replace("โทร",$data_topic[4],$string_json);
+                                    $reg = $item->registration_number ;
+                                    $reg_text = preg_replace('/[0-9]+/', '', $reg);
+                                    $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+                                    $reg_num_sp = explode(" ", $reg_num);
+                                    $last_list_num = count($reg_num_sp) - 1 ;
 
-                            $messages = [ json_decode($string_json, true) ];
+                                    $reg_1 = $reg_num_sp[0] . $reg_text ;
+                                    $reg_2 = $reg_num_sp[$last_list_num] ;
+
+                                    $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
+                                    $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
+                                    break;
+                                default:
+                                    $template_path = storage_path('../public/json/viimove/photo/call/flex-move-other.json');  
+                                    $string_json = file_get_contents($template_path);
+                                    break;
                             }
-                        break;
-                    
+
+                            $string_json = str_replace("0999999999",$phone,$string_json);
+                            $string_json = str_replace("โทร",$data_topic[4],$string_json);
+                        }
+                        
+                        $string_json = str_replace("uploads",$photo,$string_json);
+                        $string_json = str_replace("pphhoottoo",$photo,$string_json);
+                        $string_json = str_replace("date",$date,$string_json);
+                        $string_json = str_replace("time",$time,$string_json);
+                        $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
+                        $string_json = str_replace("กรุณาเลื่อนรถด้วยค่ะ",$data_topic[0],$string_json);
+                        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+                        $string_json = str_replace("TEXT_REG_NUM",$item->registration_number,$string_json);
+                        $string_json = str_replace("TEXT_REG_PRO",$item->province,$string_json);
+                        $string_json = str_replace("เวลาที่ถูกแจ้ง",$data_topic[1],$string_json);
+                        $string_json = str_replace("หมายเลขทะเบียน",$data_topic[2],$string_json);
+                        $string_json = str_replace("ส่งข้อความตอบกลับ",$data_topic[3],$string_json);
+                        $messages = [ json_decode($string_json, true) ];
+
+                        break;                        
                     default:
                         if (empty($phone)) {
 
