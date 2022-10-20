@@ -10,9 +10,9 @@
           "contents": [
             {
               "type": "image",
-              "url": "https://www.viicheck.com/img/flex/move/photo/call/flex-move-car.png",
+              "url": "https://www.viicheck.com/img/flex/move/photo/nocall/flex-move-car.png",
               "size": "full",
-              "aspectRatio": "2500:4900",
+              "aspectRatio": "2500:4500",
               "aspectMode": "cover"
             },
             {
@@ -26,7 +26,7 @@
               ],
               "position": "absolute",
               "width": "16.5%",
-              "offsetTop": "10%",
+              "offsetTop": "11.8%",
               "offsetStart": "13.1%",
               "height": "12%"
             },
@@ -44,7 +44,7 @@
               ],
               "position": "absolute",
               "width": "55%",
-              "offsetTop": "13.5%",
+              "offsetTop": "13.8%",
               "offsetStart": "32%",
               "alignItems": "center"
             },
@@ -62,7 +62,7 @@
                 }
               ],
               "position": "absolute",
-              "offsetTop": "22.5%",
+              "offsetTop": "24%",
               "offsetStart": "45%",
               "alignItems": "center"
             },
@@ -80,7 +80,7 @@
               ],
               "position": "absolute",
               "width": "35%",
-              "offsetTop": "32.5%",
+              "offsetTop": "34.5%",
               "offsetStart": "13%",
               "alignItems": "center"
             },
@@ -98,7 +98,7 @@
               ],
               "position": "absolute",
               "width": "35%",
-              "offsetTop": "32.5%",
+              "offsetTop": "34.5%",
               "offsetStart": "52%",
               "alignItems": "center"
             },
@@ -116,7 +116,7 @@
               ],
               "position": "absolute",
               "width": "55%",
-              "offsetTop": "40%",
+              "offsetTop": "43.5%",
               "offsetStart": "24%",
               "alignItems": "center"
             },
@@ -127,14 +127,14 @@
                 {
                   "type": "text",
                   "text": "TEXT_REG_PRO",
-                  "weight": "bold",
+                  "weight": "regular",
                   "size": "18px",
                   "color": "#000000"
                 }
               ],
               "position": "absolute",
               "width": "55%",
-              "offsetTop": "45%",
+              "offsetTop": "48.5%",
               "offsetStart": "24%",
               "alignItems": "center"
             },
@@ -166,10 +166,10 @@
                 }
               ],
               "position": "absolute",
-              "width": "60.2%",
-              "offsetTop": "52.98%",
-              "offsetStart": "21%",
-              "height": "25.8%",
+              "width": "59.8%",
+              "offsetTop": "58%",
+              "offsetStart": "20.4%",
+              "height": "28.8%",
               "action": {
                 "type": "uri",
                 "label": "action",
@@ -201,49 +201,16 @@
               ],
               "position": "absolute",
               "width": "68%",
-              "offsetTop": "81.5%",
-              "offsetStart": "17%",
+              "offsetTop": "89%",
+              "offsetStart": "16.5%",
               "alignItems": "flex-start",
-              "height": "6.5%",
+              "height": "7%",
               "justifyContent": "center",
               "action": {
                 "type": "postback",
                 "label": "ส่งข้อความตอบกลับ",
                 "data": "การตอบกลับ?7ยษ2944/กรุงเทพ",
                 "displayText": "ส่งข้อความตอบกลับ"
-              }
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "0999999999",
-                      "weight": "bold",
-                      "size": "19.5px",
-                      "color": "#00B900"
-                    }
-                  ],
-                  "width": "60%",
-                  "offsetStart": "19%"
-                }
-              ],
-              "position": "absolute",
-              "width": "68%",
-              "offsetTop": "90.8%",
-              "offsetStart": "17%",
-              "alignItems": "flex-start",
-              "height": "6.5%",
-              "justifyContent": "center",
-              "action": {
-                "type": "uri",
-                "label": "โทร 0999999999",
-                "uri": "tel:0999999999"
               }
             }
           ],
