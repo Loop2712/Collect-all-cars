@@ -388,6 +388,7 @@ class GuestController extends Controller
                             $string_json = str_replace("โทร",$data_topic[4],$string_json);
                         }
                         
+                        $string_json = str_replace("สติกเกอร์ไลน์",$stg,$string_json);
                         $string_json = str_replace("uploads",$photo,$string_json);
                         $string_json = str_replace("pphhoottoo",$photo,$string_json);
                         $string_json = str_replace("date",$date,$string_json);
