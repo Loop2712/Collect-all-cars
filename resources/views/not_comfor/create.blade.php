@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br><br><br>
     <div class="container-fluid" style="margin-top: -50px;">
         <div class="row">
             <div class="col-12">

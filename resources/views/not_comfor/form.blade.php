@@ -1,26 +1,90 @@
 
-<div class="modal-body d-block d-md-none">
-    <center>
-        <div style="position: relative; z-index: 5">
-            <div style="padding-top: 8px;">
-                <span style="font-size: 20px;" class="text-dark"><b style=" margin: top -10px;">{{ $registration_number }}</b> </span>
-                <p style="font-size: 14px;" class="text-dark">{{ $province }}</p>
-            </div>
-        </div>
-        <img style="position: absolute;margin: -90px -140px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-    </center>
-</div>
+@if($car_type == 'motorcycle')
+    @php
+        $reg = $registration_number ;
+        $reg_text = preg_replace('/[0-9]+/', '', $reg);
+        $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+        $reg_num_sp = explode(" ", $reg_num);
+        $last_list_num = count($reg_num_sp) - 1 ;
 
-<div class="modal-body d-none d-lg-block">
+        $reg_1 = $reg_num_sp[0] . $reg_text ;
+        $reg_2 = $reg_num_sp[$last_list_num] ;
+    @endphp
+
+    <div class="modal-body d-block d-md-none">
+        <center>
+            <div style="position: relative; z-index: 5">
+                <div style="padding-top: 8px;">
+                    <span style="font-size: 20px;" class="text-dark">
+                        <b style=" margin: top -10px;">{{ $reg_1 }}</b>
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;" class="text-dark">
+                        {{ $province }}
+                    </span>
+                    <br>
+                    <span style="font-size: 20px;" class="text-dark">
+                        <b style=" margin: top -10px;">{{ $reg_2 }}</b>
+                    </span>
+                </div>
+            </div>
+            <img style="position: absolute;margin: -90px -65px;z-index: 2;" width="130" src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+        </center>
+    </div>
+
+    <div class="modal-body d-none d-lg-block">
         <div style="position: relative; z-index: 5">
             <div style="padding-top: 8px;">
-                <span style="font-size: 20px;" class="text-dark"><b style=" margin:0px 120px;">{{ $registration_number }}</b> </span>
-                <p style="font-size: 14px; margin:0px 120px;" class="text-dark">{{ $province }}</p>
+                <span style="font-size: 20px;" class="text-dark">
+                    <b style="margin:0px 40px;">{{ $reg_1 }}</b>
+                </span>
+                <br>
+                <span style="font-size: 14px;margin:0px 10px;" class="text-dark">
+                    {{ $province }}
+                </span>
+                <br>
+                <span style="font-size: 20px;" class="text-dark">
+                    <b style="margin:0px 35px;">{{ $reg_2 }}</b>
+                </span>
             </div>
         </div>
-        <img style="position: absolute;margin: -75px 0px;z-index: 2;" width="280" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-    <br style="d-none d-lg-block">
-</div>
+        <img style="position: absolute;margin: -90px -10px;z-index: 2;" width="130" src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+        <br style="d-none d-lg-block">
+    </div>
+@else
+    <div class="modal-body d-block d-md-none">
+        <center>
+            <div style="position: relative; z-index: 5">
+                <div style="padding-top: 8px;">
+                    <span style="font-size: 23px;" class="text-dark">
+                        <b style=" margin: top -10px;">{{ $registration_number }}</b>
+                    </span>
+                    <p style="font-size: 17px;" class="text-dark">
+                        {{ $province }}
+                    </p>
+                </div>
+            </div>
+            <img style="position: absolute;margin: -90px -130px;z-index: 2;" width="250" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+        </center>
+    </div>
+
+    <div class="modal-body d-none d-lg-block">
+        <div style="position: relative; z-index: 5">
+            <div style="padding-top: 8px;">
+                <span style="font-size: 23px;" class="text-dark">
+                    <b style=" margin:0px 85px;">{{ $registration_number }}</b>
+                </span>
+                <p style="font-size: 17px; margin:0px 75px;" class="text-dark">
+                    {{ $province }}
+                </p>
+            </div>
+        </div>
+        <img style="position: absolute;margin: -72px 0px;z-index: 2;" width="250" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+        <br style="d-none d-lg-block">
+    </div>
+@endif
+
+
 
 <input class="form-control" name="registration_number" type="hidden" id="registration_number" value="{{ isset($not_comfor->registration_number) ? $not_comfor->registration_number : $registration_number}}" readonly>
     {!! $errors->first('registration_number', '<p class="help-block">:message</p>') !!}

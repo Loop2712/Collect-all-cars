@@ -60,10 +60,11 @@ class Not_comforController extends Controller
         foreach ($data_cars as $data_car) {
             $registration_number = $data_car->registration_number;
             $province = $data_car->province;
+            $car_type = $data_car->car_type;
         }
 
 
-        return view('not_comfor.create', compact('registration_number' , 'province'));
+        return view('not_comfor.create', compact('registration_number' , 'province' , 'car_type'));
     }
 
     /**

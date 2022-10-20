@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.viicheck')
 
 @section('content')
 <center>
