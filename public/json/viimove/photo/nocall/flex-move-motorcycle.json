@@ -1,0 +1,274 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/move/photo/call/flex-move-motorcycle.png",
+              "size": "full",
+              "aspectRatio": "2500:4900",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/img/stickerline/Flex/สติกเกอร์ไลน์.png"
+                }
+              ],
+              "position": "absolute",
+              "width": "16.5%",
+              "offsetTop": "10%",
+              "offsetStart": "13.1%",
+              "height": "12%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "กรุณาเลื่อนรถด้วยค่ะ",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff"
+                }
+              ],
+              "position": "absolute",
+              "width": "55%",
+              "offsetTop": "13.5%",
+              "offsetStart": "32%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "UTC",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff",
+                  "gravity": "top"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "22.5%",
+              "offsetStart": "45%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "date",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff"
+                }
+              ],
+              "position": "absolute",
+              "width": "35%",
+              "offsetTop": "32.5%",
+              "offsetStart": "13%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "time",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff"
+                }
+              ],
+              "position": "absolute",
+              "width": "35%",
+              "offsetTop": "32.5%",
+              "offsetStart": "52%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "กกกก",
+                  "weight": "bold",
+                  "size": "30px",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "38%",
+              "offsetStart": "35%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "กรุงเทพ",
+                  "weight": "regular",
+                  "size": "12px",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "42.8%",
+              "offsetStart": "35%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "9999",
+                  "weight": "bold",
+                  "size": "30px",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "44.5%",
+              "offsetStart": "35%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/storage/uploads",
+                  "size": "full",
+                  "aspectMode": "cover"
+                },
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "contents": [
+                    {
+                      "type": "icon",
+                      "url": "https://www.viicheck.com/img/icon/zoom-in.png",
+                      "size": "xxl"
+                    }
+                  ],
+                  "alignItems": "flex-end",
+                  "justifyContent": "flex-end",
+                  "position": "absolute",
+                  "offsetEnd": "5%",
+                  "offsetBottom": "5%"
+                }
+              ],
+              "position": "absolute",
+              "width": "60.2%",
+              "offsetTop": "52.98%",
+              "offsetStart": "21%",
+              "height": "25.8%",
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": "https://www.viicheck.com/storage/pphhoottoo"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ส่งข้อความตอบกลับ",
+                      "weight": "bold",
+                      "size": "15.5px",
+                      "color": "#DB121A",
+                      "wrap": true,
+                      "maxLines": 2,
+                      "align": "center"
+                    }
+                  ],
+                  "width": "60%",
+                  "offsetStart": "18%"
+                }
+              ],
+              "position": "absolute",
+              "width": "68%",
+              "offsetTop": "81.5%",
+              "offsetStart": "17%",
+              "alignItems": "flex-start",
+              "height": "6.5%",
+              "justifyContent": "center",
+              "action": {
+                "type": "postback",
+                "label": "ส่งข้อความตอบกลับ",
+                "data": "การตอบกลับ?7ยษ2944/กรุงเทพ",
+                "displayText": "ส่งข้อความตอบกลับ"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "0999999999",
+                      "weight": "bold",
+                      "size": "19.5px",
+                      "color": "#00B900"
+                    }
+                  ],
+                  "width": "60%",
+                  "offsetStart": "19%"
+                }
+              ],
+              "position": "absolute",
+              "width": "68%",
+              "offsetTop": "90.8%",
+              "offsetStart": "17%",
+              "alignItems": "flex-start",
+              "height": "6.5%",
+              "justifyContent": "center",
+              "action": {
+                "type": "uri",
+                "label": "โทร 0999999999",
+                "uri": "tel:0999999999"
+              }
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+
+
+}
