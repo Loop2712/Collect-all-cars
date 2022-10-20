@@ -148,14 +148,14 @@
               {
                 "type": "text",
                 "text": "TEXT_REG_PRO",
-                "weight": "bold",
-                "size": "17px",
+                "weight": "regular",
+                "size": "13px",
                 "color": "#ffffff"
               }
             ],
             "position": "absolute",
             "width": "31%",
-            "offsetTop": "68.5%",
+            "offsetTop": "69%",
             "offsetStart": "52%",
             "alignItems": "center"
           },

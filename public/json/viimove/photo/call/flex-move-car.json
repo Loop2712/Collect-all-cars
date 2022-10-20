@@ -108,7 +108,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "7ยษ2944",
+                  "text": "TEXT_REG_NUM",
                   "weight": "bold",
                   "size": "30px",
                   "color": "#000000"
@@ -126,7 +126,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "กรุงเทพ",
+                  "text": "TEXT_REG_PRO",
                   "weight": "bold",
                   "size": "18px",
                   "color": "#000000"

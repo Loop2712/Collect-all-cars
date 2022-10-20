@@ -125,7 +125,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "7ยษ2944",
+                  "text": "TEXT_REG_NUM",
                   "weight": "bold",
                   "size": "25px",
                   "color": "#ffffff"
@@ -143,15 +143,15 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "กรุงเทพ",
-                  "weight": "bold",
-                  "size": "18px",
+                  "text": "TEXT_REG_PRO",
+                  "weight": "regular",
+                  "size": "15px",
                   "color": "#ffffff"
                 }
               ],
               "position": "absolute",
               "width": "38%",
-              "offsetTop": "43.5%",
+              "offsetTop": "43.8%",
               "offsetStart": "52%",
               "alignItems": "center"
             },

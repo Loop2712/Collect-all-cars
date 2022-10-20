@@ -108,7 +108,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "กกกก",
+                  "text": "TEXT_REG_MOR_1",
                   "weight": "bold",
                   "size": "30px",
                   "color": "#000000"
@@ -126,7 +126,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "กรุงเทพ",
+                  "text": "TEXT_REG_PRO",
                   "weight": "regular",
                   "size": "12px",
                   "color": "#000000"
@@ -144,7 +144,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "9999",
+                  "text": "TEXT_REG_MOR_2",
                   "weight": "bold",
                   "size": "30px",
                   "color": "#000000"
