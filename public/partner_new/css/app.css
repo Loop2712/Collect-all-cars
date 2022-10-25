@@ -32,7 +32,8 @@ File: app.css
 .plans {
 	background: #fff;
 	border-radius: 20px;
-	justify-content: space-around;display: flex;
+	justify-content: space-around;
+	display: flex;
 	margin-bottom: 10px;
 	}
   
@@ -107,43 +108,75 @@ File: app.css
 	-o-transition: ease-in 0.3s;
 	transition: ease-in 0.3s;
 	}
-  
-	@media screen and (max-width: 991px) {
-	.plans {
-		margin: 0 20px;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		-ms-flex-direction: row;
-		flex-direction: row;
-		padding: 40px;
+	@media (max-width:1281px) {
+		.plans {
+			margin: 0px 20px;
+			padding: 0px;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-align: start;
+			-ms-flex-align: start;
+			align-items: center;
+		}
+		
 	}
-  
-	.plans .plan {
-		width: 100%;
+	@media (max-width:1025px) {
+		.plans {
+			margin: 0px 20px;
+			padding: 0px;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: row;
+			flex-direction: row;
+			-webkit-box-align: start;
+			-ms-flex-align: start;
+			align-items: center;
+		}
+		
 	}
-  
-	.plan.complete-plan {
-		margin-top: 20px;
-	}
-  
-	.plans .plan .plan-content .plan-details {
-		width: 70%;
-		display: inline-block;
-	}
-  
-	.plans .plan input[type="radio"]:checked + .plan-content:after {
-		top: 45%;
-		-webkit-transform: translate(-50%);
-		-ms-transform: translate(-50%);
-		transform: translate(-50%);
-	}
+	@media screen and (max-width: 991px)  {
+		.plans {
+			margin: 0 20px;
+			padding: 10px;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-align: start;
+			-ms-flex-align: start;
+			align-items: flex-start;
+		}
+		.plans .plan {
+			width: 100%;
+		}
+	
+		.plans .plan .plan-content .plan-details {
+			width: 80%;
+			display: inline-block;
+		}
+	
+		.plans .plan input[type="radio"]:checked + .plan-content:after {
+			top: 45%;
+			-webkit-transform: translate(-50%);
+			-ms-transform: translate(-50%);
+			transform: translate(-50%);
+		}
 	}
   
 	@media screen and (max-width: 767px) {
-	.plans .plan .plan-content .plan-details {
-		width: 60%;
-		display: inline-block;
-	}
+		.plans{
+			margin: 0 20px;
+			padding: 10px;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			flex-direction: row;
+		}
+		.plans .plan .plan-content .plan-details {
+			width: 100%;
+			display: inline-block;
+		}
 	}
   
 	@media screen and (max-width: 540px) {

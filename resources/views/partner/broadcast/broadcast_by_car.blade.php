@@ -101,8 +101,36 @@
     
     .section-filter {
         position: -webkit-sticky;
-  position: sticky;
-    top: 4rem;
+        position: sticky;
+        top: 4rem;
+    }
+    @media (min-width:1281px) {  
+        .section-filter{
+             max-height: 600px;
+            overflow:auto;
+            min-width: 100%;
+            padding: 5px;
+        }
+        .section-filter::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        .section-filter::-webkit-scrollbar
+        {
+            width: 5px;
+            background-color: #F5F5F5;
+        }
+
+        .section-filter::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: red;
+            
+        }
     }
     .status{
         margin-top: -15px;
@@ -123,9 +151,13 @@
     border: black 12px solid;
     flex-direction:  column;
     font-family: 'Kanit', sans-serif;
+    padding:0px 10px 0px 10px;
+    min-width: 300px;
+    max-width: 300px;
 
 }
 .phone-camera{
+    padding: 0px;
     border-radius: 0px 0px 15px 15px;
     color: black;
     background-color: black;
@@ -148,7 +180,7 @@
      align-items: center;
 }
 .phone-footer{
-    padding: 10px;
+    padding: 10px 10px 10px 20px;
 }
 .richmenu{
     z-index: 99;
@@ -158,9 +190,12 @@
     background-color: #8CABD9;
     padding:0px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     height: 250px;
     z-index: 1;
+}
+.no-richmenu{
+    height: 420px !important;
 }
 .sand{
 animation: myAnim 1s ease 0s 1 normal forwards;
@@ -182,18 +217,26 @@ display:none;
 
 .div_alert{
   position: fixed;
-  top: 110%;
-  left: 50%;
+  top: 115%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  z-index: 9999;
+  
+}
+.div_alert span{
   background-color: #D64646;
-  padding:15px; 
   border-radius:10px;
   color:white;
+  padding:15px; 
   font-family: 'Kanit', sans-serif;
   z-index: 9999;
   
 }
 .up_down{
-  animation: up-down 2s cubic-bezier(0.5, 0, 0.75, 0) 0s 2 alternate-reverse both;
+  animation: up-down 2s cubic-bezier(0.5, 0, 0.75, 0) 1s 2 alternate-reverse both;
 }
 
 @keyframes up-down {
@@ -234,7 +277,110 @@ display:none;
   animation-delay: 0.4s;
 
 }
+.form-select-car{
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+}
+.btn-select{
+    border-radius:12px;
+    font-family: 'Kanit', sans-serif;
+} .button-reset-img {
+	display: flex;
+	height: 30px;
+	padding: 0;
+	background: #FF6961;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	overflow: hidden;
+	font-family: "Quicksand", sans-serif;
+	font-size: 12px;
+	font-weight: 500;
+	cursor: pointer;
+    float: right;
+    margin: 5px;
+}
+
+.button-reset-img:hover {
+	background: #FD4B41;
+}
+
+.button-reset-img:active {
+	background: #F13E34;
+}
+
+.button-reset-img-text,
+.button-reset-img-icon {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 5px;
+	color: #fff;
+	height: 100%;
+}
+
+.button-reset-img-icon {
+	font-size: 1em;
+	background: rgba(0, 0, 0, 0.08);
+} @media (min-width:1281px) {  
+        .owl-carousel{
+            padding: 0px 100px;
+            
+        }
+        .owl-carousel .owl-nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    
+        }
+        .owl-carousel .owl-nav .owl-prev{
+            background-color: #000000;
+            border-radius: 50%;
+        margin-left: -100px;
+        margin-top: -25%;
+    }
+    .owl-carousel .owl-nav .owl-next{
+        background-color: #000000;
+        border-radius: 50%;
+        margin-right: -100px;
+        margin-top: -25%;
+        
+    }
+    .content{
+        padding: 0px 100px;
+    }
+  }
+  
+  @media (min-width:200px) and (max-width:1200px){
+    .owl-nav{
+        display: none;
+    }
+  }.item-content{
+    background-color: #DAE3F8;
+    border-radius: 20px;
+    padding: 10px 10px;
+    }
+    .item-content h5{
+        white-space: nowrap; 
+        width: 100%; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }.img-content img{
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+    }.content-status{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+    }.content-status h6{
+    margin: 0px;
+    }
 </style>
+  <!-- carousel -->
+  <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
+
+
 <!-- MODAL LOADING -->
 <div class="modal fade" id="btn-loading" tabindex="-1" role="dialog" aria-labelledby="btn-loading" aria-hidden="true" data-backdrop="static" data-keyboard="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -254,15 +400,10 @@ display:none;
   </div>
 </div>
 </div>
-
-
-
-<div id="car_max" class="alert alert-primary div_alert" role="alert">
-    <center>
+<div id="car_max" class=" div_alert" role="alert">
         <span id="text_car_max">
             ขออภัย เกินจำนวนที่กำหนด
         </span>
-    </center>
 </div>
 
 <form method="POST" action="{{ url('/') }}/api/send_content_BC_by_car" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
@@ -279,209 +420,283 @@ display:none;
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-        <div class="modal-content" style="border-radius: 20px;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;font-family: 'Kanit', sans-serif;">
-                    กำหนดบรอดแคสต์
-                </h5>
-                <div>
-                    <a class="btn btn-warning btn-sm text-white main-shadow main-radius" onclick="reset_BC();">
-                        <i class="fas fa-sync"></i> reset
-                    </a>
-                    <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-9 col-md-9 col-12 card">
-                        <h4 class="text-dark">สร้างเนื้อหาใหม่</h4>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group {{ $errors->has('name_content') ? 'has-error' : ''}}">
-                                    <label for="name_content" class="control-label">{{ 'ชื่อเนื้อหา' }}</label>
-                                    <input class="form-control" name="name_content" type="text" id="name_content" value="" onchange="check_send_content();">
-                                </div>
-                                <br>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 col-md-9 col-lg-9">
+                    <div class="modal-content" style="border-radius: 20px;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;font-family: 'Kanit', sans-serif;">
+                                กำหนดบรอดแคสต์
+                            </h5>
+                            <div>
+                                <a class="btn btn-warning btn-sm text-white main-shadow main-radius " onclick="reset_BC();">
+                                    <i class="fas fa-sync"></i> reset
+                                </a>
+                                <button type="button" class="close btn btn-md" data-dismiss="modal" aria-label="Close">
+                                    <span style="font-size: 28px;" aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}}">
-                                    <label for="link" class="control-label">{{ 'ลิงก์' }}</label>
-                                    <input class="form-control" name="link" type="text" id="link" value="" onchange="check_send_content();">
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-12 d-none">
-                                <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
-                                    <label for="detail" class="control-label">{{ 'คำอธิบาย' }}</label>
-                                    <!-- <span class="text-secondary">(ไม่แสดงต่อผู้ใช้)</span> -->
-                                    <textarea class="form-control" name="detail" rows="4" type="text" id="detail" value="" onchange="check_send_content();"></textarea>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12" style="font-family: 'Kanit', sans-serif;">
+                                    <h4 class="text-dark">สร้างเนื้อหาใหม่</h4>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group {{ $errors->has('name_content') ? 'has-error' : ''}}">
+                                                <label for="name_content" class="control-label">{{ 'ชื่อเนื้อหา' }}</label>
+                                                <input style="border-radius: 10px;" class="form-control" name="name_content" type="text" id="name_content" value="" onchange="check_send_content();">
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}}">
+                                                <label for="link" class="control-label">{{ 'ลิงก์' }}</label>
+                                                <input  style="border-radius: 10px;"class="form-control" name="link" type="text" id="link" value="" onchange="check_send_content();">
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="col-12 d-none">
+                                            <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
+                                                <label for="detail" class="control-label">{{ 'คำอธิบาย' }}</label>
+                                                <!-- <span class="text-secondary">(ไม่แสดงต่อผู้ใช้)</span> -->
+                                                <textarea class="form-control" name="detail" rows="4" type="text" id="detail" value="" onchange="check_send_content();"></textarea>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div id="div_user_unique" class="col-12 d-none d-flex align-items-center">
+                                            <input class="" name="user_unique" type="checkbox" id="user_unique" value="" style="border-radius:50px;width:20px;height: 20px;cursor: pointer;" onclick="check_user_unique();">
+                                                &nbsp;<label for="user_unique" style="cursor: pointer;">ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว</label>
+                                            <!-- &nbsp; ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว -->
+                                            <br>
+                                        </div>
+                                        <div class="col-12 d-none">
+                                            <div class="form-group {{ $errors->has('arr_show_user') ? 'has-error' : ''}}">
+                                                <input class="form-control" name="arr_show_user" type="text" id="arr_show_user" value="" readonly>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="col-3 d-none">
+                                            <div class="form-group {{ $errors->has('send_again') ? 'has-error' : ''}}">
+                                                <input class="form-control" name="send_again" type="text" id="send_again" value="" readonly>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="col-3 d-none">
+                                            <div class="form-group {{ $errors->has('id_ads') ? 'has-error' : ''}}">
+                                                <input class="form-control" name="id_ads" type="text" id="id_ads" value="" readonly>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <div class="col-6 d-none">
+                                            <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                                                <!-- <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label> -->
+                                                <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <span style="font-size:20px;color:blue;">จำนวน <span id="span_amount_send">0</span> คัน</span>
+                                            <div class="d-none form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
+                                                <!-- <label for="amount" class="control-label">{{ 'Amount' }}</label> -->
+                                                <input class="form-control" name="amount" type="text" id="amount" value="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <button id="btn_send_content" style="float: right;width: 40%;" class="btn-select btn btn-success btn-md main-shadow main-radius" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" disabled onclick="document.querySelector('#btn_btn_send_content_submit').click();">
+                                                    ยืนยัน
+                                                </button>
+                                                <input class="d-none" id="btn_btn_send_content_submit" type="submit" value="{{ 'ยืนยัน' }}"  >
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <br>
-                                </div>
-                            </div>
-                            <div id="div_user_unique" class="col-12 d-none">
-                                <input class="" name="user_unique" type="checkbox" id="user_unique" value="" onclick="check_user_unique();">
-                                &nbsp; ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว
-                                <br><br>
-                            </div>
-                            <div class="col-12 d-none">
-                                <div class="form-group {{ $errors->has('arr_show_user') ? 'has-error' : ''}}">
-                                    <input class="form-control" name="arr_show_user" type="text" id="arr_show_user" value="" readonly>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-3 d-none">
-                                <div class="form-group {{ $errors->has('send_again') ? 'has-error' : ''}}">
-                                    <input class="form-control" name="send_again" type="text" id="send_again" value="" readonly>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-3 d-none">
-                                <div class="form-group {{ $errors->has('id_ads') ? 'has-error' : ''}}">
-                                    <input class="form-control" name="id_ads" type="text" id="id_ads" value="" readonly>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-6 d-none">
-                                <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                                    <!-- <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label> -->
-                                    <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
-                                </div>
-                                <br>
-                            </div>
+                                    <hr>
+                                    <br>
 
-                            <div class="col-6">
-                                <span style="font-size:20px;color:blue;">จำนวน <span id="span_amount_send">0</span> คัน</span>
-                                <div class="d-none form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
-                                    <!-- <label for="amount" class="control-label">{{ 'Amount' }}</label> -->
-                                    <input class="form-control" name="amount" type="text" id="amount" value="" readonly>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <button id="btn_send_content" style="float: right;width: 40%;" class="btn btn-success btn-sm main-shadow main-radius" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" disabled onclick="document.querySelector('#btn_btn_send_content_submit').click();">
-                                        ยืนยัน
-                                    </button>
-                                    <input class="d-none" id="btn_btn_send_content_submit" type="submit" value="{{ 'ยืนยัน' }}"  >
-                                </div>
-                            </div>
-                        </div>
+                                    <h4>เลือกเนื้อหา</h4>
+                                    <br>
+                                    <div class="owl-carousel owl-theme content">
+                                        @foreach($ads_contents as $ads)
+                                            @php
+                                                if(!empty($ads->show_user)){
+                                                    $show_user = json_decode($ads->show_user) ;
+                                                    $count_show_user = count($show_user) ;
+                                                }else{
+                                                    $count_show_user = '0' ;
+                                                }
 
-                        <br>
-                        <hr>
-                        <br>
+                                                if(!empty($ads->user_click)){
+                                                    $user_click = json_decode($ads->user_click) ;
+                                                    $count_user_click = count($user_click) ;
+                                                }else{
+                                                    $count_user_click = '0' ;
+                                                }
+                                                
+                                                
+                                            @endphp
 
-                        <h4>เลือกเนื้อหา</h4>
-                        <br>
-                        <div class="row text-center">
-                            @foreach($ads_contents as $ads)
-                                @php
-                                    if(!empty($ads->show_user)){
-                                        $show_user = json_decode($ads->show_user) ;
-                                        $count_show_user = count($show_user) ;
-                                    }else{
-                                        $count_show_user = '0' ;
-                                    }
-
-                                    if(!empty($ads->user_click)){
-                                        $user_click = json_decode($ads->user_click) ;
-                                        $count_user_click = count($user_click) ;
-                                    }else{
-                                        $count_user_click = '0' ;
-                                    }
-                                    
-                                    
-                                @endphp
-                            <div class="col-4">
-                                <p>
-                                    <b>ชื่อเนื้อหา : {{ $ads->name_content }}</b>
-                                    <a class="btn btn-info btn-sm text-white" style="float:right;margin-top: -5px;" onclick="select_content_again('{{ $ads->id }}');">
-                                        เลือก
-                                    </a>
-                                </p>
-                                <img src="{{ url('storage')}}/{{ $ads->photo }}" width="100px">
-                                <br><br>
-                                <p>
-                                    <b>ส่งแล้ว : {{ $ads->send_round }} ครั้ง</b> &nbsp;|&nbsp;
-                                    <i class="fas fa-user"></i> &nbsp; {{ $count_show_user }} &nbsp;
-                                    <i class="fad fa-eye"></i> &nbsp; {{ $count_user_click }}
-                                </p>
-                            </div>
-                            @endforeach
-                        </div>
-
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-12 phone-frame">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="row">
-                                <div class="col-3 text-center">{{ date('H:i') }}</div>
-                                <div class="col-6 phone-camera"></div>
-                                <div class="col-3 d-flex align-items-center">
-                                    <div class="col-12 p-0">
-                                        <div class="row ">
-                                            <div class="col p-0 phone-icon"><i class="fa-sharp fa-solid fa-signal-bars"></i></div>
-                                            <div class="col p-0 phone-icon"><i class="fa-solid fa-wifi"></i></div>
-                                            <div class="col p-0 phone-icon"><i class="fa-solid fa-battery-full"></i></div></div>
-                                        </div>
+                                            <div class="item item-content " >
+                                                <a  onclick="select_content_again('{{ $ads->id }}');">
+                                                    <h5>{{ $ads->name_content }}</h5>
+                                                    <div class="img-content">
+                                                        <img src="{{ url('storage')}}/{{ $ads->photo }}" alt="">
+                                                    </div>
+                                                    <div class="content-status">
+                                                        <div class="col-6">
+                                                            <h6>
+                                                                ส่ง {{ $ads->send_round }} ครั้ง                
+                                                            </h6>
+                                                        </div >
+                                                        <div class="col-6">
+                                                            <div class="row">
+                                                                <div class="col-md-12 col-6 col-lg-6 p-0 ">
+                                                                    <h6 style="float: right; padding-right:10px;">
+                                                                        <i class="fa-solid fa-user"></i> {{ $count_show_user }}
+                                                                    </h6>
+                                                                </div>
+                                                                <div class="col-md-12  col-6 col-lg-6 p-0" >
+                                                                    <h6 style="float: right; padding-right:10px;">
+                                                                        <i class="fad fa-eye"></i> {{ $count_user_click }}
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button  style="float: right;width: 100%;margin-top:15px;margin-bottom:5px;" class="btn-select btn btn-success btn-sm main-shadow main-radius">
+                                                        ยืนยัน
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                </div>  
-                            </div>
-                            <div class="phone-header">
-                                <div class="row">
-                                    <div class="col-7 phone-name ">
-                                        <div class="row">
-                                            <div class="col-2 text-center"><i class="fa-solid fa-chevron-left"></i></div>
-                                            <div class="col-10 text-start p-0"> <img src="{{ asset('/img/icon/โล่.png') }}" alt="" width="8%"> ViiCHECK</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5 phone-icon-header">
-                                        <div class="row ">
-                                            <div class="col"><img src="{{ asset('/img/icon/search.png') }}" alt="" width="100%"></i></div>
-                                            <div class="col"><img src="{{ asset('/img/icon/document.png') }}" alt="" width="100%"></div>
-                                            <div class="col"><img src="{{ asset('/img/icon/more.png') }}" alt="" width="100%"></i></div>
+                                    <!-- <div class="row text-center">
+                                        @foreach($ads_contents as $ads)
+                                            @php
+                                                if(!empty($ads->show_user)){
+                                                    $show_user = json_decode($ads->show_user) ;
+                                                    $count_show_user = count($show_user) ;
+                                                }else{
+                                                    $count_show_user = '0' ;
+                                                }
 
+                                                if(!empty($ads->user_click)){
+                                                    $user_click = json_decode($ads->user_click) ;
+                                                    $count_user_click = count($user_click) ;
+                                                }else{
+                                                    $count_user_click = '0' ;
+                                                }
+                                                
+                                                
+                                            @endphp
+                                        <div class="col-4">
+                                            <p>
+                                                <b>ชื่อเนื้อหา : {{ $ads->name_content }}</b>
+                                                <a class="btn btn-info btn-sm text-white" style="float:right;margin-top: -5px;" onclick="select_content_again('{{ $ads->id }}');">
+                                                    เลือก
+                                                </a>
+                                            </p>
+                                            <img src="{{ url('storage')}}/{{ $ads->photo }}" width="100px">
+                                            <br><br>
+                                            <p>
+                                                <b>ส่งแล้ว : {{ $ads->send_round }} ครั้ง</b> &nbsp;|&nbsp;
+                                                <i class="fas fa-user"></i> &nbsp; {{ $count_show_user }} &nbsp;
+                                                <i class="fad fa-eye"></i> &nbsp; {{ $count_user_click }}
+                                            </p>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="phone-content" >
-                                <div id="div_img" class="col-12 d-none remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;">
-                                    <div class="col-12" >
-                                        <div id="send-img">
-                                            <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                        @endforeach
+                                    </div> -->
 
-                                            <img id="img_exchange" src="{{ asset('/img/more/exchange.png') }}" style="float: right;margin-right: 10px;margin-top: 5px;" alt="" width="13%" onclick="document.querySelector('#photo').click();">
-                                            <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
-                                        </div>
-                                    </div>
-                                    
-                                    <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
                                 </div>
-                                <div id="div_add_img" class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;" onclick="document.querySelector('#photo').click();">
-                                    <div class="col-12" >
-                                        <div id="send-img">
-                                            <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
-                                            <img src="{{ asset('/img/more/add_img.jpg') }}" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img_add_img"  >
-                                        </div>
-                                    </div>
-                                    
-                                    <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
-                                </div>
-                            </div>
-                            <div class="richmenu" >
-                                <img src="{{ asset('/img/new_rich_menu/rich_menu_new/richmenu-th.png') }}" alt="" width="100%">
-                            </div>
-                            <div class="row phone-footer">
-                                <div class="col"><img src="{{ asset('/img/icon/keyboard.png') }}" alt="" width="15%">
-                                </div>
-                                <div class="col">
-                                    <span>เมนู▾</span>
-                                </div>
+                            <!-- ----------------phone----------------- -->
                             </div>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="col-12 col-md-3 col-lg-3">
+                    <center>
+                        <br class="mt-5 d-block d-md-none">
+                        <div class="phone-frame ml-5 modal-content" style="padding-top: 0px;">
+                            <div class="row">
+                                <div class="col-12 " style="background-color: #FFFFFF;  border-radius:50px 50px 0px 0px;margin-top:-0.5%">
+                                    <div class="row">
+                                    <div class="col-3 text-center">{{ date('H:i') }}</div>
+                                    <div class="col-6 phone-camera"></div>
+                                    <div class="col-3 d-flex align-items-center">
+                                        <div class="col-12 p-0">
+                                            <div class="row ">
+                                                <div class="col p-0 phone-icon"><i class="fa-sharp fa-solid fa-signal-bars"></i></div>
+                                                <div class="col p-0 phone-icon"><i class="fa-solid fa-wifi"></i></div>
+                                                <div class="col p-0 phone-icon"><i class="fa-solid fa-battery-full"></i></div></div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="phone-header">
+                                    <div class="row">
+                                        <div class="col-7 phone-name ">
+                                            <div class="row">
+                                                <div class="col-2 text-center"><i class="fa-solid fa-chevron-left"></i></div>
+                                                <div class="col-10 text-start p-0"> <img src="{{ asset('/img/icon/โล่.png') }}" alt="" width="8%"> ViiCHECK</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 phone-icon-header">
+                                            <div class="row ">
+                                                <div class="col"><img src="{{ asset('/img/icon/search.png') }}" alt="" width="100%"></i></div>
+                                                <div class="col"><img src="{{ asset('/img/icon/document.png') }}" alt="" width="100%"></div>
+                                                <div class="col"><img src="{{ asset('/img/icon/more.png') }}" alt="" width="100%"></i></div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div  class="phone-content" >
+                                    <div id="div_img" class="col-12 d-none remove-scrollbar div_img" style="min-width: 100%;max-height: 100%;overflow:auto;cursor: grab;">
+                                        <div class="col-12" >
+                                            <div id="send-img">
+                                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                                    
+                                                <button type="button" class="button-reset-img" onclick="document.querySelector('#photo').click();">
+                                                    <span class="button-reset-img-icon">
+                                                        <i class="fa-solid fa-arrows-rotate"></i>
+                                                    </span>
+                                                    <span class="button-reset-img-text">Reset</span>
+                                                </button>
+                                                <!-- <img id="img_exchange" src="{{ asset('/img/more/exchange.png') }}" style="float: right;margin-right: 10px;margin-top: 5px;" alt="" width="13%" onclick="document.querySelector('#photo').click();"> -->
+                                                <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
+                                            </div>
+                                        </div>
+                                        
+                                        <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
+                                    </div>
+                                    <div id="div_add_img" class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;" onclick="document.querySelector('#photo').click();">
+                                        <div class="col-12" >
+                                            <div id="send-img">
+                                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                                <img src="{{ asset('/img/more/add_img_2.png') }}" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img_add_img"  >
+                                            </div>
+                                        </div>
+                                        <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
+                                    </div>
+                                </div>
+                                <div class="richmenu text-center" >
+                                    <img src="{{ asset('/img/new_rich_menu/rich_menu_new/richmenu-th.png') }}" alt="" width="100%">
+                                </div>
+                                <div class="row phone-footer d-flex justify-content-start">
+                                    <div class="col d-flex justify-content-start" style="float: left;"><img src="{{ asset('/img/icon/keyboard.png') }}" alt="" width="20%"></div>
+                                    <div class="col d-flex justify-content-start" style="cursor: pointer;float: left;">
+                                        <span onclick="document.querySelector('.richmenu').classList.toggle('d-none');
+                                        document.querySelector('.phone-content').classList.toggle('no-richmenu');
+                                        document.querySelector('.div_img').classList.toggle('no-richmenu');">เมนู▾</span>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </center>
                 </div>
             </div>
         </div>
@@ -495,37 +710,58 @@ display:none;
         <div class="col-12 col-lg-3 col-md-3 ">
             <div class="item section-filter">
                 <div class="card filter text-center" style="padding:10px;">
-                    <br>
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12">
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class="row form-select-car" >
+                                    <div class="col-12 text-center text-selected">
+                                        <h5>เลือกจำนวน</h5>
+                                        <span id="tell_BC_by_car_max" class="d-none">
+                                            (ไม่เกิน <span id="amount_remain">{{ $BC_by_car_max - $BC_by_car_sent }}</span>)
+                                        </span>
+                                        
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <span id="tell_BC_by_car_max" class=""></span>
+                                            <input min="1" max="{{ $BC_by_car_max - $BC_by_car_sent }}" style="width:100%;" placeholder="ไม่เกิน {{ $BC_by_car_max - $BC_by_car_sent }} คัน"  class="form-control" type="number" name="select_amount" id="select_amount" 
+                                            oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')' ">
+                                        </div>
+                                        <div class="col-5">
+                                            <button id="btn_select_from_amount" style="width: 100%;" class="btn-select btn btn-primary btn-md" onclick="select_from_amount();">
+                                                เลือก<span id="span_select_from_amount" class="d-none"></span>
+                                            </button>
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- <div class="col-6">
                                         <p>
                                             เลือกจำนวน 
                                             <span id="tell_BC_by_car_max" class="">
                                                 (ไม่เกิน <span id="amount_remain">{{ $BC_by_car_max - $BC_by_car_sent }}</span>)
                                             </span>
                                         </p>
-                                        <input style="width:100%;" class="form-control" type="number" name="select_amount" id="select_amount" 
+                                        <input min="1" max="{{ $BC_by_car_max - $BC_by_car_sent }}" style="width:100%;" placeholder="ไม่เกิน {{ $BC_by_car_max - $BC_by_car_sent }} คัน"  class="form-control" type="number" name="select_amount" id="select_amount" 
                                         oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')' ">
-                                    </div>
-                                    <div class="col-6">
-                                        <button id="btn_amount_remain_all" style="margin-top: 0px;width: 100%;" class="btn btn-sm btn-info text-white" onclick="click_select_car_all();">
+                                    </div> -->
+                                    <div class="col-12 mt-3">
+                                        <button id="btn_amount_remain_all" style="margin-top: 0px;width: 100%;" class="btn btn-md btn-info text-white btn-select" onclick="click_select_car_all();">
                                             เลือกทั้งหมด&nbsp;(<span id="amount_remain_all">{{ $BC_by_car_max - $BC_by_car_sent }}</span>)
                                         </button>
-                                        <button id="btn_select_from_amount" style="margin-top: 10px;width: 100%;" class="btn btn-primary btn-sm" onclick="select_from_amount();">
+                                        <!-- <button id="btn_select_from_amount" style="margin-top: 10px;width: 100%;" class="btn btn-primary btn-sm" onclick="select_from_amount();">
                                             เลือก<span id="span_select_from_amount"></span>
-                                        </button>
+                                        </button> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <p id="warn_BC_by_car_max" class="d-none text-danger" style="margin-top:15px;">
+                                <p id="warn_BC_by_car_max" class="d-none text-danger mb-0" style="margin-top:15px;font-family: 'Kanit', sans-serif;">
                                     <!-- ข้อความแจ้งเตือน -->
                                 </p>
                             </div>
-                            <hr style="margin-top:20px;">
+                            <hr style="margin-top:20px;border:1px solid #db2d2e;" >
                             <div class="col-12">
                                 <div class="row ">
                                     <div class="col-12 text-selected">
@@ -533,7 +769,7 @@ display:none;
                                     </div>
                                     <div class="col-12">
                                         <center>
-                                            <button id="btn_next_selected_car" type="button" class="btn btn-sm btn-success main-shadow main-radius" style="width:70%;" data-toggle="modal" data-target="#exampleModalCenter" disabled>
+                                            <button id="btn_next_selected_car" type="button" class="btn-select btn btn-md btn-success main-shadow main-radius" style="width:70%;" data-toggle="modal" data-target="#exampleModalCenter" disabled>
                                                 ต่อไป
                                             </button>
                                         </center>
@@ -675,62 +911,64 @@ display:none;
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-9 col-md-9 test item" id="div_data_car_search">
+        
+        <div class="col-12 col-lg-9 col-md-9 test item" id="div_data_car_search" >
+            <br class="mt-5 d-block d-md-none">
             <div class="card result">
-            <div class="header text-result">
-                <h4>
-                    <i class="fa-solid fa-square-poll-horizontal"></i> ผลการค้นหา&nbsp;&nbsp;
-                    <span style="font-size:15px;color: grey;">
-                        <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คัน</span>
-                    </span>
-                </h4>
-                <div id="div_btn_view_all_car" class="d-none" style="float: right;display: none;">
-                    <span class="btn btn-info btn-sm text-white main-shadow main-radius">
-                        <i class="fa-solid fa-eye"></i> ดูรถที่เลือกทั้งหมด
-                    </span>
-                    <span class="btn btn-danger btn-sm text-white main-shadow main-radius">
-                        <i class="fa-sharp fa-solid fa-delete-left"></i> ยกเลิกการเลือกทั้งหมด
-                    </span>
-                </div>
-            </div>    
-            <div class="div-result" >
-                <div class="row ">
-
-                    <div class="col-12">
-                        <!-- content_search_data -->
-                        <div class="row"id="content_search_data"></div>
+                <div class="header text-result">
+                    <h4>
+                        <i class="fa-solid fa-square-poll-horizontal"></i> ผลการค้นหา&nbsp;&nbsp;
+                        <span style="font-size:15px;color: grey;">
+                            <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คัน</span>
+                        </span>
+                    </h4>
+                    <div id="div_btn_view_all_car" class="d-none" style="float: right;display: none;">
+                        <span class="btn btn-info btn-sm text-white main-shadow main-radius">
+                            <i class="fa-solid fa-eye"></i> ดูรถที่เลือกทั้งหมด
+                        </span>
+                        <span class="btn btn-danger btn-sm text-white main-shadow main-radius">
+                            <i class="fa-sharp fa-solid fa-delete-left"></i> ยกเลิกการเลือกทั้งหมด
+                        </span>
                     </div>
+                </div>    
+                <div class="div-result" >
+                    <div class="row ">
 
-                    <div class="col-3 section-filter d-none"style="height:650px;overflow:auto;">
-                        <div class="row ">
-                            <div class="col-12" id="content_selected_car">
-                                <!-- <div class="col-12 p-1">
-                                    <div class="result-content">
-                                        <div class="result-car">
-                                            <div class="result-img">
-                                                <img loading="lazy" src="{{ asset('/img/icon/car1.png') }}" alt="" />
+                        <div class="col-12">
+                            <!-- content_search_data -->
+                            <div class="row"id="content_search_data"></div>
+                        </div>
+
+                        <div class="col-3 section-filter d-none"style="height:650px;overflow:auto;">
+                            <div class="row ">
+                                <div class="col-12" id="content_selected_car">
+                                    <!-- <div class="col-12 p-1">
+                                        <div class="result-content">
+                                            <div class="result-car">
+                                                <div class="result-img">
+                                                    <img loading="lazy" src="{{ asset('/img/icon/car1.png') }}" alt="" />
+                                                </div>
+                                                <div class="result-header">
+                                                <span class="name-brand">กก1234</span> 
+                                                <span>กรุงเทพมหานคร</span> 
+                                                </div>
+                                                <div class="status">
+                                                <i class="fa-regular fa-circle"></i>
+                                                </div>
                                             </div>
-                                            <div class="result-header">
-                                            <span class="name-brand">กก1234</span> 
-                                            <span>กรุงเทพมหานคร</span> 
-                                            </div>
-                                            <div class="status">
-                                            <i class="fa-regular fa-circle"></i>
+                                            <div class="license-plate">
+                                                <span>ส่วนบุคคล</span>
                                             </div>
                                         </div>
-                                        <div class="license-plate">
-                                            <span>ส่วนบุคคล</span>
-                                        </div>
-                                    </div>
-                                </div> -->
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
-            </div>        
-        </div>
+                </div>        
+            </div>
         <div>
     </div>
 </div>
@@ -838,7 +1076,7 @@ display:none;
 
                         let div_data_car = document.createElement("div");
                         let class_div_data_car = document.createAttribute("class");
-                            class_div_data_car.value = "col-12 col-md-4 col-lg-4 p-1";
+                            class_div_data_car.value = "col-12 col-md-3 col-lg-3 p-1";
                             div_data_car.setAttributeNode(class_div_data_car);
 
                         let div_result_content = document.createElement("div");
@@ -1641,5 +1879,30 @@ display:none;
     }
 
 </script>
-
+<script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/main.js') }}"></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:true,
+    pading:10,
+    navText : ["<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa fa-chevron-left btn_con btn'></i>",
+    "<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa fa-chevron-right btn_con btn'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
 @endsection
