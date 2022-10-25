@@ -106,7 +106,7 @@
     }
     @media (min-width:1281px) {  
         .section-filter{
-             max-height: 600px;
+            max-height: 85vh;
             overflow:auto;
             min-width: 100%;
             padding: 5px;
@@ -540,36 +540,34 @@ display:none;
                                             @endphp
 
                                             <div class="item item-content " >
-                                                <a  onclick="select_content_again('{{ $ads->id }}');">
-                                                    <h5>{{ $ads->name_content }}</h5>
-                                                    <div class="img-content">
-                                                        <img src="{{ url('storage')}}/{{ $ads->photo }}" alt="">
-                                                    </div>
-                                                    <div class="content-status">
-                                                        <div class="col-6">
-                                                            <h6>
-                                                                ส่ง {{ $ads->send_round }} ครั้ง                
-                                                            </h6>
-                                                        </div >
-                                                        <div class="col-6">
-                                                            <div class="row">
-                                                                <div class="col-md-12 col-6 col-lg-6 p-0 ">
-                                                                    <h6 style="float: right; padding-right:10px;">
-                                                                        <i class="fa-solid fa-user"></i> {{ $count_show_user }}
-                                                                    </h6>
-                                                                </div>
-                                                                <div class="col-md-12  col-6 col-lg-6 p-0" >
-                                                                    <h6 style="float: right; padding-right:10px;">
-                                                                        <i class="fad fa-eye"></i> {{ $count_user_click }}
-                                                                    </h6>
-                                                                </div>
+                                                <h5>{{ $ads->name_content }}</h5>
+                                                <div class="img-content">
+                                                    <img src="{{ url('storage')}}/{{ $ads->photo }}" alt="">
+                                                </div>
+                                                <div class="content-status">
+                                                    <div class="col-6">
+                                                        <h6>
+                                                            ส่ง {{ $ads->send_round }} ครั้ง                
+                                                        </h6>
+                                                    </div >
+                                                    <div class="col-6">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-6 col-lg-6 p-0 ">
+                                                                <h6 style="float: right; padding-right:10px;">
+                                                                    <i class="fa-solid fa-user"></i> {{ $count_show_user }}
+                                                                </h6>
+                                                            </div>
+                                                            <div class="col-md-12  col-6 col-lg-6 p-0" >
+                                                                <h6 style="float: right; padding-right:10px;">
+                                                                    <i class="fad fa-eye"></i> {{ $count_user_click }}
+                                                                </h6>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button  style="float: right;width: 100%;margin-top:15px;margin-bottom:5px;" class="btn-select btn btn-success btn-sm main-shadow main-radius">
-                                                        ยืนยัน
-                                                    </button>
-                                                </a>
+                                                </div>
+                                                <span style="float: right;width: 100%;margin-top:15px;margin-bottom:5px;" class="btn-select btn btn-success btn-sm main-shadow main-radius" onclick="select_content_again('{{ $ads->id }}');">
+                                                    เลือก
+                                                </span>
                                             </div>
                                         @endforeach
                                     </div>
@@ -660,13 +658,12 @@ display:none;
                                             <div id="send-img">
                                                 <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
                                                     
-                                                <button type="button" class="button-reset-img" onclick="document.querySelector('#photo').click();">
+                                                <button id="img_exchange" type="button" class="button-reset-img" onclick="document.querySelector('#photo').click();">
                                                     <span class="button-reset-img-icon">
                                                         <i class="fa-solid fa-arrows-rotate"></i>
                                                     </span>
                                                     <span class="button-reset-img-text">Reset</span>
                                                 </button>
-                                                <!-- <img id="img_exchange" src="{{ asset('/img/more/exchange.png') }}" style="float: right;margin-right: 10px;margin-top: 5px;" alt="" width="13%" onclick="document.querySelector('#photo').click();"> -->
                                                 <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
                                             </div>
                                         </div>
@@ -1633,7 +1630,7 @@ display:none;
         document.querySelector('#div_add_img').classList.remove('d-none');
         document.querySelector('#img-content').src = null ;
         document.querySelector('#photo').value = null ;
-        document.querySelector('#img_add_img').src = "{{ asset('/img/more/add_img.jpg') }}" ;
+        document.querySelector('#img_add_img').src = "{{ asset('/img/more/add_img_2.png') }}" ;
         
     }
 
