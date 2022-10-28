@@ -2,6 +2,53 @@
 
 
 @section('content')
+<style>
+    .div_alert {
+        position: fixed;
+        top: -10%;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        font-family: 'Kanit', sans-serif;
+        z-index: 9999;
+        font-size: 18px;
+
+    }
+
+    .div_alert span {
+        background-color: #2DD284;
+        border-radius: 10px;
+        color: white;
+        padding: 15px;
+        font-family: 'Kanit', sans-serif;
+        z-index: 9999;
+        font-size: 1em;
+    }
+
+    .up_down {
+        animation: up-down 2s cubic-bezier(0.87, 0, 0.13, 1) 0s 2 alternate-reverse both;
+    }
+
+    @keyframes up-down {
+        0% {
+            opacity: 1;
+            transform: translateY(23vh);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(0px);
+        }
+    }
+</style>
+<div id="alert_copy" class="div_alert" role="alert">
+    <span id="alert_text">
+        คัดลอกเรียบร้อย
+    </span>
+</div>
+
 <br>
     <div class="card radius-10 " >
         <div class="card-header border-bottom-0 bg-transparent">
@@ -42,6 +89,9 @@
                 </div>
             </div>
         @else
+
+        
+
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
@@ -86,7 +136,14 @@ function CopyToClipboard(containerid) {
     range.selectNode(document.getElementById(containerid));
     window.getSelection().addRange(range);
     document.execCommand("copy");
-    alert("คัดลอก ข้อความแล้ว");
+
+    document.querySelector('#alert_text').innerHTML = "คัดลอกเรียบร้อย";
+        document.querySelector('#alert_copy').classList.add('up_down');
+
+        const animated = document.querySelector('.up_down');
+        animated.onanimationend = () => {
+            document.querySelector('#alert_copy').classList.remove('up_down');
+        };
     document.querySelector('#go_back').classList.remove('d-none');
   }
 }
