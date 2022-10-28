@@ -1098,7 +1098,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
     // console.log("START");
-    check_user();
+    // check_user();
     check_add_line();
 
     var delayInMilliseconds = 2500; //1 second

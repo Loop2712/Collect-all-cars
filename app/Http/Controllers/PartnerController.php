@@ -307,39 +307,88 @@ class PartnerController extends Controller
         return view('partner.user.manage_user', compact('data_partners','all_user','data_time_zone'));
     }
 
+    // public function create_user_partner(Request $request)
+    // {
+    //     $type_user = $request->get('type_user');
+    //     $data_user = Auth::user();
+
+    //     $data_partners = Partner::where("name", $data_user->organization)
+    //     ->where("name_area", null)
+    //     ->get();
+
+    //     $partners = $data_user->organization ;
+
+    //     $name = uniqid($partners.'-');
+    //     $username = $name ;
+    //     $email = "กรุณาเพิ่มอีเมล" ;
+    //     $password = uniqid();
+    //     $provider_id = uniqid($partners.'-', true);
+
+    //     $user = new User();
+    //     $user->name = $name;
+    //     $user->username = $name;
+    //     $user->provider_id = $provider_id;
+    //     $user->password = Hash::make($password);
+    //     $user->email = $email;
+    //     $user->role = $type_user;
+    //     $user->organization = $partners;
+    //     $user->creator = $data_user->id;
+    //     $user->status = "active";
+
+    //     $user->save();
+
+    //     $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+    //     return view('partner.user.create_user_partner', compact('data_partners' , 'partners' , 'username' , 'password','data_time_zone'));
+    // }
+
     public function create_user_partner(Request $request)
     {
-        $type_user = $request->get('type_user');
+        $requestData = $request->all();
+
+        if ($requestData['type_user'] == "admin") {
+            $requestData['type_user'] = "admin-partner" ;
+        }
+
         $data_user = Auth::user();
 
         $data_partners = Partner::where("name", $data_user->organization)
-        ->where("name_area", null)
-        ->get();
+            ->where("name_area", null)
+            ->get();
 
         $partners = $data_user->organization ;
 
-        $name = uniqid($partners.'-');
-        $username = $name ;
+        $type_user = $requestData['type_user'];
+        $name = $requestData['name'];
+        $username = $requestData['user_name'];
         $email = "กรุณาเพิ่มอีเมล" ;
         $password = uniqid();
         $provider_id = uniqid($partners.'-', true);
 
-        $user = new User();
-        $user->name = $name;
-        $user->username = $name;
-        $user->provider_id = $provider_id;
-        $user->password = Hash::make($password);
-        $user->email = $email;
-        $user->role = $type_user;
-        $user->organization = $partners;
-        $user->creator = $data_user->id;
-        $user->status = "active";
+        $check_user_old = User::where('name' , $name)->where('username' , $username)->first();
 
-        $user->save();
+        if(empty($check_user_old->id)){
+            $user = new User();
+            $user->name = $name;
+            $user->username = $username;
+            $user->provider_id = $provider_id;
+            $user->password = Hash::make($password);
+            $user->email = $email;
+            $user->role = $type_user;
+            $user->organization = $partners;
+            $user->creator = $data_user->id;
+            $user->status = "active";
+
+            $user->save();
+
+            $user_old = "No" ;
+        }else{
+            $user_old = "Yes" ;
+        }
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
-        return view('partner.user.create_user_partner', compact('data_partners' , 'partners' , 'username' , 'password','data_time_zone'));
+        return view('partner.user.create_user_partner', compact('data_partners' , 'partners' , 'username' , 'password','data_time_zone','user_old','check_user_old'));
     }
 
     public function partner_media(Request $request)

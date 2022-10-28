@@ -3,7 +3,7 @@
 
 @section('content')
 <br>
-    <div class="card radius-10 d-none d-lg-block" >
+    <div class="card radius-10 " >
         <div class="card-header border-bottom-0 bg-transparent">
             <div class="d-flex align-items-center">
                 <div>
@@ -11,30 +11,51 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <input class="form-control" type="hidden" name="username" id="username" value="{{ $username }}" readonly="">
+        @if($user_old == "No")
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <input class="form-control" type="hidden" name="username" id="username" value="{{ $username }}" readonly="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <input class="form-control" type="hidden" name="password" id="password" value="{{ $password }}" readonly="">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <textarea class="form-control" name="userpass" id="userpass" cols="20" rows="3" readonly></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="CopyToClipboard('userpass')">
+                            <i class="fas fa-copy"></i> copy
+                        </button>
+                        <a style="float:right;" id="go_back" href="{{ url('/manage_user_partner') }}" class="btn btn-sm btn-outline-warning d-none">
+                            <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <input class="form-control" type="hidden" name="password" id="password" value="{{ $password }}" readonly="">
+        @else
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        มีผู้ใช้นี้อยู่แล้ว
+                    </div>
+                    <div id="go_back" class="col-12 d-">
+                        <br>
+                        <a href="{{ url('/manage_user_partner') }}" class="btn btn-sm btn-outline-warning">
+                            <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
+                        </a>
+                    </div>
                 </div>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <textarea class="form-control" name="userpass" id="userpass" cols="20" rows="3" readonly></textarea>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-12 col-md-3">
-                    <button class="btn btn-sm btn-outline-secondary" onclick="CopyToClipboard('userpass')"><i class="fas fa-copy"></i> copy</button>
-                </div>
-            </div>
-        </div>
+        @endif
     </div>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -59,13 +80,14 @@ function CopyToClipboard(containerid) {
     range.moveToElementText(document.getElementById(containerid));
     range.select().createTextRange();
     document.execCommand("copy");
+    document.querySelector('#go_back').classList.remove('d-none');
   } else if (window.getSelection) {
     var range = document.createRange();
     range.selectNode(document.getElementById(containerid));
     window.getSelection().addRange(range);
     document.execCommand("copy");
     alert("คัดลอก ข้อความแล้ว");
-    window.location.replace("{{url('/view_new_user')}}");
+    document.querySelector('#go_back').classList.remove('d-none');
   }
 }
 </script>

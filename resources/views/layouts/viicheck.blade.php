@@ -505,7 +505,7 @@
             &nbsp;
             <span>Please select language</span>
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="check_nationalitie('{{ Auth::user()->nationalitie }}');">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -949,6 +949,19 @@
               </div>
             </div>
           </div>
+          <hr>
+        </div>
+
+        <div class="modal-body notranslate">
+          <div class="row">
+            <div class="col-12">
+              <label class="control-label translate">Nationalitie other</label>
+              <select id="select_nationalitie" name="select_nationalitie" class="form-control" onchange="submit_nationality_select()">
+                <option class="translate"> Select nationalitie </option>
+              </select>
+            </div>
+          </div>
+          <hr>
         </div>
         <!----------------------------------------------------------- mobile ----------------------------------------------------------->
         <div class="modal-body d-block d-md-none notranslate">
@@ -1080,17 +1093,6 @@
                   <h6 style="margin-top:10px;">Indonesian</h6>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="modal-body notranslate">
-          <div class="row">
-            <div class="col-12">
-              <label class="control-label translate">nationalitie other</label>
-              <select id="select_nationalitie" name="select_nationalitie" class="form-control" onchange="submit_nationality_select()">
-                <option class="translate">Please select nationalitie</option>
-              </select>
             </div>
           </div>
         </div>
@@ -1371,9 +1373,12 @@
     }
 
     if (language === "" && url != "select_condo") {
+
       document.querySelector('#btn_select_language').click();
+
     } else {
 
+      check_nationalitie(nationalitie);
       var delayInMilliseconds = 1500; //1.5 second
 
       setTimeout(function() {
@@ -1383,6 +1388,9 @@
       }, delayInMilliseconds);
     }
 
+  }
+
+  function check_nationalitie(nationalitie){
     if (nationalitie === "") {
       document.querySelector('#btn_select_nationalitie').click();
 
@@ -1392,7 +1400,6 @@
         search_nationalitie();
       }, delayI);
     }
-
   }
 
   function user_language(language, user_id) {
@@ -1409,6 +1416,10 @@
       document.querySelector('#btn_change_language_' + language).click();
 
     }, delayInMilliseconds);
+
+    @if(Auth::check())
+      check_nationalitie('{{ Auth::user()->nationalitie }}');
+    @endif
 
   }
 
@@ -1440,7 +1451,6 @@
 
   function submit_nationality(nationality) {
     let user_id = document.querySelector('#user_name_id').value;
-    document.querySelector('#btn_cf_nationalitie').click();
     document.querySelector('#name_cf_nationalitie').innerText = nationality;
     document.querySelector('#name_cf_nationalitie_2').innerText = nationality;
     document.querySelector('#name_cf_nationalitie_3').innerText = nationality;
@@ -1453,6 +1463,9 @@
 
     btn_submit_nationalitie.setAttributeNode(onclick);
 
+    document.querySelector('#btn_cf_nationalitie').click();
+    document.querySelector('#btn_close_modal_nationalitie').click();
+
   }
 
   function submit_nationality_select() {
@@ -1460,7 +1473,6 @@
     let nationality = document.querySelector('#select_nationalitie').value;
     // console.log(nationality);
 
-    document.querySelector('#btn_cf_nationalitie').click();
     document.querySelector('#name_cf_nationalitie').innerText = nationality;
     document.querySelector('#name_cf_nationalitie_2').innerText = nationality;
 
@@ -1471,6 +1483,10 @@
     onclick.value = "update_user('" + nationality + "','" + user_id + "');";
 
     btn_submit_nationalitie.setAttributeNode(onclick);
+
+    document.querySelector('#btn_cf_nationalitie').click();
+    document.querySelector('#btn_close_modal_nationalitie').click();
+
   }
 
   function update_user(nationality, user_id) {
