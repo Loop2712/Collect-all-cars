@@ -25,7 +25,7 @@ class Partner_premium extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_partner', 'id_partner', 'level', 'BC_by_car_max', 'BC_by_car_sent'];
+    protected $fillable = ['name_partner', 'id_partner', 'level', 'BC_by_car_max', 'BC_by_car_sent','BC_by_user_sent','BC_by_user_max' ,'BC_by_check_in_sent','BC_by_check_in_max'];
 
     
 }

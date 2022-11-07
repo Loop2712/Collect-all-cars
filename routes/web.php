@@ -156,12 +156,19 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('/guest_partner', 'PartnerController@guest_partner');
 	Route::get('/partner_guest_latest', 'PartnerController@partner_guest_latest');
 	Route::get('/sos_partner', 'PartnerController@view_sos');
-	Route::get('/broadcast_by_car', 'PartnerController@broadcast_by_car');
 	Route::get('/sos_emergency_js100', 'PartnerController@sos_emergency_js100');
 	Route::get('/sos_detail_partner', 'Partner_chartController@sos_detail_chart');
 	Route::get('/sos_detail_js100', 'Partner_chartController@sos_detail_js100');
 	Route::get('/sos_score_helper', 'PartnerController@sos_score_helper');
 	Route::get('/score_helper/{user_id}', 'PartnerController@score_helper');
+
+	// BROADCAST 
+	Route::get('/broadcast/dashboard', 'PartnerController@dashboard_broadcast');
+	Route::get('/broadcast/content', 'PartnerController@content_broadcast');
+	Route::get('/broadcast/broadcast_by_car', 'PartnerController@broadcast_by_car');
+	Route::get('/broadcast/broadcast_by_check_in', 'PartnerController@broadcast_by_check_in');
+	Route::get('/broadcast/broadcast_by_user', 'PartnerController@broadcast_by_user');
+	
 	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
 		Route::post('/partner_add_area', 'PartnerController@partner_add_area');
 		Route::get('/add_area', 'PartnerController@add_area');

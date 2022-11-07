@@ -53,6 +53,18 @@
           animation-iteration-count: 99;
         }
 
+        a.disabled {
+		  pointer-events: none;
+		  cursor: default;
+		  opacity: 0.2;
+		}
+
+		.main-disabled {
+		  pointer-events: none;
+		  cursor: default;
+		  opacity: 0.4;
+		}
+
         @keyframes notify_alert {
           0%   {color: red;}
           20%  {color: yellow;}
@@ -67,7 +79,6 @@
 </head>
 
 <body>
-	<!--wrapper-->
 	<!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper -->
@@ -85,223 +96,376 @@
 			</div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+				<br>
+
+				<!-- ----------------- Admin -------------------- -->
 				@if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
-		                <li class="menu-label" style="font-size:15px;">
-		                    Admin
-		                </li>
-		                <li>
-							<a href="{{ url('/manage_user_partner') }}">
-								<div class="parent-icon"><i class='fas fa-users-cog'></i>
-								</div>
-								<div class="menu-title">จัดการผู้ใช้</div>
-							</a>
-						</li>
+						<div class="accordion" id="accordion_admin">
+					    	<div id="heading_admin">
+					    		<a href="#" data-toggle="collapse" data-target="#collapse_admin" aria-expanded="true" aria-controls="collapse_admin">
+									<div class="parent-icon">
+										<i class="fas fa-user-shield"></i>
+									</div>
+									<div class="menu-title">
+										Admin
+										<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+									</div>
+								</a>
+					    	</div>
+
+					    	<div id="collapse_admin" class="collapse" aria-labelledby="heading_admin" data-parent="#accordion_admin">
+					      		<div class="card-body">
+					      			<li>
+						        		<a href="{{ url('/manage_user_partner') }}#collapse_admin">
+											<div class="parent-icon">
+												<i class='fas fa-users-cog'></i>
+											</div>
+											<div class="menu-title">จัดการผู้ใช้</div>
+										</a>
+									</li>
+					      		</div>
+					    	</div>
+			    			<hr class="text-white">
+						</div>
 					@endif
 				@endif
+				<!-- ----------------- END Admin -------------------- -->
 
 				<!-- ----------------- Broadcast -------------------- -->
 				<div id="div_menu_Broadcast" class="d-none">
-					<li class="menu-label" style="font-size:15px;">
-		                Broadcast Line
-		            </li>
-					<li>
-						<a href="{{ url('/broadcast_by_car') }}">
-							<div class="parent-icon"><i class="fas fa-bullhorn"></i>
-							</div>
-							<div class="menu-title">By cars</div>
-						</a>
-					</li>
+					<div class="accordion" id="accordion_broadcast">
+				    	<div id="heading_broadcast">
+				    		<a href="#" data-toggle="collapse" data-target="#collapse_broadcast" aria-expanded="true" aria-controls="collapse_broadcast">
+								<div class="parent-icon">
+									<i class="fas fa-bullhorn"></i>
+								</div>
+								<div class="menu-title">
+									Broadcast Line
+									<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+								</div>
+							</a>
+				    	</div>
+
+				    	<div id="collapse_broadcast" class="collapse" aria-labelledby="heading_broadcast" data-parent="#accordion_broadcast">
+				      		<div class="card-body">
+				      			<li>
+					      			<a class="" id="li_menu_Dashboard" href="{{ url('/broadcast/dashboard') }}#collapse_broadcast">
+										<div class="parent-icon">
+											<i class="fas fa-file-chart-pie"></i>
+										</div>
+										<div class="menu-title">&nbsp;&nbsp;Dashboard</div>
+									</a>
+								</li>
+								<li>
+					      			<a class="" id="li_menu_Check_in" href="{{ url('/broadcast/broadcast_by_check_in') }}#collapse_broadcast">
+										<div class="parent-icon">
+											<i class="fas fa-map-marker-check"></i>
+										</div>
+										<div class="menu-title">&nbsp;&nbsp;By Check in</div>
+									</a>
+								</li>
+								<li>
+			      					<a class="" id="li_menu_Cars" href="{{ url('/broadcast/broadcast_by_car') }}#collapse_broadcast">
+										<div class="parent-icon">
+											<i class="fad fa-car-bus"></i>
+										</div>
+										<div class="menu-title">By cars</div>
+									</a>
+								</li>
+								<li>
+									<a class="" id="li_menu_User" href="{{ url('/broadcast/broadcast_by_user') }}#collapse_broadcast">
+										<div class="parent-icon">
+											<i class="fad fa-users"></i>
+										</div>
+										<div class="menu-title">By user</div>
+									</a>
+								</li>
+				      		</div>
+				    	</div>
+		    			<hr class="text-white">
+					</div>
 				</div>
 				<!-- ---------------- END Broadcast ----------------- -->
 
 				<!-- สำหรับ องค์กร / คอนโด -->
 				@if(Auth::check())
                     @if(Auth::user()->role == "admin-condo")
-		                <li class="menu-label" style="font-size:15px;">
-		                    For Corporation
-		                </li>
-		                <li>
-							<a href="{{ url('/sos_partner') }}">
-								<div class="parent-icon"><i class='fas fa-hands-helping'></i>
-								</div>
-								<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
-								<div id="div_menu_help" class="d-none">
-									&nbsp;
-									<i class="fas fa-exclamation-circle notify_alert"></i>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="{{ url('/add_area') }}">
-								<div class="parent-icon"><i class='far fa-map'></i>
-								</div>
-								<div class="menu-title">พื้นที่บริการ</div>
-							</a>
-						</li>
-		                <li>
-							<a href="{{ url('/parcel') }}">
-								<div class="parent-icon"><i class="fas fa-truck-loading"></i>
-								</div>
-								<div class="menu-title">พัสดุ</div>
-							</a>
-						</li>
-						<li>
-							<a href="{{ url('/notify_repair') }}">
-								<div class="parent-icon"><i class="fas fa-tools"></i>
-								</div>
-								<div class="menu-title">แจ้งซ่อม</div>
-							</a>
-						</li>
-						<li>
-							<a href="{{ url('/cleaning_appointment') }}">
-								<div class="parent-icon"><i class="fas fa-broom"></i>
-								</div>
-								<div class="menu-title">นัดหมายทำความสะอาด</div>
-							</a>
-						</li>
-						<li>
-							<a href="{{ url('/bill_payment') }}">
-								<div class="parent-icon"><i class="fas fa-file-invoice-dollar"></i>
-								</div>
-								<div class="menu-title">บิลเรียกชำระ</div>
-							</a>
-						</li>
-						<li>
-							<a href="{{ url('/news_condo') }}">
-								<div class="parent-icon"><i class="fas fa-newspaper"></i>
-								</div>
-								<div class="menu-title">ข่าวสาร</div>
-							</a>
-						</li>
-						<li>
-							<a href="{{ url('/report_condo') }}">
-								<div class="parent-icon"><i class="fas fa-exclamation-circle"></i>
-								</div>
-								<div class="menu-title">การแจ้งปัญหา</div>
-							</a>
-						</li>
-						<li>
-							<a href="{{ url('/report_condo') }}">
-								<div class="parent-icon"><i class="fas fa-tasks"></i>
-								</div>
-								<div class="menu-title">แบบประเมิน</div>
-							</a>
-						</li>
+
+                    	<div class="accordion" id="accordion_condo">
+					    	<div id="heading_condo">
+					    		<a href="#" data-toggle="collapse" data-target="#collapse_condo" aria-expanded="true" aria-controls="collapse_condo">
+									<div class="parent-icon">
+										<i class="fas fa-building"></i>
+									</div>
+									<div class="menu-title">
+										For Corporation
+										<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+									</div>
+								</a>
+					    	</div>
+
+					    	<div id="collapse_condo" class="collapse" aria-labelledby="heading_condo" data-parent="#accordion_condo">
+					      		<div class="card-body">
+					      			<li>
+						      			<a href="{{ url('/sos_partner') }}#collapse_condo">
+											<div class="parent-icon"><i class='fas fa-hands-helping'></i>
+											</div>
+											<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
+											<div id="div_menu_help" class="d-none">
+												&nbsp;
+												<i class="fas fa-exclamation-circle notify_alert"></i>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/add_area') }}#collapse_condo">
+											<div class="parent-icon"><i class='far fa-map'></i>
+											</div>
+											<div class="menu-title">พื้นที่บริการ</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/parcel') }}#collapse_condo">
+											<div class="parent-icon"><i class="fas fa-truck-loading"></i>
+											</div>
+											<div class="menu-title">พัสดุ</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/notify_repair') }}#collapse_condo">
+											<div class="parent-icon"><i class="fas fa-tools"></i>
+											</div>
+											<div class="menu-title">แจ้งซ่อม</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/cleaning_appointment') }}#collapse_condo">
+											<div class="parent-icon"><i class="fas fa-broom"></i>
+											</div>
+											<div class="menu-title">นัดหมายทำความสะอาด</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/bill_payment') }}#collapse_condo">
+											<div class="parent-icon"><i class="fas fa-file-invoice-dollar"></i>
+											</div>
+											<div class="menu-title">บิลเรียกชำระ</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/news_condo') }}#collapse_condo">
+											<div class="parent-icon"><i class="fas fa-newspaper"></i>
+											</div>
+											<div class="menu-title">ข่าวสาร</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/report_condo') }}#collapse_condo">
+											<div class="parent-icon"><i class="fas fa-exclamation-circle"></i>
+											</div>
+											<div class="menu-title">การแจ้งปัญหา</div>
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/report_condo') }}#collapse_condo">
+											<div class="parent-icon"><i class="fas fa-tasks"></i>
+											</div>
+											<div class="menu-title">แบบประเมิน</div>
+										</a>
+									</li>
+					      		</div>
+					    	</div>
+			    			<hr class="text-white">
+						</div>
 					@endif
 				@endif
 				<!-- สิ้นสุด สำหรับ องค์กร / คอนโด -->
 
-				<li class="menu-label" style="font-size:15px;">
-                    Vii Care
-                </li>
-                <li>
-					<a href="{{ url('/check_in/view') }}">
-						<div class="parent-icon"><i class="fas fa-map-marker-check"></i>
-						</div>
-						<div class="menu-title">ข้อมูลการเข้าออก</div>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('/check_in/add_new_check_in') }}">
-						<div class="parent-icon"><i class="fas fa-qrcode"></i>
-						</div>
-						<div class="menu-title">เพิ่มจุด Check in</div>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('/check_in/gallery') }}">
-						<div class="parent-icon"><i class="far fa-images"></i>
-						</div>
-						<div class="menu-title">คลังภาพ Check in</div>
-					</a>
-				</li>
-                <li class="menu-label" style="font-size:15px;">
-                    Vii Move
-                </li>
-				<li>
-					<a href="{{ url('/register_cars_partner') }}">
-						<div class="parent-icon"><i class='fas fa-car'></i>
-						</div>
-						<div class="menu-title">รถลงทะเบียน</div>
-					</a>
-				</li>
-                <li>
-					<a href="{{ url('/guest_partner') }}">
-						<div class="parent-icon"><i class='fas fa-car-crash'></i>
-						</div>
-						<div class="menu-title">รถที่ถูกรายงาน</div>
-					</a>
-				</li>
-                <li>
-					<a href="{{ url('/partner_guest_latest') }}">
-						<div class="parent-icon"><i class='fad fa-car'></i>
-						</div>
-						<div class="menu-title">รถที่ถูกรายงานล่าสุด</div>
-					</a>
-				</li>
-                
-                @if(Auth::check())
-                    @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
-                    <li class="menu-label" style="font-size:15px;">
-	                    Vii SOS
-	                </li>
-	                	@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
-							<li>
-								<a href="{{ url('/sos_emergency_js100') }}">
-									<div class="parent-icon"><i class="fas fa-siren-on"></i>
+
+				<!-- ---------------- Vii CARE ----------------- -->
+				<div class="accordion" id="accordion_Vii_Care">
+			    	<div id="heading_Vii_Care">
+			    		<a href="#" data-toggle="collapse" data-target="#collapse_Vii_Care" aria-expanded="true" aria-controls="collapse_Vii_Care">
+							<div class="parent-icon">
+								<i class="fas fa-hand-holding-heart"></i>
+							</div>
+							<div class="menu-title">
+								Vii Care
+								<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+							</div>
+						</a>
+			    	</div>
+
+			    	<div id="collapse_Vii_Care" class="collapse" aria-labelledby="heading_Vii_Care" data-parent="#accordion_Vii_Care">
+			      		<div class="card-body">
+			      			<li>
+				        		<a href="{{ url('/check_in/view') }}#collapse_Vii_Care">
+									<div class="parent-icon"><i class="fas fa-map-marker-check"></i>
 									</div>
-									<div id="div_menu_help_js100" class="menu-title">SOS by calling</div>
-									<div id="div_menu_alert_js100" class="d-none">
-										&nbsp;
-										<i class="fas fa-exclamation-circle notify_alert"></i>
-									</div>
+									<div class="menu-title">ข้อมูลการเข้าออก</div>
 								</a>
 							</li>
-						@endif
-		                <li>
-							<a href="{{ url('/sos_partner') }}">
-								<div class="parent-icon"><i class='fas fa-hands-helping'></i>
-								</div>
-								<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
-								<div id="div_menu_help" class="d-none">
-									&nbsp;
-									<i class="fas fa-exclamation-circle notify_alert"></i>
-								</div>
-							</a>
-						</li>
-					@endif
-				@endif
+							<li>
+								<a href="{{ url('/check_in/add_new_check_in') }}#collapse_Vii_Care">
+									<div class="parent-icon"><i class="fas fa-qrcode"></i>
+									</div>
+									<div class="menu-title">เพิ่มจุด Check in</div>
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('/check_in/gallery') }}#collapse_Vii_Care">
+									<div class="parent-icon"><i class="far fa-images"></i>
+									</div>
+									<div class="menu-title">คลังภาพ</div>
+								</a>
+							</li>
+			      		</div>
+			    	</div>
+	    			<hr class="text-white">
+				</div>
+				<!-- ---------------- END Vii CARE ----------------- -->
 
+				<!-- ---------------- Vii MOVE ----------------- -->
+				<div class="accordion" id="accordion_Vii_Move">
+			    	<div id="heading_Vii_Move">
+			    		<a href="#" data-toggle="collapse" data-target="#collapse_Vii_Move" aria-expanded="true" aria-controls="collapse_Vii_Move">
+							<div class="parent-icon">
+								<i class="fas fa-car-crash"></i>
+							</div>
+							<div class="menu-title">
+								Vii Move
+								<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+							</div>
+						</a>
+			    	</div>
+
+			    	<div id="collapse_Vii_Move" class="collapse" aria-labelledby="heading_Vii_Move" data-parent="#accordion_Vii_Move">
+			      		<div class="card-body">
+			      			<li>
+				      			<a href="{{ url('/register_cars_partner') }}#collapse_Vii_Move">
+									<div class="parent-icon"><i class='fas fa-car'></i>
+									</div>
+									<div class="menu-title">รถลงทะเบียน</div>
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('/guest_partner') }}#collapse_Vii_Move">
+									<div class="parent-icon"><i class="fas fa-file-signature"></i>
+									</div>
+									<div class="menu-title">รถที่ถูกรายงาน</div>
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('/partner_guest_latest') }}#collapse_Vii_Move">
+									<div class="parent-icon"><i class="fas fa-history"></i>
+									</div>
+									<div class="menu-title">รถที่ถูกรายงานล่าสุด</div>
+								</a>
+							</li>
+			      		</div>
+			    	</div>
+	    			<hr class="text-white">
+				</div>
+				<!-- ---------------- END Vii MOVE ----------------- -->
+
+				<!-- ---------------- Vii SOS ----------------- -->
 				@if(Auth::check())
-                    @if(Auth::user()->role == "admin-partner")
-		                <li>
-							<a href="{{ url('/add_area') }}">
-								<div class="parent-icon"><i class='far fa-map'></i>
-								</div>
-								<div class="menu-title">พื้นที่บริการ</div>
-							</a>
-						</li>
+                    @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
+						<div class="accordion" id="accordion_Vii_SOS">
+					    	<div id="heading_Vii_SOS">
+					    		<a href="#" data-toggle="collapse" data-target="#collapse_Vii_SOS" aria-expanded="true" aria-controls="collapse_Vii_SOS">
+									<div class="parent-icon">
+										<i class="fas fa-siren-on"></i>
+									</div>
+									<div class="menu-title">
+										Vii SOS
+										<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+									</div>
+								</a>
+					    	</div>
+
+					    	<div id="collapse_Vii_SOS" class="collapse" aria-labelledby="heading_Vii_SOS" data-parent="#accordion_Vii_SOS">
+					      		<div class="card-body">
+					      			<li>
+						      			<a href="{{ url('/sos_partner') }}#collapse_Vii_SOS">
+											<div class="parent-icon"><i class='fas fa-hands-helping'></i>
+											</div>
+											<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
+											<div id="div_menu_help" class="d-none">
+												&nbsp;
+												<i class="fas fa-exclamation-circle notify_alert"></i>
+											</div>
+										</a>
+									</li>
+									@if(Auth::check())
+					                    @if(Auth::user()->role == "admin-partner")
+					                    <li>
+											<a href="{{ url('/add_area') }}#collapse_Vii_SOS">
+												<div class="parent-icon"><i class='far fa-map'></i>
+												</div>
+												<div class="menu-title">พื้นที่บริการ</div>
+											</a>
+										</li>
+										@endif
+									@endif
+									@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
+										<li>
+											<a href="{{ url('/sos_emergency_js100') }}#collapse_Vii_SOS">
+												<div class="parent-icon"><i class="fal fa-siren-on"></i>
+												</div>
+												<div id="div_menu_help_js100" class="menu-title">SOS by calling</div>
+												<div id="div_menu_alert_js100" class="d-none">
+													&nbsp;
+													<i class="fas fa-exclamation-circle notify_alert"></i>
+												</div>
+											</a>
+										</li>
+									@endif
+					      		</div>
+					    	</div>
+			    			<hr class="text-white">
+						</div>
 					@endif
 				@endif
+				<!-- ---------------- END Vii SOS ----------------- -->
 
-                <li class="menu-label" style="font-size:15px;">
-                    อื่นๆ
-                </li>
-                <li>
-					<a href="{{ url('/how_to_use') }}" target="blank">
-						<div class="parent-icon"><i class='fad fa-book'></i>
-						</div>
-						<div class="menu-title">วิธีใช้งาน</div>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('/partner_media?menu=all') }},javascript:;">
-						<div class="parent-icon"><i class="fas fa-photo-video"></i>
-						</div>
-						<div class="menu-title">สื่อประชาสัมพันธ์</div>
-					</a>
-				</li>
+				<!-- ---------------- Other ----------------- -->
+				<div class="accordion" id="accordion_Other">
+			    	<div id="heading_Other">
+			    		<a href="#" data-toggle="collapse" data-target="#collapse_Other" aria-expanded="true" aria-controls="collapse_Other">
+							<div class="parent-icon">
+								<i class="fas fa-braille"></i>
+							</div>
+							<div class="menu-title">
+								อื่นๆ
+								<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+							</div>
+						</a>
+			    	</div>
+
+			    	<div id="collapse_Other" class="collapse" aria-labelledby="heading_Other" data-parent="#accordion_Other">
+			      		<div class="card-body">
+			      			<li>
+				      			<a href="{{ url('/how_to_use') }}#collapse_Other" target="blank">
+									<div class="parent-icon"><i class='fad fa-book'></i>
+									</div>
+									<div class="menu-title">วิธีใช้งาน</div>
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('/partner_media?menu=all') }}#collapse_Other,javascript:;">
+									<div class="parent-icon"><i class="fas fa-photo-video"></i>
+									</div>
+									<div class="menu-title">สื่อประชาสัมพันธ์</div>
+								</a>
+							</li>
+			      		</div>
+			    	</div>
+	    			<hr class="text-white">
+				</div>
+				<!-- ---------------- END Other ----------------- -->
+
 			</ul>
 			<!--end navigation-->
 		</div>
@@ -662,6 +826,7 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        show_menu_bar();
 		check_data_partner();
 		check_sos_alarm();
 	    check_sos_js100();
@@ -674,6 +839,16 @@
 	    }, 5000);
         
     });
+
+	function show_menu_bar(){
+		let full_url = window.location.href ;
+        const url_sp = full_url.split("#");
+
+        // console.log(url_sp[1]);
+        if (url_sp[1]) {
+        	document.querySelector( '#' + url_sp[1] ).classList.add('show');
+        }
+	}    
 
     function check_data_partner()
     {
@@ -727,6 +902,22 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+
+                if (!result[0]['BC_by_check_in_max'] || result[0]['BC_by_check_in_max'] == '0') {
+                	document.querySelector('#li_menu_Check_in').classList.add('disabled');
+                	document.querySelector('#li_menu_Check_in').href = "";
+                }
+
+                if (!result[0]['BC_by_car_max'] || result[0]['BC_by_car_max'] == '0') {
+                	document.querySelector('#li_menu_Car').classList.add('disabled');
+                	document.querySelector('#li_menu_Car').href = "";
+                }
+
+                if (!result[0]['BC_by_user_max'] || result[0]['BC_by_user_max'] == '0') {
+                	document.querySelector('#li_menu_User').classList.add('disabled');
+                	document.querySelector('#li_menu_User').href = "";
+                }
+
                 if (result.length >= 1) {
                 	document.querySelector('#div_menu_Broadcast').classList.remove('d-none');
                 }else{

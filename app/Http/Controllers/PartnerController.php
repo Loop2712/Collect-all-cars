@@ -1021,6 +1021,197 @@ class PartnerController extends Controller
 
     }
 
+    function dashboard_broadcast(Request $request){
+
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->first();
+
+        $partners_id = $data_partners->id ;
+        $partners_logo = $data_partners->logo ;
+
+        $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
+
+        // -------------------------------------------
+
+        $check_in_most_click = Ads_content::where('id_partner',$partners_id)
+            ->where('type_content' , 'BC_by_check_in')
+            ->get();
+
+        $arr_check_in_click = array() ;
+        foreach ($check_in_most_click as $item ) {
+
+            if(!empty($item->user_click)){
+                $user_click = json_decode($item->user_click) ;
+                $count_user_click = count($user_click) ;
+            }else{
+                $count_user_click = 0 ;
+            }
+
+            $arr_check_in_click[$item->id] = $count_user_click;
+            arsort($arr_check_in_click);
+        }
+
+        exit();
+
+        return view( 'partner.broadcast.dashboard', compact('partners_id','partner_premium') );
+    }
+
+    function content_broadcast(Request $request){
+
+        $BC_By = $request->get('By');
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->first();
+
+        $partners_id = $data_partners->id ;
+        $partners_logo = $data_partners->logo ;
+
+        $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
+
+        if (!empty($partner_premium)) {
+            $id_partner = $partner_premium->id_partner ;
+            $name_partner = $partner_premium->name_partner ;
+
+            // CAR
+            $BC_by_car_max = $partner_premium->BC_by_car_max ;
+            if ($partner_premium->BC_by_car_max == null) {
+                $BC_by_car_sent = 0 ;
+            }else{
+                $BC_by_car_sent = $partner_premium->BC_by_car_sent ;
+            }
+
+            // CHECK IN
+            $BC_by_check_in_max = $partner_premium->BC_by_check_in_max ;
+            if ($partner_premium->BC_by_check_in_max == null) {
+                $BC_by_check_in_sent = 0 ;
+            }else{
+                $BC_by_check_in_sent = $partner_premium->BC_by_check_in_sent ;
+            }
+
+            // USER
+            $BC_by_user_max = $partner_premium->BC_by_user_max ;
+            if ($partner_premium->BC_by_user_max == null) {
+                $BC_by_user_sent = 0 ;
+            }else{
+                $BC_by_user_sent = $partner_premium->BC_by_user_sent ;
+            }
+            
+
+            if (!empty($BC_By)) {
+                $ads_contents = Ads_content::where('id_partner' , $id_partner)
+                    ->where('type_content' , $BC_By)
+                    ->get();
+            }else{
+                $ads_contents = Ads_content::where('id_partner' , $id_partner)->get();
+            }
+
+            // --------------------------------------------------------------------
+            // foreach($ads_contents as $item){
+
+            //     if!empty($item->show_user)){
+            //         $show_user = json_decode($item->show_user) ;
+            //         $count_show_user = count($show_user) ;
+            //         $count_show_user_unique = count( array_count_values($show_user) ) ;
+
+            //         echo "<h2>show_user</h2>";
+
+            //         echo "<pre>";
+            //         print_r($show_user);
+            //         echo "<pre>";
+
+            //         echo "<br>";
+            //         echo "แสดงผลต่อผู้ใช้ทั้งหมด >> " . $count_show_user . " ครั้ง    OK";
+            //         echo "<br>";
+            //         echo "แสดงผลต่อผู้ใช้แบบไม่ซ้ำคน >> " . $count_show_user_unique . " คน    OK";
+            //         echo "<br>";
+
+            //         echo "<br>";
+            //         echo "-------------------------------------------------------";
+            //         echo "<br>";
+            //     }else{
+            //         $count_show_user = '0' ;
+            //     }
+
+            //     if(!empty($item->user_click)){
+            //         $user_click = json_decode($item->user_click) ;
+            //         $count_user_click = count($user_click) ;
+            //         $arr_user_click_unique = array_count_values($user_click);
+            //         $count_user_click_unique = count( $arr_user_click_unique ) ;
+
+            //         echo "<h2>user_click</h2>";
+
+            //         echo "<pre>";
+            //         print_r($user_click);
+            //         echo "<pre>";
+
+            //         echo "<pre>";
+            //         print_r( array_count_values($user_click) );
+            //         echo "<pre>";
+
+            //         $count_Repeated_users = 0 ;
+            //         $click_max = 0 ;
+            //         foreach ($arr_user_click_unique as $key => $value) {
+            //             echo "<br>";
+            //             echo $key . " >> " . $value;
+
+            //             if ($value > 1) {
+            //                 $count_Repeated_users = $count_Repeated_users + 1 ;
+            //             }
+            //             if ($value > $click_max) {
+            //                 $click_max = $value ;
+            //             }
+                         
+            //         }
+
+            //         echo "<br>";
+            //         echo "การคลิกทั้งหมด >> " . $count_user_click . " ครั้ง    OK";
+            //         echo "<br>";
+            //         echo "การคลิกแบบไม่ซ้ำคน >> " . $count_user_click_unique . " คน    OK";
+            //         echo "<br>";
+            //         echo "ผู้ที่คลิกซ้ำ >> " . $count_Repeated_users . " คน";
+            //         echo "<br>";
+            //         echo "จำนวนที่คลิกซ้ำมากที่สุดต่อ 1 คน >> " . $click_max . " ครั้ง";
+            //         echo "<br>";
+
+            //         echo "<br>";
+            //         echo "-------------------------------------------------------";
+            //         echo "<br>";
+            //     }else{
+            //         $count_user_click = '0' ;
+            //     }
+
+                
+            //     echo "<br>";
+            //     echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+            //     echo "<br>";
+            // }
+
+            // exit();
+            // ---------------------------------------------------------------------
+
+            return view('partner.broadcast.content_broadcast', compact(
+                'BC_by_car_max','BC_by_car_sent','name_partner' , 'id_partner','ads_contents','BC_by_check_in_max','BC_by_check_in_sent','BC_by_user_max','BC_by_user_sent','partner_premium','BC_By'
+            ));
+        }else{
+            return redirect('404');
+        }
+    }
+
+    function broadcast_by_check_in(Request $request){
+        echo "broadcast_by_check_in" ;
+        exit();
+    }
+
+    function broadcast_by_user(Request $request){
+        echo "broadcast_by_user" ;
+        exit();
+    }
+
     function broadcast_by_car(Request $request){
 
         $requestData = $request->all();
@@ -1077,8 +1268,6 @@ class PartnerController extends Controller
         }else{
             return redirect('404');
         }
-
-        
     }
 
 }
