@@ -1034,6 +1034,31 @@ class PartnerController extends Controller
 
         $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
 
+
+
+        // ---------------------------------------------------------------
+
+        // $check_in_most_click_unique = Ads_content::where('id_partner',$partners_id)
+        //     ->where('type_content' , 'BC_by_check_in')
+        //     ->get();
+
+        // $arr_check_in_click_unique = array() ;
+        // foreach ($check_in_most_click_unique as $item ) {
+
+        //     if(!empty($item->user_click)){
+        //         $user_click = json_decode($item->user_click) ;
+        //         $arr_user_click_unique = array_count_values($user_click);
+        //         $count_user_click_unique = count( $arr_user_click_unique ) ;
+        //     }else{
+        //         $count_user_click_unique = 0 ;
+        //     }
+
+        //     $arr_check_in_click_unique[$item->id] = $count_user_click_unique;
+        //     arsort($arr_check_in_click_unique);
+        // }
+
+        //     exit();
+
         return view( 'partner.broadcast.dashboard', compact('partners_id','partner_premium') );
     }
 

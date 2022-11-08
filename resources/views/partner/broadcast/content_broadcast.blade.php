@@ -82,23 +82,51 @@
 
                     </h5>
                 </div>
+
                 @if( $BC_By )
+
                     @php
-                        $url_link = str_replace("BC", "broadcast" , $BC_By);
+                        if($BC_By){
+                            $check_permission = $BC_By . "_max";
+                        }else{
+                            $check_permission = "";
+                        }
                     @endphp
-                    <div class="col-2">
-                        <a href="{{ url('/broadcast') . '/' . $url_link }}" class="btn btn-sm btn-success" style="width:80%;float: right;margin-top: 5px;">
-                           <i class="fas fa-plus-circle"></i>  เพิ่มเนื้อหาใหม่
-                        </a>
-                    </div>
+
+                    @if( $partner_premium->$check_permission == 0 or $partner_premium->$check_permission == null or $partner_premium->$check_permission == "")
+                        <div class="col-4">
+                            <span style="float: right;margin-top: 5px;">
+                                <b>ไม่มีสิทธิ์การใช้งาน</b>
+                            </span>
+                        </div>
+                    @else
+                        @php
+                            $url_link = str_replace("BC", "broadcast" , $BC_By);
+                        @endphp
+                        <div class="col-2">
+                            <a href="{{ url('/broadcast') . '/' . $url_link }}" class="btn btn-sm btn-success" style="width:80%;float: right;margin-top: 5px;">
+                               <i class="fas fa-plus-circle"></i>  เพิ่มเนื้อหาใหม่
+                            </a>
+                        </div>
+
+                        <div class="col-2">
+                            <button class="btn btn-sm btn-secondary" style="width:80%;float: right;margin-top: 5px;">
+                                <i class="fas fa-file-pdf"></i> Export PDF
+                            </button>
+                        </div>
+                    @endif
+
                 @else
                     <div class="col-2"></div>
+
+                    <div class="col-2">
+                        <button class="btn btn-sm btn-secondary" style="width:80%;float: right;margin-top: 5px;">
+                            <i class="fas fa-file-pdf"></i> Export PDF
+                        </button>
+                    </div>
+
                 @endif
-                <div class="col-2">
-                    <button class="btn btn-sm btn-secondary" style="width:80%;float: right;margin-top: 5px;">
-                        <i class="fas fa-file-pdf"></i> Export PDF
-                    </button>
-                </div>
+
             </div>
         </div>
 
