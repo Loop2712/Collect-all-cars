@@ -489,6 +489,14 @@ class CarbrandController extends Controller
 
         $requestData = $request->all();
 
+        $to_url_ep = explode('//' ,$requestData['redirectTo']);
+
+        if (count($to_url_ep) > 1) {
+            $to_url = 'http://' . $to_url_ep[1] ;
+        }else{
+            $to_url = $to_url_ep[0] ;
+        }
+
         $data_Ads_content = Ads_content::where('id' , $requestData['id_content'])->first();
 
         $arr_user_click = [] ;
@@ -504,7 +512,7 @@ class CarbrandController extends Controller
                 'user_click' => $arr_user_click ,
         ]);
 
-        return redirect('http://' . $requestData['redirectTo'])->with('flash_message', 'Partner updated!');
+        return redirect($to_url)->with('flash_message', 'Partner updated!');
     }
 
 }
