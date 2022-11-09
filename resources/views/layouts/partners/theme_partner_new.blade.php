@@ -36,6 +36,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=Prompt:wght@500&display=swap" rel="stylesheet">
+    <!-- datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+
 	<title>Partner Viicheck</title>
 
 	<style>
@@ -149,6 +152,7 @@
 
 				    	<div id="collapse_broadcast" class="collapse" aria-labelledby="heading_broadcast" data-parent="#accordion_broadcast">
 				      		<div class="card-body">
+				      			@if(Auth::user()->id == "1")
 				      			<li>
 					      			<a class="" id="li_menu_Dashboard" href="{{ url('/broadcast/dashboard') }}#collapse_broadcast">
 										<div class="parent-icon">
@@ -165,6 +169,7 @@
 										<div class="menu-title">&nbsp;&nbsp;By Check in</div>
 									</a>
 								</li>
+								@endif
 								<li>
 			      					<a class="" id="li_menu_Cars" href="{{ url('/broadcast/broadcast_by_car') }}#collapse_broadcast">
 										<div class="parent-icon">
@@ -173,6 +178,7 @@
 										<div class="menu-title">By cars</div>
 									</a>
 								</li>
+				      			@if(Auth::user()->id == "1")
 								<li>
 									<a class="" id="li_menu_User" href="{{ url('/broadcast/broadcast_by_user') }}#collapse_broadcast">
 										<div class="parent-icon">
@@ -181,6 +187,7 @@
 										<div class="menu-title">By user</div>
 									</a>
 								</li>
+								@endif
 				      		</div>
 				    	</div>
 		    			<hr class="text-white">
@@ -822,6 +829,9 @@
 <script src="{{ asset('partner_new/js/index.js') }}"></script>
 <!--app JS-->
 <script src="{{ asset('partner_new/js/app.js') }}"></script>
+<!-- dataTables -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {

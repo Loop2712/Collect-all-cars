@@ -2,6 +2,12 @@
 
 @section('content')
 
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+</head>
+
 @php
     use App\Models\Ads_content;
 
@@ -74,7 +80,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h3 class="mb-0">
-                            <b>จำนวนที่ส่งแล้ว</b> <span class="text-secondary" style="font-size:15px;">(รอบ)</span>
+                            <b>จำนวน Content ที่ส่งแล้ว</b> <span class="text-secondary" style="font-size:15px;"></span>
                         </h3>
                     </div>
                 </div>
@@ -271,6 +277,7 @@
                     </div>
                 </div>
             </div>
+            <!-- END ควต้าทั้งหมด -->
 
             <!-- เนื้อหาที่โดดเด่น -->
             @php
@@ -458,744 +465,826 @@
                 </div>
             </div>
 
+            <hr>
 
-            <!-- Content เรียงลำดับ -->
-            <div class="row row-cols-1 row-cols-lg-3">
-
-                <!-- CHECK IN  --> 
-                @php
-                    $check_in_most_all = Ads_content::where('id_partner',$partners_id)
-                        ->where('type_content' , 'BC_by_check_in')
-                        ->limit(5)
-                        ->get();
-                @endphp
-                <div class="accordion" id="accordion_of_check_in">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <h5 class="font-weight-bold mb-0">
-                                        <b>Check in</b>
-                                    </h5>
-                                </div>
-                                <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                                    <a href="{{ url('/broadcast/content?By=BC_by_check_in') }}" type="button" class="btn btn-sm btn-info text-white">
-                                        <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
-                                    </a>
-
-                                    <div class="btn-group" role="group">
-                                        <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                            ตัวเลือก
-                                        </button>
-
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-toggle="collapse" data-target="#collapse_check_in_1" aria-expanded="true" aria-controls="collapse_check_in_1" href="javaScript:;" class="dropdown-item">
-                                                ส่งมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_2" href="javaScript:;" class="dropdown-item" >
-                                                การคลิกมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_check_in_3" aria-expanded="true" aria-controls="collapse_check_in_3" href="javaScript:;" class="dropdown-item">
-                                                การคลิกแบบไม่ซ้ำคนมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_check_in_4" aria-expanded="true" aria-controls="collapse_check_in_4" href="javaScript:;" class="dropdown-item">
-                                                แสดงผลต่อผู้ใช้มากที่สุด
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+            <!-- การจัดอันดับ -->
+            <div class="card radius-10">
+                <!-- Content เรียงลำดับ ทั้งหมด -->
+                <div class="card radius-10">
+                    <div class="card-header border-bottom-0 bg-transparent">
+                        <div class="d-flex align-items-center" style="margin-top:10px;">
+                            <div>
+                                <h3 class="mb-0">
+                                    <b>การจัดอันดับ</b> <span class="text-secondary" style="font-size:15px;">(รวม)</span>
+                                </h3>
+                            </div>
+                            <div class="ms-auto">
+                                <a href="{{ url('/broadcast/content') }}" class="btn btn-info main-shadow main-radius text-white" style="width:100%;">
+                                    ดูข้อมูลเพิ่มเติม
+                                </a>
                             </div>
                         </div>
-
-                        <!-- ส่งมากที่สุด -->
-                        @php
-                            $check_in_most_round = Ads_content::where('id_partner',$partners_id)
-                                ->where('type_content' , 'BC_by_check_in')
-                                ->orderBy('send_round' , 'desc')
-                                ->limit(5)
-                                ->get();
-
-                        @endphp
-                        <div id="collapse_check_in_1" class="collapse show" data-parent="#accordion_of_check_in">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                ส่งมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($check_in_most_round as $item )
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
-                                                        </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $item->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $item->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $item->send_round }} รอบ</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="myTable" class="display" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>รูป</th>
+                                        <th>ชื่อ</th>
+                                        <th>จำนวนที่ส่ง</th>
+                                        <th>แสดงผลต่อผู้ใช้</th>
+                                        <th>การคลิก</th>
+                                        <th>การคลิกแบบไม่ซ้ำคน</th>
+                                        <th>ประเภท</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($ads_contents_all as $item_contents)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                <center>
+                                                    <div class="product-img bg-transparent border d-flex">
+                                                        <img src="{{ url('storage')}}/{{ $item_contents->photo }}" class="p-1" alt="">
                                                     </div>
-                                                    <hr/>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- จบ ส่งมากที่สุด -->
-
-                        <!-- การคลิกมากที่สุด -->
-                        @php
-                            $arr_check_in_click = array() ;
-
-                            foreach ($check_in_most_all as $item ) {
-
-                                if(!empty($item->user_click)){
-                                    $user_click = json_decode($item->user_click) ;
-                                    $count_user_click = count($user_click) ;
-                                }else{
-                                    $count_user_click = 0 ;
-                                }
-
-                                $arr_check_in_click[$item->id] = $count_user_click;
-                                arsort($arr_check_in_click);
-                            }
-                        @endphp
-                        <div id="collapse_check_in_2" class="collapse" data-parent="#accordion_of_check_in">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                การคลิกมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_check_in_click as $check_in_key => $check_in_val)
+                                                </center>
+                                            </td>
+                                            <td>{{ $item_contents->name_content }}</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>
                                                 @php
-                                                    $data_of_id = Ads_content::where('id',$check_in_key)->first();
+                                                    $type_content = type_content( $item_contents->type_content ) 
                                                 @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
-                                                        </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $check_in_val }} ครั้ง</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                                @switch($type_content) 
+                                                        @case('By Check in')
+                                                            <sapn class="btn btn-sm bg-gradient-burning text-white radius-30">
+                                                                By Check in
+                                                            </sapn>
+                                                            @break
+
+                                                        @case('By Cars')
+                                                            <sapn class="btn btn-sm bg-gradient-Ohhappiness text-white radius-30">
+                                                                By Cars
+                                                            </sapn>
+                                                            @break
+                                                            
+                                                        @case('By User')
+                                                            <sapn class="btn btn-sm bg-gradient-moonlit text-white radius-30">
+                                                                By User
+                                                            </sapn>
+                                                            @break
+                                                        
+                                                @endswitch
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- จบ การคลิกมากที่สุด -->
-
-                        <!-- การคลิกแบบไม่ซ้ำคนมากที่สุด -->
-                        @php
-                            $arr_check_in_click_unique = array() ;
-
-                            foreach ($check_in_most_all as $item ) {
-
-                                if(!empty($item->user_click)){
-                                    $user_click = json_decode($item->user_click) ;
-                                    $arr_user_click_unique = array_count_values($user_click);
-                                    $count_user_click_unique = count( $arr_user_click_unique ) ;
-                                }else{
-                                    $count_user_click_unique = 0 ;
-                                }
-
-                                $arr_check_in_click_unique[$item->id] = $count_user_click_unique;
-                                arsort($arr_check_in_click_unique);
-                            }
-                        @endphp
-                        <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                การคลิกแบบไม่ซ้ำคนมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_check_in_click_unique as $check_in_key => $check_in_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$check_in_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
-                                                        </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $check_in_val }} คน</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- จบ การคลิกแบบไม่ซ้ำคนมากที่สุด -->
-
-                        <!-- แสดงผลต่อผู้ใช้มากที่สุด -->
-                        @php
-                            $arr_check_in_show_user = array() ;
-
-                            foreach ($check_in_most_all as $item ) {
-
-                                if(!empty($item->show_user)){
-                                    $show_user = json_decode($item->show_user) ;
-                                    $count_show_user = count($show_user) ;
-                                }else{
-                                    $count_show_user = 0 ;
-                                }
-
-                                $arr_check_in_show_user[$item->id] = $count_show_user;
-                                arsort($arr_check_in_show_user);
-                            }
-                        @endphp
-                        <div id="collapse_check_in_4" class="collapse" data-parent="#accordion_of_check_in">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                แสดงผลต่อผู้ใช้มากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_check_in_show_user as $check_in_key => $check_in_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$check_in_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
-                                                        </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $check_in_val }} ครั้ง</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- จบ แสดงผลต่อผู้ใช้มากที่สุด -->
-
                     </div>
                 </div>
-                <!-- END CHECK IN  -->
+                <!-- END Content เรียงลำดับ ทั้งหมด -->
 
-                <!-- CAR  --> 
-                @php
-                    $car_most_all = Ads_content::where('id_partner',$partners_id)
-                        ->where('type_content' , 'BC_by_car')
-                        ->limit(5)
-                        ->get();
-                @endphp
-                <div class="accordion" id="accordion_of_car">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <h5 class="font-weight-bold mb-0">
-                                        <b>Car</b>
-                                    </h5>
-                                </div>
-                                <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                                    <a href="{{ url('/broadcast/content?By=BC_by_car') }}" type="button" class="btn btn-sm btn-info text-white">
-                                        <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
-                                    </a>
+                <!-- Content เรียงลำดับ -->
+                <div class="row row-cols-1 row-cols-lg-3">
 
-                                    <div class="btn-group" role="group">
-                                        <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                            ตัวเลือก
-                                        </button>
+                    <!-- CHECK IN  --> 
+                    @php
+                        $check_in_most_all = Ads_content::where('id_partner',$partners_id)
+                            ->where('type_content' , 'BC_by_check_in')
+                            ->limit(5)
+                            ->get();
+                    @endphp
+                    <div class="accordion" id="accordion_of_check_in">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h5 class="font-weight-bold mb-0">
+                                            <b>Check in</b>
+                                        </h5>
+                                    </div>
+                                    <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
+                                        <a href="{{ url('/broadcast/content?By=BC_by_check_in') }}" type="button" class="btn btn-sm btn-info text-white">
+                                            <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
+                                        </a>
 
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-toggle="collapse" data-target="#collapse_car_1" aria-expanded="true" aria-controls="collapse_car_1" href="javaScript:;" class="dropdown-item">
-                                                ส่งมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_car_2" aria-expanded="true" aria-controls="collapse_car_2" href="javaScript:;" class="dropdown-item" >
-                                                การคลิกมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_car_3" aria-expanded="true" aria-controls="collapse_car_3" href="javaScript:;" class="dropdown-item">
-                                                การคลิกแบบไม่ซ้ำคนมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_car_4" aria-expanded="true" aria-controls="collapse_car_4" href="javaScript:;" class="dropdown-item">
-                                                แสดงผลต่อผู้ใช้มากที่สุด
-                                            </a>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                                                ตัวเลือก
+                                            </button>
+
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a data-toggle="collapse" data-target="#collapse_check_in_1" aria-expanded="true" aria-controls="collapse_check_in_1" href="javaScript:;" class="dropdown-item">
+                                                    ส่งมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_2" href="javaScript:;" class="dropdown-item" >
+                                                    การคลิกมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_check_in_3" aria-expanded="true" aria-controls="collapse_check_in_3" href="javaScript:;" class="dropdown-item">
+                                                    การคลิกแบบไม่ซ้ำคนมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_check_in_4" aria-expanded="true" aria-controls="collapse_check_in_4" href="javaScript:;" class="dropdown-item">
+                                                    แสดงผลต่อผู้ใช้มากที่สุด
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- ส่งมากที่สุด -->
-                        @php
-                            $car_most_round = Ads_content::where('id_partner',$partners_id)
-                                ->where('type_content' , 'BC_by_car')
-                                ->orderBy('send_round' , 'desc')
-                                ->limit(5)
-                                ->get();
+                            <!-- ส่งมากที่สุด -->
+                            @php
+                                $check_in_most_round = Ads_content::where('id_partner',$partners_id)
+                                    ->where('type_content' , 'BC_by_check_in')
+                                    ->orderBy('send_round' , 'desc')
+                                    ->limit(5)
+                                    ->get();
 
-                        @endphp
-                        <div id="collapse_car_1" class="collapse show" data-parent="#accordion_of_car">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                ส่งมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($car_most_round as $item )
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_check_in_1" class="collapse show" data-parent="#accordion_of_check_in">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    ส่งมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($check_in_most_round as $item )
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $item->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $item->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $item->send_round }} รอบ</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $item->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $item->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $item->send_round }} รอบ</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ ส่งมากที่สุด -->
+                            <!-- จบ ส่งมากที่สุด -->
 
-                        <!-- การคลิกมากที่สุด -->
-                        @php
-                            $arr_car_click = array() ;
+                            <!-- การคลิกมากที่สุด -->
+                            @php
+                                $arr_check_in_click = array() ;
 
-                            foreach ($car_most_all as $item ) {
+                                foreach ($check_in_most_all as $item ) {
 
-                                if(!empty($item->user_click)){
-                                    $user_click = json_decode($item->user_click) ;
-                                    $count_user_click = count($user_click) ;
-                                }else{
-                                    $count_user_click = 0 ;
+                                    if(!empty($item->user_click)){
+                                        $user_click = json_decode($item->user_click) ;
+                                        $count_user_click = count($user_click) ;
+                                    }else{
+                                        $count_user_click = 0 ;
+                                    }
+
+                                    $arr_check_in_click[$item->id] = $count_user_click;
+                                    arsort($arr_check_in_click);
                                 }
-
-                                $arr_car_click[$item->id] = $count_user_click;
-                                arsort($arr_car_click);
-                            }
-                        @endphp
-                        <div id="collapse_car_2" class="collapse" data-parent="#accordion_of_car">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                การคลิกมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_car_click as $car_key => $car_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$car_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_check_in_2" class="collapse" data-parent="#accordion_of_check_in">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    การคลิกมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_check_in_click as $check_in_key => $check_in_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$check_in_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $check_in_val }} ครั้ง</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $car_val }} ครั้ง</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ การคลิกมากที่สุด -->
+                            <!-- จบ การคลิกมากที่สุด -->
 
-                        <!-- การคลิกแบบไม่ซ้ำคนมากที่สุด -->
-                        @php
-                            $arr_car_click_unique = array() ;
+                            <!-- การคลิกแบบไม่ซ้ำคนมากที่สุด -->
+                            @php
+                                $arr_check_in_click_unique = array() ;
 
-                            foreach ($car_most_all as $item ) {
+                                foreach ($check_in_most_all as $item ) {
 
-                                if(!empty($item->user_click)){
-                                    $user_click = json_decode($item->user_click) ;
-                                    $arr_user_click_unique = array_count_values($user_click);
-                                    $count_user_click_unique = count( $arr_user_click_unique ) ;
-                                }else{
-                                    $count_user_click_unique = 0 ;
+                                    if(!empty($item->user_click)){
+                                        $user_click = json_decode($item->user_click) ;
+                                        $arr_user_click_unique = array_count_values($user_click);
+                                        $count_user_click_unique = count( $arr_user_click_unique ) ;
+                                    }else{
+                                        $count_user_click_unique = 0 ;
+                                    }
+
+                                    $arr_check_in_click_unique[$item->id] = $count_user_click_unique;
+                                    arsort($arr_check_in_click_unique);
                                 }
-
-                                $arr_car_click_unique[$item->id] = $count_user_click_unique;
-                                arsort($arr_car_click_unique);
-                            }
-                        @endphp
-                        <div id="collapse_car_3" class="collapse" data-parent="#accordion_of_car">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                การคลิกแบบไม่ซ้ำคนมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_car_click_unique as $car_key => $car_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$car_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    การคลิกแบบไม่ซ้ำคนมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_check_in_click_unique as $check_in_key => $check_in_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$check_in_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $check_in_val }} คน</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $car_val }} คน</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ การคลิกแบบไม่ซ้ำคนมากที่สุด -->
+                            <!-- จบ การคลิกแบบไม่ซ้ำคนมากที่สุด -->
 
-                        <!-- แสดงผลต่อผู้ใช้มากที่สุด -->
-                        @php
-                            $arr_car_show_user = array() ;
+                            <!-- แสดงผลต่อผู้ใช้มากที่สุด -->
+                            @php
+                                $arr_check_in_show_user = array() ;
 
-                            foreach ($car_most_all as $item ) {
+                                foreach ($check_in_most_all as $item ) {
 
-                                if(!empty($item->show_user)){
-                                    $show_user = json_decode($item->show_user) ;
-                                    $count_show_user = count($show_user) ;
-                                }else{
-                                    $count_show_user = 0 ;
+                                    if(!empty($item->show_user)){
+                                        $show_user = json_decode($item->show_user) ;
+                                        $count_show_user = count($show_user) ;
+                                    }else{
+                                        $count_show_user = 0 ;
+                                    }
+
+                                    $arr_check_in_show_user[$item->id] = $count_show_user;
+                                    arsort($arr_check_in_show_user);
                                 }
-
-                                $arr_car_show_user[$item->id] = $count_show_user;
-                                arsort($arr_car_show_user);
-                            }
-                        @endphp
-                        <div id="collapse_car_4" class="collapse" data-parent="#accordion_of_car">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                แสดงผลต่อผู้ใช้มากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_car_show_user as $car_key => $car_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$car_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_check_in_4" class="collapse" data-parent="#accordion_of_check_in">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    แสดงผลต่อผู้ใช้มากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_check_in_show_user as $check_in_key => $check_in_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$check_in_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $check_in_val }} ครั้ง</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $car_val }} ครั้ง</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ แสดงผลต่อผู้ใช้มากที่สุด -->
+                            <!-- จบ แสดงผลต่อผู้ใช้มากที่สุด -->
 
+                        </div>
                     </div>
-                </div>
-                <!-- END CAR  -->
+                    <!-- END CHECK IN  -->
 
-                <!-- User  --> 
-                @php
-                    $user_most_all = Ads_content::where('id_partner',$partners_id)
-                        ->where('type_content' , 'BC_by_user')
-                        ->limit(5)
-                        ->get();
-                @endphp
-                <div class="accordion" id="accordion_of_user">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <h5 class="font-weight-bold mb-0">
-                                        <b>User</b>
-                                    </h5>
-                                </div>
-                                <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                                    <a href="{{ url('/broadcast/content?By=BC_by_user') }}" type="button" class="btn btn-sm btn-info text-white">
-                                        <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
-                                    </a>
+                    <!-- CAR  --> 
+                    @php
+                        $car_most_all = Ads_content::where('id_partner',$partners_id)
+                            ->where('type_content' , 'BC_by_car')
+                            ->limit(5)
+                            ->get();
+                    @endphp
+                    <div class="accordion" id="accordion_of_car">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h5 class="font-weight-bold mb-0">
+                                            <b>Car</b>
+                                        </h5>
+                                    </div>
+                                    <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
+                                        <a href="{{ url('/broadcast/content?By=BC_by_car') }}" type="button" class="btn btn-sm btn-info text-white">
+                                            <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
+                                        </a>
 
-                                    <div class="btn-group" role="group">
-                                        <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                            ตัวเลือก
-                                        </button>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                                                ตัวเลือก
+                                            </button>
 
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-toggle="collapse" data-target="#collapse_user_1" aria-expanded="true" aria-controls="collapse_user_1" href="javaScript:;" class="dropdown-item">
-                                                ส่งมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_user_2" aria-expanded="true" aria-controls="collapse_user_2" href="javaScript:;" class="dropdown-item" >
-                                                การคลิกมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_user_3" aria-expanded="true" aria-controls="collapse_user_3" href="javaScript:;" class="dropdown-item">
-                                                การคลิกแบบไม่ซ้ำคนมากที่สุด
-                                            </a>
-                                            <a data-toggle="collapse" data-target="#collapse_user_4" aria-expanded="true" aria-controls="collapse_user_4" href="javaScript:;" class="dropdown-item">
-                                                แสดงผลต่อผู้ใช้มากที่สุด
-                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a data-toggle="collapse" data-target="#collapse_car_1" aria-expanded="true" aria-controls="collapse_car_1" href="javaScript:;" class="dropdown-item">
+                                                    ส่งมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_car_2" aria-expanded="true" aria-controls="collapse_car_2" href="javaScript:;" class="dropdown-item" >
+                                                    การคลิกมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_car_3" aria-expanded="true" aria-controls="collapse_car_3" href="javaScript:;" class="dropdown-item">
+                                                    การคลิกแบบไม่ซ้ำคนมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_car_4" aria-expanded="true" aria-controls="collapse_car_4" href="javaScript:;" class="dropdown-item">
+                                                    แสดงผลต่อผู้ใช้มากที่สุด
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- ส่งมากที่สุด -->
-                        @php
-                            $user_most_round = Ads_content::where('id_partner',$partners_id)
-                                ->where('type_content' , 'BC_by_user')
-                                ->orderBy('send_round' , 'desc')
-                                ->limit(5)
-                                ->get();
+                            <!-- ส่งมากที่สุด -->
+                            @php
+                                $car_most_round = Ads_content::where('id_partner',$partners_id)
+                                    ->where('type_content' , 'BC_by_car')
+                                    ->orderBy('send_round' , 'desc')
+                                    ->limit(5)
+                                    ->get();
 
-                        @endphp
-                        <div id="collapse_user_1" class="collapse show" data-parent="#accordion_of_user">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                ส่งมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($user_most_round as $item )
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_car_1" class="collapse show" data-parent="#accordion_of_car">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    ส่งมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($car_most_round as $item )
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $item->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $item->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $item->send_round }} รอบ</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $item->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $item->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $item->send_round }} รอบ</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ ส่งมากที่สุด -->
+                            <!-- จบ ส่งมากที่สุด -->
 
-                        <!-- การคลิกมากที่สุด -->
-                        @php
-                            $arr_user_click = array() ;
+                            <!-- การคลิกมากที่สุด -->
+                            @php
+                                $arr_car_click = array() ;
 
-                            foreach ($user_most_all as $item ) {
+                                foreach ($car_most_all as $item ) {
 
-                                if(!empty($item->user_click)){
-                                    $user_click = json_decode($item->user_click) ;
-                                    $count_user_click = count($user_click) ;
-                                }else{
-                                    $count_user_click = 0 ;
+                                    if(!empty($item->user_click)){
+                                        $user_click = json_decode($item->user_click) ;
+                                        $count_user_click = count($user_click) ;
+                                    }else{
+                                        $count_user_click = 0 ;
+                                    }
+
+                                    $arr_car_click[$item->id] = $count_user_click;
+                                    arsort($arr_car_click);
                                 }
-
-                                $arr_user_click[$item->id] = $count_user_click;
-                                arsort($arr_user_click);
-                            }
-                        @endphp
-                        <div id="collapse_user_2" class="collapse" data-parent="#accordion_of_user">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                การคลิกมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_user_click as $user_key => $user_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$user_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_car_2" class="collapse" data-parent="#accordion_of_car">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    การคลิกมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_car_click as $car_key => $car_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$car_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $car_val }} ครั้ง</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $user_val }} ครั้ง</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ การคลิกมากที่สุด -->
+                            <!-- จบ การคลิกมากที่สุด -->
 
-                        <!-- การคลิกแบบไม่ซ้ำคนมากที่สุด -->
-                        @php
-                            $arr_user_click_unique = array() ;
+                            <!-- การคลิกแบบไม่ซ้ำคนมากที่สุด -->
+                            @php
+                                $arr_car_click_unique = array() ;
 
-                            foreach ($user_most_all as $item ) {
+                                foreach ($car_most_all as $item ) {
 
-                                if(!empty($item->user_click)){
-                                    $user_click = json_decode($item->user_click) ;
-                                    $arr_user_click_unique = array_count_values($user_click);
-                                    $count_user_click_unique = count( $arr_user_click_unique ) ;
-                                }else{
-                                    $count_user_click_unique = 0 ;
+                                    if(!empty($item->user_click)){
+                                        $user_click = json_decode($item->user_click) ;
+                                        $arr_user_click_unique = array_count_values($user_click);
+                                        $count_user_click_unique = count( $arr_user_click_unique ) ;
+                                    }else{
+                                        $count_user_click_unique = 0 ;
+                                    }
+
+                                    $arr_car_click_unique[$item->id] = $count_user_click_unique;
+                                    arsort($arr_car_click_unique);
                                 }
-
-                                $arr_user_click_unique[$item->id] = $count_user_click_unique;
-                                arsort($arr_user_click_unique);
-                            }
-                        @endphp
-                        <div id="collapse_user_3" class="collapse" data-parent="#accordion_of_user">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                การคลิกแบบไม่ซ้ำคนมากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_user_click_unique as $user_key => $user_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$user_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_car_3" class="collapse" data-parent="#accordion_of_car">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    การคลิกแบบไม่ซ้ำคนมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_car_click_unique as $car_key => $car_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$car_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $car_val }} คน</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $user_val }} คน</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ การคลิกแบบไม่ซ้ำคนมากที่สุด -->
+                            <!-- จบ การคลิกแบบไม่ซ้ำคนมากที่สุด -->
 
-                        <!-- แสดงผลต่อผู้ใช้มากที่สุด -->
-                        @php
-                            $arr_user_show_user = array() ;
+                            <!-- แสดงผลต่อผู้ใช้มากที่สุด -->
+                            @php
+                                $arr_car_show_user = array() ;
 
-                            foreach ($user_most_all as $item ) {
+                                foreach ($car_most_all as $item ) {
 
-                                if(!empty($item->show_user)){
-                                    $show_user = json_decode($item->show_user) ;
-                                    $count_show_user = count($show_user) ;
-                                }else{
-                                    $count_show_user = 0 ;
+                                    if(!empty($item->show_user)){
+                                        $show_user = json_decode($item->show_user) ;
+                                        $count_show_user = count($show_user) ;
+                                    }else{
+                                        $count_show_user = 0 ;
+                                    }
+
+                                    $arr_car_show_user[$item->id] = $count_show_user;
+                                    arsort($arr_car_show_user);
                                 }
-
-                                $arr_user_show_user[$item->id] = $count_show_user;
-                                arsort($arr_user_show_user);
-                            }
-                        @endphp
-                        <div id="collapse_user_4" class="collapse" data-parent="#accordion_of_user">
-                            <div class="card-body">
-                                <div class="col d-flex">
-                                    <div class="card radius-10 w-100">
-                                        <div class="best-selling-products p-3 mb-3">
-                                            <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                                แสดงผลต่อผู้ใช้มากที่สุด
-                                            </span>
-                                            <hr>
-                                            @foreach($arr_user_show_user as $user_key => $user_val)
-                                                @php
-                                                    $data_of_id = Ads_content::where('id',$user_key)->first();
-                                                @endphp
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="">
-                                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                            @endphp
+                            <div id="collapse_car_4" class="collapse" data-parent="#accordion_of_car">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    แสดงผลต่อผู้ใช้มากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_car_show_user as $car_key => $car_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$car_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $car_val }} ครั้ง</p>
                                                         </div>
-                                                        <div class="product-img">
-                                                            <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
-                                                        </div>
-                                                        <p class="ms-auto mb-0 text-purple">{{ $user_val }} ครั้ง</p>
-                                                    </div>
-                                                    <hr/>
-                                            @endforeach
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- จบ แสดงผลต่อผู้ใช้มากที่สุด -->
+                            <!-- จบ แสดงผลต่อผู้ใช้มากที่สุด -->
 
+                        </div>
                     </div>
+                    <!-- END CAR  -->
+
+                    <!-- User  --> 
+                    @php
+                        $user_most_all = Ads_content::where('id_partner',$partners_id)
+                            ->where('type_content' , 'BC_by_user')
+                            ->limit(5)
+                            ->get();
+                    @endphp
+                    <div class="accordion" id="accordion_of_user">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h5 class="font-weight-bold mb-0">
+                                            <b>User</b>
+                                        </h5>
+                                    </div>
+                                    <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
+                                        <a href="{{ url('/broadcast/content?By=BC_by_user') }}" type="button" class="btn btn-sm btn-info text-white">
+                                            <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
+                                        </a>
+
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                                                ตัวเลือก
+                                            </button>
+
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a data-toggle="collapse" data-target="#collapse_user_1" aria-expanded="true" aria-controls="collapse_user_1" href="javaScript:;" class="dropdown-item">
+                                                    ส่งมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_user_2" aria-expanded="true" aria-controls="collapse_user_2" href="javaScript:;" class="dropdown-item" >
+                                                    การคลิกมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_user_3" aria-expanded="true" aria-controls="collapse_user_3" href="javaScript:;" class="dropdown-item">
+                                                    การคลิกแบบไม่ซ้ำคนมากที่สุด
+                                                </a>
+                                                <a data-toggle="collapse" data-target="#collapse_user_4" aria-expanded="true" aria-controls="collapse_user_4" href="javaScript:;" class="dropdown-item">
+                                                    แสดงผลต่อผู้ใช้มากที่สุด
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ส่งมากที่สุด -->
+                            @php
+                                $user_most_round = Ads_content::where('id_partner',$partners_id)
+                                    ->where('type_content' , 'BC_by_user')
+                                    ->orderBy('send_round' , 'desc')
+                                    ->limit(5)
+                                    ->get();
+
+                            @endphp
+                            <div id="collapse_user_1" class="collapse show" data-parent="#accordion_of_user">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    ส่งมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($user_most_round as $item )
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $item->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $item->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $item->send_round }} รอบ</p>
+                                                        </div>
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- จบ ส่งมากที่สุด -->
+
+                            <!-- การคลิกมากที่สุด -->
+                            @php
+                                $arr_user_click = array() ;
+
+                                foreach ($user_most_all as $item ) {
+
+                                    if(!empty($item->user_click)){
+                                        $user_click = json_decode($item->user_click) ;
+                                        $count_user_click = count($user_click) ;
+                                    }else{
+                                        $count_user_click = 0 ;
+                                    }
+
+                                    $arr_user_click[$item->id] = $count_user_click;
+                                    arsort($arr_user_click);
+                                }
+                            @endphp
+                            <div id="collapse_user_2" class="collapse" data-parent="#accordion_of_user">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    การคลิกมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_user_click as $user_key => $user_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$user_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $user_val }} ครั้ง</p>
+                                                        </div>
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- จบ การคลิกมากที่สุด -->
+
+                            <!-- การคลิกแบบไม่ซ้ำคนมากที่สุด -->
+                            @php
+                                $arr_user_click_unique = array() ;
+
+                                foreach ($user_most_all as $item ) {
+
+                                    if(!empty($item->user_click)){
+                                        $user_click = json_decode($item->user_click) ;
+                                        $arr_user_click_unique = array_count_values($user_click);
+                                        $count_user_click_unique = count( $arr_user_click_unique ) ;
+                                    }else{
+                                        $count_user_click_unique = 0 ;
+                                    }
+
+                                    $arr_user_click_unique[$item->id] = $count_user_click_unique;
+                                    arsort($arr_user_click_unique);
+                                }
+                            @endphp
+                            <div id="collapse_user_3" class="collapse" data-parent="#accordion_of_user">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    การคลิกแบบไม่ซ้ำคนมากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_user_click_unique as $user_key => $user_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$user_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $user_val }} คน</p>
+                                                        </div>
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- จบ การคลิกแบบไม่ซ้ำคนมากที่สุด -->
+
+                            <!-- แสดงผลต่อผู้ใช้มากที่สุด -->
+                            @php
+                                $arr_user_show_user = array() ;
+
+                                foreach ($user_most_all as $item ) {
+
+                                    if(!empty($item->show_user)){
+                                        $show_user = json_decode($item->show_user) ;
+                                        $count_show_user = count($show_user) ;
+                                    }else{
+                                        $count_show_user = 0 ;
+                                    }
+
+                                    $arr_user_show_user[$item->id] = $count_show_user;
+                                    arsort($arr_user_show_user);
+                                }
+                            @endphp
+                            <div id="collapse_user_4" class="collapse" data-parent="#accordion_of_user">
+                                <div class="card-body">
+                                    <div class="col d-flex">
+                                        <div class="card radius-10 w-100">
+                                            <div class="best-selling-products p-3 mb-3">
+                                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                                    แสดงผลต่อผู้ใช้มากที่สุด
+                                                </span>
+                                                <hr>
+                                                @foreach($arr_user_show_user as $user_key => $user_val)
+                                                    @php
+                                                        $data_of_id = Ads_content::where('id',$user_key)->first();
+                                                    @endphp
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="">
+                                                                <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <img src="{{ url('storage')}}/{{ $data_of_id->photo }}" class="p-1" alt="" />
+                                                            </div>
+                                                            <div class="ps-3">
+                                                                <h5 class="mb-0 font-weight-bold">{{ $data_of_id->name_content }}</h5>
+                                                            </div>
+                                                            <p class="ms-auto mb-0 text-purple">{{ $user_val }} ครั้ง</p>
+                                                        </div>
+                                                        <hr/>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- จบ แสดงผลต่อผู้ใช้มากที่สุด -->
+
+                        </div>
+                    </div>
+                    <!-- END User  -->
                 </div>
-                <!-- END User  -->
+                <!-- END Content เรียงลำดับ -->
             </div>
-            <!-- END Content เรียงลำดับ -->
-
-
-
-
+            <!-- END การจัดอันดับ -->
 
 
 
@@ -1603,140 +1692,24 @@
             
             <!--end row-->
 
-            <div class="card radius-10">
-                <div class="card-header border-bottom-0 bg-transparent">
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <h5 class="font-weight-bold mb-0">Recent Orders</h5>
-                        </div>
-                        <div class="ms-auto">
-                            <button type="button" class="btn btn-white radius-10">View More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table mb-0 align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Photo</th>
-                                    <th>Product Name</th>
-                                    <th>Customer</th>
-                                    <th>Product id</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="product-img bg-transparent border">
-                                            <img src="assets/images/icons/shoes.png" class="p-1" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Nike Sports NK</td>
-                                    <td>Mitchell Daniel</td>
-                                    <td>#9668521</td>
-                                    <td>$99.85</td>
-                                    <td><a href="javaScript:;" class="btn btn-sm btn-success radius-30">Delivered</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product-img bg-transparent border">
-                                            <img src="assets/images/icons/smartphone.png" class="p-1" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Redmi Airdts</td>
-                                    <td>Craig Clayton</td>
-                                    <td>#8627523</td>
-                                    <td>$59.35</td>
-                                    <td><a href="javaScript:;" class="btn btn-sm btn-danger radius-30">Cancelled</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product-img bg-transparent border">
-                                            <img src="assets/images/icons/mouse.png" class="p-1" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Magic Mouse 2</td>
-                                    <td>Julia Burke</td>
-                                    <td>#6875954</td>
-                                    <td>$42.68</td>
-                                    <td><a href="javaScript:;" class="btn btn-sm btn-warning radius-30">Pending</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product-img bg-transparent border">
-                                            <img src="assets/images/icons/tshirt.png" class="p-1" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Coton-T-Shirt</td>
-                                    <td>Clark Natela</td>
-                                    <td>#4587892</td>
-                                    <td>$32.78</td>
-                                    <td><a href="javaScript:;" class="btn btn-sm btn-success radius-30">Delivered</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product-img bg-transparent border">
-                                            <img src="assets/images/icons/headphones.png" class="p-1" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Headphones 7</td>
-                                    <td>Robin Mandela</td>
-                                    <td>#5587426</td>
-                                    <td>$29.52</td>
-                                    <td><a href="javaScript:;" class="btn btn-sm btn-success radius-30">Delivered</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product-img bg-transparent border">
-                                            <img src="assets/images/icons/mouse.png" class="p-1" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Magic Mouse 2</td>
-                                    <td>Julia Burke</td>
-                                    <td>#6875954</td>
-                                    <td>$42.68</td>
-                                    <td><a href="javaScript:;" class="btn btn-sm btn-warning radius-30">Pending</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product-img bg-transparent border">
-                                            <img src="assets/images/icons/tshirt.png" class="p-1" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Coton-T-Shirt</td>
-                                    <td>Clark Natela</td>
-                                    <td>#4587892</td>
-                                    <td>$32.78</td>
-                                    <td><a href="javaScript:;" class="btn btn-sm btn-success radius-30">Delivered</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <!--end page wrapper -->
 
     </div>
 </div>
 
-
+<script>
+    $(document).ready(function () {
+        $("#myTable").DataTable();
+        document.querySelector('#myTable_filter').classList.add('d-none');
+    });
+</script>
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("start");
     });
-
 
 </script>
 

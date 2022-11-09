@@ -389,6 +389,7 @@ Route::get('set_new_richMenu', 'API\LineApiController@set_new_richMenu');
 Route::get('test_for_dev/type_car_registration', 'test_for_devController@type_car_registration');
 Route::get('main_test', 'test_for_devController@main_test');
 Route::get('text_sp', 'test_for_devController@text_sp');
+Route::get('test_table', 'test_for_devController@test_table');
 
 Route::get('/modal_loading', function () {
     return view('layouts/modal_loading');

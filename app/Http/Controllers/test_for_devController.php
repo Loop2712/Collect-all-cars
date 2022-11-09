@@ -16,6 +16,12 @@ use Illuminate\Http\Request;
 
 class test_for_devController extends Controller
 {
+    public function test_table()
+    {
+        return view('test_for_dev.test_table'); 
+    }
+
+
     public function main_test()
     {
         $reg = "1ยษก294" ;

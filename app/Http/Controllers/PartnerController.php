@@ -1206,7 +1206,7 @@ class PartnerController extends Controller
     }
 
     function broadcast_by_check_in(Request $request){
-        echo "broadcast_by_check_in" ;
+        echo "<h2>จะเป็ดให้ใช้บริการเร็วๆนี้</h2>" ;
         exit();
     }
 
