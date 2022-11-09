@@ -489,12 +489,13 @@ class CarbrandController extends Controller
 
         $requestData = $request->all();
 
-        $to_url_ep = explode('//' ,$requestData['redirectTo']);
+        $url = $requestData['redirectTo'] ;
+        $to_url_ep = explode("//" , $url);
 
         if (count($to_url_ep) > 1) {
-            $to_url = 'http://' . $to_url_ep[1] ;
+            $to_url = $url ;
         }else{
-            $to_url = $to_url_ep[0] ;
+            $to_url = 'http://' . $url ;
         }
 
         $data_Ads_content = Ads_content::where('id' , $requestData['id_content'])->first();

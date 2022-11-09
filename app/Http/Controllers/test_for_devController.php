@@ -24,25 +24,15 @@ class test_for_devController extends Controller
 
     public function main_test()
     {
-        $reg = "1ยษก294" ;
+        $url = "www.peddyhub.com" ;
 
-        $reg_text = preg_replace('/[0-9]+/', '', $reg);
-        $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
-        $reg_num_sp = explode(" ", $reg_num);
-        $last_list_num = count($reg_num_sp) - 1 ;
+        $to_url_ep = explode("//" , $url);
 
-        $reg_1 = $reg_num_sp[0] . $reg_text ;
-        $reg_2 = "กรุงเทพมหานคร" ;
-        $reg_3 = $reg_num_sp[$last_list_num] ;
-
-        echo "<br>" ;
-        echo $reg_1 ;
-
-        echo "<br>" ;
-        echo $reg_2 ;
-
-        echo "<br>" ;
-        echo $reg_3 ;
+        if (count($to_url_ep) > 1) {
+            $to_url = $url ;
+        }else{
+            $to_url = 'http://' . $url ;
+        }
 
         exit();
     }
