@@ -502,7 +502,6 @@ class CarbrandController extends Controller
             ->where('id', $requestData['id_content'])
             ->update([
                 'user_click' => $arr_user_click ,
-                'send_round' => $requestData['redirectTo'] ,
         ]);
 
         return redirect($requestData['redirectTo'])->with('flash_message', 'Partner updated!');
