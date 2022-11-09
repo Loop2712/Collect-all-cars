@@ -402,7 +402,7 @@ class CarbrandController extends Controller
 
         }
 
-        return redirect('broadcast_by_car')->with('flash_message', 'Partner updated!');
+        return redirect('/broadcast/broadcast_by_car')->with('flash_message', 'Partner updated!');
 
     }
 
