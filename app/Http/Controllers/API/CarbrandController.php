@@ -504,7 +504,7 @@ class CarbrandController extends Controller
                 'user_click' => $arr_user_click ,
         ]);
 
-        return redirect($requestData['redirectTo'])->with('flash_message', 'Partner updated!');
+        return redirect('http://' . $requestData['redirectTo'])->with('flash_message', 'Partner updated!');
     }
 
 }
