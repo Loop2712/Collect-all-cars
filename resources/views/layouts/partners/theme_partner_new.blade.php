@@ -912,6 +912,12 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+                
+                if (result.length >= 1) {
+                	document.querySelector('#div_menu_Broadcast').classList.remove('d-none');
+                }else{
+                	document.querySelector('#div_menu_Broadcast').classList.add('d-none');
+                }
 
                 if (!result[0]['BC_by_check_in_max'] || result[0]['BC_by_check_in_max'] == '0') {
                 	document.querySelector('#li_menu_Check_in').classList.add('disabled');
@@ -928,11 +934,6 @@
                 	document.querySelector('#li_menu_User').href = "";
                 }
 
-                if (result.length >= 1) {
-                	document.querySelector('#div_menu_Broadcast').classList.remove('d-none');
-                }else{
-                	document.querySelector('#div_menu_Broadcast').classList.add('d-none');
-                }
         });
             
     }
