@@ -137,15 +137,12 @@ class Check_inController extends Controller
         
         Check_in::create($requestData);
 
+        // update check_in id user to partner
         foreach ($data_partner_name_area as $data_name_area ) {
             $requestData['check_in_at'] = $data_name_area->id ;
         }
 
         $data_user = User::where('id' , $requestData['user_id'])->get();
-
-        // $data_partner = Partner::where('name' , $name_partner)
-        //     ->where('name_area' , null)
-        //     ->get(); 
 
         $data_partner = Partner::where('id' , $requestData['check_in_at'])->get(); 
 
@@ -154,13 +151,24 @@ class Check_inController extends Controller
             $check_in_at = $partner->name . " - " . $partner->name_area ;
             $user_check_in = $partner->user_check_in ;
         }
+        
+        if (!empty($requestData['time_in'])) {
+            $data_date_time = $requestData['time_in'] ;
+        }else{
+            $data_date_time = $requestData['time_out'] ;
+        }
 
-        // update check_in id user to partner
+        $arr_data_user_check_in = array();
+        $arr_data_user_check_in['user_id'] = $requestData['user_id'];
+        $arr_data_user_check_in['type_check'] = $requestData['check_in_out'];
+        $arr_data_user_check_in['date_time'] = $data_date_time ;
+
+        
         if (empty($user_check_in)) {
-            $arr_user_check_in = array($requestData['user_id']) ;
+            $arr_user_check_in[] = $arr_data_user_check_in ;
         }else{
             $arr_user_check_in = json_decode($user_check_in) ;
-            array_push($arr_user_check_in , $requestData['user_id']) ;
+            array_push($arr_user_check_in , $arr_data_user_check_in) ;
         }
 
         DB::table('partners')
