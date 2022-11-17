@@ -48,13 +48,29 @@ $(function () {
 	});
 	// === sidebar menu activation js
 	$(function () {
-		for (var i = window.location, o = $(".metismenu li a").filter(function () {
+		for (var i = window.location.href.split('?')[0] , o = $(".metismenu li a").filter(function () {
+			
 			return this.href == i;
 		}).addClass("").parent().addClass("mm-active");;) {
 			if (!o.is("li")) break;
 			o = o.parent("").addClass("mm-show").parent("").addClass("mm-active");
 		}
 	});
+
+	// $(function () {
+	// 	for(){
+			
+	// 	}
+
+
+	// 	for (var location = window.location.href.split('?')[0] , s = $(".sub-menu").filter(function () {
+	// 		var getValue =$('.sub-menu').attr("data-submenu");
+	// 		return getValue == location;
+	// 	}).addClass("").parent().addClass("mm-active");;) {if (!s.is("li")) break; s = s.parent("").addClass("mm-show").parent("").addClass("mm-active");
+	// 	}
+	// });
+
+
 	// metismenu
 	$(function () {
 		$('#menu').metisMenu();

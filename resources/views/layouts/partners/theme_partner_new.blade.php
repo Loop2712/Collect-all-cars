@@ -99,10 +99,189 @@
 			</div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+				<!-- Admin -->
+				@if(Auth::check())
+                    @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
+						<li>
+							<a href="#" class="has-arrow">
+								<div class="parent-icon"><i class="fas fa-user-shield"></i>
+								</div>
+								<div class="menu-title">Admin</div>
+							</a>
+							<ul>
+								<li> <a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> Admin</a>
+								</li>
+							</ul>
+						</li>
+					@endif
+				@endif
+				<!-- Admin -->
+
+				<!-- Broadcast -->
+					<li id="div_menu_Broadcast" class="d-none">
+						<a href="#" class="has-arrow">
+							<div class="parent-icon"><i class="fas fa-user-shield"></i>
+							</div>
+							<div class="menu-title">Broadcast Line</div>
+						</a>
+						<ul>
+							@if(Auth::user()->id == "1")
+								<li> <a href="{{ url('/broadcast/dashboard') }}"><i class='fas fa-users-cog'></i> Dashboard</a>
+								</li>
+								<li> <a href="{{ url('/broadcast/broadcast_by_check_in') }}"><i class='fas fa-users-cog'></i> By Check In</a>
+								</li>
+								<li> <a href="{{ url('/broadcast/broadcast_by_user') }}"><i class='fas fa-users-cog'></i> By User</a>
+								</li>
+							@endif
+							<li> <a href="{{ url('/broadcast/broadcast_by_car') }}"><i class='fas fa-users-cog'></i> By cars</a>
+							</li>
+						</ul>
+					</li>
+				<!-- Broadcast -->
+
+				<!-- สำหรับ องค์กร / คอนโด -->
+					@if(Auth::check())
+						@if(Auth::user()->role == "admin-condo")
+							<li>
+								<a href="#" class="has-arrow">
+									<div class="parent-icon"><i class="fas fa-building"></i>
+									</div>
+									<div class="menu-title">For Corporation</div>
+								</a>
+								<ul>
+									<li> <a href="{{ url('/sos_partner') }}"><i class='fas fa-hands-helping'></i> ให้ความช่วยเหลือ</a>
+									</li>
+									<li> <a href="{{ url('/add_area') }}"><i class='far fa-map'></i> พื้นที่บริการ</a>
+									</li>
+									<li> <a href="{{ url('/parcel') }}"><i class="fas fa-truck-loading"></i> พัสดุ</a>
+									</li>
+									<li> <a href="{{ url('/notify_repair') }}"><i class="fas fa-tools"></i> แจ้งซ่อม</a>
+									</li>
+									<li> <a href="{{ url('/cleaning_appointment') }}"><i class="fas fa-broom"></i> นัดหมายทำความสะอาด</a>
+									</li>
+									<li> <a href="{{ url('/bill_payment') }}"><i class="fas fa-file-invoice-dollar"></i> บิลเรียกชำระ</a>
+									</li>
+									<li> <a href="{{ url('/news_condo') }}"><i class="fas fa-newspaper"></i> ข่าวสาร</a>
+									</li>
+									<li> <a href="{{ url('/report_condo') }}"><i class="fas fa-exclamation-circle"></i> การแจ้งปัญหา</a>
+									</li>
+									<li> <a href="{{ url('/report_condo') }}"><i class="fas fa-tasks"></i> แบบประเมิน</a>
+									</li>
+								</ul>
+							</li>
+						@endif
+					@endif
+				<!-- สำหรับ องค์กร / คอนโด -->
+
+				<!-- ViiCare -->
+					<li>
+						<a href="#" class="has-arrow">
+							<div class="parent-icon"><i class="fas fa-hand-holding-heart"></i>
+							</div>
+							<div class="menu-title">Vii Care</div>
+						</a>
+						<ul>
+							<li> <a href="{{ url('/check_in/view') }}"><i class="fas fa-map-marker-check"></i> ข้อมูลการเข้าออก</a>
+							</li>
+							<li> <a href="{{ url('/check_in/add_new_check_in') }}"><i class="fas fa-qrcode"></i> เพิ่มจุด Check in</a>
+							</li>
+							<li> <a href="{{ url('/check_in/gallery') }}"><i class="far fa-images"></i>คลังภาพ</a>
+							</li>
+						</ul>
+					</li>
+				<!-- ViiCare -->
+
+				<!-- ViiMove -->
+					<li>
+						<a href="#" class="has-arrow">
+							<div class="parent-icon"><i class="fas fa-car-crash"></i>
+							</div>
+							<div class="menu-title">Vii Move</div>
+						</a>
+						<ul>
+							<li> <a href="{{ url('/register_cars_partner') }}"><i class='fas fa-car'></i> รถลงทะเบียน</a>
+							</li>
+							<li> <a href="{{ url('/guest_partner') }}"><i class="fas fa-file-signature"></i> รถที่ถูกรายงาน</a>
+							</li>
+							<li> <a href="{{ url('/partner_guest_latest') }}"><i class="fas fa-history"></i>รถที่ถูกรายงานล่าสุด</a>
+							</li>
+						</ul>
+					</li>
+				<!-- ViiMove -->
+
+				<!-- Vii SOS -->
+					@if(Auth::check())
+						@if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
+							<li class="main-submenu">
+								<a href="#" class="has-arrow">
+									<div class="parent-icon"><i class="fas fa-siren-on"></i>
+									</div>
+									<div class="menu-title">Vii SOS</div>
+								</a>
+								<ul >
+									<li> 
+										<a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-3="{{ url('/score_helper') }}/"class="d-block sub-menu">
+											<i class='fas fa-hands-helping'></i>  
+
+											<span id="div_menu_help_1">
+												ให้ความช่วยเหลือ
+											</span>
+											 
+											<span id="div_menu_help" class="d-none">
+												<i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
+											</span>
+										</a>
+									</li>
+									
+									@if(Auth::check())
+					                    @if(Auth::user()->role == "admin-partner")
+											<li> <a href="{{ url('/add_area') }}"><i class='far fa-map'></i>พื้นที่บริการ</a></li>
+										@endif
+									@endif
+
+									@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
+										<li> 
+
+											<a href="{{ url('/sos_emergency_js100') }}" data-submenu="{{ url('/sos_detail_js100') }}" class="d-block sub-menu">
+											<i class="fal fa-siren-on"></i>
+												
+												<span id="div_menu_help_js100">
+													SOS by calling
+												</span>
+												
+												<span id="div_menu_alert_js100" class="d-none">
+													<i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
+												</span>
+											</a>
+										</li>
+									@endif
+								</ul>
+							</li>
+						@endif
+					@endif
+				<!-- Vii SOS -->
+
+				<!-- Other -->
+				<li>
+					<a href="#" class="has-arrow">
+						<div class="parent-icon"><i class="fas fa-braille"></i>
+						</div>
+						<div class="menu-title">อื่นๆ</div>
+					</a>
+					<ul>
+						<li> <a href="{{ url('/how_to_use') }}"><i class='fad fa-book'></i> วิธีใช้งาน</a>
+						</li>
+						<li> <a href="{{ url('/partner_media?menu=all') }}"><i class="fas fa-photo-video"></i> สื่อประชาสัมพันธ์</a>
+						</li>
+					</ul>
+				</li>
+				<!-- Other -->
+
 				<br>
 
+				<!------------------------------------------------------------------- menu เก่า ------------------------------------------------------------------->
 				<!-- ----------------- Admin -------------------- -->
-				@if(Auth::check())
+				<!-- @if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
 						<div class="accordion" id="accordion_admin">
 					    	<div id="heading_admin">
@@ -132,11 +311,11 @@
 			    			<hr class="text-white">
 						</div>
 					@endif
-				@endif
+				@endif -->
 				<!-- ----------------- END Admin -------------------- -->
 
 				<!-- ----------------- Broadcast -------------------- -->
-				<div id="div_menu_Broadcast" class="d-none">
+				<!-- <div id="div_menu_Broadcast" class="d-none">
 					<div class="accordion" id="accordion_broadcast">
 				    	<div id="heading_broadcast">
 				    		<a href="#" data-toggle="collapse" data-target="#collapse_broadcast" aria-expanded="true" aria-controls="collapse_broadcast">
@@ -192,106 +371,106 @@
 				    	</div>
 		    			<hr class="text-white">
 					</div>
-				</div>
+				</div> -->
 				<!-- ---------------- END Broadcast ----------------- -->
 
 				<!-- สำหรับ องค์กร / คอนโด -->
-				@if(Auth::check())
-                    @if(Auth::user()->role == "admin-condo")
+					<!-- @if(Auth::check())
+						@if(Auth::user()->role == "admin-condo")
 
-                    	<div class="accordion" id="accordion_condo">
-					    	<div id="heading_condo">
-					    		<a href="#" data-toggle="collapse" data-target="#collapse_condo" aria-expanded="true" aria-controls="collapse_condo">
-									<div class="parent-icon">
-										<i class="fas fa-building"></i>
-									</div>
-									<div class="menu-title">
-										For Corporation
-										<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
-									</div>
-								</a>
-					    	</div>
+							<div class="accordion" id="accordion_condo">
+								<div id="heading_condo">
+									<a href="#" data-toggle="collapse" data-target="#collapse_condo" aria-expanded="true" aria-controls="collapse_condo">
+										<div class="parent-icon">
+											<i class="fas fa-building"></i>
+										</div>
+										<div class="menu-title">
+											For Corporation
+											<i class="fas fa-caret-down float-end" style="font-size: 20px; position: absolute;right: 5%;"></i>
+										</div>
+									</a>
+								</div>
 
-					    	<div id="collapse_condo" class="collapse" aria-labelledby="heading_condo" data-parent="#accordion_condo">
-					      		<div class="card-body">
-					      			<li>
-						      			<a href="{{ url('/sos_partner') }}#collapse_condo">
-											<div class="parent-icon"><i class='fas fa-hands-helping'></i>
-											</div>
-											<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
-											<div id="div_menu_help" class="d-none">
-												&nbsp;
-												<i class="fas fa-exclamation-circle notify_alert"></i>
-											</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/add_area') }}#collapse_condo">
-											<div class="parent-icon"><i class='far fa-map'></i>
-											</div>
-											<div class="menu-title">พื้นที่บริการ</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/parcel') }}#collapse_condo">
-											<div class="parent-icon"><i class="fas fa-truck-loading"></i>
-											</div>
-											<div class="menu-title">พัสดุ</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/notify_repair') }}#collapse_condo">
-											<div class="parent-icon"><i class="fas fa-tools"></i>
-											</div>
-											<div class="menu-title">แจ้งซ่อม</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/cleaning_appointment') }}#collapse_condo">
-											<div class="parent-icon"><i class="fas fa-broom"></i>
-											</div>
-											<div class="menu-title">นัดหมายทำความสะอาด</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/bill_payment') }}#collapse_condo">
-											<div class="parent-icon"><i class="fas fa-file-invoice-dollar"></i>
-											</div>
-											<div class="menu-title">บิลเรียกชำระ</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/news_condo') }}#collapse_condo">
-											<div class="parent-icon"><i class="fas fa-newspaper"></i>
-											</div>
-											<div class="menu-title">ข่าวสาร</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/report_condo') }}#collapse_condo">
-											<div class="parent-icon"><i class="fas fa-exclamation-circle"></i>
-											</div>
-											<div class="menu-title">การแจ้งปัญหา</div>
-										</a>
-									</li>
-									<li>
-										<a href="{{ url('/report_condo') }}#collapse_condo">
-											<div class="parent-icon"><i class="fas fa-tasks"></i>
-											</div>
-											<div class="menu-title">แบบประเมิน</div>
-										</a>
-									</li>
-					      		</div>
-					    	</div>
-			    			<hr class="text-white">
-						</div>
-					@endif
-				@endif
+								<div id="collapse_condo" class="collapse" aria-labelledby="heading_condo" data-parent="#accordion_condo">
+									<div class="card-body">
+										<li>
+											<a href="{{ url('/sos_partner') }}#collapse_condo">
+												<div class="parent-icon"><i class='fas fa-hands-helping'></i>
+												</div>
+												<div id="div_menu_help_1" class="menu-title">ให้ความช่วยเหลือ</div>
+												<div id="div_menu_help" class="d-none">
+													&nbsp;
+													<i class="fas fa-exclamation-circle notify_alert"></i>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/add_area') }}#collapse_condo">
+												<div class="parent-icon"><i class='far fa-map'></i>
+												</div>
+												<div class="menu-title">พื้นที่บริการ</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/parcel') }}#collapse_condo">
+												<div class="parent-icon"><i class="fas fa-truck-loading"></i>
+												</div>
+												<div class="menu-title">พัสดุ</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/notify_repair') }}#collapse_condo">
+												<div class="parent-icon"><i class="fas fa-tools"></i>
+												</div>
+												<div class="menu-title">แจ้งซ่อม</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/cleaning_appointment') }}#collapse_condo">
+												<div class="parent-icon"><i class="fas fa-broom"></i>
+												</div>
+												<div class="menu-title">นัดหมายทำความสะอาด</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/bill_payment') }}#collapse_condo">
+												<div class="parent-icon"><i class="fas fa-file-invoice-dollar"></i>
+												</div>
+												<div class="menu-title">บิลเรียกชำระ</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/news_condo') }}#collapse_condo">
+												<div class="parent-icon"><i class="fas fa-newspaper"></i>
+												</div>
+												<div class="menu-title">ข่าวสาร</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/report_condo') }}#collapse_condo">
+												<div class="parent-icon"><i class="fas fa-exclamation-circle"></i>
+												</div>
+												<div class="menu-title">การแจ้งปัญหา</div>
+											</a>
+										</li>
+										<li>
+											<a href="{{ url('/report_condo') }}#collapse_condo">
+												<div class="parent-icon"><i class="fas fa-tasks"></i>
+												</div>
+												<div class="menu-title">แบบประเมิน</div>
+											</a>
+										</li>
+									</div>
+								</div>
+								<hr class="text-white">
+							</div>
+						@endif
+					@endif -->
 				<!-- สิ้นสุด สำหรับ องค์กร / คอนโด -->
 
 
 				<!-- ---------------- Vii CARE ----------------- -->
-				<div class="accordion" id="accordion_Vii_Care">
+				<!-- <div class="accordion" id="accordion_Vii_Care">
 			    	<div id="heading_Vii_Care">
 			    		<a href="#" data-toggle="collapse" data-target="#collapse_Vii_Care" aria-expanded="true" aria-controls="collapse_Vii_Care">
 							<div class="parent-icon">
@@ -330,11 +509,11 @@
 			      		</div>
 			    	</div>
 	    			<hr class="text-white">
-				</div>
+				</div> -->
 				<!-- ---------------- END Vii CARE ----------------- -->
 
 				<!-- ---------------- Vii MOVE ----------------- -->
-				<div class="accordion" id="accordion_Vii_Move">
+				<!-- <div class="accordion" id="accordion_Vii_Move">
 			    	<div id="heading_Vii_Move">
 			    		<a href="#" data-toggle="collapse" data-target="#collapse_Vii_Move" aria-expanded="true" aria-controls="collapse_Vii_Move">
 							<div class="parent-icon">
@@ -373,11 +552,11 @@
 			      		</div>
 			    	</div>
 	    			<hr class="text-white">
-				</div>
+				</div> -->
 				<!-- ---------------- END Vii MOVE ----------------- -->
 
 				<!-- ---------------- Vii SOS ----------------- -->
-				@if(Auth::check())
+				<!-- @if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
 						<div class="accordion" id="accordion_Vii_SOS">
 					    	<div id="heading_Vii_SOS">
@@ -434,11 +613,11 @@
 			    			<hr class="text-white">
 						</div>
 					@endif
-				@endif
+				@endif -->
 				<!-- ---------------- END Vii SOS ----------------- -->
 
 				<!-- ---------------- Other ----------------- -->
-				<div class="accordion" id="accordion_Other">
+				<!-- <div class="accordion" id="accordion_Other">
 			    	<div id="heading_Other">
 			    		<a href="#" data-toggle="collapse" data-target="#collapse_Other" aria-expanded="true" aria-controls="collapse_Other">
 							<div class="parent-icon">
@@ -470,7 +649,7 @@
 			      		</div>
 			    	</div>
 	    			<hr class="text-white">
-				</div>
+				</div> -->
 				<!-- ---------------- END Other ----------------- -->
 
 			</ul>
@@ -820,7 +999,6 @@
 <script src="{{ asset('partner_new/plugins/highcharts/js/export-data.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/accessibility.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script>
@@ -830,17 +1008,25 @@
 <!--app JS-->
 <script src="{{ asset('partner_new/js/app.js') }}"></script>
 <!-- dataTables -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
+ <!-- src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+ src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"> -->
+
+
+
+
+
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        show_menu_bar();
+        // show_menu_bar();
 		check_data_partner();
 		check_sos_alarm();
 	    check_sos_js100();
-
+		check_submenu();
 	    setInterval(function() {
 	    	// เช็ค SOS
 	       	check_sos_alarm();
@@ -850,15 +1036,15 @@
         
     });
 
-	function show_menu_bar(){
-		let full_url = window.location.href ;
-        const url_sp = full_url.split("#");
+	// function show_menu_bar(){
+	// 	let full_url = window.location.href ;
+    //     const url_sp = full_url.split("#");
 
-        // console.log(url_sp[1]);
-        if (url_sp[1]) {
-        	document.querySelector( '#' + url_sp[1] ).classList.add('show');
-        }
-	}    
+    //     // console.log(url_sp[1]);
+    //     if (url_sp[1]) {
+    //     	document.querySelector( '#' + url_sp[1] ).classList.add('show');
+    //     }
+	// }    
 
     function check_data_partner()
     {
@@ -1312,8 +1498,33 @@
                 }
         });
     }
+	
+	function check_submenu(){
+		let menu = $('.sub-menu');
+		var winlocation = window.location.href.split('?')[0]
+		whole_string = winlocation;
+		split_string = whole_string.split(/(\d+)/);
+		
 
+		for (i = 0; i < menu.length; i++) {
+			if(winlocation == menu[i].getAttribute("data-submenu")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+
+			}if(winlocation == menu[i].getAttribute("data-submenu-2")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}if(split_string[0] == menu[i].getAttribute("data-submenu-3")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}
+		}
+	}
 </script>
+
 </body>
 
 </html>
