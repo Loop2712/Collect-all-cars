@@ -220,7 +220,7 @@
 								</a>
 								<ul >
 									<li> 
-										<a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-have-id="{{ url('/score_helper') }}/"class="d-block sub-menu">
+										<a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-3="{{ url('/score_helper') }}/"class="d-block sub-menu">
 											<i class='fas fa-hands-helping'></i>  
 
 											<span id="div_menu_help_1">
@@ -1502,32 +1502,25 @@
 	function check_submenu(){
 		let menu = $('.sub-menu');
 		var winlocation = window.location.href.split('?')[0]
-
 		whole_string = winlocation;
 		split_string = whole_string.split(/(\d+)/);
 		
 
 		for (i = 0; i < menu.length; i++) {
-
 			if(winlocation == menu[i].getAttribute("data-submenu")){
 				menu[i].closest(".main-submenu").classList.add("mm-active");
 				menu[i].closest("li").classList.add("mm-show");
 				menu[i].closest("li").classList.add("mm-active");
 
-			}else if(winlocation == menu[i].getAttribute("data-submenu-2")){
+			}if(winlocation == menu[i].getAttribute("data-submenu-2")){
 				menu[i].closest(".main-submenu").classList.add("mm-active");
 				menu[i].closest("li").classList.add("mm-show");
 				menu[i].closest("li").classList.add("mm-active");
-			}else if(winlocation == menu[i].getAttribute("data-submenu-3")){
-				menu[i].closest(".main-submenu").classList.add("mm-active");
-				menu[i].closest("li").classList.add("mm-show");
-				menu[i].closest("li").classList.add("mm-active");
-			}else if(split_string[0] == menu[i].getAttribute("data-submenu-have-id")){
+			}if(split_string[0] == menu[i].getAttribute("data-submenu-3")){
 				menu[i].closest(".main-submenu").classList.add("mm-active");
 				menu[i].closest("li").classList.add("mm-show");
 				menu[i].closest("li").classList.add("mm-active");
 			}
-
 		}
 	}
 </script>
