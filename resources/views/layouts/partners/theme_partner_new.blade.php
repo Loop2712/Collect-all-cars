@@ -1499,7 +1499,42 @@
         });
     }
 	
-	
+	function check_submenu(){
+		let menu = $('.sub-menu');
+		var winlocation = window.location.href.split('?')[0]
+		whole_string = winlocation;
+		split_string = whole_string.split(/(\d+)/);
+		
+
+		for (i = 0; i < menu.length; i++) {
+
+			if(winlocation == menu[i].getAttribute("data-submenu")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+
+			}
+
+			if(winlocation == menu[i].getAttribute("data-submenu-2")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}
+
+			if(winlocation == menu[i].getAttribute("data-submenu-3")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}
+
+			if(split_string[0] == menu[i].getAttribute("data-submenu-have-id")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}
+			
+		}
+	}
 </script>
 
 </body>
