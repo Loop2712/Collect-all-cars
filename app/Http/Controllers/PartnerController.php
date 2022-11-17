@@ -52,7 +52,7 @@ class PartnerController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             // $partner = Partner::where('name_area', null)->latest()->paginate($perPage);
-            $partner = Partner::where('name_area', null)->get();
+            $partner = Partner::where('name_area', null)->latest()->get();
         }
 
         foreach ($partner as $key) {
