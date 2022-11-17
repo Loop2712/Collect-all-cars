@@ -1036,16 +1036,6 @@
         
     });
 
-	// function show_menu_bar(){
-	// 	let full_url = window.location.href ;
-    //     const url_sp = full_url.split("#");
-
-    //     // console.log(url_sp[1]);
-    //     if (url_sp[1]) {
-    //     	document.querySelector( '#' + url_sp[1] ).classList.add('show');
-    //     }
-	// }    
-
     function check_data_partner()
     {
     	let user_organization = document.querySelector('#user_organization').value ;
