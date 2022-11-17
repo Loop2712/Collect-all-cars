@@ -41,7 +41,7 @@ class PartnerController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        // $perPage = 25;
 
         if (!empty($keyword)) {
             $partner = Partner::where('name', 'LIKE', "%$keyword%")
@@ -51,7 +51,8 @@ class PartnerController extends Controller
                 ->orWhere('mail', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $partner = Partner::where('name_area', null)->latest()->paginate($perPage);
+            // $partner = Partner::where('name_area', null)->latest()->paginate($perPage);
+            $partner = Partner::where('name_area', null)->get();
         }
 
         foreach ($partner as $key) {
