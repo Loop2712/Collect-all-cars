@@ -118,7 +118,7 @@
 				<!-- Admin -->
 
 				<!-- Broadcast -->
-					<li id="div_menu_Broadcast" class="d-none">
+					<li id="div_menu_Broadcast" class="d-none main-submenu">
 						<a href="#" class="has-arrow">
 							<div class="parent-icon"><i class="fas fa-user-shield"></i>
 							</div>
@@ -126,7 +126,7 @@
 						</a>
 						<ul>
 							@if(Auth::user()->id == "1")
-								<li> <a href="{{ url('/broadcast/dashboard') }}"><i class='fas fa-users-cog'></i> Dashboard</a>
+								<li> <a href="{{ url('/broadcast/dashboard') }}" data-submenu="{{ url('/broadcast/content') }}" class="sub-menu"><i class='fas fa-users-cog'></i> Dashboard</a>
 								</li>
 								<li> <a href="{{ url('/broadcast/broadcast_by_check_in') }}"><i class='fas fa-users-cog'></i> By Check In</a>
 								</li>
