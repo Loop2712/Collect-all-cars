@@ -220,7 +220,7 @@
 								</a>
 								<ul >
 									<li> 
-										<a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-3="{{ url('/score_helper') }}/"class="d-block sub-menu">
+										<a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-have-id="{{ url('/score_helper') }}/"class="d-block sub-menu">
 											<i class='fas fa-hands-helping'></i>  
 
 											<span id="div_menu_help_1">
@@ -1516,7 +1516,19 @@
 				menu[i].closest(".main-submenu").classList.add("mm-active");
 				menu[i].closest("li").classList.add("mm-show");
 				menu[i].closest("li").classList.add("mm-active");
-			}if(split_string[0] == menu[i].getAttribute("data-submenu-3")){
+			}if(winlocation == menu[i].getAttribute("data-submenu-3")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}if(winlocation == menu[i].getAttribute("data-submenu-4")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}if(winlocation == menu[i].getAttribute("data-submenu-5")){
+				menu[i].closest(".main-submenu").classList.add("mm-active");
+				menu[i].closest("li").classList.add("mm-show");
+				menu[i].closest("li").classList.add("mm-active");
+			}if(split_string[0] == menu[i].getAttribute("data-submenu-have-id")){
 				menu[i].closest(".main-submenu").classList.add("mm-active");
 				menu[i].closest("li").classList.add("mm-show");
 				menu[i].closest("li").classList.add("mm-active");
