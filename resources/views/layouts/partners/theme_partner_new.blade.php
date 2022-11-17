@@ -235,7 +235,7 @@
 									
 									@if(Auth::check())
 					                    @if(Auth::user()->role == "admin-partner")
-											<li> <a href="{{ url('/add_area') }}"><i class='far fa-map'></i>พื้นที่บริการ</a></li>
+											<li> <a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu"><i class='far fa-map'></i>พื้นที่บริการ</a></li>
 										@endif
 									@endif
 
