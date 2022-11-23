@@ -1,6 +1,326 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
+<style>
+.boardcast-content{
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+}
+.boardcast-content .header{
+    padding: 3rem  0;
+    font-size: 1.5rem;
+}
+.boardcast-content .header .btn-content{
+   border-radius: 10px;
+   background-color: white;
+   border: 1px solid #db2d2e;
+   color: #db2d2e;
+   
+}
+.boardcast-content .header .btn-content:hover{
+   border-radius: 10px;
+   background-color: #db2d2e;
+   border: 1px solid #db2d2e;
+   color: white;
+   
+}.boardcast-content .content{
+    border-radius: 20px;
+    background-color: white;
+    padding: 10px;
+}.boardcast-content .content .img-content{
+   width: 100%;
+   height: 250px;
+   background-color: #898989;
+   object-fit: contain;
+   border-radius: 20px 20px 0 0;
+}.boardcast-content .content .detail{   
+    padding: 20px;
+   
+}.content .detail h4{
+     width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.btn{
+    border-radius: 10px;
+}
+.text-on-line { 
+    width:100%; 
+    text-align:center; 
+    border-bottom: 1px solid #000; 
+    line-height:0.1em; 
+    margin:10px 0 10px; 
+    font-size: 16px;
+} 
+.text-on-line  .line { 
+    background:#fff; 
+    padding:0 10px; 
+}
+</style> 
+
+
+
+ <div class="boardcast-content">
+    <div class="header">
+        <span>
+            Content
+        </span>
+        <span class="float-end">
+            <a id="btn_BC_all" href="{{ url('/broadcast/content') }}" class="btn btn-content">
+                All
+            </a>
+            @if( !empty($partner_premium->BC_by_check_in_max) )
+                <a id="btn_BC_by_check_in" href="{{ url('/broadcast/content') }}?By=BC_by_check_in" class="btn btn-content" >
+                    <i class="fa-duotone fa-map-location-dot"></i> By check in
+                </a>
+            @endif  
+            @if( !empty($partner_premium->BC_by_car_max))
+                <a id="btn_BC_by_car" href="{{ url('/broadcast/content') }}?By=BC_by_car" class="btn btn-content" >
+                    <i class="fa-duotone fa-cars"></i> By cars
+                </a>
+            @endif
+            @if( !empty($partner_premium->BC_by_user_max))
+                <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-content" >
+                    <i class="fa-duotone fa-users"></i>By user
+                </a>
+            @endif
+        </span>
+        
+    </div>
+    <style>
+        .div-tooltip{
+            position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    cursor: pointer;
+    }
+    .div-tooltip:hover{
+    overflow: visible;
+    }
+    .div-tooltip:hover .tooltip{
+    display: inline;
+    opacity: 80%;
+    }
+
+    .div-tooltip .tooltip{
+    background-color: #333;
+    color: white;
+    position: absolute;
+    left: 45%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    font-size: 12px;
+    min-width: 240px;
+    padding: 10px 15px;
+    top: 2.5em;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    opacity: 0; /* to hide it but still there*/
+    border-radius:10px;
+    font-family: 'Kanit', sans-serif;
+    }
+
+    .div-tooltip .tooltip::before{
+        content: "";
+    position: absolute;
+    top:-19px ;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    border:10px solid;
+    border-color:  transparent transparent #333 transparent;
+
+    } 
+    </style>
+    <div class="content">
+        <div class="row">
+            <div class="col-12 float-end">
+                <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-outline-success" >
+                    <i class="fa-duotone fa-circle-plus"></i> เพิ่มเนื้อหาใหม่
+                </a>
+                <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-outline-secondary " >
+                    <i class="fa-duotone fa-file-pdf"></i> Export PDF
+                </a>
+            </div>
+            @foreach($ads_contents as $item)
+                @php
+                    $count_show_user_unique = 0 ;
+                    $count_user_click_unique = 0 ;
+                    $count_Repeated_users = 0 ;
+                    $click_max = 0 ;
+
+                    if(!empty($item->show_user)){
+                        $show_user = json_decode($item->show_user) ;
+                        $count_show_user = count($show_user) ;
+                        $count_show_user_unique = count( array_count_values($show_user) ) ;
+
+                    }else{
+                        $count_show_user = '0' ;
+                    }
+
+                    if(!empty($item->user_click)){
+                        $user_click = json_decode($item->user_click) ;
+                        $count_user_click = count($user_click) ;
+                        $arr_user_click_unique = array_count_values($user_click);
+                        $count_user_click_unique = count( $arr_user_click_unique ) ;
+
+                        $count_Repeated_users = 0 ;
+                        $click_max = 0 ;
+                        foreach ($arr_user_click_unique as $key => $value) {
+
+                            if ($value > 1) {
+                                $count_Repeated_users = $count_Repeated_users + 1 ;
+                            }
+                            if ($value > $click_max) {
+                                $click_max = $value ;
+                            }
+                                
+                        }
+
+                    }else{
+                        $count_user_click = '0' ;
+                    }
+
+                    if($item->type_content == "BC_by_car"){
+                        $type_content = "ส่งข้อมูลโดยกรองจากรถ";
+                    }if($item->type_content == "BC_by_user"){
+                        $type_content = "ส่งข้อมูลโดยกรองจากผู้ใช้";
+                    }if($item->type_content == "BC_by_chcekin"){
+                        $type_content = "ส่งข้อมูลโดยกรองจากสถานที่";
+                    }
+                @endphp
+                <div class="col-12 col-md-4 col-lg-3 mt-3">
+                    <div class="main-shadow" style="border-radius: 20px;">
+                        <img src="{{ url('storage')}}/{{ $item->photo }}" class=" main-radius img-content">
+                        <div class="detail">
+                            <h4>{{ $item->name_content }}</h4>
+                            <div class="row">
+                                <div class="div-tooltip col-6">
+                                    <span><b><i class="fa-solid fa-calendar-lines-pen">
+                                    <span class="tooltip">วันที่สร้าง วัน{{ thaidate("lที่ j F Y" , strtotime($item->created_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->created_at)) }}</span> 
+                                    </i></b></span>
+                                    <span>{{ $item->created_at->format('d/m/Y') }}</span>
+                                </div>
+                                <div class="div-tooltip col-6">
+                                    <span><b><i class="fa-solid fa-arrow-rotate-right"></i></b></span>
+                                    <span class="tooltip">อัพเดตล่าสุด วัน{{ thaidate("lที่ j F Y" , strtotime($item->updated_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->updated_at)) }}</span> 
+                                    <span>{{ $item->updated_at->format('d/m/Y') }}</span>
+                                </div>
+                                <div class="div-tooltip">
+                                    <span><b><i class="fa-solid fa-shapes"></i></b></span>
+                                
+                                    <span class="tooltip">ประเภท : {{$type_content}} <br> </span> 
+                                    <span>{{$type_content}}</span>
+                                </div>
+                                <div class="div-tooltip">
+                                    <span><b><i class="fa-solid fa-paper-plane"></i></i></b></span>
+                                    <span class="tooltip">ส่งแล้ว : {{ $item->send_round }} ครั้ง </span> 
+                                    <span>{{ $item->send_round }} ครั้ง</span>
+                                </div>
+                            </div>
+                            
+
+                            <!-- <div class="d-flex justify-content-between">
+                                <span><b>วันที่สร้าง</b></span>
+                                <span>1/11/2565</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span><b>อัพเดต</b></span>
+                                <span>1/11/2565</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span><b>ประเภท</b></span>
+                                <span>bc_by_car</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span><b>ส่งแล้ว</b></span>
+                                <span>1 ครั้ง</span>
+                            </div> -->
+                                <p class="text-on-line "><span class="line">การแสดงผล</span></p>
+                                <div class="row text-center mt-0 div-tooltip">
+                                    <div class="col-6">
+                                        <i class="fa-regular fa-screen-users"></i> {{ $count_show_user }} ครั้ง
+                                    </div>
+                                    <div class="col-6">
+                                        <i class="fa-solid fa-users-rectangle"></i> {{ $count_show_user_unique }} ครั้ง
+                                    </div>
+                                    <div class="tooltip">
+                                        <div class="collumn">
+                                            <p class="p-0 m-0">การแสดงผลทั้งหมด : {{ $count_show_user }} ครั้ง</p>
+                                            <p class="p-0 m-0">การแสดงผลแบบไม่ซ้ำกับผู้ใช้เดิม : {{ $count_show_user_unique }} คน</p>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <p class="text-on-line "><span class="line">การเข้าถึง</span></p>
+                                <div class="row text-center mt-0 div-tooltip">
+                                    <div class="col-6">
+                                        <i class="fa-solid fa-bullseye-pointer"></i> {{ $count_show_user }} ครั้ง
+                                    </div>
+                                    <div class="col-6">
+                                        <i class="fa-duotone fa-bullseye-pointer"></i> {{ $count_show_user_unique }} คน
+                                    </div>
+                                    <div class="col-12 mt-1"></div>
+                                    <div class="col-6">
+                                        <i class="fa-solid fa-hand-pointer"></i> {{ $count_show_user }} คน
+                                    </div>
+                                    <div class="col-6">
+                                        <i class="fa-duotone fa-hand-pointer"></i> {{ $count_show_user_unique }} ครั้ง
+                                    </div>
+                                    <div class="tooltip">
+                                        <div class="collumn">
+                                            <p class="p-0 m-0">การเข้าถึงทั้งหมด : {{ $count_user_click }}  ครั้ง</p>
+                                            <p class="p-0 m-0">การเข้าถึงแบบไม่ซ้ำผู้ใช้ : {{ $count_user_click_unique }} คน</p>
+                                            <p class="p-0 m-0">การเข้าถึงซ้ำ : {{ $count_Repeated_users }} คน</p>
+                                            <p class="p-0 m-0">การเข้าถึงซึ้งมากที่สุด : {{ $click_max }} ครั้ง</p>
+
+                                        </div>
+                                    </div> 
+                                </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- <div class="col-3">
+                    <div class="card">
+                        <center>
+                            <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $item->photo }}" class="main-shadow main-radius">
+                        </center>
+                        <div class="card-body">
+                            <h4 style="margin-top:10px;" class="card-title text-center">
+                                {{ $item->name_content }}
+                            </h4>
+                            <hr>
+                            <span><b>วันที่สร้าง :</b> {{ $item->created_at }}</span> <br>
+                            <span><b>อัพเดทล่าสุด :</b> {{ $item->updated_at }}</span> <br>
+                            <span><b>ประเภท :</b> {{ $item->type_content }}</span> <br>
+                            <span><b>ส่งแล้ว :</b> {{ $item->send_round }} รอบ</span> <br>
+                            <hr>
+                            <span><b>แสดงผลต่อผู้ใช้ทั้งหมด</b> &nbsp;{{ $count_show_user }}&nbsp; ครั้ง</span><br>
+                            <span><b>แสดงผลต่อผู้ใช้แบบไม่ซ้ำคน</b> &nbsp;{{ $count_show_user_unique }}&nbsp; คน</span><br>
+                            <br>
+                            <span><b>การคลิกทั้งหมด</b> &nbsp; {{ $count_user_click }} &nbsp; ครั้ง</span><br>
+                            <span><b>การคลิกแบบไม่ซ้ำคน</b> &nbsp; {{ $count_user_click_unique }} &nbsp; คน</span><br>
+                            <span><b>ผู้ที่คลิกซ้ำ</b> &nbsp; {{ $count_Repeated_users }} &nbsp; คน</span><br>
+                            <span><b>จำนวนที่คลิกซ้ำมากที่สุดต่อ 1 คน</b> &nbsp; {{ $click_max }} &nbsp; ครั้ง</span><br>
+                        </div>
+                    </div> 
+                </div> -->
+            @endforeach
+        </div>
+    </div>
+ </div>
 <!-- MODAL LOADING -->
 <div class="modal fade" id="btn-loading" tabindex="-1" role="dialog" aria-labelledby="btn-loading" aria-hidden="true" data-backdrop="static" data-keyboard="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -21,190 +341,6 @@
     </div>
 </div>
 
-<div class="container-data-car">
-    <div class="card filter" style="padding:20px;">
-        
-        <div class="col-12 filter text-center">
-            <div class="row">
-                <div class="col-12 col-md-3">
-                    <a id="btn_BC_all" href="{{ url('/broadcast/content') }}" class="btn btn-info text-white" style="width:80%;">
-                        All
-                    </a>
-                </div>
-                @if( !empty($partner_premium->BC_by_check_in_max) )
-                    <div class="col-12 col-md-3">
-                        <a id="btn_BC_by_check_in" href="{{ url('/broadcast/content') }}?By=BC_by_check_in" class="btn btn-outline-info" style="width:80%;">
-                            By check in
-                        </a>
-                    </div>
-                @endif
-
-                @if( !empty($partner_premium->BC_by_car_max))
-                <div class="col-12 col-md-3">
-                    <a id="btn_BC_by_car" href="{{ url('/broadcast/content') }}?By=BC_by_car" class="btn btn-outline-info" style="width:80%;">
-                        By cars
-                    </a>
-                </div>
-                @endif
-
-                @if( !empty($partner_premium->BC_by_user_max))
-                <div class="col-12 col-md-3">
-                    <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-outline-info" style="width:80%;">
-                        By user
-                    </a>
-                </div>
-                @endif
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="col-12">
-            <div class="row">
-                <div class="col-8">
-                    <h5 style="margin-left: 20px;margin-top: 10px;">
-                        <!-- <b>จำนวนโควต้า :</b> 
-
-                        @if( !empty($partner_premium->BC_by_check_in_max) )
-                            <i class="fas fa-map-marker-check"></i>
-                            &nbsp;  By check in {{ $BC_by_check_in_sent }} / {{ $BC_by_check_in_max }} &nbsp;&nbsp; 
-                        @endif
-
-                        @if( !empty($partner_premium->BC_by_car_max) )
-                            <i class="fad fa-car-bus"></i>
-                            &nbsp;  By cars {{ $BC_by_car_sent }} / {{ $BC_by_car_max }} &nbsp;&nbsp; 
-                        @endif
-
-                        @if( !empty($partner_premium->BC_by_user_max) )
-                            <i class="fad fa-users"></i>
-                            &nbsp;  By user {{ $BC_by_user_sent }} / {{ $BC_by_user_max }}
-                        @endif -->
-
-                    </h5>
-                </div>
-
-                @if( $BC_By )
-
-                    @php
-                        if($BC_By){
-                            $check_permission = $BC_By . "_max";
-                        }else{
-                            $check_permission = "";
-                        }
-                    @endphp
-
-                    @if( $partner_premium->$check_permission == 0 or $partner_premium->$check_permission == null or $partner_premium->$check_permission == "")
-                        <div class="col-4">
-                            <span style="float: right;margin-top: 5px;">
-                                <b>ไม่มีสิทธิ์การใช้งาน</b>
-                            </span>
-                        </div>
-                    @else
-                        @php
-                            $url_link = str_replace("BC", "broadcast" , $BC_By);
-                        @endphp
-                        <div class="col-2">
-                            <a href="{{ url('/broadcast') . '/' . $url_link }}" class="btn btn-sm btn-success" style="width:80%;float: right;margin-top: 5px;">
-                               <i class="fas fa-plus-circle"></i>  เพิ่มเนื้อหาใหม่
-                            </a>
-                        </div>
-
-                        <div class="col-2">
-                            <button class="btn btn-sm btn-secondary" style="width:80%;float: right;margin-top: 5px;">
-                                <i class="fas fa-file-pdf"></i> Export PDF
-                            </button>
-                        </div>
-                    @endif
-
-                @else
-                    <div class="col-2"></div>
-
-                    <div class="col-2">
-                        <button class="btn btn-sm btn-secondary" style="width:80%;float: right;margin-top: 5px;">
-                            <i class="fas fa-file-pdf"></i> Export PDF
-                        </button>
-                    </div>
-
-                @endif
-
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="col-12">
-            <div class="row">
-                @foreach($ads_contents as $item)
-                    @php
-                        $count_show_user_unique = 0 ;
-                        $count_user_click_unique = 0 ;
-                        $count_Repeated_users = 0 ;
-                        $click_max = 0 ;
-
-                        if(!empty($item->show_user)){
-                            $show_user = json_decode($item->show_user) ;
-                            $count_show_user = count($show_user) ;
-                            $count_show_user_unique = count( array_count_values($show_user) ) ;
-
-                        }else{
-                            $count_show_user = '0' ;
-                        }
-
-                        if(!empty($item->user_click)){
-                            $user_click = json_decode($item->user_click) ;
-                            $count_user_click = count($user_click) ;
-                            $arr_user_click_unique = array_count_values($user_click);
-                            $count_user_click_unique = count( $arr_user_click_unique ) ;
-
-                            $count_Repeated_users = 0 ;
-                            $click_max = 0 ;
-                            foreach ($arr_user_click_unique as $key => $value) {
-
-                                if ($value > 1) {
-                                    $count_Repeated_users = $count_Repeated_users + 1 ;
-                                }
-                                if ($value > $click_max) {
-                                    $click_max = $value ;
-                                }
-                                 
-                            }
-
-                        }else{
-                            $count_user_click = '0' ;
-                        }
-
-                    @endphp
-                    <div class="col-3">
-                        <div class="card">
-                            <center>
-                                <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $item->photo }}" class="main-shadow main-radius">
-                            </center>
-                            <div class="card-body">
-                                <h4 style="margin-top:10px;" class="card-title text-center">
-                                    {{ $item->name_content }}
-                                </h4>
-                                <hr>
-                                <span><b>วันที่สร้าง :</b> {{ $item->created_at }}</span> <br>
-                                <span><b>อัพเดทล่าสุด :</b> {{ $item->updated_at }}</span> <br>
-                                <span><b>ประเภท :</b> {{ $item->type_content }}</span> <br>
-                                <span><b>ส่งแล้ว :</b> {{ $item->send_round }} รอบ</span> <br>
-                                <hr>
-                                <span><b>แสดงผลต่อผู้ใช้ทั้งหมด</b> &nbsp;{{ $count_show_user }}&nbsp; ครั้ง</span><br>
-                                <span><b>แสดงผลต่อผู้ใช้แบบไม่ซ้ำคน</b> &nbsp;{{ $count_show_user_unique }}&nbsp; คน</span><br>
-                                <br>
-                                <span><b>การคลิกทั้งหมด</b> &nbsp; {{ $count_user_click }} &nbsp; ครั้ง</span><br>
-                                <span><b>การคลิกแบบไม่ซ้ำคน</b> &nbsp; {{ $count_user_click_unique }} &nbsp; คน</span><br>
-                                <span><b>ผู้ที่คลิกซ้ำ</b> &nbsp; {{ $count_Repeated_users }} &nbsp; คน</span><br>
-                                <span><b>จำนวนที่คลิกซ้ำมากที่สุดต่อ 1 คน</b> &nbsp; {{ $click_max }} &nbsp; ครั้ง</span><br>
-                            </div>
-                        </div> 
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
-    </div>
-</div>
 
 
 <script>

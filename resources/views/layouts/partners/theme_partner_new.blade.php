@@ -118,25 +118,149 @@
 				<!-- Admin -->
 
 				<!-- Broadcast -->
-					<li id="div_menu_Broadcast" class="d-none main-submenu">
-						<a href="#" class="has-arrow">
-							<div class="parent-icon"><i class="fas fa-user-shield"></i>
-							</div>
-							<div class="menu-title">Broadcast Line</div>
-						</a>
-						<ul>
-							@if(Auth::user()->id == "1")
-								<li> <a href="{{ url('/broadcast/dashboard') }}" data-submenu="{{ url('/broadcast/content') }}" class="sub-menu"><i class='fas fa-users-cog'></i> Dashboard</a>
+				<!-- ใหม่ -->
+				<li id="div_menu_Broadcast" class="d-none">
+					<a class="has-arrow" href="javascript:;" >
+						<div class="parent-icon"><i class="fas fa-bullhorn"></i>
+						</div>
+						<div class="menu-title">Broadcast <span style="color: green;">(LINE)</span> </div>
+					</a>
+					<ul class="mm-collapse " style="">
+
+						<li> 
+							<a id="li_menu_Dashboard" href="{{ url('/broadcast/dashboard') }}">
+								<i class='fas fa-users-cog'></i> Dashboard
+							</a>
+						</li>
+						
+						<!--check in  -->
+						<li class=""> 
+							<a class="has-arrow" href="javascript:;">
+								<i class="bx bx-right-arrow-alt"></i>by Checkin
+							</a>
+							<ul class="mm-collapse " style="">
+								<li > 
+									<li class="div-tooltip"> 
+										<a href="#" class="disabled">
+											<i class='fas fa-users-cog'></i> Dashboard Checkin
+										</a>
+										<span id="tip_car" class="tooltip" style="font-size: 0.95em;">
+											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
+										</span>
+									</li>
+									<li class="div-tooltip"> 
+										<a id="li_menu_Check_in" href="{{ url('/broadcast/broadcast_by_check_in') }}">
+										<i class="fas fa-map-marker-check"></i> Boardcast Checkin
+										</a>
+										<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
+											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
+												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
+												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+										</span>
+									</li>
 								</li>
-								<li> <a href="{{ url('/broadcast/broadcast_by_check_in') }}"><i class='fas fa-users-cog'></i> By Check In</a>
+							</ul>
+						</li>
+						<!-- check in -->
+
+						<!-- User -->
+						<li class=""> <a class="has-arrow" href="javascript:;" ><i class="bx bx-right-arrow-alt"></i>by User</a>
+							<ul class="mm-collapse " style="">
+								<li class=""> 
+									<li class="div-tooltip"> 
+										<a  href="#" class="disabled">
+											<i class='fas fa-users-cog'></i> Dashboard User
+										</a>
+										<span id="tip_car" class="tooltip" style="font-size: 0.95em;">
+											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
+										</span>
+									</li>
+									<li class="div-tooltip"> 
+										<a id="li_menu_User" href="{{ url('/broadcast/broadcast_by_user') }}">
+											<i class='fas fa-users-cog'></i> Boardcast User
+										</a>
+										<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
+											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
+												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
+												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+										</span>
+									</li>
 								</li>
-								<li> <a href="{{ url('/broadcast/broadcast_by_user') }}"><i class='fas fa-users-cog'></i> By User</a>
+							</ul>
+						</li>
+						<!-- User -->
+
+						<!-- Cars -->
+						<li class=""> <a class="has-arrow" href="javascript:;" ><i class="bx bx-right-arrow-alt"></i>by Cars</a>
+							<ul class="mm-collapse " style="">
+								<li class=""> 
+									<li class="div-tooltip">  
+										<a href="#"class="disabled">
+											<i class='fas fa-users-cog'></i> Dashboard Cars
+
+										</a>
+										<span id="tip_car" class="tooltip" style="font-size: 0.95em;">
+											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
+										</span>
+									</li>
+									<li class="div-tooltip"> 
+										<a id="li_menu_Cars" href="{{ url('/broadcast/broadcast_by_car') }}">
+											<i class='fas fa-users-cog'></i> Boardcast Cars
+										</a>
+										<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
+											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
+												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
+												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+										</span>
+									</li>
 								</li>
-							@endif
-							<li> <a href="{{ url('/broadcast/broadcast_by_car') }}"><i class='fas fa-users-cog'></i> By cars</a>
+							</ul>
+						</li>
+						<!-- Cars -->
+					</ul>
+				</li>
+
+				<!-- เก่า -->
+				<!-- <li id="div_menu_Broadcast" class="d-none">
+					<a href="#" class="has-arrow">
+						<div class="parent-icon"><i class="fas fa-bullhorn"></i>
+						</div>
+						<div class="menu-title">Broadcast <span style="color: green;">LINE</span> </div>
+					</a>
+					<ul>
+						@if(Auth::user()->id == "1")
+							<li> <a id="li_menu_Dashboard" href="{{ url('/broadcast/dashboard') }}"><i class='fas fa-users-cog'></i> Dashboard</a>
 							</li>
-						</ul>
-					</li>
+							<li class="div-tooltip"> 
+								<a id="li_menu_Check_in" href="{{ url('/broadcast/broadcast_by_check_in') }}"><i class="fas fa-map-marker-check"></i> by Check In</a>
+								<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
+									<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
+										โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
+										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+								</span>
+							</li>
+							<li class="div-tooltip"> 
+								<a id="li_menu_User"href="{{ url('/broadcast/broadcast_by_user') }}"><i class="fad fa-users"></i> by User</a>
+								<span  id="tip_user" class="tooltip d-none" style="font-size: 0.95em;">
+									<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
+									โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
+										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+								</span>
+							</li>
+						@endif
+							<li class="div-tooltip"> 
+								<a id="li_menu_Cars"href="{{ url('/broadcast/broadcast_by_car') }}"><i class="fad fa-car-bus"></i> by cars</a>
+								<span id="tip_car" class="tooltip d-none" style="font-size: 0.95em;">
+									<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
+									โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
+										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+								</span>
+							</li>
+					</ul>
+				</li> -->
+
+
+				
 				<!-- Broadcast -->
 
 				<!-- สำหรับ องค์กร / คอนโด -->
@@ -1098,16 +1222,19 @@
                 if (!result[0]['BC_by_check_in_max'] || result[0]['BC_by_check_in_max'] == '0') {
                 	document.querySelector('#li_menu_Check_in').classList.add('disabled');
                 	document.querySelector('#li_menu_Check_in').href = "";
+					document.querySelector('#tip_check_in').classList.remove("d-none");
                 }
 
                 if (!result[0]['BC_by_car_max'] || result[0]['BC_by_car_max'] == '0') {
                 	document.querySelector('#li_menu_Car').classList.add('disabled');
                 	document.querySelector('#li_menu_Car').href = "";
+					document.querySelector('#tip_car').classList.remove("d-none");
                 }
 
                 if (!result[0]['BC_by_user_max'] || result[0]['BC_by_user_max'] == '0') {
                 	document.querySelector('#li_menu_User').classList.add('disabled');
                 	document.querySelector('#li_menu_User').href = "";
+					document.querySelector('#tip_user').classList.remove("d-none");
                 }
 
         });

@@ -39,17 +39,39 @@ border-radius: 15px
   border-left: 5px solid #e9e9e9;
   display: flex;
   flex: 1;
-  padding-left: 30px;
+  padding-left: 1vw;
   margin: 10px 0px 10px 31px;
   position: relative;
-
+  
 }
+.timeline_content p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* border:solid #000000 1px; */
+  position: absolute;
+  transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-weight: bold;
+  font-size: 1.5vw;
+  font-family: 'Kanit', sans-serif;
+  text-align-last: right;
+  font-weight: bold;
 
+  }
 .timeline_icon {
   font-size: 30px;
   padding-left: 20px;
 
+}.box p,h1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
+
 .mysystem .nav-link {
     border: 0;
     padding: 12px 15px 12px 0;

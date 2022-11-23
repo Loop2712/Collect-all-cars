@@ -282,7 +282,9 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="galelry-lightbox-1">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos_nt_1.png') }}" class="img-fluid">
+                    <p class="text-timeline" style="top: 18%;left: 20%;width:35%;">กด SOS</p>
+                    
                   </a>
                 </div>
                 <div class="d-flex align-items-center">
@@ -290,7 +292,8 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="galelry-lightbox-1">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos_nt_2.png') }}" class="img-fluid">
+                    <p  style="top: 18%;left: 25%;width:45%;">ขอความช่วยเหลือ</p>
                   </a>
                 </div>
               </div>
@@ -333,7 +336,9 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="galelry-lightbox-2">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_1.png') }}" class="img-fluid">
+                    <p class="text-timeline" style="top: 19%;left: 25%;width:40%;">กดลงทะเบียน</p>
+
                   </a>                
                 </div>
 
@@ -343,7 +348,9 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="galelry-lightbox-2">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_2.png') }}" class="img-fluid">
+                    <p class="text-timeline text-center" style="top: 19%;left: 40%;width:60%;text-align-last: center;">กรอกข้อมูลรถ</p>
+
                   </a>               
                 </div>
 
@@ -722,7 +729,8 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="galelry-lightbox-1">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos_nt_1.png') }}" class="img-fluid">
+                    <p class="text-timeline" style="top: 18%;left: 20%;width:35%;font-size: 3vw;">กด SOS</p>
                   </a>
                 </div>
                 <div class="d-flex align-items-center">
@@ -730,7 +738,8 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="galelry-lightbox-1">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos3.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos_nt_2.png') }}" class="img-fluid">
+                    <p  style="top: 18%;left: 25%;width:45%;font-size: 3vw;">ขอความช่วยเหลือ</p>
                   </a>
                 </div>
               </div>
@@ -773,7 +782,8 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="galelry-lightbox-2">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_1.png') }}" class="img-fluid">
+                    <p class="text-timeline" style="top: 19%;left: 25%;width:40%;font-size: 3vw">กดลงทะเบียน</p>
                   </a>                
                 </div>
 
@@ -783,7 +793,8 @@
                 </div>
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="galelry-lightbox-2">
-                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="img-fluid">
+                    <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_2.png') }}" class="img-fluid">
+                    <p class="text-timeline text-center" style="top: 19%;left: 40%;width:60%;text-align-last: center;font-size: 3vw">กรอกข้อมูลรถ</p>
                   </a>               
                 </div>
 

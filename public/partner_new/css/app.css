@@ -27,7 +27,60 @@ File: app.css
   - Forms
   - Responsive
 */
+        .div-tooltip{
+            position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    cursor: pointer;
+    }
+    .div-tooltip:hover{
+    overflow: visible;
+    }
+    .div-tooltip:hover .tooltip{
+    display: inline;
+    opacity: 80%;
+    }
 
+    .div-tooltip .tooltip{
+    background-color: #612F00;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    font-size: 12px;
+    min-width: 240px;
+    padding: 10px 15px;
+    top: 100%;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    opacity: 0; /* to hide it but still there*/
+    border-radius:10px;
+    font-family: 'Kanit', sans-serif;
+	
+    }
+
+    .div-tooltip .tooltip::before{
+        content: "";
+    position: absolute;
+    top:-19px ;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    border:10px solid;
+    border-color:  transparent transparent #612F00 transparent;
+
+    } 
 /* -------------------------------broadcast -------------------------------*/
 .plans {
 	background: #fff;
