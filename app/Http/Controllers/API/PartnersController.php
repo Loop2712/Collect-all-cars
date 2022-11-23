@@ -41,8 +41,7 @@ class PartnersController extends Controller
 
     public function check_data_partner_premium($user_organization)
     {
-        $partner_premium = Partner_premium::where("name_partner", $user_organization)
-            ->get();
+        $partner_premium = Partner_premium::where("name_partner", $user_organization)->get();
 
         return $partner_premium ;
     }

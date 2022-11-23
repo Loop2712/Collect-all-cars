@@ -125,8 +125,10 @@
 						</div>
 						<div class="menu-title">Broadcast <span style="color: green;">(LINE)</span> </div>
 					</a>
-					<ul class="mm-collapse " style="">
 
+
+
+					<ul class="mm-collapse " style="">
 						<li> 
 							<a id="li_menu_Dashboard" href="{{ url('/broadcast/dashboard') }}">
 								<i class='fas fa-users-cog'></i> Dashboard
@@ -144,12 +146,12 @@
 										<a href="#" class="disabled">
 											<i class='fas fa-users-cog'></i> Dashboard Checkin
 										</a>
-										<span id="tip_car" class="tooltip" style="font-size: 0.95em;">
+										<span class="tooltip" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
 										</span>
 									</li>
 									<li class="div-tooltip"> 
-										<a id="li_menu_Check_in" href="{{ url('/broadcast/broadcast_by_check_in') }}">
+										<a id="li_menu_Check_in" class="" href="{{ url('/broadcast/broadcast_by_check_in') }}">
 										<i class="fas fa-map-marker-check"></i> Boardcast Checkin
 										</a>
 										<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
@@ -171,15 +173,15 @@
 										<a  href="#" class="disabled">
 											<i class='fas fa-users-cog'></i> Dashboard User
 										</a>
-										<span id="tip_car" class="tooltip" style="font-size: 0.95em;">
+										<span class="tooltip" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
 										</span>
 									</li>
 									<li class="div-tooltip"> 
-										<a id="li_menu_User" href="{{ url('/broadcast/broadcast_by_user') }}">
+										<a id="li_menu_User" class="" href="{{ url('/broadcast/broadcast_by_user') }}">
 											<i class='fas fa-users-cog'></i> Boardcast User
 										</a>
-										<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
+										<span id="tip_user" class="tooltip d-none" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
 												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
 												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
@@ -199,15 +201,15 @@
 											<i class='fas fa-users-cog'></i> Dashboard Cars
 
 										</a>
-										<span id="tip_car" class="tooltip" style="font-size: 0.95em;">
+										<span class="tooltip" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
 										</span>
 									</li>
 									<li class="div-tooltip"> 
-										<a id="li_menu_Cars" href="{{ url('/broadcast/broadcast_by_car') }}">
+										<a id="li_menu_Car" class="" href="{{ url('/broadcast/broadcast_by_car') }}">
 											<i class='fas fa-users-cog'></i> Boardcast Cars
 										</a>
-										<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
+										<span id="tip_car" class="tooltip d-none" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
 												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
 												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
