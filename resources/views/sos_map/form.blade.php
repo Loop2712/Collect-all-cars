@@ -53,7 +53,7 @@
     </div>
 </div>
 @if(Auth::user()->id == '1' || Auth::user()->id == '64')
-<button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" >ทดสอบ modal</button>
+<button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#btn-loading-test" data-dismiss="modal" aria-label="Close" >ทดสอบ modal</button>
 @endif
 <input class="d-none" type="text" id="latlng" name="latlng" readonly> 
 
