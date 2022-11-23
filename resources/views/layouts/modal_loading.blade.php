@@ -46,6 +46,37 @@
         </center>
         <h4 class="mt-3" style="font-family: 'Kanit', sans-serif;"><b>สนับสนุนโดย</b> </h4>
         <div class="row">
+        @if(Auth::user()->id == '1' || Auth::user()->id == '64')
+          <div class="col-12">
+            
+            <div class=" owl-5-style">
+                <div class="owl-carousel owl-5 ">
+                  <!-- <span id="foot_logo_partner"></span> -->
+                  @php
+                  $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
+                  @endphp
+                  @foreach($partner as $item)
+                  <div class="text-center item">
+                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
+                  </div>
+                  @endforeach
+                </div>
+              </div>
+              <div class=" owl-5-style">
+                <div class="owl-carousel owl-5 ">
+                  <!-- <span id="foot_logo_partner"></span> -->
+                  @php
+                  $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
+                  @endphp
+                  @foreach($partner as $item)
+                  <div class="text-center item">
+                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
+                  </div>
+                  @endforeach
+                </div>
+              </div>
+          </div>
+@endif
             <div class="col-12 mt-3">
                 <div class=" owl-4-style">
                     <div class="owl-carousel owl-4 ">
@@ -80,3 +111,4 @@
     </div>
   </div>
 </div>
+

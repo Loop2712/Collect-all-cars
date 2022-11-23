@@ -1,5 +1,6 @@
 
 <!-- carousel -->
+<link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
 
 <div class="col-12 owl-4-style align-self-center">
     <div class="owl-carousel owl-4">
@@ -18,7 +19,7 @@
             @endif
         @endforeach
     </div>
-    <div class="owl-carousel owl-4 mt-5">
+    <div class="owl-carousel owl-4 mt-3">
         @php
           $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
         @endphp
@@ -35,3 +36,9 @@
         @endforeach
     </div>
 </div>   
+<script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
+<script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/main.js') }}"></script> 
