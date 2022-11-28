@@ -2,314 +2,317 @@
     "type": "flex",
     "altText": "ViiCHECK ยินดีให้บริการค่ะ",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "contents": [
-      {
+      "type": "bubble",
+      "size": "giga",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-            "size": "4xl",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/"
-            }
-          },
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/Flex/5.png",
+            "url": "https://www.viicheck.com/img/flex/flex_other.png",
             "size": "full",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/"
-            },
-            "offsetBottom": "md"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "separator",
-            "color": "#ff0101"
+            "aspectRatio": "2900:3400",
+            "aspectMode": "cover"
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
-                "size": "4xl",
-                "offsetTop": "sm",
-                "offsetEnd": "sm"
-              },
-              {
-                "type": "text",
-                "text": "ข้อมูลของคุณ",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "message",
-                  "label": "ข้อมูลของคุณ",
-                  "text": "ข้อมูลของคุณ"
-                },
-                "flex": 4,
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ข้อมูลของคุณ",
+                    "weight": "bold",
+                    "size": "sm",
+                    "color": "#ffffff",
+                    "wrap": true,
+                    "align": "center",
+                    "maxLines": 2
+                  }
+                ],
                 "position": "absolute",
-                "offsetTop": "xxl",
-                "offsetStart": "50px"
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "message",
-                  "label": "ข้อมูลของคุณ",
-                  "text": "ข้อมูลของคุณ"
-                },
-                "position": "absolute",
-                "offsetTop": "xxl",
-                "offsetEnd": "1px"
+                "width": "55%",
+                "offsetTop": "10%",
+                "offsetStart": "5%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "height": "40%"
               }
             ],
-            "height": "50px",
+            "position": "absolute",
+            "width": "45%",
+            "height": "25%",
+            "offsetTop": "15%",
+            "offsetStart": "4%",
             "action": {
               "type": "message",
-              "label": "ข้อมูลของคุณ",
+              "label": "action",
               "text": "ข้อมูลของคุณ"
             }
           },
           {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
-          },
-          {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/faq.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ถาม",
+                    "weight": "bold",
+                    "size": "sm",
+                    "color": "#ffffff",
+                    "wrap": true,
+                    "align": "center",
+                    "maxLines": 2
+                  }
+                ],
+                "position": "absolute",
+                "width": "35%",
+                "offsetTop": "8%",
+                "offsetStart": "59%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "height": "28%"
               },
               {
-                "type": "text",
-                "text": "ถามตอบ",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/faq"
-                },
-                "weight": "bold",
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/faq"
-                }
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ตอบ",
+                    "weight": "bold",
+                    "size": "sm",
+                    "color": "#ffffff",
+                    "wrap": true,
+                    "align": "center",
+                    "maxLines": 2
+                  }
+                ],
+                "position": "absolute",
+                "width": "35%",
+                "offsetTop": "45%",
+                "offsetStart": "39%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "height": "26%"
               }
             ],
-            "height": "50px",
+            "position": "absolute",
+            "width": "45%",
+            "height": "25%",
+            "offsetTop": "15%",
+            "offsetStart": "51%",
             "action": {
               "type": "uri",
               "label": "action",
               "uri": "https://www.viicheck.com/faq"
-            },
-            "margin": "md"
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            }
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/contact.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "ติดต่อ",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "message",
-                  "label": "ติดต่อ",
-                  "text": "ติดต่อ"
-                },
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "message",
-                  "label": "ติดต่อ",
-                  "text": "ติดต่อ"
-                }
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ติดต่อ",
+                    "weight": "bold",
+                    "size": "sm",
+                    "color": "#ffffff",
+                    "wrap": true,
+                    "align": "center",
+                    "maxLines": 2
+                  }
+                ],
+                "position": "absolute",
+                "width": "100%",
+                "offsetTop": "78%",
+                "alignItems": "center",
+                "justifyContent": "center"
               }
             ],
-            "height": "50px",
+            "position": "absolute",
+            "width": "45%",
+            "height": "24%",
+            "offsetTop": "42%",
+            "offsetStart": "4%",
             "action": {
               "type": "message",
               "label": "ติดต่อ",
               "text": "ติดต่อ"
-            },
-            "margin": "md"
-          },
-          {
-            "type": "separator",
-            "color": "#ff0101",
-            "margin": "xl"
+            }
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.peddyhub.com/peddyhub/images/PEDDyHUB%20sticker%20line/07.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "ลงทะเบียนสัตว์เลี้ยง",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "message",
-                  "label": "PeddyHub",
-                  "text": "PeddyHub"
-                },
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "message",
-                  "label": "PeddyHub",
-                  "text": "PeddyHub"
-                }
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Language",
+                    "weight": "bold",
+                    "size": "sm",
+                    "color": "#ffffff",
+                    "wrap": false,
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "100%",
+                "offsetTop": "78%",
+                "alignItems": "center",
+                "justifyContent": "center"
               }
             ],
-            "height": "50px",
-            "action": {
-              "type": "message",
-              "label": "PeddyHub",
-              "text": "PeddyHub"
-            },
-            "margin": "md"
-          },
-          {
-            "type": "separator",
-            "color": "#ff0101",
-            "margin": "xl"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/translate.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "Language",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "message",
-                  "label": "language",
-                  "text": "language"
-                },
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "message",
-                  "label": "language",
-                  "text": "language"
-                }
-              }
-            ],
-            "height": "50px",
+            "position": "absolute",
+            "width": "45%",
+            "height": "24%",
+            "offsetTop": "42%",
+            "offsetStart": "51%",
             "action": {
               "type": "message",
               "label": "language",
               "text": "language"
-            },
-            "margin": "md"
+            }
           },
           {
-            "type": "separator",
-            "color": "#ff0101",
-            "margin": "xl"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ตามหาสัตว์เลี้ยง",
+                    "weight": "bold",
+                    "size": "xxs",
+                    "color": "#b8205b",
+                    "wrap": false,
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "25%",
+                "offsetTop": "33%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "offsetStart": "6%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ชุมชน",
+                    "weight": "bold",
+                    "size": "xxs",
+                    "color": "#b8205b",
+                    "wrap": false,
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "25%",
+                "offsetTop": "35%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "offsetStart": "68%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "รพ.สัตว์",
+                    "weight": "bold",
+                    "size": "xxs",
+                    "color": "#b8205b",
+                    "wrap": false,
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "25%",
+                "offsetTop": "83%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "offsetStart": "6%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Petland",
+                    "weight": "bold",
+                    "size": "xxs",
+                    "color": "#b8205b",
+                    "wrap": false,
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "25%",
+                "offsetTop": "84%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "offsetStart": "68%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ลงทะเบียน",
+                    "weight": "bold",
+                    "size": "xxs",
+                    "color": "#b8205b",
+                    "wrap": false,
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "23%",
+                "offsetTop": "76%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "offsetStart": "37%"
+              }
+            ],
+            "position": "absolute",
+            "width": "95%",
+            "height": "30%",
+            "offsetTop": "68%",
+            "offsetStart": "3%",
+            "action": {
+              "type": "message",
+              "label": "PeddyHub",
+              "text": "PeddyHub"
+            }
           }
         ],
-        "offsetBottom": "sm"
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ],
-    "borderWidth": "bold",
-    "cornerRadius": "xl",
-    "borderColor": "#ff0101"
-  },
-  "styles": {
-    "hero": {
-      "backgroundColor": "#ff0101"
     }
-  }
-}
 }
