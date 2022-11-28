@@ -27,7 +27,7 @@
                     "type": "text",
                     "text": "ข้อมูลของคุณ",
                     "weight": "bold",
-                    "size": "sm",
+                    "size": "xs",
                     "color": "#ffffff",
                     "wrap": true,
                     "align": "center",
