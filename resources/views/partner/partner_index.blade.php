@@ -63,7 +63,7 @@ url('data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICR
                                 @if($partner_condo == "Yes")
                                     <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>ViiCHECK For Corporation</b> </h1>
                                 @else
-                                    <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>ViiCHECK PARTNER</b> </h1>
+                                    <h1 style="font-family: 'Prompt', sans-serif;text-shadow: 4px 4px 4px rgba(150, 150, 150, 1);margin-top:25px;"> <b>ViiCHECK's PARTNERS</b> </h1>
                                 @endif
                                 
                                 @endforeach

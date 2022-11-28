@@ -81,6 +81,10 @@ File: app.css
     border-color:  transparent transparent #612F00 transparent;
 
     } 
+	a.disabled {
+		pointer-events: none;
+		cursor: default;
+		}
 /* -------------------------------broadcast -------------------------------*/
 .plans {
 	background: #fff;

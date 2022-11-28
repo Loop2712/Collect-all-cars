@@ -123,7 +123,7 @@
 					<a class="has-arrow" href="javascript:;" >
 						<div class="parent-icon"><i class="fas fa-bullhorn"></i>
 						</div>
-						<div class="menu-title">Broadcast <span style="color: green;">(LINE)</span> </div>
+						<div class="menu-title">Broadcast (LINE) </div>
 					</a>
 
 
