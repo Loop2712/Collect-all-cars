@@ -215,7 +215,7 @@ class LineMessagingAPI extends Model
 
                 $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
-                $template_path = storage_path('../public/json/flex-other.json');   
+                $template_path = storage_path('../public/json/flex-other_new.json');   
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("ข้อมูลของคุณ",$data_topic[0],$string_json);
                 $string_json = str_replace("เช็คราคารถมือสอง",$data_topic[1],$string_json);
