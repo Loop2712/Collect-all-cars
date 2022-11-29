@@ -197,16 +197,26 @@ class LoginController extends Controller
             if (!empty($data->email)) {
                 $user->email = $data->email;
             }
-            if (!empty($data->avatar)) {
-                $user->avatar = $data->avatar;
-            }
 
             if (empty($data->email)) {
                 $user->email = "กรุณาเพิ่มอีเมล";
             }
-            if (empty($data->avatar)) {
-                $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
+
+            // AVATAR
+            if (!empty($data->avatar)) {
+                $user->avatar = $data->avatar;
+
+                $url = $data->avatar;
+                $img = storage_path("app/public")."/uploads". "/" . 'photo' . $data->id . '.png';
+                // Save image
+                file_put_contents($img, file_get_contents($url));
+                $user->photo = "uploads". "/" . 'photo' . $data->id . '.png';
             }
+            else if (empty($data->avatar)) {
+                $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
+                $user->photo = null ;
+            }
+
             $user->save();
         }else{
             DB::table('users')
