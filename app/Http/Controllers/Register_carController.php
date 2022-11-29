@@ -94,10 +94,12 @@ class Register_carController extends Controller
                     ->get();
         }
 
+        $data_all_organization = Partner::where('name_area' , null )->get();
+
         // เวลาปัจจุบัน
         $date_now = date("Y-m-d "); 
 
-        return view('register_car.index_organization', compact('register_car' , 'date_now' ,'type_car','organization','juristicNameTH' , 'logo'));
+        return view('register_car.index_organization', compact('register_car' , 'date_now' ,'type_car','organization','juristicNameTH' , 'logo' ,'data_all_organization'));
     }
 
     /**

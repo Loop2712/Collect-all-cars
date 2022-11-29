@@ -1,6 +1,47 @@
 @extends('layouts.viicheck')
 
 @section('content')
+
+<form method="POST" action="{{ url('/') }}/api/edit_data_organization" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+    {{ csrf_field() }}
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_edit_data_organization" tabindex="-1" aria-labelledby="modal_edit_data_organizationLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="mt-3" style="font-family: 'Kanit', sans-serif;"><b>แก้ไขข้อมูลองค์กร</b> </h4>
+                    <button type="button" class="close notranslate" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="user_id" id="user_id" class="form-control d-none" readonly value="{{ Auth::user()->id }}">
+                    <label  class="control-label">{{ 'เลือกองค์กร' }}</label>
+                    <select name="name_partner" id="name_partner" class="form-control" onchange="change_organization();">
+                        <option value="" selected> กรุณาเลือกองค์กร </option>
+                        @foreach($data_all_organization as $item)
+                            <option class="notranslate" value="{{ $item->id }}" > {{ $item->name }} </option>
+                        @endforeach
+                    </select>
+                    <div id="div_name_selected" class="d-none notranslate">
+                        <hr>
+                        <center>
+                            <span>คุณกำลังเลือก</span>
+                            <br>
+                            <h5 class="text-success" id="name_selected"></h5>
+                        </center>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button style="width:20%;" type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                    <input style="width:20%;" class="btn btn-primary" id="btn_submit_change_organization" type="submit" value="{{ 'ยืนยัน' }}" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <br><br><br><br><br>
 <input type="hidden" name="type_cer" id="type_car" value="{{ $type_car }}">
 <!-- ----------------------------------- แสดงผลเฉพาะคอม --------------------------------- -->
@@ -55,6 +96,12 @@
                 <div class="col-4">
                     <div style="float:right;">
                         <img class="" id="img_show_car" style="width: 90px;height: 90px;"  src="{{ url('storage')}}/{{ $logo }}">
+                        <br>
+                        <center>
+                            <span style="margin-top:5px;" class="btn btn-warning btn-sm text-white main-shadow main-radius" data-toggle="modal" data-target="#modal_edit_data_organization">
+                                แก้ไของค์กร
+                            </span>
+                        </center>
                     </div>
                     <!-- <div style="float:right;">
                         <img class="" id="img_show_car" width="100" src="{{ url('/' ) }}/img/logo/Logo_Partner/{{ $juristicNameTH }}.png">
@@ -88,7 +135,7 @@
                     <div class="main-shadow" style="padding:15px;">
                         <div class="card  order-card">
                             <div class="card-block">
-                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-primary main-shadow main-radius">
+                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-primary main-shadow main-radius notranslate">
                                     <b>{{ $juristicNameTH }}</b>
                                 </button>
                                 <p class="text-right" style="font-size:15px">
@@ -329,6 +376,10 @@
         <div class="col-12">
             <br>
             <img class="" id="img_show_car" width="120" src="{{ url('storage')}}/{{ $logo }}">
+            <span style="margin-top:5px;" class="btn btn-warning btn-sm text-white main-shadow main-radius" data-toggle="modal" data-target="#modal_edit_data_organization">
+                แก้ไของค์กร
+            </span>
+
             <a style="float:right;" href="{{ url('/register_car/create') }}" class="btn btn-success main-shadow main-radius" title="Add New Register_car">
                 <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
             </a>
@@ -378,7 +429,7 @@
                     <div class="main-shadow" style="padding:15px;">
                         <div class="card  order-card">
                             <div class="card-block">
-                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-success main-shadow main-radius">
+                                <button style="position:absolute;top:-15px;left:-16px;border-radius: 0px 20px 20px 0px;" type="button" class="btn btn-sm btn-success main-shadow main-radius notranslate">
                                     <b>{{ $juristicNameTH }}</b>
                                 </button>
                                 <p class="text-right" style="font-size:15px">
@@ -592,6 +643,21 @@
         add_color();
         
     });
+
+    function change_organization(){
+        let op_name_selected = document.querySelector('#name_partner');
+        let name_select_day = op_name_selected.options[op_name_selected.selectedIndex].text ;
+
+        document.querySelector('#div_name_selected').classList.remove('d-none');
+        document.querySelector('#name_selected').innerHTML = name_select_day ;
+
+        if (op_name_selected.value) {
+            document.querySelector('#btn_submit_change_organization').disabled = false ;
+        }else{
+            document.querySelector('#btn_submit_change_organization').disabled = true ;
+        }
+    }
+
     function add_color(){
         // console.log("START");
         let type_car = document.querySelector('#type_car').value;

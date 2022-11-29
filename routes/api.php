@@ -23,6 +23,7 @@ Route::post('/lineapi', 'API\LineApiController@store');
 Route::post('/lineapi/condo', 'API\Condo_LineApiController@store');
 
 Route::post('/juristic', 'API\JuristicController@juristic');
+Route::post('/edit_data_organization', 'API\JuristicController@edit_data_organization');
 Route::get('/selest_organization/{selest_organization}', 'API\JuristicController@selest_organization');
 Route::get('/all_partners', 'API\JuristicController@all_partners');
 
