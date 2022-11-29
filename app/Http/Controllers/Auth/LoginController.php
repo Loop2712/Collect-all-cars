@@ -219,10 +219,27 @@ class LoginController extends Controller
 
             $user->save();
         }else{
+            // AVATAR
+            if (!empty($data->avatar)) {
+                $user->avatar = $data->avatar;
+
+                $url = $data->avatar;
+                $img = storage_path("app/public")."/uploads". "/" . 'photo' . $data->id . '.png';
+                // Save image
+                file_put_contents($img, file_get_contents($url));
+                $user->photo = "uploads". "/" . 'photo' . $data->id . '.png';
+            }
+            else if (empty($data->avatar)) {
+                $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
+                $user->photo = null ;
+            }
+            
             DB::table('users')
                 ->where('provider_id', $data->id)
                 ->update([
                     'name' => $data->name,
+                    'photo' => $user->photo,
+                    'avatar' => $user->avatar,
                 ]);
         }
 
