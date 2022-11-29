@@ -131,6 +131,8 @@ class LineApiController extends Controller
 
         if ($event["message"]["text"] == "ติดต่อ ViiCHECK") {
             $line->replyToUser(null, $event, "contact_viiCHECK");
+        }else if($event["message"]["text"] == "language"){
+            $line->replyToUser(null, $event, "language");
         }else {
 
             $data_users = DB::table('users')
@@ -202,9 +204,9 @@ class LineApiController extends Controller
                 case "peddyhub" :  
                     $line->replyToUser(null, $event, "peddyhub");
                     break;
-                case "language" :  
-                    $line->replyToUser(null, $event, "language");
-                    break;
+                // case "language" :  
+                //     $line->replyToUser(null, $event, "language");
+                //     break;
             }   
         }
     }
