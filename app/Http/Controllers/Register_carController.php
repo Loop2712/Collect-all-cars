@@ -76,6 +76,7 @@ class Register_carController extends Controller
                 foreach ($organizations as $key ) {
                     $juristicNameTH = $key->name;
                     $logo = $key->logo ;
+                    $name_organizations = $key->name ;
                 }
         }
 
@@ -99,7 +100,7 @@ class Register_carController extends Controller
         // เวลาปัจจุบัน
         $date_now = date("Y-m-d "); 
 
-        return view('register_car.index_organization', compact('register_car' , 'date_now' ,'type_car','organization','juristicNameTH' , 'logo' ,'data_all_organization'));
+        return view('register_car.index_organization', compact('register_car' , 'date_now' ,'type_car','organization','juristicNameTH' , 'logo' ,'data_all_organization','name_organizations'));
     }
 
     /**

@@ -93,12 +93,12 @@
                         </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-12 text-center">
                     <div style="float:right;">
-                        <img class="" id="img_show_car" style="width: 90px;height: 90px;"  src="{{ url('storage')}}/{{ $logo }}">
-                        <br>
+                        <img class="" id="img_show_car" style="width: 70px;height: 70px;object-fit: contain;"  src="{{ url('storage')}}/{{ $logo }}">
+                        <p class="m-0 notranslate" style="font-family: 'Kanit', sans-serif;">{{$name_organizations}}</p>
                         <center>
-                            <span style="margin-top:5px;" class="btn btn-warning btn-sm text-white main-shadow main-radius" data-toggle="modal" data-target="#modal_edit_data_organization">
+                            <span style="margin-top:5px;font-family: 'Kanit', sans-serif;" class="btn btn-warning btn-sm text-white main-shadow main-radius" data-toggle="modal" data-target="#modal_edit_data_organization">
                                 แก้ไของค์กร
                             </span>
                         </center>
@@ -375,14 +375,30 @@
         </div>
         <div class="col-12">
             <br>
-            <img class="" id="img_show_car" width="120" src="{{ url('storage')}}/{{ $logo }}">
-            <span style="margin-top:5px;" class="btn btn-warning btn-sm text-white main-shadow main-radius" data-toggle="modal" data-target="#modal_edit_data_organization">
-                แก้ไของค์กร
-            </span>
 
-            <a style="float:right;" href="{{ url('/register_car/create') }}" class="btn btn-success main-shadow main-radius" title="Add New Register_car">
-                <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
-            </a>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img class="" id="img_show_car" width="50" style="object-fit: contain;" src="{{ url('storage')}}/{{ $logo }}">
+                    <p class="notranslate p-0 m-0" style="font-family: 'Kanit', sans-serif;">
+                       {{$name_organizations}}
+                        <a style="margin-top:5px;" class=" text-warning" data-toggle="modal" data-target="#modal_edit_data_organization">
+                           <b><i class="fa-solid fa-pen-to-square"></i> <u>แก้ไข</u> </b> 
+                        </a>
+
+                    </p>
+                  
+                </div>
+                <div class="col-12 flex-row-reverse mt-3">
+                    <a style="float:right;" href="{{ url('/register_car/create') }}" class="btn btn-success main-shadow main-radius" title="Add New Register_car">
+                        <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มรถคันใหม่
+                    </a>
+                </div>
+            </div>
+            
+
+          
+
+           
         </div>
     </div>
     <br>
