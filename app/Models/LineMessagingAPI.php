@@ -332,7 +332,9 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("0999999999","กรุณาเพิ่มเบอร์โทรศัพท์",$string_json);
                     }
 
-                    $date_birth = $item->brith->format('d/m/Y');
+                    $date_time_birth = strtotime($item->brith);
+                    $date_birth = date('d/m/Y', $date_time_birth);
+
                     // วันเกิด
                     if (!empty($item->brith)) {
                         $string_json = str_replace("31/08/1998",$date_birth,$string_json);
