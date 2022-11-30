@@ -303,7 +303,7 @@ class LineMessagingAPI extends Model
                         "แก้ไข",
                         "อีเมล",
                         "เบอร์ติดต่อ",
-                        "วันเกิด",
+                        $birth_day,
                         "เพศ",
                         $sex,
                         "ใบอนุญาตขับรถ",
