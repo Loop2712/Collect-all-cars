@@ -291,8 +291,14 @@ class LineMessagingAPI extends Model
                         $sex = "กรุณาระบุเพศ" ;
                     }
 
+                    if(date('m-d') == date('m-d', $date_time_birth)) {
+                        $birth_day = "สุขสันต์วันเกิด";
+                        $img_birthday = "https://www.viicheck.com/img/stickerline/PNG/48.png";
+                    }else{
+                        $birth_day = "วันเกิด";
+                        $img_birthday = "https://www.viicheck.com/img/stickerline/PNG/47.png";
+                    }
 
-                    
                     $data_Text_topic = [
                         "แก้ไข",
                         "อีเมล",
@@ -300,6 +306,7 @@ class LineMessagingAPI extends Model
                         "วันเกิด",
                         "เพศ",
                         $sex,
+                        "ใบอนุญาตขับรถ",
                     ];
 
                     $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
@@ -320,12 +327,16 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("แก้ไข",$data_topic[0],$string_json);
                     $string_json = str_replace("อีเมล",$data_topic[1],$string_json);
                     $string_json = str_replace("เบอร์ติดต่อ",$data_topic[2],$string_json);
-                    $string_json = str_replace("วันเกิด",$data_topic[3],$string_json);
+                    $string_json = str_replace("วันเกิด",$birth_day,$string_json);
                     $string_json = str_replace("เพศ",$data_topic[4],$string_json);
                     $string_json = str_replace("ชาย",$data_topic[5],$string_json);
+                    $string_json = str_replace("ใบอนุญาตขับรถ",$data_topic[6],$string_json);
+
                     $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_profile,$string_json);
                     $string_json = str_replace("E Benze",$item->name,$string_json);
                     $string_json = str_replace("benze@gmail.com",$item->email,$string_json);
+                    $string_json = str_replace("https://www.viicheck.com/img/stickerline/PNG/47.png",$img_birthday,$string_json);
+
                     // เบอร์โทร
                     if (!empty($item->phone)) {
                         $string_json = str_replace("0999999999",$item->phone,$string_json);
