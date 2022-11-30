@@ -68,7 +68,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "E Benze",
+                "text": "Teerasak",
                 "wrap": true,
                 "maxLines": 2,
                 "size": "3xl"
@@ -87,7 +87,8 @@
             "contents": [
               {
                 "type": "text",
-                "text": "แก้ไข"
+                "text": "แก้ไข",
+                "color": "#ffffff"
               }
             ],
             "position": "absolute",
@@ -99,7 +100,13 @@
             "paddingStart": "5%",
             "paddingEnd": "5%",
             "cornerRadius": "20px",
-            "offsetEnd": "5%"
+            "offsetEnd": "5%",
+            "alignItems": "center",
+            "action": {
+              "type": "uri",
+              "label": "แก้ไขโปรไฟล์",
+              "uri": "https://www.viicheck.com/edit_profile?openExternalBrowser=1"
+            }
           },
           {
             "type": "box",
@@ -107,7 +114,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "E-mail",
+                "text": "อีเมล",
                 "size": "sm"
               },
               {
@@ -118,7 +125,7 @@
               }
             ],
             "position": "absolute",
-            "offsetTop": "32%",
+            "offsetTop": "31.5%",
             "action": {
               "type": "postback",
               "label": "action",
@@ -134,7 +141,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "Phone Number",
+                "text": "เบอร์ติดต่อ",
                 "size": "sm"
               },
               {
@@ -145,7 +152,7 @@
               }
             ],
             "position": "absolute",
-            "offsetTop": "46.5%",
+            "offsetTop": "46%",
             "justifyContent": "center",
             "width": "65%",
             "offsetStart": "28%"
@@ -173,7 +180,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "Birthday",
+                "text": "วันเกิด",
                 "size": "sm"
               },
               {
@@ -184,7 +191,7 @@
               }
             ],
             "position": "absolute",
-            "offsetTop": "61%",
+            "offsetTop": "60.5%",
             "justifyContent": "center",
             "width": "65%",
             "offsetStart": "28%"
@@ -195,7 +202,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "Gender",
+                "text": "เพศ",
                 "size": "sm"
               },
               {
@@ -206,7 +213,7 @@
               }
             ],
             "position": "absolute",
-            "offsetTop": "74.8%",
+            "offsetTop": "74.2%",
             "action": {
               "type": "uri",
               "label": "แก้ไขโปรไฟล์",
