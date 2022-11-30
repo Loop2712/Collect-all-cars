@@ -13,7 +13,7 @@
             "size": "full",
             "aspectRatio": "2900:4619",
             "aspectMode": "cover",
-            "url": "https://i.ibb.co/2qYFScG/info-user-flex-blank-01.png"
+            "url": "https://www.viicheck.com/img/flex/flex_profile.png"
           },
           {
             "type": "box",
@@ -68,7 +68,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "Teerasak",
+                "text": "E Benze",
                 "wrap": true,
                 "maxLines": 2,
                 "size": "3xl"
