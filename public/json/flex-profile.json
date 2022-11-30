@@ -214,11 +214,6 @@
             ],
             "position": "absolute",
             "offsetTop": "74.2%",
-            "action": {
-              "type": "uri",
-              "label": "แก้ไขโปรไฟล์",
-              "uri": "https://www.viicheck.com/edit_profile?openExternalBrowser=1"
-            },
             "justifyContent": "center",
             "width": "65%",
             "offsetStart": "28%"
