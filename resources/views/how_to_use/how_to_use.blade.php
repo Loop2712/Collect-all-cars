@@ -423,7 +423,7 @@
         <i class="fad fa-search-location" style="background-color: #C1A3A3;border-radius: 50%;font-size:550%;padding:25px" width="35%" alt="Card image cap"></i>
       </center>
       <div class="card-body">
-        <h5 class="card-title notranslate" style="font-family: 'Prompt', sans-serif;">Chack In/Out</h5>
+        <h5 class="card-title notranslate" style="font-family: 'Prompt', sans-serif;">Check In/Out</h5>
         <p class="card-text">วิธีใช้งานระบบ ข้อมูลการเข้าออก</p>
         <a href="#" data-toggle="modal" data-target="#Partner_checkin">รายละเอียดเพิ่มเติม »</a>
       </div>
