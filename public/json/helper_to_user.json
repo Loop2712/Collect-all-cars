@@ -126,16 +126,15 @@
                 "type": "image",
                 "url": "https://scdn.line-apps.com/clip13.jpg",
                 "aspectMode": "cover",
-                "aspectRatio": "1:1",
-                "size": "5xl"
+                "size": "full"
               }
             ],
             "width": "18%",
             "position": "absolute",
             "offsetStart": "42%",
-            "offsetTop": "70.5%",
-            "alignItems": "center",
-            "cornerRadius": "250px"
+            "offsetTop": "69%",
+            "cornerRadius": "100px",
+            "height": "12.6%"
           },
           {
             "type": "box",
