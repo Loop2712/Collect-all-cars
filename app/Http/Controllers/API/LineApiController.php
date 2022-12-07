@@ -844,6 +844,13 @@ class LineApiController extends Controller
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($user->time_zone);
 
+            // datetime
+            $time_zone_explode = explode(" ",$time_zone);
+            
+            $date = $time_zone_explode[0] ;
+            $time = $time_zone_explode[1] ;
+            $utc = $time_zone_explode[3] ;
+
             $data_topic = [
                         "เรียนคุณ",
                         "เจ้าหน้าที่กำลังเดินทางไปหาคุณ",
@@ -869,7 +876,9 @@ class LineApiController extends Controller
             $string_json = file_get_contents($template_path);
                
             $string_json = str_replace("ตัวอย่าง",$data_topic[1],$string_json);
-            $string_json = str_replace("date_time",$time_zone,$string_json);
+            $string_json = str_replace("date",$date,$string_json);
+            $string_json = str_replace("time",$time,$string_json);
+            $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
             $string_json = str_replace("ข้อมูลเจ้าหน้าที่",$data_topic[2],$string_json);
 
             // user
