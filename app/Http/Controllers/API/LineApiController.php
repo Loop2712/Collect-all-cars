@@ -972,6 +972,13 @@ class LineApiController extends Controller
             $API_Time_zone = new API_Time_zone();
             $time_zone = $API_Time_zone->change_Time_zone($data_users->time_zone);
 
+            // datetime
+            $time_zone_explode = explode(" ",$time_zone);
+            
+            $date = $time_zone_explode[0] ;
+            $time = $time_zone_explode[1] ;
+            $utc = $time_zone_explode[3] ;
+            
             $data_topic = [
                         "บอกให้เรารู้",
                         "การช่วยเหลือเป็นอย่างไรบ้าง",
@@ -991,13 +998,32 @@ class LineApiController extends Controller
                     $data_topic[$xi] = $item_of_text_topic->$user_language ;
                 }
             }
+            //logo organization helper
+            $data_helpers = DB::table('partners')->where('name', $data_sos_map->organization_helper)
+                ->where('name_area', "=", null)
+                ->get();
+
+             
+             foreach ($data_helpers as $data_helper) {
+
+                if (!empty($data_helper->logo)) {
+                    $logo_organization = "https://www.viicheck.com/storage/".$data_helper->logo ;
+                }
+                if (empty($data_helper->logo)) {
+                    $logo_organization = "https://www.viicheck.com/img/stickerline/PNG/1.png" ;
+                }
+
+            }
 
             $template_path = storage_path('../public/json/rate_help.json');
             $string_json = file_get_contents($template_path);
                
             $string_json = str_replace("ตัวอย่าง",$data_topic[3],$string_json);
-            $string_json = str_replace("date_time",$time_zone,$string_json);
+            $string_json = str_replace("date",$date,$string_json);
+            $string_json = str_replace("time",$time,$string_json);
+            $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
             $string_json = str_replace("area",$data_sos_map->organization_helper,$string_json);
+            $string_json = str_replace("https://scdn.line-apps.com/clip13.jpg",$logo_organization,$string_json);
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
 
             $string_json = str_replace("บอกให้เรารู้",$data_topic[0],$string_json);

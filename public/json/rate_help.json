@@ -2,77 +2,194 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "action": {
-      "type": "uri",
-      "uri": "https://linecorp.com"
-    },
-    "contents": [
-      {
-        "type": "text",
-        "text": "บอกให้เรารู้",
-        "weight": "bold"
-      },
-      {
-        "type": "text",
-        "text": "การช่วยเหลือเป็นอย่างไรบ้าง",
-        "size": "lg",
-        "weight": "bold",
-        "wrap": true,
-        "color": "#228B22"
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "text",
-        "text": "พื้นที่",
-        "size": "md",
-        "margin": "lg"
-      },
-      {
-        "type": "text",
-        "text": "area",
-        "size": "md",
-        "weight": "regular"
-      },
-      {
-        "type": "text",
-        "text": "hello, world",
+      "type": "bubble",
+      "size": "giga",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
         "contents": [
           {
-            "type": "span",
-            "text": "date_time",
-            "color": "#bcbcbc",
-            "weight": "bold"
+            "type": "image",
+            "url": "https://www.viicheck.com/img/flex/sos/rate_help.png",
+            "size": "full",
+            "aspectRatio": "2500:3200",
+            "aspectMode": "cover"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "บอกให้เรารู้ ",
+                "color": "#ffffff",
+                "weight": "bold",
+                "size": "md"
+              },
+              {
+                "type": "text",
+                "size": "md",
+                "text": "การช่วยเหลือเป็นอย่างไรบ้าง",
+                "color": "#ffffff",
+                "wrap": true,
+                "maxLines": 2,
+                "weight": "bold"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "16%",
+            "offsetStart": "22%",
+            "width": "73%",
+            "height": "13.5%",
+            "justifyContent": "center",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "พื้นที่",
+                "size": "xl",
+                "wrap": false,
+                "weight": "bold",
+                "color": "#ffffff"
+              }
+            ],
+            "width": "90%",
+            "position": "absolute",
+            "offsetStart": "5%",
+            "offsetTop": "37%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://scdn.line-apps.com/clip13.jpg",
+                "aspectMode": "cover",
+                "size": "full"
+              }
+            ],
+            "width": "18%",
+            "position": "absolute",
+            "offsetStart": "7%",
+            "offsetTop": "44.2%",
+            "cornerRadius": "100px",
+            "height": "14%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "area",
+                "color": "#ffffff",
+                "weight": "bold",
+                "size": "xxl"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "44.5%",
+            "offsetStart": "28%",
+            "width": "66%",
+            "height": "13.5%",
+            "justifyContent": "center",
+            "alignItems": "flex-start"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "UTC",
+                "size": "lg",
+                "wrap": false,
+                "weight": "bold",
+                "color": "#ffffff"
+              }
+            ],
+            "width": "22%",
+            "position": "absolute",
+            "offsetStart": "44%",
+            "offsetTop": "63%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "date",
+                "size": "xl",
+                "wrap": false,
+                "weight": "bold",
+                "color": "#ffffff"
+              }
+            ],
+            "width": "40%",
+            "position": "absolute",
+            "offsetStart": "10%",
+            "offsetTop": "75%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "time",
+                "size": "xl",
+                "wrap": false,
+                "weight": "bold",
+                "color": "#ffffff"
+              }
+            ],
+            "width": "40%",
+            "position": "absolute",
+            "offsetStart": "53%",
+            "offsetTop": "75%",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ให้คะแนน",
+                "wrap": true,
+                "maxLines": 2,
+                "align": "center",
+                "color": "#FFA500",
+                "weight": "bold",
+                "size": "lg"
+              }
+            ],
+            "width": "66%",
+            "position": "absolute",
+            "offsetStart": "17%",
+            "offsetTop": "86%",
+            "alignItems": "center",
+            "cornerRadius": "250px",
+            "height": "9.5%",
+            "justifyContent": "center",
+            "paddingStart": "15%",
+            "action": {
+              "type": "uri",
+              "label": "ให้คะแนน",
+              "uri": "https://www.viicheck.com/sos_map/rate_help/id_sos_map"
+            }
           }
         ],
-        "margin": "lg",
-        "size": "sm",
-        "wrap": true
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "button",
-        "style": "primary",
-        "color": "#76d128",
-        "action": {
-          "type": "uri",
-          "label": "ให้คะแนน",
-          "uri": "https://www.viicheck.com/sos_map/rate_help/id_sos_map"
-        },
-        "height": "sm"
-      }
-    ]
-  }
-}
+    }
 }
