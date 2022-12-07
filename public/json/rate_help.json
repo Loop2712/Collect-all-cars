@@ -71,7 +71,8 @@
                 "type": "image",
                 "url": "https://scdn.line-apps.com/clip13.jpg",
                 "aspectMode": "cover",
-                "size": "full"
+                "size": "full",
+                "backgroundColor": "#ffffff"
               }
             ],
             "width": "18%",
