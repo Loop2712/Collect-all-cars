@@ -2,208 +2,122 @@
     "type": "flex",
     "altText": "ติดต่อ",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "contents": [
-      {
+      "type": "bubble",
+      "size": "giga",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v3.png",
-            "size": "4xl",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/"
-            }
-          },
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/Flex/5.png",
+            "url": "https://www.viicheck.com/img/flex/flex_contact.png",
             "size": "full",
-            "aspectRatio": "16:9",
-            "align": "center",
-            "aspectMode": "fit",
-            "offsetBottom": "md"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            "aspectRatio": "1080:900",
+            "aspectMode": "cover"
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/phone.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
                 "type": "text",
-                "text": "โทร",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "tel:020277856"
-                },
+                "text": "ติดต่อเรา",
+                "color": "#ffffff",
                 "weight": "bold",
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "tel:020277856"
-                }
+                "size": "xxl"
               }
             ],
-            "height": "50px",
+            "position": "absolute",
+            "offsetTop": "9%",
+            "offsetStart": "35%",
+            "width": "60%"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "โทร",
+                    "size": "lg",
+                    "wrap": false,
+                    "weight": "bold",
+                    "color": "#db2d2e"
+                  }
+                ],
+                "position": "absolute",
+                "width": "68%",
+                "offsetTop": "17%",
+                "offsetStart": "24%"
+              }
+            ],
+            "width": "81%",
+            "position": "absolute",
+            "height": "20%",
             "action": {
               "type": "uri",
-              "label": "action",
+              "label": "phone number",
               "uri": "tel:020277856"
             },
-            "margin": "md"
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            "offsetStart": "10%",
+            "offsetTop": "27%"
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/gmail.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "อีเมล",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "mailto:contact.viicheck@gmail.com"
-                },
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "mailto:contact.viicheck@gmail.com"
-                }
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "อีเมล",
+                    "size": "lg",
+                    "wrap": false,
+                    "weight": "bold",
+                    "color": "#db2d2e"
+                  }
+                ],
+                "position": "absolute",
+                "width": "68%",
+                "offsetTop": "19%",
+                "offsetStart": "24%"
               }
             ],
-            "height": "50px",
+            "width": "81%",
+            "position": "absolute",
+            "height": "20%",
+            "offsetStart": "10%",
             "action": {
               "type": "uri",
-              "label": "action",
+              "label": "email",
               "uri": "mailto:contact.viicheck@gmail.com"
-            }
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            },
+            "offsetTop": "50%"
           },
           {
             "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/facebook.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "Facebook",
-                "margin": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://m.me/viicheck.viicheck"
-                },
-                "weight": "bold",
-                "wrap": true,
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://m.me/viicheck.viicheck"
-                }
-              }
-            ],
-            "height": "50px",
+            "layout": "vertical",
+            "contents": [],
+            "width": "81%",
+            "position": "absolute",
+            "height": "20%",
+            "offsetStart": "10%",
             "action": {
               "type": "uri",
-              "label": "action",
+              "label": "facebook",
               "uri": "https://m.me/viicheck.viicheck"
             },
-            "margin": "md"
-          },
-          {
-            "type": "separator",
-            "color": "#ff0101",
-            "margin": "lg"
+            "offsetTop": "73%"
           }
         ],
-        "offsetBottom": "md"
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ],
-    "borderWidth": "bold",
-    "cornerRadius": "xl",
-    "borderColor": "#ff0101"
-  },
-  "styles": {
-    "hero": {
-      "backgroundColor": "#ff0101"
     }
-  }
-}
 }

@@ -243,7 +243,7 @@ class LineMessagingAPI extends Model
                 $data_Text_topic = [
                     "โทร",
                     "อีเมล",
-                    "Facebook",
+                    "ติดต่อพวกเรา",
                 ];
 
                 $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
@@ -252,7 +252,7 @@ class LineMessagingAPI extends Model
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("โทร",$data_topic[0],$string_json);
                 $string_json = str_replace("อีเมล",$data_topic[1],$string_json);
-                $string_json = str_replace("Facebook",$data_topic[2],$string_json);
+                $string_json = str_replace("ติดต่อพวกเรา",$data_topic[2],$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
