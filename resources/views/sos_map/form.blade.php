@@ -104,7 +104,7 @@
                         </button> -->
 
                         <button class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="">
-                            <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp; ขอความช่วยเหลือ ชาลีกรุงเทพ</b>
+                            <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp; ขอความช่วยเหลือ ชาลีกรุงเทพ (soon)</b>
                         </button>
                     </div>
                 </div>
