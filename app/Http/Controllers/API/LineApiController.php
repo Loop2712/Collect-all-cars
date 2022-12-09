@@ -1455,7 +1455,146 @@ class LineApiController extends Controller
 
     }
 
-    
+    public function Charlie_help_complete($id_sos , $id_user)
+    {
+        $this->reply_success_groupline_Charlie( $id_sos , $id_user );
+        $this->help_complete($id_sos);
+    }
+
+    public function reply_success_groupline_Charlie( $id_sos , $id_user )
+    {
+        $user = DB::table('users')->where('id', $id_user)->first();
+        $name_organization = $user->organization ;
+        $provider_id = $user->provider_id ;
+
+        $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
+        
+        $data_partner_helpers = Partner::where('name' , $name_organization)->where('name_area' , '!=' , null)->first();
+
+        $data_line_group = DB::table('group_lines')
+            ->where('groupName', $data_partner_helpers->line_group)
+            ->get();
+
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        $date_sos = $data_sos_map->created_at->format('d/m/Y');
+        $time_sos = $data_sos_map->created_at->format('g:i:sa');
+
+        $data_time_help = $data_sos_map->time_go_to_help;
+        $date_time_help = strtotime($data_time_help);
+        
+        $date_help = date('d/m/Y', $date_time_help);
+        $time_help = date('g:i:sa', $date_time_help);
+
+        // datetime success
+        $time_zone_explode = explode(" ",$time_zone);
+
+        $date_success = $time_zone_explode[0];
+        $time_success = $time_zone_explode[1];
+
+        $time_created = $data_sos_map->created_at;
+        $time_help_complete = $data_sos_map->help_complete_time;
+        $time_go_to_help = $data_sos_map->time_go_to_help;
+
+        $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
+        $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
+        $count_complete = $this->count_range_time($time_created , $time_help_complete);
+
+        $data_topic = [
+                    "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+                    "การช่วยเหลือเสร็จสิ้น",
+                    "เพิ่มภาพถ่าย",
+                    "ขอความช่วยเหลือ",
+                    "กำลังไปช่วยเหลือ",
+                    "ช่วยเหลือเสร็จสิ้น",
+                    "ใช้เวลา",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
+
+        $template_path = storage_path('../public/json/sos_map_success.json');   
+
+        $string_json = file_get_contents($template_path);
+
+        // sos
+        $string_json = str_replace("name_sos",$data_sos_map->name,$string_json);
+        $string_json = str_replace("date_sos",$date_sos,$string_json);
+        $string_json = str_replace("time_sos",$time_sos,$string_json);
+
+        //help
+        $string_json = str_replace("name_help",$data_sos_map->helper,$string_json);
+        $string_json = str_replace("date_help",$date_help,$string_json);
+        $string_json = str_replace("time_help",$time_help,$string_json);
+        $string_json = str_replace("count_help",$count_time_help,$string_json);
+
+        // success
+        $string_json = str_replace("date_success",$date_success,$string_json);
+        $string_json = str_replace("time_success",$time_success,$string_json);
+        $string_json = str_replace("count_success",$count_success,$string_json);
+
+        $string_json = str_replace("count_complete",$count_complete,$string_json);
+        $string_json = str_replace("date_time",$time_zone,$string_json);
+        $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
+
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+        $string_json = str_replace("ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",$data_topic[0],$string_json);
+        $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[1],$string_json);
+        $string_json = str_replace("เพิ่มภาพถ่าย",$data_topic[2],$string_json);
+        $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[3],$string_json);
+        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[4],$string_json);
+        $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
+        $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
+
+        
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "ViiCHECK ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
+            "content" => "reply Success",
+        ];
+        MyLog::create($data);
+
+        return $result;
+    }
 
 }
 

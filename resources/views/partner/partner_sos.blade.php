@@ -175,7 +175,7 @@
                                         <i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdown_status">
-                                        <a class="dropdown-item" href="#">ช่วยเหลือเสร็จสิ้น</a>
+                                        <a class="dropdown-item" href="#" onclick="status_help_complete('{{ $item->id }}' , '{{ Auth::user()->id }}' );">การช่วยเหลือเสร็จสิ้น</a>
                                     </div>
                                 </div>
                             @elseif($item->helper == null)

@@ -1350,10 +1350,23 @@
     	fetch( "{{ url('/') }}/api/sos_helper_Charlie/"+ id_sos + "/" + id_user )
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
         });
 
-    	// console.log("id_sos : " + id_sos + " , " + "id_user : " + id_user);
+        setInterval(function() {
+	    	window.location.reload(true) ; 
+	    }, 1000);
+        
+    }
+
+    function status_help_complete(id_sos , id_user)
+    {
+    	fetch( "{{ url('/') }}/api/Charlie_help_complete/"+ id_sos + "/" + id_user )
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+        });
+
         setInterval(function() {
 	    	window.location.reload(true) ; 
 	    }, 1000);
