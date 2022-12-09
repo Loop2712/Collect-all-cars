@@ -627,35 +627,73 @@ class Sos_mapController extends Controller
         $groupId = $data_line_group->groupId ;
         $name_time_zone = $data_line_group->time_zone ;
         $group_language = $data_line_group->language ;
+        $id_partner = $data_line_group->partner_id ;
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        $data_topic = [
+                    "ขอความช่วยเหลือ",
+                    "ภาษา",
+                    "สัญชาติ",
+                    "ช่วยเหลือ",
+                    "แผนที่",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
         
         $text_at = '@' ;
 
-        $template_path = storage_path('../public/json/flex-sos-js100.json');
+        $template_path = storage_path('../public/json/flex_volunteer/flex_sos_chalie.json');
         $string_json = file_get_contents($template_path);
 
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+
+        $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
+        $string_json = str_replace("ภาษา",$data_topic[1],$string_json);
+        $string_json = str_replace("สัญชาติ",$data_topic[2],$string_json);
+        $string_json = str_replace("ช่วยเหลือ",$data_topic[3],$string_json);
+        $string_json = str_replace("แผนที่",$data_topic[4],$string_json);
+
         if (!empty($data_users->photo)) {
-            $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
+            $string_json = str_replace("IMG_USER",$data_users->photo,$string_json);
         }else{
-            $string_json = str_replace("https://www.viicheck.com/storage/photo_profile_user","https://www.viicheck.com/img/stickerline/Flex/12.png",$string_json);
+            $string_json = str_replace("https://www.peddyhub.com/storage/IMG_USER","https://www.viicheck.com/img/stickerline/Flex/12.png",$string_json);
         }
 
-        $string_json = str_replace("name_user",$name_user,$string_json);
+        $string_json = str_replace("NAME_USER",$name_user,$string_json);
 
         if (!empty($data_users->language)) {
-            $string_json = str_replace("png_language",$data_users->language,$string_json);
+            $string_json = str_replace("PNG_LANGUAGE",$data_users->language,$string_json);
         }else{
-            $string_json = str_replace("png_language","-",$string_json);
+            $string_json = str_replace("PNG_LANGUAGE","-",$string_json);
         }
 
         if (!empty($data_users->nationalitie)) {
-            $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
+            $string_json = str_replace("USER_NATIONAL",$data_users->nationalitie,$string_json);
         }else{
-            $string_json = str_replace("png_national","-",$string_json);
+            $string_json = str_replace("USER_NATIONAL","-",$string_json);
         }
-        
-        $string_json = str_replace("0899999999",$phone_user,$string_json);
-        $string_json = str_replace("วันที่แจ้ง",$date_now,$string_json);
-        $string_json = str_replace("เวลาที่แจ้ง",$time_now,$string_json);
+
+        $string_json = str_replace("PHOTO_SOS",$photo,$string_json);
+        $string_json = str_replace("PHONE_USER",$phone_user,$string_json);
+        $string_json = str_replace("DATE_SOS",$date_now,$string_json);
+        $string_json = str_replace("TIME_SOS",$time_now,$string_json);
+
+        $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
+        $string_json = str_replace("organization",$id_partner,$string_json);
 
         $string_json = str_replace("gg_lat_mail",$text_at.$lat_user,$string_json);
         $string_json = str_replace("gg_lat",$lat_user,$string_json);
