@@ -1429,7 +1429,7 @@ class LineApiController extends Controller
                             'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
                     ]);
 
-                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
+                    // $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
 
                 }else{
                     // คุณได้ทำการกด "กำลังไปช่วยเหลือ" ซ้ำ
@@ -1446,7 +1446,7 @@ class LineApiController extends Controller
                         'time_go_to_help' => date('Y-m-d\TH:i:s'),
                 ]);
 
-                $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
+                // $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
                 
             }
 
