@@ -885,8 +885,6 @@
 			<div class="page-content" style="margin-top:-25px;">
 				<br>
 			  	@yield('content')
-			  <button type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_notify">modal</button>
-			  <span onclick="check_sos_alarm();" class="btn btn-danger">check_sos_alarm</span>
 			</div>
 		</div>
 		<!--end page wrapper -->
