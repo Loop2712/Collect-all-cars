@@ -1357,7 +1357,7 @@
 
     	// console.log("id_sos : " + id_sos + " , " + "id_user : " + id_user);
 
-        window.location.href = window.location.href ; 
+        window.location.reload(true) ; 
         
     }
     
