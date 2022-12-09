@@ -1450,7 +1450,7 @@ class LineApiController extends Controller
                 
             }
 
-            return "OK" ;
+            // return "OK" ;
             return $data_partner_helpers ;
         }   
 
