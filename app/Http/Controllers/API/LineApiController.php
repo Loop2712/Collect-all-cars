@@ -1466,7 +1466,6 @@ class LineApiController extends Controller
             }
         }
 
-        return "OK" ;
         
     }
 
