@@ -1364,11 +1364,11 @@
     	fetch( "{{ url('/') }}/api/Charlie_help_complete/"+ id_sos + "/" + id_user )
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
         });
 
         setInterval(function() {
-	    	// window.location.reload(true) ; 
+	    	window.location.reload(true) ; 
 	    }, 1000);
         
     }
