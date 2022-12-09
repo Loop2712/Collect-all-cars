@@ -1085,7 +1085,7 @@
 			  <br>
 			  <div class="row">
 				  <div class="col-12">
-                    <h2 class="text-info"><b id="modal_notify_name">THANAKORN</b>
+                    <h2 class="text-info"><b id="modal_notify_name">คุณ : </b>
 						<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
 							<i class="fad fa-images"></i>
 						</button>
