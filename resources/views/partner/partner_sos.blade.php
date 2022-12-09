@@ -18,6 +18,7 @@
                 <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
                 <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
                 <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
+                <input class="d-none" type="text" id="type_partner" name="" value="{{ $type_partner }}">
                 @foreach($data_partners as $data_partner)
                     <input class="d-none" type="text" id="name_partner" name="" value="{{ $data_partner->name }}">
                 @endforeach
@@ -32,6 +33,7 @@
   <div class="col-8 d-none d-lg-block">
         <div class="row">
             <div class="col-3">
+                @if( $type_partner != 'volunteer')
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         เลือกพื้นที่
@@ -45,6 +47,7 @@
                         @endforeach
                     </div>
                 </div>
+                @endif
             </div>
             <div class="col-9">
                 <div style="float: right;">
@@ -219,11 +222,21 @@
                         </div>
                         <div class="col-1">
                         <div style="margin-top: -10px;">
-                            <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
-                                <i class="fas fa-map-marker-alt"></i> 
-                                <br>
-                                ดูหมุด
-                            </a>
+                            
+                            @if( $item->content == "help_area" )
+                                <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
+                                    <i class="fas fa-map-marker-alt"></i> 
+                                    <br>
+                                    ดูหมุด
+                                </a>
+                            @else
+                                <a class="link text-danger" href="#map" onclick="view_marker_volunteer('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name }}');">
+                                    <i class="fas fa-map-marker-alt"></i> 
+                                    <br>
+                                    ดูหมุด
+                                </a>
+                            @endif
+                            
                         </div>
                         </div>
                         <br>
@@ -504,11 +517,16 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         let name_area = document.querySelector('#name_area').value;
+        let type_partner = document.querySelector('#type_partner').value;
 
         if (name_area) {
             select_name_area(name_area);
         }else{
-            initMap();
+            if (type_partner != 'volunteer') {
+                initMap();
+            }else{
+                initMap_not_Polygon('12.870032' , '100.992541','6');
+            }
         }
 
     });
@@ -694,6 +712,42 @@
 
     }
 
+    function initMap_not_Polygon(lat , lng , numZoom) {
+
+        let m_lat = parseFloat(lat);
+        let m_lng = parseFloat(lng);
+        let m_numZoom = parseFloat(numZoom);
+        // 13.7248936,100.4930264 lat lng ประเทศไทย
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: {lat: m_lat, lng: m_lng },
+            zoom: m_numZoom,
+        });
+
+        let all_lat = [];
+        let all_lng = [];
+        let all_lat_lng = [];
+
+        let lat_average ;
+        let lng_average ;
+
+        let lat_sum = 0 ;
+        let lng_sum = 0 ;
+
+        //ปักหมุด
+        let image = "https://www.viicheck.com/img/icon/flag_2.png";
+        @foreach($view_maps_all as $view_map)
+        @if(!empty($item->lat))
+            marker = new google.maps.Marker({
+                position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                map: map,
+                icon: image,
+                zIndex:5,
+            });  
+        @endif   
+        @endforeach
+
+    }
+
     function select_name_area(name_area){
 
         let name_partner = document.querySelector('#name_partner').value;
@@ -813,6 +867,58 @@
 
             infoWindow.open(map);
         });
+
+    }
+
+    function view_marker_volunteer(lat , lng , sos_id , name_user){
+
+        let lat_mail = '@' + lat ;
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 17,
+            center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+        });
+
+        let image = "https://www.viicheck.com/img/icon/flag_2.png";
+        let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
+
+        marker = new google.maps.Marker({
+            position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
+            map: map,
+            icon: image,
+        });  
+
+        @foreach($view_maps_all as $view_map)
+            if ( {{ $view_map->id }} !== parseFloat(sos_id) ) {
+                marker = new google.maps.Marker({
+                    position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
+                    map: map,
+                    icon: image2,
+                });
+            }
+        @endforeach
+
+        const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+        const contentString =
+            '<div id="content">' +
+            '<div id="siteNotice">' +
+            "</div>" +
+            '<h4 id="firstHeading" class="firstHeading"> คุณ: '+ name_user +'</h4>' +
+            '<div id="bodyContent">' +
+            "<p>lat : "+ lat + "<br>" +
+            "lng : "+ lng + "</p>" +
+            "</div>" +
+            '<a href="https://www.google.co.th/maps/search/'+lat+','+lng+'/'+lat_mail+','+lng+',16z" target="bank" type="button" class="btn btn-sm btn-info text-white" style="width:100%;"><i class="fas fa-location-arrow"></i> นำทาง</a>' +
+            "</div>";
+
+        let infoWindow = new google.maps.InfoWindow({
+            // content: "<p>ชื่อพื้นที่ : <b>" + name_area  + "</b></p>" + "Lat :" + lat + "<br>" + "Lat :" + lng,
+            content: contentString,
+            position: myLatlng,
+        });
+
+        infoWindow.open(map);
 
     }
 

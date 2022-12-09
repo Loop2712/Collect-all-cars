@@ -580,6 +580,7 @@ class PartnerController extends Controller
 
         foreach ($data_partners as $data_partner) {
             $search_area = $data_partner->name ;
+            $type_partner = $data_partner->type_partner ;
         }
         $perPage = 20;
 
@@ -612,7 +613,7 @@ class PartnerController extends Controller
 
         $average_per_minute = $this->average_per_minute($view_maps_all);
 
-        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area' , 'average_per_minute'));
+        return view('partner.partner_sos', compact('data_partners','view_maps' , 'view_maps_all' , 'sos_all' ,'text_at','data_time_zone','count_data', 'select_name_areas' , 'name_area' , 'average_per_minute','type_partner'));
     }
 
     public function sos_emergency_js100(Request $request)

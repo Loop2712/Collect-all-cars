@@ -88,6 +88,7 @@
                                 <option value="university">- สถานศึกษา -</option>
                                 <option value="government">- สถานที่ราชการ -</option>
                                 <option value="company">- บริษัทเอกชน -</option>
+                                <option value="volunteer">- อาสาสมัคร -</option>
                                 <option value="condo">- คอนโด -</option>
                                 <option value="other">- อื่นๆ -</option>
                         </select>
