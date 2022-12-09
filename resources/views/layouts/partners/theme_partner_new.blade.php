@@ -1320,7 +1320,7 @@
 
 								let btn_go_to_help = document.querySelector('#btn_go_to_help');
 									let btn_go_to_help_onclick = document.createAttribute("onclick");
-				                  		btn_go_to_help_onclick.value = "go_to_help(" +  {{ Auth::user()->id }} + ")";
+				                  		btn_go_to_help_onclick.value = "go_to_help(" + result[0]['id'] + "," +  {{ Auth::user()->id }} + ")";
 									
 								btn_go_to_help.setAttributeNode(btn_go_to_help_onclick);
 
@@ -1345,6 +1345,11 @@
                 	document.querySelector('#div_menu_help').classList.add('d-none');
                 }
         });
+    }
+
+    function go_to_help(id_sos , id_user)
+    {
+    	console.log("id_sos : " + id_sos + " , " + "id_user : " + id_user);
     }
     
     function change_color()
