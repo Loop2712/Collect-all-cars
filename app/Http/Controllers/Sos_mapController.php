@@ -141,8 +141,7 @@ class Sos_mapController extends Controller
                 break;
             case 'emergency_Charlie_Bangkok':
                 // send data to groupline Charlie_Bangkok
-                // $this->_pushLine_to_Charlie($requestData , $id_sos_map);
-                $this->_pushLine_to_js100($requestData , $id_sos_map);
+                $this->_pushLine_to_Charlie($requestData , $id_sos_map);
                 break;   
         }
         
@@ -601,6 +600,92 @@ class Sos_mapController extends Controller
         // SAVE LOG
         $data = [
             "title" => "ข้อมูลขอความช่วยเหลือ JS100" ,
+            "content" => "จากคุณ" . $name_user,
+        ];
+        MyLog::create($data);
+
+    }
+
+    // send data to groupline Charlie
+    protected function _pushLine_to_Charlie($data , $id_sos_map)
+    {   
+        $datetime =  date("d-m-Y  h:i:sa");
+        $date_now =  date("d-m-Y");
+        $time_now =  date("h:i:sa");
+
+        $name_user = $data['name'];
+        $user_id = $data['user_id'];
+        $phone_user = $data['phone'];
+        $lat_user = $data['lat'];
+        $lng_user = $data['lng'];
+        $photo = $data['photo'];
+
+        $data_users = User::where('id' , $user_id)->first();
+
+        $data_line_group = DB::table('group_lines')->where('system', 'emergency_Charlie')->first();
+
+        $groupId = $data_line_group->groupId ;
+        $name_time_zone = $data_line_group->time_zone ;
+        $group_language = $data_line_group->language ;
+        
+        $text_at = '@' ;
+
+        $template_path = storage_path('../public/json/flex-sos-js100.json');
+        $string_json = file_get_contents($template_path);
+
+        if (!empty($data_users->photo)) {
+            $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
+        }else{
+            $string_json = str_replace("https://www.viicheck.com/storage/photo_profile_user","https://www.viicheck.com/img/stickerline/Flex/12.png",$string_json);
+        }
+
+        $string_json = str_replace("name_user",$name_user,$string_json);
+
+        if (!empty($data_users->language)) {
+            $string_json = str_replace("png_language",$data_users->language,$string_json);
+        }else{
+            $string_json = str_replace("png_language","-",$string_json);
+        }
+
+        if (!empty($data_users->nationalitie)) {
+            $string_json = str_replace("png_national",$data_users->nationalitie,$string_json);
+        }else{
+            $string_json = str_replace("png_national","-",$string_json);
+        }
+        
+        $string_json = str_replace("0899999999",$phone_user,$string_json);
+        $string_json = str_replace("วันที่แจ้ง",$date_now,$string_json);
+        $string_json = str_replace("เวลาที่แจ้ง",$time_now,$string_json);
+
+        $string_json = str_replace("gg_lat_mail",$text_at.$lat_user,$string_json);
+        $string_json = str_replace("gg_lat",$lat_user,$string_json);
+        $string_json = str_replace("lng",$lng_user,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        // flex ask_for_help
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "ข้อมูลขอความช่วยเหลือ Charlie" ,
             "content" => "จากคุณ" . $name_user,
         ];
         MyLog::create($data);
