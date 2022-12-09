@@ -170,21 +170,28 @@
                         <div class="col-3">
                         <div style="margin-top: -10px;">
                             @if( !empty($item->helper) and empty($item->help_complete) )
-                                <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ</a>
+                                <a href="#" class="btn btn-sm btn-warning radius-30" >
+                                    <i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ
+                                </a>
                             @elseif($item->helper == null)
                                 <a href="#" class="btn btn-sm btn-danger radius-30" >
                                     <i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ
                                 </a>
-                                <a type="button" style="margin-top: 10px;" class="d-none btn btn-sm radius-30 notify_alert_gotohelp" >
+                                <a type="button" style="margin-top: 10px;" class="d-none btn btn-sm radius-30 notify_alert_gotohelp" 
+                                onclick="go_to_help('{{ $item->id }}' , '{{ Auth::user()->id }}' )">
                                     <i class="fa-solid fa-truck-medical"></i> กำลังไปช่วยเหลือ
                                 </a>
                                 
                             @elseif($item->help_complete == "Yes" && $item->helper != null)
-                                <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
+                                <a href="#" class="btn btn-sm btn-success radius-30" >
+                                    <i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น
+                                </a>
                                 @if(!empty($item->help_complete_time))
-                                    <p style="margin-top:8px;"><b>
-                                    {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}
-                                    </b></p> 
+                                    <p style="margin-top:8px;">
+                                        <b>
+                                            {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}
+                                        </b>
+                                    </p> 
                                 @endif 
                                 @if(!empty($item->photo_succeed))
                                 <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">

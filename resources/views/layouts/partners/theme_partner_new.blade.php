@@ -1355,7 +1355,9 @@
                 console.log(result);
         });
 
-    	console.log("id_sos : " + id_sos + " , " + "id_user : " + id_user);
+    	// console.log("id_sos : " + id_sos + " , " + "id_user : " + id_user);
+
+        document.querySelector('#div_menu_help_1').click();
         
     }
     
