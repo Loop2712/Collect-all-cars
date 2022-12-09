@@ -167,7 +167,7 @@
                             @elseif($item->helper == null)
                                 <div>
                                     <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ</a>
-                                    <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-x"></i>กำลังไปช่วยเหลือ</a>
+                                    <!-- <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-x"></i>กำลังไปช่วยเหลือ</a> -->
                                 </div>
                                 
                             @elseif($item->help_complete == "Yes" && $item->helper != null)
