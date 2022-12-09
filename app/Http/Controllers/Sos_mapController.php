@@ -111,7 +111,7 @@ class Sos_mapController extends Controller
         $requestData['notify'] = $requestData['area'] ;
 
         if ( $requestData['content'] == "emergency_Charlie_Bangkok" ) {
-            $requestData['name_area']  = null ;
+            $requestData['name_area']  = 'ชาลีกรุงเทพ' ;
         }
 
         Sos_map::create($requestData);
