@@ -84,7 +84,10 @@
                     </div>
 
                     <div class="col-12  order-1">
-                        <a style="font-family: 'Kanit', sans-serif;border-radius:15px" id="a_help" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop">
+                        <!-- a_help click modal -->
+                        <a id="a_help_modal" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop"></a>
+
+                        <a id="a_help" style="font-family: 'Kanit', sans-serif;border-radius:15px" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" onclick="area_help_general();">
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP </b>
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
@@ -92,7 +95,7 @@
                     </div>
                     <div class="col-12 order-3">
                         <a style="font-family: 'Kanit', sans-serif;border-radius:15px" href="tel:112" id="btn_quick_help" class="shadow btn btn-warning btn-block shadow-box " onclick="save_sos_content('police' , '112');">
-                                <i class="fas fa-bullhorn"></i> <b>Ask for HELP</b>
+                                <i class="fas fa-bullhorn"></i> <b>Ask for HELP (police)</b>
                         </a>
                     </div>
                         
@@ -198,7 +201,7 @@
                         </h6>
                         <div class="collapse" id="div_photo">
                             <div style="margin-top:15px;" class="control-label" data-toggle="collapse" data-target="#img_ex" aria-expanded="false" aria-controls="img_ex" >
-                                <!-- <i class="fas fa-info-circle text-danger"></i> --> ตัวอย่างการถ่ายภาพ <i class="fas fa-angle-down"></i>
+                                ตัวอย่างการถ่ายภาพ <i class="fas fa-angle-down"></i>
                             </div>
                             <img id="img_ex" class="collapse" style="filter: backscale(50%);margin-top:15px;" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}">
                             <div class="col-12" id="div_cam" style="display:none;margin-top:17px;">
@@ -247,12 +250,8 @@
                         แก้ไข
                     </button>
                 @endif -->
-                
-                <button id="btn_emergency_Charlie_Bangkok" style="width:40%;" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone('emergency_Charlie_Bangkok');" disabled >
-                    ส่งข้อมูล
-                </button>
 
-                <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone('help_area');">
+                <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone();">
                     ยืนยัน
                 </button>
 
@@ -432,6 +431,8 @@
             });
         }
 
+        document.querySelector('#btn_help_area').disabled = true;
+
     }
 
     function stop(e) {
@@ -472,6 +473,7 @@
             text_img.value = canvas.toDataURL('image/png');
 
         document.querySelector('#btn_check_time').classList.remove('d-none');
+        document.querySelector('#btn_help_area').disabled = false;
         
     }
 
@@ -503,22 +505,25 @@
 
     }
 
-    function sos_of_Charlie_Bangkok() {
+    function area_help_general(){
+        let content = document.querySelector("#content");
+            content.value = 'help_area';
 
-        // let content = document.querySelector("#content");
-        //     content.value = 'emergency_Charlie_Bangkok';
+        document.querySelector('#text_add_img').classList.add('d-none');
+        document.querySelector('#btn_help_area').disabled = false;
 
-        document.querySelector('#btn_emergency_Charlie_Bangkok').classList.remove('d-none');
-        document.querySelector('#text_add_img').classList.remove('d-none');
-        document.querySelector('#btn_help_area').classList.add('d-none');
-
-        document.querySelector("#a_help").click();
-
+        document.querySelector("#a_help_modal").click();
     }
 
-    function check_img_of_Charlie_Bangkok() {
+    function sos_of_Charlie_Bangkok() {
 
-        // 
+        let content = document.querySelector("#content");
+            content.value = 'emergency_Charlie_Bangkok';
+
+        document.querySelector('#text_add_img').classList.remove('d-none');
+        document.querySelector('#btn_help_area').disabled = true;
+
+        document.querySelector("#a_help_modal").click();
 
     }
 
