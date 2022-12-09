@@ -175,7 +175,7 @@
                                 <a href="#" class="btn btn-sm btn-danger radius-30" >
                                     <i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ
                                 </a>
-                                <a type="button" style="margin-top: 10px;" class="btn btn-sm radius-30 notify_alert_gotohelp" >
+                                <a type="button" style="margin-top: 10px;" class="d-none btn btn-sm radius-30 notify_alert_gotohelp" >
                                     <i class="fa-solid fa-truck-medical"></i> กำลังไปช่วยเหลือ
                                 </a>
                                 

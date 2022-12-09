@@ -1363,11 +1363,10 @@ class LineApiController extends Controller
 
     public function sos_helper_Charlie($id_sos , $id_user)
     {
-        $users = DB::table('users')->where('id', $id_user)->get();
+        $user = DB::table('users')->where('id', $id_user)->first();
 
-        foreach ($users as $item_1) {
-            $name_organization = $item_1->organization ;
-        }
+        $name_organization = $user->organization ;
+        $provider_id = $user->provider_id ;
 
         $id_sos_map = $id_sos ;
 
@@ -1386,87 +1385,74 @@ class LineApiController extends Controller
         if ($data_sos_map->help_complete == "Yes") { // การช่วยเหลือเสร็จสิ้น
 
             // ส่งไลน์การช่วยเหลือนี้เสร็จสิ้นแล้ว
-            // $this->This_help_is_done($data_partner_helpers, $event, "This_help_is_done");
+            return "ส่งไลน์การช่วยเหลือนี้เสร็จสิ้นแล้ว" ;
 
-        }else{ // การช่วยเหลือ อยู่ระหว่างดำเนินการ
+        }else{ // การช่วยเหลือ ยัง ไม่ เสร็จสิ้น
 
-            // ตรวจสอบการเป็นสมาชิก ViiCHECK
-            if ($users != '[]') { // เป็นสมาชิก ViiCHECK
+            // ตรวจสอบสถานนะ role
+            if (!empty($user->role)) {
+                DB::table('users')
+                    ->where('provider_id', $provider_id)
+                    ->update([
+                        'organization' => $data_partner_helpers->name,
+                ]);
+            }else{
+                DB::table('users')
+                    ->where('provider_id', $provider_id)
+                    ->update([
+                        'organization' => $data_partner_helpers->name,
+                        'role' => 'partner',
+                ]);
+            }
+            
+            // ตรวจสอบรายชื่อคนช่วยเหลือ
+            if (!empty($data_sos_map->helper)) {
 
-                foreach ($users as $user) {
+                $explode_helper_id = explode(",",$data_sos_map->helper_id);
+                for ($i=0; $i < count($explode_helper_id); $i++) {
 
-                    $provider_id = $user->provider_id ;
-
-                    // ตรวจสอบสถานนะ role
-                    if (!empty($user->role)) {
-                        DB::table('users')
-                            ->where('provider_id', $provider_id)
-                            ->update([
-                                'organization' => $data_partner_helpers->name,
-                        ]);
+                    if ($explode_helper_id[$i] != $user->id) {
+                        $helper_double = "No";
                     }else{
-                        DB::table('users')
-                            ->where('provider_id', $provider_id)
-                            ->update([
-                                'organization' => $data_partner_helpers->name,
-                                'role' => 'partner',
-                        ]);
-                    }
-                    
-                    // ตรวจสอบรายชื่อคนช่วยเหลือ
-                    if (!empty($data_sos_map->helper)) {
-
-                        $explode_helper_id = explode(",",$data_sos_map->helper_id);
-                        for ($i=0; $i < count($explode_helper_id); $i++) {
-
-                            if ($explode_helper_id[$i] != $user->id) {
-                                $helper_double = "No";
-                            }else{
-                                $helper_double = "Yes";
-                                break;
-                            }
-
-                        }
-                        
-                        if ($helper_double != "Yes") {
-                            DB::table('sos_maps')
-                                ->where('id', $id_sos_map)
-                                ->update([
-                                    'helper' => $data_sos_map->helper . ',' . $user->name,
-                                    'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
-                                    'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
-                            ]);
-
-                            $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
-
-                        }else{
-                            // คุณได้ทำการกด "กำลังไปช่วยเหลือ" ซ้ำ
-                            // $this->This_help_is_done($data_partner_helpers, $event , "helper_click_double");
-                        }
-
-                    }else {
-                        DB::table('sos_maps')
-                            ->where('id', $id_sos_map)
-                            ->update([
-                                'helper' => $user->name,
-                                'helper_id' => $user->id,
-                                'organization_helper' => $data_partner_helpers->name,
-                                'time_go_to_help' => date('Y-m-d\TH:i:s'),
-                        ]);
-
-                        $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
-                        
+                        $helper_double = "Yes";
+                        break;
                     }
 
                 }
+                
+                if ($helper_double != "Yes") {
+                    DB::table('sos_maps')
+                        ->where('id', $id_sos_map)
+                        ->update([
+                            'helper' => $data_sos_map->helper . ',' . $user->name,
+                            'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
+                            'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+                    ]);
 
-            }else{ // ไม่ได้เป็นสมาชิก ViiCHECK
-                // return redirect('login/line');
-                // $this->_send_register_to_groupline($data_partner_helpers);
+                    $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
+
+                }else{
+                    // คุณได้ทำการกด "กำลังไปช่วยเหลือ" ซ้ำ
+                    // $this->This_help_is_done($data_partner_helpers, $event , "helper_click_double");
+                }
+
+            }else {
+                DB::table('sos_maps')
+                    ->where('id', $id_sos_map)
+                    ->update([
+                        'helper' => $user->name,
+                        'helper_id' => $user->id,
+                        'organization_helper' => $data_partner_helpers->name,
+                        'time_go_to_help' => date('Y-m-d\TH:i:s'),
+                ]);
+
+                $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
+                
             }
-        }
 
-        
+            return "OK" ;
+        }   
+
     }
 
     
