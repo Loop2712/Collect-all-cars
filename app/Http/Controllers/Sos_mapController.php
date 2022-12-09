@@ -637,6 +637,7 @@ class Sos_mapController extends Controller
                     "ขอความช่วยเหลือ",
                     "ภาษา",
                     "สัญชาติ",
+                    "กำลังไปช่วยเหลือ",
                     "ช่วยเหลือ",
                     "แผนที่",
                 ];
@@ -664,8 +665,9 @@ class Sos_mapController extends Controller
         $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
         $string_json = str_replace("ภาษา",$data_topic[1],$string_json);
         $string_json = str_replace("สัญชาติ",$data_topic[2],$string_json);
-        $string_json = str_replace("ช่วยเหลือ",$data_topic[3],$string_json);
-        $string_json = str_replace("แผนที่",$data_topic[4],$string_json);
+        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
+        $string_json = str_replace("ช่วยเหลือ",$data_topic[4],$string_json);
+        $string_json = str_replace("แผนที่",$data_topic[5],$string_json);
 
         if (!empty($data_users->photo)) {
             $string_json = str_replace("IMG_USER",$data_users->photo,$string_json);

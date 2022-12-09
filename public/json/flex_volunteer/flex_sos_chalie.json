@@ -146,7 +146,7 @@
         "height": "24%",
         "action": {
           "type": "uri",
-          "uri": "https://www.viicheck.com/storage/PHOTO_SOS"
+          "uri": "https://www.viicheck.com/storage/PHOTO_SOS?openExternalBrowser=1"
         }
       },
       {
