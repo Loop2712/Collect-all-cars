@@ -1187,7 +1187,7 @@
 	    	// เช็ค SOS
 	       	check_sos_alarm();
 	    	// เช็ค JS100
-	       	check_sos_js100();
+	       	// check_sos_js100();
 	    }, 5000);
         
     });
@@ -1640,20 +1640,20 @@
         }, delay);
     }
 
-    function check_sos_js100(){
-        // console.log("CHECK");
-        fetch("{{ url('/') }}/api/check_new_sos_js100_by_theme" )
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
+    // function check_sos_js100(){
+    //     // console.log("CHECK");
+    //     fetch("{{ url('/') }}/api/check_new_sos_js100_by_theme" )
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
 
-                if (result['length'] > 0) {
-                	document.querySelector('#div_menu_alert_js100').classList.remove('d-none');
-                }else{
-                	document.querySelector('#div_menu_alert_js100').classList.add('d-none');
-                }
-        });
-    }
+    //             if (result['length'] > 0) {
+    //             	document.querySelector('#div_menu_alert_js100').classList.remove('d-none');
+    //             }else{
+    //             	document.querySelector('#div_menu_alert_js100').classList.add('d-none');
+    //             }
+    //     });
+    // }
 	
 	function check_submenu(){
 		let menu = $('.sub-menu');
