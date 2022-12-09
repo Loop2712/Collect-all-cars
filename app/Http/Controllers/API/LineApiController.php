@@ -1468,7 +1468,7 @@ class LineApiController extends Controller
         $provider_id = $user->provider_id ;
 
         $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
-        
+
         $data_partner_helpers = Partner::where('name' , $name_organization)->where('name_area' , '!=' , null)->first();
 
         $data_line_group = DB::table('group_lines')
@@ -1593,7 +1593,7 @@ class LineApiController extends Controller
         ];
         MyLog::create($data);
 
-        return $result;
+        return "OK";
     }
 
 }
