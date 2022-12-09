@@ -1457,12 +1457,13 @@ class LineApiController extends Controller
 
     public function Charlie_help_complete($id_sos , $id_user)
     {
-        // $this->reply_success_groupline_Charlie( $id_sos , $id_user );
+        $this->reply_success_groupline_Charlie( $id_sos , $id_user );
         $this->help_complete($id_sos);
     }
 
     public function reply_success_groupline_Charlie( $id_sos , $id_user )
     {
+        $id_sos_map = $id_sos ;
         $user = DB::table('users')->where('id', $id_user)->first();
         $name_organization = $user->organization ;
         $provider_id = $user->provider_id ;
