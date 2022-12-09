@@ -141,7 +141,8 @@ class Sos_mapController extends Controller
                 break;
             case 'emergency_Charlie_Bangkok':
                 // send data to groupline Charlie_Bangkok
-                // $this->_pushLine_to_js100($requestData , $id_sos_map);
+                // $this->_pushLine_to_Charlie($requestData , $id_sos_map);
+                $this->_pushLine_to_js100($requestData , $id_sos_map);
                 break;   
         }
         
