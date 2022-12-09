@@ -171,12 +171,9 @@
                         <div style="margin-top: -10px;">
                             @if( !empty($item->helper) and empty($item->help_complete) )
                                 <div class="dropdown">
-                                    <a href="#" class="btn btn-sm btn-warning radius-30" >
+                                    <a href="#" class="btn btn-sm btn-warning radius-30 dropdown-toggle" id="dropdown_status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ
                                     </a>
-                                    <button class="btn btn-sm btn-secondary radius-30 " type="button" id="dropdown_status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        &nbsp;<i class="fa-solid fa-circle-down"></i>
-                                    </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdown_status">
                                         <a class="dropdown-item" href="#">ช่วยเหลือเสร็จสิ้น</a>
                                     </div>
