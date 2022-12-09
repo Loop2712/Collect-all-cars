@@ -1094,15 +1094,15 @@
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-							<h4 class="mb-0">เวลา : 12:35</h4>
+							<h4 class="mb-0"></h4>
 							<span class="text-secondary" style="font-size:25px;" id="modal_notify_time"></span>
 						</li>
 						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-							<h4 class="mb-0">เบอร์ : 099 999 9999</h4>
+							<h4 class="mb-0"></h4>
 							<span class="text-secondary" style="font-size:25px;" id="modal_notify_phone"></span>
 						</li>
 						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-							<h4 class="mb-0">สถานที่ : ทดสอบ</h4>
+							<h4 class="mb-0"></h4>
 							<span class="text-secondary" style="font-size:25px;" id="modal_notify_name_area"></span>
 						</li>
 					</ul>
