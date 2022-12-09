@@ -1,5 +1,5 @@
 @if(Auth::user()->id == '1')
-<div style="display:none;">
+<div style="display:block;">
 @else
 <div style="display:none;">
 @endif
@@ -52,9 +52,7 @@
         <input class="btn btn-primary" id="btn_submit" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
     </div>
 </div>
-@if(Auth::user()->id == '1' || Auth::user()->id == '64')
-<button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#btn-loading-test" data-dismiss="modal" aria-label="Close" >ทดสอบ modal</button>
-@endif
+
 <input class="d-none" type="text" id="latlng" name="latlng" readonly> 
 
 <div class="container d-block d-lg-none"> <!-- d-block d-md-none -->
@@ -98,12 +96,12 @@
                         </a>
                     </div>
                         
-                    <div class="col-12 d-none order-2 mt-3 mb-3" id="btn_emergency_js100">
+                    <div class="col-12 d-none order-2 mt-3 mb-3" id="btn_emergency_volunteer">
                         <!-- <button class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#08361d;" onclick="call_sos_of_js100();">
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp;Call Emergency  JS 100</b>
                         </button> -->
 
-                        <span class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="">
+                        <span class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" >
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp; ขอความช่วยเหลือ ชาลีกรุงเทพ (soon)</b>
                         </span>
                     </div>
@@ -189,9 +187,12 @@
                             ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;
                             <br><br>
                             <a class="align-self-end text-white btn-primary btn-circle">
-                                        <i id="i_down" class="fas fa-camera"></i>
-                                        <i id="i_up" class="fas fa-chevron-up d-none"></i>
-                                    </a>
+                                <i id="i_down" class="fas fa-camera"></i>
+                                <i id="i_up" class="fas fa-chevron-up d-none"></i>
+                            </a>
+                            <br>
+                            <br>
+                            <span id="text_add_img" class="text-danger d-none">กรุณาเพิ่มภาพถ่าย</span>
                             <!-- <i id="i_down" style="font-size: 20px;" class="fas fa-camera text-info"></i>
                             <i id="i_up" style="font-size: 20px" class="fas fa-arrow-alt-circle-up text-info d-none"></i> -->
                         </h6>
@@ -247,8 +248,14 @@
                     </button>
                 @endif -->
                 
+                <button id="btn_emergency_Charlie_Bangkok" style="width:40%;" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone('emergency_Charlie_Bangkok');" disabled >
+                    ส่งข้อมูล
+                </button>
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone();">ยืนยัน</button>
+                <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone('help_area');">
+                    ยืนยัน
+                </button>
+
               </div>
             @endif
             </div>
@@ -256,6 +263,17 @@
         </div>
     </div>
 </div>
+
+@if(Auth::user()->id == '1' || Auth::user()->id == '64')
+    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#btn-loading-test" data-dismiss="modal" aria-label="Close" >
+        ทดสอบ modal
+        </button>
+
+    <span class="shadow btn btn-md btn-block" onclick="sos_of_Charlie_Bangkok();">
+        <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp; ทดสอบ ชาลีกรุงเทพ</b>
+    </span>
+@endif
+
 <br><br>
 <!-- btn Modal pls input phone -->
 <button type="button" id="btn_open_pls_input_phone" class="btn btn-primary d-none" data-toggle="modal" data-target="#pls_input_phone"></button>
@@ -482,6 +500,25 @@
         document.querySelector("#btn_js_1137").click();
         document.querySelector("#btn_submit").click();
 
+
+    }
+
+    function sos_of_Charlie_Bangkok() {
+
+        // let content = document.querySelector("#content");
+        //     content.value = 'emergency_Charlie_Bangkok';
+
+        document.querySelector('#btn_emergency_Charlie_Bangkok').classList.remove('d-none');
+        document.querySelector('#text_add_img').classList.remove('d-none');
+        document.querySelector('#btn_help_area').classList.add('d-none');
+
+        document.querySelector("#a_help").click();
+
+    }
+
+    function check_img_of_Charlie_Bangkok() {
+
+        // 
 
     }
 

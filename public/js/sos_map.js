@@ -69,7 +69,7 @@
             geocodeLatLng(geocoder, map, infowindow);
         });
 
-        document.querySelector('#btn_emergency_js100').classList.remove('d-none');
+        document.querySelector('#btn_emergency_volunteer').classList.remove('d-none');
 
         let text_sos = document.querySelector('#text_sos').value;
 
@@ -106,7 +106,7 @@
             .catch((e) => window.alert("Geocoder failed due to: " + e));
         }
 
-    function confirm_phone() {
+    function confirm_phone(type_content) {
         let text_phone = document.querySelector("#text_phone");
         let lat_text = document.querySelector("#lat");
         let lng_text = document.querySelector("#lng");
@@ -121,7 +121,7 @@
         let content = document.querySelector("#content");
         let area = document.querySelector("#area");
 
-            content.value = "help_area" ;
+            content.value = type_content ;
             area.value = area_help.innerHTML ;
 
         document.querySelector("#btn_submit").click();

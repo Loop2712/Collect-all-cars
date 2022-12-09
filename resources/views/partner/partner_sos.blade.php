@@ -165,7 +165,11 @@
                             @if( !empty($item->helper) and empty($item->help_complete) )
                                 <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ</a>
                             @elseif($item->helper == null)
-                                <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ</a>
+                                <div>
+                                    <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ</a>
+                                    <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-x"></i>กำลังไปช่วยเหลือ</a>
+                                </div>
+                                
                             @elseif($item->help_complete == "Yes" && $item->helper != null)
                                 <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
                                 @if(!empty($item->help_complete_time))

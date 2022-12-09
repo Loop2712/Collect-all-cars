@@ -86,6 +86,11 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
 
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
+        
         if (!empty($requestData['text_img'])) {
 
             $name_file_img = uniqid('photo_sos-', true);
@@ -127,10 +132,13 @@ class Sos_mapController extends Controller
                 $this->_pushLine($requestData , $id_sos_map);
                 break;
             case 'emergency_js100':
-                // send data to grouplin js100
+                // send data to groupline js100
                 $this->_pushLine_to_js100($requestData , $id_sos_map);
                 break;
-                
+            case 'emergency_Charlie_Bangkok':
+                // send data to groupline Charlie_Bangkok
+                // $this->_pushLine_to_js100($requestData , $id_sos_map);
+                break;   
         }
         
         // เช็ค type user แล้วเลือก redirect

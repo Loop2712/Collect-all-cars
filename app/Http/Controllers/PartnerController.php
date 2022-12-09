@@ -112,7 +112,7 @@ class PartnerController extends Controller
 
         $requestData['class_color_menu'] = "other";
 
-        if (!empty($requestData['type_partner'])) {
+        if ($requestData['type_partner'] == 'condo') {
             $save_Partner_condo = [
                 "name" => $requestData['name'],
             ];
@@ -141,11 +141,14 @@ class PartnerController extends Controller
                         'partner_id' => $key_1->id,
                 ]);
 
-            DB::table('partner_condos')
+            if( !empty($requestData['condo_id']) ){
+                DB::table('partner_condos')
                     ->where('id', $requestData['condo_id'])
                     ->update([
                         'partner_id' => $key_1->id,
                 ]);
+            }
+            
         }
 
         $group_line = Group_line::where('groupName', $requestData['line_group'])->get();

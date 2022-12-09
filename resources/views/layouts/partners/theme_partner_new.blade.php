@@ -56,6 +56,14 @@
           animation-iteration-count: 99;
         }
 
+        .notify_alert_gotohelp{
+          animation-name: notify_alert_gotohelp;
+          color: #ffffff;
+          background-color: red;
+          animation-duration: 4s;
+          animation-iteration-count: 99;
+        }
+
         a.disabled {
 		  pointer-events: none;
 		  cursor: default;
@@ -75,6 +83,22 @@
           60% {color: yellow;}
           80%   {color: red;}
           100%  {color: yellow;}
+
+        }
+
+        @keyframes notify_alert_gotohelp {
+          0%   {background-color: red;
+          		color: #ffffff;}
+          20%  {background-color: yellow;
+          		color: #000000;}
+          40%  {background-color: red;
+          		color: #ffffff;}
+          60% {background-color: yellow;
+          		color: #000000;}
+          80%   {background-color: red;
+          		color: #ffffff;}
+          100%  {background-color: yellow;
+          		color: #000000;}
 
         }
 
@@ -861,7 +885,8 @@
 			<div class="page-content" style="margin-top:-25px;">
 				<br>
 			  	@yield('content')
-			  
+			  <button type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_notify">modal</button>
+			  <span onclick="check_sos_alarm();" class="btn btn-danger">check_sos_alarm</span>
 			</div>
 		</div>
 		<!--end page wrapper -->
@@ -1045,7 +1070,7 @@
 	<!-- end modal set_group_line -->
 
     <!-- Button trigger modal -->
-	<button id="btn_modal_notify" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_notify">
+	<button id="btn_modal_notify" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_notify">
 	</button>
 
 	<!-- Modal -->
@@ -1060,7 +1085,7 @@
 			  <br>
 			  <div class="row">
 				  <div class="col-12">
-                    <h2 class="text-info"><b id="modal_notify_name"></b>
+                    <h2 class="text-info"><b id="modal_notify_name">THANAKORN</b>
 						<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
 							<i class="fad fa-images"></i>
 						</button>
@@ -1069,21 +1094,25 @@
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-							<h4 class="mb-0">เวลา</h4>
+							<h4 class="mb-0">เวลา : 12:35</h4>
 							<span class="text-secondary" style="font-size:25px;" id="modal_notify_time"></span>
 						</li>
 						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-							<h4 class="mb-0">เบอร์</h4>
+							<h4 class="mb-0">เบอร์ : 099 999 9999</h4>
 							<span class="text-secondary" style="font-size:25px;" id="modal_notify_phone"></span>
 						</li>
 						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-							<h4 class="mb-0">สถานที่</h4>
+							<h4 class="mb-0">สถานที่ : ทดสอบ</h4>
 							<span class="text-secondary" style="font-size:25px;" id="modal_notify_name_area"></span>
 						</li>
 					</ul>
 				</div>
 	      	</div>
 	     	<div class="modal-footer">
+	     	<button id="btn_go_to_help" type="button" style="border-radius: 25px;" class="btn notify_alert_gotohelp" >
+	     		<i class="fa-solid fa-truck-medical"></i> กำลังไปช่วยเหลือ
+	     	</button>
+
 	        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();"><i class="fal fa-eye"></i>ดูข้อมูล</button>
 	        <a id="tag_a_link_ggmap" target="bank" class="btn text-white" style="border-radius: 25px; background-color:#26A664"><i class="far fa-map-marker-alt"></i>ดูแผนที่</a>
 	      </div>
@@ -1150,9 +1179,10 @@
         // console.log("START");
         // show_menu_bar();
 		check_data_partner();
-		check_sos_alarm();
-	    check_sos_js100();
 		check_submenu();
+
+		// check_sos_alarm();
+	    // check_sos_js100();
 	    setInterval(function() {
 	    	// เช็ค SOS
 	       	check_sos_alarm();
@@ -1251,7 +1281,7 @@
     	fetch("{{ url('/') }}/api/check_sos_alarm/" + check_name_partner)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 if (result.length != 0) {
                 	// console.log(result.length);
 
@@ -1287,6 +1317,13 @@
 								}else {
 									document.querySelector('#btn_modal_notify_img').classList.add('d-none');
 								}
+
+								let btn_go_to_help = document.querySelector('#btn_go_to_help');
+									let btn_go_to_help_onclick = document.createAttribute("onclick");
+				                  		btn_go_to_help_onclick.value = "go_to_help(" +  {{ Auth::user()->id }} + ")";
+									
+								btn_go_to_help.setAttributeNode(btn_go_to_help_onclick);
+
 
 								let tag_a_link_ggmap = document.querySelector('#tag_a_link_ggmap');
 
