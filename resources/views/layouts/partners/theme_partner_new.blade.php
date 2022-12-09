@@ -1351,7 +1351,6 @@
     {
     	fetch( "{{ url('/') }}/api/sos_helper_Charlie/"+ id_sos + "/" + id_user )
             .then(response => response.text())
-            // .then(response => response.json())
             .then(result => {
                 console.log(result);
         });
