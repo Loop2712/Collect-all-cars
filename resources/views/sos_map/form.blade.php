@@ -1,5 +1,5 @@
 @if(Auth::user()->id == '1')
-<div style="display:block;">
+<div style="display:none;">
 @else
 <div style="display:none;">
 @endif
