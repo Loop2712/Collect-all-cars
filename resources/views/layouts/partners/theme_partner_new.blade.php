@@ -1356,8 +1356,9 @@
         });
 
     	// console.log("id_sos : " + id_sos + " , " + "id_user : " + id_user);
-
-        window.location.reload(true) ; 
+        setInterval(function() {
+	    	window.location.reload(true) ; 
+	    }, 1000);
         
     }
     
