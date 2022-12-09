@@ -1361,12 +1361,15 @@ class LineApiController extends Controller
     }
 
 
-    public function sos_helper_Charlie($data_postback_explode , $provider_id , $event)
+    public function sos_helper_Charlie($id_sos , $id_user )
     {
-        $data_data = explode("/",$data_postback_explode);
+        $users = DB::table('users')->where('id', $id_user)->get();
 
-        $id_sos_map = $data_data[0] ;
-        $id_organization_helper = $data_data[1] ;
+        foreach ($users as $item_1) {
+            $name_organization = $item_1->organization ;
+        }
+
+        $id_sos_map = $id_sos ;
 
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
 
@@ -1376,15 +1379,14 @@ class LineApiController extends Controller
             $condo_id = null ;
         }
 
-        $data_partner_helpers = Partner::findOrFail($id_organization_helper);
+        $data_partner_helpers = Partner::where('name' , $name_organization)->where('name_area' , null)->first();
 
-        $users = DB::table('users')->where('provider_id', $provider_id)->get();
 
         // ตรวจสอบ "การช่วยเหลือเสร็จสิ้น" แล้วหรือยัง
         if ($data_sos_map->help_complete == "Yes") { // การช่วยเหลือเสร็จสิ้น
 
             // ส่งไลน์การช่วยเหลือนี้เสร็จสิ้นแล้ว
-            $this->This_help_is_done($data_partner_helpers, $event, "This_help_is_done");
+            // $this->This_help_is_done($data_partner_helpers, $event, "This_help_is_done");
 
         }else{ // การช่วยเหลือ อยู่ระหว่างดำเนินการ
 
@@ -1392,6 +1394,9 @@ class LineApiController extends Controller
             if ($users != '[]') { // เป็นสมาชิก ViiCHECK
 
                 foreach ($users as $user) {
+
+                    $provider_id = $user->provider_id ;
+
                     // ตรวจสอบสถานนะ role
                     if (!empty($user->role)) {
                         DB::table('users')
@@ -1436,7 +1441,7 @@ class LineApiController extends Controller
 
                         }else{
                             // คุณได้ทำการกด "กำลังไปช่วยเหลือ" ซ้ำ
-                            $this->This_help_is_done($data_partner_helpers, $event , "helper_click_double");
+                            // $this->This_help_is_done($data_partner_helpers, $event , "helper_click_double");
                         }
 
                     }else {
@@ -1457,7 +1462,7 @@ class LineApiController extends Controller
 
             }else{ // ไม่ได้เป็นสมาชิก ViiCHECK
                 // return redirect('login/line');
-                $this->_send_register_to_groupline($data_partner_helpers);
+                // $this->_send_register_to_groupline($data_partner_helpers);
             }
         }
         

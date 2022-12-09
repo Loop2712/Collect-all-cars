@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('/lineapi', 'API\LineApiController@store');
+Route::get('/sos_helper_Charlie/{id_sos}/{id_user}', 'API\LineApiController@sos_helper_Charlie');
+
 Route::post('/lineapi/condo', 'API\Condo_LineApiController@store');
 
 Route::post('/juristic', 'API\JuristicController@juristic');
