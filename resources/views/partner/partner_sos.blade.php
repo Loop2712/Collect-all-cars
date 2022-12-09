@@ -34,19 +34,19 @@
         <div class="row">
             <div class="col-3">
                 @if( $type_partner != 'volunteer')
-                <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        เลือกพื้นที่
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
-                        @foreach($select_name_areas as $select_name_area)
-                            <a id="select_name_area_{{ $select_name_area->name_area }}" class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
-                                {{ $select_name_area->name_area }}
-                            </a>
-                        @endforeach
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            เลือกพื้นที่
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
+                            @foreach($select_name_areas as $select_name_area)
+                                <a id="select_name_area_{{ $select_name_area->name_area }}" class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
+                                    {{ $select_name_area->name_area }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
             <div class="col-9">
@@ -159,6 +159,10 @@
                             <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
                                 <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo }}">
                             </a>
+                            <br>
+                            <a class="btn btn-sm btn-outline-info px-3 radius-30 mt-3" href="{{ url('storage')}}/{{ $item->photo }}" download>
+                                <i class="fa-solid fa-download"></i> ดาวน์โหลด
+                            </a>
                             <br><br>
                             @endif
                         </div>
@@ -183,6 +187,10 @@
                                 @if(!empty($item->photo_succeed))
                                 <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">
                                     <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo_succeed }}">
+                                </a>
+                                <br>
+                                <a class="btn btn-sm btn-outline-info px-3 radius-30 mt-3" href="{{ url('storage')}}/{{ $item->photo_succeed }}" download>
+                                    <i class="fa-solid fa-download"></i> ดาวน์โหลด
                                 </a>
                                 <br><br>
                                 @endif
