@@ -1361,7 +1361,7 @@ class LineApiController extends Controller
     }
 
 
-    public function sos_helper_Charlie($id_sos , $id_user )
+    public function sos_helper_Charlie($id_sos , $id_user)
     {
         $users = DB::table('users')->where('id', $id_user)->get();
 
@@ -1465,6 +1465,8 @@ class LineApiController extends Controller
                 // $this->_send_register_to_groupline($data_partner_helpers);
             }
         }
+
+        return "OK" ;
         
     }
 

@@ -1349,14 +1349,10 @@
 
     function go_to_help(id_sos , id_user)
     {
-    	fetch( "{{ url('/') }}/api/sos_helper_Charlie/"+ id_sos + "/" + id_user )
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-        });
+    	fetch( "{{ url('/') }}/api/sos_helper_Charlie/"+ id_sos + "/" + id_user );
 
     	console.log("id_sos : " + id_sos + " , " + "id_user : " + id_user);
-        
+
     }
     
     function change_color()
