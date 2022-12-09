@@ -1,0 +1,347 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/sos/flex_sos_chalie.png",
+              "size": "full",
+              "aspectRatio": "2500:4500",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ขอความช่วยเหลือ",
+                  "color": "#ffffff",
+                  "size": "xl",
+                  "wrap": false,
+                  "weight": "bold",
+                  "align": "center",
+                  "maxLines": 2
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "6%",
+              "offsetStart": "10%",
+              "width": "80%",
+              "justifyContent": "space-around",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.peddyhub.com/storage/IMG_USER",
+                  "aspectRatio": "1:1",
+                  "aspectMode": "cover"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "12%",
+              "offsetStart": "41.5%",
+              "cornerRadius": "150px",
+              "width": "17%",
+              "borderWidth": "3px",
+              "borderColor": "#ffffff",
+              "backgroundColor": "#ffffff"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "NAME_USER",
+                  "color": "#ffffff",
+                  "size": "xl",
+                  "wrap": false
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "21.5%",
+              "offsetStart": "10%",
+              "width": "80%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/img/national-flag/flag/PNG_LANGUAGE.png",
+                  "aspectRatio": "149:100",
+                  "size": "50px"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "31.5%",
+              "offsetStart": "21%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "USER_NATIONAL",
+                  "color": "#ffffff",
+                  "wrap": false,
+                  "size": "md",
+                  "weight": "bold"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "33%",
+              "offsetStart": "45%",
+              "width": "36.5%",
+              "justifyContent": "center",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "image",
+                      "url": "https://www.peddyhub.com/storage/PHOTO_SOS",
+                      "aspectRatio": "5:8",
+                      "aspectMode": "cover",
+                      "action": {
+                        "type": "uri",
+                        "uri": "https://www.viicheck.com/storage/PHOTO_SOS"
+                      },
+                      "size": "full"
+                    }
+                  ],
+                  "position": "absolute",
+                  "offsetStart": "15%",
+                  "cornerRadius": "15px",
+                  "width": "70%",
+                  "action": {
+                    "type": "uri",
+                    "uri": "https://www.viicheck.com/storage/PHOTO_SOS"
+                  },
+                  "height": "90%",
+                  "offsetTop": "5%"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "43%",
+              "offsetStart": "30%",
+              "cornerRadius": "15px",
+              "width": "37%",
+              "height": "24%",
+              "action": {
+                "type": "uri",
+                "uri": "https://www.viicheck.com/storage/PHOTO_SOS"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "DATE_SOS",
+                  "color": "#ffffff",
+                  "size": "md",
+                  "wrap": false
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "73.2%",
+              "offsetStart": "19%",
+              "width": "30%",
+              "alignItems": "center",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "TIME_SOS",
+                  "color": "#ffffff",
+                  "size": "md",
+                  "wrap": false
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "73.2%",
+              "offsetStart": "50%",
+              "width": "30%",
+              "alignItems": "center",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "Call : PHONE_USER",
+                      "weight": "bold"
+                    }
+                  ],
+                  "height": "100%",
+                  "width": "80%",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "offsetStart": "7%"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "81%",
+              "offsetStart": "19%",
+              "width": "63%",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "height": "5.9%",
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": "tel:PHONE_USER"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ช่วยเหลือ",
+                      "color": "#000000",
+                      "size": "md",
+                      "wrap": false,
+                      "weight": "bold"
+                    }
+                  ],
+                  "width": "70%",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "offsetStart": "10%",
+                  "alignItems": "center"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "89.7%",
+              "offsetStart": "5%",
+              "width": "45%",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "action": {
+                "type": "postback",
+                "data": "sos?id_sos_map/organization",
+                "displayText": "กำลังไปช่วยเหลือ"
+              },
+              "height": "6%"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "แผนที่",
+                      "weight": "bold",
+                      "align": "center",
+                      "color": "#000000",
+                      "size": "md",
+                      "wrap": false
+                    }
+                  ],
+                  "width": "70%",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "offsetStart": "10%"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "89.7%",
+              "offsetStart": "54%",
+              "width": "41%",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "height": "6%",
+              "action": {
+                "type": "uri",
+                "label": "google map",
+                "uri": "https://www.google.co.th/maps/search/gg_lat,lng/gg_lat_mail,lng,16z"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ภาษา",
+                  "color": "#ffffff",
+                  "wrap": false,
+                  "size": "md",
+                  "weight": "bold"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "37%",
+              "offsetStart": "18%",
+              "width": "20%",
+              "justifyContent": "center",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "สัญชาติ",
+                  "color": "#ffffff",
+                  "wrap": false,
+                  "size": "md",
+                  "weight": "bold"
+                }
+              ],
+              "position": "absolute",
+              "offsetTop": "37%",
+              "offsetStart": "43%",
+              "width": "40%",
+              "justifyContent": "center",
+              "alignItems": "center"
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+}
