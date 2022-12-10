@@ -1073,68 +1073,63 @@
 
 	<!-- Modal -->
 	<div class="modal fade " id="modal_notify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  	<div class="modal-dialog modal-dialog-centered modal-md" role="document">
-	    	<div class="modal-content">
-	      		<div class="modal-header " style="background-color:#D85261;">
-	        		<h4 class="modal-title text-white text-center"  id="exampleModalLabel"> <b>แจ้งเตือน<br>การขอความช่วยเหลือ</b> </h4>
-					<img width="45%" src="{{ asset('/img/stickerline/PNG/21.png') }}">
-	      		</div>
+	  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+	    <div class="modal-content">
+	      	<div class="modal-header " style="background-color:#D85261;">
+	        	<h4 class="modal-title text-white text-center"  id="exampleModalLabel"> <b>แจ้งเตือน<br>การขอความช่วยเหลือ</b> </h4>
+				<img width="45%" src="{{ asset('/img/stickerline/PNG/21.png') }}">
 	      	</div>
 	      	<div class="modal-body text-center" style="padding:0px;">
-			  	<br>
-			  	<div class="row">
-				  	<div class="col-12">
-                    	<h2 class="text-info"><b id="modal_notify_name">คุณ : </b>
-							<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
-								<i class="fad fa-images"></i>
-							</button>
-						</h2>
-					</div>
-					<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-								<h4 class="mb-0">เวลา</h4>
-								<span class="text-secondary" style="font-size:25px;" id="modal_notify_time"></span>
-							</li>
-							<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-								<h4 class="mb-0">เบอร์</h4>
-								<span class="text-secondary" style="font-size:25px;" id="modal_notify_phone"></span>
-							</li>
-							<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-								<h4 class="mb-0">สถานที่</h4>
-								<span class="text-secondary" style="font-size:25px;" id="modal_notify_name_area"></span>
-							</li>
-						</ul>
-					</div>
-	      		</div>
-		     	<div class="modal-footer">
-			     	<button id="btn_go_to_help" type="button" style="border-radius: 25px;" class="btn notify_alert_gotohelp" >
-			     		<i class="fa-solid fa-truck-medical"></i> กำลังไปช่วยเหลือ
-			     	</button>
+			  <br>
+			  <div class="row">
+				  <div class="col-12">
+                    <h2 class="text-info"><b id="modal_notify_name">คุณ : </b>
+						<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
+							<i class="fad fa-images"></i>
+						</button>
+					</h2>
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+							<h4 class="mb-0">เวลา</h4>
+							<span class="text-secondary" style="font-size:25px;" id="modal_notify_time"></span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+							<h4 class="mb-0">เบอร์</h4>
+							<span class="text-secondary" style="font-size:25px;" id="modal_notify_phone"></span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+							<h4 class="mb-0">สถานที่</h4>
+							<span class="text-secondary" style="font-size:25px;" id="modal_notify_name_area"></span>
+						</li>
+					</ul>
+				</div>
+	      	</div>
+	     	<div class="modal-footer">
+	     	<button id="btn_go_to_help" type="button" style="border-radius: 25px;" class="btn notify_alert_gotohelp" >
+	     		<i class="fa-solid fa-truck-medical"></i> กำลังไปช่วยเหลือ
+	     	</button>
 
-			        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();">
-			        	<i class="fal fa-eye"></i>ดูข้อมูล
-			        </button>
-		        	<a id="tag_a_link_ggmap" target="bank" class="btn text-white" style="border-radius: 25px; background-color:#26A664">
-		        		<i class="far fa-map-marker-alt"></i>ดูแผนที่
-		        	</a>
-		      	</div>
-	    	</div>
-	  	</div>
+	        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();"><i class="fal fa-eye"></i>ดูข้อมูล</button>
+	        <a id="tag_a_link_ggmap" target="bank" class="btn text-white" style="border-radius: 25px; background-color:#26A664"><i class="far fa-map-marker-alt"></i>ดูแผนที่</a>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
-	<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-	  	<div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
-	    	<div class="modal-content">
-	      		<div class="modal-body text-center" style="padding:0px;">
-	      			<a id="tag_a_modal_notify_img" href="" target="bank">
-		        		<img src="{{ asset('/img/icon/zoom-in.png') }}" style="position:absolute;right: 10px;bottom: 10px;width: 20px;">
-		    		</a>
-	        		<img src="" alt="" id="modal_notify_img">
-	      		</div>
-    		</div>
-	  	</div>
-	</div>
+<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
+    <div class="modal-content">
+      <div class="modal-body text-center" style="padding:0px;">
+      	<a id="tag_a_modal_notify_img" href="" target="bank">
+	        <img src="{{ asset('/img/icon/zoom-in.png') }}" style="position:absolute;right: 10px;bottom: 10px;width: 20px;">
+	    </a>
+        <img src="" alt="" id="modal_notify_img">
+      </div>
+    </div>
+  </div>
+</div>
 
 <input type="text" class="d-none" name="user_organization" id="user_organization" value="{{ Auth::user()->organization }}">
 <input id="color_of_partner" type="text" class="d-none" name="" value="">
