@@ -171,15 +171,17 @@
                         <div style="margin-top: -10px;">
                             @if( !empty($item->helper) and empty($item->help_complete) )
                                 <div class="dropdown">
-                                    <a href="#" class="btn btn-sm btn-warning radius-30 dropdown-toggle" id="dropdown_status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="btn btn-sm btn-warning radius-30 dropdown-toggle" id="dropdown_status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdown_status">
-                                        <a class="dropdown-item" href="#" onclick="status_help_complete('{{ $item->id }}' , '{{ Auth::user()->id }}' );">การช่วยเหลือเสร็จสิ้น</a>
+                                        <a class="dropdown-item  btn" onclick="status_help_complete('{{ $item->id }}' , '{{ Auth::user()->id }}' );">
+                                            การช่วยเหลือเสร็จสิ้น
+                                        </a>
                                     </div>
                                 </div>
                             @elseif($item->helper == null)
-                                <a href="#" class="btn btn-sm btn-danger radius-30" >
+                                <a class="btn btn-sm btn-danger radius-30" >
                                     <i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ
                                 </a>
                                 <a type="button" style="margin-top: 10px;" class="btn btn-sm radius-30 notify_alert_gotohelp" 
@@ -188,7 +190,7 @@
                                 </a>
                                 
                             @elseif($item->help_complete == "Yes" && $item->helper != null)
-                                <a href="#" class="btn btn-sm btn-success radius-30" >
+                                <a class="btn btn-sm btn-success radius-30" >
                                     <i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น
                                 </a>
                                 @if(!empty($item->help_complete_time))
