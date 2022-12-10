@@ -1119,7 +1119,7 @@
 	</div>
 
 <div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 10040;">
+  <div class="modal-dialog modal-dialog-centered modal-sm " role="document"style="right: -411px;z-index: 0;">
     <div class="modal-content">
       <div class="modal-body text-center" style="padding:0px;">
       	<a id="tag_a_modal_notify_img" href="" target="bank">
