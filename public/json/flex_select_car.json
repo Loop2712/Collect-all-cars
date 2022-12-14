@@ -5,46 +5,124 @@
         "type": "bubble",
         "size": "giga",
         "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/flex_select_car.png",
+              "size": "full",
+              "aspectRatio": "2586:1269",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
                 {
-                    "type": "image",
-                    "url": "https://www.viicheck.com/img/flex/car/flexcar2.png",
-                    "size": "full",
-                    "aspectRatio": "27:11",
-                    "aspectMode": "cover"
-                },
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "50%",
-                    "position": "absolute",
-                    "height": "100%",
-                    "action": {
-                        "type": "message",
-                        "label": "รถยนต์",
-                        "text": "รถยนต์"
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "รถยนต์",
+                      "size": "10px",
+                      "color": "#db2d2e",
+                      "weight": "bold"
                     }
-                },
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "50%",
-                    "position": "absolute",
-                    "height": "100%",
-                    "offsetStart": "50%",
-                    "action": {
-                        "type": "message",
-                        "label": "จักรยานยนต์",
-                        "text": "จักรยานยนต์"
-                    }
+                  ],
+                  "width": "80%",
+                  "offsetStart": "10%",
+                  "offsetTop": "80%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "height": "13%"
                 }
-            ],
-            "position": "relative",
-            "paddingAll": "0px"
+              ],
+              "width": "28%",
+              "position": "absolute",
+              "height": "68%",
+              "action": {
+                "type": "message",
+                "label": "รถยนต์",
+                "text": "รถยนต์"
+              },
+              "offsetTop": "28%",
+              "offsetStart": "6%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "รถจักยานยนต์",
+                      "size": "10px",
+                      "color": "#db2d2e",
+                      "weight": "bold"
+                    }
+                  ],
+                  "width": "80%",
+                  "offsetStart": "10%",
+                  "offsetTop": "80%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "height": "13%"
+                }
+              ],
+              "width": "28%",
+              "position": "absolute",
+              "height": "68%",
+              "offsetStart": "36%",
+              "action": {
+                "type": "message",
+                "label": "จักรยานยนต์",
+                "text": "จักรยานยนต์"
+              },
+              "offsetTop": "28%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "รถอื่นๆ",
+                      "size": "10px",
+                      "color": "#db2d2e",
+                      "weight": "bold"
+                    }
+                  ],
+                  "width": "80%",
+                  "offsetStart": "10%",
+                  "offsetTop": "80%",
+                  "alignItems": "center",
+                  "height": "13%",
+                  "justifyContent": "center"
+                }
+              ],
+              "width": "28%",
+              "position": "absolute",
+              "height": "68%",
+              "offsetStart": "67%",
+              "action": {
+                "type": "message",
+                "label": "รถอื่นๆ",
+                "text": "รถอื่นๆ"
+              },
+              "offsetTop": "28%"
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
         }
-    }
+      }
 }
