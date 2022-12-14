@@ -117,7 +117,7 @@ class SosmapController extends Controller
         return "submit_add_photo ok" ;
     }
 
-    function input_pls_input_phone($phone , $user_id){
+    function input_pls_input_phone($phone , $user_id){ 
         DB::table('users')
             ->where('id', $user_id)
             ->update([
@@ -125,6 +125,22 @@ class SosmapController extends Controller
         ]);
 
         return "OK" ;
+    }
+
+    function sos_input_input_phone(Request $request){
+
+        $requestData = $request->all();
+        $phone = $requestData['input_pls_input_phone'] ;
+        $user_id = $requestData['id_of_user'] ;
+
+        DB::table('users')
+            ->where('id', $user_id)
+            ->update([
+                'phone' => $phone,
+        ]);
+
+         return redirect('/sos_map/create')->with('flash_message', 'Sos_map added!');
+         
     }
 
 

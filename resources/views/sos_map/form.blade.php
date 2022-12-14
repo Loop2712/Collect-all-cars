@@ -1,3 +1,4 @@
+
 @if(Auth::user()->id == '1')
 <div style="display:none;">
 @else
@@ -274,40 +275,7 @@
 @endif
 
 <br><br>
-<!-- btn Modal pls input phone -->
-<button type="button" id="btn_open_pls_input_phone" class="btn btn-primary d-none" data-toggle="modal" data-target="#pls_input_phone"></button>
-<!-- Modal pls input phone -->
-<div class="modal fade" id="pls_input_phone" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="border-radius: 20px;">
-            <div class="modal-header d-none">
-                <button id="btn_close_pls_input_phone" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
-                </button>
-            </div>
-            @if(!empty($user))
-                <div class="modal-body text-center">
-                    <div>
-                        <br>
-                        <img width="50%" src="{{ asset('/img/stickerline/PNG/10.png') }}">
-                        <br><br>
-                        <span class="text-secondary" style="font-family: 'Kanit', sans-serif;">
-                            โปรดระบุหมายเลขโทรศัพท์ของคุณ<br>เพื่อให้เจ้าหน้าที่สามารถติดต่อกลับได้<br>
-                            <span class="text-danger">(ครั้งแรกเท่านั้น)</span>
-                        </span>
-                        <br>
-                    
-                        <input style="margin-top:15px;font-family: 'Kanit', sans-serif;" class="form-control text-center" type="phone" name="input_pls_input_phone" id="input_pls_input_phone" value="" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="check_input_pls_input_phone();">
-                        <hr>
-                        <button id="cf_input_pls_input_phone" style="width:50%;font-family: 'Kanit', sans-serif;"" type="button" class="btn btn-success d-none" onclick="click_cf_input_pls_input_phone();">ยืนยัน</button>
-                        <br>
-                    </div>
-                </div>
-            @endif
-        </div>
-    </div>
-</div>
-<!-- end pls input phone -->
+
 
 @include ('layouts.modal_loading')
 
@@ -545,7 +513,7 @@
         fetch("{{ url('/') }}/api/input_pls_input_phone/" + input_pls_input_phone.value + "/" + user_id.value)
             .then(response => response.text())
             .then(result => {
-                // console.log(result);
+                console.log(result);
             });
 
         window.location.href = window.location.href;

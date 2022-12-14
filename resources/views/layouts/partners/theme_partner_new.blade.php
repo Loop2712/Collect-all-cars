@@ -1068,7 +1068,7 @@
 	<!-- end modal set_group_line -->
 
     <!-- Button trigger modal -->
-	<button id="btn_modal_notify" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_notify">
+	<button id="btn_modal_notify" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_notify">
 	</button>
 
 	<div class="modal fade" id="asd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
