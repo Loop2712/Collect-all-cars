@@ -150,11 +150,11 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        // echo "register_api";
-        // echo "<br>";
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
+        echo ">>> : register_api";
+        echo "<br>";
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
         // exit();
 
         $this->redirectToLine_By_api($requestData);
@@ -162,33 +162,14 @@ class LoginController extends Controller
 
     public function redirectToLine_By_api($requestData)
     {   
-        $request->session()->put('name',$request->get('name'));
-        $request->session()->put('phone', $request->get('phone'));
-        $request->session()->put('tambon_th', $request->get('tambon_th'));
-        $request->session()->put('amphoe_th', $request->get('amphoe_th'));
-        $request->session()->put('changwat_th', $request->get('changwat_th'));
-        $request->session()->put('by_api', $request->get('by_api'));
-
         $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
-        $name = $request->session()->get('name');
-        $phone = $request->session()->get('phone');
-        $tambon_th = $request->session()->get('tambon_th');
-        $amphoe_th = $request->session()->get('amphoe_th');
-        $changwat_th = $request->session()->get('changwat_th');
-        $by_api = $request->session()->get('by_api');
-
-        echo $name ;
+        $redirectTo = $request->session()->get('redirectTo');
+        
         echo "<br>";
-        echo $phone ;
+        echo ">>> : redirectToLine_By_api";
         echo "<br>";
-        echo $tambon_th ;
-        echo "<br>";
-        echo $amphoe_th ;
-        echo "<br>";
-        echo $changwat_th ;
-        echo "<br>";
-        echo $by_api ;
+        echo $redirectTo ;
         echo "<br>";
         
 
