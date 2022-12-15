@@ -191,10 +191,10 @@ class LoginController extends Controller
         // $request_all = $request->session()->get('request_all');
 
         $student = $request->session()->get('Student');
-            $from = $request->session()->get('from');
-            $check_in_at = $request->session()->get('check_in_at');
-            // register general
-            $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
+        $from = $request->session()->get('from');
+        $check_in_at = $request->session()->get('check_in_at');
+        // register general
+        $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
 
         // $by_api = $request->session()->get('by_api');
 
