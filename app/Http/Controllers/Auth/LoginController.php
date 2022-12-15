@@ -174,6 +174,8 @@ class LoginController extends Controller
         
 
         // exit(); 
+        
+        $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
 
         return Socialite::driver('line')->redirect();
     }
