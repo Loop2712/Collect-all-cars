@@ -150,6 +150,8 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
+        return redirect('login/line/tu?Student=tu_' . $data['student_id']);
+        
         // echo "<pre>";
         // print_r($requestData);
         // echo "<pre>";
@@ -174,10 +176,10 @@ class LoginController extends Controller
 
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         try {
             $user = Socialite::driver('line')->user();
