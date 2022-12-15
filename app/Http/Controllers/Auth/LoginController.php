@@ -173,7 +173,7 @@ class LoginController extends Controller
         echo "<br>";
         
 
-        exit(); 
+        // exit(); 
 
         return Socialite::driver('line')->redirect();
     }
