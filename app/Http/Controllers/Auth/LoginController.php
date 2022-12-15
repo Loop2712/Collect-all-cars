@@ -164,12 +164,12 @@ class LoginController extends Controller
     {   
         // $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
-        $redirectTo = $request->session()->get('redirectTo');
+        // $redirectTo = $request->session()->get('redirectTo');
         
         echo "<br>";
         echo ">>> : redirectToLine_By_api";
         echo "<br>";
-        echo $redirectTo ;
+        // echo $redirectTo ;
         echo "<br>";
         
 
