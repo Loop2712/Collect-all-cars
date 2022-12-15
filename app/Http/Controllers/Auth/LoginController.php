@@ -171,7 +171,7 @@ class LoginController extends Controller
 
         $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
-        $data_register_api = [] ;
+        $data_register_api = array() ;
         $data_register_api['name'] = $request->session()->get('name'); 
         $data_register_api['phone'] = $request->session()->get('phone'); 
         $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
