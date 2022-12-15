@@ -150,13 +150,13 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
 
         // $request->session()->put('request_all', $requestData);
-        $request->session()->put('Student', $request->get('Student'));
+        // $request->session()->put('Student', $request->get('Student'));
         $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
 
         return Socialite::driver('line')->redirect();
@@ -191,7 +191,8 @@ class LoginController extends Controller
 
         if (!empty($request_all)) {
             // register api
-            $this->_register_API($user , "line" , null );
+            // $this->_register_API($user , "line" , $request_all );
+            $this->_register_API($user , "line" , $request_all );
 
         }else{
             // register general
