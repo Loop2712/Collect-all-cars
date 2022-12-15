@@ -150,11 +150,12 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
+        $request->session()->put('request_all', $requestData);
         $request->session()->put('Student', $request->get('Student'));
         $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
 
@@ -182,11 +183,21 @@ class LoginController extends Controller
         // $from = $request->session()->get('from' , 'default');
         // $check_in_at = $request->session()->get('check_in_at' , 'default');
 
+        $request_all = $request->session()->get('request_all');
+
         $student = $request->session()->get('Student');
         $from = $request->session()->get('from');
         $check_in_at = $request->session()->get('check_in_at');
 
-        $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
+        if (!empty($request_all)) {
+            // register api
+            $this->_register_API($user , "line" , $request_all );
+
+        }else{
+            // register general
+            $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
+        }
+
 
         $value = $request->session()->get('redirectTo');
         $request->session()->forget('redirectTo');
@@ -319,5 +330,11 @@ class LoginController extends Controller
             }
         }
 
+    }
+
+    protected function _register_API($data, $type , $request_all)
+    {
+        echo "_register_API" ; 
+        exit();
     }
 }
