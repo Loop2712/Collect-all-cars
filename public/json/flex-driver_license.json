@@ -10,7 +10,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/flex/flex_driver_license.png",
+            "url": "https://www.viicheck.com/img/flex/flex_driver_license_new.png",
             "size": "full",
             "aspectRatio": "1393:2321",
             "aspectMode": "cover"
@@ -57,7 +57,7 @@
                     "contents": [
                       {
                         "type": "icon",
-                        "url": "https://www.viicheck.com/img/icon/zoom-in.png",
+                        "url": "https://www.viicheck.com/img/icon/zoom-in-1.png",
                         "size": "xxl"
                       }
                     ],
@@ -105,7 +105,7 @@
                     "contents": [
                       {
                         "type": "icon",
-                        "url": "https://www.viicheck.com/img/icon/zoom-in.png",
+                        "url": "https://www.viicheck.com/img/icon/zoom-in-2.png",
                         "size": "xxl"
                       }
                     ],
