@@ -150,10 +150,10 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
 
         $request->session()->put('name', $request->get('name'));
         $request->session()->put('phone', $request->get('phone'));
