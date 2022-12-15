@@ -1073,12 +1073,12 @@ class LineMessagingAPI extends Model
                     if ( !empty($item->driver_license) && empty($item->driver_license2) ) {
                         $string_json = str_replace("ccaarr",$item->driver_license,$string_json);
                         $string_json = str_replace("storage/mmotorcycle","edit_profile?openExternalBrowser=1",$string_json);
-                        $string_json = str_replace("zoom-in-2","zoom-in",$string_json);
+                        $string_json = str_replace("zoom-in-1","zoom-in",$string_json);
                     }
                     if ( empty($item->driver_license) && !empty($item->driver_license2) ) {
                         $string_json = str_replace("storage/ccaarr","edit_profile?openExternalBrowser=1",$string_json);
                         $string_json = str_replace("mmotorcycle",$item->driver_license2,$string_json);
-                        $string_json = str_replace("zoom-in-1","zoom-in",$string_json);
+                        $string_json = str_replace("zoom-in-2","zoom-in",$string_json);
                     }
                     if ( empty($item->driver_license) && empty($item->driver_license2) ) {
                         $string_json = str_replace("storage/ccaarr","edit_profile?openExternalBrowser=1",$string_json);
