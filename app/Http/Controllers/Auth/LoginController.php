@@ -162,13 +162,6 @@ class LoginController extends Controller
 
     public function redirectToLine_By_api($requestData)
     {
-        echo "redirectToLine_By_api";
-        echo "<br>";
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
-        
         $request->session()->put('name',$requestData['name']);
         $request->session()->put('phone', $requestData['phone']);
         $request->session()->put('tambon_th', $requestData['tambon_th']);
@@ -177,6 +170,21 @@ class LoginController extends Controller
         $request->session()->put('by_api', $requestData['by_api']);
 
         $request->session()->put('redirectTo', 'https://www.viicheck.com');
+
+        $data_register_api = [] ;
+        $data_register_api['name'] = $request->session()->get('name'); 
+        $data_register_api['phone'] = $request->session()->get('phone'); 
+        $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
+        $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
+        $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
+        $data_register_api['by_api'] = $request->session()->get('by_api');
+
+        echo "data_register_api";
+        echo "<br>";
+        echo "<pre>";
+        print_r($data_register_api);
+        echo "<pre>";
+        exit(); 
 
         return Socialite::driver('line')->redirect();
     }
@@ -203,12 +211,12 @@ class LoginController extends Controller
             // register api
 
             $data_register_api = [] ;
-            $data_register_api['name'] = $request->session()->get('name'); ;
-            $data_register_api['phone'] = $request->session()->get('phone'); ;
-            $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); ;
-            $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); ;
-            $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); ;
-            $data_register_api['by_api'] = $request->session()->get('by_api'); ;
+            $data_register_api['name'] = $request->session()->get('name'); 
+            $data_register_api['phone'] = $request->session()->get('phone'); 
+            $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
+            $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
+            $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
+            $data_register_api['by_api'] = $request->session()->get('by_api'); 
 
             $this->_register_API($user , "line" , $data_register_api );
 
