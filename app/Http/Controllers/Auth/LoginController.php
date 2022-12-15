@@ -190,28 +190,34 @@ class LoginController extends Controller
 
         // $request_all = $request->session()->get('request_all');
 
-        $by_api = $request->session()->get('by_api');
-
-        if (!empty($by_api)) {
-            // register api
-
-            $data_register_api = [] ;
-            $data_register_api['name'] = $request->session()->get('name'); ;
-            $data_register_api['phone'] = $request->session()->get('phone'); ;
-            $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); ;
-            $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); ;
-            $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); ;
-            $data_register_api['by_api'] = $request->session()->get('by_api'); ;
-
-            $this->_register_API($user , "line" , $data_register_api );
-
-        }else{
-            $student = $request->session()->get('Student');
+        $student = $request->session()->get('Student');
             $from = $request->session()->get('from');
             $check_in_at = $request->session()->get('check_in_at');
             // register general
             $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
-        }
+
+        // $by_api = $request->session()->get('by_api');
+
+        // if (!empty($by_api)) {
+        //     // register api
+
+        //     $data_register_api = [] ;
+        //     $data_register_api['name'] = $request->session()->get('name'); ;
+        //     $data_register_api['phone'] = $request->session()->get('phone'); ;
+        //     $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); ;
+        //     $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); ;
+        //     $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); ;
+        //     $data_register_api['by_api'] = $request->session()->get('by_api'); ;
+
+        //     $this->_register_API($user , "line" , $data_register_api );
+
+        // }else{
+        //     $student = $request->session()->get('Student');
+        //     $from = $request->session()->get('from');
+        //     $check_in_at = $request->session()->get('check_in_at');
+        //     // register general
+        //     $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
+        // }
 
 
         $value = $request->session()->get('redirectTo');
@@ -355,7 +361,7 @@ class LoginController extends Controller
         echo "<pre>";
         print_r($data_register_api);
         echo "<pre>";
-        
+
         exit();
     }
 }
