@@ -171,19 +171,27 @@ class LoginController extends Controller
 
         $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
-        $data_register_api = array() ;
-        $data_register_api['name'] = $request->session()->get('name'); 
-        $data_register_api['phone'] = $request->session()->get('phone'); 
-        $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
-        $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
-        $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
-        $data_register_api['by_api'] = $request->session()->get('by_api');
+        $name = $request->session()->get('name');
+        $phone = $request->session()->get('phone');
+        $tambon_th = $request->session()->get('tambon_th');
+        $amphoe_th = $request->session()->get('amphoe_th');
+        $changwat_th = $request->session()->get('changwat_th');
+        $by_api = $request->session()->get('by_api');
 
-        echo "data_register_api";
+        echo $name ;
         echo "<br>";
-        echo "<pre>";
-        print_r($data_register_api);
-        echo "<pre>";
+        echo $phone ;
+        echo "<br>";
+        echo $tambon_th ;
+        echo "<br>";
+        echo $amphoe_th ;
+        echo "<br>";
+        echo $changwat_th ;
+        echo "<br>";
+        echo $by_api ;
+        echo "<br>";
+        
+
         exit(); 
 
         return Socialite::driver('line')->redirect();
