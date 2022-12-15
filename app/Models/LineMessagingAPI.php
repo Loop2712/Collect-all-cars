@@ -418,6 +418,7 @@ class LineMessagingAPI extends Model
 
                 $messages = [ json_decode($string_json, true) ]; 
             break;
+            
             case "mycar": 
 
                 $data_Text_topic = [
@@ -447,6 +448,8 @@ class LineMessagingAPI extends Model
                         $registration_number[$i] = $item->registration_number;
                         $act[$i] = $item->act;
                         $insurance[$i] = $item->insurance;
+                        $generation[$i] =  $item->generation;
+                        $province[$i] =  $item->province;
 
                         $i++;
                     }
@@ -460,6 +463,10 @@ class LineMessagingAPI extends Model
 
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
+                        $string_json = str_replace("รุ่น1",$generation[0],$string_json);
+                        $string_json = str_replace("จังหวัด1",$province[0],$string_json);
+
+
                         $string_json = str_replace("act1",$id[0],$string_json);
                         // พรบ
                         // เวลาปัจจุบัน
@@ -1038,7 +1045,8 @@ class LineMessagingAPI extends Model
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
 
-            case "driver_license":
+            
+                case "driver_license":
 
                 $provider_id = $event["source"]['userId'];
 
