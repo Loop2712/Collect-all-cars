@@ -155,12 +155,12 @@ class LoginController extends Controller
         // echo "<pre>";
         // exit();
 
-        $request->session()->put('name', $request->get('name'));
-        $request->session()->put('phone', $request->get('phone'));
-        $request->session()->put('tambon_th', $request->get('tambon_th'));
-        $request->session()->put('amphoe_th', $request->get('amphoe_th'));
-        $request->session()->put('changwat_th', $request->get('changwat_th'));
-        $request->session()->put('by_api', $request->get('by_api'));
+        // $request->session()->put('name', $request->get('name'));
+        // $request->session()->put('phone', $request->get('phone'));
+        // $request->session()->put('tambon_th', $request->get('tambon_th'));
+        // $request->session()->put('amphoe_th', $request->get('amphoe_th'));
+        // $request->session()->put('changwat_th', $request->get('changwat_th'));
+        // $request->session()->put('by_api', $request->get('by_api'));
 
         $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
