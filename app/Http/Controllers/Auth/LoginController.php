@@ -150,14 +150,19 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
-        // $request->session()->put('request_all', $requestData);
-        // $request->session()->put('Student', $request->get('Student'));
-        $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
+        $request->session()->put('name', $request->get('name'));
+        $request->session()->put('phone', $request->get('phone'));
+        $request->session()->put('tambon_th', $request->get('tambon_th'));
+        $request->session()->put('amphoe_th', $request->get('amphoe_th'));
+        $request->session()->put('changwat_th', $request->get('changwat_th'));
+        $request->session()->put('by_api', $request->get('by_api'));
+
+        $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
         return Socialite::driver('line')->redirect();
     }
@@ -185,16 +190,25 @@ class LoginController extends Controller
 
         // $request_all = $request->session()->get('request_all');
 
-        $student = $request->session()->get('Student');
-        $from = $request->session()->get('from');
-        $check_in_at = $request->session()->get('check_in_at');
+        $by_api = $request->session()->get('by_api');
 
-        if (!empty($request_all)) {
+        if (!empty($by_api)) {
             // register api
-            // $this->_register_API($user , "line" , $request_all );
-            $this->_register_API($user , "line" , $request_all );
+
+            $data_register_api = [] ;
+            $data_register_api['name'] = $request->session()->get('name'); ;
+            $data_register_api['phone'] = $request->session()->get('phone'); ;
+            $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); ;
+            $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); ;
+            $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); ;
+            $data_register_api['by_api'] = $request->session()->get('by_api'); ;
+
+            $this->_register_API($user , "line" , $data_register_api );
 
         }else{
+            $student = $request->session()->get('Student');
+            $from = $request->session()->get('from');
+            $check_in_at = $request->session()->get('check_in_at');
             // register general
             $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
         }
@@ -333,9 +347,15 @@ class LoginController extends Controller
 
     }
 
-    protected function _register_API($data, $type , $request_all)
+    protected function _register_API($data, $type , $data_register_api)
     {
         echo "_register_API" ; 
+        echo "<br>" ; 
+
+        echo "<pre>";
+        print_r($data_register_api);
+        echo "<pre>";
+        
         exit();
     }
 }
