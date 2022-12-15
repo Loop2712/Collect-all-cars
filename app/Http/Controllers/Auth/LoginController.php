@@ -145,6 +145,22 @@ class LoginController extends Controller
         return Socialite::driver('line')->redirect();
     }
 
+    // Line login API
+    public function register_api(Request $request)
+    {
+        $requestData = $request->all();
+
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
+
+        $request->session()->put('Student', $request->get('Student'));
+        $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
+
+        return Socialite::driver('line')->redirect();
+    }
+
     // Line callback
     public function handleLineCallback(Request $request)
     {

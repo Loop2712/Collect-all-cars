@@ -198,7 +198,8 @@ Route::get('/send_pass_condo/{line_group}/{num_pass_area}', 'API\PartnersControl
 Route::get('/update_data_groupline/{id_groupline}/{system}', 'API\PartnersController@update_data_groupline');
 Route::get('/notify_repair_annotation/{id}/{annotation}', 'Notify_repairController@notify_repair_annotation');
 
-
+// API User login line
+Route::post('/register_api', 'Auth\LoginController@register_api');
 
 
 
