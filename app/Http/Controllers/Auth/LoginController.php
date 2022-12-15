@@ -150,16 +150,20 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         $this->redirectToLine_By_api($requestData);
     }
 
     public function redirectToLine_By_api($requestData)
     {
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
         $request->session()->put('name',$requestData['name']);
         $request->session()->put('phone', $requestData['phone']);
         $request->session()->put('tambon_th', $requestData['tambon_th']);
