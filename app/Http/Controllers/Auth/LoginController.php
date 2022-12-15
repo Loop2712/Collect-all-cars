@@ -162,9 +162,9 @@ class LoginController extends Controller
 
     public function redirectToLine_By_api($requestData)
     {   
-        $request->session()->put('redirectTo', 'https://www.viicheck.com');
+        // $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
-        // $redirectTo = $request->session()->get('redirectTo');
+        $redirectTo = $request->session()->get('redirectTo');
         
         echo "<br>";
         echo ">>> : redirectToLine_By_api";
