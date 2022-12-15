@@ -199,7 +199,7 @@ Route::get('/update_data_groupline/{id_groupline}/{system}', 'API\PartnersContro
 Route::get('/notify_repair_annotation/{id}/{annotation}', 'Notify_repairController@notify_repair_annotation');
 
 // API User login line
-Route::post('/register_api', 'Auth\LoginController@register_api');
+Route::get('/register_api', 'Auth\LoginController@register_api');
 
 
 
