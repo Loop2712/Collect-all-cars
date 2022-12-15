@@ -150,10 +150,10 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
 
         $this->redirectToLine_By_api($requestData);
     }
