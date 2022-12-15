@@ -150,19 +150,22 @@ class LoginController extends Controller
     {
         $requestData = $request->all();
 
-        return redirect('login/line/tu?Student=tu_' . $data['student_id']);
-        
         // echo "<pre>";
         // print_r($requestData);
         // echo "<pre>";
         // exit();
 
-        // $request->session()->put('name', $request->get('name'));
-        // $request->session()->put('phone', $request->get('phone'));
-        // $request->session()->put('tambon_th', $request->get('tambon_th'));
-        // $request->session()->put('amphoe_th', $request->get('amphoe_th'));
-        // $request->session()->put('changwat_th', $request->get('changwat_th'));
-        // $request->session()->put('by_api', $request->get('by_api'));
+        $this->redirectToLine_By_api($requestData);
+    }
+
+    public function redirectToLine_By_api($requestData)
+    {
+        $request->session()->put('name',$requestData['name']);
+        $request->session()->put('phone', $requestData['phone']);
+        $request->session()->put('tambon_th', $requestData['tambon_th']);
+        $request->session()->put('amphoe_th', $requestData['amphoe_th']);
+        $request->session()->put('changwat_th', $requestData['changwat_th']);
+        $request->session()->put('by_api', $requestData['by_api']);
 
         $request->session()->put('redirectTo', 'https://www.viicheck.com');
 
@@ -173,13 +176,6 @@ class LoginController extends Controller
     public function handleLineCallback(Request $request)
     {
         // $user = Socialite::driver('line')->user();
-
-        $requestData = $request->all();
-
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
 
         try {
             $user = Socialite::driver('line')->user();
