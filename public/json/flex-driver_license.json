@@ -26,7 +26,7 @@
                 "weight": "bold"
               }
             ],
-            "width": "62%",
+            "width": "55%",
             "position": "absolute",
             "action": {
               "type": "message",
@@ -40,6 +40,27 @@
             "type": "box",
             "layout": "vertical",
             "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "กรุณาเพิ่มใบอนุญาตขับรถ",
+                    "weight": "bold",
+                    "wrap": true,
+                    "color": "#db2d2e",
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "50%",
+                "offsetStart": "40%",
+                "height": "80%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "offsetTop": "10%"
+              },
               {
                 "type": "box",
                 "layout": "vertical",
@@ -88,6 +109,27 @@
             "type": "box",
             "layout": "vertical",
             "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "กรุณาเพิ่มใบอนุญาตขับรถ",
+                    "weight": "bold",
+                    "wrap": true,
+                    "color": "#db2d2e",
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "width": "50%",
+                "offsetStart": "40%",
+                "height": "80%",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "offsetTop": "10%"
+              },
               {
                 "type": "box",
                 "layout": "vertical",
@@ -143,7 +185,7 @@
                 "weight": "bold"
               }
             ],
-            "width": "62%",
+            "width": "55%",
             "position": "absolute",
             "action": {
               "type": "message",
