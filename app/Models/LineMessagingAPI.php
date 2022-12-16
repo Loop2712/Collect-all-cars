@@ -404,7 +404,7 @@ class LineMessagingAPI extends Model
             case "myvehicle": 
                 $data_Text_topic = [
                     "รถยนต์",
-                    "จักรยานยนต์",
+                    "รถจักรยานยนต์",
                     "รถอื่นๆ",
                 ];
 
