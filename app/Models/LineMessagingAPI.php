@@ -478,30 +478,40 @@ class LineMessagingAPI extends Model
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
+                        $edit = 49;; 
+                        $warning = 50;
+                        $wrong = 17;
+                        $tick = 18;
+
+                        // ไม่ได้ใส่
                         if ($dtae_act == null){
-                            $string_json = str_replace("พรบ1","edit",$string_json);
+                            $string_json = str_replace("พรบ1",$edit,$string_json);
                         }
+                        // ใกล้หมด
                         if ($act <= 30 && $act >= 1) {
-                            $string_json = str_replace("พรบ1","warning",$string_json);
+                            $string_json = str_replace("พรบ1",$warning,$string_json);
                         }
+                        // หมด
                         if ($act <= 0){
-                            $string_json = str_replace("พรบ1","wrong",$string_json);
-                        }else{
-                            $string_json = str_replace("พรบ1","tick",$string_json);
+                            $string_json = str_replace("พรบ1",$wrong,$string_json);
+                        }
+                        // ปรกติ
+                        else{
+                            $string_json = str_replace("พรบ1",$tick,$string_json);
                         }
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                         if ($dtae_insurance == null){
-                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                            $string_json = str_replace("ประกัน1",$edit,$string_json);
                         }
                         if ($insurance <= 30 && $insurance >= 1) {
-                            $string_json = str_replace("ประกัน1","warning",$string_json);
+                            $string_json = str_replace("ประกัน1",$warning,$string_json);
                         }
                         if ($insurance <= 0){
-                            $string_json = str_replace("ประกัน1","wrong",$string_json);
+                            $string_json = str_replace("ประกัน1",$wrong,$string_json);
                         }else{
-                            $string_json = str_replace("ประกัน1","tick",$string_json);
+                            $string_json = str_replace("ประกัน1",$tick,$string_json);
                         }
 
                         $string_json = str_replace("รถของฉัน",$data_topic[0],$string_json);
