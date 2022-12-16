@@ -404,7 +404,7 @@ class LineMessagingAPI extends Model
             case "myvehicle": 
                 $data_Text_topic = [
                     "รถยนต์",
-                    "รถจักรยานยนต์",
+                    "จักรยานยนต์",
                     "รถอื่นๆ",
                 ];
 
@@ -413,7 +413,7 @@ class LineMessagingAPI extends Model
                 $template_path = storage_path('../public/json/flex_select_car.json');   
                 $string_json = file_get_contents($template_path);
                 $string_json = str_replace("รถยนต์",$data_topic[0],$string_json);
-                $string_json = str_replace("รถจักรยานยนต์",$data_topic[1],$string_json);
+                $string_json = str_replace("จักรยานยนต์",$data_topic[1],$string_json);
                 $string_json = str_replace("รถอื่นๆ",$data_topic[2],$string_json);
 
 

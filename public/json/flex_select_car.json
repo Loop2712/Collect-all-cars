@@ -60,7 +60,7 @@
                   "contents": [
                     {
                       "type": "text",
-                      "text": "รถจักรยานยนต์",
+                      "text": "จักรยานยนต์",
                       "size": "10px",
                       "color": "#db2d2e",
                       "weight": "bold"
@@ -80,8 +80,8 @@
               "offsetStart": "36%",
               "action": {
                 "type": "message",
-                "label": "รถจักรยานยนต์",
-                "text": "รถจักรยานยนต์"
+                "label": "จักรยานยนต์",
+                "text": "จักรยานยนต์"
               },
               "offsetTop": "28%"
             },
