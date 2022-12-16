@@ -1109,6 +1109,10 @@ class LineMessagingAPI extends Model
 
                 }
 
+                // ข้อความสุดท้ายที่จะส่ง
+                $messages = [ json_decode($string_json, true) ]; 
+                break;
+
                 case "mycarother": 
 
                     $data_Text_topic = [
@@ -1451,10 +1455,10 @@ class LineMessagingAPI extends Model
                             break;
     
                     }
+    
                 // ข้อความสุดท้ายที่จะส่ง
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
-
             
                 case "driver_license":
 
