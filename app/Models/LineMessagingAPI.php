@@ -15,6 +15,7 @@ use App\Mail\MailToGuest;
 use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Text_topic;
 use App\User;
+use Carbon\Carbon;
 
 class LineMessagingAPI extends Model
 {
@@ -476,7 +477,7 @@ class LineMessagingAPI extends Model
                         // วันหมดอายุ ประกัน
                         $dtae_insurance = $insurance[0]; 
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน
-                        $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+                        $act = Carbon::parse($date_now)->diffinDays(Carbon::parse($date_now));
 
                         $edit = 49;; 
                         $warning = 50;
@@ -518,7 +519,6 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("พรบ",$data_topic[1],$string_json);
                         $string_json = str_replace("ประกัน",$data_topic[2],$string_json);
                         $string_json = str_replace("ดูรถทั้งหมด",$data_topic[3],$string_json);
-
 
                         break;
 
