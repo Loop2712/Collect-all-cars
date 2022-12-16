@@ -325,7 +325,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                  "uri": "https://www.viicheck.com/edit_act_login/act2"
                 }
               },
               {
@@ -374,7 +374,7 @@
                 "action": {
                   "type": "uri",
                   "label": "action",
-                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                  "uri": "https://www.viicheck.com/edit_act_login/act2"
                 }
               }
             ],
