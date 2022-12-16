@@ -80,8 +80,8 @@
               "offsetStart": "36%",
               "action": {
                 "type": "message",
-                "label": "จักรยานยนต์",
-                "text": "จักรยานยนต์"
+                "label": "รถจักรยานยนต์",
+                "text": "รถจักรยานยนต์"
               },
               "offsetTop": "28%"
             },
