@@ -1126,7 +1126,7 @@ class LineMessagingAPI extends Model
     
                     $provider_id = $event["source"]['userId'];
     
-                    $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' AND car_type = 'car' ");
+                    $car_row = DB::select("SELECT * FROM register_cars WHERE provider_id = '$provider_id' AND active = 'Yes' AND car_type = 'other' ");
     
                     $randomCar = DB::table('register_cars')
                         ->where('provider_id' , $provider_id)
