@@ -527,6 +527,7 @@ class LineMessagingAPI extends Model
 
                         // คันที่1
                         $string_json = str_replace("แบนด์1", strtolower($brand[0]),$string_json);
+                        $string_json = str_replace("รุ่น1",$generation[0],$string_json);
                         $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
                         $string_json = str_replace("act1",$id[0],$string_json);
 
@@ -542,66 +543,73 @@ class LineMessagingAPI extends Model
                         // วันหมดอายุ ประกัน คันที่ 2
                         $dtae_insurance2 = $insurance[1]; 
 
+                        $edit = 49;; 
+                        $warning = 50;
+                        $wrong = 17;
+                        $tick = 18;
+
+
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 1
                         $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                         if ($dtae_act == null){
-                            $string_json = str_replace("พรบ1","edit",$string_json);
+                            $string_json = str_replace("พรบ1",$edit,$string_json);
                         }
                         if ($act <= 30 && $act >= 1) {
-                            $string_json = str_replace("พรบ1","warning",$string_json);
+                            $string_json = str_replace("พรบ1",$warning,$string_json);
                         }
                         if ($act <= 0){
-                            $string_json = str_replace("พรบ1","wrong",$string_json);
+                            $string_json = str_replace("พรบ1",$wrong,$string_json);
                         }else{
-                            $string_json = str_replace("พรบ1","tick",$string_json);
+                            $string_json = str_replace("พรบ1",$tick,$string_json);
                         }
 
                         $insurance = (strtotime($dtae_insurance) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                         if ($dtae_insurance == null){
-                            $string_json = str_replace("ประกัน1","edit",$string_json);
+                            $string_json = str_replace("ประกัน1",$edit,$string_json);
                         }
                         if ($insurance <= 30 && $insurance >= 1) {
-                            $string_json = str_replace("ประกัน1","warning",$string_json);
+                            $string_json = str_replace("ประกัน1",$warning,$string_json);
                         }
                         if ($insurance <= 0){
-                            $string_json = str_replace("ประกัน1","wrong",$string_json);
+                            $string_json = str_replace("ประกัน1",$wrong,$string_json);
                         }else{
-                            $string_json = str_replace("ประกัน1","tick",$string_json);
+                            $string_json = str_replace("ประกัน1",$tick,$string_json);
                         }
 
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน คันที่ 2
                         $act2 = (strtotime($dtae_act2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                         if ($dtae_act2 == null){
-                            $string_json = str_replace("พรบ2","edit",$string_json);
+                            $string_json = str_replace("พรบ2",$edit,$string_json);
                         }
                         if ($act2 <= 30 && $act2 >= 1) {
-                            $string_json = str_replace("พรบ2","warning",$string_json);
+                            $string_json = str_replace("พรบ2",$warning,$string_json);
                         }
                         if ($act2 <= 0){
-                            $string_json = str_replace("พรบ2","wrong",$string_json);
+                            $string_json = str_replace("พรบ2",$wrong,$string_json);
                         }else{
-                            $string_json = str_replace("พรบ2","tick",$string_json);
+                            $string_json = str_replace("พรบ2",$tick,$string_json);
                         }
 
                         $insurance2 = (strtotime($dtae_insurance2) - strtotime($date_now))/  ( 60 * 60 * 24 );  
 
                         if ($dtae_insurance2 == null){
-                            $string_json = str_replace("ประกัน2","edit",$string_json);
+                            $string_json = str_replace("ประกัน2",$edit,$string_json);
                         }
                         if ($insurance2 <= 30 && $insurance2 >= 1) {
-                            $string_json = str_replace("ประกัน2","warning",$string_json);
+                            $string_json = str_replace("ประกัน2",$warning,$string_json);
                         }
                         if ($insurance2 <= 0){
-                            $string_json = str_replace("ประกัน2","wrong",$string_json);
+                            $string_json = str_replace("ประกัน2",$wrong,$string_json);
                         }else{
-                            $string_json = str_replace("ประกัน2","tick",$string_json);
+                            $string_json = str_replace("ประกัน2",$tick,$string_json);
                         }
 
                         // คันที่2
                         $string_json = str_replace("แบนด์2", strtolower($brand[1]),$string_json);
+                        $string_json = str_replace("รุ่น1",$generation[1],$string_json);
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         $string_json = str_replace("act2",$id[1],$string_json);
 
