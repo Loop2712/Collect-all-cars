@@ -3,278 +3,425 @@
      "type": "flex",
      "altText": "รถของคุณ",
      "contents": {
-  "type": "bubble",
-  "size": "mega",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "รถของฉัน",
-                "margin": "xxl",
-                "size": "xl",
-                "flex": 2,
-                "style": "normal",
-                "weight": "bold",
-                "color": "#ff0101"
-              },
-              {
-                "type": "separator",
-                "color": "#ff0101"
-              },
-              {
-                "type": "text",
-                "text": "พรบ",
-                "margin": "none",
-                "offsetStart": "xxl",
-                "offsetTop": "sm",
-                "color": "#e5a578",
-                "weight": "bold"
-              },
-              {
-                "type": "separator",
-                "color": "#ff0101"
-              },
-              {
-                "type": "text",
-                "text": "ประกัน",
-                "margin": "none",
-                "offsetStart": "lg",
-                "offsetTop": "sm",
-                "color": "#e5a578",
-                "weight": "bold"
-              }
-            ],
-            "margin": "lg",
-            "offsetTop": "md"
-          },
-          {
-            "type": "separator",
-            "margin": "xxl"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "icon",
-                    "url": "https://www.viicheck.com/img/logo_brand/logo-แบนด์1.png",
-                    "margin": "md",
-                    "size": "3xl",
-                    "offsetStart": "xs"
-                  }
-                ],
-                "offsetTop": "lg"
-              },
-              {
-                "type": "text",
-                "text": "ป้ายทะเบียน1",
-                "size": "lg",
-                "weight": "bold",
-                "offsetTop": "xxl",
-                "flex": 3,
-                "offsetStart": "lg"
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "icon",
-                    "url": "https://www.viicheck.com/img/icon/พรบ1.png",
-                    "size": "3xl",
-                    "margin": "md",
-                    "offsetEnd": "sm"
-                  }
-                ],
-                "offsetTop": "xl",
-                "offsetEnd": "xxl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/edit_act_login/act1"
-                }
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "icon",
-                    "url": "https://www.viicheck.com/img/icon/ประกัน1.png",
-                    "margin": "md",
-                    "size": "3xl",
-                    "offsetEnd": "md"
-                  }
-                ],
-                "offsetTop": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/edit_act_login/act1"
-                }
-              }
-            ],
-            "paddingBottom": "lg"
-          },
-          {
-            "type": "separator",
-            "margin": "lg"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "icon",
-                    "url": "https://www.viicheck.com/img/logo_brand/logo-แบนด์2.png",
-                    "margin": "md",
-                    "size": "3xl",
-                    "offsetStart": "xs"
-                  }
-                ],
-                "offsetTop": "lg"
-              },
-              {
-                "type": "text",
-                "text": "ป้ายทะเบียน2",
-                "size": "lg",
-                "weight": "bold",
-                "offsetTop": "xxl",
-                "flex": 3,
-                "offsetStart": "lg"
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "icon",
-                    "url": "https://www.viicheck.com/img/icon/พรบ2.png",
-                    "size": "3xl",
-                    "margin": "md",
-                    "offsetEnd": "sm"
-                  }
-                ],
-                "offsetTop": "xl",
-                "offsetEnd": "xxl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/edit_act_login/act2"
-                }
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "icon",
-                    "url": "https://www.viicheck.com/img/icon/ประกัน2.png",
-                    "margin": "md",
-                    "size": "3xl",
-                    "offsetEnd": "md"
-                  }
-                ],
-                "offsetTop": "xl",
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://www.viicheck.com/edit_act_login/act2"
-                }
-              }
-            ],
-            "paddingBottom": "lg"
-          },
-          {
-            "type": "separator",
-            "margin": "lg"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
+      "type": "carousel",
+      "contents": [
+        {
+          "type": "bubble",
+          "size": "mega",
+          "body": {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
                 "type": "image",
-                "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png",
-                "size": "md",
-                "align": "center",
-                "aspectMode": "fit",
+                "url": "https://www.viicheck.com/img/flex/car/flex_my_car.png",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "1:1"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/logo_brand/logo-แบนด์1.png",
+                    "size": "xs"
+                  }
+                ],
+                "position": "absolute",
+                "offsetStart": "5%",
+                "offsetTop": "5%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "แบนด์1",
+                    "wrap": false,
+                    "size": "xxl"
+                  },
+                  {
+                    "type": "text",
+                    "text": "รุ่น1",
+                    "wrap": false
+                  }
+                ],
+                "position": "absolute",
+                "offsetStart": "30%",
+                "offsetTop": "3%",
+                "width": "68%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ป้ายทะเบียน1",
+                    "size": "45px",
+                    "wrap": false,
+                    "weight": "bold"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "30.5%",
+                "offsetStart": "11%",
+                "alignItems": "center",
+                "width": "78%"
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "จังหวัด1",
+                    "size": "18px",
+                    "align": "center",
+                    "wrap": false
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "49%",
+                "offsetStart": "11%",
+                "width": "78%",
+                "alignItems": "flex-start",
+                "justifyContent": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/stickerline/PNG/พรบ1.png",
+                    "size": "81px",
+                    "aspectRatio": "37:32",
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "65.5%",
+                "offsetStart": "13%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "พรบ",
+                    "color": "#FFFFFF",
+                    "size": "lg"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "88%",
+                "offsetStart": "3.5%",
+                "width": "47%",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "position": "absolute",
+                "offsetTop": "64%",
+                "offsetStart": "3.5%",
+                "width": "47%",
+                "paddingTop": "2%",
+                "height": "33%",
                 "action": {
                   "type": "uri",
-                  "label": "viicheck",
-                  "uri": "https://www.viicheck.com/"
-                },
-                "offsetBottom": "md"
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/stickerline/PNG/ประกัน1.png",
+                    "size": "81px",
+                    "aspectRatio": "37:32",
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "66%",
+                "offsetStart": "62.5%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ประกัน",
+                    "color": "#FFFFFF",
+                    "size": "lg"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "88.5%",
+                "offsetStart": "51%",
+                "width": "47%",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "position": "absolute",
+                "offsetTop": "64%",
+                "offsetStart": "51%",
+                "width": "47%",
+                "paddingTop": "2%",
+                "height": "33%",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                }
               }
             ],
-            "offsetBottom": "xxl"
-          },
-          {
+            "paddingAll": "none"
+          }
+        },
+        {
+          "type": "bubble",
+          "size": "mega",
+          "body": {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
-                "type": "button",
+                "type": "image",
+                "url": "https://www.viicheck.com/img/flex/car/flex_my_car.png",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "1:1"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/logo_brand/logo-แบนด์2.png",
+                    "size": "xs"
+                  }
+                ],
+                "position": "absolute",
+                "offsetStart": "5%",
+                "offsetTop": "5%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "แบนด์2",
+                    "wrap": false,
+                    "size": "xxl"
+                  },
+                  {
+                    "type": "text",
+                    "text": "รุ่น2",
+                    "wrap": false
+                  }
+                ],
+                "position": "absolute",
+                "offsetStart": "30%",
+                "offsetTop": "3%",
+                "width": "68%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ป้ายทะเบียน2",
+                    "size": "45px",
+                    "wrap": false,
+                    "weight": "bold"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "30.5%",
+                "offsetStart": "11%",
+                "alignItems": "center",
+                "width": "78%"
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "จังหวัด2",
+                    "size": "18px",
+                    "align": "center",
+                    "wrap": false
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "49%",
+                "offsetStart": "11%",
+                "width": "78%",
+                "alignItems": "flex-start",
+                "justifyContent": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/stickerline/PNG/พรบ2.png",
+                    "size": "81px",
+                    "aspectRatio": "37:32",
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "65.5%",
+                "offsetStart": "13%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "พรบ",
+                    "color": "#FFFFFF",
+                    "size": "lg"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "88%",
+                "offsetStart": "3.5%",
+                "width": "47%",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "position": "absolute",
+                "offsetTop": "64%",
+                "offsetStart": "3.5%",
+                "width": "47%",
+                "paddingTop": "2%",
+                "height": "33%",
                 "action": {
                   "type": "uri",
-                  "label": "ดูรถทั้งหมด",
-                  "uri": "https://www.viicheck.com/line_mycar"
-                },
-                "style": "primary",
-                "height": "sm",
-                "gravity": "top",
-                "color": "#ff0101"
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/stickerline/PNG/ประกัน2.png",
+                    "size": "81px",
+                    "aspectRatio": "37:32",
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "66%",
+                "offsetStart": "62.5%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ประกัน",
+                    "color": "#FFFFFF",
+                    "size": "lg"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "88.5%",
+                "offsetStart": "51%",
+                "width": "47%",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "position": "absolute",
+                "offsetTop": "64%",
+                "offsetStart": "51%",
+                "width": "47%",
+                "paddingTop": "2%",
+                "height": "33%",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://www.viicheck.com/edit_act_login/act1"
+                }
               }
-            ]
+            ],
+            "paddingAll": "none"
           }
-        ],
-        "height": "70px",
-        "offsetTop": "sm",
-        "paddingEnd": "xl",
-        "margin": "lg"
-      }
-    ],
-    "paddingAll": "0px",
-    "borderColor": "#ff0101",
-    "borderWidth": "bold",
-    "cornerRadius": "xl"
-  }
-}
+        },
+        {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://i.ibb.co/31c5kyw/image.png",
+                "aspectRatio": "1:1",
+                "size": "full",
+                "aspectMode": "cover"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ดูรถทั้งหมด",
+                    "color": "#FFFFFF",
+                    "size": "xxl"
+                  }
+                ],
+                "position": "absolute",
+                "width": "55%",
+                "alignItems": "center",
+                "offsetTop": "41%",
+                "offsetStart": "10%"
+              }
+            ],
+            "backgroundColor": "#000000",
+            "paddingAll": "none",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/line_mycar"
+            }
+          }
+        }
+      ]
+    }
  }
 
