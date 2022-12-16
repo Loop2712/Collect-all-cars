@@ -467,7 +467,6 @@ class LineMessagingAPI extends Model
                         $string_json = str_replace("รุ่น1",$generation[0],$string_json);
                         $string_json = str_replace("จังหวัด1",$province[0],$string_json);
 
-
                         $string_json = str_replace("act1",$id[0],$string_json);
                         // พรบ
                         // เวลาปัจจุบัน
@@ -477,8 +476,8 @@ class LineMessagingAPI extends Model
                         // วันหมดอายุ ประกัน
                         $dtae_insurance = $insurance[0]; 
                         // ตัวแปรสำหรับเช็คการแจ้งเตือน
-                        $act = Carbon::parse($date_now)->diffinDays(Carbon::parse($date_now));
-
+                        $act = (strtotime($dtae_act) - strtotime($date_now))/  ( 60 * 60 * 24 );  
+                        
                         $edit = 49;; 
                         $warning = 50;
                         $wrong = 17;
