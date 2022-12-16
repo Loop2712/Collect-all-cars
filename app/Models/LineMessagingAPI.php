@@ -748,16 +748,16 @@ class LineMessagingAPI extends Model
                         }
 
                         // คันที่2
-                        $string_json = str_replace("แบนด์2", strtoupper($brand[1]),$string_json);
                         $string_json = str_replace("รูป-แบนด์2", strtolower($brand[1]),$string_json);
+                        $string_json = str_replace("แบนด์2", strtoupper($brand[1]),$string_json);
                         $string_json = str_replace("รุ่น2",$generation[1],$string_json);
                         $string_json = str_replace("จังหวัด2",$province[1],$string_json);
                         $string_json = str_replace("ป้ายทะเบียน2",$registration_number[1],$string_json);
                         $string_json = str_replace("act2",$id[1],$string_json);
 
                         // คันที่3
-                        $string_json = str_replace("แบนด์3", strtoupper($brand[2]),$string_json);
                         $string_json = str_replace("รูป-แบนด์3", strtolower($brand[2]),$string_json);
+                        $string_json = str_replace("แบนด์3", strtoupper($brand[2]),$string_json);
                         $string_json = str_replace("รุ่น3",$generation[2],$string_json);
                         $string_json = str_replace("จังหวัด3",$province[2],$string_json);
                         $string_json = str_replace("ป้ายทะเบียน3",$registration_number[2],$string_json);
