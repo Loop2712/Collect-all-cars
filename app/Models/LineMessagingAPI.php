@@ -1160,7 +1160,7 @@ class LineMessagingAPI extends Model
                             $template_path = storage_path('../public/json/flex-mycar-1.json');   
                             $string_json = file_get_contents($template_path);
     
-                            $string_json = str_replace("รูป-แบนด์1", "logo-",$string_json);
+                            $string_json = str_replace("รูป-แบนด์1", "",$string_json);
                             $string_json = str_replace("แบนด์1", strtoupper($brand[0]),$string_json);
                             $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
                             $string_json = str_replace("รุ่น1",$generation[0],$string_json);
@@ -1222,7 +1222,7 @@ class LineMessagingAPI extends Model
                             $string_json = file_get_contents($template_path);
     
                             // คันที่1
-                            $string_json = str_replace("รูป-แบนด์1", "logo-",$string_json);
+                            $string_json = str_replace("รูป-แบนด์1", "",$string_json);
                             $string_json = str_replace("แบนด์1", strtoupper($brand[0]),$string_json);
                             $string_json = str_replace("รุ่น1",$generation[0],$string_json);
                             $string_json = str_replace("จังหวัด1",$province[0],$string_json);
@@ -1300,7 +1300,7 @@ class LineMessagingAPI extends Model
                             }
     
                             // คันที่2
-                            $string_json = str_replace("รูป-แบนด์2", "logo-",$string_json);
+                            $string_json = str_replace("รูป-แบนด์2", "",$string_json);
                             $string_json = str_replace("แบนด์2", strtoupper($brand[1]),$string_json);
                             $string_json = str_replace("รุ่น2",$generation[1],$string_json);
                             $string_json = str_replace("จังหวัด2",$province[1],$string_json);
@@ -1320,7 +1320,7 @@ class LineMessagingAPI extends Model
                             $string_json = file_get_contents($template_path);
     
                             // คันที่1
-                            $string_json = str_replace("รูป-แบนด์1", "logo-",$string_json);
+                            $string_json = str_replace("รูป-แบนด์1", "",$string_json);
                             $string_json = str_replace("แบนด์1", strtoupper($brand[0]),$string_json);
                             $string_json = str_replace("ป้ายทะเบียน1",$registration_number[0],$string_json);
                             $string_json = str_replace("รุ่น1",$generation[0],$string_json);
@@ -1432,7 +1432,7 @@ class LineMessagingAPI extends Model
                             }
     
                             // คันที่2
-                            $string_json = str_replace("รูป-แบนด์2", "logo-",$string_json);
+                            $string_json = str_replace("รูป-แบนด์2", "",$string_json);
                             $string_json = str_replace("แบนด์2", strtoupper($brand[1]),$string_json);
                             $string_json = str_replace("รุ่น2",$generation[1],$string_json);
                             $string_json = str_replace("จังหวัด2",$province[1],$string_json);
@@ -1440,7 +1440,7 @@ class LineMessagingAPI extends Model
                             $string_json = str_replace("act2",$id[1],$string_json);
     
                             // คันที่3
-                            $string_json = str_replace("รูป-แบนด์3", "logo-",$string_json);
+                            $string_json = str_replace("รูป-แบนด์3", "",$string_json);
                             $string_json = str_replace("แบนด์3", strtoupper($brand[2]),$string_json);
                             $string_json = str_replace("รุ่น3",$generation[2],$string_json);
                             $string_json = str_replace("จังหวัด3",$province[2],$string_json);
