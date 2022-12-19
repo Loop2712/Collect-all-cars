@@ -23,6 +23,15 @@ Route::get('/how_to_use', function () {
     return view('how_to_use/how_to_use');
 });
 
+Route::get('/test_pdf_v1', function () {
+    return view('test_pdf_v1');
+});
+
+Route::get('/test_doc_kaf', function () {
+    return view('test_doc_kaf');
+});
+
+
 // Google login
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
