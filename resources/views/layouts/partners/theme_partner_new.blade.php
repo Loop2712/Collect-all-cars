@@ -1188,12 +1188,13 @@
 
 		// check_sos_alarm();
 	    // check_sos_js100();
+
 	    setInterval(function() {
 	    	// เช็ค SOS
 	       	check_sos_alarm();
 	    	// เช็ค JS100
 	       	// check_sos_js100();
-	    }, 5000);
+	    }, 10000);
         
     });
 
