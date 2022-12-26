@@ -27,8 +27,8 @@ Route::get('/test_pdf_v1', function () {
     return view('test_pdf_v1');
 });
 
-Route::get('/test_doc_kaf', function () {
-    return view('test_doc_kaf');
+Route::get('/test_pdf_blade', function () {
+    return view('/report/PDF/test_export_pdf');
 });
 
 
