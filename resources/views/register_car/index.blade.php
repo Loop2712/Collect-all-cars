@@ -1,6 +1,71 @@
 @extends('layouts.viicheck')
 
 @section('content')
+<style>
+.div_license_plate{
+    position: relative;
+}
+.license_plate{
+    width: 250px;
+}
+.registration_number{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.province{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+}.license_plate_motor{
+    width: 130px;
+}
+.reg_motor{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.reg_motor_2{
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.province_motor{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+}
+</style> 
 <br><br><br><br><br>
 <input type="hidden" name="type_cer" id="type_car" value="{{ $type_car }}">
 <!-- ----------------------------------- แสดงผลเฉพาะคอม --------------------------------- -->
@@ -108,18 +173,25 @@
                                             <div class="row notranslate"  style="font-family: K2D, sans-serif;">
                                                 <div class="col-12">
                                                     <center>
-                                                        <p style="position: relative;top: 5px; z-index: 5; font-size:18px;">
+                                                        <div class="div_license_plate">
+                                                            <img class="license_plate_motor" src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+                                                            <p class="reg_motor"><b>{{ $reg_1 }}</b></p>
+                                                            <p class="province_motor">{{ $item->province }}</p>
+                                                            <p class="reg_motor_2"><b>{{ $reg_2 }}</b></p>
+                                                        </div>
+                                                        <br>
+                                                        <!-- <p style="position: relative;top: 5px; z-index: 5; font-size:18px;">
                                                             <b>{{ $reg_1 }}</b>
                                                         </p>
                                                         <p style="position: relative;top: -10px; color: #000000; z-index: 5">
                                                             {{ $item->province }}
                                                             <br>
                                                             <b>{{ $reg_2 }}</b>
-                                                        </p>
+                                                        </p> -->
                                                         <!-- แท็บเล็ต -->
-                                                        <img class="d-block d-lg-none" style="position: absolute;right: 101px;top: -5%;z-index: 2" width="130"src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+                                                        <!-- <img class="d-block d-lg-none" style="position: absolute;right: 101px;top: -5%;z-index: 2" width="130"src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}"> -->
                                                         <!-- pc -->
-                                                        <img class="d-none d-lg-block" style="position: absolute;right: 108px;top: -5%;z-index: 2" width="130"src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+                                                        <!-- <img class="d-none d-lg-block" style="position: absolute;right: 108px;top: -5%;z-index: 2" width="130"src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}"> -->
                                                     </center>
                                                 </div>
                                             </div>
@@ -127,13 +199,12 @@
                                             <div class="row notranslate"  style="font-family: K2D, sans-serif;">
                                                 <div class="col-12">
                                                     <center>
+                                                        <div class="div_license_plate">
+                                                            <img class="license_plate" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <p class="registration_number"><b>{{ $item->registration_number }}</b></p>
+                                                            <p class="province">{{ $item->province }}</p>
+                                                        </div>
                                                         <br>
-                                                        <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
-                                                        <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                        <!-- แท็บเล็ต -->
-                                                        <img class="d-block d-lg-none" style="position: absolute;right: 42px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
-                                                        <!-- pc -->
-                                                        <img class="d-none d-lg-block" style="position: absolute;right: 50px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
                                                     </center>
                                                 </div>
                                             </div>
@@ -397,15 +468,12 @@
                                             <div class="row notranslate"  style="font-family: K2D, sans-serif;">
                                                 <div class="col-12">
                                                     <center>
-                                                        <p style="position: relative;top: 5px; z-index: 5; font-size:18px;">
-                                                            <b>{{ $reg_1 }}</b>
-                                                        </p>
-                                                        <p style="position: relative;top: -10px; color: #000000; z-index: 5">
-                                                            {{ $item->province }}
-                                                            <br>
-                                                            <b>{{ $reg_2 }}</b>
-                                                        </p>
-                                                        <img style="position: absolute;right: 100px;top: -5%;z-index: 2" width="130"src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+                                                    <div class="div_license_plate">
+                                                            <img class="license_plate_motor" src="{{ asset('/img/icon/ป้ายทะเบียนรถมอไซต์.png') }}">
+                                                            <p class="reg_motor"><b>{{ $reg_1 }}</b></p>
+                                                            <p class="province_motor">{{ $item->province }}</p>
+                                                            <p class="reg_motor_2"><b>{{ $reg_2 }}</b></p>
+                                                        </div>
                                                     </center>
                                                 </div>
                                             </div>
@@ -413,10 +481,15 @@
                                             <div class="row notranslate"  style="font-family: K2D, sans-serif;">
                                                 <div class="col-12">
                                                     <center>
+                                                        <div class="div_license_plate">
+                                                            <img class="license_plate" src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                            <p class="registration_number"><b>{{ $item->registration_number }}</b></p>
+                                                            <p class="province">{{ $item->province }} </p>
+                                                        </div>
                                                         <br>
-                                                        <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
+                                                        <!-- <p style="position: relative;top: -5px; z-index: 5; font-size:18px;"><b>{{ $item->registration_number }}</b></p>
                                                         <p style="position: relative;top: -20px; color: #000000; z-index: 5">{{ $item->province }} </p>
-                                                        <img style="position: absolute;right: 40px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}">
+                                                        <img style="position: absolute;right: 40px;top: 5%;z-index: 2" width="250"src="{{ asset('/img/icon/ป้ายทะเบียน.png') }}"> -->
                                                     </center>
                                                 </div>
                                             </div>
